@@ -224,6 +224,7 @@
         "PolicyErrorException$Message": null,
         "ResourceNotFoundException$Message": null,
         "ServiceUnavailableException$Message": null,
+        "ThrottlingException$Message": "<p>A message that provides information about the exception.</p>",
         "UnauthorizedOperation$Message": null
       }
     },
@@ -479,6 +480,12 @@
       "refs": {
       }
     },
+    "RetryAfterSeconds": {
+      "base": null,
+      "refs": {
+        "ThrottlingException$RetryAfterSeconds": "<p>The number of seconds the caller should wait before retrying.</p>"
+      }
+    },
     "ServiceUnavailableException": {
       "base": "<p>Exception raised when there is an internal, configuration, or dependency error encountered.</p>",
       "refs": {
@@ -503,6 +510,11 @@
       "refs": {
         "MigrationTask$Task": "<p>Task object encapsulating task information.</p>",
         "NotifyMigrationTaskStateRequest$Task": "<p>Information about the task's progress and status.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The request was denied due to request throttling.</p>",
+      "refs": {
       }
     },
     "Token": {

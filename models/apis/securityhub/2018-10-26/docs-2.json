@@ -5,7 +5,8 @@
     "AcceptInvitation": "<p>Accepts the invitation to be a member account and be monitored by the Security Hub master account that the invitation was sent from.</p> <p>When the member account accepts the invitation, permission is granted to the master account to view findings generated in the member account.</p>",
     "BatchDisableStandards": "<p>Disables the standards specified by the provided <code>StandardsSubscriptionArns</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
     "BatchEnableStandards": "<p>Enables the standards specified by the provided <code>StandardsArn</code>. To obtain the ARN for a standard, use the <code> <a>DescribeStandards</a> </code> operation.</p> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
-    "BatchImportFindings": "<p>Imports security findings generated from an integrated third-party product into Security Hub. This action is requested by the integrated product to import its findings into Security Hub.</p> <p>The maximum allowed size for a finding is 240 Kb. An error is returned for any finding larger than 240 Kb.</p>",
+    "BatchImportFindings": "<p>Imports security findings generated from an integrated third-party product into Security Hub. This action is requested by the integrated product to import its findings into Security Hub.</p> <p>The maximum allowed size for a finding is 240 Kb. An error is returned for any finding larger than 240 Kb.</p> <p>After a finding is created, <code>BatchImportFindings</code> cannot be used to update the following finding fields and objects, which Security Hub customers use to manage their investigation workflow.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul>",
+    "BatchUpdateFindings": "<p>Used by Security Hub customers to update information about their investigation into a finding. Requested by master accounts or member accounts. Master accounts can update findings for their account and their member accounts. Member accounts can update findings for their account.</p> <p>Updates from <code>BatchUpdateFindings</code> do not affect the value of <code>UpdatedAt</code> for a finding.</p> <p>Master accounts can use <code>BatchUpdateFindings</code> to update the following finding fields and objects.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>Member accounts can only use <code>BatchUpdateFindings</code> to update the Note object.</p>",
     "CreateActionTarget": "<p>Creates a custom action target in Security Hub.</p> <p>You can use custom actions on findings and insights in Security Hub to trigger target actions in Amazon CloudWatch Events.</p>",
     "CreateInsight": "<p>Creates a custom insight in Security Hub. An insight is a consolidation of findings that relate to a security issue that requires attention or remediation.</p> <p>To group the related findings in the insight, use the <code>GroupByAttribute</code>.</p>",
     "CreateMembers": "<p>Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the master account. To successfully create a member, you must use this action from an account that already has Security Hub enabled. To enable Security Hub, you can use the <code> <a>EnableSecurityHub</a> </code> operation.</p> <p>After you use <code>CreateMembers</code> to create member account associations in Security Hub, you must use the <code> <a>InviteMembers</a> </code> operation to invite the accounts to enable Security Hub and become member accounts in Security Hub.</p> <p>If the account owner accepts the invitation, the account becomes a member account in Security Hub, and a permission policy is added that permits the master account to view the findings generated in the member account. When Security Hub is enabled in the invited account, findings start to be sent to both the member and master accounts.</p> <p>To remove the association between the master and member accounts, use the <code> <a>DisassociateFromMasterAccount</a> </code> or <code> <a>DisassociateMembers</a> </code> operation.</p>",
@@ -40,7 +41,7 @@
     "TagResource": "<p>Adds one or more tags to a resource.</p>",
     "UntagResource": "<p>Removes one or more tags from a resource.</p>",
     "UpdateActionTarget": "<p>Updates the name and description of a custom action target in Security Hub.</p>",
-    "UpdateFindings": "<p>Updates the <code>Note</code> and <code>RecordState</code> of the Security Hub-aggregated findings that the filter attributes specify. Any member account that can view the finding also sees the update to the finding.</p>",
+    "UpdateFindings": "<p> <code>UpdateFindings</code> is deprecated. Instead of <code>UpdateFindings</code>, use <code>BatchUpdateFindings</code>.</p> <p>Updates the <code>Note</code> and <code>RecordState</code> of the Security Hub-aggregated findings that the filter attributes specify. Any member account that can view the finding also sees the update to the finding.</p>",
     "UpdateInsight": "<p>Updates the Security Hub insight identified by the specified insight ARN.</p>",
     "UpdateStandardsControl": "<p>Used to control whether an individual security standard control is enabled or disabled.</p>"
   },
@@ -500,6 +501,20 @@
         "UpdateInsightRequest$Filters": "<p>The updated filters that define this insight.</p>"
       }
     },
+    "AwsSecurityFindingIdentifier": {
+      "base": "<p>Identifies a finding to update using <code>BatchUpdateFindings</code>.</p>",
+      "refs": {
+        "AwsSecurityFindingIdentifierList$member": null,
+        "BatchUpdateFindingsUnprocessedFinding$FindingIdentifier": "<p>The identifier of the finding that was not updated.</p>"
+      }
+    },
+    "AwsSecurityFindingIdentifierList": {
+      "base": null,
+      "refs": {
+        "BatchUpdateFindingsRequest$FindingIdentifiers": "<p>The list of findings to update. <code>BatchUpdateFindings</code> can be used to update up to 100 findings at a time.</p> <p>For each finding, the list provides the finding identifier and the ARN of the finding provider.</p>",
+        "BatchUpdateFindingsResponse$ProcessedFindings": "<p>The list of findings that were updated successfully.</p>"
+      }
+    },
     "AwsSecurityFindingList": {
       "base": null,
       "refs": {
@@ -577,6 +592,28 @@
     "BatchImportFindingsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "BatchUpdateFindingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchUpdateFindingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchUpdateFindingsUnprocessedFinding": {
+      "base": "<p>A finding from a <code>BatchUpdateFindings</code> request that Security Hub was unable to update.</p>",
+      "refs": {
+        "BatchUpdateFindingsUnprocessedFindingsList$member": null
+      }
+    },
+    "BatchUpdateFindingsUnprocessedFindingsList": {
+      "base": null,
+      "refs": {
+        "BatchUpdateFindingsResponse$UnprocessedFindings": "<p>The list of findings that were not updated.</p>"
       }
     },
     "Boolean": {
@@ -841,7 +878,8 @@
         "NumberFilter$Gte": "<p>The greater-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Lte": "<p>The less-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Eq": "<p>The equal-to condition to be applied to a single field when querying for findings.</p>",
-        "Severity$Product": "<p>The native severity as defined by the AWS service or integrated partner product that generated the finding.</p>"
+        "Severity$Product": "<p>The native severity as defined by the AWS service or integrated partner product that generated the finding.</p>",
+        "SeverityUpdate$Product": "<p>The native severity as defined by the AWS service or integrated partner product that generated the finding.</p>"
       }
     },
     "EnableImportFindingsForProductRequest": {
@@ -871,6 +909,7 @@
         "AwsLambdaFunctionEnvironment$Variables": "<p>Environment variable key-value pairs.</p>",
         "AwsSecurityFinding$ProductFields": "<p>A data type where security-findings providers can include additional solution-specific details that aren't part of the defined <code>AwsSecurityFinding</code> format.</p>",
         "AwsSecurityFinding$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding. </p>",
+        "BatchUpdateFindingsRequest$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding.</p>",
         "Resource$Tags": "<p>A list of AWS tags associated with a resource at the time the finding was processed.</p>",
         "ResourceDetails$Other": "<p>Details about a resource that are not available in a type-specific details object. Use the <code>Other</code> object in the following cases.</p> <ul> <li> <p>The type-specific object does not contain all of the fields that you want to populate. In this case, first use the type-specific object to populate those fields. Use the <code>Other</code> object to populate the fields that are missing from the type-specific object.</p> </li> <li> <p>The resource type does not have a corresponding object. This includes resources for which the type is <code>Other</code>. </p> </li> </ul>"
       }
@@ -1410,6 +1449,8 @@
         "AwsSecurityFinding$Title": "<p>A finding's title.</p> <note> <p>In this release, <code>Title</code> is a required property.</p> </note>",
         "AwsSecurityFinding$Description": "<p>A finding's description.</p> <note> <p>In this release, <code>Description</code> is a required property.</p> </note>",
         "AwsSecurityFinding$SourceUrl": "<p>A URL that links to a page about the current finding in the security-findings provider's solution.</p>",
+        "AwsSecurityFindingIdentifier$Id": "<p>The identifier of the finding that was specified by the finding provider.</p>",
+        "AwsSecurityFindingIdentifier$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
         "AwsSnsTopicDetails$KmsMasterKeyId": "<p>The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK.</p>",
         "AwsSnsTopicDetails$TopicName": "<p>The name of the topic.</p>",
         "AwsSnsTopicDetails$Owner": "<p>The subscription's owner.</p>",
@@ -1423,6 +1464,8 @@
         "AwsWafWebAclDetails$WebAclId": "<p>A unique identifier for a WebACL.</p>",
         "AwsWafWebAclRule$RuleId": "<p>The identifier for a Rule.</p>",
         "AwsWafWebAclRule$Type": "<p>The rule type.</p> <p>Valid values: <code>REGULAR</code> | <code>RATE_BASED</code> | <code>GROUP</code> </p> <p>The default is <code>REGULAR</code>.</p>",
+        "BatchUpdateFindingsUnprocessedFinding$ErrorCode": "<p>The code associated with the error.</p>",
+        "BatchUpdateFindingsUnprocessedFinding$ErrorMessage": "<p>The message associated with the error.</p>",
         "CategoryList$member": null,
         "ContainerDetails$Name": "<p>The name of the container related to a finding.</p>",
         "ContainerDetails$ImageId": "<p>The identifier of the image related to a finding.</p>",
@@ -1581,6 +1624,7 @@
     "NoteUpdate": {
       "base": "<p>The updated note.</p>",
       "refs": {
+        "BatchUpdateFindingsRequest$Note": null,
         "UpdateFindingsRequest$Note": "<p>The updated note for the finding.</p>"
       }
     },
@@ -1633,6 +1677,14 @@
         "DescribeProductsResponse$Products": "<p>A list of products, including details for each product.</p>"
       }
     },
+    "RatioScale": {
+      "base": null,
+      "refs": {
+        "BatchUpdateFindingsRequest$Confidence": "<p>The updated value for the finding confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
+        "BatchUpdateFindingsRequest$Criticality": "<p>The updated value for the level of importance assigned to the resources associated with the findings.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources. </p>",
+        "SeverityUpdate$Normalized": "<p>The normalized severity for the finding. This attribute is to be deprecated in favor of <code>Label</code>.</p> <p>If you provide <code>Normalized</code> and do not provide <code>Label</code>, <code>Label</code> is set automatically as follows.</p> <ul> <li> <p>0 - <code>INFORMATIONAL</code> </p> </li> <li> <p>1–39 - <code>LOW</code> </p> </li> <li> <p>40–69 - <code>MEDIUM</code> </p> </li> <li> <p>70–89 - <code>HIGH</code> </p> </li> <li> <p>90–100 - <code>CRITICAL</code> </p> </li> </ul>"
+      }
+    },
     "Recommendation": {
       "base": "<p>A recommendation on how to remediate the issue identified in a finding.</p>",
       "refs": {
@@ -1655,7 +1707,8 @@
     "RelatedFindingList": {
       "base": null,
       "refs": {
-        "AwsSecurityFinding$RelatedFindings": "<p>A list of related findings.</p>"
+        "AwsSecurityFinding$RelatedFindings": "<p>A list of related findings.</p>",
+        "BatchUpdateFindingsRequest$RelatedFindings": "<p>A list of findings that are related to the updated findings.</p>"
       }
     },
     "RelatedRequirementsList": {
@@ -1739,13 +1792,20 @@
     "SeverityLabel": {
       "base": null,
       "refs": {
-        "Severity$Label": "<p>The severity value of the finding. The allowed values are the following.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - No issue was found.</p> </li> <li> <p> <code>LOW</code> - The issue does not require action on its own.</p> </li> <li> <p> <code>MEDIUM</code> - The issue must be addressed but not urgently.</p> </li> <li> <p> <code>HIGH</code> - The issue must be addressed as a priority.</p> </li> <li> <p> <code>CRITICAL</code> - The issue must be remediated immediately to avoid it escalating.</p> </li> </ul>"
+        "Severity$Label": "<p>The severity value of the finding. The allowed values are the following.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - No issue was found.</p> </li> <li> <p> <code>LOW</code> - The issue does not require action on its own.</p> </li> <li> <p> <code>MEDIUM</code> - The issue must be addressed but not urgently.</p> </li> <li> <p> <code>HIGH</code> - The issue must be addressed as a priority.</p> </li> <li> <p> <code>CRITICAL</code> - The issue must be remediated immediately to avoid it escalating.</p> </li> </ul>",
+        "SeverityUpdate$Label": "<p>The severity value of the finding. The allowed values are the following.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - No issue was found.</p> </li> <li> <p> <code>LOW</code> - The issue does not require action on its own.</p> </li> <li> <p> <code>MEDIUM</code> - The issue must be addressed but not urgently.</p> </li> <li> <p> <code>HIGH</code> - The issue must be addressed as a priority.</p> </li> <li> <p> <code>CRITICAL</code> - The issue must be remediated immediately to avoid it escalating.</p> </li> </ul>"
       }
     },
     "SeverityRating": {
       "base": null,
       "refs": {
         "StandardsControl$SeverityRating": "<p>The severity of findings generated from this security standard control.</p> <p>The finding severity is based on an assessment of how easy it would be to compromise AWS resources if the issue is detected.</p>"
+      }
+    },
+    "SeverityUpdate": {
+      "base": "<p>Updates to the severity information for a finding.</p>",
+      "refs": {
+        "BatchUpdateFindingsRequest$Severity": "<p>Used to update the finding severity.</p>"
       }
     },
     "SortCriteria": {
@@ -1987,7 +2047,8 @@
     "TypeList": {
       "base": null,
       "refs": {
-        "AwsSecurityFinding$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>"
+        "AwsSecurityFinding$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>",
+        "BatchUpdateFindingsRequest$Types": "<p>One or more finding types in the format of namespace/category/classifier that classify a finding.</p> <p>Valid namespace values are as follows.</p> <ul> <li> <p>Software and Configuration Checks</p> </li> <li> <p>TTPs</p> </li> <li> <p>Effects</p> </li> <li> <p>Unusual Behaviors</p> </li> <li> <p>Sensitive Data Identifications </p> </li> </ul>"
       }
     },
     "UntagResourceRequest": {
@@ -2043,7 +2104,8 @@
     "VerificationState": {
       "base": null,
       "refs": {
-        "AwsSecurityFinding$VerificationState": "<p>Indicates the veracity of a finding. </p>"
+        "AwsSecurityFinding$VerificationState": "<p>Indicates the veracity of a finding. </p>",
+        "BatchUpdateFindingsRequest$VerificationState": "<p>Indicates the veracity of a finding.</p> <p>The available values for <code>VerificationState</code> are as follows.</p> <ul> <li> <p> <code>UNKNOWN</code> – The default disposition of a security finding</p> </li> <li> <p> <code>TRUE_POSITIVE</code> – The security finding is confirmed</p> </li> <li> <p> <code>FALSE_POSITIVE</code> – The security finding was determined to be a false alarm</p> </li> <li> <p> <code>BENIGN_POSITIVE</code> – A special case of <code>TRUE_POSITIVE</code> where the finding doesn't pose any threat, is expected, or both</p> </li> </ul>"
       }
     },
     "WafAction": {
@@ -2085,7 +2147,14 @@
     "WorkflowStatus": {
       "base": null,
       "refs": {
-        "Workflow$Status": "<p>The status of the investigation into the finding. The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>"
+        "Workflow$Status": "<p>The status of the investigation into the finding. The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>",
+        "WorkflowUpdate$Status": "<p>The status of the investigation into the finding. The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> </ul>"
+      }
+    },
+    "WorkflowUpdate": {
+      "base": "<p>Used to update information about the investigation into the finding.</p>",
+      "refs": {
+        "BatchUpdateFindingsRequest$Workflow": "<p>Used to update the workflow status of a finding.</p> <p>The workflow status indicates the progress of the investigation into the finding. </p>"
       }
     }
   }

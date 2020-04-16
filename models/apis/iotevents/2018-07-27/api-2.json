@@ -289,7 +289,9 @@
         "lambda":{"shape":"LambdaAction"},
         "iotEvents":{"shape":"IotEventsAction"},
         "sqs":{"shape":"SqsAction"},
-        "firehose":{"shape":"FirehoseAction"}
+        "firehose":{"shape":"FirehoseAction"},
+        "dynamoDB":{"shape":"DynamoDBAction"},
+        "dynamoDBv2":{"shape":"DynamoDBv2Action"}
       }
     },
     "Actions":{
@@ -330,6 +332,10 @@
     "Condition":{
       "type":"string",
       "max":512
+    },
+    "ContentExpression":{
+      "type":"string",
+      "min":1
     },
     "CreateDetectorModelRequest":{
       "type":"structure",
@@ -559,6 +565,39 @@
         "evaluationMethod":{"shape":"EvaluationMethod"}
       }
     },
+    "DynamoDBAction":{
+      "type":"structure",
+      "required":[
+        "hashKeyField",
+        "hashKeyValue",
+        "tableName"
+      ],
+      "members":{
+        "hashKeyType":{"shape":"DynamoKeyType"},
+        "hashKeyField":{"shape":"DynamoKeyField"},
+        "hashKeyValue":{"shape":"DynamoKeyValue"},
+        "rangeKeyType":{"shape":"DynamoKeyType"},
+        "rangeKeyField":{"shape":"DynamoKeyField"},
+        "rangeKeyValue":{"shape":"DynamoKeyValue"},
+        "operation":{"shape":"DynamoOperation"},
+        "payloadField":{"shape":"DynamoKeyField"},
+        "tableName":{"shape":"DynamoTableName"},
+        "payload":{"shape":"Payload"}
+      }
+    },
+    "DynamoDBv2Action":{
+      "type":"structure",
+      "required":["tableName"],
+      "members":{
+        "tableName":{"shape":"DynamoTableName"},
+        "payload":{"shape":"Payload"}
+      }
+    },
+    "DynamoKeyField":{"type":"string"},
+    "DynamoKeyType":{"type":"string"},
+    "DynamoKeyValue":{"type":"string"},
+    "DynamoOperation":{"type":"string"},
+    "DynamoTableName":{"type":"string"},
     "EvaluationMethod":{
       "type":"string",
       "enum":[
@@ -588,7 +627,8 @@
       "required":["deliveryStreamName"],
       "members":{
         "deliveryStreamName":{"shape":"DeliveryStreamName"},
-        "separator":{"shape":"FirehoseSeparator"}
+        "separator":{"shape":"FirehoseSeparator"},
+        "payload":{"shape":"Payload"}
       }
     },
     "FirehoseSeparator":{
@@ -683,14 +723,16 @@
       "type":"structure",
       "required":["inputName"],
       "members":{
-        "inputName":{"shape":"InputName"}
+        "inputName":{"shape":"InputName"},
+        "payload":{"shape":"Payload"}
       }
     },
     "IotTopicPublishAction":{
       "type":"structure",
       "required":["mqttTopic"],
       "members":{
-        "mqttTopic":{"shape":"MQTTTopic"}
+        "mqttTopic":{"shape":"MQTTTopic"},
+        "payload":{"shape":"Payload"}
       }
     },
     "KeyValue":{
@@ -703,7 +745,8 @@
       "type":"structure",
       "required":["functionArn"],
       "members":{
-        "functionArn":{"shape":"AmazonResourceName"}
+        "functionArn":{"shape":"AmazonResourceName"},
+        "payload":{"shape":"Payload"}
       }
     },
     "LimitExceededException":{
@@ -856,6 +899,24 @@
         "transitionEvents":{"shape":"TransitionEvents"}
       }
     },
+    "Payload":{
+      "type":"structure",
+      "required":[
+        "contentExpression",
+        "type"
+      ],
+      "members":{
+        "contentExpression":{"shape":"ContentExpression"},
+        "type":{"shape":"PayloadType"}
+      }
+    },
+    "PayloadType":{
+      "type":"string",
+      "enum":[
+        "STRING",
+        "JSON"
+      ]
+    },
     "PutLoggingOptionsRequest":{
       "type":"structure",
       "required":["loggingOptions"],
@@ -901,7 +962,8 @@
       "type":"structure",
       "required":["targetArn"],
       "members":{
-        "targetArn":{"shape":"AmazonResourceName"}
+        "targetArn":{"shape":"AmazonResourceName"},
+        "payload":{"shape":"Payload"}
       }
     },
     "Seconds":{
@@ -947,7 +1009,8 @@
       "required":["queueUrl"],
       "members":{
         "queueUrl":{"shape":"QueueUrl"},
-        "useBase64":{"shape":"UseBase64"}
+        "useBase64":{"shape":"UseBase64"},
+        "payload":{"shape":"Payload"}
       }
     },
     "State":{

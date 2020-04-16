@@ -4436,7 +4436,7 @@
     "EnvironmentArn":{
       "type":"string",
       "max":256,
-      "pattern":"^arn:aws(-[\\w]+)*:sagemaker:.+:[0-9]{12}:environment/[a-z0-9](-*[a-z0-9]){0,62}$"
+      "pattern":"^arn:aws(-[\\w]+)*:sagemaker:.+:[0-9]{12}:environment/[a-z0-9]([-.]?[a-z0-9])*$"
     },
     "EnvironmentKey":{
       "type":"string",
@@ -4723,7 +4723,8 @@
         "MXNET",
         "ONNX",
         "PYTORCH",
-        "XGBOOST"
+        "XGBOOST",
+        "TFLITE"
       ]
     },
     "GenerateCandidateDefinitionsOnly":{"type":"boolean"},
@@ -7110,6 +7111,33 @@
         "ml.r5.24xlarge"
       ]
     },
+    "ProcessingJob":{
+      "type":"structure",
+      "members":{
+        "ProcessingInputs":{"shape":"ProcessingInputs"},
+        "ProcessingOutputConfig":{"shape":"ProcessingOutputConfig"},
+        "ProcessingJobName":{"shape":"ProcessingJobName"},
+        "ProcessingResources":{"shape":"ProcessingResources"},
+        "StoppingCondition":{"shape":"ProcessingStoppingCondition"},
+        "AppSpecification":{"shape":"AppSpecification"},
+        "Environment":{"shape":"ProcessingEnvironmentMap"},
+        "NetworkConfig":{"shape":"NetworkConfig"},
+        "RoleArn":{"shape":"RoleArn"},
+        "ExperimentConfig":{"shape":"ExperimentConfig"},
+        "ProcessingJobArn":{"shape":"ProcessingJobArn"},
+        "ProcessingJobStatus":{"shape":"ProcessingJobStatus"},
+        "ExitMessage":{"shape":"ExitMessage"},
+        "FailureReason":{"shape":"FailureReason"},
+        "ProcessingEndTime":{"shape":"Timestamp"},
+        "ProcessingStartTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"Timestamp"},
+        "MonitoringScheduleArn":{"shape":"MonitoringScheduleArn"},
+        "AutoMLJobArn":{"shape":"AutoMLJobArn"},
+        "TrainingJobArn":{"shape":"TrainingJobArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "ProcessingJobArn":{
       "type":"string",
       "max":256,
@@ -8241,7 +8269,12 @@
         "ml.c5.2xlarge",
         "ml.c5.4xlarge",
         "ml.c5.9xlarge",
-        "ml.c5.18xlarge"
+        "ml.c5.18xlarge",
+        "ml.c5n.xlarge",
+        "ml.c5n.2xlarge",
+        "ml.c5n.4xlarge",
+        "ml.c5n.9xlarge",
+        "ml.c5n.18xlarge"
       ]
     },
     "TrainingInstanceTypes":{
@@ -8680,7 +8713,9 @@
       "enum":[
         "InProgress",
         "Completed",
-        "Failed"
+        "Failed",
+        "Stopping",
+        "Stopped"
       ]
     },
     "TrialComponentSimpleSummaries":{
@@ -8714,7 +8749,8 @@
       "type":"structure",
       "members":{
         "SourceArn":{"shape":"TrialComponentSourceArn"},
-        "TrainingJob":{"shape":"TrainingJob"}
+        "TrainingJob":{"shape":"TrainingJob"},
+        "ProcessingJob":{"shape":"ProcessingJob"}
       }
     },
     "TrialComponentStatus":{

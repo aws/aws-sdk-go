@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Provides APIs for creating and managing Amazon SageMaker resources.</p>",
+  "service": "<p>Provides APIs for creating and managing Amazon SageMaker resources. </p> <p>Other Resources:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html#first-time-user\">Amazon SageMaker Developer Guide</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/augmented-ai/2019-11-07/APIReference/Welcome.html\">Amazon Augmented AI Runtime API Reference</a> </p> </li> </ul>",
   "operations": {
     "AddTags": "<p>Adds or overwrites one or more tags for the specified Amazon SageMaker resource. You can add tags to notebook instances, training jobs, hyperparameter tuning jobs, batch transform jobs, models, labeling jobs, work teams, endpoint configurations, and endpoints.</p> <p>Each tag consists of a key and an optional value. Tag keys must be unique per resource. For more information about tags, see For more information, see <a href=\"https://aws.amazon.com/answers/account-management/aws-tagging-strategies/\">AWS Tagging Strategies</a>.</p> <note> <p>Tags that you add to a hyperparameter tuning job by calling this API are also added to any training jobs that the hyperparameter tuning job launches after you call this API, but not to training jobs that the hyperparameter tuning job launched before you called this API. To make sure that the tags associated with a hyperparameter tuning job are also added to all training jobs that the hyperparameter tuning job launches, add the tags when you first create the tuning job by specifying them in the <code>Tags</code> parameter of <a>CreateHyperParameterTuningJob</a> </p> </note>",
     "AssociateTrialComponent": "<p>Associates a trial component with a trial. A trial component can be associated with multiple trials. To disassociate a trial component from a trial, call the <a>DisassociateTrialComponent</a> API.</p>",
@@ -110,7 +110,7 @@
     "ListUserProfiles": "<p>Lists user profiles.</p>",
     "ListWorkteams": "<p>Gets a list of work teams that you have defined in a region. The list may be empty if no work team satisfies the filter specified in the <code>NameContains</code> parameter.</p>",
     "RenderUiTemplate": "<p>Renders the UI template so that you can preview the worker's experience. </p>",
-    "Search": "<p>Finds Amazon SageMaker resources that match a search query. Matching resource objects are returned as a list of <code>SearchResult</code> objects in the response. You can sort the search results by any resource property in a ascending or descending order.</p> <p>You can query against the following value types: numeric, text, Boolean, and timestamp.</p>",
+    "Search": "<p>Finds Amazon SageMaker resources that match a search query. Matching resources are returned as a list of <code>SearchRecord</code> objects in the response. You can sort the search results by any resource property in a ascending or descending order.</p> <p>You can query against the following value types: numeric, text, Boolean, and timestamp.</p>",
     "StartMonitoringSchedule": "<p>Starts a previously stopped monitoring schedule.</p> <note> <p>New monitoring schedules are immediately started after creation.</p> </note>",
     "StartNotebookInstance": "<p>Launches an ML compute instance with the latest version of the libraries and attaches your ML storage volume. After configuring the notebook instance, Amazon SageMaker sets the notebook instance status to <code>InService</code>. A notebook instance's status must be <code>InService</code> before you can connect to your Jupyter notebook. </p>",
     "StopAutoMLJob": "<p>A method for forcing the termination of a running job.</p>",
@@ -306,7 +306,8 @@
       "base": "<p>Configuration to run a processing job in a specified container image.</p>",
       "refs": {
         "CreateProcessingJobRequest$AppSpecification": "<p>Configures the processing job to run a specified Docker container image.</p>",
-        "DescribeProcessingJobResponse$AppSpecification": "<p>Configures the processing job to run a specified container image.</p>"
+        "DescribeProcessingJobResponse$AppSpecification": "<p>Configures the processing job to run a specified container image.</p>",
+        "ProcessingJob$AppSpecification": null
       }
     },
     "AppStatus": {
@@ -439,6 +440,7 @@
         "DescribeProcessingJobResponse$AutoMLJobArn": "<p>The ARN of an AutoML job associated with this processing job.</p>",
         "DescribeTrainingJobResponse$AutoMLJobArn": "<p/>",
         "DescribeTransformJobResponse$AutoMLJobArn": "<p/>",
+        "ProcessingJob$AutoMLJobArn": "<p>The Amazon Resource Name (ARN) of the AutoML job associated with this processing job.</p>",
         "TrainingJob$AutoMLJobArn": "<p>The Amazon Resource Name (ARN) of the job.</p>"
       }
     },
@@ -2205,13 +2207,14 @@
       "base": null,
       "refs": {
         "DescribeProcessingJobResponse$ExitMessage": "<p>An optional string, up to one KB in size, that contains metadata from the processing container when the processing job exits.</p>",
+        "ProcessingJob$ExitMessage": "<p>A string, up to one KB in size, that contains metadata from the processing container when the processing job exits.</p>",
         "ProcessingJobSummary$ExitMessage": "<p>An optional string, up to one KB in size, that contains metadata from the processing container when the processing job exits.</p>"
       }
     },
     "Experiment": {
-      "base": "<p>A summary of the properties of an experiment as returned by the <a>Search</a> API.</p>",
+      "base": "<p>The properties of an experiment as returned by the <a>Search</a> API.</p>",
       "refs": {
-        "SearchRecord$Experiment": "<p>A summary of the properties of an experiment.</p>"
+        "SearchRecord$Experiment": "<p>The properties of an experiment.</p>"
       }
     },
     "ExperimentArn": {
@@ -2234,6 +2237,7 @@
         "DescribeProcessingJobResponse$ExperimentConfig": "<p>The configuration information used to create an experiment.</p>",
         "DescribeTrainingJobResponse$ExperimentConfig": null,
         "DescribeTransformJobResponse$ExperimentConfig": null,
+        "ProcessingJob$ExperimentConfig": null,
         "TrainingJob$ExperimentConfig": null
       }
     },
@@ -2351,6 +2355,7 @@
         "HyperParameterTrainingJobSummary$FailureReason": "<p>The reason that the training job failed. </p>",
         "LabelingJobSummary$FailureReason": "<p>If the <code>LabelingJobStatus</code> field is <code>Failed</code>, this field contains a description of the error.</p>",
         "MonitoringExecutionSummary$FailureReason": "<p>Contains the reason a monitoring job failed, if it failed.</p>",
+        "ProcessingJob$FailureReason": "<p>A string, up to one KB in size, that contains the reason a processing job failed, if it failed.</p>",
         "ProcessingJobSummary$FailureReason": "<p>A string, up to one KB in size, that contains the reason a processing job failed, if it failed.</p>",
         "ResourceInUse$Message": null,
         "ResourceLimitExceeded$Message": null,
@@ -2384,7 +2389,7 @@
       }
     },
     "Filter": {
-      "base": "<p>A conditional statement for a search expression that includes a resource property, a Boolean operator, and a value.</p> <p>If you don't specify an <code>Operator</code> and a <code>Value</code>, the filter searches for only the specified property. For example, defining a <code>Filter</code> for the <code>FailureReason</code> for the <code>TrainingJob</code> <code>Resource</code> searches for training job objects that have a value in the <code>FailureReason</code> field.</p> <p>If you specify a <code>Value</code>, but not an <code>Operator</code>, Amazon SageMaker uses the equals operator as the default.</p> <p>In search, there are several property types:</p> <dl> <dt>Metrics</dt> <dd> <p>To define a metric filter, enter a value using the form <code>\"Metrics.&lt;name&gt;\"</code>, where <code>&lt;name&gt;</code> is a metric name. For example, the following filter searches for training jobs with an <code>\"accuracy\"</code> metric greater than <code>\"0.9\"</code>:</p> <p> <code>{</code> </p> <p> <code>\"Name\": \"Metrics.accuracy\",</code> </p> <p> <code>\"Operator\": \"GREATER_THAN\",</code> </p> <p> <code>\"Value\": \"0.9\"</code> </p> <p> <code>}</code> </p> </dd> <dt>HyperParameters</dt> <dd> <p>To define a hyperparameter filter, enter a value with the form <code>\"HyperParameters.&lt;name&gt;\"</code>. Decimal hyperparameter values are treated as a decimal in a comparison if the specified <code>Value</code> is also a decimal value. If the specified <code>Value</code> is an integer, the decimal hyperparameter values are treated as integers. For example, the following filter is satisfied by training jobs with a <code>\"learning_rate\"</code> hyperparameter that is less than <code>\"0.5\"</code>:</p> <p> <code> {</code> </p> <p> <code> \"Name\": \"HyperParameters.learning_rate\",</code> </p> <p> <code> \"Operator\": \"LESS_THAN\",</code> </p> <p> <code> \"Value\": \"0.5\"</code> </p> <p> <code> }</code> </p> </dd> <dt>Tags</dt> <dd> <p>To define a tag filter, enter a value with the form <code>\"Tags.&lt;key&gt;\"</code>.</p> </dd> </dl>",
+      "base": "<p>A conditional statement for a search expression that includes a resource property, a Boolean operator, and a value. Resources that match the statement are returned in the results from the <a>Search</a> API.</p> <p>If you specify a <code>Value</code>, but not an <code>Operator</code>, Amazon SageMaker uses the equals operator.</p> <p>In search, there are several property types:</p> <dl> <dt>Metrics</dt> <dd> <p>To define a metric filter, enter a value using the form <code>\"Metrics.&lt;name&gt;\"</code>, where <code>&lt;name&gt;</code> is a metric name. For example, the following filter searches for training jobs with an <code>\"accuracy\"</code> metric greater than <code>\"0.9\"</code>:</p> <p> <code>{</code> </p> <p> <code>\"Name\": \"Metrics.accuracy\",</code> </p> <p> <code>\"Operator\": \"GreaterThan\",</code> </p> <p> <code>\"Value\": \"0.9\"</code> </p> <p> <code>}</code> </p> </dd> <dt>HyperParameters</dt> <dd> <p>To define a hyperparameter filter, enter a value with the form <code>\"HyperParameters.&lt;name&gt;\"</code>. Decimal hyperparameter values are treated as a decimal in a comparison if the specified <code>Value</code> is also a decimal value. If the specified <code>Value</code> is an integer, the decimal hyperparameter values are treated as integers. For example, the following filter is satisfied by training jobs with a <code>\"learning_rate\"</code> hyperparameter that is less than <code>\"0.5\"</code>:</p> <p> <code> {</code> </p> <p> <code> \"Name\": \"HyperParameters.learning_rate\",</code> </p> <p> <code> \"Operator\": \"LessThan\",</code> </p> <p> <code> \"Value\": \"0.5\"</code> </p> <p> <code> }</code> </p> </dd> <dt>Tags</dt> <dd> <p>To define a tag filter, enter a value with the form <code>Tags.&lt;key&gt;</code>.</p> </dd> </dl>",
       "refs": {
         "FilterList$member": null
       }
@@ -2399,7 +2404,7 @@
     "FilterValue": {
       "base": null,
       "refs": {
-        "Filter$Value": "<p>A value used with <code>Resource</code> and <code>Operator</code> to determine if objects satisfy the filter's condition. For numerical properties, <code>Value</code> must be an integer or floating-point decimal. For timestamp properties, <code>Value</code> must be an ISO 8601 date-time string of the following format: <code>YYYY-mm-dd'T'HH:MM:SS</code>.</p>"
+        "Filter$Value": "<p>A value used with <code>Name</code> and <code>Operator</code> to determine which resources satisfy the filter's condition. For numerical properties, <code>Value</code> must be an integer or floating-point decimal. For timestamp properties, <code>Value</code> must be an ISO 8601 date-time string of the following format: <code>YYYY-mm-dd'T'HH:MM:SS</code>.</p>"
       }
     },
     "FinalAutoMLJobObjectiveMetric": {
@@ -2591,8 +2596,8 @@
     "HumanLoopRequestSource": {
       "base": "<p>Container for configuring the source of human task requests.</p>",
       "refs": {
-        "CreateFlowDefinitionRequest$HumanLoopRequestSource": null,
-        "DescribeFlowDefinitionResponse$HumanLoopRequestSource": null
+        "CreateFlowDefinitionRequest$HumanLoopRequestSource": "<p>Container for configuring the source of human task requests. Use to specify if Amazon Rekognition or Amazon Textract is used as an integration source.</p>",
+        "DescribeFlowDefinitionResponse$HumanLoopRequestSource": "<p>Container for configuring the source of human task requests. Used to specify if Amazon Rekognition or Amazon Textract is used as an integration source.</p>"
       }
     },
     "HumanTaskConfig": {
@@ -3578,7 +3583,7 @@
         "ListTrialsRequest$MaxResults": "<p>The maximum number of trials to return in the response. The default value is 10.</p>",
         "ListUserProfilesRequest$MaxResults": "<p>Returns a list up to a specified limit.</p>",
         "ListWorkteamsRequest$MaxResults": "<p>The maximum number of work teams to return in each page of the response.</p>",
-        "SearchRequest$MaxResults": "<p>The maximum number of results to return in a <code>SearchResponse</code>.</p>"
+        "SearchRequest$MaxResults": "<p>The maximum number of results to return.</p>"
       }
     },
     "MaxRuntimeInSeconds": {
@@ -3922,6 +3927,7 @@
         "DescribeMonitoringScheduleResponse$MonitoringScheduleArn": "<p>The Amazon Resource Name (ARN) of the monitoring schedule.</p>",
         "DescribeProcessingJobResponse$MonitoringScheduleArn": "<p>The ARN of a monitoring schedule for an endpoint associated with this processing job.</p>",
         "MonitoringScheduleSummary$MonitoringScheduleArn": "<p>The Amazon Resource Name (ARN) of the monitoring schedule.</p>",
+        "ProcessingJob$MonitoringScheduleArn": "<p>The ARN of a monitoring schedule for an endpoint associated with this processing job.</p>",
         "UpdateMonitoringScheduleResponse$MonitoringScheduleArn": "<p>The Amazon Resource Name (ARN) of the monitoring schedule.</p>"
       }
     },
@@ -3992,7 +3998,7 @@
       }
     },
     "NestedFilters": {
-      "base": "<p>Defines a list of <code>NestedFilters</code> objects. To satisfy the conditions specified in the <code>NestedFilters</code> call, a resource must satisfy the conditions of all of the filters.</p> <p>For example, you could define a <code>NestedFilters</code> using the training job's <code>InputDataConfig</code> property to filter on <code>Channel</code> objects. </p> <p>A <code>NestedFilters</code> object contains multiple filters. For example, to find all training jobs whose name contains <code>train</code> and that have <code>cat/data</code> in their <code>S3Uri</code> (specified in <code>InputDataConfig</code>), you need to create a <code>NestedFilters</code> object that specifies the <code>InputDataConfig</code> property with the following <code>Filter</code> objects:</p> <ul> <li> <p> <code>'{Name:\"InputDataConfig.ChannelName\", \"Operator\":\"EQUALS\", \"Value\":\"train\"}',</code> </p> </li> <li> <p> <code>'{Name:\"InputDataConfig.DataSource.S3DataSource.S3Uri\", \"Operator\":\"CONTAINS\", \"Value\":\"cat/data\"}'</code> </p> </li> </ul>",
+      "base": "<p>A list of nested <a>Filter</a> objects. A resource must satisfy the conditions of all filters to be included in the results returned from the <a>Search</a> API.</p> <p>For example, to filter on a training job's <code>InputDataConfig</code> property with a specific channel name and <code>S3Uri</code> prefix, define the following filters:</p> <ul> <li> <p> <code>'{Name:\"InputDataConfig.ChannelName\", \"Operator\":\"Equals\", \"Value\":\"train\"}',</code> </p> </li> <li> <p> <code>'{Name:\"InputDataConfig.DataSource.S3DataSource.S3Uri\", \"Operator\":\"Contains\", \"Value\":\"mybucket/catdata\"}'</code> </p> </li> </ul>",
       "refs": {
         "NestedFiltersList$member": null
       }
@@ -4008,7 +4014,8 @@
       "refs": {
         "CreateProcessingJobRequest$NetworkConfig": "<p>Networking options for a processing job.</p>",
         "DescribeProcessingJobResponse$NetworkConfig": "<p>Networking options for a processing job.</p>",
-        "MonitoringJobDefinition$NetworkConfig": "<p>Specifies networking options for an monitoring job.</p>"
+        "MonitoringJobDefinition$NetworkConfig": "<p>Specifies networking options for an monitoring job.</p>",
+        "ProcessingJob$NetworkConfig": null
       }
     },
     "NetworkInterfaceId": {
@@ -4076,7 +4083,7 @@
         "ListUserProfilesResponse$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
         "ListWorkteamsRequest$NextToken": "<p>If the result of the previous <code>ListWorkteams</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of labeling jobs, use the token in the next request.</p>",
         "ListWorkteamsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of work teams, use it in the subsequent request.</p>",
-        "SearchRequest$NextToken": "<p>If more than <code>MaxResults</code> resource objects match the specified <code>SearchExpression</code>, the <code>SearchResponse</code> includes a <code>NextToken</code>. The <code>NextToken</code> can be passed to the next <code>SearchRequest</code> to continue retrieving results for the specified <code>SearchExpression</code> and <code>Sort</code> parameters.</p>",
+        "SearchRequest$NextToken": "<p>If more than <code>MaxResults</code> resources match the specified <code>SearchExpression</code>, the response includes a <code>NextToken</code>. The <code>NextToken</code> can be passed to the next <code>SearchRequest</code> to continue retrieving results.</p>",
         "SearchResponse$NextToken": "<p>If the result of the previous <code>Search</code> request was truncated, the response includes a NextToken. To retrieve the next set of results, use the token in the next request.</p>"
       }
     },
@@ -4299,7 +4306,7 @@
     "Operator": {
       "base": null,
       "refs": {
-        "Filter$Operator": "<p>A Boolean binary operator that is used to evaluate the filter. The operator field contains one of the following values:</p> <dl> <dt>Equals</dt> <dd> <p>The specified resource in <code>Name</code> equals the specified <code>Value</code>.</p> </dd> <dt>NotEquals</dt> <dd> <p>The specified resource in <code>Name</code> does not equal the specified <code>Value</code>.</p> </dd> <dt>GreaterThan</dt> <dd> <p>The specified resource in <code>Name</code> is greater than the specified <code>Value</code>. Not supported for text-based properties.</p> </dd> <dt>GreaterThanOrEqualTo</dt> <dd> <p>The specified resource in <code>Name</code> is greater than or equal to the specified <code>Value</code>. Not supported for text-based properties.</p> </dd> <dt>LessThan</dt> <dd> <p>The specified resource in <code>Name</code> is less than the specified <code>Value</code>. Not supported for text-based properties.</p> </dd> <dt>LessThanOrEqualTo</dt> <dd> <p>The specified resource in <code>Name</code> is less than or equal to the specified <code>Value</code>. Not supported for text-based properties.</p> </dd> <dt>Contains</dt> <dd> <p>Only supported for text-based properties. The word-list of the property contains the specified <code>Value</code>. A <code>SearchExpression</code> can include only one <code>Contains</code> operator.</p> </dd> </dl> <p>If you have specified a filter <code>Value</code>, the default is <code>Equals</code>.</p>"
+        "Filter$Operator": "<p>A Boolean binary operator that is used to evaluate the filter. The operator field contains one of the following values:</p> <dl> <dt>Equals</dt> <dd> <p>The value of <code>Name</code> equals <code>Value</code>.</p> </dd> <dt>NotEquals</dt> <dd> <p>The value of <code>Name</code> doesn't equal <code>Value</code>.</p> </dd> <dt>GreaterThan</dt> <dd> <p>The value of <code>Name</code> is greater than <code>Value</code>. Not supported for text properties.</p> </dd> <dt>GreaterThanOrEqualTo</dt> <dd> <p>The value of <code>Name</code> is greater than or equal to <code>Value</code>. Not supported for text properties.</p> </dd> <dt>LessThan</dt> <dd> <p>The value of <code>Name</code> is less than <code>Value</code>. Not supported for text properties.</p> </dd> <dt>LessThanOrEqualTo</dt> <dd> <p>The value of <code>Name</code> is less than or equal to <code>Value</code>. Not supported for text properties.</p> </dd> <dt>Contains</dt> <dd> <p>The value of <code>Name</code> contains the string <code>Value</code>. A <code>SearchExpression</code> can include only one <code>Contains</code> operator. Only supported for text properties.</p> </dd> <dt>Exists</dt> <dd> <p>The <code>Name</code> property exists.</p> </dd> <dt>NotExists</dt> <dd> <p>The <code>Name</code> property does not exist.</p> </dd> <dt>In</dt> <dd> <p>The value of <code>Name</code> is one of the comma delimited strings in <code>Value</code>. Only supported for text properties.</p> </dd> </dl>"
       }
     },
     "OptionalDouble": {
@@ -4472,7 +4479,8 @@
       "base": null,
       "refs": {
         "CreateProcessingJobRequest$Environment": "<p>Sets the environment variables in the Docker container.</p>",
-        "DescribeProcessingJobResponse$Environment": "<p>The environment variables set in the Docker container.</p>"
+        "DescribeProcessingJobResponse$Environment": "<p>The environment variables set in the Docker container.</p>",
+        "ProcessingJob$Environment": "<p>Sets the environment variables in the Docker container.</p>"
       }
     },
     "ProcessingEnvironmentValue": {
@@ -4492,7 +4500,8 @@
       "base": null,
       "refs": {
         "CreateProcessingJobRequest$ProcessingInputs": "<p>For each input, data is downloaded from S3 into the processing container before the processing job begins running if \"S3InputMode\" is set to <code>File</code>.</p>",
-        "DescribeProcessingJobResponse$ProcessingInputs": "<p>The inputs for a processing job.</p>"
+        "DescribeProcessingJobResponse$ProcessingInputs": "<p>The inputs for a processing job.</p>",
+        "ProcessingJob$ProcessingInputs": "<p>For each input, data is downloaded from S3 into the processing container before the processing job begins running if \"S3InputMode\" is set to <code>File</code>.</p>"
       }
     },
     "ProcessingInstanceCount": {
@@ -4510,6 +4519,12 @@
         "ProcessingClusterConfig$InstanceType": "<p>The ML compute instance type for the processing job.</p>"
       }
     },
+    "ProcessingJob": {
+      "base": "<p>An Amazon SageMaker processing job that is used to analyze data and evaluate models. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/processing-job.html\">Process Data and Evaluate Models</a>.</p>",
+      "refs": {
+        "TrialComponentSourceDetail$ProcessingJob": "<p>Information about a processing job that's the source of a trial component.</p>"
+      }
+    },
     "ProcessingJobArn": {
       "base": null,
       "refs": {
@@ -4517,6 +4532,7 @@
         "DebugRuleEvaluationStatus$RuleEvaluationJobArn": "<p>The Amazon Resource Name (ARN) of the rule evaluation job.</p>",
         "DescribeProcessingJobResponse$ProcessingJobArn": "<p>The Amazon Resource Name (ARN) of the processing job.</p>",
         "MonitoringExecutionSummary$ProcessingJobArn": "<p>The Amazon Resource Name (ARN) of the monitoring job.</p>",
+        "ProcessingJob$ProcessingJobArn": "<p>The ARN of the processing job.</p>",
         "ProcessingJobSummary$ProcessingJobArn": "<p>The Amazon Resource Name (ARN) of the processing job..</p>"
       }
     },
@@ -4526,6 +4542,7 @@
         "CreateProcessingJobRequest$ProcessingJobName": "<p> The name of the processing job. The name must be unique within an AWS Region in the AWS account.</p>",
         "DescribeProcessingJobRequest$ProcessingJobName": "<p>The name of the processing job. The name must be unique within an AWS Region in the AWS account.</p>",
         "DescribeProcessingJobResponse$ProcessingJobName": "<p>The name of the processing job. The name must be unique within an AWS Region in the AWS account.</p>",
+        "ProcessingJob$ProcessingJobName": "<p>The name of the processing job.</p>",
         "ProcessingJobSummary$ProcessingJobName": "<p>The name of the processing job.</p>",
         "StopProcessingJobRequest$ProcessingJobName": "<p>The name of the processing job to stop.</p>"
       }
@@ -4535,6 +4552,7 @@
       "refs": {
         "DescribeProcessingJobResponse$ProcessingJobStatus": "<p>Provides the status of a processing job.</p>",
         "ListProcessingJobsRequest$StatusEquals": "<p>A filter that retrieves only processing jobs with a specific status.</p>",
+        "ProcessingJob$ProcessingJobStatus": "<p>The status of the processing job.</p>",
         "ProcessingJobSummary$ProcessingJobStatus": "<p>The status of the processing job.</p>"
       }
     },
@@ -4575,7 +4593,8 @@
       "base": "<p>The output configuration for the processing job.</p>",
       "refs": {
         "CreateProcessingJobRequest$ProcessingOutputConfig": "<p>Output configuration for the processing job.</p>",
-        "DescribeProcessingJobResponse$ProcessingOutputConfig": "<p>Output configuration for the processing job.</p>"
+        "DescribeProcessingJobResponse$ProcessingOutputConfig": "<p>Output configuration for the processing job.</p>",
+        "ProcessingJob$ProcessingOutputConfig": null
       }
     },
     "ProcessingOutputs": {
@@ -4588,13 +4607,14 @@
       "base": "<p>Identifies the resources, ML compute instances, and ML storage volumes to deploy for a processing job. In distributed training, you specify more than one instance.</p>",
       "refs": {
         "CreateProcessingJobRequest$ProcessingResources": "<p>Identifies the resources, ML compute instances, and ML storage volumes to deploy for a processing job. In distributed training, you specify more than one instance.</p>",
-        "DescribeProcessingJobResponse$ProcessingResources": "<p>Identifies the resources, ML compute instances, and ML storage volumes to deploy for a processing job. In distributed training, you specify more than one instance.</p>"
+        "DescribeProcessingJobResponse$ProcessingResources": "<p>Identifies the resources, ML compute instances, and ML storage volumes to deploy for a processing job. In distributed training, you specify more than one instance.</p>",
+        "ProcessingJob$ProcessingResources": null
       }
     },
     "ProcessingS3CompressionType": {
       "base": null,
       "refs": {
-        "ProcessingS3Input$S3CompressionType": "<p>Whether to use <code>Gzip</code> compresion for Amazon S3 storage.</p>"
+        "ProcessingS3Input$S3CompressionType": "<p>Whether to use <code>Gzip</code> compression for Amazon S3 storage.</p>"
       }
     },
     "ProcessingS3DataDistributionType": {
@@ -4620,7 +4640,7 @@
       "base": null,
       "refs": {
         "EndpointInput$S3InputMode": "<p>Whether the <code>Pipe</code> or <code>File</code> is used as the input mode for transfering data for the monitoring job. <code>Pipe</code> mode is recommended for large datasets. <code>File</code> mode is useful for small files that fit in memory. Defaults to <code>File</code>.</p>",
-        "ProcessingS3Input$S3InputMode": "<p>Wether to use <code>File</code> or <code>Pipe</code> input mode. In <code>File</code> mode, Amazon SageMaker copies the data from the input source onto the local Amazon Elastic Block Store (Amazon EBS) volumes before starting your training algorithm. This is the most commonly used input mode. In <code>Pipe</code> mode, Amazon SageMaker streams input data from the source directly to your algorithm without using the EBS volume.</p>"
+        "ProcessingS3Input$S3InputMode": "<p>Whether to use <code>File</code> or <code>Pipe</code> input mode. In <code>File</code> mode, Amazon SageMaker copies the data from the input source onto the local Amazon Elastic Block Store (Amazon EBS) volumes before starting your training algorithm. This is the most commonly used input mode. In <code>Pipe</code> mode, Amazon SageMaker streams input data from the source directly to your algorithm without using the EBS volume.</p>"
       }
     },
     "ProcessingS3Output": {
@@ -4640,7 +4660,8 @@
       "base": "<p>Specifies a time limit for how long the processing job is allowed to run.</p>",
       "refs": {
         "CreateProcessingJobRequest$StoppingCondition": "<p>The time limit for how long the processing job is allowed to run.</p>",
-        "DescribeProcessingJobResponse$StoppingCondition": "<p>The time limit for how long the processing job is allowed to run.</p>"
+        "DescribeProcessingJobResponse$StoppingCondition": "<p>The time limit for how long the processing job is allowed to run.</p>",
+        "ProcessingJob$StoppingCondition": null
       }
     },
     "ProcessingVolumeSizeInGB": {
@@ -4827,7 +4848,7 @@
     "ResourcePropertyName": {
       "base": null,
       "refs": {
-        "Filter$Name": "<p>A property name. For example, <code>TrainingJobName</code>. For the list of valid property names returned in a search result for each supported resource, see <a>TrainingJob</a> properties. You must specify a valid property name for the resource.</p>",
+        "Filter$Name": "<p>A resource property name. For example, <code>TrainingJobName</code>. For valid property names, see <a>SearchRecord</a>. You must specify a valid property for the resource.</p>",
         "NestedFilters$NestedPropertyName": "<p>The name of the property to use in the nested filters. The value must match a listed property name, such as <code>InputDataConfig</code>.</p>",
         "PropertyNameSuggestion$PropertyName": "<p>A suggested property name based on what you entered in the search textbox in the Amazon SageMaker console.</p>",
         "SearchRequest$SortBy": "<p>The name of the resource property used to sort the <code>SearchResults</code>. The default is <code>LastModifiedTime</code>.</p>"
@@ -4846,7 +4867,7 @@
     "ResourceType": {
       "base": null,
       "refs": {
-        "GetSearchSuggestionsRequest$Resource": "<p>The name of the Amazon SageMaker resource to Search for.</p>",
+        "GetSearchSuggestionsRequest$Resource": "<p>The name of the Amazon SageMaker resource to search for.</p>",
         "SearchRequest$Resource": "<p>The name of the Amazon SageMaker resource to search for.</p>"
       }
     },
@@ -4897,6 +4918,7 @@
         "HyperParameterTrainingJobDefinition$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role associated with the training jobs that the tuning job launches.</p>",
         "ModelPackageValidationSpecification$ValidationRole": "<p>The IAM roles to be used for the validation of the model package.</p>",
         "MonitoringJobDefinition$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
+        "ProcessingJob$RoleArn": "<p>The ARN of the role used to create the processing job.</p>",
         "RenderUiTemplateRequest$RoleArn": "<p>The Amazon Resource Name (ARN) that has access to the S3 objects that are used by the template.</p>",
         "TrainingJob$RoleArn": "<p>The AWS Identity and Access Management (IAM) role configured for the training job.</p>",
         "UpdateNotebookInstanceInput$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker can assume to access the notebook instance. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html\">Amazon SageMaker Roles</a>. </p> <note> <p>To be able to pass this role to Amazon SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission.</p> </note>",
@@ -5012,7 +5034,7 @@
       "base": "<p>A multi-expression that searches for the specified resource or resources in a search. All resource objects that satisfy the expression's condition are included in the search results. You must specify at least one subexpression, filter, or nested filter. A <code>SearchExpression</code> can contain up to twenty elements.</p> <p>A <code>SearchExpression</code> contains the following components:</p> <ul> <li> <p>A list of <code>Filter</code> objects. Each filter defines a simple Boolean expression comprised of a resource property name, Boolean operator, and value. A <code>SearchExpression</code> can include only one <code>Contains</code> operator.</p> </li> <li> <p>A list of <code>NestedFilter</code> objects. Each nested filter defines a list of Boolean expressions using a list of resource properties. A nested filter is satisfied if a single object in the list satisfies all Boolean expressions.</p> </li> <li> <p>A list of <code>SearchExpression</code> objects. A search expression object can be nested in a list of search expression objects.</p> </li> <li> <p>A Boolean operator: <code>And</code> or <code>Or</code>.</p> </li> </ul>",
       "refs": {
         "SearchExpressionList$member": null,
-        "SearchRequest$SearchExpression": "<p>A Boolean conditional statement. Resource objects must satisfy this condition to be included in search results. You must provide at least one subexpression, filter, or nested filter. The maximum number of recursive <code>SubExpressions</code>, <code>NestedFilters</code>, and <code>Filters</code> that can be included in a <code>SearchExpression</code> object is 50.</p>"
+        "SearchRequest$SearchExpression": "<p>A Boolean conditional statement. Resources must satisfy this condition to be included in search results. You must provide at least one subexpression, filter, or nested filter. The maximum number of recursive <code>SubExpressions</code>, <code>NestedFilters</code>, and <code>Filters</code> that can be included in a <code>SearchExpression</code> object is 50.</p>"
       }
     },
     "SearchExpressionList": {
@@ -5022,7 +5044,7 @@
       }
     },
     "SearchRecord": {
-      "base": "<p>An individual search result record that contains a single resource object.</p>",
+      "base": "<p>A single resource returned as part of the <a>Search</a> API response.</p>",
       "refs": {
         "SearchResultsList$member": null
       }
@@ -5040,7 +5062,7 @@
     "SearchResultsList": {
       "base": null,
       "refs": {
-        "SearchResponse$Results": "<p>A list of <code>SearchResult</code> objects.</p>"
+        "SearchResponse$Results": "<p>A list of <code>SearchRecord</code> objects.</p>"
       }
     },
     "SearchSortOrder": {
@@ -5436,6 +5458,7 @@
         "DescribeLabelingJobResponse$Tags": "<p>An array of key/value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
         "Experiment$Tags": "<p>The list of tags that are associated with the experiment. You can use <a>Search</a> API to search on the tags.</p>",
         "ListTagsOutput$Tags": "<p>An array of <code>Tag</code> objects, each with a tag key and a value.</p>",
+        "ProcessingJob$Tags": "<p>An array of key-value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
         "TrainingJob$Tags": "<p>An array of key-value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
         "Trial$Tags": "<p>The list of tags that are associated with the trial. You can use <a>Search</a> API to search on the tags.</p>",
         "TrialComponent$Tags": "<p>The list of tags that are associated with the component. You can use <a>Search</a> API to search on the tags.</p>"
@@ -5690,6 +5713,10 @@
         "MonitoringExecutionSummary$LastModifiedTime": "<p>A timestamp that indicates the last time the monitoring job was modified.</p>",
         "MonitoringScheduleSummary$CreationTime": "<p>The creation time of the monitoring schedule.</p>",
         "MonitoringScheduleSummary$LastModifiedTime": "<p>The last time the monitoring schedule was modified.</p>",
+        "ProcessingJob$ProcessingEndTime": "<p>The time that the processing job ended.</p>",
+        "ProcessingJob$ProcessingStartTime": "<p>The time that the processing job started.</p>",
+        "ProcessingJob$LastModifiedTime": "<p>The time the processing job was last modified.</p>",
+        "ProcessingJob$CreationTime": "<p>The time the processing job was created.</p>",
         "ProcessingJobSummary$CreationTime": "<p>The time at which the processing job was created.</p>",
         "ProcessingJobSummary$ProcessingEndTime": "<p>The time at which the processing job completed.</p>",
         "ProcessingJobSummary$LastModifiedTime": "<p>A timestamp that indicates the last time the processing job was modified.</p>",
@@ -5758,8 +5785,8 @@
     "TrainingJob": {
       "base": "<p>Contains information about a training job.</p>",
       "refs": {
-        "SearchRecord$TrainingJob": "<p>A <code>TrainingJob</code> object that is returned as part of a <code>Search</code> request.</p>",
-        "TrialComponentSourceDetail$TrainingJob": null
+        "SearchRecord$TrainingJob": "<p>The properties of a training job.</p>",
+        "TrialComponentSourceDetail$TrainingJob": "<p>Information about a training job that's the source of a trial component.</p>"
       }
     },
     "TrainingJobArn": {
@@ -5769,6 +5796,7 @@
         "DescribeProcessingJobResponse$TrainingJobArn": "<p>The ARN of a training job associated with this processing job.</p>",
         "DescribeTrainingJobResponse$TrainingJobArn": "<p>The Amazon Resource Name (ARN) of the training job.</p>",
         "HyperParameterTrainingJobSummary$TrainingJobArn": "<p>The Amazon Resource Name (ARN) of the training job.</p>",
+        "ProcessingJob$TrainingJobArn": "<p>The ARN of the training job associated with this processing job.</p>",
         "TrainingJob$TrainingJobArn": "<p>The Amazon Resource Name (ARN) of the training job.</p>",
         "TrainingJobSummary$TrainingJobArn": "<p>The Amazon Resource Name (ARN) of the training job.</p>"
       }
@@ -5978,9 +6006,9 @@
       }
     },
     "Trial": {
-      "base": "<p>A summary of the properties of a trial as returned by the <a>Search</a> API.</p>",
+      "base": "<p>The properties of a trial as returned by the <a>Search</a> API.</p>",
       "refs": {
-        "SearchRecord$Trial": "<p>A summary of the properties of a trial.</p>"
+        "SearchRecord$Trial": "<p>The properties of a trial.</p>"
       }
     },
     "TrialArn": {
@@ -5997,9 +6025,9 @@
       }
     },
     "TrialComponent": {
-      "base": "<p>A summary of the properties of a trial component as returned by the <a>Search</a> API.</p>",
+      "base": "<p>The properties of a trial component as returned by the <a>Search</a> API.</p>",
       "refs": {
-        "SearchRecord$TrialComponent": "<p>A summary of the properties of a trial component.</p>"
+        "SearchRecord$TrialComponent": "<p>The properties of a trial component.</p>"
       }
     },
     "TrialComponentArn": {
@@ -6101,10 +6129,10 @@
       }
     },
     "TrialComponentSource": {
-      "base": "<p>The source of the trial component.</p>",
+      "base": "<p>The Amazon Resource Name (ARN) and job type of the source of a trial component.</p>",
       "refs": {
         "DescribeTrialComponentResponse$Source": "<p>The Amazon Resource Name (ARN) of the source and, optionally, the job type.</p>",
-        "TrialComponent$Source": null,
+        "TrialComponent$Source": "<p>The Amazon Resource Name (ARN) and job type of the source of the component.</p>",
         "TrialComponentSimpleSummary$TrialComponentSource": null,
         "TrialComponentSummary$TrialComponentSource": null
       }
@@ -6113,14 +6141,14 @@
       "base": null,
       "refs": {
         "TrialComponentMetricSummary$SourceArn": "<p>The Amazon Resource Name (ARN) of the source.</p>",
-        "TrialComponentSource$SourceArn": "<p>The Amazon Resource Name (ARN) of the source.</p>",
+        "TrialComponentSource$SourceArn": "<p>The source ARN.</p>",
         "TrialComponentSourceDetail$SourceArn": "<p>The Amazon Resource Name (ARN) of the source.</p>"
       }
     },
     "TrialComponentSourceDetail": {
-      "base": "<p>Detailed information about the source of a trial component.</p>",
+      "base": "<p>Detailed information about the source of a trial component. Either <code>ProcessingJob</code> or <code>TrainingJob</code> is returned.</p>",
       "refs": {
-        "TrialComponent$SourceDetail": "<p>The source of the trial component.&gt;</p>"
+        "TrialComponent$SourceDetail": "<p>Details of the source of the component.</p>"
       }
     },
     "TrialComponentStatus": {

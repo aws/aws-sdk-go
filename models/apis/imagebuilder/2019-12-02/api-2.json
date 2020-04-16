@@ -1022,6 +1022,7 @@
         "infrastructureConfigurationArn":{"shape":"InfrastructureConfigurationArn"},
         "distributionConfigurationArn":{"shape":"DistributionConfigurationArn"},
         "imageTestsConfiguration":{"shape":"ImageTestsConfiguration"},
+        "enhancedImageMetadataEnabled":{"shape":"NullableBoolean"},
         "schedule":{"shape":"Schedule"},
         "status":{"shape":"PipelineStatus"},
         "tags":{"shape":"TagMap"},
@@ -1082,6 +1083,7 @@
         "distributionConfigurationArn":{"shape":"DistributionConfigurationArn"},
         "infrastructureConfigurationArn":{"shape":"InfrastructureConfigurationArn"},
         "imageTestsConfiguration":{"shape":"ImageTestsConfiguration"},
+        "enhancedImageMetadataEnabled":{"shape":"NullableBoolean"},
         "tags":{"shape":"TagMap"},
         "clientToken":{
           "shape":"ClientToken",
@@ -1540,6 +1542,8 @@
         "name":{"shape":"ResourceName"},
         "version":{"shape":"VersionNumber"},
         "platform":{"shape":"Platform"},
+        "enhancedImageMetadataEnabled":{"shape":"NullableBoolean"},
+        "osVersion":{"shape":"OsVersion"},
         "state":{"shape":"ImageState"},
         "imageRecipe":{"shape":"ImageRecipe"},
         "sourcePipelineName":{"shape":"ResourceName"},
@@ -1567,6 +1571,7 @@
         "name":{"shape":"ResourceName"},
         "description":{"shape":"NonEmptyString"},
         "platform":{"shape":"Platform"},
+        "enhancedImageMetadataEnabled":{"shape":"NullableBoolean"},
         "imageRecipeArn":{"shape":"Arn"},
         "infrastructureConfigurationArn":{"shape":"Arn"},
         "distributionConfigurationArn":{"shape":"Arn"},
@@ -1654,6 +1659,7 @@
         "name":{"shape":"ResourceName"},
         "version":{"shape":"VersionNumber"},
         "platform":{"shape":"Platform"},
+        "osVersion":{"shape":"OsVersion"},
         "state":{"shape":"ImageState"},
         "owner":{"shape":"NonEmptyString"},
         "dateCreated":{"shape":"DateTime"},
@@ -1684,6 +1690,7 @@
         "name":{"shape":"ResourceName"},
         "version":{"shape":"VersionNumber"},
         "platform":{"shape":"Platform"},
+        "osVersion":{"shape":"OsVersion"},
         "owner":{"shape":"NonEmptyString"},
         "dateCreated":{"shape":"DateTime"}
       }
@@ -2056,6 +2063,10 @@
       "min":1
     },
     "NullableBoolean":{"type":"boolean"},
+    "OsVersion":{
+      "type":"string",
+      "min":1
+    },
     "OutputResources":{
       "type":"structure",
       "members":{
@@ -2362,6 +2373,7 @@
         "infrastructureConfigurationArn":{"shape":"InfrastructureConfigurationArn"},
         "distributionConfigurationArn":{"shape":"DistributionConfigurationArn"},
         "imageTestsConfiguration":{"shape":"ImageTestsConfiguration"},
+        "enhancedImageMetadataEnabled":{"shape":"NullableBoolean"},
         "schedule":{"shape":"Schedule"},
         "status":{"shape":"PipelineStatus"},
         "clientToken":{

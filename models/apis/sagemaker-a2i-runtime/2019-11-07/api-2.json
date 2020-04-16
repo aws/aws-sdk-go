@@ -52,6 +52,7 @@
       "output":{"shape":"ListHumanLoopsResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
@@ -223,7 +224,7 @@
     },
     "InputContent":{
       "type":"string",
-      "max":4194304
+      "max":3145728
     },
     "InternalServerException":{
       "type":"structure",

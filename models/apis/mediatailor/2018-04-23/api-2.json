@@ -125,6 +125,17 @@
         }
     }, 
     "shapes": {
+        "AvailSuppression" : {
+            "type" : "structure",
+            "members" : {
+              "Mode" : {
+                "shape" : "Mode"
+              },
+              "Value" : {
+                "shape" : "__string"
+              }
+            }
+          },
         "BadRequestException": {
             "error": {
                 "httpStatusCode": 400
@@ -207,7 +218,10 @@
             "members": {
                 "AdDecisionServerUrl": {
                     "shape": "__string"
-                }, 
+                },
+                "AvailSuppression" : {
+                  "shape" : "AvailSuppression"
+                },
                 "CdnConfiguration": {
                     "shape": "CdnConfiguration"
                 },
@@ -314,6 +328,13 @@
             ], 
             "type": "string"
         }, 
+        "Mode": {
+            "enum": [
+                "OFF",
+                "BEHIND_LIVE_EDGE"
+            ],
+            "type": "string"
+        },
         "PlaybackConfiguration": {
             "members": {
                 "AdDecisionServerUrl": {
@@ -374,7 +395,10 @@
             "members": {
                 "AdDecisionServerUrl": {
                     "shape": "__string"
-                }, 
+                },
+                "AvailSuppression" : {
+                  "shape" : "AvailSuppression"
+                },
                 "CdnConfiguration": {
                     "shape": "CdnConfiguration"
                 },
@@ -410,7 +434,10 @@
             "members": {
                 "AdDecisionServerUrl": {
                     "shape": "__string"
-                }, 
+                },
+                "AvailSuppression" : {
+                  "shape" : "AvailSuppression"
+                },
                 "CdnConfiguration": {
                     "shape": "CdnConfiguration"
                 }, 

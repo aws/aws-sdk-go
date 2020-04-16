@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>AWS IoT Events monitors your equipment or device fleets for failures or changes in operation, and triggers actions when such events occur. You can use AWS IoT Events API commands to create, read, update, and delete inputs and detector models, and to list their versions.</p>",
+  "service": "<p>AWS IoT Events monitors your equipment or device fleets for failures or changes in operation, and triggers actions when such events occur. You can use AWS IoT Events API operations to create, read, update, and delete inputs and detector models, and to list their versions.</p>",
   "operations": {
     "CreateDetectorModel": "<p>Creates a detector model.</p>",
     "CreateInput": "<p>Creates an input.</p>",
@@ -59,7 +59,7 @@
       "refs": {
         "Attribute$jsonPath": "<p>An expression that specifies an attribute-value pair in a JSON structure. Use this to specify an attribute from the JSON payload that is made available by the input. Inputs are derived from messages sent to AWS IoT Events (<code>BatchPutMessage</code>). Each such message contains a JSON payload. The attribute (and its paired value) specified here are available for use in the <code>condition</code> expressions used by detectors. </p> <p>Syntax: <code>&lt;field-name&gt;.&lt;field-name&gt;...</code> </p>",
         "CreateDetectorModelRequest$key": "<p>The input attribute key used to identify a device or system to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression in the message payload of each input to specify the attribute-value pair that is used to identify the device associated with the input.</p>",
-        "DetectorModelConfiguration$key": "<p>The input attribute key used to identify a device or system to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression in the message payload of each input to specify the attribute-value pair that is used to identify the device associated with the input.</p>"
+        "DetectorModelConfiguration$key": "<p>The value used to identify a detector instance. When a device or system sends input, a new detector instance with a unique key value is created. AWS IoT Events can continue to route input to its corresponding detector instance based on this identifying information. </p> <p>This parameter uses a JSON-path expression to select the attribute-value pair in the message payload that is used for identification. To route the message to the correct detector instance, the device must send a message payload that contains the same attribute-value.</p>"
       }
     },
     "Attributes": {
@@ -79,6 +79,12 @@
       "refs": {
         "Event$condition": "<p>Optional. The Boolean expression that, when TRUE, causes the <code>actions</code> to be performed. If not present, the actions are performed (=TRUE). If the expression result is not a Boolean value, the actions are not performed (=FALSE).</p>",
         "TransitionEvent$condition": "<p>Required. A Boolean expression that when TRUE causes the actions to be performed and the <code>nextState</code> to be entered.</p>"
+      }
+    },
+    "ContentExpression": {
+      "base": null,
+      "refs": {
+        "Payload$contentExpression": "<p>The content of the payload. You can use a string expression that includes quoted strings (<code>'&lt;string&gt;'</code>), variables (<code>$variable.&lt;variable-name&gt;</code>), input values (<code>$input.&lt;input-name&gt;.&lt;path-to-datum&gt;</code>), string concatenations, and quoted strings that contain <code>${}</code> as the content. The recommended maximum size of a content expression is 1 KB.</p>"
       }
     },
     "CreateDetectorModelRequest": {
@@ -260,6 +266,53 @@
         "DetectorModelVersionSummaries$member": null
       }
     },
+    "DynamoDBAction": {
+      "base": "<p>Defines an action to write to the Amazon DynamoDB table that you created. The standard action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can also customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. One column of the DynamoDB table receives all attribute-value pairs in the payload that you specify.</p> <p>The <code>tableName</code> and <code>hashKeyField</code> values must match the table name and the partition key of the DynamoDB table. </p> <note> <p>If the DynamoDB table also has a sort key, you must specify <code>rangeKeyField</code>. The <code>rangeKeyField</code> value must match the sort key.</p> </note> <p/> <p>The <code>hashKeyValue</code> and <code>rangeKeyValue</code> use substitution templates. These templates provide data at runtime. The syntax is <code>${sql-expression}</code>.</p> <p>You can use expressions for parameters that are string data type. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p> <note> <p>If the defined payload type is a string, <code>DynamoDBAction</code> writes non-JSON data to the DynamoDB table as binary data. The DynamoDB console displays the data as Base64-encoded text. The <code>payloadField</code> is <code>&lt;payload-field&gt;_raw</code>.</p> </note>",
+      "refs": {
+        "Action$dynamoDB": "<p>Writes to the DynamoDB table that you created. The default action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can also customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. One column of the DynamoDB table receives all attribute-value pairs in the payload that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-event-actions.html\">Actions</a> in <i>AWS IoT Events Developer Guide</i>.</p>"
+      }
+    },
+    "DynamoDBv2Action": {
+      "base": "<p>Defines an action to write to the Amazon DynamoDB table that you created. The default action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can also customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. A separate column of the DynamoDB table receives one attribute-value pair in the payload that you specify.</p> <important> <p>The <code>type</code> value for <code>Payload</code> must be <code>JSON</code>.</p> </important> <p>You can use expressions for parameters that are strings. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p>",
+      "refs": {
+        "Action$dynamoDBv2": "<p>Writes to the DynamoDB table that you created. The default action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can also customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. A separate column of the DynamoDB table receives one attribute-value pair in the payload that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-event-actions.html\">Actions</a> in <i>AWS IoT Events Developer Guide</i>.</p>"
+      }
+    },
+    "DynamoKeyField": {
+      "base": null,
+      "refs": {
+        "DynamoDBAction$hashKeyField": "<p>The name of the hash key (also called the partition key).</p>",
+        "DynamoDBAction$rangeKeyField": "<p>The name of the range key (also called the sort key).</p>",
+        "DynamoDBAction$payloadField": "<p>The name of the DynamoDB column that receives the action payload.</p> <p>If you don't specify this parameter, the name of the DynamoDB column is <code>payload</code>.</p>"
+      }
+    },
+    "DynamoKeyType": {
+      "base": null,
+      "refs": {
+        "DynamoDBAction$hashKeyType": "<p>The data type for the hash key (also called the partition key). You can specify the following values:</p> <ul> <li> <p> <code>STRING</code> - The hash key is a string.</p> </li> <li> <p> <code>NUMBER</code> - The hash key is a number.</p> </li> </ul> <p>If you don't specify <code>hashKeyType</code>, the default value is <code>STRING</code>.</p>",
+        "DynamoDBAction$rangeKeyType": "<p>The data type for the range key (also called the sort key), You can specify the following values:</p> <ul> <li> <p> <code>STRING</code> - The range key is a string.</p> </li> <li> <p> <code>NUMBER</code> - The range key is number.</p> </li> </ul> <p>If you don't specify <code>rangeKeyField</code>, the default value is <code>STRING</code>.</p>"
+      }
+    },
+    "DynamoKeyValue": {
+      "base": null,
+      "refs": {
+        "DynamoDBAction$hashKeyValue": "<p>The value of the hash key (also called the partition key).</p>",
+        "DynamoDBAction$rangeKeyValue": "<p>The value of the range key (also called the sort key).</p>"
+      }
+    },
+    "DynamoOperation": {
+      "base": null,
+      "refs": {
+        "DynamoDBAction$operation": "<p>The type of operation to perform. You can specify the following values: </p> <ul> <li> <p> <code>INSERT</code> - Insert data as a new item into the DynamoDB table. This item uses the specified hash key as a partition key. If you specified a range key, the item uses the range key as a sort key.</p> </li> <li> <p> <code>UPDATE</code> - Update an existing item of the DynamoDB table with new data. This item's partition key must match the specified hash key. If you specified a range key, the range key must match the item's sort key.</p> </li> <li> <p> <code>DELETE</code> - Delete an existing item of the DynamoDB table. This item's partition key must match the specified hash key. If you specified a range key, the range key must match the item's sort key.</p> </li> </ul> <p>If you don't specify this parameter, AWS IoT Events triggers the <code>INSERT</code> operation.</p>"
+      }
+    },
+    "DynamoTableName": {
+      "base": null,
+      "refs": {
+        "DynamoDBAction$tableName": "<p>The name of the DynamoDB table.</p>",
+        "DynamoDBv2Action$tableName": "<p>The name of the DynamoDB table.</p>"
+      }
+    },
     "EvaluationMethod": {
       "base": null,
       "refs": {
@@ -285,8 +338,8 @@
     "Events": {
       "base": null,
       "refs": {
-        "OnEnterLifecycle$events": "<p>Specifies the actions that are performed when the state is entered and the <code>condition</code> is TRUE.</p>",
-        "OnExitLifecycle$events": "<p>Specifies the <code>actions</code> that are performed when the state is exited and the <code>condition</code> is TRUE.</p>",
+        "OnEnterLifecycle$events": "<p>Specifies the actions that are performed when the state is entered and the <code>condition</code> is <code>TRUE</code>.</p>",
+        "OnExitLifecycle$events": "<p>Specifies the <code>actions</code> that are performed when the state is exited and the <code>condition</code> is <code>TRUE</code>.</p>",
         "OnInputLifecycle$events": "<p>Specifies the actions performed when the <code>condition</code> evaluates to TRUE.</p>"
       }
     },
@@ -384,7 +437,7 @@
     "IotEventsAction": {
       "base": "<p>Sends an AWS IoT Events input, passing in information about the detector model instance and the event that triggered the action.</p>",
       "refs": {
-        "Action$iotEvents": "<p>Sends an AWS IoT Events input, passing in information about the detector model instance and the event that triggered the action.</p>"
+        "Action$iotEvents": "<p>Sends AWS IoT Events input, which passes information about the detector model instance and the event that triggered the action.</p>"
       }
     },
     "IotTopicPublishAction": {
@@ -501,15 +554,34 @@
       }
     },
     "OnExitLifecycle": {
-      "base": "<p>When exiting this state, perform these <code>actions</code> if the specified <code>condition</code> is TRUE.</p>",
+      "base": "<p>When exiting this state, perform these <code>actions</code> if the specified <code>condition</code> is <code>TRUE</code>.</p>",
       "refs": {
-        "State$onExit": "<p>When exiting this state, perform these <code>actions</code> if the specified <code>condition</code> is TRUE.</p>"
+        "State$onExit": "<p>When exiting this state, perform these <code>actions</code> if the specified <code>condition</code> is <code>TRUE</code>.</p>"
       }
     },
     "OnInputLifecycle": {
       "base": "<p>Specifies the actions performed when the <code>condition</code> evaluates to TRUE.</p>",
       "refs": {
         "State$onInput": "<p>When an input is received and the <code>condition</code> is TRUE, perform the specified <code>actions</code>.</p>"
+      }
+    },
+    "Payload": {
+      "base": "<p>Information needed to configure the payload.</p> <p>By default, AWS IoT Events generates a standard payload in JSON for any action. This action payload contains all attribute-value pairs that have the information about the detector model instance and the event triggered the action. To configure the action payload, you can use <code>contentExpression</code>.</p>",
+      "refs": {
+        "DynamoDBAction$payload": null,
+        "DynamoDBv2Action$payload": null,
+        "FirehoseAction$payload": "<p>You can configure the action payload when you send a message to an Amazon Kinesis Data Firehose delivery stream.</p>",
+        "IotEventsAction$payload": "<p>You can configure the action payload when you send a message to an AWS IoT Events input.</p>",
+        "IotTopicPublishAction$payload": "<p>You can configure the action payload when you publish a message to an AWS IoT Core topic.</p>",
+        "LambdaAction$payload": "<p>You can configure the action payload when you send a message to a Lambda function.</p>",
+        "SNSTopicPublishAction$payload": "<p>You can configure the action payload when you send a message as an Amazon SNS push notification.</p>",
+        "SqsAction$payload": "<p>You can configure the action payload when you send a message to an Amazon SQS queue.</p>"
+      }
+    },
+    "PayloadType": {
+      "base": null,
+      "refs": {
+        "Payload$type": "<p>The value of the payload type can be either <code>STRING</code> or <code>JSON</code>.</p>"
       }
     },
     "PutLoggingOptionsRequest": {
@@ -524,7 +596,7 @@
       }
     },
     "ResetTimerAction": {
-      "base": "<p>Information required to reset the timer. The timer is reset to the previously evaluated result of the duration. </p>",
+      "base": "<p>Information required to reset the timer. The timer is reset to the previously evaluated result of the duration. The duration expression isn't reevaluated when you reset the timer.</p>",
       "refs": {
         "Action$resetTimer": "<p>Information needed to reset the timer.</p>"
       }
@@ -553,7 +625,7 @@
     "Seconds": {
       "base": null,
       "refs": {
-        "SetTimerAction$seconds": "<p>The number of seconds until the timer expires. The minimum value is 60 seconds to ensure accuracy.</p>"
+        "SetTimerAction$seconds": "<p>The number of seconds until the timer expires. The minimum value is 60 seconds to ensure accuracy. The maximum value is 31622400 seconds. </p>"
       }
     },
     "ServiceUnavailableException": {
@@ -720,7 +792,7 @@
     "UseBase64": {
       "base": null,
       "refs": {
-        "SqsAction$useBase64": "<p>Set this to TRUE if you want the data to be base-64 encoded before it is written to the queue.</p>"
+        "SqsAction$useBase64": "<p>Set this to TRUE if you want the data to be base-64 encoded before it is written to the queue. Otherwise, set this to FALSE.</p>"
       }
     },
     "VariableName": {

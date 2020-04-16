@@ -596,7 +596,8 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"CreatePlacementGroupRequest"}
+      "input":{"shape":"CreatePlacementGroupRequest"},
+      "output":{"shape":"CreatePlacementGroupResult"}
     },
     "CreateReservedInstancesListing":{
       "name":"CreateReservedInstancesListing",
@@ -6814,6 +6815,10 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },
@@ -7108,7 +7113,20 @@
           "shape":"PlacementStrategy",
           "locationName":"strategy"
         },
-        "PartitionCount":{"shape":"Integer"}
+        "PartitionCount":{"shape":"Integer"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
+      }
+    },
+    "CreatePlacementGroupResult":{
+      "type":"structure",
+      "members":{
+        "PlacementGroup":{
+          "shape":"PlacementGroup",
+          "locationName":"placementGroup"
+        }
       }
     },
     "CreateReservedInstancesListingRequest":{
@@ -8275,9 +8293,9 @@
     },
     "DeleteKeyPairRequest":{
       "type":"structure",
-      "required":["KeyName"],
       "members":{
         "KeyName":{"shape":"KeyPairName"},
+        "KeyPairId":{"shape":"KeyPairId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -16540,6 +16558,10 @@
         "PublicKeyMaterial":{
           "shape":"Blob",
           "locationName":"publicKeyMaterial"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },
@@ -16553,6 +16575,14 @@
         "KeyName":{
           "shape":"String",
           "locationName":"keyName"
+        },
+        "KeyPairId":{
+          "shape":"String",
+          "locationName":"keyPairId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -18428,6 +18458,10 @@
         "KeyPairId":{
           "shape":"String",
           "locationName":"keyPairId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },

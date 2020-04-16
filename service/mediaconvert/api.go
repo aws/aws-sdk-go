@@ -4631,6 +4631,65 @@ func (s *CaptionSelector) SetSourceSettings(v *CaptionSourceSettings) *CaptionSe
 	return s
 }
 
+// Ignore this setting unless your input captions format is SCC. To have the
+// service compensate for differing framerates between your input captions and
+// input video, specify the framerate of the captions file. Specify this value
+// as a fraction, using the settings Framerate numerator (framerateNumerator)
+// and Framerate denominator (framerateDenominator). For example, you might
+// specify 24 / 1 for 24 fps, 25 / 1 for 25 fps, 24000 / 1001 for 23.976 fps,
+// or 30000 / 1001 for 29.97 fps.
+type CaptionSourceFramerate struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the denominator of the fraction that represents the framerate for
+	// the setting Caption source framerate (CaptionSourceFramerate). Use this setting
+	// along with the setting Framerate numerator (framerateNumerator).
+	FramerateDenominator *int64 `locationName:"framerateDenominator" min:"1" type:"integer"`
+
+	// Specify the numerator of the fraction that represents the framerate for the
+	// setting Caption source framerate (CaptionSourceFramerate). Use this setting
+	// along with the setting Framerate denominator (framerateDenominator).
+	FramerateNumerator *int64 `locationName:"framerateNumerator" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s CaptionSourceFramerate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CaptionSourceFramerate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CaptionSourceFramerate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CaptionSourceFramerate"}
+	if s.FramerateDenominator != nil && *s.FramerateDenominator < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FramerateDenominator", 1))
+	}
+	if s.FramerateNumerator != nil && *s.FramerateNumerator < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FramerateNumerator", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFramerateDenominator sets the FramerateDenominator field's value.
+func (s *CaptionSourceFramerate) SetFramerateDenominator(v int64) *CaptionSourceFramerate {
+	s.FramerateDenominator = &v
+	return s
+}
+
+// SetFramerateNumerator sets the FramerateNumerator field's value.
+func (s *CaptionSourceFramerate) SetFramerateNumerator(v int64) *CaptionSourceFramerate {
+	s.FramerateNumerator = &v
+	return s
+}
+
 // If your input captions are SCC, TTML, STL, SMI, SRT, or IMSC in an xml file,
 // specify the URI of the input captions source file. If your input captions
 // are IMSC in an IMF package, use TrackSourceSettings instead of FileSoureSettings.
@@ -8206,6 +8265,15 @@ type FileSourceSettings struct {
 	// 608 data into 708.
 	Convert608To708 *string `locationName:"convert608To708" type:"string" enum:"FileSourceConvert608To708"`
 
+	// Ignore this setting unless your input captions format is SCC. To have the
+	// service compensate for differing framerates between your input captions and
+	// input video, specify the framerate of the captions file. Specify this value
+	// as a fraction, using the settings Framerate numerator (framerateNumerator)
+	// and Framerate denominator (framerateDenominator). For example, you might
+	// specify 24 / 1 for 24 fps, 25 / 1 for 25 fps, 24000 / 1001 for 23.976 fps,
+	// or 30000 / 1001 for 29.97 fps.
+	Framerate *CaptionSourceFramerate `locationName:"framerate" type:"structure"`
+
 	// External caption file used for loading captions. Accepted file extensions
 	// are 'scc', 'ttml', 'dfxp', 'stl', 'srt', 'xml', and 'smi'.
 	SourceFile *string `locationName:"sourceFile" min:"14" type:"string"`
@@ -8234,6 +8302,11 @@ func (s *FileSourceSettings) Validate() error {
 	if s.TimeDelta != nil && *s.TimeDelta < -2.147483648e+09 {
 		invalidParams.Add(request.NewErrParamMinValue("TimeDelta", -2.147483648e+09))
 	}
+	if s.Framerate != nil {
+		if err := s.Framerate.Validate(); err != nil {
+			invalidParams.AddNested("Framerate", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8244,6 +8317,12 @@ func (s *FileSourceSettings) Validate() error {
 // SetConvert608To708 sets the Convert608To708 field's value.
 func (s *FileSourceSettings) SetConvert608To708(v string) *FileSourceSettings {
 	s.Convert608To708 = &v
+	return s
+}
+
+// SetFramerate sets the Framerate field's value.
+func (s *FileSourceSettings) SetFramerate(v *CaptionSourceFramerate) *FileSourceSettings {
+	s.Framerate = v
 	return s
 }
 
