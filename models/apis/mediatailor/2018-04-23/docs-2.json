@@ -10,6 +10,13 @@
     }, 
     "service": "<p>Use the AWS Elemental MediaTailor SDK to configure scalable ad insertion for your live and VOD content. With AWS Elemental MediaTailor, you can serve targeted ads to viewers while maintaining broadcast quality in over-the-top (OTT) video applications. For information about using the service, including detailed information about the settings covered in this guide, see the AWS Elemental MediaTailor User Guide.<p>Through the SDK, you manage AWS Elemental MediaTailor configurations the same as you do through the console. For example, you specify ad insertion behavior and mapping information for the origin server and the ad decision server (ADS).</p>", 
     "shapes": {
+        "AvailSuppression" : {
+          "base" : null,
+          "refs" : {
+            "GetPlaybackConfigurationResponse$AvailSuppression" : "<p>The configuration for Avail Suppression.</p>",
+            "PutPlaybackConfigurationRequest$AvailSuppression" : "<p>The configuration for Avail Suppression.</p>"
+          }
+        },
         "BadRequestException": {
             "base": "<p>One of the parameters in the request is invalid.</p>", 
             "refs": {}
@@ -103,6 +110,7 @@
         "__string": {
             "base": null, 
             "refs": {
+                "AvailSuppression$Value" : "Sets the mode for avail suppression, also known as ad suppression. By default, ad suppression is off and all ad breaks are filled by MediaTailor with ads or slate.",
                 "BadRequestException$Message": "<p>One of the parameters in the request is invalid.</p>", 
                 "CdnConfiguration$AdSegmentUrlPrefix": "<p>A non-default content delivery network (CDN) to serve ad segments. By default, AWS Elemental MediaTailor uses Amazon CloudFront with default cache settings as its CDN for ad segments. To set up an alternate CDN, create a rule in your CDN for the following origin: ads.mediatailor.&lt;region>.amazonaws.com. Then specify the rule's name in this AdSegmentUrlPrefix. When AWS Elemental MediaTailor serves a manifest, it reports your CDN as the source for ad segments.</p>", 
                 "CdnConfiguration$ContentSegmentUrlPrefix": "<p>A content delivery network (CDN) to cache content segments, so that content requests don’t always have to go to the origin server. First, create a rule in your CDN for the content segment origin server. Then specify the rule's name in this ContentSegmentUrlPrefix. When AWS Elemental MediaTailor serves a manifest, it reports your CDN as the source for content segments.</p>", 

@@ -555,6 +555,39 @@ func (c *MediaTailor) UntagResourceWithContext(ctx aws.Context, input *UntagReso
 	return out, req.Send()
 }
 
+type AvailSuppression struct {
+	_ struct{} `type:"structure"`
+
+	Mode *string `type:"string" enum:"Mode"`
+
+	// Sets the mode for avail suppression, also known as ad suppression. By default,
+	// ad suppression is off and all ad breaks are filled by MediaTailor with ads
+	// or slate.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AvailSuppression) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AvailSuppression) GoString() string {
+	return s.String()
+}
+
+// SetMode sets the Mode field's value.
+func (s *AvailSuppression) SetMode(v string) *AvailSuppression {
+	s.Mode = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AvailSuppression) SetValue(v string) *AvailSuppression {
+	s.Value = &v
+	return s
+}
+
 // One of the parameters in the request is invalid.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
@@ -855,6 +888,9 @@ type GetPlaybackConfigurationOutput struct {
 	// static VAST URL. The maximum length is 25,000 characters.
 	AdDecisionServerUrl *string `type:"string"`
 
+	// The configuration for Avail Suppression.
+	AvailSuppression *AvailSuppression `type:"structure"`
+
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
@@ -919,6 +955,12 @@ func (s GetPlaybackConfigurationOutput) GoString() string {
 // SetAdDecisionServerUrl sets the AdDecisionServerUrl field's value.
 func (s *GetPlaybackConfigurationOutput) SetAdDecisionServerUrl(v string) *GetPlaybackConfigurationOutput {
 	s.AdDecisionServerUrl = &v
+	return s
+}
+
+// SetAvailSuppression sets the AvailSuppression field's value.
+func (s *GetPlaybackConfigurationOutput) SetAvailSuppression(v *AvailSuppression) *GetPlaybackConfigurationOutput {
+	s.AvailSuppression = v
 	return s
 }
 
@@ -1335,6 +1377,9 @@ type PutPlaybackConfigurationInput struct {
 	// VAST URL. The maximum length is 25,000 characters.
 	AdDecisionServerUrl *string `type:"string"`
 
+	// The configuration for Avail Suppression.
+	AvailSuppression *AvailSuppression `type:"structure"`
+
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
@@ -1401,6 +1446,12 @@ func (s *PutPlaybackConfigurationInput) SetAdDecisionServerUrl(v string) *PutPla
 	return s
 }
 
+// SetAvailSuppression sets the AvailSuppression field's value.
+func (s *PutPlaybackConfigurationInput) SetAvailSuppression(v *AvailSuppression) *PutPlaybackConfigurationInput {
+	s.AvailSuppression = v
+	return s
+}
+
 // SetCdnConfiguration sets the CdnConfiguration field's value.
 func (s *PutPlaybackConfigurationInput) SetCdnConfiguration(v *CdnConfiguration) *PutPlaybackConfigurationInput {
 	s.CdnConfiguration = v
@@ -1460,6 +1511,8 @@ type PutPlaybackConfigurationOutput struct {
 
 	AdDecisionServerUrl *string `type:"string"`
 
+	AvailSuppression *AvailSuppression `type:"structure"`
+
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
@@ -1503,6 +1556,12 @@ func (s PutPlaybackConfigurationOutput) GoString() string {
 // SetAdDecisionServerUrl sets the AdDecisionServerUrl field's value.
 func (s *PutPlaybackConfigurationOutput) SetAdDecisionServerUrl(v string) *PutPlaybackConfigurationOutput {
 	s.AdDecisionServerUrl = &v
+	return s
+}
+
+// SetAvailSuppression sets the AvailSuppression field's value.
+func (s *PutPlaybackConfigurationOutput) SetAvailSuppression(v *AvailSuppression) *PutPlaybackConfigurationOutput {
+	s.AvailSuppression = v
 	return s
 }
 
@@ -1707,6 +1766,14 @@ func (s UntagResourceOutput) String() string {
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// ModeOff is a Mode enum value
+	ModeOff = "OFF"
+
+	// ModeBehindLiveEdge is a Mode enum value
+	ModeBehindLiveEdge = "BEHIND_LIVE_EDGE"
+)
 
 const (
 	// OriginManifestTypeSinglePeriod is a OriginManifestType enum value

@@ -22,6 +22,7 @@
       "output":{"shape":"AssociateCreatedArtifactResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DryRunOperation"},
@@ -41,6 +42,7 @@
       "output":{"shape":"AssociateDiscoveredResourceResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DryRunOperation"},
@@ -61,6 +63,7 @@
       "output":{"shape":"CreateProgressUpdateStreamResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DryRunOperation"},
@@ -79,6 +82,7 @@
       "output":{"shape":"DeleteProgressUpdateStreamResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DryRunOperation"},
@@ -98,6 +102,7 @@
       "output":{"shape":"DescribeApplicationStateResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidInputException"},
@@ -116,6 +121,7 @@
       "output":{"shape":"DescribeMigrationTaskResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidInputException"},
@@ -133,6 +139,7 @@
       "output":{"shape":"DisassociateCreatedArtifactResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DryRunOperation"},
@@ -152,6 +159,7 @@
       "output":{"shape":"DisassociateDiscoveredResourceResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DryRunOperation"},
@@ -171,6 +179,7 @@
       "output":{"shape":"ImportMigrationTaskResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DryRunOperation"},
@@ -190,6 +199,7 @@
       "output":{"shape":"ListApplicationStatesResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidInputException"},
@@ -206,6 +216,7 @@
       "output":{"shape":"ListCreatedArtifactsResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidInputException"},
@@ -223,6 +234,7 @@
       "output":{"shape":"ListDiscoveredResourcesResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidInputException"},
@@ -240,6 +252,7 @@
       "output":{"shape":"ListMigrationTasksResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidInputException"},
@@ -258,6 +271,7 @@
       "output":{"shape":"ListProgressUpdateStreamsResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidInputException"},
@@ -274,6 +288,7 @@
       "output":{"shape":"NotifyApplicationStateResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DryRunOperation"},
@@ -294,6 +309,7 @@
       "output":{"shape":"NotifyMigrationTaskStateResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DryRunOperation"},
@@ -313,6 +329,7 @@
       "output":{"shape":"PutResourceAttributesResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"DryRunOperation"},
@@ -334,7 +351,8 @@
     "ApplicationId":{
       "type":"string",
       "max":1600,
-      "min":1
+      "min":1,
+      "pattern":"^.{1,1600}$"
     },
     "ApplicationIds":{
       "type":"list",
@@ -404,7 +422,9 @@
     },
     "ConfigurationId":{
       "type":"string",
-      "min":1
+      "max":1600,
+      "min":1,
+      "pattern":"^.{1,1600}$"
     },
     "CreateProgressUpdateStreamRequest":{
       "type":"structure",
@@ -430,7 +450,8 @@
     "CreatedArtifactDescription":{
       "type":"string",
       "max":500,
-      "min":0
+      "min":0,
+      "pattern":"^.{0,500}$"
     },
     "CreatedArtifactList":{
       "type":"list",
@@ -535,7 +556,8 @@
     "DiscoveredResourceDescription":{
       "type":"string",
       "max":500,
-      "min":0
+      "min":0,
+      "pattern":"^.{0,500}$"
     },
     "DiscoveredResourceList":{
       "type":"list",
@@ -856,12 +878,14 @@
     "ResourceAttributeValue":{
       "type":"string",
       "max":256,
-      "min":1
+      "min":1,
+      "pattern":"^.{1,256}$"
     },
     "ResourceName":{
       "type":"string",
       "max":1600,
-      "min":1
+      "min":1,
+      "pattern":"^.{1,1600}$"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -870,6 +894,7 @@
       },
       "exception":true
     },
+    "RetryAfterSeconds":{"type":"integer"},
     "ServiceUnavailableException":{
       "type":"structure",
       "members":{
@@ -890,7 +915,8 @@
     "StatusDetail":{
       "type":"string",
       "max":500,
-      "min":0
+      "min":0,
+      "pattern":"^.{0,500}$"
     },
     "Task":{
       "type":"structure",
@@ -901,7 +927,21 @@
         "ProgressPercent":{"shape":"ProgressPercent"}
       }
     },
-    "Token":{"type":"string"},
+    "ThrottlingException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{"shape":"ErrorMessage"},
+        "RetryAfterSeconds":{"shape":"RetryAfterSeconds"}
+      },
+      "exception":true
+    },
+    "Token":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9\\/\\+\\=]{0,2048}$"
+    },
     "UnauthorizedOperation":{
       "type":"structure",
       "members":{

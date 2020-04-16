@@ -1890,7 +1890,7 @@
     "EngineFamily": {
       "base": null,
       "refs": {
-        "CreateDBProxyRequest$EngineFamily": "<p>The kinds of databases that the proxy can connect to. This value determines which database network protocol the proxy recognizes when it interprets network traffic to and from the database. Currently, this value is always <code>MYSQL</code>. The engine family applies to both RDS MySQL and Aurora MySQL.</p>"
+        "CreateDBProxyRequest$EngineFamily": "<p>The kinds of databases that the proxy can connect to. This value determines which database network protocol the proxy recognizes when it interprets network traffic to and from the database. The engine family applies to MySQL and PostgreSQL for both RDS and Aurora.</p>"
       }
     },
     "EngineModeList": {
@@ -3409,8 +3409,8 @@
         "CertificateMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeCertificates</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
         "CharacterSet$CharacterSetName": "<p>The name of the character set.</p>",
         "CharacterSet$CharacterSetDescription": "<p>The description of the character set.</p>",
-        "ConnectionPoolConfiguration$InitQuery": "<p> One or more SQL statements for the proxy to run when opening each new database connection. Typically used with <code>SET</code> statements to make sure that each connection has identical settings such as time zone and character set. For multiple statements, use semicolons as the separator. You can also include multiple variables in a single <code>SET</code> statement, such as <code>SET x=1, y=2</code>. </p> <p>Default: no initialization query</p>",
-        "ConnectionPoolConfigurationInfo$InitQuery": "<p> One or more SQL statements for the proxy to run when opening each new database connection. Typically used with <code>SET</code> statements to make sure that each connection has identical settings such as time zone and character set. This setting is empty by default. For multiple statements, use semicolons as the separator. You can also include multiple variables in a single <code>SET</code> statement, such as <code>SET x=1, y=2</code>. </p>",
+        "ConnectionPoolConfiguration$InitQuery": "<p> One or more SQL statements for the proxy to run when opening each new database connection. Typically used with <code>SET</code> statements to make sure that each connection has identical settings such as time zone and character set. For multiple statements, use semicolons as the separator. You can also include multiple variables in a single <code>SET</code> statement, such as <code>SET x=1, y=2</code>. </p> <p> <code>InitQuery</code> is not currently supported for PostgreSQL.</p> <p>Default: no initialization query</p>",
+        "ConnectionPoolConfigurationInfo$InitQuery": "<p> One or more SQL statements for the proxy to run when opening each new database connection. Typically used with <code>SET</code> statements to make sure that each connection has identical settings such as time zone and character set. This setting is empty by default. For multiple statements, use semicolons as the separator. You can also include multiple variables in a single <code>SET</code> statement, such as <code>SET x=1, y=2</code>. </p> <p> <code>InitQuery</code> is not currently supported for PostgreSQL.</p>",
         "CopyDBClusterParameterGroupMessage$SourceDBClusterParameterGroupIdentifier": "<p>The identifier or Amazon Resource Name (ARN) for the source DB cluster parameter group. For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing\"> Constructing an ARN for Amazon RDS</a> in the <i>Amazon Aurora User Guide</i>. </p> <p>Constraints:</p> <ul> <li> <p>Must specify a valid DB cluster parameter group.</p> </li> <li> <p>If the source DB cluster parameter group is in the same AWS Region as the copy, specify a valid DB parameter group identifier, for example <code>my-db-cluster-param-group</code>, or a valid ARN.</p> </li> <li> <p>If the source DB parameter group is in a different AWS Region than the copy, specify a valid DB cluster parameter group ARN, for example <code>arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1</code>.</p> </li> </ul>",
         "CopyDBClusterParameterGroupMessage$TargetDBClusterParameterGroupIdentifier": "<p>The identifier for the copied DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Can't be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255 letters, numbers, or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-cluster-param-group1</code> </p>",
         "CopyDBClusterParameterGroupMessage$TargetDBClusterParameterGroupDescription": "<p>A description for the copied DB cluster parameter group.</p>",
@@ -3661,7 +3661,7 @@
         "DBParameterGroupsMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DBProxy$DBProxyName": "<p>The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region.</p>",
         "DBProxy$DBProxyArn": "<p>The Amazon Resource Name (ARN) for the proxy.</p>",
-        "DBProxy$EngineFamily": "<p>Currently, this value is always <code>MYSQL</code>. The engine family applies to both RDS MySQL and Aurora MySQL.</p>",
+        "DBProxy$EngineFamily": "<p>The engine family applies to MySQL and PostgreSQL for both RDS and Aurora.</p>",
         "DBProxy$RoleArn": "<p>The Amazon Resource Name (ARN) for the IAM role that the proxy uses to access Amazon Secrets Manager.</p>",
         "DBProxy$Endpoint": "<p>The endpoint that you can use to connect to the proxy. You include the endpoint value in the connection string for a database client application.</p>",
         "DBProxyTarget$TargetArn": "<p>The Amazon Resource Name (ARN) for the RDS DB instance or Aurora DB cluster.</p>",
@@ -4211,6 +4211,7 @@
         "SubnetIdentifierList$member": null,
         "Tag$Key": "<p>A key is the required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with \"aws:\" or \"rds:\". The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', '/', '=', '+', '-' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-]*)$\").</p>",
         "Tag$Value": "<p>A value is the optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with \"aws:\" or \"rds:\". The string can only contain only the set of Unicode letters, digits, white-space, '_', '.', '/', '=', '+', '-' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-]*)$\").</p>",
+        "TargetHealth$Description": "<p>A description of the health of the RDS Proxy target. If the <code>State</code> is <code>AVAILABLE</code>, a description is not included.</p>",
         "Timezone$TimezoneName": "<p>The name of the time zone.</p>",
         "UpgradeTarget$Engine": "<p>The name of the upgrade target database engine.</p>",
         "UpgradeTarget$EngineVersion": "<p>The version number of the upgrade target database engine.</p>",
@@ -4248,13 +4249,13 @@
         "DBProxy$VpcSubnetIds": "<p>The EC2 subnet IDs for the proxy.</p>",
         "DeregisterDBProxyTargetsRequest$DBInstanceIdentifiers": "<p>One or more DB instance identifiers.</p>",
         "DeregisterDBProxyTargetsRequest$DBClusterIdentifiers": "<p>One or more DB cluster identifiers.</p>",
-        "ExportTask$ExportOnly": "<p>The data exported from the snapshot. Valid values are the following:</p> <ul> <li> <p> <code>database</code> - Export all the data of the snapshot.</p> </li> <li> <p> <code>database.table [table-name]</code> - Export a table of the snapshot.</p> </li> <li> <p> <code>database.schema [schema-name]</code> - Export a database schema of the snapshot. This value isn't valid for RDS for MySQL, RDS for MariaDB, or Aurora MySQL.</p> </li> <li> <p> <code>database.schema.table [table-name]</code> - Export a table of the database schema. This value isn't valid for RDS for MySQL, RDS for MariaDB, or Aurora MySQL.</p> </li> </ul>",
+        "ExportTask$ExportOnly": "<p>The data exported from the snapshot. Valid values are the following:</p> <ul> <li> <p> <code>database</code> - Export all the data from a specified database.</p> </li> <li> <p> <code>database.table</code> <i>table-name</i> - Export a table of the snapshot. This format is valid only for RDS for MySQL, RDS for MariaDB, and Aurora MySQL.</p> </li> <li> <p> <code>database.schema</code> <i>schema-name</i> - Export a database schema of the snapshot. This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.</p> </li> <li> <p> <code>database.schema.table</code> <i>table-name</i> - Export a table of the database schema. This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.</p> </li> </ul>",
         "ModifyDBClusterEndpointMessage$StaticMembers": "<p>List of DB instance identifiers that are part of the custom endpoint group.</p>",
         "ModifyDBClusterEndpointMessage$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>",
         "ModifyDBProxyRequest$SecurityGroups": "<p>The new list of security groups for the <code>DBProxy</code>.</p>",
         "RegisterDBProxyTargetsRequest$DBInstanceIdentifiers": "<p>One or more DB instance identifiers.</p>",
         "RegisterDBProxyTargetsRequest$DBClusterIdentifiers": "<p>One or more DB cluster identifiers.</p>",
-        "StartExportTaskMessage$ExportOnly": "<p>The data to be exported from the snapshot. If this parameter is not provided, all the snapshot data is exported. Valid values are the following:</p> <ul> <li> <p> <code>database</code> - Export all the data of the snapshot.</p> </li> <li> <p> <code>database.table [table-name]</code> - Export a table of the snapshot.</p> </li> <li> <p> <code>database.schema [schema-name]</code> - Export a database schema of the snapshot. This value isn't valid for RDS for MySQL, RDS for MariaDB, or Aurora MySQL.</p> </li> <li> <p> <code>database.schema.table [table-name]</code> - Export a table of the database schema. This value isn't valid for RDS for MySQL, RDS for MariaDB, or Aurora MySQL.</p> </li> </ul>"
+        "StartExportTaskMessage$ExportOnly": "<p>The data to be exported from the snapshot. If this parameter is not provided, all the snapshot data is exported. Valid values are the following:</p> <ul> <li> <p> <code>database</code> - Export all the data from a specified database.</p> </li> <li> <p> <code>database.table</code> <i>table-name</i> - Export a table of the snapshot. This format is valid only for RDS for MySQL, RDS for MariaDB, and Aurora MySQL.</p> </li> <li> <p> <code>database.schema</code> <i>schema-name</i> - Export a database schema of the snapshot. This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.</p> </li> <li> <p> <code>database.schema.table</code> <i>table-name</i> - Export a table of the database schema. This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.</p> </li> </ul>"
       }
     },
     "StringSensitive": {
@@ -4404,11 +4405,29 @@
         "DescribeDBProxyTargetGroupsResponse$TargetGroups": "<p>An arbitrary number of <code>DBProxyTargetGroup</code> objects, containing details of the corresponding target groups.</p>"
       }
     },
+    "TargetHealth": {
+      "base": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Information about the connection health of an RDS Proxy target.</p>",
+      "refs": {
+        "DBProxyTarget$TargetHealth": "<p>Information about the connection health of the RDS Proxy target.</p>"
+      }
+    },
+    "TargetHealthReason": {
+      "base": null,
+      "refs": {
+        "TargetHealth$Reason": "<p>The reason for the current health <code>State</code> of the RDS Proxy target.</p>"
+      }
+    },
     "TargetList": {
       "base": null,
       "refs": {
         "DescribeDBProxyTargetsResponse$Targets": "<p>An arbitrary number of <code>DBProxyTarget</code> objects, containing details of the corresponding targets.</p>",
         "RegisterDBProxyTargetsResponse$DBProxyTargets": "<p>One or more <code>DBProxyTarget</code> objects that are created when you register targets with a target group.</p>"
+      }
+    },
+    "TargetState": {
+      "base": null,
+      "refs": {
+        "TargetHealth$State": "<p>The current state of the connection health lifecycle for the RDS Proxy target. The following is a typical lifecycle example for the states of an RDS Proxy target: </p> <p> <code>registering</code> &gt; <code>unavailable</code> &gt; <code>available</code> &gt; <code>unavailable</code> &gt; <code>available</code> </p>"
       }
     },
     "TargetType": {

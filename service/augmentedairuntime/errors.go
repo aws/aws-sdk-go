@@ -19,32 +19,33 @@ const (
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// Your request could not be processed.
+	// We couldn't process your request because of an issue with the server. Try
+	// again later.
 	ErrCodeInternalServerException = "InternalServerException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// We were unable to find the requested resource.
+	// We couldn't find the requested resource.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
-	// You have exceeded your service quota. To perform the requested action, remove
-	// some of the relevant resources, or request a service quota increase.
+	// You exceeded your service quota. Delete some resources or request an increase
+	// in your service quota.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// Your request has exceeded the allowed amount of requests.
+	// You exceeded the maximum number of requests.
 	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// Your request was not valid. Check the syntax and try again.
+	// The request isn't valid. Check the syntax and try again.
 	ErrCodeValidationException = "ValidationException"
 )
 

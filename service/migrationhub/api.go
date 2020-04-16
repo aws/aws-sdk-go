@@ -83,6 +83,9 @@ func (c *MigrationHub) AssociateCreatedArtifactRequest(input *AssociateCreatedAr
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
 //   encountered.
@@ -192,6 +195,9 @@ func (c *MigrationHub) AssociateDiscoveredResourceRequest(input *AssociateDiscov
 // Returned Error Types:
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
@@ -310,6 +316,9 @@ func (c *MigrationHub) CreateProgressUpdateStreamRequest(input *CreateProgressUp
 // Returned Error Types:
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
@@ -436,6 +445,9 @@ func (c *MigrationHub) DeleteProgressUpdateStreamRequest(input *DeleteProgressUp
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
 //   encountered.
@@ -544,6 +556,9 @@ func (c *MigrationHub) DescribeApplicationStateRequest(input *DescribeApplicatio
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
 //   encountered.
@@ -648,6 +663,9 @@ func (c *MigrationHub) DescribeMigrationTaskRequest(input *DescribeMigrationTask
 // Returned Error Types:
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
@@ -762,6 +780,9 @@ func (c *MigrationHub) DisassociateCreatedArtifactRequest(input *DisassociateCre
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
 //   encountered.
@@ -871,6 +892,9 @@ func (c *MigrationHub) DisassociateDiscoveredResourceRequest(input *Disassociate
 // Returned Error Types:
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
@@ -985,6 +1009,9 @@ func (c *MigrationHub) ImportMigrationTaskRequest(input *ImportMigrationTaskInpu
 // Returned Error Types:
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
@@ -1101,6 +1128,9 @@ func (c *MigrationHub) ListApplicationStatesRequest(input *ListApplicationStates
 // Returned Error Types:
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
@@ -1262,6 +1292,9 @@ func (c *MigrationHub) ListCreatedArtifactsRequest(input *ListCreatedArtifactsIn
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
 //   encountered.
@@ -1419,6 +1452,9 @@ func (c *MigrationHub) ListDiscoveredResourcesRequest(input *ListDiscoveredResou
 // Returned Error Types:
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
@@ -1586,6 +1622,9 @@ func (c *MigrationHub) ListMigrationTasksRequest(input *ListMigrationTasksInput)
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
 //   encountered.
@@ -1750,6 +1789,9 @@ func (c *MigrationHub) ListProgressUpdateStreamsRequest(input *ListProgressUpdat
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
 //   encountered.
@@ -1899,6 +1941,9 @@ func (c *MigrationHub) NotifyApplicationStateRequest(input *NotifyApplicationSta
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
 //   encountered.
@@ -2021,6 +2066,9 @@ func (c *MigrationHub) NotifyMigrationTaskStateRequest(input *NotifyMigrationTas
 // Returned Error Types:
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
@@ -2146,6 +2194,9 @@ func (c *MigrationHub) PutResourceAttributesRequest(input *PutResourceAttributes
 // Returned Error Types:
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InternalServerError
 //   Exception raised when an internal, configuration, or dependency error is
@@ -4724,6 +4775,66 @@ func (s *Task) SetStatus(v string) *Task {
 func (s *Task) SetStatusDetail(v string) *Task {
 	s.StatusDetail = &v
 	return s
+}
+
+// The request was denied due to request throttling.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message that provides information about the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The number of seconds the caller should wait before retrying.
+	RetryAfterSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Exception raised to indicate a request was not authorized when the DryRun

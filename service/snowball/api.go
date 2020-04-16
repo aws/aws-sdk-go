@@ -5491,6 +5491,9 @@ const (
 	// CapacityT42 is a Capacity enum value
 	CapacityT42 = "T42"
 
+	// CapacityT98 is a Capacity enum value
+	CapacityT98 = "T98"
+
 	// CapacityNoPreference is a Capacity enum value
 	CapacityNoPreference = "NoPreference"
 )
@@ -5590,4 +5593,7 @@ const (
 
 	// TypeEdgeCg is a Type enum value
 	TypeEdgeCg = "EDGE_CG"
+
+	// TypeEdgeS is a Type enum value
+	TypeEdgeS = "EDGE_S"
 )

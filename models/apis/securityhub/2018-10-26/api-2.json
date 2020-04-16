@@ -73,6 +73,21 @@
         {"shape":"InvalidAccessException"}
       ]
     },
+    "BatchUpdateFindings":{
+      "name":"BatchUpdateFindings",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/findings/batchupdate"
+      },
+      "input":{"shape":"BatchUpdateFindingsRequest"},
+      "output":{"shape":"BatchUpdateFindingsResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"}
+      ]
+    },
     "CreateActionTarget":{
       "name":"CreateActionTarget",
       "http":{
@@ -1351,6 +1366,21 @@
         "Keyword":{"shape":"KeywordFilterList"}
       }
     },
+    "AwsSecurityFindingIdentifier":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "ProductArn"
+      ],
+      "members":{
+        "Id":{"shape":"NonEmptyString"},
+        "ProductArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsSecurityFindingIdentifierList":{
+      "type":"list",
+      "member":{"shape":"AwsSecurityFindingIdentifier"}
+    },
     "AwsSecurityFindingList":{
       "type":"list",
       "member":{"shape":"AwsSecurityFinding"}
@@ -1452,6 +1482,50 @@
         "SuccessCount":{"shape":"Integer"},
         "FailedFindings":{"shape":"ImportFindingsErrorList"}
       }
+    },
+    "BatchUpdateFindingsRequest":{
+      "type":"structure",
+      "required":["FindingIdentifiers"],
+      "members":{
+        "FindingIdentifiers":{"shape":"AwsSecurityFindingIdentifierList"},
+        "Note":{"shape":"NoteUpdate"},
+        "Severity":{"shape":"SeverityUpdate"},
+        "VerificationState":{"shape":"VerificationState"},
+        "Confidence":{"shape":"RatioScale"},
+        "Criticality":{"shape":"RatioScale"},
+        "Types":{"shape":"TypeList"},
+        "UserDefinedFields":{"shape":"FieldMap"},
+        "Workflow":{"shape":"WorkflowUpdate"},
+        "RelatedFindings":{"shape":"RelatedFindingList"}
+      }
+    },
+    "BatchUpdateFindingsResponse":{
+      "type":"structure",
+      "required":[
+        "ProcessedFindings",
+        "UnprocessedFindings"
+      ],
+      "members":{
+        "ProcessedFindings":{"shape":"AwsSecurityFindingIdentifierList"},
+        "UnprocessedFindings":{"shape":"BatchUpdateFindingsUnprocessedFindingsList"}
+      }
+    },
+    "BatchUpdateFindingsUnprocessedFinding":{
+      "type":"structure",
+      "required":[
+        "FindingIdentifier",
+        "ErrorCode",
+        "ErrorMessage"
+      ],
+      "members":{
+        "FindingIdentifier":{"shape":"AwsSecurityFindingIdentifier"},
+        "ErrorCode":{"shape":"NonEmptyString"},
+        "ErrorMessage":{"shape":"NonEmptyString"}
+      }
+    },
+    "BatchUpdateFindingsUnprocessedFindingsList":{
+      "type":"list",
+      "member":{"shape":"BatchUpdateFindingsUnprocessedFinding"}
     },
     "Boolean":{"type":"boolean"},
     "CategoryList":{
@@ -2365,6 +2439,11 @@
       "type":"list",
       "member":{"shape":"Product"}
     },
+    "RatioScale":{
+      "type":"integer",
+      "max":100,
+      "min":0
+    },
     "Recommendation":{
       "type":"structure",
       "members":{
@@ -2511,6 +2590,14 @@
         "HIGH",
         "CRITICAL"
       ]
+    },
+    "SeverityUpdate":{
+      "type":"structure",
+      "members":{
+        "Normalized":{"shape":"RatioScale"},
+        "Product":{"shape":"Double"},
+        "Label":{"shape":"SeverityLabel"}
+      }
     },
     "SortCriteria":{
       "type":"list",
@@ -2881,6 +2968,12 @@
         "RESOLVED",
         "SUPPRESSED"
       ]
+    },
+    "WorkflowUpdate":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"WorkflowStatus"}
+      }
     }
   }
 }

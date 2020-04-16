@@ -1,3 +1,28 @@
+Release v1.30.8 (2020-04-16)
+===
+
+### Service Client Updates
+* `service/AWSMigrationHub`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Amazon EC2 now supports adding AWS resource tags for placement groups and key pairs, at creation time. The CreatePlacementGroup API will now return placement group information when created successfully. The DeleteKeyPair API now supports deletion by resource ID.
+* `service/glue`: Updates service API
+  * This release adds support for querying GetUserDefinedFunctions API without databaseName.
+* `service/imagebuilder`: Updates service API and documentation
+* `service/iotevents`: Updates service API and documentation
+* `service/lambda`: Updates service documentation and examples
+  * Sample code for AWS Lambda operations
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert now allows you to specify your input captions frame rate for SCC captions sources.
+* `service/mediatailor`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * This release adds support for Amazon RDS Proxy with PostgreSQL compatibility.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker now supports running training jobs on ml.g4dn and ml.c5n instance types. Amazon SageMaker supports in "IN" operation for Search now.
+* `service/sagemaker-a2i-runtime`: Updates service API and documentation
+* `service/securityhub`: Updates service API and documentation
+* `service/snowball`: Updates service API
+  * An update to the Snowball Edge Storage Optimized device has been launched. Like the previous version, it has 80 TB of capacity for data transfer. Now it has 40 vCPUs, 80 GiB, and a 1 TiB SATA SSD of memory for EC2 compatible compute. The 80 TB of capacity can also be used for EBS-like volumes for AMIs.
+
 Release v1.30.7 (2020-04-08)
 ===
 

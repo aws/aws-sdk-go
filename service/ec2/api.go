@@ -5377,7 +5377,6 @@ func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req
 
 	output = &CreatePlacementGroupOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(ec2query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -11631,8 +11630,6 @@ func (c *EC2) DeregisterInstanceEventNotificationAttributesRequest(input *Deregi
 //
 // Deregisters tag keys to prevent tags that have the specified tag keys from
 // being included in scheduled event notifications for resources in the Region.
-//
-// For more information, see Customizing Scheduled Event Notifications (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html#customizing_scheduled_event_notifications).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -33560,8 +33557,7 @@ func (c *EC2) RegisterInstanceEventNotificationAttributesRequest(input *Register
 // RegisterInstanceEventNotificationAttributes API operation for Amazon Elastic Compute Cloud.
 //
 // Registers a set of tag keys to include in scheduled event notifications for
-// your resources. For more information, see Customizing Scheduled Event Notifications
-// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html#customizing_scheduled_event_notifications).
+// your resources.
 //
 // To remove tags, use .
 //
@@ -46381,6 +46377,9 @@ type CreateKeyPairInput struct {
 	//
 	// KeyName is a required field
 	KeyName *string `type:"string" required:"true"`
+
+	// The tags to apply to the new key pair.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -46418,6 +46417,12 @@ func (s *CreateKeyPairInput) SetKeyName(v string) *CreateKeyPairInput {
 	return s
 }
 
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *CreateKeyPairInput) SetTagSpecifications(v []*TagSpecification) *CreateKeyPairInput {
+	s.TagSpecifications = v
+	return s
+}
+
 // Describes a key pair.
 type CreateKeyPairOutput struct {
 	_ struct{} `type:"structure"`
@@ -46433,6 +46438,9 @@ type CreateKeyPairOutput struct {
 
 	// The ID of the key pair.
 	KeyPairId *string `locationName:"keyPairId" type:"string"`
+
+	// Any tags applied to the key pair.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -46466,6 +46474,12 @@ func (s *CreateKeyPairOutput) SetKeyName(v string) *CreateKeyPairOutput {
 // SetKeyPairId sets the KeyPairId field's value.
 func (s *CreateKeyPairOutput) SetKeyPairId(v string) *CreateKeyPairOutput {
 	s.KeyPairId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateKeyPairOutput) SetTags(v []*Tag) *CreateKeyPairOutput {
+	s.Tags = v
 	return s
 }
 
@@ -47573,6 +47587,9 @@ type CreatePlacementGroupInput struct {
 
 	// The placement strategy.
 	Strategy *string `locationName:"strategy" type:"string" enum:"PlacementStrategy"`
+
+	// The tags to apply to the new placement group.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -47609,8 +47626,17 @@ func (s *CreatePlacementGroupInput) SetStrategy(v string) *CreatePlacementGroupI
 	return s
 }
 
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *CreatePlacementGroupInput) SetTagSpecifications(v []*TagSpecification) *CreatePlacementGroupInput {
+	s.TagSpecifications = v
+	return s
+}
+
 type CreatePlacementGroupOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Describes a placement group.
+	PlacementGroup *PlacementGroup `locationName:"placementGroup" type:"structure"`
 }
 
 // String returns the string representation
@@ -47621,6 +47647,12 @@ func (s CreatePlacementGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreatePlacementGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetPlacementGroup sets the PlacementGroup field's value.
+func (s *CreatePlacementGroupOutput) SetPlacementGroup(v *PlacementGroup) *CreatePlacementGroupOutput {
+	s.PlacementGroup = v
+	return s
 }
 
 // Contains the parameters for CreateReservedInstancesListing.
@@ -51902,9 +51934,10 @@ type DeleteKeyPairInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The name of the key pair.
-	//
-	// KeyName is a required field
-	KeyName *string `type:"string" required:"true"`
+	KeyName *string `type:"string"`
+
+	// The ID of the key pair.
+	KeyPairId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -51917,19 +51950,6 @@ func (s DeleteKeyPairInput) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *DeleteKeyPairInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "DeleteKeyPairInput"}
-	if s.KeyName == nil {
-		invalidParams.Add(request.NewErrParamRequired("KeyName"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
 // SetDryRun sets the DryRun field's value.
 func (s *DeleteKeyPairInput) SetDryRun(v bool) *DeleteKeyPairInput {
 	s.DryRun = &v
@@ -51939,6 +51959,12 @@ func (s *DeleteKeyPairInput) SetDryRun(v bool) *DeleteKeyPairInput {
 // SetKeyName sets the KeyName field's value.
 func (s *DeleteKeyPairInput) SetKeyName(v string) *DeleteKeyPairInput {
 	s.KeyName = &v
+	return s
+}
+
+// SetKeyPairId sets the KeyPairId field's value.
+func (s *DeleteKeyPairInput) SetKeyPairId(v string) *DeleteKeyPairInput {
+	s.KeyPairId = &v
 	return s
 }
 
@@ -58834,8 +58860,7 @@ type DescribeIamInstanceProfileAssociationsInput struct {
 	//
 	//    * instance-id - The ID of the instance.
 	//
-	//    * state - The state of the association (associating | associated | disassociating
-	//    | disassociated).
+	//    * state - The state of the association (associating | associated | disassociating).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results to return in a single call. To retrieve the
@@ -61022,9 +61047,21 @@ type DescribeKeyPairsInput struct {
 
 	// The filters.
 	//
+	//    * key-pair-id - The ID of the key pair.
+	//
 	//    * fingerprint - The fingerprint of the key pair.
 	//
 	//    * key-name - The name of the key pair.
+	//
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
+	//
+	//    * tag:<key> - The key/value combination of a tag assigned to the resource.
+	//    Use the tag key in the filter name and the tag value as the filter value.
+	//    For example, to find all resources that have a tag with the key Owner
+	//    and the value TeamA, specify tag:Owner for the filter name and TeamA for
+	//    the filter value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The key pair names.
@@ -62916,6 +62953,16 @@ type DescribePlacementGroupsInput struct {
 	//    | deleted).
 	//
 	//    * strategy - The strategy of the placement group (cluster | spread | partition).
+	//
+	//    * tag:<key> - The key/value combination of a tag assigned to the resource.
+	//    Use the tag key in the filter name and the tag value as the filter value.
+	//    For example, to find all resources that have a tag with the key Owner
+	//    and the value TeamA, specify tag:Owner for the filter name and TeamA for
+	//    the filter value.
+	//
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources that have a tag with a specific key, regardless
+	//    of the tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The IDs of the placement groups.
@@ -66011,12 +66058,12 @@ type DescribeTagsInput struct {
 	//    * resource-id - The ID of the resource.
 	//
 	//    * resource-type - The resource type (customer-gateway | dedicated-host
-	//    | dhcp-options | elastic-ip | fleet | fpga-image | image | instance |
-	//    host-reservation | internet-gateway | launch-template | natgateway | network-acl
-	//    | network-interface | placement-group | reserved-instances | route-table
-	//    | security-group | snapshot | spot-instances-request | subnet | volume
-	//    | vpc | vpc-endpoint | vpc-endpoint-service | vpc-peering-connection |
-	//    vpn-connection | vpn-gateway).
+	//    | dhcp-options | elastic-ip | fleet | fpga-image | host-reservation |
+	//    image | instance | internet-gateway | key-pair | launch-template | natgateway
+	//    | network-acl | network-interface | placement-group | reserved-instances
+	//    | route-table | security-group | snapshot | spot-instances-request | subnet
+	//    | volume | vpc | vpc-endpoint | vpc-endpoint-service | vpc-peering-connection
+	//    | vpn-connection | vpn-gateway).
 	//
 	//    * tag:<key> - The key/value combination of the tag. For example, specify
 	//    "tag:Owner" for the filter name and "TeamA" for the filter value to find
@@ -78856,6 +78903,9 @@ type ImportKeyPairInput struct {
 	//
 	// PublicKeyMaterial is a required field
 	PublicKeyMaterial []byte `locationName:"publicKeyMaterial" type:"blob" required:"true"`
+
+	// The tags to apply to the imported key pair.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -78902,6 +78952,12 @@ func (s *ImportKeyPairInput) SetPublicKeyMaterial(v []byte) *ImportKeyPairInput 
 	return s
 }
 
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *ImportKeyPairInput) SetTagSpecifications(v []*TagSpecification) *ImportKeyPairInput {
+	s.TagSpecifications = v
+	return s
+}
+
 type ImportKeyPairOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -78910,6 +78966,12 @@ type ImportKeyPairOutput struct {
 
 	// The key pair name you provided.
 	KeyName *string `locationName:"keyName" type:"string"`
+
+	// The ID of the resulting key pair.
+	KeyPairId *string `locationName:"keyPairId" type:"string"`
+
+	// The tags applied to the imported key pair.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -78931,6 +78993,18 @@ func (s *ImportKeyPairOutput) SetKeyFingerprint(v string) *ImportKeyPairOutput {
 // SetKeyName sets the KeyName field's value.
 func (s *ImportKeyPairOutput) SetKeyName(v string) *ImportKeyPairOutput {
 	s.KeyName = &v
+	return s
+}
+
+// SetKeyPairId sets the KeyPairId field's value.
+func (s *ImportKeyPairOutput) SetKeyPairId(v string) *ImportKeyPairOutput {
+	s.KeyPairId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportKeyPairOutput) SetTags(v []*Tag) *ImportKeyPairOutput {
+	s.Tags = v
 	return s
 }
 

@@ -897,6 +897,7 @@
         "T80",
         "T100",
         "T42",
+        "T98",
         "NoPreference"
       ]
     },
@@ -906,7 +907,8 @@
         "STANDARD",
         "EDGE",
         "EDGE_C",
-        "EDGE_CG"
+        "EDGE_CG",
+        "EDGE_S"
       ]
     },
     "SnsTopicARN":{

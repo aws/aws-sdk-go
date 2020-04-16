@@ -65,6 +65,12 @@ const (
 	// error encountered.
 	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
 
+	// ErrCodeThrottlingException for service response error code
+	// "ThrottlingException".
+	//
+	// The request was denied due to request throttling.
+	ErrCodeThrottlingException = "ThrottlingException"
+
 	// ErrCodeUnauthorizedOperation for service response error code
 	// "UnauthorizedOperation".
 	//
@@ -82,5 +88,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"PolicyErrorException":        newErrorPolicyErrorException,
 	"ResourceNotFoundException":   newErrorResourceNotFoundException,
 	"ServiceUnavailableException": newErrorServiceUnavailableException,
+	"ThrottlingException":         newErrorThrottlingException,
 	"UnauthorizedOperation":       newErrorUnauthorizedOperation,
 }
