@@ -1,3 +1,11 @@
+Release v1.30.9 (2020-04-17)
+===
+
+### Service Client Updates
+* `service/frauddetector`: Updates service API and documentation
+* `service/opsworkscm`: Updates service documentation and paginators
+  * Documentation updates for opsworkscm
+
 Release v1.30.8 (2020-04-16)
 ===
 

@@ -1290,6 +1290,7 @@
           "eu-central-1" : { },
           "eu-north-1" : { },
           "eu-west-1" : { },
+          "eu-west-2" : { },
           "us-east-1" : { },
           "us-west-2" : { }
         }
@@ -3190,6 +3191,7 @@
           "eu-central-1" : { },
           "eu-north-1" : { },
           "eu-west-1" : { },
+          "eu-west-2" : { },
           "us-east-1" : { },
           "us-west-2" : { }
         }
@@ -6248,18 +6250,20 @@
       },
       "batch" : {
         "endpoints" : {
-          "us-gov-east-1" : {
+          "fips-us-gov-east-1" : {
             "credentialScope" : {
               "region" : "us-gov-east-1"
             },
             "hostname" : "batch.us-gov-east-1.amazonaws.com"
           },
-          "us-gov-west-1" : {
+          "fips-us-gov-west-1" : {
             "credentialScope" : {
               "region" : "us-gov-west-1"
             },
             "hostname" : "batch.us-gov-west-1.amazonaws.com"
-          }
+          },
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
         }
       },
       "clouddirectory" : {

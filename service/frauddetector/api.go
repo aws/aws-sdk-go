@@ -327,6 +327,9 @@ func (c *FraudDetector) CreateModelVersionRequest(input *CreateModelVersionInput
 //   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
@@ -526,6 +529,107 @@ func (c *FraudDetector) CreateVariableWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opDeleteDetector = "DeleteDetector"
+
+// DeleteDetectorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDetector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDetector for more information on using the DeleteDetector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDetectorRequest method.
+//    req, resp := client.DeleteDetectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteDetector
+func (c *FraudDetector) DeleteDetectorRequest(input *DeleteDetectorInput) (req *request.Request, output *DeleteDetectorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDetector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDetectorInput{}
+	}
+
+	output = &DeleteDetectorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDetector API operation for Amazon Fraud Detector.
+//
+// Deletes the detector. Before deleting a detector, you must first delete all
+// detector versions and rule versions associated with the detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteDetector for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRuleVersion: A conflict exception will occur if the RuleVersion
+//      is in use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteDetector
+func (c *FraudDetector) DeleteDetector(input *DeleteDetectorInput) (*DeleteDetectorOutput, error) {
+	req, out := c.DeleteDetectorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDetectorWithContext is the same as DeleteDetector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDetector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteDetectorWithContext(ctx aws.Context, input *DeleteDetectorInput, opts ...request.Option) (*DeleteDetectorOutput, error) {
+	req, out := c.DeleteDetectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDetectorVersion = "DeleteDetectorVersion"
 
 // DeleteDetectorVersionRequest generates a "aws/request.Request" representing the
@@ -571,7 +675,8 @@ func (c *FraudDetector) DeleteDetectorVersionRequest(input *DeleteDetectorVersio
 
 // DeleteDetectorVersion API operation for Amazon Fraud Detector.
 //
-// Deletes the detector version.
+// Deletes the detector version. You cannot delete detector versions that are
+// in ACTIVE status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -592,6 +697,20 @@ func (c *FraudDetector) DeleteDetectorVersionRequest(input *DeleteDetectorVersio
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRuleVersion: A conflict exception will occur if the RuleVersion
+//      is in use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteDetectorVersion
 func (c *FraudDetector) DeleteDetectorVersion(input *DeleteDetectorVersionInput) (*DeleteDetectorVersionOutput, error) {
@@ -693,6 +812,107 @@ func (c *FraudDetector) DeleteEvent(input *DeleteEventInput) (*DeleteEventOutput
 // for more information on using Contexts.
 func (c *FraudDetector) DeleteEventWithContext(ctx aws.Context, input *DeleteEventInput, opts ...request.Option) (*DeleteEventOutput, error) {
 	req, out := c.DeleteEventRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRuleVersion = "DeleteRuleVersion"
+
+// DeleteRuleVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRuleVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRuleVersion for more information on using the DeleteRuleVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRuleVersionRequest method.
+//    req, resp := client.DeleteRuleVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteRuleVersion
+func (c *FraudDetector) DeleteRuleVersionRequest(input *DeleteRuleVersionInput) (req *request.Request, output *DeleteRuleVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRuleVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteRuleVersionInput{}
+	}
+
+	output = &DeleteRuleVersionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRuleVersion API operation for Amazon Fraud Detector.
+//
+// Deletes the rule version. You cannot delete a rule version if it is used
+// by an ACTIVE or INACTIVE detector version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteRuleVersion for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRuleVersion: A conflict exception will occur if the RuleVersion
+//      is in use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteRuleVersion
+func (c *FraudDetector) DeleteRuleVersion(input *DeleteRuleVersionInput) (*DeleteRuleVersionOutput, error) {
+	req, out := c.DeleteRuleVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRuleVersionWithContext is the same as DeleteRuleVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRuleVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteRuleVersionWithContext(ctx aws.Context, input *DeleteRuleVersionInput, opts ...request.Option) (*DeleteRuleVersionOutput, error) {
+	req, out := c.DeleteRuleVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3292,6 +3512,73 @@ func (s *BatchGetVariableOutput) SetVariables(v []*Variable) *BatchGetVariableOu
 	return s
 }
 
+// An exception indicating there was a conflict during a delete operation. The
+// following delete operations can cause a conflict exception:
+//
+//    * DeleteDetector: A conflict exception will occur if the detector has
+//    associated Rules or DetectorVersions. You can only delete a detector if
+//    it has no Rules or DetectorVersions.
+//
+//    * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//    status is ACTIVE.
+//
+//    * DeleteRuleVersion: A conflict exception will occur if the RuleVersion
+//    is in use by an associated ACTIVE or INACTIVE DetectorVersion.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type CreateDetectorVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3308,6 +3595,21 @@ type CreateDetectorVersionInput struct {
 
 	// The model versions to include in the detector version.
 	ModelVersions []*ModelVersion `locationName:"modelVersions" type:"list"`
+
+	// The rule execution mode for the rules included in the detector version.
+	//
+	// You can define and edit the rule mode at the detector version level, when
+	// it is in draft status.
+	//
+	// If you specify FIRST_MATCHED, Amazon Fraud Detector evaluates rules sequentially,
+	// first to last, stopping at the first matched rule. Amazon Fraud dectector
+	// then provides the outcomes for that single rule.
+	//
+	// If you specifiy ALL_MATCHED, Amazon Fraud Detector evaluates all rules and
+	// returns the outcomes for all matched rules.
+	//
+	// The default behavior is FIRST_MATCHED.
+	RuleExecutionMode *string `locationName:"ruleExecutionMode" type:"string" enum:"RuleExecutionMode"`
 
 	// The rules to include in the detector version.
 	//
@@ -3388,6 +3690,12 @@ func (s *CreateDetectorVersionInput) SetExternalModelEndpoints(v []*string) *Cre
 // SetModelVersions sets the ModelVersions field's value.
 func (s *CreateDetectorVersionInput) SetModelVersions(v []*ModelVersion) *CreateDetectorVersionInput {
 	s.ModelVersions = v
+	return s
+}
+
+// SetRuleExecutionMode sets the RuleExecutionMode field's value.
+func (s *CreateDetectorVersionInput) SetRuleExecutionMode(v string) *CreateDetectorVersionInput {
+	s.RuleExecutionMode = &v
 	return s
 }
 
@@ -3808,6 +4116,61 @@ func (s CreateVariableOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteDetectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the detector to delete.
+	//
+	// DetectorId is a required field
+	DetectorId *string `locationName:"detectorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteDetectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDetectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDetectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDetectorInput"}
+	if s.DetectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+	}
+	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetectorId sets the DetectorId field's value.
+func (s *DeleteDetectorInput) SetDetectorId(v string) *DeleteDetectorInput {
+	s.DetectorId = &v
+	return s
+}
+
+type DeleteDetectorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDetectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDetectorOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteDetectorVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3929,6 +4292,95 @@ func (s DeleteEventOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteEventOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteRuleVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the detector that includes the rule version to delete.
+	//
+	// DetectorId is a required field
+	DetectorId *string `locationName:"detectorId" min:"1" type:"string" required:"true"`
+
+	// The rule ID of the rule version to delete.
+	//
+	// RuleId is a required field
+	RuleId *string `locationName:"ruleId" min:"1" type:"string" required:"true"`
+
+	// The rule version to delete.
+	//
+	// RuleVersion is a required field
+	RuleVersion *string `locationName:"ruleVersion" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteRuleVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRuleVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRuleVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRuleVersionInput"}
+	if s.DetectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+	}
+	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
+	}
+	if s.RuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleId"))
+	}
+	if s.RuleId != nil && len(*s.RuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+	if s.RuleVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleVersion"))
+	}
+	if s.RuleVersion != nil && len(*s.RuleVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetectorId sets the DetectorId field's value.
+func (s *DeleteRuleVersionInput) SetDetectorId(v string) *DeleteRuleVersionInput {
+	s.DetectorId = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *DeleteRuleVersionInput) SetRuleId(v string) *DeleteRuleVersionInput {
+	s.RuleId = &v
+	return s
+}
+
+// SetRuleVersion sets the RuleVersion field's value.
+func (s *DeleteRuleVersionInput) SetRuleVersion(v string) *DeleteRuleVersionInput {
+	s.RuleVersion = &v
+	return s
+}
+
+type DeleteRuleVersionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRuleVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRuleVersionOutput) GoString() string {
 	return s.String()
 }
 
@@ -4416,6 +4868,17 @@ type GetDetectorVersionOutput struct {
 	// The model versions included in the detector version.
 	ModelVersions []*ModelVersion `locationName:"modelVersions" type:"list"`
 
+	// The execution mode of the rule in the dectector
+	//
+	// FIRST_MATCHED indicates that Amazon Fraud Detector evaluates rules sequentially,
+	// first to last, stopping at the first matched rule. Amazon Fraud dectector
+	// then provides the outcomes for that single rule.
+	//
+	// ALL_MATCHED indicates that Amazon Fraud Detector evaluates all rules and
+	// returns the outcomes for all matched rules. You can define and edit the rule
+	// mode at the detector version level, when it is in draft status.
+	RuleExecutionMode *string `locationName:"ruleExecutionMode" type:"string" enum:"RuleExecutionMode"`
+
 	// The rules included in the detector version.
 	Rules []*Rule `locationName:"rules" type:"list"`
 
@@ -4472,6 +4935,12 @@ func (s *GetDetectorVersionOutput) SetLastUpdatedTime(v string) *GetDetectorVers
 // SetModelVersions sets the ModelVersions field's value.
 func (s *GetDetectorVersionOutput) SetModelVersions(v []*ModelVersion) *GetDetectorVersionOutput {
 	s.ModelVersions = v
+	return s
+}
+
+// SetRuleExecutionMode sets the RuleExecutionMode field's value.
+func (s *GetDetectorVersionOutput) SetRuleExecutionMode(v string) *GetDetectorVersionOutput {
+	s.RuleExecutionMode = &v
 	return s
 }
 
@@ -5079,6 +5548,9 @@ type GetPredictionOutput struct {
 
 	// The prediction outcomes.
 	Outcomes []*string `locationName:"outcomes" type:"list"`
+
+	// The rule results in the prediction.
+	RuleResults []*RuleResult `locationName:"ruleResults" type:"list"`
 }
 
 // String returns the string representation
@@ -5100,6 +5572,12 @@ func (s *GetPredictionOutput) SetModelScores(v []*ModelScores) *GetPredictionOut
 // SetOutcomes sets the Outcomes field's value.
 func (s *GetPredictionOutput) SetOutcomes(v []*string) *GetPredictionOutput {
 	s.Outcomes = v
+	return s
+}
+
+// SetRuleResults sets the RuleResults field's value.
+func (s *GetPredictionOutput) SetRuleResults(v []*RuleResult) *GetPredictionOutput {
+	s.RuleResults = v
 	return s
 }
 
@@ -6714,6 +7192,39 @@ func (s *RuleDetail) SetRuleVersion(v string) *RuleDetail {
 	return s
 }
 
+// The rule results.
+type RuleResult struct {
+	_ struct{} `type:"structure"`
+
+	// The outcomes of the matched rule, based on the rule execution mode.
+	Outcomes []*string `locationName:"outcomes" type:"list"`
+
+	// The rule ID that was matched, based on the rule execution mode.
+	RuleId *string `locationName:"ruleId" type:"string"`
+}
+
+// String returns the string representation
+func (s RuleResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RuleResult) GoString() string {
+	return s.String()
+}
+
+// SetOutcomes sets the Outcomes field's value.
+func (s *RuleResult) SetOutcomes(v []*string) *RuleResult {
+	s.Outcomes = v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *RuleResult) SetRuleId(v string) *RuleResult {
+	s.RuleId = &v
+	return s
+}
+
 // An exception indicating a throttling error.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -6853,6 +7364,19 @@ type UpdateDetectorVersionInput struct {
 	// The model versions to include in the detector version.
 	ModelVersions []*ModelVersion `locationName:"modelVersions" type:"list"`
 
+	// The rule execution mode to add to the detector.
+	//
+	// If you specify FIRST_MATCHED, Amazon Fraud Detector evaluates rules sequentially,
+	// first to last, stopping at the first matched rule. Amazon Fraud dectector
+	// then provides the outcomes for that single rule.
+	//
+	// If you specifiy ALL_MATCHED, Amazon Fraud Detector evaluates all rules and
+	// returns the outcomes for all matched rules. You can define and edit the rule
+	// mode at the detector version level, when it is in draft status.
+	//
+	// The default behavior is FIRST_MATCHED.
+	RuleExecutionMode *string `locationName:"ruleExecutionMode" type:"string" enum:"RuleExecutionMode"`
+
 	// The rules to include in the detector version.
 	//
 	// Rules is a required field
@@ -6947,6 +7471,12 @@ func (s *UpdateDetectorVersionInput) SetExternalModelEndpoints(v []*string) *Upd
 // SetModelVersions sets the ModelVersions field's value.
 func (s *UpdateDetectorVersionInput) SetModelVersions(v []*ModelVersion) *UpdateDetectorVersionInput {
 	s.ModelVersions = v
+	return s
+}
+
+// SetRuleExecutionMode sets the RuleExecutionMode field's value.
+func (s *UpdateDetectorVersionInput) SetRuleExecutionMode(v string) *UpdateDetectorVersionInput {
+	s.RuleExecutionMode = &v
 	return s
 }
 
@@ -7852,4 +8382,12 @@ const (
 
 	// ModelVersionStatusError is a ModelVersionStatus enum value
 	ModelVersionStatusError = "ERROR"
+)
+
+const (
+	// RuleExecutionModeAllMatched is a RuleExecutionMode enum value
+	RuleExecutionModeAllMatched = "ALL_MATCHED"
+
+	// RuleExecutionModeFirstMatched is a RuleExecutionMode enum value
+	RuleExecutionModeFirstMatched = "FIRST_MATCHED"
 )

@@ -8,8 +8,10 @@
     "CreateModelVersion": "<p>Creates a version of the model using the specified model type. </p>",
     "CreateRule": "<p>Creates a rule for use with the specified detector. </p>",
     "CreateVariable": "<p>Creates a variable.</p>",
-    "DeleteDetectorVersion": "<p>Deletes the detector version.</p>",
+    "DeleteDetector": "<p>Deletes the detector. Before deleting a detector, you must first delete all detector versions and rule versions associated with the detector.</p>",
+    "DeleteDetectorVersion": "<p>Deletes the detector version. You cannot delete detector versions that are in <code>ACTIVE</code> status.</p>",
     "DeleteEvent": "<p>Deletes the specified event.</p>",
+    "DeleteRuleVersion": "<p>Deletes the rule version. You cannot delete a rule version if it is used by an <code>ACTIVE</code> or <code>INACTIVE</code> detector version.</p>",
     "DescribeDetector": "<p>Gets all versions for a specified detector.</p>",
     "DescribeModelVersions": "<p>Gets all of the model versions for the specified model type or for the specified model type and model ID. You can also get details for a single, specified model version. </p>",
     "GetDetectorVersion": "<p>Gets a particular detector version. </p>",
@@ -78,6 +80,11 @@
       "refs": {
       }
     },
+    "ConflictException": {
+      "base": "<p>An exception indicating there was a conflict during a delete operation. The following delete operations can cause a conflict exception:</p> <ul> <li> <p>DeleteDetector: A conflict exception will occur if the detector has associated <code>Rules</code> or <code>DetectorVersions</code>. You can only delete a detector if it has no <code>Rules</code> or <code>DetectorVersions</code>.</p> </li> <li> <p>DeleteDetectorVersion: A conflict exception will occur if the <code>DetectorVersion</code> status is <code>ACTIVE</code>.</p> </li> <li> <p>DeleteRuleVersion: A conflict exception will occur if the <code>RuleVersion</code> is in use by an associated <code>ACTIVE</code> or <code>INACTIVE DetectorVersion</code>.</p> </li> </ul>",
+      "refs": {
+      }
+    },
     "CreateDetectorVersionRequest": {
       "base": null,
       "refs": {
@@ -138,6 +145,16 @@
         "Variable$dataType": "<p>The data type of the variable.</p>"
       }
     },
+    "DeleteDetectorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDetectorResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteDetectorVersionRequest": {
       "base": null,
       "refs": {
@@ -154,6 +171,16 @@
       }
     },
     "DeleteEventResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRuleVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRuleVersionResult": {
       "base": null,
       "refs": {
       }
@@ -396,6 +423,12 @@
         "UpdateDetectorVersionRequest$modelVersions": "<p>The model versions to include in the detector version.</p>"
       }
     },
+    "ListOfRuleResults": {
+      "base": null,
+      "refs": {
+        "GetPredictionResult$ruleResults": "<p>The rule results in the prediction.</p>"
+      }
+    },
     "ListOfStrings": {
       "base": null,
       "refs": {
@@ -403,6 +436,7 @@
         "GetDetectorVersionResult$externalModelEndpoints": "<p>The Amazon SageMaker model endpoints included in the detector version.</p>",
         "GetPredictionResult$outcomes": "<p>The prediction outcomes.</p>",
         "LabelMapper$value": null,
+        "RuleResult$outcomes": "<p>The outcomes of the matched rule, based on the rule execution mode.</p>",
         "UpdateDetectorVersionRequest$externalModelEndpoints": "<p>The Amazon SageMaker model endpoints to include in the detector version.</p>"
       }
     },
@@ -657,12 +691,26 @@
         "GetRulesResult$ruleDetails": "<p>The details of the requested rule.</p>"
       }
     },
+    "RuleExecutionMode": {
+      "base": null,
+      "refs": {
+        "CreateDetectorVersionRequest$ruleExecutionMode": "<p>The rule execution mode for the rules included in the detector version.</p> <p>You can define and edit the rule mode at the detector version level, when it is in draft status.</p> <p>If you specify <code>FIRST_MATCHED</code>, Amazon Fraud Detector evaluates rules sequentially, first to last, stopping at the first matched rule. Amazon Fraud dectector then provides the outcomes for that single rule.</p> <p>If you specifiy <code>ALL_MATCHED</code>, Amazon Fraud Detector evaluates all rules and returns the outcomes for all matched rules. </p> <p>The default behavior is <code>FIRST_MATCHED</code>.</p>",
+        "GetDetectorVersionResult$ruleExecutionMode": "<p>The execution mode of the rule in the dectector</p> <p> <code>FIRST_MATCHED</code> indicates that Amazon Fraud Detector evaluates rules sequentially, first to last, stopping at the first matched rule. Amazon Fraud dectector then provides the outcomes for that single rule.</p> <p> <code>ALL_MATCHED</code> indicates that Amazon Fraud Detector evaluates all rules and returns the outcomes for all matched rules. You can define and edit the rule mode at the detector version level, when it is in draft status.</p>",
+        "UpdateDetectorVersionRequest$ruleExecutionMode": "<p>The rule execution mode to add to the detector.</p> <p>If you specify <code>FIRST_MATCHED</code>, Amazon Fraud Detector evaluates rules sequentially, first to last, stopping at the first matched rule. Amazon Fraud dectector then provides the outcomes for that single rule.</p> <p>If you specifiy <code>ALL_MATCHED</code>, Amazon Fraud Detector evaluates all rules and returns the outcomes for all matched rules. You can define and edit the rule mode at the detector version level, when it is in draft status.</p> <p>The default behavior is <code>FIRST_MATCHED</code>.</p>"
+      }
+    },
     "RuleList": {
       "base": null,
       "refs": {
         "CreateDetectorVersionRequest$rules": "<p>The rules to include in the detector version.</p>",
         "GetDetectorVersionResult$rules": "<p>The rules included in the detector version.</p>",
         "UpdateDetectorVersionRequest$rules": "<p>The rules to include in the detector version.</p>"
+      }
+    },
+    "RuleResult": {
+      "base": "<p>The rule results.</p>",
+      "refs": {
+        "ListOfRuleResults$member": null
       }
     },
     "RulesMaxResults": {
@@ -859,7 +907,10 @@
         "CreateModelVersionResult$modelId": "<p>The model ID. </p>",
         "CreateRuleRequest$ruleId": "<p>The rule ID.</p>",
         "CreateRuleRequest$detectorId": "<p>The detector ID for the rule's parent detector.</p>",
+        "DeleteDetectorRequest$detectorId": "<p>The ID of the detector to delete.</p>",
         "DeleteDetectorVersionRequest$detectorId": "<p>The ID of the parent detector for the detector version to delete.</p>",
+        "DeleteRuleVersionRequest$detectorId": "<p>The ID of the detector that includes the rule version to delete.</p>",
+        "DeleteRuleVersionRequest$ruleId": "<p>The rule ID of the rule version to delete.</p>",
         "DescribeDetectorRequest$detectorId": "<p>The detector ID.</p>",
         "DescribeDetectorResult$detectorId": "<p>The detector ID.</p>",
         "DescribeModelVersionsRequest$modelId": "<p>The model ID.</p>",
@@ -903,6 +954,7 @@
         "CreateDetectorVersionResult$detectorVersionId": "<p>The ID for the created detector. </p>",
         "CreateModelVersionResult$modelVersionNumber": "<p>The version of the model. </p>",
         "DeleteDetectorVersionRequest$detectorVersionId": "<p>The ID of the detector version to delete.</p>",
+        "DeleteRuleVersionRequest$ruleVersion": "<p>The rule version to delete.</p>",
         "DescribeModelVersionsRequest$modelVersionNumber": "<p>The model version. </p>",
         "DetectorVersionSummary$detectorVersionId": "<p>The detector version ID. </p>",
         "GetDetectorVersionRequest$detectorVersionId": "<p>The detector version ID.</p>",
@@ -941,6 +993,7 @@
         "BatchCreateVariableError$message": "<p>The error message.</p>",
         "BatchGetVariableError$name": "<p>The error name. </p>",
         "BatchGetVariableError$message": "<p>The error message.</p>",
+        "ConflictException$message": null,
         "CreateModelVersionResult$status": "<p>The model version status. </p>",
         "CreateVariableRequest$name": "<p>The name of the variable.</p>",
         "CreateVariableRequest$defaultValue": "<p>The default value for the variable when no value is received.</p>",
@@ -992,6 +1045,7 @@
         "ResourceNotFoundException$message": null,
         "Role$arn": "<p>The role ARN.</p>",
         "Role$name": "<p>The role name.</p>",
+        "RuleResult$ruleId": "<p>The rule ID that was matched, based on the rule execution mode.</p>",
         "ThrottlingException$message": null,
         "UpdateVariableRequest$name": "<p>The name of the variable.</p>",
         "UpdateVariableRequest$defaultValue": "<p>The new default value of the variable.</p>",

@@ -65,6 +65,7 @@
       "output":{"shape":"CreateModelVersionResult"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
       ]
@@ -97,6 +98,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DeleteDetector":{
+      "name":"DeleteDetector",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDetectorRequest"},
+      "output":{"shape":"DeleteDetectorResult"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DeleteDetectorVersion":{
       "name":"DeleteDetectorVersion",
       "http":{
@@ -109,7 +125,8 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"}
       ]
     },
     "DeleteEvent":{
@@ -121,6 +138,21 @@
       "input":{"shape":"DeleteEventRequest"},
       "output":{"shape":"DeleteEventResult"},
       "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DeleteRuleVersion":{
+      "name":"DeleteRuleVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRuleVersionRequest"},
+      "output":{"shape":"DeleteRuleVersionResult"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
       ]
@@ -503,6 +535,14 @@
         "errors":{"shape":"BatchGetVariableErrorList"}
       }
     },
+    "ConflictException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "exception":true
+    },
     "CreateDetectorVersionRequest":{
       "type":"structure",
       "required":[
@@ -514,7 +554,8 @@
         "description":{"shape":"description"},
         "externalModelEndpoints":{"shape":"ListOfStrings"},
         "rules":{"shape":"RuleList"},
-        "modelVersions":{"shape":"ListOfModelVersions"}
+        "modelVersions":{"shape":"ListOfModelVersions"},
+        "ruleExecutionMode":{"shape":"RuleExecutionMode"}
       }
     },
     "CreateDetectorVersionResult":{
@@ -614,6 +655,18 @@
         "BOOLEAN"
       ]
     },
+    "DeleteDetectorRequest":{
+      "type":"structure",
+      "required":["detectorId"],
+      "members":{
+        "detectorId":{"shape":"identifier"}
+      }
+    },
+    "DeleteDetectorResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteDetectorVersionRequest":{
       "type":"structure",
       "required":[
@@ -638,6 +691,24 @@
       }
     },
     "DeleteEventResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteRuleVersionRequest":{
+      "type":"structure",
+      "required":[
+        "detectorId",
+        "ruleId",
+        "ruleVersion"
+      ],
+      "members":{
+        "detectorId":{"shape":"identifier"},
+        "ruleId":{"shape":"identifier"},
+        "ruleVersion":{"shape":"nonEmptyString"}
+      }
+    },
+    "DeleteRuleVersionResult":{
       "type":"structure",
       "members":{
       }
@@ -778,7 +849,8 @@
         "rules":{"shape":"RuleList"},
         "status":{"shape":"DetectorVersionStatus"},
         "lastUpdatedTime":{"shape":"time"},
-        "createdTime":{"shape":"time"}
+        "createdTime":{"shape":"time"},
+        "ruleExecutionMode":{"shape":"RuleExecutionMode"}
       }
     },
     "GetDetectorsRequest":{
@@ -883,7 +955,8 @@
       "type":"structure",
       "members":{
         "outcomes":{"shape":"ListOfStrings"},
-        "modelScores":{"shape":"ListOfModelScores"}
+        "modelScores":{"shape":"ListOfModelScores"},
+        "ruleResults":{"shape":"ListOfRuleResults"}
       }
     },
     "GetRulesRequest":{
@@ -961,6 +1034,10 @@
     "ListOfModelVersions":{
       "type":"list",
       "member":{"shape":"ModelVersion"}
+    },
+    "ListOfRuleResults":{
+      "type":"list",
+      "member":{"shape":"RuleResult"}
     },
     "ListOfStrings":{
       "type":"list",
@@ -1274,9 +1351,23 @@
       "type":"list",
       "member":{"shape":"RuleDetail"}
     },
+    "RuleExecutionMode":{
+      "type":"string",
+      "enum":[
+        "ALL_MATCHED",
+        "FIRST_MATCHED"
+      ]
+    },
     "RuleList":{
       "type":"list",
       "member":{"shape":"Rule"}
+    },
+    "RuleResult":{
+      "type":"structure",
+      "members":{
+        "ruleId":{"shape":"string"},
+        "outcomes":{"shape":"ListOfStrings"}
+      }
     },
     "RulesMaxResults":{
       "type":"integer",
@@ -1335,7 +1426,8 @@
         "externalModelEndpoints":{"shape":"ListOfStrings"},
         "rules":{"shape":"RuleList"},
         "description":{"shape":"description"},
-        "modelVersions":{"shape":"ListOfModelVersions"}
+        "modelVersions":{"shape":"ListOfModelVersions"},
+        "ruleExecutionMode":{"shape":"RuleExecutionMode"}
       }
     },
     "UpdateDetectorVersionResult":{
@@ -1533,7 +1625,7 @@
       "type":"string",
       "max":512,
       "min":1,
-      "pattern":"^s3:\\/\\/[^\\s]+$"
+      "pattern":"^s3:\\/\\/(.+)$"
     },
     "string":{"type":"string"},
     "time":{"type":"string"}

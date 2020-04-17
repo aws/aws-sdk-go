@@ -88,9 +88,15 @@ type OpsWorksCMAPI interface {
 	DescribeBackupsWithContext(aws.Context, *opsworkscm.DescribeBackupsInput, ...request.Option) (*opsworkscm.DescribeBackupsOutput, error)
 	DescribeBackupsRequest(*opsworkscm.DescribeBackupsInput) (*request.Request, *opsworkscm.DescribeBackupsOutput)
 
+	DescribeBackupsPages(*opsworkscm.DescribeBackupsInput, func(*opsworkscm.DescribeBackupsOutput, bool) bool) error
+	DescribeBackupsPagesWithContext(aws.Context, *opsworkscm.DescribeBackupsInput, func(*opsworkscm.DescribeBackupsOutput, bool) bool, ...request.Option) error
+
 	DescribeEvents(*opsworkscm.DescribeEventsInput) (*opsworkscm.DescribeEventsOutput, error)
 	DescribeEventsWithContext(aws.Context, *opsworkscm.DescribeEventsInput, ...request.Option) (*opsworkscm.DescribeEventsOutput, error)
 	DescribeEventsRequest(*opsworkscm.DescribeEventsInput) (*request.Request, *opsworkscm.DescribeEventsOutput)
+
+	DescribeEventsPages(*opsworkscm.DescribeEventsInput, func(*opsworkscm.DescribeEventsOutput, bool) bool) error
+	DescribeEventsPagesWithContext(aws.Context, *opsworkscm.DescribeEventsInput, func(*opsworkscm.DescribeEventsOutput, bool) bool, ...request.Option) error
 
 	DescribeNodeAssociationStatus(*opsworkscm.DescribeNodeAssociationStatusInput) (*opsworkscm.DescribeNodeAssociationStatusOutput, error)
 	DescribeNodeAssociationStatusWithContext(aws.Context, *opsworkscm.DescribeNodeAssociationStatusInput, ...request.Option) (*opsworkscm.DescribeNodeAssociationStatusOutput, error)
@@ -99,6 +105,9 @@ type OpsWorksCMAPI interface {
 	DescribeServers(*opsworkscm.DescribeServersInput) (*opsworkscm.DescribeServersOutput, error)
 	DescribeServersWithContext(aws.Context, *opsworkscm.DescribeServersInput, ...request.Option) (*opsworkscm.DescribeServersOutput, error)
 	DescribeServersRequest(*opsworkscm.DescribeServersInput) (*request.Request, *opsworkscm.DescribeServersOutput)
+
+	DescribeServersPages(*opsworkscm.DescribeServersInput, func(*opsworkscm.DescribeServersOutput, bool) bool) error
+	DescribeServersPagesWithContext(aws.Context, *opsworkscm.DescribeServersInput, func(*opsworkscm.DescribeServersOutput, bool) bool, ...request.Option) error
 
 	DisassociateNode(*opsworkscm.DisassociateNodeInput) (*opsworkscm.DisassociateNodeOutput, error)
 	DisassociateNodeWithContext(aws.Context, *opsworkscm.DisassociateNodeInput, ...request.Option) (*opsworkscm.DisassociateNodeOutput, error)
@@ -111,6 +120,9 @@ type OpsWorksCMAPI interface {
 	ListTagsForResource(*opsworkscm.ListTagsForResourceInput) (*opsworkscm.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *opsworkscm.ListTagsForResourceInput, ...request.Option) (*opsworkscm.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*opsworkscm.ListTagsForResourceInput) (*request.Request, *opsworkscm.ListTagsForResourceOutput)
+
+	ListTagsForResourcePages(*opsworkscm.ListTagsForResourceInput, func(*opsworkscm.ListTagsForResourceOutput, bool) bool) error
+	ListTagsForResourcePagesWithContext(aws.Context, *opsworkscm.ListTagsForResourceInput, func(*opsworkscm.ListTagsForResourceOutput, bool) bool, ...request.Option) error
 
 	RestoreServer(*opsworkscm.RestoreServerInput) (*opsworkscm.RestoreServerOutput, error)
 	RestoreServerWithContext(aws.Context, *opsworkscm.RestoreServerInput, ...request.Option) (*opsworkscm.RestoreServerOutput, error)
