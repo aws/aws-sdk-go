@@ -34,6 +34,7 @@ type Operation struct {
 	IsEndpointDiscoveryOp bool               `json:"endpointoperation"`
 	EndpointDiscovery     *EndpointDiscovery `json:"endpointdiscovery"`
 	Endpoint              *EndpointTrait     `json:"endpoint"`
+	IsMD5HeaderRequired   bool               `json:"httpContentMd5"`
 }
 
 // EndpointTrait provides the structure of the modeled endpoint trait, and its
@@ -309,6 +310,14 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 	{{- range $_, $handler := $.CustomBuildHandlers }}
 		req.Handlers.Build.PushBackNamed({{ $handler }})
+	{{- end }}
+
+	{{- if .IsMD5HeaderRequired }}
+		{{- $_ := .API.AddSDKImport "private/util" }}
+		req.Handlers.Build.PushBackNamed(request.NamedHandler{
+			Name: "contentMd5Handler",
+			Fn: util.ContentMD5,
+		})
 	{{- end }}
 	return
 }
