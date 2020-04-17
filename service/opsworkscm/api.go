@@ -635,6 +635,12 @@ func (c *OpsWorksCM) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 		Name:       opDescribeBackups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -695,6 +701,58 @@ func (c *OpsWorksCM) DescribeBackupsWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+// DescribeBackupsPages iterates over the pages of a DescribeBackups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeBackups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeBackups operation.
+//    pageNum := 0
+//    err := client.DescribeBackupsPages(params,
+//        func(page *opsworkscm.DescribeBackupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *OpsWorksCM) DescribeBackupsPages(input *DescribeBackupsInput, fn func(*DescribeBackupsOutput, bool) bool) error {
+	return c.DescribeBackupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeBackupsPagesWithContext same as DescribeBackupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) DescribeBackupsPagesWithContext(ctx aws.Context, input *DescribeBackupsInput, fn func(*DescribeBackupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeBackupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeBackupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeBackupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeEvents = "DescribeEvents"
 
 // DescribeEventsRequest generates a "aws/request.Request" representing the
@@ -726,6 +784,12 @@ func (c *OpsWorksCM) DescribeEventsRequest(input *DescribeEventsInput) (req *req
 		Name:       opDescribeEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -784,6 +848,58 @@ func (c *OpsWorksCM) DescribeEventsWithContext(ctx aws.Context, input *DescribeE
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeEventsPages iterates over the pages of a DescribeEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEvents operation.
+//    pageNum := 0
+//    err := client.DescribeEventsPages(params,
+//        func(page *opsworkscm.DescribeEventsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *OpsWorksCM) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool) error {
+	return c.DescribeEventsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeEventsPagesWithContext same as DescribeEventsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) DescribeEventsPagesWithContext(ctx aws.Context, input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeEventsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeEventsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeNodeAssociationStatus = "DescribeNodeAssociationStatus"
@@ -903,6 +1019,12 @@ func (c *OpsWorksCM) DescribeServersRequest(input *DescribeServersInput) (req *r
 		Name:       opDescribeServers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -962,6 +1084,58 @@ func (c *OpsWorksCM) DescribeServersWithContext(ctx aws.Context, input *Describe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeServersPages iterates over the pages of a DescribeServers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeServers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeServers operation.
+//    pageNum := 0
+//    err := client.DescribeServersPages(params,
+//        func(page *opsworkscm.DescribeServersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *OpsWorksCM) DescribeServersPages(input *DescribeServersInput, fn func(*DescribeServersOutput, bool) bool) error {
+	return c.DescribeServersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeServersPagesWithContext same as DescribeServersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) DescribeServersPagesWithContext(ctx aws.Context, input *DescribeServersInput, fn func(*DescribeServersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeServersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeServersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeServersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDisassociateNode = "DisassociateNode"
@@ -1184,6 +1358,12 @@ func (c *OpsWorksCM) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 		Name:       opListTagsForResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1234,6 +1414,58 @@ func (c *OpsWorksCM) ListTagsForResourceWithContext(ctx aws.Context, input *List
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListTagsForResourcePages iterates over the pages of a ListTagsForResource operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTagsForResource method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
+//    pageNum := 0
+//    err := client.ListTagsForResourcePages(params,
+//        func(page *opsworkscm.ListTagsForResourceOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *OpsWorksCM) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
+	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTagsForResourcePagesWithContext same as ListTagsForResourcePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) ListTagsForResourcePagesWithContext(ctx aws.Context, input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTagsForResourceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTagsForResourceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opRestoreServer = "RestoreServer"
@@ -2395,7 +2627,7 @@ type CreateServerInput struct {
 	EngineModel *string `type:"string"`
 
 	// The major release version of the engine that you want to use. For a Chef
-	// server, the valid value for EngineVersion is currently 2. For a Puppet server,
+	// server, the valid value for EngineVersion is currently 12. For a Puppet server,
 	// the valid value is 2017.
 	EngineVersion *string `type:"string"`
 
@@ -2427,8 +2659,8 @@ type CreateServerInput struct {
 	//
 	//    * DDD:HH:MM for weekly backups
 	//
-	// MM must be specified as 00. The specified time is in coordinated universal
-	// time (UTC). The default value is a random, daily start time.
+	// The specified time is in coordinated universal time (UTC). The default value
+	// is a random, daily start time.
 	//
 	// Example: 08:00, which represents a daily start time of 08:00 UTC.
 	//
@@ -2438,10 +2670,9 @@ type CreateServerInput struct {
 
 	// The start time for a one-hour period each week during which AWS OpsWorks
 	// CM performs maintenance on the instance. Valid values must be specified in
-	// the following format: DDD:HH:MM. MM must be specified as 00. The specified
-	// time is in coordinated universal time (UTC). The default value is a random
-	// one-hour period on Tuesday, Wednesday, or Friday. See TimeWindowDefinition
-	// for more information.
+	// the following format: DDD:HH:MM. The specified time is in coordinated universal
+	// time (UTC). The default value is a random one-hour period on Tuesday, Wednesday,
+	// or Friday. See TimeWindowDefinition for more information.
 	//
 	// Example: Mon:08:00, which represents a start time of every Monday at 08:00
 	// UTC. (8:00 a.m.)
@@ -4051,7 +4282,7 @@ type Server struct {
 	EngineModel *string `type:"string"`
 
 	// The engine version of the server. For a Chef server, the valid value for
-	// EngineVersion is currently 2. For a Puppet server, the valid value is 2017.
+	// EngineVersion is currently 12. For a Puppet server, the valid value is 2017.
 	EngineVersion *string `type:"string"`
 
 	// The instance profile ARN of the server.

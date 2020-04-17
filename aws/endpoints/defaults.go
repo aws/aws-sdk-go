@@ -1394,6 +1394,7 @@ var awsPartition = partition{
 				"eu-central-1":   endpoint{},
 				"eu-north-1":     endpoint{},
 				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-west-2":      endpoint{},
 			},
@@ -3357,6 +3358,7 @@ var awsPartition = partition{
 				"eu-central-1":   endpoint{},
 				"eu-north-1":     endpoint{},
 				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-west-2":      endpoint{},
 			},
@@ -6557,18 +6559,20 @@ var awsusgovPartition = partition{
 		"batch": service{
 
 			Endpoints: endpoints{
-				"us-gov-east-1": endpoint{
+				"fips-us-gov-east-1": endpoint{
 					Hostname: "batch.us-gov-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-gov-east-1",
 					},
 				},
-				"us-gov-west-1": endpoint{
+				"fips-us-gov-west-1": endpoint{
 					Hostname: "batch.us-gov-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-gov-west-1",
 					},
 				},
+				"us-gov-east-1": endpoint{},
+				"us-gov-west-1": endpoint{},
 			},
 		},
 		"clouddirectory": service{

@@ -84,6 +84,10 @@ type FraudDetectorAPI interface {
 	CreateVariableWithContext(aws.Context, *frauddetector.CreateVariableInput, ...request.Option) (*frauddetector.CreateVariableOutput, error)
 	CreateVariableRequest(*frauddetector.CreateVariableInput) (*request.Request, *frauddetector.CreateVariableOutput)
 
+	DeleteDetector(*frauddetector.DeleteDetectorInput) (*frauddetector.DeleteDetectorOutput, error)
+	DeleteDetectorWithContext(aws.Context, *frauddetector.DeleteDetectorInput, ...request.Option) (*frauddetector.DeleteDetectorOutput, error)
+	DeleteDetectorRequest(*frauddetector.DeleteDetectorInput) (*request.Request, *frauddetector.DeleteDetectorOutput)
+
 	DeleteDetectorVersion(*frauddetector.DeleteDetectorVersionInput) (*frauddetector.DeleteDetectorVersionOutput, error)
 	DeleteDetectorVersionWithContext(aws.Context, *frauddetector.DeleteDetectorVersionInput, ...request.Option) (*frauddetector.DeleteDetectorVersionOutput, error)
 	DeleteDetectorVersionRequest(*frauddetector.DeleteDetectorVersionInput) (*request.Request, *frauddetector.DeleteDetectorVersionOutput)
@@ -91,6 +95,10 @@ type FraudDetectorAPI interface {
 	DeleteEvent(*frauddetector.DeleteEventInput) (*frauddetector.DeleteEventOutput, error)
 	DeleteEventWithContext(aws.Context, *frauddetector.DeleteEventInput, ...request.Option) (*frauddetector.DeleteEventOutput, error)
 	DeleteEventRequest(*frauddetector.DeleteEventInput) (*request.Request, *frauddetector.DeleteEventOutput)
+
+	DeleteRuleVersion(*frauddetector.DeleteRuleVersionInput) (*frauddetector.DeleteRuleVersionOutput, error)
+	DeleteRuleVersionWithContext(aws.Context, *frauddetector.DeleteRuleVersionInput, ...request.Option) (*frauddetector.DeleteRuleVersionOutput, error)
+	DeleteRuleVersionRequest(*frauddetector.DeleteRuleVersionInput) (*request.Request, *frauddetector.DeleteRuleVersionOutput)
 
 	DescribeDetector(*frauddetector.DescribeDetectorInput) (*frauddetector.DescribeDetectorOutput, error)
 	DescribeDetectorWithContext(aws.Context, *frauddetector.DescribeDetectorInput, ...request.Option) (*frauddetector.DescribeDetectorOutput, error)
