@@ -1,3 +1,15 @@
+Release v1.30.10 (2020-04-20)
+===
+
+### Service Client Updates
+* `service/apigatewayv2`: Updates service API and documentation
+  * You can now export an OpenAPI 3.0 compliant API definition file for Amazon API Gateway HTTP APIs using the Export API.
+* `service/ce`: Updates service API, documentation, and paginators
+* `service/glue`: Updates service API and documentation
+  * Added a new ConnectionType "KAFKA" and a ConnectionProperty "KAFKA_BOOTSTRAP_SERVERS" to support Kafka connection.
+* `service/iotevents`: Updates service API and documentation
+* `service/synthetics`: Adds new service
+
 Release v1.30.9 (2020-04-17)
 ===
 

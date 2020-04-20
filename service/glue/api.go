@@ -15081,6 +15081,10 @@ type Connection struct {
 	//
 	//    * CONNECTION_URL - The URL for connecting to a general (non-JDBC) data
 	//    source.
+	//
+	//    * KAFKA_BOOTSTRAP_SERVERS - A comma-separated list of host and port pairs
+	//    that are the addresses of the Apache Kafka brokers in a Kafka cluster
+	//    to which a Kafka client will connect to and bootstrap itself.
 	ConnectionProperties map[string]*string `type:"map"`
 
 	// The type of the connection. Currently, only JDBC is supported; SFTP is not
@@ -15187,6 +15191,8 @@ type ConnectionInput struct {
 	//
 	//    * JDBC - Designates a connection to a database through Java Database Connectivity
 	//    (JDBC).
+	//
+	//    * KAFKA - Designates a connection to an Apache Kafka streaming platform.
 	//
 	//    * MONGODB - Designates a connection to a MongoDB document database.
 	//
@@ -34262,6 +34268,9 @@ const (
 
 	// ConnectionPropertyKeyConnectionUrl is a ConnectionPropertyKey enum value
 	ConnectionPropertyKeyConnectionUrl = "CONNECTION_URL"
+
+	// ConnectionPropertyKeyKafkaBootstrapServers is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaBootstrapServers = "KAFKA_BOOTSTRAP_SERVERS"
 )
 
 const (
@@ -34273,6 +34282,9 @@ const (
 
 	// ConnectionTypeMongodb is a ConnectionType enum value
 	ConnectionTypeMongodb = "MONGODB"
+
+	// ConnectionTypeKafka is a ConnectionType enum value
+	ConnectionTypeKafka = "KAFKA"
 )
 
 const (

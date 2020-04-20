@@ -123,6 +123,10 @@ type IoTEventsAPI interface {
 	UpdateInput(*iotevents.UpdateInputInput) (*iotevents.UpdateInputOutput, error)
 	UpdateInputWithContext(aws.Context, *iotevents.UpdateInputInput, ...request.Option) (*iotevents.UpdateInputOutput, error)
 	UpdateInputRequest(*iotevents.UpdateInputInput) (*request.Request, *iotevents.UpdateInputOutput)
+
+	VerifyResourcesExistForTagris(*iotevents.VerifyResourcesExistForTagrisInput) (*iotevents.VerifyResourcesExistForTagrisOutput, error)
+	VerifyResourcesExistForTagrisWithContext(aws.Context, *iotevents.VerifyResourcesExistForTagrisInput, ...request.Option) (*iotevents.VerifyResourcesExistForTagrisOutput, error)
+	VerifyResourcesExistForTagrisRequest(*iotevents.VerifyResourcesExistForTagrisInput) (*request.Request, *iotevents.VerifyResourcesExistForTagrisOutput)
 }
 
 var _ IoTEventsAPI = (*iotevents.IoTEvents)(nil)

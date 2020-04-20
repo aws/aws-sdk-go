@@ -17,7 +17,8 @@
     "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>",
     "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p>",
     "UpdateDetectorModel": "<p>Updates a detector model. Detectors (instances) spawned by the previous version are deleted and then re-created as new inputs arrive.</p>",
-    "UpdateInput": "<p>Updates an input.</p>"
+    "UpdateInput": "<p>Updates an input.</p>",
+    "VerifyResourcesExistForTagris": null
   },
   "shapes": {
     "Action": {
@@ -46,6 +47,90 @@
         "TagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "UntagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "UpdateDetectorModelRequest$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform its operations.</p>"
+      }
+    },
+    "AssetId": {
+      "base": null,
+      "refs": {
+        "IotSiteWiseAction$assetId": "<p>The ID of the asset that has the specified property. You can specify an expression.</p>"
+      }
+    },
+    "AssetPropertyAlias": {
+      "base": null,
+      "refs": {
+        "IotSiteWiseAction$propertyAlias": "<p>The alias of the asset property. You can also specify an expression.</p>"
+      }
+    },
+    "AssetPropertyBooleanValue": {
+      "base": null,
+      "refs": {
+        "AssetPropertyVariant$booleanValue": "<p>The asset property value is a Boolean value that must be <code>TRUE</code> or <code>FALSE</code>. You can also specify an expression. If you use an expression, the evaluated result should be a Boolean value.</p>"
+      }
+    },
+    "AssetPropertyDoubleValue": {
+      "base": null,
+      "refs": {
+        "AssetPropertyVariant$doubleValue": "<p>The asset property value is a double. You can also specify an expression. If you use an expression, the evaluated result should be a double.</p>"
+      }
+    },
+    "AssetPropertyEntryId": {
+      "base": null,
+      "refs": {
+        "IotSiteWiseAction$entryId": "<p>A unique identifier for this entry. You can use the entry ID to track which data entry causes an error in case of failure. The default is a new unique identifier. You can also specify an expression.</p>"
+      }
+    },
+    "AssetPropertyId": {
+      "base": null,
+      "refs": {
+        "IotSiteWiseAction$propertyId": "<p>The ID of the asset property. You can specify an expression.</p>"
+      }
+    },
+    "AssetPropertyIntegerValue": {
+      "base": null,
+      "refs": {
+        "AssetPropertyVariant$integerValue": "<p>The asset property value is an integer. You can also specify an expression. If you use an expression, the evaluated result should be an integer.</p>"
+      }
+    },
+    "AssetPropertyOffsetInNanos": {
+      "base": null,
+      "refs": {
+        "AssetPropertyTimestamp$offsetInNanos": "<p>The nanosecond offset converted from <code>timeInSeconds</code>. The valid range is between 0-999999999. You can also specify an expression.</p>"
+      }
+    },
+    "AssetPropertyQuality": {
+      "base": null,
+      "refs": {
+        "AssetPropertyValue$quality": "<p>The quality of the asset property value. The value must be <code>GOOD</code>, <code>BAD</code>, or <code>UNCERTAIN</code>. You can also specify an expression.</p>"
+      }
+    },
+    "AssetPropertyStringValue": {
+      "base": null,
+      "refs": {
+        "AssetPropertyVariant$stringValue": "<p>The asset property value is a string. You can also specify an expression. If you use an expression, the evaluated result should be a string.</p>"
+      }
+    },
+    "AssetPropertyTimeInSeconds": {
+      "base": null,
+      "refs": {
+        "AssetPropertyTimestamp$timeInSeconds": "<p>The timestamp, in seconds, in the Unix epoch format. The valid range is between 1-31556889864403199. You can also specify an expression.</p>"
+      }
+    },
+    "AssetPropertyTimestamp": {
+      "base": "<p>A structure that contains timestamp information. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_TimeInNanos.html\">TimeInNanos</a> in the <i>AWS IoT SiteWise API Reference</i>.</p> <p>For parameters that are string data type, you can specify the following options:</p> <ul> <li> <p>Use a string. For example, the <code>timeInSeconds</code> value can be <code>'1586400675'</code>.</p> </li> <li> <p>Use an expression. For example, the <code>timeInSeconds</code> value can be <code>'${$input.TemperatureInput.sensorData.timestamp/1000}'</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p> </li> </ul>",
+      "refs": {
+        "AssetPropertyValue$timestamp": "<p>The timestamp associated with the asset property value. The default is the current event time.</p>"
+      }
+    },
+    "AssetPropertyValue": {
+      "base": "<p>A structure that contains value information. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_AssetPropertyValue.html\">AssetPropertyValue</a> in the <i>AWS IoT SiteWise API Reference</i>.</p> <p>For parameters that are string data type, you can specify the following options: </p> <ul> <li> <p>Use a string. For example, the <code>quality</code> value can be <code>'GOOD'</code>.</p> </li> <li> <p>Use an expression. For example, the <code>quality</code> value can be <code>$input.TemperatureInput.sensorData.quality</code> .</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p> </li> </ul>",
+      "refs": {
+        "IotSiteWiseAction$propertyValue": "<p>The value to send to the asset property. This value contains timestamp, quality, and value (TQV) information. </p>"
+      }
+    },
+    "AssetPropertyVariant": {
+      "base": "<p>A structure that contains an asset property value. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_Variant.html\">Variant</a> in the <i>AWS IoT SiteWise API Reference</i>.</p> <important> <p>You must specify one of the following value types, depending on the <code>dataType</code> of the specified asset property. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_AssetProperty.html\">AssetProperty</a> in the <i>AWS IoT SiteWise API Reference</i>.</p> </important> <p>For parameters that are string data type, you can specify the following options:</p> <ul> <li> <p>Use a string. For example, the <code>doubleValue</code> value can be <code>'47.9'</code>.</p> </li> <li> <p>Use an expression. For example, the <code>doubleValue</code> value can be <code>$input.TemperatureInput.sensorData.temperature</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p> </li> </ul>",
+      "refs": {
+        "AssetPropertyValue$value": "<p>The value to send to an asset property.</p>"
       }
     },
     "Attribute": {
@@ -440,6 +525,12 @@
         "Action$iotEvents": "<p>Sends AWS IoT Events input, which passes information about the detector model instance and the event that triggered the action.</p>"
       }
     },
+    "IotSiteWiseAction": {
+      "base": "<p>Sends information about the detector model instance and the event that triggered the action to a specified asset property in AWS IoT SiteWise.</p> <important> <p>You must specify either <code>propertyAlias</code> or both <code>assetId</code> and <code>propertyId</code> to identify the target asset property in AWS IoT SiteWise.</p> </important> <p>For parameters that are string data type, you can specify the following options: </p> <ul> <li> <p>Use a string. For example, the <code>propertyAlias</code> value can be <code>'/company/windfarm/3/turbine/7/temperature'</code>.</p> </li> <li> <p>Use an expression. For example, the <code>propertyAlias</code> value can be <code>'company/windfarm/${$input.TemperatureInput.sensorData.windfarmID}/turbine/${$input.TemperatureInput.sensorData.turbineID}/temperature'</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p> </li> </ul>",
+      "refs": {
+        "Action$iotSiteWise": "<p>Sends information about the detector model instance and the event that triggered the action to an AWS IoT SiteWise asset property.</p>"
+      }
+    },
     "IotTopicPublishAction": {
       "base": "<p>Information required to publish the MQTT message through the AWS IoT message broker.</p>",
       "refs": {
@@ -704,6 +795,108 @@
       "base": null,
       "refs": {
         "Tag$value": "<p>The tag's value.</p>"
+      }
+    },
+    "TagrisAccessDeniedException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagrisAccountId": {
+      "base": null,
+      "refs": {
+        "TagrisSweepListItem$TagrisAccountId": null
+      }
+    },
+    "TagrisAmazonResourceName": {
+      "base": null,
+      "refs": {
+        "TagrisSweepListItem$TagrisAmazonResourceName": null,
+        "TagrisSweepListResult$key": null
+      }
+    },
+    "TagrisExceptionMessage": {
+      "base": null,
+      "refs": {
+        "TagrisAccessDeniedException$message": null,
+        "TagrisInternalServiceException$message": null,
+        "TagrisInvalidArnException$message": null,
+        "TagrisInvalidParameterException$message": null,
+        "TagrisPartialResourcesExistResultsException$message": null,
+        "TagrisThrottledException$message": null
+      }
+    },
+    "TagrisInternalId": {
+      "base": null,
+      "refs": {
+        "TagrisSweepListItem$TagrisInternalId": null
+      }
+    },
+    "TagrisInternalServiceException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagrisInvalidArnException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagrisInvalidParameterException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagrisPartialResourcesExistResultsException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagrisStatus": {
+      "base": null,
+      "refs": {
+        "TagrisSweepListResult$value": null
+      }
+    },
+    "TagrisSweepList": {
+      "base": null,
+      "refs": {
+        "TagrisVerifyResourcesExistInput$TagrisSweepList": null
+      }
+    },
+    "TagrisSweepListItem": {
+      "base": null,
+      "refs": {
+        "TagrisInvalidArnException$sweepListItem": null,
+        "TagrisSweepList$member": null
+      }
+    },
+    "TagrisSweepListResult": {
+      "base": null,
+      "refs": {
+        "TagrisPartialResourcesExistResultsException$resourceExistenceInformation": null,
+        "TagrisVerifyResourcesExistOutput$TagrisSweepListResult": null
+      }
+    },
+    "TagrisThrottledException": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagrisVerifyResourcesExistInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagrisVerifyResourcesExistOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagrisVersion": {
+      "base": null,
+      "refs": {
+        "TagrisSweepListItem$TagrisVersion": null
       }
     },
     "Tags": {

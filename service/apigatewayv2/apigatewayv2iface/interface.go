@@ -172,6 +172,10 @@ type ApiGatewayV2API interface {
 	DeleteVpcLinkWithContext(aws.Context, *apigatewayv2.DeleteVpcLinkInput, ...request.Option) (*apigatewayv2.DeleteVpcLinkOutput, error)
 	DeleteVpcLinkRequest(*apigatewayv2.DeleteVpcLinkInput) (*request.Request, *apigatewayv2.DeleteVpcLinkOutput)
 
+	ExportApi(*apigatewayv2.ExportApiInput) (*apigatewayv2.ExportApiOutput, error)
+	ExportApiWithContext(aws.Context, *apigatewayv2.ExportApiInput, ...request.Option) (*apigatewayv2.ExportApiOutput, error)
+	ExportApiRequest(*apigatewayv2.ExportApiInput) (*request.Request, *apigatewayv2.ExportApiOutput)
+
 	GetApi(*apigatewayv2.GetApiInput) (*apigatewayv2.GetApiOutput, error)
 	GetApiWithContext(aws.Context, *apigatewayv2.GetApiInput, ...request.Option) (*apigatewayv2.GetApiOutput, error)
 	GetApiRequest(*apigatewayv2.GetApiInput) (*request.Request, *apigatewayv2.GetApiOutput)

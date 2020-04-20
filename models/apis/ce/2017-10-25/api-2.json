@@ -336,6 +336,11 @@
         "Rules":{"shape":"CostCategoryRulesList"}
       }
     },
+    "CostCategoryMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "CostCategoryName":{
       "type":"string",
       "max":255,
@@ -348,7 +353,8 @@
         "CostCategoryArn":{"shape":"Arn"},
         "Name":{"shape":"CostCategoryName"},
         "EffectiveStart":{"shape":"ZonedDateTime"},
-        "EffectiveEnd":{"shape":"ZonedDateTime"}
+        "EffectiveEnd":{"shape":"ZonedDateTime"},
+        "NumberOfRules":{"shape":"NonNegativeInteger"}
       }
     },
     "CostCategoryReferencesList":{
@@ -522,10 +528,12 @@
         "AZ",
         "INSTANCE_TYPE",
         "LINKED_ACCOUNT",
+        "LINKED_ACCOUNT_NAME",
         "OPERATION",
         "PURCHASE_TYPE",
         "REGION",
         "SERVICE",
+        "SERVICE_CODE",
         "USAGE_TYPE",
         "USAGE_TYPE_GROUP",
         "RECORD_TYPE",
@@ -552,7 +560,8 @@
       "type":"structure",
       "members":{
         "Key":{"shape":"Dimension"},
-        "Values":{"shape":"Values"}
+        "Values":{"shape":"Values"},
+        "MatchOptions":{"shape":"MatchOptions"}
       }
     },
     "DimensionValuesWithAttributes":{
@@ -660,7 +669,12 @@
       "member":{"shape":"ForecastResult"}
     },
     "GenericBoolean":{"type":"boolean"},
-    "GenericString":{"type":"string"},
+    "GenericString":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"[\\S\\s]*"
+    },
     "GetCostAndUsageRequest":{
       "type":"structure",
       "required":["TimePeriod"],
@@ -996,7 +1010,12 @@
         "Key":{"shape":"GroupDefinitionKey"}
       }
     },
-    "GroupDefinitionKey":{"type":"string"},
+    "GroupDefinitionKey":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"[\\S\\s]*"
+    },
     "GroupDefinitionType":{
       "type":"string",
       "enum":[
@@ -1046,7 +1065,11 @@
       "type":"structure",
       "members":{
         "EffectiveOn":{"shape":"ZonedDateTime"},
-        "NextToken":{"shape":"NextPageToken"}
+        "NextToken":{"shape":"NextPageToken"},
+        "MaxResults":{
+          "shape":"CostCategoryMaxResults",
+          "box":true
+        }
       }
     },
     "ListCostCategoryDefinitionsResponse":{
@@ -1063,6 +1086,21 @@
         "THIRTY_DAYS",
         "SIXTY_DAYS"
       ]
+    },
+    "MatchOption":{
+      "type":"string",
+      "enum":[
+        "EQUALS",
+        "STARTS_WITH",
+        "ENDS_WITH",
+        "CONTAINS",
+        "CASE_SENSITIVE",
+        "CASE_INSENSITIVE"
+      ]
+    },
+    "MatchOptions":{
+      "type":"list",
+      "member":{"shape":"MatchOption"}
     },
     "MaxResults":{
       "type":"integer",
@@ -1081,7 +1119,12 @@
       ]
     },
     "MetricAmount":{"type":"string"},
-    "MetricName":{"type":"string"},
+    "MetricName":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"[\\S\\s]*"
+    },
     "MetricNames":{
       "type":"list",
       "member":{"shape":"MetricName"}
@@ -1106,7 +1149,12 @@
       }
     },
     "NetRISavings":{"type":"string"},
-    "NextPageToken":{"type":"string"},
+    "NextPageToken":{
+      "type":"string",
+      "max":8192,
+      "min":0,
+      "pattern":"[\\S\\s]*"
+    },
     "NonNegativeInteger":{
       "type":"integer",
       "min":0
@@ -1502,7 +1550,12 @@
       "type":"list",
       "member":{"shape":"SavingsPlansUtilizationByTime"}
     },
-    "SearchString":{"type":"string"},
+    "SearchString":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"[\\S\\s]*"
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
@@ -1523,7 +1576,12 @@
         "EC2_INSTANCE_SP"
       ]
     },
-    "TagKey":{"type":"string"},
+    "TagKey":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"[\\S\\s]*"
+    },
     "TagList":{
       "type":"list",
       "member":{"shape":"Entity"}
@@ -1532,7 +1590,8 @@
       "type":"structure",
       "members":{
         "Key":{"shape":"TagKey"},
-        "Values":{"shape":"Values"}
+        "Values":{"shape":"Values"},
+        "MatchOptions":{"shape":"MatchOptions"}
       }
     },
     "TagValuesList":{
@@ -1617,13 +1676,20 @@
       "type":"list",
       "member":{"shape":"UtilizationByTime"}
     },
-    "Value":{"type":"string"},
+    "Value":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"[\\S\\s]*"
+    },
     "Values":{
       "type":"list",
       "member":{"shape":"Value"}
     },
     "YearMonthDay":{
       "type":"string",
+      "max":40,
+      "min":0,
       "pattern":"(\\d{4}-\\d{2}-\\d{2})(T\\d{2}:\\d{2}:\\d{2}Z)?"
     },
     "ZonedDateTime":{
