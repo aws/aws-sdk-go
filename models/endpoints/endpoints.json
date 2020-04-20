@@ -1727,7 +1727,7 @@
             },
             "hostname" : "ecs-fips.us-west-1.amazonaws.com"
           },
-          "madison-fips-us-west-2" : {
+          "fips-us-west-2" : {
             "credentialScope" : {
               "region" : "us-west-2"
             },
@@ -3174,6 +3174,7 @@
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "eu-central-1" : { },
+          "eu-north-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },

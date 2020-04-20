@@ -546,6 +546,27 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+    "ExportApi" : {
+      "name" : "ExportApi",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v2/apis/{apiId}/exports/{specification}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ExportApiRequest"
+      },
+      "output" : {
+        "shape" : "ExportApiResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "GetApi" : {
       "name" : "GetApi",
       "http" : {
@@ -3451,6 +3472,56 @@
     "EndpointType" : {
       "type" : "string",
       "enum" : [ "REGIONAL", "EDGE" ]
+    },
+    "ExportApiRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApiId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "apiId"
+        },
+        "ExportVersion" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "exportVersion"
+        },
+        "IncludeExtensions" : {
+          "shape" : "__boolean",
+          "location" : "querystring",
+          "locationName" : "includeExtensions"
+        },
+        "OutputType" : {
+          "shape" : "__string",
+          "enum" : ["YAML", "JSON"],
+          "location" : "querystring",
+          "locationName" : "outputType"
+        },
+        "Specification" : {
+          "shape" : "__string",
+          "enum" : ["OAS30"],
+          "location" : "uri",
+          "locationName" : "specification"
+        },
+        "StageName" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "stageName"
+        }
+      },
+      "required" : [ "Specification", "OutputType", "ApiId" ]
+    },
+    "ExportApiResponse" : {
+      "type" : "structure",
+      "members" : { 
+        "body":{
+          "shape":"ExportedApi"
+        }
+      },
+      "payload":"body"
+    },
+    "ExportedApi" : {
+      "type" : "blob"
     },
     "GetApiMappingRequest" : {
       "type" : "structure",

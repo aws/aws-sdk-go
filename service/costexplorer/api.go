@@ -55,12 +55,6 @@ func (c *CostExplorer) CreateCostCategoryDefinitionRequest(input *CreateCostCate
 
 // CreateCostCategoryDefinition API operation for AWS Cost Explorer Service.
 //
-//
-//  Cost Category is in public beta for AWS Billing and Cost Management and
-//  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-//  (Section 1.10).
-//
 // Creates a new Cost Category with the requested name and rules.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -144,12 +138,6 @@ func (c *CostExplorer) DeleteCostCategoryDefinitionRequest(input *DeleteCostCate
 
 // DeleteCostCategoryDefinition API operation for AWS Cost Explorer Service.
 //
-//
-//  Cost Category is in public beta for AWS Billing and Cost Management and
-//  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-//  (Section 1.10).
-//
 // Deletes a Cost Category. Expenses from this month going forward will no longer
 // be categorized with this Cost Category.
 //
@@ -232,12 +220,6 @@ func (c *CostExplorer) DescribeCostCategoryDefinitionRequest(input *DescribeCost
 }
 
 // DescribeCostCategoryDefinition API operation for AWS Cost Explorer Service.
-//
-//
-//  Cost Category is in public beta for AWS Billing and Cost Management and
-//  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-//  (Section 1.10).
 //
 // Returns the name, ARN, rules, definition, and effective dates of a Cost Category
 // that's defined in the account.
@@ -429,7 +411,7 @@ func (c *CostExplorer) GetCostAndUsageWithResourcesRequest(input *GetCostAndUsag
 // specify which cost and usage-related metric, such as BlendedCosts or UsageQuantity,
 // that you want the request to return. You can also filter and group your data
 // by various dimensions, such as SERVICE or AZ, in a specific time range. For
-// a complete list of valid dimensions, see the GetDimensionValues (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
+// a complete list of valid dimensions, see the GetDimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
 // operation. Master accounts in an organization in AWS Organizations have access
 // to all member accounts. This API is currently available for the Amazon Elastic
 // Compute Cloud – Compute service only.
@@ -709,8 +691,9 @@ func (c *CostExplorer) GetReservationCoverageRequest(input *GetReservationCovera
 // see how much of your Amazon Elastic Compute Cloud, Amazon ElastiCache, Amazon
 // Relational Database Service, or Amazon Redshift usage is covered by a reservation.
 // An organization's master account can see the coverage of the associated member
-// accounts. For any time period, you can filter data about reservation usage
-// by the following dimensions:
+// accounts. This supports dimensions, Cost Categories, and nested expressions.
+// For any time period, you can filter data about reservation usage by the following
+// dimensions:
 //
 //    * AZ
 //
@@ -1106,9 +1089,9 @@ func (c *CostExplorer) GetSavingsPlansCoverageRequest(input *GetSavingsPlansCove
 //
 // Retrieves the Savings Plans covered for your account. This enables you to
 // see how much of your cost is covered by a Savings Plan. An organization’s
-// master account can see the coverage of the associated member accounts. For
-// any time period, you can filter data for Savings Plans usage with the following
-// dimensions:
+// master account can see the coverage of the associated member accounts. This
+// supports dimensions, Cost Categories, and nested expressions. For any time
+// period, you can filter data for Savings Plans usage with the following dimensions:
 //
 //    * LINKED_ACCOUNT
 //
@@ -1743,6 +1726,12 @@ func (c *CostExplorer) ListCostCategoryDefinitionsRequest(input *ListCostCategor
 		Name:       opListCostCategoryDefinitions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1756,18 +1745,13 @@ func (c *CostExplorer) ListCostCategoryDefinitionsRequest(input *ListCostCategor
 
 // ListCostCategoryDefinitions API operation for AWS Cost Explorer Service.
 //
-//
-//  Cost Category is in public beta for AWS Billing and Cost Management and
-//  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-//  (Section 1.10).
-//
-// Returns the name, ARN and effective dates of all Cost Categories defined
-// in the account. You have the option to use EffectiveOn to return a list of
-// Cost Categories that were active on a specific date. If there is no EffectiveOn
-// specified, you’ll see Cost Categories that are effective on the current
-// date. If Cost Category is still effective, EffectiveEnd is omitted in the
-// response.
+// Returns the name, ARN, NumberOfRules and effective dates of all Cost Categories
+// defined in the account. You have the option to use EffectiveOn to return
+// a list of Cost Categories that were active on a specific date. If there is
+// no EffectiveOn specified, you’ll see Cost Categories that are effective
+// on the current date. If Cost Category is still effective, EffectiveEnd is
+// omitted in the response. ListCostCategoryDefinitions supports pagination.
+// The request can have a MaxResults range up to 100.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1800,6 +1784,58 @@ func (c *CostExplorer) ListCostCategoryDefinitionsWithContext(ctx aws.Context, i
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListCostCategoryDefinitionsPages iterates over the pages of a ListCostCategoryDefinitions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCostCategoryDefinitions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCostCategoryDefinitions operation.
+//    pageNum := 0
+//    err := client.ListCostCategoryDefinitionsPages(params,
+//        func(page *costexplorer.ListCostCategoryDefinitionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CostExplorer) ListCostCategoryDefinitionsPages(input *ListCostCategoryDefinitionsInput, fn func(*ListCostCategoryDefinitionsOutput, bool) bool) error {
+	return c.ListCostCategoryDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCostCategoryDefinitionsPagesWithContext same as ListCostCategoryDefinitionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) ListCostCategoryDefinitionsPagesWithContext(ctx aws.Context, input *ListCostCategoryDefinitionsInput, fn func(*ListCostCategoryDefinitionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCostCategoryDefinitionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCostCategoryDefinitionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCostCategoryDefinitionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opUpdateCostCategoryDefinition = "UpdateCostCategoryDefinition"
@@ -1845,12 +1881,6 @@ func (c *CostExplorer) UpdateCostCategoryDefinitionRequest(input *UpdateCostCate
 }
 
 // UpdateCostCategoryDefinition API operation for AWS Cost Explorer Service.
-//
-//
-//  Cost Category is in public beta for AWS Billing and Cost Management and
-//  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-//  (Section 1.10).
 //
 // Updates an existing Cost Category. Changes made to the Cost Category rules
 // will be used to categorize the current month’s expenses and future expenses.
@@ -1952,12 +1982,6 @@ func (s *BillExpirationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-//
-//  Cost Category is in public beta for AWS Billing and Cost Management and
-//  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-//  (Section 1.10).
-//
 // The structure of Cost Categories. This includes detailed metadata and the
 // set of rules for the CostCategory object.
 type CostCategory struct {
@@ -2040,12 +2064,6 @@ func (s *CostCategory) SetRules(v []*CostCategoryRule) *CostCategory {
 	return s
 }
 
-//
-//  Cost Category is in public beta for AWS Billing and Cost Management and
-//  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-//  (Section 1.10).
-//
 // A reference to a Cost Category containing only enough information to identify
 // the Cost Category.
 //
@@ -2054,7 +2072,7 @@ func (s *CostCategory) SetRules(v []*CostCategoryRule) *CostCategory {
 type CostCategoryReference struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for your Cost Category Reference.
+	// The unique identifier for your Cost Category.
 	CostCategoryArn *string `min:"20" type:"string"`
 
 	// The Cost Category's effective end date.
@@ -2065,6 +2083,9 @@ type CostCategoryReference struct {
 
 	// The unique name of the Cost Category.
 	Name *string `min:"1" type:"string"`
+
+	// The number of rules associated with a specific Cost Category.
+	NumberOfRules *int64 `type:"integer"`
 }
 
 // String returns the string representation
@@ -2101,12 +2122,12 @@ func (s *CostCategoryReference) SetName(v string) *CostCategoryReference {
 	return s
 }
 
-//
-//  Cost Category is in public beta for AWS Billing and Cost Management and
-//  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-//  (Section 1.10).
-//
+// SetNumberOfRules sets the NumberOfRules field's value.
+func (s *CostCategoryReference) SetNumberOfRules(v int64) *CostCategoryReference {
+	s.NumberOfRules = &v
+	return s
+}
+
 // Rules are processed in order. If there are multiple rules that match the
 // line item, then the first rule to match is used to determine that Cost Category
 // value.
@@ -2115,9 +2136,17 @@ type CostCategoryRule struct {
 
 	// An Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object used to categorize costs. This supports dimensions, Tags, and nested
-	// expressions. Currently the only dimensions supported is LINKED_ACCOUNT.
+	// expressions. Currently the only dimensions supported are LINKED_ACCOUNT,
+	// SERVICE_CODE, RECORD_TYPE, and LINKED_ACCOUNT_NAME.
 	//
-	// Root level OR is not supported. We recommend you create a separate rule instead.
+	// Root level OR is not supported. We recommend that you create a separate rule
+	// instead.
+	//
+	// RECORD_TYPE is a dimension used for Cost Explorer APIs, and is also supported
+	// for Cost Category expressions. This dimension uses different terms, depending
+	// on whether you're using the console or API/JSON editor. For a detailed comparison,
+	// see Term Comparisons (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-cost-categories.html#cost-categories-terms)
+	// in the AWS Billing and Cost Management User Guide.
 	//
 	// Rule is a required field
 	Rule *Expression `type:"structure" required:"true"`
@@ -2174,13 +2203,7 @@ func (s *CostCategoryRule) SetValue(v string) *CostCategoryRule {
 	return s
 }
 
-//
-//  Cost Category is in public beta for AWS Billing and Cost Management and
-//  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-//  (Section 1.10).
-//
-// The values that are available for Cost Categories.
+// The Cost Categories values used for filtering the costs.
 type CostCategoryValues struct {
 	_ struct{} `type:"structure"`
 
@@ -2311,11 +2334,11 @@ func (s *CoverageByTime) SetTotal(v *Coverage) *CoverageByTime {
 	return s
 }
 
-// How much it cost to run an instance.
+// How much it costs to run an instance.
 type CoverageCost struct {
 	_ struct{} `type:"structure"`
 
-	// How much an On-Demand instance cost.
+	// How much an On-Demand Instance costs.
 	OnDemandCost *string `type:"string"`
 }
 
@@ -2462,14 +2485,8 @@ type CreateCostCategoryDefinitionInput struct {
 	// RuleVersion is a required field
 	RuleVersion *string `type:"string" required:"true" enum:"CostCategoryRuleVersion"`
 
-	// CreateCostCategoryDefinition supports dimensions, Tags, and nested expressions.
-	// Currently the only dimensions supported is LINKED_ACCOUNT.
-	//
-	// Root level OR is not supported. We recommend you create a separate rule instead.
-	//
-	// Rules are processed in order. If there are multiple rules that match the
-	// line item, then the first rule to match is used to determine that Cost Category
-	// value.
+	// The Cost Category rules used to categorize costs. For more information, see
+	// CostCategoryRule (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategoryRule.html).
 	//
 	// Rules is a required field
 	Rules []*CostCategoryRule `min:"1" type:"list" required:"true"`
@@ -2919,12 +2936,6 @@ func (s *DescribeCostCategoryDefinitionInput) SetEffectiveOn(v string) *Describe
 type DescribeCostCategoryDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
-	//
-	//  Cost Category is in public beta for AWS Billing and Cost Management and
-	//  is subject to change. Your use of Cost Categories is subject to the Beta
-	//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-	//  (Section 1.10).
-	//
 	// The structure of Cost Categories. This includes detailed metadata and the
 	// set of rules for the CostCategory object.
 	CostCategory *CostCategory `type:"structure"`
@@ -2955,12 +2966,13 @@ type DimensionValues struct {
 	// results. For example, AZ returns a list of Availability Zones.
 	Key *string `type:"string" enum:"Dimension"`
 
+	// The match options that you can use to filter your results. MatchOptions is
+	// only applicable for actions related to Cost Category. The default values
+	// for MatchOptions is EQUALS and CASE_SENSITIVE.
+	MatchOptions []*string `type:"list"`
+
 	// The metadata values that you can use to filter and group your results. You
 	// can use GetDimensionValues to find specific values.
-	//
-	// Valid values for the SERVICE dimension are Amazon Elastic Compute Cloud -
-	// Compute, Amazon Elasticsearch Service, Amazon ElastiCache, Amazon Redshift,
-	// and Amazon Relational Database Service.
 	Values []*string `type:"list"`
 }
 
@@ -2977,6 +2989,12 @@ func (s DimensionValues) GoString() string {
 // SetKey sets the Key field's value.
 func (s *DimensionValues) SetKey(v string) *DimensionValues {
 	s.Key = &v
+	return s
+}
+
+// SetMatchOptions sets the MatchOptions field's value.
+func (s *DimensionValues) SetMatchOptions(v []*string) *DimensionValues {
+	s.MatchOptions = v
 	return s
 }
 
@@ -3437,12 +3455,7 @@ type Expression struct {
 	// Return results that match both Dimension objects.
 	And []*Expression `type:"list"`
 
-	//  Cost Category is in public beta for AWS Billing and Cost Management and
-	//  is subject to change. Your use of Cost Categories is subject to the Beta
-	//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
-	//  (Section 1.10).
-	//
-	// The specific CostCategory used for Expression.
+	// The filter based on CostCategory values.
 	CostCategories *CostCategoryValues `type:"structure"`
 
 	// The specific Dimension to use for Expression.
@@ -3759,7 +3772,7 @@ type GetCostAndUsageWithResourcesInput struct {
 	// can specify SERVICE and LINKED_ACCOUNT and get the costs that are associated
 	// with that account's usage of that service. You can nest Expression objects
 	// to define any combination of dimension filters. For more information, see
-	// Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html).
+	// Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html).
 	//
 	// The GetCostAndUsageWithResources operation requires that you either group
 	// by or filter by a ResourceId.
@@ -3776,7 +3789,7 @@ type GetCostAndUsageWithResourcesInput struct {
 
 	// Which metrics are returned in the query. For more information about blended
 	// and unblended rates, see Why does the "blended" annotation appear on some
-	// line items in my bill? (https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/).
+	// line items in my bill? (http://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/).
 	//
 	// Valid values are AmortizedCost, BlendedCost, NetAmortizedCost, NetUnblendedCost,
 	// NormalizedUsageAmount, UnblendedCost, and UsageQuantity.
@@ -4446,6 +4459,8 @@ type GetReservationCoverageInput struct {
 	// they are OR'd together.
 	//
 	// If you don't provide a SERVICE filter, Cost Explorer defaults to EC2.
+	//
+	// Cost category is also supported.
 	Filter *Expression `type:"structure"`
 
 	// The granularity of the AWS cost data for the reservation. Valid values are
@@ -5107,6 +5122,8 @@ type GetSavingsPlansCoverageInput struct {
 	// GetSavingsPlansCoverage uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
 	// If there are multiple values for a dimension, they are OR'd together.
+	//
+	// Cost category is also supported.
 	Filter *Expression `type:"structure"`
 
 	// The granularity of the Amazon Web Services cost data for your Savings Plans.
@@ -6237,12 +6254,12 @@ type ListCostCategoryDefinitionsInput struct {
 	// The date when the Cost Category was effective.
 	EffectiveOn *string `min:"20" type:"string"`
 
+	// The number of entries a paginated response contains.
+	MaxResults *int64 `min:"1" type:"integer"`
+
 	// The token to retrieve the next set of results. Amazon Web Services provides
 	// the token when the response from a previous call has more results than the
 	// maximum page size.
-	//
-	// You can use this information to retrieve the full Cost Category information
-	// using DescribeCostCategory.
 	NextToken *string `type:"string"`
 }
 
@@ -6262,6 +6279,9 @@ func (s *ListCostCategoryDefinitionsInput) Validate() error {
 	if s.EffectiveOn != nil && len(*s.EffectiveOn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("EffectiveOn", 20))
 	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6272,6 +6292,12 @@ func (s *ListCostCategoryDefinitionsInput) Validate() error {
 // SetEffectiveOn sets the EffectiveOn field's value.
 func (s *ListCostCategoryDefinitionsInput) SetEffectiveOn(v string) *ListCostCategoryDefinitionsInput {
 	s.EffectiveOn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCostCategoryDefinitionsInput) SetMaxResults(v int64) *ListCostCategoryDefinitionsInput {
+	s.MaxResults = &v
 	return s
 }
 
@@ -7052,12 +7078,12 @@ func (s *ReservationPurchaseRecommendationDetail) SetUpfrontCost(v string) *Rese
 	return s
 }
 
-// Information about this specific recommendation, such as the time stamp for
+// Information about this specific recommendation, such as the timestamp for
 // when AWS made a specific recommendation.
 type ReservationPurchaseRecommendationMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The time stamp for when AWS made this recommendation.
+	// The timestamp for when AWS made this recommendation.
 	GenerationTimestamp *string `type:"string"`
 
 	// The ID for this specific recommendation.
@@ -7588,7 +7614,7 @@ func (s *SavingsPlansCoverage) SetTimePeriod(v *DateInterval) *SavingsPlansCover
 type SavingsPlansCoverageData struct {
 	_ struct{} `type:"structure"`
 
-	// The percentage of your existing Savings Planscovered usage, divided by all
+	// The percentage of your existing Savings Plans covered usage, divided by all
 	// of your eligible Savings Plans usage in an account(or set of accounts).
 	CoveragePercentage *string `type:"string"`
 
@@ -7698,7 +7724,7 @@ type SavingsPlansPurchaseRecommendation struct {
 	// The payment option used to generate the recommendation.
 	PaymentOption *string `type:"string" enum:"PaymentOption"`
 
-	// Details for the Savings Plans we recommend you to purchase to cover existing,
+	// Details for the Savings Plans we recommend that you purchase to cover existing
 	// Savings Plans eligible workloads.
 	SavingsPlansPurchaseRecommendationDetails []*SavingsPlansPurchaseRecommendationDetail `type:"list"`
 
@@ -8448,6 +8474,11 @@ type TagValues struct {
 	// The key for the tag.
 	Key *string `type:"string"`
 
+	// The match options that you can use to filter your results. MatchOptions is
+	// only applicable for only applicable for actions related to Cost Category.
+	// The default values for MatchOptions is EQUALS and CASE_SENSITIVE.
+	MatchOptions []*string `type:"list"`
+
 	// The specific value of the tag.
 	Values []*string `type:"list"`
 }
@@ -8465,6 +8496,12 @@ func (s TagValues) GoString() string {
 // SetKey sets the Key field's value.
 func (s *TagValues) SetKey(v string) *TagValues {
 	s.Key = &v
+	return s
+}
+
+// SetMatchOptions sets the MatchOptions field's value.
+func (s *TagValues) SetMatchOptions(v []*string) *TagValues {
+	s.MatchOptions = v
 	return s
 }
 
@@ -8649,14 +8686,8 @@ type UpdateCostCategoryDefinitionInput struct {
 	// RuleVersion is a required field
 	RuleVersion *string `type:"string" required:"true" enum:"CostCategoryRuleVersion"`
 
-	// UpdateCostCategoryDefinition supports dimensions, Tags, and nested expressions.
-	// Currently the only dimensions supported is LINKED_ACCOUNT.
-	//
-	// Root level OR is not supported. We recommend you create a separate rule instead.
-	//
-	// Rules are processed in order. If there are multiple rules that match the
-	// line item, then the first rule to match is used to determine that Cost Category
-	// value.
+	// The Expression object used to categorize costs. For more information, see
+	// CostCategoryRule (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategoryRule.html).
 	//
 	// Rules is a required field
 	Rules []*CostCategoryRule `min:"1" type:"list" required:"true"`
@@ -8834,6 +8865,9 @@ const (
 	// DimensionLinkedAccount is a Dimension enum value
 	DimensionLinkedAccount = "LINKED_ACCOUNT"
 
+	// DimensionLinkedAccountName is a Dimension enum value
+	DimensionLinkedAccountName = "LINKED_ACCOUNT_NAME"
+
 	// DimensionOperation is a Dimension enum value
 	DimensionOperation = "OPERATION"
 
@@ -8845,6 +8879,9 @@ const (
 
 	// DimensionService is a Dimension enum value
 	DimensionService = "SERVICE"
+
+	// DimensionServiceCode is a Dimension enum value
+	DimensionServiceCode = "SERVICE_CODE"
 
 	// DimensionUsageType is a Dimension enum value
 	DimensionUsageType = "USAGE_TYPE"
@@ -8938,6 +8975,26 @@ const (
 
 	// LookbackPeriodInDaysSixtyDays is a LookbackPeriodInDays enum value
 	LookbackPeriodInDaysSixtyDays = "SIXTY_DAYS"
+)
+
+const (
+	// MatchOptionEquals is a MatchOption enum value
+	MatchOptionEquals = "EQUALS"
+
+	// MatchOptionStartsWith is a MatchOption enum value
+	MatchOptionStartsWith = "STARTS_WITH"
+
+	// MatchOptionEndsWith is a MatchOption enum value
+	MatchOptionEndsWith = "ENDS_WITH"
+
+	// MatchOptionContains is a MatchOption enum value
+	MatchOptionContains = "CONTAINS"
+
+	// MatchOptionCaseSensitive is a MatchOption enum value
+	MatchOptionCaseSensitive = "CASE_SENSITIVE"
+
+	// MatchOptionCaseInsensitive is a MatchOption enum value
+	MatchOptionCaseInsensitive = "CASE_INSENSITIVE"
 )
 
 const (
