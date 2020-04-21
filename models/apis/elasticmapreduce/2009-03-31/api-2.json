@@ -167,6 +167,15 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "GetManagedScalingPolicy":{
+      "name":"GetManagedScalingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetManagedScalingPolicyInput"},
+      "output":{"shape":"GetManagedScalingPolicyOutput"}
+    },
     "ListBootstrapActions":{
       "name":"ListBootstrapActions",
       "http":{
@@ -316,6 +325,15 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "PutManagedScalingPolicy":{
+      "name":"PutManagedScalingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutManagedScalingPolicyInput"},
+      "output":{"shape":"PutManagedScalingPolicyOutput"}
+    },
     "RemoveAutoScalingPolicy":{
       "name":"RemoveAutoScalingPolicy",
       "http":{
@@ -324,6 +342,15 @@
       },
       "input":{"shape":"RemoveAutoScalingPolicyInput"},
       "output":{"shape":"RemoveAutoScalingPolicyOutput"}
+    },
+    "RemoveManagedScalingPolicy":{
+      "name":"RemoveManagedScalingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveManagedScalingPolicyInput"},
+      "output":{"shape":"RemoveManagedScalingPolicyOutput"}
     },
     "RemoveTags":{
       "name":"RemoveTags",
@@ -675,8 +702,8 @@
         "RepoUpgradeOnBoot":{"shape":"RepoUpgradeOnBoot"},
         "KerberosAttributes":{"shape":"KerberosAttributes"},
         "ClusterArn":{"shape":"ArnType"},
-        "StepConcurrencyLevel":{"shape":"Integer"},
-        "OutpostArn":{"shape":"OptionalArnType"}
+        "OutpostArn":{"shape":"OptionalArnType"},
+        "StepConcurrencyLevel":{"shape":"Integer"}
       }
     },
     "ClusterId":{"type":"string"},
@@ -766,6 +793,28 @@
         "GREATER_THAN",
         "LESS_THAN",
         "LESS_THAN_OR_EQUAL"
+      ]
+    },
+    "ComputeLimits":{
+      "type":"structure",
+      "required":[
+        "UnitType",
+        "MinimumCapacityUnits",
+        "MaximumCapacityUnits"
+      ],
+      "members":{
+        "UnitType":{"shape":"ComputeLimitsUnitType"},
+        "MinimumCapacityUnits":{"shape":"Integer"},
+        "MaximumCapacityUnits":{"shape":"Integer"},
+        "MaximumOnDemandCapacityUnits":{"shape":"Integer"}
+      }
+    },
+    "ComputeLimitsUnitType":{
+      "type":"string",
+      "enum":[
+        "InstanceFleetUnits",
+        "Instances",
+        "VCPU"
       ]
     },
     "Configuration":{
@@ -968,6 +1017,19 @@
       "members":{
         "BlockPublicAccessConfiguration":{"shape":"BlockPublicAccessConfiguration"},
         "BlockPublicAccessConfigurationMetadata":{"shape":"BlockPublicAccessConfigurationMetadata"}
+      }
+    },
+    "GetManagedScalingPolicyInput":{
+      "type":"structure",
+      "required":["ClusterId"],
+      "members":{
+        "ClusterId":{"shape":"ClusterId"}
+      }
+    },
+    "GetManagedScalingPolicyOutput":{
+      "type":"structure",
+      "members":{
+        "ManagedScalingPolicy":{"shape":"ManagedScalingPolicy"}
       }
     },
     "HadoopJarStepConfig":{
@@ -1650,6 +1712,12 @@
       }
     },
     "Long":{"type":"long"},
+    "ManagedScalingPolicy":{
+      "type":"structure",
+      "members":{
+        "ComputeLimits":{"shape":"ComputeLimits"}
+      }
+    },
     "Marker":{"type":"string"},
     "MarketType":{
       "type":"string",
@@ -1772,6 +1840,22 @@
       "members":{
       }
     },
+    "PutManagedScalingPolicyInput":{
+      "type":"structure",
+      "required":[
+        "ClusterId",
+        "ManagedScalingPolicy"
+      ],
+      "members":{
+        "ClusterId":{"shape":"ClusterId"},
+        "ManagedScalingPolicy":{"shape":"ManagedScalingPolicy"}
+      }
+    },
+    "PutManagedScalingPolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "RemoveAutoScalingPolicyInput":{
       "type":"structure",
       "required":[
@@ -1784,6 +1868,18 @@
       }
     },
     "RemoveAutoScalingPolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "RemoveManagedScalingPolicyInput":{
+      "type":"structure",
+      "required":["ClusterId"],
+      "members":{
+        "ClusterId":{"shape":"ClusterId"}
+      }
+    },
+    "RemoveManagedScalingPolicyOutput":{
       "type":"structure",
       "members":{
       }
@@ -1842,7 +1938,8 @@
         "EbsRootVolumeSize":{"shape":"Integer"},
         "RepoUpgradeOnBoot":{"shape":"RepoUpgradeOnBoot"},
         "KerberosAttributes":{"shape":"KerberosAttributes"},
-        "StepConcurrencyLevel":{"shape":"Integer"}
+        "StepConcurrencyLevel":{"shape":"Integer"},
+        "ManagedScalingPolicy":{"shape":"ManagedScalingPolicy"}
       }
     },
     "RunJobFlowOutput":{

@@ -6,11 +6,39 @@
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceFullName":"Amazon Route 53 Domains",
+    "serviceId":"Route 53 Domains",
     "signatureVersion":"v4",
     "targetPrefix":"Route53Domains_v20140515",
     "uid":"route53domains-2014-05-15"
   },
   "operations":{
+    "AcceptDomainTransferFromAnotherAwsAccount":{
+      "name":"AcceptDomainTransferFromAnotherAwsAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AcceptDomainTransferFromAnotherAwsAccountRequest"},
+      "output":{"shape":"AcceptDomainTransferFromAnotherAwsAccountResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"DomainLimitExceeded"}
+      ]
+    },
+    "CancelDomainTransferToAnotherAwsAccount":{
+      "name":"CancelDomainTransferToAnotherAwsAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelDomainTransferToAnotherAwsAccountRequest"},
+      "output":{"shape":"CancelDomainTransferToAnotherAwsAccountResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"OperationLimitExceeded"}
+      ]
+    },
     "CheckDomainAvailability":{
       "name":"CheckDomainAvailability",
       "http":{
@@ -217,6 +245,19 @@
         {"shape":"OperationLimitExceeded"}
       ]
     },
+    "RejectDomainTransferFromAnotherAwsAccount":{
+      "name":"RejectDomainTransferFromAnotherAwsAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RejectDomainTransferFromAnotherAwsAccountRequest"},
+      "output":{"shape":"RejectDomainTransferFromAnotherAwsAccountResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"OperationLimitExceeded"}
+      ]
+    },
     "RenewDomain":{
       "name":"RenewDomain",
       "http":{
@@ -275,6 +316,20 @@
         {"shape":"TLDRulesViolation"},
         {"shape":"DomainLimitExceeded"},
         {"shape":"OperationLimitExceeded"}
+      ]
+    },
+    "TransferDomainToAnotherAwsAccount":{
+      "name":"TransferDomainToAnotherAwsAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TransferDomainToAnotherAwsAccountRequest"},
+      "output":{"shape":"TransferDomainToAnotherAwsAccountResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"OperationLimitExceeded"},
+        {"shape":"DuplicateRequest"}
       ]
     },
     "UpdateDomainContact":{
@@ -353,6 +408,27 @@
     }
   },
   "shapes":{
+    "AcceptDomainTransferFromAnotherAwsAccountRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "Password"
+      ],
+      "members":{
+        "DomainName":{"shape":"DomainName"},
+        "Password":{"shape":"String"}
+      }
+    },
+    "AcceptDomainTransferFromAnotherAwsAccountResponse":{
+      "type":"structure",
+      "members":{
+        "OperationId":{"shape":"OperationId"}
+      }
+    },
+    "AccountId":{
+      "type":"string",
+      "pattern":"^(\\d{12})$"
+    },
     "AddressLine":{
       "type":"string",
       "max":255
@@ -372,6 +448,19 @@
       "member":{"shape":"BillingRecord"}
     },
     "Boolean":{"type":"boolean"},
+    "CancelDomainTransferToAnotherAwsAccountRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "CancelDomainTransferToAnotherAwsAccountResponse":{
+      "type":"structure",
+      "members":{
+        "OperationId":{"shape":"OperationId"}
+      }
+    },
     "CheckDomainAvailabilityRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -859,6 +948,8 @@
         "AU_ID_TYPE",
         "CA_LEGAL_TYPE",
         "CA_BUSINESS_ENTITY_TYPE",
+        "CA_LEGAL_REPRESENTATIVE",
+        "CA_LEGAL_REPRESENTATIVE_CAPACITY",
         "ES_IDENTIFICATION",
         "ES_IDENTIFICATION_TYPE",
         "ES_LEGAL_FORM",
@@ -866,6 +957,7 @@
         "FI_ID_NUMBER",
         "FI_NATIONALITY",
         "FI_ORGANIZATION_TYPE",
+        "IT_NATIONALITY",
         "IT_PIN",
         "IT_REGISTRANT_ENTITY_TYPE",
         "RU_PASSPORT_DATA",
@@ -1112,7 +1204,9 @@
         "TRANSFER_OUT_DOMAIN",
         "CHANGE_DOMAIN_OWNER",
         "RENEW_DOMAIN",
-        "PUSH_DOMAIN"
+        "PUSH_DOMAIN",
+        "INTERNAL_TRANSFER_OUT_DOMAIN",
+        "INTERNAL_TRANSFER_IN_DOMAIN"
       ]
     },
     "PageMarker":{
@@ -1165,6 +1259,19 @@
     "RegistrarUrl":{"type":"string"},
     "RegistrarWhoIsServer":{"type":"string"},
     "RegistryDomainId":{"type":"string"},
+    "RejectDomainTransferFromAnotherAwsAccountRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{"shape":"DomainName"}
+      }
+    },
+    "RejectDomainTransferFromAnotherAwsAccountResponse":{
+      "type":"structure",
+      "members":{
+        "OperationId":{"shape":"OperationId"}
+      }
+    },
     "RenewDomainRequest":{
       "type":"structure",
       "required":[
@@ -1272,6 +1379,24 @@
       "required":["OperationId"],
       "members":{
         "OperationId":{"shape":"OperationId"}
+      }
+    },
+    "TransferDomainToAnotherAwsAccountRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "AccountId"
+      ],
+      "members":{
+        "DomainName":{"shape":"DomainName"},
+        "AccountId":{"shape":"AccountId"}
+      }
+    },
+    "TransferDomainToAnotherAwsAccountResponse":{
+      "type":"structure",
+      "members":{
+        "OperationId":{"shape":"OperationId"},
+        "Password":{"shape":"String"}
       }
     },
     "Transferable":{

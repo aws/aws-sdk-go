@@ -834,6 +834,7 @@
       "required":["Service"],
       "members":{
         "Filter":{"shape":"Expression"},
+        "Configuration":{"shape":"RightsizingRecommendationConfiguration"},
         "Service":{"shape":"GenericString"},
         "PageSize":{"shape":"NonNegativeInteger"},
         "NextPageToken":{"shape":"NextPageToken"}
@@ -845,7 +846,8 @@
         "Metadata":{"shape":"RightsizingRecommendationMetadata"},
         "Summary":{"shape":"RightsizingRecommendationSummary"},
         "RightsizingRecommendations":{"shape":"RightsizingRecommendationList"},
-        "NextPageToken":{"shape":"NextPageToken"}
+        "NextPageToken":{"shape":"NextPageToken"},
+        "Configuration":{"shape":"RightsizingRecommendationConfiguration"}
       }
     },
     "GetSavingsPlansCoverageRequest":{
@@ -1203,6 +1205,13 @@
         "SizeFlexEligible":{"shape":"GenericBoolean"}
       }
     },
+    "RecommendationTarget":{
+      "type":"string",
+      "enum":[
+        "SAME_INSTANCE_FAMILY",
+        "CROSS_INSTANCE_FAMILY"
+      ]
+    },
     "RedshiftInstanceDetails":{
       "type":"structure",
       "members":{
@@ -1366,6 +1375,17 @@
         "RightsizingType":{"shape":"RightsizingType"},
         "ModifyRecommendationDetail":{"shape":"ModifyRecommendationDetail"},
         "TerminateRecommendationDetail":{"shape":"TerminateRecommendationDetail"}
+      }
+    },
+    "RightsizingRecommendationConfiguration":{
+      "type":"structure",
+      "required":[
+        "RecommendationTarget",
+        "BenefitsConsidered"
+      ],
+      "members":{
+        "RecommendationTarget":{"shape":"RecommendationTarget"},
+        "BenefitsConsidered":{"shape":"GenericBoolean"}
       }
     },
     "RightsizingRecommendationList":{

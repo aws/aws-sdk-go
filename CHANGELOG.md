@@ -1,3 +1,15 @@
+Release v1.30.11 (2020-04-21)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR adds support for configuring a managed scaling policy for an Amazon EMR cluster. This enables automatic resizing of a cluster to optimize for job execution speed and reduced cluster cost.
+* `service/guardduty`: Updates service API, documentation, and paginators
+  * AWS GuardDuty now supports using AWS Organizations delegated administrators to create and manage GuardDuty master and member accounts.  The feature also allows GuardDuty to be automatically enabled on associated organization accounts.
+* `service/route53domains`: Updates service API and documentation
+  * You can now programmatically transfer domains between AWS accounts without having to contact AWS Support
+
 Release v1.30.10 (2020-04-20)
 ===
 

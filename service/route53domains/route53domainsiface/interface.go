@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Route 53 Domains.
 //    func myFunc(svc route53domainsiface.Route53DomainsAPI) bool {
-//        // Make svc.CheckDomainAvailability request
+//        // Make svc.AcceptDomainTransferFromAnotherAwsAccount request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockRoute53DomainsClient struct {
 //        route53domainsiface.Route53DomainsAPI
 //    }
-//    func (m *mockRoute53DomainsClient) CheckDomainAvailability(input *route53domains.CheckDomainAvailabilityInput) (*route53domains.CheckDomainAvailabilityOutput, error) {
+//    func (m *mockRoute53DomainsClient) AcceptDomainTransferFromAnotherAwsAccount(input *route53domains.AcceptDomainTransferFromAnotherAwsAccountInput) (*route53domains.AcceptDomainTransferFromAnotherAwsAccountOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,14 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type Route53DomainsAPI interface {
+	AcceptDomainTransferFromAnotherAwsAccount(*route53domains.AcceptDomainTransferFromAnotherAwsAccountInput) (*route53domains.AcceptDomainTransferFromAnotherAwsAccountOutput, error)
+	AcceptDomainTransferFromAnotherAwsAccountWithContext(aws.Context, *route53domains.AcceptDomainTransferFromAnotherAwsAccountInput, ...request.Option) (*route53domains.AcceptDomainTransferFromAnotherAwsAccountOutput, error)
+	AcceptDomainTransferFromAnotherAwsAccountRequest(*route53domains.AcceptDomainTransferFromAnotherAwsAccountInput) (*request.Request, *route53domains.AcceptDomainTransferFromAnotherAwsAccountOutput)
+
+	CancelDomainTransferToAnotherAwsAccount(*route53domains.CancelDomainTransferToAnotherAwsAccountInput) (*route53domains.CancelDomainTransferToAnotherAwsAccountOutput, error)
+	CancelDomainTransferToAnotherAwsAccountWithContext(aws.Context, *route53domains.CancelDomainTransferToAnotherAwsAccountInput, ...request.Option) (*route53domains.CancelDomainTransferToAnotherAwsAccountOutput, error)
+	CancelDomainTransferToAnotherAwsAccountRequest(*route53domains.CancelDomainTransferToAnotherAwsAccountInput) (*request.Request, *route53domains.CancelDomainTransferToAnotherAwsAccountOutput)
+
 	CheckDomainAvailability(*route53domains.CheckDomainAvailabilityInput) (*route53domains.CheckDomainAvailabilityOutput, error)
 	CheckDomainAvailabilityWithContext(aws.Context, *route53domains.CheckDomainAvailabilityInput, ...request.Option) (*route53domains.CheckDomainAvailabilityOutput, error)
 	CheckDomainAvailabilityRequest(*route53domains.CheckDomainAvailabilityInput) (*request.Request, *route53domains.CheckDomainAvailabilityOutput)
@@ -126,6 +134,10 @@ type Route53DomainsAPI interface {
 	RegisterDomainWithContext(aws.Context, *route53domains.RegisterDomainInput, ...request.Option) (*route53domains.RegisterDomainOutput, error)
 	RegisterDomainRequest(*route53domains.RegisterDomainInput) (*request.Request, *route53domains.RegisterDomainOutput)
 
+	RejectDomainTransferFromAnotherAwsAccount(*route53domains.RejectDomainTransferFromAnotherAwsAccountInput) (*route53domains.RejectDomainTransferFromAnotherAwsAccountOutput, error)
+	RejectDomainTransferFromAnotherAwsAccountWithContext(aws.Context, *route53domains.RejectDomainTransferFromAnotherAwsAccountInput, ...request.Option) (*route53domains.RejectDomainTransferFromAnotherAwsAccountOutput, error)
+	RejectDomainTransferFromAnotherAwsAccountRequest(*route53domains.RejectDomainTransferFromAnotherAwsAccountInput) (*request.Request, *route53domains.RejectDomainTransferFromAnotherAwsAccountOutput)
+
 	RenewDomain(*route53domains.RenewDomainInput) (*route53domains.RenewDomainOutput, error)
 	RenewDomainWithContext(aws.Context, *route53domains.RenewDomainInput, ...request.Option) (*route53domains.RenewDomainOutput, error)
 	RenewDomainRequest(*route53domains.RenewDomainInput) (*request.Request, *route53domains.RenewDomainOutput)
@@ -141,6 +153,10 @@ type Route53DomainsAPI interface {
 	TransferDomain(*route53domains.TransferDomainInput) (*route53domains.TransferDomainOutput, error)
 	TransferDomainWithContext(aws.Context, *route53domains.TransferDomainInput, ...request.Option) (*route53domains.TransferDomainOutput, error)
 	TransferDomainRequest(*route53domains.TransferDomainInput) (*request.Request, *route53domains.TransferDomainOutput)
+
+	TransferDomainToAnotherAwsAccount(*route53domains.TransferDomainToAnotherAwsAccountInput) (*route53domains.TransferDomainToAnotherAwsAccountOutput, error)
+	TransferDomainToAnotherAwsAccountWithContext(aws.Context, *route53domains.TransferDomainToAnotherAwsAccountInput, ...request.Option) (*route53domains.TransferDomainToAnotherAwsAccountOutput, error)
+	TransferDomainToAnotherAwsAccountRequest(*route53domains.TransferDomainToAnotherAwsAccountInput) (*request.Request, *route53domains.TransferDomainToAnotherAwsAccountOutput)
 
 	UpdateDomainContact(*route53domains.UpdateDomainContactInput) (*route53domains.UpdateDomainContactOutput, error)
 	UpdateDomainContactWithContext(aws.Context, *route53domains.UpdateDomainContactInput, ...request.Option) (*route53domains.UpdateDomainContactOutput, error)

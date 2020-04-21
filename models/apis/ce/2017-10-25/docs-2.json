@@ -409,6 +409,7 @@
         "RDSInstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>",
         "RedshiftInstanceDetails$CurrentGeneration": "<p>Whether the recommendation is for a current-generation instance.</p>",
         "RedshiftInstanceDetails$SizeFlexEligible": "<p>Whether the recommended reservation is size flexible.</p>",
+        "RightsizingRecommendationConfiguration$BenefitsConsidered": "<p> The option to consider RI or Savings Plans discount benefits in your savings calculation. The default value is <code>TRUE</code>. </p>",
         "TargetInstance$DefaultTargetInstance": "<p> Indicates whether or not this recommendation is the defaulted Amazon Web Services recommendation.</p>"
       }
     },
@@ -980,6 +981,12 @@
         "InstanceDetails$RDSInstanceDetails": "<p>The Amazon RDS instances that AWS recommends that you purchase.</p>"
       }
     },
+    "RecommendationTarget": {
+      "base": null,
+      "refs": {
+        "RightsizingRecommendationConfiguration$RecommendationTarget": "<p> The option to see recommendations within the same instance family, or recommendations for instances across other families. The default value is <code>SAME_INSTANCE_FAMILY</code>. </p>"
+      }
+    },
     "RedshiftInstanceDetails": {
       "base": "<p>Details about the Amazon Redshift instances that AWS recommends that you purchase.</p>",
       "refs": {
@@ -1119,6 +1126,13 @@
       "base": "<p>Recommendations to rightsize resources.</p>",
       "refs": {
         "RightsizingRecommendationList$member": null
+      }
+    },
+    "RightsizingRecommendationConfiguration": {
+      "base": "<p> Enables you to customize recommendations across two attributes. You can choose to view recommendations for instances within the same instance families or across different instance families. You can also choose to view your estimated savings associated with recommendations with consideration of existing Savings Plans or RI benefits, or niether. </p>",
+      "refs": {
+        "GetRightsizingRecommendationRequest$Configuration": "<p> Enables you to customize recommendations across two attributes. You can choose to view recommendations for instances within the same instance families or across different instance families. You can also choose to view your estimated savings associated with recommendations with consideration of existing Savings Plans or RI benefits, or niether. </p>",
+        "GetRightsizingRecommendationResponse$Configuration": "<p>Enables you to customize recommendations across two attributes. You can choose to view recommendations for instances within the same instance families or across different instance families. You can also choose to view your estimated savings associated with recommendations with consideration of existing Savings Plans or RI benefits, or niether. </p>"
       }
     },
     "RightsizingRecommendationList": {
