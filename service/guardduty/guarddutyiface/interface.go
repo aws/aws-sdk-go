@@ -128,9 +128,17 @@ type GuardDutyAPI interface {
 	DeleteThreatIntelSetWithContext(aws.Context, *guardduty.DeleteThreatIntelSetInput, ...request.Option) (*guardduty.DeleteThreatIntelSetOutput, error)
 	DeleteThreatIntelSetRequest(*guardduty.DeleteThreatIntelSetInput) (*request.Request, *guardduty.DeleteThreatIntelSetOutput)
 
+	DescribeOrganizationConfiguration(*guardduty.DescribeOrganizationConfigurationInput) (*guardduty.DescribeOrganizationConfigurationOutput, error)
+	DescribeOrganizationConfigurationWithContext(aws.Context, *guardduty.DescribeOrganizationConfigurationInput, ...request.Option) (*guardduty.DescribeOrganizationConfigurationOutput, error)
+	DescribeOrganizationConfigurationRequest(*guardduty.DescribeOrganizationConfigurationInput) (*request.Request, *guardduty.DescribeOrganizationConfigurationOutput)
+
 	DescribePublishingDestination(*guardduty.DescribePublishingDestinationInput) (*guardduty.DescribePublishingDestinationOutput, error)
 	DescribePublishingDestinationWithContext(aws.Context, *guardduty.DescribePublishingDestinationInput, ...request.Option) (*guardduty.DescribePublishingDestinationOutput, error)
 	DescribePublishingDestinationRequest(*guardduty.DescribePublishingDestinationInput) (*request.Request, *guardduty.DescribePublishingDestinationOutput)
+
+	DisableOrganizationAdminAccount(*guardduty.DisableOrganizationAdminAccountInput) (*guardduty.DisableOrganizationAdminAccountOutput, error)
+	DisableOrganizationAdminAccountWithContext(aws.Context, *guardduty.DisableOrganizationAdminAccountInput, ...request.Option) (*guardduty.DisableOrganizationAdminAccountOutput, error)
+	DisableOrganizationAdminAccountRequest(*guardduty.DisableOrganizationAdminAccountInput) (*request.Request, *guardduty.DisableOrganizationAdminAccountOutput)
 
 	DisassociateFromMasterAccount(*guardduty.DisassociateFromMasterAccountInput) (*guardduty.DisassociateFromMasterAccountOutput, error)
 	DisassociateFromMasterAccountWithContext(aws.Context, *guardduty.DisassociateFromMasterAccountInput, ...request.Option) (*guardduty.DisassociateFromMasterAccountOutput, error)
@@ -139,6 +147,10 @@ type GuardDutyAPI interface {
 	DisassociateMembers(*guardduty.DisassociateMembersInput) (*guardduty.DisassociateMembersOutput, error)
 	DisassociateMembersWithContext(aws.Context, *guardduty.DisassociateMembersInput, ...request.Option) (*guardduty.DisassociateMembersOutput, error)
 	DisassociateMembersRequest(*guardduty.DisassociateMembersInput) (*request.Request, *guardduty.DisassociateMembersOutput)
+
+	EnableOrganizationAdminAccount(*guardduty.EnableOrganizationAdminAccountInput) (*guardduty.EnableOrganizationAdminAccountOutput, error)
+	EnableOrganizationAdminAccountWithContext(aws.Context, *guardduty.EnableOrganizationAdminAccountInput, ...request.Option) (*guardduty.EnableOrganizationAdminAccountOutput, error)
+	EnableOrganizationAdminAccountRequest(*guardduty.EnableOrganizationAdminAccountInput) (*request.Request, *guardduty.EnableOrganizationAdminAccountOutput)
 
 	GetDetector(*guardduty.GetDetectorInput) (*guardduty.GetDetectorOutput, error)
 	GetDetectorWithContext(aws.Context, *guardduty.GetDetectorInput, ...request.Option) (*guardduty.GetDetectorOutput, error)
@@ -222,6 +234,13 @@ type GuardDutyAPI interface {
 	ListMembersPages(*guardduty.ListMembersInput, func(*guardduty.ListMembersOutput, bool) bool) error
 	ListMembersPagesWithContext(aws.Context, *guardduty.ListMembersInput, func(*guardduty.ListMembersOutput, bool) bool, ...request.Option) error
 
+	ListOrganizationAdminAccounts(*guardduty.ListOrganizationAdminAccountsInput) (*guardduty.ListOrganizationAdminAccountsOutput, error)
+	ListOrganizationAdminAccountsWithContext(aws.Context, *guardduty.ListOrganizationAdminAccountsInput, ...request.Option) (*guardduty.ListOrganizationAdminAccountsOutput, error)
+	ListOrganizationAdminAccountsRequest(*guardduty.ListOrganizationAdminAccountsInput) (*request.Request, *guardduty.ListOrganizationAdminAccountsOutput)
+
+	ListOrganizationAdminAccountsPages(*guardduty.ListOrganizationAdminAccountsInput, func(*guardduty.ListOrganizationAdminAccountsOutput, bool) bool) error
+	ListOrganizationAdminAccountsPagesWithContext(aws.Context, *guardduty.ListOrganizationAdminAccountsInput, func(*guardduty.ListOrganizationAdminAccountsOutput, bool) bool, ...request.Option) error
+
 	ListPublishingDestinations(*guardduty.ListPublishingDestinationsInput) (*guardduty.ListPublishingDestinationsOutput, error)
 	ListPublishingDestinationsWithContext(aws.Context, *guardduty.ListPublishingDestinationsInput, ...request.Option) (*guardduty.ListPublishingDestinationsOutput, error)
 	ListPublishingDestinationsRequest(*guardduty.ListPublishingDestinationsInput) (*request.Request, *guardduty.ListPublishingDestinationsOutput)
@@ -275,6 +294,10 @@ type GuardDutyAPI interface {
 	UpdateIPSet(*guardduty.UpdateIPSetInput) (*guardduty.UpdateIPSetOutput, error)
 	UpdateIPSetWithContext(aws.Context, *guardduty.UpdateIPSetInput, ...request.Option) (*guardduty.UpdateIPSetOutput, error)
 	UpdateIPSetRequest(*guardduty.UpdateIPSetInput) (*request.Request, *guardduty.UpdateIPSetOutput)
+
+	UpdateOrganizationConfiguration(*guardduty.UpdateOrganizationConfigurationInput) (*guardduty.UpdateOrganizationConfigurationOutput, error)
+	UpdateOrganizationConfigurationWithContext(aws.Context, *guardduty.UpdateOrganizationConfigurationInput, ...request.Option) (*guardduty.UpdateOrganizationConfigurationOutput, error)
+	UpdateOrganizationConfigurationRequest(*guardduty.UpdateOrganizationConfigurationInput) (*request.Request, *guardduty.UpdateOrganizationConfigurationOutput)
 
 	UpdatePublishingDestination(*guardduty.UpdatePublishingDestinationInput) (*guardduty.UpdatePublishingDestinationOutput, error)
 	UpdatePublishingDestinationWithContext(aws.Context, *guardduty.UpdatePublishingDestinationInput, ...request.Option) (*guardduty.UpdatePublishingDestinationOutput, error)

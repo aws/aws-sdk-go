@@ -4958,6 +4958,13 @@ func (s *GetReservationUtilizationOutput) SetUtilizationsByTime(v []*Utilization
 type GetRightsizingRecommendationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Enables you to customize recommendations across two attributes. You can choose
+	// to view recommendations for instances within the same instance families or
+	// across different instance families. You can also choose to view your estimated
+	// savings associated with recommendations with consideration of existing Savings
+	// Plans or RI benefits, or niether.
+	Configuration *RightsizingRecommendationConfiguration `type:"structure"`
+
 	// Use Expression to filter by cost or by usage. There are two patterns:
 	//
 	//    * Simple dimension values - You can set the dimension name and values
@@ -5019,6 +5026,11 @@ func (s *GetRightsizingRecommendationInput) Validate() error {
 	if s.Service == nil {
 		invalidParams.Add(request.NewErrParamRequired("Service"))
 	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Filter != nil {
 		if err := s.Filter.Validate(); err != nil {
 			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
@@ -5029,6 +5041,12 @@ func (s *GetRightsizingRecommendationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *GetRightsizingRecommendationInput) SetConfiguration(v *RightsizingRecommendationConfiguration) *GetRightsizingRecommendationInput {
+	s.Configuration = v
+	return s
 }
 
 // SetFilter sets the Filter field's value.
@@ -5058,6 +5076,13 @@ func (s *GetRightsizingRecommendationInput) SetService(v string) *GetRightsizing
 type GetRightsizingRecommendationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Enables you to customize recommendations across two attributes. You can choose
+	// to view recommendations for instances within the same instance families or
+	// across different instance families. You can also choose to view your estimated
+	// savings associated with recommendations with consideration of existing Savings
+	// Plans or RI benefits, or niether.
+	Configuration *RightsizingRecommendationConfiguration `type:"structure"`
+
 	// Information regarding this specific recommendation set.
 	Metadata *RightsizingRecommendationMetadata `type:"structure"`
 
@@ -5079,6 +5104,12 @@ func (s GetRightsizingRecommendationOutput) String() string {
 // GoString returns the string representation
 func (s GetRightsizingRecommendationOutput) GoString() string {
 	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *GetRightsizingRecommendationOutput) SetConfiguration(v *RightsizingRecommendationConfiguration) *GetRightsizingRecommendationOutput {
+	s.Configuration = v
+	return s
 }
 
 // SetMetadata sets the Metadata field's value.
@@ -7424,6 +7455,65 @@ func (s *RightsizingRecommendation) SetTerminateRecommendationDetail(v *Terminat
 	return s
 }
 
+// Enables you to customize recommendations across two attributes. You can choose
+// to view recommendations for instances within the same instance families or
+// across different instance families. You can also choose to view your estimated
+// savings associated with recommendations with consideration of existing Savings
+// Plans or RI benefits, or niether.
+type RightsizingRecommendationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The option to consider RI or Savings Plans discount benefits in your savings
+	// calculation. The default value is TRUE.
+	//
+	// BenefitsConsidered is a required field
+	BenefitsConsidered *bool `type:"boolean" required:"true"`
+
+	// The option to see recommendations within the same instance family, or recommendations
+	// for instances across other families. The default value is SAME_INSTANCE_FAMILY.
+	//
+	// RecommendationTarget is a required field
+	RecommendationTarget *string `type:"string" required:"true" enum:"RecommendationTarget"`
+}
+
+// String returns the string representation
+func (s RightsizingRecommendationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RightsizingRecommendationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RightsizingRecommendationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RightsizingRecommendationConfiguration"}
+	if s.BenefitsConsidered == nil {
+		invalidParams.Add(request.NewErrParamRequired("BenefitsConsidered"))
+	}
+	if s.RecommendationTarget == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommendationTarget"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBenefitsConsidered sets the BenefitsConsidered field's value.
+func (s *RightsizingRecommendationConfiguration) SetBenefitsConsidered(v bool) *RightsizingRecommendationConfiguration {
+	s.BenefitsConsidered = &v
+	return s
+}
+
+// SetRecommendationTarget sets the RecommendationTarget field's value.
+func (s *RightsizingRecommendationConfiguration) SetRecommendationTarget(v string) *RightsizingRecommendationConfiguration {
+	s.RecommendationTarget = &v
+	return s
+}
+
 // Metadata for this recommendation set.
 type RightsizingRecommendationMetadata struct {
 	_ struct{} `type:"structure"`
@@ -9046,6 +9136,14 @@ const (
 
 	// PaymentOptionHeavyUtilization is a PaymentOption enum value
 	PaymentOptionHeavyUtilization = "HEAVY_UTILIZATION"
+)
+
+const (
+	// RecommendationTargetSameInstanceFamily is a RecommendationTarget enum value
+	RecommendationTargetSameInstanceFamily = "SAME_INSTANCE_FAMILY"
+
+	// RecommendationTargetCrossInstanceFamily is a RecommendationTarget enum value
+	RecommendationTargetCrossInstanceFamily = "CROSS_INSTANCE_FAMILY"
 )
 
 const (

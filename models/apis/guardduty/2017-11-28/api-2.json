@@ -250,6 +250,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "DescribeOrganizationConfiguration":{
+      "name":"DescribeOrganizationConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/admin",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeOrganizationConfigurationRequest"},
+      "output":{"shape":"DescribeOrganizationConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "DescribePublishingDestination":{
       "name":"DescribePublishingDestination",
       "http":{
@@ -259,6 +273,20 @@
       },
       "input":{"shape":"DescribePublishingDestinationRequest"},
       "output":{"shape":"DescribePublishingDestinationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "DisableOrganizationAdminAccount":{
+      "name":"DisableOrganizationAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/admin/disable",
+        "responseCode":200
+      },
+      "input":{"shape":"DisableOrganizationAdminAccountRequest"},
+      "output":{"shape":"DisableOrganizationAdminAccountResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -287,6 +315,20 @@
       },
       "input":{"shape":"DisassociateMembersRequest"},
       "output":{"shape":"DisassociateMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "EnableOrganizationAdminAccount":{
+      "name":"EnableOrganizationAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/admin/enable",
+        "responseCode":200
+      },
+      "input":{"shape":"EnableOrganizationAdminAccountRequest"},
+      "output":{"shape":"EnableOrganizationAdminAccountResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -516,6 +558,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "ListOrganizationAdminAccounts":{
+      "name":"ListOrganizationAdminAccounts",
+      "http":{
+        "method":"GET",
+        "requestUri":"/admin",
+        "responseCode":200
+      },
+      "input":{"shape":"ListOrganizationAdminAccountsRequest"},
+      "output":{"shape":"ListOrganizationAdminAccountsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "ListPublishingDestinations":{
       "name":"ListPublishingDestinations",
       "http":{
@@ -684,6 +740,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "UpdateOrganizationConfiguration":{
+      "name":"UpdateOrganizationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/admin",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateOrganizationConfigurationRequest"},
+      "output":{"shape":"UpdateOrganizationConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "UpdatePublishingDestination":{
       "name":"UpdatePublishingDestination",
       "http":{
@@ -821,6 +891,34 @@
           "locationName":"portProbeAction"
         }
       }
+    },
+    "AdminAccount":{
+      "type":"structure",
+      "members":{
+        "AdminAccountId":{
+          "shape":"String",
+          "locationName":"adminAccountId"
+        },
+        "AdminStatus":{
+          "shape":"AdminStatus",
+          "locationName":"adminStatus"
+        }
+      }
+    },
+    "AdminAccounts":{
+      "type":"list",
+      "member":{"shape":"AdminAccount"},
+      "max":1,
+      "min":0
+    },
+    "AdminStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLE_IN_PROGRESS"
+      ],
+      "max":300,
+      "min":1
     },
     "ArchiveFindingsRequest":{
       "type":"structure",
@@ -1438,6 +1536,34 @@
       "members":{
       }
     },
+    "DescribeOrganizationConfigurationRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        }
+      }
+    },
+    "DescribeOrganizationConfigurationResponse":{
+      "type":"structure",
+      "required":[
+        "AutoEnable",
+        "MemberAccountLimitReached"
+      ],
+      "members":{
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        },
+        "MemberAccountLimitReached":{
+          "shape":"Boolean",
+          "locationName":"memberAccountLimitReached"
+        }
+      }
+    },
     "DescribePublishingDestinationRequest":{
       "type":"structure",
       "required":[
@@ -1554,6 +1680,21 @@
       "max":300,
       "min":1
     },
+    "DisableOrganizationAdminAccountRequest":{
+      "type":"structure",
+      "required":["AdminAccountId"],
+      "members":{
+        "AdminAccountId":{
+          "shape":"String",
+          "locationName":"adminAccountId"
+        }
+      }
+    },
+    "DisableOrganizationAdminAccountResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateFromMasterAccountRequest":{
       "type":"structure",
       "required":["DetectorId"],
@@ -1621,6 +1762,21 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "EnableOrganizationAdminAccountRequest":{
+      "type":"structure",
+      "required":["AdminAccountId"],
+      "members":{
+        "AdminAccountId":{
+          "shape":"String",
+          "locationName":"adminAccountId"
+        }
+      }
+    },
+    "EnableOrganizationAdminAccountResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "Eq":{
       "type":"list",
@@ -2558,6 +2714,34 @@
         }
       }
     },
+    "ListOrganizationAdminAccountsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListOrganizationAdminAccountsResponse":{
+      "type":"structure",
+      "members":{
+        "AdminAccounts":{
+          "shape":"AdminAccounts",
+          "locationName":"adminAccounts"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "ListPublishingDestinationsRequest":{
       "type":"structure",
       "required":["DetectorId"],
@@ -3457,6 +3641,29 @@
       }
     },
     "UpdateIPSetResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateOrganizationConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AutoEnable"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "UpdateOrganizationConfigurationResponse":{
       "type":"structure",
       "members":{
       }
