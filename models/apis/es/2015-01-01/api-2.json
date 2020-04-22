@@ -1786,7 +1786,8 @@
         "Cancellable":{"shape":"Boolean"},
         "UpdateStatus":{"shape":"DeploymentStatus"},
         "Description":{"shape":"String"},
-        "AutomatedUpdateDate":{"shape":"DeploymentCloseDateTimeStamp"}
+        "AutomatedUpdateDate":{"shape":"DeploymentCloseDateTimeStamp"},
+        "OptionalDeployment":{"shape":"Boolean"}
       }
     },
     "ServiceUrl":{"type":"string"},

@@ -131,6 +131,12 @@
         "Transcript$Results": "<p> <a>Result</a> objects that contain the results of transcribing a portion of the input audio stream. The array can be empty.</p>"
       }
     },
+    "ServiceUnavailableException": {
+      "base": "<p>Service is currently unavailable. Try your request later.</p>",
+      "refs": {
+        "TranscriptResultStream$ServiceUnavailableException": "<p>Service is currently unavailable. Try your request later.</p>"
+      }
+    },
     "SessionId": {
       "base": null,
       "refs": {
@@ -157,7 +163,8 @@
         "InternalFailureException$Message": null,
         "Item$Content": "<p>The word or punctuation that was recognized in the input audio.</p>",
         "LimitExceededException$Message": null,
-        "Result$ResultId": "<p>A unique identifier for the result. </p>"
+        "Result$ResultId": "<p>A unique identifier for the result. </p>",
+        "ServiceUnavailableException$Message": null
       }
     },
     "Transcript": {

@@ -303,7 +303,10 @@
     },
     "CustomerPolicyScopeIdType":{
       "type":"string",
-      "enum":["ACCOUNT"]
+      "enum":[
+        "ACCOUNT",
+        "ORG_UNIT"
+      ]
     },
     "CustomerPolicyScopeMap":{
       "type":"map",

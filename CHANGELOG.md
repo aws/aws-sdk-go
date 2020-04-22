@@ -1,3 +1,19 @@
+Release v1.30.12 (2020-04-22)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service API, documentation, and paginators
+* `service/es`: Updates service API and documentation
+  * This change adds a new field 'OptionalDeployment' to ServiceSoftwareOptions to indicate whether a service software update is optional or mandatory. If True, it indicates that the update is optional, and the service software is not automatically updated. If False, the service software is automatically updated after AutomatedUpdateDate.
+* `service/fms`: Updates service API and documentation
+* `service/redshift`: Updates service API, documentation, and paginators
+  * Amazon Redshift support for usage limits
+* `service/transcribe-streaming`: Updates service API and documentation
+
+### SDK Enhancements
+* `aws/credentials/stscreds`: Add support for custom web identity TokenFetcher ([#3256](https://github.com/aws/aws-sdk-go/pull/3256))
+  * Adds new constructor, `NewWebIdentityRoleProviderWithToken` for `WebIdentityRoleProvider` which takes a `TokenFetcher`. Implement `TokenFetcher` to provide custom sources for web identity tokens. The `TokenFetcher` must be concurrency safe. `TokenFetcher` may return unique value each time it is called.
+
 Release v1.30.11 (2020-04-21)
 ===
 

@@ -503,6 +503,7 @@ var _ awserr.Error = (*BadRequestException)(nil)
 var _ awserr.Error = (*ConflictException)(nil)
 var _ awserr.Error = (*InternalFailureException)(nil)
 var _ awserr.Error = (*LimitExceededException)(nil)
+var _ awserr.Error = (*ServiceUnavailableException)(nil)
 
 type loopReader struct {
 	source *bytes.Reader

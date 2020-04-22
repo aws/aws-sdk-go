@@ -64,6 +64,14 @@ type CodeGuruReviewerAPI interface {
 	AssociateRepositoryWithContext(aws.Context, *codegurureviewer.AssociateRepositoryInput, ...request.Option) (*codegurureviewer.AssociateRepositoryOutput, error)
 	AssociateRepositoryRequest(*codegurureviewer.AssociateRepositoryInput) (*request.Request, *codegurureviewer.AssociateRepositoryOutput)
 
+	DescribeCodeReview(*codegurureviewer.DescribeCodeReviewInput) (*codegurureviewer.DescribeCodeReviewOutput, error)
+	DescribeCodeReviewWithContext(aws.Context, *codegurureviewer.DescribeCodeReviewInput, ...request.Option) (*codegurureviewer.DescribeCodeReviewOutput, error)
+	DescribeCodeReviewRequest(*codegurureviewer.DescribeCodeReviewInput) (*request.Request, *codegurureviewer.DescribeCodeReviewOutput)
+
+	DescribeRecommendationFeedback(*codegurureviewer.DescribeRecommendationFeedbackInput) (*codegurureviewer.DescribeRecommendationFeedbackOutput, error)
+	DescribeRecommendationFeedbackWithContext(aws.Context, *codegurureviewer.DescribeRecommendationFeedbackInput, ...request.Option) (*codegurureviewer.DescribeRecommendationFeedbackOutput, error)
+	DescribeRecommendationFeedbackRequest(*codegurureviewer.DescribeRecommendationFeedbackInput) (*request.Request, *codegurureviewer.DescribeRecommendationFeedbackOutput)
+
 	DescribeRepositoryAssociation(*codegurureviewer.DescribeRepositoryAssociationInput) (*codegurureviewer.DescribeRepositoryAssociationOutput, error)
 	DescribeRepositoryAssociationWithContext(aws.Context, *codegurureviewer.DescribeRepositoryAssociationInput, ...request.Option) (*codegurureviewer.DescribeRepositoryAssociationOutput, error)
 	DescribeRepositoryAssociationRequest(*codegurureviewer.DescribeRepositoryAssociationInput) (*request.Request, *codegurureviewer.DescribeRepositoryAssociationOutput)
@@ -72,12 +80,37 @@ type CodeGuruReviewerAPI interface {
 	DisassociateRepositoryWithContext(aws.Context, *codegurureviewer.DisassociateRepositoryInput, ...request.Option) (*codegurureviewer.DisassociateRepositoryOutput, error)
 	DisassociateRepositoryRequest(*codegurureviewer.DisassociateRepositoryInput) (*request.Request, *codegurureviewer.DisassociateRepositoryOutput)
 
+	ListCodeReviews(*codegurureviewer.ListCodeReviewsInput) (*codegurureviewer.ListCodeReviewsOutput, error)
+	ListCodeReviewsWithContext(aws.Context, *codegurureviewer.ListCodeReviewsInput, ...request.Option) (*codegurureviewer.ListCodeReviewsOutput, error)
+	ListCodeReviewsRequest(*codegurureviewer.ListCodeReviewsInput) (*request.Request, *codegurureviewer.ListCodeReviewsOutput)
+
+	ListCodeReviewsPages(*codegurureviewer.ListCodeReviewsInput, func(*codegurureviewer.ListCodeReviewsOutput, bool) bool) error
+	ListCodeReviewsPagesWithContext(aws.Context, *codegurureviewer.ListCodeReviewsInput, func(*codegurureviewer.ListCodeReviewsOutput, bool) bool, ...request.Option) error
+
+	ListRecommendationFeedback(*codegurureviewer.ListRecommendationFeedbackInput) (*codegurureviewer.ListRecommendationFeedbackOutput, error)
+	ListRecommendationFeedbackWithContext(aws.Context, *codegurureviewer.ListRecommendationFeedbackInput, ...request.Option) (*codegurureviewer.ListRecommendationFeedbackOutput, error)
+	ListRecommendationFeedbackRequest(*codegurureviewer.ListRecommendationFeedbackInput) (*request.Request, *codegurureviewer.ListRecommendationFeedbackOutput)
+
+	ListRecommendationFeedbackPages(*codegurureviewer.ListRecommendationFeedbackInput, func(*codegurureviewer.ListRecommendationFeedbackOutput, bool) bool) error
+	ListRecommendationFeedbackPagesWithContext(aws.Context, *codegurureviewer.ListRecommendationFeedbackInput, func(*codegurureviewer.ListRecommendationFeedbackOutput, bool) bool, ...request.Option) error
+
+	ListRecommendations(*codegurureviewer.ListRecommendationsInput) (*codegurureviewer.ListRecommendationsOutput, error)
+	ListRecommendationsWithContext(aws.Context, *codegurureviewer.ListRecommendationsInput, ...request.Option) (*codegurureviewer.ListRecommendationsOutput, error)
+	ListRecommendationsRequest(*codegurureviewer.ListRecommendationsInput) (*request.Request, *codegurureviewer.ListRecommendationsOutput)
+
+	ListRecommendationsPages(*codegurureviewer.ListRecommendationsInput, func(*codegurureviewer.ListRecommendationsOutput, bool) bool) error
+	ListRecommendationsPagesWithContext(aws.Context, *codegurureviewer.ListRecommendationsInput, func(*codegurureviewer.ListRecommendationsOutput, bool) bool, ...request.Option) error
+
 	ListRepositoryAssociations(*codegurureviewer.ListRepositoryAssociationsInput) (*codegurureviewer.ListRepositoryAssociationsOutput, error)
 	ListRepositoryAssociationsWithContext(aws.Context, *codegurureviewer.ListRepositoryAssociationsInput, ...request.Option) (*codegurureviewer.ListRepositoryAssociationsOutput, error)
 	ListRepositoryAssociationsRequest(*codegurureviewer.ListRepositoryAssociationsInput) (*request.Request, *codegurureviewer.ListRepositoryAssociationsOutput)
 
 	ListRepositoryAssociationsPages(*codegurureviewer.ListRepositoryAssociationsInput, func(*codegurureviewer.ListRepositoryAssociationsOutput, bool) bool) error
 	ListRepositoryAssociationsPagesWithContext(aws.Context, *codegurureviewer.ListRepositoryAssociationsInput, func(*codegurureviewer.ListRepositoryAssociationsOutput, bool) bool, ...request.Option) error
+
+	PutRecommendationFeedback(*codegurureviewer.PutRecommendationFeedbackInput) (*codegurureviewer.PutRecommendationFeedbackOutput, error)
+	PutRecommendationFeedbackWithContext(aws.Context, *codegurureviewer.PutRecommendationFeedbackInput, ...request.Option) (*codegurureviewer.PutRecommendationFeedbackOutput, error)
+	PutRecommendationFeedbackRequest(*codegurureviewer.PutRecommendationFeedbackInput) (*request.Request, *codegurureviewer.PutRecommendationFeedbackOutput)
 }
 
 var _ CodeGuruReviewerAPI = (*codegurureviewer.CodeGuruReviewer)(nil)

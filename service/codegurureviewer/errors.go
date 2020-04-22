@@ -34,6 +34,12 @@ const (
 	// The resource specified in the request was not found.
 	ErrCodeNotFoundException = "NotFoundException"
 
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
+	// The resource specified in the request was not found.
+	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
@@ -48,10 +54,11 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":   newErrorAccessDeniedException,
-	"ConflictException":       newErrorConflictException,
-	"InternalServerException": newErrorInternalServerException,
-	"NotFoundException":       newErrorNotFoundException,
-	"ThrottlingException":     newErrorThrottlingException,
-	"ValidationException":     newErrorValidationException,
+	"AccessDeniedException":     newErrorAccessDeniedException,
+	"ConflictException":         newErrorConflictException,
+	"InternalServerException":   newErrorInternalServerException,
+	"NotFoundException":         newErrorNotFoundException,
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+	"ThrottlingException":       newErrorThrottlingException,
+	"ValidationException":       newErrorValidationException,
 }

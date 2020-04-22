@@ -29,6 +29,38 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DescribeCodeReview":{
+      "name":"DescribeCodeReview",
+      "http":{
+        "method":"GET",
+        "requestUri":"/codereviews/{CodeReviewArn}"
+      },
+      "input":{"shape":"DescribeCodeReviewRequest"},
+      "output":{"shape":"DescribeCodeReviewResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DescribeRecommendationFeedback":{
+      "name":"DescribeRecommendationFeedback",
+      "http":{
+        "method":"GET",
+        "requestUri":"/feedback/{CodeReviewArn}"
+      },
+      "input":{"shape":"DescribeRecommendationFeedbackRequest"},
+      "output":{"shape":"DescribeRecommendationFeedbackResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DescribeRepositoryAssociation":{
       "name":"DescribeRepositoryAssociation",
       "http":{
@@ -62,6 +94,53 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListCodeReviews":{
+      "name":"ListCodeReviews",
+      "http":{
+        "method":"GET",
+        "requestUri":"/codereviews"
+      },
+      "input":{"shape":"ListCodeReviewsRequest"},
+      "output":{"shape":"ListCodeReviewsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListRecommendationFeedback":{
+      "name":"ListRecommendationFeedback",
+      "http":{
+        "method":"GET",
+        "requestUri":"/feedback/{CodeReviewArn}/RecommendationFeedback"
+      },
+      "input":{"shape":"ListRecommendationFeedbackRequest"},
+      "output":{"shape":"ListRecommendationFeedbackResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListRecommendations":{
+      "name":"ListRecommendations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/codereviews/{CodeReviewArn}/Recommendations"
+      },
+      "input":{"shape":"ListRecommendationsRequest"},
+      "output":{"shape":"ListRecommendationsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "ListRepositoryAssociations":{
       "name":"ListRepositoryAssociations",
       "http":{
@@ -73,6 +152,22 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "PutRecommendationFeedback":{
+      "name":"PutRecommendationFeedback",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/feedback"
+      },
+      "input":{"shape":"PutRecommendationFeedbackRequest"},
+      "output":{"shape":"PutRecommendationFeedbackResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
       ]
     }
@@ -90,7 +185,7 @@
       "type":"string",
       "max":1600,
       "min":1,
-      "pattern":"^arn:aws[^:\\s]*:codeguru-reviewer:[^:\\s]+:[\\d]{12}:[a-z]+:[\\w-]+$"
+      "pattern":"^arn:aws[^:\\s]*:codeguru-reviewer:[^:\\s]+:[\\d]{12}:[a-z-]+:[\\w-]+$"
     },
     "AssociateRepositoryRequest":{
       "type":"structure",
@@ -127,6 +222,56 @@
         "Name":{"shape":"Name"}
       }
     },
+    "CodeReview":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"Name"},
+        "CodeReviewArn":{"shape":"Arn"},
+        "RepositoryName":{"shape":"Name"},
+        "Owner":{"shape":"Owner"},
+        "ProviderType":{"shape":"ProviderType"},
+        "State":{"shape":"JobState"},
+        "StateReason":{"shape":"StateReason"},
+        "CreatedTimeStamp":{"shape":"TimeStamp"},
+        "LastUpdatedTimeStamp":{"shape":"TimeStamp"},
+        "Type":{"shape":"Type"},
+        "PullRequestId":{"shape":"PullRequestId"},
+        "SourceCodeType":{"shape":"SourceCodeType"},
+        "Metrics":{"shape":"Metrics"}
+      }
+    },
+    "CodeReviewSummaries":{
+      "type":"list",
+      "member":{"shape":"CodeReviewSummary"}
+    },
+    "CodeReviewSummary":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"Name"},
+        "CodeReviewArn":{"shape":"Arn"},
+        "RepositoryName":{"shape":"Name"},
+        "Owner":{"shape":"Owner"},
+        "ProviderType":{"shape":"ProviderType"},
+        "State":{"shape":"JobState"},
+        "CreatedTimeStamp":{"shape":"TimeStamp"},
+        "LastUpdatedTimeStamp":{"shape":"TimeStamp"},
+        "Type":{"shape":"Type"},
+        "PullRequestId":{"shape":"PullRequestId"},
+        "MetricsSummary":{"shape":"MetricsSummary"}
+      }
+    },
+    "CommitDiffSourceCodeType":{
+      "type":"structure",
+      "members":{
+        "SourceCommit":{"shape":"CommitId"},
+        "DestinationCommit":{"shape":"CommitId"}
+      }
+    },
+    "CommitId":{
+      "type":"string",
+      "max":64,
+      "min":6
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -134,6 +279,53 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "DescribeCodeReviewRequest":{
+      "type":"structure",
+      "required":["CodeReviewArn"],
+      "members":{
+        "CodeReviewArn":{
+          "shape":"Arn",
+          "location":"uri",
+          "locationName":"CodeReviewArn"
+        }
+      }
+    },
+    "DescribeCodeReviewResponse":{
+      "type":"structure",
+      "members":{
+        "CodeReview":{"shape":"CodeReview"}
+      }
+    },
+    "DescribeRecommendationFeedbackRequest":{
+      "type":"structure",
+      "required":[
+        "CodeReviewArn",
+        "RecommendationId"
+      ],
+      "members":{
+        "CodeReviewArn":{
+          "shape":"Arn",
+          "location":"uri",
+          "locationName":"CodeReviewArn"
+        },
+        "RecommendationId":{
+          "shape":"RecommendationId",
+          "location":"querystring",
+          "locationName":"RecommendationId"
+        },
+        "UserId":{
+          "shape":"UserId",
+          "location":"querystring",
+          "locationName":"UserId"
+        }
+      }
+    },
+    "DescribeRecommendationFeedbackResponse":{
+      "type":"structure",
+      "members":{
+        "RecommendationFeedback":{"shape":"RecommendationFeedback"}
+      }
     },
     "DescribeRepositoryAssociationRequest":{
       "type":"structure",
@@ -170,6 +362,12 @@
       }
     },
     "ErrorMessage":{"type":"string"},
+    "FilePath":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "FindingsCount":{"type":"long"},
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -178,6 +376,136 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "JobState":{
+      "type":"string",
+      "enum":[
+        "Completed",
+        "Pending",
+        "Failed",
+        "Deleting"
+      ]
+    },
+    "JobStates":{
+      "type":"list",
+      "member":{"shape":"JobState"},
+      "max":3,
+      "min":1
+    },
+    "LineNumber":{"type":"integer"},
+    "ListCodeReviewsMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "ListCodeReviewsRequest":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "ProviderTypes":{
+          "shape":"ProviderTypes",
+          "location":"querystring",
+          "locationName":"ProviderTypes"
+        },
+        "States":{
+          "shape":"JobStates",
+          "location":"querystring",
+          "locationName":"States"
+        },
+        "RepositoryNames":{
+          "shape":"RepositoryNames",
+          "location":"querystring",
+          "locationName":"RepositoryNames"
+        },
+        "Type":{
+          "shape":"Type",
+          "location":"querystring",
+          "locationName":"Type"
+        },
+        "MaxResults":{
+          "shape":"ListCodeReviewsMaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListCodeReviewsResponse":{
+      "type":"structure",
+      "members":{
+        "CodeReviewSummaries":{"shape":"CodeReviewSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListRecommendationFeedbackRequest":{
+      "type":"structure",
+      "required":["CodeReviewArn"],
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "CodeReviewArn":{
+          "shape":"Arn",
+          "location":"uri",
+          "locationName":"CodeReviewArn"
+        },
+        "UserIds":{
+          "shape":"UserIds",
+          "location":"querystring",
+          "locationName":"UserIds"
+        },
+        "RecommendationIds":{
+          "shape":"RecommendationIds",
+          "location":"querystring",
+          "locationName":"RecommendationIds"
+        }
+      }
+    },
+    "ListRecommendationFeedbackResponse":{
+      "type":"structure",
+      "members":{
+        "RecommendationFeedbackSummaries":{"shape":"RecommendationFeedbackSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListRecommendationsRequest":{
+      "type":"structure",
+      "required":["CodeReviewArn"],
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "CodeReviewArn":{
+          "shape":"Arn",
+          "location":"uri",
+          "locationName":"CodeReviewArn"
+        }
+      }
+    },
+    "ListRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "RecommendationSummaries":{"shape":"RecommendationSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "ListRepositoryAssociationsRequest":{
       "type":"structure",
@@ -225,6 +553,21 @@
       "type":"integer",
       "max":100,
       "min":1
+    },
+    "MeteredLinesOfCodeCount":{"type":"long"},
+    "Metrics":{
+      "type":"structure",
+      "members":{
+        "MeteredLinesOfCodeCount":{"shape":"MeteredLinesOfCodeCount"},
+        "FindingsCount":{"shape":"FindingsCount"}
+      }
+    },
+    "MetricsSummary":{
+      "type":"structure",
+      "members":{
+        "MeteredLinesOfCodeCount":{"shape":"MeteredLinesOfCodeCount"},
+        "FindingsCount":{"shape":"FindingsCount"}
+      }
     },
     "Name":{
       "type":"string",
@@ -275,6 +618,90 @@
       "member":{"shape":"ProviderType"},
       "max":3,
       "min":1
+    },
+    "PullRequestId":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "PutRecommendationFeedbackRequest":{
+      "type":"structure",
+      "required":[
+        "CodeReviewArn",
+        "RecommendationId",
+        "Reactions"
+      ],
+      "members":{
+        "CodeReviewArn":{"shape":"Arn"},
+        "RecommendationId":{"shape":"RecommendationId"},
+        "Reactions":{"shape":"Reactions"}
+      }
+    },
+    "PutRecommendationFeedbackResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "Reaction":{
+      "type":"string",
+      "enum":[
+        "ThumbsUp",
+        "ThumbsDown"
+      ]
+    },
+    "Reactions":{
+      "type":"list",
+      "member":{"shape":"Reaction"},
+      "max":1,
+      "min":0
+    },
+    "RecommendationFeedback":{
+      "type":"structure",
+      "members":{
+        "CodeReviewArn":{"shape":"Arn"},
+        "RecommendationId":{"shape":"RecommendationId"},
+        "Reactions":{"shape":"Reactions"},
+        "UserId":{"shape":"UserId"},
+        "CreatedTimeStamp":{"shape":"TimeStamp"},
+        "LastUpdatedTimeStamp":{"shape":"TimeStamp"}
+      }
+    },
+    "RecommendationFeedbackSummaries":{
+      "type":"list",
+      "member":{"shape":"RecommendationFeedbackSummary"}
+    },
+    "RecommendationFeedbackSummary":{
+      "type":"structure",
+      "members":{
+        "RecommendationId":{"shape":"RecommendationId"},
+        "Reactions":{"shape":"Reactions"},
+        "UserId":{"shape":"UserId"}
+      }
+    },
+    "RecommendationId":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "RecommendationIds":{
+      "type":"list",
+      "member":{"shape":"RecommendationId"},
+      "max":100,
+      "min":1
+    },
+    "RecommendationSummaries":{
+      "type":"list",
+      "member":{"shape":"RecommendationSummary"}
+    },
+    "RecommendationSummary":{
+      "type":"structure",
+      "members":{
+        "FilePath":{"shape":"FilePath"},
+        "RecommendationId":{"shape":"RecommendationId"},
+        "StartLine":{"shape":"LineNumber"},
+        "EndLine":{"shape":"LineNumber"},
+        "Description":{"shape":"Text"}
+      }
     },
     "Repository":{
       "type":"structure",
@@ -327,10 +754,35 @@
         "State":{"shape":"RepositoryAssociationState"}
       }
     },
+    "RepositoryNames":{
+      "type":"list",
+      "member":{"shape":"Name"},
+      "max":100,
+      "min":1
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "SourceCodeType":{
+      "type":"structure",
+      "members":{
+        "CommitDiff":{"shape":"CommitDiffSourceCodeType"}
+      }
+    },
     "StateReason":{
       "type":"string",
       "max":256,
       "min":0
+    },
+    "Text":{
+      "type":"string",
+      "max":2048,
+      "min":1
     },
     "ThrottlingException":{
       "type":"structure",
@@ -341,6 +793,21 @@
       "exception":true
     },
     "TimeStamp":{"type":"timestamp"},
+    "Type":{
+      "type":"string",
+      "enum":["PullRequest"]
+    },
+    "UserId":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "UserIds":{
+      "type":"list",
+      "member":{"shape":"UserId"},
+      "max":100,
+      "min":1
+    },
     "ValidationException":{
       "type":"structure",
       "members":{

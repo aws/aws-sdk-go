@@ -38,11 +38,18 @@ const (
 	// of 4 hours. Wait until a stream has finished processing, or break your audio
 	// stream into smaller chunks and try your request again.
 	ErrCodeLimitExceededException = "LimitExceededException"
+
+	// ErrCodeServiceUnavailableException for service response error code
+	// "ServiceUnavailableException".
+	//
+	// Service is currently unavailable. Try your request later.
+	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"BadRequestException":      newErrorBadRequestException,
-	"ConflictException":        newErrorConflictException,
-	"InternalFailureException": newErrorInternalFailureException,
-	"LimitExceededException":   newErrorLimitExceededException,
+	"BadRequestException":         newErrorBadRequestException,
+	"ConflictException":           newErrorConflictException,
+	"InternalFailureException":    newErrorInternalFailureException,
+	"LimitExceededException":      newErrorLimitExceededException,
+	"ServiceUnavailableException": newErrorServiceUnavailableException,
 }

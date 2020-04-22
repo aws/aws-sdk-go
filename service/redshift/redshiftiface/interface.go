@@ -136,6 +136,10 @@ type RedshiftAPI interface {
 	CreateTagsWithContext(aws.Context, *redshift.CreateTagsInput, ...request.Option) (*redshift.CreateTagsOutput, error)
 	CreateTagsRequest(*redshift.CreateTagsInput) (*request.Request, *redshift.CreateTagsOutput)
 
+	CreateUsageLimit(*redshift.CreateUsageLimitInput) (*redshift.CreateUsageLimitOutput, error)
+	CreateUsageLimitWithContext(aws.Context, *redshift.CreateUsageLimitInput, ...request.Option) (*redshift.CreateUsageLimitOutput, error)
+	CreateUsageLimitRequest(*redshift.CreateUsageLimitInput) (*request.Request, *redshift.CreateUsageLimitOutput)
+
 	DeleteCluster(*redshift.DeleteClusterInput) (*redshift.DeleteClusterOutput, error)
 	DeleteClusterWithContext(aws.Context, *redshift.DeleteClusterInput, ...request.Option) (*redshift.DeleteClusterOutput, error)
 	DeleteClusterRequest(*redshift.DeleteClusterInput) (*request.Request, *redshift.DeleteClusterOutput)
@@ -183,6 +187,10 @@ type RedshiftAPI interface {
 	DeleteTags(*redshift.DeleteTagsInput) (*redshift.DeleteTagsOutput, error)
 	DeleteTagsWithContext(aws.Context, *redshift.DeleteTagsInput, ...request.Option) (*redshift.DeleteTagsOutput, error)
 	DeleteTagsRequest(*redshift.DeleteTagsInput) (*request.Request, *redshift.DeleteTagsOutput)
+
+	DeleteUsageLimit(*redshift.DeleteUsageLimitInput) (*redshift.DeleteUsageLimitOutput, error)
+	DeleteUsageLimitWithContext(aws.Context, *redshift.DeleteUsageLimitInput, ...request.Option) (*redshift.DeleteUsageLimitOutput, error)
+	DeleteUsageLimitRequest(*redshift.DeleteUsageLimitInput) (*request.Request, *redshift.DeleteUsageLimitOutput)
 
 	DescribeAccountAttributes(*redshift.DescribeAccountAttributesInput) (*redshift.DescribeAccountAttributesOutput, error)
 	DescribeAccountAttributesWithContext(aws.Context, *redshift.DescribeAccountAttributesInput, ...request.Option) (*redshift.DescribeAccountAttributesOutput, error)
@@ -347,6 +355,13 @@ type RedshiftAPI interface {
 	DescribeTagsWithContext(aws.Context, *redshift.DescribeTagsInput, ...request.Option) (*redshift.DescribeTagsOutput, error)
 	DescribeTagsRequest(*redshift.DescribeTagsInput) (*request.Request, *redshift.DescribeTagsOutput)
 
+	DescribeUsageLimits(*redshift.DescribeUsageLimitsInput) (*redshift.DescribeUsageLimitsOutput, error)
+	DescribeUsageLimitsWithContext(aws.Context, *redshift.DescribeUsageLimitsInput, ...request.Option) (*redshift.DescribeUsageLimitsOutput, error)
+	DescribeUsageLimitsRequest(*redshift.DescribeUsageLimitsInput) (*request.Request, *redshift.DescribeUsageLimitsOutput)
+
+	DescribeUsageLimitsPages(*redshift.DescribeUsageLimitsInput, func(*redshift.DescribeUsageLimitsOutput, bool) bool) error
+	DescribeUsageLimitsPagesWithContext(aws.Context, *redshift.DescribeUsageLimitsInput, func(*redshift.DescribeUsageLimitsOutput, bool) bool, ...request.Option) error
+
 	DisableLogging(*redshift.DisableLoggingInput) (*redshift.LoggingStatus, error)
 	DisableLoggingWithContext(aws.Context, *redshift.DisableLoggingInput, ...request.Option) (*redshift.LoggingStatus, error)
 	DisableLoggingRequest(*redshift.DisableLoggingInput) (*request.Request, *redshift.LoggingStatus)
@@ -418,6 +433,10 @@ type RedshiftAPI interface {
 	ModifySnapshotSchedule(*redshift.ModifySnapshotScheduleInput) (*redshift.ModifySnapshotScheduleOutput, error)
 	ModifySnapshotScheduleWithContext(aws.Context, *redshift.ModifySnapshotScheduleInput, ...request.Option) (*redshift.ModifySnapshotScheduleOutput, error)
 	ModifySnapshotScheduleRequest(*redshift.ModifySnapshotScheduleInput) (*request.Request, *redshift.ModifySnapshotScheduleOutput)
+
+	ModifyUsageLimit(*redshift.ModifyUsageLimitInput) (*redshift.ModifyUsageLimitOutput, error)
+	ModifyUsageLimitWithContext(aws.Context, *redshift.ModifyUsageLimitInput, ...request.Option) (*redshift.ModifyUsageLimitOutput, error)
+	ModifyUsageLimitRequest(*redshift.ModifyUsageLimitInput) (*request.Request, *redshift.ModifyUsageLimitOutput)
 
 	PauseCluster(*redshift.PauseClusterInput) (*redshift.PauseClusterOutput, error)
 	PauseClusterWithContext(aws.Context, *redshift.PauseClusterInput, ...request.Option) (*redshift.PauseClusterOutput, error)

@@ -126,6 +126,9 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 //   A new stream started with the same session ID. The current stream has been
 //   terminated.
 //
+//   * ServiceUnavailableException
+//   Service is currently unavailable. Try your request later.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-streaming-2017-10-26/StartStreamTranscription
 func (c *TranscribeStreamingService) StartStreamTranscription(input *StartStreamTranscriptionInput) (*StartStreamTranscriptionOutput, error) {
 	req, out := c.StartStreamTranscriptionRequest(input)
@@ -960,6 +963,89 @@ func (s *Result) SetStartTime(v float64) *Result {
 	return s
 }
 
+// Service is currently unavailable. Try your request later.
+type ServiceUnavailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+// The ServiceUnavailableException is and event in the TranscriptResultStream group of events.
+func (s *ServiceUnavailableException) eventTranscriptResultStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ServiceUnavailableException value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ServiceUnavailableException) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *ServiceUnavailableException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceUnavailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceUnavailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type StartStreamTranscriptionInput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
@@ -1329,6 +1415,8 @@ func (u unmarshalerForTranscriptResultStreamEvent) UnmarshalerForEventName(event
 		return newErrorInternalFailureException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "LimitExceededException":
 		return newErrorLimitExceededException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "ServiceUnavailableException":
+		return newErrorServiceUnavailableException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	default:
 		return nil, awserr.New(
 			request.ErrCodeSerialization,
