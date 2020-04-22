@@ -145,6 +145,7 @@
         "OptionStatus$PendingDeletion": "<p>Indicates whether the Elasticsearch domain is being deleted.</p>",
         "ServiceSoftwareOptions$UpdateAvailable": "<p><code>True</code> if you are able to update you service software version. <code>False</code> if you are not able to update your service software version. </p>",
         "ServiceSoftwareOptions$Cancellable": "<p><code>True</code> if you are able to cancel your service software version update. <code>False</code> if you are not able to cancel your service software version. </p>",
+        "ServiceSoftwareOptions$OptionalDeployment": "<p><code>True</code> if a service software is never automatically updated. <code>False</code> if a service software is automatically updated after <code>AutomatedUpdateDate</code>. </p>",
         "UpgradeElasticsearchDomainRequest$PerformCheckOnly": "<p> This flag, when set to True, indicates that an Upgrade Eligibility Check needs to be performed. This will not actually perform the Upgrade. </p>",
         "UpgradeElasticsearchDomainResponse$PerformCheckOnly": "<p> This flag, when set to True, indicates that an Upgrade Eligibility Check needs to be performed. This will not actually perform the Upgrade. </p>"
       }

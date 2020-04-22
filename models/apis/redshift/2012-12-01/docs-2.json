@@ -21,6 +21,7 @@
     "CreateSnapshotCopyGrant": "<p>Creates a snapshot copy grant that permits Amazon Redshift to use a customer master key (CMK) from AWS Key Management Service (AWS KMS) to encrypt copied snapshots in a destination region.</p> <p> For more information about managing snapshot copy grants, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html\">Amazon Redshift Database Encryption</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
     "CreateSnapshotSchedule": "<p>Create a snapshot schedule that can be associated to a cluster and which overrides the default system backup schedule. </p>",
     "CreateTags": "<p>Adds tags to a cluster.</p> <p>A resource can have up to 50 tags. If you try to create more than 50 tags for a resource, you will receive an error and the attempt will fail.</p> <p>If you specify a key that already exists for the resource, the value for that key will be updated with the new value.</p>",
+    "CreateUsageLimit": "<p>Creates a usage limit for a specified Amazon Redshift feature on a cluster. The usage limit is identified by the returned usage limit identifier.</p>",
     "DeleteCluster": "<p>Deletes a previously provisioned cluster without its final snapshot being created. A successful response from the web service indicates that the request was received correctly. Use <a>DescribeClusters</a> to monitor the status of the deletion. The delete operation cannot be canceled or reverted once submitted. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>If you want to shut down the cluster and retain it for future use, set <i>SkipFinalClusterSnapshot</i> to <code>false</code> and specify a name for <i>FinalClusterSnapshotIdentifier</i>. You can later restore this snapshot to resume using the cluster. If a final cluster snapshot is requested, the status of the cluster will be \"final-snapshot\" while the snapshot is being taken, then it's \"deleting\" once Amazon Redshift begins deleting the cluster. </p> <p> For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "DeleteClusterParameterGroup": "<p>Deletes a specified Amazon Redshift parameter group.</p> <note> <p>You cannot delete a parameter group if it is associated with a cluster.</p> </note>",
     "DeleteClusterSecurityGroup": "<p>Deletes an Amazon Redshift security group.</p> <note> <p>You cannot delete a security group that is associated with any clusters. You cannot delete the default security group.</p> </note> <p> For information about managing security groups, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html\">Amazon Redshift Cluster Security Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
@@ -33,6 +34,7 @@
     "DeleteSnapshotCopyGrant": "<p>Deletes the specified snapshot copy grant.</p>",
     "DeleteSnapshotSchedule": "<p>Deletes a snapshot schedule.</p>",
     "DeleteTags": "<p>Deletes tags from a resource. You must provide the ARN of the resource from which you want to delete the tag or tags.</p>",
+    "DeleteUsageLimit": "<p>Deletes a usage limit from a cluster.</p>",
     "DescribeAccountAttributes": "<p>Returns a list of attributes attached to an account</p>",
     "DescribeClusterDbRevisions": "<p>Returns an array of <code>ClusterDbRevision</code> objects.</p>",
     "DescribeClusterParameterGroups": "<p>Returns a list of Amazon Redshift parameter groups, including parameter groups you created and the default parameter group. For each parameter group, the response includes the parameter group name, description, and parameter group family name. You can optionally specify a name to retrieve the description of a specific parameter group.</p> <p> For more information about parameters and parameter groups, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all parameter groups that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all parameter groups that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, parameter groups are returned regardless of whether they have tag keys or values associated with them.</p>",
@@ -61,6 +63,7 @@
     "DescribeStorage": "<p>Returns account level backups storage size and provisional storage.</p>",
     "DescribeTableRestoreStatus": "<p>Lists the status of one or more table restore requests made using the <a>RestoreTableFromClusterSnapshot</a> API action. If you don't specify a value for the <code>TableRestoreRequestId</code> parameter, then <code>DescribeTableRestoreStatus</code> returns the status of all table restore requests ordered by the date and time of the request in ascending order. Otherwise <code>DescribeTableRestoreStatus</code> returns the status of the table specified by <code>TableRestoreRequestId</code>.</p>",
     "DescribeTags": "<p>Returns a list of tags. You can return tags from a specific resource by specifying an ARN, or you can return all tags for a given type of resource, such as clusters, snapshots, and so on.</p> <p>The following are limitations for <code>DescribeTags</code>: </p> <ul> <li> <p>You cannot specify an ARN and a resource-type value together in the same request.</p> </li> <li> <p>You cannot use the <code>MaxRecords</code> and <code>Marker</code> parameters together with the ARN parameter.</p> </li> <li> <p>The <code>MaxRecords</code> parameter can be a range from 10 to 50 results to return in a request.</p> </li> </ul> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all resources that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all resources that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, resources are returned regardless of whether they have tag keys or values associated with them.</p>",
+    "DescribeUsageLimits": "<p>Shows usage limits on a cluster. Results are filtered based on the combination of input usage limit identifier, cluster identifier, and feature type parameters:</p> <ul> <li> <p>If usage limit identifier, cluster identifier, and feature type are not provided, then all usage limit objects for the current account in the current region are returned.</p> </li> <li> <p>If usage limit identifier is provided, then the corresponding usage limit object is returned.</p> </li> <li> <p>If cluster identifier is provided, then all usage limit objects for the specified cluster are returned.</p> </li> <li> <p>If cluster identifier and feature type are provided, then all usage limit objects for the combination of cluster and feature are returned.</p> </li> </ul>",
     "DisableLogging": "<p>Stops logging information, such as queries and connection attempts, for the specified Amazon Redshift cluster.</p>",
     "DisableSnapshotCopy": "<p>Disables the automatic copying of snapshots from one region to another region for a specified cluster.</p> <p>If your cluster and its snapshots are encrypted using a customer master key (CMK) from AWS KMS, use <a>DeleteSnapshotCopyGrant</a> to delete the grant that grants Amazon Redshift permission to the CMK in the destination region. </p>",
     "EnableLogging": "<p>Starts logging information, such as queries and connection attempts, for the specified Amazon Redshift cluster.</p>",
@@ -79,6 +82,7 @@
     "ModifyScheduledAction": "<p>Modifies a scheduled action. </p>",
     "ModifySnapshotCopyRetentionPeriod": "<p>Modifies the number of days to retain snapshots in the destination AWS Region after they are copied from the source AWS Region. By default, this operation only changes the retention period of copied automated snapshots. The retention periods for both new and existing copied automated snapshots are updated with the new retention period. You can set the manual option to change only the retention periods of copied manual snapshots. If you set this option, only newly copied manual snapshots have the new retention period. </p>",
     "ModifySnapshotSchedule": "<p>Modifies a snapshot schedule. Any schedule associated with a cluster is modified asynchronously.</p>",
+    "ModifyUsageLimit": "<p>Modifies a usage limit in a cluster. You can't modify the feature type or period of a usage limit.</p>",
     "PauseCluster": "<p>Pauses a cluster.</p>",
     "PurchaseReservedNodeOffering": "<p>Allows you to purchase reserved nodes. Amazon Redshift offers a predefined set of reserved node offerings. You can purchase one or more of the offerings. You can call the <a>DescribeReservedNodeOfferings</a> API to obtain the available reserved node offerings. You can call this API by providing a specific reserved node offering and the number of nodes you want to reserve. </p> <p> For more information about reserved node offerings, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "RebootCluster": "<p>Reboots a cluster. This action is taken as soon as possible. It results in a momentary outage to the cluster, during which the cluster status is set to <code>rebooting</code>. A cluster event is created when the reboot is completed. Any pending cluster modifications (see <a>ModifyCluster</a>) are applied at this reboot. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
@@ -733,6 +737,11 @@
       "refs": {
       }
     },
+    "CreateUsageLimitMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CustomerStorageMessage": {
       "base": null,
       "refs": {
@@ -842,6 +851,11 @@
     },
     "DeleteTagsMessage": {
       "base": "<p>Contains the output from the <code>DeleteTags</code> action. </p>",
+      "refs": {
+      }
+    },
+    "DeleteUsageLimitMessage": {
+      "base": null,
       "refs": {
       }
     },
@@ -997,6 +1011,11 @@
     },
     "DescribeTagsMessage": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DescribeUsageLimitsMessage": {
+      "base": null,
       "refs": {
       }
     },
@@ -1366,6 +1385,7 @@
         "DescribeSnapshotSchedulesMessage$MaxRecords": "<p>The maximum number or response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned <code>marker</code> value.</p>",
         "DescribeTableRestoreStatusMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeTagsMessage$MaxRecords": "<p>The maximum number or response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned <code>marker</code> value. </p>",
+        "DescribeUsageLimitsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "EnableSnapshotCopyMessage$RetentionPeriod": "<p>The number of days to retain automated snapshots in the destination region after they are copied from the source region.</p> <p>Default: 7.</p> <p>Constraints: Must be at least 1 and no more than 35.</p>",
         "EnableSnapshotCopyMessage$ManualSnapshotRetentionPeriod": "<p>The number of days to retain newly copied snapshots in the destination AWS Region after they are copied from the source AWS Region. If the value is -1, the manual snapshot is retained indefinitely. </p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
         "GetClusterCredentialsMessage$DurationSeconds": "<p>The number of seconds until the returned temporary password expires.</p> <p>Constraint: minimum 900, maximum 3600.</p> <p>Default: 900</p>",
@@ -1503,6 +1523,11 @@
       "refs": {
       }
     },
+    "InvalidUsageLimitFault": {
+      "base": "<p>The usage limit is not valid.</p>",
+      "refs": {
+      }
+    },
     "InvalidVPCNetworkStateFault": {
       "base": "<p>The cluster subnet group does not cover all Availability Zones.</p>",
       "refs": {
@@ -1522,6 +1547,7 @@
       "base": null,
       "refs": {
         "ClusterSnapshotCopyStatus$RetentionPeriod": "<p>The number of days that automated snapshots are retained in the destination region after they are copied from a source region.</p>",
+        "CreateUsageLimitMessage$Amount": "<p>The limit amount. If time-based, this amount is in minutes. If data-based, this amount is in terabytes (TB). The value must be a positive number. </p>",
         "DataTransferProgress$TotalDataInMegaBytes": "<p>Describes the total amount of data to be transfered in megabytes.</p>",
         "DataTransferProgress$DataTransferredInMegaBytes": "<p>Describes the total amount of data that has been transfered in MB's.</p>",
         "RestoreStatus$SnapshotSizeInMegaBytes": "<p>The size of the set of snapshot data used to restore the cluster. This field is only updated when you restore to DC2 and DS2 node types. </p>",
@@ -1529,7 +1555,8 @@
         "RestoreStatus$ElapsedTimeInSeconds": "<p>The amount of time an in-progress restore has been running, or the amount of time it took a completed restore to finish. This field is only updated when you restore to DC2 and DS2 node types. </p>",
         "RestoreStatus$EstimatedTimeToCompletionInSeconds": "<p>The estimate of the time remaining before the restore will complete. Returns 0 for a completed restore. This field is only updated when you restore to DC2 and DS2 node types. </p>",
         "Snapshot$EstimatedSecondsToCompletion": "<p>The estimate of the time remaining before the snapshot backup will complete. Returns <code>0</code> for a completed backup. </p>",
-        "Snapshot$ElapsedTimeInSeconds": "<p>The amount of time an in-progress snapshot backup has been running, or the amount of time it took a completed backup to finish.</p>"
+        "Snapshot$ElapsedTimeInSeconds": "<p>The amount of time an in-progress snapshot backup has been running, or the amount of time it took a completed backup to finish.</p>",
+        "UsageLimit$Amount": "<p>The limit amount. If time-based, this amount is in minutes. If data-based, this amount is in terabytes (TB).</p>"
       }
     },
     "LongOptional": {
@@ -1537,6 +1564,7 @@
       "refs": {
         "DataTransferProgress$EstimatedTimeToCompletionInSeconds": "<p>Describes the estimated number of seconds remaining to complete the transfer.</p>",
         "DataTransferProgress$ElapsedTimeInSeconds": "<p>Describes the number of seconds that have elapsed during the data transfer.</p>",
+        "ModifyUsageLimitMessage$Amount": "<p>The new limit amount. For more information about this parameter, see <a>UsageLimit</a>. </p>",
         "ResizeProgressMessage$TotalResizeDataInMegaBytes": "<p>The estimated total amount of data, in megabytes, on the cluster before the resize operation began.</p>",
         "ResizeProgressMessage$ProgressInMegaBytes": "<p>While the resize operation is in progress, this value shows the current amount of data, in megabytes, that has been processed so far. When the resize operation is complete, this value shows the total amount of data, in megabytes, on the cluster, which may be more or less than TotalResizeDataInMegaBytes (the estimated total amount of data before resize).</p>",
         "ResizeProgressMessage$ElapsedTimeInSeconds": "<p>The amount of seconds that have elapsed since the resize operation began. After the resize operation completes, this value shows the total actual time, in seconds, for the resize operation.</p>",
@@ -1653,6 +1681,11 @@
       }
     },
     "ModifySnapshotScheduleMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyUsageLimitMessage": {
       "base": null,
       "refs": {
       }
@@ -2417,6 +2450,7 @@
         "CreateSnapshotScheduleMessage$ScheduleIdentifier": "<p>A unique identifier for a snapshot schedule. Only alphanumeric characters are allowed for the identifier.</p>",
         "CreateSnapshotScheduleMessage$ScheduleDescription": "<p>The description of the snapshot schedule.</p>",
         "CreateTagsMessage$ResourceName": "<p>The Amazon Resource Name (ARN) to which you want to add the tag or tags. For example, <code>arn:aws:redshift:us-east-2:123456789:cluster:t1</code>. </p>",
+        "CreateUsageLimitMessage$ClusterIdentifier": "<p>The identifier of the cluster that you want to limit usage.</p>",
         "DataTransferProgress$Status": "<p>Describes the status of the cluster. While the transfer is in progress the status is <code>transferringdata</code>.</p>",
         "DbGroupList$member": null,
         "DefaultClusterParameters$ParameterGroupFamily": "<p>The name of the cluster parameter group family to which the engine default parameters apply.</p>",
@@ -2436,6 +2470,7 @@
         "DeleteSnapshotCopyGrantMessage$SnapshotCopyGrantName": "<p>The name of the snapshot copy grant to delete.</p>",
         "DeleteSnapshotScheduleMessage$ScheduleIdentifier": "<p>A unique identifier of the snapshot schedule to delete.</p>",
         "DeleteTagsMessage$ResourceName": "<p>The Amazon Resource Name (ARN) from which you want to remove the tag or tags. For example, <code>arn:aws:redshift:us-east-2:123456789:cluster:t1</code>. </p>",
+        "DeleteUsageLimitMessage$UsageLimitId": "<p>The identifier of the usage limit to delete.</p>",
         "DescribeClusterDbRevisionsMessage$ClusterIdentifier": "<p>A unique identifier for a cluster whose <code>ClusterDbRevisions</code> you are requesting. This parameter is case sensitive. All clusters defined for an account are returned by default.</p>",
         "DescribeClusterDbRevisionsMessage$Marker": "<p>An optional parameter that specifies the starting point for returning a set of response records. When the results of a <code>DescribeClusterDbRevisions</code> request exceed the value specified in <code>MaxRecords</code>, Amazon Redshift returns a value in the <code>marker</code> field of the response. You can retrieve the next set of response records by providing the returned <code>marker</code> value in the <code>marker</code> parameter and retrying the request. </p> <p>Constraints: You can specify either the <code>ClusterIdentifier</code> parameter, or the <code>marker</code> parameter, but not both.</p>",
         "DescribeClusterParameterGroupsMessage$ParameterGroupName": "<p>The name of a specific parameter group for which to return details. By default, details about all parameter groups and the default parameter group are returned.</p>",
@@ -2497,6 +2532,9 @@
         "DescribeTagsMessage$ResourceName": "<p>The Amazon Resource Name (ARN) for which you want to describe the tag or tags. For example, <code>arn:aws:redshift:us-east-2:123456789:cluster:t1</code>. </p>",
         "DescribeTagsMessage$ResourceType": "<p>The type of resource with which you want to view tags. Valid resource types are: </p> <ul> <li> <p>Cluster</p> </li> <li> <p>CIDR/IP</p> </li> <li> <p>EC2 security group</p> </li> <li> <p>Snapshot</p> </li> <li> <p>Cluster security group</p> </li> <li> <p>Subnet group</p> </li> <li> <p>HSM connection</p> </li> <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> <li> <p>Snapshot copy grant</p> </li> </ul> <p>For more information about Amazon Redshift resource types and constructing ARNs, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions\">Specifying Policy Elements: Actions, Effects, Resources, and Principals</a> in the Amazon Redshift Cluster Management Guide. </p>",
         "DescribeTagsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>marker</code> parameter and retrying the command. If the <code>marker</code> field is empty, all response records have been retrieved for the request. </p>",
+        "DescribeUsageLimitsMessage$UsageLimitId": "<p>The identifier of the usage limit to describe.</p>",
+        "DescribeUsageLimitsMessage$ClusterIdentifier": "<p>The identifier of the cluster for which you want to describe usage limits.</p>",
+        "DescribeUsageLimitsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeUsageLimits</a> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DisableLoggingMessage$ClusterIdentifier": "<p>The identifier of the cluster on which logging is to be stopped.</p> <p>Example: <code>examplecluster</code> </p>",
         "DisableSnapshotCopyMessage$ClusterIdentifier": "<p>The unique identifier of the source cluster that you want to disable copying of snapshots to a destination region.</p> <p>Constraints: Must be the valid name of an existing cluster that has cross-region snapshot copy enabled.</p>",
         "EC2SecurityGroup$Status": "<p>The status of the EC2 security group.</p>",
@@ -2590,6 +2628,7 @@
         "ModifyScheduledActionMessage$ScheduledActionDescription": "<p>A modified description of the scheduled action. </p>",
         "ModifySnapshotCopyRetentionPeriodMessage$ClusterIdentifier": "<p>The unique identifier of the cluster for which you want to change the retention period for either automated or manual snapshots that are copied to a destination AWS Region.</p> <p>Constraints: Must be the valid name of an existing cluster that has cross-region snapshot copy enabled.</p>",
         "ModifySnapshotScheduleMessage$ScheduleIdentifier": "<p>A unique alphanumeric identifier of the schedule to modify.</p>",
+        "ModifyUsageLimitMessage$UsageLimitId": "<p>The identifier of the usage limit to modify.</p>",
         "NodeConfigurationOption$NodeType": "<p>The node type, such as, \"ds2.8xlarge\".</p>",
         "NodeConfigurationOptionsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "OrderableClusterOption$ClusterVersion": "<p>The version of the orderable cluster.</p>",
@@ -2651,7 +2690,7 @@
         "RestoreFromClusterSnapshotMessage$ClusterParameterGroupName": "<p>The name of the parameter group to be associated with this cluster.</p> <p>Default: The default Amazon Redshift cluster parameter group. For information about the default parameter group, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Working with Amazon Redshift Parameter Groups</a>.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul>",
         "RestoreFromClusterSnapshotMessage$PreferredMaintenanceWindow": "<p>The weekly time range (in UTC) during which automated cluster maintenance can occur.</p> <p> Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p> Default: The value selected for the cluster from which the snapshot was taken. For more information about the time blocks for each region, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows\">Maintenance Windows</a> in Amazon Redshift Cluster Management Guide. </p> <p>Valid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun</p> <p>Constraints: Minimum 30-minute window.</p>",
         "RestoreFromClusterSnapshotMessage$KmsKeyId": "<p>The AWS Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster that you restore from a shared snapshot.</p>",
-        "RestoreFromClusterSnapshotMessage$NodeType": "<p>The node type that the restored cluster will be provisioned with.</p> <p>Default: The node type of the cluster from which the snapshot was taken. You can modify this if you are using any DS node type. In that case, you can choose to restore into another DS node type of the same size. For example, you can restore ds1.8xlarge into ds2.8xlarge, or ds1.xlarge into ds2.xlarge. If you have a DC instance type, you must restore into that same instance type and size. In other words, you can only restore a dc1.large instance type into another dc1.large instance type or dc2.large instance type. You can't restore dc1.8xlarge to dc2.8xlarge. First restore to a dc1.8xlareg cluster, then resize to a dc2.8large cluster. For more information about node types, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes\"> About Clusters and Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
+        "RestoreFromClusterSnapshotMessage$NodeType": "<p>The node type that the restored cluster will be provisioned with.</p> <p>Default: The node type of the cluster from which the snapshot was taken. You can modify this if you are using any DS node type. In that case, you can choose to restore into another DS node type of the same size. For example, you can restore ds1.8xlarge into ds2.8xlarge, or ds1.xlarge into ds2.xlarge. If you have a DC instance type, you must restore into that same instance type and size. In other words, you can only restore a dc1.large instance type into another dc1.large instance type or dc2.large instance type. You can't restore dc1.8xlarge to dc2.8xlarge. First restore to a dc1.8xlarge cluster, then resize to a dc2.8large cluster. For more information about node types, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes\"> About Clusters and Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
         "RestoreFromClusterSnapshotMessage$AdditionalInfo": "<p>Reserved.</p>",
         "RestoreFromClusterSnapshotMessage$MaintenanceTrackName": "<p>The name of the maintenance track for the restored cluster. When you take a snapshot, the snapshot inherits the <code>MaintenanceTrack</code> value from the cluster. The snapshot might be on a different track than the cluster that was the source for the snapshot. For example, suppose that you take a snapshot of a cluster that is on the current track and then change the cluster to be on the trailing track. In this case, the snapshot and the source cluster are on different tracks.</p>",
         "RestoreFromClusterSnapshotMessage$SnapshotScheduleIdentifier": "<p>A unique identifier for the snapshot schedule.</p>",
@@ -2733,6 +2772,9 @@
         "TrackListMessage$Marker": "<p>The starting point to return a set of response tracklist records. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request.</p>",
         "UpdateTarget$MaintenanceTrackName": "<p>The name of the new maintenance track.</p>",
         "UpdateTarget$DatabaseVersion": "<p>The cluster version for the new maintenance track.</p>",
+        "UsageLimit$UsageLimitId": "<p>The identifier of the usage limit.</p>",
+        "UsageLimit$ClusterIdentifier": "<p>The identifier of the cluster with a usage limit.</p>",
+        "UsageLimitList$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "ValueStringList$member": null,
         "VpcSecurityGroupIdList$member": null,
         "VpcSecurityGroupMembership$VpcSecurityGroupId": "<p>The identifier of the VPC security group.</p>",
@@ -2905,7 +2947,8 @@
         "DescribeHsmConfigurationsMessage$TagKeys": "<p>A tag key or keys for which you want to return all matching HSM configurations that are associated with the specified key or keys. For example, suppose that you have HSM configurations that are tagged with keys called <code>owner</code> and <code>environment</code>. If you specify both of these tag keys in the request, Amazon Redshift returns a response with the HSM configurations that have either or both of these tag keys associated with them.</p>",
         "DescribeSnapshotCopyGrantsMessage$TagKeys": "<p>A tag key or keys for which you want to return all matching resources that are associated with the specified key or keys. For example, suppose that you have resources tagged with keys called <code>owner</code> and <code>environment</code>. If you specify both of these tag keys in the request, Amazon Redshift returns a response with all resources that have either or both of these tag keys associated with them.</p>",
         "DescribeSnapshotSchedulesMessage$TagKeys": "<p>The key value for a snapshot schedule tag.</p>",
-        "DescribeTagsMessage$TagKeys": "<p>A tag key or keys for which you want to return all matching resources that are associated with the specified key or keys. For example, suppose that you have resources tagged with keys called <code>owner</code> and <code>environment</code>. If you specify both of these tag keys in the request, Amazon Redshift returns a response with all resources that have either or both of these tag keys associated with them.</p>"
+        "DescribeTagsMessage$TagKeys": "<p>A tag key or keys for which you want to return all matching resources that are associated with the specified key or keys. For example, suppose that you have resources tagged with keys called <code>owner</code> and <code>environment</code>. If you specify both of these tag keys in the request, Amazon Redshift returns a response with all resources that have either or both of these tag keys associated with them.</p>",
+        "DescribeUsageLimitsMessage$TagKeys": "<p>A tag key or keys for which you want to return all matching usage limit objects that are associated with the specified key or keys. For example, suppose that you have parameter groups that are tagged with keys called <code>owner</code> and <code>environment</code>. If you specify both of these tag keys in the request, Amazon Redshift returns a response with the usage limit objects have either or both of these tag keys associated with them.</p>"
       }
     },
     "TagLimitExceededFault": {
@@ -2931,6 +2974,7 @@
         "CreateSnapshotCopyGrantMessage$Tags": "<p>A list of tag instances.</p>",
         "CreateSnapshotScheduleMessage$Tags": "<p>An optional set of tags you can use to search for the schedule.</p>",
         "CreateTagsMessage$Tags": "<p>One or more name/value pairs to add as tags to the specified resource. Each tag name is passed in with the parameter <code>Key</code> and the corresponding value is passed in with the parameter <code>Value</code>. The <code>Key</code> and <code>Value</code> parameters are separated by a comma (,). Separate multiple tags with a space. For example, <code>--tags \"Key\"=\"owner\",\"Value\"=\"admin\" \"Key\"=\"environment\",\"Value\"=\"test\" \"Key\"=\"version\",\"Value\"=\"1.0\"</code>. </p>",
+        "CreateUsageLimitMessage$Tags": "<p>A list of tag instances.</p>",
         "EC2SecurityGroup$Tags": "<p>The list of tags for the EC2 security group.</p>",
         "EventSubscription$Tags": "<p>The list of tags for the event subscription.</p>",
         "HsmClientCertificate$Tags": "<p>The list of tags for the HSM client certificate.</p>",
@@ -2938,7 +2982,8 @@
         "IPRange$Tags": "<p>The list of tags for the IP range.</p>",
         "Snapshot$Tags": "<p>The list of tags for the cluster snapshot.</p>",
         "SnapshotCopyGrant$Tags": "<p>A list of tag instances.</p>",
-        "SnapshotSchedule$Tags": "<p>An optional set of tags describing the schedule.</p>"
+        "SnapshotSchedule$Tags": "<p>An optional set of tags describing the schedule.</p>",
+        "UsageLimit$Tags": "<p>A list of tag instances.</p>"
       }
     },
     "TagValueList": {
@@ -2954,7 +2999,8 @@
         "DescribeHsmConfigurationsMessage$TagValues": "<p>A tag value or values for which you want to return all matching HSM configurations that are associated with the specified tag value or values. For example, suppose that you have HSM configurations that are tagged with values called <code>admin</code> and <code>test</code>. If you specify both of these tag values in the request, Amazon Redshift returns a response with the HSM configurations that have either or both of these tag values associated with them.</p>",
         "DescribeSnapshotCopyGrantsMessage$TagValues": "<p>A tag value or values for which you want to return all matching resources that are associated with the specified value or values. For example, suppose that you have resources tagged with values called <code>admin</code> and <code>test</code>. If you specify both of these tag values in the request, Amazon Redshift returns a response with all resources that have either or both of these tag values associated with them.</p>",
         "DescribeSnapshotSchedulesMessage$TagValues": "<p>The value corresponding to the key of the snapshot schedule tag.</p>",
-        "DescribeTagsMessage$TagValues": "<p>A tag value or values for which you want to return all matching resources that are associated with the specified value or values. For example, suppose that you have resources tagged with values called <code>admin</code> and <code>test</code>. If you specify both of these tag values in the request, Amazon Redshift returns a response with all resources that have either or both of these tag values associated with them.</p>"
+        "DescribeTagsMessage$TagValues": "<p>A tag value or values for which you want to return all matching resources that are associated with the specified value or values. For example, suppose that you have resources tagged with values called <code>admin</code> and <code>test</code>. If you specify both of these tag values in the request, Amazon Redshift returns a response with all resources that have either or both of these tag values associated with them.</p>",
+        "DescribeUsageLimitsMessage$TagValues": "<p>A tag value or values for which you want to return all matching usage limit objects that are associated with the specified tag value or values. For example, suppose that you have parameter groups that are tagged with values called <code>admin</code> and <code>test</code>. If you specify both of these tag values in the request, Amazon Redshift returns a response with the usage limit objects that have either or both of these tag values associated with them.</p>"
       }
     },
     "TaggedResource": {
@@ -3009,6 +3055,63 @@
       "base": "<p>A maintenance track that you can switch the current track to.</p>",
       "refs": {
         "EligibleTracksToUpdateList$member": null
+      }
+    },
+    "UsageLimit": {
+      "base": "<p>Describes a usage limit object for a cluster. </p>",
+      "refs": {
+        "UsageLimits$member": null
+      }
+    },
+    "UsageLimitAlreadyExistsFault": {
+      "base": "<p>The usage limit already exists. </p>",
+      "refs": {
+      }
+    },
+    "UsageLimitBreachAction": {
+      "base": null,
+      "refs": {
+        "CreateUsageLimitMessage$BreachAction": "<p>The action that Amazon Redshift takes when the limit is reached. The default is log. For more information about this parameter, see <a>UsageLimit</a>.</p>",
+        "ModifyUsageLimitMessage$BreachAction": "<p>The new action that Amazon Redshift takes when the limit is reached. For more information about this parameter, see <a>UsageLimit</a>. </p>",
+        "UsageLimit$BreachAction": "<p>The action that Amazon Redshift takes when the limit is reached. Possible values are: </p> <ul> <li> <p> <b>log</b> - To log an event in a system table. The default is log.</p> </li> <li> <p> <b>emit-metric</b> - To emit CloudWatch metrics.</p> </li> <li> <p> <b>disable</b> - To disable the feature until the next usage period begins.</p> </li> </ul>"
+      }
+    },
+    "UsageLimitFeatureType": {
+      "base": null,
+      "refs": {
+        "CreateUsageLimitMessage$FeatureType": "<p>The Amazon Redshift feature that you want to limit.</p>",
+        "DescribeUsageLimitsMessage$FeatureType": "<p>The feature type for which you want to describe usage limits.</p>",
+        "UsageLimit$FeatureType": "<p>The Amazon Redshift feature to which the limit applies.</p>"
+      }
+    },
+    "UsageLimitLimitType": {
+      "base": null,
+      "refs": {
+        "CreateUsageLimitMessage$LimitType": "<p>The type of limit. Depending on the feature type, this can be based on a time duration or data size. If <code>FeatureType</code> is <code>spectrum</code>, then <code>LimitType</code> must be <code>data-scanned</code>. If <code>FeatureType</code> is <code>concurrency-scaling</code>, then <code>LimitType</code> must be <code>time</code>. </p>",
+        "UsageLimit$LimitType": "<p>The type of limit. Depending on the feature type, this can be based on a time duration or data size.</p>"
+      }
+    },
+    "UsageLimitList": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UsageLimitNotFoundFault": {
+      "base": "<p>The usage limit identifier can't be found.</p>",
+      "refs": {
+      }
+    },
+    "UsageLimitPeriod": {
+      "base": null,
+      "refs": {
+        "CreateUsageLimitMessage$Period": "<p>The time period that the amount applies to. A <code>weekly</code> period begins on Sunday. The default is <code>monthly</code>. </p>",
+        "UsageLimit$Period": "<p>The time period that the amount applies to. A <code>weekly</code> period begins on Sunday. The default is <code>monthly</code>. </p>"
+      }
+    },
+    "UsageLimits": {
+      "base": null,
+      "refs": {
+        "UsageLimitList$UsageLimits": "<p>Contains the output from the <a>DescribeUsageLimits</a> action. </p>"
       }
     },
     "ValueStringList": {

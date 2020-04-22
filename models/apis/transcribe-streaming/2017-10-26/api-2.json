@@ -24,7 +24,8 @@
         {"shape":"BadRequestException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalFailureException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"ServiceUnavailableException"}
       ]
     }
   },
@@ -148,6 +149,14 @@
       "type":"list",
       "member":{"shape":"Result"}
     },
+    "ServiceUnavailableException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":503},
+      "exception":true
+    },
     "SessionId":{
       "type":"string",
       "pattern":"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
@@ -248,7 +257,8 @@
         "BadRequestException":{"shape":"BadRequestException"},
         "LimitExceededException":{"shape":"LimitExceededException"},
         "InternalFailureException":{"shape":"InternalFailureException"},
-        "ConflictException":{"shape":"ConflictException"}
+        "ConflictException":{"shape":"ConflictException"},
+        "ServiceUnavailableException":{"shape":"ServiceUnavailableException"}
       },
       "eventstream":true
     },

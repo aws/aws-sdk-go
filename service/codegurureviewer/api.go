@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opAssociateRepository = "AssociateRepository"
@@ -58,8 +59,9 @@ func (c *CodeGuruReviewer) AssociateRepositoryRequest(input *AssociateRepository
 //
 // Associates an AWS CodeCommit repository with Amazon CodeGuru Reviewer. When
 // you associate an AWS CodeCommit repository with Amazon CodeGuru Reviewer,
-// Amazon CodeGuru Reviewer will provide recommendations for each pull request.
-// You can view recommendations in the AWS CodeCommit repository.
+// Amazon CodeGuru Reviewer will provide recommendations for each pull request
+// raised within the repository. You can view recommendations in the AWS CodeCommit
+// repository.
 //
 // You can associate a GitHub repository using the Amazon CodeGuru Reviewer
 // console.
@@ -106,6 +108,188 @@ func (c *CodeGuruReviewer) AssociateRepository(input *AssociateRepositoryInput) 
 // for more information on using Contexts.
 func (c *CodeGuruReviewer) AssociateRepositoryWithContext(ctx aws.Context, input *AssociateRepositoryInput, opts ...request.Option) (*AssociateRepositoryOutput, error) {
 	req, out := c.AssociateRepositoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeCodeReview = "DescribeCodeReview"
+
+// DescribeCodeReviewRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCodeReview operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCodeReview for more information on using the DescribeCodeReview
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeCodeReviewRequest method.
+//    req, resp := client.DescribeCodeReviewRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/DescribeCodeReview
+func (c *CodeGuruReviewer) DescribeCodeReviewRequest(input *DescribeCodeReviewInput) (req *request.Request, output *DescribeCodeReviewOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCodeReview,
+		HTTPMethod: "GET",
+		HTTPPath:   "/codereviews/{CodeReviewArn}",
+	}
+
+	if input == nil {
+		input = &DescribeCodeReviewInput{}
+	}
+
+	output = &DescribeCodeReviewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCodeReview API operation for Amazon CodeGuru Reviewer.
+//
+// Returns the metadaata associated with the code review along with its status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Reviewer's
+// API operation DescribeCodeReview for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource specified in the request was not found.
+//
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The input fails to satisfy the specified constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/DescribeCodeReview
+func (c *CodeGuruReviewer) DescribeCodeReview(input *DescribeCodeReviewInput) (*DescribeCodeReviewOutput, error) {
+	req, out := c.DescribeCodeReviewRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCodeReviewWithContext is the same as DescribeCodeReview with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCodeReview for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) DescribeCodeReviewWithContext(ctx aws.Context, input *DescribeCodeReviewInput, opts ...request.Option) (*DescribeCodeReviewOutput, error) {
+	req, out := c.DescribeCodeReviewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeRecommendationFeedback = "DescribeRecommendationFeedback"
+
+// DescribeRecommendationFeedbackRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRecommendationFeedback operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRecommendationFeedback for more information on using the DescribeRecommendationFeedback
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRecommendationFeedbackRequest method.
+//    req, resp := client.DescribeRecommendationFeedbackRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/DescribeRecommendationFeedback
+func (c *CodeGuruReviewer) DescribeRecommendationFeedbackRequest(input *DescribeRecommendationFeedbackInput) (req *request.Request, output *DescribeRecommendationFeedbackOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRecommendationFeedback,
+		HTTPMethod: "GET",
+		HTTPPath:   "/feedback/{CodeReviewArn}",
+	}
+
+	if input == nil {
+		input = &DescribeRecommendationFeedbackInput{}
+	}
+
+	output = &DescribeRecommendationFeedbackOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRecommendationFeedback API operation for Amazon CodeGuru Reviewer.
+//
+// Describes the customer feedback for a CodeGuru Reviewer recommendation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Reviewer's
+// API operation DescribeRecommendationFeedback for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource specified in the request was not found.
+//
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The input fails to satisfy the specified constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/DescribeRecommendationFeedback
+func (c *CodeGuruReviewer) DescribeRecommendationFeedback(input *DescribeRecommendationFeedbackInput) (*DescribeRecommendationFeedbackOutput, error) {
+	req, out := c.DescribeRecommendationFeedbackRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRecommendationFeedbackWithContext is the same as DescribeRecommendationFeedback with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRecommendationFeedback for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) DescribeRecommendationFeedbackWithContext(ctx aws.Context, input *DescribeRecommendationFeedbackInput, opts ...request.Option) (*DescribeRecommendationFeedbackOutput, error) {
+	req, out := c.DescribeRecommendationFeedbackRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -298,6 +482,452 @@ func (c *CodeGuruReviewer) DisassociateRepositoryWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opListCodeReviews = "ListCodeReviews"
+
+// ListCodeReviewsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCodeReviews operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCodeReviews for more information on using the ListCodeReviews
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCodeReviewsRequest method.
+//    req, resp := client.ListCodeReviewsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/ListCodeReviews
+func (c *CodeGuruReviewer) ListCodeReviewsRequest(input *ListCodeReviewsInput) (req *request.Request, output *ListCodeReviewsOutput) {
+	op := &request.Operation{
+		Name:       opListCodeReviews,
+		HTTPMethod: "GET",
+		HTTPPath:   "/codereviews",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCodeReviewsInput{}
+	}
+
+	output = &ListCodeReviewsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCodeReviews API operation for Amazon CodeGuru Reviewer.
+//
+// Lists all the code reviews that the customer has created in the past 90 days.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Reviewer's
+// API operation ListCodeReviews for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The input fails to satisfy the specified constraints.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/ListCodeReviews
+func (c *CodeGuruReviewer) ListCodeReviews(input *ListCodeReviewsInput) (*ListCodeReviewsOutput, error) {
+	req, out := c.ListCodeReviewsRequest(input)
+	return out, req.Send()
+}
+
+// ListCodeReviewsWithContext is the same as ListCodeReviews with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCodeReviews for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) ListCodeReviewsWithContext(ctx aws.Context, input *ListCodeReviewsInput, opts ...request.Option) (*ListCodeReviewsOutput, error) {
+	req, out := c.ListCodeReviewsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCodeReviewsPages iterates over the pages of a ListCodeReviews operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCodeReviews method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCodeReviews operation.
+//    pageNum := 0
+//    err := client.ListCodeReviewsPages(params,
+//        func(page *codegurureviewer.ListCodeReviewsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CodeGuruReviewer) ListCodeReviewsPages(input *ListCodeReviewsInput, fn func(*ListCodeReviewsOutput, bool) bool) error {
+	return c.ListCodeReviewsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCodeReviewsPagesWithContext same as ListCodeReviewsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) ListCodeReviewsPagesWithContext(ctx aws.Context, input *ListCodeReviewsInput, fn func(*ListCodeReviewsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCodeReviewsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCodeReviewsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCodeReviewsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRecommendationFeedback = "ListRecommendationFeedback"
+
+// ListRecommendationFeedbackRequest generates a "aws/request.Request" representing the
+// client's request for the ListRecommendationFeedback operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRecommendationFeedback for more information on using the ListRecommendationFeedback
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRecommendationFeedbackRequest method.
+//    req, resp := client.ListRecommendationFeedbackRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/ListRecommendationFeedback
+func (c *CodeGuruReviewer) ListRecommendationFeedbackRequest(input *ListRecommendationFeedbackInput) (req *request.Request, output *ListRecommendationFeedbackOutput) {
+	op := &request.Operation{
+		Name:       opListRecommendationFeedback,
+		HTTPMethod: "GET",
+		HTTPPath:   "/feedback/{CodeReviewArn}/RecommendationFeedback",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRecommendationFeedbackInput{}
+	}
+
+	output = &ListRecommendationFeedbackOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRecommendationFeedback API operation for Amazon CodeGuru Reviewer.
+//
+// Lists the customer feedback for a CodeGuru Reviewer recommendation for all
+// users. This API will be used from the console to extract the previously given
+// feedback by the user to pre-populate the feedback emojis for all recommendations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Reviewer's
+// API operation ListRecommendationFeedback for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource specified in the request was not found.
+//
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The input fails to satisfy the specified constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/ListRecommendationFeedback
+func (c *CodeGuruReviewer) ListRecommendationFeedback(input *ListRecommendationFeedbackInput) (*ListRecommendationFeedbackOutput, error) {
+	req, out := c.ListRecommendationFeedbackRequest(input)
+	return out, req.Send()
+}
+
+// ListRecommendationFeedbackWithContext is the same as ListRecommendationFeedback with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRecommendationFeedback for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) ListRecommendationFeedbackWithContext(ctx aws.Context, input *ListRecommendationFeedbackInput, opts ...request.Option) (*ListRecommendationFeedbackOutput, error) {
+	req, out := c.ListRecommendationFeedbackRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRecommendationFeedbackPages iterates over the pages of a ListRecommendationFeedback operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRecommendationFeedback method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRecommendationFeedback operation.
+//    pageNum := 0
+//    err := client.ListRecommendationFeedbackPages(params,
+//        func(page *codegurureviewer.ListRecommendationFeedbackOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CodeGuruReviewer) ListRecommendationFeedbackPages(input *ListRecommendationFeedbackInput, fn func(*ListRecommendationFeedbackOutput, bool) bool) error {
+	return c.ListRecommendationFeedbackPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRecommendationFeedbackPagesWithContext same as ListRecommendationFeedbackPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) ListRecommendationFeedbackPagesWithContext(ctx aws.Context, input *ListRecommendationFeedbackInput, fn func(*ListRecommendationFeedbackOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRecommendationFeedbackInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRecommendationFeedbackRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRecommendationFeedbackOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRecommendations = "ListRecommendations"
+
+// ListRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRecommendations for more information on using the ListRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRecommendationsRequest method.
+//    req, resp := client.ListRecommendationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/ListRecommendations
+func (c *CodeGuruReviewer) ListRecommendationsRequest(input *ListRecommendationsInput) (req *request.Request, output *ListRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opListRecommendations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/codereviews/{CodeReviewArn}/Recommendations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRecommendationsInput{}
+	}
+
+	output = &ListRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRecommendations API operation for Amazon CodeGuru Reviewer.
+//
+// Returns the list of all recommendations for a completed code review.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Reviewer's
+// API operation ListRecommendations for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource specified in the request was not found.
+//
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The input fails to satisfy the specified constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/ListRecommendations
+func (c *CodeGuruReviewer) ListRecommendations(input *ListRecommendationsInput) (*ListRecommendationsOutput, error) {
+	req, out := c.ListRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// ListRecommendationsWithContext is the same as ListRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) ListRecommendationsWithContext(ctx aws.Context, input *ListRecommendationsInput, opts ...request.Option) (*ListRecommendationsOutput, error) {
+	req, out := c.ListRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRecommendationsPages iterates over the pages of a ListRecommendations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRecommendations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRecommendations operation.
+//    pageNum := 0
+//    err := client.ListRecommendationsPages(params,
+//        func(page *codegurureviewer.ListRecommendationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CodeGuruReviewer) ListRecommendationsPages(input *ListRecommendationsInput, fn func(*ListRecommendationsOutput, bool) bool) error {
+	return c.ListRecommendationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRecommendationsPagesWithContext same as ListRecommendationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) ListRecommendationsPagesWithContext(ctx aws.Context, input *ListRecommendationsInput, fn func(*ListRecommendationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRecommendationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRecommendationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRecommendationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListRepositoryAssociations = "ListRepositoryAssociations"
 
 // ListRepositoryAssociationsRequest generates a "aws/request.Request" representing the
@@ -443,6 +1073,99 @@ func (c *CodeGuruReviewer) ListRepositoryAssociationsPagesWithContext(ctx aws.Co
 	return p.Err()
 }
 
+const opPutRecommendationFeedback = "PutRecommendationFeedback"
+
+// PutRecommendationFeedbackRequest generates a "aws/request.Request" representing the
+// client's request for the PutRecommendationFeedback operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutRecommendationFeedback for more information on using the PutRecommendationFeedback
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutRecommendationFeedbackRequest method.
+//    req, resp := client.PutRecommendationFeedbackRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/PutRecommendationFeedback
+func (c *CodeGuruReviewer) PutRecommendationFeedbackRequest(input *PutRecommendationFeedbackInput) (req *request.Request, output *PutRecommendationFeedbackOutput) {
+	op := &request.Operation{
+		Name:       opPutRecommendationFeedback,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/feedback",
+	}
+
+	if input == nil {
+		input = &PutRecommendationFeedbackInput{}
+	}
+
+	output = &PutRecommendationFeedbackOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutRecommendationFeedback API operation for Amazon CodeGuru Reviewer.
+//
+// Stores customer feedback for a CodeGuru-Reviewer recommendation. When this
+// API is called again with different reactions the previous feedback is overwritten.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Reviewer's
+// API operation PutRecommendationFeedback for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource specified in the request was not found.
+//
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The input fails to satisfy the specified constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/PutRecommendationFeedback
+func (c *CodeGuruReviewer) PutRecommendationFeedback(input *PutRecommendationFeedbackInput) (*PutRecommendationFeedbackOutput, error) {
+	req, out := c.PutRecommendationFeedbackRequest(input)
+	return out, req.Send()
+}
+
+// PutRecommendationFeedbackWithContext is the same as PutRecommendationFeedback with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutRecommendationFeedback for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) PutRecommendationFeedbackWithContext(ctx aws.Context, input *PutRecommendationFeedbackInput, opts ...request.Option) (*PutRecommendationFeedbackOutput, error) {
+	req, out := c.PutRecommendationFeedbackRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -505,21 +1228,20 @@ type AssociateRepositoryInput struct {
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
 	//
-	// If you want to add a new repository association, this parameter specifies
-	// a unique identifier for the new repository association that helps ensure
-	// idempotency.
+	// To add a new repository association, this parameter specifies a unique identifier
+	// for the new repository association that helps ensure idempotency.
 	//
-	// If you use the AWS CLI or one of the AWS SDK to call this operation, then
-	// you can leave this parameter empty. The CLI or SDK generates a random UUID
-	// for you and includes that in the request. If you don't use the SDK and instead
-	// generate a raw HTTP request to the Secrets Manager service endpoint, then
-	// you must generate a ClientRequestToken yourself for new versions and include
+	// If you use the AWS CLI or one of the AWS SDKs to call this operation, you
+	// can leave this parameter empty. The CLI or SDK generates a random UUID for
+	// you and includes that in the request. If you don't use the SDK and instead
+	// generate a raw HTTP request to the Secrets Manager service endpoint, you
+	// must generate a ClientRequestToken yourself for new versions and include
 	// that value in the request.
 	//
-	// You typically only need to interact with this value if you implement your
-	// own retry logic and want to ensure that a given repository association is
-	// not created twice. We recommend that you generate a UUID-type value to ensure
-	// uniqueness within the specified repository association.
+	// You typically interact with this value if you implement your own retry logic
+	// and want to ensure that a given repository association is not created twice.
+	// We recommend that you generate a UUID-type value to ensure uniqueness within
+	// the specified repository association.
 	//
 	// Amazon CodeGuru Reviewer uses this value to prevent the accidental creation
 	// of duplicate repository associations if there are failures and retries.
@@ -639,6 +1361,287 @@ func (s *CodeCommitRepository) SetName(v string) *CodeCommitRepository {
 	return s
 }
 
+// Information about a code review.
+type CodeReview struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the code review to describe.
+	CodeReviewArn *string `min:"1" type:"string"`
+
+	// The time, in milliseconds since the epoch, when the code review was created.
+	CreatedTimeStamp *time.Time `type:"timestamp"`
+
+	// The time, in milliseconds since the epoch, when the code review was last
+	// updated.
+	LastUpdatedTimeStamp *time.Time `type:"timestamp"`
+
+	// The statistics from the code review.
+	Metrics *Metrics `type:"structure"`
+
+	// The name of the code review.
+	Name *string `min:"1" type:"string"`
+
+	// The owner of the repository.
+	Owner *string `min:"1" type:"string"`
+
+	// The provider type of the repository association.
+	ProviderType *string `type:"string" enum:"ProviderType"`
+
+	// The pull request ID for the code review.
+	PullRequestId *string `min:"1" type:"string"`
+
+	// The name of the repository.
+	RepositoryName *string `min:"1" type:"string"`
+
+	// The type of the source code for the code review.
+	SourceCodeType *SourceCodeType `type:"structure"`
+
+	// The state of the code review.
+	State *string `type:"string" enum:"JobState"`
+
+	// The reason for the state of the code review.
+	StateReason *string `type:"string"`
+
+	// The type of code review.
+	Type *string `type:"string" enum:"Type"`
+}
+
+// String returns the string representation
+func (s CodeReview) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CodeReview) GoString() string {
+	return s.String()
+}
+
+// SetCodeReviewArn sets the CodeReviewArn field's value.
+func (s *CodeReview) SetCodeReviewArn(v string) *CodeReview {
+	s.CodeReviewArn = &v
+	return s
+}
+
+// SetCreatedTimeStamp sets the CreatedTimeStamp field's value.
+func (s *CodeReview) SetCreatedTimeStamp(v time.Time) *CodeReview {
+	s.CreatedTimeStamp = &v
+	return s
+}
+
+// SetLastUpdatedTimeStamp sets the LastUpdatedTimeStamp field's value.
+func (s *CodeReview) SetLastUpdatedTimeStamp(v time.Time) *CodeReview {
+	s.LastUpdatedTimeStamp = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *CodeReview) SetMetrics(v *Metrics) *CodeReview {
+	s.Metrics = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CodeReview) SetName(v string) *CodeReview {
+	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *CodeReview) SetOwner(v string) *CodeReview {
+	s.Owner = &v
+	return s
+}
+
+// SetProviderType sets the ProviderType field's value.
+func (s *CodeReview) SetProviderType(v string) *CodeReview {
+	s.ProviderType = &v
+	return s
+}
+
+// SetPullRequestId sets the PullRequestId field's value.
+func (s *CodeReview) SetPullRequestId(v string) *CodeReview {
+	s.PullRequestId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *CodeReview) SetRepositoryName(v string) *CodeReview {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetSourceCodeType sets the SourceCodeType field's value.
+func (s *CodeReview) SetSourceCodeType(v *SourceCodeType) *CodeReview {
+	s.SourceCodeType = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CodeReview) SetState(v string) *CodeReview {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *CodeReview) SetStateReason(v string) *CodeReview {
+	s.StateReason = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CodeReview) SetType(v string) *CodeReview {
+	s.Type = &v
+	return s
+}
+
+// Information about the summary of the code review.
+type CodeReviewSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the code review to describe.
+	CodeReviewArn *string `min:"1" type:"string"`
+
+	// The time, in milliseconds since the epoch, when the code review was created.
+	CreatedTimeStamp *time.Time `type:"timestamp"`
+
+	// The time, in milliseconds since the epoch, when the code review was last
+	// updated.
+	LastUpdatedTimeStamp *time.Time `type:"timestamp"`
+
+	// The statistics from the code review.
+	MetricsSummary *MetricsSummary `type:"structure"`
+
+	// The name of the code review.
+	Name *string `min:"1" type:"string"`
+
+	// The owner of the repository.
+	Owner *string `min:"1" type:"string"`
+
+	// The provider type of the repository association.
+	ProviderType *string `type:"string" enum:"ProviderType"`
+
+	// The pull request ID for the code review.
+	PullRequestId *string `min:"1" type:"string"`
+
+	// The name of the repository.
+	RepositoryName *string `min:"1" type:"string"`
+
+	// The state of the code review.
+	State *string `type:"string" enum:"JobState"`
+
+	// The type of the code review.
+	Type *string `type:"string" enum:"Type"`
+}
+
+// String returns the string representation
+func (s CodeReviewSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CodeReviewSummary) GoString() string {
+	return s.String()
+}
+
+// SetCodeReviewArn sets the CodeReviewArn field's value.
+func (s *CodeReviewSummary) SetCodeReviewArn(v string) *CodeReviewSummary {
+	s.CodeReviewArn = &v
+	return s
+}
+
+// SetCreatedTimeStamp sets the CreatedTimeStamp field's value.
+func (s *CodeReviewSummary) SetCreatedTimeStamp(v time.Time) *CodeReviewSummary {
+	s.CreatedTimeStamp = &v
+	return s
+}
+
+// SetLastUpdatedTimeStamp sets the LastUpdatedTimeStamp field's value.
+func (s *CodeReviewSummary) SetLastUpdatedTimeStamp(v time.Time) *CodeReviewSummary {
+	s.LastUpdatedTimeStamp = &v
+	return s
+}
+
+// SetMetricsSummary sets the MetricsSummary field's value.
+func (s *CodeReviewSummary) SetMetricsSummary(v *MetricsSummary) *CodeReviewSummary {
+	s.MetricsSummary = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CodeReviewSummary) SetName(v string) *CodeReviewSummary {
+	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *CodeReviewSummary) SetOwner(v string) *CodeReviewSummary {
+	s.Owner = &v
+	return s
+}
+
+// SetProviderType sets the ProviderType field's value.
+func (s *CodeReviewSummary) SetProviderType(v string) *CodeReviewSummary {
+	s.ProviderType = &v
+	return s
+}
+
+// SetPullRequestId sets the PullRequestId field's value.
+func (s *CodeReviewSummary) SetPullRequestId(v string) *CodeReviewSummary {
+	s.PullRequestId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *CodeReviewSummary) SetRepositoryName(v string) *CodeReviewSummary {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CodeReviewSummary) SetState(v string) *CodeReviewSummary {
+	s.State = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CodeReviewSummary) SetType(v string) *CodeReviewSummary {
+	s.Type = &v
+	return s
+}
+
+// The commit diff for the pull request.
+type CommitDiffSourceCodeType struct {
+	_ struct{} `type:"structure"`
+
+	// Destination Commit SHA
+	DestinationCommit *string `min:"6" type:"string"`
+
+	// Source Commit SHA.
+	SourceCommit *string `min:"6" type:"string"`
+}
+
+// String returns the string representation
+func (s CommitDiffSourceCodeType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CommitDiffSourceCodeType) GoString() string {
+	return s.String()
+}
+
+// SetDestinationCommit sets the DestinationCommit field's value.
+func (s *CommitDiffSourceCodeType) SetDestinationCommit(v string) *CommitDiffSourceCodeType {
+	s.DestinationCommit = &v
+	return s
+}
+
+// SetSourceCommit sets the SourceCommit field's value.
+func (s *CommitDiffSourceCodeType) SetSourceCommit(v string) *CommitDiffSourceCodeType {
+	s.SourceCommit = &v
+	return s
+}
+
 // The requested operation would cause a conflict with the current state of
 // a service resource associated with the request. Resolve the conflict before
 // retrying this request.
@@ -697,10 +1700,170 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type DescribeCodeReviewInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the code review to describe.
+	//
+	// CodeReviewArn is a required field
+	CodeReviewArn *string `location:"uri" locationName:"CodeReviewArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeCodeReviewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCodeReviewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCodeReviewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCodeReviewInput"}
+	if s.CodeReviewArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodeReviewArn"))
+	}
+	if s.CodeReviewArn != nil && len(*s.CodeReviewArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodeReviewArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeReviewArn sets the CodeReviewArn field's value.
+func (s *DescribeCodeReviewInput) SetCodeReviewArn(v string) *DescribeCodeReviewInput {
+	s.CodeReviewArn = &v
+	return s
+}
+
+type DescribeCodeReviewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the code review.
+	CodeReview *CodeReview `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCodeReviewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCodeReviewOutput) GoString() string {
+	return s.String()
+}
+
+// SetCodeReview sets the CodeReview field's value.
+func (s *DescribeCodeReviewOutput) SetCodeReview(v *CodeReview) *DescribeCodeReviewOutput {
+	s.CodeReview = v
+	return s
+}
+
+type DescribeRecommendationFeedbackInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the code review.
+	//
+	// CodeReviewArn is a required field
+	CodeReviewArn *string `location:"uri" locationName:"CodeReviewArn" min:"1" type:"string" required:"true"`
+
+	// The recommendation ID that can be used to track the provided recommendations
+	// and then to collect the feedback.
+	//
+	// RecommendationId is a required field
+	RecommendationId *string `location:"querystring" locationName:"RecommendationId" min:"1" type:"string" required:"true"`
+
+	// Optional parameter to describe the feedback for a given user. If this is
+	// not supplied, it defaults to the user making the request.
+	UserId *string `location:"querystring" locationName:"UserId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeRecommendationFeedbackInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRecommendationFeedbackInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRecommendationFeedbackInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRecommendationFeedbackInput"}
+	if s.CodeReviewArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodeReviewArn"))
+	}
+	if s.CodeReviewArn != nil && len(*s.CodeReviewArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodeReviewArn", 1))
+	}
+	if s.RecommendationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommendationId"))
+	}
+	if s.RecommendationId != nil && len(*s.RecommendationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecommendationId", 1))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeReviewArn sets the CodeReviewArn field's value.
+func (s *DescribeRecommendationFeedbackInput) SetCodeReviewArn(v string) *DescribeRecommendationFeedbackInput {
+	s.CodeReviewArn = &v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *DescribeRecommendationFeedbackInput) SetRecommendationId(v string) *DescribeRecommendationFeedbackInput {
+	s.RecommendationId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DescribeRecommendationFeedbackInput) SetUserId(v string) *DescribeRecommendationFeedbackInput {
+	s.UserId = &v
+	return s
+}
+
+type DescribeRecommendationFeedbackOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The recommendation feedback given by the user.
+	RecommendationFeedback *RecommendationFeedback `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeRecommendationFeedbackOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRecommendationFeedbackOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommendationFeedback sets the RecommendationFeedback field's value.
+func (s *DescribeRecommendationFeedbackOutput) SetRecommendationFeedback(v *RecommendationFeedback) *DescribeRecommendationFeedbackOutput {
+	s.RecommendationFeedback = v
+	return s
+}
+
 type DescribeRepositoryAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) identifying the association.
+	// The Amazon Resource Name (ARN) identifying the association. You can retrieve
+	// this ARN by calling ListRepositories.
 	//
 	// AssociationArn is a required field
 	AssociationArn *string `location:"uri" locationName:"AssociationArn" min:"1" type:"string" required:"true"`
@@ -881,20 +2044,388 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListCodeReviewsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results that are returned per call. The default is
+	// 100.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// If nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+
+	// List of provider types for filtering that needs to be applied before displaying
+	// the result. For example, "providerTypes=[GitHub]" will list code reviews
+	// from GitHub.
+	ProviderTypes []*string `location:"querystring" locationName:"ProviderTypes" min:"1" type:"list"`
+
+	// List of repository names for filtering that needs to be applied before displaying
+	// the result.
+	RepositoryNames []*string `location:"querystring" locationName:"RepositoryNames" min:"1" type:"list"`
+
+	// List of states for filtering that needs to be applied before displaying the
+	// result. For example, "states=[Pending]" will list code reviews in the Pending
+	// state.
+	States []*string `location:"querystring" locationName:"States" min:"1" type:"list"`
+
+	// The type of code reviews to list in the response.
+	//
+	// Type is a required field
+	Type *string `location:"querystring" locationName:"Type" type:"string" required:"true" enum:"Type"`
+}
+
+// String returns the string representation
+func (s ListCodeReviewsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCodeReviewsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCodeReviewsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCodeReviewsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ProviderTypes != nil && len(s.ProviderTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProviderTypes", 1))
+	}
+	if s.RepositoryNames != nil && len(s.RepositoryNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryNames", 1))
+	}
+	if s.States != nil && len(s.States) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("States", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCodeReviewsInput) SetMaxResults(v int64) *ListCodeReviewsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCodeReviewsInput) SetNextToken(v string) *ListCodeReviewsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProviderTypes sets the ProviderTypes field's value.
+func (s *ListCodeReviewsInput) SetProviderTypes(v []*string) *ListCodeReviewsInput {
+	s.ProviderTypes = v
+	return s
+}
+
+// SetRepositoryNames sets the RepositoryNames field's value.
+func (s *ListCodeReviewsInput) SetRepositoryNames(v []*string) *ListCodeReviewsInput {
+	s.RepositoryNames = v
+	return s
+}
+
+// SetStates sets the States field's value.
+func (s *ListCodeReviewsInput) SetStates(v []*string) *ListCodeReviewsInput {
+	s.States = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListCodeReviewsInput) SetType(v string) *ListCodeReviewsInput {
+	s.Type = &v
+	return s
+}
+
+type ListCodeReviewsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of code reviews that meet the criteria of the request.
+	CodeReviewSummaries []*CodeReviewSummary `type:"list"`
+
+	// Pagination token.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListCodeReviewsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCodeReviewsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCodeReviewSummaries sets the CodeReviewSummaries field's value.
+func (s *ListCodeReviewsOutput) SetCodeReviewSummaries(v []*CodeReviewSummary) *ListCodeReviewsOutput {
+	s.CodeReviewSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCodeReviewsOutput) SetNextToken(v string) *ListCodeReviewsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRecommendationFeedbackInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the code review.
+	//
+	// CodeReviewArn is a required field
+	CodeReviewArn *string `location:"uri" locationName:"CodeReviewArn" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results that are returned per call. The default is
+	// 100.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// If nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+
+	// Filter on recommendationIds that need to be applied before displaying the
+	// result. This can be used to query all the recommendation feedback for a given
+	// recommendation.
+	RecommendationIds []*string `location:"querystring" locationName:"RecommendationIds" min:"1" type:"list"`
+
+	// Filter on userIds that need to be applied before displaying the result. This
+	// can be used to query all the recommendation feedback for a code review from
+	// a given user.
+	UserIds []*string `location:"querystring" locationName:"UserIds" min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ListRecommendationFeedbackInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRecommendationFeedbackInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRecommendationFeedbackInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRecommendationFeedbackInput"}
+	if s.CodeReviewArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodeReviewArn"))
+	}
+	if s.CodeReviewArn != nil && len(*s.CodeReviewArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodeReviewArn", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.RecommendationIds != nil && len(s.RecommendationIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecommendationIds", 1))
+	}
+	if s.UserIds != nil && len(s.UserIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeReviewArn sets the CodeReviewArn field's value.
+func (s *ListRecommendationFeedbackInput) SetCodeReviewArn(v string) *ListRecommendationFeedbackInput {
+	s.CodeReviewArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRecommendationFeedbackInput) SetMaxResults(v int64) *ListRecommendationFeedbackInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecommendationFeedbackInput) SetNextToken(v string) *ListRecommendationFeedbackInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommendationIds sets the RecommendationIds field's value.
+func (s *ListRecommendationFeedbackInput) SetRecommendationIds(v []*string) *ListRecommendationFeedbackInput {
+	s.RecommendationIds = v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *ListRecommendationFeedbackInput) SetUserIds(v []*string) *ListRecommendationFeedbackInput {
+	s.UserIds = v
+	return s
+}
+
+type ListRecommendationFeedbackOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If nextToken is returned, there are more results available. The value of
+	// nextToken is a unique pagination token for each page. Make the call again
+	// using the returned token to retrieve the next page. Keep all other arguments
+	// unchanged.
+	NextToken *string `min:"1" type:"string"`
+
+	// Recommendation feedback summaries corresponding to the code reivew ARN.
+	RecommendationFeedbackSummaries []*RecommendationFeedbackSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListRecommendationFeedbackOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRecommendationFeedbackOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecommendationFeedbackOutput) SetNextToken(v string) *ListRecommendationFeedbackOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommendationFeedbackSummaries sets the RecommendationFeedbackSummaries field's value.
+func (s *ListRecommendationFeedbackOutput) SetRecommendationFeedbackSummaries(v []*RecommendationFeedbackSummary) *ListRecommendationFeedbackOutput {
+	s.RecommendationFeedbackSummaries = v
+	return s
+}
+
+type ListRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the code review to describe.
+	//
+	// CodeReviewArn is a required field
+	CodeReviewArn *string `location:"uri" locationName:"CodeReviewArn" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results that are returned per call. The default is
+	// 100.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// Pagination token.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRecommendationsInput"}
+	if s.CodeReviewArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodeReviewArn"))
+	}
+	if s.CodeReviewArn != nil && len(*s.CodeReviewArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodeReviewArn", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeReviewArn sets the CodeReviewArn field's value.
+func (s *ListRecommendationsInput) SetCodeReviewArn(v string) *ListRecommendationsInput {
+	s.CodeReviewArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRecommendationsInput) SetMaxResults(v int64) *ListRecommendationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecommendationsInput) SetNextToken(v string) *ListRecommendationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Pagination token.
+	NextToken *string `min:"1" type:"string"`
+
+	// List of recommendations for the requested code review.
+	RecommendationSummaries []*RecommendationSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecommendationsOutput) SetNextToken(v string) *ListRecommendationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommendationSummaries sets the RecommendationSummaries field's value.
+func (s *ListRecommendationsOutput) SetRecommendationSummaries(v []*RecommendationSummary) *ListRecommendationsOutput {
+	s.RecommendationSummaries = v
+	return s
+}
+
 type ListRepositoryAssociationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of repository association results returned by ListRepositoryAssociations
 	// in paginated output. When this parameter is used, ListRepositoryAssociations
-	// only returns maxResults results in a single page along with a nextToken response
+	// only returns maxResults results in a single page with a nextToken response
 	// element. The remaining results of the initial request can be seen by sending
 	// another ListRepositoryAssociations request with the returned nextToken value.
-	// This value can be between 1 and 100. If this parameter is not used, then
-	// ListRepositoryAssociations returns up to 100 results and a nextToken value
-	// if applicable.
+	// This value can be between 1 and 25. If this parameter is not used, ListRepositoryAssociations
+	// returns up to 25 results and a nextToken value if applicable.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
-	// List of names to use as a filter.
+	// List of repository names to use as a filter.
 	Names []*string `location:"querystring" locationName:"Name" min:"1" type:"list"`
 
 	// The nextToken value returned from a previous paginated ListRepositoryAssociations
@@ -902,12 +2433,13 @@ type ListRepositoryAssociationsInput struct {
 	// parameter. Pagination continues from the end of the previous results that
 	// returned the nextToken value.
 	//
-	// This token should be treated as an opaque identifier that is only used to
-	// retrieve the next items in a list and not for other programmatic purposes.
+	// Treat this token as an opaque identifier that is only used to retrieve the
+	// next items in a list and not for other programmatic purposes.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 
-	// List of owners to use as a filter. For AWS CodeCommit, the owner is the AWS
-	// account id. For GitHub, it is the GitHub account name.
+	// List of owners to use as a filter. For GitHub, this is name of the GitHub
+	// account that was used to associate the repository. For AWS CodeCommit, it
+	// is the name of the CodeCommit account that was used to associate the repository.
 	Owners []*string `location:"querystring" locationName:"Owner" min:"1" type:"list"`
 
 	// List of provider types to use as a filter.
@@ -1026,6 +2558,72 @@ func (s *ListRepositoryAssociationsOutput) SetRepositoryAssociationSummaries(v [
 	return s
 }
 
+// Information about the statistics from the code review.
+type Metrics struct {
+	_ struct{} `type:"structure"`
+
+	// Total number of recommendations found in the code review.
+	FindingsCount *int64 `type:"long"`
+
+	// Lines of code metered in the code review.
+	MeteredLinesOfCodeCount *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s Metrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Metrics) GoString() string {
+	return s.String()
+}
+
+// SetFindingsCount sets the FindingsCount field's value.
+func (s *Metrics) SetFindingsCount(v int64) *Metrics {
+	s.FindingsCount = &v
+	return s
+}
+
+// SetMeteredLinesOfCodeCount sets the MeteredLinesOfCodeCount field's value.
+func (s *Metrics) SetMeteredLinesOfCodeCount(v int64) *Metrics {
+	s.MeteredLinesOfCodeCount = &v
+	return s
+}
+
+// Information about metrics summaries.
+type MetricsSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Total number of recommendations found in the code review.
+	FindingsCount *int64 `type:"long"`
+
+	// Lines of code metered in the code review.
+	MeteredLinesOfCodeCount *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s MetricsSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MetricsSummary) GoString() string {
+	return s.String()
+}
+
+// SetFindingsCount sets the FindingsCount field's value.
+func (s *MetricsSummary) SetFindingsCount(v int64) *MetricsSummary {
+	s.FindingsCount = &v
+	return s
+}
+
+// SetMeteredLinesOfCodeCount sets the MeteredLinesOfCodeCount field's value.
+func (s *MetricsSummary) SetMeteredLinesOfCodeCount(v int64) *MetricsSummary {
+	s.MeteredLinesOfCodeCount = &v
+	return s
+}
+
 // The resource specified in the request was not found.
 type NotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -1082,6 +2680,273 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type PutRecommendationFeedbackInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the code review.
+	//
+	// CodeReviewArn is a required field
+	CodeReviewArn *string `min:"1" type:"string" required:"true"`
+
+	// List for storing reactions. Reactions are utf-8 text code for emojis. If
+	// you send an empty list it clears all your feedback.
+	//
+	// Reactions is a required field
+	Reactions []*string `type:"list" required:"true"`
+
+	// The recommendation ID that can be used to track the provided recommendations
+	// and then to collect the feedback.
+	//
+	// RecommendationId is a required field
+	RecommendationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutRecommendationFeedbackInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutRecommendationFeedbackInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutRecommendationFeedbackInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutRecommendationFeedbackInput"}
+	if s.CodeReviewArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodeReviewArn"))
+	}
+	if s.CodeReviewArn != nil && len(*s.CodeReviewArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodeReviewArn", 1))
+	}
+	if s.Reactions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Reactions"))
+	}
+	if s.RecommendationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommendationId"))
+	}
+	if s.RecommendationId != nil && len(*s.RecommendationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecommendationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeReviewArn sets the CodeReviewArn field's value.
+func (s *PutRecommendationFeedbackInput) SetCodeReviewArn(v string) *PutRecommendationFeedbackInput {
+	s.CodeReviewArn = &v
+	return s
+}
+
+// SetReactions sets the Reactions field's value.
+func (s *PutRecommendationFeedbackInput) SetReactions(v []*string) *PutRecommendationFeedbackInput {
+	s.Reactions = v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *PutRecommendationFeedbackInput) SetRecommendationId(v string) *PutRecommendationFeedbackInput {
+	s.RecommendationId = &v
+	return s
+}
+
+type PutRecommendationFeedbackOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutRecommendationFeedbackOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutRecommendationFeedbackOutput) GoString() string {
+	return s.String()
+}
+
+// Information about the recommendation feedback.
+type RecommendationFeedback struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the code review.
+	CodeReviewArn *string `min:"1" type:"string"`
+
+	// The time at which the feedback was created.
+	CreatedTimeStamp *time.Time `type:"timestamp"`
+
+	// The time at which the feedback was last updated.
+	LastUpdatedTimeStamp *time.Time `type:"timestamp"`
+
+	// List for storing reactions. Reactions are utf-8 text code for emojis. You
+	// can send an empty list to clear off all your feedback.
+	Reactions []*string `type:"list"`
+
+	// The recommendation ID that can be used to track the provided recommendations.
+	// Later on it can be used to collect the feedback.
+	RecommendationId *string `min:"1" type:"string"`
+
+	// The user principal that made the API call.
+	UserId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s RecommendationFeedback) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RecommendationFeedback) GoString() string {
+	return s.String()
+}
+
+// SetCodeReviewArn sets the CodeReviewArn field's value.
+func (s *RecommendationFeedback) SetCodeReviewArn(v string) *RecommendationFeedback {
+	s.CodeReviewArn = &v
+	return s
+}
+
+// SetCreatedTimeStamp sets the CreatedTimeStamp field's value.
+func (s *RecommendationFeedback) SetCreatedTimeStamp(v time.Time) *RecommendationFeedback {
+	s.CreatedTimeStamp = &v
+	return s
+}
+
+// SetLastUpdatedTimeStamp sets the LastUpdatedTimeStamp field's value.
+func (s *RecommendationFeedback) SetLastUpdatedTimeStamp(v time.Time) *RecommendationFeedback {
+	s.LastUpdatedTimeStamp = &v
+	return s
+}
+
+// SetReactions sets the Reactions field's value.
+func (s *RecommendationFeedback) SetReactions(v []*string) *RecommendationFeedback {
+	s.Reactions = v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *RecommendationFeedback) SetRecommendationId(v string) *RecommendationFeedback {
+	s.RecommendationId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *RecommendationFeedback) SetUserId(v string) *RecommendationFeedback {
+	s.UserId = &v
+	return s
+}
+
+// Information about recommendation feedback summaries.
+type RecommendationFeedbackSummary struct {
+	_ struct{} `type:"structure"`
+
+	// List for storing reactions. Reactions are utf-8 text code for emojis.
+	Reactions []*string `type:"list"`
+
+	// The recommendation ID that can be used to track the provided recommendations.
+	// Later on it can be used to collect the feedback.
+	RecommendationId *string `min:"1" type:"string"`
+
+	// The identifier for the user that gave the feedback.
+	UserId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s RecommendationFeedbackSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RecommendationFeedbackSummary) GoString() string {
+	return s.String()
+}
+
+// SetReactions sets the Reactions field's value.
+func (s *RecommendationFeedbackSummary) SetReactions(v []*string) *RecommendationFeedbackSummary {
+	s.Reactions = v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *RecommendationFeedbackSummary) SetRecommendationId(v string) *RecommendationFeedbackSummary {
+	s.RecommendationId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *RecommendationFeedbackSummary) SetUserId(v string) *RecommendationFeedbackSummary {
+	s.UserId = &v
+	return s
+}
+
+// Information about recommendations.
+type RecommendationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the recommendation generated by CodeGuru Reviewer for the
+	// lines of code between the start line and the end line.
+	Description *string `min:"1" type:"string"`
+
+	// Last line where the recommendation is applicable in the source commit or
+	// source branch. For a single line comment the start line and end line values
+	// will be the same.
+	EndLine *int64 `type:"integer"`
+
+	// Name of the file on which a recommendation is provided.
+	FilePath *string `min:"1" type:"string"`
+
+	// The recommendation ID that can be used to track the provided recommendations.
+	// Later on it can be used to collect the feedback.
+	RecommendationId *string `min:"1" type:"string"`
+
+	// Start line from where the recommendation is applicable in the source commit
+	// or source branch.
+	StartLine *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s RecommendationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RecommendationSummary) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *RecommendationSummary) SetDescription(v string) *RecommendationSummary {
+	s.Description = &v
+	return s
+}
+
+// SetEndLine sets the EndLine field's value.
+func (s *RecommendationSummary) SetEndLine(v int64) *RecommendationSummary {
+	s.EndLine = &v
+	return s
+}
+
+// SetFilePath sets the FilePath field's value.
+func (s *RecommendationSummary) SetFilePath(v string) *RecommendationSummary {
+	s.FilePath = &v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *RecommendationSummary) SetRecommendationId(v string) *RecommendationSummary {
+	s.RecommendationId = &v
+	return s
+}
+
+// SetStartLine sets the StartLine field's value.
+func (s *RecommendationSummary) SetStartLine(v int64) *RecommendationSummary {
+	s.StartLine = &v
+	return s
+}
+
 // Information about a repository.
 type Repository struct {
 	_ struct{} `type:"structure"`
@@ -1128,7 +2993,7 @@ type RepositoryAssociation struct {
 	// The Amazon Resource Name (ARN) identifying the repository association.
 	AssociationArn *string `min:"1" type:"string"`
 
-	// The id of the repository association.
+	// The ID of the repository association.
 	AssociationId *string `min:"1" type:"string"`
 
 	// The time, in milliseconds since the epoch, when the repository association
@@ -1254,8 +3119,7 @@ type RepositoryAssociationSummary struct {
 	//
 	// Failed
 	//
-	// The association failed. For more information about troubleshooting (or why
-	// it failed), see [troubleshooting topic].
+	// The association failed.
 	//
 	// Disassociating
 	//
@@ -1312,6 +3176,86 @@ func (s *RepositoryAssociationSummary) SetProviderType(v string) *RepositoryAsso
 // SetState sets the State field's value.
 func (s *RepositoryAssociationSummary) SetState(v string) *RepositoryAssociationSummary {
 	s.State = &v
+	return s
+}
+
+// The resource specified in the request was not found.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Information about the source code type.
+type SourceCodeType struct {
+	_ struct{} `type:"structure"`
+
+	// The commit diff for the pull request.
+	CommitDiff *CommitDiffSourceCodeType `type:"structure"`
+}
+
+// String returns the string representation
+func (s SourceCodeType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SourceCodeType) GoString() string {
+	return s.String()
+}
+
+// SetCommitDiff sets the CommitDiff field's value.
+func (s *SourceCodeType) SetCommitDiff(v *CommitDiffSourceCodeType) *SourceCodeType {
+	s.CommitDiff = v
 	return s
 }
 
@@ -1428,11 +3372,33 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// JobStateCompleted is a JobState enum value
+	JobStateCompleted = "Completed"
+
+	// JobStatePending is a JobState enum value
+	JobStatePending = "Pending"
+
+	// JobStateFailed is a JobState enum value
+	JobStateFailed = "Failed"
+
+	// JobStateDeleting is a JobState enum value
+	JobStateDeleting = "Deleting"
+)
+
+const (
 	// ProviderTypeCodeCommit is a ProviderType enum value
 	ProviderTypeCodeCommit = "CodeCommit"
 
 	// ProviderTypeGitHub is a ProviderType enum value
 	ProviderTypeGitHub = "GitHub"
+)
+
+const (
+	// ReactionThumbsUp is a Reaction enum value
+	ReactionThumbsUp = "ThumbsUp"
+
+	// ReactionThumbsDown is a Reaction enum value
+	ReactionThumbsDown = "ThumbsDown"
 )
 
 const (
@@ -1447,4 +3413,9 @@ const (
 
 	// RepositoryAssociationStateDisassociating is a RepositoryAssociationState enum value
 	RepositoryAssociationStateDisassociating = "Disassociating"
+)
+
+const (
+	// TypePullRequest is a Type enum value
+	TypePullRequest = "PullRequest"
 )
