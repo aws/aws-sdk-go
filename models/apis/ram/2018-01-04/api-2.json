@@ -198,6 +198,7 @@
         {"shape":"MalformedArnException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"ResourceArnNotFoundException"},
         {"shape":"ServerInternalException"},
         {"shape":"ServiceUnavailableException"}
       ]
@@ -232,6 +233,7 @@
         {"shape":"ResourceShareInvitationArnNotFoundException"},
         {"shape":"InvalidMaxResultsException"},
         {"shape":"MalformedArnException"},
+        {"shape":"UnknownResourceException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ServerInternalException"},
@@ -326,6 +328,21 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
+    "ListResourceTypes":{
+      "name":"ListResourceTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listresourcetypes"
+      },
+      "input":{"shape":"ListResourceTypesRequest"},
+      "output":{"shape":"ListResourceTypesResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "ListResources":{
       "name":"ListResources",
       "http":{
@@ -358,7 +375,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"MissingRequiredParameterException"},
         {"shape":"ServerInternalException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnknownResourceException"}
       ]
     },
     "RejectResourceShareInvitation":{
@@ -798,6 +816,20 @@
         "nextToken":{"shape":"String"}
       }
     },
+    "ListResourceTypesRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListResourceTypesResponse":{
+      "type":"structure",
+      "members":{
+        "resourceTypes":{"shape":"ServiceNameAndResourceTypeList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
     "ListResourcesRequest":{
       "type":"structure",
       "required":["resourceOwner"],
@@ -1149,6 +1181,17 @@
       },
       "error":{"httpStatusCode":500},
       "exception":true
+    },
+    "ServiceNameAndResourceType":{
+      "type":"structure",
+      "members":{
+        "resourceType":{"shape":"String"},
+        "serviceName":{"shape":"String"}
+      }
+    },
+    "ServiceNameAndResourceTypeList":{
+      "type":"list",
+      "member":{"shape":"ServiceNameAndResourceType"}
     },
     "ServiceUnavailableException":{
       "type":"structure",

@@ -235,6 +235,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DeleteAutomaticTapeCreationPolicy":{
+      "name":"DeleteAutomaticTapeCreationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAutomaticTapeCreationPolicyInput"},
+      "output":{"shape":"DeleteAutomaticTapeCreationPolicyOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DeleteBandwidthRateLimit":{
       "name":"DeleteBandwidthRateLimit",
       "http":{
@@ -612,6 +625,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "ListAutomaticTapeCreationPolicies":{
+      "name":"ListAutomaticTapeCreationPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAutomaticTapeCreationPoliciesInput"},
+      "output":{"shape":"ListAutomaticTapeCreationPoliciesOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "ListFileShares":{
       "name":"ListFileShares",
       "http":{
@@ -854,6 +880,19 @@
       },
       "input":{"shape":"StartGatewayInput"},
       "output":{"shape":"StartGatewayOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "UpdateAutomaticTapeCreationPolicy":{
+      "name":"UpdateAutomaticTapeCreationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateAutomaticTapeCreationPolicyInput"},
+      "output":{"shape":"UpdateAutomaticTapeCreationPolicyOutput"},
       "errors":[
         {"shape":"InvalidGatewayRequestException"},
         {"shape":"InternalServerError"}
@@ -1148,6 +1187,38 @@
       "type":"string",
       "max":15,
       "min":5
+    },
+    "AutomaticTapeCreationPolicyInfo":{
+      "type":"structure",
+      "members":{
+        "AutomaticTapeCreationRules":{"shape":"AutomaticTapeCreationRules"},
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "AutomaticTapeCreationPolicyInfos":{
+      "type":"list",
+      "member":{"shape":"AutomaticTapeCreationPolicyInfo"}
+    },
+    "AutomaticTapeCreationRule":{
+      "type":"structure",
+      "required":[
+        "TapeBarcodePrefix",
+        "PoolId",
+        "TapeSizeInBytes",
+        "MinimumNumTapes"
+      ],
+      "members":{
+        "TapeBarcodePrefix":{"shape":"TapeBarcodePrefix"},
+        "PoolId":{"shape":"PoolId"},
+        "TapeSizeInBytes":{"shape":"TapeSize"},
+        "MinimumNumTapes":{"shape":"MinimumNumTapes"}
+      }
+    },
+    "AutomaticTapeCreationRules":{
+      "type":"list",
+      "member":{"shape":"AutomaticTapeCreationRule"},
+      "max":10,
+      "min":1
     },
     "AvailabilityMonitorTestStatus":{
       "type":"string",
@@ -1479,6 +1550,19 @@
       "type":"integer",
       "max":6,
       "min":0
+    },
+    "DeleteAutomaticTapeCreationPolicyInput":{
+      "type":"structure",
+      "required":["GatewayARN"],
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "DeleteAutomaticTapeCreationPolicyOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
     },
     "DeleteBandwidthRateLimitInput":{
       "type":"structure",
@@ -2287,6 +2371,18 @@
       "max":25,
       "min":1
     },
+    "ListAutomaticTapeCreationPoliciesInput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "ListAutomaticTapeCreationPoliciesOutput":{
+      "type":"structure",
+      "members":{
+        "AutomaticTapeCreationPolicyInfos":{"shape":"AutomaticTapeCreationPolicyInfos"}
+      }
+    },
     "ListFileSharesInput":{
       "type":"structure",
       "members":{
@@ -2427,6 +2523,11 @@
       "type":"string",
       "max":50,
       "min":2
+    },
+    "MinimumNumTapes":{
+      "type":"integer",
+      "max":10,
+      "min":1
     },
     "MinuteOfHour":{
       "type":"integer",
@@ -2967,6 +3068,23 @@
       "type":"integer",
       "max":3600,
       "min":0
+    },
+    "UpdateAutomaticTapeCreationPolicyInput":{
+      "type":"structure",
+      "required":[
+        "AutomaticTapeCreationRules",
+        "GatewayARN"
+      ],
+      "members":{
+        "AutomaticTapeCreationRules":{"shape":"AutomaticTapeCreationRules"},
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "UpdateAutomaticTapeCreationPolicyOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
     },
     "UpdateBandwidthRateLimitInput":{
       "type":"structure",

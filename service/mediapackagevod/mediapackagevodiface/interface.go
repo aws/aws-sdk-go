@@ -116,6 +116,18 @@ type MediaPackageVodAPI interface {
 
 	ListPackagingGroupsPages(*mediapackagevod.ListPackagingGroupsInput, func(*mediapackagevod.ListPackagingGroupsOutput, bool) bool) error
 	ListPackagingGroupsPagesWithContext(aws.Context, *mediapackagevod.ListPackagingGroupsInput, func(*mediapackagevod.ListPackagingGroupsOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*mediapackagevod.ListTagsForResourceInput) (*mediapackagevod.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *mediapackagevod.ListTagsForResourceInput, ...request.Option) (*mediapackagevod.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*mediapackagevod.ListTagsForResourceInput) (*request.Request, *mediapackagevod.ListTagsForResourceOutput)
+
+	TagResource(*mediapackagevod.TagResourceInput) (*mediapackagevod.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *mediapackagevod.TagResourceInput, ...request.Option) (*mediapackagevod.TagResourceOutput, error)
+	TagResourceRequest(*mediapackagevod.TagResourceInput) (*request.Request, *mediapackagevod.TagResourceOutput)
+
+	UntagResource(*mediapackagevod.UntagResourceInput) (*mediapackagevod.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *mediapackagevod.UntagResourceInput, ...request.Option) (*mediapackagevod.UntagResourceOutput, error)
+	UntagResourceRequest(*mediapackagevod.UntagResourceInput) (*request.Request, *mediapackagevod.UntagResourceOutput)
 }
 
 var _ MediaPackageVodAPI = (*mediapackagevod.MediaPackageVod)(nil)

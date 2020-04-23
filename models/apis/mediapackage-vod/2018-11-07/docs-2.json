@@ -13,7 +13,10 @@
     "DescribePackagingGroup" : "Returns a description of a MediaPackage VOD PackagingGroup resource.",
     "ListAssets" : "Returns a collection of MediaPackage VOD Asset resources.",
     "ListPackagingConfigurations" : "Returns a collection of MediaPackage VOD PackagingConfiguration resources.",
-    "ListPackagingGroups" : "Returns a collection of MediaPackage VOD PackagingGroup resources."
+    "ListPackagingGroups" : "Returns a collection of MediaPackage VOD PackagingGroup resources.",
+    "ListTagsForResource" : null,
+    "TagResource" : null,
+    "UntagResource" : null
   },
   "shapes" : {
     "AdMarkers" : {
@@ -191,6 +194,22 @@
         "MssManifest$StreamSelection" : null
       }
     },
+    "Tags" : {
+      "base" : "A collection of tags associated with a resource",
+      "refs" : {
+        "Asset$Tags" : null,
+        "AssetCreateParameters$Tags" : null,
+        "AssetShallow$Tags" : null,
+        "PackagingConfiguration$Tags" : null,
+        "PackagingConfigurationCreateParameters$Tags" : null,
+        "PackagingGroup$Tags" : null,
+        "PackagingGroupCreateParameters$Tags" : null
+      }
+    },
+    "TagsModel" : {
+      "base" : null,
+      "refs" : { }
+    },
     "__PeriodTriggersElement" : {
       "base" : null,
       "refs" : {
@@ -273,6 +292,12 @@
         "SpekeKeyProvider$SystemIds" : "The system IDs to include in key requests."
       }
     },
+    "__mapOf__string" : {
+      "base" : null,
+      "refs" : {
+        "TagsModel$Tags" : null
+      }
+    },
     "__string" : {
       "base" : null,
       "refs" : {
@@ -315,7 +340,9 @@
         "PackagingGroupList$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
         "SpekeKeyProvider$RoleArn" : "An Amazon Resource Name (ARN) of an IAM role that AWS Elemental\nMediaPackage will assume when accessing the key provider service.\n",
         "SpekeKeyProvider$Url" : "The URL of the external key provider service.",
-        "__listOf__string$member" : null
+        "Tags$member" : null,
+        "__listOf__string$member" : null,
+        "__mapOf__string$member" : null
       }
     }
   }

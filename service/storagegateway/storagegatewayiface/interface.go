@@ -128,6 +128,10 @@ type StorageGatewayAPI interface {
 	CreateTapesWithContext(aws.Context, *storagegateway.CreateTapesInput, ...request.Option) (*storagegateway.CreateTapesOutput, error)
 	CreateTapesRequest(*storagegateway.CreateTapesInput) (*request.Request, *storagegateway.CreateTapesOutput)
 
+	DeleteAutomaticTapeCreationPolicy(*storagegateway.DeleteAutomaticTapeCreationPolicyInput) (*storagegateway.DeleteAutomaticTapeCreationPolicyOutput, error)
+	DeleteAutomaticTapeCreationPolicyWithContext(aws.Context, *storagegateway.DeleteAutomaticTapeCreationPolicyInput, ...request.Option) (*storagegateway.DeleteAutomaticTapeCreationPolicyOutput, error)
+	DeleteAutomaticTapeCreationPolicyRequest(*storagegateway.DeleteAutomaticTapeCreationPolicyInput) (*request.Request, *storagegateway.DeleteAutomaticTapeCreationPolicyOutput)
+
 	DeleteBandwidthRateLimit(*storagegateway.DeleteBandwidthRateLimitInput) (*storagegateway.DeleteBandwidthRateLimitOutput, error)
 	DeleteBandwidthRateLimitWithContext(aws.Context, *storagegateway.DeleteBandwidthRateLimitInput, ...request.Option) (*storagegateway.DeleteBandwidthRateLimitOutput, error)
 	DeleteBandwidthRateLimitRequest(*storagegateway.DeleteBandwidthRateLimitInput) (*request.Request, *storagegateway.DeleteBandwidthRateLimitOutput)
@@ -256,6 +260,10 @@ type StorageGatewayAPI interface {
 	JoinDomainWithContext(aws.Context, *storagegateway.JoinDomainInput, ...request.Option) (*storagegateway.JoinDomainOutput, error)
 	JoinDomainRequest(*storagegateway.JoinDomainInput) (*request.Request, *storagegateway.JoinDomainOutput)
 
+	ListAutomaticTapeCreationPolicies(*storagegateway.ListAutomaticTapeCreationPoliciesInput) (*storagegateway.ListAutomaticTapeCreationPoliciesOutput, error)
+	ListAutomaticTapeCreationPoliciesWithContext(aws.Context, *storagegateway.ListAutomaticTapeCreationPoliciesInput, ...request.Option) (*storagegateway.ListAutomaticTapeCreationPoliciesOutput, error)
+	ListAutomaticTapeCreationPoliciesRequest(*storagegateway.ListAutomaticTapeCreationPoliciesInput) (*request.Request, *storagegateway.ListAutomaticTapeCreationPoliciesOutput)
+
 	ListFileShares(*storagegateway.ListFileSharesInput) (*storagegateway.ListFileSharesOutput, error)
 	ListFileSharesWithContext(aws.Context, *storagegateway.ListFileSharesInput, ...request.Option) (*storagegateway.ListFileSharesOutput, error)
 	ListFileSharesRequest(*storagegateway.ListFileSharesInput) (*request.Request, *storagegateway.ListFileSharesOutput)
@@ -346,6 +354,10 @@ type StorageGatewayAPI interface {
 	StartGateway(*storagegateway.StartGatewayInput) (*storagegateway.StartGatewayOutput, error)
 	StartGatewayWithContext(aws.Context, *storagegateway.StartGatewayInput, ...request.Option) (*storagegateway.StartGatewayOutput, error)
 	StartGatewayRequest(*storagegateway.StartGatewayInput) (*request.Request, *storagegateway.StartGatewayOutput)
+
+	UpdateAutomaticTapeCreationPolicy(*storagegateway.UpdateAutomaticTapeCreationPolicyInput) (*storagegateway.UpdateAutomaticTapeCreationPolicyOutput, error)
+	UpdateAutomaticTapeCreationPolicyWithContext(aws.Context, *storagegateway.UpdateAutomaticTapeCreationPolicyInput, ...request.Option) (*storagegateway.UpdateAutomaticTapeCreationPolicyOutput, error)
+	UpdateAutomaticTapeCreationPolicyRequest(*storagegateway.UpdateAutomaticTapeCreationPolicyInput) (*request.Request, *storagegateway.UpdateAutomaticTapeCreationPolicyOutput)
 
 	UpdateBandwidthRateLimit(*storagegateway.UpdateBandwidthRateLimitInput) (*storagegateway.UpdateBandwidthRateLimitOutput, error)
 	UpdateBandwidthRateLimitWithContext(aws.Context, *storagegateway.UpdateBandwidthRateLimitInput, ...request.Option) (*storagegateway.UpdateBandwidthRateLimitOutput, error)
