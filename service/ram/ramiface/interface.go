@@ -146,6 +146,10 @@ type RAMAPI interface {
 	ListResourceSharePermissionsWithContext(aws.Context, *ram.ListResourceSharePermissionsInput, ...request.Option) (*ram.ListResourceSharePermissionsOutput, error)
 	ListResourceSharePermissionsRequest(*ram.ListResourceSharePermissionsInput) (*request.Request, *ram.ListResourceSharePermissionsOutput)
 
+	ListResourceTypes(*ram.ListResourceTypesInput) (*ram.ListResourceTypesOutput, error)
+	ListResourceTypesWithContext(aws.Context, *ram.ListResourceTypesInput, ...request.Option) (*ram.ListResourceTypesOutput, error)
+	ListResourceTypesRequest(*ram.ListResourceTypesInput) (*request.Request, *ram.ListResourceTypesOutput)
+
 	ListResources(*ram.ListResourcesInput) (*ram.ListResourcesOutput, error)
 	ListResourcesWithContext(aws.Context, *ram.ListResourcesInput, ...request.Option) (*ram.ListResourcesOutput, error)
 	ListResourcesRequest(*ram.ListResourcesInput) (*request.Request, *ram.ListResourcesOutput)

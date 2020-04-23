@@ -1,3 +1,25 @@
+Release v1.30.13 (2020-04-23)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API, documentation, and examples
+* `service/firehose`: Updates service API and documentation
+  * You can now deliver streaming data to an Amazon Elasticsearch Service domain in an Amazon VPC. You can now compress streaming data delivered to S3 using Hadoop-Snappy in addition to Gzip, Zip and Snappy formats.
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * This release of the Amazon Pinpoint API enhances support for sending campaigns through custom channels to locations such as AWS Lambda functions or web applications. Campaigns can now use CustomDeliveryConfiguration and CampaignCustomMessage to configure custom channel settings for a campaign.
+* `service/ram`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Adds support for AWS Local Zones, including a new optional parameter AvailabilityZoneGroup for the DescribeOrderableDBInstanceOptions operation.
+* `service/storagegateway`: Updates service API and documentation
+  * Added AutomaticTapeCreation APIs
+* `service/transfer`: Updates service API and documentation
+  * This release adds support for transfers over FTPS and FTP in and out of Amazon S3, which makes it easy to migrate File Transfer Protocol over SSL (FTPS) and FTP workloads to AWS, in addition to the existing support for Secure File Transfer Protocol (SFTP).
+
+### SDK Enhancements
+* `aws/credentials/stscreds`: Add support for policy ARNs ([#3249](https://github.com/aws/aws-sdk-go/pull/3249))
+  * Adds support for passing AWS policy ARNs to the `AssumeRoleProvider` and `WebIdentityRoleProvider` credential providers. This allows you provide policy ARNs when assuming the role that will further limit the permissions of the credentials returned.
+
 Release v1.30.12 (2020-04-22)
 ===
 

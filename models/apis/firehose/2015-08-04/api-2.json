@@ -218,6 +218,7 @@
     },
     "ClusterJDBCURL":{
       "type":"string",
+      "max":512,
       "min":1,
       "pattern":"jdbc:(redshift|postgresql)://((?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+redshift\\.([a-zA-Z0-9\\.]+):\\d{1,5}/[a-zA-Z0-9_$]+"
     },
@@ -232,7 +233,8 @@
         "UNCOMPRESSED",
         "GZIP",
         "ZIP",
-        "Snappy"
+        "Snappy",
+        "HADOOP_SNAPPY"
       ]
     },
     "ConcurrentModificationException":{
@@ -251,7 +253,12 @@
         "CopyOptions":{"shape":"CopyOptions"}
       }
     },
-    "CopyOptions":{"type":"string"},
+    "CopyOptions":{
+      "type":"string",
+      "max":204800,
+      "min":0,
+      "pattern":".*"
+    },
     "CreateDeliveryStreamInput":{
       "type":"structure",
       "required":["DeliveryStreamName"],
@@ -291,10 +298,17 @@
         "Enabled":{"shape":"BooleanObject"}
       }
     },
-    "DataTableColumns":{"type":"string"},
+    "DataTableColumns":{
+      "type":"string",
+      "max":204800,
+      "min":0,
+      "pattern":".*"
+    },
     "DataTableName":{
       "type":"string",
-      "min":1
+      "max":512,
+      "min":1,
+      "pattern":".*"
     },
     "DeleteDeliveryStreamInput":{
       "type":"structure",
@@ -380,6 +394,13 @@
         "INVALID_KMS_KEY",
         "KMS_KEY_NOT_FOUND",
         "KMS_OPT_IN_REQUIRED",
+        "CREATE_ENI_FAILED",
+        "DELETE_ENI_FAILED",
+        "SUBNET_NOT_FOUND",
+        "SECURITY_GROUP_NOT_FOUND",
+        "ENI_ACCESS_DENIED",
+        "SUBNET_ACCESS_DENIED",
+        "SECURITY_GROUP_ACCESS_DENIED",
         "UNKNOWN_ERROR"
       ]
     },
@@ -463,7 +484,8 @@
     "DestinationId":{
       "type":"string",
       "max":100,
-      "min":1
+      "min":1,
+      "pattern":"[a-zA-Z0-9-]+"
     },
     "ElasticsearchBufferingHints":{
       "type":"structure",
@@ -507,7 +529,8 @@
         "S3BackupMode":{"shape":"ElasticsearchS3BackupMode"},
         "S3Configuration":{"shape":"S3DestinationConfiguration"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "VpcConfiguration":{"shape":"VpcConfiguration"}
       }
     },
     "ElasticsearchDestinationDescription":{
@@ -524,7 +547,8 @@
         "S3BackupMode":{"shape":"ElasticsearchS3BackupMode"},
         "S3DestinationDescription":{"shape":"S3DestinationDescription"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "VpcConfigurationDescription":{"shape":"VpcConfigurationDescription"}
       }
     },
     "ElasticsearchDestinationUpdate":{
@@ -552,7 +576,8 @@
     "ElasticsearchIndexName":{
       "type":"string",
       "max":80,
-      "min":1
+      "min":1,
+      "pattern":".*"
     },
     "ElasticsearchIndexRotationPeriod":{
       "type":"string",
@@ -585,7 +610,8 @@
     "ElasticsearchTypeName":{
       "type":"string",
       "max":100,
-      "min":0
+      "min":0,
+      "pattern":".*"
     },
     "EncryptionConfiguration":{
       "type":"structure",
@@ -596,7 +622,12 @@
     },
     "ErrorCode":{"type":"string"},
     "ErrorMessage":{"type":"string"},
-    "ErrorOutputPrefix":{"type":"string"},
+    "ErrorOutputPrefix":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*"
+    },
     "ExtendedS3DestinationConfiguration":{
       "type":"structure",
       "required":[
@@ -675,7 +706,12 @@
       "max":600,
       "min":180
     },
-    "HECEndpoint":{"type":"string"},
+    "HECEndpoint":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":".*"
+    },
     "HECEndpointType":{
       "type":"string",
       "enum":[
@@ -683,7 +719,12 @@
         "Event"
       ]
     },
-    "HECToken":{"type":"string"},
+    "HECToken":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":".*"
+    },
     "HiveJsonSerDe":{
       "type":"structure",
       "members":{
@@ -825,18 +866,32 @@
       "max":50,
       "min":0
     },
-    "LogGroupName":{"type":"string"},
-    "LogStreamName":{"type":"string"},
+    "LogGroupName":{
+      "type":"string",
+      "max":512,
+      "min":0,
+      "pattern":"[\\.\\-_/#A-Za-z0-9]*"
+    },
+    "LogStreamName":{
+      "type":"string",
+      "max":512,
+      "min":0,
+      "pattern":"[^:*]*"
+    },
     "NoEncryptionConfig":{
       "type":"string",
       "enum":["NoEncryption"]
     },
     "NonEmptyString":{
       "type":"string",
+      "max":1024,
+      "min":1,
       "pattern":"^(?!\\s*$).+"
     },
     "NonEmptyStringWithoutWhitespace":{
       "type":"string",
+      "max":1024,
+      "min":1,
       "pattern":"^\\S+$"
     },
     "NonNegativeIntegerObject":{
@@ -927,10 +982,17 @@
     },
     "Password":{
       "type":"string",
+      "max":512,
       "min":6,
+      "pattern":".*",
       "sensitive":true
     },
-    "Prefix":{"type":"string"},
+    "Prefix":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*"
+    },
     "ProcessingConfiguration":{
       "type":"structure",
       "members":{
@@ -978,7 +1040,8 @@
     "ProcessorParameterValue":{
       "type":"string",
       "max":512,
-      "min":1
+      "min":1,
+      "pattern":"^(?!\\s*$).+"
     },
     "ProcessorType":{
       "type":"string",
@@ -1230,6 +1293,12 @@
         "VersionId":{"shape":"NonEmptyStringWithoutWhitespace"}
       }
     },
+    "SecurityGroupIdList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyStringWithoutWhitespace"},
+      "max":5,
+      "min":1
+    },
     "Serializer":{
       "type":"structure",
       "members":{
@@ -1347,6 +1416,12 @@
       "members":{
       }
     },
+    "SubnetIdList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyStringWithoutWhitespace"},
+      "max":16,
+      "min":1
+    },
     "Tag":{
       "type":"structure",
       "required":["Key"],
@@ -1380,7 +1455,8 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"^(?!aws:)[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@%]*$"
     },
     "TagKeyList":{
       "type":"list",
@@ -1391,7 +1467,8 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":0
+      "min":0,
+      "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@%]*$"
     },
     "Timestamp":{"type":"timestamp"},
     "UntagDeliveryStreamInput":{
@@ -1438,8 +1515,38 @@
     },
     "Username":{
       "type":"string",
+      "max":512,
       "min":1,
+      "pattern":".*",
       "sensitive":true
+    },
+    "VpcConfiguration":{
+      "type":"structure",
+      "required":[
+        "SubnetIds",
+        "RoleARN",
+        "SecurityGroupIds"
+      ],
+      "members":{
+        "SubnetIds":{"shape":"SubnetIdList"},
+        "RoleARN":{"shape":"RoleARN"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIdList"}
+      }
+    },
+    "VpcConfigurationDescription":{
+      "type":"structure",
+      "required":[
+        "SubnetIds",
+        "RoleARN",
+        "SecurityGroupIds",
+        "VpcId"
+      ],
+      "members":{
+        "SubnetIds":{"shape":"SubnetIdList"},
+        "RoleARN":{"shape":"RoleARN"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIdList"},
+        "VpcId":{"shape":"NonEmptyStringWithoutWhitespace"}
+      }
     }
   }
 }

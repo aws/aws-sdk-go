@@ -4952,6 +4952,14 @@
         "Rows"
       ]
     },
+    "CampaignCustomMessage": {
+      "type": "structure",
+      "members": {
+        "Data": {
+          "shape": "__string"
+        }
+      }
+    },
     "CampaignDateRangeKpiResponse": {
       "type": "structure",
       "members": {
@@ -5063,6 +5071,9 @@
         },
         "CreationDate": {
           "shape": "__string"
+        },
+        "CustomDeliveryConfiguration": {
+          "shape": "CustomDeliveryConfiguration"
         },
         "DefaultState": {
           "shape": "CampaignState"
@@ -5649,6 +5660,20 @@
         "CreateTemplateMessageBody"
       ],
       "payload": "CreateTemplateMessageBody"
+    },
+    "CustomDeliveryConfiguration": {
+      "type": "structure",
+      "members": {
+        "DeliveryUri": {
+          "shape": "__string"
+        },
+        "EndpointTypes": {
+          "shape": "ListOf__EndpointTypesElement"
+        }
+      },
+      "required": [
+        "DeliveryUri"
+      ]
     },
     "DefaultMessage": {
       "type": "structure",
@@ -9318,6 +9343,9 @@
         "BaiduMessage": {
           "shape": "Message"
         },
+        "CustomMessage": {
+          "shape": "CampaignCustomMessage"
+        },
         "DefaultMessage": {
           "shape": "Message"
         },
@@ -10765,6 +10793,9 @@
     "TreatmentResource": {
       "type": "structure",
       "members": {
+        "CustomDeliveryConfiguration": {
+          "shape": "CustomDeliveryConfiguration"
+        },
         "Id": {
           "shape": "__string"
         },
@@ -11815,6 +11846,9 @@
         "AdditionalTreatments": {
           "shape": "ListOfWriteTreatmentResource"
         },
+        "CustomDeliveryConfiguration": {
+          "shape": "CustomDeliveryConfiguration"
+        },
         "Description": {
           "shape": "__string"
         },
@@ -11940,6 +11974,9 @@
     "WriteTreatmentResource": {
       "type": "structure",
       "members": {
+        "CustomDeliveryConfiguration": {
+          "shape": "CustomDeliveryConfiguration"
+        },
         "MessageConfiguration": {
           "shape": "MessageConfiguration"
         },
@@ -11961,6 +11998,22 @@
       },
       "required": [
         "SizePercent"
+      ]
+    },
+    "__EndpointTypesElement": {
+      "type": "string",
+      "enum": [
+        "GCM",
+        "APNS",
+        "APNS_SANDBOX",
+        "APNS_VOIP",
+        "APNS_VOIP_SANDBOX",
+        "ADM",
+        "SMS",
+        "VOICE",
+        "EMAIL",
+        "BAIDU",
+        "CUSTOM"
       ]
     },
     "__boolean": {
@@ -12102,6 +12155,12 @@
       "type": "list",
       "member": {
         "shape": "WriteTreatmentResource"
+      }
+    },
+    "ListOf__EndpointTypesElement": {
+      "type": "list",
+      "member": {
+        "shape": "__EndpointTypesElement"
       }
     },
     "ListOf__string": {

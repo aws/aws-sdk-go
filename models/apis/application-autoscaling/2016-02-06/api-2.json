@@ -432,7 +432,9 @@
         "ECSServiceAverageMemoryUtilization",
         "AppStreamAverageCapacityUtilization",
         "ComprehendInferenceUtilization",
-        "LambdaProvisionedConcurrencyUtilization"
+        "LambdaProvisionedConcurrencyUtilization",
+        "CassandraReadCapacityUtilization",
+        "CassandraWriteCapacityUtilization"
       ]
     },
     "MetricUnit":{"type":"string"},
@@ -572,7 +574,9 @@
         "sagemaker:variant:DesiredInstanceCount",
         "custom-resource:ResourceType:Property",
         "comprehend:document-classifier-endpoint:DesiredInferenceUnits",
-        "lambda:function:ProvisionedConcurrency"
+        "lambda:function:ProvisionedConcurrency",
+        "cassandra:table:ReadCapacityUnits",
+        "cassandra:table:WriteCapacityUnits"
       ]
     },
     "ScalableTarget":{
@@ -724,7 +728,8 @@
         "sagemaker",
         "custom-resource",
         "comprehend",
-        "lambda"
+        "lambda",
+        "cassandra"
       ]
     },
     "StepAdjustment":{
