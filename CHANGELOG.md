@@ -1,3 +1,12 @@
+Release v1.30.14 (2020-04-24)
+===
+
+### Service Client Updates
+* `service/dlm`: Updates service documentation
+* `service/elastic-inference`: Updates service API, documentation, and paginators
+* `service/iot`: Updates service API
+  * This release adds a new exception type to the AWS IoT SetV2LoggingLevel API.
+
 Release v1.30.13 (2020-04-23)
 ===
 
