@@ -112269,6 +112269,9 @@ const (
 	// TransitGatewayAttachmentStateInitiating is a TransitGatewayAttachmentState enum value
 	TransitGatewayAttachmentStateInitiating = "initiating"
 
+	// TransitGatewayAttachmentStateInitiatingRequest is a TransitGatewayAttachmentState enum value
+	TransitGatewayAttachmentStateInitiatingRequest = "initiatingRequest"
+
 	// TransitGatewayAttachmentStatePendingAcceptance is a TransitGatewayAttachmentState enum value
 	TransitGatewayAttachmentStatePendingAcceptance = "pendingAcceptance"
 
