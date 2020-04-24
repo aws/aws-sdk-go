@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Elastic  Inference.
 //    func myFunc(svc elasticinferenceiface.ElasticInferenceAPI) bool {
-//        // Make svc.ListTagsForResource request
+//        // Make svc.DescribeAcceleratorOfferings request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockElasticInferenceClient struct {
 //        elasticinferenceiface.ElasticInferenceAPI
 //    }
-//    func (m *mockElasticInferenceClient) ListTagsForResource(input *elasticinference.ListTagsForResourceInput) (*elasticinference.ListTagsForResourceOutput, error) {
+//    func (m *mockElasticInferenceClient) DescribeAcceleratorOfferings(input *elasticinference.DescribeAcceleratorOfferingsInput) (*elasticinference.DescribeAcceleratorOfferingsOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,21 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type ElasticInferenceAPI interface {
+	DescribeAcceleratorOfferings(*elasticinference.DescribeAcceleratorOfferingsInput) (*elasticinference.DescribeAcceleratorOfferingsOutput, error)
+	DescribeAcceleratorOfferingsWithContext(aws.Context, *elasticinference.DescribeAcceleratorOfferingsInput, ...request.Option) (*elasticinference.DescribeAcceleratorOfferingsOutput, error)
+	DescribeAcceleratorOfferingsRequest(*elasticinference.DescribeAcceleratorOfferingsInput) (*request.Request, *elasticinference.DescribeAcceleratorOfferingsOutput)
+
+	DescribeAcceleratorTypes(*elasticinference.DescribeAcceleratorTypesInput) (*elasticinference.DescribeAcceleratorTypesOutput, error)
+	DescribeAcceleratorTypesWithContext(aws.Context, *elasticinference.DescribeAcceleratorTypesInput, ...request.Option) (*elasticinference.DescribeAcceleratorTypesOutput, error)
+	DescribeAcceleratorTypesRequest(*elasticinference.DescribeAcceleratorTypesInput) (*request.Request, *elasticinference.DescribeAcceleratorTypesOutput)
+
+	DescribeAccelerators(*elasticinference.DescribeAcceleratorsInput) (*elasticinference.DescribeAcceleratorsOutput, error)
+	DescribeAcceleratorsWithContext(aws.Context, *elasticinference.DescribeAcceleratorsInput, ...request.Option) (*elasticinference.DescribeAcceleratorsOutput, error)
+	DescribeAcceleratorsRequest(*elasticinference.DescribeAcceleratorsInput) (*request.Request, *elasticinference.DescribeAcceleratorsOutput)
+
+	DescribeAcceleratorsPages(*elasticinference.DescribeAcceleratorsInput, func(*elasticinference.DescribeAcceleratorsOutput, bool) bool) error
+	DescribeAcceleratorsPagesWithContext(aws.Context, *elasticinference.DescribeAcceleratorsInput, func(*elasticinference.DescribeAcceleratorsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*elasticinference.ListTagsForResourceInput) (*elasticinference.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *elasticinference.ListTagsForResourceInput, ...request.Option) (*elasticinference.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*elasticinference.ListTagsForResourceInput) (*request.Request, *elasticinference.ListTagsForResourceOutput)
