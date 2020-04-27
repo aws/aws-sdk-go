@@ -168,6 +168,13 @@
         "ResponseDetails$ExportAssetsToS3" : "<p>Details for the export to Amazon S3 response.</p>"
       }
     },
+    "ExportServerSideEncryption" : {
+      "base" : "<p>Encryption configuration of the export job. Includes the encryption type as well as the AWS KMS key. The KMS key is only necessary if you chose the KMS encryption type.</p>",
+      "refs" : {
+        "ExportAssetsToS3RequestDetails$Encryption" : "<p>Encryption configuration for the export job.</p>",
+        "ExportAssetsToS3ResponseDetails$Encryption" : "<p>Encryption configuration of the export job.</p>"
+      }
+    },
     "Id" : {
       "base" : "<p>A unique identifier.</p>",
       "refs" : {
@@ -391,6 +398,12 @@
         "AssetDetails$S3SnapshotAsset" : null
       }
     },
+    "ServerSideEncryptionTypes" : {
+      "base" : "<p>The types of encryption supported in export jobs to Amazon S3.</p>",
+      "refs" : {
+        "ExportServerSideEncryption$Type" : "<p>The type of server side encryption used for encrypting the objects in Amazon S3.</p>"
+      }
+    },
     "ServiceLimitExceededException" : {
       "base" : "<p>The request has exceeded the quotas imposed by the service.</p>",
       "refs" : { }
@@ -547,10 +560,11 @@
         "ConflictException$Message" : "<p>The request couldn't be completed because it conflicted with the current state of the resource.</p>",
         "ConflictException$ResourceId" : "<p>The unique identifier for the resource with the conflict.</p>",
         "ExportAssetToSignedUrlResponseDetails$SignedUrl" : "<p>The signed URL for the export request.</p>",
+        "ExportServerSideEncryption$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the the AWS KMS key you want to use to encrypt the Amazon S3 objects. This parameter is required if you choose aws:kms as an encryption type.</p>",
         "ImportAssetFromSignedUrlResponseDetails$SignedUrl" : "<p>The signed URL.</p>",
         "InternalServerException$Message" : "The message identifying the service exception that occurred.",
         "JobError$Message" : "The message related to the job error.",
-        "JobError$ResourceId" : "The unqiue identifier for the resource related to the error.",
+        "JobError$ResourceId" : "The unique identifier for the resource related to the error.",
         "OriginDetails$ProductId" : null,
         "ResourceNotFoundException$Message" : "<p>The resource couldn't be found.</p>",
         "ResourceNotFoundException$ResourceId" : "<p>The unique identifier for the resource that couldn't be found.</p>",

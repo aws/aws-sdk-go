@@ -589,6 +589,7 @@
         "resource":{"shape":"String"},
         "resourceOwnerAccount":{"shape":"String"},
         "resourceType":{"shape":"ResourceType"},
+        "sources":{"shape":"FindingSourceList"},
         "status":{"shape":"FindingStatus"},
         "updatedAt":{"shape":"Timestamp"}
       }
@@ -597,6 +598,32 @@
     "FindingIdList":{
       "type":"list",
       "member":{"shape":"FindingId"}
+    },
+    "FindingSource":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "detail":{"shape":"FindingSourceDetail"},
+        "type":{"shape":"FindingSourceType"}
+      }
+    },
+    "FindingSourceDetail":{
+      "type":"structure",
+      "members":{
+        "accessPointArn":{"shape":"String"}
+      }
+    },
+    "FindingSourceList":{
+      "type":"list",
+      "member":{"shape":"FindingSource"}
+    },
+    "FindingSourceType":{
+      "type":"string",
+      "enum":[
+        "BUCKET_ACL",
+        "POLICY",
+        "S3_ACCESS_POINT"
+      ]
     },
     "FindingStatus":{
       "type":"string",
@@ -637,6 +664,7 @@
         "resource":{"shape":"String"},
         "resourceOwnerAccount":{"shape":"String"},
         "resourceType":{"shape":"ResourceType"},
+        "sources":{"shape":"FindingSourceList"},
         "status":{"shape":"FindingStatus"},
         "updatedAt":{"shape":"Timestamp"}
       }

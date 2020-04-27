@@ -1,3 +1,14 @@
+Release v1.30.15 (2020-04-27)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/dataexchange`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * Adding minimum replication engine version for describe-endpoint-types api.
+* `service/sagemaker`: Updates service API and documentation
+  * Change to the input, ResourceSpec, changing EnvironmentArn to SageMakerImageArn. This affects the following preview APIs: CreateDomain, DescribeDomain, UpdateDomain, CreateUserProfile, DescribeUserProfile, UpdateUserProfile, CreateApp and DescribeApp.
+
 Release v1.30.14 (2020-04-24)
 ===
 
