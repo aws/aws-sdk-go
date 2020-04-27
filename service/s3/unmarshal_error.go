@@ -96,10 +96,10 @@ type RequestFailure interface {
 }
 
 // s3unmarshalXMLError is s3 specific xml error unmarshaler
-// for 200 response payloads.
+// for 200 OK errors and response payloads.
 // This function differs from the xmlUtil.UnmarshalXMLError
-// func as it does not ignore the EOF error and passes it up.
-// Related to bug fix for `s3 200 response with empty payload`
+// func. It does not ignore the EOF error and passes it up.
+// Related to bug fix for `s3 200 OK response with empty payload`
 func s3unmarshalXMLError(v interface{}, stream io.Reader) error {
 	var errBuf bytes.Buffer
 	body := io.TeeReader(stream, &errBuf)
