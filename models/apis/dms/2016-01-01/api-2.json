@@ -801,6 +801,7 @@
         "KinesisSettings":{"shape":"KinesisSettings"},
         "KafkaSettings":{"shape":"KafkaSettings"},
         "ElasticsearchSettings":{"shape":"ElasticsearchSettings"},
+        "NeptuneSettings":{"shape":"NeptuneSettings"},
         "RedshiftSettings":{"shape":"RedshiftSettings"}
       }
     },
@@ -902,7 +903,8 @@
         "CdcStartTime":{"shape":"TStamp"},
         "CdcStartPosition":{"shape":"String"},
         "CdcStopPosition":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "TaskData":{"shape":"String"}
       }
     },
     "CreateReplicationTaskResponse":{
@@ -1368,6 +1370,7 @@
         "KinesisSettings":{"shape":"KinesisSettings"},
         "KafkaSettings":{"shape":"KafkaSettings"},
         "ElasticsearchSettings":{"shape":"ElasticsearchSettings"},
+        "NeptuneSettings":{"shape":"NeptuneSettings"},
         "RedshiftSettings":{"shape":"RedshiftSettings"}
       }
     },
@@ -1608,6 +1611,7 @@
         "KinesisSettings":{"shape":"KinesisSettings"},
         "KafkaSettings":{"shape":"KafkaSettings"},
         "ElasticsearchSettings":{"shape":"ElasticsearchSettings"},
+        "NeptuneSettings":{"shape":"NeptuneSettings"},
         "RedshiftSettings":{"shape":"RedshiftSettings"}
       }
     },
@@ -1686,7 +1690,8 @@
         "ReplicationTaskSettings":{"shape":"String"},
         "CdcStartTime":{"shape":"TStamp"},
         "CdcStartPosition":{"shape":"String"},
-        "CdcStopPosition":{"shape":"String"}
+        "CdcStopPosition":{"shape":"String"},
+        "TaskData":{"shape":"String"}
       }
     },
     "ModifyReplicationTaskResponse":{
@@ -1710,6 +1715,22 @@
         "DocsToInvestigate":{"shape":"String"},
         "AuthSource":{"shape":"String"},
         "KmsKeyId":{"shape":"String"}
+      }
+    },
+    "NeptuneSettings":{
+      "type":"structure",
+      "required":[
+        "S3BucketName",
+        "S3BucketFolder"
+      ],
+      "members":{
+        "ServiceAccessRoleArn":{"shape":"String"},
+        "S3BucketName":{"shape":"String"},
+        "S3BucketFolder":{"shape":"String"},
+        "ErrorRetryDuration":{"shape":"IntegerOptional"},
+        "MaxFileSize":{"shape":"IntegerOptional"},
+        "MaxRetryCount":{"shape":"IntegerOptional"},
+        "IamAuthEnabled":{"shape":"BooleanOptional"}
       }
     },
     "NestingLevelValue":{
@@ -2001,7 +2022,8 @@
         "CdcStopPosition":{"shape":"String"},
         "RecoveryCheckpoint":{"shape":"String"},
         "ReplicationTaskArn":{"shape":"String"},
-        "ReplicationTaskStats":{"shape":"ReplicationTaskStats"}
+        "ReplicationTaskStats":{"shape":"ReplicationTaskStats"},
+        "TaskData":{"shape":"String"}
       }
     },
     "ReplicationTaskAssessmentResult":{
@@ -2217,6 +2239,7 @@
         "EngineName":{"shape":"String"},
         "SupportsCDC":{"shape":"Boolean"},
         "EndpointType":{"shape":"ReplicationEndpointTypeValue"},
+        "ReplicationInstanceEngineMinimumVersion":{"shape":"String"},
         "EngineDisplayName":{"shape":"String"}
       }
     },

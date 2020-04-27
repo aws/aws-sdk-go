@@ -4433,11 +4433,6 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
     },
-    "EnvironmentArn":{
-      "type":"string",
-      "max":256,
-      "pattern":"^arn:aws(-[\\w]+)*:sagemaker:.+:[0-9]{12}:environment/[a-z0-9]([-.]?[a-z0-9])*$"
-    },
     "EnvironmentKey":{
       "type":"string",
       "max":1024,
@@ -7590,7 +7585,7 @@
     "ResourceSpec":{
       "type":"structure",
       "members":{
-        "EnvironmentArn":{"shape":"EnvironmentArn"},
+        "SageMakerImageArn":{"shape":"SageMakerImageArn"},
         "InstanceType":{"shape":"AppInstanceType"}
       }
     },
@@ -7694,6 +7689,11 @@
       "type":"string",
       "max":1024,
       "pattern":"^(https|s3)://([^/]+)/?(.*)$"
+    },
+    "SageMakerImageArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"^arn:aws(-[\\w]+)*:sagemaker:.+:[0-9]{12}:image/[a-z0-9]([-.]?[a-z0-9])*$"
     },
     "SamplingPercentage":{
       "type":"integer",

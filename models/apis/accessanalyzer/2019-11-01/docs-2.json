@@ -181,6 +181,31 @@
         "UpdateFindingsRequest$ids": "<p>The IDs of the findings to update.</p>"
       }
     },
+    "FindingSource": {
+      "base": "<p>The source of the finding. This indicates how the access that generated the finding is granted. It is populated for Amazon S3 bucket findings.</p>",
+      "refs": {
+        "FindingSourceList$member": null
+      }
+    },
+    "FindingSourceDetail": {
+      "base": "<p>Includes details about how the access that generated the finding is granted. This is populated for Amazon S3 bucket findings.</p>",
+      "refs": {
+        "FindingSource$detail": "<p>Includes details about how the access that generated the finding is granted. This is populated for Amazon S3 bucket findings.</p>"
+      }
+    },
+    "FindingSourceList": {
+      "base": null,
+      "refs": {
+        "Finding$sources": "<p>The sources of the finding. This indicates how the access that generated the finding is granted. It is populated for Amazon S3 bucket findings.</p>",
+        "FindingSummary$sources": "<p>The sources of the finding. This indicates how the access that generated the finding is granted. It is populated for Amazon S3 bucket findings.</p>"
+      }
+    },
+    "FindingSourceType": {
+      "base": null,
+      "refs": {
+        "FindingSource$type": "<p>Indicates the type of access that generated the finding.</p>"
+      }
+    },
     "FindingStatus": {
       "base": null,
       "refs": {
@@ -397,7 +422,7 @@
     "SharedViaList": {
       "base": null,
       "refs": {
-        "AnalyzedResource$sharedVia": "<p>Indicates how the access that generated the finding is granted.</p>"
+        "AnalyzedResource$sharedVia": "<p>Indicates how the access that generated the finding is granted. This is populated for Amazon S3 bucket findings.</p>"
       }
     },
     "SortCriteria": {
@@ -439,6 +464,7 @@
         "Finding$error": "<p>An error.</p>",
         "Finding$resource": "<p>The resource that an external principal has access to.</p>",
         "Finding$resourceOwnerAccount": "<p>The AWS account ID that owns the resource.</p>",
+        "FindingSourceDetail$accessPointArn": "<p>The ARN of the access point that generated the finding.</p>",
         "FindingSummary$error": "<p>The error that resulted in an Error finding.</p>",
         "FindingSummary$resource": "<p>The resource that the external principal has access to.</p>",
         "FindingSummary$resourceOwnerAccount": "<p>The AWS account ID that owns the resource.</p>",
