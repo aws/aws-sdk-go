@@ -1,3 +1,22 @@
+Release v1.30.16 (2020-04-28)
+===
+
+### Service Client Updates
+* `service/ecr`: Updates service API and documentation
+  * This release adds support for multi-architecture images also known as a manifest list
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+* `service/kinesisvideo`: Updates service API and documentation
+  * Add "GET_CLIP" to the list of supported API names for the GetDataEndpoint API.
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports several new features: enhanced VQ for H.264 (AVC) output encodes; passthrough of timed metadata and of Nielsen ID3 metadata in fMP4 containers in HLS outputs; the ability to generate a SCTE-35 sparse track without additional segmentation, in Microsoft Smooth outputs;  the ability to select the audio from a TS input by specifying the audio track; and conversion of HDR colorspace in the input to an SDR colorspace in the output.
+* `service/route53`: Updates service API, documentation, and paginators
+  * Amazon Route 53 now supports the Africa (Cape Town) Region (af-south-1) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+* `service/ssm`: Updates service API and documentation
+  * SSM State Manager support for adding list association filter for Resource Group and manual mode of managing compliance for an association.
+
+### SDK Bugs
+* `service/s3`: Fix S3 client behavior wrt 200 OK response with empty payload
+
 Release v1.30.15 (2020-04-27)
 ===
 

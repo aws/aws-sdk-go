@@ -6,10 +6,10 @@
     "CreateStream": "<p>Creates a new Kinesis video stream. </p> <p>When you create a new stream, Kinesis Video Streams assigns it a version number. When you change the stream's metadata, Kinesis Video Streams updates the version. </p> <p> <code>CreateStream</code> is an asynchronous operation.</p> <p>For information about how the service works, see <a href=\"https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-it-works.html\">How it Works</a>. </p> <p>You must have permissions for the <code>KinesisVideo:CreateStream</code> action.</p>",
     "DeleteSignalingChannel": "<p>Deletes a specified signaling channel. <code>DeleteSignalingChannel</code> is an asynchronous operation. If you don't specify the channel's current version, the most recent version is deleted.</p>",
     "DeleteStream": "<p>Deletes a Kinesis video stream and the data contained in the stream. </p> <p>This method marks the stream for deletion, and makes the data in the stream inaccessible immediately.</p> <p> </p> <p> To ensure that you have the latest version of the stream before deleting it, you can specify the stream version. Kinesis Video Streams assigns a version to each stream. When you update a stream, Kinesis Video Streams assigns a new version number. To get the latest stream version, use the <code>DescribeStream</code> API. </p> <p>This operation requires permission for the <code>KinesisVideo:DeleteStream</code> action.</p>",
-    "DescribeSignalingChannel": "<p>Returns the most current information about the signaling channel. You must specify either the name or the ARN of the channel that you want to describe.</p>",
+    "DescribeSignalingChannel": "<p>Returns the most current information about the signaling channel. You must specify either the name or the Amazon Resource Name (ARN) of the channel that you want to describe.</p>",
     "DescribeStream": "<p>Returns the most current information about the specified stream. You must specify either the <code>StreamName</code> or the <code>StreamARN</code>. </p>",
     "GetDataEndpoint": "<p>Gets an endpoint for a specified stream for either reading or writing. Use this endpoint in your application to read from the specified stream (using the <code>GetMedia</code> or <code>GetMediaForFragmentList</code> operations) or write to it (using the <code>PutMedia</code> operation). </p> <note> <p>The returned endpoint does not have the API name appended. The client needs to add the API name to the returned endpoint.</p> </note> <p>In the request, specify the stream either by <code>StreamName</code> or <code>StreamARN</code>.</p>",
-    "GetSignalingChannelEndpoint": "<p>Provides an endpoint for the specified signaling channel to send and receive messages. This API uses the <code>SingleMasterChannelEndpointConfiguration</code> input parameter, which consists of the <code>Protocols</code> and <code>Role</code> properties.</p> <p> <code>Protocols</code> is used to determine the communication mechanism. For example, specifying <code>WSS</code> as the protocol, results in this API producing a secure websocket endpoint, and specifying <code>HTTPS</code> as the protocol, results in this API generating an HTTPS endpoint. </p> <p> <code>Role</code> determines the messaging permissions. A <code>MASTER</code> role results in this API generating an endpoint that a client can use to communicate with any of the viewers on the channel. A <code>VIEWER</code> role results in this API generating an endpoint that a client can use to communicate only with a <code>MASTER</code>. </p>",
+    "GetSignalingChannelEndpoint": "<p>Provides an endpoint for the specified signaling channel to send and receive messages. This API uses the <code>SingleMasterChannelEndpointConfiguration</code> input parameter, which consists of the <code>Protocols</code> and <code>Role</code> properties.</p> <p> <code>Protocols</code> is used to determine the communication mechanism. For example, if you specify <code>WSS</code> as the protocol, this API produces a secure websocket endpoint. If you specify <code>HTTPS</code> as the protocol, this API generates an HTTPS endpoint. </p> <p> <code>Role</code> determines the messaging permissions. A <code>MASTER</code> role results in this API generating an endpoint that a client can use to communicate with any of the viewers on the channel. A <code>VIEWER</code> role results in this API generating an endpoint that a client can use to communicate only with a <code>MASTER</code>. </p>",
     "ListSignalingChannels": "<p>Returns an array of <code>ChannelInfo</code> objects. Each object describes a signaling channel. To retrieve only those channels that satisfy a specific condition, you can specify a <code>ChannelNameCondition</code>.</p>",
     "ListStreams": "<p>Returns an array of <code>StreamInfo</code> objects. Each object describes a stream. To retrieve only streams that satisfy a specific condition, you can specify a <code>StreamNameCondition</code>. </p>",
     "ListTagsForResource": "<p>Returns a list of tags associated with the specified signaling channel.</p>",
@@ -19,7 +19,7 @@
     "UntagResource": "<p>Removes one or more tags from a signaling channel. In the request, specify only a tag key or keys; don't specify the value. If you specify a tag key that does not exist, it's ignored.</p>",
     "UntagStream": "<p>Removes one or more tags from a stream. In the request, specify only a tag key or keys; don't specify the value. If you specify a tag key that does not exist, it's ignored.</p> <p>In the request, you must provide the <code>StreamName</code> or <code>StreamARN</code>.</p>",
     "UpdateDataRetention": "<p> Increases or decreases the stream's data retention period by the value that you specify. To indicate whether you want to increase or decrease the data retention period, specify the <code>Operation</code> parameter in the request body. In the request, you must specify either the <code>StreamName</code> or the <code>StreamARN</code>. </p> <note> <p>The retention period that you specify replaces the current value.</p> </note> <p>This operation requires permission for the <code>KinesisVideo:UpdateDataRetention</code> action.</p> <p>Changing the data retention period affects the data in the stream as follows:</p> <ul> <li> <p>If the data retention period is increased, existing data is retained for the new retention period. For example, if the data retention period is increased from one hour to seven hours, all existing data is retained for seven hours.</p> </li> <li> <p>If the data retention period is decreased, existing data is retained for the new retention period. For example, if the data retention period is decreased from seven hours to one hour, all existing data is retained for one hour, and any data older than one hour is deleted immediately.</p> </li> </ul>",
-    "UpdateSignalingChannel": "<p>Updates the existing signaling channel. This is an asynchronous operation and takes time to complete. </p> <p>If the <code>MessageTtlSeconds</code> value is updated (either increased or reduced), then it only applies to new messages sent via this channel after it's been updated. Existing messages are still expire as per the previous <code>MessageTtlSeconds</code> value.</p>",
+    "UpdateSignalingChannel": "<p>Updates the existing signaling channel. This is an asynchronous operation and takes time to complete. </p> <p>If the <code>MessageTtlSeconds</code> value is updated (either increased or reduced), it only applies to new messages sent via this channel after it's been updated. Existing messages are still expired as per the previous <code>MessageTtlSeconds</code> value.</p>",
     "UpdateStream": "<p>Updates stream metadata, such as the device name and media type.</p> <p>You must provide the stream name or the Amazon Resource Name (ARN) of the stream.</p> <p>To make sure that you have the latest version of the stream before updating it, you can specify the stream version. Kinesis Video Streams assigns a version to each stream. When you update a stream, Kinesis Video Streams assigns a new version number. To get the latest stream version, use the <code>DescribeStream</code> API. </p> <p> <code>UpdateStream</code> is an asynchronous operation, and takes time to complete.</p>"
   },
   "shapes": {
@@ -62,7 +62,7 @@
       "refs": {
         "ChannelInfo$ChannelName": "<p>The name of the signaling channel.</p>",
         "ChannelNameCondition$ComparisonValue": "<p>A value to compare.</p>",
-        "CreateSignalingChannelInput$ChannelName": "<p>A name for the signaling channel that you are creating. It must be unique for each account and region.</p>",
+        "CreateSignalingChannelInput$ChannelName": "<p>A name for the signaling channel that you are creating. It must be unique for each AWS account and AWS Region.</p>",
         "DescribeSignalingChannelInput$ChannelName": "<p>The name of the signaling channel that you want to describe.</p>"
       }
     },
@@ -330,8 +330,8 @@
         "ListSignalingChannelsOutput$NextToken": "<p>If the response is truncated, the call returns this element with a token. To get the next batch of streams, use this token in your next request.</p>",
         "ListStreamsInput$NextToken": "<p>If you specify this parameter, when the result of a <code>ListStreams</code> operation is truncated, the call returns the <code>NextToken</code> in the response. To get another batch of streams, provide this token in your next request.</p>",
         "ListStreamsOutput$NextToken": "<p>If the response is truncated, the call returns this element with a token. To get the next batch of streams, use this token in your next request. </p>",
-        "ListTagsForResourceInput$NextToken": "<p>If you specify this parameter and the result of a ListTagsForResource call is truncated, the response includes a token that you can use in the next request to fetch the next batch of tags. </p>",
-        "ListTagsForResourceOutput$NextToken": "<p>If you specify this parameter and the result of a ListTagsForResource call is truncated, the response includes a token that you can use in the next request to fetch the next set of tags. </p>",
+        "ListTagsForResourceInput$NextToken": "<p>If you specify this parameter and the result of a <code>ListTagsForResource</code> call is truncated, the response includes a token that you can use in the next request to fetch the next batch of tags. </p>",
+        "ListTagsForResourceOutput$NextToken": "<p>If you specify this parameter and the result of a <code>ListTagsForResource</code> call is truncated, the response includes a token that you can use in the next request to fetch the next set of tags. </p>",
         "ListTagsForStreamInput$NextToken": "<p>If you specify this parameter and the result of a <code>ListTagsForStream</code> call is truncated, the response includes a token that you can use in the next request to fetch the next batch of tags.</p>",
         "ListTagsForStreamOutput$NextToken": "<p>If you specify this parameter and the result of a <code>ListTags</code> call is truncated, the response includes a token that you can use in the next request to fetch the next set of tags.</p>"
       }
@@ -344,24 +344,24 @@
     "ResourceARN": {
       "base": null,
       "refs": {
-        "ChannelInfo$ChannelARN": "<p>The ARN of the signaling channel.</p>",
-        "CreateSignalingChannelOutput$ChannelARN": "<p>The ARN of the created channel.</p>",
+        "ChannelInfo$ChannelARN": "<p>The Amazon Resource Name (ARN) of the signaling channel.</p>",
+        "CreateSignalingChannelOutput$ChannelARN": "<p>The Amazon Resource Name (ARN) of the created channel.</p>",
         "CreateStreamOutput$StreamARN": "<p>The Amazon Resource Name (ARN) of the stream.</p>",
-        "DeleteSignalingChannelInput$ChannelARN": "<p>The ARN of the signaling channel that you want to delete.</p>",
+        "DeleteSignalingChannelInput$ChannelARN": "<p>The Amazon Resource Name (ARN) of the signaling channel that you want to delete.</p>",
         "DeleteStreamInput$StreamARN": "<p>The Amazon Resource Name (ARN) of the stream that you want to delete. </p>",
         "DescribeSignalingChannelInput$ChannelARN": "<p>The ARN of the signaling channel that you want to describe.</p>",
         "DescribeStreamInput$StreamARN": "<p>The Amazon Resource Name (ARN) of the stream.</p>",
         "GetDataEndpointInput$StreamARN": "<p>The Amazon Resource Name (ARN) of the stream that you want to get the endpoint for. You must specify either this parameter or a <code>StreamName</code> in the request. </p>",
-        "GetSignalingChannelEndpointInput$ChannelARN": "<p>The ARN of the signalling channel for which you want to get an endpoint.</p>",
-        "ListTagsForResourceInput$ResourceARN": "<p>The ARN of the signaling channel for which you want to list tags.</p>",
+        "GetSignalingChannelEndpointInput$ChannelARN": "<p>The Amazon Resource Name (ARN) of the signalling channel for which you want to get an endpoint.</p>",
+        "ListTagsForResourceInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the signaling channel for which you want to list tags.</p>",
         "ListTagsForStreamInput$StreamARN": "<p>The Amazon Resource Name (ARN) of the stream that you want to list tags for.</p>",
         "StreamInfo$StreamARN": "<p>The Amazon Resource Name (ARN) of the stream.</p>",
-        "TagResourceInput$ResourceARN": "<p>The ARN of the signaling channel to which you want to add tags.</p>",
+        "TagResourceInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the signaling channel to which you want to add tags.</p>",
         "TagStreamInput$StreamARN": "<p>The Amazon Resource Name (ARN) of the resource that you want to add the tag or tags to.</p>",
-        "UntagResourceInput$ResourceARN": "<p>The ARN of the signaling channel from which you want to remove tags.</p>",
+        "UntagResourceInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the signaling channel from which you want to remove tags.</p>",
         "UntagStreamInput$StreamARN": "<p>The Amazon Resource Name (ARN) of the stream that you want to remove tags from.</p>",
         "UpdateDataRetentionInput$StreamARN": "<p>The Amazon Resource Name (ARN) of the stream whose retention period you want to change.</p>",
-        "UpdateSignalingChannelInput$ChannelARN": "<p>The ARN of the signaling channel that you want to update.</p>",
+        "UpdateSignalingChannelInput$ChannelARN": "<p>The Amazon Resource Name (ARN) of the signaling channel that you want to update.</p>",
         "UpdateStreamInput$StreamARN": "<p>The ARN of the stream whose metadata you want to update.</p>"
       }
     },
@@ -384,7 +384,7 @@
       }
     },
     "ResourceInUseException": {
-      "base": "<p>The stream is currently not available for this operation.</p>",
+      "base": "<p>The signaling channel is currently not available for this operation.</p>",
       "refs": {
       }
     },
@@ -488,7 +488,7 @@
     "TagOnCreateList": {
       "base": null,
       "refs": {
-        "CreateSignalingChannelInput$Tags": "<p>A set of tags (key/value pairs) that you want to associate with this channel.</p>"
+        "CreateSignalingChannelInput$Tags": "<p>A set of tags (key-value pairs) that you want to associate with this channel.</p>"
       }
     },
     "TagResourceInput": {
@@ -590,7 +590,7 @@
       "base": null,
       "refs": {
         "ChannelInfo$Version": "<p>The current version of the signaling channel.</p>",
-        "DeleteSignalingChannelInput$CurrentVersion": "<p>The current version of the signaling channel that you want to delete. You can obtain the current version by invoking the <code>DescribeSignalingChannel</code> or <code>ListSignalingChannels</code> APIs.</p>",
+        "DeleteSignalingChannelInput$CurrentVersion": "<p>The current version of the signaling channel that you want to delete. You can obtain the current version by invoking the <code>DescribeSignalingChannel</code> or <code>ListSignalingChannels</code> API operations.</p>",
         "DeleteStreamInput$CurrentVersion": "<p>Optional: The version of the stream that you want to delete. </p> <p>Specify the version as a safeguard to ensure that your are deleting the correct stream. To get the stream version, use the <code>DescribeStream</code> API.</p> <p>If not specified, only the <code>CreationTime</code> is checked before deleting the stream.</p>",
         "StreamInfo$Version": "<p>The version of the stream.</p>",
         "UpdateDataRetentionInput$CurrentVersion": "<p>The version of the stream whose retention period you want to change. To get the version, call either the <code>DescribeStream</code> or the <code>ListStreams</code> API.</p>",

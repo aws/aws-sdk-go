@@ -14,6 +14,12 @@
       "output_token": "NextMarker",
       "result_key": "HostedZones"
     },
+    "ListQueryLoggingConfigs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "QueryLoggingConfigs"
+    },
     "ListResourceRecordSets": {
       "input_token": [
         "StartRecordName",
