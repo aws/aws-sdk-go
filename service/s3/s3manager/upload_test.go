@@ -33,6 +33,14 @@ import (
 
 var emptyList = []string{}
 
+const respMsg = `<?xml version="1.0" encoding="UTF-8"?>
+<CompleteMultipartUploadOutput>
+   <Location>mockValue</Location>
+   <Bucket>mockValue</Bucket>
+   <Key>mockValue</Key>
+   <ETag>mockValue</ETag>
+</CompleteMultipartUploadOutput>`
+
 func val(i interface{}, s string) interface{} {
 	v, err := awsutil.ValuesAtPath(i, s)
 	if err != nil || len(v) == 0 {
@@ -79,7 +87,7 @@ func loggingSvc(ignoreOps []string) (*s3.S3, *[]string, *[]interface{}) {
 
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
-			Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+			Body:       ioutil.NopCloser(bytes.NewReader([]byte(respMsg))),
 		}
 
 		switch data := r.Data.(type) {
@@ -935,7 +943,7 @@ func TestSSE(t *testing.T) {
 		defer mutex.Unlock()
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
-			Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+			Body:       ioutil.NopCloser(bytes.NewReader([]byte(respMsg))),
 		}
 		switch data := r.Data.(type) {
 		case *s3.CreateMultipartUploadOutput:
@@ -1190,7 +1198,7 @@ func TestUploadBufferStrategy(t *testing.T) {
 
 				r.HTTPResponse = &http.Response{
 					StatusCode: 200,
-					Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+					Body:       ioutil.NopCloser(bytes.NewReader([]byte(respMsg))),
 				}
 
 				switch data := r.Data.(type) {

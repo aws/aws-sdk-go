@@ -1,3 +1,5 @@
+// +build go1.7
+
 package s3_test
 
 import (
@@ -5,6 +7,8 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"net/http/httptest"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -18,6 +22,7 @@ import (
 )
 
 const errMsg = `<Error><Code>ErrorCode</Code><Message>message body</Message><RequestId>requestID</RequestId><HostId>hostID=</HostId></Error>`
+const xmlPreambleMsg = `<?xml version="1.0" encoding="UTF-8"?>`
 
 var lastModifiedTime = time.Date(2009, 11, 23, 0, 0, 0, 0, time.UTC)
 
@@ -183,4 +188,157 @@ func newCopyTestSvc(errMsg string) *s3.S3 {
 		})
 
 	return svc
+}
+
+func TestStatusOKPayloadHandling(t *testing.T) {
+	cases := map[string]struct {
+		Header   http.Header
+		Payloads [][]byte
+		OpCall   func(*s3.S3) error
+		Err      string
+	}{
+		"200 error": {
+			Header: http.Header{
+				"Content-Length": []string{strconv.Itoa(len(errMsg))},
+			},
+			Payloads: [][]byte{[]byte(errMsg)},
+			OpCall: func(c *s3.S3) error {
+				_, err := c.CopyObject(&s3.CopyObjectInput{
+					Bucket:     aws.String("bucketname"),
+					CopySource: aws.String("bucketname/doesnotexist.txt"),
+					Key:        aws.String("destination.txt"),
+				})
+				return err
+			},
+			Err: "ErrorCode: message body",
+		},
+		"200 error partial response": {
+			Header: http.Header{
+				"Content-Length": []string{strconv.Itoa(len(errMsg))},
+			},
+			Payloads: [][]byte{
+				[]byte(errMsg[:20]),
+			},
+			OpCall: func(c *s3.S3) error {
+				_, err := c.CopyObject(&s3.CopyObjectInput{
+					Bucket:     aws.String("bucketname"),
+					CopySource: aws.String("bucketname/doesnotexist.txt"),
+					Key:        aws.String("destination.txt"),
+				})
+				return err
+			},
+			Err: "unexpected EOF",
+		},
+		"200 error multipart": {
+			Header: http.Header{
+				"Transfer-Encoding": []string{"chunked"},
+			},
+			Payloads: [][]byte{
+				[]byte(errMsg[:20]),
+				[]byte(errMsg[20:]),
+			},
+			OpCall: func(c *s3.S3) error {
+				_, err := c.CopyObject(&s3.CopyObjectInput{
+					Bucket:     aws.String("bucketname"),
+					CopySource: aws.String("bucketname/doesnotexist.txt"),
+					Key:        aws.String("destination.txt"),
+				})
+				return err
+			},
+			Err: "ErrorCode: message body",
+		},
+		"200 error multipart partial response": {
+			Header: http.Header{
+				"Transfer-Encoding": []string{"chunked"},
+			},
+			Payloads: [][]byte{
+				[]byte(errMsg[:20]),
+			},
+			OpCall: func(c *s3.S3) error {
+				_, err := c.CopyObject(&s3.CopyObjectInput{
+					Bucket:     aws.String("bucketname"),
+					CopySource: aws.String("bucketname/doesnotexist.txt"),
+					Key:        aws.String("destination.txt"),
+				})
+				return err
+			},
+			Err: "XML syntax error",
+		},
+		"200 error multipart no payload": {
+			Header: http.Header{
+				"Transfer-Encoding": []string{"chunked"},
+			},
+			Payloads: [][]byte{},
+			OpCall: func(c *s3.S3) error {
+				_, err := c.CopyObject(&s3.CopyObjectInput{
+					Bucket:     aws.String("bucketname"),
+					CopySource: aws.String("bucketname/doesnotexist.txt"),
+					Key:        aws.String("destination.txt"),
+				})
+				return err
+			},
+			Err: "empty response payload",
+		},
+		"response with only xml preamble": {
+			Header: http.Header{
+				"Transfer-Encoding": []string{"chunked"},
+			},
+			Payloads: [][]byte{
+				[]byte(xmlPreambleMsg),
+			},
+			OpCall: func(c *s3.S3) error {
+				_, err := c.CopyObject(&s3.CopyObjectInput{
+					Bucket:     aws.String("bucketname"),
+					CopySource: aws.String("bucketname/doesnotexist.txt"),
+					Key:        aws.String("destination.txt"),
+				})
+				return err
+			},
+			Err: "empty response payload",
+		},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				ww := w.(interface {
+					http.ResponseWriter
+					http.Flusher
+				})
+
+				for k, vs := range c.Header {
+					for _, v := range vs {
+						ww.Header().Add(k, v)
+					}
+				}
+				ww.WriteHeader(http.StatusOK)
+				ww.Flush()
+
+				for _, p := range c.Payloads {
+					ww.Write(p)
+					ww.Flush()
+				}
+			}))
+			defer srv.Close()
+
+			client := s3.New(unit.Session, &aws.Config{
+				Endpoint:               &srv.URL,
+				DisableSSL:             aws.Bool(true),
+				DisableParamValidation: aws.Bool(true),
+				S3ForcePathStyle:       aws.Bool(true),
+			})
+
+			err := c.OpCall(client)
+			if len(c.Err) != 0 {
+				if err == nil {
+					t.Fatalf("expect error, got none")
+				}
+				if e, a := c.Err, err.Error(); !strings.Contains(a, e) {
+					t.Fatalf("expect %v error in, %v", e, a)
+				}
+			} else if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+		})
+	}
 }
