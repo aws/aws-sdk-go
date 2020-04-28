@@ -29,6 +29,13 @@ const (
 	// is not valid for this operation.
 	ErrCodeInvalidCodecPrivateDataException = "InvalidCodecPrivateDataException"
 
+	// ErrCodeInvalidMediaFrameException for service response error code
+	// "InvalidMediaFrameException".
+	//
+	// One or more frames in the requested clip could not be parsed based on the
+	// specified codec.
+	ErrCodeInvalidMediaFrameException = "InvalidMediaFrameException"
+
 	// ErrCodeMissingCodecPrivateDataException for service response error code
 	// "MissingCodecPrivateDataException".
 	//
@@ -76,6 +83,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ClientLimitExceededException":        newErrorClientLimitExceededException,
 	"InvalidArgumentException":            newErrorInvalidArgumentException,
 	"InvalidCodecPrivateDataException":    newErrorInvalidCodecPrivateDataException,
+	"InvalidMediaFrameException":          newErrorInvalidMediaFrameException,
 	"MissingCodecPrivateDataException":    newErrorMissingCodecPrivateDataException,
 	"NoDataRetentionException":            newErrorNoDataRetentionException,
 	"NotAuthorizedException":              newErrorNotAuthorizedException,

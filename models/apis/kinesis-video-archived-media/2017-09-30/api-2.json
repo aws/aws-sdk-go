@@ -11,6 +11,26 @@
     "uid":"kinesis-video-archived-media-2017-09-30"
   },
   "operations":{
+    "GetClip":{
+      "name":"GetClip",
+      "http":{
+        "method":"POST",
+        "requestUri":"/getClip"
+      },
+      "input":{"shape":"GetClipInput"},
+      "output":{"shape":"GetClipOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ClientLimitExceededException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"UnsupportedStreamMediaTypeException"},
+        {"shape":"MissingCodecPrivateDataException"},
+        {"shape":"InvalidCodecPrivateDataException"},
+        {"shape":"InvalidMediaFrameException"},
+        {"shape":"NoDataRetentionException"}
+      ]
+    },
     "GetDASHStreamingSessionURL":{
       "name":"GetDASHStreamingSessionURL",
       "http":{
@@ -89,6 +109,35 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "ClipFragmentSelector":{
+      "type":"structure",
+      "required":[
+        "FragmentSelectorType",
+        "TimestampRange"
+      ],
+      "members":{
+        "FragmentSelectorType":{"shape":"ClipFragmentSelectorType"},
+        "TimestampRange":{"shape":"ClipTimestampRange"}
+      }
+    },
+    "ClipFragmentSelectorType":{
+      "type":"string",
+      "enum":[
+        "PRODUCER_TIMESTAMP",
+        "SERVER_TIMESTAMP"
+      ]
+    },
+    "ClipTimestampRange":{
+      "type":"structure",
+      "required":[
+        "StartTimestamp",
+        "EndTimestamp"
+      ],
+      "members":{
+        "StartTimestamp":{"shape":"Timestamp"},
+        "EndTimestamp":{"shape":"Timestamp"}
+      }
+    },
     "ContainerFormat":{
       "type":"string",
       "enum":[
@@ -155,7 +204,7 @@
     "Fragment":{
       "type":"structure",
       "members":{
-        "FragmentNumber":{"shape":"String"},
+        "FragmentNumber":{"shape":"FragmentNumberString"},
         "FragmentSizeInBytes":{"shape":"Long"},
         "ProducerTimestamp":{"shape":"Timestamp"},
         "ServerTimestamp":{"shape":"Timestamp"},
@@ -195,6 +244,27 @@
         "PRODUCER_TIMESTAMP",
         "SERVER_TIMESTAMP"
       ]
+    },
+    "GetClipInput":{
+      "type":"structure",
+      "required":["ClipFragmentSelector"],
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
+        "ClipFragmentSelector":{"shape":"ClipFragmentSelector"}
+      }
+    },
+    "GetClipOutput":{
+      "type":"structure",
+      "members":{
+        "ContentType":{
+          "shape":"ContentType",
+          "location":"header",
+          "locationName":"Content-Type"
+        },
+        "Payload":{"shape":"Payload"}
+      },
+      "payload":"Payload"
     },
     "GetDASHStreamingSessionURLInput":{
       "type":"structure",
@@ -319,13 +389,21 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "InvalidMediaFrameException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "ListFragmentsInput":{
       "type":"structure",
       "required":["StreamName"],
       "members":{
         "StreamName":{"shape":"StreamName"},
         "MaxResults":{"shape":"PageLimit"},
-        "NextToken":{"shape":"String"},
+        "NextToken":{"shape":"NextToken"},
         "FragmentSelector":{"shape":"FragmentSelector"}
       }
     },
@@ -333,7 +411,7 @@
       "type":"structure",
       "members":{
         "Fragments":{"shape":"FragmentList"},
-        "NextToken":{"shape":"String"}
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "Long":{"type":"long"},
@@ -344,6 +422,12 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "NextToken":{
+      "type":"string",
+      "max":4096,
+      "min":1,
+      "pattern":"[a-zA-Z0-9+/]+={0,2}"
     },
     "NoDataRetentionException":{
       "type":"structure",
@@ -389,10 +473,6 @@
       "max":256,
       "min":1,
       "pattern":"[a-zA-Z0-9_.-]+"
-    },
-    "String":{
-      "type":"string",
-      "min":1
     },
     "Timestamp":{"type":"timestamp"},
     "TimestampRange":{

@@ -2082,8 +2082,36 @@
         "AudioPidSelection": {
           "shape": "AudioPidSelection",
           "locationName": "audioPidSelection"
+        },
+        "AudioTrackSelection": {
+          "shape": "AudioTrackSelection",
+          "locationName": "audioTrackSelection"
         }
       }
+    },
+    "AudioTrack": {
+      "type": "structure",
+      "members": {
+        "Track": {
+          "shape": "__integerMin1",
+          "locationName": "track"
+        }
+      },
+      "required": [
+        "Track"
+      ]
+    },
+    "AudioTrackSelection": {
+      "type": "structure",
+      "members": {
+        "Tracks": {
+          "shape": "__listOfAudioTrack",
+          "locationName": "tracks"
+        }
+      },
+      "required": [
+        "Tracks"
+      ]
     },
     "AudioType": {
       "type": "string",
@@ -4585,8 +4613,30 @@
         "AudioRenditionSets": {
           "shape": "__string",
           "locationName": "audioRenditionSets"
+        },
+        "NielsenId3Behavior": {
+          "shape": "Fmp4NielsenId3Behavior",
+          "locationName": "nielsenId3Behavior"
+        },
+        "TimedMetadataBehavior": {
+          "shape": "Fmp4TimedMetadataBehavior",
+          "locationName": "timedMetadataBehavior"
         }
       }
+    },
+    "Fmp4NielsenId3Behavior": {
+      "type": "string",
+      "enum": [
+        "NO_PASSTHROUGH",
+        "PASSTHROUGH"
+      ]
+    },
+    "Fmp4TimedMetadataBehavior": {
+      "type": "string",
+      "enum": [
+        "NO_PASSTHROUGH",
+        "PASSTHROUGH"
+      ]
     },
     "FollowModeScheduleActionStartSettings": {
       "type": "structure",
@@ -4781,6 +4831,15 @@
         "CAVLC"
       ]
     },
+    "H264FilterSettings": {
+      "type": "structure",
+      "members": {
+        "TemporalFilterSettings": {
+          "shape": "TemporalFilterSettings",
+          "locationName": "temporalFilterSettings"
+        }
+      }
+    },
     "H264FlickerAq": {
       "type": "string",
       "enum": [
@@ -4864,6 +4923,13 @@
         "MAIN"
       ]
     },
+    "H264QualityLevel": {
+      "type": "string",
+      "enum": [
+        "ENHANCED_QUALITY",
+        "STANDARD_QUALITY"
+      ]
+    },
     "H264RateControlMode": {
       "type": "string",
       "enum": [
@@ -4921,6 +4987,10 @@
         "EntropyEncoding": {
           "shape": "H264EntropyEncoding",
           "locationName": "entropyEncoding"
+        },
+        "FilterSettings": {
+          "shape": "H264FilterSettings",
+          "locationName": "filterSettings"
         },
         "FixedAfd": {
           "shape": "FixedAfd",
@@ -5001,6 +5071,10 @@
         "Profile": {
           "shape": "H264Profile",
           "locationName": "profile"
+        },
+        "QualityLevel": {
+          "shape": "H264QualityLevel",
+          "locationName": "qualityLevel"
         },
         "QvbrQualityLevel": {
           "shape": "__integerMin1Max10",
@@ -9049,7 +9123,8 @@
       "type": "string",
       "enum": [
         "NONE",
-        "SCTE_35"
+        "SCTE_35",
+        "SCTE_35_WITHOUT_SEGMENTATION"
       ]
     },
     "SmoothGroupStreamManifestBehavior": {
@@ -9489,6 +9564,49 @@
           "locationName": "pageNumber"
         }
       }
+    },
+    "TemporalFilterPostFilterSharpening": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "TemporalFilterSettings": {
+      "type": "structure",
+      "members": {
+        "PostFilterSharpening": {
+          "shape": "TemporalFilterPostFilterSharpening",
+          "locationName": "postFilterSharpening"
+        },
+        "Strength": {
+          "shape": "TemporalFilterStrength",
+          "locationName": "strength"
+        }
+      }
+    },
+    "TemporalFilterStrength": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "STRENGTH_1",
+        "STRENGTH_10",
+        "STRENGTH_11",
+        "STRENGTH_12",
+        "STRENGTH_13",
+        "STRENGTH_14",
+        "STRENGTH_15",
+        "STRENGTH_16",
+        "STRENGTH_2",
+        "STRENGTH_3",
+        "STRENGTH_4",
+        "STRENGTH_5",
+        "STRENGTH_6",
+        "STRENGTH_7",
+        "STRENGTH_8",
+        "STRENGTH_9"
+      ]
     },
     "TimecodeConfig": {
       "type": "structure",
@@ -10445,6 +10563,12 @@
       "type": "list",
       "member": {
         "shape": "AudioSelector"
+      }
+    },
+    "__listOfAudioTrack": {
+      "type": "list",
+      "member": {
+        "shape": "AudioTrack"
       }
     },
     "__listOfCaptionDescription": {

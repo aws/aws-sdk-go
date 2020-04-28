@@ -1959,7 +1959,8 @@
         "AssociationName":{"shape":"AssociationName"},
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
-        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
+        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
       }
     },
     "AssociationDescriptionList":{
@@ -2097,7 +2098,8 @@
         "AssociationStatusName",
         "LastExecutedBefore",
         "LastExecutedAfter",
-        "AssociationName"
+        "AssociationName",
+        "ResourceGroupName"
       ]
     },
     "AssociationFilterList":{
@@ -2186,6 +2188,13 @@
         "Failed"
       ]
     },
+    "AssociationSyncCompliance":{
+      "type":"string",
+      "enum":[
+        "AUTO",
+        "MANUAL"
+      ]
+    },
     "AssociationVersion":{
       "type":"string",
       "pattern":"([$]LATEST)|([1-9][0-9]*)"
@@ -2205,7 +2214,8 @@
         "AssociationName":{"shape":"AssociationName"},
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
-        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
+        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
       }
     },
     "AssociationVersionLimitExceeded":{
@@ -2913,6 +2923,13 @@
       "min":1,
       "pattern":"[A-Za-z0-9_\\-]\\w+|Custom:[a-zA-Z0-9_\\-]\\w+"
     },
+    "ComplianceUploadType":{
+      "type":"string",
+      "enum":[
+        "COMPLETE",
+        "PARTIAL"
+      ]
+    },
     "CompliantSummary":{
       "type":"structure",
       "members":{
@@ -2982,7 +2999,8 @@
         "AssociationName":{"shape":"AssociationName"},
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
-        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
+        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
       }
     },
     "CreateAssociationBatchResult":{
@@ -3007,7 +3025,8 @@
         "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
-        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
+        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
       }
     },
     "CreateAssociationResult":{
@@ -7654,7 +7673,11 @@
         "ComplianceType":{"shape":"ComplianceTypeName"},
         "ExecutionSummary":{"shape":"ComplianceExecutionSummary"},
         "Items":{"shape":"ComplianceItemEntryList"},
-        "ItemContentHash":{"shape":"ComplianceItemContentHash"}
+        "ItemContentHash":{"shape":"ComplianceItemContentHash"},
+        "UploadType":{
+          "shape":"ComplianceUploadType",
+          "box":true
+        }
       }
     },
     "PutComplianceItemsResult":{
@@ -8899,7 +8922,8 @@
         "AutomationTargetParameterName":{"shape":"AutomationTargetParameterName"},
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
-        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"}
+        "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
       }
     },
     "UpdateAssociationResult":{

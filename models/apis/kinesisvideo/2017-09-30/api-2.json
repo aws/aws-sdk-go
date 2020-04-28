@@ -59,7 +59,8 @@
         {"shape":"ClientLimitExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"VersionMismatchException"}
+        {"shape":"VersionMismatchException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "DeleteStream":{
@@ -75,7 +76,8 @@
         {"shape":"InvalidArgumentException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"NotAuthorizedException"},
-        {"shape":"VersionMismatchException"}
+        {"shape":"VersionMismatchException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "DescribeSignalingChannel":{
@@ -322,7 +324,8 @@
         "LIST_FRAGMENTS",
         "GET_MEDIA_FOR_FRAGMENT_LIST",
         "GET_HLS_STREAMING_SESSION_URL",
-        "GET_DASH_STREAMING_SESSION_URL"
+        "GET_DASH_STREAMING_SESSION_URL",
+        "GET_CLIP"
       ]
     },
     "AccessDeniedException":{
@@ -574,7 +577,8 @@
     "KmsKeyId":{
       "type":"string",
       "max":2048,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "ListOfProtocols":{
       "type":"list",

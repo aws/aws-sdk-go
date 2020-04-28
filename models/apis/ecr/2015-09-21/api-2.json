@@ -312,6 +312,7 @@
         {"shape":"RepositoryNotFoundException"},
         {"shape":"ImageAlreadyExistsException"},
         {"shape":"LayersNotFoundException"},
+        {"shape":"ReferencedImagesNotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"ImageTagAlreadyExistsException"}
       ]
@@ -383,6 +384,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"UnsupportedImageTypeException"},
+        {"shape":"LimitExceededException"},
         {"shape":"RepositoryNotFoundException"},
         {"shape":"ImageNotFoundException"}
       ]
@@ -898,7 +901,8 @@
         "InvalidImageTag",
         "ImageTagDoesNotMatchDigest",
         "ImageNotFound",
-        "MissingDigestAndTag"
+        "MissingDigestAndTag",
+        "ImageReferencedByManifestList"
       ]
     },
     "ImageFailureList":{
@@ -1352,6 +1356,13 @@
         "lifecyclePolicyText":{"shape":"LifecyclePolicyText"}
       }
     },
+    "ReferencedImagesNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "RegistryId":{
       "type":"string",
       "pattern":"[0-9]{12}"
@@ -1549,6 +1560,13 @@
     },
     "TagValue":{"type":"string"},
     "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "UnsupportedImageTypeException":{
       "type":"structure",
       "members":{
         "message":{"shape":"ExceptionMessage"}

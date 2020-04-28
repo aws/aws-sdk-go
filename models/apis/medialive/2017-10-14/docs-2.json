@@ -269,6 +269,18 @@
         "AudioSelector$SelectorSettings": "The audio selector settings."
       }
     },
+    "AudioTrack": {
+      "base": "Audio Track",
+      "refs": {
+        "__listOfAudioTrack$member": null
+      }
+    },
+    "AudioTrackSelection": {
+      "base": "Audio Track Selection",
+      "refs": {
+        "AudioSelectorSettings$AudioTrackSelection": null
+      }
+    },
     "AudioType": {
       "base": "Audio Type",
       "refs": {
@@ -779,6 +791,18 @@
         "HlsSettings$Fmp4HlsSettings": null
       }
     },
+    "Fmp4NielsenId3Behavior": {
+      "base": "Fmp4 Nielsen Id3 Behavior",
+      "refs": {
+        "Fmp4HlsSettings$NielsenId3Behavior": "If set to passthrough, Nielsen inaudible tones for media tracking will be detected in the input audio and an equivalent ID3 tag will be inserted in the output."
+      }
+    },
+    "Fmp4TimedMetadataBehavior": {
+      "base": "Fmp4 Timed Metadata Behavior",
+      "refs": {
+        "Fmp4HlsSettings$TimedMetadataBehavior": "When set to passthrough, timed metadata is passed through from input to output."
+      }
+    },
     "FollowModeScheduleActionStartSettings": {
       "base": "Settings to specify if an action follows another.",
       "refs": {
@@ -879,6 +903,12 @@
         "H264Settings$EntropyEncoding": "Entropy encoding mode.  Use cabac (must be in Main or High profile) or cavlc."
       }
     },
+    "H264FilterSettings": {
+      "base": "H264 Filter Settings",
+      "refs": {
+        "H264Settings$FilterSettings": "Settings associated with the specified filter."
+      }
+    },
     "H264FlickerAq": {
       "base": "H264 Flicker Aq",
       "refs": {
@@ -888,7 +918,7 @@
     "H264ForceFieldPictures": {
       "base": "H264 Force Field Pictures",
       "refs": {
-        "H264Settings$ForceFieldPictures": "This setting applies only when scan type is \"interlaced.\" It controls whether coding is on a field basis or a frame basis. (When the video is progressive, the coding is always on a frame basis.)\nenabled: Always code on a field basis, so that odd and even sets of fields are coded separately.\ndisabled: Code the two sets of fields separately (on a field basis) or together (on a frame basis, using PAFF or MBAFF), depending on what is most appropriate for the content."
+        "H264Settings$ForceFieldPictures": "This setting applies only when scan type is \"interlaced.\" It controls whether coding is performed on a field basis or on a frame basis. (When the video is progressive, the coding is always performed on a frame basis.)\nenabled: Force MediaLive to code on a field basis, so that odd and even sets of fields are coded separately.\ndisabled: Code the two sets of fields separately (on a field basis) or together (on a frame basis using PAFF), depending on what is most appropriate for the content."
       }
     },
     "H264FramerateControl": {
@@ -931,6 +961,12 @@
       "base": "H264 Profile",
       "refs": {
         "H264Settings$Profile": "H.264 Profile."
+      }
+    },
+    "H264QualityLevel": {
+      "base": "H264 Quality Level",
+      "refs": {
+        "H264Settings$QualityLevel": "If set to \"ENHANCEDQUALITY,\" improves visual quality at an increased output cost. If this video is being delivered to a MediaLive Multiplex, \"ENHANCEDQUALITY\" is always used."
       }
     },
     "H264RateControlMode": {
@@ -1218,7 +1254,7 @@
     "HlsOutputSelection": {
       "base": "Hls Output Selection",
       "refs": {
-        "HlsGroupSettings$OutputSelection": "MANIFESTSANDSEGMENTS: Generates manifests (master manifest, if applicable, and media manifests) for this output group.\n\nSEGMENTSONLY: Does not generate any manifests for this output group."
+        "HlsGroupSettings$OutputSelection": "MANIFESTSANDSEGMENTS: Generates manifests (master manifest, if applicable, and media manifests) for this output group.\n\nVARIANTMANIFESTSANDSEGMENTS: Generates media manifests for this output group, but not a master manifest.\n\nSEGMENTSONLY: Does not generate any manifests for this output group."
       }
     },
     "HlsOutputSettings": {
@@ -1294,7 +1330,7 @@
       }
     },
     "ImmediateModeScheduleActionStartSettings": {
-      "base": "Settings to configure an action so that it occurs immediately. This is only supported for input switch actions currently.",
+      "base": "Settings to configure an action so that it occurs as soon as possible.",
       "refs": {
         "ScheduleActionStartSettings$ImmediateModeScheduleActionStartSettings": "Option for specifying an action that should be applied immediately."
       }
@@ -2421,7 +2457,7 @@
     "SmoothGroupSparseTrackType": {
       "base": "Smooth Group Sparse Track Type",
       "refs": {
-        "MsSmoothGroupSettings$SparseTrackType": "If set to scte35, use incoming SCTE-35 messages to generate a sparse track in this group of MS-Smooth outputs."
+        "MsSmoothGroupSettings$SparseTrackType": "If set to scte35, use incoming SCTE-35 messages to generate a sparse track in this group of MS-Smooth outputs. scte35WithoutSegmentation is the same as scte35, except EML will not start a new segment at a SCTE-35 marker. It will still encode an IDR frame at a SCTE-35 marker."
       }
     },
     "SmoothGroupStreamManifestBehavior": {
@@ -2511,6 +2547,24 @@
       "base": "Teletext Source Settings",
       "refs": {
         "CaptionSelectorSettings$TeletextSourceSettings": null
+      }
+    },
+    "TemporalFilterPostFilterSharpening": {
+      "base": "Temporal Filter Post Filter Sharpening",
+      "refs": {
+        "TemporalFilterSettings$PostFilterSharpening": "If set to \"ENABLED,\" applies post-filter sharpening to improve visual quality. This is most beneficial when using a noisy or compressed input source and low output bitrates."
+      }
+    },
+    "TemporalFilterSettings": {
+      "base": "Temporal Filter Settings",
+      "refs": {
+        "H264FilterSettings$TemporalFilterSettings": null
+      }
+    },
+    "TemporalFilterStrength": {
+      "base": "Temporal Filter Strength",
+      "refs": {
+        "TemporalFilterSettings$Strength": "Filter strength. A higher value produces stronger filtering."
       }
     },
     "TimecodeConfig": {
@@ -2969,6 +3023,7 @@
       "base": null,
       "refs": {
         "ArchiveGroupSettings$RolloverInterval": "Number of seconds to write to archive file before closing and starting a new one.",
+        "AudioTrack$Track": "1-based integer value that maps to a specific audio track",
         "DvbSubSourceSettings$Pid": "When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed through, regardless of selectors.",
         "H264Settings$FramerateDenominator": "Framerate denominator.",
         "H264Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
@@ -3184,6 +3239,12 @@
       "base": null,
       "refs": {
         "InputSettings$AudioSelectors": "Used to select the audio stream to decode for inputs that have multiple available."
+      }
+    },
+    "__listOfAudioTrack": {
+      "base": null,
+      "refs": {
+        "AudioTrackSelection$Tracks": "Selects one or more unique audio tracks from within an mp4 source."
       }
     },
     "__listOfCaptionDescription": {
