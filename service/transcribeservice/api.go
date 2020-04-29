@@ -13,6 +13,100 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opCreateMedicalVocabulary = "CreateMedicalVocabulary"
+
+// CreateMedicalVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMedicalVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMedicalVocabulary for more information on using the CreateMedicalVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateMedicalVocabularyRequest method.
+//    req, resp := client.CreateMedicalVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateMedicalVocabulary
+func (c *TranscribeService) CreateMedicalVocabularyRequest(input *CreateMedicalVocabularyInput) (req *request.Request, output *CreateMedicalVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opCreateMedicalVocabulary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateMedicalVocabularyInput{}
+	}
+
+	output = &CreateMedicalVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMedicalVocabulary API operation for Amazon Transcribe Service.
+//
+// Creates a new custom vocabulary that you can use to change how Amazon Transcribe
+// Medical transcribes your audio file.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation CreateMedicalVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+//   * ConflictException
+//   The resource name already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateMedicalVocabulary
+func (c *TranscribeService) CreateMedicalVocabulary(input *CreateMedicalVocabularyInput) (*CreateMedicalVocabularyOutput, error) {
+	req, out := c.CreateMedicalVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// CreateMedicalVocabularyWithContext is the same as CreateMedicalVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMedicalVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) CreateMedicalVocabularyWithContext(ctx aws.Context, input *CreateMedicalVocabularyInput, opts ...request.Option) (*CreateMedicalVocabularyOutput, error) {
+	req, out := c.CreateMedicalVocabularyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateVocabulary = "CreateVocabulary"
 
 // CreateVocabularyRequest generates a "aws/request.Request" representing the
@@ -83,12 +177,7 @@ func (c *TranscribeService) CreateVocabularyRequest(input *CreateVocabularyInput
 //   again.
 //
 //   * ConflictException
-//   When you are using the CreateVocabulary operation, the JobName field is a
-//   duplicate of a previously entered job name. Resend your request with a different
-//   name.
-//
-//   When you are using the UpdateVocabulary operation, there are two jobs running
-//   at the same time. Resend the second request later.
+//   The resource name already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateVocabulary
 func (c *TranscribeService) CreateVocabulary(input *CreateVocabularyInput) (*CreateVocabularyOutput, error) {
@@ -182,12 +271,7 @@ func (c *TranscribeService) CreateVocabularyFilterRequest(input *CreateVocabular
 //   again.
 //
 //   * ConflictException
-//   When you are using the CreateVocabulary operation, the JobName field is a
-//   duplicate of a previously entered job name. Resend your request with a different
-//   name.
-//
-//   When you are using the UpdateVocabulary operation, there are two jobs running
-//   at the same time. Resend the second request later.
+//   The resource name already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateVocabularyFilter
 func (c *TranscribeService) CreateVocabularyFilter(input *CreateVocabularyFilterInput) (*CreateVocabularyFilterOutput, error) {
@@ -298,6 +382,101 @@ func (c *TranscribeService) DeleteMedicalTranscriptionJob(input *DeleteMedicalTr
 // for more information on using Contexts.
 func (c *TranscribeService) DeleteMedicalTranscriptionJobWithContext(ctx aws.Context, input *DeleteMedicalTranscriptionJobInput, opts ...request.Option) (*DeleteMedicalTranscriptionJobOutput, error) {
 	req, out := c.DeleteMedicalTranscriptionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteMedicalVocabulary = "DeleteMedicalVocabulary"
+
+// DeleteMedicalVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMedicalVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMedicalVocabulary for more information on using the DeleteMedicalVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteMedicalVocabularyRequest method.
+//    req, resp := client.DeleteMedicalVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DeleteMedicalVocabulary
+func (c *TranscribeService) DeleteMedicalVocabularyRequest(input *DeleteMedicalVocabularyInput) (req *request.Request, output *DeleteMedicalVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMedicalVocabulary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteMedicalVocabularyInput{}
+	}
+
+	output = &DeleteMedicalVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMedicalVocabulary API operation for Amazon Transcribe Service.
+//
+// Deletes a vocabulary from Amazon Transcribe Medical.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation DeleteMedicalVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DeleteMedicalVocabulary
+func (c *TranscribeService) DeleteMedicalVocabulary(input *DeleteMedicalVocabularyInput) (*DeleteMedicalVocabularyOutput, error) {
+	req, out := c.DeleteMedicalVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMedicalVocabularyWithContext is the same as DeleteMedicalVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMedicalVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) DeleteMedicalVocabularyWithContext(ctx aws.Context, input *DeleteMedicalVocabularyInput, opts ...request.Option) (*DeleteMedicalVocabularyOutput, error) {
+	req, out := c.DeleteMedicalVocabularyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -677,6 +856,100 @@ func (c *TranscribeService) GetMedicalTranscriptionJob(input *GetMedicalTranscri
 // for more information on using Contexts.
 func (c *TranscribeService) GetMedicalTranscriptionJobWithContext(ctx aws.Context, input *GetMedicalTranscriptionJobInput, opts ...request.Option) (*GetMedicalTranscriptionJobOutput, error) {
 	req, out := c.GetMedicalTranscriptionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMedicalVocabulary = "GetMedicalVocabulary"
+
+// GetMedicalVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the GetMedicalVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMedicalVocabulary for more information on using the GetMedicalVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMedicalVocabularyRequest method.
+//    req, resp := client.GetMedicalVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetMedicalVocabulary
+func (c *TranscribeService) GetMedicalVocabularyRequest(input *GetMedicalVocabularyInput) (req *request.Request, output *GetMedicalVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opGetMedicalVocabulary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMedicalVocabularyInput{}
+	}
+
+	output = &GetMedicalVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMedicalVocabulary API operation for Amazon Transcribe Service.
+//
+// Retrieve information about a medical vocabulary.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation GetMedicalVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetMedicalVocabulary
+func (c *TranscribeService) GetMedicalVocabulary(input *GetMedicalVocabularyInput) (*GetMedicalVocabularyOutput, error) {
+	req, out := c.GetMedicalVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// GetMedicalVocabularyWithContext is the same as GetMedicalVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMedicalVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) GetMedicalVocabularyWithContext(ctx aws.Context, input *GetMedicalVocabularyInput, opts ...request.Option) (*GetMedicalVocabularyOutput, error) {
+	req, out := c.GetMedicalVocabularyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1110,6 +1383,156 @@ func (c *TranscribeService) ListMedicalTranscriptionJobsPagesWithContext(ctx aws
 
 	for p.Next() {
 		if !fn(p.Page().(*ListMedicalTranscriptionJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMedicalVocabularies = "ListMedicalVocabularies"
+
+// ListMedicalVocabulariesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMedicalVocabularies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMedicalVocabularies for more information on using the ListMedicalVocabularies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMedicalVocabulariesRequest method.
+//    req, resp := client.ListMedicalVocabulariesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListMedicalVocabularies
+func (c *TranscribeService) ListMedicalVocabulariesRequest(input *ListMedicalVocabulariesInput) (req *request.Request, output *ListMedicalVocabulariesOutput) {
+	op := &request.Operation{
+		Name:       opListMedicalVocabularies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMedicalVocabulariesInput{}
+	}
+
+	output = &ListMedicalVocabulariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMedicalVocabularies API operation for Amazon Transcribe Service.
+//
+// Returns a list of vocabularies that match the specified criteria. You get
+// the entire list of vocabularies if you don't enter a value in any of the
+// request parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation ListMedicalVocabularies for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListMedicalVocabularies
+func (c *TranscribeService) ListMedicalVocabularies(input *ListMedicalVocabulariesInput) (*ListMedicalVocabulariesOutput, error) {
+	req, out := c.ListMedicalVocabulariesRequest(input)
+	return out, req.Send()
+}
+
+// ListMedicalVocabulariesWithContext is the same as ListMedicalVocabularies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMedicalVocabularies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) ListMedicalVocabulariesWithContext(ctx aws.Context, input *ListMedicalVocabulariesInput, opts ...request.Option) (*ListMedicalVocabulariesOutput, error) {
+	req, out := c.ListMedicalVocabulariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMedicalVocabulariesPages iterates over the pages of a ListMedicalVocabularies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMedicalVocabularies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMedicalVocabularies operation.
+//    pageNum := 0
+//    err := client.ListMedicalVocabulariesPages(params,
+//        func(page *transcribeservice.ListMedicalVocabulariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *TranscribeService) ListMedicalVocabulariesPages(input *ListMedicalVocabulariesInput, fn func(*ListMedicalVocabulariesOutput, bool) bool) error {
+	return c.ListMedicalVocabulariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMedicalVocabulariesPagesWithContext same as ListMedicalVocabulariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) ListMedicalVocabulariesPagesWithContext(ctx aws.Context, input *ListMedicalVocabulariesInput, fn func(*ListMedicalVocabulariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMedicalVocabulariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMedicalVocabulariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMedicalVocabulariesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -1631,12 +2054,7 @@ func (c *TranscribeService) StartMedicalTranscriptionJobRequest(input *StartMedi
 //   again.
 //
 //   * ConflictException
-//   When you are using the CreateVocabulary operation, the JobName field is a
-//   duplicate of a previously entered job name. Resend your request with a different
-//   name.
-//
-//   When you are using the UpdateVocabulary operation, there are two jobs running
-//   at the same time. Resend the second request later.
+//   The resource name already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartMedicalTranscriptionJob
 func (c *TranscribeService) StartMedicalTranscriptionJob(input *StartMedicalTranscriptionJobInput) (*StartMedicalTranscriptionJobOutput, error) {
@@ -1729,12 +2147,7 @@ func (c *TranscribeService) StartTranscriptionJobRequest(input *StartTranscripti
 //   again.
 //
 //   * ConflictException
-//   When you are using the CreateVocabulary operation, the JobName field is a
-//   duplicate of a previously entered job name. Resend your request with a different
-//   name.
-//
-//   When you are using the UpdateVocabulary operation, there are two jobs running
-//   at the same time. Resend the second request later.
+//   The resource name already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartTranscriptionJob
 func (c *TranscribeService) StartTranscriptionJob(input *StartTranscriptionJobInput) (*StartTranscriptionJobOutput, error) {
@@ -1753,6 +2166,105 @@ func (c *TranscribeService) StartTranscriptionJob(input *StartTranscriptionJobIn
 // for more information on using Contexts.
 func (c *TranscribeService) StartTranscriptionJobWithContext(ctx aws.Context, input *StartTranscriptionJobInput, opts ...request.Option) (*StartTranscriptionJobOutput, error) {
 	req, out := c.StartTranscriptionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateMedicalVocabulary = "UpdateMedicalVocabulary"
+
+// UpdateMedicalVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMedicalVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMedicalVocabulary for more information on using the UpdateMedicalVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateMedicalVocabularyRequest method.
+//    req, resp := client.UpdateMedicalVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/UpdateMedicalVocabulary
+func (c *TranscribeService) UpdateMedicalVocabularyRequest(input *UpdateMedicalVocabularyInput) (req *request.Request, output *UpdateMedicalVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMedicalVocabulary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateMedicalVocabularyInput{}
+	}
+
+	output = &UpdateMedicalVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateMedicalVocabulary API operation for Amazon Transcribe Service.
+//
+// Updates an existing vocabulary with new values in a different text file.
+// The UpdateMedicalVocabulary operation overwrites all of the existing information
+// with the values that you provide in the request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation UpdateMedicalVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+//   * ConflictException
+//   The resource name already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/UpdateMedicalVocabulary
+func (c *TranscribeService) UpdateMedicalVocabulary(input *UpdateMedicalVocabularyInput) (*UpdateMedicalVocabularyOutput, error) {
+	req, out := c.UpdateMedicalVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMedicalVocabularyWithContext is the same as UpdateMedicalVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMedicalVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) UpdateMedicalVocabularyWithContext(ctx aws.Context, input *UpdateMedicalVocabularyInput, opts ...request.Option) (*UpdateMedicalVocabularyOutput, error) {
+	req, out := c.UpdateMedicalVocabularyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1833,12 +2345,7 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 //   again.
 //
 //   * ConflictException
-//   When you are using the CreateVocabulary operation, the JobName field is a
-//   duplicate of a previously entered job name. Resend your request with a different
-//   name.
-//
-//   When you are using the UpdateVocabulary operation, there are two jobs running
-//   at the same time. Resend the second request later.
+//   The resource name already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/UpdateVocabulary
 func (c *TranscribeService) UpdateVocabulary(input *UpdateVocabularyInput) (*UpdateVocabularyOutput, error) {
@@ -2015,12 +2522,7 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// When you are using the CreateVocabulary operation, the JobName field is a
-// duplicate of a previously entered job name. Resend your request with a different
-// name.
-//
-// When you are using the UpdateVocabulary operation, there are two jobs running
-// at the same time. Resend the second request later.
+// The resource name already exists.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2136,6 +2638,162 @@ func (s *ContentRedaction) SetRedactionType(v string) *ContentRedaction {
 	return s
 }
 
+type CreateMedicalVocabularyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language code used for the entries within your custom vocabulary. The
+	// language code of your custom vocabulary must match the language code of your
+	// transcription job. US English (en-US) is the only language code available
+	// for Amazon Transcribe Medical.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// The Amazon S3 location of the text file you use to define your custom vocabulary.
+	// The URI must be in the same AWS region as the API endpoint you're calling.
+	// Enter information about your VocabularyFileUri in the following format:
+	//
+	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
+	//
+	// This is an example of a vocabulary file uri location in Amazon S3:
+	//
+	// https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt
+	//
+	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// in the Amazon S3 Developer Guide.
+	//
+	// For more information about custom vocabularies, see Medical Custom Vocabularies
+	// (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med).
+	//
+	// VocabularyFileUri is a required field
+	VocabularyFileUri *string `min:"1" type:"string" required:"true"`
+
+	// The name of the custom vocabulary. This case-sensitive name must be unique
+	// within an AWS account. If you try to create a vocabulary with the same name
+	// as a previous vocabulary you will receive a ConflictException error.
+	//
+	// VocabularyName is a required field
+	VocabularyName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateMedicalVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMedicalVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMedicalVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMedicalVocabularyInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.VocabularyFileUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyFileUri"))
+	}
+	if s.VocabularyFileUri != nil && len(*s.VocabularyFileUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyFileUri", 1))
+	}
+	if s.VocabularyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyName"))
+	}
+	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CreateMedicalVocabularyInput) SetLanguageCode(v string) *CreateMedicalVocabularyInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetVocabularyFileUri sets the VocabularyFileUri field's value.
+func (s *CreateMedicalVocabularyInput) SetVocabularyFileUri(v string) *CreateMedicalVocabularyInput {
+	s.VocabularyFileUri = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *CreateMedicalVocabularyInput) SetVocabularyName(v string) *CreateMedicalVocabularyInput {
+	s.VocabularyName = &v
+	return s
+}
+
+type CreateMedicalVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the VocabularyState field is FAILED, this field contains information about
+	// why the job failed.
+	FailureReason *string `type:"string"`
+
+	// The language code you chose to describe the entries in your custom vocabulary.
+	// US English (en-US) is the only valid language code for Amazon Transcribe
+	// Medical.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// The date and time you created the vocabulary.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the vocabulary. The name must be unique within an AWS account.
+	// It is also case-sensitive.
+	VocabularyName *string `min:"1" type:"string"`
+
+	// The processing state of your custom vocabulary in Amazon Transcribe Medical.
+	// If the state is READY you can use the vocabulary in a StartMedicalTranscriptionJob
+	// request.
+	VocabularyState *string `type:"string" enum:"VocabularyState"`
+}
+
+// String returns the string representation
+func (s CreateMedicalVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMedicalVocabularyOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *CreateMedicalVocabularyOutput) SetFailureReason(v string) *CreateMedicalVocabularyOutput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CreateMedicalVocabularyOutput) SetLanguageCode(v string) *CreateMedicalVocabularyOutput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *CreateMedicalVocabularyOutput) SetLastModifiedTime(v time.Time) *CreateMedicalVocabularyOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *CreateMedicalVocabularyOutput) SetVocabularyName(v string) *CreateMedicalVocabularyOutput {
+	s.VocabularyName = &v
+	return s
+}
+
+// SetVocabularyState sets the VocabularyState field's value.
+func (s *CreateMedicalVocabularyOutput) SetVocabularyState(v string) *CreateMedicalVocabularyOutput {
+	s.VocabularyState = &v
+	return s
+}
+
 type CreateVocabularyFilterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2158,7 +2816,8 @@ type CreateVocabularyFilterInput struct {
 	VocabularyFilterFileUri *string `min:"1" type:"string"`
 
 	// The vocabulary filter name. The name must be unique within the account that
-	// contains it.
+	// contains it.If you try to create a vocabulary filter with the same name as
+	// a previous vocabulary filter you will receive a ConflictException error.
 	//
 	// VocabularyFilterName is a required field
 	VocabularyFilterName *string `min:"1" type:"string" required:"true"`
@@ -2300,7 +2959,8 @@ type CreateVocabularyInput struct {
 	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary. The name must be unique within an AWS account.
-	// The name is case-sensitive.
+	// The name is case-sensitive. If you try to create a vocabulary with the same
+	// name as a previous vocabulary you will receive a ConflictException error.
 	//
 	// VocabularyName is a required field
 	VocabularyName *string `min:"1" type:"string" required:"true"`
@@ -2476,6 +3136,61 @@ func (s DeleteMedicalTranscriptionJobOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteMedicalTranscriptionJobOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteMedicalVocabularyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the vocabulary you are choosing to delete.
+	//
+	// VocabularyName is a required field
+	VocabularyName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteMedicalVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMedicalVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMedicalVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMedicalVocabularyInput"}
+	if s.VocabularyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyName"))
+	}
+	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *DeleteMedicalVocabularyInput) SetVocabularyName(v string) *DeleteMedicalVocabularyInput {
+	s.VocabularyName = &v
+	return s
+}
+
+type DeleteMedicalVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMedicalVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMedicalVocabularyOutput) GoString() string {
 	return s.String()
 }
 
@@ -2705,6 +3420,120 @@ func (s GetMedicalTranscriptionJobOutput) GoString() string {
 // SetMedicalTranscriptionJob sets the MedicalTranscriptionJob field's value.
 func (s *GetMedicalTranscriptionJobOutput) SetMedicalTranscriptionJob(v *MedicalTranscriptionJob) *GetMedicalTranscriptionJobOutput {
 	s.MedicalTranscriptionJob = v
+	return s
+}
+
+type GetMedicalVocabularyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the vocabulary you are trying to get information about. The value
+	// you enter for this request is case-sensitive.
+	//
+	// VocabularyName is a required field
+	VocabularyName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMedicalVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMedicalVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMedicalVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMedicalVocabularyInput"}
+	if s.VocabularyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyName"))
+	}
+	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *GetMedicalVocabularyInput) SetVocabularyName(v string) *GetMedicalVocabularyInput {
+	s.VocabularyName = &v
+	return s
+}
+
+type GetMedicalVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location where the vocabulary is stored. Use this URI to get
+	// the contents of the vocabulary. You can download your vocabulary from the
+	// URI for a limited time.
+	DownloadUri *string `min:"1" type:"string"`
+
+	// If the VocabularyState is FAILED, this field contains information about why
+	// the job failed.
+	FailureReason *string `type:"string"`
+
+	// The valid language code returned for your vocabulary entries.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// The date and time the vocabulary was last modified with a text file different
+	// from what was previously used.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The valid name that Amazon Transcribe Medical returns.
+	VocabularyName *string `min:"1" type:"string"`
+
+	// The processing state of the vocabulary.
+	VocabularyState *string `type:"string" enum:"VocabularyState"`
+}
+
+// String returns the string representation
+func (s GetMedicalVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMedicalVocabularyOutput) GoString() string {
+	return s.String()
+}
+
+// SetDownloadUri sets the DownloadUri field's value.
+func (s *GetMedicalVocabularyOutput) SetDownloadUri(v string) *GetMedicalVocabularyOutput {
+	s.DownloadUri = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *GetMedicalVocabularyOutput) SetFailureReason(v string) *GetMedicalVocabularyOutput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *GetMedicalVocabularyOutput) SetLanguageCode(v string) *GetMedicalVocabularyOutput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetMedicalVocabularyOutput) SetLastModifiedTime(v time.Time) *GetMedicalVocabularyOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *GetMedicalVocabularyOutput) SetVocabularyName(v string) *GetMedicalVocabularyOutput {
+	s.VocabularyName = &v
+	return s
+}
+
+// SetVocabularyState sets the VocabularyState field's value.
+func (s *GetMedicalVocabularyOutput) SetVocabularyState(v string) *GetMedicalVocabularyOutput {
+	s.VocabularyState = &v
 	return s
 }
 
@@ -3253,6 +4082,122 @@ func (s *ListMedicalTranscriptionJobsOutput) SetStatus(v string) *ListMedicalTra
 	return s
 }
 
+type ListMedicalVocabulariesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of vocabularies to return in the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Returns vocabularies in the list whose name contains the specified string.
+	// The search is case-insensitive, ListMedicalVocabularies returns both "vocabularyname"
+	// and "VocabularyName" in the response list.
+	NameContains *string `min:"1" type:"string"`
+
+	// If the result of your previous request to ListMedicalVocabularies was truncated,
+	// include the NextToken to fetch the next set of jobs.
+	NextToken *string `type:"string"`
+
+	// When specified, only returns vocabularies with the VocabularyState equal
+	// to the specified vocabulary state.
+	StateEquals *string `type:"string" enum:"VocabularyState"`
+}
+
+// String returns the string representation
+func (s ListMedicalVocabulariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMedicalVocabulariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMedicalVocabulariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMedicalVocabulariesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NameContains != nil && len(*s.NameContains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameContains", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMedicalVocabulariesInput) SetMaxResults(v int64) *ListMedicalVocabulariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListMedicalVocabulariesInput) SetNameContains(v string) *ListMedicalVocabulariesInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMedicalVocabulariesInput) SetNextToken(v string) *ListMedicalVocabulariesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStateEquals sets the StateEquals field's value.
+func (s *ListMedicalVocabulariesInput) SetStateEquals(v string) *ListMedicalVocabulariesInput {
+	s.StateEquals = &v
+	return s
+}
+
+type ListMedicalVocabulariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ListMedicalVocabularies operation returns a page of vocabularies at a
+	// time. The maximum size of the page is set by the MaxResults parameter. If
+	// there are more jobs in the list than the page size, Amazon Transcribe Medical
+	// returns the NextPage token. Include the token in the next request to the
+	// ListMedicalVocabularies operation to return the next page of jobs.
+	NextToken *string `type:"string"`
+
+	// The requested vocabulary state.
+	Status *string `type:"string" enum:"VocabularyState"`
+
+	// A list of objects that describe the vocabularies that match the search criteria
+	// in the request.
+	Vocabularies []*VocabularyInfo `type:"list"`
+}
+
+// String returns the string representation
+func (s ListMedicalVocabulariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMedicalVocabulariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMedicalVocabulariesOutput) SetNextToken(v string) *ListMedicalVocabulariesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListMedicalVocabulariesOutput) SetStatus(v string) *ListMedicalVocabulariesOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVocabularies sets the Vocabularies field's value.
+func (s *ListMedicalVocabulariesOutput) SetVocabularies(v []*VocabularyInfo) *ListMedicalVocabulariesOutput {
+	s.Vocabularies = v
+	return s
+}
+
 type ListTranscriptionJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3453,7 +4398,7 @@ type ListVocabulariesOutput struct {
 	NextToken *string `type:"string"`
 
 	// The requested vocabulary state.
-	Status *string `type:"string" enum:"TranscriptionJobStatus"`
+	Status *string `type:"string" enum:"VocabularyState"`
 
 	// A list of objects that describe the vocabularies that match the search criteria
 	// in the request.
@@ -4004,6 +4949,10 @@ type MedicalTranscriptionSetting struct {
 	// You can't set both ShowSpeakerLabels and ChannelIdentification in the same
 	// request. If you set both, your request returns a BadRequestException.
 	ShowSpeakerLabels *bool `type:"boolean"`
+
+	// The name of the vocabulary to use when processing a medical transcription
+	// job.
+	VocabularyName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -4024,6 +4973,9 @@ func (s *MedicalTranscriptionSetting) Validate() error {
 	}
 	if s.MaxSpeakerLabels != nil && *s.MaxSpeakerLabels < 2 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxSpeakerLabels", 2))
+	}
+	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4059,6 +5011,12 @@ func (s *MedicalTranscriptionSetting) SetShowAlternatives(v bool) *MedicalTransc
 // SetShowSpeakerLabels sets the ShowSpeakerLabels field's value.
 func (s *MedicalTranscriptionSetting) SetShowSpeakerLabels(v bool) *MedicalTranscriptionSetting {
 	s.ShowSpeakerLabels = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *MedicalTranscriptionSetting) SetVocabularyName(v string) *MedicalTranscriptionSetting {
+	s.VocabularyName = &v
 	return s
 }
 
@@ -4282,7 +5240,9 @@ type StartMedicalTranscriptionJobInput struct {
 
 	// The name of the medical transcription job. You can't use the strings "."
 	// or ".." by themselves as the job name. The name must also be unique within
-	// an AWS account.
+	// an AWS account. If you try to create a medical transcription job with the
+	// same name as a previous medical transcription job you will receive a ConflictException
+	// error.
 	//
 	// MedicalTranscriptionJobName is a required field
 	MedicalTranscriptionJobName *string `min:"1" type:"string" required:"true"`
@@ -4339,9 +5299,9 @@ type StartMedicalTranscriptionJobInput struct {
 	// Specialty is a required field
 	Specialty *string `type:"string" required:"true" enum:"Specialty"`
 
-	// The speech of clinician in the input audio. CONVERSATION refers to conversations
-	// clinicians have with patients. DICTATION refers to medical professionals
-	// dictating their notes about a patient encounter.
+	// The type of speech in the input audio. CONVERSATION refers to conversations
+	// between two or more speakers, e.g., a conversations between doctors and patients.
+	// DICTATION refers to single-speaker dictated speech, e.g., for clinical notes.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"Type"`
@@ -4573,7 +5533,9 @@ type StartTranscriptionJobInput struct {
 	Settings *Settings `type:"structure"`
 
 	// The name of the job. Note that you can't use the strings "." or ".." by themselves
-	// as the job name. The name must also be unique within an AWS account.
+	// as the job name. The name must also be unique within an AWS account. If you
+	// try to create a transcription job with the same name as a previous transcription
+	// job you will receive a ConflictException error.
 	//
 	// TranscriptionJobName is a required field
 	TranscriptionJobName *string `min:"1" type:"string" required:"true"`
@@ -5040,6 +6002,144 @@ func (s *TranscriptionJobSummary) SetTranscriptionJobStatus(v string) *Transcrip
 	return s
 }
 
+type UpdateMedicalVocabularyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language code of the entries in the updated vocabulary. US English (en-US)
+	// is the only valid language code in Amazon Transcribe Medical.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// The Amazon S3 location of the text file containing the definition of the
+	// custom vocabulary. The URI must be in the same AWS region as the API endpoint
+	// you are calling. You can see the fields you need to enter for you Amazon
+	// S3 location in the example URI here:
+	//
+	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
+	//
+	// For example:
+	//
+	// https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt
+	//
+	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// in the Amazon S3 Developer Guide.
+	//
+	// For more information about custom vocabularies in Amazon Transcribe Medical,
+	// see Medical Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
+	VocabularyFileUri *string `min:"1" type:"string"`
+
+	// The name of the vocabulary to update. The name is case-sensitive. If you
+	// try to update a vocabulary with the same name as a previous vocabulary you
+	// will receive a ConflictException error.
+	//
+	// VocabularyName is a required field
+	VocabularyName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateMedicalVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMedicalVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMedicalVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMedicalVocabularyInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.VocabularyFileUri != nil && len(*s.VocabularyFileUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyFileUri", 1))
+	}
+	if s.VocabularyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyName"))
+	}
+	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *UpdateMedicalVocabularyInput) SetLanguageCode(v string) *UpdateMedicalVocabularyInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetVocabularyFileUri sets the VocabularyFileUri field's value.
+func (s *UpdateMedicalVocabularyInput) SetVocabularyFileUri(v string) *UpdateMedicalVocabularyInput {
+	s.VocabularyFileUri = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *UpdateMedicalVocabularyInput) SetVocabularyName(v string) *UpdateMedicalVocabularyInput {
+	s.VocabularyName = &v
+	return s
+}
+
+type UpdateMedicalVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The language code for the text file used to update the custom vocabulary.
+	// US English (en-US) is the only language supported in Amazon Transcribe Medical.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// The date and time the vocabulary was updated.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the updated vocabulary.
+	VocabularyName *string `min:"1" type:"string"`
+
+	// The processing state of the update to the vocabulary. When the VocabularyState
+	// field is READY the vocabulary is ready to be used in a StartMedicalTranscriptionJob
+	// request.
+	VocabularyState *string `type:"string" enum:"VocabularyState"`
+}
+
+// String returns the string representation
+func (s UpdateMedicalVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMedicalVocabularyOutput) GoString() string {
+	return s.String()
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *UpdateMedicalVocabularyOutput) SetLanguageCode(v string) *UpdateMedicalVocabularyOutput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *UpdateMedicalVocabularyOutput) SetLastModifiedTime(v time.Time) *UpdateMedicalVocabularyOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *UpdateMedicalVocabularyOutput) SetVocabularyName(v string) *UpdateMedicalVocabularyOutput {
+	s.VocabularyName = &v
+	return s
+}
+
+// SetVocabularyState sets the VocabularyState field's value.
+func (s *UpdateMedicalVocabularyOutput) SetVocabularyState(v string) *UpdateMedicalVocabularyOutput {
+	s.VocabularyState = &v
+	return s
+}
+
 type UpdateVocabularyFilterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5054,7 +6154,9 @@ type UpdateVocabularyFilterInput struct {
 	// parameter, you can't use the Words parameter.
 	VocabularyFilterFileUri *string `min:"1" type:"string"`
 
-	// The name of the vocabulary filter to update.
+	// The name of the vocabulary filter to update. If you try to update a vocabulary
+	// filter with the same name as a previous vocabulary filter you will receive
+	// a ConflictException error.
 	//
 	// VocabularyFilterName is a required field
 	VocabularyFilterName *string `min:"1" type:"string" required:"true"`
@@ -5186,7 +6288,9 @@ type UpdateVocabularyInput struct {
 	// For more information about custom vocabularies, see Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
-	// The name of the vocabulary to update. The name is case-sensitive.
+	// The name of the vocabulary to update. The name is case-sensitive. If you
+	// try to update a vocabulary with the same name as a previous vocabulary you
+	// will receive a ConflictException error.
 	//
 	// VocabularyName is a required field
 	VocabularyName *string `min:"1" type:"string" required:"true"`

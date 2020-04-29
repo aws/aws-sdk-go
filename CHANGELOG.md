@@ -1,3 +1,15 @@
+Release v1.30.17 (2020-04-29)
+===
+
+### Service Client Updates
+* `service/iotsitewise`: Adds new service
+* `service/servicediscovery`: Updates service documentation and examples
+  * Documentation updates for servicediscovery
+* `service/transcribe`: Updates service API, documentation, and paginators
+* `service/waf`: Updates service API and documentation
+  * This release add migration API for AWS WAF Classic ("waf" and "waf-regional"). The migration API will parse through your web ACL and generate a CloudFormation template into your S3 bucket. Deploying this template will create equivalent web ACL under new AWS WAF ("wafv2").
+* `service/waf-regional`: Updates service API and documentation
+
 Release v1.30.16 (2020-04-28)
 ===
 

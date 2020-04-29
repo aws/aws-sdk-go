@@ -104,6 +104,10 @@ type WAFAPI interface {
 	CreateWebACLWithContext(aws.Context, *waf.CreateWebACLInput, ...request.Option) (*waf.CreateWebACLOutput, error)
 	CreateWebACLRequest(*waf.CreateWebACLInput) (*request.Request, *waf.CreateWebACLOutput)
 
+	CreateWebACLMigrationStack(*waf.CreateWebACLMigrationStackInput) (*waf.CreateWebACLMigrationStackOutput, error)
+	CreateWebACLMigrationStackWithContext(aws.Context, *waf.CreateWebACLMigrationStackInput, ...request.Option) (*waf.CreateWebACLMigrationStackOutput, error)
+	CreateWebACLMigrationStackRequest(*waf.CreateWebACLMigrationStackInput) (*request.Request, *waf.CreateWebACLMigrationStackOutput)
+
 	CreateXssMatchSet(*waf.CreateXssMatchSetInput) (*waf.CreateXssMatchSetOutput, error)
 	CreateXssMatchSetWithContext(aws.Context, *waf.CreateXssMatchSetInput, ...request.Option) (*waf.CreateXssMatchSetOutput, error)
 	CreateXssMatchSetRequest(*waf.CreateXssMatchSetInput) (*request.Request, *waf.CreateXssMatchSetOutput)

@@ -1,5 +1,342 @@
 {
   "version": "1.0",
   "examples": {
+    "CreatePrivateDnsNamespace": [
+      {
+        "input": {
+          "CreatorRequestId": "eedd6892-50f3-41b2-8af9-611d6e1d1a8c",
+          "Name": "example.com",
+          "Vpc": "vpc-1c56417b"
+        },
+        "output": {
+          "OperationId": "gv4g5meo7ndmeh4fqskygvk23d2fijwa-k9302yzd"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: Create private DNS namespace",
+        "id": "example-create-private-dns-namespace-1587058592930",
+        "title": "Example: Create private DNS namespace"
+      }
+    ],
+    "CreateService": [
+      {
+        "input": {
+          "CreatorRequestId": "567c1193-6b00-4308-bd57-ad38a8822d25",
+          "DnsConfig": {
+            "DnsRecords": [
+              {
+                "TTL": 60,
+                "Type": "A"
+              }
+            ],
+            "NamespaceId": "ns-ylexjili4cdxy3xm",
+            "RoutingPolicy": "MULTIVALUE"
+          },
+          "Name": "myservice",
+          "NamespaceId": "ns-ylexjili4cdxy3xm"
+        },
+        "output": {
+          "Service": {
+            "Arn": "arn:aws:servicediscovery:us-west-2:123456789012:service/srv-p5zdwlg5uvvzjita",
+            "CreateDate": 1587081768.334,
+            "CreatorRequestId": "567c1193-6b00-4308-bd57-ad38a8822d25",
+            "DnsConfig": {
+              "DnsRecords": [
+                {
+                  "TTL": 60,
+                  "Type": "A"
+                }
+              ],
+              "NamespaceId": "ns-ylexjili4cdxy3xm",
+              "RoutingPolicy": "MULTIVALUE"
+            },
+            "Id": "srv-p5zdwlg5uvvzjita",
+            "Name": "myservice",
+            "NamespaceId": "ns-ylexjili4cdxy3xm"
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: Create service",
+        "id": "example-create-service-1587235913584",
+        "title": "Example: Create service"
+      }
+    ],
+    "DeleteNamespace": [
+      {
+        "input": {
+          "Id": "ns-ylexjili4cdxy3xm"
+        },
+        "output": {
+          "OperationId": "gv4g5meo7ndmeh4fqskygvk23d2fijwa-k98y6drk"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: Delete namespace",
+        "id": "example-delete-namespace-1587416093508",
+        "title": "Example: Delete namespace"
+      }
+    ],
+    "DeleteService": [
+      {
+        "input": {
+          "Id": "srv-p5zdwlg5uvvzjita"
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: Delete service",
+        "id": "example-delete-service-1587416462902",
+        "title": "Example: Delete service"
+      }
+    ],
+    "DeregisterInstance": [
+      {
+        "input": {
+          "InstanceId": "myservice-53",
+          "ServiceId": "srv-p5zdwlg5uvvzjita"
+        },
+        "output": {
+          "OperationId": "4yejorelbukcjzpnr6tlmrghsjwpngf4-k98rnaiq"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: Deregister a service instance",
+        "id": "example-deregister-a-service-instance-1587416305738",
+        "title": "Example: Deregister a service instance"
+      }
+    ],
+    "DiscoverInstances": [
+      {
+        "input": {
+          "HealthStatus": "ALL",
+          "MaxResults": 10,
+          "NamespaceName": "example.com",
+          "ServiceName": "myservice"
+        },
+        "output": {
+          "Instances": [
+            {
+              "Attributes": {
+                "AWS_INSTANCE_IPV4": "172.2.1.3",
+                "AWS_INSTANCE_PORT": "808"
+              },
+              "HealthStatus": "UNKNOWN",
+              "InstanceId": "myservice-53",
+              "NamespaceName": "example.com",
+              "ServiceName": "myservice"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: Discover registered instances",
+        "id": "example-discover-registered-instances-1587236343568",
+        "title": "Example: Discover registered instances"
+      }
+    ],
+    "GetOperation": [
+      {
+        "input": {
+          "OperationId": "gv4g5meo7ndmeh4fqskygvk23d2fijwa-k9302yzd"
+        },
+        "output": {
+          "Operation": {
+            "CreateDate": 1587055860.121,
+            "Id": "gv4g5meo7ndmeh4fqskygvk23d2fijwa-k9302yzd",
+            "Status": "SUCCESS",
+            "Targets": {
+              "NAMESPACE": "ns-ylexjili4cdxy3xm"
+            },
+            "Type": "CREATE_NAMESPACE",
+            "UpdateDate": 1587055900.469
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: Get operation result",
+        "id": "example-get-operation-result-1587073807124",
+        "title": "Example: Get operation result"
+      }
+    ],
+    "ListInstances": [
+      {
+        "input": {
+          "ServiceId": "srv-qzpwvt2tfqcegapy"
+        },
+        "output": {
+          "Instances": [
+            {
+              "Attributes": {
+                "AWS_INSTANCE_IPV4": "172.2.1.3",
+                "AWS_INSTANCE_PORT": "808"
+              },
+              "Id": "i-06bdabbae60f65a4e"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: List service instances",
+        "id": "example-list-service-instances-1587236237008",
+        "title": "Example: List service instances"
+      }
+    ],
+    "ListNamespaces": [
+      {
+        "input": {
+        },
+        "output": {
+          "Namespaces": [
+            {
+              "Arn": "arn:aws:servicediscovery:us-west-2:123456789012:namespace/ns-a3ccy2e7e3a7rile",
+              "CreateDate": 1585354387.357,
+              "Id": "ns-a3ccy2e7e3a7rile",
+              "Name": "local",
+              "Properties": {
+                "DnsProperties": {
+                  "HostedZoneId": "Z06752353VBUDTC32S84S"
+                },
+                "HttpProperties": {
+                  "HttpName": "local"
+                }
+              },
+              "Type": "DNS_PRIVATE"
+            },
+            {
+              "Arn": "arn:aws:servicediscovery:us-west-2:123456789012:namespace/ns-pocfyjtrsmwtvcxx",
+              "CreateDate": 1586468974.698,
+              "Description": "My second namespace",
+              "Id": "ns-pocfyjtrsmwtvcxx",
+              "Name": "My-second-namespace",
+              "Properties": {
+                "DnsProperties": {
+                },
+                "HttpProperties": {
+                  "HttpName": "My-second-namespace"
+                }
+              },
+              "Type": "HTTP"
+            },
+            {
+              "Arn": "arn:aws:servicediscovery:us-west-2:123456789012:namespace/ns-ylexjili4cdxy3xm",
+              "CreateDate": 1587055896.798,
+              "Id": "ns-ylexjili4cdxy3xm",
+              "Name": "example.com",
+              "Properties": {
+                "DnsProperties": {
+                  "HostedZoneId": "Z09983722P0QME1B3KC8I"
+                },
+                "HttpProperties": {
+                  "HttpName": "example.com"
+                }
+              },
+              "Type": "DNS_PRIVATE"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: List namespaces",
+        "id": "example-list-namespaces-1587401553154",
+        "title": "Example: List namespaces"
+      }
+    ],
+    "ListServices": [
+      {
+        "input": {
+        },
+        "output": {
+          "Services": [
+            {
+              "Arn": "arn:aws:servicediscovery:us-west-2:123456789012:service/srv-p5zdwlg5uvvzjita",
+              "CreateDate": 1587081768.334,
+              "DnsConfig": {
+                "DnsRecords": [
+                  {
+                    "TTL": 60,
+                    "Type": "A"
+                  }
+                ],
+                "RoutingPolicy": "MULTIVALUE"
+              },
+              "Id": "srv-p5zdwlg5uvvzjita",
+              "Name": "myservice"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: List services",
+        "id": "example-list-services-1587236889840",
+        "title": "Example: List services"
+      }
+    ],
+    "RegisterInstance": [
+      {
+        "input": {
+          "Attributes": {
+            "AWS_INSTANCE_IPV4": "172.2.1.3",
+            "AWS_INSTANCE_PORT": "808"
+          },
+          "CreatorRequestId": "7a48a98a-72e6-4849-bfa7-1a458e030d7b",
+          "InstanceId": "myservice-53",
+          "ServiceId": "srv-p5zdwlg5uvvzjita"
+        },
+        "output": {
+          "OperationId": "4yejorelbukcjzpnr6tlmrghsjwpngf4-k95yg2u7"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "Example: Register Instance",
+        "id": "example-register-instance-1587236116314",
+        "title": "Example: Register Instance"
+      }
+    ]
   }
 }

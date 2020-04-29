@@ -220,6 +220,22 @@
         {"shape":"WAFBadRequestException"}
       ]
     },
+    "CreateWebACLMigrationStack":{
+      "name":"CreateWebACLMigrationStack",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateWebACLMigrationStackRequest"},
+      "output":{"shape":"CreateWebACLMigrationStackResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFEntityMigrationException"}
+      ]
+    },
     "CreateXssMatchSet":{
       "name":"CreateXssMatchSet",
       "http":{
@@ -1391,7 +1407,9 @@
     },
     "ChangeToken":{
       "type":"string",
-      "min":1
+      "max":128,
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "ChangeTokenStatus":{
       "type":"string",
@@ -1604,6 +1622,26 @@
       "members":{
         "SqlInjectionMatchSet":{"shape":"SqlInjectionMatchSet"},
         "ChangeToken":{"shape":"ChangeToken"}
+      }
+    },
+    "CreateWebACLMigrationStackRequest":{
+      "type":"structure",
+      "required":[
+        "WebACLId",
+        "S3BucketName",
+        "IgnoreUnsupportedType"
+      ],
+      "members":{
+        "WebACLId":{"shape":"ResourceId"},
+        "S3BucketName":{"shape":"S3BucketName"},
+        "IgnoreUnsupportedType":{"shape":"IgnoreUnsupportedType"}
+      }
+    },
+    "CreateWebACLMigrationStackResponse":{
+      "type":"structure",
+      "required":["S3ObjectUrl"],
+      "members":{
+        "S3ObjectUrl":{"shape":"S3ObjectUrl"}
       }
     },
     "CreateWebACLRequest":{
@@ -1887,6 +1925,7 @@
       "members":{
       }
     },
+    "ErrorReason":{"type":"string"},
     "ExcludedRule":{
       "type":"structure",
       "required":["RuleId"],
@@ -2540,7 +2579,12 @@
         "IPV6"
       ]
     },
-    "IPSetDescriptorValue":{"type":"string"},
+    "IPSetDescriptorValue":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
     "IPSetDescriptors":{
       "type":"list",
       "member":{"shape":"IPSetDescriptor"}
@@ -2577,6 +2621,7 @@
       "min":1
     },
     "IPString":{"type":"string"},
+    "IgnoreUnsupportedType":{"type":"boolean"},
     "ListActivatedRulesInRuleGroupRequest":{
       "type":"structure",
       "members":{
@@ -2845,7 +2890,12 @@
       "type":"list",
       "member":{"shape":"ManagedKey"}
     },
-    "MatchFieldData":{"type":"string"},
+    "MatchFieldData":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
     "MatchFieldType":{
       "type":"string",
       "enum":[
@@ -2858,11 +2908,30 @@
         "ALL_QUERY_ARGS"
       ]
     },
-    "MetricName":{"type":"string"},
+    "MetricName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "MigrationErrorType":{
+      "type":"string",
+      "enum":[
+        "ENTITY_NOT_SUPPORTED",
+        "ENTITY_NOT_FOUND",
+        "S3_BUCKET_NO_PERMISSION",
+        "S3_BUCKET_NOT_ACCESSIBLE",
+        "S3_BUCKET_NOT_FOUND",
+        "S3_BUCKET_INVALID_REGION",
+        "S3_INTERNAL_ERROR"
+      ]
+    },
     "Negated":{"type":"boolean"},
     "NextMarker":{
       "type":"string",
-      "min":1
+      "max":1224,
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "PaginationLimit":{
       "type":"integer",
@@ -2907,7 +2976,9 @@
     },
     "PolicyString":{
       "type":"string",
-      "min":1
+      "max":395000,
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "PopulationSize":{"type":"long"},
     "PositionalConstraint":{
@@ -3109,7 +3180,9 @@
     },
     "RegexPatternString":{
       "type":"string",
-      "min":1
+      "max":512,
+      "min":1,
+      "pattern":".*"
     },
     "RegexPatternStrings":{
       "type":"list",
@@ -3119,7 +3192,8 @@
     "ResourceArn":{
       "type":"string",
       "max":1224,
-      "min":1
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "ResourceArns":{
       "type":"list",
@@ -3128,12 +3202,14 @@
     "ResourceId":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "ResourceName":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "ResourceType":{
       "type":"string",
@@ -3225,6 +3301,16 @@
     "RuleUpdates":{
       "type":"list",
       "member":{"shape":"RuleUpdate"}
+    },
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^aws-waf-migration-[0-9A-Za-z\\.\\-_]*"
+    },
+    "S3ObjectUrl":{
+      "type":"string",
+      "min":1
     },
     "SampleWeight":{
       "type":"long",
@@ -3392,6 +3478,10 @@
     },
     "Tag":{
       "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
       "members":{
         "Key":{"shape":"TagKey"},
         "Value":{"shape":"TagValue"}
@@ -3407,7 +3497,8 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "TagKeyList":{
       "type":"list",
@@ -3438,7 +3529,8 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":0
+      "min":0,
+      "pattern":".*"
     },
     "TextTransformation":{
       "type":"string",
@@ -3721,6 +3813,15 @@
       "type":"structure",
       "members":{
         "message":{"shape":"errorMessage"}
+      },
+      "exception":true
+    },
+    "WAFEntityMigrationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"},
+        "MigrationErrorType":{"shape":"MigrationErrorType"},
+        "MigrationErrorReason":{"shape":"ErrorReason"}
       },
       "exception":true
     },
