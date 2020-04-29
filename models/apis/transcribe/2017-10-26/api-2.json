@@ -13,6 +13,21 @@
     "uid":"transcribe-2017-10-26"
   },
   "operations":{
+    "CreateMedicalVocabulary":{
+      "name":"CreateMedicalVocabulary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateMedicalVocabularyRequest"},
+      "output":{"shape":"CreateMedicalVocabularyResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "CreateVocabulary":{
       "name":"CreateVocabulary",
       "http":{
@@ -51,6 +66,20 @@
       },
       "input":{"shape":"DeleteMedicalTranscriptionJobRequest"},
       "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "DeleteMedicalVocabulary":{
+      "name":"DeleteMedicalVocabulary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteMedicalVocabularyRequest"},
+      "errors":[
+        {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"BadRequestException"},
         {"shape":"InternalFailureException"}
@@ -112,6 +141,21 @@
         {"shape":"NotFoundException"}
       ]
     },
+    "GetMedicalVocabulary":{
+      "name":"GetMedicalVocabulary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMedicalVocabularyRequest"},
+      "output":{"shape":"GetMedicalVocabularyResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "GetTranscriptionJob":{
       "name":"GetTranscriptionJob",
       "http":{
@@ -165,6 +209,20 @@
       },
       "input":{"shape":"ListMedicalTranscriptionJobsRequest"},
       "output":{"shape":"ListMedicalTranscriptionJobsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListMedicalVocabularies":{
+      "name":"ListMedicalVocabularies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMedicalVocabulariesRequest"},
+      "output":{"shape":"ListMedicalVocabulariesResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"LimitExceededException"},
@@ -243,6 +301,22 @@
         {"shape":"ConflictException"}
       ]
     },
+    "UpdateMedicalVocabulary":{
+      "name":"UpdateMedicalVocabulary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateMedicalVocabularyRequest"},
+      "output":{"shape":"UpdateMedicalVocabularyResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "UpdateVocabulary":{
       "name":"UpdateVocabulary",
       "http":{
@@ -302,6 +376,29 @@
         "RedactionOutput":{"shape":"RedactionOutput"}
       }
     },
+    "CreateMedicalVocabularyRequest":{
+      "type":"structure",
+      "required":[
+        "VocabularyName",
+        "LanguageCode",
+        "VocabularyFileUri"
+      ],
+      "members":{
+        "VocabularyName":{"shape":"VocabularyName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "VocabularyFileUri":{"shape":"Uri"}
+      }
+    },
+    "CreateMedicalVocabularyResponse":{
+      "type":"structure",
+      "members":{
+        "VocabularyName":{"shape":"VocabularyName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "VocabularyState":{"shape":"VocabularyState"},
+        "LastModifiedTime":{"shape":"DateTime"},
+        "FailureReason":{"shape":"FailureReason"}
+      }
+    },
     "CreateVocabularyFilterRequest":{
       "type":"structure",
       "required":[
@@ -358,6 +455,13 @@
         "MedicalTranscriptionJobName":{"shape":"TranscriptionJobName"}
       }
     },
+    "DeleteMedicalVocabularyRequest":{
+      "type":"structure",
+      "required":["VocabularyName"],
+      "members":{
+        "VocabularyName":{"shape":"VocabularyName"}
+      }
+    },
     "DeleteTranscriptionJobRequest":{
       "type":"structure",
       "required":["TranscriptionJobName"],
@@ -391,6 +495,24 @@
       "type":"structure",
       "members":{
         "MedicalTranscriptionJob":{"shape":"MedicalTranscriptionJob"}
+      }
+    },
+    "GetMedicalVocabularyRequest":{
+      "type":"structure",
+      "required":["VocabularyName"],
+      "members":{
+        "VocabularyName":{"shape":"VocabularyName"}
+      }
+    },
+    "GetMedicalVocabularyResponse":{
+      "type":"structure",
+      "members":{
+        "VocabularyName":{"shape":"VocabularyName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "VocabularyState":{"shape":"VocabularyState"},
+        "LastModifiedTime":{"shape":"DateTime"},
+        "FailureReason":{"shape":"FailureReason"},
+        "DownloadUri":{"shape":"Uri"}
       }
     },
     "GetTranscriptionJobRequest":{
@@ -521,6 +643,23 @@
         "MedicalTranscriptionJobSummaries":{"shape":"MedicalTranscriptionJobSummaries"}
       }
     },
+    "ListMedicalVocabulariesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "StateEquals":{"shape":"VocabularyState"},
+        "NameContains":{"shape":"VocabularyName"}
+      }
+    },
+    "ListMedicalVocabulariesResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"VocabularyState"},
+        "NextToken":{"shape":"NextToken"},
+        "Vocabularies":{"shape":"Vocabularies"}
+      }
+    },
     "ListTranscriptionJobsRequest":{
       "type":"structure",
       "members":{
@@ -550,7 +689,7 @@
     "ListVocabulariesResponse":{
       "type":"structure",
       "members":{
-        "Status":{"shape":"TranscriptionJobStatus"},
+        "Status":{"shape":"VocabularyState"},
         "NextToken":{"shape":"NextToken"},
         "Vocabularies":{"shape":"Vocabularies"}
       }
@@ -656,7 +795,8 @@
         "MaxSpeakerLabels":{"shape":"MaxSpeakers"},
         "ChannelIdentification":{"shape":"Boolean"},
         "ShowAlternatives":{"shape":"Boolean"},
-        "MaxAlternatives":{"shape":"MaxAlternatives"}
+        "MaxAlternatives":{"shape":"MaxAlternatives"},
+        "VocabularyName":{"shape":"VocabularyName"}
       }
     },
     "NextToken":{
@@ -842,6 +982,27 @@
         "CONVERSATION",
         "DICTATION"
       ]
+    },
+    "UpdateMedicalVocabularyRequest":{
+      "type":"structure",
+      "required":[
+        "VocabularyName",
+        "LanguageCode"
+      ],
+      "members":{
+        "VocabularyName":{"shape":"VocabularyName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "VocabularyFileUri":{"shape":"Uri"}
+      }
+    },
+    "UpdateMedicalVocabularyResponse":{
+      "type":"structure",
+      "members":{
+        "VocabularyName":{"shape":"VocabularyName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "LastModifiedTime":{"shape":"DateTime"},
+        "VocabularyState":{"shape":"VocabularyState"}
+      }
     },
     "UpdateVocabularyFilterRequest":{
       "type":"structure",
