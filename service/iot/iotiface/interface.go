@@ -716,6 +716,10 @@ type IoTAPI interface {
 	RegisterCertificateWithContext(aws.Context, *iot.RegisterCertificateInput, ...request.Option) (*iot.RegisterCertificateOutput, error)
 	RegisterCertificateRequest(*iot.RegisterCertificateInput) (*request.Request, *iot.RegisterCertificateOutput)
 
+	RegisterCertificateWithoutCA(*iot.RegisterCertificateWithoutCAInput) (*iot.RegisterCertificateWithoutCAOutput, error)
+	RegisterCertificateWithoutCAWithContext(aws.Context, *iot.RegisterCertificateWithoutCAInput, ...request.Option) (*iot.RegisterCertificateWithoutCAOutput, error)
+	RegisterCertificateWithoutCARequest(*iot.RegisterCertificateWithoutCAInput) (*request.Request, *iot.RegisterCertificateWithoutCAOutput)
+
 	RegisterThing(*iot.RegisterThingInput) (*iot.RegisterThingOutput, error)
 	RegisterThingWithContext(aws.Context, *iot.RegisterThingInput, ...request.Option) (*iot.RegisterThingOutput, error)
 	RegisterThingRequest(*iot.RegisterThingInput) (*request.Request, *iot.RegisterThingOutput)

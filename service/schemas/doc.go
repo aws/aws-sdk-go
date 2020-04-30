@@ -3,7 +3,7 @@
 // Package schemas provides the client and types for making API
 // requests to Schemas.
 //
-// AWS EventBridge Schemas
+// Amazon EventBridge Schema Registry
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02 for more information on this service.
 //

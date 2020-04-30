@@ -1,3 +1,18 @@
+Release v1.30.18 (2020-04-30)
+===
+
+### Service Client Updates
+* `service/iot`: Updates service API and documentation
+  * AWS IoT Core released Fleet Provisioning for scalable onboarding of IoT devices to the cloud. This release includes support for customer's Lambda functions to validate devices during onboarding. Fleet Provisioning also allows devices to send Certificate Signing Requests (CSR) to AWS IoT Core for signing and getting a unique certificate. Lastly,  AWS IoT Core added a feature to register the same certificate for multiple accounts in the same region without needing to register the certificate authority (CA).
+* `service/iotevents`: Updates service API and documentation
+* `service/lambda`: Updates service documentation and examples
+  * Documentation updates for Lambda
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for including AFD signaling in MXF wrapper.
+* `service/schemas`: Updates service API and documentation
+* `service/storagegateway`: Updates service API
+  * Adding support for S3_INTELLIGENT_TIERING as a storage class option
+
 Release v1.30.17 (2020-04-29)
 ===
 

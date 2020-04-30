@@ -185,8 +185,8 @@
           }
         },
         "description": "The following example creates a function with a deployment package in Amazon S3 and enables X-Ray tracing and environment variable encryption.",
-        "id": "to-update-an-asynchronous-invocation-configuration-1586492061186",
-        "title": "To update an asynchronous invocation configuration"
+        "id": "to-create-a-function-1586492061186",
+        "title": "To create a function"
       }
     ],
     "DeleteAlias": [

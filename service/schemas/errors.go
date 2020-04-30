@@ -32,6 +32,10 @@ const (
 	// "NotFoundException".
 	ErrCodeNotFoundException = "NotFoundException"
 
+	// ErrCodePreconditionFailedException for service response error code
+	// "PreconditionFailedException".
+	ErrCodePreconditionFailedException = "PreconditionFailedException"
+
 	// ErrCodeServiceUnavailableException for service response error code
 	// "ServiceUnavailableException".
 	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
@@ -52,6 +56,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"GoneException":                newErrorGoneException,
 	"InternalServerErrorException": newErrorInternalServerErrorException,
 	"NotFoundException":            newErrorNotFoundException,
+	"PreconditionFailedException":  newErrorPreconditionFailedException,
 	"ServiceUnavailableException":  newErrorServiceUnavailableException,
 	"TooManyRequestsException":     newErrorTooManyRequestsException,
 	"UnauthorizedException":        newErrorUnauthorizedException,

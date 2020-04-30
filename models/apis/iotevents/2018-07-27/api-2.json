@@ -274,24 +274,6 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ResourceInUseException"}
       ]
-    },
-    "VerifyResourcesExistForTagris":{
-      "name":"VerifyResourcesExistForTagris",
-      "http":{
-        "method":"GET",
-        "requestUri":"/internal/tags/resource-status"
-      },
-      "input":{"shape":"TagrisVerifyResourcesExistInput"},
-      "output":{"shape":"TagrisVerifyResourcesExistOutput"},
-      "errors":[
-        {"shape":"TagrisAccessDeniedException"},
-        {"shape":"TagrisInternalServiceException"},
-        {"shape":"TagrisInvalidArnException"},
-        {"shape":"TagrisInvalidParameterException"},
-        {"shape":"TagrisPartialResourcesExistResultsException"},
-        {"shape":"TagrisThrottledException"}
-      ],
-      "internalonly":true
     }
   },
   "shapes":{
@@ -1145,111 +1127,6 @@
       "max":256,
       "min":0
     },
-    "TagrisAccessDeniedException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"TagrisExceptionMessage"}
-      },
-      "exception":true
-    },
-    "TagrisAccountId":{
-      "type":"string",
-      "max":12,
-      "min":12
-    },
-    "TagrisAmazonResourceName":{
-      "type":"string",
-      "max":1011,
-      "min":1
-    },
-    "TagrisExceptionMessage":{
-      "type":"string",
-      "max":2048,
-      "min":0
-    },
-    "TagrisInternalId":{
-      "type":"string",
-      "max":64,
-      "min":0
-    },
-    "TagrisInternalServiceException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"TagrisExceptionMessage"}
-      },
-      "exception":true,
-      "fault":true
-    },
-    "TagrisInvalidArnException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"TagrisExceptionMessage"},
-        "sweepListItem":{"shape":"TagrisSweepListItem"}
-      },
-      "exception":true
-    },
-    "TagrisInvalidParameterException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"TagrisExceptionMessage"}
-      },
-      "exception":true
-    },
-    "TagrisPartialResourcesExistResultsException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"TagrisExceptionMessage"},
-        "resourceExistenceInformation":{"shape":"TagrisSweepListResult"}
-      },
-      "exception":true
-    },
-    "TagrisStatus":{
-      "type":"string",
-      "enum":[
-        "ACTIVE",
-        "NOT_ACTIVE"
-      ]
-    },
-    "TagrisSweepList":{
-      "type":"list",
-      "member":{"shape":"TagrisSweepListItem"}
-    },
-    "TagrisSweepListItem":{
-      "type":"structure",
-      "members":{
-        "TagrisAccountId":{"shape":"TagrisAccountId"},
-        "TagrisAmazonResourceName":{"shape":"TagrisAmazonResourceName"},
-        "TagrisInternalId":{"shape":"TagrisInternalId"},
-        "TagrisVersion":{"shape":"TagrisVersion"}
-      }
-    },
-    "TagrisSweepListResult":{
-      "type":"map",
-      "key":{"shape":"TagrisAmazonResourceName"},
-      "value":{"shape":"TagrisStatus"}
-    },
-    "TagrisThrottledException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"TagrisExceptionMessage"}
-      },
-      "exception":true
-    },
-    "TagrisVerifyResourcesExistInput":{
-      "type":"structure",
-      "required":["TagrisSweepList"],
-      "members":{
-        "TagrisSweepList":{"shape":"TagrisSweepList"}
-      }
-    },
-    "TagrisVerifyResourcesExistOutput":{
-      "type":"structure",
-      "required":["TagrisSweepListResult"],
-      "members":{
-        "TagrisSweepListResult":{"shape":"TagrisSweepListResult"}
-      }
-    },
-    "TagrisVersion":{"type":"long"},
     "Tags":{
       "type":"list",
       "member":{"shape":"Tag"}

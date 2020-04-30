@@ -169,6 +169,37 @@
         }
       ]
     },
+    "DeleteResourcePolicy": {
+      "name": "DeleteResourcePolicy",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/policy",
+        "responseCode": 204
+      },
+      "input": {
+        "shape": "DeleteResourcePolicyRequest"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        }
+      ]
+    },
     "DeleteSchema": {
       "name": "DeleteSchema",
       "http": {
@@ -432,6 +463,40 @@
         }
       ]
     },
+    "GetResourcePolicy": {
+      "name": "GetResourcePolicy",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/policy",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetResourcePolicyRequest"
+      },
+      "output": {
+        "shape": "GetResourcePolicyResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        }
+      ]
+    },
     "ListDiscoverers": {
       "name": "ListDiscoverers",
       "http": {
@@ -587,38 +652,6 @@
         }
       ]
     },
-    "LockServiceLinkedRole": {
-      "name": "LockServiceLinkedRole",
-      "http": {
-        "method": "POST",
-        "requestUri": "/slr-deletion/lock",
-        "responseCode": 200
-      },
-      "input": {
-        "shape": "LockServiceLinkedRoleRequest"
-      },
-      "output": {
-        "shape": "LockServiceLinkedRoleResponse"
-      },
-      "errors": [
-        {
-          "shape": "ServiceUnavailableException"
-        },
-        {
-          "shape": "BadRequestException"
-        },
-        {
-          "shape": "UnauthorizedException"
-        },
-        {
-          "shape": "InternalServerErrorException"
-        },
-        {
-          "shape": "ForbiddenException"
-        }
-      ],
-      "internal": true
-    },
     "PutCodeBinding": {
       "name": "PutCodeBinding",
       "http": {
@@ -653,6 +686,43 @@
         },
         {
           "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "PutResourcePolicy": {
+      "name": "PutResourcePolicy",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/policy",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "PutResourcePolicyRequest"
+      },
+      "output": {
+        "shape": "PutResourcePolicyResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "PreconditionFailedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
         }
       ]
     },
@@ -779,38 +849,6 @@
           "shape": "ForbiddenException"
         }
       ]
-    },
-    "UnlockServiceLinkedRole": {
-      "name": "UnlockServiceLinkedRole",
-      "http": {
-        "method": "POST",
-        "requestUri": "/slr-deletion/unlock",
-        "responseCode": 200
-      },
-      "input": {
-        "shape": "UnlockServiceLinkedRoleRequest"
-      },
-      "output": {
-        "shape": "UnlockServiceLinkedRoleResponse"
-      },
-      "errors": [
-        {
-          "shape": "ServiceUnavailableException"
-        },
-        {
-          "shape": "BadRequestException"
-        },
-        {
-          "shape": "UnauthorizedException"
-        },
-        {
-          "shape": "InternalServerErrorException"
-        },
-        {
-          "shape": "ForbiddenException"
-        }
-      ],
-      "internal": true
     },
     "UntagResource": {
       "name": "UntagResource",
@@ -1222,6 +1260,16 @@
       "required": [
         "RegistryName"
       ]
+    },
+    "DeleteResourcePolicyRequest": {
+      "type": "structure",
+      "members": {
+        "RegistryName": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "registryName"
+        }
+      }
     },
     "DeleteSchemaRequest": {
       "type": "structure",
@@ -1662,6 +1710,40 @@
       "min": 1,
       "max": 100000
     },
+    "GetResourcePolicyOutput": {
+      "type": "structure",
+      "members": {
+        "Policy": {
+          "shape": "__string",
+          "jsonvalue": true
+        },
+        "RevisionId": {
+          "shape": "__string"
+        }
+      }
+    },
+    "GetResourcePolicyRequest": {
+      "type": "structure",
+      "members": {
+        "RegistryName": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "registryName"
+        }
+      }
+    },
+    "GetResourcePolicyResponse": {
+      "type": "structure",
+      "members": {
+        "Policy": {
+          "shape": "__string",
+          "jsonvalue": true
+        },
+        "RevisionId": {
+          "shape": "__string"
+        }
+      }
+    },
     "GoneException": {
       "type": "structure",
       "members": {
@@ -1900,6 +1982,15 @@
         }
       }
     },
+    "ListTagsForResourceOutput": {
+      "type": "structure",
+      "members": {
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        }
+      }
+    },
     "ListTagsForResourceRequest": {
       "type": "structure",
       "members": {
@@ -1917,12 +2008,10 @@
       "type": "structure",
       "members": {
         "Tags": {
-          "shape": "Tags"
+          "shape": "Tags",
+          "locationName": "tags"
         }
-      },
-      "required": [
-        "Tags"
-      ]
+      }
     },
     "LockServiceLinkedRoleInput": {
       "type": "structure",
@@ -2001,6 +2090,25 @@
         "httpStatusCode": 404
       }
     },
+    "PreconditionFailedException": {
+      "type": "structure",
+      "members": {
+        "Code": {
+          "shape": "__string"
+        },
+        "Message": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Message",
+        "Code"
+      ],
+      "exception": true,
+      "error": {
+        "httpStatusCode": 412
+      }
+    },
     "PutCodeBindingRequest": {
       "type": "structure",
       "members": {
@@ -2045,6 +2153,65 @@
         },
         "Status": {
           "shape": "CodeGenerationStatus"
+        }
+      }
+    },
+    "PutResourcePolicyInput": {
+      "type": "structure",
+      "members": {
+        "Policy": {
+          "shape": "__string",
+          "jsonvalue": true
+        },
+        "RevisionId": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Policy"
+      ]
+    },
+    "PutResourcePolicyOutput": {
+      "type": "structure",
+      "members": {
+        "Policy": {
+          "shape": "__string",
+          "jsonvalue": true
+        },
+        "RevisionId": {
+          "shape": "__string"
+        }
+      }
+    },
+    "PutResourcePolicyRequest": {
+      "type": "structure",
+      "members": {
+        "Policy": {
+          "shape": "__string",
+          "jsonvalue": true
+        },
+        "RegistryName": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "registryName"
+        },
+        "RevisionId": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Policy"
+      ]
+    },
+    "PutResourcePolicyResponse": {
+      "type": "structure",
+      "members": {
+        "Policy": {
+          "shape": "__string",
+          "jsonvalue": true
+        },
+        "RevisionId": {
+          "shape": "__string"
         }
       }
     },
