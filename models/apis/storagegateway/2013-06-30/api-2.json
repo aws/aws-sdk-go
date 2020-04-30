@@ -2891,7 +2891,7 @@
     },
     "StorageClass":{
       "type":"string",
-      "max":20,
+      "max":50,
       "min":5
     },
     "StorageGatewayError":{

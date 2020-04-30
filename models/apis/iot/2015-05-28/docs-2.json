@@ -166,6 +166,7 @@
     "ListViolationEvents": "<p>Lists the Device Defender security profile violations discovered during the given time period. You can use filters to limit the results to those alerts issued for a particular security profile, behavior, or thing (device).</p>",
     "RegisterCACertificate": "<p>Registers a CA certificate with AWS IoT. This CA certificate can then be used to sign device certificates, which can be then registered with AWS IoT. You can register up to 10 CA certificates per AWS account that have the same subject field. This enables you to have up to 10 certificate authorities sign your device certificates. If you have more than one CA certificate registered, make sure you pass the CA certificate when you register your device certificates with the RegisterCertificate API.</p>",
     "RegisterCertificate": "<p>Registers a device certificate with AWS IoT. If you have more than one CA certificate that has the same subject field, you must specify the CA certificate that was used to sign the device certificate being registered.</p>",
+    "RegisterCertificateWithoutCA": "<p>Register a certificate that does not have a certificate authority (CA).</p>",
     "RegisterThing": "<p>Provisions a thing in the device registry. RegisterThing calls other AWS IoT control plane APIs. These calls might exceed your account level <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot\"> AWS IoT Throttling Limits</a> and cause throttle errors. Please contact <a href=\"https://console.aws.amazon.com/support/home\">AWS Customer Support</a> to raise your throttling limits if necessary.</p>",
     "RejectCertificateTransfer": "<p>Rejects a pending certificate transfer. After AWS IoT rejects a certificate transfer, the certificate status changes from <b>PENDING_TRANSFER</b> to <b>INACTIVE</b>.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>This operation can only be called by the transfer destination. After it is called, the certificate will be returned to the source's account in the INACTIVE state.</p>",
     "RemoveThingFromBillingGroup": "<p>Removes the given thing from the billing group.</p>",
@@ -1230,6 +1231,7 @@
         "OutgoingCertificate$certificateArn": "<p>The certificate ARN.</p>",
         "RegisterCACertificateResponse$certificateArn": "<p>The CA certificate ARN.</p>",
         "RegisterCertificateResponse$certificateArn": "<p>The certificate ARN.</p>",
+        "RegisterCertificateWithoutCAResponse$certificateArn": "<p>The Amazon Resource Name (ARN) of the registered certificate.</p>",
         "SigningProfileParameter$certificateArn": "<p>Certificate ARN.</p>",
         "TransferCertificateResponse$transferredCertificateArn": "<p>The ARN of the certificate.</p>"
       }
@@ -1266,12 +1268,20 @@
         "OutgoingCertificate$certificateId": "<p>The certificate ID.</p>",
         "RegisterCACertificateResponse$certificateId": "<p>The CA certificate identifier.</p>",
         "RegisterCertificateResponse$certificateId": "<p>The certificate identifier.</p>",
+        "RegisterCertificateWithoutCAResponse$certificateId": "<p>The ID of the registered certificate. (The last part of the certificate ARN contains the certificate ID.</p>",
         "RejectCertificateTransferRequest$certificateId": "<p>The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)</p>",
         "ResourceIdentifier$deviceCertificateId": "<p>The ID of the certificate attached to the resource.</p>",
         "ResourceIdentifier$caCertificateId": "<p>The ID of the CA certificate used to authorize the certificate.</p>",
         "TransferCertificateRequest$certificateId": "<p>The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)</p>",
         "UpdateCACertificateRequest$certificateId": "<p>The CA certificate identifier.</p>",
         "UpdateCertificateRequest$certificateId": "<p>The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)</p>"
+      }
+    },
+    "CertificateMode": {
+      "base": null,
+      "refs": {
+        "Certificate$certificateMode": "<p>The mode of the certificate.</p>",
+        "CertificateDescription$certificateMode": "<p>The mode of the certificate.</p>"
       }
     },
     "CertificateName": {
@@ -1298,7 +1308,8 @@
         "RegisterCACertificateRequest$verificationCertificate": "<p>The private key verification certificate.</p>",
         "RegisterCertificateRequest$certificatePem": "<p>The certificate data, in PEM format.</p>",
         "RegisterCertificateRequest$caCertificatePem": "<p>The CA certificate used to sign the device certificate being registered.</p>",
-        "RegisterThingResponse$certificatePem": "<p>.</p>"
+        "RegisterCertificateWithoutCARequest$certificatePem": "<p>The certificate data, in PEM format.</p>",
+        "RegisterThingResponse$certificatePem": "<p>The certificate data, in PEM format.</p>"
       }
     },
     "CertificateSigningRequest": {
@@ -1318,6 +1329,7 @@
         "Certificate$status": "<p>The status of the certificate.</p> <p>The status value REGISTER_INACTIVE is deprecated and should not be used.</p>",
         "CertificateDescription$status": "<p>The status of the certificate.</p>",
         "RegisterCertificateRequest$status": "<p>The status of the register certificate request.</p>",
+        "RegisterCertificateWithoutCARequest$status": "<p>The status of the register certificate request.</p>",
         "UpdateCertificateRequest$newStatus": "<p>The new status.</p> <p> <b>Note:</b> Setting the status to PENDING_TRANSFER or PENDING_ACTIVATION will result in an exception being thrown. PENDING_TRANSFER and PENDING_ACTIVATION are statuses used internally by AWS IoT. They are not intended for developer use.</p> <p> <b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>"
       }
     },
@@ -1377,7 +1389,7 @@
     "ClientId": {
       "base": null,
       "refs": {
-        "DescribeThingResponse$defaultClientId": "<p>The default client ID.</p>",
+        "DescribeThingResponse$defaultClientId": "<p>The default MQTT client ID. For a typical device, the thing name is also used as the default MQTT client ID. Although we don’t require a mapping between a thing's registry name and its use of MQTT client IDs, certificates, or shadow state, we recommend that you choose a thing name and use it as the MQTT client ID for the registry and the Device Shadow service.</p> <p>This lets you better organize your AWS IoT fleet without removing the flexibility of the underlying device certificate model or shadows.</p>",
         "ResourceIdentifier$clientId": "<p>The client ID.</p>",
         "TestAuthorizationRequest$clientId": "<p>The MQTT client ID.</p>"
       }
@@ -2555,7 +2567,7 @@
     "DimensionValueOperator": {
       "base": null,
       "refs": {
-        "MetricDimension$operator": "<p>Defines how the <code>dimensionValues</code> of a dimension are interpreted. For example, for DimensionType TOPIC_FILTER, with <code>IN</code> operator, a message will be counted only if its topic matches one of the topic filters. With <code>NOT_IN</code> Operator, a message will be counted only if it doesn't match any of the topic filters. The operator is optional: if it's not provided (is <code>null</code>), it will be interpreted as <code>IN</code>.</p>"
+        "MetricDimension$operator": "<p>Defines how the <code>dimensionValues</code> of a dimension are interpreted. For example, for dimension type TOPIC_FILTER, the <code>IN</code> operator, a message will be counted only if its topic matches one of the topic filters. With <code>NOT_IN</code> operator, a message will be counted only if it doesn't match any of the topic filters. The operator is optional: if it's not provided (is <code>null</code>), it will be interpreted as <code>IN</code>.</p>"
       }
     },
     "DisableAllLogs": {
@@ -4621,7 +4633,7 @@
     "Parameters": {
       "base": null,
       "refs": {
-        "RegisterThingRequest$parameters": "<p>The parameters for provisioning a thing. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html\">Programmatic Provisioning</a> for more information.</p>"
+        "RegisterThingRequest$parameters": "<p>The parameters for provisioning a thing. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html\">Provisioning Templates</a> for more information.</p>"
       }
     },
     "PartitionKey": {
@@ -4634,6 +4646,12 @@
       "base": null,
       "refs": {
         "DynamoDBAction$payloadField": "<p>The action payload. This name can be customized.</p>"
+      }
+    },
+    "PayloadVersion": {
+      "base": null,
+      "refs": {
+        "ProvisioningHook$payloadVersion": "<p>The payload that was sent to the target function.</p> <p> <i>Note:</i> Only Lambda functions are currently supported.</p>"
       }
     },
     "Percent": {
@@ -4901,6 +4919,14 @@
         "OTAUpdateInfo$protocols": "<p>The protocol used to transfer the OTA update image. Valid values are [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the target device can choose the protocol.</p>"
       }
     },
+    "ProvisioningHook": {
+      "base": "<p>Structure that contains <code>payloadVersion</code> and <code>targetArn</code>.</p>",
+      "refs": {
+        "CreateProvisioningTemplateRequest$preProvisioningHook": "<p>Creates a pre-provisioning hook template.</p>",
+        "DescribeProvisioningTemplateResponse$preProvisioningHook": "<p>Gets information about a pre-provisioned hook.</p>",
+        "UpdateProvisioningTemplateRequest$preProvisioningHook": "<p>Updates the pre-provisioning hook template.</p>"
+      }
+    },
     "ProvisioningTemplateListing": {
       "base": null,
       "refs": {
@@ -5092,6 +5118,16 @@
       "refs": {
       }
     },
+    "RegisterCertificateWithoutCARequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterCertificateWithoutCAResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RegisterThingRequest": {
       "base": null,
       "refs": {
@@ -5183,6 +5219,12 @@
       "base": null,
       "refs": {
         "UpdateCACertificateRequest$removeAutoRegistration": "<p>If true, removes auto registration.</p>"
+      }
+    },
+    "RemoveHook": {
+      "base": null,
+      "refs": {
+        "UpdateProvisioningTemplateRequest$removePreProvisioningHook": "<p>Removes pre-provisioning hook template.</p>"
       }
     },
     "RemoveThingFromBillingGroupRequest": {
@@ -5664,7 +5706,7 @@
     "ServiceType": {
       "base": null,
       "refs": {
-        "CreateDomainConfigurationRequest$serviceType": "<p>The type of service delivered by the endpoint.</p>",
+        "CreateDomainConfigurationRequest$serviceType": "<p>The type of service delivered by the endpoint.</p> <note> <p>AWS IoT Core currently supports only the <code>DATA</code> service type.</p> </note>",
         "DescribeDomainConfigurationResponse$serviceType": "<p>The type of service delivered by the endpoint.</p>",
         "DomainConfigurationSummary$serviceType": "<p>The type of service delivered by the endpoint.</p>",
         "ListDomainConfigurationsRequest$serviceType": "<p>The type of service delivered by the endpoint.</p>"
@@ -6061,19 +6103,24 @@
     "TagList": {
       "base": null,
       "refs": {
+        "CreateAuthorizerRequest$tags": "<p>Metadata which can be used to manage the custom authorizer.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "CreateBillingGroupRequest$tags": "<p>Metadata which can be used to manage the billing group.</p>",
         "CreateDimensionRequest$tags": "<p>Metadata that can be used to manage the dimension.</p>",
+        "CreateDomainConfigurationRequest$tags": "<p>Metadata which can be used to manage the domain configuration.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "CreateDynamicThingGroupRequest$tags": "<p>Metadata which can be used to manage the dynamic thing group.</p>",
         "CreateJobRequest$tags": "<p>Metadata which can be used to manage the job.</p>",
         "CreateMitigationActionRequest$tags": "<p>Metadata that can be used to manage the mitigation action.</p>",
         "CreateOTAUpdateRequest$tags": "<p>Metadata which can be used to manage updates.</p>",
+        "CreatePolicyRequest$tags": "<p>Metadata which can be used to manage the policy.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "CreateProvisioningTemplateRequest$tags": "<p>Metadata which can be used to manage the fleet provisioning template.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
+        "CreateRoleAliasRequest$tags": "<p>Metadata which can be used to manage the role alias.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "CreateScheduledAuditRequest$tags": "<p>Metadata that can be used to manage the scheduled audit.</p>",
         "CreateSecurityProfileRequest$tags": "<p>Metadata that can be used to manage the security profile.</p>",
         "CreateStreamRequest$tags": "<p>Metadata which can be used to manage streams.</p>",
         "CreateThingGroupRequest$tags": "<p>Metadata which can be used to manage the thing group.</p>",
         "CreateThingTypeRequest$tags": "<p>Metadata which can be used to manage the thing type.</p>",
         "ListTagsForResourceResponse$tags": "<p>The list of tags assigned to the resource.</p>",
+        "RegisterCACertificateRequest$tags": "<p>Metadata which can be used to manage the CA certificate.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "TagResourceRequest$tags": "<p>The new or modified tags for the resource.</p>"
       }
     },
@@ -6103,7 +6150,8 @@
       "base": null,
       "refs": {
         "AuditNotificationTarget$targetArn": "<p>The ARN of the target (SNS topic) to which audit notifications are sent.</p>",
-        "JobTargets$member": null
+        "JobTargets$member": null,
+        "ProvisioningHook$targetArn": "<p>The ARN of the target function.</p> <p> <i>Note:</i> Only Lambda functions are currently supported.</p>"
       }
     },
     "TargetAuditCheckNames": {
@@ -6453,7 +6501,7 @@
         "AddThingToThingGroupRequest$thingName": "<p>The name of the thing to add to a group.</p>",
         "AttachThingPrincipalRequest$thingName": "<p>The name of the thing.</p>",
         "CancelJobExecutionRequest$thingName": "<p>The name of the thing whose execution of the job will be canceled.</p>",
-        "CreateThingRequest$thingName": "<p>The name of the thing to create.</p>",
+        "CreateThingRequest$thingName": "<p>The name of the thing to create.</p> <p>You can't change a thing's name after you create it. To change a thing's name, you must create a new thing, give it the new name, and then delete the old thing.</p>",
         "CreateThingResponse$thingName": "<p>The name of the new thing.</p>",
         "DeleteJobExecutionRequest$thingName": "<p>The name of the thing whose job execution will be deleted.</p>",
         "DeleteThingRequest$thingName": "<p>The name of the thing to delete.</p>",
@@ -6471,7 +6519,7 @@
         "ThingDocument$thingName": "<p>The thing name.</p>",
         "ThingNameList$member": null,
         "UpdateThingGroupsForThingRequest$thingName": "<p>The thing whose group memberships will be updated.</p>",
-        "UpdateThingRequest$thingName": "<p>The name of the thing to update.</p>"
+        "UpdateThingRequest$thingName": "<p>The name of the thing to update.</p> <p>You can't change a thing's name. To change a thing's name, you must create a new thing, give it the new name, and then delete the old thing.</p>"
       }
     },
     "ThingNameList": {
@@ -6626,7 +6674,7 @@
     "TokenSignature": {
       "base": null,
       "refs": {
-        "TestInvokeAuthorizerRequest$tokenSignature": "<p>The signature made with the token and your custom authentication service's private key.</p>"
+        "TestInvokeAuthorizerRequest$tokenSignature": "<p>The signature made with the token and your custom authentication service's private key. This value must be Base-64-encoded.</p>"
       }
     },
     "Topic": {

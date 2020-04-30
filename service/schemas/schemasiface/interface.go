@@ -80,6 +80,10 @@ type SchemasAPI interface {
 	DeleteRegistryWithContext(aws.Context, *schemas.DeleteRegistryInput, ...request.Option) (*schemas.DeleteRegistryOutput, error)
 	DeleteRegistryRequest(*schemas.DeleteRegistryInput) (*request.Request, *schemas.DeleteRegistryOutput)
 
+	DeleteResourcePolicy(*schemas.DeleteResourcePolicyInput) (*schemas.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyWithContext(aws.Context, *schemas.DeleteResourcePolicyInput, ...request.Option) (*schemas.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyRequest(*schemas.DeleteResourcePolicyInput) (*request.Request, *schemas.DeleteResourcePolicyOutput)
+
 	DeleteSchema(*schemas.DeleteSchemaInput) (*schemas.DeleteSchemaOutput, error)
 	DeleteSchemaWithContext(aws.Context, *schemas.DeleteSchemaInput, ...request.Option) (*schemas.DeleteSchemaOutput, error)
 	DeleteSchemaRequest(*schemas.DeleteSchemaInput) (*request.Request, *schemas.DeleteSchemaOutput)
@@ -111,6 +115,10 @@ type SchemasAPI interface {
 	GetDiscoveredSchema(*schemas.GetDiscoveredSchemaInput) (*schemas.GetDiscoveredSchemaOutput, error)
 	GetDiscoveredSchemaWithContext(aws.Context, *schemas.GetDiscoveredSchemaInput, ...request.Option) (*schemas.GetDiscoveredSchemaOutput, error)
 	GetDiscoveredSchemaRequest(*schemas.GetDiscoveredSchemaInput) (*request.Request, *schemas.GetDiscoveredSchemaOutput)
+
+	GetResourcePolicy(*schemas.GetResourcePolicyInput) (*schemas.GetResourcePolicyOutput, error)
+	GetResourcePolicyWithContext(aws.Context, *schemas.GetResourcePolicyInput, ...request.Option) (*schemas.GetResourcePolicyOutput, error)
+	GetResourcePolicyRequest(*schemas.GetResourcePolicyInput) (*request.Request, *schemas.GetResourcePolicyOutput)
 
 	ListDiscoverers(*schemas.ListDiscoverersInput) (*schemas.ListDiscoverersOutput, error)
 	ListDiscoverersWithContext(aws.Context, *schemas.ListDiscoverersInput, ...request.Option) (*schemas.ListDiscoverersOutput, error)
@@ -144,13 +152,13 @@ type SchemasAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *schemas.ListTagsForResourceInput, ...request.Option) (*schemas.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*schemas.ListTagsForResourceInput) (*request.Request, *schemas.ListTagsForResourceOutput)
 
-	LockServiceLinkedRole(*schemas.LockServiceLinkedRoleInput) (*schemas.LockServiceLinkedRoleOutput, error)
-	LockServiceLinkedRoleWithContext(aws.Context, *schemas.LockServiceLinkedRoleInput, ...request.Option) (*schemas.LockServiceLinkedRoleOutput, error)
-	LockServiceLinkedRoleRequest(*schemas.LockServiceLinkedRoleInput) (*request.Request, *schemas.LockServiceLinkedRoleOutput)
-
 	PutCodeBinding(*schemas.PutCodeBindingInput) (*schemas.PutCodeBindingOutput, error)
 	PutCodeBindingWithContext(aws.Context, *schemas.PutCodeBindingInput, ...request.Option) (*schemas.PutCodeBindingOutput, error)
 	PutCodeBindingRequest(*schemas.PutCodeBindingInput) (*request.Request, *schemas.PutCodeBindingOutput)
+
+	PutResourcePolicy(*schemas.PutResourcePolicyInput) (*schemas.PutResourcePolicyOutput, error)
+	PutResourcePolicyWithContext(aws.Context, *schemas.PutResourcePolicyInput, ...request.Option) (*schemas.PutResourcePolicyOutput, error)
+	PutResourcePolicyRequest(*schemas.PutResourcePolicyInput) (*request.Request, *schemas.PutResourcePolicyOutput)
 
 	SearchSchemas(*schemas.SearchSchemasInput) (*schemas.SearchSchemasOutput, error)
 	SearchSchemasWithContext(aws.Context, *schemas.SearchSchemasInput, ...request.Option) (*schemas.SearchSchemasOutput, error)
@@ -170,10 +178,6 @@ type SchemasAPI interface {
 	TagResource(*schemas.TagResourceInput) (*schemas.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *schemas.TagResourceInput, ...request.Option) (*schemas.TagResourceOutput, error)
 	TagResourceRequest(*schemas.TagResourceInput) (*request.Request, *schemas.TagResourceOutput)
-
-	UnlockServiceLinkedRole(*schemas.UnlockServiceLinkedRoleInput) (*schemas.UnlockServiceLinkedRoleOutput, error)
-	UnlockServiceLinkedRoleWithContext(aws.Context, *schemas.UnlockServiceLinkedRoleInput, ...request.Option) (*schemas.UnlockServiceLinkedRoleOutput, error)
-	UnlockServiceLinkedRoleRequest(*schemas.UnlockServiceLinkedRoleInput) (*request.Request, *schemas.UnlockServiceLinkedRoleOutput)
 
 	UntagResource(*schemas.UntagResourceInput) (*schemas.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *schemas.UntagResourceInput, ...request.Option) (*schemas.UntagResourceOutput, error)

@@ -2222,6 +2222,10 @@
         "MpdSettings": {
           "shape": "MpdSettings",
           "locationName": "mpdSettings"
+        },
+        "MxfSettings": {
+          "shape": "MxfSettings",
+          "locationName": "mxfSettings"
         }
       }
     },
@@ -6689,6 +6693,22 @@
         "UTF8",
         "UTF16"
       ]
+    },
+    "MxfAfdSignaling": {
+      "type": "string",
+      "enum": [
+        "NO_COPY",
+        "COPY_FROM_VIDEO"
+      ]
+    },
+    "MxfSettings": {
+      "type": "structure",
+      "members": {
+        "AfdSignaling": {
+          "shape": "MxfAfdSignaling",
+          "locationName": "afdSignaling"
+        }
+      }
     },
     "NielsenConfiguration": {
       "type": "structure",

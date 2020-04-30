@@ -1500,7 +1500,7 @@
       "base": null,
       "refs": {
         "CreateFunctionRequest$Timeout": "<p>The amount of time that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.</p>",
-        "FunctionConfiguration$Timeout": "<p>The amount of time that Lambda allows a function to run before stopping it.</p>",
+        "FunctionConfiguration$Timeout": "<p>The amount of time in seconds that Lambda allows a function to run before stopping it.</p>",
         "UpdateFunctionConfigurationRequest$Timeout": "<p>The amount of time that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.</p>"
       }
     },

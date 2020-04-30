@@ -17,8 +17,7 @@
     "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>",
     "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p>",
     "UpdateDetectorModel": "<p>Updates a detector model. Detectors (instances) spawned by the previous version are deleted and then re-created as new inputs arrive.</p>",
-    "UpdateInput": "<p>Updates an input.</p>",
-    "VerifyResourcesExistForTagris": null
+    "UpdateInput": "<p>Updates an input.</p>"
   },
   "shapes": {
     "Action": {
@@ -528,7 +527,7 @@
     "IotSiteWiseAction": {
       "base": "<p>Sends information about the detector model instance and the event that triggered the action to a specified asset property in AWS IoT SiteWise.</p> <important> <p>You must specify either <code>propertyAlias</code> or both <code>assetId</code> and <code>propertyId</code> to identify the target asset property in AWS IoT SiteWise.</p> </important> <p>For parameters that are string data type, you can specify the following options: </p> <ul> <li> <p>Use a string. For example, the <code>propertyAlias</code> value can be <code>'/company/windfarm/3/turbine/7/temperature'</code>.</p> </li> <li> <p>Use an expression. For example, the <code>propertyAlias</code> value can be <code>'company/windfarm/${$input.TemperatureInput.sensorData.windfarmID}/turbine/${$input.TemperatureInput.sensorData.turbineID}/temperature'</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p> </li> </ul>",
       "refs": {
-        "Action$iotSiteWise": "<p>Sends information about the detector model instance and the event that triggered the action to an AWS IoT SiteWise asset property.</p>"
+        "Action$iotSiteWise": "<p>Sends information about the detector model instance and the event that triggered the action to an asset property in AWS IoT SiteWise .</p>"
       }
     },
     "IotTopicPublishAction": {
@@ -795,108 +794,6 @@
       "base": null,
       "refs": {
         "Tag$value": "<p>The tag's value.</p>"
-      }
-    },
-    "TagrisAccessDeniedException": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "TagrisAccountId": {
-      "base": null,
-      "refs": {
-        "TagrisSweepListItem$TagrisAccountId": null
-      }
-    },
-    "TagrisAmazonResourceName": {
-      "base": null,
-      "refs": {
-        "TagrisSweepListItem$TagrisAmazonResourceName": null,
-        "TagrisSweepListResult$key": null
-      }
-    },
-    "TagrisExceptionMessage": {
-      "base": null,
-      "refs": {
-        "TagrisAccessDeniedException$message": null,
-        "TagrisInternalServiceException$message": null,
-        "TagrisInvalidArnException$message": null,
-        "TagrisInvalidParameterException$message": null,
-        "TagrisPartialResourcesExistResultsException$message": null,
-        "TagrisThrottledException$message": null
-      }
-    },
-    "TagrisInternalId": {
-      "base": null,
-      "refs": {
-        "TagrisSweepListItem$TagrisInternalId": null
-      }
-    },
-    "TagrisInternalServiceException": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "TagrisInvalidArnException": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "TagrisInvalidParameterException": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "TagrisPartialResourcesExistResultsException": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "TagrisStatus": {
-      "base": null,
-      "refs": {
-        "TagrisSweepListResult$value": null
-      }
-    },
-    "TagrisSweepList": {
-      "base": null,
-      "refs": {
-        "TagrisVerifyResourcesExistInput$TagrisSweepList": null
-      }
-    },
-    "TagrisSweepListItem": {
-      "base": null,
-      "refs": {
-        "TagrisInvalidArnException$sweepListItem": null,
-        "TagrisSweepList$member": null
-      }
-    },
-    "TagrisSweepListResult": {
-      "base": null,
-      "refs": {
-        "TagrisPartialResourcesExistResultsException$resourceExistenceInformation": null,
-        "TagrisVerifyResourcesExistOutput$TagrisSweepListResult": null
-      }
-    },
-    "TagrisThrottledException": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "TagrisVerifyResourcesExistInput": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "TagrisVerifyResourcesExistOutput": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "TagrisVersion": {
-      "base": null,
-      "refs": {
-        "TagrisSweepListItem$TagrisVersion": null
       }
     },
     "Tags": {

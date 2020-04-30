@@ -1664,9 +1664,9 @@
       }
     },
     "ImscStylePassthrough": {
-      "base": "Keep this setting enabled to have MediaConvert use the font style and position information from the captions source in the output. This option is available only when your input captions are CFF-TT, IMSC, SMPTE-TT, or TTML. Disable this setting for simplified output captions.",
+      "base": "Keep this setting enabled to have MediaConvert use the font style and position information from the captions source in the output. This option is available only when your input captions are IMSC, SMPTE-TT, or TTML. Disable this setting for simplified output captions.",
       "refs": {
-        "ImscDestinationSettings$StylePassthrough": "Keep this setting enabled to have MediaConvert use the font style and position information from the captions source in the output. This option is available only when your input captions are CFF-TT, IMSC, SMPTE-TT, or TTML. Disable this setting for simplified output captions."
+        "ImscDestinationSettings$StylePassthrough": "Keep this setting enabled to have MediaConvert use the font style and position information from the captions source in the output. This option is available only when your input captions are IMSC, SMPTE-TT, or TTML. Disable this setting for simplified output captions."
       }
     },
     "Input": {
@@ -2248,6 +2248,18 @@
         "MsSmoothGroupSettings$ManifestEncoding": "Use Manifest encoding (MsSmoothManifestEncoding) to specify the encoding format for the server and client manifest. Valid options are utf8 and utf16."
       }
     },
+    "MxfAfdSignaling": {
+      "base": "Optional. When you have AFD signaling set up in your output video stream, use this setting to choose whether to also include it in the MXF wrapper. Choose Don't copy (NO_COPY) to exclude AFD signaling from the MXF wrapper. Choose Copy from video stream (COPY_FROM_VIDEO) to copy the AFD values from the video stream for this output to the MXF wrapper. Regardless of which option you choose, the AFD values remain in the video stream. Related settings: To set up your output to include or exclude AFD values, see AfdSignaling, under VideoDescription. On the console, find AFD signaling under the output's video encoding settings.",
+      "refs": {
+        "MxfSettings$AfdSignaling": "Optional. When you have AFD signaling set up in your output video stream, use this setting to choose whether to also include it in the MXF wrapper. Choose Don't copy (NO_COPY) to exclude AFD signaling from the MXF wrapper. Choose Copy from video stream (COPY_FROM_VIDEO) to copy the AFD values from the video stream for this output to the MXF wrapper. Regardless of which option you choose, the AFD values remain in the video stream. Related settings: To set up your output to include or exclude AFD values, see AfdSignaling, under VideoDescription. On the console, find AFD signaling under the output's video encoding settings."
+      }
+    },
+    "MxfSettings": {
+      "base": "MXF settings",
+      "refs": {
+        "ContainerSettings$MxfSettings": "MXF settings"
+      }
+    },
     "NielsenConfiguration": {
       "base": "Settings for your Nielsen configuration. If you don't do Nielsen measurement and analytics, ignore these settings. When you enable Nielsen configuration (nielsenConfiguration), MediaConvert enables PCM to ID3 tagging for all outputs in the job. To enable Nielsen configuration programmatically, include an instance of nielsenConfiguration in your JSON job specification. Even if you don't include any children of nielsenConfiguration, you still enable the setting.",
       "refs": {
@@ -2692,9 +2704,9 @@
       }
     },
     "TtmlStylePassthrough": {
-      "base": "Pass through style and position information from a TTML-like input source (TTML, SMPTE-TT, CFF-TT) to the CFF-TT output or TTML output.",
+      "base": "Pass through style and position information from a TTML-like input source (TTML, SMPTE-TT) to the TTML output.",
       "refs": {
-        "TtmlDestinationSettings$StylePassthrough": "Pass through style and position information from a TTML-like input source (TTML, SMPTE-TT, CFF-TT) to the CFF-TT output or TTML output."
+        "TtmlDestinationSettings$StylePassthrough": "Pass through style and position information from a TTML-like input source (TTML, SMPTE-TT) to the TTML output."
       }
     },
     "Type": {
