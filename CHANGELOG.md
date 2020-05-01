@@ -1,3 +1,12 @@
+Release v1.30.19 (2020-05-01)
+===
+
+### Service Client Updates
+* `service/elasticfilesystem`: Updates service API
+  * Change the TagKeys argument for UntagResource to a URL parameter to address an issue with the Java and .NET SDKs.
+* `service/ssm`: Updates service API and documentation
+  * Added TimeoutSeconds as part of ListCommands API response.
+
 Release v1.30.18 (2020-04-30)
 ===
 

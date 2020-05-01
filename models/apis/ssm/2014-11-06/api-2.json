@@ -2612,7 +2612,8 @@
         "DeliveryTimedOutCount":{"shape":"DeliveryTimedOutCount"},
         "ServiceRole":{"shape":"ServiceRole"},
         "NotificationConfig":{"shape":"NotificationConfig"},
-        "CloudWatchOutputConfig":{"shape":"CloudWatchOutputConfig"}
+        "CloudWatchOutputConfig":{"shape":"CloudWatchOutputConfig"},
+        "TimeoutSeconds":{"shape":"TimeoutSeconds"}
       }
     },
     "CommandFilter":{
