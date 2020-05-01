@@ -1343,14 +1343,21 @@
     },
     "UntagResourceRequest":{
       "type":"structure",
-      "required":["ResourceId"],
+      "required":[
+        "ResourceId",
+        "TagKeys"
+      ],
       "members":{
         "ResourceId":{
           "shape":"ResourceId",
           "location":"uri",
           "locationName":"ResourceId"
         },
-        "TagKeys":{"shape":"TagKeys"}
+        "TagKeys":{
+          "shape":"TagKeys",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
       }
     },
     "UpdateFileSystemRequest":{

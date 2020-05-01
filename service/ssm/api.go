@@ -73,11 +73,10 @@ func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 // We recommend that you devise a set of tag keys that meets your needs for
 // each resource type. Using a consistent set of tag keys makes it easier for
 // you to manage your resources. You can search and filter the resources based
-// on the tags you add. Tags don't have any semantic meaning to and are interpreted
-// strictly as a string of characters.
+// on the tags you add. Tags don't have any semantic meaning to Amazon EC2 and
+// are interpreted strictly as a string of characters.
 //
-// For more information about using tags with EC2 instances, see Tagging your
-// Amazon EC2 resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
+// For more information about tags, see Tagging your Amazon EC2 resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
 // in the Amazon EC2 User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -15008,6 +15007,9 @@ type Command struct {
 	// that you specify. Targets is required if you don't provide one or more instance
 	// IDs in the call.
 	Targets []*Target `type:"list"`
+
+	// The TimeoutSeconds value specified for a command.
+	TimeoutSeconds *int64 `min:"30" type:"integer"`
 }
 
 // String returns the string representation
@@ -15155,6 +15157,12 @@ func (s *Command) SetTargetCount(v int64) *Command {
 // SetTargets sets the Targets field's value.
 func (s *Command) SetTargets(v []*Target) *Command {
 	s.Targets = v
+	return s
+}
+
+// SetTimeoutSeconds sets the TimeoutSeconds field's value.
+func (s *Command) SetTimeoutSeconds(v int64) *Command {
+	s.TimeoutSeconds = &v
 	return s
 }
 
@@ -16828,7 +16836,7 @@ type CreateDocumentInput struct {
 	//
 	// For examples, see the following topics in the AWS Systems Manager User Guide.
 	//
-	//    * Create an SSM document (console) (https://docs.aws.amazon.com/systems-manager/latest/userguide/create-ssm-console.html)
+	//    * Create an SSM document (AWS API) (https://docs.aws.amazon.com/systems-manager/latest/userguide/create-ssm-document-api.html)
 	//
 	//    * Create an SSM document (AWS CLI) (https://docs.aws.amazon.com/systems-manager/latest/userguide/create-ssm-document-cli.html)
 	//
@@ -17307,7 +17315,7 @@ type CreateOpsItemInput struct {
 	// Specify a severity to assign to an OpsItem.
 	Severity *string `min:"1" type:"string"`
 
-	// The origin of the OpsItem, such as Amazon EC2 or Systems Manager.
+	// The origin of the OpsItem, such as EC2 or Systems Manager.
 	//
 	// The source name can't contain the following strings: aws, amazon, and amzn.
 	//
@@ -22992,7 +23000,8 @@ func (s *DocumentIdentifier) SetVersionName(v string) *DocumentIdentifier {
 //
 // For keys, you can specify one or more tags that have been applied to a document.
 //
-// Other valid values include Owner, Name, PlatformTypes, and DocumentType.
+// Other valid values include Owner, Name, PlatformTypes, DocumentType, and
+// TargetType.
 //
 // Note that only one Owner can be specified in a request. For example: Key=Owner,Values=Self.
 //
@@ -31946,7 +31955,7 @@ type ListCommandInvocationsInput struct {
 	Details *bool `type:"boolean"`
 
 	// (Optional) One or more filters. Use a filter to return a more specific list
-	// of results. Note that the DocumentName filter is not supported for ListCommandInvocations.
+	// of results.
 	Filters []*CommandFilter `min:"1" type:"list"`
 
 	// (Optional) The command execution details for a specific instance ID.
@@ -32527,9 +32536,9 @@ type ListDocumentsInput struct {
 	// One or more DocumentKeyValuesFilter objects. Use a filter to return a more
 	// specific list of results. For keys, you can specify one or more key-value
 	// pair tags that have been applied to a document. Other valid keys include
-	// Owner, Name, PlatformTypes, and DocumentType. For example, to return documents
-	// you own use Key=Owner,Values=Self. To specify a custom key-value pair, use
-	// the format Key=tag:tagName,Values=valueName.
+	// Owner, Name, PlatformTypes, DocumentType, and TargetType. For example, to
+	// return documents you own use Key=Owner,Values=Self. To specify a custom key-value
+	// pair, use the format Key=tag:tagName,Values=valueName.
 	Filters []*DocumentKeyValuesFilter `type:"list"`
 
 	// The maximum number of items to return for this call. The call also returns
