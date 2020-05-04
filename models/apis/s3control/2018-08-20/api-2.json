@@ -271,7 +271,8 @@
     },
     "AccountId":{
       "type":"string",
-      "max":64
+      "max":64,
+      "pattern":"^\\d{12}$"
     },
     "BadRequestException":{
       "type":"structure",
@@ -457,6 +458,12 @@
       "max":1024,
       "min":1
     },
+    "FunctionArnString":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
+    },
     "GetAccessPointPolicyRequest":{
       "type":"structure",
       "required":[
@@ -583,7 +590,8 @@
     "IAMRoleArn":{
       "type":"string",
       "max":2048,
-      "min":1
+      "min":1,
+      "pattern":"arn:[^:]+:iam::\\d{12}:role/.*"
     },
     "IdempotencyException":{
       "type":"structure",
@@ -618,7 +626,8 @@
     "JobArn":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":1,
+      "pattern":"arn:[^:]+:s3:[a-zA-Z0-9\\-]+:\\d{12}:job\\/.*"
     },
     "JobCreationTime":{"type":"timestamp"},
     "JobDescriptor":{
@@ -706,7 +715,8 @@
     "JobId":{
       "type":"string",
       "max":36,
-      "min":5
+      "min":5,
+      "pattern":"[a-zA-Z0-9\\-\\_]+"
     },
     "JobListDescriptor":{
       "type":"structure",
@@ -811,6 +821,14 @@
         },
         "S3InitiateRestoreObject":{
           "shape":"S3InitiateRestoreObjectOperation",
+          "box":true
+        },
+        "S3PutObjectLegalHold":{
+          "shape":"S3SetObjectLegalHoldOperation",
+          "box":true
+        },
+        "S3PutObjectRetention":{
+          "shape":"S3SetObjectRetentionOperation",
           "box":true
         }
       }
@@ -918,7 +936,7 @@
     "LambdaInvokeOperation":{
       "type":"structure",
       "members":{
-        "FunctionArn":{"shape":"NonEmptyMaxLength1024String"}
+        "FunctionArn":{"shape":"FunctionArnString"}
       }
     },
     "ListAccessPointsRequest":{
@@ -969,7 +987,7 @@
           "locationName":"jobStatuses"
         },
         "NextToken":{
-          "shape":"NonEmptyMaxLength1024String",
+          "shape":"StringForNextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -984,7 +1002,7 @@
     "ListJobsResult":{
       "type":"structure",
       "members":{
-        "NextToken":{"shape":"NonEmptyMaxLength1024String"},
+        "NextToken":{"shape":"StringForNextToken"},
         "Jobs":{"shape":"JobListDescriptorList"}
       }
     },
@@ -1047,7 +1065,9 @@
         "S3PutObjectCopy",
         "S3PutObjectAcl",
         "S3PutObjectTagging",
-        "S3InitiateRestoreObject"
+        "S3InitiateRestoreObject",
+        "S3PutObjectLegalHold",
+        "S3PutObjectRetention"
       ]
     },
     "Policy":{"type":"string"},
@@ -1184,7 +1204,8 @@
     "S3BucketArnString":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"arn:[^:]+:s3:.*"
     },
     "S3CannedAccessControlList":{
       "type":"string",
@@ -1280,7 +1301,8 @@
     "S3KeyArnString":{
       "type":"string",
       "max":2000,
-      "min":1
+      "min":1,
+      "pattern":"arn:[^:]+:s3:.*"
     },
     "S3MetadataDirective":{
       "type":"string",
@@ -1288,6 +1310,13 @@
         "COPY",
         "REPLACE"
       ]
+    },
+    "S3ObjectLockLegalHold":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"S3ObjectLockLegalHoldStatus"}
+      }
     },
     "S3ObjectLockLegalHoldStatus":{
       "type":"string",
@@ -1297,6 +1326,13 @@
       ]
     },
     "S3ObjectLockMode":{
+      "type":"string",
+      "enum":[
+        "COMPLIANCE",
+        "GOVERNANCE"
+      ]
+    },
+    "S3ObjectLockRetentionMode":{
       "type":"string",
       "enum":[
         "COMPLIANCE",
@@ -1344,6 +1380,13 @@
         "WRITE_ACP"
       ]
     },
+    "S3Retention":{
+      "type":"structure",
+      "members":{
+        "RetainUntilDate":{"shape":"TimeStamp"},
+        "Mode":{"shape":"S3ObjectLockRetentionMode"}
+      }
+    },
     "S3SSEAlgorithm":{
       "type":"string",
       "enum":[
@@ -1355,6 +1398,24 @@
       "type":"structure",
       "members":{
         "AccessControlPolicy":{"shape":"S3AccessControlPolicy"}
+      }
+    },
+    "S3SetObjectLegalHoldOperation":{
+      "type":"structure",
+      "required":["LegalHold"],
+      "members":{
+        "LegalHold":{"shape":"S3ObjectLockLegalHold"}
+      }
+    },
+    "S3SetObjectRetentionOperation":{
+      "type":"structure",
+      "required":["Retention"],
+      "members":{
+        "BypassGovernanceRetention":{
+          "shape":"Boolean",
+          "box":true
+        },
+        "Retention":{"shape":"S3Retention"}
       }
     },
     "S3SetObjectTaggingOperation":{
@@ -1381,8 +1442,8 @@
         "Value"
       ],
       "members":{
-        "Key":{"shape":"NonEmptyMaxLength1024String"},
-        "Value":{"shape":"MaxLength1024String"}
+        "Key":{"shape":"TagKeyString"},
+        "Value":{"shape":"TagValueString"}
       }
     },
     "S3TagSet":{
@@ -1396,12 +1457,29 @@
       "max":8192
     },
     "Setting":{"type":"boolean"},
+    "StringForNextToken":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[A-Za-z0-9\\+\\:\\/\\=\\?\\#-_]+$"
+    },
     "SuspendedCause":{
       "type":"string",
       "max":1024,
       "min":1
     },
     "SuspendedDate":{"type":"timestamp"},
+    "TagKeyString":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:=+\\-@%]*)$"
+    },
+    "TagValueString":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:=+\\-@%]*)$"
+    },
     "TimeStamp":{"type":"timestamp"},
     "TooManyRequestsException":{
       "type":"structure",

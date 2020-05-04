@@ -7051,6 +7051,16 @@
           "us-gov-west-1" : { }
         }
       },
+      "pinpoint" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "mobiletargeting"
+          }
+        },
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
       "polly" : {
         "endpoints" : {
           "fips-us-gov-west-1" : {

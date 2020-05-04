@@ -26018,6 +26018,8 @@ func (c *EC2) DisableVpcClassicLinkDnsSupportRequest(input *DisableVpcClassicLin
 // ClassicLink (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
+// You must specify a VPC ID in the request.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -26334,7 +26336,7 @@ func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) 
 
 // DisassociateRouteTable API operation for Amazon Elastic Compute Cloud.
 //
-// Disassociates a subnet from a route table.
+// Disassociates a subnet or gateway from a route table.
 //
 // After you perform this action, the subnet no longer uses the routes in the
 // route table. Instead, it uses the routes in the VPC's main route table. For
@@ -27203,6 +27205,8 @@ func (c *EC2) EnableVpcClassicLinkDnsSupportRequest(input *EnableVpcClassicLinkD
 // IP address when addressed from a linked EC2-Classic instance. For more information,
 // see ClassicLink (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
 // in the Amazon Elastic Compute Cloud User Guide.
+//
+// You must specify a VPC ID in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -45783,8 +45787,6 @@ type CreateFlowLogsInput struct {
 	//
 	// Specify the fields using the ${field-id} format, separated by spaces. For
 	// the AWS CLI, use single quotation marks (' ') to surround the parameter value.
-	//
-	// Only applicable to flow logs that are published to an Amazon S3 bucket.
 	LogFormat *string `type:"string"`
 
 	// The name of a new or existing CloudWatch Logs log group where Amazon EC2
@@ -70661,7 +70663,7 @@ type DisassociateRouteTableInput struct {
 	_ struct{} `type:"structure"`
 
 	// The association ID representing the current association between the route
-	// table and subnet.
+	// table and subnet or gateway.
 	//
 	// AssociationId is a required field
 	AssociationId *string `locationName:"associationId" type:"string" required:"true"`
