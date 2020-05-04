@@ -31,10 +31,10 @@ type Operation struct {
 
 	EventStreamAPI *EventStreamAPI
 
-	IsEndpointDiscoveryOp bool               `json:"endpointoperation"`
-	EndpointDiscovery     *EndpointDiscovery `json:"endpointdiscovery"`
-	Endpoint              *EndpointTrait     `json:"endpoint"`
-	IsMD5HeaderRequired   bool               `json:"httpContentMd5"`
+	IsEndpointDiscoveryOp  bool               `json:"endpointoperation"`
+	EndpointDiscovery      *EndpointDiscovery `json:"endpointdiscovery"`
+	Endpoint               *EndpointTrait     `json:"endpoint"`
+	IsHttpChecksumRequired bool               `json:"httpChecksumRequired"`
 }
 
 // EndpointTrait provides the structure of the modeled endpoint trait, and its
@@ -312,7 +312,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		req.Handlers.Build.PushBackNamed({{ $handler }})
 	{{- end }}
 
-	{{- if .IsMD5HeaderRequired }}
+	{{- if .IsHttpChecksumRequired }}
 		{{- $_ := .API.AddSDKImport "private/util" }}
 		req.Handlers.Build.PushBackNamed(request.NamedHandler{
 			Name: "contentMd5Handler",
