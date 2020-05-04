@@ -315,9 +315,10 @@ func (v4 Signer) Presign(r *http.Request, body io.ReadSeeker, service, region st
 // signing process described in the documentation:
 // https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
 //
-// It may be used to create signatures for "Browser-Based Upload using HTTP POST"
-// policy documents to be used in the browser. Make sure to Base64 encode the
-// policy document using base64.StdEncoding before create it's signature.
+// It may be used to create signatures of "Browser-Based Upload using HTTP POST"
+// policy documents to be used in the browser. In which case, make sure to
+// base64 encode the policy document using base64.StdEncoding before creating
+// it's signature.
 func (v4 Signer) SignString(awsContext aws.Context, stringToSign string, service, region string, exp time.Duration, signTime time.Time) (string, error) {
 	currentTimeFn := v4.currentTimeFn
 	if currentTimeFn == nil {
