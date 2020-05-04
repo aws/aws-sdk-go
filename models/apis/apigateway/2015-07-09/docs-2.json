@@ -1851,7 +1851,7 @@
         "StageKey$restApiId": "<p>The string identifier of the associated <a>RestApi</a>.</p>",
         "StageKey$stageName": "<p>The stage name associated with the stage key.</p>",
         "TagResourceRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged.</p>",
-        "Template$value": "<p>The Apache <a href=\"https://velocity.apache.org/engine/devel/vtl-reference-guide.html\" target=\"_blank\">Velocity Template Language (VTL)</a> template content used for the template resource.</p>",
+        "Template$value": "<p>The Apache <a href=\"https://velocity.apache.org/engine/devel/vtl-reference.html\" target=\"_blank\">Velocity Template Language (VTL)</a> template content used for the template resource.</p>",
         "TestInvokeAuthorizerRequest$restApiId": "<p>[Required] The string identifier of the associated <a>RestApi</a>.</p>",
         "TestInvokeAuthorizerRequest$authorizerId": "<p>[Required] Specifies a test invoke authorizer request's <a>Authorizer</a> ID.</p>",
         "TestInvokeAuthorizerRequest$pathWithQueryString": "<p>[Optional] The URI path, including query string, of the simulated invocation request. Use this to specify path parameters and query string parameters.</p>",

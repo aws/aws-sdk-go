@@ -1,3 +1,14 @@
+Release v1.30.20 (2020-05-04)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway
+* `service/ec2`: Updates service documentation
+  * With this release, you can include enriched metadata in Amazon Virtual Private Cloud (Amazon VPC) flow logs published to Amazon CloudWatch Logs or Amazon Simple Storage Service (S3). Prior to this, custom format VPC flow logs enriched with additional metadata could be published only to S3. With this launch, we are also adding additional metadata fields that provide insights about the location such as AWS Region, AWS Availability Zone, AWS Local Zone, AWS Wavelength Zone, or AWS Outpost where the network interface where flow logs are captured exists.
+* `service/s3control`: Updates service API and documentation
+  * Amazon S3 Batch Operations now supports Object Lock.
+
 Release v1.30.19 (2020-05-01)
 ===
 
