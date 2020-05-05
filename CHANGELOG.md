@@ -1,3 +1,14 @@
+Release v1.30.21 (2020-05-05)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * With this release, you can call ModifySubnetAttribute with two new parameters: MapCustomerOwnedIpOnLaunch and CustomerOwnedIpv4Pool, to map a customerOwnedIpv4Pool to a subnet. You will also see these two new fields in the DescribeSubnets response. If your subnet has a customerOwnedIpv4Pool mapped, your network interface will get an auto assigned customerOwnedIpv4 address when placed onto an instance.
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager Parameter Store launches new data type to support aliases in EC2 APIs
+* `service/support`: Updates service documentation
+  * Documentation updates for support
+
 Release v1.30.20 (2020-05-04)
 ===
 

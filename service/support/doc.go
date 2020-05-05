@@ -8,6 +8,14 @@
 // enables you to manage your AWS Support cases programmatically. It uses HTTP
 // methods that return results in JSON format.
 //
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that doesn't have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
+//
 // The AWS Support service also exposes a set of Trusted Advisor (http://aws.amazon.com/premiumsupport/trustedadvisor/)
 // features. You can retrieve a list of checks and their descriptions, get check
 // results, specify checks to refresh, and get the refresh status of checks.

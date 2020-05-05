@@ -55,16 +55,11 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 
 // AddAttachmentsToSet API operation for AWS Support.
 //
-// Adds one or more attachments to an attachment set. If an attachmentSetId
-// is not specified, a new attachment set is created, and the ID of the set
-// is returned in the response. If an attachmentSetId is specified, the attachments
-// are added to the specified set, if it exists.
+// Adds one or more attachments to an attachment set.
 //
-// An attachment set is a temporary container for attachments that are to be
-// added to a case or case communication. The set is available for one hour
-// after it is created; the expiryTime returned in the response indicates when
-// the set expires. The maximum number of attachments in a set is 3, and the
-// maximum size of any attachment in the set is 5 MB.
+// An attachment set is a temporary container for attachments that you add to
+// a case or case communication. The set is available for 1 hour after it's
+// created. The expiryTime returned in the response is when the set expires.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -86,7 +81,7 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 //
 //   * AttachmentSetSizeLimitExceeded
 //   A limit for the size of an attachment set has been exceeded. The limits are
-//   3 attachments and 5 MB per attachment.
+//   three attachments and 5 MB per attachment.
 //
 //   * AttachmentLimitExceeded
 //   The limit for the number of attachment sets created in a short period of
@@ -254,54 +249,27 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 
 // CreateCase API operation for AWS Support.
 //
-// Creates a new case in the AWS Support Center. This operation is modeled on
-// the behavior of the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
-// page. Its parameters require you to specify the following information:
+// Creates a case in the AWS Support Center. This operation is similar to how
+// you create a case in the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+// page.
 //
-//    * issueType. The type of issue for the case. You can specify either "customer-service"
-//    or "technical." If you do not indicate a value, the default is "technical."
-//    Service limit increases are not supported by the Support API; you must
-//    submit service limit increase requests in Support Center (https://console.aws.amazon.com/support).
-//    The caseId is not the displayId that appears in Support Center (https://console.aws.amazon.com/support).
-//    You can use the DescribeCases API to get the displayId.
+// The AWS Support API doesn't support requesting service limit increases. You
+// can submit a service limit increase in the following ways:
 //
-//    * serviceCode. The code for an AWS service. You can get the possible serviceCode
-//    values by calling DescribeServices.
-//
-//    * categoryCode. The category for the service defined for the serviceCode
-//    value. You also get the category code for a service by calling DescribeServices.
-//    Each AWS service defines its own set of category codes.
-//
-//    * severityCode. A value that indicates the urgency of the case, which
-//    in turn determines the response time according to your service level agreement
-//    with AWS Support. You can get the possible severityCode values by calling
-//    DescribeSeverityLevels. For more information about the meaning of the
-//    codes, see SeverityLevel and Choosing a Severity (https://docs.aws.amazon.com/awssupport/latest/user/getting-started.html#choosing-severity).
-//
-//    * subject. The Subject field on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+//    * Submit a request from the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
 //    page.
 //
-//    * communicationBody. The Description field on the AWS Support Center Create
-//    Case (https://console.aws.amazon.com/support/home#/case/create) page.
+//    * Use the Service Quotas RequestServiceQuotaIncrease (https://docs.aws.amazon.com/servicequotas/2019-06-24/apireference/API_RequestServiceQuotaIncrease.html)
+//    operation.
 //
-//    * attachmentSetId. The ID of a set of attachments that has been created
-//    by using AddAttachmentsToSet.
+// A successful CreateCase request returns an AWS Support case number. You can
+// use the DescribeCases operation and specify the case number to get existing
+// AWS Support cases. After you create a case, you can use the AddCommunicationToCase
+// operation to add additional communication or attachments to an existing case.
 //
-//    * language. The human language in which AWS Support handles the case.
-//    English and Japanese are currently supported.
-//
-//    * ccEmailAddresses. The AWS Support Center CC field on the Create Case
-//    (https://console.aws.amazon.com/support/home#/case/create) page. You can
-//    list email addresses to be copied on any correspondence about the case.
-//    The account that opens the case is already identified by passing the AWS
-//    Credentials in the HTTP POST method or in a method or function call from
-//    one of the programming languages supported by an AWS SDK (http://aws.amazon.com/tools/).
-//
-// To add additional communication or attachments to an existing case, use AddCommunicationToCase.
-//
-// A successful CreateCase request returns an AWS Support case number. Case
-// numbers are used by the DescribeCases operation to retrieve existing AWS
-// Support cases.
+//    * The caseId is separate from the displayId that appears in the Support
+//    Center (https://console.aws.amazon.com/support). You can use the DescribeCases
+//    operation to get the displayId.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -390,10 +358,11 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 
 // DescribeAttachment API operation for AWS Support.
 //
-// Returns the attachment that has the specified ID. Attachment IDs are generated
-// by the case management system when you add an attachment to a case or case
-// communication. Attachment IDs are returned in the AttachmentDetails objects
-// that are returned by the DescribeCommunications operation.
+// Returns the attachment that has the specified ID. Attachments can include
+// screenshots, error logs, or other files that describe your issue. Attachment
+// IDs are generated by the case management system when you add an attachment
+// to a case or case communication. Attachment IDs are returned in the AttachmentDetails
+// objects that are returned by the DescribeCommunications operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1445,8 +1414,13 @@ type AddAttachmentsToSetInput struct {
 	// set, if it exists.
 	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
-	// One or more attachments to add to the set. The limit is 3 attachments per
-	// set, and the size limit is 5 MB per attachment.
+	// One or more attachments to add to the set. You can add up to three attachments
+	// per set. The size limit is 5 MB per attachment.
+	//
+	// In the Attachment object, use the data parameter to specify the contents
+	// of the attachment file. In the previous request syntax, the value for data
+	// appear as blob, which is represented as a base64-encoded string. The value
+	// for fileName is the name of the attachment, such as troubleshoot-screenshot.png.
 	//
 	// Attachments is a required field
 	Attachments []*Attachment `locationName:"attachments" type:"list" required:"true"`
@@ -1812,8 +1786,8 @@ type AttachmentSetExpired struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The expiration time of the attachment set has passed. The set expires 1 hour
-	// after it is created.
+	// The expiration time of the attachment set has passed. The set expires one
+	// hour after it is created.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -1923,13 +1897,13 @@ func (s *AttachmentSetIdNotFound) RequestID() string {
 }
 
 // A limit for the size of an attachment set has been exceeded. The limits are
-// 3 attachments and 5 MB per attachment.
+// three attachments and 5 MB per attachment.
 type AttachmentSetSizeLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A limit for the size of an attachment set has been exceeded. The limits are
-	// 3 attachments and 5 MB per attachment.
+	// three attachments and 5 MB per attachment.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -2069,9 +2043,8 @@ func (s *CaseCreationLimitExceeded) RequestID() string {
 //    the values returned by the call to DescribeSeverityLevels. The possible
 //    values are: low, normal, high, urgent, and critical.
 //
-//    * status. The status of the case in the AWS Support Center. The possible
-//    values are: resolved, pending-customer-action, opened, unassigned, and
-//    work-in-progress.
+//    * status. The status of the case in the AWS Support Center. Valid values:
+//    opened pending-customer-action reopened resolved unassigned work-in-progress
 //
 //    * subject. The subject line of the case.
 //
@@ -2112,8 +2085,21 @@ type CaseDetails struct {
 	// The code for the severity level returned by the call to DescribeSeverityLevels.
 	SeverityCode *string `locationName:"severityCode" type:"string"`
 
-	// The status of the case. Valid values: resolved | pending-customer-action
-	// | opened | unassigned | work-in-progress.
+	// The status of the case.
+	//
+	// Valid values:
+	//
+	//    * opened
+	//
+	//    * pending-customer-action
+	//
+	//    * reopened
+	//
+	//    * resolved
+	//
+	//    * unassigned
+	//
+	//    * work-in-progress
 	Status *string `locationName:"status" type:"string"`
 
 	// The subject line for the case in the AWS Support Center.
@@ -2371,42 +2357,54 @@ type CreateCaseInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of a set of one or more attachments for the case. Create the set by
-	// using AddAttachmentsToSet.
+	// using the AddAttachmentsToSet operation.
 	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
-	// The category of problem for the AWS Support case.
+	// The category of problem for the AWS Support case. You also use the DescribeServices
+	// operation to get the category code for a service. Each AWS service defines
+	// its own set of category codes.
 	CategoryCode *string `locationName:"categoryCode" type:"string"`
 
 	// A list of email addresses that AWS Support copies on case correspondence.
+	// AWS Support identifies the account that creates the case when you specify
+	// your AWS credentials in an HTTP POST method or use the AWS SDKs (http://aws.amazon.com/tools/).
 	CcEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
 
-	// The communication body text when you create an AWS Support case by calling
-	// CreateCase.
+	// The communication body text that describes the issue. This text appears in
+	// the Description field on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+	// page.
 	//
 	// CommunicationBody is a required field
 	CommunicationBody *string `locationName:"communicationBody" min:"1" type:"string" required:"true"`
 
-	// The type of issue for the case. You can specify either "customer-service"
-	// or "technical." If you do not indicate a value, the default is "technical."
-	//
-	// Service limit increases are not supported by the Support API; you must submit
-	// service limit increase requests in Support Center (https://console.aws.amazon.com/support).
+	// The type of issue for the case. You can specify customer-service or technical.
+	// If you don't specify a value, the default is technical.
 	IssueType *string `locationName:"issueType" type:"string"`
 
-	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
-	// currently supports English ("en") and Japanese ("ja"). Language parameters
-	// must be passed explicitly for operations that take them.
+	// The language in which AWS Support handles the case. You must specify the
+	// ISO 639-1 code for the language parameter if you want support in that language.
+	// Currently, English ("en") and Japanese ("ja") are supported.
 	Language *string `locationName:"language" type:"string"`
 
-	// The code for the AWS service returned by the call to DescribeServices.
+	// The code for the AWS service. You can use the DescribeServices operation
+	// to get the possible serviceCode values.
 	ServiceCode *string `locationName:"serviceCode" type:"string"`
 
-	// The code for the severity level returned by the call to DescribeSeverityLevels.
+	// A value that indicates the urgency of the case. This value determines the
+	// response time according to your service level agreement with AWS Support.
+	// You can use the DescribeSeverityLevels operation to get the possible values
+	// for severityCode.
 	//
-	// The availability of severity levels depends on the support plan for the account.
+	// For more information, see SeverityLevel and Choosing a Severity (https://docs.aws.amazon.com/awssupport/latest/user/getting-started.html#choosing-severity)
+	// in the AWS Support User Guide.
+	//
+	// The availability of severity levels depends on the support plan for the AWS
+	// account.
 	SeverityCode *string `locationName:"severityCode" type:"string"`
 
-	// The title of the AWS Support case.
+	// The title of the AWS Support case. The title appears in the Subject field
+	// on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+	// page.
 	//
 	// Subject is a required field
 	Subject *string `locationName:"subject" type:"string" required:"true"`
@@ -2501,7 +2499,7 @@ type CreateCaseOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The AWS Support case ID requested or returned in the call. The case ID is
-	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	// an alphanumeric string in the following format: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseId *string `locationName:"caseId" type:"string"`
 }
 
@@ -2624,7 +2622,11 @@ func (s *DescribeAttachmentLimitExceeded) RequestID() string {
 type DescribeAttachmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The attachment content and file name.
+	// This object includes the attachment content and file name.
+	//
+	// In the previous response syntax, the value for the data parameter appears
+	// as blob, which is represented as a base64-encoded string. The value for fileName
+	// is the name of the attachment, such as troubleshoot-screenshot.png.
 	Attachment *Attachment `locationName:"attachment" type:"structure"`
 }
 
@@ -3637,7 +3639,7 @@ type TrustedAdvisorCheckDescription struct {
 	Category *string `locationName:"category" type:"string" required:"true"`
 
 	// The description of the Trusted Advisor check, which includes the alert criteria
-	// and recommended actions (contains HTML markup).
+	// and recommended operations (contains HTML markup).
 	//
 	// Description is a required field
 	Description *string `locationName:"description" type:"string" required:"true"`
@@ -3930,19 +3932,19 @@ func (s *TrustedAdvisorCheckSummary) SetTimestamp(v string) *TrustedAdvisorCheck
 	return s
 }
 
-// The estimated cost savings that might be realized if the recommended actions
+// The estimated cost savings that might be realized if the recommended operations
 // are taken.
 type TrustedAdvisorCostOptimizingSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The estimated monthly savings that might be realized if the recommended actions
+	// The estimated monthly savings that might be realized if the recommended operations
 	// are taken.
 	//
 	// EstimatedMonthlySavings is a required field
 	EstimatedMonthlySavings *float64 `locationName:"estimatedMonthlySavings" type:"double" required:"true"`
 
 	// The estimated percentage of savings that might be realized if the recommended
-	// actions are taken.
+	// operations are taken.
 	//
 	// EstimatedPercentMonthlySavings is a required field
 	EstimatedPercentMonthlySavings *float64 `locationName:"estimatedPercentMonthlySavings" type:"double" required:"true"`

@@ -20389,7 +20389,9 @@
         "SubnetId":{
           "shape":"SubnetId",
           "locationName":"subnetId"
-        }
+        },
+        "MapCustomerOwnedIpOnLaunch":{"shape":"AttributeBooleanValue"},
+        "CustomerOwnedIpv4Pool":{"shape":"CoipPoolId"}
       }
     },
     "ModifyTrafficMirrorFilterNetworkServicesRequest":{
@@ -26355,6 +26357,14 @@
         "MapPublicIpOnLaunch":{
           "shape":"Boolean",
           "locationName":"mapPublicIpOnLaunch"
+        },
+        "MapCustomerOwnedIpOnLaunch":{
+          "shape":"Boolean",
+          "locationName":"mapCustomerOwnedIpOnLaunch"
+        },
+        "CustomerOwnedIpv4Pool":{
+          "shape":"CoipPoolId",
+          "locationName":"customerOwnedIpv4Pool"
         },
         "State":{
           "shape":"SubnetState",
