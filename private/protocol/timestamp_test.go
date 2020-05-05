@@ -45,6 +45,11 @@ func TestParseTime(t *testing.T) {
 		formatName, input string
 		expectedOutput    time.Time
 	}{
+		"UnixTestExponent": {
+			formatName:     UnixTimeFormatName,
+			input:          "1.583858715232899e9",
+			expectedOutput: time.Date(2020, time.March, 10, 16, 45, 15, .233e9, time.UTC),
+		},
 		"UnixTest1": {
 			formatName:     UnixTimeFormatName,
 			input:          "946845296.123",
@@ -81,10 +86,10 @@ func TestParseTime(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			timeVal, err := ParseTime(c.formatName, c.input)
 			if err != nil {
-				t.Errorf("unable to parse time, %v", err)
+				t.Errorf("expect no error, got %v", err)
 			}
-			if timeVal.UTC() != c.expectedOutput {
-				t.Errorf("input and output time don't match for %s format ", c.formatName)
+			if e, a := c.expectedOutput, timeVal.UTC(); !e.Equal(a) {
+				t.Errorf("expect %v time, got %v", e, a)
 			}
 		})
 	}
