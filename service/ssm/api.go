@@ -73,10 +73,11 @@ func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 // We recommend that you devise a set of tag keys that meets your needs for
 // each resource type. Using a consistent set of tag keys makes it easier for
 // you to manage your resources. You can search and filter the resources based
-// on the tags you add. Tags don't have any semantic meaning to Amazon EC2 and
-// are interpreted strictly as a string of characters.
+// on the tags you add. Tags don't have any semantic meaning to and are interpreted
+// strictly as a string of characters.
 //
-// For more information about tags, see Tagging your Amazon EC2 resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
+// For more information about using tags with EC2 instances, see Tagging your
+// Amazon EC2 resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
 // in the Amazon EC2 User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -17315,7 +17316,7 @@ type CreateOpsItemInput struct {
 	// Specify a severity to assign to an OpsItem.
 	Severity *string `min:"1" type:"string"`
 
-	// The origin of the OpsItem, such as EC2 or Systems Manager.
+	// The origin of the OpsItem, such as Amazon EC2 or Systems Manager.
 	//
 	// The source name can't contain the following strings: aws, amazon, and amzn.
 	//
@@ -35614,6 +35615,10 @@ type Parameter struct {
 	// The Amazon Resource Name (ARN) of the parameter.
 	ARN *string `type:"string"`
 
+	// The data type of the parameter, such as text or aws:ec2:image. The default
+	// is text.
+	DataType *string `type:"string"`
+
 	// Date the parameter was last changed or updated and the parameter version
 	// was created.
 	LastModifiedDate *time.Time `type:"timestamp"`
@@ -35657,6 +35662,12 @@ func (s Parameter) GoString() string {
 // SetARN sets the ARN field's value.
 func (s *Parameter) SetARN(v string) *Parameter {
 	s.ARN = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *Parameter) SetDataType(v string) *Parameter {
+	s.DataType = &v
 	return s
 }
 
@@ -35767,6 +35778,10 @@ type ParameterHistory struct {
 	// a-zA-Z0-9_.-
 	AllowedPattern *string `type:"string"`
 
+	// The data type of the parameter, such as text or aws:ec2:image. The default
+	// is text.
+	DataType *string `type:"string"`
+
 	// Information about the parameter.
 	Description *string `type:"string"`
 
@@ -35817,6 +35832,12 @@ func (s ParameterHistory) GoString() string {
 // SetAllowedPattern sets the AllowedPattern field's value.
 func (s *ParameterHistory) SetAllowedPattern(v string) *ParameterHistory {
 	s.AllowedPattern = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *ParameterHistory) SetDataType(v string) *ParameterHistory {
+	s.DataType = &v
 	return s
 }
 
@@ -36055,6 +36076,10 @@ type ParameterMetadata struct {
 	// a-zA-Z0-9_.-
 	AllowedPattern *string `type:"string"`
 
+	// The data type of the parameter, such as text or aws:ec2:image. The default
+	// is text.
+	DataType *string `type:"string"`
+
 	// Description of the parameter actions.
 	Description *string `type:"string"`
 
@@ -36097,6 +36122,12 @@ func (s ParameterMetadata) GoString() string {
 // SetAllowedPattern sets the AllowedPattern field's value.
 func (s *ParameterMetadata) SetAllowedPattern(v string) *ParameterMetadata {
 	s.AllowedPattern = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *ParameterMetadata) SetDataType(v string) *ParameterMetadata {
+	s.DataType = &v
 	return s
 }
 
@@ -37665,6 +37696,22 @@ type PutParameterInput struct {
 	// AllowedPattern=^\d+$
 	AllowedPattern *string `type:"string"`
 
+	// The data type for a String parameter. Supported data types include plain
+	// text and Amazon Machine Image IDs.
+	//
+	// The following data type values are supported.
+	//
+	//    * text
+	//
+	//    * aws:ec2:image
+	//
+	// When you create a String parameter and specify aws:ec2:image, Systems Manager
+	// validates the parameter value you provide against that data type. The required
+	// format is ami-12345abcdeEXAMPLE. For more information, see Native parameter
+	// support for Amazon Machine Image IDs (http://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html)
+	// in the AWS Systems Manager User Guide.
+	DataType *string `type:"string"`
+
 	// Information about the parameter that you want to add to the system. Optional
 	// but recommended.
 	//
@@ -37838,9 +37885,7 @@ type PutParameterInput struct {
 	//
 	// SecureString is not currently supported for AWS CloudFormation templates
 	// or in the China Regions.
-	//
-	// Type is a required field
-	Type *string `type:"string" required:"true" enum:"ParameterType"`
+	Type *string `type:"string" enum:"ParameterType"`
 
 	// The parameter value that you want to add to the system. Standard parameters
 	// have a value limit of 4 KB. Advanced parameters have a value limit of 8 KB.
@@ -37874,9 +37919,6 @@ func (s *PutParameterInput) Validate() error {
 	if s.Policies != nil && len(*s.Policies) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Policies", 1))
 	}
-	if s.Type == nil {
-		invalidParams.Add(request.NewErrParamRequired("Type"))
-	}
 	if s.Value == nil {
 		invalidParams.Add(request.NewErrParamRequired("Value"))
 	}
@@ -37900,6 +37942,12 @@ func (s *PutParameterInput) Validate() error {
 // SetAllowedPattern sets the AllowedPattern field's value.
 func (s *PutParameterInput) SetAllowedPattern(v string) *PutParameterInput {
 	s.AllowedPattern = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *PutParameterInput) SetDataType(v string) *PutParameterInput {
+	s.DataType = &v
 	return s
 }
 
