@@ -6,6 +6,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/davecgh/go-spew/spew"
 )
 
 type testEmptyCollectionsNumericalScalars struct {
@@ -616,10 +617,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 		},
 		actual: &struct {
 			Value []byte `dynamodbav:",omitempty"`
-		}{
-			Value: []byte{},
-		},
-		expected: &struct {
+		}{},
+		expected: struct {
 			Value []byte `dynamodbav:",omitempty"`
 		}{},
 	},
@@ -688,6 +687,11 @@ func TestUnmarshalEmptyCollections(t *testing.T) {
 			d.EnableEmptyCollections = true
 		})
 		err := decoder.Decode(c.in, c.actual)
+		if i == 22 {
+			spew.Dump(c.in)
+			spew.Dump(c.actual)
+			spew.Dump(c.expected)
+		}
 		assertConvertTest(t, i, c.actual, c.expected, err, c.err)
 	}
 }

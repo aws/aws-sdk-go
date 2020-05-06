@@ -372,7 +372,7 @@ var sharedTestCases = []struct {
 			encoder.NullEmptyByteSlice = false
 		},
 		in: &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{"Value": {BS: [][]byte{{0x0}, {}, {0x2}}}}},
-		actual: struct {
+		actual: &struct {
 			Value [][]byte `dynamodbav:",binaryset"`
 		}{},
 		expected: struct {
