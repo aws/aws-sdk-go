@@ -687,11 +687,6 @@ func TestUnmarshalEmptyCollections(t *testing.T) {
 			d.EnableEmptyCollections = true
 		})
 		err := decoder.Decode(c.in, c.actual)
-		if i == 22 {
-			spew.Dump(c.in)
-			spew.Dump(c.actual)
-			spew.Dump(c.expected)
-		}
 		assertConvertTest(t, i, c.actual, c.expected, err, c.err)
 	}
 }
