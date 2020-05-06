@@ -35,22 +35,22 @@
         "description" : "Canada (Central)"
       },
       "eu-central-1" : {
-        "description" : "EU (Frankfurt)"
+        "description" : "Europe (Frankfurt)"
       },
       "eu-north-1" : {
-        "description" : "EU (Stockholm)"
+        "description" : "Europe (Stockholm)"
       },
       "eu-south-1" : {
         "description" : "Europe (Milan)"
       },
       "eu-west-1" : {
-        "description" : "EU (Ireland)"
+        "description" : "Europe (Ireland)"
       },
       "eu-west-2" : {
-        "description" : "EU (London)"
+        "description" : "Europe (London)"
       },
       "eu-west-3" : {
-        "description" : "EU (Paris)"
+        "description" : "Europe (Paris)"
       },
       "me-south-1" : {
         "description" : "Middle East (Bahrain)"
@@ -4431,6 +4431,7 @@
       },
       "secretsmanager" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
@@ -4440,6 +4441,7 @@
           "ca-central-1" : { },
           "eu-central-1" : { },
           "eu-north-1" : { },
+          "eu-south-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
@@ -6312,7 +6314,7 @@
         "description" : "AWS GovCloud (US-East)"
       },
       "us-gov-west-1" : {
-        "description" : "AWS GovCloud (US)"
+        "description" : "AWS GovCloud (US-West)"
       }
     },
     "services" : {
@@ -6767,6 +6769,18 @@
       },
       "elasticmapreduce" : {
         "endpoints" : {
+          "fips-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "elasticmapreduce.us-gov-east-1.amazonaws.com"
+          },
+          "fips-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "elasticmapreduce.us-gov-west-1.amazonaws.com"
+          },
           "us-gov-east-1" : { },
           "us-gov-west-1" : {
             "protocols" : [ "https" ]

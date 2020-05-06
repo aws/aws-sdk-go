@@ -5,17 +5,28 @@
     "CreateConnection": "<p>Creates a connection that can then be given to other AWS services like CodePipeline so that it can access third-party code repositories. The connection is in pending status until the third-party connection handshake is completed from the console.</p>",
     "DeleteConnection": "<p>The connection to be deleted.</p>",
     "GetConnection": "<p>Returns the connection ARN and details such as status, owner, and provider type.</p>",
-    "ListConnections": "<p>Lists the connections associated with your account.</p>"
+    "ListConnections": "<p>Lists the connections associated with your account.</p>",
+    "ListTagsForResource": "<p>Gets the set of key-value pairs (metadata) that are used to manage the resource.</p>",
+    "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>",
+    "UntagResource": "<p>Removes tags from an AWS resource.</p>"
   },
   "shapes": {
     "AccountId": {
       "base": null,
       "refs": {
-        "Connection$OwnerAccountId": "<p>The name of the external provider where your third-party code repository is configured. For Bitbucket, this is the account ID of the owner of the Bitbucket repository.</p>"
+        "Connection$OwnerAccountId": "<p>The identifier of the external provider where your third-party code repository is configured. For Bitbucket, this is the account ID of the owner of the Bitbucket repository.</p>"
+      }
+    },
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which you want to get information about tags, if any.</p>",
+        "TagResourceInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to which you want to add or update tags.</p>",
+        "UntagResourceInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to remove tags from.</p>"
       }
     },
     "Connection": {
-      "base": "<p>The configuration that allows a service such as CodePipeline to connect to a third-party code repository.</p>",
+      "base": "<p>The AWS::CodeStarConnections::Connection resource can be used to connect external source providers with services like AWS CodePipeline.</p> <p>Note: A connection created through CloudFormation is in `PENDING` status by default. You can make its status `AVAILABLE` by editing the connection in the CodePipeline console.</p>",
       "refs": {
         "ConnectionList$member": null,
         "GetConnectionOutput$Connection": "<p>The connection details, such as status, owner, and provider type.</p>"
@@ -101,6 +112,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
@@ -124,6 +145,60 @@
     },
     "ResourceNotFoundException": {
       "base": "<p>Resource not found. Verify the connection resource ARN and try again.</p>",
+      "refs": {
+      }
+    },
+    "Tag": {
+      "base": "<p>A tag is a key-value pair that is used to manage the resource.</p> <p>This tag is available for use by AWS services that support tags.</p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>The tag's key.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceInput$TagKeys": "<p>The list of keys for the tags to be removed from the resource.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateConnectionInput$Tags": "<p>The key-value pair to use when tagging the resource.</p>",
+        "CreateConnectionOutput$Tags": "<p>Specifies the tags applied to the resource.</p>",
+        "ListTagsForResourceOutput$Tags": "<p>A list of tag key and value pairs associated with the specified resource.</p>",
+        "TagResourceInput$Tags": "<p>The tags you want to modify or add to the resource.</p>"
+      }
+    },
+    "TagResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>The tag's value.</p>"
+      }
+    },
+    "UntagResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceOutput": {
+      "base": null,
       "refs": {
       }
     }
