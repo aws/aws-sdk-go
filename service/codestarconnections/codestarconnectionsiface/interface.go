@@ -78,6 +78,18 @@ type CodeStarConnectionsAPI interface {
 
 	ListConnectionsPages(*codestarconnections.ListConnectionsInput, func(*codestarconnections.ListConnectionsOutput, bool) bool) error
 	ListConnectionsPagesWithContext(aws.Context, *codestarconnections.ListConnectionsInput, func(*codestarconnections.ListConnectionsOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*codestarconnections.ListTagsForResourceInput) (*codestarconnections.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *codestarconnections.ListTagsForResourceInput, ...request.Option) (*codestarconnections.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*codestarconnections.ListTagsForResourceInput) (*request.Request, *codestarconnections.ListTagsForResourceOutput)
+
+	TagResource(*codestarconnections.TagResourceInput) (*codestarconnections.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *codestarconnections.TagResourceInput, ...request.Option) (*codestarconnections.TagResourceOutput, error)
+	TagResourceRequest(*codestarconnections.TagResourceInput) (*request.Request, *codestarconnections.TagResourceOutput)
+
+	UntagResource(*codestarconnections.UntagResourceInput) (*codestarconnections.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *codestarconnections.UntagResourceInput, ...request.Option) (*codestarconnections.UntagResourceOutput, error)
+	UntagResourceRequest(*codestarconnections.UntagResourceInput) (*request.Request, *codestarconnections.UntagResourceOutput)
 }
 
 var _ CodeStarConnectionsAPI = (*codestarconnections.CodeStarConnections)(nil)

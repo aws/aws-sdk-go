@@ -1,3 +1,10 @@
+Release v1.30.22 (2020-05-06)
+===
+
+### Service Client Updates
+* `service/codestar-connections`: Updates service API and documentation
+* `service/comprehendmedical`: Updates service API and documentation
+
 Release v1.30.21 (2020-05-05)
 ===
 

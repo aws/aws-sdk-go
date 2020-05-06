@@ -64,9 +64,17 @@ type ComprehendMedicalAPI interface {
 	DescribeEntitiesDetectionV2JobWithContext(aws.Context, *comprehendmedical.DescribeEntitiesDetectionV2JobInput, ...request.Option) (*comprehendmedical.DescribeEntitiesDetectionV2JobOutput, error)
 	DescribeEntitiesDetectionV2JobRequest(*comprehendmedical.DescribeEntitiesDetectionV2JobInput) (*request.Request, *comprehendmedical.DescribeEntitiesDetectionV2JobOutput)
 
+	DescribeICD10CMInferenceJob(*comprehendmedical.DescribeICD10CMInferenceJobInput) (*comprehendmedical.DescribeICD10CMInferenceJobOutput, error)
+	DescribeICD10CMInferenceJobWithContext(aws.Context, *comprehendmedical.DescribeICD10CMInferenceJobInput, ...request.Option) (*comprehendmedical.DescribeICD10CMInferenceJobOutput, error)
+	DescribeICD10CMInferenceJobRequest(*comprehendmedical.DescribeICD10CMInferenceJobInput) (*request.Request, *comprehendmedical.DescribeICD10CMInferenceJobOutput)
+
 	DescribePHIDetectionJob(*comprehendmedical.DescribePHIDetectionJobInput) (*comprehendmedical.DescribePHIDetectionJobOutput, error)
 	DescribePHIDetectionJobWithContext(aws.Context, *comprehendmedical.DescribePHIDetectionJobInput, ...request.Option) (*comprehendmedical.DescribePHIDetectionJobOutput, error)
 	DescribePHIDetectionJobRequest(*comprehendmedical.DescribePHIDetectionJobInput) (*request.Request, *comprehendmedical.DescribePHIDetectionJobOutput)
+
+	DescribeRxNormInferenceJob(*comprehendmedical.DescribeRxNormInferenceJobInput) (*comprehendmedical.DescribeRxNormInferenceJobOutput, error)
+	DescribeRxNormInferenceJobWithContext(aws.Context, *comprehendmedical.DescribeRxNormInferenceJobInput, ...request.Option) (*comprehendmedical.DescribeRxNormInferenceJobOutput, error)
+	DescribeRxNormInferenceJobRequest(*comprehendmedical.DescribeRxNormInferenceJobInput) (*request.Request, *comprehendmedical.DescribeRxNormInferenceJobOutput)
 
 	DetectEntities(*comprehendmedical.DetectEntitiesInput) (*comprehendmedical.DetectEntitiesOutput, error)
 	DetectEntitiesWithContext(aws.Context, *comprehendmedical.DetectEntitiesInput, ...request.Option) (*comprehendmedical.DetectEntitiesOutput, error)
@@ -92,25 +100,49 @@ type ComprehendMedicalAPI interface {
 	ListEntitiesDetectionV2JobsWithContext(aws.Context, *comprehendmedical.ListEntitiesDetectionV2JobsInput, ...request.Option) (*comprehendmedical.ListEntitiesDetectionV2JobsOutput, error)
 	ListEntitiesDetectionV2JobsRequest(*comprehendmedical.ListEntitiesDetectionV2JobsInput) (*request.Request, *comprehendmedical.ListEntitiesDetectionV2JobsOutput)
 
+	ListICD10CMInferenceJobs(*comprehendmedical.ListICD10CMInferenceJobsInput) (*comprehendmedical.ListICD10CMInferenceJobsOutput, error)
+	ListICD10CMInferenceJobsWithContext(aws.Context, *comprehendmedical.ListICD10CMInferenceJobsInput, ...request.Option) (*comprehendmedical.ListICD10CMInferenceJobsOutput, error)
+	ListICD10CMInferenceJobsRequest(*comprehendmedical.ListICD10CMInferenceJobsInput) (*request.Request, *comprehendmedical.ListICD10CMInferenceJobsOutput)
+
 	ListPHIDetectionJobs(*comprehendmedical.ListPHIDetectionJobsInput) (*comprehendmedical.ListPHIDetectionJobsOutput, error)
 	ListPHIDetectionJobsWithContext(aws.Context, *comprehendmedical.ListPHIDetectionJobsInput, ...request.Option) (*comprehendmedical.ListPHIDetectionJobsOutput, error)
 	ListPHIDetectionJobsRequest(*comprehendmedical.ListPHIDetectionJobsInput) (*request.Request, *comprehendmedical.ListPHIDetectionJobsOutput)
+
+	ListRxNormInferenceJobs(*comprehendmedical.ListRxNormInferenceJobsInput) (*comprehendmedical.ListRxNormInferenceJobsOutput, error)
+	ListRxNormInferenceJobsWithContext(aws.Context, *comprehendmedical.ListRxNormInferenceJobsInput, ...request.Option) (*comprehendmedical.ListRxNormInferenceJobsOutput, error)
+	ListRxNormInferenceJobsRequest(*comprehendmedical.ListRxNormInferenceJobsInput) (*request.Request, *comprehendmedical.ListRxNormInferenceJobsOutput)
 
 	StartEntitiesDetectionV2Job(*comprehendmedical.StartEntitiesDetectionV2JobInput) (*comprehendmedical.StartEntitiesDetectionV2JobOutput, error)
 	StartEntitiesDetectionV2JobWithContext(aws.Context, *comprehendmedical.StartEntitiesDetectionV2JobInput, ...request.Option) (*comprehendmedical.StartEntitiesDetectionV2JobOutput, error)
 	StartEntitiesDetectionV2JobRequest(*comprehendmedical.StartEntitiesDetectionV2JobInput) (*request.Request, *comprehendmedical.StartEntitiesDetectionV2JobOutput)
 
+	StartICD10CMInferenceJob(*comprehendmedical.StartICD10CMInferenceJobInput) (*comprehendmedical.StartICD10CMInferenceJobOutput, error)
+	StartICD10CMInferenceJobWithContext(aws.Context, *comprehendmedical.StartICD10CMInferenceJobInput, ...request.Option) (*comprehendmedical.StartICD10CMInferenceJobOutput, error)
+	StartICD10CMInferenceJobRequest(*comprehendmedical.StartICD10CMInferenceJobInput) (*request.Request, *comprehendmedical.StartICD10CMInferenceJobOutput)
+
 	StartPHIDetectionJob(*comprehendmedical.StartPHIDetectionJobInput) (*comprehendmedical.StartPHIDetectionJobOutput, error)
 	StartPHIDetectionJobWithContext(aws.Context, *comprehendmedical.StartPHIDetectionJobInput, ...request.Option) (*comprehendmedical.StartPHIDetectionJobOutput, error)
 	StartPHIDetectionJobRequest(*comprehendmedical.StartPHIDetectionJobInput) (*request.Request, *comprehendmedical.StartPHIDetectionJobOutput)
+
+	StartRxNormInferenceJob(*comprehendmedical.StartRxNormInferenceJobInput) (*comprehendmedical.StartRxNormInferenceJobOutput, error)
+	StartRxNormInferenceJobWithContext(aws.Context, *comprehendmedical.StartRxNormInferenceJobInput, ...request.Option) (*comprehendmedical.StartRxNormInferenceJobOutput, error)
+	StartRxNormInferenceJobRequest(*comprehendmedical.StartRxNormInferenceJobInput) (*request.Request, *comprehendmedical.StartRxNormInferenceJobOutput)
 
 	StopEntitiesDetectionV2Job(*comprehendmedical.StopEntitiesDetectionV2JobInput) (*comprehendmedical.StopEntitiesDetectionV2JobOutput, error)
 	StopEntitiesDetectionV2JobWithContext(aws.Context, *comprehendmedical.StopEntitiesDetectionV2JobInput, ...request.Option) (*comprehendmedical.StopEntitiesDetectionV2JobOutput, error)
 	StopEntitiesDetectionV2JobRequest(*comprehendmedical.StopEntitiesDetectionV2JobInput) (*request.Request, *comprehendmedical.StopEntitiesDetectionV2JobOutput)
 
+	StopICD10CMInferenceJob(*comprehendmedical.StopICD10CMInferenceJobInput) (*comprehendmedical.StopICD10CMInferenceJobOutput, error)
+	StopICD10CMInferenceJobWithContext(aws.Context, *comprehendmedical.StopICD10CMInferenceJobInput, ...request.Option) (*comprehendmedical.StopICD10CMInferenceJobOutput, error)
+	StopICD10CMInferenceJobRequest(*comprehendmedical.StopICD10CMInferenceJobInput) (*request.Request, *comprehendmedical.StopICD10CMInferenceJobOutput)
+
 	StopPHIDetectionJob(*comprehendmedical.StopPHIDetectionJobInput) (*comprehendmedical.StopPHIDetectionJobOutput, error)
 	StopPHIDetectionJobWithContext(aws.Context, *comprehendmedical.StopPHIDetectionJobInput, ...request.Option) (*comprehendmedical.StopPHIDetectionJobOutput, error)
 	StopPHIDetectionJobRequest(*comprehendmedical.StopPHIDetectionJobInput) (*request.Request, *comprehendmedical.StopPHIDetectionJobOutput)
+
+	StopRxNormInferenceJob(*comprehendmedical.StopRxNormInferenceJobInput) (*comprehendmedical.StopRxNormInferenceJobOutput, error)
+	StopRxNormInferenceJobWithContext(aws.Context, *comprehendmedical.StopRxNormInferenceJobInput, ...request.Option) (*comprehendmedical.StopRxNormInferenceJobOutput, error)
+	StopRxNormInferenceJobRequest(*comprehendmedical.StopRxNormInferenceJobInput) (*request.Request, *comprehendmedical.StopRxNormInferenceJobOutput)
 }
 
 var _ ComprehendMedicalAPI = (*comprehendmedical.ComprehendMedical)(nil)

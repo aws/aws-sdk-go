@@ -29,6 +29,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeICD10CMInferenceJob":{
+      "name":"DescribeICD10CMInferenceJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeICD10CMInferenceJobRequest"},
+      "output":{"shape":"DescribeICD10CMInferenceJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribePHIDetectionJob":{
       "name":"DescribePHIDetectionJob",
       "http":{
@@ -37,6 +52,21 @@
       },
       "input":{"shape":"DescribePHIDetectionJobRequest"},
       "output":{"shape":"DescribePHIDetectionJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeRxNormInferenceJob":{
+      "name":"DescribeRxNormInferenceJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRxNormInferenceJobRequest"},
+      "output":{"shape":"DescribeRxNormInferenceJobResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
@@ -146,6 +176,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListICD10CMInferenceJobs":{
+      "name":"ListICD10CMInferenceJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListICD10CMInferenceJobsRequest"},
+      "output":{"shape":"ListICD10CMInferenceJobsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ValidationException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListPHIDetectionJobs":{
       "name":"ListPHIDetectionJobs",
       "http":{
@@ -154,6 +199,21 @@
       },
       "input":{"shape":"ListPHIDetectionJobsRequest"},
       "output":{"shape":"ListPHIDetectionJobsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ValidationException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListRxNormInferenceJobs":{
+      "name":"ListRxNormInferenceJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListRxNormInferenceJobsRequest"},
+      "output":{"shape":"ListRxNormInferenceJobsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ValidationException"},
@@ -176,6 +236,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "StartICD10CMInferenceJob":{
+      "name":"StartICD10CMInferenceJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartICD10CMInferenceJobRequest"},
+      "output":{"shape":"StartICD10CMInferenceJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "StartPHIDetectionJob":{
       "name":"StartPHIDetectionJob",
       "http":{
@@ -184,6 +259,21 @@
       },
       "input":{"shape":"StartPHIDetectionJobRequest"},
       "output":{"shape":"StartPHIDetectionJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartRxNormInferenceJob":{
+      "name":"StartRxNormInferenceJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartRxNormInferenceJobRequest"},
+      "output":{"shape":"StartRxNormInferenceJobResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
@@ -205,6 +295,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "StopICD10CMInferenceJob":{
+      "name":"StopICD10CMInferenceJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopICD10CMInferenceJobRequest"},
+      "output":{"shape":"StopICD10CMInferenceJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "StopPHIDetectionJob":{
       "name":"StopPHIDetectionJob",
       "http":{
@@ -213,6 +317,20 @@
       },
       "input":{"shape":"StopPHIDetectionJobRequest"},
       "output":{"shape":"StopPHIDetectionJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StopRxNormInferenceJob":{
+      "name":"StopRxNormInferenceJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopRxNormInferenceJobRequest"},
+      "output":{"shape":"StopRxNormInferenceJobResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
@@ -306,6 +424,19 @@
         "ComprehendMedicalAsyncJobProperties":{"shape":"ComprehendMedicalAsyncJobProperties"}
       }
     },
+    "DescribeICD10CMInferenceJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "DescribeICD10CMInferenceJobResponse":{
+      "type":"structure",
+      "members":{
+        "ComprehendMedicalAsyncJobProperties":{"shape":"ComprehendMedicalAsyncJobProperties"}
+      }
+    },
     "DescribePHIDetectionJobRequest":{
       "type":"structure",
       "required":["JobId"],
@@ -314,6 +445,19 @@
       }
     },
     "DescribePHIDetectionJobResponse":{
+      "type":"structure",
+      "members":{
+        "ComprehendMedicalAsyncJobProperties":{"shape":"ComprehendMedicalAsyncJobProperties"}
+      }
+    },
+    "DescribeRxNormInferenceJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "DescribeRxNormInferenceJobResponse":{
       "type":"structure",
       "members":{
         "ComprehendMedicalAsyncJobProperties":{"shape":"ComprehendMedicalAsyncJobProperties"}
@@ -651,6 +795,21 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListICD10CMInferenceJobsRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{"shape":"ComprehendMedicalAsyncJobFilter"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListICD10CMInferenceJobsResponse":{
+      "type":"structure",
+      "members":{
+        "ComprehendMedicalAsyncJobPropertiesList":{"shape":"ComprehendMedicalAsyncJobPropertiesList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListPHIDetectionJobsRequest":{
       "type":"structure",
       "members":{
@@ -660,6 +819,21 @@
       }
     },
     "ListPHIDetectionJobsResponse":{
+      "type":"structure",
+      "members":{
+        "ComprehendMedicalAsyncJobPropertiesList":{"shape":"ComprehendMedicalAsyncJobPropertiesList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListRxNormInferenceJobsRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{"shape":"ComprehendMedicalAsyncJobFilter"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListRxNormInferenceJobsResponse":{
       "type":"structure",
       "members":{
         "ComprehendMedicalAsyncJobPropertiesList":{"shape":"ComprehendMedicalAsyncJobPropertiesList"},
@@ -850,6 +1024,33 @@
         "JobId":{"shape":"JobId"}
       }
     },
+    "StartICD10CMInferenceJobRequest":{
+      "type":"structure",
+      "required":[
+        "InputDataConfig",
+        "OutputDataConfig",
+        "DataAccessRoleArn",
+        "LanguageCode"
+      ],
+      "members":{
+        "InputDataConfig":{"shape":"InputDataConfig"},
+        "OutputDataConfig":{"shape":"OutputDataConfig"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "JobName":{"shape":"JobName"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestTokenString",
+          "idempotencyToken":true
+        },
+        "KMSKey":{"shape":"KMSKey"},
+        "LanguageCode":{"shape":"LanguageCode"}
+      }
+    },
+    "StartICD10CMInferenceJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
     "StartPHIDetectionJobRequest":{
       "type":"structure",
       "required":[
@@ -877,6 +1078,33 @@
         "JobId":{"shape":"JobId"}
       }
     },
+    "StartRxNormInferenceJobRequest":{
+      "type":"structure",
+      "required":[
+        "InputDataConfig",
+        "OutputDataConfig",
+        "DataAccessRoleArn",
+        "LanguageCode"
+      ],
+      "members":{
+        "InputDataConfig":{"shape":"InputDataConfig"},
+        "OutputDataConfig":{"shape":"OutputDataConfig"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "JobName":{"shape":"JobName"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestTokenString",
+          "idempotencyToken":true
+        },
+        "KMSKey":{"shape":"KMSKey"},
+        "LanguageCode":{"shape":"LanguageCode"}
+      }
+    },
+    "StartRxNormInferenceJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
     "StopEntitiesDetectionV2JobRequest":{
       "type":"structure",
       "required":["JobId"],
@@ -890,6 +1118,19 @@
         "JobId":{"shape":"JobId"}
       }
     },
+    "StopICD10CMInferenceJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "StopICD10CMInferenceJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
     "StopPHIDetectionJobRequest":{
       "type":"structure",
       "required":["JobId"],
@@ -898,6 +1139,19 @@
       }
     },
     "StopPHIDetectionJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "StopRxNormInferenceJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "StopRxNormInferenceJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"}
