@@ -4678,6 +4678,8 @@ func (c *EC2) CreateLaunchTemplateRequest(input *CreateLaunchTemplateInput) (req
 // Creates a launch template. A launch template contains the parameters to launch
 // an instance. When you launch an instance using RunInstances, you can specify
 // a launch template instead of providing the launch parameters in the request.
+// For more information, see Launching an instance from a launch template (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html)in
+// the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4756,6 +4758,9 @@ func (c *EC2) CreateLaunchTemplateVersionRequest(input *CreateLaunchTemplateVers
 //
 // Launch template versions are numbered in the order in which they are created.
 // You cannot specify, change, or replace the numbering of launch template versions.
+//
+// For more information, see Managing launch template versions (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#manage-launch-template-versions)in
+// the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -46592,6 +46597,11 @@ type CreateLaunchTemplateOutput struct {
 
 	// Information about the launch template.
 	LaunchTemplate *LaunchTemplate `locationName:"launchTemplate" type:"structure"`
+
+	// If the launch template contains parameters or parameter combinations that
+	// are not valid, an error code and an error message are returned for each issue
+	// that's found.
+	Warning *ValidationWarning `locationName:"warning" type:"structure"`
 }
 
 // String returns the string representation
@@ -46607,6 +46617,12 @@ func (s CreateLaunchTemplateOutput) GoString() string {
 // SetLaunchTemplate sets the LaunchTemplate field's value.
 func (s *CreateLaunchTemplateOutput) SetLaunchTemplate(v *LaunchTemplate) *CreateLaunchTemplateOutput {
 	s.LaunchTemplate = v
+	return s
+}
+
+// SetWarning sets the Warning field's value.
+func (s *CreateLaunchTemplateOutput) SetWarning(v *ValidationWarning) *CreateLaunchTemplateOutput {
+	s.Warning = v
 	return s
 }
 
@@ -46727,6 +46743,11 @@ type CreateLaunchTemplateVersionOutput struct {
 
 	// Information about the launch template version.
 	LaunchTemplateVersion *LaunchTemplateVersion `locationName:"launchTemplateVersion" type:"structure"`
+
+	// If the new version of the launch template contains parameters or parameter
+	// combinations that are not valid, an error code and an error message are returned
+	// for each issue that's found.
+	Warning *ValidationWarning `locationName:"warning" type:"structure"`
 }
 
 // String returns the string representation
@@ -46742,6 +46763,12 @@ func (s CreateLaunchTemplateVersionOutput) GoString() string {
 // SetLaunchTemplateVersion sets the LaunchTemplateVersion field's value.
 func (s *CreateLaunchTemplateVersionOutput) SetLaunchTemplateVersion(v *LaunchTemplateVersion) *CreateLaunchTemplateVersionOutput {
 	s.LaunchTemplateVersion = v
+	return s
+}
+
+// SetWarning sets the Warning field's value.
+func (s *CreateLaunchTemplateVersionOutput) SetWarning(v *ValidationWarning) *CreateLaunchTemplateVersionOutput {
+	s.Warning = v
 	return s
 }
 
@@ -107272,6 +107299,70 @@ func (s *VCpuInfo) SetValidCores(v []*int64) *VCpuInfo {
 // SetValidThreadsPerCore sets the ValidThreadsPerCore field's value.
 func (s *VCpuInfo) SetValidThreadsPerCore(v []*int64) *VCpuInfo {
 	s.ValidThreadsPerCore = v
+	return s
+}
+
+// The error code and error message that is returned for a parameter or parameter
+// combination that is not valid when a new launch template or new version of
+// a launch template is created.
+type ValidationError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code that indicates why the parameter or parameter combination
+	// is not valid. For more information about error codes, see Error Codes (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html).
+	Code *string `locationName:"code" type:"string"`
+
+	// The error message that describes why the parameter or parameter combination
+	// is not valid. For more information about error messages, see Error Codes
+	// (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html).
+	Message *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ValidationError) SetCode(v string) *ValidationError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ValidationError) SetMessage(v string) *ValidationError {
+	s.Message = &v
+	return s
+}
+
+// The error codes and error messages that are returned for the parameters or
+// parameter combinations that are not valid when a new launch template or new
+// version of a launch template is created.
+type ValidationWarning struct {
+	_ struct{} `type:"structure"`
+
+	// The error codes and error messages.
+	Errors []*ValidationError `locationName:"errorSet" locationNameList:"item" type:"list"`
+}
+
+// String returns the string representation
+func (s ValidationWarning) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationWarning) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *ValidationWarning) SetErrors(v []*ValidationError) *ValidationWarning {
+	s.Errors = v
 	return s
 }
 
