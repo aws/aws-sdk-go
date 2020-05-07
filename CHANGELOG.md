@@ -1,3 +1,21 @@
+Release v1.30.23 (2020-05-07)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service documentation
+* `service/codebuild`: Updates service API, documentation, and paginators
+  * Add COMMIT_MESSAGE enum for webhook filter types
+* `service/ec2`: Updates service API and documentation
+  * Amazon EC2 now adds warnings to identify issues when creating a launch template or launch template version.
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for the following options in instance public ports: Specify source IP addresses, specify ICMP protocol like PING, and enable/disable the Lightsail browser-based SSH and RDP clients' access to your instance.
+* `service/logs`: Updates service API and documentation
+  * Amazon CloudWatch Logs now offers the ability to interact with Logs Insights queries via the new PutQueryDefinition, DescribeQueryDefinitions, and DeleteQueryDefinition APIs.
+* `service/route53`: Updates service API
+  * Amazon Route 53 now supports the EU (Milan) Region (eu-south-1) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+* `service/ssm`: Updates service API
+  * This Patch Manager release supports creating patch baselines for Oracle Linux and Debian
+
 Release v1.30.22 (2020-05-06)
 ===
 

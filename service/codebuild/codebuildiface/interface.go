@@ -120,6 +120,9 @@ type CodeBuildAPI interface {
 	DescribeTestCasesWithContext(aws.Context, *codebuild.DescribeTestCasesInput, ...request.Option) (*codebuild.DescribeTestCasesOutput, error)
 	DescribeTestCasesRequest(*codebuild.DescribeTestCasesInput) (*request.Request, *codebuild.DescribeTestCasesOutput)
 
+	DescribeTestCasesPages(*codebuild.DescribeTestCasesInput, func(*codebuild.DescribeTestCasesOutput, bool) bool) error
+	DescribeTestCasesPagesWithContext(aws.Context, *codebuild.DescribeTestCasesInput, func(*codebuild.DescribeTestCasesOutput, bool) bool, ...request.Option) error
+
 	GetResourcePolicy(*codebuild.GetResourcePolicyInput) (*codebuild.GetResourcePolicyOutput, error)
 	GetResourcePolicyWithContext(aws.Context, *codebuild.GetResourcePolicyInput, ...request.Option) (*codebuild.GetResourcePolicyOutput, error)
 	GetResourcePolicyRequest(*codebuild.GetResourcePolicyInput) (*request.Request, *codebuild.GetResourcePolicyOutput)
@@ -136,9 +139,15 @@ type CodeBuildAPI interface {
 	ListBuildsWithContext(aws.Context, *codebuild.ListBuildsInput, ...request.Option) (*codebuild.ListBuildsOutput, error)
 	ListBuildsRequest(*codebuild.ListBuildsInput) (*request.Request, *codebuild.ListBuildsOutput)
 
+	ListBuildsPages(*codebuild.ListBuildsInput, func(*codebuild.ListBuildsOutput, bool) bool) error
+	ListBuildsPagesWithContext(aws.Context, *codebuild.ListBuildsInput, func(*codebuild.ListBuildsOutput, bool) bool, ...request.Option) error
+
 	ListBuildsForProject(*codebuild.ListBuildsForProjectInput) (*codebuild.ListBuildsForProjectOutput, error)
 	ListBuildsForProjectWithContext(aws.Context, *codebuild.ListBuildsForProjectInput, ...request.Option) (*codebuild.ListBuildsForProjectOutput, error)
 	ListBuildsForProjectRequest(*codebuild.ListBuildsForProjectInput) (*request.Request, *codebuild.ListBuildsForProjectOutput)
+
+	ListBuildsForProjectPages(*codebuild.ListBuildsForProjectInput, func(*codebuild.ListBuildsForProjectOutput, bool) bool) error
+	ListBuildsForProjectPagesWithContext(aws.Context, *codebuild.ListBuildsForProjectInput, func(*codebuild.ListBuildsForProjectOutput, bool) bool, ...request.Option) error
 
 	ListCuratedEnvironmentImages(*codebuild.ListCuratedEnvironmentImagesInput) (*codebuild.ListCuratedEnvironmentImagesOutput, error)
 	ListCuratedEnvironmentImagesWithContext(aws.Context, *codebuild.ListCuratedEnvironmentImagesInput, ...request.Option) (*codebuild.ListCuratedEnvironmentImagesOutput, error)
@@ -148,25 +157,43 @@ type CodeBuildAPI interface {
 	ListProjectsWithContext(aws.Context, *codebuild.ListProjectsInput, ...request.Option) (*codebuild.ListProjectsOutput, error)
 	ListProjectsRequest(*codebuild.ListProjectsInput) (*request.Request, *codebuild.ListProjectsOutput)
 
+	ListProjectsPages(*codebuild.ListProjectsInput, func(*codebuild.ListProjectsOutput, bool) bool) error
+	ListProjectsPagesWithContext(aws.Context, *codebuild.ListProjectsInput, func(*codebuild.ListProjectsOutput, bool) bool, ...request.Option) error
+
 	ListReportGroups(*codebuild.ListReportGroupsInput) (*codebuild.ListReportGroupsOutput, error)
 	ListReportGroupsWithContext(aws.Context, *codebuild.ListReportGroupsInput, ...request.Option) (*codebuild.ListReportGroupsOutput, error)
 	ListReportGroupsRequest(*codebuild.ListReportGroupsInput) (*request.Request, *codebuild.ListReportGroupsOutput)
+
+	ListReportGroupsPages(*codebuild.ListReportGroupsInput, func(*codebuild.ListReportGroupsOutput, bool) bool) error
+	ListReportGroupsPagesWithContext(aws.Context, *codebuild.ListReportGroupsInput, func(*codebuild.ListReportGroupsOutput, bool) bool, ...request.Option) error
 
 	ListReports(*codebuild.ListReportsInput) (*codebuild.ListReportsOutput, error)
 	ListReportsWithContext(aws.Context, *codebuild.ListReportsInput, ...request.Option) (*codebuild.ListReportsOutput, error)
 	ListReportsRequest(*codebuild.ListReportsInput) (*request.Request, *codebuild.ListReportsOutput)
 
+	ListReportsPages(*codebuild.ListReportsInput, func(*codebuild.ListReportsOutput, bool) bool) error
+	ListReportsPagesWithContext(aws.Context, *codebuild.ListReportsInput, func(*codebuild.ListReportsOutput, bool) bool, ...request.Option) error
+
 	ListReportsForReportGroup(*codebuild.ListReportsForReportGroupInput) (*codebuild.ListReportsForReportGroupOutput, error)
 	ListReportsForReportGroupWithContext(aws.Context, *codebuild.ListReportsForReportGroupInput, ...request.Option) (*codebuild.ListReportsForReportGroupOutput, error)
 	ListReportsForReportGroupRequest(*codebuild.ListReportsForReportGroupInput) (*request.Request, *codebuild.ListReportsForReportGroupOutput)
+
+	ListReportsForReportGroupPages(*codebuild.ListReportsForReportGroupInput, func(*codebuild.ListReportsForReportGroupOutput, bool) bool) error
+	ListReportsForReportGroupPagesWithContext(aws.Context, *codebuild.ListReportsForReportGroupInput, func(*codebuild.ListReportsForReportGroupOutput, bool) bool, ...request.Option) error
 
 	ListSharedProjects(*codebuild.ListSharedProjectsInput) (*codebuild.ListSharedProjectsOutput, error)
 	ListSharedProjectsWithContext(aws.Context, *codebuild.ListSharedProjectsInput, ...request.Option) (*codebuild.ListSharedProjectsOutput, error)
 	ListSharedProjectsRequest(*codebuild.ListSharedProjectsInput) (*request.Request, *codebuild.ListSharedProjectsOutput)
 
+	ListSharedProjectsPages(*codebuild.ListSharedProjectsInput, func(*codebuild.ListSharedProjectsOutput, bool) bool) error
+	ListSharedProjectsPagesWithContext(aws.Context, *codebuild.ListSharedProjectsInput, func(*codebuild.ListSharedProjectsOutput, bool) bool, ...request.Option) error
+
 	ListSharedReportGroups(*codebuild.ListSharedReportGroupsInput) (*codebuild.ListSharedReportGroupsOutput, error)
 	ListSharedReportGroupsWithContext(aws.Context, *codebuild.ListSharedReportGroupsInput, ...request.Option) (*codebuild.ListSharedReportGroupsOutput, error)
 	ListSharedReportGroupsRequest(*codebuild.ListSharedReportGroupsInput) (*request.Request, *codebuild.ListSharedReportGroupsOutput)
+
+	ListSharedReportGroupsPages(*codebuild.ListSharedReportGroupsInput, func(*codebuild.ListSharedReportGroupsOutput, bool) bool) error
+	ListSharedReportGroupsPagesWithContext(aws.Context, *codebuild.ListSharedReportGroupsInput, func(*codebuild.ListSharedReportGroupsOutput, bool) bool, ...request.Option) error
 
 	ListSourceCredentials(*codebuild.ListSourceCredentialsInput) (*codebuild.ListSourceCredentialsOutput, error)
 	ListSourceCredentialsWithContext(aws.Context, *codebuild.ListSourceCredentialsInput, ...request.Option) (*codebuild.ListSourceCredentialsOutput, error)

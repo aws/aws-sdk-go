@@ -4138,7 +4138,9 @@
         "accessFrom":{"shape":"string"},
         "accessType":{"shape":"PortAccessType"},
         "commonName":{"shape":"string"},
-        "accessDirection":{"shape":"AccessDirection"}
+        "accessDirection":{"shape":"AccessDirection"},
+        "cidrs":{"shape":"StringList"},
+        "cidrListAliases":{"shape":"StringList"}
       }
     },
     "InstancePortInfoList":{
@@ -4151,7 +4153,9 @@
         "fromPort":{"shape":"Port"},
         "toPort":{"shape":"Port"},
         "protocol":{"shape":"NetworkProtocol"},
-        "state":{"shape":"PortState"}
+        "state":{"shape":"PortState"},
+        "cidrs":{"shape":"StringList"},
+        "cidrListAliases":{"shape":"StringList"}
       }
     },
     "InstancePortStateList":{
@@ -4582,7 +4586,8 @@
       "enum":[
         "tcp",
         "all",
-        "udp"
+        "udp",
+        "icmp"
       ]
     },
     "NonEmptyString":{
@@ -4762,7 +4767,7 @@
     "Port":{
       "type":"integer",
       "max":65535,
-      "min":0
+      "min":-1
     },
     "PortAccessType":{
       "type":"string",
@@ -4776,7 +4781,9 @@
       "members":{
         "fromPort":{"shape":"Port"},
         "toPort":{"shape":"Port"},
-        "protocol":{"shape":"NetworkProtocol"}
+        "protocol":{"shape":"NetworkProtocol"},
+        "cidrs":{"shape":"StringList"},
+        "cidrListAliases":{"shape":"StringList"}
       }
     },
     "PortInfoList":{

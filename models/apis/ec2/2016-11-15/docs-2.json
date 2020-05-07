@@ -58,8 +58,8 @@
     "CreateInstanceExportTask": "<p>Exports a running or stopped instance to an S3 bucket.</p> <p>For information about the supported operating systems, image formats, and known limitations for the types of instances you can export, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmexport.html\">Exporting an Instance as a VM Using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>",
     "CreateInternetGateway": "<p>Creates an internet gateway for use with a VPC. After creating the internet gateway, you attach it to a VPC using <a>AttachInternetGateway</a>.</p> <p>For more information about your VPC and internet gateway, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/\">Amazon Virtual Private Cloud User Guide</a>.</p>",
     "CreateKeyPair": "<p>Creates a 2048-bit RSA key pair with the specified name. Amazon EC2 stores the public key and displays the private key for you to save to a file. The private key is returned as an unencrypted PEM encoded PKCS#1 private key. If a key with the specified name already exists, Amazon EC2 returns an error.</p> <p>You can have up to five thousand key pairs per Region.</p> <p>The key pair returned to you is available only in the Region in which you create it. If you prefer, you can create your own key pair using a third-party tool and upload it to any Region using <a>ImportKeyPair</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "CreateLaunchTemplate": "<p>Creates a launch template. A launch template contains the parameters to launch an instance. When you launch an instance using <a>RunInstances</a>, you can specify a launch template instead of providing the launch parameters in the request.</p>",
-    "CreateLaunchTemplateVersion": "<p>Creates a new version for a launch template. You can specify an existing version of launch template from which to base the new version.</p> <p>Launch template versions are numbered in the order in which they are created. You cannot specify, change, or replace the numbering of launch template versions.</p>",
+    "CreateLaunchTemplate": "<p>Creates a launch template. A launch template contains the parameters to launch an instance. When you launch an instance using <a>RunInstances</a>, you can specify a launch template instead of providing the launch parameters in the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html\">Launching an instance from a launch template</a>in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "CreateLaunchTemplateVersion": "<p>Creates a new version for a launch template. You can specify an existing version of launch template from which to base the new version.</p> <p>Launch template versions are numbered in the order in which they are created. You cannot specify, change, or replace the numbering of launch template versions.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#manage-launch-template-versions\">Managing launch template versions</a>in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateLocalGatewayRoute": "<p>Creates a static route for the specified local gateway route table.</p>",
     "CreateLocalGatewayRouteTableVpcAssociation": "<p>Associates the specified VPC with the specified local gateway route table.</p>",
     "CreateNatGateway": "<p>Creates a NAT gateway in the specified public subnet. This action creates a network interface in the specified subnet with a private IP address from the IP address range of the subnet. Internet-bound traffic from a private subnet can be routed to the NAT gateway, therefore enabling instances in the private subnet to connect to the internet. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">NAT Gateways</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -5751,6 +5751,12 @@
       "base": null,
       "refs": {
         "DescribeClientVpnEndpointsResult$ClientVpnEndpoints": "<p>Information about the Client VPN endpoints.</p>"
+      }
+    },
+    "ErrorSet": {
+      "base": null,
+      "refs": {
+        "ValidationWarning$Errors": "<p>The error codes and error messages.</p>"
       }
     },
     "EventCode": {
@@ -13269,6 +13275,8 @@
         "UserIdGroupPair$VpcId": "<p>The ID of the VPC for the referenced security group, if applicable.</p>",
         "UserIdGroupPair$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection, if applicable.</p>",
         "UserIdStringList$member": null,
+        "ValidationError$Code": "<p>The error code that indicates why the parameter or parameter combination is not valid. For more information about error codes, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html\">Error Codes</a>.</p>",
+        "ValidationError$Message": "<p>The error message that describes why the parameter or parameter combination is not valid. For more information about error messages, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html\">Error Codes</a>.</p>",
         "ValueStringList$member": null,
         "VersionStringList$member": null,
         "VgwTelemetry$OutsideIpAddress": "<p>The Internet-routable IP address of the virtual private gateway's outside interface.</p>",
@@ -14604,6 +14612,19 @@
       "base": "<p>Describes the vCPU configurations for the instance type.</p>",
       "refs": {
         "InstanceTypeInfo$VCpuInfo": "<p>Describes the vCPU configurations for the instance type.</p>"
+      }
+    },
+    "ValidationError": {
+      "base": "<p>The error code and error message that is returned for a parameter or parameter combination that is not valid when a new launch template or new version of a launch template is created.</p>",
+      "refs": {
+        "ErrorSet$member": null
+      }
+    },
+    "ValidationWarning": {
+      "base": "<p>The error codes and error messages that are returned for the parameters or parameter combinations that are not valid when a new launch template or new version of a launch template is created.</p>",
+      "refs": {
+        "CreateLaunchTemplateResult$Warning": "<p>If the launch template contains parameters or parameter combinations that are not valid, an error code and an error message are returned for each issue that's found.</p>",
+        "CreateLaunchTemplateVersionResult$Warning": "<p>If the new version of the launch template contains parameters or parameter combinations that are not valid, an error code and an error message are returned for each issue that's found.</p>"
       }
     },
     "ValueStringList": {

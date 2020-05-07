@@ -6846,6 +6846,10 @@
         "LaunchTemplate":{
           "shape":"LaunchTemplate",
           "locationName":"launchTemplate"
+        },
+        "Warning":{
+          "shape":"ValidationWarning",
+          "locationName":"warning"
         }
       }
     },
@@ -6868,6 +6872,10 @@
         "LaunchTemplateVersion":{
           "shape":"LaunchTemplateVersion",
           "locationName":"launchTemplateVersion"
+        },
+        "Warning":{
+          "shape":"ValidationWarning",
+          "locationName":"warning"
         }
       }
     },
@@ -14006,6 +14014,13 @@
       "type":"list",
       "member":{
         "shape":"ClientVpnEndpoint",
+        "locationName":"item"
+      }
+    },
+    "ErrorSet":{
+      "type":"list",
+      "member":{
+        "shape":"ValidationError",
         "locationName":"item"
       }
     },
@@ -28386,6 +28401,28 @@
         "ValidThreadsPerCore":{
           "shape":"ThreadsPerCoreList",
           "locationName":"validThreadsPerCore"
+        }
+      }
+    },
+    "ValidationError":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"String",
+          "locationName":"code"
+        },
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      }
+    },
+    "ValidationWarning":{
+      "type":"structure",
+      "members":{
+        "Errors":{
+          "shape":"ErrorSet",
+          "locationName":"errorSet"
         }
       }
     },

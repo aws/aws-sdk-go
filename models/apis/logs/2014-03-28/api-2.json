@@ -142,6 +142,20 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "DeleteQueryDefinition":{
+      "name":"DeleteQueryDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteQueryDefinitionRequest"},
+      "output":{"shape":"DeleteQueryDefinitionResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "DeleteResourcePolicy":{
       "name":"DeleteResourcePolicy",
       "http":{
@@ -261,6 +275,19 @@
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DescribeQueryDefinitions":{
+      "name":"DescribeQueryDefinitions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeQueryDefinitionsRequest"},
+      "output":{"shape":"DescribeQueryDefinitionsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
         {"shape":"ServiceUnavailableException"}
       ]
     },
@@ -446,6 +473,20 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"OperationAbortedException"},
         {"shape":"LimitExceededException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "PutQueryDefinition":{
+      "name":"PutQueryDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutQueryDefinitionRequest"},
+      "output":{"shape":"PutQueryDefinitionResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"}
       ]
     },
@@ -672,6 +713,19 @@
         "filterName":{"shape":"FilterName"}
       }
     },
+    "DeleteQueryDefinitionRequest":{
+      "type":"structure",
+      "required":["queryDefinitionId"],
+      "members":{
+        "queryDefinitionId":{"shape":"QueryId"}
+      }
+    },
+    "DeleteQueryDefinitionResponse":{
+      "type":"structure",
+      "members":{
+        "success":{"shape":"Success"}
+      }
+    },
     "DeleteResourcePolicyRequest":{
       "type":"structure",
       "members":{
@@ -803,6 +857,21 @@
       "type":"structure",
       "members":{
         "queries":{"shape":"QueryInfoList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeQueryDefinitionsRequest":{
+      "type":"structure",
+      "members":{
+        "queryDefinitionNamePrefix":{"shape":"QueryDefinitionName"},
+        "maxResults":{"shape":"QueryListMaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeQueryDefinitionsResponse":{
+      "type":"structure",
+      "members":{
+        "queryDefinitions":{"shape":"QueryDefinitionList"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1384,6 +1453,25 @@
         "metricTransformations":{"shape":"MetricTransformations"}
       }
     },
+    "PutQueryDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "queryString"
+      ],
+      "members":{
+        "name":{"shape":"QueryDefinitionName"},
+        "queryDefinitionId":{"shape":"QueryId"},
+        "logGroupNames":{"shape":"LogGroupNames"},
+        "queryString":{"shape":"QueryDefinitionString"}
+      }
+    },
+    "PutQueryDefinitionResponse":{
+      "type":"structure",
+      "members":{
+        "queryDefinitionId":{"shape":"QueryId"}
+      }
+    },
     "PutResourcePolicyRequest":{
       "type":"structure",
       "members":{
@@ -1440,6 +1528,31 @@
         "endCharOffset":{"shape":"QueryCharOffset"}
       }
     },
+    "QueryDefinition":{
+      "type":"structure",
+      "members":{
+        "queryDefinitionId":{"shape":"QueryId"},
+        "name":{"shape":"QueryDefinitionName"},
+        "queryString":{"shape":"QueryDefinitionString"},
+        "lastModified":{"shape":"Timestamp"},
+        "logGroupNames":{"shape":"LogGroupNames"}
+      }
+    },
+    "QueryDefinitionList":{
+      "type":"list",
+      "member":{"shape":"QueryDefinition"}
+    },
+    "QueryDefinitionName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^([^:*\\/]+\\/?)*[^:*\\/]+$"
+    },
+    "QueryDefinitionString":{
+      "type":"string",
+      "max":10000,
+      "min":1
+    },
     "QueryId":{
       "type":"string",
       "max":256,
@@ -1458,6 +1571,11 @@
     "QueryInfoList":{
       "type":"list",
       "member":{"shape":"QueryInfo"}
+    },
+    "QueryListMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
     },
     "QueryResults":{
       "type":"list",
@@ -1483,7 +1601,7 @@
     },
     "QueryString":{
       "type":"string",
-      "max":2048,
+      "max":10000,
       "min":0
     },
     "RejectedLogEventsInfo":{
