@@ -2,6 +2,7 @@ package dynamodbattribute
 
 import (
 	"reflect"
+	"strings"
 	"testing"
 	"time"
 
@@ -383,7 +384,7 @@ func assertConvertTest(t *testing.T, i int, actual, expected interface{}, err, e
 	i++
 	if expectedErr != nil {
 		if err != nil {
-			if e, a := expectedErr, err; !reflect.DeepEqual(e, a) {
+			if e, a := expectedErr, err; !strings.Contains(a.Error(), e.Error()) {
 				t.Errorf("case %d expect %v, got %v", i, e, a)
 			}
 		} else {
