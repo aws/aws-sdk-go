@@ -1,6 +1,5 @@
 ### SDK Features
 * `service/dynamodb/dynamodbattribute`: Support has been added for empty string and byte values.
-  * `Decoder` will now decode DynamoDB items containing empty string or byte values.
   * `Encoder` has added two new configuration options for controlling whether empty string and byte values are sent as null or empty.
     * `NullEmptyString`: Whether string values that are empty will be sent as null (default: `true`).
     * `NullEmptyByteSlice`: Whether byte slice that are empty will be sent as null (default: `true`).
