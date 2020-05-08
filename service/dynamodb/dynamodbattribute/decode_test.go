@@ -170,6 +170,49 @@ func TestUnmarshal(t *testing.T) {
 				Type:  reflect.TypeOf(uint8(0)),
 			},
 		},
+		// -------
+		// Empty Values
+		// -------
+		{
+			in:       &dynamodb.AttributeValue{B: []byte{}},
+			actual:   &[]byte{},
+			expected: []byte{},
+		},
+		{
+			in:       &dynamodb.AttributeValue{BS: [][]byte{}},
+			actual:   &[][]byte{},
+			expected: [][]byte{},
+		},
+		{
+			in:       &dynamodb.AttributeValue{L: []*dynamodb.AttributeValue{}},
+			actual:   &[]interface{}{},
+			expected: []interface{}{},
+		},
+		{
+			in:       &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{}},
+			actual:   &map[string]interface{}{},
+			expected: map[string]interface{}{},
+		},
+		{
+			in:     &dynamodb.AttributeValue{N: aws.String("")},
+			actual: new(int),
+			err:    fmt.Errorf("invalid syntax"),
+		},
+		{
+			in:       &dynamodb.AttributeValue{NS: []*string{}},
+			actual:   &[]*string{},
+			expected: []*string{},
+		},
+		{
+			in:       &dynamodb.AttributeValue{S: aws.String("")},
+			actual:   new(string),
+			expected: "",
+		},
+		{
+			in:       &dynamodb.AttributeValue{SS: []*string{}},
+			actual:   &[]*string{},
+			expected: []*string{},
+		},
 	}
 
 	for i, c := range cases {
