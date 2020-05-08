@@ -1,3 +1,17 @@
+Release v1.30.24 (2020-05-08)
+===
+
+### Service Client Updates
+* `service/guardduty`: Updates service documentation
+  * Documentation updates for GuardDuty
+* `service/resourcegroupstaggingapi`: Updates service documentation
+  * Documentation updates for resourcegroupstaggingapi
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds a new parameter (EnableInterContainerTrafficEncryption) to CreateProcessingJob API to allow for enabling inter-container traffic encryption on processing jobs.
+
+### SDK Bugs
+* `service/dynamodb/dynamodbattribute`:  Simplified decode logic to decode AttributeValue as it is defined ([#3308](https://github.com/aws/aws-sdk-go/pull/3308))
+
 Release v1.30.23 (2020-05-07)
 ===
 

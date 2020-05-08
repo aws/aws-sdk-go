@@ -6681,6 +6681,7 @@
     "NetworkConfig":{
       "type":"structure",
       "members":{
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"},
         "EnableNetworkIsolation":{"shape":"Boolean"},
         "VpcConfig":{"shape":"VpcConfig"}
       }
@@ -7470,7 +7471,6 @@
     "RenderUiTemplateRequest":{
       "type":"structure",
       "required":[
-        "UiTemplate",
         "Task",
         "RoleArn"
       ],
@@ -8830,7 +8830,6 @@
     },
     "UiConfig":{
       "type":"structure",
-      "required":["UiTemplateS3Uri"],
       "members":{
         "UiTemplateS3Uri":{"shape":"S3Uri"}
       }
