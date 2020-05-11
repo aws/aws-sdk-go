@@ -494,6 +494,98 @@ func (c *Kendra) CreateIndexWithContext(ctx aws.Context, input *CreateIndexInput
 	return out, req.Send()
 }
 
+const opDeleteDataSource = "DeleteDataSource"
+
+// DeleteDataSourceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataSource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDataSource for more information on using the DeleteDataSource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDataSourceRequest method.
+//    req, resp := client.DeleteDataSourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteDataSource
+func (c *Kendra) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *request.Request, output *DeleteDataSourceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDataSource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDataSourceInput{}
+	}
+
+	output = &DeleteDataSourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDataSource API operation for AWSKendraFrontendService.
+//
+// Deletes an Amazon Kendra data source. An exception is not thrown if the data
+// source is already being deleted. While the data source is being deleted,
+// the Status field returned by a call to the operation is set to DELETING.
+// For more information, see Deleting Data Sources (https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DeleteDataSource for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteDataSource
+func (c *Kendra) DeleteDataSource(input *DeleteDataSourceInput) (*DeleteDataSourceOutput, error) {
+	req, out := c.DeleteDataSourceRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDataSourceWithContext is the same as DeleteDataSource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDataSource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DeleteDataSourceWithContext(ctx aws.Context, input *DeleteDataSourceInput, opts ...request.Option) (*DeleteDataSourceOutput, error) {
+	req, out := c.DeleteDataSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteFaq = "DeleteFaq"
 
 // DeleteFaqRequest generates a "aws/request.Request" representing the
@@ -1450,6 +1542,93 @@ func (c *Kendra) ListIndicesPagesWithContext(ctx aws.Context, input *ListIndices
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListTagsForResource
+func (c *Kendra) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for AWSKendraFrontendService.
+//
+// Gets a list of tags associated with a specified resource. Indexes, FAQs,
+// and data sources can have tags associated with them.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceUnavailableException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListTagsForResource
+func (c *Kendra) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opQuery = "Query"
 
 // QueryRequest generates a "aws/request.Request" representing the
@@ -1530,6 +1709,8 @@ func (c *Kendra) QueryRequest(input *QueryInput) (req *request.Request, output *
 //   * ThrottlingException
 //
 //   * AccessDeniedException
+//
+//   * ServiceQuotaExceededException
 //
 //   * InternalServerException
 //
@@ -1824,6 +2005,181 @@ func (c *Kendra) SubmitFeedbackWithContext(ctx aws.Context, input *SubmitFeedbac
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/TagResource
+func (c *Kendra) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for AWSKendraFrontendService.
+//
+// Adds the specified tag to the specified index, FAQ, or data source resource.
+// If the tag already exists, the existing value is replaced with the new value.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceUnavailableException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/TagResource
+func (c *Kendra) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UntagResource
+func (c *Kendra) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for AWSKendraFrontendService.
+//
+// Removes a tag from an index, FAQ, or a data source.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceUnavailableException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UntagResource
+func (c *Kendra) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDataSource = "UpdateDataSource"
 
 // UpdateDataSourceRequest generates a "aws/request.Request" representing the
@@ -1977,6 +2333,8 @@ func (c *Kendra) UpdateIndexRequest(input *UpdateIndexInput) (req *request.Reque
 //   * ThrottlingException
 //
 //   * AccessDeniedException
+//
+//   * ServiceQuotaExceededException
 //
 //   * InternalServerException
 //
@@ -2139,17 +2497,22 @@ func (s *AclConfiguration) SetAllowedGroupsColumnName(v string) *AclConfiguratio
 	return s
 }
 
+// An attribute returned from an index query.
 type AdditionalResultAttribute struct {
 	_ struct{} `type:"structure"`
 
+	// The key that identifies the attribute.
+	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// An attribute returned with a document from a search.
+	// An object that contains the attribute value.
 	//
 	// Value is a required field
 	Value *AdditionalResultAttributeValue `type:"structure" required:"true"`
 
+	// The data type of the Value property.
+	//
 	// ValueType is a required field
 	ValueType *string `type:"string" required:"true" enum:"AdditionalResultAttributeValueType"`
 }
@@ -2209,24 +2572,29 @@ func (s *AdditionalResultAttributeValue) SetTextWithHighlightsValue(v *TextWithH
 
 // Provides filtering the query results based on document attributes.
 //
-// When you use the AndAllFilters or OrAllFilters, filters you can use a total
-// of 3 layers. For example, you can use:
+// When you use the AndAllFilters or OrAllFilters, filters you can use 2 layers
+// under the first attribute filter. For example, you can use:
 //
 // <AndAllFilters>
 //
 // <OrAllFilters>
 //
 // <EqualTo>
+//
+// If you use more than 2 layers, you receive a ValidationException exception
+// with the message "AttributeFilter cannot have a depth of more than 2."
 type AttributeFilter struct {
 	_ struct{} `type:"structure"`
 
 	// Performs a logical AND operation on all supplied filters.
-	AndAllFilters []*AttributeFilter `min:"1" type:"list"`
+	AndAllFilters []*AttributeFilter `type:"list"`
 
 	// Returns true when a document contains all of the specified document attributes.
+	// This filter is only appicable to StringListValue metadata.
 	ContainsAll *DocumentAttribute `type:"structure"`
 
-	// Returns true when a document contains any of the specified document attributes.
+	// Returns true when a document contains any of the specified document attributes.This
+	// filter is only appicable to StringListValue metadata.
 	ContainsAny *DocumentAttribute `type:"structure"`
 
 	// Performs an equals operation on two document attributes.
@@ -2252,7 +2620,7 @@ type AttributeFilter struct {
 	NotFilter *AttributeFilter `type:"structure"`
 
 	// Performs a logical OR operation on all supplied filters.
-	OrAllFilters []*AttributeFilter `min:"1" type:"list"`
+	OrAllFilters []*AttributeFilter `type:"list"`
 }
 
 // String returns the string representation
@@ -2268,22 +2636,6 @@ func (s AttributeFilter) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AttributeFilter) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AttributeFilter"}
-	if s.AndAllFilters != nil && len(s.AndAllFilters) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("AndAllFilters", 1))
-	}
-	if s.OrAllFilters != nil && len(s.OrAllFilters) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("OrAllFilters", 1))
-	}
-	if s.AndAllFilters != nil {
-		for i, v := range s.AndAllFilters {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AndAllFilters", i), err.(request.ErrInvalidParams))
-			}
-		}
-	}
 	if s.ContainsAll != nil {
 		if err := s.ContainsAll.Validate(); err != nil {
 			invalidParams.AddNested("ContainsAll", err.(request.ErrInvalidParams))
@@ -2404,6 +2756,9 @@ func (s *AttributeFilter) SetOrAllFilters(v []*AttributeFilter) *AttributeFilter
 type BatchDeleteDocumentInput struct {
 	_ struct{} `type:"structure"`
 
+	// Maps a particular data source sync job to a particular data source.
+	DataSourceSyncJobMetricTarget *DataSourceSyncJobMetricTarget `type:"structure"`
+
 	// One or more identifiers for documents to delete from the index.
 	//
 	// DocumentIdList is a required field
@@ -2440,11 +2795,22 @@ func (s *BatchDeleteDocumentInput) Validate() error {
 	if s.IndexId != nil && len(*s.IndexId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
 	}
+	if s.DataSourceSyncJobMetricTarget != nil {
+		if err := s.DataSourceSyncJobMetricTarget.Validate(); err != nil {
+			invalidParams.AddNested("DataSourceSyncJobMetricTarget", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataSourceSyncJobMetricTarget sets the DataSourceSyncJobMetricTarget field's value.
+func (s *BatchDeleteDocumentInput) SetDataSourceSyncJobMetricTarget(v *DataSourceSyncJobMetricTarget) *BatchDeleteDocumentInput {
+	s.DataSourceSyncJobMetricTarget = v
+	return s
 }
 
 // SetDocumentIdList sets the DocumentIdList field's value.
@@ -2532,8 +2898,16 @@ type BatchPutDocumentInput struct {
 
 	// One or more documents to add to the index.
 	//
-	// Each document is limited to 5 Mb, the total size of the list is limited to
-	// 50 Mb.
+	// Documents have the following file size limits.
+	//
+	//    * 5 MB total size for inline documents
+	//
+	//    * 50 MB total size for files from an S3 bucket
+	//
+	//    * 5 MB extracted text for any file
+	//
+	// For more information about file size and transaction per second quotas, see
+	// Quotas (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
 	//
 	// Documents is a required field
 	Documents []*Document `min:"1" type:"list" required:"true"`
@@ -2620,7 +2994,8 @@ type BatchPutDocumentOutput struct {
 	// why the document couldn't be added to the index.
 	//
 	// If there was an error adding a document to an index the error is reported
-	// in your AWS CloudWatch log.
+	// in your AWS CloudWatch log. For more information, see Monitoring Amazon Kendra
+	// with Amazon CloudWatch Logs (https://docs.aws.amazon.com/kendra/latest/dg/cloudwatch-logs.html)
 	FailedDocuments []*BatchPutDocumentResponseFailedDocument `type:"list"`
 }
 
@@ -2682,12 +3057,68 @@ func (s *BatchPutDocumentResponseFailedDocument) SetId(v string) *BatchPutDocume
 	return s
 }
 
+// Specifies capacity units configured for your index. You can add and remove
+// capacity units to tune an index to your requirements.
+type CapacityUnitsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of extra query capacity for an index. Each capacity unit provides
+	// 0.5 queries per second and 40,000 queries per day.
+	//
+	// QueryCapacityUnits is a required field
+	QueryCapacityUnits *int64 `type:"integer" required:"true"`
+
+	// The amount of extra storage capacity for an index. Each capacity unit provides
+	// 150 Gb of storage space or 500,000 documents, whichever is reached first.
+	//
+	// StorageCapacityUnits is a required field
+	StorageCapacityUnits *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s CapacityUnitsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CapacityUnitsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CapacityUnitsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CapacityUnitsConfiguration"}
+	if s.QueryCapacityUnits == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryCapacityUnits"))
+	}
+	if s.StorageCapacityUnits == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageCapacityUnits"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryCapacityUnits sets the QueryCapacityUnits field's value.
+func (s *CapacityUnitsConfiguration) SetQueryCapacityUnits(v int64) *CapacityUnitsConfiguration {
+	s.QueryCapacityUnits = &v
+	return s
+}
+
+// SetStorageCapacityUnits sets the StorageCapacityUnits field's value.
+func (s *CapacityUnitsConfiguration) SetStorageCapacityUnits(v int64) *CapacityUnitsConfiguration {
+	s.StorageCapacityUnits = &v
+	return s
+}
+
 // Gathers information about when a particular result was clicked by a user.
 // Your application uses the SubmitFeedback operation to provide click information.
 type ClickFeedback struct {
 	_ struct{} `type:"structure"`
 
-	// The Unix timestamp of the data and time that the result was clicked.
+	// The Unix timestamp of the date and time that the result was clicked.
 	//
 	// ClickTime is a required field
 	ClickTime *time.Time `type:"timestamp" required:"true"`
@@ -3057,6 +3488,10 @@ type CreateDataSourceInput struct {
 	// to update the index.
 	Schedule *string `type:"string"`
 
+	// A list of key-value pairs that identify the data source. You can use the
+	// tags to identify and organize your resources and to control access to resources.
+	Tags []*Tag `type:"list"`
+
 	// The type of repository that contains the data source.
 	//
 	// Type is a required field
@@ -3108,6 +3543,16 @@ func (s *CreateDataSourceInput) Validate() error {
 			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3148,6 +3593,12 @@ func (s *CreateDataSourceInput) SetRoleArn(v string) *CreateDataSourceInput {
 // SetSchedule sets the Schedule field's value.
 func (s *CreateDataSourceInput) SetSchedule(v string) *CreateDataSourceInput {
 	s.Schedule = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDataSourceInput) SetTags(v []*Tag) *CreateDataSourceInput {
+	s.Tags = v
 	return s
 }
 
@@ -3209,6 +3660,10 @@ type CreateFaqInput struct {
 	//
 	// S3Path is a required field
 	S3Path *S3Path `type:"structure" required:"true"`
+
+	// A list of key-value pairs that identify the FAQ. You can use the tags to
+	// identify and organize your resources and to control access to resources.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -3253,6 +3708,16 @@ func (s *CreateFaqInput) Validate() error {
 			invalidParams.AddNested("S3Path", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3290,6 +3755,12 @@ func (s *CreateFaqInput) SetS3Path(v *S3Path) *CreateFaqInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateFaqInput) SetTags(v []*Tag) *CreateFaqInput {
+	s.Tags = v
+	return s
+}
+
 type CreateFaqOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3324,6 +3795,12 @@ type CreateIndexInput struct {
 	// A description for the index.
 	Description *string `min:"1" type:"string"`
 
+	// The Amazon Kendra edition to use for the index. Choose DEVELOPER_EDITION
+	// for indexes intended for development, testing, or proof of concept. Use ENTERPRISE_EDITION
+	// for your production databases. Once you set the edition for an index, it
+	// can't be changed.
+	Edition *string `type:"string" enum:"IndexEdition"`
+
 	// The name for the new index.
 	//
 	// Name is a required field
@@ -3339,6 +3816,10 @@ type CreateIndexInput struct {
 	// The identifier of the AWS KMS customer managed key (CMK) to use to encrypt
 	// data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
+
+	// A list of key-value pairs that identify the index. You can use the tags to
+	// identify and organize your resources and to control access to resources.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -3377,6 +3858,16 @@ func (s *CreateIndexInput) Validate() error {
 			invalidParams.AddNested("ServerSideEncryptionConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3396,6 +3887,12 @@ func (s *CreateIndexInput) SetDescription(v string) *CreateIndexInput {
 	return s
 }
 
+// SetEdition sets the Edition field's value.
+func (s *CreateIndexInput) SetEdition(v string) *CreateIndexInput {
+	s.Edition = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateIndexInput) SetName(v string) *CreateIndexInput {
 	s.Name = &v
@@ -3411,6 +3908,12 @@ func (s *CreateIndexInput) SetRoleArn(v string) *CreateIndexInput {
 // SetServerSideEncryptionConfiguration sets the ServerSideEncryptionConfiguration field's value.
 func (s *CreateIndexInput) SetServerSideEncryptionConfiguration(v *ServerSideEncryptionConfiguration) *CreateIndexInput {
 	s.ServerSideEncryptionConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateIndexInput) SetTags(v []*Tag) *CreateIndexInput {
+	s.Tags = v
 	return s
 }
 
@@ -3445,9 +3948,19 @@ type DataSourceConfiguration struct {
 	// Provides information necessary to create a connector for a database.
 	DatabaseConfiguration *DatabaseConfiguration `type:"structure"`
 
+	// Provided configuration for data sources that connect to Microsoft OneDrive.
+	OneDriveConfiguration *OneDriveConfiguration `type:"structure"`
+
 	// Provides information to create a connector for a document repository in an
 	// Amazon S3 bucket.
 	S3Configuration *S3DataSourceConfiguration `type:"structure"`
+
+	// Provides configuration information for data sources that connect to a Salesforce
+	// site.
+	SalesforceConfiguration *SalesforceConfiguration `type:"structure"`
+
+	// Provides configuration for data sources that connect to ServiceNow instances.
+	ServiceNowConfiguration *ServiceNowConfiguration `type:"structure"`
 
 	// Provides information necessary to create a connector for a Microsoft SharePoint
 	// site.
@@ -3472,9 +3985,24 @@ func (s *DataSourceConfiguration) Validate() error {
 			invalidParams.AddNested("DatabaseConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OneDriveConfiguration != nil {
+		if err := s.OneDriveConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OneDriveConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3Configuration != nil {
 		if err := s.S3Configuration.Validate(); err != nil {
 			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SalesforceConfiguration != nil {
+		if err := s.SalesforceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SalesforceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ServiceNowConfiguration != nil {
+		if err := s.ServiceNowConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ServiceNowConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SharePointConfiguration != nil {
@@ -3495,9 +4023,27 @@ func (s *DataSourceConfiguration) SetDatabaseConfiguration(v *DatabaseConfigurat
 	return s
 }
 
+// SetOneDriveConfiguration sets the OneDriveConfiguration field's value.
+func (s *DataSourceConfiguration) SetOneDriveConfiguration(v *OneDriveConfiguration) *DataSourceConfiguration {
+	s.OneDriveConfiguration = v
+	return s
+}
+
 // SetS3Configuration sets the S3Configuration field's value.
 func (s *DataSourceConfiguration) SetS3Configuration(v *S3DataSourceConfiguration) *DataSourceConfiguration {
 	s.S3Configuration = v
+	return s
+}
+
+// SetSalesforceConfiguration sets the SalesforceConfiguration field's value.
+func (s *DataSourceConfiguration) SetSalesforceConfiguration(v *SalesforceConfiguration) *DataSourceConfiguration {
+	s.SalesforceConfiguration = v
+	return s
+}
+
+// SetServiceNowConfiguration sets the ServiceNowConfiguration field's value.
+func (s *DataSourceConfiguration) SetServiceNowConfiguration(v *ServiceNowConfiguration) *DataSourceConfiguration {
+	s.ServiceNowConfiguration = v
 	return s
 }
 
@@ -3599,6 +4145,11 @@ type DataSourceSyncJob struct {
 	// A unique identifier for the synchronization job.
 	ExecutionId *string `min:"1" type:"string"`
 
+	// Maps a batch delete document request to a specific data source sync job.
+	// This is optional and should only be supplied when documents are deleted by
+	// a connector.
+	Metrics *DataSourceSyncJobMetrics `type:"structure"`
+
 	// The UNIX datetime that the synchronization job was started.
 	StartTime *time.Time `type:"timestamp"`
 
@@ -3649,6 +4200,12 @@ func (s *DataSourceSyncJob) SetExecutionId(v string) *DataSourceSyncJob {
 	return s
 }
 
+// SetMetrics sets the Metrics field's value.
+func (s *DataSourceSyncJob) SetMetrics(v *DataSourceSyncJobMetrics) *DataSourceSyncJob {
+	s.Metrics = v
+	return s
+}
+
 // SetStartTime sets the StartTime field's value.
 func (s *DataSourceSyncJob) SetStartTime(v time.Time) *DataSourceSyncJob {
 	s.StartTime = &v
@@ -3658,6 +4215,132 @@ func (s *DataSourceSyncJob) SetStartTime(v time.Time) *DataSourceSyncJob {
 // SetStatus sets the Status field's value.
 func (s *DataSourceSyncJob) SetStatus(v string) *DataSourceSyncJob {
 	s.Status = &v
+	return s
+}
+
+// Maps a particular data source sync job to a particular data source.
+type DataSourceSyncJobMetricTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the data source that is running the sync job.
+	//
+	// DataSourceId is a required field
+	DataSourceId *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the sync job that is running on the data source.
+	//
+	// DataSourceSyncJobId is a required field
+	DataSourceSyncJobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DataSourceSyncJobMetricTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataSourceSyncJobMetricTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSourceSyncJobMetricTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSourceSyncJobMetricTarget"}
+	if s.DataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceId"))
+	}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.DataSourceSyncJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceSyncJobId"))
+	}
+	if s.DataSourceSyncJobId != nil && len(*s.DataSourceSyncJobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceSyncJobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *DataSourceSyncJobMetricTarget) SetDataSourceId(v string) *DataSourceSyncJobMetricTarget {
+	s.DataSourceId = &v
+	return s
+}
+
+// SetDataSourceSyncJobId sets the DataSourceSyncJobId field's value.
+func (s *DataSourceSyncJobMetricTarget) SetDataSourceSyncJobId(v string) *DataSourceSyncJobMetricTarget {
+	s.DataSourceSyncJobId = &v
+	return s
+}
+
+// Maps a batch delete document request to a specific data source sync job.
+// This is optional and should only be supplied when documents are deleted by
+// a connector.
+type DataSourceSyncJobMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The number of documents added from the data source up to now in the data
+	// source sync.
+	DocumentsAdded *string `type:"string"`
+
+	// The number of documents deleted from the data source up to now in the data
+	// source sync run.
+	DocumentsDeleted *string `type:"string"`
+
+	// The number of documents that failed to sync from the data source up to now
+	// in the data source sync run.
+	DocumentsFailed *string `type:"string"`
+
+	// The number of documents modified in the data source up to now in the data
+	// source sync run.
+	DocumentsModified *string `type:"string"`
+
+	// The current number of documents crawled by the current sync job in the data
+	// source.
+	DocumentsScanned *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DataSourceSyncJobMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataSourceSyncJobMetrics) GoString() string {
+	return s.String()
+}
+
+// SetDocumentsAdded sets the DocumentsAdded field's value.
+func (s *DataSourceSyncJobMetrics) SetDocumentsAdded(v string) *DataSourceSyncJobMetrics {
+	s.DocumentsAdded = &v
+	return s
+}
+
+// SetDocumentsDeleted sets the DocumentsDeleted field's value.
+func (s *DataSourceSyncJobMetrics) SetDocumentsDeleted(v string) *DataSourceSyncJobMetrics {
+	s.DocumentsDeleted = &v
+	return s
+}
+
+// SetDocumentsFailed sets the DocumentsFailed field's value.
+func (s *DataSourceSyncJobMetrics) SetDocumentsFailed(v string) *DataSourceSyncJobMetrics {
+	s.DocumentsFailed = &v
+	return s
+}
+
+// SetDocumentsModified sets the DocumentsModified field's value.
+func (s *DataSourceSyncJobMetrics) SetDocumentsModified(v string) *DataSourceSyncJobMetrics {
+	s.DocumentsModified = &v
+	return s
+}
+
+// SetDocumentsScanned sets the DocumentsScanned field's value.
+func (s *DataSourceSyncJobMetrics) SetDocumentsScanned(v string) *DataSourceSyncJobMetrics {
+	s.DocumentsScanned = &v
 	return s
 }
 
@@ -3900,6 +4583,78 @@ func (s *DatabaseConfiguration) SetDatabaseEngineType(v string) *DatabaseConfigu
 func (s *DatabaseConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *DatabaseConfiguration {
 	s.VpcConfiguration = v
 	return s
+}
+
+type DeleteDataSourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the data source to delete.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the index associated with the data source.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteDataSourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDataSourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDataSourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDataSourceInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteDataSourceInput) SetId(v string) *DeleteDataSourceInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DeleteDataSourceInput) SetIndexId(v string) *DeleteDataSourceInput {
+	s.IndexId = &v
+	return s
+}
+
+type DeleteDataSourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDataSourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDataSourceOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteFaqInput struct {
@@ -4423,6 +5178,12 @@ func (s *DescribeIndexInput) SetId(v string) *DescribeIndexInput {
 type DescribeIndexOutput struct {
 	_ struct{} `type:"structure"`
 
+	// For enterprise edtion indexes, you can choose to use additional capacity
+	// to meet the needs of your application. This contains the capacity units used
+	// for the index. A 0 for the query capacity or the storage capacity indicates
+	// that the index is using the default capacity for the index.
+	CapacityUnits *CapacityUnitsConfiguration `type:"structure"`
+
 	// The Unix datetime that the index was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
@@ -4431,6 +5192,10 @@ type DescribeIndexOutput struct {
 
 	// Configuration settings for any metadata applied to the documents in the index.
 	DocumentMetadataConfigurations []*DocumentMetadataConfiguration `type:"list"`
+
+	// The Amazon Kendra edition used for the index. You decide the edition when
+	// you create the index.
+	Edition *string `type:"string" enum:"IndexEdition"`
 
 	// When th eStatus field value is FAILED, the ErrorMessage field contains a
 	// message that explains why.
@@ -4473,6 +5238,12 @@ func (s DescribeIndexOutput) GoString() string {
 	return s.String()
 }
 
+// SetCapacityUnits sets the CapacityUnits field's value.
+func (s *DescribeIndexOutput) SetCapacityUnits(v *CapacityUnitsConfiguration) *DescribeIndexOutput {
+	s.CapacityUnits = v
+	return s
+}
+
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *DescribeIndexOutput) SetCreatedAt(v time.Time) *DescribeIndexOutput {
 	s.CreatedAt = &v
@@ -4488,6 +5259,12 @@ func (s *DescribeIndexOutput) SetDescription(v string) *DescribeIndexOutput {
 // SetDocumentMetadataConfigurations sets the DocumentMetadataConfigurations field's value.
 func (s *DescribeIndexOutput) SetDocumentMetadataConfigurations(v []*DocumentMetadataConfiguration) *DescribeIndexOutput {
 	s.DocumentMetadataConfigurations = v
+	return s
+}
+
+// SetEdition sets the Edition field's value.
+func (s *DescribeIndexOutput) SetEdition(v string) *DescribeIndexOutput {
+	s.Edition = &v
 	return s
 }
 
@@ -4544,12 +5321,12 @@ type Document struct {
 	_ struct{} `type:"structure"`
 
 	// Information to use for user context filtering.
-	AccessControlList []*Principal `min:"1" type:"list"`
+	AccessControlList []*Principal `type:"list"`
 
 	// Custom attributes to apply to the document. Use the custom attributes to
 	// provide additional information for searching, to provide facets for refining
 	// searches, and to provide additional information in the query response.
-	Attributes []*DocumentAttribute `min:"1" type:"list"`
+	Attributes []*DocumentAttribute `type:"list"`
 
 	// The contents of the document.
 	//
@@ -4559,7 +5336,7 @@ type Document struct {
 	// directly using REST, you must base64 encode the contents before sending.
 	//
 	// Blob is automatically base64 encoded/decoded by the SDK.
-	Blob []byte `min:"1" type:"blob"`
+	Blob []byte `type:"blob"`
 
 	// The file type of the document in the Blob field.
 	ContentType *string `type:"string" enum:"ContentType"`
@@ -4573,7 +5350,7 @@ type Document struct {
 	S3Path *S3Path `type:"structure"`
 
 	// The title of the document.
-	Title *string `min:"1" type:"string"`
+	Title *string `type:"string"`
 }
 
 // String returns the string representation
@@ -4589,23 +5366,11 @@ func (s Document) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Document) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Document"}
-	if s.AccessControlList != nil && len(s.AccessControlList) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("AccessControlList", 1))
-	}
-	if s.Attributes != nil && len(s.Attributes) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Attributes", 1))
-	}
-	if s.Blob != nil && len(s.Blob) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Blob", 1))
-	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
-	}
-	if s.Title != nil && len(*s.Title) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Title", 1))
 	}
 	if s.AccessControlList != nil {
 		for i, v := range s.AccessControlList {
@@ -4754,7 +5519,7 @@ type DocumentAttributeValue struct {
 	LongValue *int64 `type:"long"`
 
 	// A list of strings.
-	StringListValue []*string `min:"1" type:"list"`
+	StringListValue []*string `type:"list"`
 
 	// A string, such as "department".
 	StringValue *string `min:"1" type:"string"`
@@ -4773,9 +5538,6 @@ func (s DocumentAttributeValue) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DocumentAttributeValue) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DocumentAttributeValue"}
-	if s.StringListValue != nil && len(s.StringListValue) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("StringListValue", 1))
-	}
 	if s.StringValue != nil && len(*s.StringValue) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StringValue", 1))
 	}
@@ -4966,7 +5728,7 @@ func (s *DocumentsMetadataConfiguration) SetS3Prefix(v string) *DocumentsMetadat
 	return s
 }
 
-// Information a document attribute
+// Information about a document attribute
 type Facet struct {
 	_ struct{} `type:"structure"`
 
@@ -5184,6 +5946,10 @@ type IndexConfigurationSummary struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `type:"timestamp" required:"true"`
 
+	// Indicates whether the index is a enterprise edition index or a developer
+	// edition index.
+	Edition *string `type:"string" enum:"IndexEdition"`
+
 	// A unique identifier for the index. Use this to identify the index when you
 	// are using operations such as Query, DescribeIndex, UpdateIndex, and DeleteIndex.
 	Id *string `min:"36" type:"string"`
@@ -5216,6 +5982,12 @@ func (s IndexConfigurationSummary) GoString() string {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *IndexConfigurationSummary) SetCreatedAt(v time.Time) *IndexConfigurationSummary {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetEdition sets the Edition field's value.
+func (s *IndexConfigurationSummary) SetEdition(v string) *IndexConfigurationSummary {
+	s.Edition = &v
 	return s
 }
 
@@ -5763,6 +6535,258 @@ func (s *ListIndicesOutput) SetNextToken(v string) *ListIndicesOutput {
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the index, FAQ, or data source to get a
+	// list of tags for.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags associated with the index, FAQ, or data source.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
+// Provides configuration information for data sources that connect to OneDrive.
+type OneDriveConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// List of regular expressions applied to documents. Items that match the exclusion
+	// pattern are not indexed. If you provide both an inclusion pattern and an
+	// exclusion pattern, any item that matches the exclusion pattern isn't indexed.
+	//
+	// The exclusion pattern is applied to the file name.
+	ExclusionPatterns []*string `type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map Microsoft OneDrive
+	// fields to custom fields in the Amazon Kendra index. You must first create
+	// the index fields before you map OneDrive fields.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of regular expression patterns. Documents that match the pattern are
+	// included in the index. Documents that don't match the pattern are excluded
+	// from the index. If a document matches both an inclusion pattern and an exclusion
+	// pattern, the document is not included in the index.
+	//
+	// The exclusion pattern is applied to the file name.
+	InclusionPatterns []*string `type:"list"`
+
+	// A list of user accounts whose documents should be indexed.
+	//
+	// OneDriveUsers is a required field
+	OneDriveUsers *OneDriveUsers `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains
+	// the user name and password to connect to OneDrive. The user namd should be
+	// the application ID for the OneDrive application, and the password is the
+	// application key for the OneDrive application.
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+
+	// Tha Azure Active Directory domain of the organization.
+	//
+	// TenantDomain is a required field
+	TenantDomain *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s OneDriveConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OneDriveConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OneDriveConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OneDriveConfiguration"}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.OneDriveUsers == nil {
+		invalidParams.Add(request.NewErrParamRequired("OneDriveUsers"))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.TenantDomain == nil {
+		invalidParams.Add(request.NewErrParamRequired("TenantDomain"))
+	}
+	if s.TenantDomain != nil && len(*s.TenantDomain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TenantDomain", 1))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.OneDriveUsers != nil {
+		if err := s.OneDriveUsers.Validate(); err != nil {
+			invalidParams.AddNested("OneDriveUsers", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *OneDriveConfiguration) SetExclusionPatterns(v []*string) *OneDriveConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *OneDriveConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *OneDriveConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *OneDriveConfiguration) SetInclusionPatterns(v []*string) *OneDriveConfiguration {
+	s.InclusionPatterns = v
+	return s
+}
+
+// SetOneDriveUsers sets the OneDriveUsers field's value.
+func (s *OneDriveConfiguration) SetOneDriveUsers(v *OneDriveUsers) *OneDriveConfiguration {
+	s.OneDriveUsers = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *OneDriveConfiguration) SetSecretArn(v string) *OneDriveConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetTenantDomain sets the TenantDomain field's value.
+func (s *OneDriveConfiguration) SetTenantDomain(v string) *OneDriveConfiguration {
+	s.TenantDomain = &v
+	return s
+}
+
+// User accounts whose documents should be indexed.
+type OneDriveUsers struct {
+	_ struct{} `type:"structure"`
+
+	// A list of users whose documents should be indexed. Specify the user names
+	// in email format, for example, username@tenantdomain. If you need to index
+	// the documents of more than 100 users, use the OneDriveUserS3Path field to
+	// specify the location of a file containing a list of users.
+	OneDriveUserList []*string `min:"1" type:"list"`
+
+	// The S3 bucket location of a file containing a list of users whose documents
+	// should be indexed.
+	OneDriveUserS3Path *S3Path `type:"structure"`
+}
+
+// String returns the string representation
+func (s OneDriveUsers) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OneDriveUsers) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OneDriveUsers) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OneDriveUsers"}
+	if s.OneDriveUserList != nil && len(s.OneDriveUserList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OneDriveUserList", 1))
+	}
+	if s.OneDriveUserS3Path != nil {
+		if err := s.OneDriveUserS3Path.Validate(); err != nil {
+			invalidParams.AddNested("OneDriveUserS3Path", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOneDriveUserList sets the OneDriveUserList field's value.
+func (s *OneDriveUsers) SetOneDriveUserList(v []*string) *OneDriveUsers {
+	s.OneDriveUserList = v
+	return s
+}
+
+// SetOneDriveUserS3Path sets the OneDriveUserS3Path field's value.
+func (s *OneDriveUsers) SetOneDriveUserS3Path(v *S3Path) *OneDriveUsers {
+	s.OneDriveUserS3Path = v
+	return s
+}
+
 // Provides user and group information for document access filtering.
 type Principal struct {
 	_ struct{} `type:"structure"`
@@ -5861,7 +6885,8 @@ type QueryInput struct {
 	PageNumber *int64 `type:"integer"`
 
 	// Sets the number of results that are returned in each page of results. The
-	// default page size is 100.
+	// default page size is 10. The maximum number of results returned is 100. If
+	// you ask for more than 100 results, only 100 are returned.
 	PageSize *int64 `type:"integer"`
 
 	// Sets the type of query. Only results for the specified query type are returned.
@@ -6038,12 +7063,13 @@ func (s *QueryOutput) SetTotalNumberOfResults(v int64) *QueryOutput {
 type QueryResultItem struct {
 	_ struct{} `type:"structure"`
 
+	// One or more additional attribues associated with the query result.
 	AdditionalAttributes []*AdditionalResultAttribute `type:"list"`
 
 	// An array of document attributes for the document that the query result maps
 	// to. For example, the document author (Author) or the source URI (SourceUri)
 	// of the document.
-	DocumentAttributes []*DocumentAttribute `min:"1" type:"list"`
+	DocumentAttributes []*DocumentAttribute `type:"list"`
 
 	// An extract of the text in the document. Contains information about highlighting
 	// the relevant terms in the excerpt.
@@ -6535,7 +7561,7 @@ type S3DataSourceConfiguration struct {
 	// that matches an inclusion prefix also matches an exclusion pattern, the document
 	// is not indexed.
 	//
-	// For more information about glob patterns, see glob (programming) (http://wikipedia.org/wiki/Glob_%28programming%29)
+	// For more information about glob patterns, see glob (programming) (https://en.wikipedia.org/wiki/Glob_(programming))
 	// in Wikipedia.
 	ExclusionPatterns []*string `type:"list"`
 
@@ -6668,6 +7694,694 @@ func (s *S3Path) SetKey(v string) *S3Path {
 	return s
 }
 
+// Defines configuration for syncing a Salesforce chatter feed. The contents
+// of the object comes from the Salesforce FeedItem table.
+type SalesforceChatterFeedConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the column in the Salesforce FeedItem table that contains the
+	// content to index. Typically this is the Body column.
+	//
+	// DocumentDataFieldName is a required field
+	DocumentDataFieldName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the column in the Salesforce FeedItem table that contains the
+	// title of the document. This is typically the Title collumn.
+	DocumentTitleFieldName *string `min:"1" type:"string"`
+
+	// Maps fields from a Salesforce chatter feed into Amazon Kendra index fields.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// Filters the documents in the feed based on status of the user. When you specify
+	// ACTIVE_USERS only documents from users who have an active account are indexed.
+	// When you specify STANDARD_USER only documents for Salesforce standard users
+	// are documented. You can specify both.
+	IncludeFilterTypes []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s SalesforceChatterFeedConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SalesforceChatterFeedConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceChatterFeedConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceChatterFeedConfiguration"}
+	if s.DocumentDataFieldName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentDataFieldName"))
+	}
+	if s.DocumentDataFieldName != nil && len(*s.DocumentDataFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentDataFieldName", 1))
+	}
+	if s.DocumentTitleFieldName != nil && len(*s.DocumentTitleFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentTitleFieldName", 1))
+	}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.IncludeFilterTypes != nil && len(s.IncludeFilterTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludeFilterTypes", 1))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentDataFieldName sets the DocumentDataFieldName field's value.
+func (s *SalesforceChatterFeedConfiguration) SetDocumentDataFieldName(v string) *SalesforceChatterFeedConfiguration {
+	s.DocumentDataFieldName = &v
+	return s
+}
+
+// SetDocumentTitleFieldName sets the DocumentTitleFieldName field's value.
+func (s *SalesforceChatterFeedConfiguration) SetDocumentTitleFieldName(v string) *SalesforceChatterFeedConfiguration {
+	s.DocumentTitleFieldName = &v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *SalesforceChatterFeedConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *SalesforceChatterFeedConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// SetIncludeFilterTypes sets the IncludeFilterTypes field's value.
+func (s *SalesforceChatterFeedConfiguration) SetIncludeFilterTypes(v []*string) *SalesforceChatterFeedConfiguration {
+	s.IncludeFilterTypes = v
+	return s
+}
+
+// Provides configuration information for connecting to a Salesforce data source.
+type SalesforceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies configuration information for Salesforce chatter feeds.
+	ChatterFeedConfiguration *SalesforceChatterFeedConfiguration `type:"structure"`
+
+	// Indicates whether Amazon Kendra should index attachments to Salesforce objects.
+	CrawlAttachments *bool `type:"boolean"`
+
+	// A list of regular expression patterns. Documents that match the patterns
+	// are excluded from the index. Documents that don't match the patterns are
+	// included in the index. If a document matches both an exclusion pattern and
+	// an inclusion pattern, the document is not included in the index.
+	//
+	// The regex is applied to the name of the attached file.
+	ExcludeAttachmentFilePatterns []*string `type:"list"`
+
+	// A list of regular expression patterns. Documents that match the patterns
+	// are included in the index. Documents that don't match the patterns are excluded
+	// from the index. If a document matches both an inclusion pattern and an exclusion
+	// pattern, the document is not included in the index.
+	//
+	// The regex is applied to the name of the attached file.
+	IncludeAttachmentFilePatterns []*string `type:"list"`
+
+	// Specifies configuration information for the knowlege article types that Amazon
+	// Kendra indexes. Amazon Kendra indexes standard knowledge articles and the
+	// standard fields of knowledge articles, or the custom fields of custom knowledge
+	// articles, but not both.
+	KnowledgeArticleConfiguration *SalesforceKnowledgeArticleConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains
+	// the key/value pairs required to connect to your Salesforce instance. The
+	// secret must contain a JSON structure with the following keys:
+	//
+	//    * authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to
+	//    get an OAUTH token.
+	//
+	//    * consumerKey - The application public key generated when you created
+	//    your Salesforce application.
+	//
+	//    * consumerSecret - The application private key generated when you created
+	//    your Salesforce application.
+	//
+	//    * password - The password associated with the user logging in to the Salesforce
+	//    instance.
+	//
+	//    * securityToken - The token associated with the user account logging in
+	//    to the Salesforce instance.
+	//
+	//    * username - The user name of the user logging in to the Salesforce instance.
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+
+	// The instance URL for the Salesforce site that you want to index.
+	//
+	// ServerUrl is a required field
+	ServerUrl *string `min:"1" type:"string" required:"true"`
+
+	// Provides configuration information for processing attachments to Salesforce
+	// standard objects.
+	StandardObjectAttachmentConfiguration *SalesforceStandardObjectAttachmentConfiguration `type:"structure"`
+
+	// Specifies the Salesforce standard objects that Amazon Kendra indexes.
+	StandardObjectConfigurations []*SalesforceStandardObjectConfiguration `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s SalesforceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SalesforceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceConfiguration"}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.ServerUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerUrl"))
+	}
+	if s.ServerUrl != nil && len(*s.ServerUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerUrl", 1))
+	}
+	if s.StandardObjectConfigurations != nil && len(s.StandardObjectConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StandardObjectConfigurations", 1))
+	}
+	if s.ChatterFeedConfiguration != nil {
+		if err := s.ChatterFeedConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ChatterFeedConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.KnowledgeArticleConfiguration != nil {
+		if err := s.KnowledgeArticleConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("KnowledgeArticleConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StandardObjectAttachmentConfiguration != nil {
+		if err := s.StandardObjectAttachmentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("StandardObjectAttachmentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StandardObjectConfigurations != nil {
+		for i, v := range s.StandardObjectConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "StandardObjectConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChatterFeedConfiguration sets the ChatterFeedConfiguration field's value.
+func (s *SalesforceConfiguration) SetChatterFeedConfiguration(v *SalesforceChatterFeedConfiguration) *SalesforceConfiguration {
+	s.ChatterFeedConfiguration = v
+	return s
+}
+
+// SetCrawlAttachments sets the CrawlAttachments field's value.
+func (s *SalesforceConfiguration) SetCrawlAttachments(v bool) *SalesforceConfiguration {
+	s.CrawlAttachments = &v
+	return s
+}
+
+// SetExcludeAttachmentFilePatterns sets the ExcludeAttachmentFilePatterns field's value.
+func (s *SalesforceConfiguration) SetExcludeAttachmentFilePatterns(v []*string) *SalesforceConfiguration {
+	s.ExcludeAttachmentFilePatterns = v
+	return s
+}
+
+// SetIncludeAttachmentFilePatterns sets the IncludeAttachmentFilePatterns field's value.
+func (s *SalesforceConfiguration) SetIncludeAttachmentFilePatterns(v []*string) *SalesforceConfiguration {
+	s.IncludeAttachmentFilePatterns = v
+	return s
+}
+
+// SetKnowledgeArticleConfiguration sets the KnowledgeArticleConfiguration field's value.
+func (s *SalesforceConfiguration) SetKnowledgeArticleConfiguration(v *SalesforceKnowledgeArticleConfiguration) *SalesforceConfiguration {
+	s.KnowledgeArticleConfiguration = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *SalesforceConfiguration) SetSecretArn(v string) *SalesforceConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetServerUrl sets the ServerUrl field's value.
+func (s *SalesforceConfiguration) SetServerUrl(v string) *SalesforceConfiguration {
+	s.ServerUrl = &v
+	return s
+}
+
+// SetStandardObjectAttachmentConfiguration sets the StandardObjectAttachmentConfiguration field's value.
+func (s *SalesforceConfiguration) SetStandardObjectAttachmentConfiguration(v *SalesforceStandardObjectAttachmentConfiguration) *SalesforceConfiguration {
+	s.StandardObjectAttachmentConfiguration = v
+	return s
+}
+
+// SetStandardObjectConfigurations sets the StandardObjectConfigurations field's value.
+func (s *SalesforceConfiguration) SetStandardObjectConfigurations(v []*SalesforceStandardObjectConfiguration) *SalesforceConfiguration {
+	s.StandardObjectConfigurations = v
+	return s
+}
+
+// Provides configuration information for indexing Salesforce custom articles.
+type SalesforceCustomKnowledgeArticleTypeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field in the custom knowledge article that contains the document
+	// data to index.
+	//
+	// DocumentDataFieldName is a required field
+	DocumentDataFieldName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the field in the custom knowledge article that contains the document
+	// title.
+	DocumentTitleFieldName *string `min:"1" type:"string"`
+
+	// One or more objects that map fields in the custom knowledge article to fields
+	// in the Amazon Kendra index.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// The name of the configuration.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s SalesforceCustomKnowledgeArticleTypeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SalesforceCustomKnowledgeArticleTypeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceCustomKnowledgeArticleTypeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceCustomKnowledgeArticleTypeConfiguration"}
+	if s.DocumentDataFieldName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentDataFieldName"))
+	}
+	if s.DocumentDataFieldName != nil && len(*s.DocumentDataFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentDataFieldName", 1))
+	}
+	if s.DocumentTitleFieldName != nil && len(*s.DocumentTitleFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentTitleFieldName", 1))
+	}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentDataFieldName sets the DocumentDataFieldName field's value.
+func (s *SalesforceCustomKnowledgeArticleTypeConfiguration) SetDocumentDataFieldName(v string) *SalesforceCustomKnowledgeArticleTypeConfiguration {
+	s.DocumentDataFieldName = &v
+	return s
+}
+
+// SetDocumentTitleFieldName sets the DocumentTitleFieldName field's value.
+func (s *SalesforceCustomKnowledgeArticleTypeConfiguration) SetDocumentTitleFieldName(v string) *SalesforceCustomKnowledgeArticleTypeConfiguration {
+	s.DocumentTitleFieldName = &v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *SalesforceCustomKnowledgeArticleTypeConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *SalesforceCustomKnowledgeArticleTypeConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SalesforceCustomKnowledgeArticleTypeConfiguration) SetName(v string) *SalesforceCustomKnowledgeArticleTypeConfiguration {
+	s.Name = &v
+	return s
+}
+
+// Specifies configuration information for the knowlege article types that Amazon
+// Kendra indexes. Amazon Kendra indexes standard knowledge articles and the
+// standard fields of knowledge articles, or the custom fields of custom knowledge
+// articles, but not both
+type SalesforceKnowledgeArticleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Provides configuration information for custom Salesforce knowledge articles.
+	CustomKnowledgeArticleTypeConfigurations []*SalesforceCustomKnowledgeArticleTypeConfiguration `min:"1" type:"list"`
+
+	// Specifies the document states that should be included when Amazon Kendra
+	// indexes knowledge articles. You must specify at least one state.
+	//
+	// IncludedStates is a required field
+	IncludedStates []*string `min:"1" type:"list" required:"true"`
+
+	// Provides configuration information for standard Salesforce knowledge articles.
+	StandardKnowledgeArticleTypeConfiguration *SalesforceStandardKnowledgeArticleTypeConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s SalesforceKnowledgeArticleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SalesforceKnowledgeArticleConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceKnowledgeArticleConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceKnowledgeArticleConfiguration"}
+	if s.CustomKnowledgeArticleTypeConfigurations != nil && len(s.CustomKnowledgeArticleTypeConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomKnowledgeArticleTypeConfigurations", 1))
+	}
+	if s.IncludedStates == nil {
+		invalidParams.Add(request.NewErrParamRequired("IncludedStates"))
+	}
+	if s.IncludedStates != nil && len(s.IncludedStates) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludedStates", 1))
+	}
+	if s.CustomKnowledgeArticleTypeConfigurations != nil {
+		for i, v := range s.CustomKnowledgeArticleTypeConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomKnowledgeArticleTypeConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.StandardKnowledgeArticleTypeConfiguration != nil {
+		if err := s.StandardKnowledgeArticleTypeConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("StandardKnowledgeArticleTypeConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomKnowledgeArticleTypeConfigurations sets the CustomKnowledgeArticleTypeConfigurations field's value.
+func (s *SalesforceKnowledgeArticleConfiguration) SetCustomKnowledgeArticleTypeConfigurations(v []*SalesforceCustomKnowledgeArticleTypeConfiguration) *SalesforceKnowledgeArticleConfiguration {
+	s.CustomKnowledgeArticleTypeConfigurations = v
+	return s
+}
+
+// SetIncludedStates sets the IncludedStates field's value.
+func (s *SalesforceKnowledgeArticleConfiguration) SetIncludedStates(v []*string) *SalesforceKnowledgeArticleConfiguration {
+	s.IncludedStates = v
+	return s
+}
+
+// SetStandardKnowledgeArticleTypeConfiguration sets the StandardKnowledgeArticleTypeConfiguration field's value.
+func (s *SalesforceKnowledgeArticleConfiguration) SetStandardKnowledgeArticleTypeConfiguration(v *SalesforceStandardKnowledgeArticleTypeConfiguration) *SalesforceKnowledgeArticleConfiguration {
+	s.StandardKnowledgeArticleTypeConfiguration = v
+	return s
+}
+
+// Provides configuration information for standard Salesforce knowledge articles.
+type SalesforceStandardKnowledgeArticleTypeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field that contains the document data to index.
+	//
+	// DocumentDataFieldName is a required field
+	DocumentDataFieldName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the field that contains the document title.
+	DocumentTitleFieldName *string `min:"1" type:"string"`
+
+	// One or more objects that map fields in the knowledge article to Amazon Kendra
+	// index fields. The index field must exist before you can map a Salesforce
+	// field to it.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s SalesforceStandardKnowledgeArticleTypeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SalesforceStandardKnowledgeArticleTypeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceStandardKnowledgeArticleTypeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceStandardKnowledgeArticleTypeConfiguration"}
+	if s.DocumentDataFieldName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentDataFieldName"))
+	}
+	if s.DocumentDataFieldName != nil && len(*s.DocumentDataFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentDataFieldName", 1))
+	}
+	if s.DocumentTitleFieldName != nil && len(*s.DocumentTitleFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentTitleFieldName", 1))
+	}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentDataFieldName sets the DocumentDataFieldName field's value.
+func (s *SalesforceStandardKnowledgeArticleTypeConfiguration) SetDocumentDataFieldName(v string) *SalesforceStandardKnowledgeArticleTypeConfiguration {
+	s.DocumentDataFieldName = &v
+	return s
+}
+
+// SetDocumentTitleFieldName sets the DocumentTitleFieldName field's value.
+func (s *SalesforceStandardKnowledgeArticleTypeConfiguration) SetDocumentTitleFieldName(v string) *SalesforceStandardKnowledgeArticleTypeConfiguration {
+	s.DocumentTitleFieldName = &v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *SalesforceStandardKnowledgeArticleTypeConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *SalesforceStandardKnowledgeArticleTypeConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// Provides configuration information for processing attachments to Salesforce
+// standard objects.
+type SalesforceStandardObjectAttachmentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field used for the document title.
+	DocumentTitleFieldName *string `min:"1" type:"string"`
+
+	// One or more objects that map fields in attachments to Amazon Kendra index
+	// fields.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s SalesforceStandardObjectAttachmentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SalesforceStandardObjectAttachmentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceStandardObjectAttachmentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceStandardObjectAttachmentConfiguration"}
+	if s.DocumentTitleFieldName != nil && len(*s.DocumentTitleFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentTitleFieldName", 1))
+	}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentTitleFieldName sets the DocumentTitleFieldName field's value.
+func (s *SalesforceStandardObjectAttachmentConfiguration) SetDocumentTitleFieldName(v string) *SalesforceStandardObjectAttachmentConfiguration {
+	s.DocumentTitleFieldName = &v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *SalesforceStandardObjectAttachmentConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *SalesforceStandardObjectAttachmentConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// Specifies confguration information for indexing a single standard object.
+type SalesforceStandardObjectConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field in the standard object table that contains the document
+	// contents.
+	//
+	// DocumentDataFieldName is a required field
+	DocumentDataFieldName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the field in the standard object table that contains the document
+	// titleB.
+	DocumentTitleFieldName *string `min:"1" type:"string"`
+
+	// One or more objects that map fields in the standard object to Amazon Kendra
+	// index fields. The index field must exist before you can map a Salesforce
+	// field to it.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// The name of the standard object.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"SalesforceStandardObjectName"`
+}
+
+// String returns the string representation
+func (s SalesforceStandardObjectConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SalesforceStandardObjectConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceStandardObjectConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceStandardObjectConfiguration"}
+	if s.DocumentDataFieldName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentDataFieldName"))
+	}
+	if s.DocumentDataFieldName != nil && len(*s.DocumentDataFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentDataFieldName", 1))
+	}
+	if s.DocumentTitleFieldName != nil && len(*s.DocumentTitleFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentTitleFieldName", 1))
+	}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentDataFieldName sets the DocumentDataFieldName field's value.
+func (s *SalesforceStandardObjectConfiguration) SetDocumentDataFieldName(v string) *SalesforceStandardObjectConfiguration {
+	s.DocumentDataFieldName = &v
+	return s
+}
+
+// SetDocumentTitleFieldName sets the DocumentTitleFieldName field's value.
+func (s *SalesforceStandardObjectConfiguration) SetDocumentTitleFieldName(v string) *SalesforceStandardObjectConfiguration {
+	s.DocumentTitleFieldName = &v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *SalesforceStandardObjectConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *SalesforceStandardObjectConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SalesforceStandardObjectConfiguration) SetName(v string) *SalesforceStandardObjectConfiguration {
+	s.Name = &v
+	return s
+}
+
 // Provides information about how a custom index field is used during a search.
 type Search struct {
 	_ struct{} `type:"structure"`
@@ -6755,6 +8469,332 @@ func (s *ServerSideEncryptionConfiguration) SetKmsKeyId(v string) *ServerSideEnc
 	return s
 }
 
+// Provides configuration information required to connect to a ServiceNow data
+// source.
+type ServiceNowConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ServiceNow instance that the data source connects to. The host endpoint
+	// should look like the following: {instance}.service-now.com.
+	//
+	// HostUrl is a required field
+	HostUrl *string `min:"1" type:"string" required:"true"`
+
+	// Provides configuration information for crawling knowledge articles in the
+	// ServiceNow site.
+	KnowledgeArticleConfiguration *ServiceNowKnowledgeArticleConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the AWS Secret Manager secret that contains
+	// the user name and password required to connect to the ServiceNow instance.
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+
+	// Provides configuration information for crawling service catalogs in the ServiceNow
+	// site.
+	ServiceCatalogConfiguration *ServiceNowServiceCatalogConfiguration `type:"structure"`
+
+	// The identifier of the release that the ServiceNow host is running. If the
+	// host is not running the LONDON release, use OTHERS.
+	//
+	// ServiceNowBuildVersion is a required field
+	ServiceNowBuildVersion *string `type:"string" required:"true" enum:"ServiceNowBuildVersionType"`
+}
+
+// String returns the string representation
+func (s ServiceNowConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceNowConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceNowConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceNowConfiguration"}
+	if s.HostUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostUrl"))
+	}
+	if s.HostUrl != nil && len(*s.HostUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HostUrl", 1))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.ServiceNowBuildVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceNowBuildVersion"))
+	}
+	if s.KnowledgeArticleConfiguration != nil {
+		if err := s.KnowledgeArticleConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("KnowledgeArticleConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ServiceCatalogConfiguration != nil {
+		if err := s.ServiceCatalogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ServiceCatalogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostUrl sets the HostUrl field's value.
+func (s *ServiceNowConfiguration) SetHostUrl(v string) *ServiceNowConfiguration {
+	s.HostUrl = &v
+	return s
+}
+
+// SetKnowledgeArticleConfiguration sets the KnowledgeArticleConfiguration field's value.
+func (s *ServiceNowConfiguration) SetKnowledgeArticleConfiguration(v *ServiceNowKnowledgeArticleConfiguration) *ServiceNowConfiguration {
+	s.KnowledgeArticleConfiguration = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *ServiceNowConfiguration) SetSecretArn(v string) *ServiceNowConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetServiceCatalogConfiguration sets the ServiceCatalogConfiguration field's value.
+func (s *ServiceNowConfiguration) SetServiceCatalogConfiguration(v *ServiceNowServiceCatalogConfiguration) *ServiceNowConfiguration {
+	s.ServiceCatalogConfiguration = v
+	return s
+}
+
+// SetServiceNowBuildVersion sets the ServiceNowBuildVersion field's value.
+func (s *ServiceNowConfiguration) SetServiceNowBuildVersion(v string) *ServiceNowConfiguration {
+	s.ServiceNowBuildVersion = &v
+	return s
+}
+
+// Provides configuration information for crawling knowledge articles in the
+// ServiceNow site.
+type ServiceNowKnowledgeArticleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether Amazon Kendra should index attachments to knowledge articles.
+	CrawlAttachments *bool `type:"boolean"`
+
+	// The name of the ServiceNow field that is mapped to the index document contents
+	// field in the Amazon Kendra index.
+	//
+	// DocumentDataFieldName is a required field
+	DocumentDataFieldName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the ServiceNow field that is mapped to the index document title
+	// field.
+	DocumentTitleFieldName *string `min:"1" type:"string"`
+
+	// List of regular expressions applied to knowledge articles. Items that don't
+	// match the inclusion pattern are not indexed. The regex is applied to the
+	// field specified in the PatternTargetField
+	ExcludeAttachmentFilePatterns []*string `type:"list"`
+
+	// Mapping between ServiceNow fields and Amazon Kendra index fields. You must
+	// create the index field before you map the field.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// List of regular expressions applied to knowledge articles. Items that don't
+	// match the inclusion pattern are not indexed. The regex is applied to the
+	// field specified in the PatternTargetField.
+	IncludeAttachmentFilePatterns []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ServiceNowKnowledgeArticleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceNowKnowledgeArticleConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceNowKnowledgeArticleConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceNowKnowledgeArticleConfiguration"}
+	if s.DocumentDataFieldName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentDataFieldName"))
+	}
+	if s.DocumentDataFieldName != nil && len(*s.DocumentDataFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentDataFieldName", 1))
+	}
+	if s.DocumentTitleFieldName != nil && len(*s.DocumentTitleFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentTitleFieldName", 1))
+	}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlAttachments sets the CrawlAttachments field's value.
+func (s *ServiceNowKnowledgeArticleConfiguration) SetCrawlAttachments(v bool) *ServiceNowKnowledgeArticleConfiguration {
+	s.CrawlAttachments = &v
+	return s
+}
+
+// SetDocumentDataFieldName sets the DocumentDataFieldName field's value.
+func (s *ServiceNowKnowledgeArticleConfiguration) SetDocumentDataFieldName(v string) *ServiceNowKnowledgeArticleConfiguration {
+	s.DocumentDataFieldName = &v
+	return s
+}
+
+// SetDocumentTitleFieldName sets the DocumentTitleFieldName field's value.
+func (s *ServiceNowKnowledgeArticleConfiguration) SetDocumentTitleFieldName(v string) *ServiceNowKnowledgeArticleConfiguration {
+	s.DocumentTitleFieldName = &v
+	return s
+}
+
+// SetExcludeAttachmentFilePatterns sets the ExcludeAttachmentFilePatterns field's value.
+func (s *ServiceNowKnowledgeArticleConfiguration) SetExcludeAttachmentFilePatterns(v []*string) *ServiceNowKnowledgeArticleConfiguration {
+	s.ExcludeAttachmentFilePatterns = v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *ServiceNowKnowledgeArticleConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *ServiceNowKnowledgeArticleConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// SetIncludeAttachmentFilePatterns sets the IncludeAttachmentFilePatterns field's value.
+func (s *ServiceNowKnowledgeArticleConfiguration) SetIncludeAttachmentFilePatterns(v []*string) *ServiceNowKnowledgeArticleConfiguration {
+	s.IncludeAttachmentFilePatterns = v
+	return s
+}
+
+// Provides configuration information for crawling service catalog items in
+// the ServiceNow site
+type ServiceNowServiceCatalogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether Amazon Kendra should crawl attachments to the service catalog
+	// items.
+	CrawlAttachments *bool `type:"boolean"`
+
+	// The name of the ServiceNow field that is mapped to the index document contents
+	// field in the Amazon Kendra index.
+	//
+	// DocumentDataFieldName is a required field
+	DocumentDataFieldName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the ServiceNow field that is mapped to the index document title
+	// field.
+	DocumentTitleFieldName *string `min:"1" type:"string"`
+
+	// Determines the types of file attachments that are excluded from the index.
+	ExcludeAttachmentFilePatterns []*string `type:"list"`
+
+	// Mapping between ServiceNow fields and Amazon Kendra index fields. You must
+	// create the index field before you map the field.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// Determines the types of file attachments that are included in the index.
+	IncludeAttachmentFilePatterns []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ServiceNowServiceCatalogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceNowServiceCatalogConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceNowServiceCatalogConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceNowServiceCatalogConfiguration"}
+	if s.DocumentDataFieldName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentDataFieldName"))
+	}
+	if s.DocumentDataFieldName != nil && len(*s.DocumentDataFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentDataFieldName", 1))
+	}
+	if s.DocumentTitleFieldName != nil && len(*s.DocumentTitleFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentTitleFieldName", 1))
+	}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlAttachments sets the CrawlAttachments field's value.
+func (s *ServiceNowServiceCatalogConfiguration) SetCrawlAttachments(v bool) *ServiceNowServiceCatalogConfiguration {
+	s.CrawlAttachments = &v
+	return s
+}
+
+// SetDocumentDataFieldName sets the DocumentDataFieldName field's value.
+func (s *ServiceNowServiceCatalogConfiguration) SetDocumentDataFieldName(v string) *ServiceNowServiceCatalogConfiguration {
+	s.DocumentDataFieldName = &v
+	return s
+}
+
+// SetDocumentTitleFieldName sets the DocumentTitleFieldName field's value.
+func (s *ServiceNowServiceCatalogConfiguration) SetDocumentTitleFieldName(v string) *ServiceNowServiceCatalogConfiguration {
+	s.DocumentTitleFieldName = &v
+	return s
+}
+
+// SetExcludeAttachmentFilePatterns sets the ExcludeAttachmentFilePatterns field's value.
+func (s *ServiceNowServiceCatalogConfiguration) SetExcludeAttachmentFilePatterns(v []*string) *ServiceNowServiceCatalogConfiguration {
+	s.ExcludeAttachmentFilePatterns = v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *ServiceNowServiceCatalogConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *ServiceNowServiceCatalogConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// SetIncludeAttachmentFilePatterns sets the IncludeAttachmentFilePatterns field's value.
+func (s *ServiceNowServiceCatalogConfiguration) SetIncludeAttachmentFilePatterns(v []*string) *ServiceNowServiceCatalogConfiguration {
+	s.IncludeAttachmentFilePatterns = v
+	return s
+}
+
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6822,7 +8862,7 @@ type SharePointConfiguration struct {
 	// The Microsoft SharePoint attribute field that contains the title of the document.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
-	// A list of regular expression patterns. Documents that match the patterns
+	// A list of regulary expression patterns. Documents that match the patterns
 	// are excluded from the index. Documents that don't match the patterns are
 	// included in the index. If a document matches both an exclusion pattern and
 	// an inclusion pattern, the document is not included in the index.
@@ -7258,9 +9298,154 @@ func (s SubmitFeedbackOutput) GoString() string {
 	return s.String()
 }
 
+// A list of key/value pairs that identify an index, FAQ, or data source. Tag
+// keys and values can consist of Unicode letters, digits, white space, and
+// any of the following symbols: _ . : / = + - @.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The key for the tag. Keys are not case sensitive and must be unique for the
+	// index, FAQ, or data source.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value associated with the tag. The value may be an empty string but it
+	// can't be null.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the index, FAQ, or data source to tag.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// A list of tag keys to add to the index, FAQ, or data source. If a tag already
+	// exists, the existing value is replaced with the new value.
+	//
+	// Tags is a required field
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // Provides information about text documents indexed in an index.
 type TextDocumentStatistics struct {
 	_ struct{} `type:"structure"`
+
+	// The total size, in bytes, of the indexed documents.
+	//
+	// IndexedTextBytes is a required field
+	IndexedTextBytes *int64 `type:"long" required:"true"`
 
 	// The number of text documents indexed.
 	//
@@ -7276,6 +9461,12 @@ func (s TextDocumentStatistics) String() string {
 // GoString returns the string representation
 func (s TextDocumentStatistics) GoString() string {
 	return s.String()
+}
+
+// SetIndexedTextBytes sets the IndexedTextBytes field's value.
+func (s *TextDocumentStatistics) SetIndexedTextBytes(v int64) *TextDocumentStatistics {
+	s.IndexedTextBytes = &v
+	return s
 }
 
 // SetIndexedTextDocumentsCount sets the IndexedTextDocumentsCount field's value.
@@ -7403,6 +9594,77 @@ func (s *TimeRange) SetEndTime(v time.Time) *TimeRange {
 func (s *TimeRange) SetStartTime(v time.Time) *TimeRange {
 	s.StartTime = &v
 	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the index, FAQ, or data source to remove
+	// the tag from.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// A list of tag keys to remove from the index, FAQ, or data source. If a tag
+	// key does not exist on the resource, it is ignored.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateDataSourceInput struct {
@@ -7542,6 +9804,14 @@ func (s UpdateDataSourceOutput) GoString() string {
 type UpdateIndexInput struct {
 	_ struct{} `type:"structure"`
 
+	// Sets the number of addtional storage and query capacity units that should
+	// be used by the index. You can change the capacity of the index up to 5 times
+	// per day.
+	//
+	// If you are using extra storage units, you can't reduce the storage capacity
+	// below that required to meet the storage needs for your index.
+	CapacityUnits *CapacityUnitsConfiguration `type:"structure"`
+
 	// A new description for the index.
 	Description *string `min:"1" type:"string"`
 
@@ -7589,6 +9859,11 @@ func (s *UpdateIndexInput) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
+	if s.CapacityUnits != nil {
+		if err := s.CapacityUnits.Validate(); err != nil {
+			invalidParams.AddNested("CapacityUnits", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DocumentMetadataConfigurationUpdates != nil {
 		for i, v := range s.DocumentMetadataConfigurationUpdates {
 			if v == nil {
@@ -7604,6 +9879,12 @@ func (s *UpdateIndexInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCapacityUnits sets the CapacityUnits field's value.
+func (s *UpdateIndexInput) SetCapacityUnits(v *CapacityUnitsConfiguration) *UpdateIndexInput {
+	s.CapacityUnits = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -7762,6 +10043,9 @@ const (
 
 	// DataSourceSyncJobStatusAborted is a DataSourceSyncJobStatus enum value
 	DataSourceSyncJobStatusAborted = "ABORTED"
+
+	// DataSourceSyncJobStatusSyncingIndexing is a DataSourceSyncJobStatus enum value
+	DataSourceSyncJobStatusSyncingIndexing = "SYNCING_INDEXING"
 )
 
 const (
@@ -7773,6 +10057,15 @@ const (
 
 	// DataSourceTypeDatabase is a DataSourceType enum value
 	DataSourceTypeDatabase = "DATABASE"
+
+	// DataSourceTypeSalesforce is a DataSourceType enum value
+	DataSourceTypeSalesforce = "SALESFORCE"
+
+	// DataSourceTypeOnedrive is a DataSourceType enum value
+	DataSourceTypeOnedrive = "ONEDRIVE"
+
+	// DataSourceTypeServicenow is a DataSourceType enum value
+	DataSourceTypeServicenow = "SERVICENOW"
 )
 
 const (
@@ -7829,6 +10122,14 @@ const (
 )
 
 const (
+	// IndexEditionDeveloperEdition is a IndexEdition enum value
+	IndexEditionDeveloperEdition = "DEVELOPER_EDITION"
+
+	// IndexEditionEnterpriseEdition is a IndexEdition enum value
+	IndexEditionEnterpriseEdition = "ENTERPRISE_EDITION"
+)
+
+const (
 	// IndexStatusCreating is a IndexStatus enum value
 	IndexStatusCreating = "CREATING"
 
@@ -7840,6 +10141,9 @@ const (
 
 	// IndexStatusFailed is a IndexStatus enum value
 	IndexStatusFailed = "FAILED"
+
+	// IndexStatusUpdating is a IndexStatus enum value
+	IndexStatusUpdating = "UPDATING"
 
 	// IndexStatusSystemUpdating is a IndexStatus enum value
 	IndexStatusSystemUpdating = "SYSTEM_UPDATING"
@@ -7886,6 +10190,86 @@ const (
 
 	// RelevanceTypeNotRelevant is a RelevanceType enum value
 	RelevanceTypeNotRelevant = "NOT_RELEVANT"
+)
+
+const (
+	// SalesforceChatterFeedIncludeFilterTypeActiveUser is a SalesforceChatterFeedIncludeFilterType enum value
+	SalesforceChatterFeedIncludeFilterTypeActiveUser = "ACTIVE_USER"
+
+	// SalesforceChatterFeedIncludeFilterTypeStandardUser is a SalesforceChatterFeedIncludeFilterType enum value
+	SalesforceChatterFeedIncludeFilterTypeStandardUser = "STANDARD_USER"
+)
+
+const (
+	// SalesforceKnowledgeArticleStateDraft is a SalesforceKnowledgeArticleState enum value
+	SalesforceKnowledgeArticleStateDraft = "DRAFT"
+
+	// SalesforceKnowledgeArticleStatePublished is a SalesforceKnowledgeArticleState enum value
+	SalesforceKnowledgeArticleStatePublished = "PUBLISHED"
+
+	// SalesforceKnowledgeArticleStateArchived is a SalesforceKnowledgeArticleState enum value
+	SalesforceKnowledgeArticleStateArchived = "ARCHIVED"
+)
+
+const (
+	// SalesforceStandardObjectNameAccount is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameAccount = "ACCOUNT"
+
+	// SalesforceStandardObjectNameCampaign is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameCampaign = "CAMPAIGN"
+
+	// SalesforceStandardObjectNameCase is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameCase = "CASE"
+
+	// SalesforceStandardObjectNameContact is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameContact = "CONTACT"
+
+	// SalesforceStandardObjectNameContract is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameContract = "CONTRACT"
+
+	// SalesforceStandardObjectNameDocument is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameDocument = "DOCUMENT"
+
+	// SalesforceStandardObjectNameGroup is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameGroup = "GROUP"
+
+	// SalesforceStandardObjectNameIdea is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameIdea = "IDEA"
+
+	// SalesforceStandardObjectNameLead is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameLead = "LEAD"
+
+	// SalesforceStandardObjectNameOpportunity is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameOpportunity = "OPPORTUNITY"
+
+	// SalesforceStandardObjectNamePartner is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNamePartner = "PARTNER"
+
+	// SalesforceStandardObjectNamePricebook is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNamePricebook = "PRICEBOOK"
+
+	// SalesforceStandardObjectNameProduct is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameProduct = "PRODUCT"
+
+	// SalesforceStandardObjectNameProfile is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameProfile = "PROFILE"
+
+	// SalesforceStandardObjectNameSolution is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameSolution = "SOLUTION"
+
+	// SalesforceStandardObjectNameTask is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameTask = "TASK"
+
+	// SalesforceStandardObjectNameUser is a SalesforceStandardObjectName enum value
+	SalesforceStandardObjectNameUser = "USER"
+)
+
+const (
+	// ServiceNowBuildVersionTypeLondon is a ServiceNowBuildVersionType enum value
+	ServiceNowBuildVersionTypeLondon = "LONDON"
+
+	// ServiceNowBuildVersionTypeOthers is a ServiceNowBuildVersionType enum value
+	ServiceNowBuildVersionTypeOthers = "OTHERS"
 )
 
 const (
