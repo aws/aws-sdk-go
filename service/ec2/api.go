@@ -111420,6 +111420,33 @@ const (
 
 	// InstanceTypeInf124xlarge is a InstanceType enum value
 	InstanceTypeInf124xlarge = "inf1.24xlarge"
+
+	// InstanceTypeM6gMetal is a InstanceType enum value
+	InstanceTypeM6gMetal = "m6g.metal"
+
+	// InstanceTypeM6gMedium is a InstanceType enum value
+	InstanceTypeM6gMedium = "m6g.medium"
+
+	// InstanceTypeM6gLarge is a InstanceType enum value
+	InstanceTypeM6gLarge = "m6g.large"
+
+	// InstanceTypeM6gXlarge is a InstanceType enum value
+	InstanceTypeM6gXlarge = "m6g.xlarge"
+
+	// InstanceTypeM6g2xlarge is a InstanceType enum value
+	InstanceTypeM6g2xlarge = "m6g.2xlarge"
+
+	// InstanceTypeM6g4xlarge is a InstanceType enum value
+	InstanceTypeM6g4xlarge = "m6g.4xlarge"
+
+	// InstanceTypeM6g8xlarge is a InstanceType enum value
+	InstanceTypeM6g8xlarge = "m6g.8xlarge"
+
+	// InstanceTypeM6g12xlarge is a InstanceType enum value
+	InstanceTypeM6g12xlarge = "m6g.12xlarge"
+
+	// InstanceTypeM6g16xlarge is a InstanceType enum value
+	InstanceTypeM6g16xlarge = "m6g.16xlarge"
 )
 
 const (

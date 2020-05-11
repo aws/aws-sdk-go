@@ -2951,6 +2951,9 @@ func (s *RecommendationSummary) SetStartLine(v int64) *RecommendationSummary {
 type Repository struct {
 	_ struct{} `type:"structure"`
 
+	// Information about a Bitbucket Cloud repository.
+	Bitbucket *ThirdPartySourceRepository `type:"structure"`
+
 	// Information about an AWS CodeCommit repository.
 	CodeCommit *CodeCommitRepository `type:"structure"`
 }
@@ -2968,6 +2971,11 @@ func (s Repository) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Repository) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Repository"}
+	if s.Bitbucket != nil {
+		if err := s.Bitbucket.Validate(); err != nil {
+			invalidParams.AddNested("Bitbucket", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CodeCommit != nil {
 		if err := s.CodeCommit.Validate(); err != nil {
 			invalidParams.AddNested("CodeCommit", err.(request.ErrInvalidParams))
@@ -2978,6 +2986,12 @@ func (s *Repository) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBitbucket sets the Bitbucket field's value.
+func (s *Repository) SetBitbucket(v *ThirdPartySourceRepository) *Repository {
+	s.Bitbucket = v
+	return s
 }
 
 // SetCodeCommit sets the CodeCommit field's value.
@@ -2995,6 +3009,9 @@ type RepositoryAssociation struct {
 
 	// The ID of the repository association.
 	AssociationId *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) identifying the repository connection.
+	ConnectionArn *string `type:"string"`
 
 	// The time, in milliseconds since the epoch, when the repository association
 	// was created.
@@ -3039,6 +3056,12 @@ func (s *RepositoryAssociation) SetAssociationArn(v string) *RepositoryAssociati
 // SetAssociationId sets the AssociationId field's value.
 func (s *RepositoryAssociation) SetAssociationId(v string) *RepositoryAssociation {
 	s.AssociationId = &v
+	return s
+}
+
+// SetConnectionArn sets the ConnectionArn field's value.
+func (s *RepositoryAssociation) SetConnectionArn(v string) *RepositoryAssociation {
+	s.ConnectionArn = &v
 	return s
 }
 
@@ -3094,6 +3117,9 @@ type RepositoryAssociationSummary struct {
 	// The repository association ID.
 	AssociationId *string `min:"1" type:"string"`
 
+	// The Amazon Resource Name (ARN) identifying the repository connection.
+	ConnectionArn *string `type:"string"`
+
 	// The time, in milliseconds since the epoch, since the repository association
 	// was last updated.
 	LastUpdatedTimeStamp *time.Time `type:"timestamp"`
@@ -3146,6 +3172,12 @@ func (s *RepositoryAssociationSummary) SetAssociationArn(v string) *RepositoryAs
 // SetAssociationId sets the AssociationId field's value.
 func (s *RepositoryAssociationSummary) SetAssociationId(v string) *RepositoryAssociationSummary {
 	s.AssociationId = &v
+	return s
+}
+
+// SetConnectionArn sets the ConnectionArn field's value.
+func (s *RepositoryAssociationSummary) SetConnectionArn(v string) *RepositoryAssociationSummary {
+	s.ConnectionArn = &v
 	return s
 }
 
@@ -3256,6 +3288,80 @@ func (s SourceCodeType) GoString() string {
 // SetCommitDiff sets the CommitDiff field's value.
 func (s *SourceCodeType) SetCommitDiff(v *CommitDiffSourceCodeType) *SourceCodeType {
 	s.CommitDiff = v
+	return s
+}
+
+// Information about a third party source repository connected through CodeStar
+// Connections.
+type ThirdPartySourceRepository struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) identifying the repository connection.
+	//
+	// ConnectionArn is a required field
+	ConnectionArn *string `type:"string" required:"true"`
+
+	// The name of the third party source repository.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The username of the owner of the repository.
+	//
+	// Owner is a required field
+	Owner *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ThirdPartySourceRepository) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThirdPartySourceRepository) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ThirdPartySourceRepository) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ThirdPartySourceRepository"}
+	if s.ConnectionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionArn"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Owner == nil {
+		invalidParams.Add(request.NewErrParamRequired("Owner"))
+	}
+	if s.Owner != nil && len(*s.Owner) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Owner", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionArn sets the ConnectionArn field's value.
+func (s *ThirdPartySourceRepository) SetConnectionArn(v string) *ThirdPartySourceRepository {
+	s.ConnectionArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ThirdPartySourceRepository) SetName(v string) *ThirdPartySourceRepository {
+	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *ThirdPartySourceRepository) SetOwner(v string) *ThirdPartySourceRepository {
+	s.Owner = &v
 	return s
 }
 
@@ -3391,6 +3497,9 @@ const (
 
 	// ProviderTypeGitHub is a ProviderType enum value
 	ProviderTypeGitHub = "GitHub"
+
+	// ProviderTypeBitbucket is a ProviderType enum value
+	ProviderTypeBitbucket = "Bitbucket"
 )
 
 const (

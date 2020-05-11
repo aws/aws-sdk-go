@@ -80,6 +80,10 @@ type KendraAPI interface {
 	CreateIndexWithContext(aws.Context, *kendra.CreateIndexInput, ...request.Option) (*kendra.CreateIndexOutput, error)
 	CreateIndexRequest(*kendra.CreateIndexInput) (*request.Request, *kendra.CreateIndexOutput)
 
+	DeleteDataSource(*kendra.DeleteDataSourceInput) (*kendra.DeleteDataSourceOutput, error)
+	DeleteDataSourceWithContext(aws.Context, *kendra.DeleteDataSourceInput, ...request.Option) (*kendra.DeleteDataSourceOutput, error)
+	DeleteDataSourceRequest(*kendra.DeleteDataSourceInput) (*request.Request, *kendra.DeleteDataSourceOutput)
+
 	DeleteFaq(*kendra.DeleteFaqInput) (*kendra.DeleteFaqOutput, error)
 	DeleteFaqWithContext(aws.Context, *kendra.DeleteFaqInput, ...request.Option) (*kendra.DeleteFaqOutput, error)
 	DeleteFaqRequest(*kendra.DeleteFaqInput) (*request.Request, *kendra.DeleteFaqOutput)
@@ -125,6 +129,10 @@ type KendraAPI interface {
 	ListIndicesPages(*kendra.ListIndicesInput, func(*kendra.ListIndicesOutput, bool) bool) error
 	ListIndicesPagesWithContext(aws.Context, *kendra.ListIndicesInput, func(*kendra.ListIndicesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*kendra.ListTagsForResourceInput) (*kendra.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *kendra.ListTagsForResourceInput, ...request.Option) (*kendra.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*kendra.ListTagsForResourceInput) (*request.Request, *kendra.ListTagsForResourceOutput)
+
 	Query(*kendra.QueryInput) (*kendra.QueryOutput, error)
 	QueryWithContext(aws.Context, *kendra.QueryInput, ...request.Option) (*kendra.QueryOutput, error)
 	QueryRequest(*kendra.QueryInput) (*request.Request, *kendra.QueryOutput)
@@ -140,6 +148,14 @@ type KendraAPI interface {
 	SubmitFeedback(*kendra.SubmitFeedbackInput) (*kendra.SubmitFeedbackOutput, error)
 	SubmitFeedbackWithContext(aws.Context, *kendra.SubmitFeedbackInput, ...request.Option) (*kendra.SubmitFeedbackOutput, error)
 	SubmitFeedbackRequest(*kendra.SubmitFeedbackInput) (*request.Request, *kendra.SubmitFeedbackOutput)
+
+	TagResource(*kendra.TagResourceInput) (*kendra.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *kendra.TagResourceInput, ...request.Option) (*kendra.TagResourceOutput, error)
+	TagResourceRequest(*kendra.TagResourceInput) (*request.Request, *kendra.TagResourceOutput)
+
+	UntagResource(*kendra.UntagResourceInput) (*kendra.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *kendra.UntagResourceInput, ...request.Option) (*kendra.UntagResourceOutput, error)
+	UntagResourceRequest(*kendra.UntagResourceInput) (*request.Request, *kendra.UntagResourceOutput)
 
 	UpdateDataSource(*kendra.UpdateDataSourceInput) (*kendra.UpdateDataSourceOutput, error)
 	UpdateDataSourceWithContext(aws.Context, *kendra.UpdateDataSourceInput, ...request.Option) (*kendra.UpdateDataSourceOutput, error)

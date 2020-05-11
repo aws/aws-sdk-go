@@ -104,6 +104,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeleteDataSource":{
+      "name":"DeleteDataSource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDataSourceRequest"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteFaq":{
       "name":"DeleteFaq",
       "http":{
@@ -248,6 +264,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "Query":{
       "name":"Query",
       "http":{
@@ -262,6 +294,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -314,6 +347,38 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateDataSource":{
       "name":"UpdateDataSource",
       "http":{
@@ -343,6 +408,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"InternalServerException"}
       ]
     }
@@ -395,6 +461,11 @@
       "type":"string",
       "enum":["TEXT_WITH_HIGHLIGHTS_VALUE"]
     },
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1
+    },
     "AttributeFilter":{
       "type":"structure",
       "members":{
@@ -412,9 +483,7 @@
     },
     "AttributeFilterList":{
       "type":"list",
-      "member":{"shape":"AttributeFilter"},
-      "max":5,
-      "min":1
+      "member":{"shape":"AttributeFilter"}
     },
     "BatchDeleteDocumentRequest":{
       "type":"structure",
@@ -424,7 +493,8 @@
       ],
       "members":{
         "IndexId":{"shape":"IndexId"},
-        "DocumentIdList":{"shape":"DocumentIdList"}
+        "DocumentIdList":{"shape":"DocumentIdList"},
+        "DataSourceSyncJobMetricTarget":{"shape":"DataSourceSyncJobMetricTarget"}
       }
     },
     "BatchDeleteDocumentResponse":{
@@ -475,12 +545,19 @@
       "type":"list",
       "member":{"shape":"BatchPutDocumentResponseFailedDocument"}
     },
-    "Blob":{
-      "type":"blob",
-      "max":153600,
-      "min":1
-    },
+    "Blob":{"type":"blob"},
     "Boolean":{"type":"boolean"},
+    "CapacityUnitsConfiguration":{
+      "type":"structure",
+      "required":[
+        "StorageCapacityUnits",
+        "QueryCapacityUnits"
+      ],
+      "members":{
+        "StorageCapacityUnits":{"shape":"StorageCapacityUnit"},
+        "QueryCapacityUnits":{"shape":"QueryCapacityUnit"}
+      }
+    },
     "ChangeDetectingColumns":{
       "type":"list",
       "member":{"shape":"ColumnName"},
@@ -578,7 +655,8 @@
         "Configuration":{"shape":"DataSourceConfiguration"},
         "Description":{"shape":"Description"},
         "Schedule":{"shape":"ScanSchedule"},
-        "RoleArn":{"shape":"RoleArn"}
+        "RoleArn":{"shape":"RoleArn"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateDataSourceResponse":{
@@ -601,7 +679,8 @@
         "Name":{"shape":"FaqName"},
         "Description":{"shape":"Description"},
         "S3Path":{"shape":"S3Path"},
-        "RoleArn":{"shape":"RoleArn"}
+        "RoleArn":{"shape":"RoleArn"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateFaqResponse":{
@@ -618,13 +697,15 @@
       ],
       "members":{
         "Name":{"shape":"IndexName"},
+        "Edition":{"shape":"IndexEdition"},
         "RoleArn":{"shape":"RoleArn"},
         "ServerSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
         "Description":{"shape":"Description"},
         "ClientToken":{
           "shape":"ClientTokenName",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateIndexResponse":{
@@ -638,13 +719,17 @@
       "members":{
         "S3Configuration":{"shape":"S3DataSourceConfiguration"},
         "SharePointConfiguration":{"shape":"SharePointConfiguration"},
-        "DatabaseConfiguration":{"shape":"DatabaseConfiguration"}
+        "DatabaseConfiguration":{"shape":"DatabaseConfiguration"},
+        "SalesforceConfiguration":{"shape":"SalesforceConfiguration"},
+        "OneDriveConfiguration":{"shape":"OneDriveConfiguration"},
+        "ServiceNowConfiguration":{"shape":"ServiceNowConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
       "type":"string",
       "max":40,
-      "min":4
+      "min":4,
+      "pattern":"^(?!\\s).*(?<!\\s)$"
     },
     "DataSourceFieldName":{
       "type":"string",
@@ -709,12 +794,40 @@
         "Status":{"shape":"DataSourceSyncJobStatus"},
         "ErrorMessage":{"shape":"ErrorMessage"},
         "ErrorCode":{"shape":"ErrorCode"},
-        "DataSourceErrorCode":{"shape":"String"}
+        "DataSourceErrorCode":{"shape":"String"},
+        "Metrics":{"shape":"DataSourceSyncJobMetrics"}
       }
     },
     "DataSourceSyncJobHistoryList":{
       "type":"list",
       "member":{"shape":"DataSourceSyncJob"}
+    },
+    "DataSourceSyncJobId":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_-]*"
+    },
+    "DataSourceSyncJobMetricTarget":{
+      "type":"structure",
+      "required":[
+        "DataSourceId",
+        "DataSourceSyncJobId"
+      ],
+      "members":{
+        "DataSourceId":{"shape":"DataSourceId"},
+        "DataSourceSyncJobId":{"shape":"DataSourceSyncJobId"}
+      }
+    },
+    "DataSourceSyncJobMetrics":{
+      "type":"structure",
+      "members":{
+        "DocumentsAdded":{"shape":"MetricValue"},
+        "DocumentsModified":{"shape":"MetricValue"},
+        "DocumentsDeleted":{"shape":"MetricValue"},
+        "DocumentsFailed":{"shape":"MetricValue"},
+        "DocumentsScanned":{"shape":"MetricValue"}
+      }
     },
     "DataSourceSyncJobStatus":{
       "type":"string",
@@ -724,7 +837,8 @@
         "SYNCING",
         "INCOMPLETE",
         "STOPPING",
-        "ABORTED"
+        "ABORTED",
+        "SYNCING_INDEXING"
       ]
     },
     "DataSourceToIndexFieldMapping":{
@@ -750,7 +864,10 @@
       "enum":[
         "S3",
         "SHAREPOINT",
-        "DATABASE"
+        "DATABASE",
+        "SALESFORCE",
+        "ONEDRIVE",
+        "SERVICENOW"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -803,6 +920,17 @@
       "type":"integer",
       "max":65535,
       "min":1
+    },
+    "DeleteDataSourceRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId"
+      ],
+      "members":{
+        "Id":{"shape":"DataSourceId"},
+        "IndexId":{"shape":"IndexId"}
+      }
     },
     "DeleteFaqRequest":{
       "type":"structure",
@@ -888,6 +1016,7 @@
       "members":{
         "Name":{"shape":"IndexName"},
         "Id":{"shape":"IndexId"},
+        "Edition":{"shape":"IndexEdition"},
         "RoleArn":{"shape":"RoleArn"},
         "ServerSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
         "Status":{"shape":"IndexStatus"},
@@ -896,7 +1025,8 @@
         "UpdatedAt":{"shape":"Timestamp"},
         "DocumentMetadataConfigurations":{"shape":"DocumentMetadataConfigurationList"},
         "IndexStatistics":{"shape":"IndexStatistics"},
-        "ErrorMessage":{"shape":"ErrorMessage"}
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "CapacityUnits":{"shape":"CapacityUnitsConfiguration"}
       }
     },
     "Description":{
@@ -943,15 +1073,11 @@
     },
     "DocumentAttributeList":{
       "type":"list",
-      "member":{"shape":"DocumentAttribute"},
-      "max":100,
-      "min":1
+      "member":{"shape":"DocumentAttribute"}
     },
     "DocumentAttributeStringListValue":{
       "type":"list",
-      "member":{"shape":"String"},
-      "max":5,
-      "min":1
+      "member":{"shape":"String"}
     },
     "DocumentAttributeStringValue":{
       "type":"string",
@@ -1149,6 +1275,7 @@
       "members":{
         "Name":{"shape":"IndexName"},
         "Id":{"shape":"IndexId"},
+        "Edition":{"shape":"IndexEdition"},
         "CreatedAt":{"shape":"Timestamp"},
         "UpdatedAt":{"shape":"Timestamp"},
         "Status":{"shape":"IndexStatus"}
@@ -1157,6 +1284,13 @@
     "IndexConfigurationSummaryList":{
       "type":"list",
       "member":{"shape":"IndexConfigurationSummary"}
+    },
+    "IndexEdition":{
+      "type":"string",
+      "enum":[
+        "DEVELOPER_EDITION",
+        "ENTERPRISE_EDITION"
+      ]
     },
     "IndexFieldName":{
       "type":"string",
@@ -1194,11 +1328,16 @@
         "ACTIVE",
         "DELETING",
         "FAILED",
+        "UPDATING",
         "SYSTEM_UPDATING"
       ]
     },
     "IndexedQuestionAnswersCount":{
       "type":"integer",
+      "min":0
+    },
+    "IndexedTextBytes":{
+      "type":"long",
       "min":0
     },
     "IndexedTextDocumentsCount":{
@@ -1288,6 +1427,19 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "Long":{"type":"long"},
     "MaxResultsIntegerForListDataSourceSyncJobsRequest":{
       "type":"integer",
@@ -1309,10 +1461,49 @@
       "max":100,
       "min":1
     },
+    "MetricValue":{
+      "type":"string",
+      "pattern":"(([1-9][0-9]*)|0)"
+    },
     "NextToken":{
       "type":"string",
       "max":800,
       "min":1
+    },
+    "OneDriveConfiguration":{
+      "type":"structure",
+      "required":[
+        "TenantDomain",
+        "SecretArn",
+        "OneDriveUsers"
+      ],
+      "members":{
+        "TenantDomain":{"shape":"TenantDomain"},
+        "SecretArn":{"shape":"SecretArn"},
+        "OneDriveUsers":{"shape":"OneDriveUsers"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+      }
+    },
+    "OneDriveUser":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^(?!\\s).+@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+    },
+    "OneDriveUserList":{
+      "type":"list",
+      "member":{"shape":"OneDriveUser"},
+      "max":100,
+      "min":1
+    },
+    "OneDriveUsers":{
+      "type":"structure",
+      "members":{
+        "OneDriveUserList":{"shape":"OneDriveUserList"},
+        "OneDriveUserS3Path":{"shape":"S3Path"}
+      }
     },
     "Order":{
       "type":"string",
@@ -1336,9 +1527,7 @@
     },
     "PrincipalList":{
       "type":"list",
-      "member":{"shape":"Principal"},
-      "max":200,
-      "min":1
+      "member":{"shape":"Principal"}
     },
     "PrincipalName":{
       "type":"string",
@@ -1352,6 +1541,10 @@
         "USER",
         "GROUP"
       ]
+    },
+    "QueryCapacityUnit":{
+      "type":"integer",
+      "min":0
     },
     "QueryId":{
       "type":"string",
@@ -1526,6 +1719,152 @@
         "Key":{"shape":"S3ObjectKey"}
       }
     },
+    "SalesforceChatterFeedConfiguration":{
+      "type":"structure",
+      "required":["DocumentDataFieldName"],
+      "members":{
+        "DocumentDataFieldName":{"shape":"DataSourceFieldName"},
+        "DocumentTitleFieldName":{"shape":"DataSourceFieldName"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "IncludeFilterTypes":{"shape":"SalesforceChatterFeedIncludeFilterTypes"}
+      }
+    },
+    "SalesforceChatterFeedIncludeFilterType":{
+      "type":"string",
+      "enum":[
+        "ACTIVE_USER",
+        "STANDARD_USER"
+      ]
+    },
+    "SalesforceChatterFeedIncludeFilterTypes":{
+      "type":"list",
+      "member":{"shape":"SalesforceChatterFeedIncludeFilterType"},
+      "max":2,
+      "min":1
+    },
+    "SalesforceConfiguration":{
+      "type":"structure",
+      "required":[
+        "ServerUrl",
+        "SecretArn"
+      ],
+      "members":{
+        "ServerUrl":{"shape":"Url"},
+        "SecretArn":{"shape":"SecretArn"},
+        "StandardObjectConfigurations":{"shape":"SalesforceStandardObjectConfigurationList"},
+        "KnowledgeArticleConfiguration":{"shape":"SalesforceKnowledgeArticleConfiguration"},
+        "ChatterFeedConfiguration":{"shape":"SalesforceChatterFeedConfiguration"},
+        "CrawlAttachments":{"shape":"Boolean"},
+        "StandardObjectAttachmentConfiguration":{"shape":"SalesforceStandardObjectAttachmentConfiguration"},
+        "IncludeAttachmentFilePatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExcludeAttachmentFilePatterns":{"shape":"DataSourceInclusionsExclusionsStrings"}
+      }
+    },
+    "SalesforceCustomKnowledgeArticleTypeConfiguration":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "DocumentDataFieldName"
+      ],
+      "members":{
+        "Name":{"shape":"SalesforceCustomKnowledgeArticleTypeName"},
+        "DocumentDataFieldName":{"shape":"DataSourceFieldName"},
+        "DocumentTitleFieldName":{"shape":"DataSourceFieldName"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+      }
+    },
+    "SalesforceCustomKnowledgeArticleTypeConfigurationList":{
+      "type":"list",
+      "member":{"shape":"SalesforceCustomKnowledgeArticleTypeConfiguration"},
+      "max":10,
+      "min":1
+    },
+    "SalesforceCustomKnowledgeArticleTypeName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[a-zA-Z][a-zA-Z0-9_]*$"
+    },
+    "SalesforceKnowledgeArticleConfiguration":{
+      "type":"structure",
+      "required":["IncludedStates"],
+      "members":{
+        "IncludedStates":{"shape":"SalesforceKnowledgeArticleStateList"},
+        "StandardKnowledgeArticleTypeConfiguration":{"shape":"SalesforceStandardKnowledgeArticleTypeConfiguration"},
+        "CustomKnowledgeArticleTypeConfigurations":{"shape":"SalesforceCustomKnowledgeArticleTypeConfigurationList"}
+      }
+    },
+    "SalesforceKnowledgeArticleState":{
+      "type":"string",
+      "enum":[
+        "DRAFT",
+        "PUBLISHED",
+        "ARCHIVED"
+      ]
+    },
+    "SalesforceKnowledgeArticleStateList":{
+      "type":"list",
+      "member":{"shape":"SalesforceKnowledgeArticleState"},
+      "max":3,
+      "min":1
+    },
+    "SalesforceStandardKnowledgeArticleTypeConfiguration":{
+      "type":"structure",
+      "required":["DocumentDataFieldName"],
+      "members":{
+        "DocumentDataFieldName":{"shape":"DataSourceFieldName"},
+        "DocumentTitleFieldName":{"shape":"DataSourceFieldName"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+      }
+    },
+    "SalesforceStandardObjectAttachmentConfiguration":{
+      "type":"structure",
+      "members":{
+        "DocumentTitleFieldName":{"shape":"DataSourceFieldName"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+      }
+    },
+    "SalesforceStandardObjectConfiguration":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "DocumentDataFieldName"
+      ],
+      "members":{
+        "Name":{"shape":"SalesforceStandardObjectName"},
+        "DocumentDataFieldName":{"shape":"DataSourceFieldName"},
+        "DocumentTitleFieldName":{"shape":"DataSourceFieldName"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+      }
+    },
+    "SalesforceStandardObjectConfigurationList":{
+      "type":"list",
+      "member":{"shape":"SalesforceStandardObjectConfiguration"},
+      "max":17,
+      "min":1
+    },
+    "SalesforceStandardObjectName":{
+      "type":"string",
+      "enum":[
+        "ACCOUNT",
+        "CAMPAIGN",
+        "CASE",
+        "CONTACT",
+        "CONTRACT",
+        "DOCUMENT",
+        "GROUP",
+        "IDEA",
+        "LEAD",
+        "OPPORTUNITY",
+        "PARTNER",
+        "PRICEBOOK",
+        "PRODUCT",
+        "PROFILE",
+        "SOLUTION",
+        "TASK",
+        "USER"
+      ]
+    },
     "ScanSchedule":{"type":"string"},
     "Search":{
       "type":"structure",
@@ -1551,6 +1890,58 @@
       "type":"structure",
       "members":{
         "KmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "ServiceNowBuildVersionType":{
+      "type":"string",
+      "enum":[
+        "LONDON",
+        "OTHERS"
+      ]
+    },
+    "ServiceNowConfiguration":{
+      "type":"structure",
+      "required":[
+        "HostUrl",
+        "SecretArn",
+        "ServiceNowBuildVersion"
+      ],
+      "members":{
+        "HostUrl":{"shape":"ServiceNowHostUrl"},
+        "SecretArn":{"shape":"SecretArn"},
+        "ServiceNowBuildVersion":{"shape":"ServiceNowBuildVersionType"},
+        "KnowledgeArticleConfiguration":{"shape":"ServiceNowKnowledgeArticleConfiguration"},
+        "ServiceCatalogConfiguration":{"shape":"ServiceNowServiceCatalogConfiguration"}
+      }
+    },
+    "ServiceNowHostUrl":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^(?!(^(https?|ftp|file):\\/\\/))[a-z0-9-]+(\\.service-now\\.com)$"
+    },
+    "ServiceNowKnowledgeArticleConfiguration":{
+      "type":"structure",
+      "required":["DocumentDataFieldName"],
+      "members":{
+        "CrawlAttachments":{"shape":"Boolean"},
+        "IncludeAttachmentFilePatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExcludeAttachmentFilePatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "DocumentDataFieldName":{"shape":"DataSourceFieldName"},
+        "DocumentTitleFieldName":{"shape":"DataSourceFieldName"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+      }
+    },
+    "ServiceNowServiceCatalogConfiguration":{
+      "type":"structure",
+      "required":["DocumentDataFieldName"],
+      "members":{
+        "CrawlAttachments":{"shape":"Boolean"},
+        "IncludeAttachmentFilePatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExcludeAttachmentFilePatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "DocumentDataFieldName":{"shape":"DataSourceFieldName"},
+        "DocumentTitleFieldName":{"shape":"DataSourceFieldName"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
       }
     },
     "ServiceQuotaExceededException":{
@@ -1618,6 +2009,10 @@
         "IndexId":{"shape":"IndexId"}
       }
     },
+    "StorageCapacityUnit":{
+      "type":"integer",
+      "min":0
+    },
     "String":{
       "type":"string",
       "max":2048,
@@ -1654,11 +2049,70 @@
       "min":1,
       "pattern":"^[a-zA-Z][a-zA-Z0-9_]*$"
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "TenantDomain":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^([a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\\.)+[a-z]{2,}$"
+    },
     "TextDocumentStatistics":{
       "type":"structure",
-      "required":["IndexedTextDocumentsCount"],
+      "required":[
+        "IndexedTextDocumentsCount",
+        "IndexedTextBytes"
+      ],
       "members":{
-        "IndexedTextDocumentsCount":{"shape":"IndexedTextDocumentsCount"}
+        "IndexedTextDocumentsCount":{"shape":"IndexedTextDocumentsCount"},
+        "IndexedTextBytes":{"shape":"IndexedTextBytes"}
       }
     },
     "TextWithHighlights":{
@@ -1683,10 +2137,22 @@
       }
     },
     "Timestamp":{"type":"timestamp"},
-    "Title":{
-      "type":"string",
-      "max":1024,
-      "min":1
+    "Title":{"type":"string"},
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateDataSourceRequest":{
       "type":"structure",
@@ -1712,14 +2178,15 @@
         "Name":{"shape":"IndexName"},
         "RoleArn":{"shape":"RoleArn"},
         "Description":{"shape":"Description"},
-        "DocumentMetadataConfigurationUpdates":{"shape":"DocumentMetadataConfigurationList"}
+        "DocumentMetadataConfigurationUpdates":{"shape":"DocumentMetadataConfigurationList"},
+        "CapacityUnits":{"shape":"CapacityUnitsConfiguration"}
       }
     },
     "Url":{
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"^(https?|ftp|file):\\/\\/(.*)"
+      "pattern":"^(https?|ftp|file):\\/\\/([^\\s]*)"
     },
     "ValidationException":{
       "type":"structure",

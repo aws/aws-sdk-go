@@ -280,6 +280,12 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ConnectionArn":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"arn:aws(-[\\w]+)*:.+:.+:[0-9]{12}:.+"
+    },
     "DescribeCodeReviewRequest":{
       "type":"structure",
       "required":["CodeReviewArn"],
@@ -610,7 +616,8 @@
       "type":"string",
       "enum":[
         "CodeCommit",
-        "GitHub"
+        "GitHub",
+        "Bitbucket"
       ]
     },
     "ProviderTypes":{
@@ -706,7 +713,8 @@
     "Repository":{
       "type":"structure",
       "members":{
-        "CodeCommit":{"shape":"CodeCommitRepository"}
+        "CodeCommit":{"shape":"CodeCommitRepository"},
+        "Bitbucket":{"shape":"ThirdPartySourceRepository"}
       }
     },
     "RepositoryAssociation":{
@@ -714,6 +722,7 @@
       "members":{
         "AssociationId":{"shape":"AssociationId"},
         "AssociationArn":{"shape":"Arn"},
+        "ConnectionArn":{"shape":"ConnectionArn"},
         "Name":{"shape":"Name"},
         "Owner":{"shape":"Owner"},
         "ProviderType":{"shape":"ProviderType"},
@@ -746,6 +755,7 @@
       "type":"structure",
       "members":{
         "AssociationArn":{"shape":"Arn"},
+        "ConnectionArn":{"shape":"ConnectionArn"},
         "LastUpdatedTimeStamp":{"shape":"TimeStamp"},
         "AssociationId":{"shape":"AssociationId"},
         "Name":{"shape":"Name"},
@@ -783,6 +793,19 @@
       "type":"string",
       "max":2048,
       "min":1
+    },
+    "ThirdPartySourceRepository":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ConnectionArn",
+        "Owner"
+      ],
+      "members":{
+        "Name":{"shape":"Name"},
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "Owner":{"shape":"Owner"}
+      }
     },
     "ThrottlingException":{
       "type":"structure",

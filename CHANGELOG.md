@@ -1,3 +1,13 @@
+Release v1.30.25 (2020-05-11)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * M6g instances are our next-generation general purpose instances powered by AWS Graviton2 processors
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra is now generally available. As part of general availability, we are launching * Developer edition * Ability to scale your Amazon Kendra index with capacity units * Support for new connectors * Support for new tagging API's * Support for Deleting data source * Metrics for data source sync operations * Metrics for query & storage utilization
+
 Release v1.30.24 (2020-05-08)
 ===
 
