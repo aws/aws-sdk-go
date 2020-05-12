@@ -6,6 +6,9 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
 func TestCopySourceRange(t *testing.T) {
@@ -56,17 +59,24 @@ func TestCopierInitSource(t *testing.T) {
 		key     string
 		version *string
 		ok      bool
+		region  string
 	}{
-		{"a/b/c.txt", "a", "b/c.txt", nil, true},
-		{"a/b/c.txt?versionId=foo", "a", "b/c.txt", aws.String("foo"), true},
-		{"", "", "", nil, false},
-		{"a", "", "", nil, false},
-		{"a/", "", "", nil, false},
+		{"a/b/c.txt", "a", "b/c.txt", nil, true, ""},
+		{"a/b/c.txt?versionId=foo", "a", "b/c.txt", aws.String("foo"), true, ""},
+		{"", "", "", nil, false, ""},
+		{"a", "", "", nil, false, ""},
+		{"a/", "", "", nil, false, ""},
 	}
 
 	for _, test := range tests {
 		c := copier{
-			in: &CopyInput{CopySource: aws.String(url.QueryEscape(test.input))},
+			in: &CopyInput{
+				CopySource: aws.String(url.QueryEscape(test.input)),
+			},
+		}
+
+		if test.region != "" {
+			c.in.SourceRegion = &test.region
 		}
 
 		err := c.initSource()
@@ -90,6 +100,58 @@ func TestCopierInitSource(t *testing.T) {
 			if !reflect.DeepEqual(c.src.version, test.version) {
 				t.Errorf("expected version %v; got %v", test.version, c.src.version)
 			}
+
+			if c.src.region != test.region {
+				t.Errorf("expected region %v; got %v", test.region, c.src.region)
+			}
 		}
 	}
+}
+
+type copierHeadObjectMock struct {
+	s3iface.S3API
+	r request.Request
+}
+
+func (mock *copierHeadObjectMock) HeadObjectWithContext(
+	ctx aws.Context,
+	input *s3.HeadObjectInput,
+	opts ...request.Option,
+) (*s3.HeadObjectOutput, error) {
+	for _, opt := range opts {
+		opt(&mock.r)
+	}
+
+	return nil, nil
+}
+
+func TestCopierHeadObjectRegion(t *testing.T) {
+	t.Run("NoRegion", func(t *testing.T) {
+		m := copierHeadObjectMock{}
+		c := copier{}
+		c.in = &CopyInput{}
+		c.cfg.S3 = &m
+		c.src.region = ""
+		_, _ = c.getHeadObject()
+
+		if m.r.Config.Region != nil {
+			t.Errorf("expected request region to remain nil")
+		}
+	})
+
+	t.Run("SourceRegionGiven", func(t *testing.T) {
+		m := copierHeadObjectMock{}
+		c := copier{}
+		c.in = &CopyInput{}
+		c.cfg.S3 = &m
+		c.src.region = "x-central-1"
+		_, _ = c.getHeadObject()
+
+		switch actual := m.r.Config.Region; {
+		case actual == nil:
+			t.Errorf("expected request region; got nil")
+		case *actual != "x-central-1":
+			t.Errorf("expected request region to equal x-central-1; got %v", *actual)
+		}
+	})
 }

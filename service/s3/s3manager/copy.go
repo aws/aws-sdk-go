@@ -182,6 +182,7 @@ type copier struct {
 		key     string
 		version *string // nil if source object is not versioned
 		size    int64   // size (in bytes) of the source object
+		region  string             // when not empty, override HeadObject region
 	}
 	partSize  int64 // derived from source object size and concurrency
 	partCount int64 // derived from source object size and partSize
@@ -248,9 +249,11 @@ func (c *copier) init() error {
 		return err
 	}
 
-	c.src.size, err = c.getSourceSize()
-	if err != nil {
+	switch head, err := c.getHeadObject(); {
+	case err != nil:
 		return err
+	default:
+		c.src.size = *head.ContentLength
 	}
 
 	return nil
@@ -297,20 +300,29 @@ func (c *copier) initSource() error {
 		c.src.version = aws.String(b[1])
 	}
 
+	if c.in.SourceRegion != nil {
+		c.src.region = *c.in.SourceRegion
+	}
+
 	return nil
 }
 
-// getSourceSize returns the size (in bytes) of the source object.
-func (c *copier) getSourceSize() (int64, error) {
-	out, err := c.cfg.S3.HeadObjectWithContext(
+// getHeadObject returns information about the source object.
+func (c *copier) getHeadObject() (*s3.HeadObjectOutput, error) {
+	opts := c.cfg.RequestOptions
+	if c.src.region != "" {
+		opts = append([]request.Option{}, opts...)
+		opts = append(opts, requestWithRegion(c.src.region))
+	}
+
+	return c.cfg.S3.HeadObjectWithContext(
 		c.ctx, &s3.HeadObjectInput{
 			Bucket:    &c.src.bucket,
 			Key:       &c.src.key,
 			VersionId: c.src.version,
-		}, c.cfg.RequestOptions...)
+		}, opts...)
+}
 
-	if err != nil {
-		return 0, err
 	}
 
 	return *out.ContentLength, nil
@@ -493,4 +505,10 @@ func (c *copier) completeUpload(
 	completed := s3.CompletedMultipartUpload{Parts: parts}
 	in.MultipartUpload = &completed
 	return c.cfg.S3.CompleteMultipartUploadWithContext(c.ctx, &in, c.cfg.RequestOptions...)
+}
+
+func requestWithRegion(region string) request.Option {
+	return func(r *request.Request) {
+		r.Config.Region = aws.String(region)
+	}
 }
