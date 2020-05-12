@@ -314,7 +314,9 @@ func (c *copier) getSourceSize() (int64, error) {
 }
 
 func (c *copier) simpleCopy() (*s3.CopyObjectOutput, error) {
-	return c.cfg.S3.CopyObjectWithContext(c.ctx, c.in, c.cfg.RequestOptions...)
+	in := c.in
+	in.MetadataDirective = aws.String("REPLACE") // mimic multipart copy
+	return c.cfg.S3.CopyObjectWithContext(c.ctx, in, c.cfg.RequestOptions...)
 }
 
 func (c *copier) multipartCopy() (*s3.CopyObjectOutput, error) {
