@@ -27,7 +27,9 @@ func TestInteg_00_ListTopics(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-west-2")
 	svc := sns.New(sess)
 	params := &sns.ListTopicsInput{}
-	_, err := svc.ListTopicsWithContext(ctx, params)
+	_, err := svc.ListTopicsWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
@@ -42,7 +44,9 @@ func TestInteg_01_Publish(t *testing.T) {
 		Message:  aws.String("hello"),
 		TopicArn: aws.String("fake_topic"),
 	}
-	_, err := svc.PublishWithContext(ctx, params)
+	_, err := svc.PublishWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err == nil {
 		t.Fatalf("expect request to fail")
 	}
@@ -52,6 +56,9 @@ func TestInteg_01_Publish(t *testing.T) {
 	}
 	if len(aerr.Code()) == 0 {
 		t.Errorf("expect non-empty error code")
+	}
+	if len(aerr.Message()) == 0 {
+		t.Errorf("expect non-empty error message")
 	}
 	if v := aerr.Code(); v == request.ErrCodeSerialization {
 		t.Errorf("expect API error code got serialization failure")

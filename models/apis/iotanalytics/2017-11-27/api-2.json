@@ -999,7 +999,8 @@
         "version":{"shape":"DatasetContentVersion"},
         "status":{"shape":"DatasetContentStatus"},
         "creationTime":{"shape":"Timestamp"},
-        "scheduleTime":{"shape":"Timestamp"}
+        "scheduleTime":{"shape":"Timestamp"},
+        "completionTime":{"shape":"Timestamp"}
       }
     },
     "DatasetContentVersion":{

@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"testing"
 	"time"
 
@@ -61,7 +62,9 @@ func TestTimeoutReadCloserSameDuration(t *testing.T) {
 
 func TestWithResponseReadTimeout(t *testing.T) {
 	r := Request{
-		HTTPRequest: &http.Request{},
+		HTTPRequest: &http.Request{
+			URL: &url.URL{},
+		},
 		HTTPResponse: &http.Response{
 			Body: ioutil.NopCloser(bytes.NewReader(nil)),
 		},

@@ -2,6 +2,10 @@
 
 package support
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAttachmentIdNotFound for service response error code
@@ -34,7 +38,7 @@ const (
 	// "AttachmentSetSizeLimitExceeded".
 	//
 	// A limit for the size of an attachment set has been exceeded. The limits are
-	// 3 attachments and 5 MB per attachment.
+	// three attachments and 5 MB per attachment.
 	ErrCodeAttachmentSetSizeLimitExceeded = "AttachmentSetSizeLimitExceeded"
 
 	// ErrCodeCaseCreationLimitExceeded for service response error code
@@ -62,3 +66,15 @@ const (
 	// An internal server error occurred.
 	ErrCodeInternalServerError = "InternalServerError"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AttachmentIdNotFound":            newErrorAttachmentIdNotFound,
+	"AttachmentLimitExceeded":         newErrorAttachmentLimitExceeded,
+	"AttachmentSetExpired":            newErrorAttachmentSetExpired,
+	"AttachmentSetIdNotFound":         newErrorAttachmentSetIdNotFound,
+	"AttachmentSetSizeLimitExceeded":  newErrorAttachmentSetSizeLimitExceeded,
+	"CaseCreationLimitExceeded":       newErrorCaseCreationLimitExceeded,
+	"CaseIdNotFound":                  newErrorCaseIdNotFound,
+	"DescribeAttachmentLimitExceeded": newErrorDescribeAttachmentLimitExceeded,
+	"InternalServerError":             newErrorInternalServerError,
+}

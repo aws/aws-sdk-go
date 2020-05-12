@@ -156,6 +156,23 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "CreateContactMethod":{
+      "name":"CreateContactMethod",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateContactMethodRequest"},
+      "output":{"shape":"CreateContactMethodResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "CreateDisk":{
       "name":"CreateDisk",
       "http":{
@@ -406,6 +423,57 @@
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "DeleteAlarm":{
+      "name":"DeleteAlarm",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAlarmRequest"},
+      "output":{"shape":"DeleteAlarmResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"UnauthenticatedException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "DeleteAutoSnapshot":{
+      "name":"DeleteAutoSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAutoSnapshotRequest"},
+      "output":{"shape":"DeleteAutoSnapshotResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "DeleteContactMethod":{
+      "name":"DeleteContactMethod",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteContactMethodRequest"},
+      "output":{"shape":"DeleteContactMethodResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"UnauthenticatedException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "DeleteDisk":{
@@ -678,6 +746,23 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "DisableAddOn":{
+      "name":"DisableAddOn",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableAddOnRequest"},
+      "output":{"shape":"DisableAddOnResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "DownloadDefaultKeyPair":{
       "name":"DownloadDefaultKeyPair",
       "http":{
@@ -693,6 +778,23 @@
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "EnableAddOn":{
+      "name":"EnableAddOn",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableAddOnRequest"},
+      "output":{"shape":"EnableAddOnResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -729,6 +831,40 @@
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetAlarms":{
+      "name":"GetAlarms",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAlarmsRequest"},
+      "output":{"shape":"GetAlarmsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"UnauthenticatedException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "GetAutoSnapshots":{
+      "name":"GetAutoSnapshots",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAutoSnapshotsRequest"},
+      "output":{"shape":"GetAutoSnapshotsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -783,6 +919,23 @@
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetContactMethods":{
+      "name":"GetContactMethods",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetContactMethodsRequest"},
+      "output":{"shape":"GetContactMethodsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -1560,6 +1713,23 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "PutAlarm":{
+      "name":"PutAlarm",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutAlarmRequest"},
+      "output":{"shape":"PutAlarmResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "PutInstancePublicPorts":{
       "name":"PutInstancePublicPorts",
       "http":{
@@ -1630,6 +1800,23 @@
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "SendContactMethodVerification":{
+      "name":"SendContactMethodVerification",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SendContactMethodVerificationRequest"},
+      "output":{"shape":"SendContactMethodVerificationResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"UnauthenticatedException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "StartInstance":{
@@ -1720,6 +1907,23 @@
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "TestAlarm":{
+      "name":"TestAlarm",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TestAlarmRequest"},
+      "output":{"shape":"TestAlarmResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"UnauthenticatedException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "UnpeerVpc":{
@@ -1859,6 +2063,72 @@
       },
       "exception":true
     },
+    "AddOn":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"string"},
+        "status":{"shape":"string"},
+        "snapshotTimeOfDay":{"shape":"TimeOfDay"},
+        "nextSnapshotTimeOfDay":{"shape":"TimeOfDay"}
+      }
+    },
+    "AddOnList":{
+      "type":"list",
+      "member":{"shape":"AddOn"}
+    },
+    "AddOnRequest":{
+      "type":"structure",
+      "required":["addOnType"],
+      "members":{
+        "addOnType":{"shape":"AddOnType"},
+        "autoSnapshotAddOnRequest":{"shape":"AutoSnapshotAddOnRequest"}
+      }
+    },
+    "AddOnRequestList":{
+      "type":"list",
+      "member":{"shape":"AddOnRequest"}
+    },
+    "AddOnType":{
+      "type":"string",
+      "enum":["AutoSnapshot"]
+    },
+    "Alarm":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "arn":{"shape":"NonEmptyString"},
+        "createdAt":{"shape":"IsoDate"},
+        "location":{"shape":"ResourceLocation"},
+        "resourceType":{"shape":"ResourceType"},
+        "supportCode":{"shape":"string"},
+        "monitoredResourceInfo":{"shape":"MonitoredResourceInfo"},
+        "comparisonOperator":{"shape":"ComparisonOperator"},
+        "evaluationPeriods":{"shape":"integer"},
+        "period":{"shape":"MetricPeriod"},
+        "threshold":{"shape":"double"},
+        "datapointsToAlarm":{"shape":"integer"},
+        "treatMissingData":{"shape":"TreatMissingData"},
+        "statistic":{"shape":"MetricStatistic"},
+        "metricName":{"shape":"MetricName"},
+        "state":{"shape":"AlarmState"},
+        "unit":{"shape":"MetricUnit"},
+        "contactProtocols":{"shape":"ContactProtocolsList"},
+        "notificationTriggers":{"shape":"NotificationTriggerList"},
+        "notificationEnabled":{"shape":"boolean"}
+      }
+    },
+    "AlarmState":{
+      "type":"string",
+      "enum":[
+        "OK",
+        "ALARM",
+        "INSUFFICIENT_DATA"
+      ]
+    },
+    "AlarmsList":{
+      "type":"list",
+      "member":{"shape":"Alarm"}
+    },
     "AllocateStaticIpRequest":{
       "type":"structure",
       "required":["staticIpName"],
@@ -1942,10 +2212,53 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "AttachedDisk":{
+      "type":"structure",
+      "members":{
+        "path":{"shape":"string"},
+        "sizeInGb":{"shape":"integer"}
+      }
+    },
+    "AttachedDiskList":{
+      "type":"list",
+      "member":{"shape":"AttachedDisk"}
+    },
     "AttachedDiskMap":{
       "type":"map",
       "key":{"shape":"ResourceName"},
       "value":{"shape":"DiskMapList"}
+    },
+    "AutoSnapshotAddOnRequest":{
+      "type":"structure",
+      "members":{
+        "snapshotTimeOfDay":{"shape":"TimeOfDay"}
+      }
+    },
+    "AutoSnapshotDate":{
+      "type":"string",
+      "pattern":"^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "AutoSnapshotDetails":{
+      "type":"structure",
+      "members":{
+        "date":{"shape":"string"},
+        "createdAt":{"shape":"IsoDate"},
+        "status":{"shape":"AutoSnapshotStatus"},
+        "fromAttachedDisks":{"shape":"AttachedDiskList"}
+      }
+    },
+    "AutoSnapshotDetailsList":{
+      "type":"list",
+      "member":{"shape":"AutoSnapshotDetails"}
+    },
+    "AutoSnapshotStatus":{
+      "type":"string",
+      "enum":[
+        "Success",
+        "Failed",
+        "InProgress",
+        "NotFound"
+      ]
     },
     "AvailabilityZone":{
       "type":"structure",
@@ -2057,15 +2370,67 @@
       "type":"string",
       "enum":["ExportSnapshotRecord"]
     },
+    "ComparisonOperator":{
+      "type":"string",
+      "enum":[
+        "GreaterThanOrEqualToThreshold",
+        "GreaterThanThreshold",
+        "LessThanThreshold",
+        "LessThanOrEqualToThreshold"
+      ]
+    },
+    "ContactMethod":{
+      "type":"structure",
+      "members":{
+        "contactEndpoint":{"shape":"NonEmptyString"},
+        "status":{"shape":"ContactMethodStatus"},
+        "protocol":{"shape":"ContactProtocol"},
+        "name":{"shape":"ResourceName"},
+        "arn":{"shape":"NonEmptyString"},
+        "createdAt":{"shape":"IsoDate"},
+        "location":{"shape":"ResourceLocation"},
+        "resourceType":{"shape":"ResourceType"},
+        "supportCode":{"shape":"string"}
+      }
+    },
+    "ContactMethodStatus":{
+      "type":"string",
+      "enum":[
+        "PendingVerification",
+        "Valid",
+        "Invalid"
+      ]
+    },
+    "ContactMethodVerificationProtocol":{
+      "type":"string",
+      "enum":["Email"]
+    },
+    "ContactMethodsList":{
+      "type":"list",
+      "member":{"shape":"ContactMethod"}
+    },
+    "ContactProtocol":{
+      "type":"string",
+      "enum":[
+        "Email",
+        "SMS"
+      ]
+    },
+    "ContactProtocolsList":{
+      "type":"list",
+      "member":{"shape":"ContactProtocol"}
+    },
     "CopySnapshotRequest":{
       "type":"structure",
       "required":[
-        "sourceSnapshotName",
         "targetSnapshotName",
         "sourceRegion"
       ],
       "members":{
         "sourceSnapshotName":{"shape":"ResourceName"},
+        "sourceResourceName":{"shape":"string"},
+        "restoreDate":{"shape":"string"},
+        "useLatestRestorableAutoSnapshot":{"shape":"boolean"},
         "targetSnapshotName":{"shape":"ResourceName"},
         "sourceRegion":{"shape":"RegionName"}
       }
@@ -2089,11 +2454,27 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "CreateContactMethodRequest":{
+      "type":"structure",
+      "required":[
+        "protocol",
+        "contactEndpoint"
+      ],
+      "members":{
+        "protocol":{"shape":"ContactProtocol"},
+        "contactEndpoint":{"shape":"StringMax256"}
+      }
+    },
+    "CreateContactMethodResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "CreateDiskFromSnapshotRequest":{
       "type":"structure",
       "required":[
         "diskName",
-        "diskSnapshotName",
         "availabilityZone",
         "sizeInGb"
       ],
@@ -2102,7 +2483,11 @@
         "diskSnapshotName":{"shape":"ResourceName"},
         "availabilityZone":{"shape":"NonEmptyString"},
         "sizeInGb":{"shape":"integer"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "addOns":{"shape":"AddOnRequestList"},
+        "sourceDiskName":{"shape":"string"},
+        "restoreDate":{"shape":"string"},
+        "useLatestRestorableAutoSnapshot":{"shape":"boolean"}
       }
     },
     "CreateDiskFromSnapshotResult":{
@@ -2122,7 +2507,8 @@
         "diskName":{"shape":"ResourceName"},
         "availabilityZone":{"shape":"NonEmptyString"},
         "sizeInGb":{"shape":"integer"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "addOns":{"shape":"AddOnRequestList"}
       }
     },
     "CreateDiskResult":{
@@ -2201,7 +2587,6 @@
       "required":[
         "instanceNames",
         "availabilityZone",
-        "instanceSnapshotName",
         "bundleId"
       ],
       "members":{
@@ -2212,7 +2597,11 @@
         "bundleId":{"shape":"NonEmptyString"},
         "userData":{"shape":"string"},
         "keyPairName":{"shape":"ResourceName"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "addOns":{"shape":"AddOnRequestList"},
+        "sourceInstanceName":{"shape":"string"},
+        "restoreDate":{"shape":"string"},
+        "useLatestRestorableAutoSnapshot":{"shape":"boolean"}
       }
     },
     "CreateInstancesFromSnapshotResult":{
@@ -2240,7 +2629,8 @@
         "bundleId":{"shape":"NonEmptyString"},
         "userData":{"shape":"string"},
         "keyPairName":{"shape":"ResourceName"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "addOns":{"shape":"AddOnRequestList"}
       }
     },
     "CreateInstancesResult":{
@@ -2377,11 +2767,55 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "DeleteAlarmRequest":{
+      "type":"structure",
+      "required":["alarmName"],
+      "members":{
+        "alarmName":{"shape":"ResourceName"}
+      }
+    },
+    "DeleteAlarmResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "DeleteAutoSnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "resourceName",
+        "date"
+      ],
+      "members":{
+        "resourceName":{"shape":"ResourceName"},
+        "date":{"shape":"AutoSnapshotDate"}
+      }
+    },
+    "DeleteAutoSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "DeleteContactMethodRequest":{
+      "type":"structure",
+      "required":["protocol"],
+      "members":{
+        "protocol":{"shape":"ContactProtocol"}
+      }
+    },
+    "DeleteContactMethodResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "DeleteDiskRequest":{
       "type":"structure",
       "required":["diskName"],
       "members":{
-        "diskName":{"shape":"ResourceName"}
+        "diskName":{"shape":"ResourceName"},
+        "forceDeleteAddOns":{"shape":"boolean"}
       }
     },
     "DeleteDiskResult":{
@@ -2437,7 +2871,8 @@
       "type":"structure",
       "required":["instanceName"],
       "members":{
-        "instanceName":{"shape":"ResourceName"}
+        "instanceName":{"shape":"ResourceName"},
+        "forceDeleteAddOns":{"shape":"boolean"}
       }
     },
     "DeleteInstanceResult":{
@@ -2594,6 +3029,23 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "DisableAddOnRequest":{
+      "type":"structure",
+      "required":[
+        "addOnType",
+        "resourceName"
+      ],
+      "members":{
+        "addOnType":{"shape":"AddOnType"},
+        "resourceName":{"shape":"ResourceName"}
+      }
+    },
+    "DisableAddOnResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "Disk":{
       "type":"structure",
       "members":{
@@ -2604,6 +3056,7 @@
         "location":{"shape":"ResourceLocation"},
         "resourceType":{"shape":"ResourceType"},
         "tags":{"shape":"TagList"},
+        "addOns":{"shape":"AddOnList"},
         "sizeInGb":{"shape":"integer"},
         "isSystemDisk":{"shape":"boolean"},
         "iops":{"shape":"integer"},
@@ -2665,7 +3118,8 @@
         "fromDiskName":{"shape":"ResourceName"},
         "fromDiskArn":{"shape":"NonEmptyString"},
         "fromInstanceName":{"shape":"ResourceName"},
-        "fromInstanceArn":{"shape":"NonEmptyString"}
+        "fromInstanceArn":{"shape":"NonEmptyString"},
+        "isFromAutoSnapshot":{"shape":"boolean"}
       }
     },
     "DiskSnapshotInfo":{
@@ -2756,6 +3210,23 @@
         "privateKeyBase64":{"shape":"Base64"}
       }
     },
+    "EnableAddOnRequest":{
+      "type":"structure",
+      "required":[
+        "resourceName",
+        "addOnRequest"
+      ],
+      "members":{
+        "resourceName":{"shape":"ResourceName"},
+        "addOnRequest":{"shape":"AddOnRequest"}
+      }
+    },
+    "EnableAddOnResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "ExportSnapshotRecord":{
       "type":"structure",
       "members":{
@@ -2819,6 +3290,36 @@
         "nextPageToken":{"shape":"string"}
       }
     },
+    "GetAlarmsRequest":{
+      "type":"structure",
+      "members":{
+        "alarmName":{"shape":"ResourceName"},
+        "pageToken":{"shape":"string"},
+        "monitoredResourceName":{"shape":"ResourceName"}
+      }
+    },
+    "GetAlarmsResult":{
+      "type":"structure",
+      "members":{
+        "alarms":{"shape":"AlarmsList"},
+        "nextPageToken":{"shape":"string"}
+      }
+    },
+    "GetAutoSnapshotsRequest":{
+      "type":"structure",
+      "required":["resourceName"],
+      "members":{
+        "resourceName":{"shape":"ResourceName"}
+      }
+    },
+    "GetAutoSnapshotsResult":{
+      "type":"structure",
+      "members":{
+        "resourceName":{"shape":"ResourceName"},
+        "resourceType":{"shape":"ResourceType"},
+        "autoSnapshots":{"shape":"AutoSnapshotDetailsList"}
+      }
+    },
     "GetBlueprintsRequest":{
       "type":"structure",
       "members":{
@@ -2858,6 +3359,18 @@
       "members":{
         "cloudFormationStackRecords":{"shape":"CloudFormationStackRecordList"},
         "nextPageToken":{"shape":"string"}
+      }
+    },
+    "GetContactMethodsRequest":{
+      "type":"structure",
+      "members":{
+        "protocols":{"shape":"ContactProtocolsList"}
+      }
+    },
+    "GetContactMethodsResult":{
+      "type":"structure",
+      "members":{
+        "contactMethods":{"shape":"ContactMethodsList"}
       }
     },
     "GetDiskRequest":{
@@ -3482,6 +3995,7 @@
         "blueprintId":{"shape":"NonEmptyString"},
         "blueprintName":{"shape":"NonEmptyString"},
         "bundleId":{"shape":"NonEmptyString"},
+        "addOns":{"shape":"AddOnList"},
         "isStaticIp":{"shape":"boolean"},
         "privateIpAddress":{"shape":"IpAddress"},
         "publicIpAddress":{"shape":"IpAddress"},
@@ -3624,7 +4138,9 @@
         "accessFrom":{"shape":"string"},
         "accessType":{"shape":"PortAccessType"},
         "commonName":{"shape":"string"},
-        "accessDirection":{"shape":"AccessDirection"}
+        "accessDirection":{"shape":"AccessDirection"},
+        "cidrs":{"shape":"StringList"},
+        "cidrListAliases":{"shape":"StringList"}
       }
     },
     "InstancePortInfoList":{
@@ -3637,7 +4153,9 @@
         "fromPort":{"shape":"Port"},
         "toPort":{"shape":"Port"},
         "protocol":{"shape":"NetworkProtocol"},
-        "state":{"shape":"PortState"}
+        "state":{"shape":"PortState"},
+        "cidrs":{"shape":"StringList"},
+        "cidrListAliases":{"shape":"StringList"}
       }
     },
     "InstancePortStateList":{
@@ -3661,6 +4179,7 @@
         "fromInstanceArn":{"shape":"NonEmptyString"},
         "fromBlueprintId":{"shape":"string"},
         "fromBundleId":{"shape":"string"},
+        "isFromAutoSnapshot":{"shape":"boolean"},
         "sizeInGb":{"shape":"integer"}
       }
     },
@@ -3969,6 +4488,34 @@
       "type":"list",
       "member":{"shape":"MetricDatapoint"}
     },
+    "MetricName":{
+      "type":"string",
+      "enum":[
+        "CPUUtilization",
+        "NetworkIn",
+        "NetworkOut",
+        "StatusCheckFailed",
+        "StatusCheckFailed_Instance",
+        "StatusCheckFailed_System",
+        "ClientTLSNegotiationErrorCount",
+        "HealthyHostCount",
+        "UnhealthyHostCount",
+        "HTTPCode_LB_4XX_Count",
+        "HTTPCode_LB_5XX_Count",
+        "HTTPCode_Instance_2XX_Count",
+        "HTTPCode_Instance_3XX_Count",
+        "HTTPCode_Instance_4XX_Count",
+        "HTTPCode_Instance_5XX_Count",
+        "InstanceResponseTime",
+        "RejectedConnectionCount",
+        "RequestCount",
+        "DatabaseConnections",
+        "DiskQueueDepth",
+        "FreeStorageSpace",
+        "NetworkReceiveThroughput",
+        "NetworkTransmitThroughput"
+      ]
+    },
     "MetricPeriod":{
       "type":"integer",
       "max":86400,
@@ -4020,6 +4567,14 @@
         "None"
       ]
     },
+    "MonitoredResourceInfo":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"ResourceArn"},
+        "name":{"shape":"ResourceName"},
+        "resourceType":{"shape":"ResourceType"}
+      }
+    },
     "MonthlyTransfer":{
       "type":"structure",
       "members":{
@@ -4031,7 +4586,8 @@
       "enum":[
         "tcp",
         "all",
-        "udp"
+        "udp",
+        "icmp"
       ]
     },
     "NonEmptyString":{
@@ -4047,6 +4603,10 @@
         "tip":{"shape":"string"}
       },
       "exception":true
+    },
+    "NotificationTriggerList":{
+      "type":"list",
+      "member":{"shape":"AlarmState"}
     },
     "OpenInstancePublicPortsRequest":{
       "type":"structure",
@@ -4153,7 +4713,17 @@
         "UpdateRelationalDatabaseParameters",
         "StartRelationalDatabase",
         "RebootRelationalDatabase",
-        "StopRelationalDatabase"
+        "StopRelationalDatabase",
+        "EnableAddOn",
+        "DisableAddOn",
+        "PutAlarm",
+        "GetAlarms",
+        "DeleteAlarm",
+        "TestAlarm",
+        "CreateContactMethod",
+        "GetContactMethods",
+        "SendContactMethodVerification",
+        "DeleteContactMethod"
       ]
     },
     "PasswordData":{
@@ -4197,7 +4767,7 @@
     "Port":{
       "type":"integer",
       "max":65535,
-      "min":0
+      "min":-1
     },
     "PortAccessType":{
       "type":"string",
@@ -4211,7 +4781,9 @@
       "members":{
         "fromPort":{"shape":"Port"},
         "toPort":{"shape":"Port"},
-        "protocol":{"shape":"NetworkProtocol"}
+        "protocol":{"shape":"NetworkProtocol"},
+        "cidrs":{"shape":"StringList"},
+        "cidrListAliases":{"shape":"StringList"}
       }
     },
     "PortInfoList":{
@@ -4237,6 +4809,36 @@
         "open",
         "closed"
       ]
+    },
+    "PutAlarmRequest":{
+      "type":"structure",
+      "required":[
+        "alarmName",
+        "metricName",
+        "monitoredResourceName",
+        "comparisonOperator",
+        "threshold",
+        "evaluationPeriods"
+      ],
+      "members":{
+        "alarmName":{"shape":"ResourceName"},
+        "metricName":{"shape":"MetricName"},
+        "monitoredResourceName":{"shape":"ResourceName"},
+        "comparisonOperator":{"shape":"ComparisonOperator"},
+        "threshold":{"shape":"double"},
+        "evaluationPeriods":{"shape":"integer"},
+        "datapointsToAlarm":{"shape":"integer"},
+        "treatMissingData":{"shape":"TreatMissingData"},
+        "contactProtocols":{"shape":"ContactProtocolsList"},
+        "notificationTriggers":{"shape":"NotificationTriggerList"},
+        "notificationEnabled":{"shape":"boolean"}
+      }
+    },
+    "PutAlarmResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
     },
     "PutInstancePublicPortsRequest":{
       "type":"structure",
@@ -4350,7 +4952,8 @@
         "preferredMaintenanceWindow":{"shape":"NonEmptyString"},
         "publiclyAccessible":{"shape":"boolean"},
         "masterEndpoint":{"shape":"RelationalDatabaseEndpoint"},
-        "pendingMaintenanceActions":{"shape":"PendingMaintenanceActionList"}
+        "pendingMaintenanceActions":{"shape":"PendingMaintenanceActionList"},
+        "caCertificateIdentifier":{"shape":"string"}
       }
     },
     "RelationalDatabaseBlueprint":{
@@ -4495,6 +5098,10 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "ResourceArn":{
+      "type":"string",
+      "pattern":"^arn:(aws[^:]*):([a-zA-Z0-9-]+):([a-z0-9-]+):([0-9]+):([a-zA-Z]+)/([a-zA-Z0-9-]+)$"
+    },
     "ResourceLocation":{
       "type":"structure",
       "members":{
@@ -4526,8 +5133,23 @@
         "RelationalDatabase",
         "RelationalDatabaseSnapshot",
         "ExportSnapshotRecord",
-        "CloudFormationStackRecord"
+        "CloudFormationStackRecord",
+        "Alarm",
+        "ContactMethod"
       ]
+    },
+    "SendContactMethodVerificationRequest":{
+      "type":"structure",
+      "required":["protocol"],
+      "members":{
+        "protocol":{"shape":"ContactMethodVerificationProtocol"}
+      }
+    },
+    "SendContactMethodVerificationResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
     },
     "SensitiveString":{
       "type":"string",
@@ -4649,6 +5271,7 @@
       ],
       "members":{
         "resourceName":{"shape":"ResourceName"},
+        "resourceArn":{"shape":"ResourceArn"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -4659,6 +5282,36 @@
       }
     },
     "TagValue":{"type":"string"},
+    "TestAlarmRequest":{
+      "type":"structure",
+      "required":[
+        "alarmName",
+        "state"
+      ],
+      "members":{
+        "alarmName":{"shape":"ResourceName"},
+        "state":{"shape":"AlarmState"}
+      }
+    },
+    "TestAlarmResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "TimeOfDay":{
+      "type":"string",
+      "pattern":"^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "TreatMissingData":{
+      "type":"string",
+      "enum":[
+        "breaching",
+        "notBreaching",
+        "ignore",
+        "missing"
+      ]
+    },
     "UnauthenticatedException":{
       "type":"structure",
       "members":{
@@ -4688,6 +5341,7 @@
       ],
       "members":{
         "resourceName":{"shape":"ResourceName"},
+        "resourceArn":{"shape":"ResourceArn"},
         "tagKeys":{"shape":"TagKeyList"}
       }
     },
@@ -4762,7 +5416,8 @@
         "enableBackupRetention":{"shape":"boolean"},
         "disableBackupRetention":{"shape":"boolean"},
         "publiclyAccessible":{"shape":"boolean"},
-        "applyImmediately":{"shape":"boolean"}
+        "applyImmediately":{"shape":"boolean"},
+        "caCertificateIdentifier":{"shape":"string"}
       }
     },
     "UpdateRelationalDatabaseResult":{

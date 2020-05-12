@@ -306,6 +306,28 @@
         "shape" : "ForbiddenException"
       } ]
     },
+    "UnshareApplication" : {
+      "name" : "UnshareApplication",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/applications/{applicationId}/unshare",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "UnshareApplicationRequest"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      } ]
+    },
     "UpdateApplication" : {
       "name" : "UpdateApplication",
       "http" : {
@@ -358,6 +380,10 @@
           "shape" : "__string",
           "locationName" : "homePageUrl"
         },
+        "IsVerifiedAuthor" : {
+          "shape" : "__boolean",
+          "locationName" : "isVerifiedAuthor"
+        },
         "Labels" : {
           "shape" : "__listOf__string",
           "locationName" : "labels"
@@ -377,6 +403,10 @@
         "SpdxLicenseId" : {
           "shape" : "__string",
           "locationName" : "spdxLicenseId"
+        },
+        "VerifiedAuthorUrl" : {
+          "shape" : "__string",
+          "locationName" : "verifiedAuthorUrl"
         },
         "Version" : {
           "shape" : "Version",
@@ -443,6 +473,10 @@
         "Actions" : {
           "shape" : "__listOf__string",
           "locationName" : "actions"
+        },
+        "PrincipalOrgIDs" : {
+          "shape" : "__listOf__string",
+          "locationName" : "principalOrgIDs"
         },
         "Principals" : {
           "shape" : "__listOf__string",
@@ -722,6 +756,10 @@
           "shape" : "__string",
           "locationName" : "homePageUrl"
         },
+        "IsVerifiedAuthor" : {
+          "shape" : "__boolean",
+          "locationName" : "isVerifiedAuthor"
+        },
         "Labels" : {
           "shape" : "__listOf__string",
           "locationName" : "labels"
@@ -741,6 +779,10 @@
         "SpdxLicenseId" : {
           "shape" : "__string",
           "locationName" : "spdxLicenseId"
+        },
+        "VerifiedAuthorUrl" : {
+          "shape" : "__string",
+          "locationName" : "verifiedAuthorUrl"
         },
         "Version" : {
           "shape" : "Version",
@@ -1111,6 +1153,10 @@
           "shape" : "__string",
           "locationName" : "homePageUrl"
         },
+        "IsVerifiedAuthor" : {
+          "shape" : "__boolean",
+          "locationName" : "isVerifiedAuthor"
+        },
         "Labels" : {
           "shape" : "__listOf__string",
           "locationName" : "labels"
@@ -1130,6 +1176,10 @@
         "SpdxLicenseId" : {
           "shape" : "__string",
           "locationName" : "spdxLicenseId"
+        },
+        "VerifiedAuthorUrl" : {
+          "shape" : "__string",
+          "locationName" : "verifiedAuthorUrl"
         },
         "Version" : {
           "shape" : "Version",
@@ -1518,6 +1568,31 @@
         "httpStatusCode" : 429
       }
     },
+    "UnshareApplicationInput" : {
+      "type" : "structure",
+      "members" : {
+        "OrganizationId" : {
+          "shape" : "__string",
+          "locationName" : "organizationId"
+        }
+      },
+      "required" : [ "OrganizationId" ]
+    },
+    "UnshareApplicationRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "applicationId"
+        },
+        "OrganizationId" : {
+          "shape" : "__string",
+          "locationName" : "organizationId"
+        }
+      },
+      "required" : [ "ApplicationId", "OrganizationId" ]
+    },
     "UpdateApplicationInput" : {
       "type" : "structure",
       "members" : {
@@ -1605,6 +1680,10 @@
           "shape" : "__string",
           "locationName" : "homePageUrl"
         },
+        "IsVerifiedAuthor" : {
+          "shape" : "__boolean",
+          "locationName" : "isVerifiedAuthor"
+        },
         "Labels" : {
           "shape" : "__listOf__string",
           "locationName" : "labels"
@@ -1624,6 +1703,10 @@
         "SpdxLicenseId" : {
           "shape" : "__string",
           "locationName" : "spdxLicenseId"
+        },
+        "VerifiedAuthorUrl" : {
+          "shape" : "__string",
+          "locationName" : "verifiedAuthorUrl"
         },
         "Version" : {
           "shape" : "Version",

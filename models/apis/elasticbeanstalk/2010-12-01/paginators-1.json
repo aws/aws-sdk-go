@@ -20,6 +20,11 @@
     },
     "ListAvailableSolutionStacks": {
       "result_key": "SolutionStacks"
+    },
+    "ListPlatformBranches": {
+      "input_token": "NextToken",
+      "limit_key": "MaxRecords",
+      "output_token": "NextToken"
     }
   }
 }

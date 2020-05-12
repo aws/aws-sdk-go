@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Personalize.
 //    func myFunc(svc personalizeiface.PersonalizeAPI) bool {
-//        // Make svc.CreateCampaign request
+//        // Make svc.CreateBatchInferenceJob request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockPersonalizeClient struct {
 //        personalizeiface.PersonalizeAPI
 //    }
-//    func (m *mockPersonalizeClient) CreateCampaign(input *personalize.CreateCampaignInput) (*personalize.CreateCampaignOutput, error) {
+//    func (m *mockPersonalizeClient) CreateBatchInferenceJob(input *personalize.CreateBatchInferenceJobInput) (*personalize.CreateBatchInferenceJobOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type PersonalizeAPI interface {
+	CreateBatchInferenceJob(*personalize.CreateBatchInferenceJobInput) (*personalize.CreateBatchInferenceJobOutput, error)
+	CreateBatchInferenceJobWithContext(aws.Context, *personalize.CreateBatchInferenceJobInput, ...request.Option) (*personalize.CreateBatchInferenceJobOutput, error)
+	CreateBatchInferenceJobRequest(*personalize.CreateBatchInferenceJobInput) (*request.Request, *personalize.CreateBatchInferenceJobOutput)
+
 	CreateCampaign(*personalize.CreateCampaignInput) (*personalize.CreateCampaignOutput, error)
 	CreateCampaignWithContext(aws.Context, *personalize.CreateCampaignInput, ...request.Option) (*personalize.CreateCampaignOutput, error)
 	CreateCampaignRequest(*personalize.CreateCampaignInput) (*request.Request, *personalize.CreateCampaignOutput)
@@ -120,6 +124,10 @@ type PersonalizeAPI interface {
 	DescribeAlgorithmWithContext(aws.Context, *personalize.DescribeAlgorithmInput, ...request.Option) (*personalize.DescribeAlgorithmOutput, error)
 	DescribeAlgorithmRequest(*personalize.DescribeAlgorithmInput) (*request.Request, *personalize.DescribeAlgorithmOutput)
 
+	DescribeBatchInferenceJob(*personalize.DescribeBatchInferenceJobInput) (*personalize.DescribeBatchInferenceJobOutput, error)
+	DescribeBatchInferenceJobWithContext(aws.Context, *personalize.DescribeBatchInferenceJobInput, ...request.Option) (*personalize.DescribeBatchInferenceJobOutput, error)
+	DescribeBatchInferenceJobRequest(*personalize.DescribeBatchInferenceJobInput) (*request.Request, *personalize.DescribeBatchInferenceJobOutput)
+
 	DescribeCampaign(*personalize.DescribeCampaignInput) (*personalize.DescribeCampaignOutput, error)
 	DescribeCampaignWithContext(aws.Context, *personalize.DescribeCampaignInput, ...request.Option) (*personalize.DescribeCampaignOutput, error)
 	DescribeCampaignRequest(*personalize.DescribeCampaignInput) (*request.Request, *personalize.DescribeCampaignOutput)
@@ -163,6 +171,13 @@ type PersonalizeAPI interface {
 	GetSolutionMetrics(*personalize.GetSolutionMetricsInput) (*personalize.GetSolutionMetricsOutput, error)
 	GetSolutionMetricsWithContext(aws.Context, *personalize.GetSolutionMetricsInput, ...request.Option) (*personalize.GetSolutionMetricsOutput, error)
 	GetSolutionMetricsRequest(*personalize.GetSolutionMetricsInput) (*request.Request, *personalize.GetSolutionMetricsOutput)
+
+	ListBatchInferenceJobs(*personalize.ListBatchInferenceJobsInput) (*personalize.ListBatchInferenceJobsOutput, error)
+	ListBatchInferenceJobsWithContext(aws.Context, *personalize.ListBatchInferenceJobsInput, ...request.Option) (*personalize.ListBatchInferenceJobsOutput, error)
+	ListBatchInferenceJobsRequest(*personalize.ListBatchInferenceJobsInput) (*request.Request, *personalize.ListBatchInferenceJobsOutput)
+
+	ListBatchInferenceJobsPages(*personalize.ListBatchInferenceJobsInput, func(*personalize.ListBatchInferenceJobsOutput, bool) bool) error
+	ListBatchInferenceJobsPagesWithContext(aws.Context, *personalize.ListBatchInferenceJobsInput, func(*personalize.ListBatchInferenceJobsOutput, bool) bool, ...request.Option) error
 
 	ListCampaigns(*personalize.ListCampaignsInput) (*personalize.ListCampaignsOutput, error)
 	ListCampaignsWithContext(aws.Context, *personalize.ListCampaignsInput, ...request.Option) (*personalize.ListCampaignsOutput, error)

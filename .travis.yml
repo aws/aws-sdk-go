@@ -6,6 +6,7 @@ os:
     - linux
     - osx
 go:
+    - 1.5.x
     - 1.6.x
     - 1.7.x
     - 1.8.x
@@ -13,6 +14,8 @@ go:
     - 1.10.x
     - 1.11.x
     - 1.12.x
+    - 1.13.x
+    - 1.14.x
     - tip
 
 matrix:
@@ -23,22 +26,42 @@ matrix:
           # https://github.com/travis-ci/travis-ci/issues/10309
         - go: 1.6.x
           os: osx
+        - go: 1.5.x
+          os: osx
     include:
-        - os: linux
-          go: 1.5.x
-          # Use Go 1.5's vendoring experiment for 1.5 tests.
-          env: GO15VENDOREXPERIMENT=1
+        - os: windows
+          go: 1.12.x
+        - os: windows
+          go: 1.13.x
+        - os: windows
+          go: 1.14.x
+        - os: windows
+          go: tip
+
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install make; fi
 
 script:
-  - if [ $TRAVIS_GO_VERSION == "1.10.x" ] ||
-    [ $TRAVIS_GO_VERSION == "1.11.x" ] ||
-    [ $TRAVIS_GO_VERSION == "1.12.x" ] ||
-    [ $TRAVIS_GO_VERSION == "tip" ]; then
-        make get-deps;
+  - if [ -z $(go env GOMOD) ]; then
+      if [ "$TRAVIS_GO_VERSION" == "1.12.x" ] ||
+          [ "$TRAVIS_GO_VERSION" == "1.11.x" ] ||
+          [ "$TRAVIS_GO_VERSION" == "1.10.x" ]; then
+        make get-deps-x-tests;
+      fi;
+      make get-deps;
+    fi;
+    if [ "$TRAVIS_GO_VERSION" == "tip" ] ||
+        [ "$TRAVIS_GO_VERSION" == "1.14.x" ] ||
+        [ "$TRAVIS_GO_VERSION" == "1.13.x" ]; then
+
+      if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+        make unit-no-verify;
+      else
+        make get-deps-verify;
         make ci-test;
+      fi
     else
-        make get-deps-tests;
-        make unit-old-go-race-cover;
+      make unit-old-go-race-cover;
     fi
 
 branches:

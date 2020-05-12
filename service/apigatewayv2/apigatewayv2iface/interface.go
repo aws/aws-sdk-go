@@ -104,6 +104,14 @@ type ApiGatewayV2API interface {
 	CreateStageWithContext(aws.Context, *apigatewayv2.CreateStageInput, ...request.Option) (*apigatewayv2.CreateStageOutput, error)
 	CreateStageRequest(*apigatewayv2.CreateStageInput) (*request.Request, *apigatewayv2.CreateStageOutput)
 
+	CreateVpcLink(*apigatewayv2.CreateVpcLinkInput) (*apigatewayv2.CreateVpcLinkOutput, error)
+	CreateVpcLinkWithContext(aws.Context, *apigatewayv2.CreateVpcLinkInput, ...request.Option) (*apigatewayv2.CreateVpcLinkOutput, error)
+	CreateVpcLinkRequest(*apigatewayv2.CreateVpcLinkInput) (*request.Request, *apigatewayv2.CreateVpcLinkOutput)
+
+	DeleteAccessLogSettings(*apigatewayv2.DeleteAccessLogSettingsInput) (*apigatewayv2.DeleteAccessLogSettingsOutput, error)
+	DeleteAccessLogSettingsWithContext(aws.Context, *apigatewayv2.DeleteAccessLogSettingsInput, ...request.Option) (*apigatewayv2.DeleteAccessLogSettingsOutput, error)
+	DeleteAccessLogSettingsRequest(*apigatewayv2.DeleteAccessLogSettingsInput) (*request.Request, *apigatewayv2.DeleteAccessLogSettingsOutput)
+
 	DeleteApi(*apigatewayv2.DeleteApiInput) (*apigatewayv2.DeleteApiOutput, error)
 	DeleteApiWithContext(aws.Context, *apigatewayv2.DeleteApiInput, ...request.Option) (*apigatewayv2.DeleteApiOutput, error)
 	DeleteApiRequest(*apigatewayv2.DeleteApiInput) (*request.Request, *apigatewayv2.DeleteApiOutput)
@@ -115,6 +123,10 @@ type ApiGatewayV2API interface {
 	DeleteAuthorizer(*apigatewayv2.DeleteAuthorizerInput) (*apigatewayv2.DeleteAuthorizerOutput, error)
 	DeleteAuthorizerWithContext(aws.Context, *apigatewayv2.DeleteAuthorizerInput, ...request.Option) (*apigatewayv2.DeleteAuthorizerOutput, error)
 	DeleteAuthorizerRequest(*apigatewayv2.DeleteAuthorizerInput) (*request.Request, *apigatewayv2.DeleteAuthorizerOutput)
+
+	DeleteCorsConfiguration(*apigatewayv2.DeleteCorsConfigurationInput) (*apigatewayv2.DeleteCorsConfigurationOutput, error)
+	DeleteCorsConfigurationWithContext(aws.Context, *apigatewayv2.DeleteCorsConfigurationInput, ...request.Option) (*apigatewayv2.DeleteCorsConfigurationOutput, error)
+	DeleteCorsConfigurationRequest(*apigatewayv2.DeleteCorsConfigurationInput) (*request.Request, *apigatewayv2.DeleteCorsConfigurationOutput)
 
 	DeleteDeployment(*apigatewayv2.DeleteDeploymentInput) (*apigatewayv2.DeleteDeploymentOutput, error)
 	DeleteDeploymentWithContext(aws.Context, *apigatewayv2.DeleteDeploymentInput, ...request.Option) (*apigatewayv2.DeleteDeploymentOutput, error)
@@ -140,13 +152,29 @@ type ApiGatewayV2API interface {
 	DeleteRouteWithContext(aws.Context, *apigatewayv2.DeleteRouteInput, ...request.Option) (*apigatewayv2.DeleteRouteOutput, error)
 	DeleteRouteRequest(*apigatewayv2.DeleteRouteInput) (*request.Request, *apigatewayv2.DeleteRouteOutput)
 
+	DeleteRouteRequestParameter(*apigatewayv2.DeleteRouteRequestParameterInput) (*apigatewayv2.DeleteRouteRequestParameterOutput, error)
+	DeleteRouteRequestParameterWithContext(aws.Context, *apigatewayv2.DeleteRouteRequestParameterInput, ...request.Option) (*apigatewayv2.DeleteRouteRequestParameterOutput, error)
+	DeleteRouteRequestParameterRequest(*apigatewayv2.DeleteRouteRequestParameterInput) (*request.Request, *apigatewayv2.DeleteRouteRequestParameterOutput)
+
 	DeleteRouteResponse(*apigatewayv2.DeleteRouteResponseInput) (*apigatewayv2.DeleteRouteResponseOutput, error)
 	DeleteRouteResponseWithContext(aws.Context, *apigatewayv2.DeleteRouteResponseInput, ...request.Option) (*apigatewayv2.DeleteRouteResponseOutput, error)
 	DeleteRouteResponseRequest(*apigatewayv2.DeleteRouteResponseInput) (*request.Request, *apigatewayv2.DeleteRouteResponseOutput)
 
+	DeleteRouteSettings(*apigatewayv2.DeleteRouteSettingsInput) (*apigatewayv2.DeleteRouteSettingsOutput, error)
+	DeleteRouteSettingsWithContext(aws.Context, *apigatewayv2.DeleteRouteSettingsInput, ...request.Option) (*apigatewayv2.DeleteRouteSettingsOutput, error)
+	DeleteRouteSettingsRequest(*apigatewayv2.DeleteRouteSettingsInput) (*request.Request, *apigatewayv2.DeleteRouteSettingsOutput)
+
 	DeleteStage(*apigatewayv2.DeleteStageInput) (*apigatewayv2.DeleteStageOutput, error)
 	DeleteStageWithContext(aws.Context, *apigatewayv2.DeleteStageInput, ...request.Option) (*apigatewayv2.DeleteStageOutput, error)
 	DeleteStageRequest(*apigatewayv2.DeleteStageInput) (*request.Request, *apigatewayv2.DeleteStageOutput)
+
+	DeleteVpcLink(*apigatewayv2.DeleteVpcLinkInput) (*apigatewayv2.DeleteVpcLinkOutput, error)
+	DeleteVpcLinkWithContext(aws.Context, *apigatewayv2.DeleteVpcLinkInput, ...request.Option) (*apigatewayv2.DeleteVpcLinkOutput, error)
+	DeleteVpcLinkRequest(*apigatewayv2.DeleteVpcLinkInput) (*request.Request, *apigatewayv2.DeleteVpcLinkOutput)
+
+	ExportApi(*apigatewayv2.ExportApiInput) (*apigatewayv2.ExportApiOutput, error)
+	ExportApiWithContext(aws.Context, *apigatewayv2.ExportApiInput, ...request.Option) (*apigatewayv2.ExportApiOutput, error)
+	ExportApiRequest(*apigatewayv2.ExportApiInput) (*request.Request, *apigatewayv2.ExportApiOutput)
 
 	GetApi(*apigatewayv2.GetApiInput) (*apigatewayv2.GetApiOutput, error)
 	GetApiWithContext(aws.Context, *apigatewayv2.GetApiInput, ...request.Option) (*apigatewayv2.GetApiOutput, error)
@@ -240,6 +268,34 @@ type ApiGatewayV2API interface {
 	GetStagesWithContext(aws.Context, *apigatewayv2.GetStagesInput, ...request.Option) (*apigatewayv2.GetStagesOutput, error)
 	GetStagesRequest(*apigatewayv2.GetStagesInput) (*request.Request, *apigatewayv2.GetStagesOutput)
 
+	GetTags(*apigatewayv2.GetTagsInput) (*apigatewayv2.GetTagsOutput, error)
+	GetTagsWithContext(aws.Context, *apigatewayv2.GetTagsInput, ...request.Option) (*apigatewayv2.GetTagsOutput, error)
+	GetTagsRequest(*apigatewayv2.GetTagsInput) (*request.Request, *apigatewayv2.GetTagsOutput)
+
+	GetVpcLink(*apigatewayv2.GetVpcLinkInput) (*apigatewayv2.GetVpcLinkOutput, error)
+	GetVpcLinkWithContext(aws.Context, *apigatewayv2.GetVpcLinkInput, ...request.Option) (*apigatewayv2.GetVpcLinkOutput, error)
+	GetVpcLinkRequest(*apigatewayv2.GetVpcLinkInput) (*request.Request, *apigatewayv2.GetVpcLinkOutput)
+
+	GetVpcLinks(*apigatewayv2.GetVpcLinksInput) (*apigatewayv2.GetVpcLinksOutput, error)
+	GetVpcLinksWithContext(aws.Context, *apigatewayv2.GetVpcLinksInput, ...request.Option) (*apigatewayv2.GetVpcLinksOutput, error)
+	GetVpcLinksRequest(*apigatewayv2.GetVpcLinksInput) (*request.Request, *apigatewayv2.GetVpcLinksOutput)
+
+	ImportApi(*apigatewayv2.ImportApiInput) (*apigatewayv2.ImportApiOutput, error)
+	ImportApiWithContext(aws.Context, *apigatewayv2.ImportApiInput, ...request.Option) (*apigatewayv2.ImportApiOutput, error)
+	ImportApiRequest(*apigatewayv2.ImportApiInput) (*request.Request, *apigatewayv2.ImportApiOutput)
+
+	ReimportApi(*apigatewayv2.ReimportApiInput) (*apigatewayv2.ReimportApiOutput, error)
+	ReimportApiWithContext(aws.Context, *apigatewayv2.ReimportApiInput, ...request.Option) (*apigatewayv2.ReimportApiOutput, error)
+	ReimportApiRequest(*apigatewayv2.ReimportApiInput) (*request.Request, *apigatewayv2.ReimportApiOutput)
+
+	TagResource(*apigatewayv2.TagResourceInput) (*apigatewayv2.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *apigatewayv2.TagResourceInput, ...request.Option) (*apigatewayv2.TagResourceOutput, error)
+	TagResourceRequest(*apigatewayv2.TagResourceInput) (*request.Request, *apigatewayv2.TagResourceOutput)
+
+	UntagResource(*apigatewayv2.UntagResourceInput) (*apigatewayv2.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *apigatewayv2.UntagResourceInput, ...request.Option) (*apigatewayv2.UntagResourceOutput, error)
+	UntagResourceRequest(*apigatewayv2.UntagResourceInput) (*request.Request, *apigatewayv2.UntagResourceOutput)
+
 	UpdateApi(*apigatewayv2.UpdateApiInput) (*apigatewayv2.UpdateApiOutput, error)
 	UpdateApiWithContext(aws.Context, *apigatewayv2.UpdateApiInput, ...request.Option) (*apigatewayv2.UpdateApiOutput, error)
 	UpdateApiRequest(*apigatewayv2.UpdateApiInput) (*request.Request, *apigatewayv2.UpdateApiOutput)
@@ -283,6 +339,10 @@ type ApiGatewayV2API interface {
 	UpdateStage(*apigatewayv2.UpdateStageInput) (*apigatewayv2.UpdateStageOutput, error)
 	UpdateStageWithContext(aws.Context, *apigatewayv2.UpdateStageInput, ...request.Option) (*apigatewayv2.UpdateStageOutput, error)
 	UpdateStageRequest(*apigatewayv2.UpdateStageInput) (*request.Request, *apigatewayv2.UpdateStageOutput)
+
+	UpdateVpcLink(*apigatewayv2.UpdateVpcLinkInput) (*apigatewayv2.UpdateVpcLinkOutput, error)
+	UpdateVpcLinkWithContext(aws.Context, *apigatewayv2.UpdateVpcLinkInput, ...request.Option) (*apigatewayv2.UpdateVpcLinkOutput, error)
+	UpdateVpcLinkRequest(*apigatewayv2.UpdateVpcLinkInput) (*request.Request, *apigatewayv2.UpdateVpcLinkOutput)
 }
 
 var _ ApiGatewayV2API = (*apigatewayv2.ApiGatewayV2)(nil)

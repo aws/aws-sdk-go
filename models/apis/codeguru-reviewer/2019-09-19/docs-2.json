@@ -1,0 +1,551 @@
+{
+  "version": "2.0",
+  "service": "<p>This section provides documentation for the Amazon CodeGuru Reviewer API operations. Amazon CodeGuru Reviewer is a service that uses program analysis and machine learning to detect potential defects that are difficult for developers to find and recommends fixes in your Java code.</p> <p>By proactively detecting and providing recommendations for addressing code defects and implementing best practices, CodeGuru Reviewer improves the overall quality and maintainability of your code base during the code review stage. For more information about CodeGuru Reviewer, see the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/welcome.html\">Amazon CodeGuru Reviewer User Guide</a>.</p>",
+  "operations": {
+    "AssociateRepository": "<p>Associates an AWS CodeCommit repository with Amazon CodeGuru Reviewer. When you associate an AWS CodeCommit repository with Amazon CodeGuru Reviewer, Amazon CodeGuru Reviewer will provide recommendations for each pull request raised within the repository. You can view recommendations in the AWS CodeCommit repository.</p> <p>You can associate a GitHub repository using the Amazon CodeGuru Reviewer console.</p>",
+    "DescribeCodeReview": "<p> Returns the metadaata associated with the code review along with its status.</p>",
+    "DescribeRecommendationFeedback": "<p> Describes the customer feedback for a CodeGuru Reviewer recommendation. </p>",
+    "DescribeRepositoryAssociation": "<p>Describes a repository association.</p>",
+    "DisassociateRepository": "<p>Removes the association between Amazon CodeGuru Reviewer and a repository.</p>",
+    "ListCodeReviews": "<p> Lists all the code reviews that the customer has created in the past 90 days. </p>",
+    "ListRecommendationFeedback": "<p> Lists the customer feedback for a CodeGuru Reviewer recommendation for all users. This API will be used from the console to extract the previously given feedback by the user to pre-populate the feedback emojis for all recommendations. </p>",
+    "ListRecommendations": "<p> Returns the list of all recommendations for a completed code review. </p>",
+    "ListRepositoryAssociations": "<p>Lists repository associations. You can optionally filter on one or more of the following recommendation properties: provider types, states, names, and owners.</p>",
+    "PutRecommendationFeedback": "<p> Stores customer feedback for a CodeGuru-Reviewer recommendation. When this API is called again with different reactions the previous feedback is overwritten. </p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>You do not have sufficient access to perform this action.</p>",
+      "refs": {
+      }
+    },
+    "Arn": {
+      "base": null,
+      "refs": {
+        "CodeReview$CodeReviewArn": "<p> The Amazon Resource Name (ARN) of the code review to describe. </p>",
+        "CodeReviewSummary$CodeReviewArn": "<p> The Amazon Resource Name (ARN) of the code review to describe. </p>",
+        "DescribeCodeReviewRequest$CodeReviewArn": "<p> The Amazon Resource Name (ARN) of the code review to describe. </p>",
+        "DescribeRecommendationFeedbackRequest$CodeReviewArn": "<p> The Amazon Resource Name (ARN) that identifies the code review. </p>",
+        "DescribeRepositoryAssociationRequest$AssociationArn": "<p>The Amazon Resource Name (ARN) identifying the association. You can retrieve this ARN by calling <code>ListRepositories</code>.</p>",
+        "DisassociateRepositoryRequest$AssociationArn": "<p>The Amazon Resource Name (ARN) identifying the association.</p>",
+        "ListRecommendationFeedbackRequest$CodeReviewArn": "<p> The Amazon Resource Name (ARN) that identifies the code review. </p>",
+        "ListRecommendationsRequest$CodeReviewArn": "<p> The Amazon Resource Name (ARN) of the code review to describe. </p>",
+        "PutRecommendationFeedbackRequest$CodeReviewArn": "<p> The Amazon Resource Name (ARN) that identifies the code review. </p>",
+        "RecommendationFeedback$CodeReviewArn": "<p> The Amazon Resource Name (ARN) that identifies the code review. </p>",
+        "RepositoryAssociation$AssociationArn": "<p>The Amazon Resource Name (ARN) identifying the repository association.</p>",
+        "RepositoryAssociationSummary$AssociationArn": "<p>The Amazon Resource Name (ARN) identifying the repository association.</p>"
+      }
+    },
+    "AssociateRepositoryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateRepositoryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociationId": {
+      "base": null,
+      "refs": {
+        "RepositoryAssociation$AssociationId": "<p>The ID of the repository association.</p>",
+        "RepositoryAssociationSummary$AssociationId": "<p>The repository association ID.</p>"
+      }
+    },
+    "ClientRequestToken": {
+      "base": null,
+      "refs": {
+        "AssociateRepositoryRequest$ClientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p> <p>To add a new repository association, this parameter specifies a unique identifier for the new repository association that helps ensure idempotency.</p> <p>If you use the AWS CLI or one of the AWS SDKs to call this operation, you can leave this parameter empty. The CLI or SDK generates a random UUID for you and includes that in the request. If you don't use the SDK and instead generate a raw HTTP request to the Secrets Manager service endpoint, you must generate a ClientRequestToken yourself for new versions and include that value in the request.</p> <p>You typically interact with this value if you implement your own retry logic and want to ensure that a given repository association is not created twice. We recommend that you generate a UUID-type value to ensure uniqueness within the specified repository association.</p> <p>Amazon CodeGuru Reviewer uses this value to prevent the accidental creation of duplicate repository associations if there are failures and retries. </p>"
+      }
+    },
+    "CodeCommitRepository": {
+      "base": "<p>Information about an AWS CodeCommit repository.</p>",
+      "refs": {
+        "Repository$CodeCommit": "<p>Information about an AWS CodeCommit repository.</p>"
+      }
+    },
+    "CodeReview": {
+      "base": "<p> Information about a code review. </p>",
+      "refs": {
+        "DescribeCodeReviewResponse$CodeReview": "<p> Information about the code review. </p>"
+      }
+    },
+    "CodeReviewSummaries": {
+      "base": null,
+      "refs": {
+        "ListCodeReviewsResponse$CodeReviewSummaries": "<p> A list of code reviews that meet the criteria of the request. </p>"
+      }
+    },
+    "CodeReviewSummary": {
+      "base": "<p> Information about the summary of the code review. </p>",
+      "refs": {
+        "CodeReviewSummaries$member": null
+      }
+    },
+    "CommitDiffSourceCodeType": {
+      "base": "<p> The commit diff for the pull request. </p>",
+      "refs": {
+        "SourceCodeType$CommitDiff": "<p> The commit diff for the pull request. </p>"
+      }
+    },
+    "CommitId": {
+      "base": null,
+      "refs": {
+        "CommitDiffSourceCodeType$SourceCommit": "<p> Source Commit SHA. </p>",
+        "CommitDiffSourceCodeType$DestinationCommit": "<p> Destination Commit SHA </p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>The requested operation would cause a conflict with the current state of a service resource associated with the request. Resolve the conflict before retrying this request. </p>",
+      "refs": {
+      }
+    },
+    "ConnectionArn": {
+      "base": null,
+      "refs": {
+        "RepositoryAssociation$ConnectionArn": "<p> The Amazon Resource Name (ARN) identifying the repository connection. </p>",
+        "RepositoryAssociationSummary$ConnectionArn": "<p> The Amazon Resource Name (ARN) identifying the repository connection. </p>",
+        "ThirdPartySourceRepository$ConnectionArn": "<p> The Amazon Resource Name (ARN) identifying the repository connection. </p>"
+      }
+    },
+    "DescribeCodeReviewRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeCodeReviewResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRecommendationFeedbackRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRecommendationFeedbackResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRepositoryAssociationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRepositoryAssociationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateRepositoryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateRepositoryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ErrorMessage": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$Message": null,
+        "ConflictException$Message": null,
+        "InternalServerException$Message": null,
+        "NotFoundException$Message": null,
+        "ResourceNotFoundException$Message": null,
+        "ThrottlingException$Message": null,
+        "ValidationException$Message": null
+      }
+    },
+    "FilePath": {
+      "base": null,
+      "refs": {
+        "RecommendationSummary$FilePath": "<p>Name of the file on which a recommendation is provided.</p>"
+      }
+    },
+    "FindingsCount": {
+      "base": null,
+      "refs": {
+        "Metrics$FindingsCount": "<p> Total number of recommendations found in the code review. </p>",
+        "MetricsSummary$FindingsCount": "<p> Total number of recommendations found in the code review. </p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>The server encountered an internal error and is unable to complete the request.</p>",
+      "refs": {
+      }
+    },
+    "JobState": {
+      "base": null,
+      "refs": {
+        "CodeReview$State": "<p> The state of the code review. </p>",
+        "CodeReviewSummary$State": "<p> The state of the code review. </p>",
+        "JobStates$member": null
+      }
+    },
+    "JobStates": {
+      "base": null,
+      "refs": {
+        "ListCodeReviewsRequest$States": "<p> List of states for filtering that needs to be applied before displaying the result. For example, \"states=[Pending]\" will list code reviews in the Pending state. </p>"
+      }
+    },
+    "LineNumber": {
+      "base": null,
+      "refs": {
+        "RecommendationSummary$StartLine": "<p> Start line from where the recommendation is applicable in the source commit or source branch. </p>",
+        "RecommendationSummary$EndLine": "<p> Last line where the recommendation is applicable in the source commit or source branch. For a single line comment the start line and end line values will be the same. </p>"
+      }
+    },
+    "ListCodeReviewsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListCodeReviewsRequest$MaxResults": "<p> The maximum number of results that are returned per call. The default is 100. </p>"
+      }
+    },
+    "ListCodeReviewsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCodeReviewsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRecommendationFeedbackRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRecommendationFeedbackResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRecommendationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRecommendationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRepositoryAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRepositoryAssociationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListRecommendationFeedbackRequest$MaxResults": "<p> The maximum number of results that are returned per call. The default is 100. </p>",
+        "ListRecommendationsRequest$MaxResults": "<p> The maximum number of results that are returned per call. The default is 100. </p>",
+        "ListRepositoryAssociationsRequest$MaxResults": "<p>The maximum number of repository association results returned by <code>ListRepositoryAssociations</code> in paginated output. When this parameter is used, <code>ListRepositoryAssociations</code> only returns <code>maxResults</code> results in a single page with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListRepositoryAssociations</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 25. If this parameter is not used, <code>ListRepositoryAssociations</code> returns up to 25 results and a <code>nextToken</code> value if applicable. </p>"
+      }
+    },
+    "MeteredLinesOfCodeCount": {
+      "base": null,
+      "refs": {
+        "Metrics$MeteredLinesOfCodeCount": "<p> Lines of code metered in the code review. </p>",
+        "MetricsSummary$MeteredLinesOfCodeCount": "<p> Lines of code metered in the code review. </p>"
+      }
+    },
+    "Metrics": {
+      "base": "<p> Information about the statistics from the code review. </p>",
+      "refs": {
+        "CodeReview$Metrics": "<p> The statistics from the code review. </p>"
+      }
+    },
+    "MetricsSummary": {
+      "base": "<p> Information about metrics summaries. </p>",
+      "refs": {
+        "CodeReviewSummary$MetricsSummary": "<p> The statistics from the code review. </p>"
+      }
+    },
+    "Name": {
+      "base": null,
+      "refs": {
+        "CodeCommitRepository$Name": "<p>The name of the AWS CodeCommit repository.</p>",
+        "CodeReview$Name": "<p> The name of the code review. </p>",
+        "CodeReview$RepositoryName": "<p> The name of the repository. </p>",
+        "CodeReviewSummary$Name": "<p> The name of the code review. </p>",
+        "CodeReviewSummary$RepositoryName": "<p> The name of the repository. </p>",
+        "Names$member": null,
+        "RepositoryAssociation$Name": "<p>The name of the repository.</p>",
+        "RepositoryAssociationSummary$Name": "<p>The name of the repository association.</p>",
+        "RepositoryNames$member": null,
+        "ThirdPartySourceRepository$Name": "<p> The name of the third party source repository. </p>"
+      }
+    },
+    "Names": {
+      "base": null,
+      "refs": {
+        "ListRepositoryAssociationsRequest$Names": "<p>List of repository names to use as a filter.</p>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListCodeReviewsRequest$NextToken": "<p> If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "ListCodeReviewsResponse$NextToken": "<p> Pagination token. </p>",
+        "ListRecommendationFeedbackRequest$NextToken": "<p> If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "ListRecommendationFeedbackResponse$NextToken": "<p> If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. </p>",
+        "ListRecommendationsRequest$NextToken": "<p> Pagination token. </p>",
+        "ListRecommendationsResponse$NextToken": "<p> Pagination token. </p>",
+        "ListRepositoryAssociationsRequest$NextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListRepositoryAssociations</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>Treat this token as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
+        "ListRepositoryAssociationsResponse$NextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListRecommendations</code> request. When the results of a <code>ListRecommendations</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>"
+      }
+    },
+    "NotFoundException": {
+      "base": "<p>The resource specified in the request was not found.</p>",
+      "refs": {
+      }
+    },
+    "Owner": {
+      "base": null,
+      "refs": {
+        "CodeReview$Owner": "<p> The owner of the repository. </p>",
+        "CodeReviewSummary$Owner": "<p> The owner of the repository. </p>",
+        "Owners$member": null,
+        "RepositoryAssociation$Owner": "<p>The owner of the repository.</p>",
+        "RepositoryAssociationSummary$Owner": "<p>The owner of the repository association.</p>",
+        "ThirdPartySourceRepository$Owner": "<p> The username of the owner of the repository. </p>"
+      }
+    },
+    "Owners": {
+      "base": null,
+      "refs": {
+        "ListRepositoryAssociationsRequest$Owners": "<p>List of owners to use as a filter. For GitHub, this is name of the GitHub account that was used to associate the repository. For AWS CodeCommit, it is the name of the CodeCommit account that was used to associate the repository.</p>"
+      }
+    },
+    "ProviderType": {
+      "base": null,
+      "refs": {
+        "CodeReview$ProviderType": "<p> The provider type of the repository association. </p>",
+        "CodeReviewSummary$ProviderType": "<p> The provider type of the repository association. </p>",
+        "ProviderTypes$member": null,
+        "RepositoryAssociation$ProviderType": "<p>The provider type of the repository association.</p>",
+        "RepositoryAssociationSummary$ProviderType": "<p>The provider type of the repository association.</p>"
+      }
+    },
+    "ProviderTypes": {
+      "base": null,
+      "refs": {
+        "ListCodeReviewsRequest$ProviderTypes": "<p> List of provider types for filtering that needs to be applied before displaying the result. For example, \"providerTypes=[GitHub]\" will list code reviews from GitHub. </p>",
+        "ListRepositoryAssociationsRequest$ProviderTypes": "<p>List of provider types to use as a filter.</p>"
+      }
+    },
+    "PullRequestId": {
+      "base": null,
+      "refs": {
+        "CodeReview$PullRequestId": "<p> The pull request ID for the code review. </p>",
+        "CodeReviewSummary$PullRequestId": "<p> The pull request ID for the code review. </p>"
+      }
+    },
+    "PutRecommendationFeedbackRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutRecommendationFeedbackResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Reaction": {
+      "base": null,
+      "refs": {
+        "Reactions$member": null
+      }
+    },
+    "Reactions": {
+      "base": null,
+      "refs": {
+        "PutRecommendationFeedbackRequest$Reactions": "<p> List for storing reactions. Reactions are utf-8 text code for emojis. If you send an empty list it clears all your feedback. </p>",
+        "RecommendationFeedback$Reactions": "<p> List for storing reactions. Reactions are utf-8 text code for emojis. You can send an empty list to clear off all your feedback. </p>",
+        "RecommendationFeedbackSummary$Reactions": "<p> List for storing reactions. Reactions are utf-8 text code for emojis. </p>"
+      }
+    },
+    "RecommendationFeedback": {
+      "base": "<p> Information about the recommendation feedback. </p>",
+      "refs": {
+        "DescribeRecommendationFeedbackResponse$RecommendationFeedback": "<p> The recommendation feedback given by the user. </p>"
+      }
+    },
+    "RecommendationFeedbackSummaries": {
+      "base": null,
+      "refs": {
+        "ListRecommendationFeedbackResponse$RecommendationFeedbackSummaries": "<p> Recommendation feedback summaries corresponding to the code reivew ARN. </p>"
+      }
+    },
+    "RecommendationFeedbackSummary": {
+      "base": "<p> Information about recommendation feedback summaries. </p>",
+      "refs": {
+        "RecommendationFeedbackSummaries$member": null
+      }
+    },
+    "RecommendationId": {
+      "base": null,
+      "refs": {
+        "DescribeRecommendationFeedbackRequest$RecommendationId": "<p> The recommendation ID that can be used to track the provided recommendations and then to collect the feedback. </p>",
+        "PutRecommendationFeedbackRequest$RecommendationId": "<p> The recommendation ID that can be used to track the provided recommendations and then to collect the feedback. </p>",
+        "RecommendationFeedback$RecommendationId": "<p> The recommendation ID that can be used to track the provided recommendations. Later on it can be used to collect the feedback. </p>",
+        "RecommendationFeedbackSummary$RecommendationId": "<p> The recommendation ID that can be used to track the provided recommendations. Later on it can be used to collect the feedback. </p>",
+        "RecommendationIds$member": null,
+        "RecommendationSummary$RecommendationId": "<p> The recommendation ID that can be used to track the provided recommendations. Later on it can be used to collect the feedback. </p>"
+      }
+    },
+    "RecommendationIds": {
+      "base": null,
+      "refs": {
+        "ListRecommendationFeedbackRequest$RecommendationIds": "<p> Filter on recommendationIds that need to be applied before displaying the result. This can be used to query all the recommendation feedback for a given recommendation. </p>"
+      }
+    },
+    "RecommendationSummaries": {
+      "base": null,
+      "refs": {
+        "ListRecommendationsResponse$RecommendationSummaries": "<p> List of recommendations for the requested code review. </p>"
+      }
+    },
+    "RecommendationSummary": {
+      "base": "<p> Information about recommendations. </p>",
+      "refs": {
+        "RecommendationSummaries$member": null
+      }
+    },
+    "Repository": {
+      "base": "<p>Information about a repository.</p>",
+      "refs": {
+        "AssociateRepositoryRequest$Repository": "<p>The repository to associate.</p>"
+      }
+    },
+    "RepositoryAssociation": {
+      "base": "<p>Information about a repository association.</p>",
+      "refs": {
+        "AssociateRepositoryResponse$RepositoryAssociation": "<p>Information about the repository association.</p>",
+        "DescribeRepositoryAssociationResponse$RepositoryAssociation": "<p>Information about the repository association.</p>",
+        "DisassociateRepositoryResponse$RepositoryAssociation": "<p>Information about the disassociated repository.</p>"
+      }
+    },
+    "RepositoryAssociationState": {
+      "base": null,
+      "refs": {
+        "RepositoryAssociation$State": "<p>The state of the repository association.</p>",
+        "RepositoryAssociationStates$member": null,
+        "RepositoryAssociationSummary$State": "<p>The state of the repository association.</p> <dl> <dt>Associated</dt> <dd> <p>Amazon CodeGuru Reviewer is associated with the repository. </p> </dd> <dt>Associating</dt> <dd> <p>The association is in progress. </p> </dd> <dt>Failed</dt> <dd> <p>The association failed. </p> </dd> <dt>Disassociating</dt> <dd> <p>Amazon CodeGuru Reviewer is in the process of disassociating with the repository. </p> </dd> </dl>"
+      }
+    },
+    "RepositoryAssociationStates": {
+      "base": null,
+      "refs": {
+        "ListRepositoryAssociationsRequest$States": "<p>List of states to use as a filter.</p>"
+      }
+    },
+    "RepositoryAssociationSummaries": {
+      "base": null,
+      "refs": {
+        "ListRepositoryAssociationsResponse$RepositoryAssociationSummaries": "<p>A list of repository associations that meet the criteria of the request.</p>"
+      }
+    },
+    "RepositoryAssociationSummary": {
+      "base": "<p>Information about a repository association.</p>",
+      "refs": {
+        "RepositoryAssociationSummaries$member": null
+      }
+    },
+    "RepositoryNames": {
+      "base": null,
+      "refs": {
+        "ListCodeReviewsRequest$RepositoryNames": "<p> List of repository names for filtering that needs to be applied before displaying the result. </p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p> The resource specified in the request was not found. </p>",
+      "refs": {
+      }
+    },
+    "SourceCodeType": {
+      "base": "<p> Information about the source code type. </p>",
+      "refs": {
+        "CodeReview$SourceCodeType": "<p> The type of the source code for the code review. </p>"
+      }
+    },
+    "StateReason": {
+      "base": null,
+      "refs": {
+        "CodeReview$StateReason": "<p> The reason for the state of the code review. </p>",
+        "RepositoryAssociation$StateReason": "<p>A description of why the repository association is in the current state.</p>"
+      }
+    },
+    "Text": {
+      "base": null,
+      "refs": {
+        "RecommendationSummary$Description": "<p> A description of the recommendation generated by CodeGuru Reviewer for the lines of code between the start line and the end line. </p>"
+      }
+    },
+    "ThirdPartySourceRepository": {
+      "base": "<p> Information about a third party source repository connected through CodeStar Connections. </p>",
+      "refs": {
+        "Repository$Bitbucket": "<p> Information about a Bitbucket Cloud repository. </p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The request was denied due to request throttling.</p>",
+      "refs": {
+      }
+    },
+    "TimeStamp": {
+      "base": null,
+      "refs": {
+        "CodeReview$CreatedTimeStamp": "<p> The time, in milliseconds since the epoch, when the code review was created. </p>",
+        "CodeReview$LastUpdatedTimeStamp": "<p> The time, in milliseconds since the epoch, when the code review was last updated. </p>",
+        "CodeReviewSummary$CreatedTimeStamp": "<p> The time, in milliseconds since the epoch, when the code review was created. </p>",
+        "CodeReviewSummary$LastUpdatedTimeStamp": "<p> The time, in milliseconds since the epoch, when the code review was last updated. </p>",
+        "RecommendationFeedback$CreatedTimeStamp": "<p> The time at which the feedback was created. </p>",
+        "RecommendationFeedback$LastUpdatedTimeStamp": "<p> The time at which the feedback was last updated. </p>",
+        "RepositoryAssociation$LastUpdatedTimeStamp": "<p>The time, in milliseconds since the epoch, when the repository association was last updated.</p>",
+        "RepositoryAssociation$CreatedTimeStamp": "<p>The time, in milliseconds since the epoch, when the repository association was created.</p>",
+        "RepositoryAssociationSummary$LastUpdatedTimeStamp": "<p>The time, in milliseconds since the epoch, since the repository association was last updated. </p>"
+      }
+    },
+    "Type": {
+      "base": null,
+      "refs": {
+        "CodeReview$Type": "<p> The type of code review. </p>",
+        "CodeReviewSummary$Type": "<p> The type of the code review. </p>",
+        "ListCodeReviewsRequest$Type": "<p> The type of code reviews to list in the response. </p>"
+      }
+    },
+    "UserId": {
+      "base": null,
+      "refs": {
+        "DescribeRecommendationFeedbackRequest$UserId": "<p> Optional parameter to describe the feedback for a given user. If this is not supplied, it defaults to the user making the request. </p>",
+        "RecommendationFeedback$UserId": "<p> The user principal that made the API call. </p>",
+        "RecommendationFeedbackSummary$UserId": "<p> The identifier for the user that gave the feedback. </p>",
+        "UserIds$member": null
+      }
+    },
+    "UserIds": {
+      "base": null,
+      "refs": {
+        "ListRecommendationFeedbackRequest$UserIds": "<p> Filter on userIds that need to be applied before displaying the result. This can be used to query all the recommendation feedback for a code review from a given user. </p>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The input fails to satisfy the specified constraints.</p>",
+      "refs": {
+      }
+    }
+  }
+}

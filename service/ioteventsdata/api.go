@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opBatchPutMessage = "BatchPutMessage"
@@ -56,10 +57,11 @@ func (c *IoTEventsData) BatchPutMessageRequest(input *BatchPutMessageInput) (req
 // BatchPutMessage API operation for AWS IoT Events Data.
 //
 // Sends a set of messages to the AWS IoT Events system. Each message payload
-// will be transformed into the input you specify (inputName) and ingested into
+// is transformed into the input you specify ("inputName") and ingested into
 // any detectors that monitor that input. If multiple messages are sent, the
-// order in which the messages are processed is not guaranteed--you must send
-// messages one at a time and wait for a successful response to guarantee ordering.
+// order in which the messages are processed isn't guaranteed. To guarantee
+// ordering, you must send messages one at a time and wait for a successful
+// response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -68,17 +70,17 @@ func (c *IoTEventsData) BatchPutMessageRequest(input *BatchPutMessageInput) (req
 // See the AWS API reference guide for AWS IoT Events Data's
 // API operation BatchPutMessage for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request was invalid.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   An internal failure occured.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request could not be completed due to throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchPutMessage
@@ -157,17 +159,17 @@ func (c *IoTEventsData) BatchUpdateDetectorRequest(input *BatchUpdateDetectorInp
 // See the AWS API reference guide for AWS IoT Events Data's
 // API operation BatchUpdateDetector for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request was invalid.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   An internal failure occured.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request could not be completed due to throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/BatchUpdateDetector
@@ -245,20 +247,20 @@ func (c *IoTEventsData) DescribeDetectorRequest(input *DescribeDetectorInput) (r
 // See the AWS API reference guide for AWS IoT Events Data's
 // API operation DescribeDetector for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request was invalid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request could not be completed due to throttling.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   An internal failure occured.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/DescribeDetector
@@ -336,20 +338,20 @@ func (c *IoTEventsData) ListDetectorsRequest(input *ListDetectorsInput) (req *re
 // See the AWS API reference guide for AWS IoT Events Data's
 // API operation ListDetectors for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request was invalid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request could not be completed due to throttling.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   An internal failure occured.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-data-2018-10-23/ListDetectors
@@ -374,7 +376,7 @@ func (c *IoTEventsData) ListDetectorsWithContext(ctx aws.Context, input *ListDet
 	return out, req.Send()
 }
 
-// Contains informations about the errors encountered.
+// Contains information about the errors encountered.
 type BatchPutMessageErrorEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -385,7 +387,7 @@ type BatchPutMessageErrorEntry struct {
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
 	// The ID of the message that caused the error. (See the value corresponding
-	// to the messageId key in the message object.)
+	// to the "messageId" key in the "message" object.)
 	MessageId *string `locationName:"messageId" min:"1" type:"string"`
 }
 
@@ -420,8 +422,8 @@ func (s *BatchPutMessageErrorEntry) SetMessageId(v string) *BatchPutMessageError
 type BatchPutMessageInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of messages to send. Each message has format: '{ "messageId": "string",
-	// "inputName": "string", "payload": "string"}'.
+	// The list of messages to send. Each message has the following format: '{ "messageId":
+	// "string", "inputName": "string", "payload": "string"}'
 	//
 	// Messages is a required field
 	Messages []*Message `locationName:"messages" min:"1" type:"list" required:"true"`
@@ -492,7 +494,7 @@ func (s *BatchPutMessageOutput) SetBatchPutMessageErrorEntries(v []*BatchPutMess
 	return s
 }
 
-// Information about the error which occured when attempting to update a detector.
+// Information about the error that occured when attempting to update a detector.
 type BatchUpdateDetectorErrorEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -503,7 +505,7 @@ type BatchUpdateDetectorErrorEntry struct {
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
 	// The "messageId" of the update request that caused the error. (The value of
-	// the messageId in the update request Detector object.)
+	// the "messageId" in the update request "Detector" object.)
 	MessageId *string `locationName:"messageId" min:"1" type:"string"`
 }
 
@@ -538,8 +540,7 @@ func (s *BatchUpdateDetectorErrorEntry) SetMessageId(v string) *BatchUpdateDetec
 type BatchUpdateDetectorInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of detectors (instances) to be updated, along with the values to
-	// be updated.
+	// The list of detectors (instances) to update, along with the values to update.
 	//
 	// Detectors is a required field
 	Detectors []*UpdateDetectorRequest `locationName:"detectors" min:"1" type:"list" required:"true"`
@@ -590,8 +591,8 @@ func (s *BatchUpdateDetectorInput) SetDetectors(v []*UpdateDetectorRequest) *Bat
 type BatchUpdateDetectorOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of those detector updates which resulted in errors. (The specific
-	// update did not occur if an error is listed here.)
+	// A list of those detector updates that resulted in errors. (If an error is
+	// listed here, the specific update did not occur.)
 	BatchUpdateDetectorErrorEntries []*BatchUpdateDetectorErrorEntry `locationName:"batchUpdateDetectorErrorEntries" type:"list"`
 }
 
@@ -773,7 +774,7 @@ type DetectorState struct {
 	// Timers is a required field
 	Timers []*Timer `locationName:"timers" type:"list" required:"true"`
 
-	// The current state of the detector's variables.
+	// The current values of the detector's variables.
 	//
 	// Variables is a required field
 	Variables []*Variable `locationName:"variables" type:"list" required:"true"`
@@ -807,7 +808,7 @@ func (s *DetectorState) SetVariables(v []*Variable) *DetectorState {
 	return s
 }
 
-// The new state, variable values and timer settings of the detector (instance).
+// The new state, variable values, and timer settings of the detector (instance).
 type DetectorStateDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -816,14 +817,14 @@ type DetectorStateDefinition struct {
 	// StateName is a required field
 	StateName *string `locationName:"stateName" min:"1" type:"string" required:"true"`
 
-	// The new values of the detector's timers. Any timer whose value is not specified
-	// will be cleared and its timeout event will not occur.
+	// The new values of the detector's timers. Any timer whose value isn't specified
+	// is cleared, and its timeout event won't occur.
 	//
 	// Timers is a required field
 	Timers []*TimerDefinition `locationName:"timers" type:"list" required:"true"`
 
-	// The new values of the detector's variables. Any variable whose value is not
-	// specified will be cleared.
+	// The new values of the detector's variables. Any variable whose value isn't
+	// specified is cleared.
 	//
 	// Variables is a required field
 	Variables []*VariableDefinition `locationName:"variables" type:"list" required:"true"`
@@ -993,10 +994,124 @@ func (s *DetectorSummary) SetState(v *DetectorStateSummary) *DetectorSummary {
 	return s
 }
 
+// An internal failure occured.
+type InternalFailureException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The message for the exception.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalFailureException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalFailureException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalFailureException(v protocol.ResponseMetadata) error {
+	return &InternalFailureException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalFailureException) Code() string {
+	return "InternalFailureException"
+}
+
+// Message returns the exception's message.
+func (s *InternalFailureException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalFailureException) OrigErr() error {
+	return nil
+}
+
+func (s *InternalFailureException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalFailureException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalFailureException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The request was invalid.
+type InvalidRequestException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The message for the exception.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidRequestException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidRequestException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type ListDetectorsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the detector model whose instances you want to list.
+	// The name of the detector model whose detectors (instances) are listed.
 	//
 	// DetectorModelName is a required field
 	DetectorModelName *string `location:"uri" locationName:"detectorModelName" min:"1" type:"string" required:"true"`
@@ -1105,13 +1220,13 @@ func (s *ListDetectorsOutput) SetNextToken(v string) *ListDetectorsOutput {
 type Message struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the input into which the message payload will be transformed.
+	// The name of the input into which the message payload is transformed.
 	//
 	// InputName is a required field
 	InputName *string `locationName:"inputName" min:"1" type:"string" required:"true"`
 
-	// The ID you wish to assign to the message. Each "messageId" must be unique
-	// within each batch sent.
+	// The ID to assign to the message. Within each batch sent, each "messageId"
+	// must be unique.
 	//
 	// MessageId is a required field
 	MessageId *string `locationName:"messageId" min:"1" type:"string" required:"true"`
@@ -1176,6 +1291,177 @@ func (s *Message) SetMessageId(v string) *Message {
 func (s *Message) SetPayload(v []byte) *Message {
 	s.Payload = v
 	return s
+}
+
+// The resource was not found.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The message for the exception.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The service is currently unavailable.
+type ServiceUnavailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The message for the exception.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceUnavailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceUnavailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The request could not be completed due to throttling.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The message for the exception.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The current state of a timer.
@@ -1284,8 +1570,8 @@ type UpdateDetectorRequest struct {
 	// caused the creation of this detector (instance).
 	KeyValue *string `locationName:"keyValue" min:"1" type:"string"`
 
-	// The ID you wish to assign to the detector update "message". Each "messageId"
-	// must be unique within each batch sent.
+	// The ID to assign to the detector update "message". Each "messageId" must
+	// be unique within each batch sent.
 	//
 	// MessageId is a required field
 	MessageId *string `locationName:"messageId" min:"1" type:"string" required:"true"`

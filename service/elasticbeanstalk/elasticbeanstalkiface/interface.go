@@ -179,6 +179,13 @@ type ElasticBeanstalkAPI interface {
 	ListAvailableSolutionStacksWithContext(aws.Context, *elasticbeanstalk.ListAvailableSolutionStacksInput, ...request.Option) (*elasticbeanstalk.ListAvailableSolutionStacksOutput, error)
 	ListAvailableSolutionStacksRequest(*elasticbeanstalk.ListAvailableSolutionStacksInput) (*request.Request, *elasticbeanstalk.ListAvailableSolutionStacksOutput)
 
+	ListPlatformBranches(*elasticbeanstalk.ListPlatformBranchesInput) (*elasticbeanstalk.ListPlatformBranchesOutput, error)
+	ListPlatformBranchesWithContext(aws.Context, *elasticbeanstalk.ListPlatformBranchesInput, ...request.Option) (*elasticbeanstalk.ListPlatformBranchesOutput, error)
+	ListPlatformBranchesRequest(*elasticbeanstalk.ListPlatformBranchesInput) (*request.Request, *elasticbeanstalk.ListPlatformBranchesOutput)
+
+	ListPlatformBranchesPages(*elasticbeanstalk.ListPlatformBranchesInput, func(*elasticbeanstalk.ListPlatformBranchesOutput, bool) bool) error
+	ListPlatformBranchesPagesWithContext(aws.Context, *elasticbeanstalk.ListPlatformBranchesInput, func(*elasticbeanstalk.ListPlatformBranchesOutput, bool) bool, ...request.Option) error
+
 	ListPlatformVersions(*elasticbeanstalk.ListPlatformVersionsInput) (*elasticbeanstalk.ListPlatformVersionsOutput, error)
 	ListPlatformVersionsWithContext(aws.Context, *elasticbeanstalk.ListPlatformVersionsInput, ...request.Option) (*elasticbeanstalk.ListPlatformVersionsOutput, error)
 	ListPlatformVersionsRequest(*elasticbeanstalk.ListPlatformVersionsInput) (*request.Request, *elasticbeanstalk.ListPlatformVersionsOutput)

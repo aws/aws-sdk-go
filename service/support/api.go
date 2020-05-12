@@ -3,9 +3,12 @@
 package support
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opAddAttachmentsToSet = "AddAttachmentsToSet"
@@ -52,16 +55,11 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 
 // AddAttachmentsToSet API operation for AWS Support.
 //
-// Adds one or more attachments to an attachment set. If an attachmentSetId
-// is not specified, a new attachment set is created, and the ID of the set
-// is returned in the response. If an attachmentSetId is specified, the attachments
-// are added to the specified set, if it exists.
+// Adds one or more attachments to an attachment set.
 //
-// An attachment set is a temporary container for attachments that are to be
-// added to a case or case communication. The set is available for one hour
-// after it is created; the expiryTime returned in the response indicates when
-// the set expires. The maximum number of attachments in a set is 3, and the
-// maximum size of any attachment in the set is 5 MB.
+// An attachment set is a temporary container for attachments that you add to
+// a case or case communication. The set is available for 1 hour after it's
+// created. The expiryTime returned in the response is when the set expires.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -70,22 +68,22 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 // See the AWS API reference guide for AWS Support's
 // API operation AddAttachmentsToSet for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
-//   * ErrCodeAttachmentSetIdNotFound "AttachmentSetIdNotFound"
+//   * AttachmentSetIdNotFound
 //   An attachment set with the specified ID could not be found.
 //
-//   * ErrCodeAttachmentSetExpired "AttachmentSetExpired"
+//   * AttachmentSetExpired
 //   The expiration time of the attachment set has passed. The set expires 1 hour
 //   after it is created.
 //
-//   * ErrCodeAttachmentSetSizeLimitExceeded "AttachmentSetSizeLimitExceeded"
+//   * AttachmentSetSizeLimitExceeded
 //   A limit for the size of an attachment set has been exceeded. The limits are
-//   3 attachments and 5 MB per attachment.
+//   three attachments and 5 MB per attachment.
 //
-//   * ErrCodeAttachmentLimitExceeded "AttachmentLimitExceeded"
+//   * AttachmentLimitExceeded
 //   The limit for the number of attachment sets created in a short period of
 //   time has been exceeded.
 //
@@ -171,17 +169,17 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 // See the AWS API reference guide for AWS Support's
 // API operation AddCommunicationToCase for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
-//   * ErrCodeCaseIdNotFound "CaseIdNotFound"
+//   * CaseIdNotFound
 //   The requested caseId could not be located.
 //
-//   * ErrCodeAttachmentSetIdNotFound "AttachmentSetIdNotFound"
+//   * AttachmentSetIdNotFound
 //   An attachment set with the specified ID could not be found.
 //
-//   * ErrCodeAttachmentSetExpired "AttachmentSetExpired"
+//   * AttachmentSetExpired
 //   The expiration time of the attachment set has passed. The set expires 1 hour
 //   after it is created.
 //
@@ -251,48 +249,27 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 
 // CreateCase API operation for AWS Support.
 //
-// Creates a new case in the AWS Support Center. This operation is modeled on
-// the behavior of the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
-// page. Its parameters require you to specify the following information:
+// Creates a case in the AWS Support Center. This operation is similar to how
+// you create a case in the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+// page.
 //
-//    * issueType. The type of issue for the case. You can specify either "customer-service"
-//    or "technical." If you do not indicate a value, the default is "technical."
+// The AWS Support API doesn't support requesting service limit increases. You
+// can submit a service limit increase in the following ways:
 //
-//    * serviceCode. The code for an AWS service. You obtain the serviceCode
-//    by calling DescribeServices.
-//
-//    * categoryCode. The category for the service defined for the serviceCode
-//    value. You also obtain the category code for a service by calling DescribeServices.
-//    Each AWS service defines its own set of category codes.
-//
-//    * severityCode. A value that indicates the urgency of the case, which
-//    in turn determines the response time according to your service level agreement
-//    with AWS Support. You obtain the SeverityCode by calling DescribeSeverityLevels.
-//
-//    * subject. The Subject field on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+//    * Submit a request from the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
 //    page.
 //
-//    * communicationBody. The Description field on the AWS Support Center Create
-//    Case (https://console.aws.amazon.com/support/home#/case/create) page.
+//    * Use the Service Quotas RequestServiceQuotaIncrease (https://docs.aws.amazon.com/servicequotas/2019-06-24/apireference/API_RequestServiceQuotaIncrease.html)
+//    operation.
 //
-//    * attachmentSetId. The ID of a set of attachments that has been created
-//    by using AddAttachmentsToSet.
+// A successful CreateCase request returns an AWS Support case number. You can
+// use the DescribeCases operation and specify the case number to get existing
+// AWS Support cases. After you create a case, you can use the AddCommunicationToCase
+// operation to add additional communication or attachments to an existing case.
 //
-//    * language. The human language in which AWS Support handles the case.
-//    English and Japanese are currently supported.
-//
-//    * ccEmailAddresses. The AWS Support Center CC field on the Create Case
-//    (https://console.aws.amazon.com/support/home#/case/create) page. You can
-//    list email addresses to be copied on any correspondence about the case.
-//    The account that opens the case is already identified by passing the AWS
-//    Credentials in the HTTP POST method or in a method or function call from
-//    one of the programming languages supported by an AWS SDK (http://aws.amazon.com/tools/).
-//
-// To add additional communication or attachments to an existing case, use AddCommunicationToCase.
-//
-// A successful CreateCase request returns an AWS Support case number. Case
-// numbers are used by the DescribeCases operation to retrieve existing AWS
-// Support cases.
+//    * The caseId is separate from the displayId that appears in the Support
+//    Center (https://console.aws.amazon.com/support). You can use the DescribeCases
+//    operation to get the displayId.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -301,17 +278,17 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 // See the AWS API reference guide for AWS Support's
 // API operation CreateCase for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
-//   * ErrCodeCaseCreationLimitExceeded "CaseCreationLimitExceeded"
+//   * CaseCreationLimitExceeded
 //   The case creation limit for the account has been exceeded.
 //
-//   * ErrCodeAttachmentSetIdNotFound "AttachmentSetIdNotFound"
+//   * AttachmentSetIdNotFound
 //   An attachment set with the specified ID could not be found.
 //
-//   * ErrCodeAttachmentSetExpired "AttachmentSetExpired"
+//   * AttachmentSetExpired
 //   The expiration time of the attachment set has passed. The set expires 1 hour
 //   after it is created.
 //
@@ -381,10 +358,11 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 
 // DescribeAttachment API operation for AWS Support.
 //
-// Returns the attachment that has the specified ID. Attachment IDs are generated
-// by the case management system when you add an attachment to a case or case
-// communication. Attachment IDs are returned in the AttachmentDetails objects
-// that are returned by the DescribeCommunications operation.
+// Returns the attachment that has the specified ID. Attachments can include
+// screenshots, error logs, or other files that describe your issue. Attachment
+// IDs are generated by the case management system when you add an attachment
+// to a case or case communication. Attachment IDs are returned in the AttachmentDetails
+// objects that are returned by the DescribeCommunications operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -393,15 +371,15 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 // See the AWS API reference guide for AWS Support's
 // API operation DescribeAttachment for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
-//   * ErrCodeDescribeAttachmentLimitExceeded "DescribeAttachmentLimitExceeded"
+//   * DescribeAttachmentLimitExceeded
 //   The limit for the number of DescribeAttachment requests in a short period
 //   of time has been exceeded.
 //
-//   * ErrCodeAttachmentIdNotFound "AttachmentIdNotFound"
+//   * AttachmentIdNotFound
 //   An attachment with the specified ID could not be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeAttachment
@@ -499,11 +477,11 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.
 // See the AWS API reference guide for AWS Support's
 // API operation DescribeCases for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
-//   * ErrCodeCaseIdNotFound "CaseIdNotFound"
+//   * CaseIdNotFound
 //   The requested caseId could not be located.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCases
@@ -571,10 +549,12 @@ func (c *Support) DescribeCasesPagesWithContext(ctx aws.Context, input *Describe
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*DescribeCasesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeCasesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -646,11 +626,11 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 // See the AWS API reference guide for AWS Support's
 // API operation DescribeCommunications for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
-//   * ErrCodeCaseIdNotFound "CaseIdNotFound"
+//   * CaseIdNotFound
 //   The requested caseId could not be located.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCommunications
@@ -718,10 +698,12 @@ func (c *Support) DescribeCommunicationsPagesWithContext(ctx aws.Context, input 
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*DescribeCommunicationsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*DescribeCommunicationsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -788,8 +770,8 @@ func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *re
 // See the AWS API reference guide for AWS Support's
 // API operation DescribeServices for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeServices
@@ -869,8 +851,8 @@ func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInp
 // See the AWS API reference guide for AWS Support's
 // API operation DescribeSeverityLevels for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeSeverityLevels
@@ -953,8 +935,8 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 // See the AWS API reference guide for AWS Support's
 // API operation DescribeTrustedAdvisorCheckRefreshStatuses for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckRefreshStatuses
@@ -1051,8 +1033,8 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 // See the AWS API reference guide for AWS Support's
 // API operation DescribeTrustedAdvisorCheckResult for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckResult
@@ -1133,8 +1115,8 @@ func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTru
 // See the AWS API reference guide for AWS Support's
 // API operation DescribeTrustedAdvisorCheckSummaries for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckSummaries
@@ -1206,7 +1188,8 @@ func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvi
 // Returns information about all available Trusted Advisor checks, including
 // name, ID, category, description, and metadata. You must specify a language
 // code; English ("en") and Japanese ("ja") are currently supported. The response
-// contains a TrustedAdvisorCheckDescription for each check.
+// contains a TrustedAdvisorCheckDescription for each check. The region must
+// be set to us-east-1.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1215,8 +1198,8 @@ func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvi
 // See the AWS API reference guide for AWS Support's
 // API operation DescribeTrustedAdvisorChecks for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorChecks
@@ -1295,8 +1278,11 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 // The response contains a TrustedAdvisorCheckRefreshStatus object, which contains
 // these fields:
 //
-//    * status. The refresh status of the check: "none", "enqueued", "processing",
-//    "success", or "abandoned".
+//    * status. The refresh status of the check: none: The check is not refreshed
+//    or the non-success status exceeds the timeout enqueued: The check refresh
+//    requests has entered the refresh queue processing: The check refresh request
+//    is picked up by the rule processing engine success: The check is successfully
+//    refreshed abandoned: The check refresh has failed
 //
 //    * millisUntilNextRefreshable. The amount of time, in milliseconds, until
 //    the check is eligible for refresh.
@@ -1310,8 +1296,8 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 // See the AWS API reference guide for AWS Support's
 // API operation RefreshTrustedAdvisorCheck for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/RefreshTrustedAdvisorCheck
@@ -1390,11 +1376,11 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *request.Requ
 // See the AWS API reference guide for AWS Support's
 // API operation ResolveCase for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   An internal server error occurred.
 //
-//   * ErrCodeCaseIdNotFound "CaseIdNotFound"
+//   * CaseIdNotFound
 //   The requested caseId could not be located.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/ResolveCase
@@ -1428,8 +1414,13 @@ type AddAttachmentsToSetInput struct {
 	// set, if it exists.
 	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
-	// One or more attachments to add to the set. The limit is 3 attachments per
-	// set, and the size limit is 5 MB per attachment.
+	// One or more attachments to add to the set. You can add up to three attachments
+	// per set. The size limit is 5 MB per attachment.
+	//
+	// In the Attachment object, use the data parameter to specify the contents
+	// of the attachment file. In the previous request syntax, the value for data
+	// appear as blob, which is represented as a base64-encoded string. The value
+	// for fileName is the name of the attachment, such as troubleshoot-screenshot.png.
 	//
 	// Attachments is a required field
 	Attachments []*Attachment `locationName:"attachments" type:"list" required:"true"`
@@ -1673,6 +1664,355 @@ func (s *AttachmentDetails) SetFileName(v string) *AttachmentDetails {
 	return s
 }
 
+// An attachment with the specified ID could not be found.
+type AttachmentIdNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// An attachment with the specified ID could not be found.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s AttachmentIdNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AttachmentIdNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorAttachmentIdNotFound(v protocol.ResponseMetadata) error {
+	return &AttachmentIdNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AttachmentIdNotFound) Code() string {
+	return "AttachmentIdNotFound"
+}
+
+// Message returns the exception's message.
+func (s *AttachmentIdNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AttachmentIdNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *AttachmentIdNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AttachmentIdNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AttachmentIdNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The limit for the number of attachment sets created in a short period of
+// time has been exceeded.
+type AttachmentLimitExceeded struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The limit for the number of attachment sets created in a short period of
+	// time has been exceeded.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s AttachmentLimitExceeded) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AttachmentLimitExceeded) GoString() string {
+	return s.String()
+}
+
+func newErrorAttachmentLimitExceeded(v protocol.ResponseMetadata) error {
+	return &AttachmentLimitExceeded{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AttachmentLimitExceeded) Code() string {
+	return "AttachmentLimitExceeded"
+}
+
+// Message returns the exception's message.
+func (s *AttachmentLimitExceeded) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AttachmentLimitExceeded) OrigErr() error {
+	return nil
+}
+
+func (s *AttachmentLimitExceeded) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AttachmentLimitExceeded) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AttachmentLimitExceeded) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The expiration time of the attachment set has passed. The set expires 1 hour
+// after it is created.
+type AttachmentSetExpired struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The expiration time of the attachment set has passed. The set expires one
+	// hour after it is created.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s AttachmentSetExpired) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AttachmentSetExpired) GoString() string {
+	return s.String()
+}
+
+func newErrorAttachmentSetExpired(v protocol.ResponseMetadata) error {
+	return &AttachmentSetExpired{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AttachmentSetExpired) Code() string {
+	return "AttachmentSetExpired"
+}
+
+// Message returns the exception's message.
+func (s *AttachmentSetExpired) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AttachmentSetExpired) OrigErr() error {
+	return nil
+}
+
+func (s *AttachmentSetExpired) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AttachmentSetExpired) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AttachmentSetExpired) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// An attachment set with the specified ID could not be found.
+type AttachmentSetIdNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// An attachment set with the specified ID could not be found.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s AttachmentSetIdNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AttachmentSetIdNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorAttachmentSetIdNotFound(v protocol.ResponseMetadata) error {
+	return &AttachmentSetIdNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AttachmentSetIdNotFound) Code() string {
+	return "AttachmentSetIdNotFound"
+}
+
+// Message returns the exception's message.
+func (s *AttachmentSetIdNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AttachmentSetIdNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *AttachmentSetIdNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AttachmentSetIdNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AttachmentSetIdNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A limit for the size of an attachment set has been exceeded. The limits are
+// three attachments and 5 MB per attachment.
+type AttachmentSetSizeLimitExceeded struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A limit for the size of an attachment set has been exceeded. The limits are
+	// three attachments and 5 MB per attachment.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s AttachmentSetSizeLimitExceeded) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AttachmentSetSizeLimitExceeded) GoString() string {
+	return s.String()
+}
+
+func newErrorAttachmentSetSizeLimitExceeded(v protocol.ResponseMetadata) error {
+	return &AttachmentSetSizeLimitExceeded{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AttachmentSetSizeLimitExceeded) Code() string {
+	return "AttachmentSetSizeLimitExceeded"
+}
+
+// Message returns the exception's message.
+func (s *AttachmentSetSizeLimitExceeded) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AttachmentSetSizeLimitExceeded) OrigErr() error {
+	return nil
+}
+
+func (s *AttachmentSetSizeLimitExceeded) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AttachmentSetSizeLimitExceeded) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AttachmentSetSizeLimitExceeded) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The case creation limit for the account has been exceeded.
+type CaseCreationLimitExceeded struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// An error message that indicates that you have exceeded the number of cases
+	// you can have open.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s CaseCreationLimitExceeded) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CaseCreationLimitExceeded) GoString() string {
+	return s.String()
+}
+
+func newErrorCaseCreationLimitExceeded(v protocol.ResponseMetadata) error {
+	return &CaseCreationLimitExceeded{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *CaseCreationLimitExceeded) Code() string {
+	return "CaseCreationLimitExceeded"
+}
+
+// Message returns the exception's message.
+func (s *CaseCreationLimitExceeded) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *CaseCreationLimitExceeded) OrigErr() error {
+	return nil
+}
+
+func (s *CaseCreationLimitExceeded) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *CaseCreationLimitExceeded) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *CaseCreationLimitExceeded) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // A JSON-formatted object that contains the metadata for a support case. It
 // is contained the response from a DescribeCases request. CaseDetails contains
 // the following fields:
@@ -1700,9 +2040,11 @@ func (s *AttachmentDetails) SetFileName(v string) *AttachmentDetails {
 //    the service code defined in the call to DescribeServices.
 //
 //    * severityCode. The severity code assigned to the case. Contains one of
-//    the values returned by the call to DescribeSeverityLevels.
+//    the values returned by the call to DescribeSeverityLevels. The possible
+//    values are: low, normal, high, urgent, and critical.
 //
-//    * status. The status of the case in the AWS Support Center.
+//    * status. The status of the case in the AWS Support Center. Valid values:
+//    opened pending-customer-action reopened resolved unassigned work-in-progress
 //
 //    * subject. The subject line of the case.
 //
@@ -1736,13 +2078,28 @@ type CaseDetails struct {
 	// that you can use to retrieve earlier communications.
 	RecentCommunications *RecentCaseCommunications `locationName:"recentCommunications" type:"structure"`
 
-	// The code for the AWS service returned by the call to DescribeServices.
+	// The code for the AWS service. You can get a list of codes and the corresponding
+	// service names by calling DescribeServices.
 	ServiceCode *string `locationName:"serviceCode" type:"string"`
 
 	// The code for the severity level returned by the call to DescribeSeverityLevels.
 	SeverityCode *string `locationName:"severityCode" type:"string"`
 
 	// The status of the case.
+	//
+	// Valid values:
+	//
+	//    * opened
+	//
+	//    * pending-customer-action
+	//
+	//    * reopened
+	//
+	//    * resolved
+	//
+	//    * unassigned
+	//
+	//    * work-in-progress
 	Status *string `locationName:"status" type:"string"`
 
 	// The subject line for the case in the AWS Support Center.
@@ -1837,6 +2194,63 @@ func (s *CaseDetails) SetTimeCreated(v string) *CaseDetails {
 	return s
 }
 
+// The requested caseId could not be located.
+type CaseIdNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The requested CaseId could not be located.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s CaseIdNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CaseIdNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorCaseIdNotFound(v protocol.ResponseMetadata) error {
+	return &CaseIdNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *CaseIdNotFound) Code() string {
+	return "CaseIdNotFound"
+}
+
+// Message returns the exception's message.
+func (s *CaseIdNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *CaseIdNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *CaseIdNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *CaseIdNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *CaseIdNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // A JSON-formatted name/value pair that represents the category name and category
 // code of the problem, selected from the DescribeServices response for each
 // AWS service.
@@ -1873,8 +2287,8 @@ func (s *Category) SetName(v string) *Category {
 }
 
 // A communication associated with an AWS Support case. The communication consists
-// of the case ID, the message body, attachment information, the account email
-// address, and the date and time of the communication.
+// of the case ID, the message body, attachment information, the submitter of
+// the communication, and the date and time of the communication.
 type Communication struct {
 	_ struct{} `type:"structure"`
 
@@ -1888,7 +2302,11 @@ type Communication struct {
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseId *string `locationName:"caseId" type:"string"`
 
-	// The email address of the account that submitted the AWS Support case.
+	// The identity of the account that submitted, or responded to, the support
+	// case. Customer entries include the role or IAM user as well as the email
+	// address. For example, "AdminRole (Role) <someone@example.com>. Entries from
+	// the AWS Support team display "Amazon Web Services," and do not show an email
+	// address.
 	SubmittedBy *string `locationName:"submittedBy" type:"string"`
 
 	// The time the communication was created.
@@ -1939,41 +2357,54 @@ type CreateCaseInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of a set of one or more attachments for the case. Create the set by
-	// using AddAttachmentsToSet.
+	// using the AddAttachmentsToSet operation.
 	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
-	// The category of problem for the AWS Support case.
+	// The category of problem for the AWS Support case. You also use the DescribeServices
+	// operation to get the category code for a service. Each AWS service defines
+	// its own set of category codes.
 	CategoryCode *string `locationName:"categoryCode" type:"string"`
 
 	// A list of email addresses that AWS Support copies on case correspondence.
+	// AWS Support identifies the account that creates the case when you specify
+	// your AWS credentials in an HTTP POST method or use the AWS SDKs (http://aws.amazon.com/tools/).
 	CcEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
 
-	// The communication body text when you create an AWS Support case by calling
-	// CreateCase.
+	// The communication body text that describes the issue. This text appears in
+	// the Description field on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+	// page.
 	//
 	// CommunicationBody is a required field
 	CommunicationBody *string `locationName:"communicationBody" min:"1" type:"string" required:"true"`
 
-	// The type of issue for the case. You can specify either "customer-service"
-	// or "technical." If you do not indicate a value, the default is "technical."
+	// The type of issue for the case. You can specify customer-service or technical.
+	// If you don't specify a value, the default is technical.
 	IssueType *string `locationName:"issueType" type:"string"`
 
-	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
-	// currently supports English ("en") and Japanese ("ja"). Language parameters
-	// must be passed explicitly for operations that take them.
+	// The language in which AWS Support handles the case. You must specify the
+	// ISO 639-1 code for the language parameter if you want support in that language.
+	// Currently, English ("en") and Japanese ("ja") are supported.
 	Language *string `locationName:"language" type:"string"`
 
-	// The code for the AWS service returned by the call to DescribeServices.
+	// The code for the AWS service. You can use the DescribeServices operation
+	// to get the possible serviceCode values.
 	ServiceCode *string `locationName:"serviceCode" type:"string"`
 
-	// The code for the severity level returned by the call to DescribeSeverityLevels.
+	// A value that indicates the urgency of the case. This value determines the
+	// response time according to your service level agreement with AWS Support.
+	// You can use the DescribeSeverityLevels operation to get the possible values
+	// for severityCode.
 	//
-	// The availability of severity levels depends on each customer's support subscription.
-	// In other words, your subscription may not necessarily require the urgent
-	// level of response time.
+	// For more information, see SeverityLevel and Choosing a Severity (https://docs.aws.amazon.com/awssupport/latest/user/getting-started.html#choosing-severity)
+	// in the AWS Support User Guide.
+	//
+	// The availability of severity levels depends on the support plan for the AWS
+	// account.
 	SeverityCode *string `locationName:"severityCode" type:"string"`
 
-	// The title of the AWS Support case.
+	// The title of the AWS Support case. The title appears in the Subject field
+	// on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+	// page.
 	//
 	// Subject is a required field
 	Subject *string `locationName:"subject" type:"string" required:"true"`
@@ -2068,7 +2499,7 @@ type CreateCaseOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The AWS Support case ID requested or returned in the call. The case ID is
-	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	// an alphanumeric string in the following format: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseId *string `locationName:"caseId" type:"string"`
 }
 
@@ -2127,12 +2558,75 @@ func (s *DescribeAttachmentInput) SetAttachmentId(v string) *DescribeAttachmentI
 	return s
 }
 
+// The limit for the number of DescribeAttachment requests in a short period
+// of time has been exceeded.
+type DescribeAttachmentLimitExceeded struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The limit for the number of DescribeAttachment requests in a short period
+	// of time has been exceeded.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeAttachmentLimitExceeded) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAttachmentLimitExceeded) GoString() string {
+	return s.String()
+}
+
+func newErrorDescribeAttachmentLimitExceeded(v protocol.ResponseMetadata) error {
+	return &DescribeAttachmentLimitExceeded{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DescribeAttachmentLimitExceeded) Code() string {
+	return "DescribeAttachmentLimitExceeded"
+}
+
+// Message returns the exception's message.
+func (s *DescribeAttachmentLimitExceeded) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DescribeAttachmentLimitExceeded) OrigErr() error {
+	return nil
+}
+
+func (s *DescribeAttachmentLimitExceeded) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DescribeAttachmentLimitExceeded) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DescribeAttachmentLimitExceeded) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The content and file name of the attachment returned by the DescribeAttachment
 // operation.
 type DescribeAttachmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The attachment content and file name.
+	// This object includes the attachment content and file name.
+	//
+	// In the previous response syntax, the value for the data parameter appears
+	// as blob, which is represented as a base64-encoded string. The value for fileName
+	// is the name of the attachment, such as troubleshoot-screenshot.png.
 	Attachment *Attachment `locationName:"attachment" type:"structure"`
 }
 
@@ -2795,6 +3289,63 @@ func (s *DescribeTrustedAdvisorChecksOutput) SetChecks(v []*TrustedAdvisorCheckD
 	return s
 }
 
+// An internal server error occurred.
+type InternalServerError struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// An internal server error occurred.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerError) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerError(v protocol.ResponseMetadata) error {
+	return &InternalServerError{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalServerError) Code() string {
+	return "InternalServerError"
+}
+
+// Message returns the exception's message.
+func (s *InternalServerError) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalServerError) OrigErr() error {
+	return nil
+}
+
+func (s *InternalServerError) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalServerError) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalServerError) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The five most recent communications associated with the case.
 type RecentCaseCommunications struct {
 	_ struct{} `type:"structure"`
@@ -2998,16 +3549,35 @@ func (s *Service) SetName(v string) *Service {
 	return s
 }
 
-// A code and name pair that represent a severity level that can be applied
-// to a support case.
+// A code and name pair that represents the severity level of a support case.
+// The available values depend on the support plan for the account. For more
+// information, see Choosing a Severity (https://docs.aws.amazon.com/awssupport/latest/user/getting-started.html#choosing-severity).
 type SeverityLevel struct {
 	_ struct{} `type:"structure"`
 
-	// One of four values: "low," "medium," "high," and "urgent". These values correspond
-	// to response times returned to the caller in severityLevel.name.
+	// The code for case severity level.
+	//
+	// Valid values: low | normal | high | urgent | critical
 	Code *string `locationName:"code" type:"string"`
 
 	// The name of the severity level that corresponds to the severity level code.
+	//
+	// The values returned by the API differ from the values that are displayed
+	// in the AWS Support Center. For example, for the code "low", the API name
+	// is "Low", but the name in the Support Center is "General guidance". These
+	// are the Support Center code/name mappings:
+	//
+	//    * low: General guidance
+	//
+	//    * normal: System impaired
+	//
+	//    * high: Production system impaired
+	//
+	//    * urgent: Production system down
+	//
+	//    * critical: Business-critical system down
+	//
+	// For more information, see Choosing a Severity (https://docs.aws.amazon.com/awssupport/latest/user/getting-started.html#choosing-severity)
 	Name *string `locationName:"name" type:"string"`
 }
 
@@ -3069,7 +3639,7 @@ type TrustedAdvisorCheckDescription struct {
 	Category *string `locationName:"category" type:"string" required:"true"`
 
 	// The description of the Trusted Advisor check, which includes the alert criteria
-	// and recommended actions (contains HTML markup).
+	// and recommended operations (contains HTML markup).
 	//
 	// Description is a required field
 	Description *string `locationName:"description" type:"string" required:"true"`
@@ -3150,7 +3720,18 @@ type TrustedAdvisorCheckRefreshStatus struct {
 	MillisUntilNextRefreshable *int64 `locationName:"millisUntilNextRefreshable" type:"long" required:"true"`
 
 	// The status of the Trusted Advisor check for which a refresh has been requested:
-	// "none", "enqueued", "processing", "success", or "abandoned".
+	//
+	//    * none: The check is not refreshed or the non-success status exceeds the
+	//    timeout
+	//
+	//    * enqueued: The check refresh requests has entered the refresh queue
+	//
+	//    * processing: The check refresh request is picked up by the rule processing
+	//    engine
+	//
+	//    * success: The check is successfully refreshed
+	//
+	//    * abandoned: The check refresh has failed
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true"`
@@ -3351,19 +3932,19 @@ func (s *TrustedAdvisorCheckSummary) SetTimestamp(v string) *TrustedAdvisorCheck
 	return s
 }
 
-// The estimated cost savings that might be realized if the recommended actions
+// The estimated cost savings that might be realized if the recommended operations
 // are taken.
 type TrustedAdvisorCostOptimizingSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The estimated monthly savings that might be realized if the recommended actions
+	// The estimated monthly savings that might be realized if the recommended operations
 	// are taken.
 	//
 	// EstimatedMonthlySavings is a required field
 	EstimatedMonthlySavings *float64 `locationName:"estimatedMonthlySavings" type:"double" required:"true"`
 
 	// The estimated percentage of savings that might be realized if the recommended
-	// actions are taken.
+	// operations are taken.
 	//
 	// EstimatedPercentMonthlySavings is a required field
 	EstimatedPercentMonthlySavings *float64 `locationName:"estimatedPercentMonthlySavings" type:"double" required:"true"`

@@ -96,6 +96,21 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "AddApplicationVpcConfiguration":{
+      "name":"AddApplicationVpcConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddApplicationVpcConfigurationRequest"},
+      "output":{"shape":"AddApplicationVpcConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "CreateApplication":{
       "name":"CreateApplication",
       "http":{
@@ -227,6 +242,21 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DeleteApplicationVpcConfiguration":{
+      "name":"DeleteApplicationVpcConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteApplicationVpcConfigurationRequest"},
+      "output":{"shape":"DeleteApplicationVpcConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DescribeApplication":{
@@ -504,6 +534,27 @@
         "ReferenceDataSourceDescriptions":{"shape":"ReferenceDataSourceDescriptions"}
       }
     },
+    "AddApplicationVpcConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationName",
+        "CurrentApplicationVersionId",
+        "VpcConfiguration"
+      ],
+      "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
+        "CurrentApplicationVersionId":{"shape":"ApplicationVersionId"},
+        "VpcConfiguration":{"shape":"VpcConfiguration"}
+      }
+    },
+    "AddApplicationVpcConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationARN":{"shape":"ResourceARN"},
+        "ApplicationVersionId":{"shape":"ApplicationVersionId"},
+        "VpcConfigurationDescription":{"shape":"VpcConfigurationDescription"}
+      }
+    },
     "ApplicationCodeConfiguration":{
       "type":"structure",
       "required":["CodeContentType"],
@@ -535,7 +586,8 @@
         "FlinkApplicationConfiguration":{"shape":"FlinkApplicationConfiguration"},
         "EnvironmentProperties":{"shape":"EnvironmentProperties"},
         "ApplicationCodeConfiguration":{"shape":"ApplicationCodeConfiguration"},
-        "ApplicationSnapshotConfiguration":{"shape":"ApplicationSnapshotConfiguration"}
+        "ApplicationSnapshotConfiguration":{"shape":"ApplicationSnapshotConfiguration"},
+        "VpcConfigurations":{"shape":"VpcConfigurations"}
       }
     },
     "ApplicationConfigurationDescription":{
@@ -546,7 +598,8 @@
         "RunConfigurationDescription":{"shape":"RunConfigurationDescription"},
         "FlinkApplicationConfigurationDescription":{"shape":"FlinkApplicationConfigurationDescription"},
         "EnvironmentPropertyDescriptions":{"shape":"EnvironmentPropertyDescriptions"},
-        "ApplicationSnapshotConfigurationDescription":{"shape":"ApplicationSnapshotConfigurationDescription"}
+        "ApplicationSnapshotConfigurationDescription":{"shape":"ApplicationSnapshotConfigurationDescription"},
+        "VpcConfigurationDescriptions":{"shape":"VpcConfigurationDescriptions"}
       }
     },
     "ApplicationConfigurationUpdate":{
@@ -556,7 +609,8 @@
         "ApplicationCodeConfigurationUpdate":{"shape":"ApplicationCodeConfigurationUpdate"},
         "FlinkApplicationConfigurationUpdate":{"shape":"FlinkApplicationConfigurationUpdate"},
         "EnvironmentPropertyUpdates":{"shape":"EnvironmentPropertyUpdates"},
-        "ApplicationSnapshotConfigurationUpdate":{"shape":"ApplicationSnapshotConfigurationUpdate"}
+        "ApplicationSnapshotConfigurationUpdate":{"shape":"ApplicationSnapshotConfigurationUpdate"},
+        "VpcConfigurationUpdates":{"shape":"VpcConfigurationUpdates"}
       }
     },
     "ApplicationDescription":{
@@ -715,7 +769,7 @@
     },
     "CheckpointInterval":{
       "type":"long",
-      "min":0
+      "min":1
     },
     "CloudWatchLoggingOption":{
       "type":"structure",
@@ -971,6 +1025,26 @@
       "members":{
       }
     },
+    "DeleteApplicationVpcConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationName",
+        "CurrentApplicationVersionId",
+        "VpcConfigurationId"
+      ],
+      "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
+        "CurrentApplicationVersionId":{"shape":"ApplicationVersionId"},
+        "VpcConfigurationId":{"shape":"Id"}
+      }
+    },
+    "DeleteApplicationVpcConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationARN":{"shape":"ResourceARN"},
+        "ApplicationVersionId":{"shape":"ApplicationVersionId"}
+      }
+    },
     "DescribeApplicationRequest":{
       "type":"structure",
       "required":["ApplicationName"],
@@ -1080,6 +1154,12 @@
         "CheckpointConfigurationUpdate":{"shape":"CheckpointConfigurationUpdate"},
         "MonitoringConfigurationUpdate":{"shape":"MonitoringConfigurationUpdate"},
         "ParallelismConfigurationUpdate":{"shape":"ParallelismConfigurationUpdate"}
+      }
+    },
+    "FlinkRunConfiguration":{
+      "type":"structure",
+      "members":{
+        "AllowNonRestoredState":{"shape":"BooleanObject"}
       }
     },
     "Id":{
@@ -1787,6 +1867,7 @@
     "RunConfiguration":{
       "type":"structure",
       "members":{
+        "FlinkRunConfiguration":{"shape":"FlinkRunConfiguration"},
         "SqlRunConfigurations":{"shape":"SqlRunConfigurations"},
         "ApplicationRestoreConfiguration":{"shape":"ApplicationRestoreConfiguration"}
       }
@@ -1800,6 +1881,7 @@
     "RunConfigurationUpdate":{
       "type":"structure",
       "members":{
+        "FlinkRunConfiguration":{"shape":"FlinkRunConfiguration"},
         "ApplicationRestoreConfiguration":{"shape":"ApplicationRestoreConfiguration"}
       }
     },
@@ -1807,7 +1889,8 @@
       "type":"string",
       "enum":[
         "SQL-1_0",
-        "FLINK-1_6"
+        "FLINK-1_6",
+        "FLINK-1_8"
       ]
     },
     "S3ApplicationCodeLocationDescription":{
@@ -1879,6 +1962,13 @@
         "FileKeyUpdate":{"shape":"FileKey"}
       }
     },
+    "SecurityGroupId":{"type":"string"},
+    "SecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"SecurityGroupId"},
+      "max":5,
+      "min":1
+    },
     "ServiceUnavailableException":{
       "type":"structure",
       "members":{
@@ -1903,7 +1993,7 @@
     },
     "SnapshotName":{
       "type":"string",
-      "max":128,
+      "max":256,
       "min":1,
       "pattern":"[a-zA-Z0-9_.-]+"
     },
@@ -1998,6 +2088,13 @@
       "type":"structure",
       "members":{
       }
+    },
+    "SubnetId":{"type":"string"},
+    "SubnetIds":{
+      "type":"list",
+      "member":{"shape":"SubnetId"},
+      "max":16,
+      "min":1
     },
     "Tag":{
       "type":"structure",
@@ -2112,6 +2209,54 @@
         "ApplicationDetail":{"shape":"ApplicationDetail"}
       }
     },
+    "VpcConfiguration":{
+      "type":"structure",
+      "required":[
+        "SubnetIds",
+        "SecurityGroupIds"
+      ],
+      "members":{
+        "SubnetIds":{"shape":"SubnetIds"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIds"}
+      }
+    },
+    "VpcConfigurationDescription":{
+      "type":"structure",
+      "required":[
+        "VpcConfigurationId",
+        "VpcId",
+        "SubnetIds",
+        "SecurityGroupIds"
+      ],
+      "members":{
+        "VpcConfigurationId":{"shape":"Id"},
+        "VpcId":{"shape":"VpcId"},
+        "SubnetIds":{"shape":"SubnetIds"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIds"}
+      }
+    },
+    "VpcConfigurationDescriptions":{
+      "type":"list",
+      "member":{"shape":"VpcConfigurationDescription"}
+    },
+    "VpcConfigurationUpdate":{
+      "type":"structure",
+      "required":["VpcConfigurationId"],
+      "members":{
+        "VpcConfigurationId":{"shape":"Id"},
+        "SubnetIdUpdates":{"shape":"SubnetIds"},
+        "SecurityGroupIdUpdates":{"shape":"SecurityGroupIds"}
+      }
+    },
+    "VpcConfigurationUpdates":{
+      "type":"list",
+      "member":{"shape":"VpcConfigurationUpdate"}
+    },
+    "VpcConfigurations":{
+      "type":"list",
+      "member":{"shape":"VpcConfiguration"}
+    },
+    "VpcId":{"type":"string"},
     "ZipFileContent":{
       "type":"blob",
       "max":52428800,

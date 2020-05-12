@@ -3,51 +3,47 @@
 // Package applicationdiscoveryservice provides the client and types for making API
 // requests to AWS Application Discovery Service.
 //
-// AWS Application Discovery Service helps you plan application migration projects
-// by automatically identifying servers, virtual machines (VMs), software, and
-// software dependencies running in your on-premises data centers. Application
-// Discovery Service also collects application performance data, which can help
-// you assess the outcome of your migration. The data collected by Application
-// Discovery Service is securely retained in an AWS-hosted and managed database
-// in the cloud. You can export the data as a CSV or XML file into your preferred
-// visualization tool or cloud-migration solution to plan your migration. For
-// more information, see AWS Application Discovery Service FAQ (http://aws.amazon.com/application-discovery/faqs/).
+// AWS Application Discovery Service helps you plan application migration projects.
+// It automatically identifies servers, virtual machines (VMs), and network
+// dependencies in your on-premises data centers. For more information, see
+// the AWS Application Discovery Service FAQ (http://aws.amazon.com/application-discovery/faqs/).
+// Application Discovery Service offers three ways of performing discovery and
+// collecting data about your on-premises servers:
 //
-// Application Discovery Service offers two modes of operation:
-//
-//    * Agentless discovery mode is recommended for environments that use VMware
+//    * Agentless discovery is recommended for environments that use VMware
 //    vCenter Server. This mode doesn't require you to install an agent on each
-//    host. Agentless discovery gathers server information regardless of the
-//    operating systems, which minimizes the time required for initial on-premises
-//    infrastructure assessment. Agentless discovery doesn't collect information
-//    about software and software dependencies. It also doesn't work in non-VMware
-//    environments.
+//    host. It does not work in non-VMware environments. Agentless discovery
+//    gathers server information regardless of the operating systems, which
+//    minimizes the time required for initial on-premises infrastructure assessment.
+//    Agentless discovery doesn't collect information about network dependencies,
+//    only agent-based discovery collects that information.
 //
-//    * Agent-based discovery mode collects a richer set of data than agentless
-//    discovery by using the AWS Application Discovery Agent, which you install
-//    on one or more hosts in your data center. The agent captures infrastructure
-//    and application information, including an inventory of installed software
-//    applications, system and process performance, resource utilization, and
-//    network dependencies between workloads. The information collected by agents
-//    is secured at rest and in transit to the Application Discovery Service
-//    database in the cloud.
+//    * Agent-based discovery collects a richer set of data than agentless discovery
+//    by using the AWS Application Discovery Agent, which you install on one
+//    or more hosts in your data center. The agent captures infrastructure and
+//    application information, including an inventory of running processes,
+//    system performance information, resource utilization, and network dependencies.
+//    The information collected by agents is secured at rest and in transit
+//    to the Application Discovery Service database in the cloud.
 //
-// We recommend that you use agent-based discovery for non-VMware environments
-// and to collect information about software and software dependencies. You
-// can also run agent-based and agentless discovery simultaneously. Use agentless
-// discovery to quickly complete the initial infrastructure assessment and then
-// install agents on select hosts.
+//    * AWS Partner Network (APN) solutions integrate with Application Discovery
+//    Service, enabling you to import details of your on-premises environment
+//    directly into Migration Hub without using the discovery connector or discovery
+//    agent. Third-party application discovery tools can query AWS Application
+//    Discovery Service, and they can write to the Application Discovery Service
+//    database using the public API. In this way, you can import data into Migration
+//    Hub and view it, so that you can associate applications with servers and
+//    track migrations.
 //
-// Application Discovery Service integrates with application discovery solutions
-// from AWS Partner Network (APN) partners. Third-party application discovery
-// tools can query Application Discovery Service and write to the Application
-// Discovery Service database using a public API. You can then import the data
-// into either a visualization tool or cloud-migration solution.
+// Recommendations
 //
-// Application Discovery Service doesn't gather sensitive information. All data
-// is handled according to the AWS Privacy Policy (http://aws.amazon.com/privacy/).
-// You can operate Application Discovery Service offline to inspect collected
-// data before it is shared with the service.
+// We recommend that you use agent-based discovery for non-VMware environments,
+// and whenever you want to collect information about network dependencies.
+// You can run agent-based and agentless discovery simultaneously. Use agentless
+// discovery to complete the initial infrastructure assessment quickly, and
+// then install agents on select hosts to collect additional information.
+//
+// Working With This Guide
 //
 // This API reference provides descriptions, syntax, and usage examples for
 // each of the actions and data types for Application Discovery Service. The
@@ -56,8 +52,29 @@
 // to the programming language or platform that you're using. For more information,
 // see AWS SDKs (http://aws.amazon.com/tools/#SDKs).
 //
+//    * Remember that you must set your Migration Hub home region before you
+//    call any of these APIs.
+//
+//    * You must make API calls for write actions (create, notify, associate,
+//    disassociate, import, or put) while in your home region, or a HomeRegionNotSetException
+//    error is returned.
+//
+//    * API calls for read actions (list, describe, stop, and delete) are permitted
+//    outside of your home region.
+//
+//    * Although it is unlikely, the Migration Hub home region could change.
+//    If you call APIs outside the home region, an InvalidInputException is
+//    returned.
+//
+//    * You must call GetHomeRegion to obtain the latest Migration Hub home
+//    region.
+//
 // This guide is intended for use with the AWS Application Discovery Service
 // User Guide (http://docs.aws.amazon.com/application-discovery/latest/userguide/).
+//
+// All data is handled according to the AWS Privacy Policy (http://aws.amazon.com/privacy/).
+// You can operate Application Discovery Service offline to inspect collected
+// data before it is shared with the service.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01 for more information on this service.
 //

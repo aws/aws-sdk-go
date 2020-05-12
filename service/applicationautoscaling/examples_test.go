@@ -104,7 +104,7 @@ func ExampleApplicationAutoScaling_DeregisterScalableTarget_shared00() {
 
 // To describe scalable targets
 //
-// This example describes the scalable targets for the ecs service namespace.
+// This example describes the scalable targets for the ECS service namespace.
 func ExampleApplicationAutoScaling_DescribeScalableTargets_shared00() {
 	svc := applicationautoscaling.New(session.New())
 	input := &applicationautoscaling.DescribeScalableTargetsInput{
@@ -177,7 +177,7 @@ func ExampleApplicationAutoScaling_DescribeScalingActivities_shared00() {
 
 // To describe scaling policies
 //
-// This example describes the scaling policies for the ecs service namespace.
+// This example describes the scaling policies for the ECS service namespace.
 func ExampleApplicationAutoScaling_DescribeScalingPolicies_shared00() {
 	svc := applicationautoscaling.New(session.New())
 	input := &applicationautoscaling.DescribeScalingPoliciesInput{
@@ -212,82 +212,27 @@ func ExampleApplicationAutoScaling_DescribeScalingPolicies_shared00() {
 	fmt.Println(result)
 }
 
-// To apply a scaling policy to an Amazon ECS service
+// To apply a target tracking scaling policy with a predefined metric specification
 //
-// This example applies a scaling policy to an Amazon ECS service called web-app in
-// the default cluster. The policy increases the desired count of the service by 200%,
-// with a cool down period of 60 seconds.
+// The following example applies a target tracking scaling policy with a predefined
+// metric specification to an Amazon ECS service called web-app in the default cluster.
+// The policy keeps the average CPU utilization of the service at 75 percent, with scale-out
+// and scale-in cooldown periods of 60 seconds.
 func ExampleApplicationAutoScaling_PutScalingPolicy_shared00() {
 	svc := applicationautoscaling.New(session.New())
 	input := &applicationautoscaling.PutScalingPolicyInput{
-		PolicyName:        aws.String("web-app-cpu-gt-75"),
-		PolicyType:        aws.String("StepScaling"),
+		PolicyName:        aws.String("cpu75-target-tracking-scaling-policy"),
+		PolicyType:        aws.String("TargetTrackingScaling"),
 		ResourceId:        aws.String("service/default/web-app"),
 		ScalableDimension: aws.String("ecs:service:DesiredCount"),
 		ServiceNamespace:  aws.String("ecs"),
-		StepScalingPolicyConfiguration: &applicationautoscaling.StepScalingPolicyConfiguration{
-			AdjustmentType: aws.String("PercentChangeInCapacity"),
-			Cooldown:       aws.Int64(60),
-			StepAdjustments: []*applicationautoscaling.StepAdjustment{
-				{
-					MetricIntervalLowerBound: aws.Float64(0.000000),
-					ScalingAdjustment:        aws.Int64(200),
-				},
+		TargetTrackingScalingPolicyConfiguration: &applicationautoscaling.TargetTrackingScalingPolicyConfiguration{
+			PredefinedMetricSpecification: &applicationautoscaling.PredefinedMetricSpecification{
+				PredefinedMetricType: aws.String("ECSServiceAverageCPUUtilization"),
 			},
-		},
-	}
-
-	result, err := svc.PutScalingPolicy(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			case applicationautoscaling.ErrCodeValidationException:
-				fmt.Println(applicationautoscaling.ErrCodeValidationException, aerr.Error())
-			case applicationautoscaling.ErrCodeLimitExceededException:
-				fmt.Println(applicationautoscaling.ErrCodeLimitExceededException, aerr.Error())
-			case applicationautoscaling.ErrCodeObjectNotFoundException:
-				fmt.Println(applicationautoscaling.ErrCodeObjectNotFoundException, aerr.Error())
-			case applicationautoscaling.ErrCodeConcurrentUpdateException:
-				fmt.Println(applicationautoscaling.ErrCodeConcurrentUpdateException, aerr.Error())
-			case applicationautoscaling.ErrCodeFailedResourceAccessException:
-				fmt.Println(applicationautoscaling.ErrCodeFailedResourceAccessException, aerr.Error())
-			case applicationautoscaling.ErrCodeInternalServiceException:
-				fmt.Println(applicationautoscaling.ErrCodeInternalServiceException, aerr.Error())
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To apply a scaling policy to an Amazon EC2 Spot fleet
-//
-// This example applies a scaling policy to an Amazon EC2 Spot fleet. The policy increases
-// the target capacity of the spot fleet by 200%, with a cool down period of 180 seconds.",
-func ExampleApplicationAutoScaling_PutScalingPolicy_shared01() {
-	svc := applicationautoscaling.New(session.New())
-	input := &applicationautoscaling.PutScalingPolicyInput{
-		PolicyName:        aws.String("fleet-cpu-gt-75"),
-		PolicyType:        aws.String("StepScaling"),
-		ResourceId:        aws.String("spot-fleet-request/sfr-45e69d8a-be48-4539-bbf3-3464e99c50c3"),
-		ScalableDimension: aws.String("ec2:spot-fleet-request:TargetCapacity"),
-		ServiceNamespace:  aws.String("ec2"),
-		StepScalingPolicyConfiguration: &applicationautoscaling.StepScalingPolicyConfiguration{
-			AdjustmentType: aws.String("PercentChangeInCapacity"),
-			Cooldown:       aws.Int64(180),
-			StepAdjustments: []*applicationautoscaling.StepAdjustment{
-				{
-					MetricIntervalLowerBound: aws.Float64(0.000000),
-					ScalingAdjustment:        aws.Int64(200),
-				},
-			},
+			ScaleInCooldown:  aws.Int64(60),
+			ScaleOutCooldown: aws.Int64(60),
+			TargetValue:      aws.Float64(75.000000),
 		},
 	}
 
@@ -332,50 +277,8 @@ func ExampleApplicationAutoScaling_RegisterScalableTarget_shared00() {
 		MaxCapacity:       aws.Int64(10),
 		MinCapacity:       aws.Int64(1),
 		ResourceId:        aws.String("service/default/web-app"),
-		RoleARN:           aws.String("arn:aws:iam::012345678910:role/ApplicationAutoscalingECSRole"),
 		ScalableDimension: aws.String("ecs:service:DesiredCount"),
 		ServiceNamespace:  aws.String("ecs"),
-	}
-
-	result, err := svc.RegisterScalableTarget(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			case applicationautoscaling.ErrCodeValidationException:
-				fmt.Println(applicationautoscaling.ErrCodeValidationException, aerr.Error())
-			case applicationautoscaling.ErrCodeLimitExceededException:
-				fmt.Println(applicationautoscaling.ErrCodeLimitExceededException, aerr.Error())
-			case applicationautoscaling.ErrCodeConcurrentUpdateException:
-				fmt.Println(applicationautoscaling.ErrCodeConcurrentUpdateException, aerr.Error())
-			case applicationautoscaling.ErrCodeInternalServiceException:
-				fmt.Println(applicationautoscaling.ErrCodeInternalServiceException, aerr.Error())
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To register an EC2 Spot fleet as a scalable target
-//
-// This example registers a scalable target from an Amazon EC2 Spot fleet with a minimum
-// target capacity of 1 and a maximum of 10.
-func ExampleApplicationAutoScaling_RegisterScalableTarget_shared01() {
-	svc := applicationautoscaling.New(session.New())
-	input := &applicationautoscaling.RegisterScalableTargetInput{
-		MaxCapacity:       aws.Int64(10),
-		MinCapacity:       aws.Int64(1),
-		ResourceId:        aws.String("spot-fleet-request/sfr-45e69d8a-be48-4539-bbf3-3464e99c50c3"),
-		RoleARN:           aws.String("arn:aws:iam::012345678910:role/ApplicationAutoscalingSpotRole"),
-		ScalableDimension: aws.String("ec2:spot-fleet-request:TargetCapacity"),
-		ServiceNamespace:  aws.String("ec2"),
 	}
 
 	result, err := svc.RegisterScalableTarget(input)

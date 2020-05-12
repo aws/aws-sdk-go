@@ -210,6 +210,10 @@ type CodePipelineAPI interface {
 	StartPipelineExecutionWithContext(aws.Context, *codepipeline.StartPipelineExecutionInput, ...request.Option) (*codepipeline.StartPipelineExecutionOutput, error)
 	StartPipelineExecutionRequest(*codepipeline.StartPipelineExecutionInput) (*request.Request, *codepipeline.StartPipelineExecutionOutput)
 
+	StopPipelineExecution(*codepipeline.StopPipelineExecutionInput) (*codepipeline.StopPipelineExecutionOutput, error)
+	StopPipelineExecutionWithContext(aws.Context, *codepipeline.StopPipelineExecutionInput, ...request.Option) (*codepipeline.StopPipelineExecutionOutput, error)
+	StopPipelineExecutionRequest(*codepipeline.StopPipelineExecutionInput) (*request.Request, *codepipeline.StopPipelineExecutionOutput)
+
 	TagResource(*codepipeline.TagResourceInput) (*codepipeline.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *codepipeline.TagResourceInput, ...request.Option) (*codepipeline.TagResourceOutput, error)
 	TagResourceRequest(*codepipeline.TagResourceInput) (*request.Request, *codepipeline.TagResourceOutput)

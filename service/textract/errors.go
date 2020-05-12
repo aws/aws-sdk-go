@@ -2,6 +2,10 @@
 
 package textract
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -21,8 +25,15 @@ const (
 	//
 	// The document can't be processed because it's too large. The maximum document
 	// size for synchronous operations 5 MB. The maximum document size for asynchronous
-	// operations is 500 MB for PDF format files.
+	// operations is 500 MB for PDF files.
 	ErrCodeDocumentTooLargeException = "DocumentTooLargeException"
+
+	// ErrCodeHumanLoopQuotaExceededException for service response error code
+	// "HumanLoopQuotaExceededException".
+	//
+	// Indicates you have exceeded the maximum number of active human in the loop
+	// workflows available
+	ErrCodeHumanLoopQuotaExceededException = "HumanLoopQuotaExceededException"
 
 	// ErrCodeIdempotentParameterMismatchException for service response error code
 	// "IdempotentParameterMismatchException".
@@ -87,7 +98,24 @@ const (
 	// ErrCodeUnsupportedDocumentException for service response error code
 	// "UnsupportedDocumentException".
 	//
-	// The format of the input document isn't supported. Amazon Textract supports
-	// documents that are .png or .jpg format.
+	// The format of the input document isn't supported. Documents for synchronous
+	// operations can be in PNG or JPEG format. Documents for asynchronous operations
+	// can also be in PDF format.
 	ErrCodeUnsupportedDocumentException = "UnsupportedDocumentException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":                  newErrorAccessDeniedException,
+	"BadDocumentException":                   newErrorBadDocumentException,
+	"DocumentTooLargeException":              newErrorDocumentTooLargeException,
+	"HumanLoopQuotaExceededException":        newErrorHumanLoopQuotaExceededException,
+	"IdempotentParameterMismatchException":   newErrorIdempotentParameterMismatchException,
+	"InternalServerError":                    newErrorInternalServerError,
+	"InvalidJobIdException":                  newErrorInvalidJobIdException,
+	"InvalidParameterException":              newErrorInvalidParameterException,
+	"InvalidS3ObjectException":               newErrorInvalidS3ObjectException,
+	"LimitExceededException":                 newErrorLimitExceededException,
+	"ProvisionedThroughputExceededException": newErrorProvisionedThroughputExceededException,
+	"ThrottlingException":                    newErrorThrottlingException,
+	"UnsupportedDocumentException":           newErrorUnsupportedDocumentException,
+}

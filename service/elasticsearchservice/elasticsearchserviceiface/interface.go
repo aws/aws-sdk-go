@@ -64,6 +64,10 @@ type ElasticsearchServiceAPI interface {
 	AddTagsWithContext(aws.Context, *elasticsearchservice.AddTagsInput, ...request.Option) (*elasticsearchservice.AddTagsOutput, error)
 	AddTagsRequest(*elasticsearchservice.AddTagsInput) (*request.Request, *elasticsearchservice.AddTagsOutput)
 
+	AssociatePackage(*elasticsearchservice.AssociatePackageInput) (*elasticsearchservice.AssociatePackageOutput, error)
+	AssociatePackageWithContext(aws.Context, *elasticsearchservice.AssociatePackageInput, ...request.Option) (*elasticsearchservice.AssociatePackageOutput, error)
+	AssociatePackageRequest(*elasticsearchservice.AssociatePackageInput) (*request.Request, *elasticsearchservice.AssociatePackageOutput)
+
 	CancelElasticsearchServiceSoftwareUpdate(*elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateInput) (*elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateOutput, error)
 	CancelElasticsearchServiceSoftwareUpdateWithContext(aws.Context, *elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateInput, ...request.Option) (*elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateOutput, error)
 	CancelElasticsearchServiceSoftwareUpdateRequest(*elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateInput) (*request.Request, *elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateOutput)
@@ -72,6 +76,10 @@ type ElasticsearchServiceAPI interface {
 	CreateElasticsearchDomainWithContext(aws.Context, *elasticsearchservice.CreateElasticsearchDomainInput, ...request.Option) (*elasticsearchservice.CreateElasticsearchDomainOutput, error)
 	CreateElasticsearchDomainRequest(*elasticsearchservice.CreateElasticsearchDomainInput) (*request.Request, *elasticsearchservice.CreateElasticsearchDomainOutput)
 
+	CreatePackage(*elasticsearchservice.CreatePackageInput) (*elasticsearchservice.CreatePackageOutput, error)
+	CreatePackageWithContext(aws.Context, *elasticsearchservice.CreatePackageInput, ...request.Option) (*elasticsearchservice.CreatePackageOutput, error)
+	CreatePackageRequest(*elasticsearchservice.CreatePackageInput) (*request.Request, *elasticsearchservice.CreatePackageOutput)
+
 	DeleteElasticsearchDomain(*elasticsearchservice.DeleteElasticsearchDomainInput) (*elasticsearchservice.DeleteElasticsearchDomainOutput, error)
 	DeleteElasticsearchDomainWithContext(aws.Context, *elasticsearchservice.DeleteElasticsearchDomainInput, ...request.Option) (*elasticsearchservice.DeleteElasticsearchDomainOutput, error)
 	DeleteElasticsearchDomainRequest(*elasticsearchservice.DeleteElasticsearchDomainInput) (*request.Request, *elasticsearchservice.DeleteElasticsearchDomainOutput)
@@ -79,6 +87,10 @@ type ElasticsearchServiceAPI interface {
 	DeleteElasticsearchServiceRole(*elasticsearchservice.DeleteElasticsearchServiceRoleInput) (*elasticsearchservice.DeleteElasticsearchServiceRoleOutput, error)
 	DeleteElasticsearchServiceRoleWithContext(aws.Context, *elasticsearchservice.DeleteElasticsearchServiceRoleInput, ...request.Option) (*elasticsearchservice.DeleteElasticsearchServiceRoleOutput, error)
 	DeleteElasticsearchServiceRoleRequest(*elasticsearchservice.DeleteElasticsearchServiceRoleInput) (*request.Request, *elasticsearchservice.DeleteElasticsearchServiceRoleOutput)
+
+	DeletePackage(*elasticsearchservice.DeletePackageInput) (*elasticsearchservice.DeletePackageOutput, error)
+	DeletePackageWithContext(aws.Context, *elasticsearchservice.DeletePackageInput, ...request.Option) (*elasticsearchservice.DeletePackageOutput, error)
+	DeletePackageRequest(*elasticsearchservice.DeletePackageInput) (*request.Request, *elasticsearchservice.DeletePackageOutput)
 
 	DescribeElasticsearchDomain(*elasticsearchservice.DescribeElasticsearchDomainInput) (*elasticsearchservice.DescribeElasticsearchDomainOutput, error)
 	DescribeElasticsearchDomainWithContext(aws.Context, *elasticsearchservice.DescribeElasticsearchDomainInput, ...request.Option) (*elasticsearchservice.DescribeElasticsearchDomainOutput, error)
@@ -96,6 +108,13 @@ type ElasticsearchServiceAPI interface {
 	DescribeElasticsearchInstanceTypeLimitsWithContext(aws.Context, *elasticsearchservice.DescribeElasticsearchInstanceTypeLimitsInput, ...request.Option) (*elasticsearchservice.DescribeElasticsearchInstanceTypeLimitsOutput, error)
 	DescribeElasticsearchInstanceTypeLimitsRequest(*elasticsearchservice.DescribeElasticsearchInstanceTypeLimitsInput) (*request.Request, *elasticsearchservice.DescribeElasticsearchInstanceTypeLimitsOutput)
 
+	DescribePackages(*elasticsearchservice.DescribePackagesInput) (*elasticsearchservice.DescribePackagesOutput, error)
+	DescribePackagesWithContext(aws.Context, *elasticsearchservice.DescribePackagesInput, ...request.Option) (*elasticsearchservice.DescribePackagesOutput, error)
+	DescribePackagesRequest(*elasticsearchservice.DescribePackagesInput) (*request.Request, *elasticsearchservice.DescribePackagesOutput)
+
+	DescribePackagesPages(*elasticsearchservice.DescribePackagesInput, func(*elasticsearchservice.DescribePackagesOutput, bool) bool) error
+	DescribePackagesPagesWithContext(aws.Context, *elasticsearchservice.DescribePackagesInput, func(*elasticsearchservice.DescribePackagesOutput, bool) bool, ...request.Option) error
+
 	DescribeReservedElasticsearchInstanceOfferings(*elasticsearchservice.DescribeReservedElasticsearchInstanceOfferingsInput) (*elasticsearchservice.DescribeReservedElasticsearchInstanceOfferingsOutput, error)
 	DescribeReservedElasticsearchInstanceOfferingsWithContext(aws.Context, *elasticsearchservice.DescribeReservedElasticsearchInstanceOfferingsInput, ...request.Option) (*elasticsearchservice.DescribeReservedElasticsearchInstanceOfferingsOutput, error)
 	DescribeReservedElasticsearchInstanceOfferingsRequest(*elasticsearchservice.DescribeReservedElasticsearchInstanceOfferingsInput) (*request.Request, *elasticsearchservice.DescribeReservedElasticsearchInstanceOfferingsOutput)
@@ -109,6 +128,10 @@ type ElasticsearchServiceAPI interface {
 
 	DescribeReservedElasticsearchInstancesPages(*elasticsearchservice.DescribeReservedElasticsearchInstancesInput, func(*elasticsearchservice.DescribeReservedElasticsearchInstancesOutput, bool) bool) error
 	DescribeReservedElasticsearchInstancesPagesWithContext(aws.Context, *elasticsearchservice.DescribeReservedElasticsearchInstancesInput, func(*elasticsearchservice.DescribeReservedElasticsearchInstancesOutput, bool) bool, ...request.Option) error
+
+	DissociatePackage(*elasticsearchservice.DissociatePackageInput) (*elasticsearchservice.DissociatePackageOutput, error)
+	DissociatePackageWithContext(aws.Context, *elasticsearchservice.DissociatePackageInput, ...request.Option) (*elasticsearchservice.DissociatePackageOutput, error)
+	DissociatePackageRequest(*elasticsearchservice.DissociatePackageInput) (*request.Request, *elasticsearchservice.DissociatePackageOutput)
 
 	GetCompatibleElasticsearchVersions(*elasticsearchservice.GetCompatibleElasticsearchVersionsInput) (*elasticsearchservice.GetCompatibleElasticsearchVersionsOutput, error)
 	GetCompatibleElasticsearchVersionsWithContext(aws.Context, *elasticsearchservice.GetCompatibleElasticsearchVersionsInput, ...request.Option) (*elasticsearchservice.GetCompatibleElasticsearchVersionsOutput, error)
@@ -129,6 +152,13 @@ type ElasticsearchServiceAPI interface {
 	ListDomainNamesWithContext(aws.Context, *elasticsearchservice.ListDomainNamesInput, ...request.Option) (*elasticsearchservice.ListDomainNamesOutput, error)
 	ListDomainNamesRequest(*elasticsearchservice.ListDomainNamesInput) (*request.Request, *elasticsearchservice.ListDomainNamesOutput)
 
+	ListDomainsForPackage(*elasticsearchservice.ListDomainsForPackageInput) (*elasticsearchservice.ListDomainsForPackageOutput, error)
+	ListDomainsForPackageWithContext(aws.Context, *elasticsearchservice.ListDomainsForPackageInput, ...request.Option) (*elasticsearchservice.ListDomainsForPackageOutput, error)
+	ListDomainsForPackageRequest(*elasticsearchservice.ListDomainsForPackageInput) (*request.Request, *elasticsearchservice.ListDomainsForPackageOutput)
+
+	ListDomainsForPackagePages(*elasticsearchservice.ListDomainsForPackageInput, func(*elasticsearchservice.ListDomainsForPackageOutput, bool) bool) error
+	ListDomainsForPackagePagesWithContext(aws.Context, *elasticsearchservice.ListDomainsForPackageInput, func(*elasticsearchservice.ListDomainsForPackageOutput, bool) bool, ...request.Option) error
+
 	ListElasticsearchInstanceTypes(*elasticsearchservice.ListElasticsearchInstanceTypesInput) (*elasticsearchservice.ListElasticsearchInstanceTypesOutput, error)
 	ListElasticsearchInstanceTypesWithContext(aws.Context, *elasticsearchservice.ListElasticsearchInstanceTypesInput, ...request.Option) (*elasticsearchservice.ListElasticsearchInstanceTypesOutput, error)
 	ListElasticsearchInstanceTypesRequest(*elasticsearchservice.ListElasticsearchInstanceTypesInput) (*request.Request, *elasticsearchservice.ListElasticsearchInstanceTypesOutput)
@@ -142,6 +172,13 @@ type ElasticsearchServiceAPI interface {
 
 	ListElasticsearchVersionsPages(*elasticsearchservice.ListElasticsearchVersionsInput, func(*elasticsearchservice.ListElasticsearchVersionsOutput, bool) bool) error
 	ListElasticsearchVersionsPagesWithContext(aws.Context, *elasticsearchservice.ListElasticsearchVersionsInput, func(*elasticsearchservice.ListElasticsearchVersionsOutput, bool) bool, ...request.Option) error
+
+	ListPackagesForDomain(*elasticsearchservice.ListPackagesForDomainInput) (*elasticsearchservice.ListPackagesForDomainOutput, error)
+	ListPackagesForDomainWithContext(aws.Context, *elasticsearchservice.ListPackagesForDomainInput, ...request.Option) (*elasticsearchservice.ListPackagesForDomainOutput, error)
+	ListPackagesForDomainRequest(*elasticsearchservice.ListPackagesForDomainInput) (*request.Request, *elasticsearchservice.ListPackagesForDomainOutput)
+
+	ListPackagesForDomainPages(*elasticsearchservice.ListPackagesForDomainInput, func(*elasticsearchservice.ListPackagesForDomainOutput, bool) bool) error
+	ListPackagesForDomainPagesWithContext(aws.Context, *elasticsearchservice.ListPackagesForDomainInput, func(*elasticsearchservice.ListPackagesForDomainOutput, bool) bool, ...request.Option) error
 
 	ListTags(*elasticsearchservice.ListTagsInput) (*elasticsearchservice.ListTagsOutput, error)
 	ListTagsWithContext(aws.Context, *elasticsearchservice.ListTagsInput, ...request.Option) (*elasticsearchservice.ListTagsOutput, error)

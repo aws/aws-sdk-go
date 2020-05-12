@@ -4,10 +4,13 @@
 // requests to Amazon Chime.
 //
 // The Amazon Chime API (application programming interface) is designed for
-// administrators to use to perform key tasks, such as creating and managing
-// Amazon Chime accounts and users. This guide provides detailed information
+// developers to perform key tasks, such as creating and managing Amazon Chime
+// accounts, users, and Voice Connectors. This guide provides detailed information
 // about the Amazon Chime API, including operations, types, inputs and outputs,
-// and error codes.
+// and error codes. It also includes some server-side API actions to use with
+// the Amazon Chime SDK. For more information about the Amazon Chime SDK, see
+// Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// in the Amazon Chime Developer Guide.
 //
 // You can use an AWS SDK, the AWS Command Line Interface (AWS CLI), or the
 // REST API to make API calls. We recommend using an AWS SDK or the AWS CLI.
@@ -41,9 +44,9 @@
 // https://service.chime.aws.amazon.com.
 //
 // Administrative permissions are controlled using AWS Identity and Access Management
-// (IAM). For more information, see Control Access to the Amazon Chime Console
-// (https://docs.aws.amazon.com/chime/latest/ag/control-access.html) in the
-// Amazon Chime Administration Guide.
+// (IAM). For more information, see Identity and Access Management for Amazon
+// Chime (https://docs.aws.amazon.com/chime/latest/ag/security-iam.html) in
+// the Amazon Chime Administration Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01 for more information on this service.
 //

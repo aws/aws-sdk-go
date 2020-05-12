@@ -140,7 +140,7 @@ func TestCEKFactory(t *testing.T) {
 		MatDesc:   `{"kms_cmk_id":""}`,
 	}
 	wrap, err := c.wrapFromEnvelope(env)
-	cek, err := c.cekFromEnvelope(env, wrap)
+	cek, err := c.cekFromEnvelope(aws.BackgroundContext(), env, wrap)
 
 	if err != nil {
 		t.Errorf("expected no error, but received %v", err)
@@ -199,7 +199,7 @@ func TestCEKFactoryNoCEK(t *testing.T) {
 		MatDesc:   `{"kms_cmk_id":""}`,
 	}
 	wrap, err := c.wrapFromEnvelope(env)
-	cek, err := c.cekFromEnvelope(env, wrap)
+	cek, err := c.cekFromEnvelope(aws.BackgroundContext(), env, wrap)
 
 	if err == nil {
 		t.Error("expected error, but received none")
@@ -256,7 +256,7 @@ func TestCEKFactoryCustomEntry(t *testing.T) {
 		MatDesc:   `{"kms_cmk_id":""}`,
 	}
 	wrap, err := c.wrapFromEnvelope(env)
-	cek, err := c.cekFromEnvelope(env, wrap)
+	cek, err := c.cekFromEnvelope(aws.BackgroundContext(), env, wrap)
 
 	if err != nil {
 		t.Errorf("expected no error, but received %v", err)

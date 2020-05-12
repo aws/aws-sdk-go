@@ -2,6 +2,7 @@ package dynamodbattribute
 
 import (
 	"reflect"
+	"strings"
 	"testing"
 	"time"
 
@@ -58,6 +59,8 @@ type testAliasedStruct struct {
 
 	Value13 testAliasedBool
 	Value14 testAliasedBoolSlice
+
+	Value15 map[testAliasedString]string
 }
 
 type testNamedPointer *int
@@ -256,6 +259,9 @@ var sharedTestCases = []struct {
 					{BOOL: aws.Bool(false)},
 					{BOOL: aws.Bool(true)},
 				}},
+				"Value15": {M: map[string]*dynamodb.AttributeValue{
+					"TestKey": {S: aws.String("TestElement")},
+				}},
 			},
 		},
 		actual: &testAliasedStruct{},
@@ -278,6 +284,9 @@ var sharedTestCases = []struct {
 			Value12: testAliasedStringSlice{"1", "2", "3"},
 			Value13: true,
 			Value14: testAliasedBoolSlice{true, false, true},
+			Value15: map[testAliasedString]string{
+				"TestKey": "TestElement",
+			},
 		},
 	},
 	{
@@ -375,7 +384,7 @@ func assertConvertTest(t *testing.T, i int, actual, expected interface{}, err, e
 	i++
 	if expectedErr != nil {
 		if err != nil {
-			if e, a := expectedErr, err; !reflect.DeepEqual(e, a) {
+			if e, a := expectedErr, err; !strings.Contains(a.Error(), e.Error()) {
 				t.Errorf("case %d expect %v, got %v", i, e, a)
 			}
 		} else {

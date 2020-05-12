@@ -64,9 +64,17 @@ type CloudWatchAPI interface {
 	DeleteAlarmsWithContext(aws.Context, *cloudwatch.DeleteAlarmsInput, ...request.Option) (*cloudwatch.DeleteAlarmsOutput, error)
 	DeleteAlarmsRequest(*cloudwatch.DeleteAlarmsInput) (*request.Request, *cloudwatch.DeleteAlarmsOutput)
 
+	DeleteAnomalyDetector(*cloudwatch.DeleteAnomalyDetectorInput) (*cloudwatch.DeleteAnomalyDetectorOutput, error)
+	DeleteAnomalyDetectorWithContext(aws.Context, *cloudwatch.DeleteAnomalyDetectorInput, ...request.Option) (*cloudwatch.DeleteAnomalyDetectorOutput, error)
+	DeleteAnomalyDetectorRequest(*cloudwatch.DeleteAnomalyDetectorInput) (*request.Request, *cloudwatch.DeleteAnomalyDetectorOutput)
+
 	DeleteDashboards(*cloudwatch.DeleteDashboardsInput) (*cloudwatch.DeleteDashboardsOutput, error)
 	DeleteDashboardsWithContext(aws.Context, *cloudwatch.DeleteDashboardsInput, ...request.Option) (*cloudwatch.DeleteDashboardsOutput, error)
 	DeleteDashboardsRequest(*cloudwatch.DeleteDashboardsInput) (*request.Request, *cloudwatch.DeleteDashboardsOutput)
+
+	DeleteInsightRules(*cloudwatch.DeleteInsightRulesInput) (*cloudwatch.DeleteInsightRulesOutput, error)
+	DeleteInsightRulesWithContext(aws.Context, *cloudwatch.DeleteInsightRulesInput, ...request.Option) (*cloudwatch.DeleteInsightRulesOutput, error)
+	DeleteInsightRulesRequest(*cloudwatch.DeleteInsightRulesInput) (*request.Request, *cloudwatch.DeleteInsightRulesOutput)
 
 	DescribeAlarmHistory(*cloudwatch.DescribeAlarmHistoryInput) (*cloudwatch.DescribeAlarmHistoryOutput, error)
 	DescribeAlarmHistoryWithContext(aws.Context, *cloudwatch.DescribeAlarmHistoryInput, ...request.Option) (*cloudwatch.DescribeAlarmHistoryOutput, error)
@@ -86,17 +94,40 @@ type CloudWatchAPI interface {
 	DescribeAlarmsForMetricWithContext(aws.Context, *cloudwatch.DescribeAlarmsForMetricInput, ...request.Option) (*cloudwatch.DescribeAlarmsForMetricOutput, error)
 	DescribeAlarmsForMetricRequest(*cloudwatch.DescribeAlarmsForMetricInput) (*request.Request, *cloudwatch.DescribeAlarmsForMetricOutput)
 
+	DescribeAnomalyDetectors(*cloudwatch.DescribeAnomalyDetectorsInput) (*cloudwatch.DescribeAnomalyDetectorsOutput, error)
+	DescribeAnomalyDetectorsWithContext(aws.Context, *cloudwatch.DescribeAnomalyDetectorsInput, ...request.Option) (*cloudwatch.DescribeAnomalyDetectorsOutput, error)
+	DescribeAnomalyDetectorsRequest(*cloudwatch.DescribeAnomalyDetectorsInput) (*request.Request, *cloudwatch.DescribeAnomalyDetectorsOutput)
+
+	DescribeInsightRules(*cloudwatch.DescribeInsightRulesInput) (*cloudwatch.DescribeInsightRulesOutput, error)
+	DescribeInsightRulesWithContext(aws.Context, *cloudwatch.DescribeInsightRulesInput, ...request.Option) (*cloudwatch.DescribeInsightRulesOutput, error)
+	DescribeInsightRulesRequest(*cloudwatch.DescribeInsightRulesInput) (*request.Request, *cloudwatch.DescribeInsightRulesOutput)
+
+	DescribeInsightRulesPages(*cloudwatch.DescribeInsightRulesInput, func(*cloudwatch.DescribeInsightRulesOutput, bool) bool) error
+	DescribeInsightRulesPagesWithContext(aws.Context, *cloudwatch.DescribeInsightRulesInput, func(*cloudwatch.DescribeInsightRulesOutput, bool) bool, ...request.Option) error
+
 	DisableAlarmActions(*cloudwatch.DisableAlarmActionsInput) (*cloudwatch.DisableAlarmActionsOutput, error)
 	DisableAlarmActionsWithContext(aws.Context, *cloudwatch.DisableAlarmActionsInput, ...request.Option) (*cloudwatch.DisableAlarmActionsOutput, error)
 	DisableAlarmActionsRequest(*cloudwatch.DisableAlarmActionsInput) (*request.Request, *cloudwatch.DisableAlarmActionsOutput)
+
+	DisableInsightRules(*cloudwatch.DisableInsightRulesInput) (*cloudwatch.DisableInsightRulesOutput, error)
+	DisableInsightRulesWithContext(aws.Context, *cloudwatch.DisableInsightRulesInput, ...request.Option) (*cloudwatch.DisableInsightRulesOutput, error)
+	DisableInsightRulesRequest(*cloudwatch.DisableInsightRulesInput) (*request.Request, *cloudwatch.DisableInsightRulesOutput)
 
 	EnableAlarmActions(*cloudwatch.EnableAlarmActionsInput) (*cloudwatch.EnableAlarmActionsOutput, error)
 	EnableAlarmActionsWithContext(aws.Context, *cloudwatch.EnableAlarmActionsInput, ...request.Option) (*cloudwatch.EnableAlarmActionsOutput, error)
 	EnableAlarmActionsRequest(*cloudwatch.EnableAlarmActionsInput) (*request.Request, *cloudwatch.EnableAlarmActionsOutput)
 
+	EnableInsightRules(*cloudwatch.EnableInsightRulesInput) (*cloudwatch.EnableInsightRulesOutput, error)
+	EnableInsightRulesWithContext(aws.Context, *cloudwatch.EnableInsightRulesInput, ...request.Option) (*cloudwatch.EnableInsightRulesOutput, error)
+	EnableInsightRulesRequest(*cloudwatch.EnableInsightRulesInput) (*request.Request, *cloudwatch.EnableInsightRulesOutput)
+
 	GetDashboard(*cloudwatch.GetDashboardInput) (*cloudwatch.GetDashboardOutput, error)
 	GetDashboardWithContext(aws.Context, *cloudwatch.GetDashboardInput, ...request.Option) (*cloudwatch.GetDashboardOutput, error)
 	GetDashboardRequest(*cloudwatch.GetDashboardInput) (*request.Request, *cloudwatch.GetDashboardOutput)
+
+	GetInsightRuleReport(*cloudwatch.GetInsightRuleReportInput) (*cloudwatch.GetInsightRuleReportOutput, error)
+	GetInsightRuleReportWithContext(aws.Context, *cloudwatch.GetInsightRuleReportInput, ...request.Option) (*cloudwatch.GetInsightRuleReportOutput, error)
+	GetInsightRuleReportRequest(*cloudwatch.GetInsightRuleReportInput) (*request.Request, *cloudwatch.GetInsightRuleReportOutput)
 
 	GetMetricData(*cloudwatch.GetMetricDataInput) (*cloudwatch.GetMetricDataOutput, error)
 	GetMetricDataWithContext(aws.Context, *cloudwatch.GetMetricDataInput, ...request.Option) (*cloudwatch.GetMetricDataOutput, error)
@@ -131,9 +162,21 @@ type CloudWatchAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *cloudwatch.ListTagsForResourceInput, ...request.Option) (*cloudwatch.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*cloudwatch.ListTagsForResourceInput) (*request.Request, *cloudwatch.ListTagsForResourceOutput)
 
+	PutAnomalyDetector(*cloudwatch.PutAnomalyDetectorInput) (*cloudwatch.PutAnomalyDetectorOutput, error)
+	PutAnomalyDetectorWithContext(aws.Context, *cloudwatch.PutAnomalyDetectorInput, ...request.Option) (*cloudwatch.PutAnomalyDetectorOutput, error)
+	PutAnomalyDetectorRequest(*cloudwatch.PutAnomalyDetectorInput) (*request.Request, *cloudwatch.PutAnomalyDetectorOutput)
+
+	PutCompositeAlarm(*cloudwatch.PutCompositeAlarmInput) (*cloudwatch.PutCompositeAlarmOutput, error)
+	PutCompositeAlarmWithContext(aws.Context, *cloudwatch.PutCompositeAlarmInput, ...request.Option) (*cloudwatch.PutCompositeAlarmOutput, error)
+	PutCompositeAlarmRequest(*cloudwatch.PutCompositeAlarmInput) (*request.Request, *cloudwatch.PutCompositeAlarmOutput)
+
 	PutDashboard(*cloudwatch.PutDashboardInput) (*cloudwatch.PutDashboardOutput, error)
 	PutDashboardWithContext(aws.Context, *cloudwatch.PutDashboardInput, ...request.Option) (*cloudwatch.PutDashboardOutput, error)
 	PutDashboardRequest(*cloudwatch.PutDashboardInput) (*request.Request, *cloudwatch.PutDashboardOutput)
+
+	PutInsightRule(*cloudwatch.PutInsightRuleInput) (*cloudwatch.PutInsightRuleOutput, error)
+	PutInsightRuleWithContext(aws.Context, *cloudwatch.PutInsightRuleInput, ...request.Option) (*cloudwatch.PutInsightRuleOutput, error)
+	PutInsightRuleRequest(*cloudwatch.PutInsightRuleInput) (*request.Request, *cloudwatch.PutInsightRuleOutput)
 
 	PutMetricAlarm(*cloudwatch.PutMetricAlarmInput) (*cloudwatch.PutMetricAlarmOutput, error)
 	PutMetricAlarmWithContext(aws.Context, *cloudwatch.PutMetricAlarmInput, ...request.Option) (*cloudwatch.PutMetricAlarmOutput, error)
@@ -157,6 +200,9 @@ type CloudWatchAPI interface {
 
 	WaitUntilAlarmExists(*cloudwatch.DescribeAlarmsInput) error
 	WaitUntilAlarmExistsWithContext(aws.Context, *cloudwatch.DescribeAlarmsInput, ...request.WaiterOption) error
+
+	WaitUntilCompositeAlarmExists(*cloudwatch.DescribeAlarmsInput) error
+	WaitUntilCompositeAlarmExistsWithContext(aws.Context, *cloudwatch.DescribeAlarmsInput, ...request.WaiterOption) error
 }
 
 var _ CloudWatchAPI = (*cloudwatch.CloudWatch)(nil)

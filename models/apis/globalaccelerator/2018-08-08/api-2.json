@@ -13,6 +13,22 @@
     "uid":"globalaccelerator-2018-08-08"
   },
   "operations":{
+    "AdvertiseByoipCidr":{
+      "name":"AdvertiseByoipCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AdvertiseByoipCidrRequest"},
+      "output":{"shape":"AdvertiseByoipCidrResponse"},
+      "errors":[
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ByoipCidrNotFoundException"},
+        {"shape":"IncorrectCidrStateException"}
+      ]
+    },
     "CreateAccelerator":{
       "name":"CreateAccelerator",
       "http":{
@@ -41,7 +57,8 @@
         {"shape":"ListenerNotFoundException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"InvalidArgumentException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "CreateListener":{
@@ -83,6 +100,7 @@
       },
       "input":{"shape":"DeleteEndpointGroupRequest"},
       "errors":[
+        {"shape":"InvalidArgumentException"},
         {"shape":"EndpointGroupNotFoundException"},
         {"shape":"InternalServiceErrorException"}
       ]
@@ -95,9 +113,26 @@
       },
       "input":{"shape":"DeleteListenerRequest"},
       "errors":[
+        {"shape":"InvalidArgumentException"},
         {"shape":"ListenerNotFoundException"},
         {"shape":"AssociatedEndpointGroupFoundException"},
         {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "DeprovisionByoipCidr":{
+      "name":"DeprovisionByoipCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeprovisionByoipCidrRequest"},
+      "output":{"shape":"DeprovisionByoipCidrResponse"},
+      "errors":[
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ByoipCidrNotFoundException"},
+        {"shape":"IncorrectCidrStateException"}
       ]
     },
     "DescribeAccelerator":{
@@ -137,6 +172,7 @@
       "input":{"shape":"DescribeEndpointGroupRequest"},
       "output":{"shape":"DescribeEndpointGroupResponse"},
       "errors":[
+        {"shape":"InvalidArgumentException"},
         {"shape":"EndpointGroupNotFoundException"},
         {"shape":"InternalServiceErrorException"}
       ]
@@ -164,8 +200,24 @@
       "input":{"shape":"ListAcceleratorsRequest"},
       "output":{"shape":"ListAcceleratorsResponse"},
       "errors":[
+        {"shape":"InvalidArgumentException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "ListByoipCidrs":{
+      "name":"ListByoipCidrs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListByoipCidrsRequest"},
+      "output":{"shape":"ListByoipCidrsResponse"},
+      "errors":[
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidNextTokenException"}
       ]
     },
     "ListEndpointGroups":{
@@ -192,9 +244,68 @@
       "input":{"shape":"ListListenersRequest"},
       "output":{"shape":"ListListenersResponse"},
       "errors":[
+        {"shape":"InvalidArgumentException"},
         {"shape":"AcceleratorNotFoundException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"AcceleratorNotFoundException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"}
+      ]
+    },
+    "ProvisionByoipCidr":{
+      "name":"ProvisionByoipCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ProvisionByoipCidrRequest"},
+      "output":{"shape":"ProvisionByoipCidrResponse"},
+      "errors":[
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"IncorrectCidrStateException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"AcceleratorNotFoundException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"AcceleratorNotFoundException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"}
       ]
     },
     "UpdateAccelerator":{
@@ -222,7 +333,8 @@
       "errors":[
         {"shape":"AcceleratorNotFoundException"},
         {"shape":"InternalServiceErrorException"},
-        {"shape":"InvalidArgumentException"}
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateEndpointGroup":{
@@ -237,7 +349,8 @@
         {"shape":"InvalidArgumentException"},
         {"shape":"EndpointGroupNotFoundException"},
         {"shape":"InternalServiceErrorException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateListener":{
@@ -255,6 +368,22 @@
         {"shape":"InternalServiceErrorException"},
         {"shape":"LimitExceededException"}
       ]
+    },
+    "WithdrawByoipCidr":{
+      "name":"WithdrawByoipCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"WithdrawByoipCidrRequest"},
+      "output":{"shape":"WithdrawByoipCidrResponse"},
+      "errors":[
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ByoipCidrNotFoundException"},
+        {"shape":"IncorrectCidrStateException"}
+      ]
     }
   },
   "shapes":{
@@ -266,6 +395,7 @@
         "IpAddressType":{"shape":"IpAddressType"},
         "Enabled":{"shape":"GenericBoolean"},
         "IpSets":{"shape":"IpSets"},
+        "DnsName":{"shape":"GenericString"},
         "Status":{"shape":"AcceleratorStatus"},
         "CreatedTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"}
@@ -304,6 +434,26 @@
       "type":"list",
       "member":{"shape":"Accelerator"}
     },
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "AdvertiseByoipCidrRequest":{
+      "type":"structure",
+      "required":["Cidr"],
+      "members":{
+        "Cidr":{"shape":"GenericString"}
+      }
+    },
+    "AdvertiseByoipCidrResponse":{
+      "type":"structure",
+      "members":{
+        "ByoipCidr":{"shape":"ByoipCidr"}
+      }
+    },
     "AssociatedEndpointGroupFoundException":{
       "type":"structure",
       "members":{
@@ -317,6 +467,63 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ByoipCidr":{
+      "type":"structure",
+      "members":{
+        "Cidr":{"shape":"GenericString"},
+        "State":{"shape":"ByoipCidrState"},
+        "Events":{"shape":"ByoipCidrEvents"}
+      }
+    },
+    "ByoipCidrEvent":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"GenericString"},
+        "Timestamp":{"shape":"Timestamp"}
+      }
+    },
+    "ByoipCidrEvents":{
+      "type":"list",
+      "member":{"shape":"ByoipCidrEvent"}
+    },
+    "ByoipCidrNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "ByoipCidrState":{
+      "type":"string",
+      "enum":[
+        "PENDING_PROVISIONING",
+        "READY",
+        "PENDING_ADVERTISING",
+        "ADVERTISING",
+        "PENDING_WITHDRAWING",
+        "PENDING_DEPROVISIONING",
+        "DEPROVISIONED",
+        "FAILED_PROVISION",
+        "FAILED_ADVERTISING",
+        "FAILED_WITHDRAW",
+        "FAILED_DEPROVISION"
+      ]
+    },
+    "ByoipCidrs":{
+      "type":"list",
+      "member":{"shape":"ByoipCidr"}
+    },
+    "CidrAuthorizationContext":{
+      "type":"structure",
+      "required":[
+        "Message",
+        "Signature"
+      ],
+      "members":{
+        "Message":{"shape":"GenericString"},
+        "Signature":{"shape":"GenericString"}
+      }
     },
     "ClientAffinity":{
       "type":"string",
@@ -334,8 +541,13 @@
       "members":{
         "Name":{"shape":"GenericString"},
         "IpAddressType":{"shape":"IpAddressType"},
+        "IpAddresses":{"shape":"IpAddresses"},
         "Enabled":{"shape":"GenericBoolean"},
-        "IdempotencyToken":{"shape":"IdempotencyToken"}
+        "IdempotencyToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateAcceleratorResponse":{
@@ -361,7 +573,10 @@
         "HealthCheckPath":{"shape":"GenericString"},
         "HealthCheckIntervalSeconds":{"shape":"HealthCheckIntervalSeconds"},
         "ThresholdCount":{"shape":"ThresholdCount"},
-        "IdempotencyToken":{"shape":"IdempotencyToken"}
+        "IdempotencyToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateEndpointGroupResponse":{
@@ -383,7 +598,10 @@
         "PortRanges":{"shape":"PortRanges"},
         "Protocol":{"shape":"Protocol"},
         "ClientAffinity":{"shape":"ClientAffinity"},
-        "IdempotencyToken":{"shape":"IdempotencyToken"}
+        "IdempotencyToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateListenerResponse":{
@@ -413,8 +631,22 @@
         "ListenerArn":{"shape":"GenericString"}
       }
     },
+    "DeprovisionByoipCidrRequest":{
+      "type":"structure",
+      "required":["Cidr"],
+      "members":{
+        "Cidr":{"shape":"GenericString"}
+      }
+    },
+    "DeprovisionByoipCidrResponse":{
+      "type":"structure",
+      "members":{
+        "ByoipCidr":{"shape":"ByoipCidr"}
+      }
+    },
     "DescribeAcceleratorAttributesRequest":{
       "type":"structure",
+      "required":["AcceleratorArn"],
       "members":{
         "AcceleratorArn":{"shape":"GenericString"}
       }
@@ -468,7 +700,8 @@
       "type":"structure",
       "members":{
         "EndpointId":{"shape":"GenericString"},
-        "Weight":{"shape":"EndpointWeight"}
+        "Weight":{"shape":"EndpointWeight"},
+        "ClientIPPreservationEnabled":{"shape":"GenericBoolean"}
       }
     },
     "EndpointConfigurations":{
@@ -483,7 +716,8 @@
         "EndpointId":{"shape":"GenericString"},
         "Weight":{"shape":"EndpointWeight"},
         "HealthState":{"shape":"HealthState"},
-        "HealthReason":{"shape":"GenericString"}
+        "HealthReason":{"shape":"GenericString"},
+        "ClientIPPreservationEnabled":{"shape":"GenericBoolean"}
       }
     },
     "EndpointDescriptions":{
@@ -563,6 +797,13 @@
       "type":"string",
       "max":255
     },
+    "IncorrectCidrStateException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "InternalServiceErrorException":{
       "type":"structure",
       "members":{
@@ -634,6 +875,20 @@
         "NextToken":{"shape":"GenericString"}
       }
     },
+    "ListByoipCidrsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "ListByoipCidrsResponse":{
+      "type":"structure",
+      "members":{
+        "ByoipCidrs":{"shape":"ByoipCidrs"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
     "ListEndpointGroupsRequest":{
       "type":"structure",
       "required":["ListenerArn"],
@@ -664,6 +919,19 @@
       "members":{
         "Listeners":{"shape":"Listeners"},
         "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"Tags"}
       }
     },
     "Listener":{
@@ -716,6 +984,75 @@
         "UDP"
       ]
     },
+    "ProvisionByoipCidrRequest":{
+      "type":"structure",
+      "required":[
+        "Cidr",
+        "CidrAuthorizationContext"
+      ],
+      "members":{
+        "Cidr":{"shape":"GenericString"},
+        "CidrAuthorizationContext":{"shape":"CidrAuthorizationContext"}
+      }
+    },
+    "ProvisionByoipCidrResponse":{
+      "type":"structure",
+      "members":{
+        "ByoipCidr":{"shape":"ByoipCidr"}
+      }
+    },
+    "ResourceArn":{
+      "type":"string",
+      "max":1011,
+      "min":1
+    },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeys":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "Tags":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
     "ThresholdCount":{
       "type":"integer",
       "max":10,
@@ -727,8 +1064,25 @@
       "max":100,
       "min":0
     },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "TagKeys":{"shape":"TagKeys"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateAcceleratorAttributesRequest":{
       "type":"structure",
+      "required":["AcceleratorArn"],
       "members":{
         "AcceleratorArn":{"shape":"GenericString"},
         "FlowLogsEnabled":{"shape":"GenericBoolean"},
@@ -792,6 +1146,19 @@
       "type":"structure",
       "members":{
         "Listener":{"shape":"Listener"}
+      }
+    },
+    "WithdrawByoipCidrRequest":{
+      "type":"structure",
+      "required":["Cidr"],
+      "members":{
+        "Cidr":{"shape":"GenericString"}
+      }
+    },
+    "WithdrawByoipCidrResponse":{
+      "type":"structure",
+      "members":{
+        "ByoipCidr":{"shape":"ByoipCidr"}
       }
     }
   }

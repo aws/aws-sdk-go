@@ -43,8 +43,14 @@ type EncryptionClient struct {
 //	handler := s3crypto.NewKMSKeyGenerator(kms.New(sess), cmkID)
 //	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilder, options ...func(*EncryptionClient)) *EncryptionClient {
+	s3client := s3.New(prov)
+
+	s3client.Handlers.Build.PushBack(func(r *request.Request) {
+		request.AddToUserAgent(r, "S3Crypto")
+	})
+
 	client := &EncryptionClient{
-		S3Client:             s3.New(prov),
+		S3Client:             s3client,
 		ContentCipherBuilder: builder,
 		SaveStrategy:         HeaderV2SaveStrategy{},
 		MinFileSize:          DefaultMinFileSize,
@@ -84,11 +90,19 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 		return req, out
 	}
 
-	encryptor, err := c.ContentCipherBuilder.ContentCipher()
 	req.Handlers.Build.PushFront(func(r *request.Request) {
 		if err != nil {
 			r.Error = err
 			return
+		}
+		var encryptor ContentCipher
+		if v, ok := c.ContentCipherBuilder.(ContentCipherBuilderWithContext); ok {
+			encryptor, err = v.ContentCipherWithContext(r.Context())
+		} else {
+			encryptor, err = c.ContentCipherBuilder.ContentCipher()
+		}
+		if err != nil {
+			r.Error = err
 		}
 
 		md5 := newMD5Reader(input.Body)

@@ -96,6 +96,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "CreatePublishingDestination":{
+      "name":"CreatePublishingDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/publishingDestination",
+        "responseCode":200
+      },
+      "input":{"shape":"CreatePublishingDestinationRequest"},
+      "output":{"shape":"CreatePublishingDestinationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "CreateSampleFindings":{
       "name":"CreateSampleFindings",
       "http":{
@@ -208,6 +222,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "DeletePublishingDestination":{
+      "name":"DeletePublishingDestination",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/detector/{detectorId}/publishingDestination/{destinationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeletePublishingDestinationRequest"},
+      "output":{"shape":"DeletePublishingDestinationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "DeleteThreatIntelSet":{
       "name":"DeleteThreatIntelSet",
       "http":{
@@ -217,6 +245,48 @@
       },
       "input":{"shape":"DeleteThreatIntelSetRequest"},
       "output":{"shape":"DeleteThreatIntelSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "DescribeOrganizationConfiguration":{
+      "name":"DescribeOrganizationConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/admin",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeOrganizationConfigurationRequest"},
+      "output":{"shape":"DescribeOrganizationConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "DescribePublishingDestination":{
+      "name":"DescribePublishingDestination",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/publishingDestination/{destinationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribePublishingDestinationRequest"},
+      "output":{"shape":"DescribePublishingDestinationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "DisableOrganizationAdminAccount":{
+      "name":"DisableOrganizationAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/admin/disable",
+        "responseCode":200
+      },
+      "input":{"shape":"DisableOrganizationAdminAccountRequest"},
+      "output":{"shape":"DisableOrganizationAdminAccountResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -245,6 +315,20 @@
       },
       "input":{"shape":"DisassociateMembersRequest"},
       "output":{"shape":"DisassociateMembersResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "EnableOrganizationAdminAccount":{
+      "name":"EnableOrganizationAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/admin/enable",
+        "responseCode":200
+      },
+      "input":{"shape":"EnableOrganizationAdminAccountRequest"},
+      "output":{"shape":"EnableOrganizationAdminAccountResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -474,6 +558,34 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "ListOrganizationAdminAccounts":{
+      "name":"ListOrganizationAdminAccounts",
+      "http":{
+        "method":"GET",
+        "requestUri":"/admin",
+        "responseCode":200
+      },
+      "input":{"shape":"ListOrganizationAdminAccountsRequest"},
+      "output":{"shape":"ListOrganizationAdminAccountsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "ListPublishingDestinations":{
+      "name":"ListPublishingDestinations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/publishingDestination",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPublishingDestinationsRequest"},
+      "output":{"shape":"ListPublishingDestinationsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -628,6 +740,34 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "UpdateOrganizationConfiguration":{
+      "name":"UpdateOrganizationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/admin",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateOrganizationConfigurationRequest"},
+      "output":{"shape":"UpdateOrganizationConfigurationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "UpdatePublishingDestination":{
+      "name":"UpdatePublishingDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/publishingDestination/{destinationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdatePublishingDestinationRequest"},
+      "output":{"shape":"UpdatePublishingDestinationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "UpdateThreatIntelSet":{
       "name":"UpdateThreatIntelSet",
       "http":{
@@ -751,6 +891,34 @@
           "locationName":"portProbeAction"
         }
       }
+    },
+    "AdminAccount":{
+      "type":"structure",
+      "members":{
+        "AdminAccountId":{
+          "shape":"String",
+          "locationName":"adminAccountId"
+        },
+        "AdminStatus":{
+          "shape":"AdminStatus",
+          "locationName":"adminStatus"
+        }
+      }
+    },
+    "AdminAccounts":{
+      "type":"list",
+      "member":{"shape":"AdminAccount"},
+      "max":1,
+      "min":0
+    },
+    "AdminStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLE_IN_PROGRESS"
+      ],
+      "max":300,
+      "min":1
     },
     "ArchiveFindingsRequest":{
       "type":"structure",
@@ -1073,6 +1241,44 @@
         }
       }
     },
+    "CreatePublishingDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "DestinationType",
+        "DestinationProperties"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "DestinationType":{
+          "shape":"DestinationType",
+          "locationName":"destinationType"
+        },
+        "DestinationProperties":{
+          "shape":"DestinationProperties",
+          "locationName":"destinationProperties"
+        },
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "CreatePublishingDestinationResponse":{
+      "type":"structure",
+      "required":["DestinationId"],
+      "members":{
+        "DestinationId":{
+          "shape":"String",
+          "locationName":"destinationId"
+        }
+      }
+    },
     "CreateSampleFindingsRequest":{
       "type":"structure",
       "required":["DetectorId"],
@@ -1282,6 +1488,30 @@
         }
       }
     },
+    "DeletePublishingDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "DestinationId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "DestinationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"destinationId"
+        }
+      }
+    },
+    "DeletePublishingDestinationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteThreatIntelSetRequest":{
       "type":"structure",
       "required":[
@@ -1306,6 +1536,130 @@
       "members":{
       }
     },
+    "DescribeOrganizationConfigurationRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        }
+      }
+    },
+    "DescribeOrganizationConfigurationResponse":{
+      "type":"structure",
+      "required":[
+        "AutoEnable",
+        "MemberAccountLimitReached"
+      ],
+      "members":{
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        },
+        "MemberAccountLimitReached":{
+          "shape":"Boolean",
+          "locationName":"memberAccountLimitReached"
+        }
+      }
+    },
+    "DescribePublishingDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "DestinationId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "DestinationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"destinationId"
+        }
+      }
+    },
+    "DescribePublishingDestinationResponse":{
+      "type":"structure",
+      "required":[
+        "DestinationId",
+        "DestinationType",
+        "Status",
+        "PublishingFailureStartTimestamp",
+        "DestinationProperties"
+      ],
+      "members":{
+        "DestinationId":{
+          "shape":"String",
+          "locationName":"destinationId"
+        },
+        "DestinationType":{
+          "shape":"DestinationType",
+          "locationName":"destinationType"
+        },
+        "Status":{
+          "shape":"PublishingStatus",
+          "locationName":"status"
+        },
+        "PublishingFailureStartTimestamp":{
+          "shape":"Long",
+          "locationName":"publishingFailureStartTimestamp"
+        },
+        "DestinationProperties":{
+          "shape":"DestinationProperties",
+          "locationName":"destinationProperties"
+        }
+      }
+    },
+    "Destination":{
+      "type":"structure",
+      "required":[
+        "DestinationId",
+        "DestinationType",
+        "Status"
+      ],
+      "members":{
+        "DestinationId":{
+          "shape":"String",
+          "locationName":"destinationId"
+        },
+        "DestinationType":{
+          "shape":"DestinationType",
+          "locationName":"destinationType"
+        },
+        "Status":{
+          "shape":"PublishingStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "DestinationProperties":{
+      "type":"structure",
+      "members":{
+        "DestinationArn":{
+          "shape":"String",
+          "locationName":"destinationArn"
+        },
+        "KmsKeyArn":{
+          "shape":"String",
+          "locationName":"kmsKeyArn"
+        }
+      }
+    },
+    "DestinationType":{
+      "type":"string",
+      "enum":["S3"],
+      "max":300,
+      "min":1
+    },
+    "Destinations":{
+      "type":"list",
+      "member":{"shape":"Destination"}
+    },
     "DetectorId":{
       "type":"string",
       "max":300,
@@ -1325,6 +1679,21 @@
       ],
       "max":300,
       "min":1
+    },
+    "DisableOrganizationAdminAccountRequest":{
+      "type":"structure",
+      "required":["AdminAccountId"],
+      "members":{
+        "AdminAccountId":{
+          "shape":"String",
+          "locationName":"adminAccountId"
+        }
+      }
+    },
+    "DisableOrganizationAdminAccountResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DisassociateFromMasterAccountRequest":{
       "type":"structure",
@@ -1394,6 +1763,21 @@
       "max":64,
       "min":1
     },
+    "EnableOrganizationAdminAccountRequest":{
+      "type":"structure",
+      "required":["AdminAccountId"],
+      "members":{
+        "AdminAccountId":{
+          "shape":"String",
+          "locationName":"adminAccountId"
+        }
+      }
+    },
+    "EnableOrganizationAdminAccountResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Eq":{
       "type":"list",
       "member":{"shape":"String"}
@@ -1401,6 +1785,15 @@
     "Equals":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "Evidence":{
+      "type":"structure",
+      "members":{
+        "ThreatIntelligenceDetails":{
+          "shape":"ThreatIntelligenceDetails",
+          "locationName":"threatIntelligenceDetails"
+        }
+      }
     },
     "Feedback":{
       "type":"string",
@@ -1972,6 +2365,10 @@
           "shape":"String",
           "locationName":"instanceType"
         },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
+        },
         "LaunchTime":{
           "shape":"String",
           "locationName":"launchTime"
@@ -2317,6 +2714,69 @@
         }
       }
     },
+    "ListOrganizationAdminAccountsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListOrganizationAdminAccountsResponse":{
+      "type":"structure",
+      "members":{
+        "AdminAccounts":{
+          "shape":"AdminAccounts",
+          "locationName":"adminAccounts"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListPublishingDestinationsRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListPublishingDestinationsResponse":{
+      "type":"structure",
+      "required":["Destinations"],
+      "members":{
+        "Destinations":{
+          "shape":"Destinations",
+          "locationName":"destinations"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -2369,6 +2829,15 @@
         "NextToken":{
           "shape":"String",
           "locationName":"nextToken"
+        }
+      }
+    },
+    "LocalIpDetails":{
+      "type":"structure",
+      "members":{
+        "IpAddressV4":{
+          "shape":"String",
+          "locationName":"ipAddressV4"
         }
       }
     },
@@ -2491,6 +2960,10 @@
           "shape":"String",
           "locationName":"protocol"
         },
+        "LocalIpDetails":{
+          "shape":"LocalIpDetails",
+          "locationName":"localIpDetails"
+        },
         "RemoteIpDetails":{
           "shape":"RemoteIpDetails",
           "locationName":"remoteIpDetails"
@@ -2602,6 +3075,10 @@
           "shape":"LocalPortDetails",
           "locationName":"localPortDetails"
         },
+        "LocalIpDetails":{
+          "shape":"LocalIpDetails",
+          "locationName":"localIpDetails"
+        },
         "RemoteIpDetails":{
           "shape":"RemoteIpDetails",
           "locationName":"remoteIpDetails"
@@ -2645,6 +3122,17 @@
     "ProductCodes":{
       "type":"list",
       "member":{"shape":"ProductCode"}
+    },
+    "PublishingStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING_VERIFICATION",
+        "PUBLISHING",
+        "UNABLE_TO_PUBLISH_FIX_DESTINATION_PROPERTY",
+        "STOPPED"
+      ],
+      "max":300,
+      "min":1
     },
     "RemoteIpDetails":{
       "type":"structure",
@@ -2724,6 +3212,10 @@
         "Action":{
           "shape":"Action",
           "locationName":"action"
+        },
+        "Evidence":{
+          "shape":"Evidence",
+          "locationName":"evidence"
         },
         "Archived":{
           "shape":"Boolean",
@@ -2924,6 +3416,27 @@
       ],
       "max":300,
       "min":1
+    },
+    "ThreatIntelligenceDetail":{
+      "type":"structure",
+      "members":{
+        "ThreatListName":{
+          "shape":"String",
+          "locationName":"threatListName"
+        },
+        "ThreatNames":{
+          "shape":"ThreatNames",
+          "locationName":"threatNames"
+        }
+      }
+    },
+    "ThreatIntelligenceDetails":{
+      "type":"list",
+      "member":{"shape":"ThreatIntelligenceDetail"}
+    },
+    "ThreatNames":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "UnarchiveFindingsRequest":{
       "type":"structure",
@@ -3128,6 +3641,57 @@
       }
     },
     "UpdateIPSetResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateOrganizationConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AutoEnable"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "UpdateOrganizationConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdatePublishingDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "DestinationId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "DestinationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"destinationId"
+        },
+        "DestinationProperties":{
+          "shape":"DestinationProperties",
+          "locationName":"destinationProperties"
+        }
+      }
+    },
+    "UpdatePublishingDestinationResponse":{
       "type":"structure",
       "members":{
       }

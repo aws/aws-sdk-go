@@ -24,6 +24,23 @@
         {"shape":"InternalException"}
       ]
     },
+    "AssociatePackage":{
+      "name":"AssociatePackage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-01-01/packages/associate/{PackageID}/{DomainName}"
+      },
+      "input":{"shape":"AssociatePackageRequest"},
+      "output":{"shape":"AssociatePackageResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "CancelElasticsearchServiceSoftwareUpdate":{
       "name":"CancelElasticsearchServiceSoftwareUpdate",
       "http":{
@@ -57,6 +74,24 @@
         {"shape":"ValidationException"}
       ]
     },
+    "CreatePackage":{
+      "name":"CreatePackage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-01-01/packages"
+      },
+      "input":{"shape":"CreatePackageRequest"},
+      "output":{"shape":"CreatePackageResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidTypeException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DeleteElasticsearchDomain":{
       "name":"DeleteElasticsearchDomain",
       "http":{
@@ -82,6 +117,23 @@
         {"shape":"BaseException"},
         {"shape":"InternalException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "DeletePackage":{
+      "name":"DeletePackage",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2015-01-01/packages/{PackageID}"
+      },
+      "input":{"shape":"DeletePackageRequest"},
+      "output":{"shape":"DeletePackageResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ]
     },
     "DescribeElasticsearchDomain":{
@@ -145,6 +197,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribePackages":{
+      "name":"DescribePackages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-01-01/packages/describe"
+      },
+      "input":{"shape":"DescribePackagesRequest"},
+      "output":{"shape":"DescribePackagesResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeReservedElasticsearchInstanceOfferings":{
       "name":"DescribeReservedElasticsearchInstanceOfferings",
       "http":{
@@ -173,6 +241,23 @@
         {"shape":"InternalException"},
         {"shape":"ValidationException"},
         {"shape":"DisabledOperationException"}
+      ]
+    },
+    "DissociatePackage":{
+      "name":"DissociatePackage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-01-01/packages/dissociate/{PackageID}/{DomainName}"
+      },
+      "input":{"shape":"DissociatePackageRequest"},
+      "output":{"shape":"DissociatePackageResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ]
     },
     "GetCompatibleElasticsearchVersions":{
@@ -235,6 +320,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "ListDomainsForPackage":{
+      "name":"ListDomainsForPackage",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2015-01-01/packages/{PackageID}/domains"
+      },
+      "input":{"shape":"ListDomainsForPackageRequest"},
+      "output":{"shape":"ListDomainsForPackageResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "ListElasticsearchInstanceTypes":{
       "name":"ListElasticsearchInstanceTypes",
       "http":{
@@ -262,6 +363,22 @@
         {"shape":"BaseException"},
         {"shape":"InternalException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListPackagesForDomain":{
+      "name":"ListPackagesForDomain",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2015-01-01/domain/{DomainName}/packages"
+      },
+      "input":{"shape":"ListPackagesForDomainRequest"},
+      "output":{"shape":"ListPackagesForDomainResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
       ]
     },
@@ -362,6 +479,13 @@
   },
   "shapes":{
     "ARN":{"type":"string"},
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
+    },
     "AccessPoliciesStatus":{
       "type":"structure",
       "required":[
@@ -409,6 +533,57 @@
       "members":{
         "Options":{"shape":"AdvancedOptions"},
         "Status":{"shape":"OptionStatus"}
+      }
+    },
+    "AdvancedSecurityOptions":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "InternalUserDatabaseEnabled":{"shape":"Boolean"}
+      }
+    },
+    "AdvancedSecurityOptionsInput":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "InternalUserDatabaseEnabled":{"shape":"Boolean"},
+        "MasterUserOptions":{"shape":"MasterUserOptions"}
+      }
+    },
+    "AdvancedSecurityOptionsStatus":{
+      "type":"structure",
+      "required":[
+        "Options",
+        "Status"
+      ],
+      "members":{
+        "Options":{"shape":"AdvancedSecurityOptions"},
+        "Status":{"shape":"OptionStatus"}
+      }
+    },
+    "AssociatePackageRequest":{
+      "type":"structure",
+      "required":[
+        "PackageID",
+        "DomainName"
+      ],
+      "members":{
+        "PackageID":{
+          "shape":"PackageID",
+          "location":"uri",
+          "locationName":"PackageID"
+        },
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        }
+      }
+    },
+    "AssociatePackageResponse":{
+      "type":"structure",
+      "members":{
+        "DomainPackageDetails":{"shape":"DomainPackageDetails"}
       }
     },
     "BaseException":{
@@ -464,6 +639,13 @@
         "TargetVersions":{"shape":"ElasticsearchVersionList"}
       }
     },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "CreateElasticsearchDomainRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -479,7 +661,9 @@
         "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"},
         "NodeToNodeEncryptionOptions":{"shape":"NodeToNodeEncryptionOptions"},
         "AdvancedOptions":{"shape":"AdvancedOptions"},
-        "LogPublishingOptions":{"shape":"LogPublishingOptions"}
+        "LogPublishingOptions":{"shape":"LogPublishingOptions"},
+        "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"}
       }
     },
     "CreateElasticsearchDomainResponse":{
@@ -488,6 +672,27 @@
         "DomainStatus":{"shape":"ElasticsearchDomainStatus"}
       }
     },
+    "CreatePackageRequest":{
+      "type":"structure",
+      "required":[
+        "PackageName",
+        "PackageType",
+        "PackageSource"
+      ],
+      "members":{
+        "PackageName":{"shape":"PackageName"},
+        "PackageType":{"shape":"PackageType"},
+        "PackageDescription":{"shape":"PackageDescription"},
+        "PackageSource":{"shape":"PackageSource"}
+      }
+    },
+    "CreatePackageResponse":{
+      "type":"structure",
+      "members":{
+        "PackageDetails":{"shape":"PackageDetails"}
+      }
+    },
+    "CreatedAt":{"type":"timestamp"},
     "DeleteElasticsearchDomainRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -503,6 +708,23 @@
       "type":"structure",
       "members":{
         "DomainStatus":{"shape":"ElasticsearchDomainStatus"}
+      }
+    },
+    "DeletePackageRequest":{
+      "type":"structure",
+      "required":["PackageID"],
+      "members":{
+        "PackageID":{
+          "shape":"PackageID",
+          "location":"uri",
+          "locationName":"PackageID"
+        }
+      }
+    },
+    "DeletePackageResponse":{
+      "type":"structure",
+      "members":{
+        "PackageDetails":{"shape":"PackageDetails"}
       }
     },
     "DeploymentCloseDateTimeStamp":{"type":"timestamp"},
@@ -596,6 +818,48 @@
         "LimitsByRole":{"shape":"LimitsByRole"}
       }
     },
+    "DescribePackagesFilter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"DescribePackagesFilterName"},
+        "Value":{"shape":"DescribePackagesFilterValues"}
+      }
+    },
+    "DescribePackagesFilterList":{
+      "type":"list",
+      "member":{"shape":"DescribePackagesFilter"}
+    },
+    "DescribePackagesFilterName":{
+      "type":"string",
+      "enum":[
+        "PackageID",
+        "PackageName",
+        "PackageStatus"
+      ]
+    },
+    "DescribePackagesFilterValue":{
+      "type":"string",
+      "pattern":"^[0-9a-zA-Z\\*\\.\\\\/\\?-]*$"
+    },
+    "DescribePackagesFilterValues":{
+      "type":"list",
+      "member":{"shape":"DescribePackagesFilterValue"}
+    },
+    "DescribePackagesRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"DescribePackagesFilterList"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribePackagesResponse":{
+      "type":"structure",
+      "members":{
+        "PackageDetailsList":{"shape":"PackageDetailsList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "DescribeReservedElasticsearchInstanceOfferingsRequest":{
       "type":"structure",
       "members":{
@@ -657,6 +921,49 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "DissociatePackageRequest":{
+      "type":"structure",
+      "required":[
+        "PackageID",
+        "DomainName"
+      ],
+      "members":{
+        "PackageID":{
+          "shape":"PackageID",
+          "location":"uri",
+          "locationName":"PackageID"
+        },
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        }
+      }
+    },
+    "DissociatePackageResponse":{
+      "type":"structure",
+      "members":{
+        "DomainPackageDetails":{"shape":"DomainPackageDetails"}
+      }
+    },
+    "DomainEndpointOptions":{
+      "type":"structure",
+      "members":{
+        "EnforceHTTPS":{"shape":"Boolean"},
+        "TLSSecurityPolicy":{"shape":"TLSSecurityPolicy"}
+      }
+    },
+    "DomainEndpointOptionsStatus":{
+      "type":"structure",
+      "required":[
+        "Options",
+        "Status"
+      ],
+      "members":{
+        "Options":{"shape":"DomainEndpointOptions"},
+        "Status":{"shape":"OptionStatus"}
+      }
+    },
     "DomainId":{
       "type":"string",
       "max":64,
@@ -681,6 +988,33 @@
     "DomainNameList":{
       "type":"list",
       "member":{"shape":"DomainName"}
+    },
+    "DomainPackageDetails":{
+      "type":"structure",
+      "members":{
+        "PackageID":{"shape":"PackageID"},
+        "PackageName":{"shape":"PackageName"},
+        "PackageType":{"shape":"PackageType"},
+        "LastUpdated":{"shape":"LastUpdated"},
+        "DomainName":{"shape":"DomainName"},
+        "DomainPackageStatus":{"shape":"DomainPackageStatus"},
+        "ReferencePath":{"shape":"ReferencePath"},
+        "ErrorDetails":{"shape":"ErrorDetails"}
+      }
+    },
+    "DomainPackageDetailsList":{
+      "type":"list",
+      "member":{"shape":"DomainPackageDetails"}
+    },
+    "DomainPackageStatus":{
+      "type":"string",
+      "enum":[
+        "ASSOCIATING",
+        "ASSOCIATION_FAILED",
+        "ACTIVE",
+        "DISSOCIATING",
+        "DISSOCIATION_FAILED"
+      ]
     },
     "Double":{"type":"double"},
     "EBSOptions":{
@@ -715,6 +1049,24 @@
         "m4.2xlarge.elasticsearch",
         "m4.4xlarge.elasticsearch",
         "m4.10xlarge.elasticsearch",
+        "m5.large.elasticsearch",
+        "m5.xlarge.elasticsearch",
+        "m5.2xlarge.elasticsearch",
+        "m5.4xlarge.elasticsearch",
+        "m5.12xlarge.elasticsearch",
+        "r5.large.elasticsearch",
+        "r5.xlarge.elasticsearch",
+        "r5.2xlarge.elasticsearch",
+        "r5.4xlarge.elasticsearch",
+        "r5.12xlarge.elasticsearch",
+        "c5.large.elasticsearch",
+        "c5.xlarge.elasticsearch",
+        "c5.2xlarge.elasticsearch",
+        "c5.4xlarge.elasticsearch",
+        "c5.9xlarge.elasticsearch",
+        "c5.18xlarge.elasticsearch",
+        "ultrawarm1.medium.elasticsearch",
+        "ultrawarm1.large.elasticsearch",
         "t2.micro.elasticsearch",
         "t2.small.elasticsearch",
         "t2.medium.elasticsearch",
@@ -748,6 +1100,13 @@
         "i3.16xlarge.elasticsearch"
       ]
     },
+    "ESWarmPartitionInstanceType":{
+      "type":"string",
+      "enum":[
+        "ultrawarm1.medium.elasticsearch",
+        "ultrawarm1.large.elasticsearch"
+      ]
+    },
     "ElasticsearchClusterConfig":{
       "type":"structure",
       "members":{
@@ -757,7 +1116,10 @@
         "ZoneAwarenessEnabled":{"shape":"Boolean"},
         "ZoneAwarenessConfig":{"shape":"ZoneAwarenessConfig"},
         "DedicatedMasterType":{"shape":"ESPartitionInstanceType"},
-        "DedicatedMasterCount":{"shape":"IntegerClass"}
+        "DedicatedMasterCount":{"shape":"IntegerClass"},
+        "WarmEnabled":{"shape":"Boolean"},
+        "WarmType":{"shape":"ESWarmPartitionInstanceType"},
+        "WarmCount":{"shape":"IntegerClass"}
       }
     },
     "ElasticsearchClusterConfigStatus":{
@@ -784,7 +1146,9 @@
         "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptionsStatus"},
         "NodeToNodeEncryptionOptions":{"shape":"NodeToNodeEncryptionOptionsStatus"},
         "AdvancedOptions":{"shape":"AdvancedOptionsStatus"},
-        "LogPublishingOptions":{"shape":"LogPublishingOptionsStatus"}
+        "LogPublishingOptions":{"shape":"LogPublishingOptionsStatus"},
+        "DomainEndpointOptions":{"shape":"DomainEndpointOptionsStatus"},
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsStatus"}
       }
     },
     "ElasticsearchDomainStatus":{
@@ -816,7 +1180,9 @@
         "NodeToNodeEncryptionOptions":{"shape":"NodeToNodeEncryptionOptions"},
         "AdvancedOptions":{"shape":"AdvancedOptions"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
-        "ServiceSoftwareOptions":{"shape":"ServiceSoftwareOptions"}
+        "ServiceSoftwareOptions":{"shape":"ServiceSoftwareOptions"},
+        "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptions"}
       }
     },
     "ElasticsearchDomainStatusList":{
@@ -866,7 +1232,15 @@
       "key":{"shape":"String"},
       "value":{"shape":"ServiceUrl"}
     },
+    "ErrorDetails":{
+      "type":"structure",
+      "members":{
+        "ErrorType":{"shape":"ErrorType"},
+        "ErrorMessage":{"shape":"ErrorMessage"}
+      }
+    },
     "ErrorMessage":{"type":"string"},
+    "ErrorType":{"type":"string"},
     "GUID":{
       "type":"string",
       "pattern":"\\p{XDigit}{8}-\\p{XDigit}{4}-\\p{XDigit}{4}-\\p{XDigit}{4}-\\p{XDigit}{12}"
@@ -984,6 +1358,7 @@
       "max":500,
       "min":1
     },
+    "LastUpdated":{"type":"timestamp"},
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -1014,6 +1389,34 @@
       "type":"structure",
       "members":{
         "DomainNames":{"shape":"DomainInfoList"}
+      }
+    },
+    "ListDomainsForPackageRequest":{
+      "type":"structure",
+      "required":["PackageID"],
+      "members":{
+        "PackageID":{
+          "shape":"PackageID",
+          "location":"uri",
+          "locationName":"PackageID"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListDomainsForPackageResponse":{
+      "type":"structure",
+      "members":{
+        "DomainPackageDetailsList":{"shape":"DomainPackageDetailsList"},
+        "NextToken":{"shape":"String"}
       }
     },
     "ListElasticsearchInstanceTypesRequest":{
@@ -1071,6 +1474,34 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListPackagesForDomainRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListPackagesForDomainResponse":{
+      "type":"structure",
+      "members":{
+        "DomainPackageDetailsList":{"shape":"DomainPackageDetailsList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListTagsRequest":{
       "type":"structure",
       "required":["ARN"],
@@ -1114,6 +1545,14 @@
         "SEARCH_SLOW_LOGS",
         "ES_APPLICATION_LOGS"
       ]
+    },
+    "MasterUserOptions":{
+      "type":"structure",
+      "members":{
+        "MasterUserARN":{"shape":"ARN"},
+        "MasterUserName":{"shape":"Username"},
+        "MasterUserPassword":{"shape":"Password"}
+      }
     },
     "MaxResults":{
       "type":"integer",
@@ -1162,6 +1601,62 @@
         "PendingDeletion":{"shape":"Boolean"}
       }
     },
+    "PackageDescription":{
+      "type":"string",
+      "max":1024
+    },
+    "PackageDetails":{
+      "type":"structure",
+      "members":{
+        "PackageID":{"shape":"PackageID"},
+        "PackageName":{"shape":"PackageName"},
+        "PackageType":{"shape":"PackageType"},
+        "PackageDescription":{"shape":"PackageDescription"},
+        "PackageStatus":{"shape":"PackageStatus"},
+        "CreatedAt":{"shape":"CreatedAt"},
+        "ErrorDetails":{"shape":"ErrorDetails"}
+      }
+    },
+    "PackageDetailsList":{
+      "type":"list",
+      "member":{"shape":"PackageDetails"}
+    },
+    "PackageID":{"type":"string"},
+    "PackageName":{
+      "type":"string",
+      "max":28,
+      "min":3,
+      "pattern":"[a-z][a-z0-9\\-]+"
+    },
+    "PackageSource":{
+      "type":"structure",
+      "members":{
+        "S3BucketName":{"shape":"S3BucketName"},
+        "S3Key":{"shape":"S3Key"}
+      }
+    },
+    "PackageStatus":{
+      "type":"string",
+      "enum":[
+        "COPYING",
+        "COPY_FAILED",
+        "VALIDATING",
+        "VALIDATION_FAILED",
+        "AVAILABLE",
+        "DELETING",
+        "DELETED",
+        "DELETE_FAILED"
+      ]
+    },
+    "PackageType":{
+      "type":"string",
+      "enum":["TXT-DICTIONARY"]
+    },
+    "Password":{
+      "type":"string",
+      "min":8,
+      "sensitive":true
+    },
     "PolicyDocument":{"type":"string"},
     "PurchaseReservedElasticsearchInstanceOfferingRequest":{
       "type":"structure",
@@ -1193,6 +1688,7 @@
       "type":"list",
       "member":{"shape":"RecurringCharge"}
     },
+    "ReferencePath":{"type":"string"},
     "RemoveTagsRequest":{
       "type":"structure",
       "required":[
@@ -1275,6 +1771,12 @@
       "max":2048,
       "min":20
     },
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3
+    },
+    "S3Key":{"type":"string"},
     "ServiceSoftwareOptions":{
       "type":"structure",
       "members":{
@@ -1284,7 +1786,8 @@
         "Cancellable":{"shape":"Boolean"},
         "UpdateStatus":{"shape":"DeploymentStatus"},
         "Description":{"shape":"String"},
-        "AutomatedUpdateDate":{"shape":"DeploymentCloseDateTimeStamp"}
+        "AutomatedUpdateDate":{"shape":"DeploymentCloseDateTimeStamp"},
+        "OptionalDeployment":{"shape":"Boolean"}
       }
     },
     "ServiceUrl":{"type":"string"},
@@ -1349,6 +1852,13 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "TLSSecurityPolicy":{
+      "type":"string",
+      "enum":[
+        "Policy-Min-TLS-1-0-2019-07",
+        "Policy-Min-TLS-1-2-2019-07"
+      ]
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -1394,7 +1904,9 @@
         "CognitoOptions":{"shape":"CognitoOptions"},
         "AdvancedOptions":{"shape":"AdvancedOptions"},
         "AccessPolicies":{"shape":"PolicyDocument"},
-        "LogPublishingOptions":{"shape":"LogPublishingOptions"}
+        "LogPublishingOptions":{"shape":"LogPublishingOptions"},
+        "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"}
       }
     },
     "UpdateElasticsearchDomainConfigResponse":{
@@ -1474,6 +1986,11 @@
       "max":55,
       "min":1,
       "pattern":"[\\w-]+_[0-9a-zA-Z]+"
+    },
+    "Username":{
+      "type":"string",
+      "min":1,
+      "sensitive":true
     },
     "VPCDerivedInfo":{
       "type":"structure",

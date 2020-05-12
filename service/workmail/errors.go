@@ -2,6 +2,10 @@
 
 package workmail
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeDirectoryServiceAuthenticationFailedException for service response error code
@@ -64,6 +68,12 @@ const (
 	// as length or use of special characters.
 	ErrCodeInvalidPasswordException = "InvalidPasswordException"
 
+	// ErrCodeLimitExceededException for service response error code
+	// "LimitExceededException".
+	//
+	// The request exceeds the limit of the resource.
+	ErrCodeLimitExceededException = "LimitExceededException"
+
 	// ErrCodeMailDomainNotFoundException for service response error code
 	// "MailDomainNotFoundException".
 	//
@@ -104,9 +114,43 @@ const (
 	// This user, group, or resource name is not allowed in Amazon WorkMail.
 	ErrCodeReservedNameException = "ReservedNameException"
 
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
+	// The resource cannot be found.
+	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	//
+	// The resource can have up to 50 user-applied tags.
+	ErrCodeTooManyTagsException = "TooManyTagsException"
+
 	// ErrCodeUnsupportedOperationException for service response error code
 	// "UnsupportedOperationException".
 	//
 	// You can't perform a write operation against a read-only directory.
 	ErrCodeUnsupportedOperationException = "UnsupportedOperationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"DirectoryServiceAuthenticationFailedException": newErrorDirectoryServiceAuthenticationFailedException,
+	"DirectoryUnavailableException":                 newErrorDirectoryUnavailableException,
+	"EmailAddressInUseException":                    newErrorEmailAddressInUseException,
+	"EntityAlreadyRegisteredException":              newErrorEntityAlreadyRegisteredException,
+	"EntityNotFoundException":                       newErrorEntityNotFoundException,
+	"EntityStateException":                          newErrorEntityStateException,
+	"InvalidConfigurationException":                 newErrorInvalidConfigurationException,
+	"InvalidParameterException":                     newErrorInvalidParameterException,
+	"InvalidPasswordException":                      newErrorInvalidPasswordException,
+	"LimitExceededException":                        newErrorLimitExceededException,
+	"MailDomainNotFoundException":                   newErrorMailDomainNotFoundException,
+	"MailDomainStateException":                      newErrorMailDomainStateException,
+	"NameAvailabilityException":                     newErrorNameAvailabilityException,
+	"OrganizationNotFoundException":                 newErrorOrganizationNotFoundException,
+	"OrganizationStateException":                    newErrorOrganizationStateException,
+	"ReservedNameException":                         newErrorReservedNameException,
+	"ResourceNotFoundException":                     newErrorResourceNotFoundException,
+	"TooManyTagsException":                          newErrorTooManyTagsException,
+	"UnsupportedOperationException":                 newErrorUnsupportedOperationException,
+}

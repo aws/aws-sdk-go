@@ -66,14 +66,14 @@ func (c *GroundStation) CancelContactRequest(input *CancelContactInput) (req *re
 // See the AWS API reference guide for AWS Ground Station's
 // API operation CancelContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/CancelContact
@@ -153,14 +153,17 @@ func (c *GroundStation) CreateConfigRequest(input *CreateConfigInput) (req *requ
 // See the AWS API reference guide for AWS Ground Station's
 // API operation CreateConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceLimitExceededException
+//   Account limits for this resource have been exceeded.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/CreateConfig
@@ -245,14 +248,14 @@ func (c *GroundStation) CreateDataflowEndpointGroupRequest(input *CreateDataflow
 // See the AWS API reference guide for AWS Ground Station's
 // API operation CreateDataflowEndpointGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/CreateDataflowEndpointGroup
@@ -333,14 +336,14 @@ func (c *GroundStation) CreateMissionProfileRequest(input *CreateMissionProfileI
 // See the AWS API reference guide for AWS Ground Station's
 // API operation CreateMissionProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/CreateMissionProfile
@@ -418,14 +421,14 @@ func (c *GroundStation) DeleteConfigRequest(input *DeleteConfigInput) (req *requ
 // See the AWS API reference guide for AWS Ground Station's
 // API operation DeleteConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/DeleteConfig
@@ -503,14 +506,14 @@ func (c *GroundStation) DeleteDataflowEndpointGroupRequest(input *DeleteDataflow
 // See the AWS API reference guide for AWS Ground Station's
 // API operation DeleteDataflowEndpointGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/DeleteDataflowEndpointGroup
@@ -588,14 +591,14 @@ func (c *GroundStation) DeleteMissionProfileRequest(input *DeleteMissionProfileI
 // See the AWS API reference guide for AWS Ground Station's
 // API operation DeleteMissionProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/DeleteMissionProfile
@@ -673,14 +676,14 @@ func (c *GroundStation) DescribeContactRequest(input *DescribeContactInput) (req
 // See the AWS API reference guide for AWS Ground Station's
 // API operation DescribeContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/DescribeContact
@@ -760,14 +763,14 @@ func (c *GroundStation) GetConfigRequest(input *GetConfigInput) (req *request.Re
 // See the AWS API reference guide for AWS Ground Station's
 // API operation GetConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/GetConfig
@@ -845,14 +848,14 @@ func (c *GroundStation) GetDataflowEndpointGroupRequest(input *GetDataflowEndpoi
 // See the AWS API reference guide for AWS Ground Station's
 // API operation GetDataflowEndpointGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/GetDataflowEndpointGroup
@@ -930,14 +933,14 @@ func (c *GroundStation) GetMinuteUsageRequest(input *GetMinuteUsageInput) (req *
 // See the AWS API reference guide for AWS Ground Station's
 // API operation GetMinuteUsage for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/GetMinuteUsage
@@ -1015,14 +1018,14 @@ func (c *GroundStation) GetMissionProfileRequest(input *GetMissionProfileInput) 
 // See the AWS API reference guide for AWS Ground Station's
 // API operation GetMissionProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/GetMissionProfile
@@ -1100,14 +1103,14 @@ func (c *GroundStation) GetSatelliteRequest(input *GetSatelliteInput) (req *requ
 // See the AWS API reference guide for AWS Ground Station's
 // API operation GetSatellite for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/GetSatellite
@@ -1191,14 +1194,14 @@ func (c *GroundStation) ListConfigsRequest(input *ListConfigsInput) (req *reques
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListConfigs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListConfigs
@@ -1266,10 +1269,12 @@ func (c *GroundStation) ListConfigsPagesWithContext(ctx aws.Context, input *List
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListConfigsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListConfigsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1325,7 +1330,7 @@ func (c *GroundStation) ListContactsRequest(input *ListContactsInput) (req *requ
 //
 // Returns a list of contacts.
 //
-// If statusList contains AVAILABLE, the request must include groundstation,
+// If statusList contains AVAILABLE, the request must include groundStation,
 // missionprofileArn, and satelliteArn.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1335,14 +1340,14 @@ func (c *GroundStation) ListContactsRequest(input *ListContactsInput) (req *requ
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListContacts for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListContacts
@@ -1410,10 +1415,12 @@ func (c *GroundStation) ListContactsPagesWithContext(ctx aws.Context, input *Lis
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListContactsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListContactsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1476,14 +1483,14 @@ func (c *GroundStation) ListDataflowEndpointGroupsRequest(input *ListDataflowEnd
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListDataflowEndpointGroups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListDataflowEndpointGroups
@@ -1551,10 +1558,12 @@ func (c *GroundStation) ListDataflowEndpointGroupsPagesWithContext(ctx aws.Conte
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListDataflowEndpointGroupsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListDataflowEndpointGroupsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1617,14 +1626,14 @@ func (c *GroundStation) ListGroundStationsRequest(input *ListGroundStationsInput
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListGroundStations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListGroundStations
@@ -1692,10 +1701,12 @@ func (c *GroundStation) ListGroundStationsPagesWithContext(ctx aws.Context, inpu
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListGroundStationsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListGroundStationsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1758,14 +1769,14 @@ func (c *GroundStation) ListMissionProfilesRequest(input *ListMissionProfilesInp
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListMissionProfiles for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListMissionProfiles
@@ -1833,10 +1844,12 @@ func (c *GroundStation) ListMissionProfilesPagesWithContext(ctx aws.Context, inp
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListMissionProfilesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListMissionProfilesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1899,14 +1912,14 @@ func (c *GroundStation) ListSatellitesRequest(input *ListSatellitesInput) (req *
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListSatellites for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListSatellites
@@ -1974,10 +1987,12 @@ func (c *GroundStation) ListSatellitesPagesWithContext(ctx aws.Context, input *L
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListSatellitesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListSatellitesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2025,7 +2040,7 @@ func (c *GroundStation) ListTagsForResourceRequest(input *ListTagsForResourceInp
 
 // ListTagsForResource API operation for AWS Ground Station.
 //
-// Returns a list of tags or a specified resource.
+// Returns a list of tags for a specified resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2034,14 +2049,14 @@ func (c *GroundStation) ListTagsForResourceRequest(input *ListTagsForResourceInp
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListTagsForResource
@@ -2119,14 +2134,14 @@ func (c *GroundStation) ReserveContactRequest(input *ReserveContactInput) (req *
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ReserveContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ReserveContact
@@ -2205,14 +2220,14 @@ func (c *GroundStation) TagResourceRequest(input *TagResourceInput) (req *reques
 // See the AWS API reference guide for AWS Ground Station's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/TagResource
@@ -2291,14 +2306,14 @@ func (c *GroundStation) UntagResourceRequest(input *UntagResourceInput) (req *re
 // See the AWS API reference guide for AWS Ground Station's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/UntagResource
@@ -2379,14 +2394,14 @@ func (c *GroundStation) UpdateConfigRequest(input *UpdateConfigInput) (req *requ
 // See the AWS API reference guide for AWS Ground Station's
 // API operation UpdateConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/UpdateConfig
@@ -2467,14 +2482,14 @@ func (c *GroundStation) UpdateMissionProfileRequest(input *UpdateMissionProfileI
 // See the AWS API reference guide for AWS Ground Station's
 // API operation UpdateMissionProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
-//   Dependency encountered an error.
-//
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * DependencyException
+//   Dependency encountered an error.
+//
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/UpdateMissionProfile
@@ -2805,7 +2820,7 @@ func (s *ConfigListItem) SetName(v string) *ConfigListItem {
 	return s
 }
 
-// Object containing the parameters for a Config.
+// Object containing the parameters of a Config.
 //
 // See the subtype definitions for what each type of Config contains.
 type ConfigTypeData struct {
@@ -2956,6 +2971,9 @@ type ContactData struct {
 	// event indicating an upcoming pass.
 	PrePassStartTime *time.Time `locationName:"prePassStartTime" type:"timestamp"`
 
+	// Region of a contact.
+	Region *string `locationName:"region" type:"string"`
+
 	// ARN of a satellite.
 	SatelliteArn *string `locationName:"satelliteArn" type:"string"`
 
@@ -3027,6 +3045,12 @@ func (s *ContactData) SetPostPassEndTime(v time.Time) *ContactData {
 // SetPrePassStartTime sets the PrePassStartTime field's value.
 func (s *ContactData) SetPrePassStartTime(v time.Time) *ContactData {
 	s.PrePassStartTime = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *ContactData) SetRegion(v string) *ContactData {
+	s.Region = &v
 	return s
 }
 
@@ -3218,7 +3242,7 @@ func (s *CreateDataflowEndpointGroupInput) SetTags(v map[string]*string) *Create
 type CreateDataflowEndpointGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// ID of a dataflow endpoint group.
+	// UUID of a dataflow endpoint group.
 	DataflowEndpointGroupId *string `locationName:"dataflowEndpointGroupId" type:"string"`
 }
 
@@ -3365,7 +3389,7 @@ func (s *CreateMissionProfileInput) SetTrackingConfigArn(v string) *CreateMissio
 type CreateMissionProfileOutput struct {
 	_ struct{} `type:"structure"`
 
-	// ID of a mission profile.
+	// UUID of a mission profile.
 	MissionProfileId *string `locationName:"missionProfileId" type:"string"`
 }
 
@@ -3389,7 +3413,7 @@ func (s *CreateMissionProfileOutput) SetMissionProfileId(v string) *CreateMissio
 type Data struct {
 	_ struct{} `type:"structure"`
 
-	// ID of a ground station.
+	// UUID of a ground station.
 	GroundStationId *string `locationName:"groundStationId" type:"string"`
 
 	// Name of a ground station.
@@ -3495,6 +3519,9 @@ type DataflowEndpointConfig struct {
 	//
 	// DataflowEndpointName is a required field
 	DataflowEndpointName *string `locationName:"dataflowEndpointName" type:"string" required:"true"`
+
+	// Region of a dataflow endpoint.
+	DataflowEndpointRegion *string `locationName:"dataflowEndpointRegion" type:"string"`
 }
 
 // String returns the string representation
@@ -3523,6 +3550,12 @@ func (s *DataflowEndpointConfig) Validate() error {
 // SetDataflowEndpointName sets the DataflowEndpointName field's value.
 func (s *DataflowEndpointConfig) SetDataflowEndpointName(v string) *DataflowEndpointConfig {
 	s.DataflowEndpointName = &v
+	return s
+}
+
+// SetDataflowEndpointRegion sets the DataflowEndpointRegion field's value.
+func (s *DataflowEndpointConfig) SetDataflowEndpointRegion(v string) *DataflowEndpointConfig {
+	s.DataflowEndpointRegion = &v
 	return s
 }
 
@@ -3703,7 +3736,7 @@ func (s *DeleteConfigOutput) SetConfigType(v string) *DeleteConfigOutput {
 type DeleteDataflowEndpointGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// ID of a dataflow endpoint group.
+	// UUID of a dataflow endpoint group.
 	//
 	// DataflowEndpointGroupId is a required field
 	DataflowEndpointGroupId *string `location:"uri" locationName:"dataflowEndpointGroupId" type:"string" required:"true"`
@@ -3744,7 +3777,7 @@ func (s *DeleteDataflowEndpointGroupInput) SetDataflowEndpointGroupId(v string) 
 type DeleteDataflowEndpointGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// ID of a dataflow endpoint group.
+	// UUID of a dataflow endpoint group.
 	DataflowEndpointGroupId *string `locationName:"dataflowEndpointGroupId" type:"string"`
 }
 
@@ -3808,7 +3841,7 @@ func (s *DeleteMissionProfileInput) SetMissionProfileId(v string) *DeleteMission
 type DeleteMissionProfileOutput struct {
 	_ struct{} `type:"structure"`
 
-	// ID of a mission profile.
+	// UUID of a mission profile.
 	MissionProfileId *string `locationName:"missionProfileId" type:"string"`
 }
 
@@ -3868,6 +3901,64 @@ func (s *DemodulationConfig) Validate() error {
 func (s *DemodulationConfig) SetUnvalidatedJSON(v string) *DemodulationConfig {
 	s.UnvalidatedJSON = &v
 	return s
+}
+
+// Dependency encountered an error.
+type DependencyException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	ParameterName *string `locationName:"parameterName" type:"string"`
+}
+
+// String returns the string representation
+func (s DependencyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DependencyException) GoString() string {
+	return s.String()
+}
+
+func newErrorDependencyException(v protocol.ResponseMetadata) error {
+	return &DependencyException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DependencyException) Code() string {
+	return "DependencyException"
+}
+
+// Message returns the exception's message.
+func (s *DependencyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DependencyException) OrigErr() error {
+	return nil
+}
+
+func (s *DependencyException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DependencyException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DependencyException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type DescribeContactInput struct {
@@ -3943,6 +4034,9 @@ type DescribeContactOutput struct {
 	// event indicating an upcoming pass.
 	PrePassStartTime *time.Time `locationName:"prePassStartTime" type:"timestamp"`
 
+	// Region of a contact.
+	Region *string `locationName:"region" type:"string"`
+
 	// ARN of a satellite.
 	SatelliteArn *string `locationName:"satelliteArn" type:"string"`
 
@@ -4014,6 +4108,12 @@ func (s *DescribeContactOutput) SetPostPassEndTime(v time.Time) *DescribeContact
 // SetPrePassStartTime sets the PrePassStartTime field's value.
 func (s *DescribeContactOutput) SetPrePassStartTime(v time.Time) *DescribeContactOutput {
 	s.PrePassStartTime = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *DescribeContactOutput) SetRegion(v string) *DescribeContactOutput {
+	s.Region = &v
 	return s
 }
 
@@ -4686,7 +4786,7 @@ type GetMissionProfileOutput struct {
 	// ARN of a mission profile.
 	MissionProfileArn *string `locationName:"missionProfileArn" type:"string"`
 
-	// ID of a mission profile.
+	// UUID of a mission profile.
 	MissionProfileId *string `locationName:"missionProfileId" type:"string"`
 
 	// Name of a mission profile.
@@ -4816,11 +4916,8 @@ func (s *GetSatelliteInput) SetSatelliteId(v string) *GetSatelliteInput {
 type GetSatelliteOutput struct {
 	_ struct{} `type:"structure"`
 
-	// When a satellite was created.
-	DateCreated *time.Time `locationName:"dateCreated" type:"timestamp"`
-
-	// When a satellite was last updated.
-	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
+	// A list of ground stations to which the satellite is on-boarded.
+	GroundStations []*string `locationName:"groundStations" type:"list"`
 
 	// NORAD satellite ID number.
 	NoradSatelliteID *int64 `locationName:"noradSatelliteID" min:"1" type:"integer"`
@@ -4830,9 +4927,6 @@ type GetSatelliteOutput struct {
 
 	// UUID of a satellite.
 	SatelliteId *string `locationName:"satelliteId" min:"1" type:"string"`
-
-	// Tags assigned to a satellite.
-	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation
@@ -4845,15 +4939,9 @@ func (s GetSatelliteOutput) GoString() string {
 	return s.String()
 }
 
-// SetDateCreated sets the DateCreated field's value.
-func (s *GetSatelliteOutput) SetDateCreated(v time.Time) *GetSatelliteOutput {
-	s.DateCreated = &v
-	return s
-}
-
-// SetLastUpdated sets the LastUpdated field's value.
-func (s *GetSatelliteOutput) SetLastUpdated(v time.Time) *GetSatelliteOutput {
-	s.LastUpdated = &v
+// SetGroundStations sets the GroundStations field's value.
+func (s *GetSatelliteOutput) SetGroundStations(v []*string) *GetSatelliteOutput {
+	s.GroundStations = v
 	return s
 }
 
@@ -4875,10 +4963,62 @@ func (s *GetSatelliteOutput) SetSatelliteId(v string) *GetSatelliteOutput {
 	return s
 }
 
-// SetTags sets the Tags field's value.
-func (s *GetSatelliteOutput) SetTags(v map[string]*string) *GetSatelliteOutput {
-	s.Tags = v
-	return s
+// One or more parameters are not valid.
+type InvalidParameterException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	ParameterName *string `locationName:"parameterName" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidParameterException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidParameterException) Code() string {
+	return "InvalidParameterException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidParameterException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidParameterException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidParameterException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidParameterException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidParameterException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type ListConfigsInput struct {
@@ -5167,6 +5307,9 @@ type ListGroundStationsInput struct {
 	// Next token that can be supplied in the next call to get the next page of
 	// ground stations.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// Satellite ID to retrieve on-boarded ground stations.
+	SatelliteId *string `location:"querystring" locationName:"satelliteId" type:"string"`
 }
 
 // String returns the string representation
@@ -5188,6 +5331,12 @@ func (s *ListGroundStationsInput) SetMaxResults(v int64) *ListGroundStationsInpu
 // SetNextToken sets the NextToken field's value.
 func (s *ListGroundStationsInput) SetNextToken(v string) *ListGroundStationsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetSatelliteId sets the SatelliteId field's value.
+func (s *ListGroundStationsInput) SetSatelliteId(v string) *ListGroundStationsInput {
+	s.SatelliteId = &v
 	return s
 }
 
@@ -5260,7 +5409,7 @@ func (s *ListMissionProfilesInput) SetNextToken(v string) *ListMissionProfilesIn
 type ListMissionProfilesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of mission profiles
+	// List of mission profiles.
 	MissionProfileList []*MissionProfileListItem `locationName:"missionProfileList" type:"list"`
 
 	// Next token returned in the response of a previous ListMissionProfiles call.
@@ -5427,7 +5576,7 @@ type MissionProfileListItem struct {
 	// ARN of a mission profile.
 	MissionProfileArn *string `locationName:"missionProfileArn" type:"string"`
 
-	// ID of a mission profile.
+	// UUID of a mission profile.
 	MissionProfileId *string `locationName:"missionProfileId" type:"string"`
 
 	// Name of a mission profile.
@@ -5597,9 +5746,126 @@ func (s *ReserveContactOutput) SetContactId(v string) *ReserveContactOutput {
 	return s
 }
 
+// Account limits for this resource have been exceeded.
+type ResourceLimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	ParameterName *string `locationName:"parameterName" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ResourceLimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceLimitExceededException) Code() string {
+	return "ResourceLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceLimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceLimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Resource was not found.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Item in a list of satellites.
 type SatelliteListItem struct {
 	_ struct{} `type:"structure"`
+
+	// A list of ground stations to which the satellite is on-boarded.
+	GroundStations []*string `locationName:"groundStations" type:"list"`
 
 	// NORAD satellite ID number.
 	NoradSatelliteID *int64 `locationName:"noradSatelliteID" min:"1" type:"integer"`
@@ -5607,7 +5873,7 @@ type SatelliteListItem struct {
 	// ARN of a satellite.
 	SatelliteArn *string `locationName:"satelliteArn" type:"string"`
 
-	// ID of a satellite.
+	// UUID of a satellite.
 	SatelliteId *string `locationName:"satelliteId" min:"1" type:"string"`
 }
 
@@ -5619,6 +5885,12 @@ func (s SatelliteListItem) String() string {
 // GoString returns the string representation
 func (s SatelliteListItem) GoString() string {
 	return s.String()
+}
+
+// SetGroundStations sets the GroundStations field's value.
+func (s *SatelliteListItem) SetGroundStations(v []*string) *SatelliteListItem {
+	s.GroundStations = v
+	return s
 }
 
 // SetNoradSatelliteID sets the NoradSatelliteID field's value.
@@ -5841,7 +6113,9 @@ type TagResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
 	// Tags assigned to a resource.
-	Tags map[string]*string `locationName:"tags" type:"map"`
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
 // String returns the string representation
@@ -5862,6 +6136,9 @@ func (s *TagResourceInput) Validate() error {
 	}
 	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6008,7 +6285,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// Parameters for a Config.
+	// Parameters of a Config.
 	//
 	// ConfigData is a required field
 	ConfigData *ConfigTypeData `locationName:"configData" type:"structure" required:"true"`
@@ -6160,7 +6437,7 @@ type UpdateMissionProfileInput struct {
 	// this duration.
 	MinimumViableContactDurationSeconds *int64 `locationName:"minimumViableContactDurationSeconds" min:"1" type:"integer"`
 
-	// ID of a mission profile.
+	// UUID of a mission profile.
 	//
 	// MissionProfileId is a required field
 	MissionProfileId *string `location:"uri" locationName:"missionProfileId" type:"string" required:"true"`
@@ -6255,7 +6532,7 @@ func (s *UpdateMissionProfileInput) SetTrackingConfigArn(v string) *UpdateMissio
 type UpdateMissionProfileOutput struct {
 	_ struct{} `type:"structure"`
 
-	// ID of a mission profile.
+	// UUID of a mission profile.
 	MissionProfileId *string `locationName:"missionProfileId" type:"string"`
 }
 
@@ -6432,6 +6709,9 @@ const (
 
 	// ContactStatusCancelled is a ContactStatus enum value
 	ContactStatusCancelled = "CANCELLED"
+
+	// ContactStatusCancelling is a ContactStatus enum value
+	ContactStatusCancelling = "CANCELLING"
 
 	// ContactStatusCompleted is a ContactStatus enum value
 	ContactStatusCompleted = "COMPLETED"

@@ -519,9 +519,21 @@ func (nb NameBuilder) BuildOperand() (Operand, error) {
 // words.
 // More information on reserved words at http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
 func (vb ValueBuilder) BuildOperand() (Operand, error) {
-	expr, err := dynamodbattribute.Marshal(vb.value)
-	if err != nil {
-		return Operand{}, newInvalidParameterError("BuildOperand", "ValueBuilder")
+	var (
+		expr *dynamodb.AttributeValue
+		err  error
+	)
+
+	switch v := vb.value.(type) {
+	case *dynamodb.AttributeValue:
+		expr = v
+	case dynamodb.AttributeValue:
+		expr = &v
+	default:
+		expr, err = dynamodbattribute.Marshal(vb.value)
+		if err != nil {
+			return Operand{}, newInvalidParameterError("BuildOperand", "ValueBuilder")
+		}
 	}
 
 	// Create a string with special characters that can be substituted later: $v

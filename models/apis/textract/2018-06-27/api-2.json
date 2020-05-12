@@ -29,7 +29,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"InternalServerError"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"HumanLoopQuotaExceededException"}
       ]
     },
     "DetectDocumentText":{
@@ -146,14 +147,17 @@
       ],
       "members":{
         "Document":{"shape":"Document"},
-        "FeatureTypes":{"shape":"FeatureTypes"}
+        "FeatureTypes":{"shape":"FeatureTypes"},
+        "HumanLoopConfig":{"shape":"HumanLoopConfig"}
       }
     },
     "AnalyzeDocumentResponse":{
       "type":"structure",
       "members":{
         "DocumentMetadata":{"shape":"DocumentMetadata"},
-        "Blocks":{"shape":"BlockList"}
+        "Blocks":{"shape":"BlockList"},
+        "HumanLoopActivationOutput":{"shape":"HumanLoopActivationOutput"},
+        "AnalyzeDocumentModelVersion":{"shape":"String"}
       }
     },
     "BadDocumentException":{
@@ -211,6 +215,18 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9-_]+$"
     },
+    "ContentClassifier":{
+      "type":"string",
+      "enum":[
+        "FreeOfPersonallyIdentifiableInformation",
+        "FreeOfAdultContent"
+      ]
+    },
+    "ContentClassifiers":{
+      "type":"list",
+      "member":{"shape":"ContentClassifier"},
+      "max":256
+    },
     "DetectDocumentTextRequest":{
       "type":"structure",
       "required":["Document"],
@@ -222,7 +238,8 @@
       "type":"structure",
       "members":{
         "DocumentMetadata":{"shape":"DocumentMetadata"},
-        "Blocks":{"shape":"BlockList"}
+        "Blocks":{"shape":"BlockList"},
+        "DetectDocumentTextModelVersion":{"shape":"String"}
       }
     },
     "Document":{
@@ -274,6 +291,10 @@
       "member":{"shape":"FeatureType"}
     },
     "Float":{"type":"float"},
+    "FlowDefinitionArn":{
+      "type":"string",
+      "max":256
+    },
     "Geometry":{
       "type":"structure",
       "members":{
@@ -298,7 +319,8 @@
         "NextToken":{"shape":"PaginationToken"},
         "Blocks":{"shape":"BlockList"},
         "Warnings":{"shape":"Warnings"},
-        "StatusMessage":{"shape":"StatusMessage"}
+        "StatusMessage":{"shape":"StatusMessage"},
+        "AnalyzeDocumentModelVersion":{"shape":"String"}
       }
     },
     "GetDocumentTextDetectionRequest":{
@@ -318,8 +340,67 @@
         "NextToken":{"shape":"PaginationToken"},
         "Blocks":{"shape":"BlockList"},
         "Warnings":{"shape":"Warnings"},
-        "StatusMessage":{"shape":"StatusMessage"}
+        "StatusMessage":{"shape":"StatusMessage"},
+        "DetectDocumentTextModelVersion":{"shape":"String"}
       }
+    },
+    "HumanLoopActivationConditionsEvaluationResults":{
+      "type":"string",
+      "max":10240
+    },
+    "HumanLoopActivationOutput":{
+      "type":"structure",
+      "members":{
+        "HumanLoopArn":{"shape":"HumanLoopArn"},
+        "HumanLoopActivationReasons":{"shape":"HumanLoopActivationReasons"},
+        "HumanLoopActivationConditionsEvaluationResults":{
+          "shape":"HumanLoopActivationConditionsEvaluationResults",
+          "jsonvalue":true
+        }
+      }
+    },
+    "HumanLoopActivationReason":{"type":"string"},
+    "HumanLoopActivationReasons":{
+      "type":"list",
+      "member":{"shape":"HumanLoopActivationReason"},
+      "min":1
+    },
+    "HumanLoopArn":{
+      "type":"string",
+      "max":256
+    },
+    "HumanLoopConfig":{
+      "type":"structure",
+      "required":[
+        "HumanLoopName",
+        "FlowDefinitionArn"
+      ],
+      "members":{
+        "HumanLoopName":{"shape":"HumanLoopName"},
+        "FlowDefinitionArn":{"shape":"FlowDefinitionArn"},
+        "DataAttributes":{"shape":"HumanLoopDataAttributes"}
+      }
+    },
+    "HumanLoopDataAttributes":{
+      "type":"structure",
+      "members":{
+        "ContentClassifiers":{"shape":"ContentClassifiers"}
+      }
+    },
+    "HumanLoopName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[a-z0-9](-*[a-z0-9])*"
+    },
+    "HumanLoopQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{"shape":"String"},
+        "QuotaCode":{"shape":"String"},
+        "ServiceCode":{"shape":"String"}
+      },
+      "exception":true
     },
     "IdList":{
       "type":"list",
@@ -333,7 +414,7 @@
     },
     "ImageBlob":{
       "type":"blob",
-      "max":5242880,
+      "max":10485760,
       "min":1
     },
     "InternalServerError":{

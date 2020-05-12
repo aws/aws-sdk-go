@@ -376,20 +376,6 @@
         "shape" : "BadRequestException"
       } ]
     },
-    "TagResource" : {
-      "name" : "TagResource",
-      "http" : {
-        "method" : "POST",
-        "requestUri" : "/tags/{resource-arn}",
-        "responseCode" : 204
-      },
-      "input" : {
-        "shape" : "TagResourceRequest"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      } ]
-    },
     "DeleteConnectorDefinition" : {
       "name" : "DeleteConnectorDefinition",
       "http" : {
@@ -521,20 +507,6 @@
       },
       "output" : {
         "shape" : "DeleteSubscriptionDefinitionResponse"
-      },
-      "errors" : [ {
-        "shape" : "BadRequestException"
-      } ]
-    },
-    "UntagResource" : {
-      "name" : "UntagResource",
-      "http" : {
-        "method" : "DELETE",
-        "requestUri" : "/tags/{resource-arn}",
-        "responseCode" : 204
-      },
-      "input" : {
-        "shape" : "UntagResourceRequest"
       },
       "errors" : [ {
         "shape" : "BadRequestException"
@@ -1369,6 +1341,34 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "TagResource" : {
+      "name" : "TagResource",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/tags/{resource-arn}",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "TagResourceRequest"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "UntagResource" : {
+      "name" : "UntagResource",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/tags/{resource-arn}",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "UntagResourceRequest"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "UpdateConnectivityInfo" : {
       "name" : "UpdateConnectivityInfo",
       "http" : {
@@ -1557,7 +1557,7 @@
           "shape" : "__string"
         }
       },
-      "required" : [ "GroupId" ]
+      "required" : [ "GroupId", "RoleArn" ]
     },
     "AssociateRoleToGroupResponse" : {
       "type" : "structure",
@@ -1573,7 +1573,8 @@
         "RoleArn" : {
           "shape" : "__string"
         }
-      }
+      },
+      "required" : [ "RoleArn" ]
     },
     "AssociateServiceRoleToAccountResponse" : {
       "type" : "structure",
@@ -1701,7 +1702,7 @@
           "shape" : "__mapOf__string"
         }
       },
-      "required" : [ ]
+      "required" : [ "ConnectorArn", "Id" ]
     },
     "ConnectorDefinitionVersion" : {
       "type" : "structure",
@@ -1727,7 +1728,7 @@
           "shape" : "__string"
         }
       },
-      "required" : [ ]
+      "required" : [ "ThingArn", "Id", "CertificateArn" ]
     },
     "CoreDefinitionVersion" : {
       "type" : "structure",
@@ -1751,8 +1752,8 @@
         "Name" : {
           "shape" : "__string"
         },
-        "tags": {
-          "shape": "Tags"
+        "tags" : {
+          "shape" : "Tags"
         }
       }
     },
@@ -1832,8 +1833,8 @@
         "Name" : {
           "shape" : "__string"
         },
-        "tags": {
-          "shape": "Tags"
+        "tags" : {
+          "shape" : "Tags"
         }
       }
     },
@@ -1922,7 +1923,7 @@
           "shape" : "__string"
         }
       },
-      "required" : [ "GroupId" ]
+      "required" : [ "GroupId", "DeploymentType" ]
     },
     "CreateDeploymentResponse" : {
       "type" : "structure",
@@ -1949,8 +1950,8 @@
         "Name" : {
           "shape" : "__string"
         },
-        "tags": {
-          "shape": "Tags"
+        "tags" : {
+          "shape" : "Tags"
         }
       }
     },
@@ -2030,8 +2031,8 @@
         "Name" : {
           "shape" : "__string"
         },
-        "tags": {
-          "shape": "Tags"
+        "tags" : {
+          "shape" : "Tags"
         }
       }
     },
@@ -2138,8 +2139,8 @@
         "Name" : {
           "shape" : "__string"
         },
-        "tags": {
-          "shape": "Tags"
+        "tags" : {
+          "shape" : "Tags"
         }
       }
     },
@@ -2237,8 +2238,8 @@
         "Name" : {
           "shape" : "__string"
         },
-        "tags": {
-          "shape": "Tags"
+        "tags" : {
+          "shape" : "Tags"
         }
       }
     },
@@ -2318,8 +2319,8 @@
         "Name" : {
           "shape" : "__string"
         },
-        "tags": {
-          "shape": "Tags"
+        "tags" : {
+          "shape" : "Tags"
         }
       }
     },
@@ -2411,7 +2412,8 @@
         "UpdateTargetsOperatingSystem" : {
           "shape" : "UpdateTargetsOperatingSystem"
         }
-      }
+      },
+      "required" : [ "S3UrlSignerRole", "UpdateTargetsArchitecture", "SoftwareToUpdate", "UpdateTargets", "UpdateTargetsOperatingSystem" ]
     },
     "CreateSoftwareUpdateJobResponse" : {
       "type" : "structure",
@@ -2420,6 +2422,9 @@
           "shape" : "__string"
         },
         "IotJobId" : {
+          "shape" : "__string"
+        },
+        "PlatformSoftwareVersion" : {
           "shape" : "__string"
         }
       }
@@ -2438,8 +2443,8 @@
         "Name" : {
           "shape" : "__string"
         },
-        "tags": {
-          "shape": "Tags"
+        "tags" : {
+          "shape" : "Tags"
         }
       }
     },
@@ -2504,20 +2509,6 @@
           "shape" : "__string"
         }
       }
-    },
-    "TagResourceRequest" : {
-      "type" : "structure",
-      "members" : {
-        "ResourceArn" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "resource-arn"
-        },
-        "tags" : {
-          "shape" : "__mapOf__string"
-        }
-      },
-      "required" : [ "ResourceArn", "tags" ]
     },
     "DefinitionInformation" : {
       "type" : "structure",
@@ -2669,22 +2660,6 @@
       "type" : "structure",
       "members" : { }
     },
-    "UntagResourceRequest" : {
-      "type" : "structure",
-      "members" : {
-        "ResourceArn" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "resource-arn"
-        },
-        "TagKeys" : {
-          "shape" : "__listOf__string",
-          "location" : "querystring",
-          "locationName" : "tagKeys"
-        }
-      },
-      "required" : [ "TagKeys", "ResourceArn" ]
-    },
     "Deployment" : {
       "type" : "structure",
       "members" : {
@@ -2731,7 +2706,7 @@
           "shape" : "__string"
         }
       },
-      "required" : [ ]
+      "required" : [ "ThingArn", "Id", "CertificateArn" ]
     },
     "DeviceDefinitionVersion" : {
       "type" : "structure",
@@ -2810,7 +2785,7 @@
           "shape" : "__string"
         }
       },
-      "required" : [ ]
+      "required" : [ "Id" ]
     },
     "FunctionConfiguration" : {
       "type" : "structure",
@@ -2974,7 +2949,7 @@
           "shape" : "__string"
         },
         "tags" : {
-          "shape" : "__mapOf__string"
+          "shape" : "Tags"
         }
       }
     },
@@ -3037,7 +3012,7 @@
           "shape" : "__string"
         },
         "tags" : {
-          "shape" : "__mapOf__string"
+          "shape" : "Tags"
         }
       }
     },
@@ -3121,7 +3096,7 @@
           "shape" : "__string"
         },
         "tags" : {
-          "shape" : "__mapOf__string"
+          "shape" : "Tags"
         }
       }
     },
@@ -3236,7 +3211,7 @@
           "shape" : "__string"
         },
         "tags" : {
-          "shape" : "__mapOf__string"
+          "shape" : "Tags"
         }
       }
     },
@@ -3320,7 +3295,7 @@
           "shape" : "__string"
         },
         "tags" : {
-          "shape" : "__mapOf__string"
+          "shape" : "Tags"
         }
       }
     },
@@ -3459,7 +3434,7 @@
           "shape" : "__string"
         },
         "tags" : {
-          "shape" : "__mapOf__string"
+          "shape" : "Tags"
         }
       }
     },
@@ -3535,7 +3510,7 @@
           "shape" : "__string"
         },
         "tags" : {
-          "shape" : "__mapOf__string"
+          "shape" : "Tags"
         }
       }
     },
@@ -3616,7 +3591,7 @@
           "shape" : "__string"
         },
         "tags" : {
-          "shape" : "__mapOf__string"
+          "shape" : "Tags"
         }
       }
     },
@@ -3707,7 +3682,7 @@
           "shape" : "__string"
         },
         "tags" : {
-          "shape" : "__mapOf__string"
+          "shape" : "Tags"
         }
       }
     },
@@ -4456,8 +4431,8 @@
     "ListTagsForResourceResponse" : {
       "type" : "structure",
       "members" : {
-        "Tags" : {
-          "shape" : "__mapOf__string"
+        "tags" : {
+          "shape" : "Tags"
         }
       }
     },
@@ -4516,7 +4491,7 @@
           "shape" : "LoggerType"
         }
       },
-      "required" : [ ]
+      "required" : [ "Type", "Level", "Id", "Component" ]
     },
     "LoggerComponent" : {
       "type" : "string",
@@ -4585,7 +4560,7 @@
           "shape" : "ResourceDataContainer"
         }
       },
-      "required" : [ ]
+      "required" : [ "ResourceDataContainer", "Id", "Name" ]
     },
     "ResourceAccessPolicy" : {
       "type" : "structure",
@@ -4597,7 +4572,7 @@
           "shape" : "__string"
         }
       },
-      "required" : [ ]
+      "required" : [ "ResourceId" ]
     },
     "ResourceDataContainer" : {
       "type" : "structure",
@@ -4627,11 +4602,26 @@
         }
       }
     },
+    "ResourceDownloadOwnerSetting" : {
+      "type" : "structure",
+      "members" : {
+        "GroupOwner" : {
+          "shape" : "__string"
+        },
+        "GroupPermission" : {
+          "shape" : "Permission"
+        }
+      },
+      "required" : [ "GroupOwner", "GroupPermission" ]
+    },
     "S3MachineLearningModelResourceData" : {
       "type" : "structure",
       "members" : {
         "DestinationPath" : {
           "shape" : "__string"
+        },
+        "OwnerSetting" : {
+          "shape" : "ResourceDownloadOwnerSetting"
         },
         "S3Uri" : {
           "shape" : "__string"
@@ -4646,6 +4636,9 @@
       "members" : {
         "DestinationPath" : {
           "shape" : "__string"
+        },
+        "OwnerSetting" : {
+          "shape" : "ResourceDownloadOwnerSetting"
         },
         "SageMakerJobArn" : {
           "shape" : "__string"
@@ -4681,10 +4674,11 @@
         "InputFileUri" : {
           "shape" : "__string"
         },
-        "tags": {
-          "shape": "Tags"
+        "tags" : {
+          "shape" : "Tags"
         }
-      }
+      },
+      "required" : [ "ExecutionRoleArn", "InputFileUri" ]
     },
     "StartBulkDeploymentResponse" : {
       "type" : "structure",
@@ -4728,7 +4722,7 @@
           "shape" : "__string"
         }
       },
-      "required" : [ ]
+      "required" : [ "Target", "Id", "Subject", "Source" ]
     },
     "SubscriptionDefinitionVersion" : {
       "type" : "structure",
@@ -4738,6 +4732,20 @@
         }
       }
     },
+    "TagResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "resource-arn"
+        },
+        "tags" : {
+          "shape" : "Tags"
+        }
+      },
+      "required" : [ "ResourceArn" ]
+    },
     "Tags" : {
       "type" : "map",
       "key" : {
@@ -4746,6 +4754,22 @@
       "value" : {
         "shape" : "__string"
       }
+    },
+    "UntagResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "resource-arn"
+        },
+        "TagKeys" : {
+          "shape" : "__listOf__string",
+          "location" : "querystring",
+          "locationName" : "tagKeys"
+        }
+      },
+      "required" : [ "TagKeys", "ResourceArn" ]
     },
     "UpdateAgentLogLevel" : {
       "type" : "string",
@@ -4957,11 +4981,11 @@
     },
     "UpdateTargetsArchitecture" : {
       "type" : "string",
-      "enum" : [ "armv7l", "x86_64", "aarch64" ]
+      "enum" : [ "armv6l", "armv7l", "x86_64", "aarch64" ]
     },
     "UpdateTargetsOperatingSystem" : {
       "type" : "string",
-      "enum" : [ "ubuntu", "raspbian", "amazon_linux" ]
+      "enum" : [ "ubuntu", "raspbian", "amazon_linux", "openwrt" ]
     },
     "VersionInformation" : {
       "type" : "structure",

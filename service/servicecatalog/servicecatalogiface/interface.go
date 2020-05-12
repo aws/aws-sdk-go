@@ -212,6 +212,10 @@ type ServiceCatalogAPI interface {
 	DescribeServiceActionWithContext(aws.Context, *servicecatalog.DescribeServiceActionInput, ...request.Option) (*servicecatalog.DescribeServiceActionOutput, error)
 	DescribeServiceActionRequest(*servicecatalog.DescribeServiceActionInput) (*request.Request, *servicecatalog.DescribeServiceActionOutput)
 
+	DescribeServiceActionExecutionParameters(*servicecatalog.DescribeServiceActionExecutionParametersInput) (*servicecatalog.DescribeServiceActionExecutionParametersOutput, error)
+	DescribeServiceActionExecutionParametersWithContext(aws.Context, *servicecatalog.DescribeServiceActionExecutionParametersInput, ...request.Option) (*servicecatalog.DescribeServiceActionExecutionParametersOutput, error)
+	DescribeServiceActionExecutionParametersRequest(*servicecatalog.DescribeServiceActionExecutionParametersInput) (*request.Request, *servicecatalog.DescribeServiceActionExecutionParametersOutput)
+
 	DescribeTagOption(*servicecatalog.DescribeTagOptionInput) (*servicecatalog.DescribeTagOptionOutput, error)
 	DescribeTagOptionWithContext(aws.Context, *servicecatalog.DescribeTagOptionInput, ...request.Option) (*servicecatalog.DescribeTagOptionOutput, error)
 	DescribeTagOptionRequest(*servicecatalog.DescribeTagOptionInput) (*request.Request, *servicecatalog.DescribeTagOptionOutput)
@@ -294,6 +298,9 @@ type ServiceCatalogAPI interface {
 	ListPortfolioAccess(*servicecatalog.ListPortfolioAccessInput) (*servicecatalog.ListPortfolioAccessOutput, error)
 	ListPortfolioAccessWithContext(aws.Context, *servicecatalog.ListPortfolioAccessInput, ...request.Option) (*servicecatalog.ListPortfolioAccessOutput, error)
 	ListPortfolioAccessRequest(*servicecatalog.ListPortfolioAccessInput) (*request.Request, *servicecatalog.ListPortfolioAccessOutput)
+
+	ListPortfolioAccessPages(*servicecatalog.ListPortfolioAccessInput, func(*servicecatalog.ListPortfolioAccessOutput, bool) bool) error
+	ListPortfolioAccessPagesWithContext(aws.Context, *servicecatalog.ListPortfolioAccessInput, func(*servicecatalog.ListPortfolioAccessOutput, bool) bool, ...request.Option) error
 
 	ListPortfolios(*servicecatalog.ListPortfoliosInput) (*servicecatalog.ListPortfoliosOutput, error)
 	ListPortfoliosWithContext(aws.Context, *servicecatalog.ListPortfoliosInput, ...request.Option) (*servicecatalog.ListPortfoliosOutput, error)

@@ -25,6 +25,11 @@
       "output_token": "NextPageToken",
       "limit_key": "PageSize"
     },
+    "ListPortfolioAccess": {
+      "input_token": "PageToken",
+      "output_token": "NextPageToken",
+      "limit_key": "PageSize"
+    },
     "ListPortfolios": {
       "input_token": "PageToken",
       "output_token": "NextPageToken",

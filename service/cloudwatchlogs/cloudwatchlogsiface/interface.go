@@ -96,6 +96,10 @@ type CloudWatchLogsAPI interface {
 	DeleteMetricFilterWithContext(aws.Context, *cloudwatchlogs.DeleteMetricFilterInput, ...request.Option) (*cloudwatchlogs.DeleteMetricFilterOutput, error)
 	DeleteMetricFilterRequest(*cloudwatchlogs.DeleteMetricFilterInput) (*request.Request, *cloudwatchlogs.DeleteMetricFilterOutput)
 
+	DeleteQueryDefinition(*cloudwatchlogs.DeleteQueryDefinitionInput) (*cloudwatchlogs.DeleteQueryDefinitionOutput, error)
+	DeleteQueryDefinitionWithContext(aws.Context, *cloudwatchlogs.DeleteQueryDefinitionInput, ...request.Option) (*cloudwatchlogs.DeleteQueryDefinitionOutput, error)
+	DeleteQueryDefinitionRequest(*cloudwatchlogs.DeleteQueryDefinitionInput) (*request.Request, *cloudwatchlogs.DeleteQueryDefinitionOutput)
+
 	DeleteResourcePolicy(*cloudwatchlogs.DeleteResourcePolicyInput) (*cloudwatchlogs.DeleteResourcePolicyOutput, error)
 	DeleteResourcePolicyWithContext(aws.Context, *cloudwatchlogs.DeleteResourcePolicyInput, ...request.Option) (*cloudwatchlogs.DeleteResourcePolicyOutput, error)
 	DeleteResourcePolicyRequest(*cloudwatchlogs.DeleteResourcePolicyInput) (*request.Request, *cloudwatchlogs.DeleteResourcePolicyOutput)
@@ -143,6 +147,10 @@ type CloudWatchLogsAPI interface {
 	DescribeQueries(*cloudwatchlogs.DescribeQueriesInput) (*cloudwatchlogs.DescribeQueriesOutput, error)
 	DescribeQueriesWithContext(aws.Context, *cloudwatchlogs.DescribeQueriesInput, ...request.Option) (*cloudwatchlogs.DescribeQueriesOutput, error)
 	DescribeQueriesRequest(*cloudwatchlogs.DescribeQueriesInput) (*request.Request, *cloudwatchlogs.DescribeQueriesOutput)
+
+	DescribeQueryDefinitions(*cloudwatchlogs.DescribeQueryDefinitionsInput) (*cloudwatchlogs.DescribeQueryDefinitionsOutput, error)
+	DescribeQueryDefinitionsWithContext(aws.Context, *cloudwatchlogs.DescribeQueryDefinitionsInput, ...request.Option) (*cloudwatchlogs.DescribeQueryDefinitionsOutput, error)
+	DescribeQueryDefinitionsRequest(*cloudwatchlogs.DescribeQueryDefinitionsInput) (*request.Request, *cloudwatchlogs.DescribeQueryDefinitionsOutput)
 
 	DescribeResourcePolicies(*cloudwatchlogs.DescribeResourcePoliciesInput) (*cloudwatchlogs.DescribeResourcePoliciesOutput, error)
 	DescribeResourcePoliciesWithContext(aws.Context, *cloudwatchlogs.DescribeResourcePoliciesInput, ...request.Option) (*cloudwatchlogs.DescribeResourcePoliciesOutput, error)
@@ -204,6 +212,10 @@ type CloudWatchLogsAPI interface {
 	PutMetricFilter(*cloudwatchlogs.PutMetricFilterInput) (*cloudwatchlogs.PutMetricFilterOutput, error)
 	PutMetricFilterWithContext(aws.Context, *cloudwatchlogs.PutMetricFilterInput, ...request.Option) (*cloudwatchlogs.PutMetricFilterOutput, error)
 	PutMetricFilterRequest(*cloudwatchlogs.PutMetricFilterInput) (*request.Request, *cloudwatchlogs.PutMetricFilterOutput)
+
+	PutQueryDefinition(*cloudwatchlogs.PutQueryDefinitionInput) (*cloudwatchlogs.PutQueryDefinitionOutput, error)
+	PutQueryDefinitionWithContext(aws.Context, *cloudwatchlogs.PutQueryDefinitionInput, ...request.Option) (*cloudwatchlogs.PutQueryDefinitionOutput, error)
+	PutQueryDefinitionRequest(*cloudwatchlogs.PutQueryDefinitionInput) (*request.Request, *cloudwatchlogs.PutQueryDefinitionOutput)
 
 	PutResourcePolicy(*cloudwatchlogs.PutResourcePolicyInput) (*cloudwatchlogs.PutResourcePolicyOutput, error)
 	PutResourcePolicyWithContext(aws.Context, *cloudwatchlogs.PutResourcePolicyInput, ...request.Option) (*cloudwatchlogs.PutResourcePolicyOutput, error)

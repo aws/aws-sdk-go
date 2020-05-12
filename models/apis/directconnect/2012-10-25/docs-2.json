@@ -24,11 +24,11 @@
     "CreateLag": "<p>Creates a link aggregation group (LAG) with the specified number of bundled physical connections between the customer network and a specific AWS Direct Connect location. A LAG is a logical interface that uses the Link Aggregation Control Protocol (LACP) to aggregate multiple interfaces, enabling you to treat them as a single interface.</p> <p>All connections in a LAG must use the same bandwidth and must terminate at the same AWS Direct Connect endpoint.</p> <p>You can have up to 10 connections per LAG. Regardless of this limit, if you request more connections for the LAG than AWS Direct Connect can allocate on a single endpoint, no LAG is created.</p> <p>You can specify an existing physical connection or interconnect to include in the LAG (which counts towards the total number of connections). Doing so interrupts the current physical connection or hosted connections, and re-establishes them as a member of the LAG. The LAG will be created on the same AWS Direct Connect endpoint to which the connection terminates. Any virtual interfaces associated with the connection are automatically disassociated and re-associated with the LAG. The connection ID does not change.</p> <p>If the AWS account used to create a LAG is a registered AWS Direct Connect Partner, the LAG is automatically enabled to host sub-connections. For a LAG owned by a partner, any associated virtual interfaces cannot be directly configured.</p>",
     "CreatePrivateVirtualInterface": "<p>Creates a private virtual interface. A virtual interface is the VLAN that transports AWS Direct Connect traffic. A private virtual interface can be connected to either a Direct Connect gateway or a Virtual Private Gateway (VGW). Connecting the private virtual interface to a Direct Connect gateway enables the possibility for connecting to multiple VPCs, including VPCs in different AWS Regions. Connecting the private virtual interface to a VGW only provides access to a single VPC within the same Region.</p>",
     "CreatePublicVirtualInterface": "<p>Creates a public virtual interface. A virtual interface is the VLAN that transports AWS Direct Connect traffic. A public virtual interface supports sending traffic to public services of AWS such as Amazon S3.</p> <p>When creating an IPv6 public virtual interface (<code>addressFamily</code> is <code>ipv6</code>), leave the <code>customer</code> and <code>amazon</code> address fields blank to use auto-assigned IPv6 space. Custom IPv6 addresses are not supported.</p>",
-    "CreateTransitVirtualInterface": "<p>Creates a transit virtual interface. A transit virtual interface is a VLAN that transports traffic from a Direct Connect gateway to one or more transit gateways. A transit virtual interface enables the connection of multiple VPCs attached to a transit gateway to a Direct Connect gateway.</p>",
+    "CreateTransitVirtualInterface": "<p>Creates a transit virtual interface. A transit virtual interface should be used to access one or more transit gateways associated with Direct Connect gateways. A transit virtual interface enables the connection of multiple VPCs attached to a transit gateway to a Direct Connect gateway.</p> <important> <p>If you associate your transit gateway with one or more Direct Connect gateways, the Autonomous System Number (ASN) used by the transit gateway and the Direct Connect gateway must be different. For example, if you use the default ASN 64512 for both your the transit gateway and Direct Connect gateway, the association request fails.</p> </important>",
     "DeleteBGPPeer": "<p>Deletes the specified BGP peer on the specified virtual interface with the specified customer address and ASN.</p> <p>You cannot delete the last BGP peer from a virtual interface.</p>",
     "DeleteConnection": "<p>Deletes the specified connection.</p> <p>Deleting a connection only stops the AWS Direct Connect port hour and data transfer charges. If you are partnering with any third parties to connect with the AWS Direct Connect location, you must cancel your service with them separately.</p>",
-    "DeleteDirectConnectGateway": "<p>Deletes the specified Direct Connect gateway. You must first delete all virtual interfaces that are attached to the Direct Connect gateway and disassociate all virtual private gateways that are associated with the Direct Connect gateway.</p>",
-    "DeleteDirectConnectGatewayAssociation": "<p>Deletes the association between the specified Direct Connect gateway and virtual private gateway.</p>",
+    "DeleteDirectConnectGateway": "<p>Deletes the specified Direct Connect gateway. You must first delete all virtual interfaces that are attached to the Direct Connect gateway and disassociate all virtual private gateways associated with the Direct Connect gateway.</p>",
+    "DeleteDirectConnectGatewayAssociation": "<p>Deletes the association between the specified Direct Connect gateway and virtual private gateway.</p> <p>We recommend that you specify the <code>associationID</code> to delete the association. Alternatively, if you own virtual gateway and a Direct Connect gateway association, you can specify the <code>virtualGatewayId</code> and <code>directConnectGatewayId</code> to delete an association.</p>",
     "DeleteDirectConnectGatewayAssociationProposal": "<p>Deletes the association proposal request between the specified Direct Connect gateway and virtual private gateway or transit gateway.</p>",
     "DeleteInterconnect": "<p>Deletes the specified interconnect.</p> <note> <p>Intended for use by AWS Direct Connect Partners only.</p> </note>",
     "DeleteLag": "<p>Deletes the specified link aggregation group (LAG). You cannot delete a LAG if it has active virtual interfaces or hosted connections.</p>",
@@ -63,13 +63,13 @@
         "BGPPeer$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p>",
         "DeleteBGPPeerRequest$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p>",
         "NewBGPPeer$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p>",
-        "NewPrivateVirtualInterface$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p>",
-        "NewPrivateVirtualInterfaceAllocation$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p>",
-        "NewPublicVirtualInterface$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p>",
-        "NewPublicVirtualInterfaceAllocation$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p>",
-        "NewTransitVirtualInterface$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p>",
-        "NewTransitVirtualInterfaceAllocation$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p>",
-        "VirtualInterface$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p>"
+        "NewPrivateVirtualInterface$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p> <p>The valid values are 1-2147483647.</p>",
+        "NewPrivateVirtualInterfaceAllocation$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p> <p>The valid values are 1-2147483647.</p>",
+        "NewPublicVirtualInterface$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p> <p>The valid values are 1-2147483647.</p>",
+        "NewPublicVirtualInterfaceAllocation$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p> <p>The valid values are 1-2147483647.</p>",
+        "NewTransitVirtualInterface$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p> <p>The valid values are 1-2147483647.</p>",
+        "NewTransitVirtualInterfaceAllocation$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p> <p>The valid values are 1-2147483647.</p>",
+        "VirtualInterface$asn": "<p>The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.</p> <p>The valid values are 1-2147483647.</p>"
       }
     },
     "AcceptDirectConnectGatewayAssociationProposalRequest": {
@@ -196,15 +196,15 @@
     "BGPAuthKey": {
       "base": null,
       "refs": {
-        "BGPPeer$authKey": "<p>The authentication key for BGP configuration.</p>",
-        "NewBGPPeer$authKey": "<p>The authentication key for BGP configuration.</p>",
-        "NewPrivateVirtualInterface$authKey": "<p>The authentication key for BGP configuration.</p>",
-        "NewPrivateVirtualInterfaceAllocation$authKey": "<p>The authentication key for BGP configuration.</p>",
-        "NewPublicVirtualInterface$authKey": "<p>The authentication key for BGP configuration.</p>",
-        "NewPublicVirtualInterfaceAllocation$authKey": "<p>The authentication key for BGP configuration.</p>",
-        "NewTransitVirtualInterface$authKey": "<p>The authentication key for BGP configuration.</p>",
-        "NewTransitVirtualInterfaceAllocation$authKey": "<p>The authentication key for BGP configuration.</p>",
-        "VirtualInterface$authKey": "<p>The authentication key for BGP configuration.</p>"
+        "BGPPeer$authKey": "<p>The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximun lenth of 80 characters.</p>",
+        "NewBGPPeer$authKey": "<p>The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximun lenth of 80 characters.</p>",
+        "NewPrivateVirtualInterface$authKey": "<p>The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximun lenth of 80 characters.</p>",
+        "NewPrivateVirtualInterfaceAllocation$authKey": "<p>The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximun lenth of 80 characters.</p>",
+        "NewPublicVirtualInterface$authKey": "<p>The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximun lenth of 80 characters.</p>",
+        "NewPublicVirtualInterfaceAllocation$authKey": "<p>The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximun lenth of 80 characters.</p>",
+        "NewTransitVirtualInterface$authKey": "<p>The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximun lenth of 80 characters.</p>",
+        "NewTransitVirtualInterfaceAllocation$authKey": "<p>The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximun lenth of 80 characters.</p>",
+        "VirtualInterface$authKey": "<p>The authentication key for BGP configuration. This string has a minimum length of 6 characters and and a maximun lenth of 80 characters.</p>"
       }
     },
     "BGPPeer": {
@@ -1104,12 +1104,25 @@
         "AvailablePortSpeeds$member": null
       }
     },
+    "ProviderList": {
+      "base": null,
+      "refs": {
+        "Location$availableProviders": "<p>The name of the service provider for the location.</p>"
+      }
+    },
     "ProviderName": {
       "base": null,
       "refs": {
+        "Connection$providerName": "<p>The name of the service provider associated with the connection.</p>",
+        "CreateConnectionRequest$providerName": "<p>The name of the service provider associated with the requested connection.</p>",
+        "CreateInterconnectRequest$providerName": "<p>The name of the service provider associated with the interconnect.</p>",
+        "CreateLagRequest$providerName": "<p>The name of the service provider associated with the LAG.</p>",
         "DescribeConnectionLoaRequest$providerName": "<p>The name of the APN partner or service provider who establishes connectivity on your behalf. If you specify this parameter, the LOA-CFA lists the provider name alongside your company name as the requester of the cross connect.</p>",
         "DescribeInterconnectLoaRequest$providerName": "<p>The name of the service provider who establishes connectivity on your behalf. If you supply this parameter, the LOA-CFA lists the provider name alongside your company name as the requester of the cross connect.</p>",
-        "DescribeLoaRequest$providerName": "<p>The name of the service provider who establishes connectivity on your behalf. If you specify this parameter, the LOA-CFA lists the provider name alongside your company name as the requester of the cross connect.</p>"
+        "DescribeLoaRequest$providerName": "<p>The name of the service provider who establishes connectivity on your behalf. If you specify this parameter, the LOA-CFA lists the provider name alongside your company name as the requester of the cross connect.</p>",
+        "Interconnect$providerName": "<p>The name of the service provider associated with the interconnect.</p>",
+        "Lag$providerName": "<p>The name of the service provider associated with the LAG.</p>",
+        "ProviderList$member": null
       }
     },
     "Region": {
@@ -1159,10 +1172,10 @@
     "RouteFilterPrefixList": {
       "base": null,
       "refs": {
-        "AcceptDirectConnectGatewayAssociationProposalRequest$overrideAllowedPrefixesToDirectConnectGateway": "<p>Overrides the existing Amazon VPC prefixes advertised to the Direct Connect gateway.</p>",
+        "AcceptDirectConnectGatewayAssociationProposalRequest$overrideAllowedPrefixesToDirectConnectGateway": "<p>Overrides the Amazon VPC prefixes advertised to the Direct Connect gateway.</p> <p>For information about how to set the prefixes, see <a href=\"https://docs.aws.amazon.com/directconnect/latest/UserGuide/multi-account-associate-vgw.html#allowed-prefixes\">Allowed Prefixes</a> in the <i>AWS Direct Connect User Guide</i>.</p>",
         "CreateDirectConnectGatewayAssociationProposalRequest$addAllowedPrefixesToDirectConnectGateway": "<p>The Amazon VPC prefixes to advertise to the Direct Connect gateway.</p>",
         "CreateDirectConnectGatewayAssociationProposalRequest$removeAllowedPrefixesToDirectConnectGateway": "<p>The Amazon VPC prefixes to no longer advertise to the Direct Connect gateway.</p>",
-        "CreateDirectConnectGatewayAssociationRequest$addAllowedPrefixesToDirectConnectGateway": "<p>The Amazon VPC prefixes to advertise to the Direct Connect gateway</p>",
+        "CreateDirectConnectGatewayAssociationRequest$addAllowedPrefixesToDirectConnectGateway": "<p>The Amazon VPC prefixes to advertise to the Direct Connect gateway</p> <p>This parameter is required when you create an association to a transit gateway.</p> <p>For information about how to set the prefixes, see <a href=\"https://docs.aws.amazon.com/directconnect/latest/UserGuide/multi-account-associate-vgw.html#allowed-prefixes\">Allowed Prefixes</a> in the <i>AWS Direct Connect User Guide</i>.</p>",
         "DirectConnectGatewayAssociation$allowedPrefixesToDirectConnectGateway": "<p>The Amazon VPC prefixes to advertise to the Direct Connect gateway.</p>",
         "DirectConnectGatewayAssociationProposal$existingAllowedPrefixesToDirectConnectGateway": "<p>The existing Amazon VPC prefixes advertised to the Direct Connect gateway.</p>",
         "DirectConnectGatewayAssociationProposal$requestedAllowedPrefixesToDirectConnectGateway": "<p>The Amazon VPC prefixes to advertise to the Direct Connect gateway.</p>",
@@ -1209,8 +1222,23 @@
     "TagList": {
       "base": null,
       "refs": {
+        "AllocateHostedConnectionRequest$tags": "<p>The tags associated with the connection.</p>",
+        "Connection$tags": "<p>The tags associated with the connection.</p>",
+        "CreateConnectionRequest$tags": "<p>The tags to associate with the lag.</p>",
+        "CreateInterconnectRequest$tags": "<p>The tags to associate with the interconnect.</p>",
+        "CreateLagRequest$tags": "<p>The tags to associate with the LAG.</p>",
+        "CreateLagRequest$childConnectionTags": "<p>The tags to associate with the automtically created LAGs.</p>",
+        "Interconnect$tags": "<p>The tags associated with the interconnect.</p>",
+        "Lag$tags": "<p>The tags associated with the LAG.</p>",
+        "NewPrivateVirtualInterface$tags": "<p>The tags associated with the private virtual interface.</p>",
+        "NewPrivateVirtualInterfaceAllocation$tags": "<p>The tags associated with the private virtual interface.</p>",
+        "NewPublicVirtualInterface$tags": "<p>The tags associated with the public virtual interface.</p>",
+        "NewPublicVirtualInterfaceAllocation$tags": "<p>The tags associated with the public virtual interface.</p>",
+        "NewTransitVirtualInterface$tags": "<p>The tags associated with the transitive virtual interface.</p>",
+        "NewTransitVirtualInterfaceAllocation$tags": "<p>The tags associated with the transitive virtual interface.</p>",
         "ResourceTag$tags": "<p>The tags.</p>",
-        "TagResourceRequest$tags": "<p>The tags to add.</p>"
+        "TagResourceRequest$tags": "<p>The tags to add.</p>",
+        "VirtualInterface$tags": "<p>The tags associated with the virtual interface.</p>"
       }
     },
     "TagResourceRequest": {

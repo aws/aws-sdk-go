@@ -27,7 +27,9 @@ func TestInteg_00_ListConfigurationSets(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-west-2")
 	svc := pinpointemail.New(sess)
 	params := &pinpointemail.ListConfigurationSetsInput{}
-	_, err := svc.ListConfigurationSetsWithContext(ctx, params)
+	_, err := svc.ListConfigurationSetsWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
@@ -41,7 +43,9 @@ func TestInteg_01_PutConfigurationSetTrackingOptions(t *testing.T) {
 	params := &pinpointemail.PutConfigurationSetTrackingOptionsInput{
 		ConfigurationSetName: aws.String("config-set-name-not-exists"),
 	}
-	_, err := svc.PutConfigurationSetTrackingOptionsWithContext(ctx, params)
+	_, err := svc.PutConfigurationSetTrackingOptionsWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err == nil {
 		t.Fatalf("expect request to fail")
 	}
@@ -51,6 +55,9 @@ func TestInteg_01_PutConfigurationSetTrackingOptions(t *testing.T) {
 	}
 	if len(aerr.Code()) == 0 {
 		t.Errorf("expect non-empty error code")
+	}
+	if len(aerr.Message()) == 0 {
+		t.Errorf("expect non-empty error message")
 	}
 	if v := aerr.Code(); v == request.ErrCodeSerialization {
 		t.Errorf("expect API error code got serialization failure")

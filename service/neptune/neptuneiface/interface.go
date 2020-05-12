@@ -315,6 +315,14 @@ type NeptuneAPI interface {
 	RestoreDBClusterToPointInTimeWithContext(aws.Context, *neptune.RestoreDBClusterToPointInTimeInput, ...request.Option) (*neptune.RestoreDBClusterToPointInTimeOutput, error)
 	RestoreDBClusterToPointInTimeRequest(*neptune.RestoreDBClusterToPointInTimeInput) (*request.Request, *neptune.RestoreDBClusterToPointInTimeOutput)
 
+	StartDBCluster(*neptune.StartDBClusterInput) (*neptune.StartDBClusterOutput, error)
+	StartDBClusterWithContext(aws.Context, *neptune.StartDBClusterInput, ...request.Option) (*neptune.StartDBClusterOutput, error)
+	StartDBClusterRequest(*neptune.StartDBClusterInput) (*request.Request, *neptune.StartDBClusterOutput)
+
+	StopDBCluster(*neptune.StopDBClusterInput) (*neptune.StopDBClusterOutput, error)
+	StopDBClusterWithContext(aws.Context, *neptune.StopDBClusterInput, ...request.Option) (*neptune.StopDBClusterOutput, error)
+	StopDBClusterRequest(*neptune.StopDBClusterInput) (*request.Request, *neptune.StopDBClusterOutput)
+
 	WaitUntilDBInstanceAvailable(*neptune.DescribeDBInstancesInput) error
 	WaitUntilDBInstanceAvailableWithContext(aws.Context, *neptune.DescribeDBInstancesInput, ...request.WaiterOption) error
 

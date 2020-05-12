@@ -3,11 +3,13 @@
 package marketplacecommerceanalytics
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opGenerateDataSet = "GenerateDataSet"
@@ -72,8 +74,8 @@ func (c *MarketplaceCommerceAnalytics) GenerateDataSetRequest(input *GenerateDat
 // See the AWS API reference guide for AWS Marketplace Commerce Analytics's
 // API operation GenerateDataSet for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeException "MarketplaceCommerceAnalyticsException"
+// Returned Error Types:
+//   * Exception
 //   This exception is thrown when an internal service error occurs.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/GenerateDataSet
@@ -161,8 +163,8 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportRequest(input *Star
 // See the AWS API reference guide for AWS Marketplace Commerce Analytics's
 // API operation StartSupportDataExport for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeException "MarketplaceCommerceAnalyticsException"
+// Returned Error Types:
+//   * Exception
 //   This exception is thrown when an internal service error occurs.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExport
@@ -187,6 +189,63 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportWithContext(ctx aws
 	return out, req.Send()
 }
 
+// This exception is thrown when an internal service error occurs.
+type Exception struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// This message describes details of the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s Exception) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Exception) GoString() string {
+	return s.String()
+}
+
+func newErrorException(v protocol.ResponseMetadata) error {
+	return &Exception{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *Exception) Code() string {
+	return "MarketplaceCommerceAnalyticsException"
+}
+
+// Message returns the exception's message.
+func (s *Exception) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *Exception) OrigErr() error {
+	return nil
+}
+
+func (s *Exception) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *Exception) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *Exception) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Container for the parameters to the GenerateDataSet operation.
 type GenerateDataSetInput struct {
 	_ struct{} `type:"structure"`
@@ -198,96 +257,84 @@ type GenerateDataSetInput struct {
 	CustomerDefinedValues map[string]*string `locationName:"customerDefinedValues" min:"1" type:"map"`
 
 	// The date a data set was published. For daily data sets, provide a date with
-	// day-level granularity for the desired day. For weekly data sets, provide
-	// a date with day-level granularity within the desired week (the day value
-	// will be ignored). For monthly data sets, provide a date with month-level
-	// granularity for the desired month (the day value will be ignored).
+	// day-level granularity for the desired day. For monthly data sets except those
+	// with prefix disbursed_amount, provide a date with month-level granularity
+	// for the desired month (the day value will be ignored). For data sets with
+	// prefix disbursed_amount, provide a date with day-level granularity for the
+	// desired day. For these data sets we will look backwards in time over the
+	// range of 31 days until the first data set is found (the latest one).
 	//
 	// DataSetPublicationDate is a required field
 	DataSetPublicationDate *time.Time `locationName:"dataSetPublicationDate" type:"timestamp" required:"true"`
 
 	// The desired data set type.
 	//
-	//    * customer_subscriber_hourly_monthly_subscriptions From 2014-07-21 to
-	//    present: Available daily by 5:00 PM Pacific Time.
+	//    * customer_subscriber_hourly_monthly_subscriptions From 2017-09-15 to
+	//    present: Available daily by 24:00 UTC.
 	//
-	//    * customer_subscriber_annual_subscriptions From 2014-07-21 to present:
-	//    Available daily by 5:00 PM Pacific Time.
+	//    * customer_subscriber_annual_subscriptions From 2017-09-15 to present:
+	//    Available daily by 24:00 UTC.
 	//
-	//    * daily_business_usage_by_instance_type From 2015-01-26 to present: Available
-	//    daily by 5:00 PM Pacific Time.
+	//    * daily_business_usage_by_instance_type From 2017-09-15 to present: Available
+	//    daily by 24:00 UTC.
 	//
-	//    * daily_business_fees From 2015-01-26 to present: Available daily by 5:00
-	//    PM Pacific Time.
+	//    * daily_business_fees From 2017-09-15 to present: Available daily by 24:00
+	//    UTC.
 	//
-	//    * daily_business_free_trial_conversions From 2015-01-26 to present: Available
-	//    daily by 5:00 PM Pacific Time.
+	//    * daily_business_free_trial_conversions From 2017-09-15 to present: Available
+	//    daily by 24:00 UTC.
 	//
-	//    * daily_business_new_instances From 2015-01-26 to present: Available daily
-	//    by 5:00 PM Pacific Time.
+	//    * daily_business_new_instances From 2017-09-15 to present: Available daily
+	//    by 24:00 UTC.
 	//
-	//    * daily_business_new_product_subscribers From 2015-01-26 to present: Available
-	//    daily by 5:00 PM Pacific Time.
+	//    * daily_business_new_product_subscribers From 2017-09-15 to present: Available
+	//    daily by 24:00 UTC.
 	//
-	//    * daily_business_canceled_product_subscribers From 2015-01-26 to present:
-	//    Available daily by 5:00 PM Pacific Time.
+	//    * daily_business_canceled_product_subscribers From 2017-09-15 to present:
+	//    Available daily by 24:00 UTC.
 	//
-	//    * monthly_revenue_billing_and_revenue_data From 2015-02 to 2017-06: Available
-	//    monthly on the 4th day of the month by 5:00pm Pacific Time. Data includes
-	//    metered transactions (e.g. hourly) from two months prior. From 2017-07
-	//    to present: Available monthly on the 15th day of the month by 5:00pm Pacific
-	//    Time. Data includes metered transactions (e.g. hourly) from one month
-	//    prior.
+	//    * monthly_revenue_billing_and_revenue_data From 2017-09-15 to present:
+	//    Available monthly on the 15th day of the month by 24:00 UTC. Data includes
+	//    metered transactions (e.g. hourly) from one month prior.
 	//
-	//    * monthly_revenue_annual_subscriptions From 2015-02 to 2017-06: Available
-	//    monthly on the 4th day of the month by 5:00pm Pacific Time. Data includes
-	//    up-front software charges (e.g. annual) from one month prior. From 2017-07
-	//    to present: Available monthly on the 15th day of the month by 5:00pm Pacific
-	//    Time. Data includes up-front software charges (e.g. annual) from one month
-	//    prior.
+	//    * monthly_revenue_annual_subscriptions From 2017-09-15 to present: Available
+	//    monthly on the 15th day of the month by 24:00 UTC. Data includes up-front
+	//    software charges (e.g. annual) from one month prior.
 	//
-	//    * disbursed_amount_by_product From 2015-01-26 to present: Available every
-	//    30 days by 5:00 PM Pacific Time.
+	//    * monthly_revenue_field_demonstration_usage From 2018-03-15 to present:
+	//    Available monthly on the 15th day of the month by 24:00 UTC.
 	//
-	//    * disbursed_amount_by_product_with_uncollected_funds From 2012-04-19 to
-	//    2015-01-25: Available every 30 days by 5:00 PM Pacific Time. From 2015-01-26
-	//    to present: This data set was split into three data sets: disbursed_amount_by_product,
-	//    disbursed_amount_by_age_of_uncollected_funds, and disbursed_amount_by_age_of_disbursed_funds.
+	//    * monthly_revenue_flexible_payment_schedule From 2018-11-15 to present:
+	//    Available monthly on the 15th day of the month by 24:00 UTC.
 	//
-	//    * disbursed_amount_by_instance_hours From 2012-09-04 to present: Available
-	//    every 30 days by 5:00 PM Pacific Time.
+	//    * disbursed_amount_by_product From 2017-09-15 to present: Available every
+	//    30 days by 24:00 UTC.
 	//
-	//    * disbursed_amount_by_customer_geo From 2012-04-19 to present: Available
-	//    every 30 days by 5:00 PM Pacific Time.
+	//    * disbursed_amount_by_instance_hours From 2017-09-15 to present: Available
+	//    every 30 days by 24:00 UTC.
 	//
-	//    * disbursed_amount_by_age_of_uncollected_funds From 2015-01-26 to present:
-	//    Available every 30 days by 5:00 PM Pacific Time.
+	//    * disbursed_amount_by_customer_geo From 2017-09-15 to present: Available
+	//    every 30 days by 24:00 UTC.
 	//
-	//    * disbursed_amount_by_age_of_disbursed_funds From 2015-01-26 to present:
-	//    Available every 30 days by 5:00 PM Pacific Time.
+	//    * disbursed_amount_by_age_of_uncollected_funds From 2017-09-15 to present:
+	//    Available every 30 days by 24:00 UTC.
 	//
-	//    * customer_profile_by_industry From 2015-10-01 to 2017-06-29: Available
-	//    daily by 5:00 PM Pacific Time. From 2017-06-30 to present: This data set
-	//    is no longer available.
+	//    * disbursed_amount_by_age_of_disbursed_funds From 2017-09-15 to present:
+	//    Available every 30 days by 24:00 UTC.
 	//
-	//    * customer_profile_by_revenue From 2015-10-01 to 2017-06-29: Available
-	//    daily by 5:00 PM Pacific Time. From 2017-06-30 to present: This data set
-	//    is no longer available.
+	//    * disbursed_amount_by_age_of_past_due_funds From 2018-04-07 to present:
+	//    Available every 30 days by 24:00 UTC.
 	//
-	//    * customer_profile_by_geography From 2015-10-01 to 2017-06-29: Available
-	//    daily by 5:00 PM Pacific Time. From 2017-06-30 to present: This data set
-	//    is no longer available.
+	//    * disbursed_amount_by_uncollected_funds_breakdown From 2019-10-04 to present:
+	//    Available every 30 days by 24:00 UTC.
 	//
-	//    * sales_compensation_billed_revenue From 2016-12 to 2017-06: Available
-	//    monthly on the 4th day of the month by 5:00pm Pacific Time. Data includes
-	//    metered transactions (e.g. hourly) from two months prior, and up-front
-	//    software charges (e.g. annual) from one month prior. From 2017-06 to present:
-	//    Available monthly on the 15th day of the month by 5:00pm Pacific Time.
-	//    Data includes metered transactions (e.g. hourly) from one month prior,
-	//    and up-front software charges (e.g. annual) from one month prior.
+	//    * sales_compensation_billed_revenue From 2017-09-15 to present: Available
+	//    monthly on the 15th day of the month by 24:00 UTC. Data includes metered
+	//    transactions (e.g. hourly) from one month prior, and up-front software
+	//    charges (e.g. annual) from one month prior.
 	//
-	//    * us_sales_and_use_tax_records From 2017-02-15 to present: Available monthly
-	//    on the 15th day of the month by 5:00 PM Pacific Time.
+	//    * us_sales_and_use_tax_records From 2017-09-15 to present: Available monthly
+	//    on the 15th day of the month by 24:00 UTC.
 	//
 	// DataSetType is a required field
 	DataSetType *string `locationName:"dataSetType" min:"1" type:"string" required:"true" enum:"DataSetType"`
@@ -642,6 +689,12 @@ const (
 	// DataSetTypeMonthlyRevenueAnnualSubscriptions is a DataSetType enum value
 	DataSetTypeMonthlyRevenueAnnualSubscriptions = "monthly_revenue_annual_subscriptions"
 
+	// DataSetTypeMonthlyRevenueFieldDemonstrationUsage is a DataSetType enum value
+	DataSetTypeMonthlyRevenueFieldDemonstrationUsage = "monthly_revenue_field_demonstration_usage"
+
+	// DataSetTypeMonthlyRevenueFlexiblePaymentSchedule is a DataSetType enum value
+	DataSetTypeMonthlyRevenueFlexiblePaymentSchedule = "monthly_revenue_flexible_payment_schedule"
+
 	// DataSetTypeDisbursedAmountByProduct is a DataSetType enum value
 	DataSetTypeDisbursedAmountByProduct = "disbursed_amount_by_product"
 
@@ -659,6 +712,12 @@ const (
 
 	// DataSetTypeDisbursedAmountByAgeOfDisbursedFunds is a DataSetType enum value
 	DataSetTypeDisbursedAmountByAgeOfDisbursedFunds = "disbursed_amount_by_age_of_disbursed_funds"
+
+	// DataSetTypeDisbursedAmountByAgeOfPastDueFunds is a DataSetType enum value
+	DataSetTypeDisbursedAmountByAgeOfPastDueFunds = "disbursed_amount_by_age_of_past_due_funds"
+
+	// DataSetTypeDisbursedAmountByUncollectedFundsBreakdown is a DataSetType enum value
+	DataSetTypeDisbursedAmountByUncollectedFundsBreakdown = "disbursed_amount_by_uncollected_funds_breakdown"
 
 	// DataSetTypeCustomerProfileByIndustry is a DataSetType enum value
 	DataSetTypeCustomerProfileByIndustry = "customer_profile_by_industry"

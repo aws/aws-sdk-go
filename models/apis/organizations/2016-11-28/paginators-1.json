@@ -25,6 +25,18 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "ListDelegatedAdministrators": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "DelegatedAdministrators"
+    },
+    "ListDelegatedServicesForAccount": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "DelegatedServices"
+    },
     "ListHandshakesForAccount": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

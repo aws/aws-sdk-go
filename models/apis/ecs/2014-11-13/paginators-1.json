@@ -1,5 +1,17 @@
 {
   "pagination": {
+    "ListAccountSettings": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "settings"
+    },
+    "ListAttributes": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "attributes"
+    },
     "ListClusters": {
       "input_token": "nextToken",
       "limit_key": "maxResults",

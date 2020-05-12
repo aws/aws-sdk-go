@@ -1678,7 +1678,7 @@
         },
         "serialized": {
           "uri": "/path",
-          "body": "<OperationRequest xmlns=\"https://foo/\"><RecursiveStruct><RecursiveMap><entry><key>foo</key><value><NoRecurse>foo</NoRecurse></value></entry><entry><key>bar</key><value><NoRecurse>bar</NoRecurse></value></entry></RecursiveMap></RecursiveStruct></OperationRequest>"
+          "body": "<OperationRequest xmlns=\"https://foo/\"><RecursiveStruct><RecursiveMap><entry><key>bar</key><value><NoRecurse>bar</NoRecurse></value></entry><entry><key>foo</key><value><NoRecurse>foo</NoRecurse></value></entry></RecursiveMap></RecursiveStruct></OperationRequest>"
         }
       }
     ]

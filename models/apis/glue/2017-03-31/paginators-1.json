@@ -40,6 +40,16 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "GetMLTaskRuns": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "GetMLTransforms": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "GetPartitions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -71,6 +81,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "GetWorkflowRuns": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListCrawlers": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -86,7 +101,22 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "ListMLTransforms": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListTriggers": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListWorkflows": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "SearchTables": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken"

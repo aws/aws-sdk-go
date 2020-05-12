@@ -264,7 +264,7 @@ func ExampleLexModelBuildingService_PutBot_shared00() {
 			MaxAttempts: aws.Int64(1),
 			Messages: []*lexmodelbuildingservice.Message{
 				{
-					Content:     aws.String("I'm sorry, I didn't hear that. Can you repeate what you just said?"),
+					Content:     aws.String("I'm sorry, I didn't hear that. Can you repeat what you just said?"),
 					ContentType: aws.String("PlainText"),
 				},
 				{

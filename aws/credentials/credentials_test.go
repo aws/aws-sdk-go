@@ -2,6 +2,7 @@ package credentials
 
 import (
 	"math/rand"
+	"sync"
 	"testing"
 	"time"
 
@@ -70,7 +71,7 @@ func TestCredentialsExpire(t *testing.T) {
 		t.Errorf("Expected to be expired")
 	}
 
-	c.forceRefresh = false
+	c.Get()
 	if c.IsExpired() {
 		t.Errorf("Expected not to be expired")
 	}
@@ -107,17 +108,20 @@ func TestCredentialsIsExpired_Race(t *testing.T) {
 	creds := NewChainCredentials([]Provider{&MockProvider{}})
 
 	starter := make(chan struct{})
+	var wg sync.WaitGroup
+	wg.Add(10)
 	for i := 0; i < 10; i++ {
 		go func() {
+			defer wg.Done()
 			<-starter
-			for {
+			for i := 0; i < 100; i++ {
 				creds.IsExpired()
 			}
 		}()
 	}
 	close(starter)
 
-	time.Sleep(10 * time.Second)
+	wg.Wait()
 }
 
 func TestCredentialsExpiresAt_NoExpirer(t *testing.T) {
@@ -166,4 +170,35 @@ func TestCredentialsExpiresAt_HasExpirer(t *testing.T) {
 	if !expiration.IsZero() {
 		t.Errorf("Expected distant past expiration, got %v", expiration)
 	}
+}
+
+type stubProviderConcurrent struct {
+	stubProvider
+	done chan struct{}
+}
+
+func (s *stubProviderConcurrent) Retrieve() (Value, error) {
+	<-s.done
+	return s.stubProvider.Retrieve()
+}
+
+func TestCredentialsGetConcurrent(t *testing.T) {
+	stub := &stubProviderConcurrent{
+		done: make(chan struct{}),
+	}
+
+	c := NewCredentials(stub)
+	done := make(chan struct{})
+
+	for i := 0; i < 2; i++ {
+		go func() {
+			c.Get()
+			done <- struct{}{}
+		}()
+	}
+
+	// Validates that a single call to Retrieve is shared between two calls to Get
+	stub.done <- struct{}{}
+	<-done
+	<-done
 }

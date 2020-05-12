@@ -441,6 +441,10 @@ func ExampleElastiCache_CreateReplicationGroup_shared00() {
 				fmt.Println(elasticache.ErrCodeTagQuotaPerResourceExceeded, aerr.Error())
 			case elasticache.ErrCodeNodeGroupsPerReplicationGroupQuotaExceededFault:
 				fmt.Println(elasticache.ErrCodeNodeGroupsPerReplicationGroupQuotaExceededFault, aerr.Error())
+			case elasticache.ErrCodeGlobalReplicationGroupNotFoundFault:
+				fmt.Println(elasticache.ErrCodeGlobalReplicationGroupNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeInvalidGlobalReplicationGroupStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidGlobalReplicationGroupStateFault, aerr.Error())
 			case elasticache.ErrCodeInvalidParameterValueException:
 				fmt.Println(elasticache.ErrCodeInvalidParameterValueException, aerr.Error())
 			case elasticache.ErrCodeInvalidParameterCombinationException:
@@ -526,6 +530,10 @@ func ExampleElastiCache_CreateReplicationGroup_shared01() {
 				fmt.Println(elasticache.ErrCodeTagQuotaPerResourceExceeded, aerr.Error())
 			case elasticache.ErrCodeNodeGroupsPerReplicationGroupQuotaExceededFault:
 				fmt.Println(elasticache.ErrCodeNodeGroupsPerReplicationGroupQuotaExceededFault, aerr.Error())
+			case elasticache.ErrCodeGlobalReplicationGroupNotFoundFault:
+				fmt.Println(elasticache.ErrCodeGlobalReplicationGroupNotFoundFault, aerr.Error())
+			case elasticache.ErrCodeInvalidGlobalReplicationGroupStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidGlobalReplicationGroupStateFault, aerr.Error())
 			case elasticache.ErrCodeInvalidParameterValueException:
 				fmt.Println(elasticache.ErrCodeInvalidParameterValueException, aerr.Error())
 			case elasticache.ErrCodeInvalidParameterCombinationException:
@@ -1227,7 +1235,7 @@ func ExampleElastiCache_DescribeEvents_shared00() {
 func ExampleElastiCache_DescribeEvents_shared01() {
 	svc := elasticache.New(session.New())
 	input := &elasticache.DescribeEventsInput{
-		StartTime: parseTime("2006-01-02T15:04:05Z", "2016-12-22T15:00:00.000Z"),
+		StartTime: parseTime("2006-01-02T15:04:05.999999999Z", "2016-12-22T15:00:00.000Z"),
 	}
 
 	result, err := svc.DescribeEvents(input)
@@ -1653,6 +1661,8 @@ func ExampleElastiCache_ModifyCacheParameterGroup_shared00() {
 				fmt.Println(elasticache.ErrCodeInvalidParameterValueException, aerr.Error())
 			case elasticache.ErrCodeInvalidParameterCombinationException:
 				fmt.Println(elasticache.ErrCodeInvalidParameterCombinationException, aerr.Error())
+			case elasticache.ErrCodeInvalidGlobalReplicationGroupStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidGlobalReplicationGroupStateFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1744,6 +1754,8 @@ func ExampleElastiCache_ModifyReplicationGroup_shared00() {
 				fmt.Println(elasticache.ErrCodeCacheParameterGroupNotFoundFault, aerr.Error())
 			case elasticache.ErrCodeInvalidVPCNetworkStateFault:
 				fmt.Println(elasticache.ErrCodeInvalidVPCNetworkStateFault, aerr.Error())
+			case elasticache.ErrCodeInvalidKMSKeyFault:
+				fmt.Println(elasticache.ErrCodeInvalidKMSKeyFault, aerr.Error())
 			case elasticache.ErrCodeInvalidParameterValueException:
 				fmt.Println(elasticache.ErrCodeInvalidParameterValueException, aerr.Error())
 			case elasticache.ErrCodeInvalidParameterCombinationException:
@@ -1898,6 +1910,8 @@ func ExampleElastiCache_ResetCacheParameterGroup_shared00() {
 				fmt.Println(elasticache.ErrCodeInvalidParameterValueException, aerr.Error())
 			case elasticache.ErrCodeInvalidParameterCombinationException:
 				fmt.Println(elasticache.ErrCodeInvalidParameterCombinationException, aerr.Error())
+			case elasticache.ErrCodeInvalidGlobalReplicationGroupStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidGlobalReplicationGroupStateFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

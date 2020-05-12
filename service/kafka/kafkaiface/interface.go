@@ -120,6 +120,13 @@ type KafkaAPI interface {
 	ListConfigurationsPages(*kafka.ListConfigurationsInput, func(*kafka.ListConfigurationsOutput, bool) bool) error
 	ListConfigurationsPagesWithContext(aws.Context, *kafka.ListConfigurationsInput, func(*kafka.ListConfigurationsOutput, bool) bool, ...request.Option) error
 
+	ListKafkaVersions(*kafka.ListKafkaVersionsInput) (*kafka.ListKafkaVersionsOutput, error)
+	ListKafkaVersionsWithContext(aws.Context, *kafka.ListKafkaVersionsInput, ...request.Option) (*kafka.ListKafkaVersionsOutput, error)
+	ListKafkaVersionsRequest(*kafka.ListKafkaVersionsInput) (*request.Request, *kafka.ListKafkaVersionsOutput)
+
+	ListKafkaVersionsPages(*kafka.ListKafkaVersionsInput, func(*kafka.ListKafkaVersionsOutput, bool) bool) error
+	ListKafkaVersionsPagesWithContext(aws.Context, *kafka.ListKafkaVersionsInput, func(*kafka.ListKafkaVersionsOutput, bool) bool, ...request.Option) error
+
 	ListNodes(*kafka.ListNodesInput) (*kafka.ListNodesOutput, error)
 	ListNodesWithContext(aws.Context, *kafka.ListNodesInput, ...request.Option) (*kafka.ListNodesOutput, error)
 	ListNodesRequest(*kafka.ListNodesInput) (*request.Request, *kafka.ListNodesOutput)
@@ -139,6 +146,10 @@ type KafkaAPI interface {
 	UntagResourceWithContext(aws.Context, *kafka.UntagResourceInput, ...request.Option) (*kafka.UntagResourceOutput, error)
 	UntagResourceRequest(*kafka.UntagResourceInput) (*request.Request, *kafka.UntagResourceOutput)
 
+	UpdateBrokerCount(*kafka.UpdateBrokerCountInput) (*kafka.UpdateBrokerCountOutput, error)
+	UpdateBrokerCountWithContext(aws.Context, *kafka.UpdateBrokerCountInput, ...request.Option) (*kafka.UpdateBrokerCountOutput, error)
+	UpdateBrokerCountRequest(*kafka.UpdateBrokerCountInput) (*request.Request, *kafka.UpdateBrokerCountOutput)
+
 	UpdateBrokerStorage(*kafka.UpdateBrokerStorageInput) (*kafka.UpdateBrokerStorageOutput, error)
 	UpdateBrokerStorageWithContext(aws.Context, *kafka.UpdateBrokerStorageInput, ...request.Option) (*kafka.UpdateBrokerStorageOutput, error)
 	UpdateBrokerStorageRequest(*kafka.UpdateBrokerStorageInput) (*request.Request, *kafka.UpdateBrokerStorageOutput)
@@ -146,6 +157,10 @@ type KafkaAPI interface {
 	UpdateClusterConfiguration(*kafka.UpdateClusterConfigurationInput) (*kafka.UpdateClusterConfigurationOutput, error)
 	UpdateClusterConfigurationWithContext(aws.Context, *kafka.UpdateClusterConfigurationInput, ...request.Option) (*kafka.UpdateClusterConfigurationOutput, error)
 	UpdateClusterConfigurationRequest(*kafka.UpdateClusterConfigurationInput) (*request.Request, *kafka.UpdateClusterConfigurationOutput)
+
+	UpdateMonitoring(*kafka.UpdateMonitoringInput) (*kafka.UpdateMonitoringOutput, error)
+	UpdateMonitoringWithContext(aws.Context, *kafka.UpdateMonitoringInput, ...request.Option) (*kafka.UpdateMonitoringOutput, error)
+	UpdateMonitoringRequest(*kafka.UpdateMonitoringInput) (*request.Request, *kafka.UpdateMonitoringOutput)
 }
 
 var _ KafkaAPI = (*kafka.Kafka)(nil)

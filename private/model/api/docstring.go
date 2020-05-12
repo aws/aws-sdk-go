@@ -17,7 +17,6 @@ import (
 )
 
 type apiDocumentation struct {
-	*API
 	Operations map[string]string
 	Service    string
 	Shapes     map[string]shapeDocumentation
@@ -29,57 +28,60 @@ type shapeDocumentation struct {
 }
 
 // AttachDocs attaches documentation from a JSON filename.
-func (a *API) AttachDocs(filename string) {
-	d := apiDocumentation{API: a}
+func (a *API) AttachDocs(filename string) error {
+	var d apiDocumentation
 
 	f, err := os.Open(filename)
 	defer f.Close()
 	if err != nil {
-		panic(err)
+		return err
 	}
 	err = json.NewDecoder(f).Decode(&d)
 	if err != nil {
-		panic(err)
+		return fmt.Errorf("failed to decode %s, err: %v", filename, err)
 	}
 
-	d.setup()
-
+	return d.setup(a)
 }
 
-func (d *apiDocumentation) setup() {
-	d.API.Documentation = docstring(d.Service)
+func (d *apiDocumentation) setup(a *API) error {
+	a.Documentation = docstring(d.Service)
 
 	for opName, doc := range d.Operations {
-		if _, ok := d.API.Operations[opName]; !ok {
-			panic(fmt.Sprintf("%s, doc op %q not found in API op set",
-				d.API.name, opName),
-			)
+		if _, ok := a.Operations[opName]; !ok {
+			return fmt.Errorf("%s, doc op %q not found in API op set",
+				a.name, opName)
 		}
-		d.API.Operations[opName].Documentation = docstring(doc)
+		a.Operations[opName].Documentation = docstring(doc)
 	}
 
-	for shape, info := range d.Shapes {
-		if sh := d.API.Shapes[shape]; sh != nil {
-			sh.Documentation = docstring(info.Base)
+	for shapeName, docShape := range d.Shapes {
+		if s, ok := a.Shapes[shapeName]; ok {
+			s.Documentation = docstring(docShape.Base)
 		}
 
-		for ref, doc := range info.Refs {
+		for ref, doc := range docShape.Refs {
 			if doc == "" {
 				continue
 			}
 
 			parts := strings.Split(ref, "$")
 			if len(parts) != 2 {
-				fmt.Fprintf(os.Stderr, "Shape Doc %s has unexpected reference format, %q\n", shape, ref)
+				fmt.Fprintf(os.Stderr,
+					"Shape Doc %s has unexpected reference format, %q\n",
+					shapeName, ref)
 				continue
 			}
-			if sh := d.API.Shapes[parts[0]]; sh != nil {
-				if m := sh.MemberRefs[parts[1]]; m != nil {
+
+			if s, ok := a.Shapes[parts[0]]; ok && len(s.MemberRefs) != 0 {
+				if m, ok := s.MemberRefs[parts[1]]; ok && m.ShapeName == shapeName {
 					m.Documentation = docstring(doc)
 				}
 			}
 		}
 	}
+
+	return nil
 }
 
 var reNewline = regexp.MustCompile(`\r?\n`)

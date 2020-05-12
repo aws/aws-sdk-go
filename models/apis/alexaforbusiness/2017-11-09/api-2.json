@@ -1368,7 +1368,8 @@
       "type":"string",
       "enum":[
         "ONE_DAY",
-        "ONE_WEEK"
+        "ONE_WEEK",
+        "THIRTY_DAYS"
       ]
     },
     "BusinessReportRecurrence":{
@@ -1507,6 +1508,7 @@
         "OFFLINE"
       ]
     },
+    "ConnectionStatusUpdatedTime":{"type":"timestamp"},
     "Contact":{
       "type":"structure",
       "members":{
@@ -1514,7 +1516,9 @@
         "DisplayName":{"shape":"ContactName"},
         "FirstName":{"shape":"ContactName"},
         "LastName":{"shape":"ContactName"},
-        "PhoneNumber":{"shape":"E164PhoneNumber"}
+        "PhoneNumber":{"shape":"RawPhoneNumber"},
+        "PhoneNumbers":{"shape":"PhoneNumberList"},
+        "SipAddresses":{"shape":"SipAddressList"}
       }
     },
     "ContactData":{
@@ -1524,7 +1528,9 @@
         "DisplayName":{"shape":"ContactName"},
         "FirstName":{"shape":"ContactName"},
         "LastName":{"shape":"ContactName"},
-        "PhoneNumber":{"shape":"E164PhoneNumber"}
+        "PhoneNumber":{"shape":"RawPhoneNumber"},
+        "PhoneNumbers":{"shape":"PhoneNumberList"},
+        "SipAddresses":{"shape":"SipAddressList"}
       }
     },
     "ContactDataList":{
@@ -1624,7 +1630,9 @@
         "DisplayName":{"shape":"ContactName"},
         "FirstName":{"shape":"ContactName"},
         "LastName":{"shape":"ContactName"},
-        "PhoneNumber":{"shape":"E164PhoneNumber"},
+        "PhoneNumber":{"shape":"RawPhoneNumber"},
+        "PhoneNumbers":{"shape":"PhoneNumberList"},
+        "SipAddresses":{"shape":"SipAddressList"},
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
@@ -1635,6 +1643,19 @@
       "type":"structure",
       "members":{
         "ContactArn":{"shape":"Arn"}
+      }
+    },
+    "CreateEndOfMeetingReminder":{
+      "type":"structure",
+      "required":[
+        "ReminderAtMinutes",
+        "ReminderType",
+        "Enabled"
+      ],
+      "members":{
+        "ReminderAtMinutes":{"shape":"EndOfMeetingReminderMinutesList"},
+        "ReminderType":{"shape":"EndOfMeetingReminderType"},
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "CreateGatewayGroupRequest":{
@@ -1656,6 +1677,26 @@
       "type":"structure",
       "members":{
         "GatewayGroupArn":{"shape":"Arn"}
+      }
+    },
+    "CreateInstantBooking":{
+      "type":"structure",
+      "required":[
+        "DurationInMinutes",
+        "Enabled"
+      ],
+      "members":{
+        "DurationInMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "CreateMeetingRoomConfiguration":{
+      "type":"structure",
+      "members":{
+        "RoomUtilizationMetricsEnabled":{"shape":"Boolean"},
+        "EndOfMeetingReminder":{"shape":"CreateEndOfMeetingReminder"},
+        "InstantBooking":{"shape":"CreateInstantBooking"},
+        "RequireCheckIn":{"shape":"CreateRequireCheckIn"}
       }
     },
     "CreateNetworkProfileRequest":{
@@ -1705,19 +1746,32 @@
         "DistanceUnit":{"shape":"DistanceUnit"},
         "TemperatureUnit":{"shape":"TemperatureUnit"},
         "WakeWord":{"shape":"WakeWord"},
+        "Locale":{"shape":"DeviceLocale"},
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
         },
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
-        "PSTNEnabled":{"shape":"Boolean"}
+        "PSTNEnabled":{"shape":"Boolean"},
+        "MeetingRoomConfiguration":{"shape":"CreateMeetingRoomConfiguration"}
       }
     },
     "CreateProfileResponse":{
       "type":"structure",
       "members":{
         "ProfileArn":{"shape":"Arn"}
+      }
+    },
+    "CreateRequireCheckIn":{
+      "type":"structure",
+      "required":[
+        "ReleaseAfterMinutes",
+        "Enabled"
+      ],
+      "members":{
+        "ReleaseAfterMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "CreateRoomRequest":{
@@ -2010,9 +2064,11 @@
         "NetworkProfileName":{"shape":"NetworkProfileName"},
         "RoomArn":{"shape":"Arn"},
         "RoomName":{"shape":"RoomName"},
-        "DeviceStatusInfo":{"shape":"DeviceStatusInfo"}
+        "DeviceStatusInfo":{"shape":"DeviceStatusInfo"},
+        "CreatedTime":{"shape":"DeviceDataCreatedTime"}
       }
     },
+    "DeviceDataCreatedTime":{"type":"timestamp"},
     "DeviceDataList":{
       "type":"list",
       "member":{"shape":"DeviceData"}
@@ -2038,6 +2094,11 @@
       ]
     },
     "DeviceEventValue":{"type":"string"},
+    "DeviceLocale":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "DeviceName":{
       "type":"string",
       "max":100,
@@ -2112,7 +2173,8 @@
       "type":"structure",
       "members":{
         "DeviceStatusDetails":{"shape":"DeviceStatusDetails"},
-        "ConnectionStatus":{"shape":"ConnectionStatus"}
+        "ConnectionStatus":{"shape":"ConnectionStatus"},
+        "ConnectionStatusUpdatedTime":{"shape":"ConnectionStatusUpdatedTime"}
       }
     },
     "DeviceType":{
@@ -2194,16 +2256,11 @@
         "IMPERIAL"
       ]
     },
-    "E164PhoneNumber":{
-      "type":"string",
-      "pattern":"^\\+\\d{8,}$",
-      "sensitive":true
-    },
     "Email":{
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"([0-9a-zA-Z]([+-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})"
+      "pattern":"([0-9a-zA-Z]([+-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z]([-\\w]*[0-9a-zA-Z]+)*\\.)+[a-zA-Z]{2,9})"
     },
     "EnablementType":{
       "type":"string",
@@ -2217,6 +2274,29 @@
       "enum":[
         "ENABLED",
         "PENDING"
+      ]
+    },
+    "EndOfMeetingReminder":{
+      "type":"structure",
+      "members":{
+        "ReminderAtMinutes":{"shape":"EndOfMeetingReminderMinutesList"},
+        "ReminderType":{"shape":"EndOfMeetingReminderType"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "EndOfMeetingReminderMinutesList":{
+      "type":"list",
+      "member":{"shape":"Minutes"},
+      "max":1,
+      "min":1
+    },
+    "EndOfMeetingReminderType":{
+      "type":"string",
+      "enum":[
+        "ANNOUNCEMENT_TIME_CHECK",
+        "ANNOUNCEMENT_VARIABLE_TIME_LEFT",
+        "CHIME",
+        "KNOCK"
       ]
     },
     "EndUserLicenseAgreement":{"type":"string"},
@@ -2558,6 +2638,13 @@
       }
     },
     "IconUrl":{"type":"string"},
+    "InstantBooking":{
+      "type":"structure",
+      "members":{
+        "DurationInMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
     "InvalidCertificateAuthorityException":{
       "type":"structure",
       "members":{
@@ -2769,6 +2856,15 @@
       "min":1
     },
     "MaxVolumeLimit":{"type":"integer"},
+    "MeetingRoomConfiguration":{
+      "type":"structure",
+      "members":{
+        "RoomUtilizationMetricsEnabled":{"shape":"Boolean"},
+        "EndOfMeetingReminder":{"shape":"EndOfMeetingReminder"},
+        "InstantBooking":{"shape":"InstantBooking"},
+        "RequireCheckIn":{"shape":"RequireCheckIn"}
+      }
+    },
     "MeetingSetting":{
       "type":"structure",
       "required":["RequirePin"],
@@ -2776,6 +2872,7 @@
         "RequirePin":{"shape":"RequirePin"}
       }
     },
+    "Minutes":{"type":"integer"},
     "NameInUseException":{
       "type":"structure",
       "members":{
@@ -2904,6 +3001,32 @@
         "OneClickPinDelay":{"shape":"OneClickPinDelay"}
       }
     },
+    "PhoneNumber":{
+      "type":"structure",
+      "required":[
+        "Number",
+        "Type"
+      ],
+      "members":{
+        "Number":{"shape":"RawPhoneNumber"},
+        "Type":{"shape":"PhoneNumberType"}
+      }
+    },
+    "PhoneNumberList":{
+      "type":"list",
+      "member":{"shape":"PhoneNumber"},
+      "max":3,
+      "min":0
+    },
+    "PhoneNumberType":{
+      "type":"string",
+      "enum":[
+        "MOBILE",
+        "WORK",
+        "HOME"
+      ],
+      "sensitive":true
+    },
     "PrivacyPolicy":{"type":"string"},
     "ProductDescription":{"type":"string"},
     "ProductId":{
@@ -2921,10 +3044,12 @@
         "DistanceUnit":{"shape":"DistanceUnit"},
         "TemperatureUnit":{"shape":"TemperatureUnit"},
         "WakeWord":{"shape":"WakeWord"},
+        "Locale":{"shape":"DeviceLocale"},
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
         "PSTNEnabled":{"shape":"Boolean"},
-        "AddressBookArn":{"shape":"Arn"}
+        "AddressBookArn":{"shape":"Arn"},
+        "MeetingRoomConfiguration":{"shape":"MeetingRoomConfiguration"}
       }
     },
     "ProfileData":{
@@ -2937,7 +3062,8 @@
         "Timezone":{"shape":"Timezone"},
         "DistanceUnit":{"shape":"DistanceUnit"},
         "TemperatureUnit":{"shape":"TemperatureUnit"},
-        "WakeWord":{"shape":"WakeWord"}
+        "WakeWord":{"shape":"WakeWord"},
+        "Locale":{"shape":"DeviceLocale"}
       }
     },
     "ProfileDataList":{
@@ -3015,6 +3141,13 @@
       "members":{
       }
     },
+    "RawPhoneNumber":{
+      "type":"string",
+      "max":50,
+      "min":0,
+      "pattern":"^[\\+0-9\\#\\,\\(][\\+0-9\\-\\.\\/\\(\\)\\,\\#\\s]+$",
+      "sensitive":true
+    },
     "RegisterAVSDeviceRequest":{
       "type":"structure",
       "required":[
@@ -3051,6 +3184,13 @@
       }
     },
     "ReleaseDate":{"type":"string"},
+    "RequireCheckIn":{
+      "type":"structure",
+      "members":{
+        "ReleaseAfterMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
     "RequirePin":{
       "type":"string",
       "enum":[
@@ -3360,6 +3500,35 @@
       "member":{"shape":"SkillId"},
       "max":3,
       "min":0
+    },
+    "SipAddress":{
+      "type":"structure",
+      "required":[
+        "Uri",
+        "Type"
+      ],
+      "members":{
+        "Uri":{"shape":"SipUri"},
+        "Type":{"shape":"SipType"}
+      }
+    },
+    "SipAddressList":{
+      "type":"list",
+      "member":{"shape":"SipAddress"},
+      "max":1,
+      "min":0
+    },
+    "SipType":{
+      "type":"string",
+      "enum":["WORK"],
+      "sensitive":true
+    },
+    "SipUri":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^sip[s]?:([^@:]+)\\@([^@]+)$",
+      "sensitive":true
     },
     "SkillDetails":{
       "type":"structure",
@@ -3751,7 +3920,9 @@
         "DisplayName":{"shape":"ContactName"},
         "FirstName":{"shape":"ContactName"},
         "LastName":{"shape":"ContactName"},
-        "PhoneNumber":{"shape":"E164PhoneNumber"}
+        "PhoneNumber":{"shape":"RawPhoneNumber"},
+        "PhoneNumbers":{"shape":"PhoneNumberList"},
+        "SipAddresses":{"shape":"SipAddressList"}
       }
     },
     "UpdateContactResponse":{
@@ -3769,6 +3940,14 @@
     "UpdateDeviceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateEndOfMeetingReminder":{
+      "type":"structure",
+      "members":{
+        "ReminderAtMinutes":{"shape":"EndOfMeetingReminderMinutesList"},
+        "ReminderType":{"shape":"EndOfMeetingReminderType"},
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "UpdateGatewayGroupRequest":{
@@ -3800,6 +3979,22 @@
       "members":{
       }
     },
+    "UpdateInstantBooking":{
+      "type":"structure",
+      "members":{
+        "DurationInMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "UpdateMeetingRoomConfiguration":{
+      "type":"structure",
+      "members":{
+        "RoomUtilizationMetricsEnabled":{"shape":"Boolean"},
+        "EndOfMeetingReminder":{"shape":"UpdateEndOfMeetingReminder"},
+        "InstantBooking":{"shape":"UpdateInstantBooking"},
+        "RequireCheckIn":{"shape":"UpdateRequireCheckIn"}
+      }
+    },
     "UpdateNetworkProfileRequest":{
       "type":"structure",
       "required":["NetworkProfileArn"],
@@ -3829,14 +4024,23 @@
         "DistanceUnit":{"shape":"DistanceUnit"},
         "TemperatureUnit":{"shape":"TemperatureUnit"},
         "WakeWord":{"shape":"WakeWord"},
+        "Locale":{"shape":"DeviceLocale"},
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
-        "PSTNEnabled":{"shape":"Boolean"}
+        "PSTNEnabled":{"shape":"Boolean"},
+        "MeetingRoomConfiguration":{"shape":"UpdateMeetingRoomConfiguration"}
       }
     },
     "UpdateProfileResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateRequireCheckIn":{
+      "type":"structure",
+      "members":{
+        "ReleaseAfterMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "UpdateRoomRequest":{

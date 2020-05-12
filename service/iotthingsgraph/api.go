@@ -70,14 +70,14 @@ func (c *IoTThingsGraph) AssociateEntityToThingRequest(input *AssociateEntityToT
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation AssociateEntityToThing for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/AssociateEntityToThing
 func (c *IoTThingsGraph) AssociateEntityToThing(input *AssociateEntityToThingInput) (*AssociateEntityToThingOutput, error) {
@@ -158,16 +158,16 @@ func (c *IoTThingsGraph) CreateFlowTemplateRequest(input *CreateFlowTemplateInpu
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation CreateFlowTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+//   * ResourceAlreadyExistsException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/CreateFlowTemplate
 func (c *IoTThingsGraph) CreateFlowTemplate(input *CreateFlowTemplateInput) (*CreateFlowTemplateOutput, error) {
@@ -262,16 +262,16 @@ func (c *IoTThingsGraph) CreateSystemInstanceRequest(input *CreateSystemInstance
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation CreateSystemInstance for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+//   * ResourceAlreadyExistsException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/CreateSystemInstance
 func (c *IoTThingsGraph) CreateSystemInstance(input *CreateSystemInstanceInput) (*CreateSystemInstanceOutput, error) {
@@ -350,14 +350,14 @@ func (c *IoTThingsGraph) CreateSystemTemplateRequest(input *CreateSystemTemplate
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation CreateSystemTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+//   * ResourceAlreadyExistsException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/CreateSystemTemplate
 func (c *IoTThingsGraph) CreateSystemTemplate(input *CreateSystemTemplateInput) (*CreateSystemTemplateOutput, error) {
@@ -438,14 +438,14 @@ func (c *IoTThingsGraph) DeleteFlowTemplateRequest(input *DeleteFlowTemplateInpu
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation DeleteFlowTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/DeleteFlowTemplate
 func (c *IoTThingsGraph) DeleteFlowTemplate(input *DeleteFlowTemplateInput) (*DeleteFlowTemplateOutput, error) {
@@ -524,10 +524,10 @@ func (c *IoTThingsGraph) DeleteNamespaceRequest(input *DeleteNamespaceInput) (re
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation DeleteNamespace for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalFailureException "InternalFailureException"
+// Returned Error Types:
+//   * InternalFailureException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/DeleteNamespace
 func (c *IoTThingsGraph) DeleteNamespace(input *DeleteNamespaceInput) (*DeleteNamespaceOutput, error) {
@@ -609,14 +609,14 @@ func (c *IoTThingsGraph) DeleteSystemInstanceRequest(input *DeleteSystemInstance
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation DeleteSystemInstance for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/DeleteSystemInstance
 func (c *IoTThingsGraph) DeleteSystemInstance(input *DeleteSystemInstanceInput) (*DeleteSystemInstanceOutput, error) {
@@ -696,14 +696,14 @@ func (c *IoTThingsGraph) DeleteSystemTemplateRequest(input *DeleteSystemTemplate
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation DeleteSystemTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/DeleteSystemTemplate
 func (c *IoTThingsGraph) DeleteSystemTemplate(input *DeleteSystemTemplateInput) (*DeleteSystemTemplateOutput, error) {
@@ -796,16 +796,16 @@ func (c *IoTThingsGraph) DeploySystemInstanceRequest(input *DeploySystemInstance
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation DeploySystemInstance for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/DeploySystemInstance
 func (c *IoTThingsGraph) DeploySystemInstance(input *DeploySystemInstanceInput) (*DeploySystemInstanceOutput, error) {
@@ -885,14 +885,14 @@ func (c *IoTThingsGraph) DeprecateFlowTemplateRequest(input *DeprecateFlowTempla
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation DeprecateFlowTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/DeprecateFlowTemplate
 func (c *IoTThingsGraph) DeprecateFlowTemplate(input *DeprecateFlowTemplateInput) (*DeprecateFlowTemplateOutput, error) {
@@ -970,14 +970,14 @@ func (c *IoTThingsGraph) DeprecateSystemTemplateRequest(input *DeprecateSystemTe
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation DeprecateSystemTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/DeprecateSystemTemplate
 func (c *IoTThingsGraph) DeprecateSystemTemplate(input *DeprecateSystemTemplateInput) (*DeprecateSystemTemplateOutput, error) {
@@ -1055,14 +1055,14 @@ func (c *IoTThingsGraph) DescribeNamespaceRequest(input *DescribeNamespaceInput)
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation DescribeNamespace for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/DescribeNamespace
 func (c *IoTThingsGraph) DescribeNamespace(input *DescribeNamespaceInput) (*DescribeNamespaceOutput, error) {
@@ -1142,14 +1142,14 @@ func (c *IoTThingsGraph) DissociateEntityFromThingRequest(input *DissociateEntit
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation DissociateEntityFromThing for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/DissociateEntityFromThing
 func (c *IoTThingsGraph) DissociateEntityFromThing(input *DissociateEntityFromThingInput) (*DissociateEntityFromThingOutput, error) {
@@ -1247,14 +1247,14 @@ func (c *IoTThingsGraph) GetEntitiesRequest(input *GetEntitiesInput) (req *reque
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation GetEntities for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/GetEntities
 func (c *IoTThingsGraph) GetEntities(input *GetEntitiesInput) (*GetEntitiesOutput, error) {
@@ -1332,14 +1332,14 @@ func (c *IoTThingsGraph) GetFlowTemplateRequest(input *GetFlowTemplateInput) (re
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation GetFlowTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/GetFlowTemplate
 func (c *IoTThingsGraph) GetFlowTemplate(input *GetFlowTemplateInput) (*GetFlowTemplateOutput, error) {
@@ -1425,14 +1425,14 @@ func (c *IoTThingsGraph) GetFlowTemplateRevisionsRequest(input *GetFlowTemplateR
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation GetFlowTemplateRevisions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/GetFlowTemplateRevisions
 func (c *IoTThingsGraph) GetFlowTemplateRevisions(input *GetFlowTemplateRevisionsInput) (*GetFlowTemplateRevisionsOutput, error) {
@@ -1499,10 +1499,12 @@ func (c *IoTThingsGraph) GetFlowTemplateRevisionsPagesWithContext(ctx aws.Contex
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*GetFlowTemplateRevisionsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetFlowTemplateRevisionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1559,12 +1561,12 @@ func (c *IoTThingsGraph) GetNamespaceDeletionStatusRequest(input *GetNamespaceDe
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation GetNamespaceDeletionStatus for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/GetNamespaceDeletionStatus
 func (c *IoTThingsGraph) GetNamespaceDeletionStatus(input *GetNamespaceDeletionStatusInput) (*GetNamespaceDeletionStatusOutput, error) {
@@ -1641,14 +1643,14 @@ func (c *IoTThingsGraph) GetSystemInstanceRequest(input *GetSystemInstanceInput)
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation GetSystemInstance for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/GetSystemInstance
 func (c *IoTThingsGraph) GetSystemInstance(input *GetSystemInstanceInput) (*GetSystemInstanceOutput, error) {
@@ -1725,14 +1727,14 @@ func (c *IoTThingsGraph) GetSystemTemplateRequest(input *GetSystemTemplateInput)
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation GetSystemTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/GetSystemTemplate
 func (c *IoTThingsGraph) GetSystemTemplate(input *GetSystemTemplateInput) (*GetSystemTemplateOutput, error) {
@@ -1818,14 +1820,14 @@ func (c *IoTThingsGraph) GetSystemTemplateRevisionsRequest(input *GetSystemTempl
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation GetSystemTemplateRevisions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/GetSystemTemplateRevisions
 func (c *IoTThingsGraph) GetSystemTemplateRevisions(input *GetSystemTemplateRevisionsInput) (*GetSystemTemplateRevisionsOutput, error) {
@@ -1892,10 +1894,12 @@ func (c *IoTThingsGraph) GetSystemTemplateRevisionsPagesWithContext(ctx aws.Cont
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*GetSystemTemplateRevisionsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*GetSystemTemplateRevisionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -1952,14 +1956,14 @@ func (c *IoTThingsGraph) GetUploadStatusRequest(input *GetUploadStatusInput) (re
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation GetUploadStatus for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/GetUploadStatus
 func (c *IoTThingsGraph) GetUploadStatus(input *GetUploadStatusInput) (*GetUploadStatusOutput, error) {
@@ -2043,14 +2047,14 @@ func (c *IoTThingsGraph) ListFlowExecutionMessagesRequest(input *ListFlowExecuti
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation ListFlowExecutionMessages for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/ListFlowExecutionMessages
 func (c *IoTThingsGraph) ListFlowExecutionMessages(input *ListFlowExecutionMessagesInput) (*ListFlowExecutionMessagesOutput, error) {
@@ -2117,10 +2121,12 @@ func (c *IoTThingsGraph) ListFlowExecutionMessagesPagesWithContext(ctx aws.Conte
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListFlowExecutionMessagesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListFlowExecutionMessagesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2183,14 +2189,14 @@ func (c *IoTThingsGraph) ListTagsForResourceRequest(input *ListTagsForResourceIn
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+//   * ResourceAlreadyExistsException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/ListTagsForResource
 func (c *IoTThingsGraph) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2257,10 +2263,12 @@ func (c *IoTThingsGraph) ListTagsForResourcePagesWithContext(ctx aws.Context, in
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2324,12 +2332,12 @@ func (c *IoTThingsGraph) SearchEntitiesRequest(input *SearchEntitiesInput) (req 
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation SearchEntities for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/SearchEntities
 func (c *IoTThingsGraph) SearchEntities(input *SearchEntitiesInput) (*SearchEntitiesOutput, error) {
@@ -2396,10 +2404,12 @@ func (c *IoTThingsGraph) SearchEntitiesPagesWithContext(ctx aws.Context, input *
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchEntitiesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchEntitiesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2462,14 +2472,14 @@ func (c *IoTThingsGraph) SearchFlowExecutionsRequest(input *SearchFlowExecutions
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation SearchFlowExecutions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/SearchFlowExecutions
 func (c *IoTThingsGraph) SearchFlowExecutions(input *SearchFlowExecutionsInput) (*SearchFlowExecutionsOutput, error) {
@@ -2536,10 +2546,12 @@ func (c *IoTThingsGraph) SearchFlowExecutionsPagesWithContext(ctx aws.Context, i
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchFlowExecutionsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchFlowExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2602,12 +2614,12 @@ func (c *IoTThingsGraph) SearchFlowTemplatesRequest(input *SearchFlowTemplatesIn
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation SearchFlowTemplates for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/SearchFlowTemplates
 func (c *IoTThingsGraph) SearchFlowTemplates(input *SearchFlowTemplatesInput) (*SearchFlowTemplatesOutput, error) {
@@ -2674,10 +2686,12 @@ func (c *IoTThingsGraph) SearchFlowTemplatesPagesWithContext(ctx aws.Context, in
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchFlowTemplatesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchFlowTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2740,12 +2754,12 @@ func (c *IoTThingsGraph) SearchSystemInstancesRequest(input *SearchSystemInstanc
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation SearchSystemInstances for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/SearchSystemInstances
 func (c *IoTThingsGraph) SearchSystemInstances(input *SearchSystemInstancesInput) (*SearchSystemInstancesOutput, error) {
@@ -2812,10 +2826,12 @@ func (c *IoTThingsGraph) SearchSystemInstancesPagesWithContext(ctx aws.Context, 
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchSystemInstancesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchSystemInstancesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -2880,12 +2896,12 @@ func (c *IoTThingsGraph) SearchSystemTemplatesRequest(input *SearchSystemTemplat
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation SearchSystemTemplates for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/SearchSystemTemplates
 func (c *IoTThingsGraph) SearchSystemTemplates(input *SearchSystemTemplatesInput) (*SearchSystemTemplatesOutput, error) {
@@ -2952,10 +2968,12 @@ func (c *IoTThingsGraph) SearchSystemTemplatesPagesWithContext(ctx aws.Context, 
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchSystemTemplatesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchSystemTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3026,14 +3044,14 @@ func (c *IoTThingsGraph) SearchThingsRequest(input *SearchThingsInput) (req *req
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation SearchThings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/SearchThings
 func (c *IoTThingsGraph) SearchThings(input *SearchThingsInput) (*SearchThingsOutput, error) {
@@ -3100,10 +3118,12 @@ func (c *IoTThingsGraph) SearchThingsPagesWithContext(ctx aws.Context, input *Se
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchThingsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchThingsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -3161,14 +3181,14 @@ func (c *IoTThingsGraph) TagResourceRequest(input *TagResourceInput) (req *reque
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+//   * ResourceAlreadyExistsException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/TagResource
 func (c *IoTThingsGraph) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3245,16 +3265,16 @@ func (c *IoTThingsGraph) UndeploySystemInstanceRequest(input *UndeploySystemInst
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation UndeploySystemInstance for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/UndeploySystemInstance
 func (c *IoTThingsGraph) UndeploySystemInstance(input *UndeploySystemInstanceInput) (*UndeploySystemInstanceOutput, error) {
@@ -3332,14 +3352,14 @@ func (c *IoTThingsGraph) UntagResourceRequest(input *UntagResourceInput) (req *r
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+//   * ResourceAlreadyExistsException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/UntagResource
 func (c *IoTThingsGraph) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3420,14 +3440,14 @@ func (c *IoTThingsGraph) UpdateFlowTemplateRequest(input *UpdateFlowTemplateInpu
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation UpdateFlowTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/UpdateFlowTemplate
 func (c *IoTThingsGraph) UpdateFlowTemplate(input *UpdateFlowTemplateInput) (*UpdateFlowTemplateOutput, error) {
@@ -3506,14 +3526,14 @@ func (c *IoTThingsGraph) UpdateSystemTemplateRequest(input *UpdateSystemTemplate
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation UpdateSystemTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/UpdateSystemTemplate
 func (c *IoTThingsGraph) UpdateSystemTemplate(input *UpdateSystemTemplateInput) (*UpdateSystemTemplateOutput, error) {
@@ -3609,12 +3629,12 @@ func (c *IoTThingsGraph) UploadEntityDefinitionsRequest(input *UploadEntityDefin
 // See the AWS API reference guide for AWS IoT Things Graph's
 // API operation UploadEntityDefinitions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotthingsgraph-2018-09-06/UploadEntityDefinitions
 func (c *IoTThingsGraph) UploadEntityDefinitions(input *UploadEntityDefinitionsInput) (*UploadEntityDefinitionsOutput, error) {
@@ -5681,6 +5701,171 @@ func (s *GetUploadStatusOutput) SetUploadStatus(v string) *GetUploadStatusOutput
 	return s
 }
 
+type InternalFailureException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalFailureException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalFailureException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalFailureException(v protocol.ResponseMetadata) error {
+	return &InternalFailureException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalFailureException) Code() string {
+	return "InternalFailureException"
+}
+
+// Message returns the exception's message.
+func (s *InternalFailureException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalFailureException) OrigErr() error {
+	return nil
+}
+
+func (s *InternalFailureException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalFailureException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalFailureException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type InvalidRequestException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidRequestException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidRequestException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type LimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *LimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *LimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type ListFlowExecutionMessagesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5913,6 +6098,171 @@ func (s *MetricsConfiguration) SetCloudMetricEnabled(v bool) *MetricsConfigurati
 func (s *MetricsConfiguration) SetMetricRuleRoleArn(v string) *MetricsConfiguration {
 	s.MetricRuleRoleArn = &v
 	return s
+}
+
+type ResourceAlreadyExistsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &ResourceAlreadyExistsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceAlreadyExistsException) Code() string {
+	return "ResourceAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceAlreadyExistsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceAlreadyExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type ResourceInUseException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceInUseException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
+	return &ResourceInUseException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceInUseException) Code() string {
+	return "ResourceInUseException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceInUseException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceInUseException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceInUseException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceInUseException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type SearchEntitiesInput struct {
@@ -7084,6 +7434,61 @@ func (s *Thing) SetThingArn(v string) *Thing {
 func (s *Thing) SetThingName(v string) *Thing {
 	s.ThingName = &v
 	return s
+}
+
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type UndeploySystemInstanceInput struct {

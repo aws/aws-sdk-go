@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Global Accelerator.
 //    func myFunc(svc globalacceleratoriface.GlobalAcceleratorAPI) bool {
-//        // Make svc.CreateAccelerator request
+//        // Make svc.AdvertiseByoipCidr request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockGlobalAcceleratorClient struct {
 //        globalacceleratoriface.GlobalAcceleratorAPI
 //    }
-//    func (m *mockGlobalAcceleratorClient) CreateAccelerator(input *globalaccelerator.CreateAcceleratorInput) (*globalaccelerator.CreateAcceleratorOutput, error) {
+//    func (m *mockGlobalAcceleratorClient) AdvertiseByoipCidr(input *globalaccelerator.AdvertiseByoipCidrInput) (*globalaccelerator.AdvertiseByoipCidrOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type GlobalAcceleratorAPI interface {
+	AdvertiseByoipCidr(*globalaccelerator.AdvertiseByoipCidrInput) (*globalaccelerator.AdvertiseByoipCidrOutput, error)
+	AdvertiseByoipCidrWithContext(aws.Context, *globalaccelerator.AdvertiseByoipCidrInput, ...request.Option) (*globalaccelerator.AdvertiseByoipCidrOutput, error)
+	AdvertiseByoipCidrRequest(*globalaccelerator.AdvertiseByoipCidrInput) (*request.Request, *globalaccelerator.AdvertiseByoipCidrOutput)
+
 	CreateAccelerator(*globalaccelerator.CreateAcceleratorInput) (*globalaccelerator.CreateAcceleratorOutput, error)
 	CreateAcceleratorWithContext(aws.Context, *globalaccelerator.CreateAcceleratorInput, ...request.Option) (*globalaccelerator.CreateAcceleratorOutput, error)
 	CreateAcceleratorRequest(*globalaccelerator.CreateAcceleratorInput) (*request.Request, *globalaccelerator.CreateAcceleratorOutput)
@@ -84,6 +88,10 @@ type GlobalAcceleratorAPI interface {
 	DeleteListenerWithContext(aws.Context, *globalaccelerator.DeleteListenerInput, ...request.Option) (*globalaccelerator.DeleteListenerOutput, error)
 	DeleteListenerRequest(*globalaccelerator.DeleteListenerInput) (*request.Request, *globalaccelerator.DeleteListenerOutput)
 
+	DeprovisionByoipCidr(*globalaccelerator.DeprovisionByoipCidrInput) (*globalaccelerator.DeprovisionByoipCidrOutput, error)
+	DeprovisionByoipCidrWithContext(aws.Context, *globalaccelerator.DeprovisionByoipCidrInput, ...request.Option) (*globalaccelerator.DeprovisionByoipCidrOutput, error)
+	DeprovisionByoipCidrRequest(*globalaccelerator.DeprovisionByoipCidrInput) (*request.Request, *globalaccelerator.DeprovisionByoipCidrOutput)
+
 	DescribeAccelerator(*globalaccelerator.DescribeAcceleratorInput) (*globalaccelerator.DescribeAcceleratorOutput, error)
 	DescribeAcceleratorWithContext(aws.Context, *globalaccelerator.DescribeAcceleratorInput, ...request.Option) (*globalaccelerator.DescribeAcceleratorOutput, error)
 	DescribeAcceleratorRequest(*globalaccelerator.DescribeAcceleratorInput) (*request.Request, *globalaccelerator.DescribeAcceleratorOutput)
@@ -104,6 +112,10 @@ type GlobalAcceleratorAPI interface {
 	ListAcceleratorsWithContext(aws.Context, *globalaccelerator.ListAcceleratorsInput, ...request.Option) (*globalaccelerator.ListAcceleratorsOutput, error)
 	ListAcceleratorsRequest(*globalaccelerator.ListAcceleratorsInput) (*request.Request, *globalaccelerator.ListAcceleratorsOutput)
 
+	ListByoipCidrs(*globalaccelerator.ListByoipCidrsInput) (*globalaccelerator.ListByoipCidrsOutput, error)
+	ListByoipCidrsWithContext(aws.Context, *globalaccelerator.ListByoipCidrsInput, ...request.Option) (*globalaccelerator.ListByoipCidrsOutput, error)
+	ListByoipCidrsRequest(*globalaccelerator.ListByoipCidrsInput) (*request.Request, *globalaccelerator.ListByoipCidrsOutput)
+
 	ListEndpointGroups(*globalaccelerator.ListEndpointGroupsInput) (*globalaccelerator.ListEndpointGroupsOutput, error)
 	ListEndpointGroupsWithContext(aws.Context, *globalaccelerator.ListEndpointGroupsInput, ...request.Option) (*globalaccelerator.ListEndpointGroupsOutput, error)
 	ListEndpointGroupsRequest(*globalaccelerator.ListEndpointGroupsInput) (*request.Request, *globalaccelerator.ListEndpointGroupsOutput)
@@ -111,6 +123,22 @@ type GlobalAcceleratorAPI interface {
 	ListListeners(*globalaccelerator.ListListenersInput) (*globalaccelerator.ListListenersOutput, error)
 	ListListenersWithContext(aws.Context, *globalaccelerator.ListListenersInput, ...request.Option) (*globalaccelerator.ListListenersOutput, error)
 	ListListenersRequest(*globalaccelerator.ListListenersInput) (*request.Request, *globalaccelerator.ListListenersOutput)
+
+	ListTagsForResource(*globalaccelerator.ListTagsForResourceInput) (*globalaccelerator.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *globalaccelerator.ListTagsForResourceInput, ...request.Option) (*globalaccelerator.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*globalaccelerator.ListTagsForResourceInput) (*request.Request, *globalaccelerator.ListTagsForResourceOutput)
+
+	ProvisionByoipCidr(*globalaccelerator.ProvisionByoipCidrInput) (*globalaccelerator.ProvisionByoipCidrOutput, error)
+	ProvisionByoipCidrWithContext(aws.Context, *globalaccelerator.ProvisionByoipCidrInput, ...request.Option) (*globalaccelerator.ProvisionByoipCidrOutput, error)
+	ProvisionByoipCidrRequest(*globalaccelerator.ProvisionByoipCidrInput) (*request.Request, *globalaccelerator.ProvisionByoipCidrOutput)
+
+	TagResource(*globalaccelerator.TagResourceInput) (*globalaccelerator.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *globalaccelerator.TagResourceInput, ...request.Option) (*globalaccelerator.TagResourceOutput, error)
+	TagResourceRequest(*globalaccelerator.TagResourceInput) (*request.Request, *globalaccelerator.TagResourceOutput)
+
+	UntagResource(*globalaccelerator.UntagResourceInput) (*globalaccelerator.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *globalaccelerator.UntagResourceInput, ...request.Option) (*globalaccelerator.UntagResourceOutput, error)
+	UntagResourceRequest(*globalaccelerator.UntagResourceInput) (*request.Request, *globalaccelerator.UntagResourceOutput)
 
 	UpdateAccelerator(*globalaccelerator.UpdateAcceleratorInput) (*globalaccelerator.UpdateAcceleratorOutput, error)
 	UpdateAcceleratorWithContext(aws.Context, *globalaccelerator.UpdateAcceleratorInput, ...request.Option) (*globalaccelerator.UpdateAcceleratorOutput, error)
@@ -127,6 +155,10 @@ type GlobalAcceleratorAPI interface {
 	UpdateListener(*globalaccelerator.UpdateListenerInput) (*globalaccelerator.UpdateListenerOutput, error)
 	UpdateListenerWithContext(aws.Context, *globalaccelerator.UpdateListenerInput, ...request.Option) (*globalaccelerator.UpdateListenerOutput, error)
 	UpdateListenerRequest(*globalaccelerator.UpdateListenerInput) (*request.Request, *globalaccelerator.UpdateListenerOutput)
+
+	WithdrawByoipCidr(*globalaccelerator.WithdrawByoipCidrInput) (*globalaccelerator.WithdrawByoipCidrOutput, error)
+	WithdrawByoipCidrWithContext(aws.Context, *globalaccelerator.WithdrawByoipCidrInput, ...request.Option) (*globalaccelerator.WithdrawByoipCidrOutput, error)
+	WithdrawByoipCidrRequest(*globalaccelerator.WithdrawByoipCidrInput) (*request.Request, *globalaccelerator.WithdrawByoipCidrOutput)
 }
 
 var _ GlobalAcceleratorAPI = (*globalaccelerator.GlobalAccelerator)(nil)

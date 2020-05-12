@@ -69,6 +69,14 @@
         "DescribeBrokerOutput$BrokerState" : "The status of the broker."
       }
     },
+    "BrokerStorageType" : {
+      "base" : "The storage type of the broker.",
+      "refs" : {
+        "BrokerInstanceOption$StorageType" : "The broker's storage type.",
+        "CreateBrokerInput$StorageType" : "The broker's storage type.",
+        "DescribeBrokerOutput$StorageType" : "The broker's storage type."
+      }
+    },
     "BrokerSummary" : {
       "base" : "The Amazon Resource Name (ARN) of the broker.",
       "refs" : {
@@ -153,7 +161,8 @@
       "refs" : {
         "BrokerSummary$DeploymentMode" : "Required. The deployment mode of the broker.",
         "CreateBrokerInput$DeploymentMode" : "Required. The deployment mode of the broker.",
-        "DescribeBrokerOutput$DeploymentMode" : "Required. The deployment mode of the broker."
+        "DescribeBrokerOutput$DeploymentMode" : "Required. The deployment mode of the broker.",
+        "__listOfDeploymentMode$member" : null
       }
     },
     "DescribeBrokerOutput" : {
@@ -167,6 +176,13 @@
     "DescribeUserOutput" : {
       "base" : "Returns information about an ActiveMQ user.",
       "refs" : { }
+    },
+    "EncryptionOptions" : {
+      "base" : "Encryption options for the broker.",
+      "refs" : {
+        "CreateBrokerInput$EncryptionOptions" : "Encryption options for the broker.",
+        "DescribeBrokerOutput$EncryptionOptions" : "Encryption options for the broker."
+      }
     },
     "EngineType" : {
       "base" : "The type of broker engine. Note: Currently, Amazon MQ supports only ActiveMQ.",
@@ -311,6 +327,7 @@
         "DescribeBrokerOutput$AutoMinorVersionUpgrade" : "Required. Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.",
         "DescribeBrokerOutput$PubliclyAccessible" : "Required. Enables connections from applications outside of the VPC that hosts the broker's subnets.",
         "DescribeUserOutput$ConsoleAccess" : "Enables access to the the ActiveMQ Web Console for the ActiveMQ user.",
+        "EncryptionOptions$UseAwsOwnedKey" : "Enables the use of an AWS owned CMK using AWS Key Management Service (KMS).",
         "Logs$Audit" : "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.",
         "Logs$General" : "Enables general logging.",
         "LogsSummary$Audit" : "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.",
@@ -389,6 +406,12 @@
         "ListConfigurationRevisionsOutput$Revisions" : "The list of all revisions for the specified configuration."
       }
     },
+    "__listOfDeploymentMode" : {
+      "base" : null,
+      "refs" : {
+        "BrokerInstanceOption$SupportedDeploymentModes" : "The list of supported deployment modes."
+      }
+    },
     "__listOfEngineVersion" : {
       "base" : null,
       "refs" : {
@@ -419,12 +442,15 @@
       "refs" : {
         "BrokerInstance$Endpoints" : "The broker's wire-level protocol endpoints.",
         "BrokerInstanceOption$SupportedEngineVersions" : "The list of supported engine versions.",
-        "CreateBrokerInput$SecurityGroups" : "The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.",
+        "CreateBrokerInput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
         "CreateBrokerInput$SubnetIds" : "The list of groups (2 maximum) that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment requires two subnets.",
         "CreateUserInput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-        "DescribeBrokerOutput$SecurityGroups" : "Required. The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.",
+        "DescribeBrokerOutput$PendingSecurityGroups" : "The list of pending security groups to authorize connections to brokers.",
+        "DescribeBrokerOutput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
         "DescribeBrokerOutput$SubnetIds" : "The list of groups (2 maximum) that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment requires two subnets.",
         "DescribeUserOutput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
+        "UpdateBrokerInput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
+        "UpdateBrokerOutput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
         "UpdateUserInput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
         "User$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
         "UserPendingChanges$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
@@ -479,11 +505,13 @@
         "DescribeBrokerOutput$EngineVersion" : "The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
         "DescribeBrokerOutput$HostInstanceType" : "The broker's instance type.",
         "DescribeBrokerOutput$PendingEngineVersion" : "The version of the broker engine to upgrade to. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
+        "DescribeBrokerOutput$PendingHostInstanceType" : "The host instance type of the broker to upgrade to. For a list of supported instance types, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types",
         "DescribeConfigurationRevisionOutput$ConfigurationId" : "Required. The unique ID that Amazon MQ generates for the configuration.",
         "DescribeConfigurationRevisionOutput$Data" : "Required. The base64-encoded XML configuration.",
         "DescribeConfigurationRevisionOutput$Description" : "The description of the configuration.",
         "DescribeUserOutput$BrokerId" : "Required. The unique ID that Amazon MQ generates for the broker.",
         "DescribeUserOutput$Username" : "Required. The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
+        "EncryptionOptions$KmsKeyId" : "The customer master key (CMK) to use for the AWS Key Management Service (KMS). This key is used to encrypt your data at rest. If not provided, Amazon MQ will use a default CMK to encrypt your data.",
         "EngineVersion$Name" : "Id for the version.",
         "Error$ErrorAttribute" : "The attribute which caused the error.",
         "Error$Message" : "The explanation of the error.",
@@ -498,8 +526,10 @@
         "SanitizationWarning$AttributeName" : "The name of the XML attribute that has been sanitized.",
         "SanitizationWarning$ElementName" : "The name of the XML element that has been sanitized.",
         "UpdateBrokerInput$EngineVersion" : "The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
+        "UpdateBrokerInput$HostInstanceType" : "The host instance type of the broker to upgrade to. For a list of supported instance types, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types",
         "UpdateBrokerOutput$BrokerId" : "Required. The unique ID that Amazon MQ generates for the broker.",
         "UpdateBrokerOutput$EngineVersion" : "The version of the broker engine to upgrade to. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
+        "UpdateBrokerOutput$HostInstanceType" : "The host instance type of the broker to upgrade to. For a list of supported instance types, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types",
         "UpdateConfigurationInput$Data" : "Required. The base64-encoded XML configuration.",
         "UpdateConfigurationInput$Description" : "The description of the configuration.",
         "UpdateConfigurationOutput$Arn" : "Required. The Amazon Resource Name (ARN) of the configuration.",

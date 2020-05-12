@@ -3,6 +3,8 @@
 package mediatailor
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -291,8 +293,8 @@ func (c *MediaTailor) ListTagsForResourceRequest(input *ListTagsForResourceInput
 // See the AWS API reference guide for AWS MediaTailor's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   One of the parameters in the request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListTagsForResource
@@ -446,8 +448,8 @@ func (c *MediaTailor) TagResourceRequest(input *TagResourceInput) (req *request.
 // See the AWS API reference guide for AWS MediaTailor's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   One of the parameters in the request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/TagResource
@@ -527,8 +529,8 @@ func (c *MediaTailor) UntagResourceRequest(input *UntagResourceInput) (req *requ
 // See the AWS API reference guide for AWS MediaTailor's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   One of the parameters in the request is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UntagResource
@@ -551,6 +553,96 @@ func (c *MediaTailor) UntagResourceWithContext(ctx aws.Context, input *UntagReso
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+type AvailSuppression struct {
+	_ struct{} `type:"structure"`
+
+	Mode *string `type:"string" enum:"Mode"`
+
+	// Sets the mode for avail suppression, also known as ad suppression. By default,
+	// ad suppression is off and all ad breaks are filled by MediaTailor with ads
+	// or slate.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AvailSuppression) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AvailSuppression) GoString() string {
+	return s.String()
+}
+
+// SetMode sets the Mode field's value.
+func (s *AvailSuppression) SetMode(v string) *AvailSuppression {
+	s.Mode = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AvailSuppression) SetValue(v string) *AvailSuppression {
+	s.Value = &v
+	return s
+}
+
+// One of the parameters in the request is invalid.
+type BadRequestException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// One of the parameters in the request is invalid.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s BadRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BadRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorBadRequestException(v protocol.ResponseMetadata) error {
+	return &BadRequestException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *BadRequestException) Code() string {
+	return "BadRequestException"
+}
+
+// Message returns the exception's message.
+func (s *BadRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *BadRequestException) OrigErr() error {
+	return nil
+}
+
+func (s *BadRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *BadRequestException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *BadRequestException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The configuration for using a content delivery network (CDN), like Amazon
@@ -796,6 +888,9 @@ type GetPlaybackConfigurationOutput struct {
 	// static VAST URL. The maximum length is 25,000 characters.
 	AdDecisionServerUrl *string `type:"string"`
 
+	// The configuration for Avail Suppression.
+	AvailSuppression *AvailSuppression `type:"structure"`
+
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
@@ -806,8 +901,13 @@ type GetPlaybackConfigurationOutput struct {
 	// The configuration for HLS content.
 	HlsConfiguration *HlsConfiguration `type:"structure"`
 
+	// The configuration for pre-roll ad insertion.
+	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
+
 	// The identifier for the playback configuration.
 	Name *string `type:"string"`
+
+	PersonalizationThresholdSeconds *int64 `min:"1" type:"integer"`
 
 	// The Amazon Resource Name (ARN) for the playback configuration.
 	PlaybackConfigurationArn *string `type:"string"`
@@ -858,6 +958,12 @@ func (s *GetPlaybackConfigurationOutput) SetAdDecisionServerUrl(v string) *GetPl
 	return s
 }
 
+// SetAvailSuppression sets the AvailSuppression field's value.
+func (s *GetPlaybackConfigurationOutput) SetAvailSuppression(v *AvailSuppression) *GetPlaybackConfigurationOutput {
+	s.AvailSuppression = v
+	return s
+}
+
 // SetCdnConfiguration sets the CdnConfiguration field's value.
 func (s *GetPlaybackConfigurationOutput) SetCdnConfiguration(v *CdnConfiguration) *GetPlaybackConfigurationOutput {
 	s.CdnConfiguration = v
@@ -876,9 +982,21 @@ func (s *GetPlaybackConfigurationOutput) SetHlsConfiguration(v *HlsConfiguration
 	return s
 }
 
+// SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
+func (s *GetPlaybackConfigurationOutput) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *GetPlaybackConfigurationOutput {
+	s.LivePreRollConfiguration = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *GetPlaybackConfigurationOutput) SetName(v string) *GetPlaybackConfigurationOutput {
 	s.Name = &v
+	return s
+}
+
+// SetPersonalizationThresholdSeconds sets the PersonalizationThresholdSeconds field's value.
+func (s *GetPlaybackConfigurationOutput) SetPersonalizationThresholdSeconds(v int64) *GetPlaybackConfigurationOutput {
+	s.PersonalizationThresholdSeconds = &v
 	return s
 }
 
@@ -1088,6 +1206,45 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// The configuration for pre-roll ad insertion.
+type LivePreRollConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The URL for the ad decision server (ADS) for pre-roll ads. This includes
+	// the specification of static parameters and placeholders for dynamic parameters.
+	// AWS Elemental MediaTailor substitutes player-specific and session-specific
+	// parameters as needed when calling the ADS. Alternately, for testing, you
+	// can provide a static VAST URL. The maximum length is 25,000 characters.
+	AdDecisionServerUrl *string `type:"string"`
+
+	// The maximum allowed duration for the pre-roll ad avail. AWS Elemental MediaTailor
+	// won't play pre-roll ads to exceed this duration, regardless of the total
+	// duration of ads that the ADS returns.
+	MaxDurationSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s LivePreRollConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LivePreRollConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAdDecisionServerUrl sets the AdDecisionServerUrl field's value.
+func (s *LivePreRollConfiguration) SetAdDecisionServerUrl(v string) *LivePreRollConfiguration {
+	s.AdDecisionServerUrl = &v
+	return s
+}
+
+// SetMaxDurationSeconds sets the MaxDurationSeconds field's value.
+func (s *LivePreRollConfiguration) SetMaxDurationSeconds(v int64) *LivePreRollConfiguration {
+	s.MaxDurationSeconds = &v
+	return s
+}
+
 type PlaybackConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -1104,6 +1261,8 @@ type PlaybackConfiguration struct {
 	HlsConfiguration *HlsConfiguration `type:"structure"`
 
 	Name *string `type:"string"`
+
+	PersonalizationThresholdSeconds *int64 `min:"1" type:"integer"`
 
 	PlaybackConfigurationArn *string `type:"string"`
 
@@ -1160,6 +1319,12 @@ func (s *PlaybackConfiguration) SetName(v string) *PlaybackConfiguration {
 	return s
 }
 
+// SetPersonalizationThresholdSeconds sets the PersonalizationThresholdSeconds field's value.
+func (s *PlaybackConfiguration) SetPersonalizationThresholdSeconds(v int64) *PlaybackConfiguration {
+	s.PersonalizationThresholdSeconds = &v
+	return s
+}
+
 // SetPlaybackConfigurationArn sets the PlaybackConfigurationArn field's value.
 func (s *PlaybackConfiguration) SetPlaybackConfigurationArn(v string) *PlaybackConfiguration {
 	s.PlaybackConfigurationArn = &v
@@ -1212,6 +1377,9 @@ type PutPlaybackConfigurationInput struct {
 	// VAST URL. The maximum length is 25,000 characters.
 	AdDecisionServerUrl *string `type:"string"`
 
+	// The configuration for Avail Suppression.
+	AvailSuppression *AvailSuppression `type:"structure"`
+
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
@@ -1219,8 +1387,13 @@ type PutPlaybackConfigurationInput struct {
 	// The configuration for DASH content.
 	DashConfiguration *DashConfigurationForPut `type:"structure"`
 
+	// The configuration for pre-roll ad insertion.
+	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
+
 	// The identifier for the playback configuration.
 	Name *string `type:"string"`
+
+	PersonalizationThresholdSeconds *int64 `min:"1" type:"integer"`
 
 	// The URL for a high-quality video asset to transcode and use to fill in time
 	// that's not used by ads. AWS Elemental MediaTailor shows the slate to fill
@@ -1254,9 +1427,28 @@ func (s PutPlaybackConfigurationInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutPlaybackConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutPlaybackConfigurationInput"}
+	if s.PersonalizationThresholdSeconds != nil && *s.PersonalizationThresholdSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PersonalizationThresholdSeconds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetAdDecisionServerUrl sets the AdDecisionServerUrl field's value.
 func (s *PutPlaybackConfigurationInput) SetAdDecisionServerUrl(v string) *PutPlaybackConfigurationInput {
 	s.AdDecisionServerUrl = &v
+	return s
+}
+
+// SetAvailSuppression sets the AvailSuppression field's value.
+func (s *PutPlaybackConfigurationInput) SetAvailSuppression(v *AvailSuppression) *PutPlaybackConfigurationInput {
+	s.AvailSuppression = v
 	return s
 }
 
@@ -1272,9 +1464,21 @@ func (s *PutPlaybackConfigurationInput) SetDashConfiguration(v *DashConfiguratio
 	return s
 }
 
+// SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
+func (s *PutPlaybackConfigurationInput) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *PutPlaybackConfigurationInput {
+	s.LivePreRollConfiguration = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *PutPlaybackConfigurationInput) SetName(v string) *PutPlaybackConfigurationInput {
 	s.Name = &v
+	return s
+}
+
+// SetPersonalizationThresholdSeconds sets the PersonalizationThresholdSeconds field's value.
+func (s *PutPlaybackConfigurationInput) SetPersonalizationThresholdSeconds(v int64) *PutPlaybackConfigurationInput {
+	s.PersonalizationThresholdSeconds = &v
 	return s
 }
 
@@ -1307,6 +1511,8 @@ type PutPlaybackConfigurationOutput struct {
 
 	AdDecisionServerUrl *string `type:"string"`
 
+	AvailSuppression *AvailSuppression `type:"structure"`
+
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
@@ -1316,6 +1522,9 @@ type PutPlaybackConfigurationOutput struct {
 
 	// The configuration for HLS content.
 	HlsConfiguration *HlsConfiguration `type:"structure"`
+
+	// The configuration for pre-roll ad insertion.
+	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
 
 	Name *string `type:"string"`
 
@@ -1350,6 +1559,12 @@ func (s *PutPlaybackConfigurationOutput) SetAdDecisionServerUrl(v string) *PutPl
 	return s
 }
 
+// SetAvailSuppression sets the AvailSuppression field's value.
+func (s *PutPlaybackConfigurationOutput) SetAvailSuppression(v *AvailSuppression) *PutPlaybackConfigurationOutput {
+	s.AvailSuppression = v
+	return s
+}
+
 // SetCdnConfiguration sets the CdnConfiguration field's value.
 func (s *PutPlaybackConfigurationOutput) SetCdnConfiguration(v *CdnConfiguration) *PutPlaybackConfigurationOutput {
 	s.CdnConfiguration = v
@@ -1365,6 +1580,12 @@ func (s *PutPlaybackConfigurationOutput) SetDashConfiguration(v *DashConfigurati
 // SetHlsConfiguration sets the HlsConfiguration field's value.
 func (s *PutPlaybackConfigurationOutput) SetHlsConfiguration(v *HlsConfiguration) *PutPlaybackConfigurationOutput {
 	s.HlsConfiguration = v
+	return s
+}
+
+// SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
+func (s *PutPlaybackConfigurationOutput) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *PutPlaybackConfigurationOutput {
+	s.LivePreRollConfiguration = v
 	return s
 }
 
@@ -1545,6 +1766,14 @@ func (s UntagResourceOutput) String() string {
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// ModeOff is a Mode enum value
+	ModeOff = "OFF"
+
+	// ModeBehindLiveEdge is a Mode enum value
+	ModeBehindLiveEdge = "BEHIND_LIVE_EDGE"
+)
 
 const (
 	// OriginManifestTypeSinglePeriod is a OriginManifestType enum value

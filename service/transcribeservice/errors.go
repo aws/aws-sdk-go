@@ -2,6 +2,10 @@
 
 package transcribeservice
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBadRequestException for service response error code
@@ -16,12 +20,7 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// When you are using the StartTranscriptionJob operation, the JobName field
-	// is a duplicate of a previously entered job name. Resend your request with
-	// a different name.
-	//
-	// When you are using the UpdateVocabulary operation, there are two jobs running
-	// at the same time. Resend the second request later.
+	// The resource name already exists.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalFailureException for service response error code
@@ -45,3 +44,11 @@ const (
 	// again.
 	ErrCodeNotFoundException = "NotFoundException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BadRequestException":      newErrorBadRequestException,
+	"ConflictException":        newErrorConflictException,
+	"InternalFailureException": newErrorInternalFailureException,
+	"LimitExceededException":   newErrorLimitExceededException,
+	"NotFoundException":        newErrorNotFoundException,
+}

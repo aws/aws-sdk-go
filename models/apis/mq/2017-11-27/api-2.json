@@ -603,6 +603,14 @@
           "shape" : "__string",
           "locationName" : "hostInstanceType"
         },
+        "StorageType" : {
+          "shape" : "BrokerStorageType",
+          "locationName" : "storageType"
+        },
+        "SupportedDeploymentModes" : {
+          "shape" : "__listOfDeploymentMode",
+          "locationName" : "supportedDeploymentModes"
+        },
         "SupportedEngineVersions" : {
           "shape" : "__listOf__string",
           "locationName" : "supportedEngineVersions"
@@ -629,6 +637,10 @@
     "BrokerState" : {
       "type" : "string",
       "enum" : [ "CREATION_IN_PROGRESS", "CREATION_FAILED", "DELETION_IN_PROGRESS", "RUNNING", "REBOOT_IN_PROGRESS" ]
+    },
+    "BrokerStorageType" : {
+      "type" : "string",
+      "enum" : [ "EBS", "EFS" ]
     },
     "BrokerSummary" : {
       "type" : "structure",
@@ -796,6 +808,10 @@
           "shape" : "DeploymentMode",
           "locationName" : "deploymentMode"
         },
+        "EncryptionOptions" : {
+          "shape" : "EncryptionOptions",
+          "locationName" : "encryptionOptions"
+        },
         "EngineType" : {
           "shape" : "EngineType",
           "locationName" : "engineType"
@@ -823,6 +839,10 @@
         "SecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "securityGroups"
+        },
+        "StorageType" : {
+          "shape" : "BrokerStorageType",
+          "locationName" : "storageType"
         },
         "SubnetIds" : {
           "shape" : "__listOf__string",
@@ -875,6 +895,10 @@
           "shape" : "DeploymentMode",
           "locationName" : "deploymentMode"
         },
+        "EncryptionOptions" : {
+          "shape" : "EncryptionOptions",
+          "locationName" : "encryptionOptions"
+        },
         "EngineType" : {
           "shape" : "EngineType",
           "locationName" : "engineType"
@@ -902,6 +926,10 @@
         "SecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "securityGroups"
+        },
+        "StorageType" : {
+          "shape" : "BrokerStorageType",
+          "locationName" : "storageType"
         },
         "SubnetIds" : {
           "shape" : "__listOf__string",
@@ -1218,6 +1246,11 @@
           "shape" : "__string",
           "location" : "querystring",
           "locationName" : "nextToken"
+        },
+        "StorageType" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "storageType"
         }
       }
     },
@@ -1277,6 +1310,10 @@
           "shape" : "DeploymentMode",
           "locationName" : "deploymentMode"
         },
+        "EncryptionOptions" : {
+          "shape" : "EncryptionOptions",
+          "locationName" : "encryptionOptions"
+        },
         "EngineType" : {
           "shape" : "EngineType",
           "locationName" : "engineType"
@@ -1301,6 +1338,14 @@
           "shape" : "__string",
           "locationName" : "pendingEngineVersion"
         },
+        "PendingHostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "pendingHostInstanceType"
+        },
+        "PendingSecurityGroups" : {
+          "shape" : "__listOf__string",
+          "locationName" : "pendingSecurityGroups"
+        },
         "PubliclyAccessible" : {
           "shape" : "__boolean",
           "locationName" : "publiclyAccessible"
@@ -1308,6 +1353,10 @@
         "SecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "securityGroups"
+        },
+        "StorageType" : {
+          "shape" : "BrokerStorageType",
+          "locationName" : "storageType"
         },
         "SubnetIds" : {
           "shape" : "__listOf__string",
@@ -1373,6 +1422,10 @@
           "shape" : "DeploymentMode",
           "locationName" : "deploymentMode"
         },
+        "EncryptionOptions" : {
+          "shape" : "EncryptionOptions",
+          "locationName" : "encryptionOptions"
+        },
         "EngineType" : {
           "shape" : "EngineType",
           "locationName" : "engineType"
@@ -1397,6 +1450,14 @@
           "shape" : "__string",
           "locationName" : "pendingEngineVersion"
         },
+        "PendingHostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "pendingHostInstanceType"
+        },
+        "PendingSecurityGroups" : {
+          "shape" : "__listOf__string",
+          "locationName" : "pendingSecurityGroups"
+        },
         "PubliclyAccessible" : {
           "shape" : "__boolean",
           "locationName" : "publiclyAccessible"
@@ -1404,6 +1465,10 @@
         "SecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "securityGroups"
+        },
+        "StorageType" : {
+          "shape" : "BrokerStorageType",
+          "locationName" : "storageType"
         },
         "SubnetIds" : {
           "shape" : "__listOf__string",
@@ -1594,6 +1659,20 @@
           "locationName" : "username"
         }
       }
+    },
+    "EncryptionOptions" : {
+      "type" : "structure",
+      "members" : {
+        "KmsKeyId" : {
+          "shape" : "__string",
+          "locationName" : "kmsKeyId"
+        },
+        "UseAwsOwnedKey" : {
+          "shape" : "__boolean",
+          "locationName" : "useAwsOwnedKey"
+        }
+      },
+      "required" : [ "UseAwsOwnedKey" ]
     },
     "EngineType" : {
       "type" : "string",
@@ -2041,9 +2120,17 @@
           "shape" : "__string",
           "locationName" : "engineVersion"
         },
+        "HostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "hostInstanceType"
+        },
         "Logs" : {
           "shape" : "Logs",
           "locationName" : "logs"
+        },
+        "SecurityGroups" : {
+          "shape" : "__listOf__string",
+          "locationName" : "securityGroups"
         }
       }
     },
@@ -2066,9 +2153,17 @@
           "shape" : "__string",
           "locationName" : "engineVersion"
         },
+        "HostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "hostInstanceType"
+        },
         "Logs" : {
           "shape" : "Logs",
           "locationName" : "logs"
+        },
+        "SecurityGroups" : {
+          "shape" : "__listOf__string",
+          "locationName" : "securityGroups"
         }
       }
     },
@@ -2092,9 +2187,17 @@
           "shape" : "__string",
           "locationName" : "engineVersion"
         },
+        "HostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "hostInstanceType"
+        },
         "Logs" : {
           "shape" : "Logs",
           "locationName" : "logs"
+        },
+        "SecurityGroups" : {
+          "shape" : "__listOf__string",
+          "locationName" : "securityGroups"
         }
       },
       "required" : [ "BrokerId" ]
@@ -2118,9 +2221,17 @@
           "shape" : "__string",
           "locationName" : "engineVersion"
         },
+        "HostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "hostInstanceType"
+        },
         "Logs" : {
           "shape" : "Logs",
           "locationName" : "logs"
+        },
+        "SecurityGroups" : {
+          "shape" : "__listOf__string",
+          "locationName" : "securityGroups"
         }
       }
     },
@@ -2393,6 +2504,12 @@
         "shape" : "ConfigurationRevision"
       }
     },
+    "__listOfDeploymentMode" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "DeploymentMode"
+      }
+    },
     "__listOfEngineVersion" : {
       "type" : "list",
       "member" : {
@@ -2445,6 +2562,16 @@
     "__timestampUnix" : {
       "type" : "timestamp",
       "timestampFormat" : "unixTimestamp"
+    }
+  },
+  "authorizers" : {
+    "authorization_strategy" : {
+      "name" : "authorization_strategy",
+      "type" : "provided",
+      "placement" : {
+        "location" : "header",
+        "name" : "Authorization"
+      }
     }
   }
 }

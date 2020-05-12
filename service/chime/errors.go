@@ -2,7 +2,17 @@
 
 package chime
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
+
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// You don't have permissions to perform the requested operation.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeBadRequestException for service response error code
 	// "BadRequestException".
@@ -67,3 +77,17 @@ const (
 	// errors.
 	ErrCodeUnprocessableEntityException = "UnprocessableEntityException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":          newErrorAccessDeniedException,
+	"BadRequestException":            newErrorBadRequestException,
+	"ConflictException":              newErrorConflictException,
+	"ForbiddenException":             newErrorForbiddenException,
+	"NotFoundException":              newErrorNotFoundException,
+	"ResourceLimitExceededException": newErrorResourceLimitExceededException,
+	"ServiceFailureException":        newErrorServiceFailureException,
+	"ServiceUnavailableException":    newErrorServiceUnavailableException,
+	"ThrottledClientException":       newErrorThrottledClientException,
+	"UnauthorizedClientException":    newErrorUnauthorizedClientException,
+	"UnprocessableEntityException":   newErrorUnprocessableEntityException,
+}

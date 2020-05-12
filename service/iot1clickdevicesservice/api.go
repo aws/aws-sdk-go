@@ -3,6 +3,7 @@
 package iot1clickdevicesservice
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -66,12 +67,12 @@ func (c *IoT1ClickDevicesService) ClaimDevicesByClaimCodeRequest(input *ClaimDev
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation ClaimDevicesByClaimCode for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/ClaimDevicesByClaimCode
 func (c *IoT1ClickDevicesService) ClaimDevicesByClaimCode(input *ClaimDevicesByClaimCodeInput) (*ClaimDevicesByClaimCodeOutput, error) {
@@ -149,12 +150,12 @@ func (c *IoT1ClickDevicesService) DescribeDeviceRequest(input *DescribeDeviceInp
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation DescribeDevice for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/DescribeDevice
 func (c *IoT1ClickDevicesService) DescribeDevice(input *DescribeDeviceInput) (*DescribeDeviceOutput, error) {
@@ -235,16 +236,16 @@ func (c *IoT1ClickDevicesService) FinalizeDeviceClaimRequest(input *FinalizeDevi
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation FinalizeDeviceClaim for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodePreconditionFailedException "PreconditionFailedException"
+//   * PreconditionFailedException
 //
-//   * ErrCodeResourceConflictException "ResourceConflictException"
+//   * ResourceConflictException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/FinalizeDeviceClaim
 func (c *IoT1ClickDevicesService) FinalizeDeviceClaim(input *FinalizeDeviceClaimInput) (*FinalizeDeviceClaimOutput, error) {
@@ -321,12 +322,12 @@ func (c *IoT1ClickDevicesService) GetDeviceMethodsRequest(input *GetDeviceMethod
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation GetDeviceMethods for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/GetDeviceMethods
 func (c *IoT1ClickDevicesService) GetDeviceMethods(input *GetDeviceMethodsInput) (*GetDeviceMethodsOutput, error) {
@@ -407,14 +408,14 @@ func (c *IoT1ClickDevicesService) InitiateDeviceClaimRequest(input *InitiateDevi
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation InitiateDeviceClaim for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceConflictException "ResourceConflictException"
+//   * ResourceConflictException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/InitiateDeviceClaim
 func (c *IoT1ClickDevicesService) InitiateDeviceClaim(input *InitiateDeviceClaimInput) (*InitiateDeviceClaimOutput, error) {
@@ -492,18 +493,18 @@ func (c *IoT1ClickDevicesService) InvokeDeviceMethodRequest(input *InvokeDeviceM
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation InvokeDeviceMethod for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //
-//   * ErrCodePreconditionFailedException "PreconditionFailedException"
+//   * PreconditionFailedException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeRangeNotSatisfiableException "RangeNotSatisfiableException"
+//   * RangeNotSatisfiableException
 //
-//   * ErrCodeResourceConflictException "ResourceConflictException"
+//   * ResourceConflictException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/InvokeDeviceMethod
 func (c *IoT1ClickDevicesService) InvokeDeviceMethod(input *InvokeDeviceMethodInput) (*InvokeDeviceMethodOutput, error) {
@@ -581,14 +582,14 @@ func (c *IoT1ClickDevicesService) ListDeviceEventsRequest(input *ListDeviceEvent
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation ListDeviceEvents for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeRangeNotSatisfiableException "RangeNotSatisfiableException"
+//   * RangeNotSatisfiableException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/ListDeviceEvents
 func (c *IoT1ClickDevicesService) ListDeviceEvents(input *ListDeviceEventsInput) (*ListDeviceEventsOutput, error) {
@@ -665,12 +666,12 @@ func (c *IoT1ClickDevicesService) ListDevicesRequest(input *ListDevicesInput) (r
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation ListDevices for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeRangeNotSatisfiableException "RangeNotSatisfiableException"
+// Returned Error Types:
+//   * RangeNotSatisfiableException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/ListDevices
 func (c *IoT1ClickDevicesService) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, error) {
@@ -747,10 +748,10 @@ func (c *IoT1ClickDevicesService) ListTagsForResourceRequest(input *ListTagsForR
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/ListTagsForResource
 func (c *IoT1ClickDevicesService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -830,12 +831,12 @@ func (c *IoT1ClickDevicesService) TagResourceRequest(input *TagResourceInput) (r
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/TagResource
 func (c *IoT1ClickDevicesService) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -912,12 +913,12 @@ func (c *IoT1ClickDevicesService) UnclaimDeviceRequest(input *UnclaimDeviceInput
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation UnclaimDevice for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/UnclaimDevice
 func (c *IoT1ClickDevicesService) UnclaimDevice(input *UnclaimDeviceInput) (*UnclaimDeviceOutput, error) {
@@ -996,12 +997,12 @@ func (c *IoT1ClickDevicesService) UntagResourceRequest(input *UntagResourceInput
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/UntagResource
 func (c *IoT1ClickDevicesService) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1080,12 +1081,12 @@ func (c *IoT1ClickDevicesService) UpdateDeviceStateRequest(input *UpdateDeviceSt
 // See the AWS API reference guide for AWS IoT 1-Click Devices Service's
 // API operation UpdateDeviceState for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devices-2018-05-14/UpdateDeviceState
 func (c *IoT1ClickDevicesService) UpdateDeviceState(input *UpdateDeviceStateInput) (*UpdateDeviceStateOutput, error) {
@@ -1509,6 +1510,65 @@ func (s *FinalizeDeviceClaimOutput) SetState(v string) *FinalizeDeviceClaimOutpu
 	return s
 }
 
+type ForbiddenException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// 403
+	Code_ *string `locationName:"code" type:"string"`
+
+	// The 403 error message returned by the web server.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ForbiddenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ForbiddenException) GoString() string {
+	return s.String()
+}
+
+func newErrorForbiddenException(v protocol.ResponseMetadata) error {
+	return &ForbiddenException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ForbiddenException) Code() string {
+	return "ForbiddenException"
+}
+
+// Message returns the exception's message.
+func (s *ForbiddenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ForbiddenException) OrigErr() error {
+	return nil
+}
+
+func (s *ForbiddenException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ForbiddenException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ForbiddenException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type GetDeviceMethodsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1630,6 +1690,124 @@ func (s InitiateDeviceClaimOutput) GoString() string {
 func (s *InitiateDeviceClaimOutput) SetState(v string) *InitiateDeviceClaimOutput {
 	s.State = &v
 	return s
+}
+
+type InternalFailureException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// 500
+	Code_ *string `locationName:"code" type:"string"`
+
+	// The 500 error message returned by the web server.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalFailureException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalFailureException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalFailureException(v protocol.ResponseMetadata) error {
+	return &InternalFailureException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalFailureException) Code() string {
+	return "InternalFailureException"
+}
+
+// Message returns the exception's message.
+func (s *InternalFailureException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalFailureException) OrigErr() error {
+	return nil
+}
+
+func (s *InternalFailureException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalFailureException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalFailureException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type InvalidRequestException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// 400
+	Code_ *string `locationName:"code" type:"string"`
+
+	// The 400 error message returned by the web server.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidRequestException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidRequestException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type InvokeDeviceMethodInput struct {
@@ -1966,6 +2144,242 @@ func (s ListTagsForResourceOutput) GoString() string {
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
 	return s
+}
+
+type PreconditionFailedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// 412
+	Code_ *string `locationName:"code" type:"string"`
+
+	// An error message explaining the error or its remedy.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s PreconditionFailedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PreconditionFailedException) GoString() string {
+	return s.String()
+}
+
+func newErrorPreconditionFailedException(v protocol.ResponseMetadata) error {
+	return &PreconditionFailedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *PreconditionFailedException) Code() string {
+	return "PreconditionFailedException"
+}
+
+// Message returns the exception's message.
+func (s *PreconditionFailedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *PreconditionFailedException) OrigErr() error {
+	return nil
+}
+
+func (s *PreconditionFailedException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *PreconditionFailedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *PreconditionFailedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type RangeNotSatisfiableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// 416
+	Code_ *string `locationName:"code" type:"string"`
+
+	// The requested number of results specified by nextToken cannot be satisfied.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s RangeNotSatisfiableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RangeNotSatisfiableException) GoString() string {
+	return s.String()
+}
+
+func newErrorRangeNotSatisfiableException(v protocol.ResponseMetadata) error {
+	return &RangeNotSatisfiableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *RangeNotSatisfiableException) Code() string {
+	return "RangeNotSatisfiableException"
+}
+
+// Message returns the exception's message.
+func (s *RangeNotSatisfiableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *RangeNotSatisfiableException) OrigErr() error {
+	return nil
+}
+
+func (s *RangeNotSatisfiableException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *RangeNotSatisfiableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *RangeNotSatisfiableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type ResourceConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// 409
+	Code_ *string `locationName:"code" type:"string"`
+
+	// An error message explaining the error or its remedy.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceConflictException(v protocol.ResponseMetadata) error {
+	return &ResourceConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceConflictException) Code() string {
+	return "ResourceConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// 404
+	Code_ *string `locationName:"code" type:"string"`
+
+	// The requested device could not be found.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type TagResourceInput struct {

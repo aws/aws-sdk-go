@@ -3,7 +3,9 @@
 package awsendpointdiscoverytest
 
 import (
+	"fmt"
 	"net/url"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -87,6 +89,7 @@ type discovererDescribeEndpoints struct {
 	EndpointCache *crr.EndpointCache
 	Params        map[string]*string
 	Key           string
+	req           *request.Request
 }
 
 func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
@@ -108,8 +111,19 @@ func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 			continue
 		}
 
+		address := *e.Address
+
+		var scheme string
+		if idx := strings.Index(address, "://"); idx != -1 {
+			scheme = address[:idx]
+		}
+
+		if len(scheme) == 0 {
+			address = fmt.Sprintf("%s://%s", d.req.HTTPRequest.URL.Scheme, address)
+		}
+
 		cachedInMinutes := aws.Int64Value(e.CachePeriodInMinutes)
-		u, err := url.Parse(*e.Address)
+		u, err := url.Parse(address)
 		if err != nil {
 			continue
 		}
@@ -130,6 +144,7 @@ func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 func (d *discovererDescribeEndpoints) Handler(r *request.Request) {
 	endpointKey := crr.BuildEndpointKey(d.Params)
 	d.Key = endpointKey
+	d.req = r
 
 	endpoint, err := d.EndpointCache.Get(d, endpointKey, d.Required)
 	if err != nil {
@@ -179,26 +194,30 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryIdentifiersRequiredRequest(input
 
 	output = &TestDiscoveryIdentifiersRequiredOutput{}
 	req = c.newRequest(op, input, output)
-	de := discovererDescribeEndpoints{
-		Required:      true,
-		EndpointCache: c.endpointCache,
-		Params: map[string]*string{
-			"op":  aws.String(req.Operation.Name),
-			"Sdk": input.Sdk,
-		},
-		Client: c,
-	}
-
-	for k, v := range de.Params {
-		if v == nil {
-			delete(de.Params, k)
+	// if a custom endpoint is provided for the request,
+	// we skip endpoint discovery workflow
+	if req.Config.Endpoint == nil {
+		de := discovererDescribeEndpoints{
+			Required:      true,
+			EndpointCache: c.endpointCache,
+			Params: map[string]*string{
+				"op":  aws.String(req.Operation.Name),
+				"Sdk": input.Sdk,
+			},
+			Client: c,
 		}
-	}
 
-	req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-		Name: "crr.endpointdiscovery",
-		Fn:   de.Handler,
-	})
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
 	return
 }
 
@@ -268,26 +287,30 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryOptionalRequest(input *TestDisco
 
 	output = &TestDiscoveryOptionalOutput{}
 	req = c.newRequest(op, input, output)
-	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
-		de := discovererDescribeEndpoints{
-			Required:      false,
-			EndpointCache: c.endpointCache,
-			Params: map[string]*string{
-				"op": aws.String(req.Operation.Name),
-			},
-			Client: c,
-		}
-
-		for k, v := range de.Params {
-			if v == nil {
-				delete(de.Params, k)
+	// if a custom endpoint is provided for the request,
+	// we skip endpoint discovery workflow
+	if req.Config.Endpoint == nil {
+		if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+			de := discovererDescribeEndpoints{
+				Required:      false,
+				EndpointCache: c.endpointCache,
+				Params: map[string]*string{
+					"op": aws.String(req.Operation.Name),
+				},
+				Client: c,
 			}
-		}
 
-		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-			Name: "crr.endpointdiscovery",
-			Fn:   de.Handler,
-		})
+			for k, v := range de.Params {
+				if v == nil {
+					delete(de.Params, k)
+				}
+			}
+
+			req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+				Name: "crr.endpointdiscovery",
+				Fn:   de.Handler,
+			})
+		}
 	}
 	return
 }
@@ -358,26 +381,30 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryRequiredRequest(input *TestDisco
 
 	output = &TestDiscoveryRequiredOutput{}
 	req = c.newRequest(op, input, output)
-	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
-		de := discovererDescribeEndpoints{
-			Required:      false,
-			EndpointCache: c.endpointCache,
-			Params: map[string]*string{
-				"op": aws.String(req.Operation.Name),
-			},
-			Client: c,
-		}
-
-		for k, v := range de.Params {
-			if v == nil {
-				delete(de.Params, k)
+	// if a custom endpoint is provided for the request,
+	// we skip endpoint discovery workflow
+	if req.Config.Endpoint == nil {
+		if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+			de := discovererDescribeEndpoints{
+				Required:      false,
+				EndpointCache: c.endpointCache,
+				Params: map[string]*string{
+					"op": aws.String(req.Operation.Name),
+				},
+				Client: c,
 			}
-		}
 
-		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-			Name: "crr.endpointdiscovery",
-			Fn:   de.Handler,
-		})
+			for k, v := range de.Params {
+				if v == nil {
+					delete(de.Params, k)
+				}
+			}
+
+			req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+				Name: "crr.endpointdiscovery",
+				Fn:   de.Handler,
+			})
+		}
 	}
 	return
 }

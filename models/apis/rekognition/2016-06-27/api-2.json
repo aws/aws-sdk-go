@@ -48,6 +48,43 @@
         {"shape":"ResourceAlreadyExistsException"}
       ]
     },
+    "CreateProject":{
+      "name":"CreateProject",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateProjectRequest"},
+      "output":{"shape":"CreateProjectResponse"},
+      "errors":[
+        {"shape":"ResourceInUseException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
+    "CreateProjectVersion":{
+      "name":"CreateProjectVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateProjectVersionRequest"},
+      "output":{"shape":"CreateProjectVersionResponse"},
+      "errors":[
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
     "CreateStreamProcessor":{
       "name":"CreateStreamProcessor",
       "http":{
@@ -100,6 +137,42 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteProject":{
+      "name":"DeleteProject",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteProjectRequest"},
+      "output":{"shape":"DeleteProjectResponse"},
+      "errors":[
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
+    "DeleteProjectVersion":{
+      "name":"DeleteProjectVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteProjectVersionRequest"},
+      "output":{"shape":"DeleteProjectVersionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
     "DeleteStreamProcessor":{
       "name":"DeleteStreamProcessor",
       "http":{
@@ -135,6 +208,41 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeProjectVersions":{
+      "name":"DescribeProjectVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeProjectVersionsRequest"},
+      "output":{"shape":"DescribeProjectVersionsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
+    "DescribeProjects":{
+      "name":"DescribeProjects",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeProjectsRequest"},
+      "output":{"shape":"DescribeProjectsResponse"},
+      "errors":[
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
     "DescribeStreamProcessor":{
       "name":"DescribeStreamProcessor",
       "http":{
@@ -150,6 +258,28 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
+    "DetectCustomLabels":{
+      "name":"DetectCustomLabels",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetectCustomLabelsRequest"},
+      "output":{"shape":"DetectCustomLabelsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceNotReadyException"},
+        {"shape":"InvalidS3ObjectException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ImageTooLargeException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"InvalidImageFormatException"}
       ]
     },
     "DetectFaces":{
@@ -206,7 +336,8 @@
         {"shape":"InternalServerError"},
         {"shape":"ThrottlingException"},
         {"shape":"ProvisionedThroughputExceededException"},
-        {"shape":"InvalidImageFormatException"}
+        {"shape":"InvalidImageFormatException"},
+        {"shape":"HumanLoopQuotaExceededException"}
       ]
     },
     "DetectText":{
@@ -343,6 +474,24 @@
       },
       "input":{"shape":"GetPersonTrackingRequest"},
       "output":{"shape":"GetPersonTrackingResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetTextDetection":{
+      "name":"GetTextDetection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTextDetectionRequest"},
+      "output":{"shape":"GetTextDetectionResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerError"},
@@ -610,6 +759,25 @@
       ],
       "idempotent":true
     },
+    "StartProjectVersion":{
+      "name":"StartProjectVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartProjectVersionRequest"},
+      "output":{"shape":"StartProjectVersionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
     "StartStreamProcessor":{
       "name":"StartStreamProcessor",
       "http":{
@@ -625,6 +793,45 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
+    "StartTextDetection":{
+      "name":"StartTextDetection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartTextDetectionRequest"},
+      "output":{"shape":"StartTextDetectionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidS3ObjectException"},
+        {"shape":"InternalServerError"},
+        {"shape":"VideoTooLargeException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
+    "StopProjectVersion":{
+      "name":"StopProjectVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopProjectVersionRequest"},
+      "output":{"shape":"StopProjectVersionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
         {"shape":"ProvisionedThroughputExceededException"}
       ]
     },
@@ -661,6 +868,16 @@
         "High":{"shape":"UInteger"}
       }
     },
+    "Asset":{
+      "type":"structure",
+      "members":{
+        "GroundTruthManifest":{"shape":"GroundTruthManifest"}
+      }
+    },
+    "Assets":{
+      "type":"list",
+      "member":{"shape":"Asset"}
+    },
     "Attribute":{
       "type":"string",
       "enum":[
@@ -688,6 +905,16 @@
         "Left":{"shape":"Float"},
         "Top":{"shape":"Float"}
       }
+    },
+    "BoundingBoxHeight":{
+      "type":"float",
+      "max":1,
+      "min":0
+    },
+    "BoundingBoxWidth":{
+      "type":"float",
+      "max":1,
+      "min":0
     },
     "Celebrity":{
       "type":"structure",
@@ -768,7 +995,8 @@
       "members":{
         "SourceImage":{"shape":"Image"},
         "TargetImage":{"shape":"Image"},
-        "SimilarityThreshold":{"shape":"Percent"}
+        "SimilarityThreshold":{"shape":"Percent"},
+        "QualityFilter":{"shape":"QualityFilter"}
       }
     },
     "CompareFacesResponse":{
@@ -806,6 +1034,18 @@
         "Confidence":{"shape":"Percent"}
       }
     },
+    "ContentClassifier":{
+      "type":"string",
+      "enum":[
+        "FreeOfPersonallyIdentifiableInformation",
+        "FreeOfAdultContent"
+      ]
+    },
+    "ContentClassifiers":{
+      "type":"list",
+      "member":{"shape":"ContentClassifier"},
+      "max":256
+    },
     "ContentModerationDetection":{
       "type":"structure",
       "members":{
@@ -839,6 +1079,42 @@
         "FaceModelVersion":{"shape":"String"}
       }
     },
+    "CreateProjectRequest":{
+      "type":"structure",
+      "required":["ProjectName"],
+      "members":{
+        "ProjectName":{"shape":"ProjectName"}
+      }
+    },
+    "CreateProjectResponse":{
+      "type":"structure",
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"}
+      }
+    },
+    "CreateProjectVersionRequest":{
+      "type":"structure",
+      "required":[
+        "ProjectArn",
+        "VersionName",
+        "OutputConfig",
+        "TrainingData",
+        "TestingData"
+      ],
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"},
+        "VersionName":{"shape":"VersionName"},
+        "OutputConfig":{"shape":"OutputConfig"},
+        "TrainingData":{"shape":"TrainingData"},
+        "TestingData":{"shape":"TestingData"}
+      }
+    },
+    "CreateProjectVersionResponse":{
+      "type":"structure",
+      "members":{
+        "ProjectVersionArn":{"shape":"ProjectVersionArn"}
+      }
+    },
     "CreateStreamProcessorRequest":{
       "type":"structure",
       "required":[
@@ -861,6 +1137,18 @@
       "members":{
         "StreamProcessorArn":{"shape":"StreamProcessorArn"}
       }
+    },
+    "CustomLabel":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Confidence":{"shape":"Percent"},
+        "Geometry":{"shape":"Geometry"}
+      }
+    },
+    "CustomLabels":{
+      "type":"list",
+      "member":{"shape":"CustomLabel"}
     },
     "DateTime":{"type":"timestamp"},
     "Degree":{
@@ -898,6 +1186,32 @@
         "DeletedFaces":{"shape":"FaceIdList"}
       }
     },
+    "DeleteProjectRequest":{
+      "type":"structure",
+      "required":["ProjectArn"],
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"}
+      }
+    },
+    "DeleteProjectResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ProjectStatus"}
+      }
+    },
+    "DeleteProjectVersionRequest":{
+      "type":"structure",
+      "required":["ProjectVersionArn"],
+      "members":{
+        "ProjectVersionArn":{"shape":"ProjectVersionArn"}
+      }
+    },
+    "DeleteProjectVersionResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ProjectVersionStatus"}
+      }
+    },
     "DeleteStreamProcessorRequest":{
       "type":"structure",
       "required":["Name"],
@@ -926,6 +1240,37 @@
         "CreationTimestamp":{"shape":"DateTime"}
       }
     },
+    "DescribeProjectVersionsRequest":{
+      "type":"structure",
+      "required":["ProjectArn"],
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"},
+        "VersionNames":{"shape":"VersionNames"},
+        "NextToken":{"shape":"ExtendedPaginationToken"},
+        "MaxResults":{"shape":"ProjectVersionsPageSize"}
+      }
+    },
+    "DescribeProjectVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "ProjectVersionDescriptions":{"shape":"ProjectVersionDescriptions"},
+        "NextToken":{"shape":"ExtendedPaginationToken"}
+      }
+    },
+    "DescribeProjectsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"ExtendedPaginationToken"},
+        "MaxResults":{"shape":"ProjectsPageSize"}
+      }
+    },
+    "DescribeProjectsResponse":{
+      "type":"structure",
+      "members":{
+        "ProjectDescriptions":{"shape":"ProjectDescriptions"},
+        "NextToken":{"shape":"ExtendedPaginationToken"}
+      }
+    },
     "DescribeStreamProcessorRequest":{
       "type":"structure",
       "required":["Name"],
@@ -946,6 +1291,25 @@
         "Output":{"shape":"StreamProcessorOutput"},
         "RoleArn":{"shape":"RoleArn"},
         "Settings":{"shape":"StreamProcessorSettings"}
+      }
+    },
+    "DetectCustomLabelsRequest":{
+      "type":"structure",
+      "required":[
+        "ProjectVersionArn",
+        "Image"
+      ],
+      "members":{
+        "ProjectVersionArn":{"shape":"ProjectVersionArn"},
+        "Image":{"shape":"Image"},
+        "MaxResults":{"shape":"UInteger"},
+        "MinConfidence":{"shape":"Percent"}
+      }
+    },
+    "DetectCustomLabelsResponse":{
+      "type":"structure",
+      "members":{
+        "CustomLabels":{"shape":"CustomLabels"}
       }
     },
     "DetectFacesRequest":{
@@ -985,27 +1349,46 @@
       "required":["Image"],
       "members":{
         "Image":{"shape":"Image"},
-        "MinConfidence":{"shape":"Percent"}
+        "MinConfidence":{"shape":"Percent"},
+        "HumanLoopConfig":{"shape":"HumanLoopConfig"}
       }
     },
     "DetectModerationLabelsResponse":{
       "type":"structure",
       "members":{
         "ModerationLabels":{"shape":"ModerationLabels"},
-        "ModerationModelVersion":{"shape":"String"}
+        "ModerationModelVersion":{"shape":"String"},
+        "HumanLoopActivationOutput":{"shape":"HumanLoopActivationOutput"}
+      }
+    },
+    "DetectTextFilters":{
+      "type":"structure",
+      "members":{
+        "WordFilter":{"shape":"DetectionFilter"},
+        "RegionsOfInterest":{"shape":"RegionsOfInterest"}
       }
     },
     "DetectTextRequest":{
       "type":"structure",
       "required":["Image"],
       "members":{
-        "Image":{"shape":"Image"}
+        "Image":{"shape":"Image"},
+        "Filters":{"shape":"DetectTextFilters"}
       }
     },
     "DetectTextResponse":{
       "type":"structure",
       "members":{
-        "TextDetections":{"shape":"TextDetectionList"}
+        "TextDetections":{"shape":"TextDetectionList"},
+        "TextModelVersion":{"shape":"String"}
+      }
+    },
+    "DetectionFilter":{
+      "type":"structure",
+      "members":{
+        "MinConfidence":{"shape":"Percent"},
+        "MinBoundingBoxHeight":{"shape":"BoundingBoxHeight"},
+        "MinBoundingBoxWidth":{"shape":"BoundingBoxWidth"}
       }
     },
     "Emotion":{
@@ -1025,12 +1408,24 @@
         "DISGUSTED",
         "SURPRISED",
         "CALM",
-        "UNKNOWN"
+        "UNKNOWN",
+        "FEAR"
       ]
     },
     "Emotions":{
       "type":"list",
       "member":{"shape":"Emotion"}
+    },
+    "EvaluationResult":{
+      "type":"structure",
+      "members":{
+        "F1Score":{"shape":"Float"},
+        "Summary":{"shape":"Summary"}
+      }
+    },
+    "ExtendedPaginationToken":{
+      "type":"string",
+      "max":1024
     },
     "ExternalImageId":{
       "type":"string",
@@ -1159,6 +1554,10 @@
       ]
     },
     "Float":{"type":"float"},
+    "FlowDefinitionArn":{
+      "type":"string",
+      "max":256
+    },
     "Gender":{
       "type":"structure",
       "members":{
@@ -1315,6 +1714,90 @@
         "Persons":{"shape":"PersonDetections"}
       }
     },
+    "GetTextDetectionRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "GetTextDetectionResponse":{
+      "type":"structure",
+      "members":{
+        "JobStatus":{"shape":"VideoJobStatus"},
+        "StatusMessage":{"shape":"StatusMessage"},
+        "VideoMetadata":{"shape":"VideoMetadata"},
+        "TextDetections":{"shape":"TextDetectionResults"},
+        "NextToken":{"shape":"PaginationToken"},
+        "TextModelVersion":{"shape":"String"}
+      }
+    },
+    "GroundTruthManifest":{
+      "type":"structure",
+      "members":{
+        "S3Object":{"shape":"S3Object"}
+      }
+    },
+    "HumanLoopActivationConditionsEvaluationResults":{
+      "type":"string",
+      "max":10240
+    },
+    "HumanLoopActivationOutput":{
+      "type":"structure",
+      "members":{
+        "HumanLoopArn":{"shape":"HumanLoopArn"},
+        "HumanLoopActivationReasons":{"shape":"HumanLoopActivationReasons"},
+        "HumanLoopActivationConditionsEvaluationResults":{
+          "shape":"HumanLoopActivationConditionsEvaluationResults",
+          "jsonvalue":true
+        }
+      }
+    },
+    "HumanLoopActivationReason":{"type":"string"},
+    "HumanLoopActivationReasons":{
+      "type":"list",
+      "member":{"shape":"HumanLoopActivationReason"},
+      "min":1
+    },
+    "HumanLoopArn":{
+      "type":"string",
+      "max":256
+    },
+    "HumanLoopConfig":{
+      "type":"structure",
+      "required":[
+        "HumanLoopName",
+        "FlowDefinitionArn"
+      ],
+      "members":{
+        "HumanLoopName":{"shape":"HumanLoopName"},
+        "FlowDefinitionArn":{"shape":"FlowDefinitionArn"},
+        "DataAttributes":{"shape":"HumanLoopDataAttributes"}
+      }
+    },
+    "HumanLoopDataAttributes":{
+      "type":"structure",
+      "members":{
+        "ContentClassifiers":{"shape":"ContentClassifiers"}
+      }
+    },
+    "HumanLoopName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[a-z0-9](-*[a-z0-9])*"
+    },
+    "HumanLoopQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{"shape":"String"},
+        "QuotaCode":{"shape":"String"},
+        "ServiceCode":{"shape":"String"}
+      },
+      "exception":true
+    },
     "IdempotentParameterMismatchException":{
       "type":"structure",
       "members":{
@@ -1373,6 +1856,10 @@
         "FaceModelVersion":{"shape":"String"},
         "UnindexedFaces":{"shape":"UnindexedFaces"}
       }
+    },
+    "InferenceUnits":{
+      "type":"integer",
+      "min":1
     },
     "Instance":{
       "type":"structure",
@@ -1637,6 +2124,13 @@
         "ROTATE_270"
       ]
     },
+    "OutputConfig":{
+      "type":"structure",
+      "members":{
+        "S3Bucket":{"shape":"S3Bucket"},
+        "S3KeyPrefix":{"shape":"S3KeyPrefix"}
+      }
+    },
     "PageSize":{
       "type":"integer",
       "max":4096,
@@ -1719,6 +2213,88 @@
         "Pitch":{"shape":"Degree"}
       }
     },
+    "ProjectArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:project\\/[a-zA-Z0-9_.\\-]{1,255}\\/[0-9]+$)"
+    },
+    "ProjectDescription":{
+      "type":"structure",
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"},
+        "CreationTimestamp":{"shape":"DateTime"},
+        "Status":{"shape":"ProjectStatus"}
+      }
+    },
+    "ProjectDescriptions":{
+      "type":"list",
+      "member":{"shape":"ProjectDescription"}
+    },
+    "ProjectName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_.\\-]+"
+    },
+    "ProjectStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATED",
+        "DELETING"
+      ]
+    },
+    "ProjectVersionArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"(^arn:[a-z\\d-]+:rekognition:[a-z\\d-]+:\\d{12}:project\\/[a-zA-Z0-9_.\\-]{1,255}\\/version\\/[a-zA-Z0-9_.\\-]{1,255}\\/[0-9]+$)"
+    },
+    "ProjectVersionDescription":{
+      "type":"structure",
+      "members":{
+        "ProjectVersionArn":{"shape":"ProjectVersionArn"},
+        "CreationTimestamp":{"shape":"DateTime"},
+        "MinInferenceUnits":{"shape":"InferenceUnits"},
+        "Status":{"shape":"ProjectVersionStatus"},
+        "StatusMessage":{"shape":"StatusMessage"},
+        "BillableTrainingTimeInSeconds":{"shape":"ULong"},
+        "TrainingEndTimestamp":{"shape":"DateTime"},
+        "OutputConfig":{"shape":"OutputConfig"},
+        "TrainingDataResult":{"shape":"TrainingDataResult"},
+        "TestingDataResult":{"shape":"TestingDataResult"},
+        "EvaluationResult":{"shape":"EvaluationResult"}
+      }
+    },
+    "ProjectVersionDescriptions":{
+      "type":"list",
+      "member":{"shape":"ProjectVersionDescription"}
+    },
+    "ProjectVersionStatus":{
+      "type":"string",
+      "enum":[
+        "TRAINING_IN_PROGRESS",
+        "TRAINING_COMPLETED",
+        "TRAINING_FAILED",
+        "STARTING",
+        "RUNNING",
+        "FAILED",
+        "STOPPING",
+        "STOPPED",
+        "DELETING"
+      ]
+    },
+    "ProjectVersionsPageSize":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "ProjectsPageSize":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "ProvisionedThroughputExceededException":{
       "type":"structure",
       "members":{
@@ -1729,7 +2305,10 @@
       "type":"string",
       "enum":[
         "NONE",
-        "AUTO"
+        "AUTO",
+        "LOW",
+        "MEDIUM",
+        "HIGH"
       ]
     },
     "Reason":{
@@ -1740,7 +2319,8 @@
         "LOW_BRIGHTNESS",
         "LOW_SHARPNESS",
         "LOW_CONFIDENCE",
-        "SMALL_BOUNDING_BOX"
+        "SMALL_BOUNDING_BOX",
+        "LOW_FACE_QUALITY"
       ]
     },
     "Reasons":{
@@ -1761,6 +2341,18 @@
         "UnrecognizedFaces":{"shape":"ComparedFaceList"},
         "OrientationCorrection":{"shape":"OrientationCorrection"}
       }
+    },
+    "RegionOfInterest":{
+      "type":"structure",
+      "members":{
+        "BoundingBox":{"shape":"BoundingBox"}
+      }
+    },
+    "RegionsOfInterest":{
+      "type":"list",
+      "member":{"shape":"RegionOfInterest"},
+      "max":10,
+      "min":0
     },
     "RekognitionUniqueId":{
       "type":"string",
@@ -1784,6 +2376,12 @@
       },
       "exception":true
     },
+    "ResourceNotReadyException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "RoleArn":{
       "type":"string",
       "pattern":"arn:aws:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+"
@@ -1793,6 +2391,10 @@
       "max":255,
       "min":3,
       "pattern":"[0-9A-Za-z\\.\\-_]*"
+    },
+    "S3KeyPrefix":{
+      "type":"string",
+      "max":1024
     },
     "S3Object":{
       "type":"structure",
@@ -1826,7 +2428,8 @@
         "CollectionId":{"shape":"CollectionId"},
         "Image":{"shape":"Image"},
         "MaxFaces":{"shape":"MaxFaces"},
-        "FaceMatchThreshold":{"shape":"Percent"}
+        "FaceMatchThreshold":{"shape":"Percent"},
+        "QualityFilter":{"shape":"QualityFilter"}
       }
     },
     "SearchFacesByImageResponse":{
@@ -1970,6 +2573,23 @@
         "JobId":{"shape":"JobId"}
       }
     },
+    "StartProjectVersionRequest":{
+      "type":"structure",
+      "required":[
+        "ProjectVersionArn",
+        "MinInferenceUnits"
+      ],
+      "members":{
+        "ProjectVersionArn":{"shape":"ProjectVersionArn"},
+        "MinInferenceUnits":{"shape":"InferenceUnits"}
+      }
+    },
+    "StartProjectVersionResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ProjectVersionStatus"}
+      }
+    },
     "StartStreamProcessorRequest":{
       "type":"structure",
       "required":["Name"],
@@ -1982,7 +2602,44 @@
       "members":{
       }
     },
+    "StartTextDetectionFilters":{
+      "type":"structure",
+      "members":{
+        "WordFilter":{"shape":"DetectionFilter"},
+        "RegionsOfInterest":{"shape":"RegionsOfInterest"}
+      }
+    },
+    "StartTextDetectionRequest":{
+      "type":"structure",
+      "required":["Video"],
+      "members":{
+        "Video":{"shape":"Video"},
+        "ClientRequestToken":{"shape":"ClientRequestToken"},
+        "NotificationChannel":{"shape":"NotificationChannel"},
+        "JobTag":{"shape":"JobTag"},
+        "Filters":{"shape":"StartTextDetectionFilters"}
+      }
+    },
+    "StartTextDetectionResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
     "StatusMessage":{"type":"string"},
+    "StopProjectVersionRequest":{
+      "type":"structure",
+      "required":["ProjectVersionArn"],
+      "members":{
+        "ProjectVersionArn":{"shape":"ProjectVersionArn"}
+      }
+    },
+    "StopProjectVersionResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ProjectVersionStatus"}
+      }
+    },
     "StopStreamProcessorRequest":{
       "type":"structure",
       "required":["Name"],
@@ -2045,11 +2702,31 @@
       ]
     },
     "String":{"type":"string"},
+    "Summary":{
+      "type":"structure",
+      "members":{
+        "S3Object":{"shape":"S3Object"}
+      }
+    },
     "Sunglasses":{
       "type":"structure",
       "members":{
         "Value":{"shape":"Boolean"},
         "Confidence":{"shape":"Percent"}
+      }
+    },
+    "TestingData":{
+      "type":"structure",
+      "members":{
+        "Assets":{"shape":"Assets"},
+        "AutoCreate":{"shape":"Boolean"}
+      }
+    },
+    "TestingDataResult":{
+      "type":"structure",
+      "members":{
+        "Input":{"shape":"TestingData"},
+        "Output":{"shape":"TestingData"}
       }
     },
     "TextDetection":{
@@ -2067,6 +2744,17 @@
       "type":"list",
       "member":{"shape":"TextDetection"}
     },
+    "TextDetectionResult":{
+      "type":"structure",
+      "members":{
+        "Timestamp":{"shape":"Timestamp"},
+        "TextDetection":{"shape":"TextDetection"}
+      }
+    },
+    "TextDetectionResults":{
+      "type":"list",
+      "member":{"shape":"TextDetectionResult"}
+    },
     "TextTypes":{
       "type":"string",
       "enum":[
@@ -2082,6 +2770,19 @@
       "fault":true
     },
     "Timestamp":{"type":"long"},
+    "TrainingData":{
+      "type":"structure",
+      "members":{
+        "Assets":{"shape":"Assets"}
+      }
+    },
+    "TrainingDataResult":{
+      "type":"structure",
+      "members":{
+        "Input":{"shape":"TrainingData"},
+        "Output":{"shape":"TrainingData"}
+      }
+    },
     "UInteger":{
       "type":"integer",
       "min":0
@@ -2105,6 +2806,18 @@
     "Urls":{
       "type":"list",
       "member":{"shape":"Url"}
+    },
+    "VersionName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_.\\-]+"
+    },
+    "VersionNames":{
+      "type":"list",
+      "member":{"shape":"VersionName"},
+      "max":10,
+      "min":1
     },
     "Video":{
       "type":"structure",

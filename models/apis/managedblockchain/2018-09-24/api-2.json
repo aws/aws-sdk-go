@@ -293,6 +293,38 @@
         {"shape":"InternalServiceErrorException"}
       ]
     },
+    "UpdateMember":{
+      "name":"UpdateMember",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/networks/{networkId}/members/{memberId}"
+      },
+      "input":{"shape":"UpdateMemberInput"},
+      "output":{"shape":"UpdateMemberOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "UpdateNode":{
+      "name":"UpdateNode",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/networks/{networkId}/members/{memberId}/nodes/{nodeId}"
+      },
+      "input":{"shape":"UpdateNodeInput"},
+      "output":{"shape":"UpdateNodeOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
     "VoteOnProposal":{
       "name":"VoteOnProposal",
       "http":{
@@ -517,6 +549,10 @@
         "STARTER",
         "STANDARD"
       ]
+    },
+    "Enabled":{
+      "type":"boolean",
+      "box":true
     },
     "Framework":{
       "type":"string",
@@ -895,6 +931,18 @@
         "NextToken":{"shape":"PaginationToken"}
       }
     },
+    "LogConfiguration":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Enabled"}
+      }
+    },
+    "LogConfigurations":{
+      "type":"structure",
+      "members":{
+        "Cloudwatch":{"shape":"LogConfiguration"}
+      }
+    },
     "Member":{
       "type":"structure",
       "members":{
@@ -903,6 +951,7 @@
         "Name":{"shape":"NetworkMemberNameString"},
         "Description":{"shape":"DescriptionString"},
         "FrameworkAttributes":{"shape":"MemberFrameworkAttributes"},
+        "LogPublishingConfiguration":{"shape":"MemberLogPublishingConfiguration"},
         "Status":{"shape":"MemberStatus"},
         "CreationDate":{"shape":"Timestamp"}
       }
@@ -916,7 +965,8 @@
       "members":{
         "Name":{"shape":"NetworkMemberNameString"},
         "Description":{"shape":"DescriptionString"},
-        "FrameworkConfiguration":{"shape":"MemberFrameworkConfiguration"}
+        "FrameworkConfiguration":{"shape":"MemberFrameworkConfiguration"},
+        "LogPublishingConfiguration":{"shape":"MemberLogPublishingConfiguration"}
       }
     },
     "MemberFabricAttributes":{
@@ -937,6 +987,12 @@
         "AdminPassword":{"shape":"PasswordString"}
       }
     },
+    "MemberFabricLogPublishingConfiguration":{
+      "type":"structure",
+      "members":{
+        "CaLogs":{"shape":"LogConfigurations"}
+      }
+    },
     "MemberFrameworkAttributes":{
       "type":"structure",
       "members":{
@@ -955,12 +1011,19 @@
       "max":20,
       "min":1
     },
+    "MemberLogPublishingConfiguration":{
+      "type":"structure",
+      "members":{
+        "Fabric":{"shape":"MemberFabricLogPublishingConfiguration"}
+      }
+    },
     "MemberStatus":{
       "type":"string",
       "enum":[
         "CREATING",
         "AVAILABLE",
         "CREATE_FAILED",
+        "UPDATING",
         "DELETING",
         "DELETED"
       ]
@@ -1074,6 +1137,7 @@
         "InstanceType":{"shape":"InstanceTypeString"},
         "AvailabilityZone":{"shape":"AvailabilityZoneString"},
         "FrameworkAttributes":{"shape":"NodeFrameworkAttributes"},
+        "LogPublishingConfiguration":{"shape":"NodeLogPublishingConfiguration"},
         "Status":{"shape":"NodeStatus"},
         "CreationDate":{"shape":"Timestamp"}
       }
@@ -1086,7 +1150,8 @@
       ],
       "members":{
         "InstanceType":{"shape":"InstanceTypeString"},
-        "AvailabilityZone":{"shape":"AvailabilityZoneString"}
+        "AvailabilityZone":{"shape":"AvailabilityZoneString"},
+        "LogPublishingConfiguration":{"shape":"NodeLogPublishingConfiguration"}
       }
     },
     "NodeFabricAttributes":{
@@ -1094,6 +1159,13 @@
       "members":{
         "PeerEndpoint":{"shape":"String"},
         "PeerEventEndpoint":{"shape":"String"}
+      }
+    },
+    "NodeFabricLogPublishingConfiguration":{
+      "type":"structure",
+      "members":{
+        "ChaincodeLogs":{"shape":"LogConfigurations"},
+        "PeerLogs":{"shape":"LogConfigurations"}
       }
     },
     "NodeFrameworkAttributes":{
@@ -1108,12 +1180,19 @@
       "max":20,
       "min":1
     },
+    "NodeLogPublishingConfiguration":{
+      "type":"structure",
+      "members":{
+        "Fabric":{"shape":"NodeFabricLogPublishingConfiguration"}
+      }
+    },
     "NodeStatus":{
       "type":"string",
       "enum":[
         "CREATING",
         "AVAILABLE",
         "CREATE_FAILED",
+        "UPDATING",
         "DELETING",
         "DELETED",
         "FAILED"
@@ -1299,6 +1378,62 @@
     "Timestamp":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
+    },
+    "UpdateMemberInput":{
+      "type":"structure",
+      "required":[
+        "NetworkId",
+        "MemberId"
+      ],
+      "members":{
+        "NetworkId":{
+          "shape":"ResourceIdString",
+          "location":"uri",
+          "locationName":"networkId"
+        },
+        "MemberId":{
+          "shape":"ResourceIdString",
+          "location":"uri",
+          "locationName":"memberId"
+        },
+        "LogPublishingConfiguration":{"shape":"MemberLogPublishingConfiguration"}
+      }
+    },
+    "UpdateMemberOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateNodeInput":{
+      "type":"structure",
+      "required":[
+        "NetworkId",
+        "MemberId",
+        "NodeId"
+      ],
+      "members":{
+        "NetworkId":{
+          "shape":"ResourceIdString",
+          "location":"uri",
+          "locationName":"networkId"
+        },
+        "MemberId":{
+          "shape":"ResourceIdString",
+          "location":"uri",
+          "locationName":"memberId"
+        },
+        "NodeId":{
+          "shape":"ResourceIdString",
+          "location":"uri",
+          "locationName":"nodeId"
+        },
+        "LogPublishingConfiguration":{"shape":"NodeLogPublishingConfiguration"}
+      }
+    },
+    "UpdateNodeOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UsernameString":{
       "type":"string",

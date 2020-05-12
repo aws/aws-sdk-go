@@ -78,10 +78,14 @@ func ExampleRDS_AddTagsToResource_shared00() {
 			switch aerr.Code() {
 			case rds.ErrCodeDBInstanceNotFoundFault:
 				fmt.Println(rds.ErrCodeDBInstanceNotFoundFault, aerr.Error())
-			case rds.ErrCodeDBSnapshotNotFoundFault:
-				fmt.Println(rds.ErrCodeDBSnapshotNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBClusterNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBSnapshotNotFoundFault:
+				fmt.Println(rds.ErrCodeDBSnapshotNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBProxyNotFoundFault:
+				fmt.Println(rds.ErrCodeDBProxyNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBProxyTargetGroupNotFoundFault:
+				fmt.Println(rds.ErrCodeDBProxyTargetGroupNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -411,6 +415,8 @@ func ExampleRDS_CreateDBCluster_shared00() {
 				fmt.Println(rds.ErrCodeGlobalClusterNotFoundFault, aerr.Error())
 			case rds.ErrCodeInvalidGlobalClusterStateFault:
 				fmt.Println(rds.ErrCodeInvalidGlobalClusterStateFault, aerr.Error())
+			case rds.ErrCodeDomainNotFoundFault:
+				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -627,6 +633,8 @@ func ExampleRDS_CreateDBInstanceReadReplica_shared00() {
 				fmt.Println(rds.ErrCodeStorageTypeNotSupportedFault, aerr.Error())
 			case rds.ErrCodeKMSKeyNotAccessibleFault:
 				fmt.Println(rds.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case rds.ErrCodeDomainNotFoundFault:
+				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2117,6 +2125,10 @@ func ExampleRDS_ListTagsForResource_shared00() {
 				fmt.Println(rds.ErrCodeDBSnapshotNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBClusterNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBProxyNotFoundFault:
+				fmt.Println(rds.ErrCodeDBProxyNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBProxyTargetGroupNotFoundFault:
+				fmt.Println(rds.ErrCodeDBProxyTargetGroupNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2171,6 +2183,8 @@ func ExampleRDS_ModifyDBCluster_shared00() {
 				fmt.Println(rds.ErrCodeInvalidDBInstanceStateFault, aerr.Error())
 			case rds.ErrCodeDBClusterAlreadyExistsFault:
 				fmt.Println(rds.ErrCodeDBClusterAlreadyExistsFault, aerr.Error())
+			case rds.ErrCodeDomainNotFoundFault:
+				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2692,6 +2706,10 @@ func ExampleRDS_RemoveTagsFromResource_shared00() {
 				fmt.Println(rds.ErrCodeDBSnapshotNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBClusterNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBProxyNotFoundFault:
+				fmt.Println(rds.ErrCodeDBProxyNotFoundFault, aerr.Error())
+			case rds.ErrCodeDBProxyTargetGroupNotFoundFault:
+				fmt.Println(rds.ErrCodeDBProxyTargetGroupNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2817,6 +2835,8 @@ func ExampleRDS_RestoreDBClusterFromSnapshot_shared00() {
 				fmt.Println(rds.ErrCodeOptionGroupNotFoundFault, aerr.Error())
 			case rds.ErrCodeKMSKeyNotAccessibleFault:
 				fmt.Println(rds.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case rds.ErrCodeDomainNotFoundFault:
+				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBClusterParameterGroupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterParameterGroupNotFoundFault, aerr.Error())
 			default:
@@ -2841,7 +2861,7 @@ func ExampleRDS_RestoreDBClusterToPointInTime_shared00() {
 	svc := rds.New(session.New())
 	input := &rds.RestoreDBClusterToPointInTimeInput{
 		DBClusterIdentifier:       aws.String("sample-restored-cluster1"),
-		RestoreToTime:             parseTime("2006-01-02T15:04:05Z", "2016-09-13T18:45:00Z"),
+		RestoreToTime:             parseTime("2006-01-02T15:04:05.999999999Z", "2016-09-13T18:45:00Z"),
 		SourceDBClusterIdentifier: aws.String("sample-cluster1"),
 	}
 
@@ -2881,6 +2901,8 @@ func ExampleRDS_RestoreDBClusterToPointInTime_shared00() {
 				fmt.Println(rds.ErrCodeOptionGroupNotFoundFault, aerr.Error())
 			case rds.ErrCodeStorageQuotaExceededFault:
 				fmt.Println(rds.ErrCodeStorageQuotaExceededFault, aerr.Error())
+			case rds.ErrCodeDomainNotFoundFault:
+				fmt.Println(rds.ErrCodeDomainNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBClusterParameterGroupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterParameterGroupNotFoundFault, aerr.Error())
 			default:
@@ -2972,7 +2994,7 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot_shared00() {
 func ExampleRDS_RestoreDBInstanceToPointInTime_shared00() {
 	svc := rds.New(session.New())
 	input := &rds.RestoreDBInstanceToPointInTimeInput{
-		RestoreTime:                parseTime("2006-01-02T15:04:05Z", "2016-09-13T18:45:00Z"),
+		RestoreTime:                parseTime("2006-01-02T15:04:05.999999999Z", "2016-09-13T18:45:00Z"),
 		SourceDBInstanceIdentifier: aws.String("mysql-sample"),
 		TargetDBInstanceIdentifier: aws.String("mysql-sample-restored"),
 	}

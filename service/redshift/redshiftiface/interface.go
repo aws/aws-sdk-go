@@ -120,6 +120,10 @@ type RedshiftAPI interface {
 	CreateHsmConfigurationWithContext(aws.Context, *redshift.CreateHsmConfigurationInput, ...request.Option) (*redshift.CreateHsmConfigurationOutput, error)
 	CreateHsmConfigurationRequest(*redshift.CreateHsmConfigurationInput) (*request.Request, *redshift.CreateHsmConfigurationOutput)
 
+	CreateScheduledAction(*redshift.CreateScheduledActionInput) (*redshift.CreateScheduledActionOutput, error)
+	CreateScheduledActionWithContext(aws.Context, *redshift.CreateScheduledActionInput, ...request.Option) (*redshift.CreateScheduledActionOutput, error)
+	CreateScheduledActionRequest(*redshift.CreateScheduledActionInput) (*request.Request, *redshift.CreateScheduledActionOutput)
+
 	CreateSnapshotCopyGrant(*redshift.CreateSnapshotCopyGrantInput) (*redshift.CreateSnapshotCopyGrantOutput, error)
 	CreateSnapshotCopyGrantWithContext(aws.Context, *redshift.CreateSnapshotCopyGrantInput, ...request.Option) (*redshift.CreateSnapshotCopyGrantOutput, error)
 	CreateSnapshotCopyGrantRequest(*redshift.CreateSnapshotCopyGrantInput) (*request.Request, *redshift.CreateSnapshotCopyGrantOutput)
@@ -131,6 +135,10 @@ type RedshiftAPI interface {
 	CreateTags(*redshift.CreateTagsInput) (*redshift.CreateTagsOutput, error)
 	CreateTagsWithContext(aws.Context, *redshift.CreateTagsInput, ...request.Option) (*redshift.CreateTagsOutput, error)
 	CreateTagsRequest(*redshift.CreateTagsInput) (*request.Request, *redshift.CreateTagsOutput)
+
+	CreateUsageLimit(*redshift.CreateUsageLimitInput) (*redshift.CreateUsageLimitOutput, error)
+	CreateUsageLimitWithContext(aws.Context, *redshift.CreateUsageLimitInput, ...request.Option) (*redshift.CreateUsageLimitOutput, error)
+	CreateUsageLimitRequest(*redshift.CreateUsageLimitInput) (*request.Request, *redshift.CreateUsageLimitOutput)
 
 	DeleteCluster(*redshift.DeleteClusterInput) (*redshift.DeleteClusterOutput, error)
 	DeleteClusterWithContext(aws.Context, *redshift.DeleteClusterInput, ...request.Option) (*redshift.DeleteClusterOutput, error)
@@ -164,6 +172,10 @@ type RedshiftAPI interface {
 	DeleteHsmConfigurationWithContext(aws.Context, *redshift.DeleteHsmConfigurationInput, ...request.Option) (*redshift.DeleteHsmConfigurationOutput, error)
 	DeleteHsmConfigurationRequest(*redshift.DeleteHsmConfigurationInput) (*request.Request, *redshift.DeleteHsmConfigurationOutput)
 
+	DeleteScheduledAction(*redshift.DeleteScheduledActionInput) (*redshift.DeleteScheduledActionOutput, error)
+	DeleteScheduledActionWithContext(aws.Context, *redshift.DeleteScheduledActionInput, ...request.Option) (*redshift.DeleteScheduledActionOutput, error)
+	DeleteScheduledActionRequest(*redshift.DeleteScheduledActionInput) (*request.Request, *redshift.DeleteScheduledActionOutput)
+
 	DeleteSnapshotCopyGrant(*redshift.DeleteSnapshotCopyGrantInput) (*redshift.DeleteSnapshotCopyGrantOutput, error)
 	DeleteSnapshotCopyGrantWithContext(aws.Context, *redshift.DeleteSnapshotCopyGrantInput, ...request.Option) (*redshift.DeleteSnapshotCopyGrantOutput, error)
 	DeleteSnapshotCopyGrantRequest(*redshift.DeleteSnapshotCopyGrantInput) (*request.Request, *redshift.DeleteSnapshotCopyGrantOutput)
@@ -175,6 +187,10 @@ type RedshiftAPI interface {
 	DeleteTags(*redshift.DeleteTagsInput) (*redshift.DeleteTagsOutput, error)
 	DeleteTagsWithContext(aws.Context, *redshift.DeleteTagsInput, ...request.Option) (*redshift.DeleteTagsOutput, error)
 	DeleteTagsRequest(*redshift.DeleteTagsInput) (*request.Request, *redshift.DeleteTagsOutput)
+
+	DeleteUsageLimit(*redshift.DeleteUsageLimitInput) (*redshift.DeleteUsageLimitOutput, error)
+	DeleteUsageLimitWithContext(aws.Context, *redshift.DeleteUsageLimitInput, ...request.Option) (*redshift.DeleteUsageLimitOutput, error)
+	DeleteUsageLimitRequest(*redshift.DeleteUsageLimitInput) (*request.Request, *redshift.DeleteUsageLimitOutput)
 
 	DescribeAccountAttributes(*redshift.DescribeAccountAttributesInput) (*redshift.DescribeAccountAttributesOutput, error)
 	DescribeAccountAttributesWithContext(aws.Context, *redshift.DescribeAccountAttributesInput, ...request.Option) (*redshift.DescribeAccountAttributesOutput, error)
@@ -280,6 +296,13 @@ type RedshiftAPI interface {
 	DescribeLoggingStatusWithContext(aws.Context, *redshift.DescribeLoggingStatusInput, ...request.Option) (*redshift.LoggingStatus, error)
 	DescribeLoggingStatusRequest(*redshift.DescribeLoggingStatusInput) (*request.Request, *redshift.LoggingStatus)
 
+	DescribeNodeConfigurationOptions(*redshift.DescribeNodeConfigurationOptionsInput) (*redshift.DescribeNodeConfigurationOptionsOutput, error)
+	DescribeNodeConfigurationOptionsWithContext(aws.Context, *redshift.DescribeNodeConfigurationOptionsInput, ...request.Option) (*redshift.DescribeNodeConfigurationOptionsOutput, error)
+	DescribeNodeConfigurationOptionsRequest(*redshift.DescribeNodeConfigurationOptionsInput) (*request.Request, *redshift.DescribeNodeConfigurationOptionsOutput)
+
+	DescribeNodeConfigurationOptionsPages(*redshift.DescribeNodeConfigurationOptionsInput, func(*redshift.DescribeNodeConfigurationOptionsOutput, bool) bool) error
+	DescribeNodeConfigurationOptionsPagesWithContext(aws.Context, *redshift.DescribeNodeConfigurationOptionsInput, func(*redshift.DescribeNodeConfigurationOptionsOutput, bool) bool, ...request.Option) error
+
 	DescribeOrderableClusterOptions(*redshift.DescribeOrderableClusterOptionsInput) (*redshift.DescribeOrderableClusterOptionsOutput, error)
 	DescribeOrderableClusterOptionsWithContext(aws.Context, *redshift.DescribeOrderableClusterOptionsInput, ...request.Option) (*redshift.DescribeOrderableClusterOptionsOutput, error)
 	DescribeOrderableClusterOptionsRequest(*redshift.DescribeOrderableClusterOptionsInput) (*request.Request, *redshift.DescribeOrderableClusterOptionsOutput)
@@ -305,6 +328,13 @@ type RedshiftAPI interface {
 	DescribeResizeWithContext(aws.Context, *redshift.DescribeResizeInput, ...request.Option) (*redshift.DescribeResizeOutput, error)
 	DescribeResizeRequest(*redshift.DescribeResizeInput) (*request.Request, *redshift.DescribeResizeOutput)
 
+	DescribeScheduledActions(*redshift.DescribeScheduledActionsInput) (*redshift.DescribeScheduledActionsOutput, error)
+	DescribeScheduledActionsWithContext(aws.Context, *redshift.DescribeScheduledActionsInput, ...request.Option) (*redshift.DescribeScheduledActionsOutput, error)
+	DescribeScheduledActionsRequest(*redshift.DescribeScheduledActionsInput) (*request.Request, *redshift.DescribeScheduledActionsOutput)
+
+	DescribeScheduledActionsPages(*redshift.DescribeScheduledActionsInput, func(*redshift.DescribeScheduledActionsOutput, bool) bool) error
+	DescribeScheduledActionsPagesWithContext(aws.Context, *redshift.DescribeScheduledActionsInput, func(*redshift.DescribeScheduledActionsOutput, bool) bool, ...request.Option) error
+
 	DescribeSnapshotCopyGrants(*redshift.DescribeSnapshotCopyGrantsInput) (*redshift.DescribeSnapshotCopyGrantsOutput, error)
 	DescribeSnapshotCopyGrantsWithContext(aws.Context, *redshift.DescribeSnapshotCopyGrantsInput, ...request.Option) (*redshift.DescribeSnapshotCopyGrantsOutput, error)
 	DescribeSnapshotCopyGrantsRequest(*redshift.DescribeSnapshotCopyGrantsInput) (*request.Request, *redshift.DescribeSnapshotCopyGrantsOutput)
@@ -324,6 +354,13 @@ type RedshiftAPI interface {
 	DescribeTags(*redshift.DescribeTagsInput) (*redshift.DescribeTagsOutput, error)
 	DescribeTagsWithContext(aws.Context, *redshift.DescribeTagsInput, ...request.Option) (*redshift.DescribeTagsOutput, error)
 	DescribeTagsRequest(*redshift.DescribeTagsInput) (*request.Request, *redshift.DescribeTagsOutput)
+
+	DescribeUsageLimits(*redshift.DescribeUsageLimitsInput) (*redshift.DescribeUsageLimitsOutput, error)
+	DescribeUsageLimitsWithContext(aws.Context, *redshift.DescribeUsageLimitsInput, ...request.Option) (*redshift.DescribeUsageLimitsOutput, error)
+	DescribeUsageLimitsRequest(*redshift.DescribeUsageLimitsInput) (*request.Request, *redshift.DescribeUsageLimitsOutput)
+
+	DescribeUsageLimitsPages(*redshift.DescribeUsageLimitsInput, func(*redshift.DescribeUsageLimitsOutput, bool) bool) error
+	DescribeUsageLimitsPagesWithContext(aws.Context, *redshift.DescribeUsageLimitsInput, func(*redshift.DescribeUsageLimitsOutput, bool) bool, ...request.Option) error
 
 	DisableLogging(*redshift.DisableLoggingInput) (*redshift.LoggingStatus, error)
 	DisableLoggingWithContext(aws.Context, *redshift.DisableLoggingInput, ...request.Option) (*redshift.LoggingStatus, error)
@@ -385,6 +422,10 @@ type RedshiftAPI interface {
 	ModifyEventSubscriptionWithContext(aws.Context, *redshift.ModifyEventSubscriptionInput, ...request.Option) (*redshift.ModifyEventSubscriptionOutput, error)
 	ModifyEventSubscriptionRequest(*redshift.ModifyEventSubscriptionInput) (*request.Request, *redshift.ModifyEventSubscriptionOutput)
 
+	ModifyScheduledAction(*redshift.ModifyScheduledActionInput) (*redshift.ModifyScheduledActionOutput, error)
+	ModifyScheduledActionWithContext(aws.Context, *redshift.ModifyScheduledActionInput, ...request.Option) (*redshift.ModifyScheduledActionOutput, error)
+	ModifyScheduledActionRequest(*redshift.ModifyScheduledActionInput) (*request.Request, *redshift.ModifyScheduledActionOutput)
+
 	ModifySnapshotCopyRetentionPeriod(*redshift.ModifySnapshotCopyRetentionPeriodInput) (*redshift.ModifySnapshotCopyRetentionPeriodOutput, error)
 	ModifySnapshotCopyRetentionPeriodWithContext(aws.Context, *redshift.ModifySnapshotCopyRetentionPeriodInput, ...request.Option) (*redshift.ModifySnapshotCopyRetentionPeriodOutput, error)
 	ModifySnapshotCopyRetentionPeriodRequest(*redshift.ModifySnapshotCopyRetentionPeriodInput) (*request.Request, *redshift.ModifySnapshotCopyRetentionPeriodOutput)
@@ -392,6 +433,14 @@ type RedshiftAPI interface {
 	ModifySnapshotSchedule(*redshift.ModifySnapshotScheduleInput) (*redshift.ModifySnapshotScheduleOutput, error)
 	ModifySnapshotScheduleWithContext(aws.Context, *redshift.ModifySnapshotScheduleInput, ...request.Option) (*redshift.ModifySnapshotScheduleOutput, error)
 	ModifySnapshotScheduleRequest(*redshift.ModifySnapshotScheduleInput) (*request.Request, *redshift.ModifySnapshotScheduleOutput)
+
+	ModifyUsageLimit(*redshift.ModifyUsageLimitInput) (*redshift.ModifyUsageLimitOutput, error)
+	ModifyUsageLimitWithContext(aws.Context, *redshift.ModifyUsageLimitInput, ...request.Option) (*redshift.ModifyUsageLimitOutput, error)
+	ModifyUsageLimitRequest(*redshift.ModifyUsageLimitInput) (*request.Request, *redshift.ModifyUsageLimitOutput)
+
+	PauseCluster(*redshift.PauseClusterInput) (*redshift.PauseClusterOutput, error)
+	PauseClusterWithContext(aws.Context, *redshift.PauseClusterInput, ...request.Option) (*redshift.PauseClusterOutput, error)
+	PauseClusterRequest(*redshift.PauseClusterInput) (*request.Request, *redshift.PauseClusterOutput)
 
 	PurchaseReservedNodeOffering(*redshift.PurchaseReservedNodeOfferingInput) (*redshift.PurchaseReservedNodeOfferingOutput, error)
 	PurchaseReservedNodeOfferingWithContext(aws.Context, *redshift.PurchaseReservedNodeOfferingInput, ...request.Option) (*redshift.PurchaseReservedNodeOfferingOutput, error)
@@ -416,6 +465,10 @@ type RedshiftAPI interface {
 	RestoreTableFromClusterSnapshot(*redshift.RestoreTableFromClusterSnapshotInput) (*redshift.RestoreTableFromClusterSnapshotOutput, error)
 	RestoreTableFromClusterSnapshotWithContext(aws.Context, *redshift.RestoreTableFromClusterSnapshotInput, ...request.Option) (*redshift.RestoreTableFromClusterSnapshotOutput, error)
 	RestoreTableFromClusterSnapshotRequest(*redshift.RestoreTableFromClusterSnapshotInput) (*request.Request, *redshift.RestoreTableFromClusterSnapshotOutput)
+
+	ResumeCluster(*redshift.ResumeClusterInput) (*redshift.ResumeClusterOutput, error)
+	ResumeClusterWithContext(aws.Context, *redshift.ResumeClusterInput, ...request.Option) (*redshift.ResumeClusterOutput, error)
+	ResumeClusterRequest(*redshift.ResumeClusterInput) (*request.Request, *redshift.ResumeClusterOutput)
 
 	RevokeClusterSecurityGroupIngress(*redshift.RevokeClusterSecurityGroupIngressInput) (*redshift.RevokeClusterSecurityGroupIngressOutput, error)
 	RevokeClusterSecurityGroupIngressWithContext(aws.Context, *redshift.RevokeClusterSecurityGroupIngressInput, ...request.Option) (*redshift.RevokeClusterSecurityGroupIngressOutput, error)

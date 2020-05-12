@@ -146,6 +146,14 @@ type ManagedBlockchainAPI interface {
 	RejectInvitationWithContext(aws.Context, *managedblockchain.RejectInvitationInput, ...request.Option) (*managedblockchain.RejectInvitationOutput, error)
 	RejectInvitationRequest(*managedblockchain.RejectInvitationInput) (*request.Request, *managedblockchain.RejectInvitationOutput)
 
+	UpdateMember(*managedblockchain.UpdateMemberInput) (*managedblockchain.UpdateMemberOutput, error)
+	UpdateMemberWithContext(aws.Context, *managedblockchain.UpdateMemberInput, ...request.Option) (*managedblockchain.UpdateMemberOutput, error)
+	UpdateMemberRequest(*managedblockchain.UpdateMemberInput) (*request.Request, *managedblockchain.UpdateMemberOutput)
+
+	UpdateNode(*managedblockchain.UpdateNodeInput) (*managedblockchain.UpdateNodeOutput, error)
+	UpdateNodeWithContext(aws.Context, *managedblockchain.UpdateNodeInput, ...request.Option) (*managedblockchain.UpdateNodeOutput, error)
+	UpdateNodeRequest(*managedblockchain.UpdateNodeInput) (*request.Request, *managedblockchain.UpdateNodeOutput)
+
 	VoteOnProposal(*managedblockchain.VoteOnProposalInput) (*managedblockchain.VoteOnProposalOutput, error)
 	VoteOnProposalWithContext(aws.Context, *managedblockchain.VoteOnProposalInput, ...request.Option) (*managedblockchain.VoteOnProposalOutput, error)
 	VoteOnProposalRequest(*managedblockchain.VoteOnProposalInput) (*request.Request, *managedblockchain.VoteOnProposalOutput)

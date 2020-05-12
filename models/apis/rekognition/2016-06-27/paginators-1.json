@@ -1,5 +1,17 @@
 {
   "pagination": {
+    "DescribeProjectVersions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ProjectVersionDescriptions"
+    },
+    "DescribeProjects": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ProjectDescriptions"
+    },
     "GetCelebrityRecognition": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -26,6 +38,11 @@
       "output_token": "NextToken"
     },
     "GetPersonTracking": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "GetTextDetection": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken"

@@ -49,6 +49,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "AssociateHealthCheck":{
+      "name":"AssociateHealthCheck",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateHealthCheckRequest"},
+      "output":{"shape":"AssociateHealthCheckResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"LimitsExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OptimisticLockException"}
+      ]
+    },
     "CreateProtection":{
       "name":"CreateProtection",
       "http":{
@@ -207,6 +223,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DisassociateHealthCheck":{
+      "name":"DisassociateHealthCheck",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateHealthCheckRequest"},
+      "output":{"shape":"DisassociateHealthCheckResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OptimisticLockException"}
+      ]
+    },
     "GetSubscriptionState":{
       "name":"GetSubscriptionState",
       "http":{
@@ -318,6 +349,22 @@
       "members":{
       }
     },
+    "AssociateHealthCheckRequest":{
+      "type":"structure",
+      "required":[
+        "ProtectionId",
+        "HealthCheckArn"
+      ],
+      "members":{
+        "ProtectionId":{"shape":"ProtectionId"},
+        "HealthCheckArn":{"shape":"HealthCheckArn"}
+      }
+    },
+    "AssociateHealthCheckResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AttackDetail":{
       "type":"structure",
       "members":{
@@ -366,7 +413,9 @@
         "SOURCE_ASN",
         "SOURCE_COUNTRY",
         "SOURCE_IP_ADDRESS",
-        "SOURCE_USER_AGENT"
+        "SOURCE_USER_AGENT",
+        "WORDPRESS_PINGBACK_REFLECTOR",
+        "WORDPRESS_PINGBACK_SOURCE"
       ]
     },
     "AttackSummaries":{
@@ -542,6 +591,22 @@
       "members":{
       }
     },
+    "DisassociateHealthCheckRequest":{
+      "type":"structure",
+      "required":[
+        "ProtectionId",
+        "HealthCheckArn"
+      ],
+      "members":{
+        "ProtectionId":{"shape":"ProtectionId"},
+        "HealthCheckArn":{"shape":"HealthCheckArn"}
+      }
+    },
+    "DisassociateHealthCheckResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Double":{"type":"double"},
     "DurationInSeconds":{
       "type":"long",
@@ -577,6 +642,17 @@
       "members":{
         "SubscriptionState":{"shape":"SubscriptionState"}
       }
+    },
+    "HealthCheckArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^arn:aws:route53:::healthcheck/\\S{36}$"
+    },
+    "HealthCheckId":{"type":"string"},
+    "HealthCheckIds":{
+      "type":"list",
+      "member":{"shape":"HealthCheckId"}
     },
     "Integer":{"type":"integer"},
     "InternalErrorException":{
@@ -723,7 +799,8 @@
       "members":{
         "Id":{"shape":"ProtectionId"},
         "Name":{"shape":"ProtectionName"},
-        "ResourceArn":{"shape":"ResourceArn"}
+        "ResourceArn":{"shape":"ResourceArn"},
+        "HealthCheckIds":{"shape":"HealthCheckIds"}
       }
     },
     "ProtectionId":{

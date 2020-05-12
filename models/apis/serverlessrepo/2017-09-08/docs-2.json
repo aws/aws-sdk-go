@@ -14,6 +14,7 @@
     "ListApplicationVersions" : "<p>Lists versions for the specified application.</p>",
     "ListApplications" : "<p>Lists applications owned by the requester.</p>",
     "PutApplicationPolicy" : "<p>Sets the permission policy for an application. For the list of actions supported for this operation, see\n <a href=\"https://docs.aws.amazon.com/serverlessrepo/latest/devguide/access-control-resource-based.html#application-permissions\">Application \n Permissions</a>\n .</p>",
+    "UnshareApplication" : "<p>Unshares an application from an AWS Organization.</p><p>This operation can be called only from the organization's master account.</p>",
     "UpdateApplication" : "<p>Updates the specified application.</p>"
   },
   "shapes" : {
@@ -145,6 +146,10 @@
       "base" : "<p>The client is sending more than the allowed number of requests per unit of time.</p>",
       "refs" : { }
     },
+    "UnshareApplicationInput" : {
+      "base" : "<p>Unshare application request.</p>",
+      "refs" : { }
+    },
     "UpdateApplicationInput" : {
       "base" : "<p>Update the application request.</p>",
       "refs" : { }
@@ -164,6 +169,7 @@
     "__boolean" : {
       "base" : null,
       "refs" : {
+        "Application$IsVerifiedAuthor" : "<p>Whether the author of this application has been verified. This means means that AWS has made a good faith review, as a reasonable and prudent service provider, of the information provided by the requester and has confirmed that the requester's identity is as claimed.</p>",
         "ParameterDefinition$NoEcho" : "<p>Whether to mask the parameter value whenever anyone makes a call that describes the stack. If you set the\n value to true, the parameter value is masked with asterisks (*****).</p>",
         "Version$ResourcesSupported" : "<p>Whether all of the AWS resources contained in this application are supported in the region\n in which it is being retrieved.</p>"
       }
@@ -237,6 +243,7 @@
       "refs" : {
         "Application$Labels" : "<p>Labels to improve discovery of apps in search results.</p><p>Minimum length=1. Maximum length=127. Maximum number of labels: 10</p><p>Pattern: \"^[a-zA-Z0-9+\\\\-_:\\\\/@]+$\";</p>",
         "ApplicationPolicyStatement$Actions" : "<p>For the list of actions supported for this operation, see <a href=\"https://docs.aws.amazon.com/serverlessrepo/latest/devguide/access-control-resource-based.html#application-permissions\">Application \n Permissions</a>.</p>",
+        "ApplicationPolicyStatement$PrincipalOrgIDs" : "<p>An array of PrinciplalOrgIDs, which corresponds to AWS IAM <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#principal-org-id\">aws:PrincipalOrgID</a> global condition key.</p>",
         "ApplicationPolicyStatement$Principals" : "<p>An array of AWS account IDs, or * to make the application public.</p>",
         "ApplicationSummary$Labels" : "<p>Labels to improve discovery of apps in search results.</p><p>Minimum length=1. Maximum length=127. Maximum number of labels: 10</p><p>Pattern: \"^[a-zA-Z0-9+\\\\-_:\\\\/@]+$\";</p>",
         "CreateApplicationInput$Labels" : "<p>Labels to improve discovery of apps in search results.</p><p>Minimum length=1. Maximum length=127. Maximum number of labels: 10</p><p>Pattern: \"^[a-zA-Z0-9+\\\\-_:\\\\/@]+$\";</p>",
@@ -260,6 +267,7 @@
         "Application$Name" : "<p>The name of the application.</p><p>Minimum length=1. Maximum length=140</p><p>Pattern: \"[a-zA-Z0-9\\\\-]+\";</p>",
         "Application$ReadmeUrl" : "<p>A link to the readme file in Markdown language that contains a more detailed description of the application and how it works.</p><p>Maximum size 5 MB</p>",
         "Application$SpdxLicenseId" : "<p>A valid identifier from https://spdx.org/licenses/.</p>",
+        "Application$VerifiedAuthorUrl" : "<p>The URL to the public profile of a verified author. This URL is submitted by the author.</p>",
         "ApplicationDependencyPage$NextToken" : "<p>The token to request the next page of results.</p>",
         "ApplicationDependencySummary$ApplicationId" : "<p>The Amazon Resource Name (ARN) of the nested application.</p>",
         "ApplicationDependencySummary$SemanticVersion" : "<p>The semantic version of the nested application.</p>",
@@ -332,6 +340,7 @@
         "TemplateDetails$TemplateUrl" : "<p>A link to the template that can be used to deploy the application using\n AWS CloudFormation.</p>",
         "TooManyRequestsException$ErrorCode" : "<p>429</p>",
         "TooManyRequestsException$Message" : "<p>The client is sending more than the allowed number of requests per unit of time.</p>",
+        "UnshareApplicationInput$OrganizationId" : "<p>The AWS Organization ID to unshare the application from.</p>",
         "UpdateApplicationInput$Author" : "<p>The name of the author publishing the app.</p><p>Minimum length=1. Maximum length=127.</p><p>Pattern \"^[a-z0-9](([a-z0-9]|-(?!-))*[a-z0-9])?$\";</p>",
         "UpdateApplicationInput$Description" : "<p>The description of the application.</p><p>Minimum length=1. Maximum length=256</p>",
         "UpdateApplicationInput$HomePageUrl" : "<p>A URL with more information about the application, for example the location of your GitHub repository for the application.</p>",

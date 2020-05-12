@@ -46,6 +46,8 @@ func ExampleFSx_CreateBackup_shared00() {
 			switch aerr.Code() {
 			case fsx.ErrCodeBadRequest:
 				fmt.Println(fsx.ErrCodeBadRequest, aerr.Error())
+			case fsx.ErrCodeUnsupportedOperation:
+				fmt.Println(fsx.ErrCodeUnsupportedOperation, aerr.Error())
 			case fsx.ErrCodeFileSystemNotFound:
 				fmt.Println(fsx.ErrCodeFileSystemNotFound, aerr.Error())
 			case fsx.ErrCodeBackupInProgress:
@@ -117,6 +119,8 @@ func ExampleFSx_CreateFileSystem_shared00() {
 				fmt.Println(fsx.ErrCodeInvalidExportPath, aerr.Error())
 			case fsx.ErrCodeInvalidNetworkSettings:
 				fmt.Println(fsx.ErrCodeInvalidNetworkSettings, aerr.Error())
+			case fsx.ErrCodeInvalidPerUnitStorageThroughput:
+				fmt.Println(fsx.ErrCodeInvalidPerUnitStorageThroughput, aerr.Error())
 			case fsx.ErrCodeServiceLimitExceeded:
 				fmt.Println(fsx.ErrCodeServiceLimitExceeded, aerr.Error())
 			case fsx.ErrCodeInternalServerError:
@@ -476,6 +480,8 @@ func ExampleFSx_UpdateFileSystem_shared00() {
 			switch aerr.Code() {
 			case fsx.ErrCodeBadRequest:
 				fmt.Println(fsx.ErrCodeBadRequest, aerr.Error())
+			case fsx.ErrCodeUnsupportedOperation:
+				fmt.Println(fsx.ErrCodeUnsupportedOperation, aerr.Error())
 			case fsx.ErrCodeIncompatibleParameterError:
 				fmt.Println(fsx.ErrCodeIncompatibleParameterError, aerr.Error())
 			case fsx.ErrCodeInternalServerError:

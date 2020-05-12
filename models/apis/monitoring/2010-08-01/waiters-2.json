@@ -13,6 +13,19 @@
           "state": "success"
         }
       ]
+    },
+    "CompositeAlarmExists": {
+      "delay": 5,
+      "maxAttempts": 40,
+      "operation": "DescribeAlarms",
+      "acceptors": [
+        {
+          "matcher": "path",
+          "expected": true,
+          "argument": "length(CompositeAlarms[]) > `0`",
+          "state": "success"
+        }
+      ]
     }
   }
 }

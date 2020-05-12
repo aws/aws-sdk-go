@@ -48,6 +48,30 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "BatchGetReportGroups":{
+      "name":"BatchGetReportGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetReportGroupsInput"},
+      "output":{"shape":"BatchGetReportGroupsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "BatchGetReports":{
+      "name":"BatchGetReports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetReportsInput"},
+      "output":{"shape":"BatchGetReportsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "CreateProject":{
       "name":"CreateProject",
       "http":{
@@ -56,6 +80,20 @@
       },
       "input":{"shape":"CreateProjectInput"},
       "output":{"shape":"CreateProjectOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"AccountLimitExceededException"}
+      ]
+    },
+    "CreateReportGroup":{
+      "name":"CreateReportGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateReportGroupInput"},
+      "output":{"shape":"CreateReportGroupOutput"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceAlreadyExistsException"},
@@ -89,6 +127,42 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "DeleteReport":{
+      "name":"DeleteReport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteReportInput"},
+      "output":{"shape":"DeleteReportOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "DeleteReportGroup":{
+      "name":"DeleteReportGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteReportGroupInput"},
+      "output":{"shape":"DeleteReportGroupOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourcePolicyInput"},
+      "output":{"shape":"DeleteResourcePolicyOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "DeleteSourceCredentials":{
       "name":"DeleteSourceCredentials",
       "http":{
@@ -116,6 +190,32 @@
         {"shape":"OAuthProviderException"}
       ]
     },
+    "DescribeTestCases":{
+      "name":"DescribeTestCases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTestCasesInput"},
+      "output":{"shape":"DescribeTestCasesOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetResourcePolicy":{
+      "name":"GetResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourcePolicyInput"},
+      "output":{"shape":"GetResourcePolicyOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "ImportSourceCredentials":{
       "name":"ImportSourceCredentials",
       "http":{
@@ -126,7 +226,8 @@
       "output":{"shape":"ImportSourceCredentialsOutput"},
       "errors":[
         {"shape":"InvalidInputException"},
-        {"shape":"AccountLimitExceededException"}
+        {"shape":"AccountLimitExceededException"},
+        {"shape":"ResourceAlreadyExistsException"}
       ]
     },
     "InvalidateProjectCache":{
@@ -188,6 +289,67 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "ListReportGroups":{
+      "name":"ListReportGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReportGroupsInput"},
+      "output":{"shape":"ListReportGroupsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "ListReports":{
+      "name":"ListReports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReportsInput"},
+      "output":{"shape":"ListReportsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "ListReportsForReportGroup":{
+      "name":"ListReportsForReportGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReportsForReportGroupInput"},
+      "output":{"shape":"ListReportsForReportGroupOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListSharedProjects":{
+      "name":"ListSharedProjects",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSharedProjectsInput"},
+      "output":{"shape":"ListSharedProjectsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "ListSharedReportGroups":{
+      "name":"ListSharedReportGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSharedReportGroupsInput"},
+      "output":{"shape":"ListSharedReportGroupsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "ListSourceCredentials":{
       "name":"ListSourceCredentials",
       "http":{
@@ -196,6 +358,19 @@
       },
       "input":{"shape":"ListSourceCredentialsInput"},
       "output":{"shape":"ListSourceCredentialsOutput"}
+    },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResourcePolicyInput"},
+      "output":{"shape":"PutResourcePolicyOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidInputException"}
+      ]
     },
     "StartBuild":{
       "name":"StartBuild",
@@ -232,6 +407,19 @@
       },
       "input":{"shape":"UpdateProjectInput"},
       "output":{"shape":"UpdateProjectOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UpdateReportGroup":{
+      "name":"UpdateReportGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateReportGroupInput"},
+      "output":{"shape":"UpdateReportGroupOutput"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"}
@@ -331,12 +519,41 @@
         "projectsNotFound":{"shape":"ProjectNames"}
       }
     },
+    "BatchGetReportGroupsInput":{
+      "type":"structure",
+      "required":["reportGroupArns"],
+      "members":{
+        "reportGroupArns":{"shape":"ReportGroupArns"}
+      }
+    },
+    "BatchGetReportGroupsOutput":{
+      "type":"structure",
+      "members":{
+        "reportGroups":{"shape":"ReportGroups"},
+        "reportGroupsNotFound":{"shape":"ReportGroupArns"}
+      }
+    },
+    "BatchGetReportsInput":{
+      "type":"structure",
+      "required":["reportArns"],
+      "members":{
+        "reportArns":{"shape":"ReportArns"}
+      }
+    },
+    "BatchGetReportsOutput":{
+      "type":"structure",
+      "members":{
+        "reports":{"shape":"Reports"},
+        "reportsNotFound":{"shape":"ReportArns"}
+      }
+    },
     "Boolean":{"type":"boolean"},
     "Build":{
       "type":"structure",
       "members":{
         "id":{"shape":"NonEmptyString"},
         "arn":{"shape":"NonEmptyString"},
+        "buildNumber":{"shape":"WrapperLong"},
         "startTime":{"shape":"Timestamp"},
         "endTime":{"shape":"Timestamp"},
         "currentPhase":{"shape":"String"},
@@ -360,7 +577,10 @@
         "initiator":{"shape":"String"},
         "vpcConfig":{"shape":"VpcConfig"},
         "networkInterface":{"shape":"NetworkInterface"},
-        "encryptionKey":{"shape":"NonEmptyString"}
+        "encryptionKey":{"shape":"NonEmptyString"},
+        "exportedEnvironmentVariables":{"shape":"ExportedEnvironmentVariables"},
+        "reportArns":{"shape":"BuildReportArns"},
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
       }
     },
     "BuildArtifacts":{
@@ -424,6 +644,10 @@
       "type":"list",
       "member":{"shape":"BuildPhase"}
     },
+    "BuildReportArns":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "Builds":{
       "type":"list",
       "member":{"shape":"Build"}
@@ -462,7 +686,8 @@
       "enum":[
         "BUILD_GENERAL1_SMALL",
         "BUILD_GENERAL1_MEDIUM",
-        "BUILD_GENERAL1_LARGE"
+        "BUILD_GENERAL1_LARGE",
+        "BUILD_GENERAL1_2XLARGE"
       ]
     },
     "CreateProjectInput":{
@@ -492,13 +717,33 @@
         "tags":{"shape":"TagList"},
         "vpcConfig":{"shape":"VpcConfig"},
         "badgeEnabled":{"shape":"WrapperBoolean"},
-        "logsConfig":{"shape":"LogsConfig"}
+        "logsConfig":{"shape":"LogsConfig"},
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
       }
     },
     "CreateProjectOutput":{
       "type":"structure",
       "members":{
         "project":{"shape":"Project"}
+      }
+    },
+    "CreateReportGroupInput":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type",
+        "exportConfig"
+      ],
+      "members":{
+        "name":{"shape":"ReportGroupName"},
+        "type":{"shape":"ReportType"},
+        "exportConfig":{"shape":"ReportExportConfig"}
+      }
+    },
+    "CreateReportGroupOutput":{
+      "type":"structure",
+      "members":{
+        "reportGroup":{"shape":"ReportGroup"}
       }
     },
     "CreateWebhookInput":{
@@ -532,6 +777,42 @@
       "members":{
       }
     },
+    "DeleteReportGroupInput":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteReportGroupOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteReportInput":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteReportOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteResourcePolicyInput":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteResourcePolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteSourceCredentialsInput":{
       "type":"structure",
       "required":["arn"],
@@ -555,6 +836,23 @@
     "DeleteWebhookOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DescribeTestCasesInput":{
+      "type":"structure",
+      "required":["reportArn"],
+      "members":{
+        "reportArn":{"shape":"String"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"PageSize"},
+        "filter":{"shape":"TestCaseFilter"}
+      }
+    },
+    "DescribeTestCasesOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "testCases":{"shape":"TestCases"}
       }
     },
     "EnvironmentImage":{
@@ -595,7 +893,9 @@
       "type":"string",
       "enum":[
         "WINDOWS_CONTAINER",
-        "LINUX_CONTAINER"
+        "LINUX_CONTAINER",
+        "LINUX_GPU_CONTAINER",
+        "ARM_CONTAINER"
       ]
     },
     "EnvironmentVariable":{
@@ -614,12 +914,28 @@
       "type":"string",
       "enum":[
         "PLAINTEXT",
-        "PARAMETER_STORE"
+        "PARAMETER_STORE",
+        "SECRETS_MANAGER"
       ]
     },
     "EnvironmentVariables":{
       "type":"list",
       "member":{"shape":"EnvironmentVariable"}
+    },
+    "ExportedEnvironmentVariable":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"NonEmptyString"},
+        "value":{"shape":"String"}
+      }
+    },
+    "ExportedEnvironmentVariables":{
+      "type":"list",
+      "member":{"shape":"ExportedEnvironmentVariable"}
+    },
+    "FileSystemType":{
+      "type":"string",
+      "enum":["EFS"]
     },
     "FilterGroup":{
       "type":"list",
@@ -628,6 +944,19 @@
     "FilterGroups":{
       "type":"list",
       "member":{"shape":"FilterGroup"}
+    },
+    "GetResourcePolicyInput":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "GetResourcePolicyOutput":{
+      "type":"structure",
+      "members":{
+        "policy":{"shape":"NonEmptyString"}
+      }
     },
     "GitCloneDepth":{
       "type":"integer",
@@ -662,7 +991,8 @@
         "username":{"shape":"NonEmptyString"},
         "token":{"shape":"SensitiveNonEmptyString"},
         "serverType":{"shape":"ServerType"},
-        "authType":{"shape":"AuthType"}
+        "authType":{"shape":"AuthType"},
+        "shouldOverwrite":{"shape":"WrapperBoolean"}
       }
     },
     "ImportSourceCredentialsOutput":{
@@ -766,6 +1096,88 @@
         "projects":{"shape":"ProjectNames"}
       }
     },
+    "ListReportGroupsInput":{
+      "type":"structure",
+      "members":{
+        "sortOrder":{"shape":"SortOrderType"},
+        "sortBy":{"shape":"ReportGroupSortByType"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"PageSize"}
+      }
+    },
+    "ListReportGroupsOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "reportGroups":{"shape":"ReportGroupArns"}
+      }
+    },
+    "ListReportsForReportGroupInput":{
+      "type":"structure",
+      "required":["reportGroupArn"],
+      "members":{
+        "reportGroupArn":{"shape":"String"},
+        "nextToken":{"shape":"String"},
+        "sortOrder":{"shape":"SortOrderType"},
+        "maxResults":{"shape":"PageSize"},
+        "filter":{"shape":"ReportFilter"}
+      }
+    },
+    "ListReportsForReportGroupOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "reports":{"shape":"ReportArns"}
+      }
+    },
+    "ListReportsInput":{
+      "type":"structure",
+      "members":{
+        "sortOrder":{"shape":"SortOrderType"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"PageSize"},
+        "filter":{"shape":"ReportFilter"}
+      }
+    },
+    "ListReportsOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "reports":{"shape":"ReportArns"}
+      }
+    },
+    "ListSharedProjectsInput":{
+      "type":"structure",
+      "members":{
+        "sortBy":{"shape":"SharedResourceSortByType"},
+        "sortOrder":{"shape":"SortOrderType"},
+        "maxResults":{"shape":"PageSize"},
+        "nextToken":{"shape":"NonEmptyString"}
+      }
+    },
+    "ListSharedProjectsOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "projects":{"shape":"ProjectArns"}
+      }
+    },
+    "ListSharedReportGroupsInput":{
+      "type":"structure",
+      "members":{
+        "sortOrder":{"shape":"SortOrderType"},
+        "sortBy":{"shape":"SharedResourceSortByType"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"PageSize"}
+      }
+    },
+    "ListSharedReportGroupsOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "reportGroups":{"shape":"ReportGroupArns"}
+      }
+    },
     "ListSourceCredentialsInput":{
       "type":"structure",
       "members":{
@@ -798,6 +1210,8 @@
         "streamName":{"shape":"String"},
         "deepLink":{"shape":"String"},
         "s3DeepLink":{"shape":"String"},
+        "cloudWatchLogsArn":{"shape":"String"},
+        "s3LogsArn":{"shape":"String"},
         "cloudWatchLogs":{"shape":"CloudWatchLogsConfig"},
         "s3Logs":{"shape":"S3LogsConfig"}
       }
@@ -818,6 +1232,11 @@
       "members":{
       },
       "exception":true
+    },
+    "PageSize":{
+      "type":"integer",
+      "max":100,
+      "min":1
     },
     "PhaseContext":{
       "type":"structure",
@@ -863,8 +1282,15 @@
         "webhook":{"shape":"Webhook"},
         "vpcConfig":{"shape":"VpcConfig"},
         "badge":{"shape":"ProjectBadge"},
-        "logsConfig":{"shape":"LogsConfig"}
+        "logsConfig":{"shape":"LogsConfig"},
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
       }
+    },
+    "ProjectArns":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":1
     },
     "ProjectArtifacts":{
       "type":"structure",
@@ -930,6 +1356,20 @@
         "imagePullCredentialsType":{"shape":"ImagePullCredentialsType"}
       }
     },
+    "ProjectFileSystemLocation":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"FileSystemType"},
+        "location":{"shape":"String"},
+        "mountPoint":{"shape":"String"},
+        "identifier":{"shape":"String"},
+        "mountOptions":{"shape":"String"}
+      }
+    },
+    "ProjectFileSystemLocations":{
+      "type":"list",
+      "member":{"shape":"ProjectFileSystemLocation"}
+    },
     "ProjectName":{
       "type":"string",
       "max":255,
@@ -992,6 +1432,23 @@
       "type":"list",
       "member":{"shape":"Project"}
     },
+    "PutResourcePolicyInput":{
+      "type":"structure",
+      "required":[
+        "policy",
+        "resourceArn"
+      ],
+      "members":{
+        "policy":{"shape":"NonEmptyString"},
+        "resourceArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "PutResourcePolicyOutput":{
+      "type":"structure",
+      "members":{
+        "resourceArn":{"shape":"NonEmptyString"}
+      }
+    },
     "RegistryCredential":{
       "type":"structure",
       "required":[
@@ -1002,6 +1459,116 @@
         "credential":{"shape":"NonEmptyString"},
         "credentialProvider":{"shape":"CredentialProviderType"}
       }
+    },
+    "Report":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"NonEmptyString"},
+        "type":{"shape":"ReportType"},
+        "name":{"shape":"String"},
+        "reportGroupArn":{"shape":"NonEmptyString"},
+        "executionId":{"shape":"String"},
+        "status":{"shape":"ReportStatusType"},
+        "created":{"shape":"Timestamp"},
+        "expired":{"shape":"Timestamp"},
+        "exportConfig":{"shape":"ReportExportConfig"},
+        "truncated":{"shape":"WrapperBoolean"},
+        "testSummary":{"shape":"TestReportSummary"}
+      }
+    },
+    "ReportArns":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":1
+    },
+    "ReportExportConfig":{
+      "type":"structure",
+      "members":{
+        "exportConfigType":{"shape":"ReportExportConfigType"},
+        "s3Destination":{"shape":"S3ReportExportConfig"}
+      }
+    },
+    "ReportExportConfigType":{
+      "type":"string",
+      "enum":[
+        "S3",
+        "NO_EXPORT"
+      ]
+    },
+    "ReportFilter":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"ReportStatusType"}
+      }
+    },
+    "ReportGroup":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"NonEmptyString"},
+        "name":{"shape":"ReportGroupName"},
+        "type":{"shape":"ReportType"},
+        "exportConfig":{"shape":"ReportExportConfig"},
+        "created":{"shape":"Timestamp"},
+        "lastModified":{"shape":"Timestamp"}
+      }
+    },
+    "ReportGroupArns":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":1
+    },
+    "ReportGroupName":{
+      "type":"string",
+      "max":128,
+      "min":2
+    },
+    "ReportGroupSortByType":{
+      "type":"string",
+      "enum":[
+        "NAME",
+        "CREATED_TIME",
+        "LAST_MODIFIED_TIME"
+      ]
+    },
+    "ReportGroups":{
+      "type":"list",
+      "member":{"shape":"ReportGroup"},
+      "max":100,
+      "min":1
+    },
+    "ReportPackagingType":{
+      "type":"string",
+      "enum":[
+        "ZIP",
+        "NONE"
+      ]
+    },
+    "ReportStatusCounts":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"WrapperInt"}
+    },
+    "ReportStatusType":{
+      "type":"string",
+      "enum":[
+        "GENERATING",
+        "SUCCEEDED",
+        "FAILED",
+        "INCOMPLETE",
+        "DELETING"
+      ]
+    },
+    "ReportType":{
+      "type":"string",
+      "enum":["TEST"]
+    },
+    "Reports":{
+      "type":"list",
+      "member":{"shape":"Report"},
+      "max":100,
+      "min":1
     },
     "ResourceAlreadyExistsException":{
       "type":"structure",
@@ -1024,6 +1591,16 @@
         "encryptionDisabled":{"shape":"WrapperBoolean"}
       }
     },
+    "S3ReportExportConfig":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"NonEmptyString"},
+        "path":{"shape":"String"},
+        "packaging":{"shape":"ReportPackagingType"},
+        "encryptionKey":{"shape":"NonEmptyString"},
+        "encryptionDisabled":{"shape":"WrapperBoolean"}
+      }
+    },
     "SecurityGroupIds":{
       "type":"list",
       "member":{"shape":"NonEmptyString"},
@@ -1040,6 +1617,13 @@
         "GITHUB",
         "BITBUCKET",
         "GITHUB_ENTERPRISE"
+      ]
+    },
+    "SharedResourceSortByType":{
+      "type":"string",
+      "enum":[
+        "ARN",
+        "MODIFIED_TIME"
       ]
     },
     "SortOrderType":{
@@ -1113,6 +1697,7 @@
         "privilegedModeOverride":{"shape":"WrapperBoolean"},
         "timeoutInMinutesOverride":{"shape":"TimeOut"},
         "queuedTimeoutInMinutesOverride":{"shape":"TimeOut"},
+        "encryptionKeyOverride":{"shape":"NonEmptyString"},
         "idempotencyToken":{"shape":"String"},
         "logsConfigOverride":{"shape":"LogsConfig"},
         "registryCredentialOverride":{"shape":"RegistryCredential"},
@@ -1168,6 +1753,42 @@
       "max":50,
       "min":0
     },
+    "TestCase":{
+      "type":"structure",
+      "members":{
+        "reportArn":{"shape":"NonEmptyString"},
+        "testRawDataPath":{"shape":"String"},
+        "prefix":{"shape":"String"},
+        "name":{"shape":"String"},
+        "status":{"shape":"String"},
+        "durationInNanoSeconds":{"shape":"WrapperLong"},
+        "message":{"shape":"String"},
+        "expired":{"shape":"Timestamp"}
+      }
+    },
+    "TestCaseFilter":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"String"}
+      }
+    },
+    "TestCases":{
+      "type":"list",
+      "member":{"shape":"TestCase"}
+    },
+    "TestReportSummary":{
+      "type":"structure",
+      "required":[
+        "total",
+        "statusCounts",
+        "durationInNanoSeconds"
+      ],
+      "members":{
+        "total":{"shape":"WrapperInt"},
+        "statusCounts":{"shape":"ReportStatusCounts"},
+        "durationInNanoSeconds":{"shape":"WrapperLong"}
+      }
+    },
     "TimeOut":{
       "type":"integer",
       "max":480,
@@ -1195,13 +1816,28 @@
         "tags":{"shape":"TagList"},
         "vpcConfig":{"shape":"VpcConfig"},
         "badgeEnabled":{"shape":"WrapperBoolean"},
-        "logsConfig":{"shape":"LogsConfig"}
+        "logsConfig":{"shape":"LogsConfig"},
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
       }
     },
     "UpdateProjectOutput":{
       "type":"structure",
       "members":{
         "project":{"shape":"Project"}
+      }
+    },
+    "UpdateReportGroupInput":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"NonEmptyString"},
+        "exportConfig":{"shape":"ReportExportConfig"}
+      }
+    },
+    "UpdateReportGroupOutput":{
+      "type":"structure",
+      "members":{
+        "reportGroup":{"shape":"ReportGroup"}
       }
     },
     "UpdateWebhookInput":{
@@ -1264,7 +1900,8 @@
         "BASE_REF",
         "HEAD_REF",
         "ACTOR_ACCOUNT_ID",
-        "FILE_PATH"
+        "FILE_PATH",
+        "COMMIT_MESSAGE"
       ]
     },
     "WrapperBoolean":{"type":"boolean"},

@@ -602,7 +602,7 @@
       "type":"integer",
       "box":true,
       "max":1000,
-      "min":0
+      "min":1
     },
     "MaxTagsCount":{
       "type":"integer",
@@ -691,7 +691,12 @@
       "type":"structure",
       "members":{
         "EngineExecutionTimeInMillis":{"shape":"Long"},
-        "DataScannedInBytes":{"shape":"Long"}
+        "DataScannedInBytes":{"shape":"Long"},
+        "DataManifestLocation":{"shape":"String"},
+        "TotalExecutionTimeInMillis":{"shape":"Long"},
+        "QueryQueueTimeInMillis":{"shape":"Long"},
+        "QueryPlanningTimeInMillis":{"shape":"Long"},
+        "ServiceProcessingTimeInMillis":{"shape":"Long"}
       }
     },
     "QueryExecutionStatus":{
@@ -929,7 +934,8 @@
         "ResultConfiguration":{"shape":"ResultConfiguration"},
         "EnforceWorkGroupConfiguration":{"shape":"BoxedBoolean"},
         "PublishCloudWatchMetricsEnabled":{"shape":"BoxedBoolean"},
-        "BytesScannedCutoffPerQuery":{"shape":"BytesScannedCutoffValue"}
+        "BytesScannedCutoffPerQuery":{"shape":"BytesScannedCutoffValue"},
+        "RequesterPaysEnabled":{"shape":"BoxedBoolean"}
       }
     },
     "WorkGroupConfigurationUpdates":{
@@ -939,7 +945,8 @@
         "ResultConfigurationUpdates":{"shape":"ResultConfigurationUpdates"},
         "PublishCloudWatchMetricsEnabled":{"shape":"BoxedBoolean"},
         "BytesScannedCutoffPerQuery":{"shape":"BytesScannedCutoffValue"},
-        "RemoveBytesScannedCutoffPerQuery":{"shape":"BoxedBoolean"}
+        "RemoveBytesScannedCutoffPerQuery":{"shape":"BoxedBoolean"},
+        "RequesterPaysEnabled":{"shape":"BoxedBoolean"}
       }
     },
     "WorkGroupDescriptionString":{

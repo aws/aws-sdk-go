@@ -142,6 +142,20 @@
         {"shape":"InvalidResourceStateFault"}
       ]
     },
+    "DeleteConnection":{
+      "name":"DeleteConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteConnectionMessage"},
+      "output":{"shape":"DeleteConnectionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedFault"},
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"InvalidResourceStateFault"}
+      ]
+    },
     "DeleteEndpoint":{
       "name":"DeleteEndpoint",
       "http":{
@@ -785,7 +799,9 @@
         "DmsTransferSettings":{"shape":"DmsTransferSettings"},
         "MongoDbSettings":{"shape":"MongoDbSettings"},
         "KinesisSettings":{"shape":"KinesisSettings"},
+        "KafkaSettings":{"shape":"KafkaSettings"},
         "ElasticsearchSettings":{"shape":"ElasticsearchSettings"},
+        "NeptuneSettings":{"shape":"NeptuneSettings"},
         "RedshiftSettings":{"shape":"RedshiftSettings"}
       }
     },
@@ -887,7 +903,8 @@
         "CdcStartTime":{"shape":"TStamp"},
         "CdcStartPosition":{"shape":"String"},
         "CdcStopPosition":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "TaskData":{"shape":"String"}
       }
     },
     "CreateReplicationTaskResponse":{
@@ -914,6 +931,23 @@
       "type":"structure",
       "members":{
         "Certificate":{"shape":"Certificate"}
+      }
+    },
+    "DeleteConnectionMessage":{
+      "type":"structure",
+      "required":[
+        "EndpointArn",
+        "ReplicationInstanceArn"
+      ],
+      "members":{
+        "EndpointArn":{"shape":"String"},
+        "ReplicationInstanceArn":{"shape":"String"}
+      }
+    },
+    "DeleteConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "Connection":{"shape":"Connection"}
       }
     },
     "DeleteEndpointMessage":{
@@ -988,7 +1022,8 @@
     "DescribeAccountAttributesResponse":{
       "type":"structure",
       "members":{
-        "AccountQuotas":{"shape":"AccountQuotaList"}
+        "AccountQuotas":{"shape":"AccountQuotaList"},
+        "UniqueAccountIdentifier":{"shape":"String"}
       }
     },
     "DescribeCertificatesMessage":{
@@ -1333,7 +1368,9 @@
         "DmsTransferSettings":{"shape":"DmsTransferSettings"},
         "MongoDbSettings":{"shape":"MongoDbSettings"},
         "KinesisSettings":{"shape":"KinesisSettings"},
+        "KafkaSettings":{"shape":"KafkaSettings"},
         "ElasticsearchSettings":{"shape":"ElasticsearchSettings"},
+        "NeptuneSettings":{"shape":"NeptuneSettings"},
         "RedshiftSettings":{"shape":"RedshiftSettings"}
       }
     },
@@ -1496,6 +1533,13 @@
       },
       "exception":true
     },
+    "KafkaSettings":{
+      "type":"structure",
+      "members":{
+        "Broker":{"shape":"String"},
+        "Topic":{"shape":"String"}
+      }
+    },
     "KeyList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -1505,7 +1549,12 @@
       "members":{
         "StreamArn":{"shape":"String"},
         "MessageFormat":{"shape":"MessageFormatValue"},
-        "ServiceAccessRoleArn":{"shape":"String"}
+        "ServiceAccessRoleArn":{"shape":"String"},
+        "IncludeTransactionDetails":{"shape":"BooleanOptional"},
+        "IncludePartitionValue":{"shape":"BooleanOptional"},
+        "PartitionIncludeSchemaTable":{"shape":"BooleanOptional"},
+        "IncludeTableAlterOperations":{"shape":"BooleanOptional"},
+        "IncludeControlDetails":{"shape":"BooleanOptional"}
       }
     },
     "ListTagsForResourceMessage":{
@@ -1524,7 +1573,10 @@
     "Long":{"type":"long"},
     "MessageFormatValue":{
       "type":"string",
-      "enum":["json"]
+      "enum":[
+        "json",
+        "json-unformatted"
+      ]
     },
     "MigrationTypeValue":{
       "type":"string",
@@ -1557,7 +1609,9 @@
         "DmsTransferSettings":{"shape":"DmsTransferSettings"},
         "MongoDbSettings":{"shape":"MongoDbSettings"},
         "KinesisSettings":{"shape":"KinesisSettings"},
+        "KafkaSettings":{"shape":"KafkaSettings"},
         "ElasticsearchSettings":{"shape":"ElasticsearchSettings"},
+        "NeptuneSettings":{"shape":"NeptuneSettings"},
         "RedshiftSettings":{"shape":"RedshiftSettings"}
       }
     },
@@ -1636,7 +1690,8 @@
         "ReplicationTaskSettings":{"shape":"String"},
         "CdcStartTime":{"shape":"TStamp"},
         "CdcStartPosition":{"shape":"String"},
-        "CdcStopPosition":{"shape":"String"}
+        "CdcStopPosition":{"shape":"String"},
+        "TaskData":{"shape":"String"}
       }
     },
     "ModifyReplicationTaskResponse":{
@@ -1662,6 +1717,22 @@
         "KmsKeyId":{"shape":"String"}
       }
     },
+    "NeptuneSettings":{
+      "type":"structure",
+      "required":[
+        "S3BucketName",
+        "S3BucketFolder"
+      ],
+      "members":{
+        "ServiceAccessRoleArn":{"shape":"String"},
+        "S3BucketName":{"shape":"String"},
+        "S3BucketFolder":{"shape":"String"},
+        "ErrorRetryDuration":{"shape":"IntegerOptional"},
+        "MaxFileSize":{"shape":"IntegerOptional"},
+        "MaxRetryCount":{"shape":"IntegerOptional"},
+        "IamAuthEnabled":{"shape":"BooleanOptional"}
+      }
+    },
     "NestingLevelValue":{
       "type":"string",
       "enum":[
@@ -1679,7 +1750,8 @@
         "MaxAllocatedStorage":{"shape":"Integer"},
         "DefaultAllocatedStorage":{"shape":"Integer"},
         "IncludedAllocatedStorage":{"shape":"Integer"},
-        "AvailabilityZones":{"shape":"AvailabilityZonesList"}
+        "AvailabilityZones":{"shape":"AvailabilityZonesList"},
+        "ReleaseStatus":{"shape":"ReleaseStatusValues"}
       }
     },
     "OrderableReplicationInstanceList":{
@@ -1790,6 +1862,10 @@
         "failed",
         "refreshing"
       ]
+    },
+    "ReleaseStatusValues":{
+      "type":"string",
+      "enum":["beta"]
     },
     "ReloadOptionValue":{
       "type":"string",
@@ -1946,7 +2022,8 @@
         "CdcStopPosition":{"shape":"String"},
         "RecoveryCheckpoint":{"shape":"String"},
         "ReplicationTaskArn":{"shape":"String"},
-        "ReplicationTaskStats":{"shape":"ReplicationTaskStats"}
+        "ReplicationTaskStats":{"shape":"ReplicationTaskStats"},
+        "TaskData":{"shape":"String"}
       }
     },
     "ReplicationTaskAssessmentResult":{
@@ -1977,7 +2054,12 @@
         "TablesLoaded":{"shape":"Integer"},
         "TablesLoading":{"shape":"Integer"},
         "TablesQueued":{"shape":"Integer"},
-        "TablesErrored":{"shape":"Integer"}
+        "TablesErrored":{"shape":"Integer"},
+        "FreshStartDate":{"shape":"TStamp"},
+        "StartDate":{"shape":"TStamp"},
+        "StopDate":{"shape":"TStamp"},
+        "FullLoadStartDate":{"shape":"TStamp"},
+        "FullLoadFinishDate":{"shape":"TStamp"}
       }
     },
     "ResourceAlreadyExistsFault":{
@@ -2029,7 +2111,11 @@
         "DataPageSize":{"shape":"IntegerOptional"},
         "ParquetVersion":{"shape":"ParquetVersionValue"},
         "EnableStatistics":{"shape":"BooleanOptional"},
-        "CdcInsertsOnly":{"shape":"BooleanOptional"}
+        "IncludeOpForFullLoad":{"shape":"BooleanOptional"},
+        "CdcInsertsOnly":{"shape":"BooleanOptional"},
+        "TimestampColumnName":{"shape":"String"},
+        "ParquetTimestampInMillisecond":{"shape":"BooleanOptional"},
+        "CdcInsertsAndUpdates":{"shape":"BooleanOptional"}
       }
     },
     "SNSInvalidTopicFault":{
@@ -2153,6 +2239,7 @@
         "EngineName":{"shape":"String"},
         "SupportsCDC":{"shape":"Boolean"},
         "EndpointType":{"shape":"ReplicationEndpointTypeValue"},
+        "ReplicationInstanceEngineMinimumVersion":{"shape":"String"},
         "EngineDisplayName":{"shape":"String"}
       }
     },
@@ -2177,6 +2264,9 @@
         "FullLoadRows":{"shape":"Long"},
         "FullLoadCondtnlChkFailedRows":{"shape":"Long"},
         "FullLoadErrorRows":{"shape":"Long"},
+        "FullLoadStartTime":{"shape":"TStamp"},
+        "FullLoadEndTime":{"shape":"TStamp"},
+        "FullLoadReloaded":{"shape":"BooleanOptional"},
         "LastUpdateTime":{"shape":"TStamp"},
         "TableState":{"shape":"String"},
         "ValidationPendingRecords":{"shape":"Long"},

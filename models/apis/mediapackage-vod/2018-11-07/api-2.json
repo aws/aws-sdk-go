@@ -419,6 +419,45 @@
       "output": {
         "shape": "ListPackagingGroupsResponse"
       }
+    },
+    "ListTagsForResource": {
+      "errors": [],
+      "http": {
+        "method": "GET",
+        "requestUri": "/tags/{resource-arn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListTagsForResourceRequest"
+      },
+      "name": "ListTagsForResource",
+      "output": {
+        "shape": "ListTagsForResourceResponse"
+      }
+    },
+    "TagResource": {
+      "errors": [],
+      "http": {
+        "method": "POST",
+        "requestUri": "/tags/{resource-arn}",
+        "responseCode": 204
+      },
+      "input": {
+        "shape": "TagResourceRequest"
+      },
+      "name": "TagResource"
+    },
+    "UntagResource": {
+      "errors": [],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/tags/{resource-arn}",
+        "responseCode": 204
+      },
+      "input": {
+        "shape": "UntagResourceRequest"
+      },
+      "name": "UntagResource"
     }
   },
   "shapes": {
@@ -434,6 +473,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
           "shape": "__string"
         },
         "EgressEndpoints": {
@@ -459,6 +502,10 @@
         "SourceRoleArn": {
           "locationName": "sourceRoleArn",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "type": "structure"
@@ -484,6 +531,10 @@
         "SourceRoleArn": {
           "locationName": "sourceRoleArn",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "required": [
@@ -513,6 +564,10 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "Id": {
           "locationName": "id",
           "shape": "__string"
@@ -532,6 +587,10 @@
         "SourceRoleArn": {
           "locationName": "sourceRoleArn",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "type": "structure"
@@ -589,6 +648,10 @@
         "SourceRoleArn": {
           "locationName": "sourceRoleArn",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "required": [
@@ -603,6 +666,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
           "shape": "__string"
         },
         "EgressEndpoints": {
@@ -628,6 +695,10 @@
         "SourceRoleArn": {
           "locationName": "sourceRoleArn",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "type": "structure"
@@ -657,6 +728,10 @@
         "PackagingGroupId": {
           "locationName": "packagingGroupId",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "required": [
@@ -694,6 +769,10 @@
         "PackagingGroupId": {
           "locationName": "packagingGroupId",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "type": "structure"
@@ -703,6 +782,10 @@
         "Id": {
           "locationName": "id",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "required": [
@@ -716,9 +799,17 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "DomainName": {
+          "locationName": "domainName",
+          "shape": "__string"
+        },
         "Id": {
           "locationName": "id",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "type": "structure"
@@ -737,6 +828,10 @@
     },
     "DashManifest": {
       "members": {
+        "ManifestLayout": {
+          "locationName": "manifestLayout",
+          "shape": "ManifestLayout"
+        },
         "ManifestName": {
           "locationName": "manifestName",
           "shape": "__string"
@@ -766,9 +861,17 @@
           "locationName": "encryption",
           "shape": "DashEncryption"
         },
+        "PeriodTriggers": {
+          "locationName": "periodTriggers",
+          "shape": "__listOf__PeriodTriggersElement"
+        },
         "SegmentDurationSeconds": {
           "locationName": "segmentDurationSeconds",
           "shape": "__integer"
+        },
+        "SegmentTemplateFormat": {
+          "locationName": "segmentTemplateFormat",
+          "shape": "SegmentTemplateFormat"
         }
       },
       "required": [
@@ -846,6 +949,10 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "EgressEndpoints": {
           "locationName": "egressEndpoints",
           "shape": "__listOfEgressEndpoint"
@@ -869,6 +976,10 @@
         "SourceRoleArn": {
           "locationName": "sourceRoleArn",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "type": "structure"
@@ -915,6 +1026,10 @@
         "PackagingGroupId": {
           "locationName": "packagingGroupId",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "type": "structure"
@@ -938,9 +1053,17 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "DomainName": {
+          "locationName": "domainName",
+          "shape": "__string"
+        },
         "Id": {
           "locationName": "id",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "type": "structure"
@@ -980,6 +1103,10 @@
     },
     "HlsEncryption": {
       "members": {
+        "ConstantInitializationVector": {
+          "locationName": "constantInitializationVector",
+          "shape": "__string"
+        },
         "EncryptionMethod": {
           "locationName": "encryptionMethod",
           "shape": "EncryptionMethod"
@@ -1154,6 +1281,35 @@
       },
       "type": "structure"
     },
+    "ListTagsForResourceRequest": {
+      "members": {
+        "ResourceArn": {
+          "location": "uri",
+          "locationName": "resource-arn",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "ResourceArn"
+      ],
+      "type": "structure"
+    },
+    "ListTagsForResourceResponse": {
+      "members": {
+        "Tags": {
+          "locationName": "tags",
+          "shape": "__mapOf__string"
+        }
+      },
+      "type": "structure"
+    },
+    "ManifestLayout": {
+      "enum": [
+        "FULL",
+        "COMPACT"
+      ],
+      "type": "string"
+    },
     "MaxResults": {
       "max": 1000,
       "min": 1,
@@ -1246,6 +1402,10 @@
         "PackagingGroupId": {
           "locationName": "packagingGroupId",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "type": "structure"
@@ -1275,6 +1435,10 @@
         "PackagingGroupId": {
           "locationName": "packagingGroupId",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "required": [
@@ -1302,9 +1466,17 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "DomainName": {
+          "locationName": "domainName",
+          "shape": "__string"
+        },
         "Id": {
           "locationName": "id",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "type": "structure"
@@ -1314,6 +1486,10 @@
         "Id": {
           "locationName": "id",
           "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
         }
       },
       "required": [
@@ -1338,6 +1514,14 @@
       "enum": [
         "NONE",
         "HBBTV_1_5"
+      ],
+      "type": "string"
+    },
+    "SegmentTemplateFormat": {
+      "enum": [
+        "NUMBER_WITH_TIMELINE",
+        "TIME_WITH_TIMELINE",
+        "NUMBER_WITH_DURATION"
       ],
       "type": "string"
     },
@@ -1401,6 +1585,45 @@
       },
       "type": "structure"
     },
+    "TagResourceRequest": {
+      "members": {
+        "ResourceArn": {
+          "location": "uri",
+          "locationName": "resource-arn",
+          "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "__mapOf__string"
+        }
+      },
+      "required": [
+        "ResourceArn",
+        "Tags"
+      ],
+      "type": "structure"
+    },
+    "Tags": {
+      "key": {
+        "shape": "__string"
+      },
+      "type": "map",
+      "value": {
+        "shape": "__string"
+      }
+    },
+    "TagsModel": {
+      "members": {
+        "Tags": {
+          "locationName": "tags",
+          "shape": "__mapOf__string"
+        }
+      },
+      "required": [
+        "Tags"
+      ],
+      "type": "structure"
+    },
     "TooManyRequestsException": {
       "error": {
         "httpStatusCode": 429
@@ -1426,6 +1649,31 @@
         }
       },
       "type": "structure"
+    },
+    "UntagResourceRequest": {
+      "members": {
+        "ResourceArn": {
+          "location": "uri",
+          "locationName": "resource-arn",
+          "shape": "__string"
+        },
+        "TagKeys": {
+          "location": "querystring",
+          "locationName": "tagKeys",
+          "shape": "__listOf__string"
+        }
+      },
+      "required": [
+        "TagKeys",
+        "ResourceArn"
+      ],
+      "type": "structure"
+    },
+    "__PeriodTriggersElement": {
+      "enum": [
+        "ADS"
+      ],
+      "type": "string"
     },
     "__boolean": {
       "type": "boolean"
@@ -1478,6 +1726,12 @@
       },
       "type": "list"
     },
+    "__listOf__PeriodTriggersElement": {
+      "member": {
+        "shape": "__PeriodTriggersElement"
+      },
+      "type": "list"
+    },
     "__listOf__string": {
       "member": {
         "shape": "__string"
@@ -1486,6 +1740,15 @@
     },
     "__long": {
       "type": "long"
+    },
+    "__mapOf__string": {
+      "key": {
+        "shape": "__string"
+      },
+      "type": "map",
+      "value": {
+        "shape": "__string"
+      }
     },
     "__string": {
       "type": "string"

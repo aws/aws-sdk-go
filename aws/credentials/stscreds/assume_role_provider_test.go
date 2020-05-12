@@ -6,6 +6,8 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/sts"
 )
 
@@ -27,6 +29,16 @@ func (s *stubSTS) AssumeRole(input *sts.AssumeRoleInput) (*sts.AssumeRoleOutput,
 			Expiration:      &expiry,
 		},
 	}, nil
+}
+
+type stubSTSWithContext struct {
+	stubSTS
+	called chan struct{}
+}
+
+func (s *stubSTSWithContext) AssumeRoleWithContext(context credentials.Context, input *sts.AssumeRoleInput, option ...request.Option) (*sts.AssumeRoleOutput, error) {
+	<-s.called
+	return s.stubSTS.AssumeRole(input)
 }
 
 func TestAssumeRoleProvider(t *testing.T) {
@@ -193,5 +205,62 @@ func BenchmarkAssumeRoleProvider(b *testing.B) {
 		if _, err := p.Retrieve(); err != nil {
 			b.Fatal(err)
 		}
+	}
+}
+
+func TestAssumeRoleProvider_WithTags(t *testing.T) {
+	stub := &stubSTS{
+		TestInput: func(in *sts.AssumeRoleInput) {
+			if *in.TransitiveTagKeys[0] != "TagName" {
+				t.Errorf("TransitiveTagKeys not passed along")
+			}
+			if *in.Tags[0].Key != "TagName" || *in.Tags[0].Value != "TagValue" {
+				t.Errorf("Tags not passed along")
+			}
+		},
+	}
+	p := &AssumeRoleProvider{
+		Client:  stub,
+		RoleARN: "roleARN",
+		Tags: []*sts.Tag{
+			{
+				Key:   aws.String("TagName"),
+				Value: aws.String("TagValue"),
+			},
+		},
+		TransitiveTagKeys: []*string{aws.String("TagName")},
+	}
+	_, err := p.Retrieve()
+	if err != nil {
+		t.Errorf("expect error")
+	}
+}
+
+func TestAssumeRoleProvider_RetrieveWithContext(t *testing.T) {
+	stub := &stubSTSWithContext{
+		called: make(chan struct{}),
+	}
+	p := &AssumeRoleProvider{
+		Client:  stub,
+		RoleARN: "roleARN",
+	}
+
+	go func() {
+		stub.called <- struct{}{}
+	}()
+
+	creds, err := p.RetrieveWithContext(aws.BackgroundContext())
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+
+	if e, a := "roleARN", creds.AccessKeyID; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "assumedSecretAccessKey", creds.SecretAccessKey; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "assumedSessionToken", creds.SessionToken; e != a {
+		t.Errorf("expect %v, got %v", e, a)
 	}
 }

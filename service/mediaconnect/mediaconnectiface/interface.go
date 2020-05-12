@@ -64,6 +64,14 @@ type MediaConnectAPI interface {
 	AddFlowOutputsWithContext(aws.Context, *mediaconnect.AddFlowOutputsInput, ...request.Option) (*mediaconnect.AddFlowOutputsOutput, error)
 	AddFlowOutputsRequest(*mediaconnect.AddFlowOutputsInput) (*request.Request, *mediaconnect.AddFlowOutputsOutput)
 
+	AddFlowSources(*mediaconnect.AddFlowSourcesInput) (*mediaconnect.AddFlowSourcesOutput, error)
+	AddFlowSourcesWithContext(aws.Context, *mediaconnect.AddFlowSourcesInput, ...request.Option) (*mediaconnect.AddFlowSourcesOutput, error)
+	AddFlowSourcesRequest(*mediaconnect.AddFlowSourcesInput) (*request.Request, *mediaconnect.AddFlowSourcesOutput)
+
+	AddFlowVpcInterfaces(*mediaconnect.AddFlowVpcInterfacesInput) (*mediaconnect.AddFlowVpcInterfacesOutput, error)
+	AddFlowVpcInterfacesWithContext(aws.Context, *mediaconnect.AddFlowVpcInterfacesInput, ...request.Option) (*mediaconnect.AddFlowVpcInterfacesOutput, error)
+	AddFlowVpcInterfacesRequest(*mediaconnect.AddFlowVpcInterfacesInput) (*request.Request, *mediaconnect.AddFlowVpcInterfacesOutput)
+
 	CreateFlow(*mediaconnect.CreateFlowInput) (*mediaconnect.CreateFlowOutput, error)
 	CreateFlowWithContext(aws.Context, *mediaconnect.CreateFlowInput, ...request.Option) (*mediaconnect.CreateFlowOutput, error)
 	CreateFlowRequest(*mediaconnect.CreateFlowInput) (*request.Request, *mediaconnect.CreateFlowOutput)
@@ -102,6 +110,14 @@ type MediaConnectAPI interface {
 	RemoveFlowOutputWithContext(aws.Context, *mediaconnect.RemoveFlowOutputInput, ...request.Option) (*mediaconnect.RemoveFlowOutputOutput, error)
 	RemoveFlowOutputRequest(*mediaconnect.RemoveFlowOutputInput) (*request.Request, *mediaconnect.RemoveFlowOutputOutput)
 
+	RemoveFlowSource(*mediaconnect.RemoveFlowSourceInput) (*mediaconnect.RemoveFlowSourceOutput, error)
+	RemoveFlowSourceWithContext(aws.Context, *mediaconnect.RemoveFlowSourceInput, ...request.Option) (*mediaconnect.RemoveFlowSourceOutput, error)
+	RemoveFlowSourceRequest(*mediaconnect.RemoveFlowSourceInput) (*request.Request, *mediaconnect.RemoveFlowSourceOutput)
+
+	RemoveFlowVpcInterface(*mediaconnect.RemoveFlowVpcInterfaceInput) (*mediaconnect.RemoveFlowVpcInterfaceOutput, error)
+	RemoveFlowVpcInterfaceWithContext(aws.Context, *mediaconnect.RemoveFlowVpcInterfaceInput, ...request.Option) (*mediaconnect.RemoveFlowVpcInterfaceOutput, error)
+	RemoveFlowVpcInterfaceRequest(*mediaconnect.RemoveFlowVpcInterfaceInput) (*request.Request, *mediaconnect.RemoveFlowVpcInterfaceOutput)
+
 	RevokeFlowEntitlement(*mediaconnect.RevokeFlowEntitlementInput) (*mediaconnect.RevokeFlowEntitlementOutput, error)
 	RevokeFlowEntitlementWithContext(aws.Context, *mediaconnect.RevokeFlowEntitlementInput, ...request.Option) (*mediaconnect.RevokeFlowEntitlementOutput, error)
 	RevokeFlowEntitlementRequest(*mediaconnect.RevokeFlowEntitlementInput) (*request.Request, *mediaconnect.RevokeFlowEntitlementOutput)
@@ -121,6 +137,10 @@ type MediaConnectAPI interface {
 	UntagResource(*mediaconnect.UntagResourceInput) (*mediaconnect.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *mediaconnect.UntagResourceInput, ...request.Option) (*mediaconnect.UntagResourceOutput, error)
 	UntagResourceRequest(*mediaconnect.UntagResourceInput) (*request.Request, *mediaconnect.UntagResourceOutput)
+
+	UpdateFlow(*mediaconnect.UpdateFlowInput) (*mediaconnect.UpdateFlowOutput, error)
+	UpdateFlowWithContext(aws.Context, *mediaconnect.UpdateFlowInput, ...request.Option) (*mediaconnect.UpdateFlowOutput, error)
+	UpdateFlowRequest(*mediaconnect.UpdateFlowInput) (*request.Request, *mediaconnect.UpdateFlowOutput)
 
 	UpdateFlowEntitlement(*mediaconnect.UpdateFlowEntitlementInput) (*mediaconnect.UpdateFlowEntitlementOutput, error)
 	UpdateFlowEntitlementWithContext(aws.Context, *mediaconnect.UpdateFlowEntitlementInput, ...request.Option) (*mediaconnect.UpdateFlowEntitlementOutput, error)

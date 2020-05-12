@@ -180,7 +180,8 @@
       "output":{"shape":"CreateUsageReportSubscriptionResult"},
       "errors":[
         {"shape":"InvalidRoleException"},
-        {"shape":"InvalidAccountStatusException"}
+        {"shape":"InvalidAccountStatusException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "CreateUser":{
@@ -521,7 +522,9 @@
         {"shape":"OperationNotPermittedException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidAccountStatusException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotAvailableException"},
+        {"shape":"InvalidRoleException"}
       ]
     },
     "StartImageBuilder":{
@@ -664,6 +667,24 @@
     }
   },
   "shapes":{
+    "AccessEndpoint":{
+      "type":"structure",
+      "required":["EndpointType"],
+      "members":{
+        "EndpointType":{"shape":"AccessEndpointType"},
+        "VpceId":{"shape":"String"}
+      }
+    },
+    "AccessEndpointList":{
+      "type":"list",
+      "member":{"shape":"AccessEndpoint"},
+      "max":4,
+      "min":1
+    },
+    "AccessEndpointType":{
+      "type":"string",
+      "enum":["STREAMING"]
+    },
     "AccountName":{
       "type":"string",
       "min":1,
@@ -877,7 +898,8 @@
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
         "Tags":{"shape":"Tags"},
-        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"}
+        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"},
+        "IamRoleArn":{"shape":"Arn"}
       }
     },
     "CreateFleetResult":{
@@ -900,10 +922,12 @@
         "Description":{"shape":"Description"},
         "DisplayName":{"shape":"DisplayName"},
         "VpcConfig":{"shape":"VpcConfig"},
+        "IamRoleArn":{"shape":"Arn"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
         "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"}
       }
     },
     "CreateImageBuilderResult":{
@@ -939,7 +963,9 @@
         "FeedbackURL":{"shape":"FeedbackURL"},
         "UserSettings":{"shape":"UserSettingList"},
         "ApplicationSettings":{"shape":"ApplicationSettings"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"},
+        "EmbedHostDomains":{"shape":"EmbedHostDomains"}
       }
     },
     "CreateStackResult":{
@@ -1335,7 +1361,8 @@
     },
     "Domain":{
       "type":"string",
-      "max":64
+      "max":64,
+      "min":1
     },
     "DomainJoinInfo":{
       "type":"structure",
@@ -1348,6 +1375,17 @@
       "type":"list",
       "member":{"shape":"Domain"},
       "max":10
+    },
+    "EmbedHostDomain":{
+      "type":"string",
+      "max":128,
+      "pattern":"(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]"
+    },
+    "EmbedHostDomains":{
+      "type":"list",
+      "member":{"shape":"EmbedHostDomain"},
+      "max":20,
+      "min":1
     },
     "EnableUserRequest":{
       "type":"structure",
@@ -1409,7 +1447,8 @@
         "FleetErrors":{"shape":"FleetErrors"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
-        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"}
+        "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"},
+        "IamRoleArn":{"shape":"Arn"}
       }
     },
     "FleetAttribute":{
@@ -1417,7 +1456,8 @@
       "enum":[
         "VPC_CONFIGURATION",
         "VPC_CONFIGURATION_SECURITY_GROUP_IDS",
-        "DOMAIN_JOIN_INFO"
+        "DOMAIN_JOIN_INFO",
+        "IAM_ROLE_ARN"
       ]
     },
     "FleetAttributes":{
@@ -1440,6 +1480,8 @@
         "NETWORK_INTERFACE_LIMIT_EXCEEDED",
         "INTERNAL_SERVICE_ERROR",
         "IAM_SERVICE_ROLE_IS_MISSING",
+        "MACHINE_ROLE_IS_MISSING",
+        "STS_DISABLED_IN_REGION",
         "SUBNET_HAS_INSUFFICIENT_IP_ADDRESSES",
         "IAM_SERVICE_ROLE_MISSING_DESCRIBE_SUBNET_ACTION",
         "SUBNET_NOT_FOUND",
@@ -1497,6 +1539,7 @@
         "State":{"shape":"ImageState"},
         "Visibility":{"shape":"VisibilityType"},
         "ImageBuilderSupported":{"shape":"Boolean"},
+        "ImageBuilderName":{"shape":"String"},
         "Platform":{"shape":"PlatformType"},
         "Description":{"shape":"String"},
         "StateChangeReason":{"shape":"ImageStateChangeReason"},
@@ -1519,13 +1562,16 @@
         "VpcConfig":{"shape":"VpcConfig"},
         "InstanceType":{"shape":"String"},
         "Platform":{"shape":"PlatformType"},
+        "IamRoleArn":{"shape":"Arn"},
         "State":{"shape":"ImageBuilderState"},
         "StateChangeReason":{"shape":"ImageBuilderStateChangeReason"},
         "CreatedTime":{"shape":"Timestamp"},
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
+        "NetworkAccessConfiguration":{"shape":"NetworkAccessConfiguration"},
         "ImageBuilderErrors":{"shape":"ResourceErrors"},
-        "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"}
+        "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"}
       }
     },
     "ImageBuilderList":{
@@ -1889,7 +1935,9 @@
         "FeedbackURL":{"shape":"FeedbackURL"},
         "StackErrors":{"shape":"StackErrors"},
         "UserSettings":{"shape":"UserSettingList"},
-        "ApplicationSettings":{"shape":"ApplicationSettingsResponse"}
+        "ApplicationSettings":{"shape":"ApplicationSettingsResponse"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"},
+        "EmbedHostDomains":{"shape":"EmbedHostDomains"}
       }
     },
     "StackAttribute":{
@@ -1902,7 +1950,10 @@
         "REDIRECT_URL",
         "FEEDBACK_URL",
         "THEME_NAME",
-        "USER_SETTINGS"
+        "USER_SETTINGS",
+        "EMBED_HOST_DOMAINS",
+        "IAM_ROLE_ARN",
+        "ACCESS_ENDPOINTS"
       ]
     },
     "StackAttributes":{
@@ -2114,7 +2165,8 @@
         "EnableDefaultInternetAccess":{"shape":"BooleanObject"},
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
         "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"},
-        "AttributesToDelete":{"shape":"FleetAttributes"}
+        "AttributesToDelete":{"shape":"FleetAttributes"},
+        "IamRoleArn":{"shape":"Arn"}
       }
     },
     "UpdateFleetResult":{
@@ -2157,7 +2209,9 @@
         "FeedbackURL":{"shape":"FeedbackURL"},
         "AttributesToDelete":{"shape":"StackAttributes"},
         "UserSettings":{"shape":"UserSettingList"},
-        "ApplicationSettings":{"shape":"ApplicationSettings"}
+        "ApplicationSettings":{"shape":"ApplicationSettings"},
+        "AccessEndpoints":{"shape":"AccessEndpointList"},
+        "EmbedHostDomains":{"shape":"EmbedHostDomains"}
       }
     },
     "UpdateStackResult":{

@@ -29,7 +29,9 @@ func TestInteg_00_ListMetrics(t *testing.T) {
 	params := &cloudwatch.ListMetricsInput{
 		Namespace: aws.String("AWS/EC2"),
 	}
-	_, err := svc.ListMetricsWithContext(ctx, params)
+	_, err := svc.ListMetricsWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err != nil {
 		t.Errorf("expect no error, got %v", err)
 	}
@@ -45,7 +47,9 @@ func TestInteg_01_SetAlarmState(t *testing.T) {
 		StateReason: aws.String("xyz"),
 		StateValue:  aws.String("mno"),
 	}
-	_, err := svc.SetAlarmStateWithContext(ctx, params)
+	_, err := svc.SetAlarmStateWithContext(ctx, params, func(r *request.Request) {
+		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
+	})
 	if err == nil {
 		t.Fatalf("expect request to fail")
 	}
@@ -55,6 +59,9 @@ func TestInteg_01_SetAlarmState(t *testing.T) {
 	}
 	if len(aerr.Code()) == 0 {
 		t.Errorf("expect non-empty error code")
+	}
+	if len(aerr.Message()) == 0 {
+		t.Errorf("expect non-empty error message")
 	}
 	if v := aerr.Code(); v == request.ErrCodeSerialization {
 		t.Errorf("expect API error code got serialization failure")

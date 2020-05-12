@@ -328,6 +328,13 @@
         "PutResourcePolicyRequest$ResourcePolicy": "<p>A JSON-formatted string that's constructed according to the grammar and syntax for an AWS resource-based policy. The policy in the string identifies who can access or manage this secret and its versions. For information on how to format a JSON parameter for the various command line tool environments, see <a href=\"http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json\">Using JSON for Parameters</a> in the <i>AWS CLI User Guide</i>.</p>"
       }
     },
+    "OwningServiceType": {
+      "base": null,
+      "refs": {
+        "DescribeSecretResponse$OwningService": "<p>Returns the name of the service that created this secret.</p>",
+        "SecretListEntry$OwningService": "<p>Returns the name of the service that created the secret.</p>"
+      }
+    },
     "PasswordLengthType": {
       "base": null,
       "refs": {
@@ -411,7 +418,7 @@
       "base": null,
       "refs": {
         "DescribeSecretResponse$RotationEnabled": "<p>Specifies whether automatic rotation is enabled for this secret.</p> <p>To enable rotation, use <a>RotateSecret</a> with <code>AutomaticallyRotateAfterDays</code> set to a value greater than 0. To disable rotation, use <a>CancelRotateSecret</a>.</p>",
-        "SecretListEntry$RotationEnabled": "<p>Indicated whether automatic, scheduled rotation is enabled for this secret.</p>"
+        "SecretListEntry$RotationEnabled": "<p>Indicates whether automatic, scheduled rotation is enabled for this secret.</p>"
       }
     },
     "RotationLambdaARNType": {

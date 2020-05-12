@@ -170,6 +170,49 @@ func TestUnmarshal(t *testing.T) {
 				Type:  reflect.TypeOf(uint8(0)),
 			},
 		},
+		// -------
+		// Empty Values
+		// -------
+		{
+			in:       &dynamodb.AttributeValue{B: []byte{}},
+			actual:   &[]byte{},
+			expected: []byte{},
+		},
+		{
+			in:       &dynamodb.AttributeValue{BS: [][]byte{}},
+			actual:   &[][]byte{},
+			expected: [][]byte{},
+		},
+		{
+			in:       &dynamodb.AttributeValue{L: []*dynamodb.AttributeValue{}},
+			actual:   &[]interface{}{},
+			expected: []interface{}{},
+		},
+		{
+			in:       &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{}},
+			actual:   &map[string]interface{}{},
+			expected: map[string]interface{}{},
+		},
+		{
+			in:     &dynamodb.AttributeValue{N: aws.String("")},
+			actual: new(int),
+			err:    fmt.Errorf("invalid syntax"),
+		},
+		{
+			in:       &dynamodb.AttributeValue{NS: []*string{}},
+			actual:   &[]*string{},
+			expected: []*string{},
+		},
+		{
+			in:       &dynamodb.AttributeValue{S: aws.String("")},
+			actual:   new(string),
+			expected: "",
+		},
+		{
+			in:       &dynamodb.AttributeValue{SS: []*string{}},
+			actual:   &[]*string{},
+			expected: []*string{},
+		},
 	}
 
 	for i, c := range cases {
@@ -618,5 +661,26 @@ func TestDecodeAliasedUnixTime(t *testing.T) {
 	}
 	if expect != actual {
 		t.Errorf("expect %v, got %v", expect, actual)
+	}
+}
+
+func TestDecoderFieldByIndex(t *testing.T) {
+	type (
+		Middle struct{ Inner int }
+		Outer  struct{ *Middle }
+	)
+	var outer Outer
+
+	outerType := reflect.TypeOf(outer)
+	outerValue := reflect.ValueOf(&outer)
+	outerFields := unionStructFields(outerType, MarshalOptions{})
+	innerField, _ := outerFields.FieldByName("Inner")
+
+	f := decoderFieldByIndex(outerValue.Elem(), innerField.Index)
+	if outer.Middle == nil {
+		t.Errorf("expected outer.Middle to be non-nil")
+	}
+	if f.Kind() != reflect.Int || f.Int() != int64(outer.Inner) {
+		t.Error("expected f to be an int with value equal to outer.Inner")
 	}
 }

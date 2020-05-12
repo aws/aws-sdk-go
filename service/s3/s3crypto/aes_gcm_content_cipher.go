@@ -2,6 +2,8 @@ package s3crypto
 
 import (
 	"io"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 const (
@@ -20,7 +22,18 @@ func AESGCMContentCipherBuilder(generator CipherDataGenerator) ContentCipherBuil
 }
 
 func (builder gcmContentCipherBuilder) ContentCipher() (ContentCipher, error) {
-	cd, err := builder.generator.GenerateCipherData(gcmKeySize, gcmNonceSize)
+	return builder.ContentCipherWithContext(aws.BackgroundContext())
+}
+
+func (builder gcmContentCipherBuilder) ContentCipherWithContext(ctx aws.Context) (ContentCipher, error) {
+	var cd CipherData
+	var err error
+
+	if v, ok := builder.generator.(CipherDataGeneratorWithContext); ok {
+		cd, err = v.GenerateCipherDataWithContext(ctx, gcmKeySize, gcmNonceSize)
+	} else {
+		cd, err = builder.generator.GenerateCipherData(gcmKeySize, gcmNonceSize)
+	}
 	if err != nil {
 		return nil, err
 	}

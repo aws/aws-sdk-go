@@ -53,6 +53,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateLocationFsxWindows":{
+      "name":"CreateLocationFsxWindows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationFsxWindowsRequest"},
+      "output":{"shape":"CreateLocationFsxWindowsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateLocationNfs":{
       "name":"CreateLocationNfs",
       "http":{
@@ -74,6 +87,19 @@
       },
       "input":{"shape":"CreateLocationS3Request"},
       "output":{"shape":"CreateLocationS3Response"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "CreateLocationSmb":{
+      "name":"CreateLocationSmb",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationSmbRequest"},
+      "output":{"shape":"CreateLocationSmbResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -157,6 +183,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "DescribeLocationFsxWindows":{
+      "name":"DescribeLocationFsxWindows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationFsxWindowsRequest"},
+      "output":{"shape":"DescribeLocationFsxWindowsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "DescribeLocationNfs":{
       "name":"DescribeLocationNfs",
       "http":{
@@ -178,6 +217,19 @@
       },
       "input":{"shape":"DescribeLocationS3Request"},
       "output":{"shape":"DescribeLocationS3Response"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeLocationSmb":{
+      "name":"DescribeLocationSmb",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationSmbRequest"},
+      "output":{"shape":"DescribeLocationSmbResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -405,7 +457,10 @@
       "members":{
         "ActivationKey":{"shape":"ActivationKey"},
         "AgentName":{"shape":"TagValue"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "VpcEndpointId":{"shape":"VpcEndpointId"},
+        "SubnetArns":{"shape":"PLSubnetArnList"},
+        "SecurityGroupArns":{"shape":"PLSecurityGroupArnList"}
       }
     },
     "CreateAgentResponse":{
@@ -421,13 +476,37 @@
         "Ec2Config"
       ],
       "members":{
-        "Subdirectory":{"shape":"Subdirectory"},
+        "Subdirectory":{"shape":"EfsSubdirectory"},
         "EfsFilesystemArn":{"shape":"EfsFilesystemArn"},
         "Ec2Config":{"shape":"Ec2Config"},
         "Tags":{"shape":"TagList"}
       }
     },
     "CreateLocationEfsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "CreateLocationFsxWindowsRequest":{
+      "type":"structure",
+      "required":[
+        "FsxFilesystemArn",
+        "SecurityGroupArns",
+        "User",
+        "Password"
+      ],
+      "members":{
+        "Subdirectory":{"shape":"FsxWindowsSubdirectory"},
+        "FsxFilesystemArn":{"shape":"FsxFilesystemArn"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "Tags":{"shape":"TagList"},
+        "User":{"shape":"SmbUser"},
+        "Domain":{"shape":"SmbDomain"},
+        "Password":{"shape":"SmbPassword"}
+      }
+    },
+    "CreateLocationFsxWindowsResponse":{
       "type":"structure",
       "members":{
         "LocationArn":{"shape":"LocationArn"}
@@ -441,7 +520,7 @@
         "OnPremConfig"
       ],
       "members":{
-        "Subdirectory":{"shape":"NonEmptySubdirectory"},
+        "Subdirectory":{"shape":"NfsSubdirectory"},
         "ServerHostname":{"shape":"ServerHostname"},
         "OnPremConfig":{"shape":"OnPremConfig"},
         "MountOptions":{"shape":"NfsMountOptions"},
@@ -461,13 +540,40 @@
         "S3Config"
       ],
       "members":{
-        "Subdirectory":{"shape":"Subdirectory"},
+        "Subdirectory":{"shape":"S3Subdirectory"},
         "S3BucketArn":{"shape":"S3BucketArn"},
+        "S3StorageClass":{"shape":"S3StorageClass"},
         "S3Config":{"shape":"S3Config"},
         "Tags":{"shape":"TagList"}
       }
     },
     "CreateLocationS3Response":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "CreateLocationSmbRequest":{
+      "type":"structure",
+      "required":[
+        "Subdirectory",
+        "ServerHostname",
+        "User",
+        "Password",
+        "AgentArns"
+      ],
+      "members":{
+        "Subdirectory":{"shape":"SmbSubdirectory"},
+        "ServerHostname":{"shape":"ServerHostname"},
+        "User":{"shape":"SmbUser"},
+        "Domain":{"shape":"SmbDomain"},
+        "Password":{"shape":"SmbPassword"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "MountOptions":{"shape":"SmbMountOptions"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateLocationSmbResponse":{
       "type":"structure",
       "members":{
         "LocationArn":{"shape":"LocationArn"}
@@ -486,6 +592,7 @@
         "Name":{"shape":"TagValue"},
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
+        "Schedule":{"shape":"TaskSchedule"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -546,7 +653,7 @@
         "Status":{"shape":"AgentStatus"},
         "LastConnectionTime":{"shape":"Time"},
         "CreationTime":{"shape":"Time"},
-        "EndpointOptions":{"shape":"EndpointOptions"},
+        "EndpointType":{"shape":"EndpointType"},
         "PrivateLinkConfig":{"shape":"PrivateLinkConfig"}
       }
     },
@@ -564,6 +671,24 @@
         "LocationUri":{"shape":"LocationUri"},
         "Ec2Config":{"shape":"Ec2Config"},
         "CreationTime":{"shape":"Time"}
+      }
+    },
+    "DescribeLocationFsxWindowsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationFsxWindowsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "CreationTime":{"shape":"Time"},
+        "User":{"shape":"SmbUser"},
+        "Domain":{"shape":"SmbDomain"}
       }
     },
     "DescribeLocationNfsRequest":{
@@ -595,7 +720,27 @@
       "members":{
         "LocationArn":{"shape":"LocationArn"},
         "LocationUri":{"shape":"LocationUri"},
+        "S3StorageClass":{"shape":"S3StorageClass"},
         "S3Config":{"shape":"S3Config"},
+        "CreationTime":{"shape":"Time"}
+      }
+    },
+    "DescribeLocationSmbRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationSmbResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "User":{"shape":"SmbUser"},
+        "Domain":{"shape":"SmbDomain"},
+        "MountOptions":{"shape":"SmbMountOptions"},
         "CreationTime":{"shape":"Time"}
       }
     },
@@ -640,12 +785,19 @@
         "SourceLocationArn":{"shape":"LocationArn"},
         "DestinationLocationArn":{"shape":"LocationArn"},
         "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
+        "SourceNetworkInterfaceArns":{"shape":"SourceNetworkInterfaceArns"},
+        "DestinationNetworkInterfaceArns":{"shape":"DestinationNetworkInterfaceArns"},
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
+        "Schedule":{"shape":"TaskSchedule"},
         "ErrorCode":{"shape":"string"},
         "ErrorDetail":{"shape":"string"},
         "CreationTime":{"shape":"Time"}
       }
+    },
+    "DestinationNetworkInterfaceArns":{
+      "type":"list",
+      "member":{"shape":"NetworkInterfaceArn"}
     },
     "Duration":{
       "type":"long",
@@ -683,12 +835,24 @@
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):elasticfilesystem:[a-z\\-0-9]*:[0-9]{12}:file-system/fs-.*$"
     },
-    "EndpointOptions":{
-      "type":"structure",
-      "members":{
-        "Fips":{"shape":"boolean"},
-        "PrivateLink":{"shape":"boolean"}
-      }
+    "EfsSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]*$"
+    },
+    "Endpoint":{
+      "type":"string",
+      "max":15,
+      "min":7,
+      "pattern":"\\A(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}\\z"
+    },
+    "EndpointType":{
+      "type":"string",
+      "enum":[
+        "PUBLIC",
+        "PRIVATE_LINK",
+        "FIPS"
+      ]
     },
     "FilterList":{
       "type":"list",
@@ -713,6 +877,16 @@
       "type":"string",
       "max":409600,
       "pattern":"^[^\\x00]+$"
+    },
+    "FsxFilesystemArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):fsx:[a-z\\-0-9]*:[0-9]{12}:file-system/fs-.*$"
+    },
+    "FsxWindowsSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
     },
     "Gid":{
       "type":"string",
@@ -836,12 +1010,21 @@
     },
     "LocationUri":{
       "type":"string",
-      "pattern":"(efs|nfs|s3)://[a-zA-Z0-9.\\-]+"
+      "max":4356,
+      "pattern":"^(efs|nfs|s3|smb|fsxw)://[a-zA-Z0-9.\\-]+$"
     },
     "LogGroupArn":{
       "type":"string",
       "max":562,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):logs:[a-z\\-0-9]*:[0-9]{12}:log-group:([^:\\*]*)$"
+    },
+    "LogLevel":{
+      "type":"string",
+      "enum":[
+        "OFF",
+        "BASIC",
+        "TRANSFER"
+      ]
     },
     "MaxResults":{
       "type":"integer",
@@ -855,6 +1038,11 @@
         "PRESERVE"
       ]
     },
+    "NetworkInterfaceArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"^arn:aws[\\-a-z]{0,}:ec2:[a-z\\-0-9]*:[0-9]{12}:network-interface/eni-[0-9a-f]+$"
+    },
     "NextToken":{
       "type":"string",
       "max":65535,
@@ -866,6 +1054,11 @@
         "Version":{"shape":"NfsVersion"}
       }
     },
+    "NfsSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]+$"
+    },
     "NfsVersion":{
       "type":"string",
       "enum":[
@@ -874,11 +1067,6 @@
         "NFS4_0",
         "NFS4_1"
       ]
-    },
-    "NonEmptySubdirectory":{
-      "type":"string",
-      "max":4096,
-      "pattern":"^[a-zA-Z0-9_\\-\\./]+$"
     },
     "OnPremConfig":{
       "type":"structure",
@@ -891,6 +1079,7 @@
       "type":"structure",
       "members":{
         "VerifyMode":{"shape":"VerifyMode"},
+        "OverwriteMode":{"shape":"OverwriteMode"},
         "Atime":{"shape":"Atime"},
         "Mtime":{"shape":"Mtime"},
         "Uid":{"shape":"Uid"},
@@ -898,8 +1087,17 @@
         "PreserveDeletedFiles":{"shape":"PreserveDeletedFiles"},
         "PreserveDevices":{"shape":"PreserveDevices"},
         "PosixPermissions":{"shape":"PosixPermissions"},
-        "BytesPerSecond":{"shape":"BytesPerSecond"}
+        "BytesPerSecond":{"shape":"BytesPerSecond"},
+        "TaskQueueing":{"shape":"TaskQueueing"},
+        "LogLevel":{"shape":"LogLevel"}
       }
+    },
+    "OverwriteMode":{
+      "type":"string",
+      "enum":[
+        "ALWAYS",
+        "NEVER"
+      ]
     },
     "PLSecurityGroupArnList":{
       "type":"list",
@@ -925,7 +1123,6 @@
       "type":"string",
       "enum":[
         "NONE",
-        "BEST_EFFORT",
         "PRESERVE"
       ]
     },
@@ -946,7 +1143,8 @@
     "PrivateLinkConfig":{
       "type":"structure",
       "members":{
-        "PrivateLinkEndpoint":{"shape":"string"},
+        "VpcEndpointId":{"shape":"VpcEndpointId"},
+        "PrivateLinkEndpoint":{"shape":"Endpoint"},
         "SubnetArns":{"shape":"PLSubnetArnList"},
         "SecurityGroupArns":{"shape":"PLSecurityGroupArnList"}
       }
@@ -963,10 +1161,70 @@
         "BucketAccessRoleArn":{"shape":"IamRoleArn"}
       }
     },
+    "S3StorageClass":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "STANDARD_IA",
+        "ONEZONE_IA",
+        "INTELLIGENT_TIERING",
+        "GLACIER",
+        "DEEP_ARCHIVE"
+      ]
+    },
+    "S3Subdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]*$"
+    },
+    "ScheduleExpressionCron":{
+      "type":"string",
+      "max":256,
+      "pattern":"^[a-zA-Z0-9\\ \\_\\*\\?\\,\\|\\^\\-\\/\\#\\s\\(\\)\\+]*$"
+    },
     "ServerHostname":{
       "type":"string",
       "max":255,
       "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])$"
+    },
+    "SmbDomain":{
+      "type":"string",
+      "max":253,
+      "pattern":"^([A-Za-z0-9]+[A-Za-z0-9-.]*)*[A-Za-z0-9-]*[A-Za-z0-9]$"
+    },
+    "SmbMountOptions":{
+      "type":"structure",
+      "members":{
+        "Version":{"shape":"SmbVersion"}
+      }
+    },
+    "SmbPassword":{
+      "type":"string",
+      "max":104,
+      "pattern":"^.{0,104}$",
+      "sensitive":true
+    },
+    "SmbSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
+    },
+    "SmbUser":{
+      "type":"string",
+      "max":104,
+      "pattern":"^[^\\x5B\\x5D\\\\/:;|=,+*?]{1,104}$"
+    },
+    "SmbVersion":{
+      "type":"string",
+      "enum":[
+        "AUTOMATIC",
+        "SMB2",
+        "SMB3"
+      ]
+    },
+    "SourceNetworkInterfaceArns":{
+      "type":"list",
+      "member":{"shape":"NetworkInterfaceArn"}
     },
     "StartTaskExecutionRequest":{
       "type":"structure",
@@ -982,11 +1240,6 @@
       "members":{
         "TaskExecutionArn":{"shape":"TaskExecutionArn"}
       }
-    },
-    "Subdirectory":{
-      "type":"string",
-      "max":4096,
-      "pattern":"^[a-zA-Z0-9_\\-\\./]*$"
     },
     "TagKey":{
       "type":"string",
@@ -1034,7 +1287,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"^[a-zA-Z0-9\\s+=._:/-]+$"
+      "pattern":"^[a-zA-Z0-9\\s+=._:@/-]+$"
     },
     "TaggableResourceArn":{
       "type":"string",
@@ -1067,6 +1320,7 @@
       "members":{
         "PrepareDuration":{"shape":"Duration"},
         "PrepareStatus":{"shape":"PhaseStatus"},
+        "TotalDuration":{"shape":"Duration"},
         "TransferDuration":{"shape":"Duration"},
         "TransferStatus":{"shape":"PhaseStatus"},
         "VerifyDuration":{"shape":"Duration"},
@@ -1078,6 +1332,7 @@
     "TaskExecutionStatus":{
       "type":"string",
       "enum":[
+        "QUEUED",
         "LAUNCHING",
         "PREPARING",
         "TRANSFERRING",
@@ -1098,11 +1353,26 @@
         "Name":{"shape":"TagValue"}
       }
     },
+    "TaskQueueing":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "TaskSchedule":{
+      "type":"structure",
+      "required":["ScheduleExpression"],
+      "members":{
+        "ScheduleExpression":{"shape":"ScheduleExpressionCron"}
+      }
+    },
     "TaskStatus":{
       "type":"string",
       "enum":[
         "AVAILABLE",
         "CREATING",
+        "QUEUED",
         "RUNNING",
         "UNAVAILABLE"
       ]
@@ -1153,6 +1423,7 @@
         "TaskArn":{"shape":"TaskArn"},
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
+        "Schedule":{"shape":"TaskSchedule"},
         "Name":{"shape":"TagValue"},
         "CloudWatchLogGroupArn":{"shape":"LogGroupArn"}
       }
@@ -1166,10 +1437,14 @@
       "type":"string",
       "enum":[
         "POINT_IN_TIME_CONSISTENT",
+        "ONLY_FILES_TRANSFERRED",
         "NONE"
       ]
     },
-    "boolean":{"type":"boolean"},
+    "VpcEndpointId":{
+      "type":"string",
+      "pattern":"^vpce-[0-9a-f]{17}$"
+    },
     "long":{"type":"long"},
     "string":{"type":"string"}
   }

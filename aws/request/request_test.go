@@ -20,10 +20,8 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/client"
-	"github.com/aws/aws-sdk-go/aws/client/metadata"
+	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
@@ -81,7 +79,6 @@ func unmarshal(req *request.Request) {
 	if req.Data != nil {
 		json.NewDecoder(req.HTTPResponse.Body).Decode(req.Data)
 	}
-	return
 }
 
 func unmarshalError(req *request.Request) {
@@ -124,7 +121,10 @@ func TestRequestRecoverRetry5xx(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries: aws.Int(10),
+		SleepDelay: func(time.Duration) {},
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -139,7 +139,7 @@ func TestRequestRecoverRetry5xx(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error, but got %v", err)
 	}
-	if e, a := 2, int(r.RetryCount); e != a {
+	if e, a := 2, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
@@ -157,7 +157,10 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries: aws.Int(10),
+		SleepDelay: func(time.Duration) {},
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -172,7 +175,7 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error, but got %v", err)
 	}
-	if e, a := 3, int(r.RetryCount); e != a {
+	if e, a := 3, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
@@ -182,13 +185,19 @@ func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 
 // test that retries don't occur for 4xx status codes with a response type that can't be retried
 func TestRequest4xxUnretryable(t *testing.T) {
-	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries: aws.Int(1),
+		SleepDelay: func(time.Duration) {},
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
 	s.Handlers.Send.Clear() // mock sending
 	s.Handlers.Send.PushBack(func(r *request.Request) {
-		r.HTTPResponse = &http.Response{StatusCode: 401, Body: body(`{"__type":"SignatureDoesNotMatch","message":"Signature does not match."}`)}
+		r.HTTPResponse = &http.Response{
+			StatusCode: 401,
+			Body:       body(`{"__type":"SignatureDoesNotMatch","message":"Signature does not match."}`),
+		}
 	})
 	out := &testData{}
 	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
@@ -206,7 +215,7 @@ func TestRequest4xxUnretryable(t *testing.T) {
 	if e, a := "Signature does not match.", aerr.Message(); e != a {
 		t.Errorf("expect %q error message, got %q", e, a)
 	}
-	if e, a := 0, int(r.RetryCount); e != a {
+	if e, a := 0, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 }
@@ -225,7 +234,9 @@ func TestRequestExhaustRetries(t *testing.T) {
 		{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithSleepDelay(sleepDelay))
+	s := awstesting.NewClient(&aws.Config{
+		SleepDelay: sleepDelay,
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -249,11 +260,11 @@ func TestRequestExhaustRetries(t *testing.T) {
 	if e, a := "An error occurred.", aerr.Message(); e != a {
 		t.Errorf("expect %q error message, got %q", e, a)
 	}
-	if e, a := 3, int(r.RetryCount); e != a {
+	if e, a := 3, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 
-	expectDelays := []struct{ min, max time.Duration }{{30, 59}, {60, 118}, {120, 236}}
+	expectDelays := []struct{ min, max time.Duration }{{30, 60}, {60, 120}, {120, 240}}
 	for i, v := range delays {
 		min := expectDelays[i].min * time.Millisecond
 		max := expectDelays[i].max * time.Millisecond
@@ -272,7 +283,11 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := awstesting.NewClient(&aws.Config{MaxRetries: aws.Int(10), Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "")})
+	s := awstesting.NewClient(&aws.Config{
+		MaxRetries:  aws.Int(10),
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
+		SleepDelay:  func(time.Duration) {},
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -310,7 +325,7 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 		t.Errorf("Expect valid creds after cred expired recovery")
 	}
 
-	if e, a := 1, int(r.RetryCount); e != a {
+	if e, a := 1, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
@@ -341,7 +356,9 @@ func TestMakeAddtoUserAgentFreeFormHandler(t *testing.T) {
 }
 
 func TestRequestUserAgent(t *testing.T) {
-	s := awstesting.NewClient(&aws.Config{Region: aws.String("us-east-1")})
+	s := awstesting.NewClient(&aws.Config{
+		Region: aws.String("us-east-1"),
+	})
 
 	req := s.NewRequest(&request.Operation{Name: "Operation"}, nil, &testData{})
 	req.HTTPRequest.Header.Set("User-Agent", "foo/bar")
@@ -357,7 +374,7 @@ func TestRequestUserAgent(t *testing.T) {
 }
 
 func TestRequestThrottleRetries(t *testing.T) {
-	delays := []time.Duration{}
+	var delays []time.Duration
 	sleepDelay := func(delay time.Duration) {
 		delays = append(delays, delay)
 	}
@@ -370,7 +387,9 @@ func TestRequestThrottleRetries(t *testing.T) {
 		{StatusCode: 500, Body: body(`{"__type":"Throttling","message":"An error occurred."}`)},
 	}
 
-	s := awstesting.NewClient(aws.NewConfig().WithSleepDelay(sleepDelay))
+	s := awstesting.NewClient(&aws.Config{
+		SleepDelay: sleepDelay,
+	})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
@@ -394,11 +413,11 @@ func TestRequestThrottleRetries(t *testing.T) {
 	if e, a := "An error occurred.", aerr.Message(); e != a {
 		t.Errorf("expect %q error message, got %q", e, a)
 	}
-	if e, a := 3, int(r.RetryCount); e != a {
+	if e, a := 3, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 
-	expectDelays := []struct{ min, max time.Duration }{{500, 999}, {1000, 1998}, {2000, 3996}}
+	expectDelays := []struct{ min, max time.Duration }{{500, 1000}, {1000, 2000}, {2000, 4000}}
 	for i, v := range delays {
 		min := expectDelays[i].min * time.Millisecond
 		max := expectDelays[i].max * time.Millisecond
@@ -444,7 +463,7 @@ func TestRequestRecoverTimeoutWithNilBody(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error, but got %v", err)
 	}
-	if e, a := 1, int(r.RetryCount); e != a {
+	if e, a := 1, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
@@ -487,7 +506,7 @@ func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error, but got %v", err)
 	}
-	if e, a := 1, int(r.RetryCount); e != a {
+	if e, a := 1, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if e, a := "valid", out.Data; e != a {
@@ -547,7 +566,9 @@ func TestRequest_NoBody(t *testing.T) {
 			Name: "OpName", HTTPMethod: c, HTTPPath: "/{bucket}/{key+}",
 		}, &in, &out)
 
-		if err := r.Send(); err != nil {
+		err := r.Send()
+		server.Close()
+		if err != nil {
 			t.Fatalf("%d, expect no error sending request, got %v", i, err)
 		}
 	}
@@ -581,7 +602,7 @@ func TestIsSerializationErrorRetryable(t *testing.T) {
 			Error: c.err,
 		}
 		if r.IsErrorRetryable() != c.expected {
-			t.Errorf("Case %d: Expected %v, but received %v", i+1, c.expected, !c.expected)
+			t.Errorf("Case %d: Expected %v, but received %v", i, c.expected, !c.expected)
 		}
 	}
 }
@@ -649,55 +670,47 @@ func TestWithGetResponseHeaders(t *testing.T) {
 
 type testRetryer struct {
 	shouldRetry bool
+	maxRetries  int
 }
 
 func (d *testRetryer) MaxRetries() int {
-	return 3
+	return d.maxRetries
 }
 
 // RetryRules returns the delay duration before retrying this request again
 func (d *testRetryer) RetryRules(r *request.Request) time.Duration {
-	return time.Duration(time.Millisecond)
+	return 0
 }
 
 func (d *testRetryer) ShouldRetry(r *request.Request) bool {
-	d.shouldRetry = true
-	if r.Retryable != nil {
-		return *r.Retryable
-	}
-
-	if r.HTTPResponse.StatusCode >= 500 {
-		return true
-	}
-	return r.IsErrorRetryable()
+	return d.shouldRetry
 }
 
 func TestEnforceShouldRetryCheck(t *testing.T) {
-	tp := &http.Transport{
-		Proxy:                 http.ProxyFromEnvironment,
-		ResponseHeaderTimeout: 1 * time.Millisecond,
+
+	retryer := &testRetryer{
+		shouldRetry: true, maxRetries: 3,
 	}
-
-	client := &http.Client{Transport: tp}
-
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// This server should wait forever. Requests will timeout and the SDK should
-		// attempt to retry.
-		select {}
-	}))
-
-	retryer := &testRetryer{}
 	s := awstesting.NewClient(&aws.Config{
 		Region:                  aws.String("mock-region"),
 		MaxRetries:              aws.Int(0),
-		Endpoint:                aws.String(server.URL),
-		DisableSSL:              aws.Bool(true),
 		Retryer:                 retryer,
-		HTTPClient:              client,
 		EnforceShouldRetryCheck: aws.Bool(true),
+		SleepDelay:              func(time.Duration) {},
 	})
 
 	s.Handlers.Validate.Clear()
+	s.Handlers.Send.Swap(corehandlers.SendHandler.Name, request.NamedHandler{
+		Name: "TestEnforceShouldRetryCheck",
+		Fn: func(r *request.Request) {
+			r.HTTPResponse = &http.Response{
+				Header: http.Header{},
+				Body:   ioutil.NopCloser(bytes.NewBuffer(nil)),
+			}
+			r.Retryable = aws.Bool(false)
+		},
+	})
+
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
 
@@ -707,7 +720,7 @@ func TestEnforceShouldRetryCheck(t *testing.T) {
 	if err == nil {
 		t.Fatalf("expect error, but got nil")
 	}
-	if e, a := 3, int(r.RetryCount); e != a {
+	if e, a := 3, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 	if !retryer.shouldRetry {
@@ -759,6 +772,7 @@ func TestRequest_TemporaryRetry(t *testing.T) {
 
 		<-done
 	}))
+	defer server.Close()
 
 	client := &http.Client{
 		Timeout: 100 * time.Millisecond,
@@ -921,25 +935,6 @@ func TestRequest_Presign(t *testing.T) {
 	}
 }
 
-func TestNew_EndpointWithDefaultPort(t *testing.T) {
-	endpoint := "https://estest.us-east-1.es.amazonaws.com:443"
-	expectedRequestHost := "estest.us-east-1.es.amazonaws.com"
-
-	r := request.New(
-		aws.Config{},
-		metadata.ClientInfo{Endpoint: endpoint},
-		defaults.Handlers(),
-		client.DefaultRetryer{},
-		&request.Operation{},
-		nil,
-		nil,
-	)
-
-	if h := r.HTTPRequest.Host; h != expectedRequestHost {
-		t.Errorf("expect %v host, got %q", expectedRequestHost, h)
-	}
-}
-
 func TestSanitizeHostForHeader(t *testing.T) {
 	cases := []struct {
 		url                 string
@@ -1075,7 +1070,7 @@ func Test501NotRetrying(t *testing.T) {
 	if e, a := "NotImplemented", aerr.Code(); e != a {
 		t.Errorf("expected error code %q, but received %q", e, a)
 	}
-	if e, a := 1, int(r.RetryCount); e != a {
+	if e, a := 1, r.RetryCount; e != a {
 		t.Errorf("expect %d retry count, got %d", e, a)
 	}
 }
@@ -1101,9 +1096,176 @@ func TestRequestNoConnection(t *testing.T) {
 		t.Fatal("expect error, but got none")
 	}
 
+	t.Logf("Error, %v", err)
+	awsError := err.(awserr.Error)
+	origError := awsError.OrigErr()
+	t.Logf("Orig Error: %#v of type %T", origError, origError)
+
 	if e, a := 10, r.RetryCount; e != a {
 		t.Errorf("expect %v retry count, got %v", e, a)
 	}
+}
+
+func TestRequestBodySeekFails(t *testing.T) {
+	s := awstesting.NewClient()
+	s.Handlers.Validate.Clear()
+	s.Handlers.Build.Clear()
+
+	out := &testData{}
+	r := s.NewRequest(&request.Operation{Name: "Operation"}, nil, out)
+	r.SetReaderBody(&stubSeekFail{
+		Err: fmt.Errorf("failed to seek reader"),
+	})
+	err := r.Send()
+	if err == nil {
+		t.Fatal("expect error, but got none")
+	}
+
+	aerr := err.(awserr.Error)
+	if e, a := request.ErrCodeSerialization, aerr.Code(); e != a {
+		t.Errorf("expect %v error code, got %v", e, a)
+	}
+
+}
+
+func TestRequestEndpointWithDefaultPort(t *testing.T) {
+	s := awstesting.NewClient(&aws.Config{
+		Endpoint: aws.String("https://example.test:443"),
+	})
+	r := s.NewRequest(&request.Operation{
+		Name:       "FooBar",
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}, nil, nil)
+	r.Handlers.Validate.Clear()
+	r.Handlers.ValidateResponse.Clear()
+	r.Handlers.Send.Clear()
+	r.Handlers.Send.PushFront(func(r *request.Request) {
+		req := r.HTTPRequest
+
+		if e, a := "example.test", req.Host; e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+
+		if e, a := "https://example.test:443/", req.URL.String(); e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+	})
+	err := r.Send()
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+}
+
+func TestRequestEndpointWithNonDefaultPort(t *testing.T) {
+	s := awstesting.NewClient(&aws.Config{
+		Endpoint: aws.String("https://example.test:8443"),
+	})
+	r := s.NewRequest(&request.Operation{
+		Name:       "FooBar",
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}, nil, nil)
+	r.Handlers.Validate.Clear()
+	r.Handlers.ValidateResponse.Clear()
+	r.Handlers.Send.Clear()
+	r.Handlers.Send.PushFront(func(r *request.Request) {
+		req := r.HTTPRequest
+
+		// http.Request.Host should not be set for non-default ports
+		if e, a := "", req.Host; e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+
+		if e, a := "https://example.test:8443/", req.URL.String(); e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+	})
+	err := r.Send()
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+}
+
+func TestRequestMarshaledEndpointWithDefaultPort(t *testing.T) {
+	s := awstesting.NewClient(&aws.Config{
+		Endpoint: aws.String("https://example.test:443"),
+	})
+	r := s.NewRequest(&request.Operation{
+		Name:       "FooBar",
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}, nil, nil)
+	r.Handlers.Validate.Clear()
+	r.Handlers.ValidateResponse.Clear()
+	r.Handlers.Build.PushBack(func(r *request.Request) {
+		req := r.HTTPRequest
+		req.URL.Host = "foo." + req.URL.Host
+	})
+	r.Handlers.Send.Clear()
+	r.Handlers.Send.PushFront(func(r *request.Request) {
+		req := r.HTTPRequest
+
+		if e, a := "foo.example.test", req.Host; e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+
+		if e, a := "https://foo.example.test:443/", req.URL.String(); e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+	})
+	err := r.Send()
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+}
+
+func TestRequestMarshaledEndpointWithNonDefaultPort(t *testing.T) {
+	s := awstesting.NewClient(&aws.Config{
+		Endpoint: aws.String("https://example.test:8443"),
+	})
+	r := s.NewRequest(&request.Operation{
+		Name:       "FooBar",
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}, nil, nil)
+	r.Handlers.Validate.Clear()
+	r.Handlers.ValidateResponse.Clear()
+	r.Handlers.Build.PushBack(func(r *request.Request) {
+		req := r.HTTPRequest
+		req.URL.Host = "foo." + req.URL.Host
+	})
+	r.Handlers.Send.Clear()
+	r.Handlers.Send.PushFront(func(r *request.Request) {
+		req := r.HTTPRequest
+
+		// http.Request.Host should not be set for non-default ports
+		if e, a := "", req.Host; e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+
+		if e, a := "https://foo.example.test:8443/", req.URL.String(); e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+	})
+	err := r.Send()
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+}
+
+type stubSeekFail struct {
+	Err error
+}
+
+func (f *stubSeekFail) Read(b []byte) (int, error) {
+	return len(b), nil
+}
+func (f *stubSeekFail) ReadAt(b []byte, offset int64) (int, error) {
+	return len(b), nil
+}
+func (f *stubSeekFail) Seek(offset int64, mode int) (int64, error) {
+	return 0, f.Err
 }
 
 func getFreePort() (int, error) {

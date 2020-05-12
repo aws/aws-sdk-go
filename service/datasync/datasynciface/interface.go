@@ -72,6 +72,10 @@ type DataSyncAPI interface {
 	CreateLocationEfsWithContext(aws.Context, *datasync.CreateLocationEfsInput, ...request.Option) (*datasync.CreateLocationEfsOutput, error)
 	CreateLocationEfsRequest(*datasync.CreateLocationEfsInput) (*request.Request, *datasync.CreateLocationEfsOutput)
 
+	CreateLocationFsxWindows(*datasync.CreateLocationFsxWindowsInput) (*datasync.CreateLocationFsxWindowsOutput, error)
+	CreateLocationFsxWindowsWithContext(aws.Context, *datasync.CreateLocationFsxWindowsInput, ...request.Option) (*datasync.CreateLocationFsxWindowsOutput, error)
+	CreateLocationFsxWindowsRequest(*datasync.CreateLocationFsxWindowsInput) (*request.Request, *datasync.CreateLocationFsxWindowsOutput)
+
 	CreateLocationNfs(*datasync.CreateLocationNfsInput) (*datasync.CreateLocationNfsOutput, error)
 	CreateLocationNfsWithContext(aws.Context, *datasync.CreateLocationNfsInput, ...request.Option) (*datasync.CreateLocationNfsOutput, error)
 	CreateLocationNfsRequest(*datasync.CreateLocationNfsInput) (*request.Request, *datasync.CreateLocationNfsOutput)
@@ -79,6 +83,10 @@ type DataSyncAPI interface {
 	CreateLocationS3(*datasync.CreateLocationS3Input) (*datasync.CreateLocationS3Output, error)
 	CreateLocationS3WithContext(aws.Context, *datasync.CreateLocationS3Input, ...request.Option) (*datasync.CreateLocationS3Output, error)
 	CreateLocationS3Request(*datasync.CreateLocationS3Input) (*request.Request, *datasync.CreateLocationS3Output)
+
+	CreateLocationSmb(*datasync.CreateLocationSmbInput) (*datasync.CreateLocationSmbOutput, error)
+	CreateLocationSmbWithContext(aws.Context, *datasync.CreateLocationSmbInput, ...request.Option) (*datasync.CreateLocationSmbOutput, error)
+	CreateLocationSmbRequest(*datasync.CreateLocationSmbInput) (*request.Request, *datasync.CreateLocationSmbOutput)
 
 	CreateTask(*datasync.CreateTaskInput) (*datasync.CreateTaskOutput, error)
 	CreateTaskWithContext(aws.Context, *datasync.CreateTaskInput, ...request.Option) (*datasync.CreateTaskOutput, error)
@@ -104,6 +112,10 @@ type DataSyncAPI interface {
 	DescribeLocationEfsWithContext(aws.Context, *datasync.DescribeLocationEfsInput, ...request.Option) (*datasync.DescribeLocationEfsOutput, error)
 	DescribeLocationEfsRequest(*datasync.DescribeLocationEfsInput) (*request.Request, *datasync.DescribeLocationEfsOutput)
 
+	DescribeLocationFsxWindows(*datasync.DescribeLocationFsxWindowsInput) (*datasync.DescribeLocationFsxWindowsOutput, error)
+	DescribeLocationFsxWindowsWithContext(aws.Context, *datasync.DescribeLocationFsxWindowsInput, ...request.Option) (*datasync.DescribeLocationFsxWindowsOutput, error)
+	DescribeLocationFsxWindowsRequest(*datasync.DescribeLocationFsxWindowsInput) (*request.Request, *datasync.DescribeLocationFsxWindowsOutput)
+
 	DescribeLocationNfs(*datasync.DescribeLocationNfsInput) (*datasync.DescribeLocationNfsOutput, error)
 	DescribeLocationNfsWithContext(aws.Context, *datasync.DescribeLocationNfsInput, ...request.Option) (*datasync.DescribeLocationNfsOutput, error)
 	DescribeLocationNfsRequest(*datasync.DescribeLocationNfsInput) (*request.Request, *datasync.DescribeLocationNfsOutput)
@@ -111,6 +123,10 @@ type DataSyncAPI interface {
 	DescribeLocationS3(*datasync.DescribeLocationS3Input) (*datasync.DescribeLocationS3Output, error)
 	DescribeLocationS3WithContext(aws.Context, *datasync.DescribeLocationS3Input, ...request.Option) (*datasync.DescribeLocationS3Output, error)
 	DescribeLocationS3Request(*datasync.DescribeLocationS3Input) (*request.Request, *datasync.DescribeLocationS3Output)
+
+	DescribeLocationSmb(*datasync.DescribeLocationSmbInput) (*datasync.DescribeLocationSmbOutput, error)
+	DescribeLocationSmbWithContext(aws.Context, *datasync.DescribeLocationSmbInput, ...request.Option) (*datasync.DescribeLocationSmbOutput, error)
+	DescribeLocationSmbRequest(*datasync.DescribeLocationSmbInput) (*request.Request, *datasync.DescribeLocationSmbOutput)
 
 	DescribeTask(*datasync.DescribeTaskInput) (*datasync.DescribeTaskOutput, error)
 	DescribeTaskWithContext(aws.Context, *datasync.DescribeTaskInput, ...request.Option) (*datasync.DescribeTaskOutput, error)
