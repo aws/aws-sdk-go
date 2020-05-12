@@ -113,7 +113,7 @@ func NewCopierWithClient(svc s3iface.S3API, options ...func(*Copier)) *Copier {
 
 // Copy copies an object between buckets and/or keys in S3. See CopyWithContext
 // for more information.
-func (c Copier) Copy(input *s3.CopyObjectInput, options ...func(*Copier)) (*s3.CopyObjectOutput, error) {
+func (c Copier) Copy(input *CopyInput, options ...func(*Copier)) (*CopyOutput, error) {
 	return c.CopyWithContext(aws.BackgroundContext(), input, options...)
 }
 
@@ -139,7 +139,7 @@ func (c Copier) Copy(input *s3.CopyObjectInput, options ...func(*Copier)) (*s3.C
 // options that will be applied to all API operations made with this uploader.
 //
 // It is safe to call this method concurrently across goroutines.
-func (c Copier) CopyWithContext(ctx aws.Context, input *s3.CopyObjectInput, options ...func(*Copier)) (*s3.CopyObjectOutput, error) {
+func (c Copier) CopyWithContext(ctx aws.Context, input *CopyInput, options ...func(*Copier)) (*CopyOutput, error) {
 	it := copier{in: input, cfg: c, ctx: ctx}
 
 	for _, opt := range options {
@@ -173,7 +173,7 @@ func copySourceRange(sourceSize, partSize, partNum int64) string {
 type copier struct {
 	ctx aws.Context // context from the call to CopyWithContext()
 	cfg Copier      // copy of the Copier that created this copier
-	in  *s3.CopyObjectInput
+	in  *CopyInput
 	src struct {
 		bucket  string
 		key     string
@@ -186,7 +186,7 @@ type copier struct {
 
 // copy executes a multipart copy based on the copier's input field. If the
 // source object is small, a simple S3 copy is executed instead.
-func (c *copier) copy() (*s3.CopyObjectOutput, error) {
+func (c *copier) copy() (*CopyOutput, error) {
 	if err := c.init(); err != nil {
 		return nil, err
 	}
@@ -313,13 +313,24 @@ func (c *copier) getSourceSize() (int64, error) {
 	return *out.ContentLength, nil
 }
 
-func (c *copier) simpleCopy() (*s3.CopyObjectOutput, error) {
-	in := c.in
+func (c *copier) simpleCopy() (*CopyOutput, error) {
+	in := s3.CopyObjectInput{}
+	awsutil.Copy(&in, c.in)
 	in.MetadataDirective = aws.String("REPLACE") // mimic multipart copy
-	return c.cfg.S3.CopyObjectWithContext(c.ctx, in, c.cfg.RequestOptions...)
+
+	result, err := c.cfg.S3.CopyObjectWithContext(c.ctx, &in, c.cfg.RequestOptions...)
+	if err != nil {
+		return nil, err
+	}
+
+	out := CopyOutput{}
+	awsutil.Copy(&out, result)
+	out.ETag = result.CopyObjectResult.ETag
+
+	return &out, nil
 }
 
-func (c *copier) multipartCopy() (*s3.CopyObjectOutput, error) {
+func (c *copier) multipartCopy() (*CopyOutput, error) {
 	upload, err := c.createUpload()
 	if err != nil {
 		return nil, err
@@ -423,14 +434,9 @@ func (c *copier) multipartCopy() (*s3.CopyObjectOutput, error) {
 	}
 	shouldAbortUpload = false
 
-	out := s3.CopyObjectOutput{}
-	awsutil.Copy(&out, firstPart)
+	out := CopyOutput{}
 	awsutil.Copy(&out, completed)
-	out.CopyObjectResult = &s3.CopyObjectResult{
-		ETag:         completed.ETag,
-		LastModified: nil, // could use a part, but it wouldn't be exact
-	}
-
+	out.CopySourceVersionId = firstPart.CopySourceVersionId
 	return &out, nil
 }
 

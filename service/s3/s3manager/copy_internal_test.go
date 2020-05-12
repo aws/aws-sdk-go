@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/s3"
 )
 
 func TestCopySourceRange(t *testing.T) {
@@ -67,7 +66,7 @@ func TestCopierInitSource(t *testing.T) {
 
 	for _, test := range tests {
 		c := copier{
-			in: &s3.CopyObjectInput{CopySource: aws.String(url.QueryEscape(test.input))},
+			in: &CopyInput{CopySource: aws.String(url.QueryEscape(test.input))},
 		}
 
 		err := c.initSource()

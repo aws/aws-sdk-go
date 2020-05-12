@@ -25,7 +25,7 @@ func ExampleNewCopierWithClient() {
 			copier.LeavePartsOnError = true
 		})
 	_, _ = copier.CopyWithContext(
-		aws.BackgroundContext(), &s3.CopyObjectInput{
+		aws.BackgroundContext(), &s3manager.CopyInput{
 			Bucket:     aws.String("dest-bucket"),
 			Key:        aws.String("lorem/ipsum.txt"),
 			CopySource: aws.String(url.QueryEscape("src-bucket/lorem/ipsum.txt?versionId=1")),
@@ -39,7 +39,7 @@ func ExampleCopier_CopyWithContext() {
 	// Copy s3://src-bucket/lorem/ipsum.txt to s3://dest-bucket/lorem/ipsum.txt.
 	// Version 1 of the source object will be copied.
 	out, err := copier.Copy(
-		&s3.CopyObjectInput{
+		&s3manager.CopyInput{
 			Bucket:     aws.String("dest-bucket"),
 			Key:        aws.String("lorem/ipsum.txt"),
 			CopySource: aws.String(url.QueryEscape("src-bucket/lorem/ipsum.txt?versionId=1")),
@@ -53,7 +53,7 @@ func ExampleCopier_CopyWithContext() {
 		panic(err)
 	}
 
-	log.Printf("The destination object's ETag is: %s", *out.CopyObjectResult.ETag)
+	log.Printf("The destination object's ETag is: %s", *out.ETag)
 }
 
 type copyTestCall struct {
@@ -197,7 +197,7 @@ func TestCopyWhenSizeBelowThreshold(t *testing.T) {
 	c := s3manager.NewCopierWithClient(&m)
 
 	copySource := url.QueryEscape("bucket/prefix/file.txt?versionId=123")
-	out, err := c.Copy(&s3.CopyObjectInput{
+	out, err := c.Copy(&s3manager.CopyInput{
 		Bucket:     aws.String("destbucket"),
 		Key:        aws.String("dest/key.txt"),
 		CopySource: &copySource,
@@ -232,7 +232,7 @@ func TestCopyWhenSizeAboveThreshold(t *testing.T) {
 	m.srcContentLength = 2*c.MaxPartSize + 1
 
 	copySource := url.QueryEscape("bucket/prefix/file.txt?versionId=123")
-	_, err := c.Copy(&s3.CopyObjectInput{
+	_, err := c.Copy(&s3manager.CopyInput{
 		Bucket:     aws.String("destbucket"),
 		Key:        aws.String("dest/key.txt"),
 		CopySource: &copySource,
@@ -283,7 +283,7 @@ func TestCopyAbortWhenUploadPartFails(t *testing.T) {
 	m.errorAtNthRange = 2
 
 	copySource := url.QueryEscape("bucket/prefix/file.txt?versionId=123")
-	_, err := c.Copy(&s3.CopyObjectInput{
+	_, err := c.Copy(&s3manager.CopyInput{
 		Bucket:     aws.String("destbucket"),
 		Key:        aws.String("dest/key.txt"),
 		CopySource: &copySource,
@@ -316,7 +316,7 @@ func TestCopyNoAbortWhenUploadPartFailsButLeavePartsIsSet(t *testing.T) {
 	m.errorAtNthRange = 2
 
 	copySource := url.QueryEscape("bucket/prefix/file.txt?versionId=123")
-	_, err := c.Copy(&s3.CopyObjectInput{
+	_, err := c.Copy(&s3manager.CopyInput{
 		Bucket:     aws.String("destbucket"),
 		Key:        aws.String("dest/key.txt"),
 		CopySource: &copySource,
