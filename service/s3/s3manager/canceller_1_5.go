@@ -3,8 +3,9 @@
 package s3manager
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
 	"sync"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 type cancellerFunc func()
@@ -26,8 +27,8 @@ func (c *cancellerCtx) Done() <-chan struct{} {
 // the benefits of cancellation are lost, but for the Copier's purposes it's
 // a stable interface and correct enough.
 func canceller(ctx aws.Context) (aws.Context, cancellerFunc) {
-	cctx := cancellerCtx{Context: ctx, ch: make(chan struct{})}
-	return &cctx, func() {
+	cctx := &cancellerCtx{Context: ctx, ch: make(chan struct{})}
+	return cctx, func() {
 		cctx.mu.Lock()
 		defer cctx.mu.Unlock()
 		if !cctx.closed {
