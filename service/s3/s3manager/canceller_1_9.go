@@ -4,6 +4,7 @@ package s3manager
 
 import (
 	"context"
+
 	"github.com/aws/aws-sdk-go/aws"
 )
 
