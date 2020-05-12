@@ -24,6 +24,11 @@ const DefaultMultipartCopyThreshold = 10 * 1024 * 1024
 // using Copy().
 const DefaultCopyConcurrency = 10
 
+// DefaultDiscoverSourceBucketRegion is the default setting of
+// DiscoverSourceBucketRegion, specifying whether a copy operation
+// should attempt to detect source bucket region when not provided.
+const DefaultDiscoverSourceBucketRegion = true
+
 // Copier is a structure for calling Copy(). It is safe to call Copy() on this
 // structure for multiple objects and across concurrent goroutines. Mutating
 // the Copier's properties is not safe to be done concurrently.
@@ -58,6 +63,11 @@ type Copier struct {
 	// Note that storing parts of an incomplete multipart upload counts towards
 	// space usage on S3 and will add additional costs if not cleaned up.
 	LeavePartsOnError bool
+
+	// Setting this value to true will cause the copier to discover the
+	// region of the source bucket by means of a HeadBucket call. The setting
+	// is ignored when the SourceRegion property of a CopyInput is nil.
+	DiscoverSourceBucketRegion bool
 
 	// S3 is the client used for executing the multipart copy.
 	S3 s3iface.S3API
@@ -101,6 +111,7 @@ func NewCopierWithClient(svc s3iface.S3API, options ...func(*Copier)) *Copier {
 		MaxPartSize:            MaxUploadPartSize,
 		MultipartCopyThreshold: DefaultMultipartCopyThreshold,
 		Concurrency:            DefaultCopyConcurrency,
+		DiscoverSourceBucketRegion: DefaultDiscoverSourceBucketRegion,
 		LeavePartsOnError:      false,
 	}
 
@@ -244,9 +255,19 @@ func (c *copier) init() error {
 			nil)
 	}
 
-	err := c.initSource()
-	if err != nil {
+	switch err := c.initSource(); {
+	case err != nil:
 		return err
+	}
+
+	if c.src.region == "" && c.cfg.DiscoverSourceBucketRegion {
+		// source region was not set by initSource()
+		switch region, err := c.discoverSourceRegion(); {
+		case err != nil:
+		return err
+		default:
+			c.src.region = region
+		}
 	}
 
 	switch head, err := c.getHeadObject(); {
@@ -305,6 +326,14 @@ func (c *copier) initSource() error {
 	}
 
 	return nil
+}
+
+func (c *copier) discoverSourceRegion() (string, error) {
+	return GetBucketRegionWithClient(
+		context.Background(),
+		c.cfg.S3,
+		c.src.bucket,
+		c.cfg.RequestOptions...)
 }
 
 // getHeadObject returns information about the source object.

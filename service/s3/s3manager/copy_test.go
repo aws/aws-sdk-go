@@ -23,6 +23,7 @@ func ExampleNewCopierWithClient() {
 	copier := s3manager.NewCopierWithClient(
 		svc, func(copier *s3manager.Copier) {
 			copier.LeavePartsOnError = true
+			copier.DiscoverSourceBucketRegion = false
 		})
 	_, _ = copier.CopyWithContext(
 		aws.BackgroundContext(), &s3manager.CopyInput{
@@ -195,7 +196,10 @@ func TestCopyWhenSizeBelowThreshold(t *testing.T) {
 	m := copyTestMock{
 		srcContentLength: s3manager.DefaultMultipartCopyThreshold - 1,
 	}
-	c := s3manager.NewCopierWithClient(&m)
+	c := s3manager.NewCopierWithClient(
+		&m, func(copier *s3manager.Copier) {
+			copier.DiscoverSourceBucketRegion = false
+		})
 
 	copySource := url.QueryEscape("bucket/prefix/file.txt?versionId=123")
 	out, err := c.Copy(&s3manager.CopyInput{
@@ -228,7 +232,10 @@ func TestCopyWhenSizeBelowThreshold(t *testing.T) {
 
 func TestCopyWhenSizeAboveThreshold(t *testing.T) {
 	m := copyTestMock{}
-	c := s3manager.NewCopierWithClient(&m)
+	c := s3manager.NewCopierWithClient(
+		&m, func(copier *s3manager.Copier) {
+			copier.DiscoverSourceBucketRegion = false
+		})
 	c.MaxPartSize = s3manager.MinUploadPartSize
 	c.MultipartCopyThreshold = s3manager.MinUploadPartSize
 	m.srcContentLength = 2*c.MaxPartSize + 1
@@ -277,7 +284,10 @@ func TestCopyWhenSizeAboveThreshold(t *testing.T) {
 
 func TestCopyAbortWhenUploadPartFails(t *testing.T) {
 	m := copyTestMock{}
-	c := s3manager.NewCopierWithClient(&m)
+	c := s3manager.NewCopierWithClient(
+		&m, func(copier *s3manager.Copier) {
+			copier.DiscoverSourceBucketRegion = false
+		})
 	c.MaxPartSize = s3manager.MinUploadPartSize
 	c.MultipartCopyThreshold = s3manager.MinUploadPartSize
 	c.Concurrency = 1
@@ -309,7 +319,10 @@ func TestCopyAbortWhenUploadPartFails(t *testing.T) {
 
 func TestCopyNoAbortWhenUploadPartFailsButLeavePartsIsSet(t *testing.T) {
 	m := copyTestMock{}
-	c := s3manager.NewCopierWithClient(&m)
+	c := s3manager.NewCopierWithClient(
+		&m, func(copier *s3manager.Copier) {
+			copier.DiscoverSourceBucketRegion = false
+		})
 	c.MaxPartSize = s3manager.MinUploadPartSize
 	c.MultipartCopyThreshold = s3manager.MinUploadPartSize
 	c.Concurrency = 1
