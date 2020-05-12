@@ -36,7 +36,7 @@
     "GetAssetPropertyValueHistory": "<p>Gets the history of an asset property's values. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#historical-values\">Querying Historical Property Values</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> <p>To identify an asset property, you must specify one of the following:</p> <ul> <li> <p>The <code>assetId</code> and <code>propertyId</code> of an asset property.</p> </li> <li> <p>A <code>propertyAlias</code>, which is a data stream alias (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). To define an asset property's alias, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html\">UpdateAssetProperty</a>.</p> </li> </ul>",
     "ListAccessPolicies": "<p>Retrieves a paginated list of access policies for an AWS SSO identity (a user or group) or an AWS IoT SiteWise Monitor resource (a portal or project).</p>",
     "ListAssetModels": "<p>Retrieves a paginated list of summaries of all asset models.</p>",
-    "ListAssets": "<p>Retrieves a paginated list of asset summaries.</p>",
+    "ListAssets": "<p>Retrieves a paginated list of asset summaries.</p> <p>You can use this operation to do the following:</p> <ul> <li> <p>List assets based on a specific asset model.</p> </li> <li> <p>List top-level assets.</p> </li> </ul> <p>You can't use this operation to list all assets. To retrieve summaries for all of your assets, use <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListAssetModels.html\">ListAssetModels</a> to get all of your asset model IDs. Then, use ListAssets to get all assets for each asset model.</p>",
     "ListAssociatedAssets": "<p>Retrieves a paginated list of the assets associated to a parent asset (<code>assetId</code>) by a given hierarchy (<code>hierarchyId</code>).</p>",
     "ListDashboards": "<p>Retrieves a paginated list of dashboards for an AWS IoT SiteWise Monitor project.</p>",
     "ListGateways": "<p>Retrieves a paginated list of gateways.</p>",
@@ -49,8 +49,8 @@
     "UntagResource": "<p>Removes a tag from an AWS IoT SiteWise resource.</p>",
     "UpdateAccessPolicy": "<p>Updates an existing access policy that specifies an AWS SSO user or group's access to an AWS IoT SiteWise Monitor portal or project resource.</p>",
     "UpdateAsset": "<p>Updates an asset's name. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html\">Updating Assets and Models</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
-    "UpdateAssetModel": "<p>Updates an asset model and all of the assets that were created from the model. Each asset created from the model inherits the updated asset model's property and hierarchy definitions. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html\">Updating Assets and Models</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> <important> <p>This action overwrites the existing model with the provided model. To avoid deleting your asset model's properties or hierarchies, you must include their definitions in the updated asset model payload. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html\">DescribeAssetModel</a>.</p> <p>If you remove a property from an asset model or update a property's formula expression, AWS IoT SiteWise deletes all previous data for that property. If you remove a hierarchy definition from an asset model, AWS IoT SiteWise disassociates every asset associated with that hierarchy. You can't change the type or data type of an existing property.</p> </important>",
-    "UpdateAssetProperty": "<p>Updates an asset property's alias and notification state.</p>",
+    "UpdateAssetModel": "<p>Updates an asset model and all of the assets that were created from the model. Each asset created from the model inherits the updated asset model's property and hierarchy definitions. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html\">Updating Assets and Models</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> <important> <p>This action overwrites the existing model with the provided model. To avoid deleting your asset model's properties or hierarchies, you must include their IDs and definitions in the updated asset model payload. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html\">DescribeAssetModel</a>.</p> <p>If you remove a property from an asset model or update a property's formula expression, AWS IoT SiteWise deletes all previous data for that property. If you remove a hierarchy definition from an asset model, AWS IoT SiteWise disassociates every asset associated with that hierarchy. You can't change the type or data type of an existing property.</p> </important>",
+    "UpdateAssetProperty": "<p>Updates an asset property's alias and notification state.</p> <important> <p>This operation overwrites the property's existing alias and notification state. To keep your existing property's alias or notification state, you must include the existing values in the UpdateAssetProperty request. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetProperty.html\">DescribeAssetProperty</a>.</p> </important>",
     "UpdateDashboard": "<p>Updates an AWS IoT SiteWise Monitor dashboard.</p>",
     "UpdateGateway": "<p>Updates a gateway's name.</p>",
     "UpdateGatewayCapabilityConfiguration": "<p>Updates a gateway capability configuration or defines a new capability configuration. Each gateway capability defines data sources for a gateway. A capability configuration can contain multiple data source configurations. If you define OPC-UA sources for a gateway in the AWS IoT SiteWise console, all of your OPC-UA sources are stored in one capability configuration. To list all capability configurations for a gateway, use <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeGateway.html\">DescribeGateway</a>.</p>",
@@ -301,7 +301,7 @@
     "AssetPropertyValues": {
       "base": null,
       "refs": {
-        "PutAssetPropertyValueEntry$propertyValues": "<p>The list of property values to upload. You can specify up to 10 <code>propertyValues</code> array elements. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>"
+        "PutAssetPropertyValueEntry$propertyValues": "<p>The list of property values to upload. You can specify up to 10 <code>propertyValues</code> array elements. </p>"
       }
     },
     "AssetState": {
@@ -991,7 +991,7 @@
         "GetAssetPropertyValueRequest$propertyId": "<p>The ID of the asset property.</p>",
         "IDs$member": null,
         "ListAccessPoliciesRequest$resourceId": "<p>The ID of the resource.</p>",
-        "ListAssetsRequest$assetModelId": "<p>The ID of the asset model by which to filter the list of assets. Omit the <code>assetModelId</code> to list all assets (of all models).</p>",
+        "ListAssetsRequest$assetModelId": "<p>The ID of the asset model by which to filter the list of assets. This parameter is required if you choose <code>ALL</code> for <code>filter</code>.</p>",
         "ListAssociatedAssetsRequest$assetId": "<p>The ID of the parent asset.</p>",
         "ListAssociatedAssetsRequest$hierarchyId": "<p>The hierarchy ID (of the parent asset model) whose associated assets are returned. To find a hierarchy ID, use the <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAsset.html\">DescribeAsset</a> or <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html\">DescribeAssetModel</a> actions.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html\">Asset Hierarchies</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
         "ListDashboardsRequest$projectId": "<p>The ID of the project.</p>",
@@ -1115,7 +1115,7 @@
     "ListAssetsFilter": {
       "base": null,
       "refs": {
-        "ListAssetsRequest$filter": "<p>The hierarchy level by which to filter the requested list of assets.</p>"
+        "ListAssetsRequest$filter": "<p>The filter for the requested list of assets. Choose one of the following options. Defaults to <code>ALL</code>.</p> <ul> <li> <p> <code>ALL</code> – The list includes all assets for a given asset model ID. The <code>assetModelId</code> parameter is required if you filter by <code>ALL</code>.</p> </li> <li> <p> <code>TOP_LEVEL</code> – The list includes only top-level assets in the asset hierarchy tree.</p> </li> </ul>"
       }
     },
     "ListAssetsRequest": {
@@ -1418,7 +1418,7 @@
       "refs": {
         "AssetProperty$alias": "<p>The property alias that identifies the property, such as an OPC-UA server data stream path (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html\">Mapping Industrial Data Streams to Asset Properties</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
         "Property$alias": "<p>The property alias that identifies the property, such as an OPC-UA server data stream path (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html\">Mapping Industrial Data Streams to Asset Properties</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
-        "UpdateAssetPropertyRequest$propertyAlias": "<p>The property alias that identifies the property, such as an OPC-UA server data stream path (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html\">Mapping Industrial Data Streams to Asset Properties</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>"
+        "UpdateAssetPropertyRequest$propertyAlias": "<p>The property alias that identifies the property, such as an OPC-UA server data stream path (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html\">Mapping Industrial Data Streams to Asset Properties</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> <p>If you omit this parameter, the alias is removed from the property.</p>"
       }
     },
     "PropertyDataType": {
@@ -1441,7 +1441,7 @@
       "base": null,
       "refs": {
         "PropertyNotification$state": "<p>The current notification state.</p>",
-        "UpdateAssetPropertyRequest$propertyNotificationState": "<p>The updated MQTT notification state (enabled or disabled) for this asset property. When the notification state is enabled, AWS IoT SiteWise publishes property value updates to a unique MQTT topic. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html\">Interacting with Other Services</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>"
+        "UpdateAssetPropertyRequest$propertyNotificationState": "<p>The MQTT notification state (enabled or disabled) for this asset property. When the notification state is enabled, AWS IoT SiteWise publishes property value updates to a unique MQTT topic. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html\">Interacting with Other Services</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> <p>If you omit this parameter, the notification state is set to <code>DISABLED</code>.</p>"
       }
     },
     "PropertyNotificationTopic": {
@@ -1494,7 +1494,7 @@
     "PutAssetPropertyValueEntries": {
       "base": null,
       "refs": {
-        "BatchPutAssetPropertyValueRequest$entries": "<p>The list of asset property value entries for the batch put request. You can specify up to 10 entries per request. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html\">Quotas</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>"
+        "BatchPutAssetPropertyValueRequest$entries": "<p>The list of asset property value entries for the batch put request. You can specify up to 10 entries per request.</p>"
       }
     },
     "PutAssetPropertyValueEntry": {

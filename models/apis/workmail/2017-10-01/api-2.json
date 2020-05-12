@@ -897,7 +897,10 @@
     },
     "DeleteAccessControlRuleRequest":{
       "type":"structure",
-      "required":["Name"],
+      "required":[
+        "OrganizationId",
+        "Name"
+      ],
       "members":{
         "OrganizationId":{"shape":"OrganizationId"},
         "Name":{"shape":"AccessControlRuleName"}
