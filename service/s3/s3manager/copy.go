@@ -140,14 +140,17 @@ func (c Copier) Copy(input *CopyInput, options ...func(*Copier)) (*CopyOutput, e
 //
 // It is safe to call this method concurrently across goroutines.
 func (c Copier) CopyWithContext(ctx aws.Context, input *CopyInput, options ...func(*Copier)) (*CopyOutput, error) {
-	it := copier{in: input, cfg: c, ctx: ctx}
+	out := copier{in: input, cfg: c, ctx: ctx}
+
+	out.cfg.RequestOptions = append(
+		[]request.Option{request.WithAppendUserAgent("S3Manager")},
+		out.cfg.RequestOptions...)
 
 	for _, opt := range options {
-		opt(&it.cfg)
+		opt(&out.cfg)
 	}
-	it.cfg.RequestOptions = append(it.cfg.RequestOptions, request.WithAppendUserAgent("S3Manager"))
 
-	return it.copy()
+	return out.copy()
 }
 
 // optimalPartSize returns the optimal multipart copy part size. It minimizes the
