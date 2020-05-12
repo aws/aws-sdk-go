@@ -69,6 +69,7 @@ type copyTestMock struct {
 	mu               sync.Mutex
 	partRanges       []string // form is "num:bytes=start-end"
 	errorAtNthRange  int64
+	srcMetadata      map[string]*string
 }
 
 func (m *copyTestMock) appendCall(method string, input interface{}) {
@@ -99,6 +100,7 @@ func (m *copyTestMock) HeadObjectWithContext(
 	m.appendCall("HeadObject", in)
 	out := s3.HeadObjectOutput{
 		ContentLength: aws.Int64(m.srcContentLength),
+		Metadata:      m.srcMetadata,
 	}
 	return &out, nil
 }
@@ -192,9 +194,10 @@ func assertStringIn(t *testing.T, s string, slice []string) {
 	t.Errorf("expected to find %s in %+v", s, slice)
 }
 
-func TestCopyWhenSizeBelowThreshold(t *testing.T) {
+func TestCopyWhenSizeSmallEnoughForSimpleCopy(t *testing.T) {
 	m := copyTestMock{
 		srcContentLength: s3manager.DefaultMultipartCopyThreshold - 1,
+		srcMetadata:      map[string]*string{"alpha": aws.String("bravo")},
 	}
 	c := s3manager.NewCopierWithClient(
 		&m, func(copier *s3manager.Copier) {
@@ -224,14 +227,50 @@ func TestCopyWhenSizeBelowThreshold(t *testing.T) {
 		assertEqual(t, *in.Bucket, "destbucket")
 		assertEqual(t, *in.Key, "dest/key.txt")
 		assertEqual(t, *in.CopySource, copySource)
+		assertEqual(t, in.Metadata, m.srcMetadata)
 	}
 
 	assertEqual(t, "VersionId-simple", *out.VersionId)
 	assertEqual(t, "ETag-simple", *out.ETag)
 }
 
-func TestCopyWhenSizeAboveThreshold(t *testing.T) {
-	m := copyTestMock{}
+func TestSimpleCopyMetadataDirectiveReplace(t *testing.T) {
+	m := copyTestMock{
+		srcContentLength: s3manager.DefaultMultipartCopyThreshold - 1,
+		srcMetadata:      map[string]*string{"alpha": aws.String("bravo")},
+	}
+	c := s3manager.NewCopierWithClient(
+		&m, func(copier *s3manager.Copier) {
+			copier.DiscoverSourceBucketRegion = false
+		})
+
+	copySource := url.QueryEscape("bucket/prefix/file.txt?versionId=123")
+	newMetadata := map[string]*string{"charlie": aws.String("delta")}
+	_, err := c.Copy(&s3manager.CopyInput{
+		Bucket:            aws.String("destbucket"),
+		Key:               aws.String("dest/key.txt"),
+		CopySource:        &copySource,
+		Metadata:          newMetadata,
+		MetadataDirective: aws.String("REPLACE"),
+	})
+	assertNoError(t, err)
+
+	ord := m.getCallOrder()
+	assertEqual(t, []string{"HeadObject", "CopyObject"}, ord)
+
+	{
+		in := m.calls[1].input.(*s3.CopyObjectInput)
+		assertEqual(t, *in.Bucket, "destbucket")
+		assertEqual(t, *in.Key, "dest/key.txt")
+		assertEqual(t, *in.CopySource, copySource)
+		assertEqual(t, in.Metadata, newMetadata)
+	}
+}
+
+func TestCopyWhenSizeLargeEnoughForMultiPartCopy(t *testing.T) {
+	m := copyTestMock{
+		srcMetadata: map[string]*string{"alpha": aws.String("bravo")},
+	}
 	c := s3manager.NewCopierWithClient(
 		&m, func(copier *s3manager.Copier) {
 			copier.DiscoverSourceBucketRegion = false
@@ -264,6 +303,7 @@ func TestCopyWhenSizeAboveThreshold(t *testing.T) {
 		in := m.calls[1].input.(*s3.CreateMultipartUploadInput)
 		assertEqual(t, *in.Bucket, "destbucket")
 		assertEqual(t, *in.Key, "dest/key.txt")
+		assertEqual(t, in.Metadata, m.srcMetadata)
 	}
 
 	for _, call := range m.calls[2:5] {
@@ -279,6 +319,44 @@ func TestCopyWhenSizeAboveThreshold(t *testing.T) {
 		assertEqual(t, *in.Key, "dest/key.txt")
 		assertEqual(t, *in.UploadId, "Upload123")
 		assertEqual(t, 3, len(in.MultipartUpload.Parts))
+	}
+}
+
+func TestMultiPartCopyMetadataReplace(t *testing.T) {
+	m := copyTestMock{
+		srcMetadata: map[string]*string{"alpha": aws.String("bravo")},
+	}
+	c := s3manager.NewCopierWithClient(
+		&m, func(copier *s3manager.Copier) {
+			copier.DiscoverSourceBucketRegion = false
+		})
+	c.MaxPartSize = s3manager.MinUploadPartSize
+	c.MultipartCopyThreshold = s3manager.MinUploadPartSize
+	m.srcContentLength = 2*c.MaxPartSize + 1
+
+	copySource := url.QueryEscape("bucket/prefix/file.txt?versionId=123")
+	newMetadata := map[string]*string{"charlie": aws.String("delta")}
+	_, err := c.Copy(&s3manager.CopyInput{
+		Bucket:            aws.String("destbucket"),
+		Key:               aws.String("dest/key.txt"),
+		CopySource:        &copySource,
+		Metadata:          newMetadata,
+		MetadataDirective: aws.String("REPLACE"),
+	})
+	assertNoError(t, err)
+
+	ord := m.getCallOrder()
+	assertEqual(t, []string{
+		"HeadObject", "CreateMultipartUpload",
+		"UploadPartCopy", "UploadPartCopy", "UploadPartCopy",
+		"CompleteMultipartUpload"},
+		ord)
+
+	{
+		in := m.calls[1].input.(*s3.CreateMultipartUploadInput)
+		assertEqual(t, *in.Bucket, "destbucket")
+		assertEqual(t, *in.Key, "dest/key.txt")
+		assertEqual(t, in.Metadata, newMetadata)
 	}
 }
 

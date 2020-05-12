@@ -1,6 +1,7 @@
 package s3manager
 
 import (
+	"context"
 	"fmt"
 	"net/url"
 	"strings"
@@ -107,12 +108,12 @@ func NewCopier(c client.ConfigProvider, options ...func(*Copier)) *Copier {
 // separately, and is subject to additional IAM permissions.
 func NewCopierWithClient(svc s3iface.S3API, options ...func(*Copier)) *Copier {
 	c := &Copier{
-		S3:                     svc,
-		MaxPartSize:            MaxUploadPartSize,
-		MultipartCopyThreshold: DefaultMultipartCopyThreshold,
-		Concurrency:            DefaultCopyConcurrency,
+		S3:                         svc,
+		MaxPartSize:                MaxUploadPartSize,
+		MultipartCopyThreshold:     DefaultMultipartCopyThreshold,
+		Concurrency:                DefaultCopyConcurrency,
 		DiscoverSourceBucketRegion: DefaultDiscoverSourceBucketRegion,
-		LeavePartsOnError:      false,
+		LeavePartsOnError:          false,
 	}
 
 	for _, option := range options {
@@ -191,9 +192,10 @@ type copier struct {
 	src struct {
 		bucket  string
 		key     string
-		version *string // nil if source object is not versioned
-		size    int64   // size (in bytes) of the source object
+		version *string            // nil if source object is not versioned
+		size    int64              // size (in bytes) of the source object
 		region  string             // when not empty, override HeadObject region
+		meta    map[string]*string // source object metadata
 	}
 	partSize  int64 // derived from source object size and concurrency
 	partCount int64 // derived from source object size and partSize
@@ -264,7 +266,7 @@ func (c *copier) init() error {
 		// source region was not set by initSource()
 		switch region, err := c.discoverSourceRegion(); {
 		case err != nil:
-		return err
+			return err
 		default:
 			c.src.region = region
 		}
@@ -275,6 +277,7 @@ func (c *copier) init() error {
 		return err
 	default:
 		c.src.size = *head.ContentLength
+		c.src.meta = head.Metadata
 	}
 
 	return nil
@@ -352,15 +355,44 @@ func (c *copier) getHeadObject() (*s3.HeadObjectOutput, error) {
 		}, opts...)
 }
 
+// copyMetadata either copies metadata from the source, or otherwise
+// replaces it from the input. Choice depends on the MetadataDirective
+// of the copy input.
+func (c *copier) copyMetadata(
+	in *CopyInput,
+	out *map[string]*string,
+	directive **string,
+) error {
+	// initial conditions:
+	// reset target to ensure simple and multipart behaviours match.
+
+	*out = nil
+
+	switch x := in.MetadataDirective; {
+	case x == nil || *x == "COPY":
+		*out = c.src.meta
+		if directive != nil {
+			*directive = aws.String("COPY")
+		}
+	case *x == "REPLACE":
+		*out = in.Metadata
+		if directive != nil {
+			*directive = aws.String("REPLACE")
+		}
+	default:
+		return awserr.New("InvalidRequest", "Invalid MetadataDirective", nil)
 	}
 
-	return *out.ContentLength, nil
+	return nil
 }
 
 func (c *copier) simpleCopy() (*CopyOutput, error) {
 	in := s3.CopyObjectInput{}
 	awsutil.Copy(&in, c.in)
-	in.MetadataDirective = aws.String("REPLACE") // mimic multipart copy
+
+	if err := c.copyMetadata(c.in, &in.Metadata, &in.MetadataDirective); err != nil {
+		return nil, err
+	}
 
 	result, err := c.cfg.S3.CopyObjectWithContext(c.ctx, &in, c.cfg.RequestOptions...)
 	if err != nil {
@@ -487,6 +519,12 @@ func (c *copier) multipartCopy() (*CopyOutput, error) {
 func (c *copier) createUpload() (*s3.CreateMultipartUploadOutput, error) {
 	in := s3.CreateMultipartUploadInput{}
 	awsutil.Copy(&in, c.in)
+
+	switch err := c.copyMetadata(c.in, &in.Metadata, nil); {
+	case err != nil:
+		return nil, err
+	}
+
 	return c.cfg.S3.CreateMultipartUploadWithContext(c.ctx, &in, c.cfg.RequestOptions...)
 }
 

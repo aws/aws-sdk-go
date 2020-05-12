@@ -73,6 +73,10 @@ type CopyInput struct {
 	// A map of metadata to store with the object in S3.
 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
+	// Specifies whether the metadata is copied from the source object or replaced
+	// with metadata provided in the request.
+	MetadataDirective *string `location:"header" locationName:"x-amz-metadata-directive" type:"string" enum:"MetadataDirective"`
+
 	// Specifies whether you want to apply a Legal Hold to the copied object.
 	ObjectLockLegalHoldStatus *string `location:"header" locationName:"x-amz-object-lock-legal-hold" type:"string" enum:"ObjectLockLegalHoldStatus"`
 
