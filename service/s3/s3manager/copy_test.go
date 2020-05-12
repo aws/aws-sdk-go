@@ -109,7 +109,8 @@ func (m *copyTestMock) CopyObjectWithContext(
 ) (*s3.CopyObjectOutput, error) {
 	m.appendCall("CopyObject", in)
 	out := s3.CopyObjectOutput{}
-	out.VersionId = aws.String("ETag-simple")
+	out.VersionId = aws.String("VersionId-simple")
+	out.CopyObjectResult = &s3.CopyObjectResult{ETag: aws.String("ETag-simple")}
 	return &out, nil
 }
 
@@ -221,7 +222,8 @@ func TestCopyWhenSizeBelowThreshold(t *testing.T) {
 		assertEqual(t, *in.CopySource, copySource)
 	}
 
-	assertEqual(t, "ETag-simple", *out.VersionId)
+	assertEqual(t, "VersionId-simple", *out.VersionId)
+	assertEqual(t, "ETag-simple", *out.ETag)
 }
 
 func TestCopyWhenSizeAboveThreshold(t *testing.T) {
