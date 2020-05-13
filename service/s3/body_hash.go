@@ -10,8 +10,6 @@ import (
 	"hash"
 	"io"
 
-	"github.com/aws/aws-sdk-go/private/util"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -67,7 +65,7 @@ func computeBodyHashes(r *request.Request) {
 		dst = io.MultiWriter(hashers...)
 	}
 
-	if _, err := util.CopySeekableBody(dst, r.Body); err != nil {
+	if _, err := aws.CopySeekableBody(dst, r.Body); err != nil {
 		r.Error = awserr.New("BodyHashError", "failed to compute body hashes", err)
 		return
 	}

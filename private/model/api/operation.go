@@ -313,10 +313,10 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	{{- end }}
 
 	{{- if .IsHttpChecksumRequired }}
-		{{- $_ := .API.AddSDKImport "private/util" }}
+		{{- $_ := .API.AddSDKImport "private/checksum" }}
 		req.Handlers.Build.PushBackNamed(request.NamedHandler{
 			Name: "contentMd5Handler",
-			Fn: util.ContentMD5,
+			Fn: checksum.AddBodyContentMD5Handler,
 		})
 	{{- end }}
 	return
