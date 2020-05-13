@@ -14,12 +14,12 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/checksum"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamapi"
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
-	"github.com/aws/aws-sdk-go/private/util"
 	"github.com/aws/aws-sdk-go/service/s3/internal/arn"
 )
 
@@ -2088,7 +2088,7 @@ func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) (req *request.Reque
 	req = c.newRequest(op, input, output)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -6410,7 +6410,7 @@ func (c *S3) PutBucketAclRequest(input *PutBucketAclInput) (req *request.Request
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -6693,7 +6693,7 @@ func (c *S3) PutBucketCorsRequest(input *PutBucketCorsInput) (req *request.Reque
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -6814,7 +6814,7 @@ func (c *S3) PutBucketEncryptionRequest(input *PutBucketEncryptionInput) (req *r
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -7042,7 +7042,7 @@ func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *req
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -7173,7 +7173,7 @@ func (c *S3) PutBucketLifecycleConfigurationRequest(input *PutBucketLifecycleCon
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -7314,7 +7314,7 @@ func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *request
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -7545,7 +7545,7 @@ func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (re
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -7751,7 +7751,7 @@ func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *request.R
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -7851,7 +7851,7 @@ func (c *S3) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req 
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -7979,7 +7979,7 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput)
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -8068,7 +8068,7 @@ func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *request
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -8188,7 +8188,7 @@ func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *r
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -8300,7 +8300,7 @@ func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *request
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -8580,7 +8580,7 @@ func (c *S3) PutObjectAclRequest(input *PutObjectAclInput) (req *request.Request
 	req = c.newRequest(op, input, output)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -8744,7 +8744,7 @@ func (c *S3) PutObjectLegalHoldRequest(input *PutObjectLegalHoldInput) (req *req
 	req = c.newRequest(op, input, output)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -8826,7 +8826,7 @@ func (c *S3) PutObjectLockConfigurationRequest(input *PutObjectLockConfiguration
 	req = c.newRequest(op, input, output)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -8913,7 +8913,7 @@ func (c *S3) PutObjectRetentionRequest(input *PutObjectRetentionInput) (req *req
 	req = c.newRequest(op, input, output)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -8995,7 +8995,7 @@ func (c *S3) PutObjectTaggingRequest(input *PutObjectTaggingInput) (req *request
 	req = c.newRequest(op, input, output)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
@@ -9111,7 +9111,7 @@ func (c *S3) PutPublicAccessBlockRequest(input *PutPublicAccessBlockInput) (req 
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(request.NamedHandler{
 		Name: "contentMd5Handler",
-		Fn:   util.ContentMD5,
+		Fn:   checksum.AddBodyContentMD5Handler,
 	})
 	return
 }
