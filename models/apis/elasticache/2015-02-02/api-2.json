@@ -3739,13 +3739,16 @@
         "in-progress",
         "stopping",
         "stopped",
-        "complete"
+        "complete",
+        "scheduling",
+        "scheduled",
+        "not-applicable"
       ]
     },
     "UpdateActionStatusList":{
       "type":"list",
       "member":{"shape":"UpdateActionStatus"},
-      "max":6
+      "max":9
     },
     "UpdateActionsMessage":{
       "type":"structure",
