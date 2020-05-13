@@ -140,15 +140,15 @@ func TestAfterRetryRefreshCreds(t *testing.T) {
 	})
 
 	if !svc.Config.Credentials.IsExpired() {
-		t.Errorf("expect to start out expired")
+		t.Fatalf("expect to start out expired")
 	}
 	if credProvider.retrieveCalled {
-		t.Errorf("expect retrieve not yet called")
+		t.Fatalf("expect retrieve not yet called")
 	}
 
 	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	if err := req.Send(); err != nil {
-		t.Errorf("expect no error, got %v", err)
+		t.Fatalf("expect no error, got %v", err)
 	}
 	if e, a := len(resps)-1, req.RetryCount; e != a {
 		t.Errorf("expect %v retries, got %v", e, a)
