@@ -28,7 +28,7 @@
     "ListGroupMembers": "<p>Returns an overview of the members of a group. Users and groups can be members of a group.</p>",
     "ListGroups": "<p>Returns summaries of the organization's groups.</p>",
     "ListMailboxPermissions": "<p>Lists the mailbox permissions associated with a user, group, or resource mailbox.</p>",
-    "ListOrganizations": "<p>Returns summaries of the customer's non-deleted organizations.</p>",
+    "ListOrganizations": "<p>Returns summaries of the customer's organizations.</p>",
     "ListResourceDelegates": "<p>Lists the delegates associated with a resource. Users and groups can be resource delegates and answer requests on behalf of the resource.</p>",
     "ListResources": "<p>Returns summaries of the organization's resources.</p>",
     "ListTagsForResource": "<p>Lists the tags applied to an Amazon WorkMail organization resource.</p>",

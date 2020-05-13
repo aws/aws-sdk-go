@@ -1,3 +1,11 @@
+Release v1.30.26 (2020-05-12)
+===
+
+### Service Client Updates
+* `service/iotsitewise`: Updates service documentation
+* `service/workmail`: Updates service API and documentation
+  * Minor API fixes and updates to the documentation.
+
 Release v1.30.25 (2020-05-11)
 ===
 
