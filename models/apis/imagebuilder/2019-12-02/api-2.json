@@ -869,6 +869,7 @@
         "changeDescription":{"shape":"NonEmptyString"},
         "type":{"shape":"ComponentType"},
         "platform":{"shape":"Platform"},
+        "supportedOsVersions":{"shape":"OsVersionList"},
         "owner":{"shape":"NonEmptyString"},
         "data":{"shape":"ComponentData"},
         "kmsKeyId":{"shape":"NonEmptyString"},
@@ -905,6 +906,7 @@
         "name":{"shape":"ResourceName"},
         "version":{"shape":"VersionNumber"},
         "platform":{"shape":"Platform"},
+        "supportedOsVersions":{"shape":"OsVersionList"},
         "type":{"shape":"ComponentType"},
         "owner":{"shape":"NonEmptyString"},
         "description":{"shape":"NonEmptyString"},
@@ -932,6 +934,7 @@
         "version":{"shape":"VersionNumber"},
         "description":{"shape":"NonEmptyString"},
         "platform":{"shape":"Platform"},
+        "supportedOsVersions":{"shape":"OsVersionList"},
         "type":{"shape":"ComponentType"},
         "owner":{"shape":"NonEmptyString"},
         "dateCreated":{"shape":"DateTime"}
@@ -963,6 +966,7 @@
         "description":{"shape":"NonEmptyString"},
         "changeDescription":{"shape":"NonEmptyString"},
         "platform":{"shape":"Platform"},
+        "supportedOsVersions":{"shape":"OsVersionList"},
         "data":{"shape":"InlineComponentData"},
         "uri":{"shape":"Uri"},
         "kmsKeyId":{"shape":"NonEmptyString"},
@@ -2065,6 +2069,12 @@
     "NullableBoolean":{"type":"boolean"},
     "OsVersion":{
       "type":"string",
+      "min":1
+    },
+    "OsVersionList":{
+      "type":"list",
+      "member":{"shape":"OsVersion"},
+      "max":25,
       "min":1
     },
     "OutputResources":{
