@@ -1,3 +1,11 @@
+Release v1.30.28 (2020-05-14)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Amazon EC2 now supports adding AWS resource tags for associations between VPCs and local gateways, at creation time.
+* `service/imagebuilder`: Updates service API and documentation
+
 Release v1.30.27 (2020-05-13)
 ===
 
