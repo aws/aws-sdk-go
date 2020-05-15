@@ -1665,6 +1665,22 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "StopWorkflowRun":{
+      "name":"StopWorkflowRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopWorkflowRunRequest"},
+      "output":{"shape":"StopWorkflowRunResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"IllegalWorkflowStateException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -2559,8 +2575,9 @@
       "type":"string",
       "enum":[
         "RUNNING",
-        "SUCCEEDED",
+        "CANCELLING",
         "CANCELLED",
+        "SUCCEEDED",
         "FAILED"
       ]
     },
@@ -4339,6 +4356,13 @@
       },
       "exception":true
     },
+    "IllegalWorkflowStateException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
     "ImportCatalogToGlueRequest":{
       "type":"structure",
       "members":{
@@ -5520,6 +5544,22 @@
         "Name":{"shape":"NameString"}
       }
     },
+    "StopWorkflowRunRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RunId"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "RunId":{"shape":"IdString"}
+      }
+    },
+    "StopWorkflowRunResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "StorageDescriptor":{
       "type":"structure",
       "members":{
@@ -6310,7 +6350,9 @@
       "type":"string",
       "enum":[
         "RUNNING",
-        "COMPLETED"
+        "COMPLETED",
+        "STOPPING",
+        "STOPPED"
       ]
     },
     "WorkflowRuns":{

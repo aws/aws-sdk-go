@@ -1464,6 +1464,7 @@
         "Type":{"shape":"RegistryType"},
         "TypeName":{"shape":"TypeName"},
         "DefaultVersionId":{"shape":"TypeVersionId"},
+        "IsDefaultVersion":{"shape":"IsDefaultVersion"},
         "Description":{"shape":"Description"},
         "Schema":{"shape":"TypeSchema"},
         "ProvisioningType":{"shape":"ProvisioningType"},
@@ -1774,6 +1775,7 @@
       },
       "exception":true
     },
+    "IsDefaultVersion":{"type":"boolean"},
     "Key":{"type":"string"},
     "LastUpdatedTime":{"type":"timestamp"},
     "LimitExceededException":{
@@ -3298,6 +3300,7 @@
         "Type":{"shape":"RegistryType"},
         "TypeName":{"shape":"TypeName"},
         "VersionId":{"shape":"TypeVersionId"},
+        "IsDefaultVersion":{"shape":"IsDefaultVersion"},
         "Arn":{"shape":"TypeArn"},
         "TimeCreated":{"shape":"Timestamp"},
         "Description":{"shape":"Description"}
