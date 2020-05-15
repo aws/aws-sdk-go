@@ -3789,6 +3789,17 @@ func (c *IoTSiteWise) ListAssetsRequest(input *ListAssetsInput) (req *request.Re
 //
 // Retrieves a paginated list of asset summaries.
 //
+// You can use this operation to do the following:
+//
+//    * List assets based on a specific asset model.
+//
+//    * List top-level assets.
+//
+// You can't use this operation to list all assets. To retrieve summaries for
+// all of your assets, use ListAssetModels (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListAssetModels.html)
+// to get all of your asset model IDs. Then, use ListAssets to get all assets
+// for each asset model.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5449,8 +5460,8 @@ func (c *IoTSiteWise) UpdateAssetModelRequest(input *UpdateAssetModelInput) (req
 //
 // This action overwrites the existing model with the provided model. To avoid
 // deleting your asset model's properties or hierarchies, you must include their
-// definitions in the updated asset model payload. For more information, see
-// DescribeAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html).
+// IDs and definitions in the updated asset model payload. For more information,
+// see DescribeAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html).
 //
 // If you remove a property from an asset model or update a property's formula
 // expression, AWS IoT SiteWise deletes all previous data for that property.
@@ -5569,6 +5580,11 @@ func (c *IoTSiteWise) UpdateAssetPropertyRequest(input *UpdateAssetPropertyInput
 // UpdateAssetProperty API operation for AWS IoT SiteWise.
 //
 // Updates an asset property's alias and notification state.
+//
+// This operation overwrites the property's existing alias and notification
+// state. To keep your existing property's alias or notification state, you
+// must include the existing values in the UpdateAssetProperty request. For
+// more information, see DescribeAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetProperty.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7693,8 +7709,7 @@ type BatchPutAssetPropertyValueInput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of asset property value entries for the batch put request. You can
-	// specify up to 10 entries per request. For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-	// in the AWS IoT SiteWise User Guide.
+	// specify up to 10 entries per request.
 	//
 	// Entries is a required field
 	Entries []*PutAssetPropertyValueEntry `locationName:"entries" type:"list" required:"true"`
@@ -12283,11 +12298,18 @@ func (s *ListAssetModelsOutput) SetNextToken(v string) *ListAssetModelsOutput {
 type ListAssetsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the asset model by which to filter the list of assets. Omit the
-	// assetModelId to list all assets (of all models).
+	// The ID of the asset model by which to filter the list of assets. This parameter
+	// is required if you choose ALL for filter.
 	AssetModelId *string `location:"querystring" locationName:"assetModelId" min:"36" type:"string"`
 
-	// The hierarchy level by which to filter the requested list of assets.
+	// The filter for the requested list of assets. Choose one of the following
+	// options. Defaults to ALL.
+	//
+	//    * ALL – The list includes all assets for a given asset model ID. The
+	//    assetModelId parameter is required if you filter by ALL.
+	//
+	//    * TOP_LEVEL – The list includes only top-level assets in the asset hierarchy
+	//    tree.
 	Filter *string `location:"querystring" locationName:"filter" type:"string" enum:"ListAssetsFilter"`
 
 	// The maximum number of results to be returned per paginated request.
@@ -13788,9 +13810,6 @@ type PutAssetPropertyValueEntry struct {
 	// The list of property values to upload. You can specify up to 10 propertyValues
 	// array elements.
 	//
-	// For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-	// in the AWS IoT SiteWise User Guide.
-	//
 	// PropertyValues is a required field
 	PropertyValues []*AssetPropertyValue `locationName:"propertyValues" type:"list" required:"true"`
 }
@@ -15012,6 +15031,8 @@ type UpdateAssetPropertyInput struct {
 	// For more information, see Mapping Industrial Data Streams to Asset Properties
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
 	// in the AWS IoT SiteWise User Guide.
+	//
+	// If you omit this parameter, the alias is removed from the property.
 	PropertyAlias *string `locationName:"propertyAlias" min:"1" type:"string"`
 
 	// The ID of the asset property to be updated.
@@ -15019,11 +15040,13 @@ type UpdateAssetPropertyInput struct {
 	// PropertyId is a required field
 	PropertyId *string `location:"uri" locationName:"propertyId" min:"36" type:"string" required:"true"`
 
-	// The updated MQTT notification state (enabled or disabled) for this asset
-	// property. When the notification state is enabled, AWS IoT SiteWise publishes
-	// property value updates to a unique MQTT topic. For more information, see
-	// Interacting with Other Services (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html)
+	// The MQTT notification state (enabled or disabled) for this asset property.
+	// When the notification state is enabled, AWS IoT SiteWise publishes property
+	// value updates to a unique MQTT topic. For more information, see Interacting
+	// with Other Services (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html)
 	// in the AWS IoT SiteWise User Guide.
+	//
+	// If you omit this parameter, the notification state is set to DISABLED.
 	PropertyNotificationState *string `locationName:"propertyNotificationState" type:"string" enum:"PropertyNotificationState"`
 }
 
