@@ -850,6 +850,13 @@
       "refs": {
       }
     },
+    "IsDefaultVersion": {
+      "base": null,
+      "refs": {
+        "DescribeTypeOutput$IsDefaultVersion": "<p>Whether the specified type version is set as the default version.</p>",
+        "TypeVersionSummary$IsDefaultVersion": "<p>Whether the specified type version is set as the default version.</p>"
+      }
+    },
     "Key": {
       "base": null,
       "refs": {

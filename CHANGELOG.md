@@ -1,3 +1,16 @@
+Release v1.30.29 (2020-05-15)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API, documentation, waiters, and paginators
+  * This release adds support for the following features: 1. DescribeType and ListTypeVersions APIs now output a field IsDefaultVersion, indicating if a version is the default version for its type; 2. Add StackRollbackComplete waiter feature to wait until stack status is UPDATE_ROLLBACK_COMPLETE; 3. Add paginators in DescribeAccountLimits, ListChangeSets, ListStackInstances, ListStackSetOperationResults, ListStackSetOperations, ListStackSets APIs.
+* `service/ecr`: Updates service API and documentation
+  * This release adds support for specifying an image manifest media type when pushing a manifest to Amazon ECR.
+* `service/glue`: Updates service API and documentation
+  * Starting today, you can stop the execution of Glue workflows that are running. AWS Glue workflows are directed acyclic graphs (DAGs) of Glue triggers, crawlers and jobs. Using a workflow, you can design a complex multi-job extract, transform, and load (ETL) activity that AWS Glue can execute and track as single entity.
+* `service/sts`: Updates service API
+  * API updates for STS
+
 Release v1.30.28 (2020-05-14)
 ===
 

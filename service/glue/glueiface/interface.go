@@ -568,6 +568,10 @@ type GlueAPI interface {
 	StopTriggerWithContext(aws.Context, *glue.StopTriggerInput, ...request.Option) (*glue.StopTriggerOutput, error)
 	StopTriggerRequest(*glue.StopTriggerInput) (*request.Request, *glue.StopTriggerOutput)
 
+	StopWorkflowRun(*glue.StopWorkflowRunInput) (*glue.StopWorkflowRunOutput, error)
+	StopWorkflowRunWithContext(aws.Context, *glue.StopWorkflowRunInput, ...request.Option) (*glue.StopWorkflowRunOutput, error)
+	StopWorkflowRunRequest(*glue.StopWorkflowRunInput) (*request.Request, *glue.StopWorkflowRunOutput)
+
 	TagResource(*glue.TagResourceInput) (*glue.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *glue.TagResourceInput, ...request.Option) (*glue.TagResourceOutput, error)
 	TagResourceRequest(*glue.TagResourceInput) (*request.Request, *glue.TagResourceOutput)

@@ -1987,6 +1987,7 @@
       },
       "elasticfilesystem" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
@@ -1999,6 +2000,12 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "fips-af-south-1" : {
+            "credentialScope" : {
+              "region" : "af-south-1"
+            },
+            "hostname" : "elasticfilesystem-fips.af-south-1.amazonaws.com"
+          },
           "fips-ap-east-1" : {
             "credentialScope" : {
               "region" : "ap-east-1"
@@ -4750,20 +4757,21 @@
           "sslCommonName" : "shield.us-east-1.amazonaws.com"
         },
         "endpoints" : {
-          "fips-us-east-1" : {
-            "credentialScope" : {
-              "region" : "us-east-1"
-            },
-            "hostname" : "shield-fips.us-east-1.amazonaws.com"
-          },
-          "us-east-1" : {
+          "aws-global" : {
             "credentialScope" : {
               "region" : "us-east-1"
             },
             "hostname" : "shield.us-east-1.amazonaws.com"
+          },
+          "fips-aws-global" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "shield-fips.us-east-1.amazonaws.com"
           }
         },
-        "isRegionalized" : false
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-global"
       },
       "sms" : {
         "endpoints" : {
@@ -6230,6 +6238,18 @@
           "cn-northwest-1" : { }
         }
       },
+      "route53" : {
+        "endpoints" : {
+          "aws-cn-global" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "route53.amazonaws.com.cn"
+          }
+        },
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-cn-global"
+      },
       "runtime.sagemaker" : {
         "endpoints" : {
           "cn-north-1" : { },
@@ -6592,8 +6612,18 @@
       },
       "cloudformation" : {
         "endpoints" : {
-          "us-gov-east-1" : { },
-          "us-gov-west-1" : { }
+          "us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "cloudformation.us-gov-east-1.amazonaws.com"
+          },
+          "us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "cloudformation.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "cloudhsm" : {
@@ -6683,6 +6713,22 @@
               "region" : "us-gov-west-1"
             },
             "hostname" : "codepipeline-fips.us-gov-west-1.amazonaws.com"
+          },
+          "us-gov-west-1" : { }
+        }
+      },
+      "cognito-identity" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
+      "cognito-idp" : {
+        "endpoints" : {
+          "fips-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "cognito-idp-fips.us-gov-west-1.amazonaws.com"
           },
           "us-gov-west-1" : { }
         }
@@ -6835,6 +6881,15 @@
             },
             "hostname" : "ecs-fips.us-gov-west-1.amazonaws.com"
           },
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
+        }
+      },
+      "eks" : {
+        "defaults" : {
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
@@ -7482,8 +7537,17 @@
       },
       "sqs" : {
         "endpoints" : {
-          "us-gov-east-1" : { },
+          "us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "sqs.us-gov-east-1.amazonaws.com"
+          },
           "us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "sqs.us-gov-west-1.amazonaws.com",
             "protocols" : [ "http", "https" ],
             "sslCommonName" : "{region}.queue.{dnsSuffix}"
           }
@@ -7491,6 +7555,30 @@
       },
       "ssm" : {
         "endpoints" : {
+          "fips-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "ssm.us-gov-east-1.amazonaws.com"
+          },
+          "fips-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "ssm.us-gov-west-1.amazonaws.com"
+          },
+          "ssm-facade-fips-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "ssm-facade.us-gov-east-1.amazonaws.com"
+          },
+          "ssm-facade-fips-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "ssm-facade.us-gov-west-1.amazonaws.com"
+          },
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
