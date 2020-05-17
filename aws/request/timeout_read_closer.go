@@ -42,6 +42,11 @@ func (r *timeoutReadCloser) Read(b []byte) (int, error) {
 	case data := <-c:
 		return data.n, data.err
 	case <-timer.C:
+		// c needs to have a reader since the goroutine
+		// needs to send to it. 
+		go func() { 
+			<-c	// drop the data/error	
+		}()
 		return 0, timeoutErr
 	}
 }
