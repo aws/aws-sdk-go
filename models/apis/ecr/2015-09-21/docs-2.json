@@ -25,7 +25,7 @@
     "PutImageScanningConfiguration": "<p>Updates the image scanning configuration for the specified repository.</p>",
     "PutImageTagMutability": "<p>Updates the image tag mutability settings for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html\">Image Tag Mutability</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "PutLifecyclePolicy": "<p>Creates or updates the lifecycle policy for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html\">Lifecycle Policy Template</a>.</p>",
-    "SetRepositoryPolicy": "<p>Applies a repository policy to the specified repository to control access permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/RepositoryPolicies.html\">Amazon ECR Repository Policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "SetRepositoryPolicy": "<p>Applies a repository policy to the specified repository to control access permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html\">Amazon ECR Repository Policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "StartImageScan": "<p>Starts an image vulnerability scan. An image scan can only be started once per day on an individual image. This limit includes if an image was scanned on initial push. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html\">Image Scanning</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "StartLifecyclePolicyPreview": "<p>Starts a preview of a lifecycle policy for the specified repository. This allows you to see the results before associating the lifecycle policy with the repository.</p>",
     "TagResource": "<p>Adds specified tags to a resource with the specified ARN. Existing tags on a resource are not changed if they are not specified in the request parameters.</p>",
@@ -740,7 +740,7 @@
       }
     },
     "LimitExceededException": {
-      "base": "<p>The operation did not succeed because it would have exceeded a service limit for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html\">Amazon ECR Default Service Limits</a> in the Amazon Elastic Container Registry User Guide.</p>",
+      "base": "<p>The operation did not succeed because it would have exceeded a service limit for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html\">Amazon ECR Service Quotas</a> in the Amazon Elastic Container Registry User Guide.</p>",
       "refs": {
       }
     },
@@ -782,8 +782,10 @@
     "MediaType": {
       "base": null,
       "refs": {
+        "Image$imageManifestMediaType": "<p>The media type associated with the image manifest.</p>",
         "Layer$mediaType": "<p>The media type of the layer, such as <code>application/vnd.docker.image.rootfs.diff.tar.gzip</code> or <code>application/vnd.oci.image.layer.v1.tar+gzip</code>.</p>",
-        "MediaTypeList$member": null
+        "MediaTypeList$member": null,
+        "PutImageRequest$imageManifestMediaType": "<p>The media type of the image manifest. If you push an image manifest that does not contain the <code>mediaType</code> field, you must specify the <code>imageManifestMediaType</code> in the request.</p>"
       }
     },
     "MediaTypeList": {
@@ -812,8 +814,8 @@
       "refs": {
         "InitiateLayerUploadResponse$partSize": "<p>The size, in bytes, that Amazon ECR expects future layer part uploads to be.</p>",
         "InvalidLayerPartException$lastValidByteReceived": "<p>The last valid byte received from the layer part upload that is associated with the exception.</p>",
-        "UploadLayerPartRequest$partFirstByte": "<p>The integer value of the first byte of the layer part.</p>",
-        "UploadLayerPartRequest$partLastByte": "<p>The integer value of the last byte of the layer part.</p>",
+        "UploadLayerPartRequest$partFirstByte": "<p>The position of the first byte of the layer part witin the overall image layer.</p>",
+        "UploadLayerPartRequest$partLastByte": "<p>The position of the last byte of the layer part within the overall image layer.</p>",
         "UploadLayerPartResponse$lastByteReceived": "<p>The integer value of the last byte received in the request.</p>"
       }
     },
@@ -1016,7 +1018,7 @@
       "refs": {
         "DeleteRepositoryPolicyResponse$policyText": "<p>The JSON repository policy that was deleted from the repository.</p>",
         "GetRepositoryPolicyResponse$policyText": "<p>The JSON repository policy text associated with the repository.</p>",
-        "SetRepositoryPolicyRequest$policyText": "<p>The JSON repository policy text to apply to the repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/RepositoryPolicyExamples.html\">Amazon ECR Repository Policy Examples</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+        "SetRepositoryPolicyRequest$policyText": "<p>The JSON repository policy text to apply to the repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html\">Amazon ECR Repository Policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
         "SetRepositoryPolicyResponse$policyText": "<p>The JSON repository policy text applied to the repository.</p>"
       }
     },

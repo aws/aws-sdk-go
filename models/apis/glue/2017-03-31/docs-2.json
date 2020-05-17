@@ -111,6 +111,7 @@
     "StopCrawler": "<p>If the specified crawler is running, stops the crawl.</p>",
     "StopCrawlerSchedule": "<p>Sets the schedule state of the specified crawler to <code>NOT_SCHEDULED</code>, but does not stop the crawler if it is already running.</p>",
     "StopTrigger": "<p>Stops a specified trigger.</p>",
+    "StopWorkflowRun": "<p>Stops the execution of the specified workflow run.</p>",
     "TagResource": "<p>Adds tags to a resource. A tag is a label you can assign to an AWS resource. In AWS Glue, you can tag only certain resources. For information about what resources you can tag, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a>.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateClassifier": "<p>Modifies an existing classifier (a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field is present).</p>",
@@ -2120,6 +2121,7 @@
         "StartJobRunRequest$JobRunId": "<p>The ID of a previous <code>JobRun</code> to retry.</p>",
         "StartJobRunResponse$JobRunId": "<p>The ID assigned to this job run.</p>",
         "StartWorkflowRunResponse$RunId": "<p>An Id for the new run.</p>",
+        "StopWorkflowRunRequest$RunId": "<p>The ID of the workflow run to stop.</p>",
         "Trigger$Id": "<p>Reserved for future use.</p>",
         "WorkflowRun$WorkflowRunId": "<p>The ID of this workflow run.</p>",
         "WorkflowRunProperties$key": null
@@ -2127,6 +2129,11 @@
     },
     "IdempotentParameterMismatchException": {
       "base": "<p>The same unique identifier was associated with two different records.</p>",
+      "refs": {
+      }
+    },
+    "IllegalWorkflowStateException": {
+      "base": "<p>The workflow is in an invalid state to perform a requested operation.</p>",
       "refs": {
       }
     },
@@ -2285,8 +2292,8 @@
     "JobRunState": {
       "base": null,
       "refs": {
-        "Condition$State": "<p>The condition state. Currently, the values supported are <code>SUCCEEDED</code>, <code>STOPPED</code>, <code>TIMEOUT</code>, and <code>FAILED</code>.</p>",
-        "JobRun$JobRunState": "<p>The current state of the job run.</p>"
+        "Condition$State": "<p>The condition state. Currently, the only job states that a trigger can listen for are <code>SUCCEEDED</code>, <code>STOPPED</code>, <code>FAILED</code>, and <code>TIMEOUT</code>. The only crawler states that a trigger can listen for are <code>SUCCEEDED</code>, <code>FAILED</code>, and <code>CANCELLED</code>.</p>",
+        "JobRun$JobRunState": "<p>The current state of the job run. For more information about the statuses of jobs that have terminated abnormally, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/job-run-statuses.html\">AWS Glue Job Run Statuses</a>.</p>"
       }
     },
     "JobUpdate": {
@@ -2541,6 +2548,7 @@
         "EntityNotFoundException$Message": "<p>A message describing the problem.</p>",
         "GlueEncryptionException$Message": "<p>A message describing the problem.</p>",
         "IdempotentParameterMismatchException$Message": "<p>A message describing the problem.</p>",
+        "IllegalWorkflowStateException$Message": "<p>A message describing the problem.</p>",
         "InternalServiceException$Message": "<p>A message describing the problem.</p>",
         "InvalidInputException$Message": "<p>A message describing the problem.</p>",
         "MLTransformNotReadyException$Message": "<p>A message describing the problem.</p>",
@@ -2720,6 +2728,7 @@
         "StopCrawlerScheduleRequest$CrawlerName": "<p>Name of the crawler whose schedule state to set.</p>",
         "StopTriggerRequest$Name": "<p>The name of the trigger to stop.</p>",
         "StopTriggerResponse$Name": "<p>The name of the trigger that was stopped.</p>",
+        "StopWorkflowRunRequest$Name": "<p>The name of the workflow to stop.</p>",
         "Table$Name": "<p>The table name. For Hive compatibility, this must be entirely lowercase.</p>",
         "Table$DatabaseName": "<p>The name of the database where the table metadata resides. For Hive compatibility, this must be all lowercase.</p>",
         "Table$Owner": "<p>The owner of the table.</p>",
@@ -3540,6 +3549,16 @@
       }
     },
     "StopTriggerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopWorkflowRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopWorkflowRunResponse": {
       "base": null,
       "refs": {
       }

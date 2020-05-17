@@ -850,7 +850,8 @@
         "registryId":{"shape":"RegistryId"},
         "repositoryName":{"shape":"RepositoryName"},
         "imageId":{"shape":"ImageIdentifier"},
-        "imageManifest":{"shape":"ImageManifest"}
+        "imageManifest":{"shape":"ImageManifest"},
+        "imageManifestMediaType":{"shape":"MediaType"}
       }
     },
     "ImageActionType":{
@@ -1287,6 +1288,7 @@
         "registryId":{"shape":"RegistryId"},
         "repositoryName":{"shape":"RepositoryName"},
         "imageManifest":{"shape":"ImageManifest"},
+        "imageManifestMediaType":{"shape":"MediaType"},
         "imageTag":{"shape":"ImageTag"}
       }
     },
