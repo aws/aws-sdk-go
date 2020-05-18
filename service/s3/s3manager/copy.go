@@ -1,7 +1,6 @@
 package s3manager
 
 import (
-	"context"
 	"fmt"
 	"net/url"
 	"strings"
@@ -333,7 +332,7 @@ func (c *copier) initSource() error {
 
 func (c *copier) discoverSourceRegion() (string, error) {
 	return GetBucketRegionWithClient(
-		context.Background(),
+		aws.BackgroundContext(),
 		c.cfg.S3,
 		c.src.bucket,
 		c.cfg.RequestOptions...)
