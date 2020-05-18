@@ -1070,6 +1070,7 @@
         "entryPoint":{"shape":"StringList"},
         "command":{"shape":"StringList"},
         "environment":{"shape":"EnvironmentVariables"},
+        "environmentFiles":{"shape":"EnvironmentFiles"},
         "mountPoints":{"shape":"MountPointList"},
         "volumesFrom":{"shape":"VolumeFromList"},
         "linuxParameters":{"shape":"LinuxParameters"},
@@ -1167,6 +1168,7 @@
         "name":{"shape":"String"},
         "command":{"shape":"StringList"},
         "environment":{"shape":"EnvironmentVariables"},
+        "environmentFiles":{"shape":"EnvironmentFiles"},
         "cpu":{"shape":"BoxedInteger"},
         "memory":{"shape":"BoxedInteger"},
         "memoryReservation":{"shape":"BoxedInteger"},
@@ -1648,6 +1650,25 @@
         "transitEncryptionPort":{"shape":"BoxedInteger"},
         "authorizationConfig":{"shape":"EFSAuthorizationConfig"}
       }
+    },
+    "EnvironmentFile":{
+      "type":"structure",
+      "required":[
+        "value",
+        "type"
+      ],
+      "members":{
+        "value":{"shape":"String"},
+        "type":{"shape":"EnvironmentFileType"}
+      }
+    },
+    "EnvironmentFileType":{
+      "type":"string",
+      "enum":["s3"]
+    },
+    "EnvironmentFiles":{
+      "type":"list",
+      "member":{"shape":"EnvironmentFile"}
     },
     "EnvironmentVariables":{
       "type":"list",

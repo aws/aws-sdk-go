@@ -448,6 +448,14 @@ type ChimeAPI interface {
 	PutVoiceConnectorTerminationCredentialsWithContext(aws.Context, *chime.PutVoiceConnectorTerminationCredentialsInput, ...request.Option) (*chime.PutVoiceConnectorTerminationCredentialsOutput, error)
 	PutVoiceConnectorTerminationCredentialsRequest(*chime.PutVoiceConnectorTerminationCredentialsInput) (*request.Request, *chime.PutVoiceConnectorTerminationCredentialsOutput)
 
+	RedactConversationMessage(*chime.RedactConversationMessageInput) (*chime.RedactConversationMessageOutput, error)
+	RedactConversationMessageWithContext(aws.Context, *chime.RedactConversationMessageInput, ...request.Option) (*chime.RedactConversationMessageOutput, error)
+	RedactConversationMessageRequest(*chime.RedactConversationMessageInput) (*request.Request, *chime.RedactConversationMessageOutput)
+
+	RedactRoomMessage(*chime.RedactRoomMessageInput) (*chime.RedactRoomMessageOutput, error)
+	RedactRoomMessageWithContext(aws.Context, *chime.RedactRoomMessageInput, ...request.Option) (*chime.RedactRoomMessageOutput, error)
+	RedactRoomMessageRequest(*chime.RedactRoomMessageInput) (*request.Request, *chime.RedactRoomMessageOutput)
+
 	RegenerateSecurityToken(*chime.RegenerateSecurityTokenInput) (*chime.RegenerateSecurityTokenOutput, error)
 	RegenerateSecurityTokenWithContext(aws.Context, *chime.RegenerateSecurityTokenInput, ...request.Option) (*chime.RegenerateSecurityTokenOutput, error)
 	RegenerateSecurityTokenRequest(*chime.RegenerateSecurityTokenInput) (*request.Request, *chime.RegenerateSecurityTokenOutput)

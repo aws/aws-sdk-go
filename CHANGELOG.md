@@ -1,3 +1,25 @@
+Release v1.31.0 (2020-05-18)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * Amazon Chime now supports redacting chat messages.
+* `service/dynamodb`: Updates service documentation
+  * Documentation updates for dynamodb
+* `service/ec2`: Updates service API
+  * This release changes the RunInstances CLI and SDK's so that if you do not specify a client token, a randomly generated token is used for the request to ensure idempotency.
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for specifying environment files to add environment variables to your containers.
+* `service/macie2`: Updates service API
+* `service/qldb`: Updates service API, documentation, and paginators
+
+### SDK Features
+* `service/dynamodb/dynamodbattribute`: Support has been added for empty string and byte values.
+  * `Encoder` has added two new configuration options for controlling whether empty string and byte values are sent as null or empty.
+    * `NullEmptyString`: Whether string values that are empty will be sent as null (default: `true`).
+    * `NullEmptyByteSlice`: Whether byte slice that are empty will be sent as null (default: `true`).
+    * The default value for these options retrains the existing behavior of the SDK in prior releases.
+
 Release v1.30.29 (2020-05-15)
 ===
 

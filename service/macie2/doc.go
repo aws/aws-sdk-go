@@ -5,7 +5,7 @@
 //
 // Amazon Macie
 //
-// See https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01T00:00:00Z for more information on this service.
+// See https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01 for more information on this service.
 //
 // See macie2 package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/macie2/

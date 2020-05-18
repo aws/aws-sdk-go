@@ -7,7 +7,7 @@
     "serviceId": "Macie2",
     "protocol": "rest-json",
     "jsonVersion": "1.1",
-    "uid": "macie2-2020-01-01T00:00:00Z",
+    "uid": "macie2-2020-01-01",
     "signatureVersion": "v4"
   },
   "operations": {

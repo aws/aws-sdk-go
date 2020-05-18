@@ -90,6 +90,8 @@
     "PutVoiceConnectorStreamingConfiguration": "<p>Adds a streaming configuration for the specified Amazon Chime Voice Connector. The streaming configuration specifies whether media streaming is enabled for sending to Amazon Kinesis. It also sets the retention period, in hours, for the Amazon Kinesis data.</p>",
     "PutVoiceConnectorTermination": "<p>Adds termination settings for the specified Amazon Chime Voice Connector.</p>",
     "PutVoiceConnectorTerminationCredentials": "<p>Adds termination SIP credentials for the specified Amazon Chime Voice Connector.</p>",
+    "RedactConversationMessage": "<p>Redacts the specified message from the specified Amazon Chime conversation.</p>",
+    "RedactRoomMessage": "<p>Redacts the specified message from the specified Amazon Chime chat room.</p>",
     "RegenerateSecurityToken": "<p>Regenerates the security token for a bot.</p>",
     "ResetPersonalPIN": "<p>Resets the personal meeting PIN for the specified user on an Amazon Chime account. Returns the <a>User</a> object with the updated personal meeting PIN.</p>",
     "RestorePhoneNumber": "<p>Moves a phone number from the <b>Deletion queue</b> back into the phone number <b>Inventory</b>.</p>",
@@ -1479,6 +1481,12 @@
         "PutVoiceConnectorStreamingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorTerminationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
+        "RedactConversationMessageRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "RedactConversationMessageRequest$ConversationId": "<p>The conversation ID.</p>",
+        "RedactConversationMessageRequest$MessageId": "<p>The message ID.</p>",
+        "RedactRoomMessageRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "RedactRoomMessageRequest$RoomId": "<p>The room ID.</p>",
+        "RedactRoomMessageRequest$MessageId": "<p>The message ID.</p>",
         "RegenerateSecurityTokenRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "RegenerateSecurityTokenRequest$BotId": "<p>The bot ID.</p>",
         "ResetPersonalPINRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -1862,6 +1870,26 @@
       }
     },
     "PutVoiceConnectorTerminationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RedactConversationMessageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RedactConversationMessageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RedactRoomMessageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RedactRoomMessageResponse": {
       "base": null,
       "refs": {
       }
