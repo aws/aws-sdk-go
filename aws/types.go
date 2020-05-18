@@ -247,14 +247,14 @@ func CopySeekableBody(dst io.Writer, src io.ReadSeeker) (int64, error) {
 		return 0, err
 	}
 
-	// hash the body.  seek back to the first position after reading to reset
-	// the body for transmission.  copy errors may be assumed to be from the
-	// body.
+	// copy errors may be assumed to be from the body.
 	n, err := io.Copy(dst, src)
 	if err != nil {
 		return n, err
 	}
 
+	// seek back to the first position after reading to reset
+	// the body for transmission.
 	_, err = src.Seek(curPos, sdkio.SeekStart)
 	if err != nil {
 		return n, err
