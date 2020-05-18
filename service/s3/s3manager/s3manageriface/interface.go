@@ -49,6 +49,6 @@ var _ CopierAPI = (*s3manager.Copier)(nil)
 
 // CopierAPI is the interface type for s3manager.Copier.
 type CopierAPI interface {
-	Copy(*s3.CopyObjectInput, ...func(*s3manager.Copier)) (*s3.CopyObjectOutput, error)
-	CopyWithContext(aws.Context, *s3.CopyObjectInput, ...func(*s3manager.Copier)) (*s3.CopyObjectOutput, error)
+	Copy(*s3manager.CopyInput, ...func(*s3manager.Copier)) (*s3manager.CopyOutput, error)
+	CopyWithContext(aws.Context, *s3manager.CopyInput, ...func(*s3manager.Copier)) (*s3manager.CopyOutput, error)
 }
