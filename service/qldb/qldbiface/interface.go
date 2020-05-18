@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon QLDB.
 //    func myFunc(svc qldbiface.QLDBAPI) bool {
-//        // Make svc.CreateLedger request
+//        // Make svc.CancelJournalKinesisStream request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockQLDBClient struct {
 //        qldbiface.QLDBAPI
 //    }
-//    func (m *mockQLDBClient) CreateLedger(input *qldb.CreateLedgerInput) (*qldb.CreateLedgerOutput, error) {
+//    func (m *mockQLDBClient) CancelJournalKinesisStream(input *qldb.CancelJournalKinesisStreamInput) (*qldb.CancelJournalKinesisStreamOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type QLDBAPI interface {
+	CancelJournalKinesisStream(*qldb.CancelJournalKinesisStreamInput) (*qldb.CancelJournalKinesisStreamOutput, error)
+	CancelJournalKinesisStreamWithContext(aws.Context, *qldb.CancelJournalKinesisStreamInput, ...request.Option) (*qldb.CancelJournalKinesisStreamOutput, error)
+	CancelJournalKinesisStreamRequest(*qldb.CancelJournalKinesisStreamInput) (*request.Request, *qldb.CancelJournalKinesisStreamOutput)
+
 	CreateLedger(*qldb.CreateLedgerInput) (*qldb.CreateLedgerOutput, error)
 	CreateLedgerWithContext(aws.Context, *qldb.CreateLedgerInput, ...request.Option) (*qldb.CreateLedgerOutput, error)
 	CreateLedgerRequest(*qldb.CreateLedgerInput) (*request.Request, *qldb.CreateLedgerOutput)
@@ -67,6 +71,10 @@ type QLDBAPI interface {
 	DeleteLedger(*qldb.DeleteLedgerInput) (*qldb.DeleteLedgerOutput, error)
 	DeleteLedgerWithContext(aws.Context, *qldb.DeleteLedgerInput, ...request.Option) (*qldb.DeleteLedgerOutput, error)
 	DeleteLedgerRequest(*qldb.DeleteLedgerInput) (*request.Request, *qldb.DeleteLedgerOutput)
+
+	DescribeJournalKinesisStream(*qldb.DescribeJournalKinesisStreamInput) (*qldb.DescribeJournalKinesisStreamOutput, error)
+	DescribeJournalKinesisStreamWithContext(aws.Context, *qldb.DescribeJournalKinesisStreamInput, ...request.Option) (*qldb.DescribeJournalKinesisStreamOutput, error)
+	DescribeJournalKinesisStreamRequest(*qldb.DescribeJournalKinesisStreamInput) (*request.Request, *qldb.DescribeJournalKinesisStreamOutput)
 
 	DescribeJournalS3Export(*qldb.DescribeJournalS3ExportInput) (*qldb.DescribeJournalS3ExportOutput, error)
 	DescribeJournalS3ExportWithContext(aws.Context, *qldb.DescribeJournalS3ExportInput, ...request.Option) (*qldb.DescribeJournalS3ExportOutput, error)
@@ -92,6 +100,13 @@ type QLDBAPI interface {
 	GetRevisionWithContext(aws.Context, *qldb.GetRevisionInput, ...request.Option) (*qldb.GetRevisionOutput, error)
 	GetRevisionRequest(*qldb.GetRevisionInput) (*request.Request, *qldb.GetRevisionOutput)
 
+	ListJournalKinesisStreamsForLedger(*qldb.ListJournalKinesisStreamsForLedgerInput) (*qldb.ListJournalKinesisStreamsForLedgerOutput, error)
+	ListJournalKinesisStreamsForLedgerWithContext(aws.Context, *qldb.ListJournalKinesisStreamsForLedgerInput, ...request.Option) (*qldb.ListJournalKinesisStreamsForLedgerOutput, error)
+	ListJournalKinesisStreamsForLedgerRequest(*qldb.ListJournalKinesisStreamsForLedgerInput) (*request.Request, *qldb.ListJournalKinesisStreamsForLedgerOutput)
+
+	ListJournalKinesisStreamsForLedgerPages(*qldb.ListJournalKinesisStreamsForLedgerInput, func(*qldb.ListJournalKinesisStreamsForLedgerOutput, bool) bool) error
+	ListJournalKinesisStreamsForLedgerPagesWithContext(aws.Context, *qldb.ListJournalKinesisStreamsForLedgerInput, func(*qldb.ListJournalKinesisStreamsForLedgerOutput, bool) bool, ...request.Option) error
+
 	ListJournalS3Exports(*qldb.ListJournalS3ExportsInput) (*qldb.ListJournalS3ExportsOutput, error)
 	ListJournalS3ExportsWithContext(aws.Context, *qldb.ListJournalS3ExportsInput, ...request.Option) (*qldb.ListJournalS3ExportsOutput, error)
 	ListJournalS3ExportsRequest(*qldb.ListJournalS3ExportsInput) (*request.Request, *qldb.ListJournalS3ExportsOutput)
@@ -116,6 +131,10 @@ type QLDBAPI interface {
 	ListTagsForResource(*qldb.ListTagsForResourceInput) (*qldb.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *qldb.ListTagsForResourceInput, ...request.Option) (*qldb.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*qldb.ListTagsForResourceInput) (*request.Request, *qldb.ListTagsForResourceOutput)
+
+	StreamJournalToKinesis(*qldb.StreamJournalToKinesisInput) (*qldb.StreamJournalToKinesisOutput, error)
+	StreamJournalToKinesisWithContext(aws.Context, *qldb.StreamJournalToKinesisInput, ...request.Option) (*qldb.StreamJournalToKinesisOutput, error)
+	StreamJournalToKinesisRequest(*qldb.StreamJournalToKinesisInput) (*request.Request, *qldb.StreamJournalToKinesisOutput)
 
 	TagResource(*qldb.TagResourceInput) (*qldb.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *qldb.TagResourceInput, ...request.Option) (*qldb.TagResourceOutput, error)

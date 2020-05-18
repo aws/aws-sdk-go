@@ -1667,6 +1667,44 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "RedactConversationMessage":{
+      "name":"RedactConversationMessage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/conversations/{conversationId}/messages/{messageId}?operation=redact",
+        "responseCode":200
+      },
+      "input":{"shape":"RedactConversationMessageRequest"},
+      "output":{"shape":"RedactConversationMessageResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "RedactRoomMessage":{
+      "name":"RedactRoomMessage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/rooms/{roomId}/messages/{messageId}?operation=redact",
+        "responseCode":200
+      },
+      "input":{"shape":"RedactRoomMessageRequest"},
+      "output":{"shape":"RedactRoomMessageResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "RegenerateSecurityToken":{
       "name":"RegenerateSecurityToken",
       "http":{
@@ -4633,6 +4671,66 @@
       "type":"structure",
       "members":{
         "Termination":{"shape":"Termination"}
+      }
+    },
+    "RedactConversationMessageRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "ConversationId",
+        "MessageId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "ConversationId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"conversationId"
+        },
+        "MessageId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"messageId"
+        }
+      }
+    },
+    "RedactConversationMessageResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "RedactRoomMessageRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RoomId",
+        "MessageId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "RoomId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"roomId"
+        },
+        "MessageId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"messageId"
+        }
+      }
+    },
+    "RedactRoomMessageResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "RegenerateSecurityTokenRequest":{

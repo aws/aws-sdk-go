@@ -9552,6 +9552,204 @@ func (c *Chime) PutVoiceConnectorTerminationCredentialsWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opRedactConversationMessage = "RedactConversationMessage"
+
+// RedactConversationMessageRequest generates a "aws/request.Request" representing the
+// client's request for the RedactConversationMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RedactConversationMessage for more information on using the RedactConversationMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RedactConversationMessageRequest method.
+//    req, resp := client.RedactConversationMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/RedactConversationMessage
+func (c *Chime) RedactConversationMessageRequest(input *RedactConversationMessageInput) (req *request.Request, output *RedactConversationMessageOutput) {
+	op := &request.Operation{
+		Name:       opRedactConversationMessage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{accountId}/conversations/{conversationId}/messages/{messageId}?operation=redact",
+	}
+
+	if input == nil {
+		input = &RedactConversationMessageInput{}
+	}
+
+	output = &RedactConversationMessageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RedactConversationMessage API operation for Amazon Chime.
+//
+// Redacts the specified message from the specified Amazon Chime conversation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation RedactConversationMessage for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/RedactConversationMessage
+func (c *Chime) RedactConversationMessage(input *RedactConversationMessageInput) (*RedactConversationMessageOutput, error) {
+	req, out := c.RedactConversationMessageRequest(input)
+	return out, req.Send()
+}
+
+// RedactConversationMessageWithContext is the same as RedactConversationMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RedactConversationMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) RedactConversationMessageWithContext(ctx aws.Context, input *RedactConversationMessageInput, opts ...request.Option) (*RedactConversationMessageOutput, error) {
+	req, out := c.RedactConversationMessageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRedactRoomMessage = "RedactRoomMessage"
+
+// RedactRoomMessageRequest generates a "aws/request.Request" representing the
+// client's request for the RedactRoomMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RedactRoomMessage for more information on using the RedactRoomMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RedactRoomMessageRequest method.
+//    req, resp := client.RedactRoomMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/RedactRoomMessage
+func (c *Chime) RedactRoomMessageRequest(input *RedactRoomMessageInput) (req *request.Request, output *RedactRoomMessageOutput) {
+	op := &request.Operation{
+		Name:       opRedactRoomMessage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{accountId}/rooms/{roomId}/messages/{messageId}?operation=redact",
+	}
+
+	if input == nil {
+		input = &RedactRoomMessageInput{}
+	}
+
+	output = &RedactRoomMessageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RedactRoomMessage API operation for Amazon Chime.
+//
+// Redacts the specified message from the specified Amazon Chime chat room.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation RedactRoomMessage for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/RedactRoomMessage
+func (c *Chime) RedactRoomMessage(input *RedactRoomMessageInput) (*RedactRoomMessageOutput, error) {
+	req, out := c.RedactRoomMessageRequest(input)
+	return out, req.Send()
+}
+
+// RedactRoomMessageWithContext is the same as RedactRoomMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RedactRoomMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) RedactRoomMessageWithContext(ctx aws.Context, input *RedactRoomMessageInput, opts ...request.Option) (*RedactRoomMessageOutput, error) {
+	req, out := c.RedactRoomMessageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRegenerateSecurityToken = "RegenerateSecurityToken"
 
 // RegenerateSecurityTokenRequest generates a "aws/request.Request" representing the
@@ -20736,6 +20934,184 @@ func (s PutVoiceConnectorTerminationOutput) GoString() string {
 func (s *PutVoiceConnectorTerminationOutput) SetTermination(v *Termination) *PutVoiceConnectorTerminationOutput {
 	s.Termination = v
 	return s
+}
+
+type RedactConversationMessageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The conversation ID.
+	//
+	// ConversationId is a required field
+	ConversationId *string `location:"uri" locationName:"conversationId" type:"string" required:"true"`
+
+	// The message ID.
+	//
+	// MessageId is a required field
+	MessageId *string `location:"uri" locationName:"messageId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RedactConversationMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RedactConversationMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedactConversationMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedactConversationMessageInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ConversationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConversationId"))
+	}
+	if s.ConversationId != nil && len(*s.ConversationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConversationId", 1))
+	}
+	if s.MessageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageId"))
+	}
+	if s.MessageId != nil && len(*s.MessageId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *RedactConversationMessageInput) SetAccountId(v string) *RedactConversationMessageInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetConversationId sets the ConversationId field's value.
+func (s *RedactConversationMessageInput) SetConversationId(v string) *RedactConversationMessageInput {
+	s.ConversationId = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *RedactConversationMessageInput) SetMessageId(v string) *RedactConversationMessageInput {
+	s.MessageId = &v
+	return s
+}
+
+type RedactConversationMessageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RedactConversationMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RedactConversationMessageOutput) GoString() string {
+	return s.String()
+}
+
+type RedactRoomMessageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The message ID.
+	//
+	// MessageId is a required field
+	MessageId *string `location:"uri" locationName:"messageId" type:"string" required:"true"`
+
+	// The room ID.
+	//
+	// RoomId is a required field
+	RoomId *string `location:"uri" locationName:"roomId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RedactRoomMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RedactRoomMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedactRoomMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedactRoomMessageInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.MessageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageId"))
+	}
+	if s.MessageId != nil && len(*s.MessageId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
+	}
+	if s.RoomId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoomId"))
+	}
+	if s.RoomId != nil && len(*s.RoomId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoomId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *RedactRoomMessageInput) SetAccountId(v string) *RedactRoomMessageInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *RedactRoomMessageInput) SetMessageId(v string) *RedactRoomMessageInput {
+	s.MessageId = &v
+	return s
+}
+
+// SetRoomId sets the RoomId field's value.
+func (s *RedactRoomMessageInput) SetRoomId(v string) *RedactRoomMessageInput {
+	s.RoomId = &v
+	return s
+}
+
+type RedactRoomMessageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RedactRoomMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RedactRoomMessageOutput) GoString() string {
+	return s.String()
 }
 
 type RegenerateSecurityTokenInput struct {
