@@ -105,12 +105,13 @@ type testEmptyCollectionStructOmitted struct {
 }
 
 var sharedEmptyCollectionsTestCases = []struct {
+	encoderOpts      func(encoder *Encoder)
 	in               *dynamodb.AttributeValue
 	actual, expected interface{}
 	err              error
 }{
-	// 1. scalars with zero value
-	{
+	// scalars with zero value
+	0: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"String":  {NULL: aws.Bool(true)},
@@ -129,8 +130,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 		actual:   &testEmptyCollectionsNumericalScalars{},
 		expected: testEmptyCollectionsNumericalScalars{},
 	},
-	// 2. scalars with non-zero values
-	{
+	// scalars with non-zero values
+	1: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"String":  {S: aws.String("test string")},
@@ -161,14 +162,14 @@ var sharedEmptyCollectionsTestCases = []struct {
 			Float64: 10.1,
 		},
 	},
-	// 3. omittable scalars with zero value
-	{
+	// omittable scalars with zero value
+	2: {
 		in:       &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{}},
 		actual:   &testEmptyCollectionsOmittedNumericalScalars{},
 		expected: testEmptyCollectionsOmittedNumericalScalars{},
 	},
-	// 4. omittable scalars with non-zero value
-	{
+	// omittable scalars with non-zero value
+	3: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"String":  {S: aws.String("test string")},
@@ -199,8 +200,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			Float64: 10.1,
 		},
 	},
-	// 5. nil pointer scalars
-	{
+	// nil pointer scalars
+	4: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"PtrString":  {NULL: aws.Bool(true)},
@@ -219,8 +220,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 		actual:   &testEmptyCollectionsPtrScalars{},
 		expected: testEmptyCollectionsPtrScalars{},
 	},
-	// 6. non-nil pointer to scalars with zero value
-	{
+	// non-nil pointer to scalars with zero value
+	5: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"PtrString":  {NULL: aws.Bool(true)},
@@ -250,8 +251,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			PtrFloat64: aws.Float64(0),
 		},
 	},
-	// 7. pointer scalars non-nil non-zero
-	{
+	// pointer scalars non-nil non-zero
+	6: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"PtrString":  {S: aws.String("test string")},
@@ -282,16 +283,16 @@ var sharedEmptyCollectionsTestCases = []struct {
 			PtrFloat64: aws.Float64(10.1),
 		},
 	},
-	// 8. omittable nil pointer scalars
-	{
+	// omittable nil pointer scalars
+	7: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{},
 		},
 		actual:   &testEmptyCollectionsOmittedPtrNumericalScalars{},
 		expected: testEmptyCollectionsOmittedPtrNumericalScalars{},
 	},
-	// 9. omittable non-nil pointer to scalars with zero value
-	{
+	// omittable non-nil pointer to scalars with zero value
+	8: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"PtrUint8":   {N: aws.String("0")},
@@ -320,8 +321,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			PtrFloat64: aws.Float64(0),
 		},
 	},
-	// 10. omittable non-nil pointer to non-zero scalar
-	{
+	// omittable non-nil pointer to non-zero scalar
+	9: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"PtrUint8":   {N: aws.String("1")},
@@ -350,8 +351,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			PtrFloat64: aws.Float64(10.1),
 		},
 	},
-	// 11. maps, slices nil values
-	{
+	// maps, slices nil values
+	10: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Map":       {NULL: aws.Bool(true)},
@@ -367,8 +368,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 		actual:   &testEmptyCollectionTypes{},
 		expected: testEmptyCollectionTypes{},
 	},
-	// 12. maps, slices zero values
-	{
+	// maps, slices zero values
+	11: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Map":       {M: map[string]*dynamodb.AttributeValue{}},
@@ -393,8 +394,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			StringSet: []string{},
 		},
 	},
-	// 13. maps, slices non-zero values
-	{
+	// maps, slices non-zero values
+	12: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Map": {
@@ -423,8 +424,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			StringSet: []string{"test", "slice"},
 		},
 	},
-	// 14. omittable maps, slices nil values
-	{
+	// omittable maps, slices nil values
+	13: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"ByteArray": {B: make([]byte, 4)},
@@ -433,8 +434,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 		actual:   &testEmptyCollectionTypesOmitted{},
 		expected: testEmptyCollectionTypesOmitted{},
 	},
-	// 15. omittable maps, slices zero values
-	{
+	// omittable maps, slices zero values
+	14: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Map":       {M: map[string]*dynamodb.AttributeValue{}},
@@ -457,8 +458,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			StringSet: []string{},
 		},
 	},
-	// 16. omittable maps, slices non-zero values
-	{
+	// omittable maps, slices non-zero values
+	15: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Map": {
@@ -486,8 +487,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			StringSet: []string{"test", "slice"},
 		},
 	},
-	// 17. structs with members zero
-	{
+	// structs with members zero
+	16: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Struct": {
@@ -507,8 +508,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			PtrStruct *testEmptyCollectionStruct
 		}{},
 	},
-	// 18. structs with members non-zero value
-	{
+	// structs with members non-zero value
+	17: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Struct": {
@@ -535,8 +536,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			PtrStruct: &testEmptyCollectionStruct{Int: 1},
 		},
 	},
-	// 19. struct with omittable members zero value
-	{
+	// struct with omittable members zero value
+	18: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Struct":    {M: map[string]*dynamodb.AttributeValue{}},
@@ -552,8 +553,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			PtrStruct *testEmptyCollectionStructOmitted
 		}{},
 	},
-	// 20. omittable struct with omittable members zero value
-	{
+	// omittable struct with omittable members zero value
+	19: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Struct": {M: map[string]*dynamodb.AttributeValue{}},
@@ -568,8 +569,8 @@ var sharedEmptyCollectionsTestCases = []struct {
 			PtrStruct *testEmptyCollectionStructOmitted `dynamodbav:",omitempty"`
 		}{},
 	},
-	// 21. omittable struct with omittable members non-zero value
-	{
+	// omittable struct with omittable members non-zero value
+	20: {
 		in: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Struct": {
@@ -596,12 +597,39 @@ var sharedEmptyCollectionsTestCases = []struct {
 			InitPtrStruct: &testEmptyCollectionStructOmitted{Slice: []string{"test"}},
 		},
 	},
+	21: { // empty slice and NullEmptyByteSlice disabled
+		encoderOpts: func(encoder *Encoder) {
+			encoder.NullEmptyByteSlice = false
+		},
+		in: &dynamodb.AttributeValue{
+			B: []byte{},
+		},
+		actual:   &[]byte{},
+		expected: []byte{},
+	},
+	22: { // empty slice and NullEmptyByteSlice disabled, and omitempty
+		encoderOpts: func(encoder *Encoder) {
+			encoder.NullEmptyByteSlice = false
+		},
+		in: &dynamodb.AttributeValue{
+			M: map[string]*dynamodb.AttributeValue{},
+		},
+		actual: &struct {
+			Value []byte `dynamodbav:",omitempty"`
+		}{},
+		expected: struct {
+			Value []byte `dynamodbav:",omitempty"`
+		}{},
+	},
 }
 
 func TestMarshalEmptyCollections(t *testing.T) {
 	for i, c := range sharedEmptyCollectionsTestCases {
 		encoder := NewEncoder(func(e *Encoder) {
 			e.EnableEmptyCollections = true
+			if c.encoderOpts != nil {
+				c.encoderOpts(e)
+			}
 		})
 		av, err := encoder.Encode(c.expected)
 		assertConvertTest(t, i, av, c.in, err, c.err)
