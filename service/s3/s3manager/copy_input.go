@@ -2,6 +2,9 @@ package s3manager
 
 import "time"
 
+// CopyInput provides input parameters for copying an object from the CopySource
+// to the destination Bucket and Key. It is based on the CopyObjectInput, but some
+// fields may be omitted.
 type CopyInput struct {
 	_ struct{} `locationName:"CopyObjectRequest" type:"structure"`
 

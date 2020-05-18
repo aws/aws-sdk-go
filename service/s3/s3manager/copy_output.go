@@ -1,5 +1,6 @@
 package s3manager
 
+// CopyOutput contains the result of an object copy.
 type CopyOutput struct {
 	// The name of the bucket that contains the newly created object.
 	Bucket *string
