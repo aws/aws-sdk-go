@@ -501,6 +501,14 @@
         "OrganizationEventDetails$eventMetadata": "<p>Additional metadata about the event.</p>"
       }
     },
+    "eventScopeCode": {
+      "base": null,
+      "refs": {
+        "DescribeAffectedAccountsForOrganizationResponse$eventScopeCode": null,
+        "Event$eventScopeCode": null,
+        "OrganizationEvent$eventScopeCode": null
+      }
+    },
     "eventStatusCode": {
       "base": null,
       "refs": {

@@ -21798,6 +21798,9 @@ type StreamingConfiguration struct {
 
 	// When true, media streaming to Amazon Kinesis is turned off.
 	Disabled *bool `type:"boolean"`
+
+	// The streaming notification targets.
+	StreamingNotificationTargets []*StreamingNotificationTarget `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -21816,6 +21819,19 @@ func (s *StreamingConfiguration) Validate() error {
 	if s.DataRetentionInHours == nil {
 		invalidParams.Add(request.NewErrParamRequired("DataRetentionInHours"))
 	}
+	if s.StreamingNotificationTargets != nil && len(s.StreamingNotificationTargets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamingNotificationTargets", 1))
+	}
+	if s.StreamingNotificationTargets != nil {
+		for i, v := range s.StreamingNotificationTargets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "StreamingNotificationTargets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -21832,6 +21848,51 @@ func (s *StreamingConfiguration) SetDataRetentionInHours(v int64) *StreamingConf
 // SetDisabled sets the Disabled field's value.
 func (s *StreamingConfiguration) SetDisabled(v bool) *StreamingConfiguration {
 	s.Disabled = &v
+	return s
+}
+
+// SetStreamingNotificationTargets sets the StreamingNotificationTargets field's value.
+func (s *StreamingConfiguration) SetStreamingNotificationTargets(v []*StreamingNotificationTarget) *StreamingConfiguration {
+	s.StreamingNotificationTargets = v
+	return s
+}
+
+// The targeted recipient for a streaming configuration notification.
+type StreamingNotificationTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The streaming notification target.
+	//
+	// NotificationTarget is a required field
+	NotificationTarget *string `type:"string" required:"true" enum:"NotificationTarget"`
+}
+
+// String returns the string representation
+func (s StreamingNotificationTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StreamingNotificationTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StreamingNotificationTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StreamingNotificationTarget"}
+	if s.NotificationTarget == nil {
+		invalidParams.Add(request.NewErrParamRequired("NotificationTarget"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNotificationTarget sets the NotificationTarget field's value.
+func (s *StreamingNotificationTarget) SetNotificationTarget(v string) *StreamingNotificationTarget {
+	s.NotificationTarget = &v
 	return s
 }
 
@@ -24595,6 +24656,17 @@ const (
 
 	// MemberTypeWebhook is a MemberType enum value
 	MemberTypeWebhook = "Webhook"
+)
+
+const (
+	// NotificationTargetEventBridge is a NotificationTarget enum value
+	NotificationTargetEventBridge = "EventBridge"
+
+	// NotificationTargetSns is a NotificationTarget enum value
+	NotificationTargetSns = "SNS"
+
+	// NotificationTargetSqs is a NotificationTarget enum value
+	NotificationTargetSqs = "SQS"
 )
 
 const (

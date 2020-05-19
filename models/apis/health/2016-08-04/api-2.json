@@ -218,6 +218,7 @@
       "type":"structure",
       "members":{
         "affectedAccounts":{"shape":"affectedAccountsList"},
+        "eventScopeCode":{"shape":"eventScopeCode"},
         "nextToken":{"shape":"nextToken"}
       }
     },
@@ -428,15 +429,13 @@
         "startTime":{"shape":"timestamp"},
         "endTime":{"shape":"timestamp"},
         "lastUpdatedTime":{"shape":"timestamp"},
-        "statusCode":{"shape":"eventStatusCode"}
+        "statusCode":{"shape":"eventStatusCode"},
+        "eventScopeCode":{"shape":"eventScopeCode"}
       }
     },
     "EventAccountFilter":{
       "type":"structure",
-      "required":[
-        "eventArn",
-        "awsAccountId"
-      ],
+      "required":["eventArn"],
       "members":{
         "eventArn":{"shape":"eventArn"},
         "awsAccountId":{"shape":"accountId"}
@@ -564,6 +563,7 @@
         "service":{"shape":"service"},
         "eventTypeCode":{"shape":"eventTypeCode"},
         "eventTypeCategory":{"shape":"eventTypeCategory"},
+        "eventScopeCode":{"shape":"eventScopeCode"},
         "region":{"shape":"region"},
         "startTime":{"shape":"timestamp"},
         "endTime":{"shape":"timestamp"},
@@ -683,8 +683,8 @@
     "entityUrl":{"type":"string"},
     "entityValue":{
       "type":"string",
-      "max":256,
-      "pattern":".{0,256}"
+      "max":1224,
+      "pattern":".{0,1224}"
     },
     "entityValueList":{
       "type":"list",
@@ -712,6 +712,14 @@
       "type":"map",
       "key":{"shape":"metadataKey"},
       "value":{"shape":"metadataValue"}
+    },
+    "eventScopeCode":{
+      "type":"string",
+      "enum":[
+        "PUBLIC",
+        "ACCOUNT_SPECIFIC",
+        "NONE"
+      ]
     },
     "eventStatusCode":{
       "type":"string",
@@ -774,10 +782,13 @@
       "max":100,
       "min":10
     },
-    "metadataKey":{"type":"string"},
+    "metadataKey":{
+      "type":"string",
+      "max":32766
+    },
     "metadataValue":{
       "type":"string",
-      "max":10240
+      "max":32766
     },
     "nextToken":{
       "type":"string",

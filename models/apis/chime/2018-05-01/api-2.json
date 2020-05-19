@@ -4264,6 +4264,14 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "NotificationTarget":{
+      "type":"string",
+      "enum":[
+        "EventBridge",
+        "SNS",
+        "SQS"
+      ]
+    },
     "NullableBoolean":{"type":"boolean"},
     "NumberSelectionBehavior":{
       "type":"string",
@@ -4947,8 +4955,22 @@
       "required":["DataRetentionInHours"],
       "members":{
         "DataRetentionInHours":{"shape":"DataRetentionInHours"},
-        "Disabled":{"shape":"Boolean"}
+        "Disabled":{"shape":"Boolean"},
+        "StreamingNotificationTargets":{"shape":"StreamingNotificationTargetList"}
       }
+    },
+    "StreamingNotificationTarget":{
+      "type":"structure",
+      "required":["NotificationTarget"],
+      "members":{
+        "NotificationTarget":{"shape":"NotificationTarget"}
+      }
+    },
+    "StreamingNotificationTargetList":{
+      "type":"list",
+      "member":{"shape":"StreamingNotificationTarget"},
+      "max":3,
+      "min":1
     },
     "String":{"type":"string"},
     "String128":{
