@@ -4,7 +4,9 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -105,11 +107,37 @@ func TestKMSDecrypt(t *testing.T) {
 	}
 }
 
-func TestKMSDecryptBadJSON(t *testing.T) {
-	key, _ := hex.DecodeString("31bdadd96698c204aa9ce1448ea94ae1fb4a9a0b3c9d773b51bb1822666b8f22")
-	keyB64 := base64.URLEncoding.EncodeToString(key)
+func TestKMSContextGenerateCipherData(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+		bodyBytes, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			w.WriteHeader(500)
+			return
+		}
+		var body map[string]interface{}
+		err = json.Unmarshal(bodyBytes, &body)
+		if err != nil {
+			w.WriteHeader(500)
+			return
+		}
+
+		md, ok := body["EncryptionContext"].(map[string]interface{})
+		if !ok {
+			w.WriteHeader(500)
+			return
+		}
+
+		exEncContext := map[string]interface{}{
+			"aws:" + cekAlgorithmHeader: "cekAlgValue",
+		}
+
+		if e, a := exEncContext, md; !reflect.DeepEqual(e, a) {
+			w.WriteHeader(500)
+			t.Errorf("expected %v, got %v", e, a)
+			return
+		}
+
+		fmt.Fprintln(w, `{"CiphertextBlob":"AQEDAHhqBCCY1MSimw8gOGcUma79cn4ANvTtQyv9iuBdbcEF1QAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDJ6IcN5E4wVbk38MNAIBEIA7oF1E3lS7FY9DkoxPc/UmJsEwHzL82zMqoLwXIvi8LQHr8If4Lv6zKqY8u0+JRgSVoqCvZDx3p8Cn6nM=","KeyId":"arn:aws:kms:us-west-2:042062605278:key/c80a5cdb-8d09-4f9f-89ee-df01b2e3870a","Plaintext":"6tmyz9JLBE2yIuU7iXpArqpDVle172WSmxjcO6GNT7E="}`)
 	}))
 	defer ts.Close()
 
@@ -121,8 +149,78 @@ func TestKMSDecryptBadJSON(t *testing.T) {
 		Region:           aws.String("us-west-2"),
 	})
 
-	_, err := (kmsKeyHandler{kms: kms.New(sess)}).decryptHandler(Envelope{MatDesc: `{"kms_cmk_id":"test"`})
-	if err == nil {
-		t.Errorf("expected error, but received none")
+	svc := kms.New(sess)
+	handler := NewKMSContextKeyGenerator(svc, "testid")
+
+	keySize := 32
+	ivSize := 16
+
+	cd, err := handler.GenerateCipherDataWithCEKAlg(keySize, ivSize, "cekAlgValue")
+	if err != nil {
+		t.Errorf("expected no error, but received %v", err)
+	}
+	if keySize != len(cd.Key) {
+		t.Errorf("expected %d, but received %d", keySize, len(cd.Key))
+	}
+	if ivSize != len(cd.IV) {
+		t.Errorf("expected %d, but received %d", ivSize, len(cd.IV))
+	}
+}
+
+func TestKMSContextDecrypt(t *testing.T) {
+	key, _ := hex.DecodeString("31bdadd96698c204aa9ce1448ea94ae1fb4a9a0b3c9d773b51bb1822666b8f22")
+	keyB64 := base64.URLEncoding.EncodeToString(key)
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		bodyBytes, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			w.WriteHeader(500)
+			return
+		}
+		var body map[string]interface{}
+		err = json.Unmarshal(bodyBytes, &body)
+		if err != nil {
+			w.WriteHeader(500)
+			return
+		}
+
+		md, ok := body["EncryptionContext"].(map[string]interface{})
+		if !ok {
+			w.WriteHeader(500)
+			return
+		}
+
+		exEncContext := map[string]interface{}{
+			"aws:" + cekAlgorithmHeader: "cekAlgValue",
+		}
+
+		if e, a := exEncContext, md; !reflect.DeepEqual(e, a) {
+			w.WriteHeader(500)
+			t.Errorf("expected %v, got %v", e, a)
+			return
+		}
+
+		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, keyB64, `"}`))
+	}))
+	defer ts.Close()
+
+	sess := unit.Session.Copy(&aws.Config{
+		MaxRetries:       aws.Int(0),
+		Endpoint:         aws.String(ts.URL),
+		DisableSSL:       aws.Bool(true),
+		S3ForcePathStyle: aws.Bool(true),
+		Region:           aws.String("us-west-2"),
+	})
+	handler, err := NewKMSContextWrapEntry(kms.New(sess))(Envelope{MatDesc: `{"aws:x-amz-cek-alg": "cekAlgValue"}`})
+	if err != nil {
+		t.Errorf("expected no error, but received %v", err)
+	}
+
+	plaintextKey, err := handler.DecryptKey([]byte{1, 2, 3, 4})
+	if err != nil {
+		t.Errorf("expected no error, but received %v", err)
+	}
+
+	if !bytes.Equal(key, plaintextKey) {
+		t.Errorf("expected %v, but received %v", key, plaintextKey)
 	}
 }

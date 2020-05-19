@@ -20,6 +20,22 @@ type CipherDataGeneratorWithContext interface {
 	GenerateCipherDataWithContext(aws.Context, int, int) (CipherData, error)
 }
 
+// CipherDataGeneratorWithCEKAlg handles generating proper key and IVs of proper size for the
+// content cipher. CipherDataGenerator will also encrypt the key and store it in
+// the CipherData.
+type CipherDataGeneratorWithCEKAlg interface {
+	GenerateCipherDataWithCEKAlg(int, int, string) (CipherData, error)
+
+	CipherDataGenerator // backwards comparability to plug into older interface
+}
+
+// CipherDataGeneratorWithCEKAlgWithContext handles generating proper key and IVs of
+// proper size for the content cipher. CipherDataGenerator will also encrypt
+// the key and store it in the CipherData.
+type CipherDataGeneratorWithCEKAlgWithContext interface {
+	GenerateCipherDataWithCEKAlgWithContext(aws.Context, int, int, string) (CipherData, error)
+}
+
 // CipherDataDecrypter is a handler to decrypt keys from the envelope.
 type CipherDataDecrypter interface {
 	DecryptKey([]byte) ([]byte, error)
@@ -30,8 +46,11 @@ type CipherDataDecrypterWithContext interface {
 	DecryptKeyWithContext(aws.Context, []byte) ([]byte, error)
 }
 
-func generateBytes(n int) []byte {
+func generateBytes(n int) ([]byte, error) {
 	b := make([]byte, n)
-	rand.Read(b)
-	return b
+	_, err := rand.Read(b)
+	if err != nil {
+		return nil, err
+	}
+	return b, nil
 }

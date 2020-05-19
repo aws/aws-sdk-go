@@ -63,7 +63,6 @@ func (strat HeaderV2SaveStrategy) Save(env Envelope, req *request.Request) error
 	input.Metadata[http.CanonicalHeaderKey(matDescHeader)] = &env.MatDesc
 	input.Metadata[http.CanonicalHeaderKey(wrapAlgorithmHeader)] = &env.WrapAlg
 	input.Metadata[http.CanonicalHeaderKey(cekAlgorithmHeader)] = &env.CEKAlg
-	input.Metadata[http.CanonicalHeaderKey(unencryptedMD5Header)] = &env.UnencryptedMD5
 	input.Metadata[http.CanonicalHeaderKey(unencryptedContentLengthHeader)] = &env.UnencryptedContentLen
 
 	if len(env.TagLen) > 0 {
