@@ -6554,6 +6554,9 @@ var awscnPartition = partition{
 			Defaults: endpoint{
 				Protocols:         []string{"http", "https"},
 				SignatureVersions: []string{"s3v4"},
+
+				HasDualStack:      boxedTrue,
+				DualStackHostname: "{service}.dualstack.{region}.{dnsSuffix}",
 			},
 			Endpoints: endpoints{
 				"cn-north-1":     endpoint{},
@@ -6564,6 +6567,9 @@ var awscnPartition = partition{
 			Defaults: endpoint{
 				Protocols:         []string{"https"},
 				SignatureVersions: []string{"s3v4"},
+
+				HasDualStack:      boxedTrue,
+				DualStackHostname: "{service}.dualstack.{region}.{dnsSuffix}",
 			},
 			Endpoints: endpoints{
 				"cn-north-1": endpoint{
