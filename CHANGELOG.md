@@ -1,3 +1,15 @@
+Release v1.31.1 (2020-05-19)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * You can now receive Voice Connector call events through SNS or SQS.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for Federated Authentication via SAML-2.0 in AWS ClientVPN.
+* `service/health`: Updates service API, documentation, and paginators
+  * Feature: Health: AWS Health added a new field to differentiate Public events from Account-Specific events in the API request and response. Visit https://docs.aws.amazon.com/health/latest/APIReference/API_Event.html to learn more.
+* `service/transcribe`: Updates service documentation
+
 Release v1.31.0 (2020-05-18)
 ===
 

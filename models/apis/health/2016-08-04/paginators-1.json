@@ -3,6 +3,9 @@
     "DescribeAffectedAccountsForOrganization": {
       "input_token": "nextToken",
       "limit_key": "maxResults",
+      "non_aggregate_keys": [
+        "eventScopeCode"
+      ],
       "output_token": "nextToken",
       "result_key": "affectedAccounts"
     },

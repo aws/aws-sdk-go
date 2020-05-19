@@ -5639,6 +5639,10 @@
         "MutualAuthentication":{
           "shape":"CertificateAuthentication",
           "locationName":"mutualAuthentication"
+        },
+        "FederatedAuthentication":{
+          "shape":"FederatedAuthentication",
+          "locationName":"federatedAuthentication"
         }
       }
     },
@@ -5654,7 +5658,8 @@
       "members":{
         "Type":{"shape":"ClientVpnAuthenticationType"},
         "ActiveDirectory":{"shape":"DirectoryServiceAuthenticationRequest"},
-        "MutualAuthentication":{"shape":"CertificateAuthenticationRequest"}
+        "MutualAuthentication":{"shape":"CertificateAuthenticationRequest"},
+        "FederatedAuthentication":{"shape":"FederatedAuthenticationRequest"}
       }
     },
     "ClientVpnAuthenticationRequestList":{
@@ -5665,7 +5670,8 @@
       "type":"string",
       "enum":[
         "certificate-authentication",
-        "directory-service-authentication"
+        "directory-service-authentication",
+        "federated-authentication"
       ]
     },
     "ClientVpnAuthorizationRuleStatus":{
@@ -14408,6 +14414,21 @@
         "disabling",
         "disabled"
       ]
+    },
+    "FederatedAuthentication":{
+      "type":"structure",
+      "members":{
+        "SamlProviderArn":{
+          "shape":"String",
+          "locationName":"samlProviderArn"
+        }
+      }
+    },
+    "FederatedAuthenticationRequest":{
+      "type":"structure",
+      "members":{
+        "SAMLProviderArn":{"shape":"String"}
+      }
     },
     "Filter":{
       "type":"structure",

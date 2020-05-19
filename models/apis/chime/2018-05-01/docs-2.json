@@ -1550,6 +1550,12 @@
       "refs": {
       }
     },
+    "NotificationTarget": {
+      "base": null,
+      "refs": {
+        "StreamingNotificationTarget$NotificationTarget": "<p>The streaming notification target.</p>"
+      }
+    },
     "NullableBoolean": {
       "base": null,
       "refs": {
@@ -2058,6 +2064,18 @@
         "GetVoiceConnectorStreamingConfigurationResponse$StreamingConfiguration": "<p>The streaming configuration details.</p>",
         "PutVoiceConnectorStreamingConfigurationRequest$StreamingConfiguration": "<p>The streaming configuration details to add.</p>",
         "PutVoiceConnectorStreamingConfigurationResponse$StreamingConfiguration": "<p>The updated streaming configuration details.</p>"
+      }
+    },
+    "StreamingNotificationTarget": {
+      "base": "<p>The targeted recipient for a streaming configuration notification.</p>",
+      "refs": {
+        "StreamingNotificationTargetList$member": null
+      }
+    },
+    "StreamingNotificationTargetList": {
+      "base": null,
+      "refs": {
+        "StreamingConfiguration$StreamingNotificationTargets": "<p>The streaming notification targets.</p>"
       }
     },
     "String": {
