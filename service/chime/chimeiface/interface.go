@@ -268,6 +268,10 @@ type ChimeAPI interface {
 	GetProxySessionWithContext(aws.Context, *chime.GetProxySessionInput, ...request.Option) (*chime.GetProxySessionOutput, error)
 	GetProxySessionRequest(*chime.GetProxySessionInput) (*request.Request, *chime.GetProxySessionOutput)
 
+	GetRetentionSettings(*chime.GetRetentionSettingsInput) (*chime.GetRetentionSettingsOutput, error)
+	GetRetentionSettingsWithContext(aws.Context, *chime.GetRetentionSettingsInput, ...request.Option) (*chime.GetRetentionSettingsOutput, error)
+	GetRetentionSettingsRequest(*chime.GetRetentionSettingsInput) (*request.Request, *chime.GetRetentionSettingsOutput)
+
 	GetRoom(*chime.GetRoomInput) (*chime.GetRoomOutput, error)
 	GetRoomWithContext(aws.Context, *chime.GetRoomInput, ...request.Option) (*chime.GetRoomOutput, error)
 	GetRoomRequest(*chime.GetRoomInput) (*request.Request, *chime.GetRoomOutput)
@@ -423,6 +427,10 @@ type ChimeAPI interface {
 	PutEventsConfiguration(*chime.PutEventsConfigurationInput) (*chime.PutEventsConfigurationOutput, error)
 	PutEventsConfigurationWithContext(aws.Context, *chime.PutEventsConfigurationInput, ...request.Option) (*chime.PutEventsConfigurationOutput, error)
 	PutEventsConfigurationRequest(*chime.PutEventsConfigurationInput) (*request.Request, *chime.PutEventsConfigurationOutput)
+
+	PutRetentionSettings(*chime.PutRetentionSettingsInput) (*chime.PutRetentionSettingsOutput, error)
+	PutRetentionSettingsWithContext(aws.Context, *chime.PutRetentionSettingsInput, ...request.Option) (*chime.PutRetentionSettingsOutput, error)
+	PutRetentionSettingsRequest(*chime.PutRetentionSettingsInput) (*request.Request, *chime.PutRetentionSettingsOutput)
 
 	PutVoiceConnectorLoggingConfiguration(*chime.PutVoiceConnectorLoggingConfigurationInput) (*chime.PutVoiceConnectorLoggingConfigurationOutput, error)
 	PutVoiceConnectorLoggingConfigurationWithContext(aws.Context, *chime.PutVoiceConnectorLoggingConfigurationInput, ...request.Option) (*chime.PutVoiceConnectorLoggingConfigurationOutput, error)

@@ -128,6 +128,10 @@ type MediaLiveAPI interface {
 	DescribeInputWithContext(aws.Context, *medialive.DescribeInputInput, ...request.Option) (*medialive.DescribeInputOutput, error)
 	DescribeInputRequest(*medialive.DescribeInputInput) (*request.Request, *medialive.DescribeInputOutput)
 
+	DescribeInputDevice(*medialive.DescribeInputDeviceInput) (*medialive.DescribeInputDeviceOutput, error)
+	DescribeInputDeviceWithContext(aws.Context, *medialive.DescribeInputDeviceInput, ...request.Option) (*medialive.DescribeInputDeviceOutput, error)
+	DescribeInputDeviceRequest(*medialive.DescribeInputDeviceInput) (*request.Request, *medialive.DescribeInputDeviceOutput)
+
 	DescribeInputSecurityGroup(*medialive.DescribeInputSecurityGroupInput) (*medialive.DescribeInputSecurityGroupOutput, error)
 	DescribeInputSecurityGroupWithContext(aws.Context, *medialive.DescribeInputSecurityGroupInput, ...request.Option) (*medialive.DescribeInputSecurityGroupOutput, error)
 	DescribeInputSecurityGroupRequest(*medialive.DescribeInputSecurityGroupInput) (*request.Request, *medialive.DescribeInputSecurityGroupOutput)
@@ -161,6 +165,13 @@ type MediaLiveAPI interface {
 
 	ListChannelsPages(*medialive.ListChannelsInput, func(*medialive.ListChannelsOutput, bool) bool) error
 	ListChannelsPagesWithContext(aws.Context, *medialive.ListChannelsInput, func(*medialive.ListChannelsOutput, bool) bool, ...request.Option) error
+
+	ListInputDevices(*medialive.ListInputDevicesInput) (*medialive.ListInputDevicesOutput, error)
+	ListInputDevicesWithContext(aws.Context, *medialive.ListInputDevicesInput, ...request.Option) (*medialive.ListInputDevicesOutput, error)
+	ListInputDevicesRequest(*medialive.ListInputDevicesInput) (*request.Request, *medialive.ListInputDevicesOutput)
+
+	ListInputDevicesPages(*medialive.ListInputDevicesInput, func(*medialive.ListInputDevicesOutput, bool) bool) error
+	ListInputDevicesPagesWithContext(aws.Context, *medialive.ListInputDevicesInput, func(*medialive.ListInputDevicesOutput, bool) bool, ...request.Option) error
 
 	ListInputSecurityGroups(*medialive.ListInputSecurityGroupsInput) (*medialive.ListInputSecurityGroupsOutput, error)
 	ListInputSecurityGroupsWithContext(aws.Context, *medialive.ListInputSecurityGroupsInput, ...request.Option) (*medialive.ListInputSecurityGroupsOutput, error)
@@ -240,6 +251,10 @@ type MediaLiveAPI interface {
 	UpdateInputWithContext(aws.Context, *medialive.UpdateInputInput, ...request.Option) (*medialive.UpdateInputOutput, error)
 	UpdateInputRequest(*medialive.UpdateInputInput) (*request.Request, *medialive.UpdateInputOutput)
 
+	UpdateInputDevice(*medialive.UpdateInputDeviceInput) (*medialive.UpdateInputDeviceOutput, error)
+	UpdateInputDeviceWithContext(aws.Context, *medialive.UpdateInputDeviceInput, ...request.Option) (*medialive.UpdateInputDeviceOutput, error)
+	UpdateInputDeviceRequest(*medialive.UpdateInputDeviceInput) (*request.Request, *medialive.UpdateInputDeviceOutput)
+
 	UpdateInputSecurityGroup(*medialive.UpdateInputSecurityGroupInput) (*medialive.UpdateInputSecurityGroupOutput, error)
 	UpdateInputSecurityGroupWithContext(aws.Context, *medialive.UpdateInputSecurityGroupInput, ...request.Option) (*medialive.UpdateInputSecurityGroupOutput, error)
 	UpdateInputSecurityGroupRequest(*medialive.UpdateInputSecurityGroupInput) (*request.Request, *medialive.UpdateInputSecurityGroupOutput)
@@ -267,6 +282,15 @@ type MediaLiveAPI interface {
 
 	WaitUntilChannelStopped(*medialive.DescribeChannelInput) error
 	WaitUntilChannelStoppedWithContext(aws.Context, *medialive.DescribeChannelInput, ...request.WaiterOption) error
+
+	WaitUntilInputAttached(*medialive.DescribeInputInput) error
+	WaitUntilInputAttachedWithContext(aws.Context, *medialive.DescribeInputInput, ...request.WaiterOption) error
+
+	WaitUntilInputDeleted(*medialive.DescribeInputInput) error
+	WaitUntilInputDeletedWithContext(aws.Context, *medialive.DescribeInputInput, ...request.WaiterOption) error
+
+	WaitUntilInputDetached(*medialive.DescribeInputInput) error
+	WaitUntilInputDetachedWithContext(aws.Context, *medialive.DescribeInputInput, ...request.WaiterOption) error
 
 	WaitUntilMultiplexCreated(*medialive.DescribeMultiplexInput) error
 	WaitUntilMultiplexCreatedWithContext(aws.Context, *medialive.DescribeMultiplexInput, ...request.WaiterOption) error

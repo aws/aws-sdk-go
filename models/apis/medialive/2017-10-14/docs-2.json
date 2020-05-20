@@ -19,6 +19,7 @@
     "DeleteTags": "Removes tags for a resource",
     "DescribeChannel": "Gets details about a channel",
     "DescribeInput": "Produces details about an input",
+    "DescribeInputDevice": "Gets the details for the input device",
     "DescribeInputSecurityGroup": "Produces a summary of an Input Security Group",
     "DescribeMultiplex": "Gets details about a multiplex.",
     "DescribeMultiplexProgram": "Get the details for a program in a multiplex.",
@@ -26,6 +27,7 @@
     "DescribeReservation": "Get details for a reservation.",
     "DescribeSchedule": "Get a channel schedule",
     "ListChannels": "Produces list of channels that have been created",
+    "ListInputDevices": "List input devices",
     "ListInputSecurityGroups": "Produces a list of Input Security Groups for an account",
     "ListInputs": "Produces list of inputs that have been created",
     "ListMultiplexPrograms": "List the programs that currently exist for a specific multiplex.",
@@ -41,6 +43,7 @@
     "UpdateChannel": "Updates a channel.",
     "UpdateChannelClass": "Changes the class of the channel.",
     "UpdateInput": "Updates an input.",
+    "UpdateInputDevice": "Updates the parameters for the input device.",
     "UpdateInputSecurityGroup": "Update an Input Security Group's Whilelists.",
     "UpdateMultiplex": "Updates a multiplex.",
     "UpdateMultiplexProgram": "Update a program in a multiplex.",
@@ -555,6 +558,13 @@
       "refs": {
       }
     },
+    "DeviceSettingsSyncState": {
+      "base": "The status of the action to synchronize the device configuration. If you change the configuration of the input device (for example, the maximum bitrate), MediaLive sends the new data to the device. The device might not update itself immediately. SYNCED means the device has updated its configuration. SYNCING means that it has not updated its configuration.",
+      "refs": {
+        "InputDevice$DeviceSettingsSyncState": "The status of the action to synchronize the device configuration. If you change the configuration of the input device (for example, the maximum bitrate), MediaLive sends the new data to the device. The device might not update itself immediately. SYNCED means the device has updated its configuration. SYNCING means that it has not updated its configuration.",
+        "InputDeviceSummary$DeviceSettingsSyncState": "The status of the action to synchronize the device configuration. If you change the configuration of the input device (for example, the maximum bitrate), MediaLive sends the new data to the device. The device might not update itself immediately. SYNCED means the device has updated its configuration. SYNCING means that it has not updated its configuration."
+      }
+    },
     "DvbNitSettings": {
       "base": "DVB Network Information Table (NIT)",
       "refs": {
@@ -870,7 +880,7 @@
     "GlobalConfigurationOutputLockingMode": {
       "base": "Global Configuration Output Locking Mode",
       "refs": {
-        "GlobalConfiguration$OutputLockingMode": "Indicates how MediaLive pipelines are synchronized.\n\nPIPELINELOCKING - MediaLive will attempt to synchronize the output of each pipeline to the other.\nEPOCHLOCKING - MediaLive will attempt to synchronize the output of each pipeline to the Unix epoch."
+        "GlobalConfiguration$OutputLockingMode": "Indicates how MediaLive pipelines are synchronized.\n\nPIPELINE_LOCKING - MediaLive will attempt to synchronize the output of each pipeline to the other.\nEPOCH_LOCKING - MediaLive will attempt to synchronize the output of each pipeline to the Unix epoch."
       }
     },
     "GlobalConfigurationOutputTimingSource": {
@@ -906,7 +916,7 @@
     "H264FilterSettings": {
       "base": "H264 Filter Settings",
       "refs": {
-        "H264Settings$FilterSettings": "Settings associated with the specified filter."
+        "H264Settings$FilterSettings": "Optional filters that you can apply to an encode."
       }
     },
     "H264FlickerAq": {
@@ -966,7 +976,7 @@
     "H264QualityLevel": {
       "base": "H264 Quality Level",
       "refs": {
-        "H264Settings$QualityLevel": "If set to \"ENHANCEDQUALITY,\" improves visual quality at an increased output cost. If this video is being delivered to a MediaLive Multiplex, \"ENHANCEDQUALITY\" is always used."
+        "H264Settings$QualityLevel": "Leave as STANDARD_QUALITY or choose a different value (which might result in additional costs to run the channel).\n- ENHANCED_QUALITY: Produces a slightly better video quality without an increase in the bitrate. Has an effect only when the Rate control mode is QVBR or CBR. If this channel is in a MediaLive multiplex, the value must be ENHANCED_QUALITY.\n- STANDARD_QUALITY: Valid for any Rate control mode."
       }
     },
     "H264RateControlMode": {
@@ -1254,7 +1264,7 @@
     "HlsOutputSelection": {
       "base": "Hls Output Selection",
       "refs": {
-        "HlsGroupSettings$OutputSelection": "MANIFESTSANDSEGMENTS: Generates manifests (master manifest, if applicable, and media manifests) for this output group.\n\nVARIANTMANIFESTSANDSEGMENTS: Generates media manifests for this output group, but not a master manifest.\n\nSEGMENTSONLY: Does not generate any manifests for this output group."
+        "HlsGroupSettings$OutputSelection": "MANIFESTS_AND_SEGMENTS: Generates manifests (master manifest, if applicable, and media manifests) for this output group.\n\nVARIANT_MANIFESTS_AND_SEGMENTS: Generates media manifests for this output group, but not a master manifest.\n\nSEGMENTS_ONLY: Does not generate any manifests for this output group."
       }
     },
     "HlsOutputSettings": {
@@ -1308,7 +1318,7 @@
     "HlsTsFileMode": {
       "base": "Hls Ts File Mode",
       "refs": {
-        "HlsGroupSettings$TsFileMode": "SEGMENTEDFILES: Emit the program as segments - multiple .ts media files.\n\nSINGLEFILE: Applies only if Mode field is VOD. Emit the program as a single .ts media file. The media manifest includes #EXT-X-BYTERANGE tags to index segments for playback. A typical use for this value is when sending the output to AWS Elemental MediaConvert, which can accept only a single media file. Playback while the channel is running is not guaranteed due to HTTP server caching."
+        "HlsGroupSettings$TsFileMode": "SEGMENTED_FILES: Emit the program as segments - multiple .ts media files.\n\nSINGLE_FILE: Applies only if Mode field is VOD. Emit the program as a single .ts media file. The media manifest includes #EXT-X-BYTERANGE tags to index segments for playback. A typical use for this value is when sending the output to AWS Elemental MediaConvert, which can accept only a single media file. Playback while the channel is running is not guaranteed due to HTTP server caching."
       }
     },
     "HlsWebdavHttpTransferMode": {
@@ -1401,6 +1411,99 @@
       "base": "The properties for a VPC type input destination.",
       "refs": {
         "InputDestination$Vpc": null
+      }
+    },
+    "InputDevice": {
+      "base": "An input device.",
+      "refs": {
+      }
+    },
+    "InputDeviceActiveInput": {
+      "base": "The source at the input device that is currently active.",
+      "refs": {
+        "InputDeviceHdSettings$ActiveInput": "If you specified Auto as the configured input, specifies which of the sources is currently active (SDI or HDMI)."
+      }
+    },
+    "InputDeviceConfigurableSettings": {
+      "base": "Configurable settings for the input device.",
+      "refs": {
+        "UpdateInputDevice$HdDeviceSettings": "The settings that you want to apply to the input device."
+      }
+    },
+    "InputDeviceConfigurationValidationError": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "InputDeviceConfiguredInput": {
+      "base": "The source to activate (use) from the input device.",
+      "refs": {
+        "InputDeviceConfigurableSettings$ConfiguredInput": "The input source that you want to use. If the device has a source connected to only one of its input ports, or if you don't care which source the device sends, specify Auto. If the device has sources connected to both its input ports, and you want to use a specific source, specify the source.",
+        "InputDeviceHdSettings$ConfiguredInput": "The source at the input device that is currently active. You can specify this source."
+      }
+    },
+    "InputDeviceConnectionState": {
+      "base": "The state of the connection between the input device and AWS.",
+      "refs": {
+        "InputDevice$ConnectionState": "The state of the connection between the input device and AWS.",
+        "InputDeviceSummary$ConnectionState": "The state of the connection between the input device and AWS."
+      }
+    },
+    "InputDeviceHdSettings": {
+      "base": "Settings that describe the active source from the input device, and the video characteristics of that source.",
+      "refs": {
+        "InputDevice$HdDeviceSettings": "Settings that describe an input device that is type HD.",
+        "InputDeviceSummary$HdDeviceSettings": "Settings that describe an input device that is type HD."
+      }
+    },
+    "InputDeviceIpScheme": {
+      "base": "Specifies whether the input device has been configured (outside of MediaLive) to use a dynamic IP address assignment (DHCP) or a static IP address.",
+      "refs": {
+        "InputDeviceNetworkSettings$IpScheme": "Specifies whether the input device has been configured (outside of MediaLive) to use a dynamic IP address assignment (DHCP) or a static IP address."
+      }
+    },
+    "InputDeviceNetworkSettings": {
+      "base": "The network settings for the input device.",
+      "refs": {
+        "InputDevice$NetworkSettings": "The network settings for the input device.",
+        "InputDeviceSummary$NetworkSettings": "Network settings for the input device."
+      }
+    },
+    "InputDeviceRequest": {
+      "base": "Settings for an input device.",
+      "refs": {
+        "__listOfInputDeviceRequest$member": null
+      }
+    },
+    "InputDeviceScanType": {
+      "base": "The scan type of the video source.",
+      "refs": {
+        "InputDeviceHdSettings$ScanType": "The scan type of the video source."
+      }
+    },
+    "InputDeviceSettings": {
+      "base": "Settings for an input device.",
+      "refs": {
+        "__listOfInputDeviceSettings$member": null
+      }
+    },
+    "InputDeviceState": {
+      "base": "The state of the input device.",
+      "refs": {
+        "InputDeviceHdSettings$DeviceState": "The state of the input device."
+      }
+    },
+    "InputDeviceSummary": {
+      "base": "Details of the input device.",
+      "refs": {
+        "__listOfInputDeviceSummary$member": null
+      }
+    },
+    "InputDeviceType": {
+      "base": "The type of the input device. For an AWS Elemental Link device that outputs resolutions up to 1080, choose \"HD\".",
+      "refs": {
+        "InputDevice$Type": "The type of the input device.",
+        "InputDeviceSummary$Type": "The type of the input device."
       }
     },
     "InputFilter": {
@@ -1612,6 +1715,11 @@
     },
     "ListChannelsResultModel": {
       "base": null,
+      "refs": {
+      }
+    },
+    "ListInputDevicesResultModel": {
+      "base": "The list of input devices owned by the AWS account.",
       "refs": {
       }
     },
@@ -1971,12 +2079,6 @@
       "base": null,
       "refs": {
         "__listOfMultiplexSummary$member": null
-      }
-    },
-    "MultiplexValidationError": {
-      "base": null,
-      "refs": {
-        "__listOfMultiplexValidationError$member": null
       }
     },
     "MultiplexVideoSettings": {
@@ -2457,7 +2559,7 @@
     "SmoothGroupSparseTrackType": {
       "base": "Smooth Group Sparse Track Type",
       "refs": {
-        "MsSmoothGroupSettings$SparseTrackType": "If set to scte35, use incoming SCTE-35 messages to generate a sparse track in this group of MS-Smooth outputs. scte35WithoutSegmentation is the same as scte35, except EML will not start a new segment at a SCTE-35 marker. It will still encode an IDR frame at a SCTE-35 marker."
+        "MsSmoothGroupSettings$SparseTrackType": "Identifies the type of data to place in the sparse track:\n- SCTE35: Insert SCTE-35 messages from the source content. With each message, insert an IDR frame to start a new segment.\n- SCTE35_WITHOUT_SEGMENTATION: Insert SCTE-35 messages from the source content. With each message, insert an IDR frame but don't start a new segment.\n- NONE: Don't generate a sparse track for any outputs in this output group."
       }
     },
     "SmoothGroupStreamManifestBehavior": {
@@ -2470,6 +2572,12 @@
       "base": "Smooth Group Timestamp Offset Mode",
       "refs": {
         "MsSmoothGroupSettings$TimestampOffsetMode": "Type of timestamp date offset to use.\n- useEventStartDate: Use the date the event was started as the offset\n- useConfiguredOffset: Use an explicitly configured date as the offset"
+      }
+    },
+    "Smpte2038DataPreference": {
+      "base": "Smpte2038 Data Preference",
+      "refs": {
+        "InputSettings$Smpte2038DataPreference": "Specifies whether to extract applicable ancillary data from a SMPTE-2038 source in this input. Applicable data types are captions, timecode, AFD, and SCTE-104 messages.\n- PREFER: Extract from SMPTE-2038 if present in this input, otherwise extract from another source (if any).\n- IGNORE: Never extract any ancillary data from SMPTE-2038."
       }
     },
     "SmpteTtDestinationSettings": {
@@ -2552,7 +2660,7 @@
     "TemporalFilterPostFilterSharpening": {
       "base": "Temporal Filter Post Filter Sharpening",
       "refs": {
-        "TemporalFilterSettings$PostFilterSharpening": "If set to \"ENABLED,\" applies post-filter sharpening to improve visual quality. This is most beneficial when using a noisy or compressed input source and low output bitrates."
+        "TemporalFilterSettings$PostFilterSharpening": "If you enable this filter, the results are the following:\n- If the source content is noisy (it contains excessive digital artifacts), the filter cleans up the source.\n- If the source content is already clean, the filter tends to decrease the bitrate, especially when the rate control mode is QVBR."
       }
     },
     "TemporalFilterSettings": {
@@ -2564,7 +2672,7 @@
     "TemporalFilterStrength": {
       "base": "Temporal Filter Strength",
       "refs": {
-        "TemporalFilterSettings$Strength": "Filter strength. A higher value produces stronger filtering."
+        "TemporalFilterSettings$Strength": "Choose a filter strength. We recommend a strength of 1 or 2. A higher strength might take out good information, resulting in an image that is overly soft."
       }
     },
     "TimecodeConfig": {
@@ -2645,6 +2753,11 @@
       "refs": {
       }
     },
+    "UpdateInputDevice": {
+      "base": "Updates an input device.",
+      "refs": {
+      }
+    },
     "UpdateInputResultModel": {
       "base": null,
       "refs": {
@@ -2706,13 +2819,13 @@
     "VideoDescriptionRespondToAfd": {
       "base": "Video Description Respond To Afd",
       "refs": {
-        "VideoDescription$RespondToAfd": "Indicates how to respond to the AFD values in the input stream. RESPOND causes input video to be clipped, depending on the AFD value, input display aspect ratio, and output display aspect ratio, and (except for FRAMECAPTURE codec) includes the values in the output. PASSTHROUGH (does not apply to FRAMECAPTURE codec) ignores the AFD values and includes the values in the output, so input video is not clipped. NONE ignores the AFD values and does not include the values through to the output, so input video is not clipped."
+        "VideoDescription$RespondToAfd": "Indicates how to respond to the AFD values in the input stream. RESPOND causes input video to be clipped, depending on the AFD value, input display aspect ratio, and output display aspect ratio, and (except for FRAME_CAPTURE codec) includes the values in the output. PASSTHROUGH (does not apply to FRAME_CAPTURE codec) ignores the AFD values and includes the values in the output, so input video is not clipped. NONE ignores the AFD values and does not include the values through to the output, so input video is not clipped."
       }
     },
     "VideoDescriptionScalingBehavior": {
       "base": "Video Description Scaling Behavior",
       "refs": {
-        "VideoDescription$ScalingBehavior": "STRETCHTOOUTPUT configures the output position to stretch the video to the specified output resolution (height and width). This option will override any position value. DEFAULT may insert black boxes (pillar boxes or letter boxes) around the video to provide the specified output resolution."
+        "VideoDescription$ScalingBehavior": "STRETCH_TO_OUTPUT configures the output position to stretch the video to the specified output resolution (height and width). This option will override any position value. DEFAULT may insert black boxes (pillar boxes or letter boxes) around the video to provide the specified output resolution."
       }
     },
     "VideoSelector": {
@@ -2770,6 +2883,7 @@
         "Eac3Settings$LtRtSurroundMixLevel": "Left total/Right total surround mix level. Only used for 3/2 coding mode.",
         "H264Settings$GopSize": "GOP size (keyframe interval) in units of either frames or seconds per gopSizeUnits.\nIf gopSizeUnits is frames, gopSize must be an integer and must be greater than or equal to 1.\nIf gopSizeUnits is seconds, gopSize must be greater than 0, but need not be an integer.",
         "H265Settings$GopSize": "GOP size (keyframe interval) in units of either frames or seconds per gopSizeUnits.\nIf gopSizeUnits is frames, gopSize must be an integer and must be greater than or equal to 1.\nIf gopSizeUnits is seconds, gopSize must be greater than 0, but need not be an integer.",
+        "InputDeviceHdSettings$Framerate": "The frame rate of the video source.",
         "Mp2Settings$Bitrate": "Average bitrate in bits/second.",
         "Mp2Settings$SampleRate": "Sample rate in Hz.",
         "Offering$FixedPrice": "One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering",
@@ -2788,7 +2902,7 @@
     "__doubleMin1": {
       "base": null,
       "refs": {
-        "M2tsSettings$SegmentationTime": "The length in seconds of each segment. Required unless markers is set to None_."
+        "M2tsSettings$SegmentationTime": "The length in seconds of each segment. Required unless markers is set to _none_."
       }
     },
     "__doubleMinNegative59Max0": {
@@ -2807,6 +2921,10 @@
         "DvbSubDestinationSettings$ShadowXOffset": "Specifies the horizontal offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels to the left.  All burn-in and DVB-Sub font settings must match.",
         "DvbSubDestinationSettings$ShadowYOffset": "Specifies the vertical offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels above the text.  All burn-in and DVB-Sub font settings must match.",
         "H264Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
+        "InputDeviceConfigurableSettings$MaxBitrate": "The maximum bitrate in bits per second. Set a value here to throttle the bitrate of the source video.",
+        "InputDeviceHdSettings$Height": "The height of the video source, in pixels.",
+        "InputDeviceHdSettings$MaxBitrate": "The current maximum bitrate for ingesting this source, in bits per second. You can specify this maximum.",
+        "InputDeviceHdSettings$Width": "The width of the video source, in pixels.",
         "Multiplex$PipelinesRunningCount": "The number of currently healthy pipelines.",
         "Multiplex$ProgramCount": "The number of programs in the multiplex.",
         "MultiplexProgramPacketIdentifiersMap$DvbTeletextPid": null,
@@ -3318,6 +3436,25 @@
         "UpdateInput$Destinations": "Destination settings for PUSH type inputs."
       }
     },
+    "__listOfInputDeviceRequest": {
+      "base": null,
+      "refs": {
+        "UpdateInput$InputDevices": "Settings for the devices."
+      }
+    },
+    "__listOfInputDeviceSettings": {
+      "base": null,
+      "refs": {
+        "CreateInput$InputDevices": "Settings for the devices.",
+        "Input$InputDevices": "Settings for the input devices."
+      }
+    },
+    "__listOfInputDeviceSummary": {
+      "base": null,
+      "refs": {
+        "ListInputDevicesResultModel$InputDevices": "The list of input devices."
+      }
+    },
     "__listOfInputSecurityGroup": {
       "base": null,
       "refs": {
@@ -3384,12 +3521,6 @@
       "base": null,
       "refs": {
         "ListMultiplexesResultModel$Multiplexes": "List of multiplexes."
-      }
-    },
-    "__listOfMultiplexValidationError": {
-      "base": null,
-      "refs": {
-        "MultiplexConfigurationValidationError$ValidationErrors": "A collection of validation error responses."
       }
     },
     "__listOfOffering": {
@@ -3462,7 +3593,9 @@
     "__listOfValidationError": {
       "base": null,
       "refs": {
-        "ChannelConfigurationValidationError$ValidationErrors": "A collection of validation error responses."
+        "ChannelConfigurationValidationError$ValidationErrors": "A collection of validation error responses.",
+        "InputDeviceConfigurationValidationError$ValidationErrors": "A collection of validation error responses.",
+        "MultiplexConfigurationValidationError$ValidationErrors": "A collection of validation error responses."
       }
     },
     "__listOfVideoDescription": {
@@ -3488,6 +3621,7 @@
         "CreateMultiplex$AvailabilityZones": "A list of availability zones for the multiplex. You must specify exactly two.",
         "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
         "Input$SecurityGroups": "A list of IDs for all the Input Security Groups attached to the input.",
+        "InputDeviceNetworkSettings$DnsAddresses": "The DNS addresses of the input device.",
         "InputSecurityGroup$Inputs": "The list of inputs currently using this Input Security Group.",
         "InputSwitchScheduleActionSettings$UrlPath": "The value for the variable portion of the URL for the dynamic input, for this instance of the input. Each time you use the same dynamic input in an input switch action, you can provide a different value, in order to connect the input to a different content source.",
         "InputVpcRequest$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Input VPC network interfaces.\nRequires subnetIds. If none are specified then the VPC default security group will be used.\n",
@@ -3588,6 +3722,22 @@
         "InputDestinationRequest$StreamName": "A unique name for the location the RTMP stream is being pushed\nto.\n",
         "InputDestinationVpc$AvailabilityZone": "The availability zone of the Input destination.\n",
         "InputDestinationVpc$NetworkInterfaceId": "The network interface ID of the Input destination in the VPC.\n",
+        "InputDevice$Arn": "The unique ARN of the input device.",
+        "InputDevice$Id": "The unique ID of the input device.",
+        "InputDevice$MacAddress": "The network MAC address of the input device.",
+        "InputDevice$Name": "A name that you specify for the input device.",
+        "InputDevice$SerialNumber": "The unique serial number of the input device.",
+        "InputDeviceConfigurationValidationError$Message": "The error message.",
+        "InputDeviceNetworkSettings$Gateway": "The network gateway IP address.",
+        "InputDeviceNetworkSettings$IpAddress": "The IP address of the input device.",
+        "InputDeviceNetworkSettings$SubnetMask": "The subnet mask of the input device.",
+        "InputDeviceRequest$Id": "The unique ID for the device.",
+        "InputDeviceSettings$Id": "The unique ID for the device.",
+        "InputDeviceSummary$Arn": "The unique ARN of the input device.",
+        "InputDeviceSummary$Id": "The unique ID of the input device.",
+        "InputDeviceSummary$MacAddress": "The network MAC address of the input device.",
+        "InputDeviceSummary$Name": "A name that you specify for the input device.",
+        "InputDeviceSummary$SerialNumber": "The unique serial number of the input device.",
         "InputLocation$PasswordParam": "key used to extract the password from EC2 Parameter store",
         "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\".",
         "InputLocation$Username": "Username if credentials are required to access a file or publishing point.  This can be either a plaintext username, or a reference to an AWS parameter store name from which the username can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
@@ -3606,6 +3756,7 @@
         "InvalidRequest$Message": null,
         "LimitExceeded$Message": null,
         "ListChannelsResultModel$NextToken": null,
+        "ListInputDevicesResultModel$NextToken": "A token to get additional list results.",
         "ListInputSecurityGroupsResultModel$NextToken": null,
         "ListInputsResultModel$NextToken": null,
         "ListMultiplexProgramsResultModel$NextToken": "Token for the next ListMultiplexProgram request.",
@@ -3635,7 +3786,7 @@
         "M3u8Settings$VideoPid": "Packet Identifier (PID) of the elementary video stream in the transport stream. Can be entered as a decimal or hexadecimal value.",
         "MediaConnectFlow$FlowArn": "The unique ARN of the MediaConnect Flow being used as a source.",
         "MediaConnectFlowRequest$FlowArn": "The ARN of the MediaConnect Flow that you want to use as a source.",
-        "MsSmoothGroupSettings$AcquisitionPointId": "The value of the \"Acquisition Point Identity\" element used in each message placed in the sparse track.  Only enabled if sparseTrackType is not \"none\".",
+        "MsSmoothGroupSettings$AcquisitionPointId": "The ID to include in each message in the sparse track. Ignored if sparseTrackType is NONE.",
         "MsSmoothGroupSettings$EventId": "MS Smooth event ID to be sent to the IIS server.\n\nShould only be specified if eventIdMode is set to useConfigured.",
         "MsSmoothGroupSettings$TimestampOffset": "Timestamp offset for the event.  Only used if timestampOffsetMode is set to useConfiguredOffset.",
         "MsSmoothOutputSettings$NameModifier": "String concatenated to the end of the destination filename.  Required for multiple outputs of the same type.",
@@ -3650,8 +3801,6 @@
         "MultiplexSummary$Arn": "The unique arn of the multiplex.",
         "MultiplexSummary$Id": "The unique id of the multiplex.",
         "MultiplexSummary$Name": "The name of the multiplex.",
-        "MultiplexValidationError$ElementPath": "Path to the source of the error.",
-        "MultiplexValidationError$ErrorMessage": "The error message.",
         "NielsenConfiguration$DistributorId": "Enter the Distributor ID assigned to your organization by Nielsen.",
         "Offering$Arn": "Unique offering ARN, e.g. 'arn:aws:medialive:us-west-2:123456789012:offering:87654321'",
         "Offering$CurrencyCode": "Currency code for usagePrice and fixedPrice in ISO-4217 format, e.g. 'USD'",
@@ -3694,10 +3843,11 @@
         "UpdateChannel$RoleArn": "An optional Amazon Resource Name (ARN) of the role to assume when running the Channel. If you do not specify this on an update call but the role was previously set that role will be removed.",
         "UpdateInput$Name": "Name of the input.",
         "UpdateInput$RoleArn": "The Amazon Resource Name (ARN) of the role this input assumes during and after creation.",
+        "UpdateInputDevice$Name": "The name that you assigned to this input device (not the unique ID).",
         "UpdateMultiplex$Name": "Name of the multiplex.",
         "UpdateReservation$Name": "Name of the reservation",
-        "ValidationError$ElementPath": null,
-        "ValidationError$ErrorMessage": null,
+        "ValidationError$ElementPath": "Path to the source of the error.",
+        "ValidationError$ErrorMessage": "The error message.",
         "VideoDescription$Name": "The name of this VideoDescription. Outputs will use this name to uniquely identify this Description.  Description names should be unique within this Live Event.",
         "__listOf__string$member": null
       }

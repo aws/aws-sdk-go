@@ -234,6 +234,18 @@
       ],
       "idempotent":true
     },
+    "DescribeRegionSettings":{
+      "name":"DescribeRegionSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/account-settings"
+      },
+      "input":{"shape":"DescribeRegionSettingsInput"},
+      "output":{"shape":"DescribeRegionSettingsOutput"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "DescribeRestoreJob":{
       "name":"DescribeRestoreJob",
       "http":{
@@ -730,6 +742,19 @@
         {"shape":"ServiceUnavailableException"}
       ],
       "idempotent":true
+    },
+    "UpdateRegionSettings":{
+      "name":"UpdateRegionSettings",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/account-settings"
+      },
+      "input":{"shape":"UpdateRegionSettingsInput"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"InvalidParameterValueException"}
+      ]
     }
   },
   "shapes":{
@@ -1332,6 +1357,17 @@
         "LastRestoreTime":{"shape":"timestamp"}
       }
     },
+    "DescribeRegionSettingsInput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeRegionSettingsOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceTypeOptInPreference":{"shape":"ResourceTypeOptInPreference"}
+      }
+    },
     "DescribeRestoreJobInput":{
       "type":"structure",
       "required":["RestoreJobId"],
@@ -1558,6 +1594,7 @@
       },
       "exception":true
     },
+    "IsEnabled":{"type":"boolean"},
     "Lifecycle":{
       "type":"structure",
       "members":{
@@ -2104,6 +2141,11 @@
       "type":"string",
       "pattern":"^[a-zA-Z0-9\\-\\_\\.]{1,50}$"
     },
+    "ResourceTypeOptInPreference":{
+      "type":"map",
+      "key":{"shape":"ResourceType"},
+      "value":{"shape":"IsEnabled"}
+    },
     "ResourceTypes":{
       "type":"list",
       "member":{"shape":"ResourceType"}
@@ -2334,6 +2376,12 @@
         "RecoveryPointArn":{"shape":"ARN"},
         "Lifecycle":{"shape":"Lifecycle"},
         "CalculatedLifecycle":{"shape":"CalculatedLifecycle"}
+      }
+    },
+    "UpdateRegionSettingsInput":{
+      "type":"structure",
+      "members":{
+        "ResourceTypeOptInPreference":{"shape":"ResourceTypeOptInPreference"}
       }
     },
     "WindowMinutes":{"type":"long"},

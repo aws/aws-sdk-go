@@ -116,7 +116,8 @@
         {"shape":"DeploymentTargetIdRequiredException"},
         {"shape":"InvalidDeploymentTargetIdException"},
         {"shape":"DeploymentTargetDoesNotExistException"},
-        {"shape":"DeploymentTargetListSizeExceededException"}
+        {"shape":"DeploymentTargetListSizeExceededException"},
+        {"shape":"InstanceDoesNotExistException"}
       ]
     },
     "BatchGetDeployments":{
@@ -213,7 +214,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InvalidUpdateOutdatedInstancesOnlyValueException"},
         {"shape":"InvalidIgnoreApplicationStopFailuresValueException"},
-        {"shape":"InvalidGitHubAccountTokenException"}
+        {"shape":"InvalidGitHubAccountTokenException"},
+        {"shape":"InvalidTrafficRoutingConfigurationException"}
       ]
     },
     "CreateDeploymentConfig":{
@@ -274,7 +276,8 @@
         {"shape":"InvalidECSServiceException"},
         {"shape":"InvalidTargetGroupPairException"},
         {"shape":"ECSServiceMappingLimitExceededException"},
-        {"shape":"InvalidTagsToAddException"}
+        {"shape":"InvalidTagsToAddException"},
+        {"shape":"InvalidTrafficRoutingConfigurationException"}
       ]
     },
     "DeleteApplication":{
@@ -335,6 +338,16 @@
         {"shape":"ResourceValidationException"},
         {"shape":"OperationNotSupportedException"}
       ]
+    },
+    "DeleteResourcesByExternalId":{
+      "name":"DeleteResourcesByExternalId",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourcesByExternalIdInput"},
+      "output":{"shape":"DeleteResourcesByExternalIdOutput"},
+      "errors":[]
     },
     "DeregisterOnPremisesInstance":{
       "name":"DeregisterOnPremisesInstance",
@@ -598,7 +611,9 @@
         {"shape":"DeploymentGroupNameRequiredException"},
         {"shape":"InvalidTimeRangeException"},
         {"shape":"InvalidDeploymentStatusException"},
-        {"shape":"InvalidNextTokenException"}
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidExternalIdException"},
+        {"shape":"InvalidInputException"}
       ]
     },
     "ListGitHubAccountTokenNames":{
@@ -745,7 +760,8 @@
         {"shape":"DeploymentDoesNotExistException"},
         {"shape":"DeploymentGroupDoesNotExistException"},
         {"shape":"DeploymentAlreadyCompletedException"},
-        {"shape":"InvalidDeploymentIdException"}
+        {"shape":"InvalidDeploymentIdException"},
+        {"shape":"UnsupportedActionForDeploymentTypeException"}
       ]
     },
     "TagResource":{
@@ -838,7 +854,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InvalidECSServiceException"},
         {"shape":"InvalidTargetGroupPairException"},
-        {"shape":"ECSServiceMappingLimitExceededException"}
+        {"shape":"ECSServiceMappingLimitExceededException"},
+        {"shape":"InvalidTrafficRoutingConfigurationException"}
       ]
     }
   },
@@ -1140,6 +1157,19 @@
         "JSON"
       ]
     },
+    "CloudFormationResourceType":{"type":"string"},
+    "CloudFormationTarget":{
+      "type":"structure",
+      "members":{
+        "deploymentId":{"shape":"DeploymentId"},
+        "targetId":{"shape":"TargetId"},
+        "lastUpdatedAt":{"shape":"Time"},
+        "lifecycleEvents":{"shape":"LifecycleEventList"},
+        "status":{"shape":"TargetStatus"},
+        "resourceType":{"shape":"CloudFormationResourceType"},
+        "targetVersionWeight":{"shape":"TrafficWeight"}
+      }
+    },
     "CommitId":{"type":"string"},
     "ComputePlatform":{
       "type":"string",
@@ -1285,6 +1315,17 @@
         "tokenName":{"shape":"GitHubAccountTokenName"}
       }
     },
+    "DeleteResourcesByExternalIdInput":{
+      "type":"structure",
+      "members":{
+        "externalId":{"shape":"ExternalId"}
+      }
+    },
+    "DeleteResourcesByExternalIdOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeploymentAlreadyCompletedException":{
       "type":"structure",
       "members":{
@@ -1353,7 +1394,10 @@
       "enum":[
         "user",
         "autoscaling",
-        "codeDeployRollback"
+        "codeDeployRollback",
+        "CodeDeploy",
+        "CloudFormation",
+        "CloudFormationRollback"
       ]
     },
     "DeploymentDoesNotExistException":{
@@ -1462,7 +1506,8 @@
         "additionalDeploymentStatusInfo":{"shape":"AdditionalDeploymentStatusInfo"},
         "fileExistsBehavior":{"shape":"FileExistsBehavior"},
         "deploymentStatusMessages":{"shape":"DeploymentStatusMessageList"},
-        "computePlatform":{"shape":"ComputePlatform"}
+        "computePlatform":{"shape":"ComputePlatform"},
+        "externalId":{"shape":"ExternalId"}
       }
     },
     "DeploymentIsNotInReadyStateException":{
@@ -1521,6 +1566,7 @@
         "Created",
         "Queued",
         "InProgress",
+        "Baking",
         "Succeeded",
         "Failed",
         "Stopped",
@@ -1548,7 +1594,8 @@
         "deploymentTargetType":{"shape":"DeploymentTargetType"},
         "instanceTarget":{"shape":"InstanceTarget"},
         "lambdaTarget":{"shape":"LambdaTarget"},
-        "ecsTarget":{"shape":"ECSTarget"}
+        "ecsTarget":{"shape":"ECSTarget"},
+        "cloudFormationTarget":{"shape":"CloudFormationTarget"}
       }
     },
     "DeploymentTargetDoesNotExistException":{
@@ -1578,7 +1625,8 @@
       "enum":[
         "InstanceTarget",
         "LambdaTarget",
-        "ECSTarget"
+        "ECSTarget",
+        "CloudFormationTarget"
       ]
     },
     "DeploymentType":{
@@ -1755,7 +1803,8 @@
         "RESOURCE_LIMIT_EXCEEDED",
         "REVISION_MISSING",
         "THROTTLED",
-        "TIMEOUT"
+        "TIMEOUT",
+        "CLOUDFORMATION_STACK_FAILURE"
       ]
     },
     "ErrorInformation":{
@@ -1766,6 +1815,7 @@
       }
     },
     "ErrorMessage":{"type":"string"},
+    "ExternalId":{"type":"string"},
     "FileExistsBehavior":{
       "type":"string",
       "enum":[
@@ -2229,6 +2279,12 @@
       },
       "exception":true
     },
+    "InvalidExternalIdException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "InvalidFileExistsBehaviorException":{
       "type":"structure",
       "members":{
@@ -2623,6 +2679,7 @@
       "members":{
         "applicationName":{"shape":"ApplicationName"},
         "deploymentGroupName":{"shape":"DeploymentGroupName"},
+        "externalId":{"shape":"ExternalId"},
         "includeOnlyStatuses":{"shape":"DeploymentStatusList"},
         "createTimeRange":{"shape":"TimeRange"},
         "nextToken":{"shape":"NextToken"}

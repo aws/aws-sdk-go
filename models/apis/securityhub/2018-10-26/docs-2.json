@@ -9,7 +9,7 @@
     "BatchUpdateFindings": "<p>Used by Security Hub customers to update information about their investigation into a finding. Requested by master accounts or member accounts. Master accounts can update findings for their account and their member accounts. Member accounts can update findings for their account.</p> <p>Updates from <code>BatchUpdateFindings</code> do not affect the value of <code>UpdatedAt</code> for a finding.</p> <p>Master accounts can use <code>BatchUpdateFindings</code> to update the following finding fields and objects.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>Member accounts can only use <code>BatchUpdateFindings</code> to update the Note object.</p>",
     "CreateActionTarget": "<p>Creates a custom action target in Security Hub.</p> <p>You can use custom actions on findings and insights in Security Hub to trigger target actions in Amazon CloudWatch Events.</p>",
     "CreateInsight": "<p>Creates a custom insight in Security Hub. An insight is a consolidation of findings that relate to a security issue that requires attention or remediation.</p> <p>To group the related findings in the insight, use the <code>GroupByAttribute</code>.</p>",
-    "CreateMembers": "<p>Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the master account. To successfully create a member, you must use this action from an account that already has Security Hub enabled. To enable Security Hub, you can use the <code> <a>EnableSecurityHub</a> </code> operation.</p> <p>After you use <code>CreateMembers</code> to create member account associations in Security Hub, you must use the <code> <a>InviteMembers</a> </code> operation to invite the accounts to enable Security Hub and become member accounts in Security Hub.</p> <p>If the account owner accepts the invitation, the account becomes a member account in Security Hub, and a permission policy is added that permits the master account to view the findings generated in the member account. When Security Hub is enabled in the invited account, findings start to be sent to both the member and master accounts.</p> <p>To remove the association between the master and member accounts, use the <code> <a>DisassociateFromMasterAccount</a> </code> or <code> <a>DisassociateMembers</a> </code> operation.</p>",
+    "CreateMembers": "<p>Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the master account. To successfully create a member, you must use this action from an account that already has Security Hub enabled. To enable Security Hub, you can use the <code> <a>EnableSecurityHub</a> </code> operation.</p> <p>After you use <code>CreateMembers</code> to create member account associations in Security Hub, you must use the <code> <a>InviteMembers</a> </code> operation to invite the accounts to enable Security Hub and become member accounts in Security Hub.</p> <p>If the account owner accepts the invitation, the account becomes a member account in Security Hub. A permissions policy is added that permits the master account to view the findings generated in the member account. When Security Hub is enabled in the invited account, findings start to be sent to both the member and master accounts.</p> <p>To remove the association between the master and member accounts, use the <code> <a>DisassociateFromMasterAccount</a> </code> or <code> <a>DisassociateMembers</a> </code> operation.</p>",
     "DeclineInvitations": "<p>Declines invitations to become a member account.</p>",
     "DeleteActionTarget": "<p>Deletes a custom action target from Security Hub.</p> <p>Deleting a custom action target does not affect any findings or insights that were already sent to Amazon CloudWatch Events using the custom action.</p>",
     "DeleteInsight": "<p>Deletes the insight specified by the <code>InsightArn</code>.</p>",
@@ -24,8 +24,8 @@
     "DisableSecurityHub": "<p>Disables Security Hub in your account only in the current Region. To disable Security Hub in all Regions, you must submit one request per Region where you have enabled Security Hub.</p> <p>When you disable Security Hub for a master account, it doesn't disable Security Hub for any associated member accounts.</p> <p>When you disable Security Hub, your existing findings and insights and any Security Hub configuration settings are deleted after 90 days and cannot be recovered. Any standards that were enabled are disabled, and your master and member account associations are removed.</p> <p>If you want to save your existing findings, you must export them before you disable Security Hub.</p>",
     "DisassociateFromMasterAccount": "<p>Disassociates the current Security Hub member account from the associated master account.</p>",
     "DisassociateMembers": "<p>Disassociates the specified member accounts from the associated master account.</p>",
-    "EnableImportFindingsForProduct": "<p>Enables the integration of a partner product with Security Hub. Integrated products send findings to Security Hub.</p> <p>When you enable a product integration, a permission policy that grants permission for the product to send findings to Security Hub is applied.</p>",
-    "EnableSecurityHub": "<p>Enables Security Hub for your account in the current Region or the Region you specify in the request.</p> <p>When you enable Security Hub, you grant to Security Hub the permissions necessary to gather findings from other services that are integrated with Security Hub.</p> <p>When you use the <code>EnableSecurityHub</code> operation to enable Security Hub, you also automatically enable the CIS AWS Foundations standard. You do not enable the Payment Card Industry Data Security Standard (PCI DSS) standard. To not enable the CIS AWS Foundations standard, set <code>EnableDefaultStandards</code> to <code>false</code>.</p> <p>After you enable Security Hub, to enable a standard, use the <code> <a>BatchEnableStandards</a> </code> operation. To disable a standard, use the <code> <a>BatchDisableStandards</a> </code> operation.</p> <p>To learn more, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html\">Setting Up AWS Security Hub</a> in the <i>AWS Security Hub User Guide</i>.</p>",
+    "EnableImportFindingsForProduct": "<p>Enables the integration of a partner product with Security Hub. Integrated products send findings to Security Hub.</p> <p>When you enable a product integration, a permissions policy that grants permission for the product to send findings to Security Hub is applied.</p>",
+    "EnableSecurityHub": "<p>Enables Security Hub for your account in the current Region or the Region you specify in the request.</p> <p>When you enable Security Hub, you grant to Security Hub the permissions necessary to gather findings from other services that are integrated with Security Hub.</p> <p>When you use the <code>EnableSecurityHub</code> operation to enable Security Hub, you also automatically enable the following standards.</p> <ul> <li> <p>CIS AWS Foundations</p> </li> <li> <p>AWS Foundational Security Best Practices</p> </li> </ul> <p>You do not enable the Payment Card Industry Data Security Standard (PCI DSS) standard. </p> <p>To not enable the automatically enabled standards, set <code>EnableDefaultStandards</code> to <code>false</code>.</p> <p>After you enable Security Hub, to enable a standard, use the <code> <a>BatchEnableStandards</a> </code> operation. To disable a standard, use the <code> <a>BatchDisableStandards</a> </code> operation.</p> <p>To learn more, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html\">Setting Up AWS Security Hub</a> in the <i>AWS Security Hub User Guide</i>.</p>",
     "GetEnabledStandards": "<p>Returns a list of the standards that are currently enabled.</p>",
     "GetFindings": "<p>Returns a list of findings that match the specified criteria.</p>",
     "GetInsightResults": "<p>Lists the results of the Security Hub insight specified by the insight ARN.</p>",
@@ -137,7 +137,7 @@
       }
     },
     "AwsCloudFrontDistributionOriginItem": {
-      "base": "<p>A complex type that describes the Amazon S3 bucket, HTTP server (for example, a web server), Amazon MediaStore, or other server from which CloudFront gets your files.</p>",
+      "base": "<p>A complex type that describes the Amazon S3 bucket, HTTP server (for example, a web server), Amazon Elemental MediaStore, or other server from which CloudFront gets your files.</p>",
       "refs": {
         "AwsCloudFrontDistributionOriginItemList$member": null
       }
@@ -199,7 +199,7 @@
     "AwsEc2NetworkInterfaceDetails": {
       "base": "<p>Details about the network interface</p>",
       "refs": {
-        "ResourceDetails$AwsEc2NetworkInterface": "<p>Details for an AWS EC2 network interface.</p>"
+        "ResourceDetails$AwsEc2NetworkInterface": "<p>Details for an Amazon EC2 network interface.</p>"
       }
     },
     "AwsEc2NetworkInterfaceSecurityGroup": {
@@ -428,7 +428,7 @@
     "AwsRdsDbInstanceDetails": {
       "base": "<p>Contains the details of an Amazon RDS DB instance.</p>",
       "refs": {
-        "ResourceDetails$AwsRdsDbInstance": "<p>Details for an RDS database instance.</p>"
+        "ResourceDetails$AwsRdsDbInstance": "<p>Details for an Amazon RDS database instance.</p>"
       }
     },
     "AwsRdsDbInstanceEndpoint": {
@@ -452,13 +452,13 @@
     "AwsS3BucketDetails": {
       "base": "<p>The details of an Amazon S3 bucket.</p>",
       "refs": {
-        "ResourceDetails$AwsS3Bucket": "<p>Details about an Amazon S3 Bucket related to a finding.</p>"
+        "ResourceDetails$AwsS3Bucket": "<p>Details about an Amazon S3 bucket related to a finding.</p>"
       }
     },
     "AwsS3BucketServerSideEncryptionByDefault": {
       "base": "<p>Specifies the default server-side encryption to apply to new objects in the bucket.</p>",
       "refs": {
-        "AwsS3BucketServerSideEncryptionRule$ApplyServerSideEncryptionByDefault": "<p>Specifies the default server-side encryption to apply to new objects in the bucket. If a <code>PUT</code> Object request doesn't specify any server-side encryption, this default encryption is applied.</p>"
+        "AwsS3BucketServerSideEncryptionRule$ApplyServerSideEncryptionByDefault": "<p>Specifies the default server-side encryption to apply to new objects in the bucket. If a <code>PUT</code> object request doesn't specify any server-side encryption, this default encryption is applied.</p>"
       }
     },
     "AwsS3BucketServerSideEncryptionConfiguration": {
@@ -480,7 +480,7 @@
       }
     },
     "AwsS3ObjectDetails": {
-      "base": "<p>Details about an AWS S3 object.</p>",
+      "base": "<p>Details about an Amazon S3 object.</p>",
       "refs": {
         "ResourceDetails$AwsS3Object": "<p>Details about an Amazon S3 object related to a finding.</p>"
       }
@@ -643,7 +643,7 @@
       }
     },
     "Compliance": {
-      "base": "<p>Exclusive to findings that are generated as the result of a check run against a specific rule in a supported security standard, such as CIS AWS Foundations. Contains security standard-related finding details.</p> <p>Values include the following:</p> <ul> <li> <p>Allowed values are the following:</p> <ul> <li> <p> <code>PASSED</code> - Standards check passed for all evaluated resources.</p> </li> <li> <p> <code>WARNING</code> - Some information is missing or this check is not supported given your configuration.</p> </li> <li> <p> <code>FAILED</code> - Standards check failed for at least one evaluated resource.</p> </li> <li> <p> <code>NOT_AVAILABLE</code> - Check could not be performed due to a service outage, API error, or because the result of the AWS Config evaluation was <code>NOT_APPLICABLE</code>. If the AWS Config evaluation result was <code> NOT_APPLICABLE</code>, then after 3 days, Security Hub automatically archives the finding.</p> </li> </ul> </li> </ul>",
+      "base": "<p>Contains finding details that are specific to control-based findings. Only returned for findings generated from controls.</p>",
       "refs": {
         "AwsSecurityFinding$Compliance": "<p>This data type is exclusive to findings that are generated as the result of a check run against a specific rule in a supported security standard, such as CIS AWS Foundations. Contains security standard-related finding details.</p>"
       }
@@ -651,7 +651,7 @@
     "ComplianceStatus": {
       "base": null,
       "refs": {
-        "Compliance$Status": "<p>The result of a standards check.</p>"
+        "Compliance$Status": "<p>The result of a standards check.</p> <p>The valid values for <code>Status</code> are as follows.</p> <ul> <li> <ul> <li> <p> <code>PASSED</code> - Standards check passed for all evaluated resources.</p> </li> <li> <p> <code>WARNING</code> - Some information is missing or this check is not supported for your configuration.</p> </li> <li> <p> <code>FAILED</code> - Standards check failed for at least one evaluated resource.</p> </li> <li> <p> <code>NOT_AVAILABLE</code> - Check could not be performed due to a service outage, API error, or because the result of the AWS Config evaluation was <code>NOT_APPLICABLE</code>. If the AWS Config evaluation result was <code>NOT_APPLICABLE</code>, then after 3 days, Security Hub automatically archives the finding.</p> </li> </ul> </li> </ul>"
       }
     },
     "ContainerDetails": {
@@ -878,7 +878,7 @@
         "NumberFilter$Gte": "<p>The greater-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Lte": "<p>The less-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Eq": "<p>The equal-to condition to be applied to a single field when querying for findings.</p>",
-        "Severity$Product": "<p>The native severity as defined by the AWS service or integrated partner product that generated the finding.</p>",
+        "Severity$Product": "<p>Deprecated. This attribute is being deprecated. Instead of providing <code>Product</code>, provide <code>Original</code>.</p> <p>The native severity as defined by the AWS service or integrated partner product that generated the finding.</p>",
         "SeverityUpdate$Product": "<p>The native severity as defined by the AWS service or integrated partner product that generated the finding.</p>"
       }
     },
@@ -1042,7 +1042,7 @@
         "AwsSecurityFinding$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "AwsSecurityFinding$Criticality": "<p>The level of importance assigned to the resources associated with the finding.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources.</p>",
         "AwsSqsQueueDetails$KmsDataKeyReusePeriodSeconds": "<p>The length of time, in seconds, for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again.</p>",
-        "AwsWafWebAclRule$Priority": "<p>Specifies the order in which the Rules in a WebACL are evaluated. Rules with a lower value for Priority are evaluated before Rules with a higher value. The value must be a unique integer. If you add multiple Rules to a WebACL, the values do not need to be consecutive.</p>",
+        "AwsWafWebAclRule$Priority": "<p>Specifies the order in which the rules in a WebACL are evaluated. Rules with a lower value for <code>Priority</code> are evaluated before rules with a higher value. The value must be a unique integer. If you add multiple rules to a WebACL, the values do not need to be consecutive.</p>",
         "BatchImportFindingsResponse$FailedCount": "<p>The number of findings that failed to import.</p>",
         "BatchImportFindingsResponse$SuccessCount": "<p>The number of findings that were successfully imported.</p>",
         "DateRange$Value": "<p>A date range value for the date filter.</p>",
@@ -1323,11 +1323,11 @@
         "AwsCodeBuildProjectDetails$ServiceRole": "<p>The ARN of the IAM role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.</p>",
         "AwsCodeBuildProjectEnvironment$Certificate": "<p>The certificate to use with this build project.</p>",
         "AwsCodeBuildProjectEnvironment$ImagePullCredentialsType": "<p>The type of credentials AWS CodeBuild uses to pull images in your build.</p> <p>Valid values:</p> <ul> <li> <p> <code>CODEBUILD</code> specifies that AWS CodeBuild uses its own credentials. This requires that you modify your ECR repository policy to trust the AWS CodeBuild service principal.</p> </li> <li> <p> <code>SERVICE_ROLE</code> specifies that AWS CodeBuild uses your build project's service role.</p> </li> </ul> <p>When you use a cross-account or private registry image, you must use <code>SERVICE_ROLE</code> credentials. When you use an AWS CodeBuild curated image, you must use <code>CODEBUILD</code> credentials.</p>",
-        "AwsCodeBuildProjectEnvironment$Type": "<p>The type of build environment to use for related builds.</p> <p>The environment type <code>ARM_CONTAINER</code> is available only in regions US East (N. Virginia), US East (Ohio), US West (Oregon), Europe (Ireland), Asia Pacific (Mumbai), Asia Pacific (Tokyo), Asia Pacific (Sydney), and Europe (Frankfurt).</p> <p>The environment type <code>LINUX_CONTAINER</code> with compute type build.general1.2xlarge is available only in regions US East (N. Virginia), US East (N. Virginia), US West (Oregon), Canada (Central), Europe (Ireland), Europe (London), Europe (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney), China (Beijing), and China (Ningxia).</p> <p>The environment type <code>LINUX_GPU_CONTAINER</code> is available only in regions US East (N. Virginia), US East (N. Virginia), US West (Oregon), Canada (Central), Europe (Ireland), Europe (London), Europe (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney) , China (Beijing), and China (Ningxia).</p> <p>Valid values: <code>WINDOWS_CONTAINER</code> | <code>LINUX_CONTAINER</code> | <code>LINUX_GPU_CONTAINER</code> | <code>ARM_CONTAINER</code> </p>",
+        "AwsCodeBuildProjectEnvironment$Type": "<p>The type of build environment to use for related builds.</p> <p>The environment type <code>ARM_CONTAINER</code> is available only in Regions US East (N. Virginia), US East (Ohio), US West (Oregon), Europe (Ireland), Asia Pacific (Mumbai), Asia Pacific (Tokyo), Asia Pacific (Sydney), and Europe (Frankfurt).</p> <p>The environment type <code>LINUX_CONTAINER</code> with compute type build.general1.2xlarge is available only in Regions US East (N. Virginia), US East (N. Virginia), US West (Oregon), Canada (Central), Europe (Ireland), Europe (London), Europe (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney), China (Beijing), and China (Ningxia).</p> <p>The environment type <code>LINUX_GPU_CONTAINER</code> is available only in Regions US East (N. Virginia), US East (N. Virginia), US West (Oregon), Canada (Central), Europe (Ireland), Europe (London), Europe (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney), China (Beijing), and China (Ningxia).</p> <p>Valid values: <code>WINDOWS_CONTAINER</code> | <code>LINUX_CONTAINER</code> | <code>LINUX_GPU_CONTAINER</code> | <code>ARM_CONTAINER</code> </p>",
         "AwsCodeBuildProjectEnvironmentRegistryCredential$Credential": "<p>The Amazon Resource Name (ARN) or name of credentials created using AWS Secrets Manager.</p> <note> <p>The credential can use the name of the credentials only if they exist in your current AWS Region. </p> </note>",
         "AwsCodeBuildProjectEnvironmentRegistryCredential$CredentialProvider": "<p>The service that created the credentials to access a private Docker registry.</p> <p>The valid value,<code> SECRETS_MANAGER</code>, is for AWS Secrets Manager.</p>",
         "AwsCodeBuildProjectSource$Type": "<p>The type of repository that contains the source code to be built. Valid values are:</p> <ul> <li> <p> <code>BITBUCKET</code> - The source code is in a Bitbucket repository.</p> </li> <li> <p> <code>CODECOMMIT</code> - The source code is in an AWS CodeCommit repository.</p> </li> <li> <p> <code>CODEPIPELINE</code> - The source code settings are specified in the source action of a pipeline in AWS CodePipeline.</p> </li> <li> <p> <code>GITHUB</code> - The source code is in a GitHub repository.</p> </li> <li> <p> <code>GITHUB_ENTERPRISE</code> - The source code is in a GitHub Enterprise repository.</p> </li> <li> <p> <code>NO_SOURCE</code> - The project does not have input source code.</p> </li> <li> <p> <code>S3</code> - The source code is in an S3 input bucket. </p> </li> </ul>",
-        "AwsCodeBuildProjectSource$Location": "<p>Information about the location of the source code to be built.</p> <p>Valid values include:</p> <ul> <li> <p>For source code settings that are specified in the source action of a pipeline in AWS CodePipeline, location should not be specified. If it is specified, AWS CodePipeline ignores it. This is because AWS CodePipeline uses the settings in a pipeline's source action instead of this value.</p> </li> <li> <p>For source code in an AWS CodeCommit repository, the HTTPS clone URL to the repository that contains the source code and the buildspec file (for example, <code>https://git-codecommit.region-ID.amazonaws.com/v1/repos/repo-name</code> ).</p> </li> <li> <p>For source code in an S3 input bucket, one of the following.</p> <ul> <li> <p>The path to the ZIP file that contains the source code (for example, <code>bucket-name/path/to/object-name.zip</code>).</p> </li> <li> <p> The path to the folder that contains the source code (for example, <code>bucket-name/path/to/source-code/folder/</code>).</p> </li> </ul> </li> <li> <p>For source code in a GitHub repository, the HTTPS clone URL to the repository that contains the source and the buildspec file.</p> </li> <li> <p>For source code in a Bitbucket repository, the HTTPS clone URL to the repository that contains the source and the buildspec file. </p> </li> </ul>",
+        "AwsCodeBuildProjectSource$Location": "<p>Information about the location of the source code to be built.</p> <p>Valid values include:</p> <ul> <li> <p>For source code settings that are specified in the source action of a pipeline in AWS CodePipeline, location should not be specified. If it is specified, AWS CodePipeline ignores it. This is because AWS CodePipeline uses the settings in a pipeline's source action instead of this value.</p> </li> <li> <p>For source code in an AWS CodeCommit repository, the HTTPS clone URL to the repository that contains the source code and the build spec file (for example, <code>https://git-codecommit.region-ID.amazonaws.com/v1/repos/repo-name</code> ).</p> </li> <li> <p>For source code in an S3 input bucket, one of the following.</p> <ul> <li> <p>The path to the ZIP file that contains the source code (for example, <code>bucket-name/path/to/object-name.zip</code>).</p> </li> <li> <p> The path to the folder that contains the source code (for example, <code>bucket-name/path/to/source-code/folder/</code>).</p> </li> </ul> </li> <li> <p>For source code in a GitHub repository, the HTTPS clone URL to the repository that contains the source and the build spec file.</p> </li> <li> <p>For source code in a Bitbucket repository, the HTTPS clone URL to the repository that contains the source and the build spec file. </p> </li> </ul>",
         "AwsCodeBuildProjectVpcConfig$VpcId": "<p>The ID of the VPC.</p>",
         "AwsEc2InstanceDetails$Type": "<p>The instance type of the instance. </p>",
         "AwsEc2InstanceDetails$ImageId": "<p>The Amazon Machine Image (AMI) ID of the instance.</p>",
@@ -1349,8 +1349,8 @@
         "AwsEc2SecurityGroupDetails$OwnerId": "<p>The AWS account ID of the owner of the security group.</p>",
         "AwsEc2SecurityGroupDetails$VpcId": "<p>[VPC only] The ID of the VPC for the security group.</p>",
         "AwsEc2SecurityGroupIpPermission$IpProtocol": "<p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number.</p> <p>[VPC only] Use <code>-1</code> to specify all protocols.</p> <p>When authorizing security group rules, specifying -1 or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>icmpv6</code> allows traffic on all ports, regardless of any port range you specify.</p> <p>For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range.</p> <p>For <code>icmpv6</code>, the port range is optional. If you omit the port range, traffic for all types and codes is allowed. </p>",
-        "AwsEc2SecurityGroupIpRange$CidrIp": "<p>The IPv4 CIDR range. You can either specify either a CIDR range or a source security group, but not both. To specify a single IPv4 address, use the /32 prefix length.</p>",
-        "AwsEc2SecurityGroupIpv6Range$CidrIpv6": "<p>The IPv6 CIDR range. You can either specify either a CIDR range or a source security group, but not both. To specify a single IPv6 address, use the /128 prefix length.</p>",
+        "AwsEc2SecurityGroupIpRange$CidrIp": "<p>The IPv4 CIDR range. You can specify either a CIDR range or a source security group, but not both. To specify a single IPv4 address, use the /32 prefix length.</p>",
+        "AwsEc2SecurityGroupIpv6Range$CidrIpv6": "<p>The IPv6 CIDR range. You can specify either a CIDR range or a source security group, but not both. To specify a single IPv6 address, use the /128 prefix length.</p>",
         "AwsEc2SecurityGroupPrefixListId$PrefixListId": "<p>The ID of the prefix.</p>",
         "AwsEc2SecurityGroupUserIdGroupPair$GroupId": "<p>The ID of the security group.</p>",
         "AwsEc2SecurityGroupUserIdGroupPair$GroupName": "<p>The name of the security group.</p>",
@@ -1410,7 +1410,7 @@
         "AwsLambdaLayerVersionDetails$CreatedDate": "<p>The date that the version was created, in ISO 8601 format. For example, 2018-11-27T15:10:45.123+0000. </p>",
         "AwsRdsDbInstanceAssociatedRole$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that is associated with the DB instance.</p>",
         "AwsRdsDbInstanceAssociatedRole$FeatureName": "<p>The name of the feature associated with the IAM)role.</p>",
-        "AwsRdsDbInstanceAssociatedRole$Status": "<p>Describes the state of the association between the IAM role and the DB instance. The <code>Status</code> property returns one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - the IAM role ARN is associated with the DB instance and can be used to access other AWS services on your behalf.</p> </li> <li> <p> <code>PENDING</code> - the IAM role ARN is being associated with the DB instance.</p> </li> <li> <p> <code>INVALID</code> - the IAM role ARN is associated with the DB instance, but the DB instance is unable to assume the IAM role in order to access other AWS services on your behalf. </p> </li> </ul>",
+        "AwsRdsDbInstanceAssociatedRole$Status": "<p>Describes the state of the association between the IAM role and the DB instance. The <code>Status</code> property returns one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The IAM role ARN is associated with the DB instance and can be used to access other AWS services on your behalf.</p> </li> <li> <p> <code>PENDING</code> - The IAM role ARN is being associated with the DB instance.</p> </li> <li> <p> <code>INVALID</code> - The IAM role ARN is associated with the DB instance. But the DB instance is unable to assume the IAM role in order to access other AWS services on your behalf. </p> </li> </ul>",
         "AwsRdsDbInstanceDetails$CACertificateIdentifier": "<p>The identifier of the CA certificate for this DB instance.</p>",
         "AwsRdsDbInstanceDetails$DBClusterIdentifier": "<p>If the DB instance is a member of a DB cluster, contains the name of the DB cluster that the DB instance is a member of.</p>",
         "AwsRdsDbInstanceDetails$DBInstanceIdentifier": "<p>Contains a user-supplied database identifier. This identifier is the unique key that identifies a DB instance.</p>",
@@ -1440,7 +1440,7 @@
         "AwsSecurityFinding$SchemaVersion": "<p>The schema version that a finding is formatted for.</p>",
         "AwsSecurityFinding$Id": "<p>The security findings provider-specific identifier for a finding.</p>",
         "AwsSecurityFinding$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
-        "AwsSecurityFinding$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security-findings providers' solutions, this generator can be called a rule, a check, a detector, a plug-in, etc. </p>",
+        "AwsSecurityFinding$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security-findings providers' solutions, this generator can be called a rule, a check, a detector, a plugin, etc. </p>",
         "AwsSecurityFinding$AwsAccountId": "<p>The AWS account ID that a finding is generated in.</p>",
         "AwsSecurityFinding$FirstObservedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider first observed the potential security issue that a finding captured.</p>",
         "AwsSecurityFinding$LastObservedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider most recently observed the potential security issue that a finding captured.</p>",
@@ -1451,18 +1451,18 @@
         "AwsSecurityFinding$SourceUrl": "<p>A URL that links to a page about the current finding in the security-findings provider's solution.</p>",
         "AwsSecurityFindingIdentifier$Id": "<p>The identifier of the finding that was specified by the finding provider.</p>",
         "AwsSecurityFindingIdentifier$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
-        "AwsSnsTopicDetails$KmsMasterKeyId": "<p>The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK.</p>",
+        "AwsSnsTopicDetails$KmsMasterKeyId": "<p>The ID of an AWS managed customer master key (CMK) for Amazon SNS or a custom CMK.</p>",
         "AwsSnsTopicDetails$TopicName": "<p>The name of the topic.</p>",
         "AwsSnsTopicDetails$Owner": "<p>The subscription's owner.</p>",
         "AwsSnsTopicSubscription$Endpoint": "<p>The subscription's endpoint (format depends on the protocol).</p>",
         "AwsSnsTopicSubscription$Protocol": "<p>The subscription's protocol.</p>",
-        "AwsSqsQueueDetails$KmsMasterKeyId": "<p>The ID of an AWS-managed customer master key (CMK) for Amazon SQS or a custom CMK.</p>",
+        "AwsSqsQueueDetails$KmsMasterKeyId": "<p>The ID of an AWS managed customer master key (CMK) for Amazon SQS or a custom CMK.</p>",
         "AwsSqsQueueDetails$QueueName": "<p>The name of the new queue.</p>",
         "AwsSqsQueueDetails$DeadLetterTargetArn": "<p>The Amazon Resource Name (ARN) of the dead-letter queue to which Amazon SQS moves messages after the value of <code>maxReceiveCount</code> is exceeded. </p>",
         "AwsWafWebAclDetails$Name": "<p>A friendly name or description of the WebACL. You can't change the name of a WebACL after you create it.</p>",
-        "AwsWafWebAclDetails$DefaultAction": "<p>The action to perform if none of the Rules contained in the WebACL match.</p>",
+        "AwsWafWebAclDetails$DefaultAction": "<p>The action to perform if none of the rules contained in the WebACL match.</p>",
         "AwsWafWebAclDetails$WebAclId": "<p>A unique identifier for a WebACL.</p>",
-        "AwsWafWebAclRule$RuleId": "<p>The identifier for a Rule.</p>",
+        "AwsWafWebAclRule$RuleId": "<p>The identifier for a rule.</p>",
         "AwsWafWebAclRule$Type": "<p>The rule type.</p> <p>Valid values: <code>REGULAR</code> | <code>RATE_BASED</code> | <code>GROUP</code> </p> <p>The default is <code>REGULAR</code>.</p>",
         "BatchUpdateFindingsUnprocessedFinding$ErrorCode": "<p>The code associated with the error.</p>",
         "BatchUpdateFindingsUnprocessedFinding$ErrorMessage": "<p>The message associated with the error.</p>",
@@ -1566,6 +1566,7 @@
         "ResourceNotFoundException$Code": null,
         "Result$ProcessingResult": "<p>The reason that the account was not processed.</p>",
         "SecurityGroups$member": null,
+        "Severity$Original": "<p>The native severity from the finding product that generated the finding.</p>",
         "SortCriterion$Field": "<p>The finding attribute used to sort findings.</p>",
         "Standard$StandardsArn": "<p>The ARN of a standard.</p>",
         "Standard$Name": "<p>The name of the standard.</p>",
@@ -1582,6 +1583,8 @@
         "StandardsSubscription$StandardsArn": "<p>The ARN of a standard.</p>",
         "StandardsSubscriptionArns$member": null,
         "StandardsSubscriptionRequest$StandardsArn": "<p>The ARN of the standard that you want to enable. To view the list of available standards and their ARNs, use the <code> <a>DescribeStandards</a> </code> operation.</p>",
+        "StatusReason$ReasonCode": "<p>A code that represents a reason for the control status. For the list of status reason codes and their meanings, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-results.html#securityhub-standards-results-asff\">Standards-related information in the ASFF</a> in the <i>AWS Security Hub User Guide</i>. </p>",
+        "StatusReason$Description": "<p>The corresponding description for the status reason code.</p>",
         "StringFilter$Value": "<p>The string filter value.</p>",
         "StringList$member": null,
         "ThreatIntelIndicator$Value": "<p>The value of a threat intelligence indicator.</p>",
@@ -1597,9 +1600,9 @@
         "UpdateInsightRequest$GroupByAttribute": "<p>The updated <code>GroupBy</code> attribute that defines this insight.</p>",
         "UpdateStandardsControlRequest$StandardsControlArn": "<p>The ARN of the security standard control to enable or disable.</p>",
         "UpdateStandardsControlRequest$DisabledReason": "<p>A description of the reason why you are disabling a security standard control.</p>",
-        "WafAction$Type": "<p>Specifies how you want AWS WAF to respond to requests that match the settings in a Rule.</p> <p>Valid settings include the following:</p> <ul> <li> <p> <code>ALLOW</code> - AWS WAF allows requests</p> </li> <li> <p> <code>BLOCK</code> - AWS WAF blocks requests</p> </li> <li> <p> <code>COUNT</code> - AWS WAF increments a counter of the requests that match all of the conditions in the rule. AWS WAF then continues to inspect the web request based on the remaining rules in the web ACL. You can't specify <code>COUNT</code> for the default action for a WebACL.</p> </li> </ul>",
+        "WafAction$Type": "<p>Specifies how you want AWS WAF to respond to requests that match the settings in a rule.</p> <p>Valid settings include the following:</p> <ul> <li> <p> <code>ALLOW</code> - AWS WAF allows requests</p> </li> <li> <p> <code>BLOCK</code> - AWS WAF blocks requests</p> </li> <li> <p> <code>COUNT</code> - AWS WAF increments a counter of the requests that match all of the conditions in the rule. AWS WAF then continues to inspect the web request based on the remaining rules in the web ACL. You can't specify <code>COUNT</code> for the default action for a WebACL.</p> </li> </ul>",
         "WafExcludedRule$RuleId": "<p>The unique identifier for the rule to exclude from the rule group.</p>",
-        "WafOverrideAction$Type": "<p> <code>COUNT</code> overrides the action specified by the individual rule within a RuleGroup .</p> <p>If set to <code>NONE</code>, the rule's action takes place.</p>"
+        "WafOverrideAction$Type": "<p> <code>COUNT</code> overrides the action specified by the individual rule within a <code>RuleGroup</code> .</p> <p>If set to <code>NONE</code>, the rule's action takes place.</p>"
       }
     },
     "NonEmptyStringList": {
@@ -1612,7 +1615,7 @@
         "AwsElasticsearchDomainVPCOptions$SubnetIds": "<p>A list of subnet IDs associated with the VPC endpoints for the domain.</p>",
         "AwsLambdaFunctionVpcConfig$SecurityGroupIds": "<p>A list of VPC security groups IDs.</p>",
         "AwsLambdaFunctionVpcConfig$SubnetIds": "<p>A list of VPC subnet IDs.</p>",
-        "AwsLambdaLayerVersionDetails$CompatibleRuntimes": "<p>The layer's compatible runtimes. Maximum number of 5 items.</p> <p>Valid values: <code>nodejs10.x</code> | <code>nodejs12.x</code> | <code>java8</code> | <code>java11</code> | <code>python2.7</code> | <code>python3.6</code> | <code>python3.7</code> | <code>python3.8</code> | <code>dotnetcore1.0</code> | <code>dotnetcore2.1</code> | <code>go1.x</code> | <code>ruby2.5</code> | <code>provided</code> </p>"
+        "AwsLambdaLayerVersionDetails$CompatibleRuntimes": "<p>The layer's compatible runtimes. Maximum number of five items.</p> <p>Valid values: <code>nodejs10.x</code> | <code>nodejs12.x</code> | <code>java8</code> | <code>java11</code> | <code>python2.7</code> | <code>python3.6</code> | <code>python3.7</code> | <code>python3.8</code> | <code>dotnetcore1.0</code> | <code>dotnetcore2.1</code> | <code>go1.x</code> | <code>ruby2.5</code> | <code>provided</code> </p>"
       }
     },
     "Note": {
@@ -1714,7 +1717,7 @@
     "RelatedRequirementsList": {
       "base": null,
       "refs": {
-        "Compliance$RelatedRequirements": "<p>List of requirements that are related to a standards control.</p>",
+        "Compliance$RelatedRequirements": "<p>For a control, the industry or regulatory framework requirements that are related to the control. The check for that control is aligned with these requirements.</p>",
         "StandardsControl$RelatedRequirements": "<p>The list of requirements that are related to this control.</p>"
       }
     },
@@ -1896,6 +1899,18 @@
         "GetEnabledStandardsResponse$StandardsSubscriptions": "<p>The list of <code>StandardsSubscriptions</code> objects that include information about the enabled standards.</p>"
       }
     },
+    "StatusReason": {
+      "base": "<p>Provides additional context for the value of <code>Compliance.Status</code>.</p>",
+      "refs": {
+        "StatusReasonsList$member": null
+      }
+    },
+    "StatusReasonsList": {
+      "base": null,
+      "refs": {
+        "Compliance$StatusReasons": "<p>For findings generated from controls, a list of reasons behind the value of <code>Status</code>. For the list of status reason codes and their meanings, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-results.html#securityhub-standards-results-asff\">Standards-related information in the ASFF</a> in the <i>AWS Security Hub User Guide</i>. </p>"
+      }
+    },
     "StringFilter": {
       "base": "<p>A string filter for querying findings.</p>",
       "refs": {
@@ -1914,7 +1929,7 @@
         "AwsSecurityFindingFilters$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a third-party company (security findings provider) after this provider's product (solution that generates findings) is registered with Security Hub.</p>",
         "AwsSecurityFindingFilters$AwsAccountId": "<p>The AWS account ID that a finding is generated in.</p>",
         "AwsSecurityFindingFilters$Id": "<p>The security findings provider-specific identifier for a finding.</p>",
-        "AwsSecurityFindingFilters$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security-findings providers' solutions, this generator can be called a rule, a check, a detector, a plug-in, etc.</p>",
+        "AwsSecurityFindingFilters$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security-findings providers' solutions, this generator can be called a rule, a check, a detector, a plugin, etc.</p>",
         "AwsSecurityFindingFilters$Type": "<p>A finding type in the format of <code>namespace/category/classifier</code> that classifies a finding.</p>",
         "AwsSecurityFindingFilters$SeverityLabel": "<p>The label of a finding's severity.</p>",
         "AwsSecurityFindingFilters$Title": "<p>A finding's title.</p>",
@@ -1990,7 +2005,7 @@
     "TagMap": {
       "base": null,
       "refs": {
-        "EnableSecurityHubRequest$Tags": "<p>The tags to add to the Hub resource when you enable Security Hub.</p>",
+        "EnableSecurityHubRequest$Tags": "<p>The tags to add to the hub resource when you enable Security Hub.</p>",
         "ListTagsForResourceResponse$Tags": "<p>The tags associated with a resource.</p>",
         "TagResourceRequest$Tags": "<p>The tags to add to the resource.</p>"
       }
@@ -2109,9 +2124,9 @@
       }
     },
     "WafAction": {
-      "base": "<p>Details about the action that CloudFront or AWS WAF takes when a web request matches the conditions in the Rule. </p>",
+      "base": "<p>Details about the action that CloudFront or AWS WAF takes when a web request matches the conditions in the rule. </p>",
       "refs": {
-        "AwsWafWebAclRule$Action": "<p>Specifies the action that CloudFront or AWS WAF takes when a web request matches the conditions in the Rule. </p>"
+        "AwsWafWebAclRule$Action": "<p>Specifies the action that CloudFront or AWS WAF takes when a web request matches the conditions in the rule. </p>"
       }
     },
     "WafExcludedRule": {

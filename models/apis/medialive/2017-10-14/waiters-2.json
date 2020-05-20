@@ -107,6 +107,87 @@
         }
       ]
     },
+    "InputAttached": {
+      "description": "Wait until an input has been attached",
+      "operation": "DescribeInput",
+      "delay": 5,
+      "maxAttempts": 20,
+      "acceptors": [
+        {
+          "state": "success",
+          "matcher": "path",
+          "argument": "State",
+          "expected": "ATTACHED"
+        },
+        {
+          "state": "retry",
+          "matcher": "path",
+          "argument": "State",
+          "expected": "DETACHED"
+        },
+        {
+          "state": "retry",
+          "matcher": "status",
+          "expected": 500
+        }
+      ]
+    },
+    "InputDetached": {
+      "description": "Wait until an input has been detached",
+      "operation": "DescribeInput",
+      "delay": 5,
+      "maxAttempts": 84,
+      "acceptors": [
+        {
+          "state": "success",
+          "matcher": "path",
+          "argument": "State",
+          "expected": "DETACHED"
+        },
+        {
+          "state": "retry",
+          "matcher": "path",
+          "argument": "State",
+          "expected": "CREATING"
+        },
+        {
+          "state": "retry",
+          "matcher": "path",
+          "argument": "State",
+          "expected": "ATTACHED"
+        },
+        {
+          "state": "retry",
+          "matcher": "status",
+          "expected": 500
+        }
+      ]
+    },
+    "InputDeleted": {
+      "description": "Wait until an input has been deleted",
+      "operation": "DescribeInput",
+      "delay": 5,
+      "maxAttempts": 20,
+      "acceptors": [
+        {
+          "state": "success",
+          "matcher": "path",
+          "argument": "State",
+          "expected": "DELETED"
+        },
+        {
+          "state": "retry",
+          "matcher": "path",
+          "argument": "State",
+          "expected": "DELETING"
+        },
+        {
+          "state": "retry",
+          "matcher": "status",
+          "expected": 500
+        }
+      ]
+    },
     "MultiplexCreated": {
       "description": "Wait until a multiplex has been created",
       "operation": "DescribeMultiplex",

@@ -1,3 +1,23 @@
+Release v1.31.2 (2020-05-20)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service documentation
+* `service/appmesh`: Updates service API and documentation
+* `service/backup`: Updates service API and documentation
+* `service/chime`: Updates service API and documentation
+  * Amazon Chime enterprise account administrators can now set custom retention policies on chat data in the Amazon Chime application.
+* `service/codedeploy`: Updates service API and documentation
+  * Amazon ECS customers using application and network load balancers can use CodeDeploy BlueGreen hook to invoke a CloudFormation stack update. With this update you can view CloudFormation deployment and target details via existing APIs and use your stack Id to list or delete all deployments associated with the stack.
+* `service/medialive`: Updates service API, documentation, waiters, and paginators
+  * AWS Elemental MediaLive now supports the ability to ingest the content that is streaming from an AWS Elemental Link device: https://aws.amazon.com/medialive/features/link/. This release also adds support for SMPTE-2038 and input state waiters.
+* `service/securityhub`: Updates service API and documentation
+* `service/transcribe-streaming`: Updates service API and documentation
+
+### SDK Bugs
+* `service/s3/s3crypto`: Add missing return in encryption client ([#3258](https://github.com/aws/aws-sdk-go/pull/3258))
+  * Fixes a missing return in the encryption client that was causing a nil dereference panic.
+
 Release v1.31.1 (2020-05-19)
 ===
 

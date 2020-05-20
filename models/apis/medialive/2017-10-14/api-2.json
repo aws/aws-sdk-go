@@ -638,6 +638,43 @@
         }
       ]
     },
+    "DescribeInputDevice": {
+      "name": "DescribeInputDevice",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/inputDevices/{inputDeviceId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeInputDeviceRequest"
+      },
+      "output": {
+        "shape": "DescribeInputDeviceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "DescribeInputSecurityGroup": {
       "name": "DescribeInputSecurityGroup",
       "http": {
@@ -872,6 +909,40 @@
       },
       "output": {
         "shape": "ListChannelsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "ListInputDevices": {
+      "name": "ListInputDevices",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/inputDevices",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListInputDevicesRequest"
+      },
+      "output": {
+        "shape": "ListInputDevicesResponse"
       },
       "errors": [
         {
@@ -1443,6 +1514,46 @@
         },
         {
           "shape": "ConflictException"
+        }
+      ]
+    },
+    "UpdateInputDevice": {
+      "name": "UpdateInputDevice",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/prod/inputDevices/{inputDeviceId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateInputDeviceRequest"
+      },
+      "output": {
+        "shape": "UpdateInputDeviceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         }
       ]
     },
@@ -2938,6 +3049,10 @@
           "shape": "__listOfInputDestinationRequest",
           "locationName": "destinations"
         },
+        "InputDevices": {
+          "shape": "__listOfInputDeviceSettings",
+          "locationName": "inputDevices"
+        },
         "InputSecurityGroups": {
           "shape": "__listOf__string",
           "locationName": "inputSecurityGroups"
@@ -2983,6 +3098,10 @@
         "Destinations": {
           "shape": "__listOfInputDestinationRequest",
           "locationName": "destinations"
+        },
+        "InputDevices": {
+          "shape": "__listOfInputDeviceSettings",
+          "locationName": "inputDevices"
         },
         "InputSecurityGroups": {
           "shape": "__listOf__string",
@@ -3658,6 +3777,64 @@
         }
       }
     },
+    "DescribeInputDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "InputDeviceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "inputDeviceId"
+        }
+      },
+      "required": [
+        "InputDeviceId"
+      ]
+    },
+    "DescribeInputDeviceResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "ConnectionState": {
+          "shape": "InputDeviceConnectionState",
+          "locationName": "connectionState"
+        },
+        "DeviceSettingsSyncState": {
+          "shape": "DeviceSettingsSyncState",
+          "locationName": "deviceSettingsSyncState"
+        },
+        "HdDeviceSettings": {
+          "shape": "InputDeviceHdSettings",
+          "locationName": "hdDeviceSettings"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "MacAddress": {
+          "shape": "__string",
+          "locationName": "macAddress"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "NetworkSettings": {
+          "shape": "InputDeviceNetworkSettings",
+          "locationName": "networkSettings"
+        },
+        "SerialNumber": {
+          "shape": "__string",
+          "locationName": "serialNumber"
+        },
+        "Type": {
+          "shape": "InputDeviceType",
+          "locationName": "type"
+        }
+      }
+    },
     "DescribeInputRequest": {
       "type": "structure",
       "members": {
@@ -3693,6 +3870,10 @@
         "InputClass": {
           "shape": "InputClass",
           "locationName": "inputClass"
+        },
+        "InputDevices": {
+          "shape": "__listOfInputDeviceSettings",
+          "locationName": "inputDevices"
         },
         "InputSourceType": {
           "shape": "InputSourceType",
@@ -4059,6 +4240,13 @@
           "locationName": "scheduleActions"
         }
       }
+    },
+    "DeviceSettingsSyncState": {
+      "type": "string",
+      "enum": [
+        "SYNCED",
+        "SYNCING"
+      ]
     },
     "DvbNitSettings": {
       "type": "structure",
@@ -5997,6 +6185,10 @@
           "shape": "InputClass",
           "locationName": "inputClass"
         },
+        "InputDevices": {
+          "shape": "__listOfInputDeviceSettings",
+          "locationName": "inputDevices"
+        },
         "InputSourceType": {
           "shape": "InputSourceType",
           "locationName": "inputSourceType"
@@ -6164,6 +6356,251 @@
           "locationName": "networkInterfaceId"
         }
       }
+    },
+    "InputDevice": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "ConnectionState": {
+          "shape": "InputDeviceConnectionState",
+          "locationName": "connectionState"
+        },
+        "DeviceSettingsSyncState": {
+          "shape": "DeviceSettingsSyncState",
+          "locationName": "deviceSettingsSyncState"
+        },
+        "HdDeviceSettings": {
+          "shape": "InputDeviceHdSettings",
+          "locationName": "hdDeviceSettings"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "MacAddress": {
+          "shape": "__string",
+          "locationName": "macAddress"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "NetworkSettings": {
+          "shape": "InputDeviceNetworkSettings",
+          "locationName": "networkSettings"
+        },
+        "SerialNumber": {
+          "shape": "__string",
+          "locationName": "serialNumber"
+        },
+        "Type": {
+          "shape": "InputDeviceType",
+          "locationName": "type"
+        }
+      }
+    },
+    "InputDeviceActiveInput": {
+      "type": "string",
+      "enum": [
+        "HDMI",
+        "SDI"
+      ]
+    },
+    "InputDeviceConfigurableSettings": {
+      "type": "structure",
+      "members": {
+        "ConfiguredInput": {
+          "shape": "InputDeviceConfiguredInput",
+          "locationName": "configuredInput"
+        },
+        "MaxBitrate": {
+          "shape": "__integer",
+          "locationName": "maxBitrate"
+        }
+      }
+    },
+    "InputDeviceConfigurationValidationError": {
+      "type": "structure",
+      "members": {
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        },
+        "ValidationErrors": {
+          "shape": "__listOfValidationError",
+          "locationName": "validationErrors"
+        }
+      }
+    },
+    "InputDeviceConfiguredInput": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "HDMI",
+        "SDI"
+      ]
+    },
+    "InputDeviceConnectionState": {
+      "type": "string",
+      "enum": [
+        "DISCONNECTED",
+        "CONNECTED"
+      ]
+    },
+    "InputDeviceHdSettings": {
+      "type": "structure",
+      "members": {
+        "ActiveInput": {
+          "shape": "InputDeviceActiveInput",
+          "locationName": "activeInput"
+        },
+        "ConfiguredInput": {
+          "shape": "InputDeviceConfiguredInput",
+          "locationName": "configuredInput"
+        },
+        "DeviceState": {
+          "shape": "InputDeviceState",
+          "locationName": "deviceState"
+        },
+        "Framerate": {
+          "shape": "__double",
+          "locationName": "framerate"
+        },
+        "Height": {
+          "shape": "__integer",
+          "locationName": "height"
+        },
+        "MaxBitrate": {
+          "shape": "__integer",
+          "locationName": "maxBitrate"
+        },
+        "ScanType": {
+          "shape": "InputDeviceScanType",
+          "locationName": "scanType"
+        },
+        "Width": {
+          "shape": "__integer",
+          "locationName": "width"
+        }
+      }
+    },
+    "InputDeviceIpScheme": {
+      "type": "string",
+      "enum": [
+        "STATIC",
+        "DHCP"
+      ]
+    },
+    "InputDeviceNetworkSettings": {
+      "type": "structure",
+      "members": {
+        "DnsAddresses": {
+          "shape": "__listOf__string",
+          "locationName": "dnsAddresses"
+        },
+        "Gateway": {
+          "shape": "__string",
+          "locationName": "gateway"
+        },
+        "IpAddress": {
+          "shape": "__string",
+          "locationName": "ipAddress"
+        },
+        "IpScheme": {
+          "shape": "InputDeviceIpScheme",
+          "locationName": "ipScheme"
+        },
+        "SubnetMask": {
+          "shape": "__string",
+          "locationName": "subnetMask"
+        }
+      }
+    },
+    "InputDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        }
+      }
+    },
+    "InputDeviceScanType": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "PROGRESSIVE"
+      ]
+    },
+    "InputDeviceSettings": {
+      "type": "structure",
+      "members": {
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        }
+      }
+    },
+    "InputDeviceState": {
+      "type": "string",
+      "enum": [
+        "IDLE",
+        "STREAMING"
+      ]
+    },
+    "InputDeviceSummary": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "ConnectionState": {
+          "shape": "InputDeviceConnectionState",
+          "locationName": "connectionState"
+        },
+        "DeviceSettingsSyncState": {
+          "shape": "DeviceSettingsSyncState",
+          "locationName": "deviceSettingsSyncState"
+        },
+        "HdDeviceSettings": {
+          "shape": "InputDeviceHdSettings",
+          "locationName": "hdDeviceSettings"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "MacAddress": {
+          "shape": "__string",
+          "locationName": "macAddress"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "NetworkSettings": {
+          "shape": "InputDeviceNetworkSettings",
+          "locationName": "networkSettings"
+        },
+        "SerialNumber": {
+          "shape": "__string",
+          "locationName": "serialNumber"
+        },
+        "Type": {
+          "shape": "InputDeviceType",
+          "locationName": "type"
+        }
+      }
+    },
+    "InputDeviceType": {
+      "type": "string",
+      "enum": [
+        "HD"
+      ]
     },
     "InputFilter": {
       "type": "string",
@@ -6359,6 +6796,10 @@
           "shape": "NetworkInputSettings",
           "locationName": "networkInputSettings"
         },
+        "Smpte2038DataPreference": {
+          "shape": "Smpte2038DataPreference",
+          "locationName": "smpte2038DataPreference"
+        },
         "SourceEndBehavior": {
           "shape": "InputSourceEndBehavior",
           "locationName": "sourceEndBehavior"
@@ -6480,7 +6921,8 @@
         "RTMP_PULL",
         "URL_PULL",
         "MP4_FILE",
-        "MEDIACONNECT"
+        "MEDIACONNECT",
+        "INPUT_DEVICE"
       ]
     },
     "InputVpcRequest": {
@@ -6607,6 +7049,47 @@
         "Channels": {
           "shape": "__listOfChannelSummary",
           "locationName": "channels"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListInputDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListInputDevicesResponse": {
+      "type": "structure",
+      "members": {
+        "InputDevices": {
+          "shape": "__listOfInputDeviceSummary",
+          "locationName": "inputDevices"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListInputDevicesResultModel": {
+      "type": "structure",
+      "members": {
+        "InputDevices": {
+          "shape": "__listOfInputDeviceSummary",
+          "locationName": "inputDevices"
         },
         "NextToken": {
           "shape": "__string",
@@ -7651,7 +8134,7 @@
           "locationName": "message"
         },
         "ValidationErrors": {
-          "shape": "__listOfMultiplexValidationError",
+          "shape": "__listOfValidationError",
           "locationName": "validationErrors"
         }
       }
@@ -7935,19 +8418,6 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
-        }
-      }
-    },
-    "MultiplexValidationError": {
-      "type": "structure",
-      "members": {
-        "ElementPath": {
-          "shape": "__string",
-          "locationName": "elementPath"
-        },
-        "ErrorMessage": {
-          "shape": "__string",
-          "locationName": "errorMessage"
         }
       }
     },
@@ -9141,6 +9611,13 @@
         "USE_EVENT_START_DATE"
       ]
     },
+    "Smpte2038DataPreference": {
+      "type": "string",
+      "enum": [
+        "IGNORE",
+        "PREFER"
+      ]
+    },
     "SmpteTtDestinationSettings": {
       "type": "structure",
       "members": {
@@ -9591,13 +10068,6 @@
       "enum": [
         "AUTO",
         "STRENGTH_1",
-        "STRENGTH_10",
-        "STRENGTH_11",
-        "STRENGTH_12",
-        "STRENGTH_13",
-        "STRENGTH_14",
-        "STRENGTH_15",
-        "STRENGTH_16",
         "STRENGTH_2",
         "STRENGTH_3",
         "STRENGTH_4",
@@ -9605,7 +10075,14 @@
         "STRENGTH_6",
         "STRENGTH_7",
         "STRENGTH_8",
-        "STRENGTH_9"
+        "STRENGTH_9",
+        "STRENGTH_10",
+        "STRENGTH_11",
+        "STRENGTH_12",
+        "STRENGTH_13",
+        "STRENGTH_14",
+        "STRENGTH_15",
+        "STRENGTH_16"
       ]
     },
     "TimecodeConfig": {
@@ -9883,6 +10360,10 @@
           "shape": "__listOfInputDestinationRequest",
           "locationName": "destinations"
         },
+        "InputDevices": {
+          "shape": "__listOfInputDeviceRequest",
+          "locationName": "inputDevices"
+        },
         "InputSecurityGroups": {
           "shape": "__listOf__string",
           "locationName": "inputSecurityGroups"
@@ -9905,12 +10386,95 @@
         }
       }
     },
+    "UpdateInputDevice": {
+      "type": "structure",
+      "members": {
+        "HdDeviceSettings": {
+          "shape": "InputDeviceConfigurableSettings",
+          "locationName": "hdDeviceSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        }
+      }
+    },
+    "UpdateInputDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "HdDeviceSettings": {
+          "shape": "InputDeviceConfigurableSettings",
+          "locationName": "hdDeviceSettings"
+        },
+        "InputDeviceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "inputDeviceId"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        }
+      },
+      "required": [
+        "InputDeviceId"
+      ]
+    },
+    "UpdateInputDeviceResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "ConnectionState": {
+          "shape": "InputDeviceConnectionState",
+          "locationName": "connectionState"
+        },
+        "DeviceSettingsSyncState": {
+          "shape": "DeviceSettingsSyncState",
+          "locationName": "deviceSettingsSyncState"
+        },
+        "HdDeviceSettings": {
+          "shape": "InputDeviceHdSettings",
+          "locationName": "hdDeviceSettings"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "MacAddress": {
+          "shape": "__string",
+          "locationName": "macAddress"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "NetworkSettings": {
+          "shape": "InputDeviceNetworkSettings",
+          "locationName": "networkSettings"
+        },
+        "SerialNumber": {
+          "shape": "__string",
+          "locationName": "serialNumber"
+        },
+        "Type": {
+          "shape": "InputDeviceType",
+          "locationName": "type"
+        }
+      }
+    },
     "UpdateInputRequest": {
       "type": "structure",
       "members": {
         "Destinations": {
           "shape": "__listOfInputDestinationRequest",
           "locationName": "destinations"
+        },
+        "InputDevices": {
+          "shape": "__listOfInputDeviceRequest",
+          "locationName": "inputDevices"
         },
         "InputId": {
           "shape": "__string",
@@ -10637,6 +11201,24 @@
         "shape": "InputDestinationRequest"
       }
     },
+    "__listOfInputDeviceRequest": {
+      "type": "list",
+      "member": {
+        "shape": "InputDeviceRequest"
+      }
+    },
+    "__listOfInputDeviceSettings": {
+      "type": "list",
+      "member": {
+        "shape": "InputDeviceSettings"
+      }
+    },
+    "__listOfInputDeviceSummary": {
+      "type": "list",
+      "member": {
+        "shape": "InputDeviceSummary"
+      }
+    },
     "__listOfInputSecurityGroup": {
       "type": "list",
       "member": {
@@ -10701,12 +11283,6 @@
       "type": "list",
       "member": {
         "shape": "MultiplexSummary"
-      }
-    },
-    "__listOfMultiplexValidationError": {
-      "type": "list",
-      "member": {
-        "shape": "MultiplexValidationError"
       }
     },
     "__listOfOffering": {

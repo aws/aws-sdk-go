@@ -1536,7 +1536,8 @@
       "type":"structure",
       "members":{
         "Status":{"shape":"ComplianceStatus"},
-        "RelatedRequirements":{"shape":"RelatedRequirementsList"}
+        "RelatedRequirements":{"shape":"RelatedRequirementsList"},
+        "StatusReasons":{"shape":"StatusReasonsList"}
       }
     },
     "ComplianceStatus":{
@@ -2569,7 +2570,8 @@
       "members":{
         "Product":{"shape":"Double"},
         "Label":{"shape":"SeverityLabel"},
-        "Normalized":{"shape":"Integer"}
+        "Normalized":{"shape":"Integer"},
+        "Original":{"shape":"NonEmptyString"}
       }
     },
     "SeverityLabel":{
@@ -2702,6 +2704,18 @@
     "StandardsSubscriptions":{
       "type":"list",
       "member":{"shape":"StandardsSubscription"}
+    },
+    "StatusReason":{
+      "type":"structure",
+      "required":["ReasonCode"],
+      "members":{
+        "ReasonCode":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"}
+      }
+    },
+    "StatusReasonsList":{
+      "type":"list",
+      "member":{"shape":"StatusReason"}
     },
     "StringFilter":{
       "type":"structure",
