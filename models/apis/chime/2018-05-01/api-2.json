@@ -992,6 +992,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetRetentionSettings":{
+      "name":"GetRetentionSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{accountId}/retention-settings"
+      },
+      "input":{"shape":"GetRetentionSettingsRequest"},
+      "output":{"shape":"GetRetentionSettingsResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetRoom":{
       "name":"GetRoom",
       "http":{
@@ -1551,6 +1569,26 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ResourceLimitExceededException"},
         {"shape":"NotFoundException"}
+      ]
+    },
+    "PutRetentionSettings":{
+      "name":"PutRetentionSettings",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{accountId}/retention-settings",
+        "responseCode":204
+      },
+      "input":{"shape":"PutRetentionSettingsRequest"},
+      "output":{"shape":"PutRetentionSettingsResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "PutVoiceConnectorLoggingConfiguration":{
@@ -2543,6 +2581,12 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ConversationRetentionSettings":{
+      "type":"structure",
+      "members":{
+        "RetentionDays":{"shape":"RetentionDays"}
+      }
+    },
     "Country":{
       "type":"string",
       "pattern":"^$|^[A-Z]{2,2}$"
@@ -3402,6 +3446,24 @@
       "type":"structure",
       "members":{
         "ProxySession":{"shape":"ProxySession"}
+      }
+    },
+    "GetRetentionSettingsRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        }
+      }
+    },
+    "GetRetentionSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "RetentionSettings":{"shape":"RetentionSettings"},
+        "InitiateDeletionTimestamp":{"shape":"Iso8601Timestamp"}
       }
     },
     "GetRoomRequest":{
@@ -4560,6 +4622,28 @@
         "EventsConfiguration":{"shape":"EventsConfiguration"}
       }
     },
+    "PutRetentionSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RetentionSettings"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "RetentionSettings":{"shape":"RetentionSettings"}
+      }
+    },
+    "PutRetentionSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "RetentionSettings":{"shape":"RetentionSettings"},
+        "InitiateDeletionTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
     "PutVoiceConnectorLoggingConfigurationRequest":{
       "type":"structure",
       "required":[
@@ -4830,6 +4914,18 @@
       "max":99,
       "min":1
     },
+    "RetentionDays":{
+      "type":"integer",
+      "max":5475,
+      "min":1
+    },
+    "RetentionSettings":{
+      "type":"structure",
+      "members":{
+        "RoomRetentionSettings":{"shape":"RoomRetentionSettings"},
+        "ConversationRetentionSettings":{"shape":"ConversationRetentionSettings"}
+      }
+    },
     "Room":{
       "type":"structure",
       "members":{
@@ -4865,6 +4961,12 @@
         "Administrator",
         "Member"
       ]
+    },
+    "RoomRetentionSettings":{
+      "type":"structure",
+      "members":{
+        "RetentionDays":{"shape":"RetentionDays"}
+      }
     },
     "SearchAvailablePhoneNumbersRequest":{
       "type":"structure",

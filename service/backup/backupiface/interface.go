@@ -116,6 +116,10 @@ type BackupAPI interface {
 	DescribeRecoveryPointWithContext(aws.Context, *backup.DescribeRecoveryPointInput, ...request.Option) (*backup.DescribeRecoveryPointOutput, error)
 	DescribeRecoveryPointRequest(*backup.DescribeRecoveryPointInput) (*request.Request, *backup.DescribeRecoveryPointOutput)
 
+	DescribeRegionSettings(*backup.DescribeRegionSettingsInput) (*backup.DescribeRegionSettingsOutput, error)
+	DescribeRegionSettingsWithContext(aws.Context, *backup.DescribeRegionSettingsInput, ...request.Option) (*backup.DescribeRegionSettingsOutput, error)
+	DescribeRegionSettingsRequest(*backup.DescribeRegionSettingsInput) (*request.Request, *backup.DescribeRegionSettingsOutput)
+
 	DescribeRestoreJob(*backup.DescribeRestoreJobInput) (*backup.DescribeRestoreJobOutput, error)
 	DescribeRestoreJobWithContext(aws.Context, *backup.DescribeRestoreJobInput, ...request.Option) (*backup.DescribeRestoreJobOutput, error)
 	DescribeRestoreJobRequest(*backup.DescribeRestoreJobInput) (*request.Request, *backup.DescribeRestoreJobOutput)
@@ -279,6 +283,10 @@ type BackupAPI interface {
 	UpdateRecoveryPointLifecycle(*backup.UpdateRecoveryPointLifecycleInput) (*backup.UpdateRecoveryPointLifecycleOutput, error)
 	UpdateRecoveryPointLifecycleWithContext(aws.Context, *backup.UpdateRecoveryPointLifecycleInput, ...request.Option) (*backup.UpdateRecoveryPointLifecycleOutput, error)
 	UpdateRecoveryPointLifecycleRequest(*backup.UpdateRecoveryPointLifecycleInput) (*request.Request, *backup.UpdateRecoveryPointLifecycleOutput)
+
+	UpdateRegionSettings(*backup.UpdateRegionSettingsInput) (*backup.UpdateRegionSettingsOutput, error)
+	UpdateRegionSettingsWithContext(aws.Context, *backup.UpdateRegionSettingsInput, ...request.Option) (*backup.UpdateRegionSettingsOutput, error)
+	UpdateRegionSettingsRequest(*backup.UpdateRegionSettingsInput) (*request.Request, *backup.UpdateRegionSettingsOutput)
 }
 
 var _ BackupAPI = (*backup.Backup)(nil)

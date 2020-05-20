@@ -5295,6 +5295,107 @@ func (c *Chime) GetProxySessionWithContext(ctx aws.Context, input *GetProxySessi
 	return out, req.Send()
 }
 
+const opGetRetentionSettings = "GetRetentionSettings"
+
+// GetRetentionSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the GetRetentionSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRetentionSettings for more information on using the GetRetentionSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRetentionSettingsRequest method.
+//    req, resp := client.GetRetentionSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetRetentionSettings
+func (c *Chime) GetRetentionSettingsRequest(input *GetRetentionSettingsInput) (req *request.Request, output *GetRetentionSettingsOutput) {
+	op := &request.Operation{
+		Name:       opGetRetentionSettings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{accountId}/retention-settings",
+	}
+
+	if input == nil {
+		input = &GetRetentionSettingsInput{}
+	}
+
+	output = &GetRetentionSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRetentionSettings API operation for Amazon Chime.
+//
+// Gets the retention settings for the specified Amazon Chime Enterprise account.
+// For more information about retention settings, see Managing Chat Retention
+// Policies (https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html)
+// in the Amazon Chime Administration Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetRetentionSettings for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetRetentionSettings
+func (c *Chime) GetRetentionSettings(input *GetRetentionSettingsInput) (*GetRetentionSettingsOutput, error) {
+	req, out := c.GetRetentionSettingsRequest(input)
+	return out, req.Send()
+}
+
+// GetRetentionSettingsWithContext is the same as GetRetentionSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRetentionSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetRetentionSettingsWithContext(ctx aws.Context, input *GetRetentionSettingsInput, opts ...request.Option) (*GetRetentionSettingsOutput, error) {
+	req, out := c.GetRetentionSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetRoom = "GetRoom"
 
 // GetRoomRequest generates a "aws/request.Request" representing the
@@ -8946,6 +9047,118 @@ func (c *Chime) PutEventsConfiguration(input *PutEventsConfigurationInput) (*Put
 // for more information on using Contexts.
 func (c *Chime) PutEventsConfigurationWithContext(ctx aws.Context, input *PutEventsConfigurationInput, opts ...request.Option) (*PutEventsConfigurationOutput, error) {
 	req, out := c.PutEventsConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutRetentionSettings = "PutRetentionSettings"
+
+// PutRetentionSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the PutRetentionSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutRetentionSettings for more information on using the PutRetentionSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutRetentionSettingsRequest method.
+//    req, resp := client.PutRetentionSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutRetentionSettings
+func (c *Chime) PutRetentionSettingsRequest(input *PutRetentionSettingsInput) (req *request.Request, output *PutRetentionSettingsOutput) {
+	op := &request.Operation{
+		Name:       opPutRetentionSettings,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{accountId}/retention-settings",
+	}
+
+	if input == nil {
+		input = &PutRetentionSettingsInput{}
+	}
+
+	output = &PutRetentionSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutRetentionSettings API operation for Amazon Chime.
+//
+// Puts retention settings for the specified Amazon Chime Enterprise account.
+// We recommend using AWS CloudTrail to monitor usage of this API for your account.
+// For more information, see Logging Amazon Chime API Calls with AWS CloudTrail
+// (https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html) in the Amazon
+// Chime Administration Guide.
+//
+// To turn off existing retention settings, remove the number of days from the
+// corresponding RetentionDays field in the RetentionSettings object. For more
+// information about retention settings, see Managing Chat Retention Policies
+// (https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html) in the
+// Amazon Chime Administration Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation PutRetentionSettings for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutRetentionSettings
+func (c *Chime) PutRetentionSettings(input *PutRetentionSettingsInput) (*PutRetentionSettingsOutput, error) {
+	req, out := c.PutRetentionSettingsRequest(input)
+	return out, req.Send()
+}
+
+// PutRetentionSettingsWithContext is the same as PutRetentionSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutRetentionSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) PutRetentionSettingsWithContext(ctx aws.Context, input *PutRetentionSettingsInput, opts ...request.Option) (*PutRetentionSettingsOutput, error) {
+	req, out := c.PutRetentionSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -13474,6 +13687,44 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The retention settings that determine how long to retain chat conversation
+// messages for an Amazon Chime Enterprise account.
+type ConversationRetentionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days for which to retain chat conversation messages.
+	RetentionDays *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ConversationRetentionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConversationRetentionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConversationRetentionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConversationRetentionSettings"}
+	if s.RetentionDays != nil && *s.RetentionDays < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RetentionDays", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRetentionDays sets the RetentionDays field's value.
+func (s *ConversationRetentionSettings) SetRetentionDays(v int64) *ConversationRetentionSettings {
+	s.RetentionDays = &v
+	return s
+}
+
 type CreateAccountInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16808,6 +17059,80 @@ func (s GetProxySessionOutput) GoString() string {
 // SetProxySession sets the ProxySession field's value.
 func (s *GetProxySessionOutput) SetProxySession(v *ProxySession) *GetProxySessionOutput {
 	s.ProxySession = v
+	return s
+}
+
+type GetRetentionSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetRetentionSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRetentionSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRetentionSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRetentionSettingsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetRetentionSettingsInput) SetAccountId(v string) *GetRetentionSettingsInput {
+	s.AccountId = &v
+	return s
+}
+
+type GetRetentionSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp representing the time at which the specified items are permanently
+	// deleted, in ISO 8601 format.
+	InitiateDeletionTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The retention settings.
+	RetentionSettings *RetentionSettings `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetRetentionSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRetentionSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInitiateDeletionTimestamp sets the InitiateDeletionTimestamp field's value.
+func (s *GetRetentionSettingsOutput) SetInitiateDeletionTimestamp(v time.Time) *GetRetentionSettingsOutput {
+	s.InitiateDeletionTimestamp = &v
+	return s
+}
+
+// SetRetentionSettings sets the RetentionSettings field's value.
+func (s *GetRetentionSettingsOutput) SetRetentionSettings(v *RetentionSettings) *GetRetentionSettingsOutput {
+	s.RetentionSettings = v
 	return s
 }
 
@@ -20431,6 +20756,99 @@ func (s *PutEventsConfigurationOutput) SetEventsConfiguration(v *EventsConfigura
 	return s
 }
 
+type PutRetentionSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The retention settings.
+	//
+	// RetentionSettings is a required field
+	RetentionSettings *RetentionSettings `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PutRetentionSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutRetentionSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutRetentionSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutRetentionSettingsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.RetentionSettings == nil {
+		invalidParams.Add(request.NewErrParamRequired("RetentionSettings"))
+	}
+	if s.RetentionSettings != nil {
+		if err := s.RetentionSettings.Validate(); err != nil {
+			invalidParams.AddNested("RetentionSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutRetentionSettingsInput) SetAccountId(v string) *PutRetentionSettingsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetRetentionSettings sets the RetentionSettings field's value.
+func (s *PutRetentionSettingsInput) SetRetentionSettings(v *RetentionSettings) *PutRetentionSettingsInput {
+	s.RetentionSettings = v
+	return s
+}
+
+type PutRetentionSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp representing the time at which the specified items are permanently
+	// deleted, in ISO 8601 format.
+	InitiateDeletionTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The retention settings.
+	RetentionSettings *RetentionSettings `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutRetentionSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutRetentionSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInitiateDeletionTimestamp sets the InitiateDeletionTimestamp field's value.
+func (s *PutRetentionSettingsOutput) SetInitiateDeletionTimestamp(v time.Time) *PutRetentionSettingsOutput {
+	s.InitiateDeletionTimestamp = &v
+	return s
+}
+
+// SetRetentionSettings sets the RetentionSettings field's value.
+func (s *PutRetentionSettingsOutput) SetRetentionSettings(v *RetentionSettings) *PutRetentionSettingsOutput {
+	s.RetentionSettings = v
+	return s
+}
+
 type PutVoiceConnectorLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21399,6 +21817,61 @@ func (s *RestorePhoneNumberOutput) SetPhoneNumber(v *PhoneNumber) *RestorePhoneN
 	return s
 }
 
+// The retention settings for an Amazon Chime Enterprise account that determine
+// how long to retain items such as chat room messages and chat conversation
+// messages.
+type RetentionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The chat conversation retention settings.
+	ConversationRetentionSettings *ConversationRetentionSettings `type:"structure"`
+
+	// The chat room retention settings.
+	RoomRetentionSettings *RoomRetentionSettings `type:"structure"`
+}
+
+// String returns the string representation
+func (s RetentionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RetentionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetentionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetentionSettings"}
+	if s.ConversationRetentionSettings != nil {
+		if err := s.ConversationRetentionSettings.Validate(); err != nil {
+			invalidParams.AddNested("ConversationRetentionSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RoomRetentionSettings != nil {
+		if err := s.RoomRetentionSettings.Validate(); err != nil {
+			invalidParams.AddNested("RoomRetentionSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConversationRetentionSettings sets the ConversationRetentionSettings field's value.
+func (s *RetentionSettings) SetConversationRetentionSettings(v *ConversationRetentionSettings) *RetentionSettings {
+	s.ConversationRetentionSettings = v
+	return s
+}
+
+// SetRoomRetentionSettings sets the RoomRetentionSettings field's value.
+func (s *RetentionSettings) SetRoomRetentionSettings(v *RoomRetentionSettings) *RetentionSettings {
+	s.RoomRetentionSettings = v
+	return s
+}
+
 // The Amazon Chime chat room details.
 type Room struct {
 	_ struct{} `type:"structure"`
@@ -21525,6 +21998,44 @@ func (s *RoomMembership) SetRoomId(v string) *RoomMembership {
 // SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
 func (s *RoomMembership) SetUpdatedTimestamp(v time.Time) *RoomMembership {
 	s.UpdatedTimestamp = &v
+	return s
+}
+
+// The retention settings that determine how long to retain chat room messages
+// for an Amazon Chime Enterprise account.
+type RoomRetentionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days for which to retain chat room messages.
+	RetentionDays *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s RoomRetentionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RoomRetentionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RoomRetentionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RoomRetentionSettings"}
+	if s.RetentionDays != nil && *s.RetentionDays < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RetentionDays", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRetentionDays sets the RetentionDays field's value.
+func (s *RoomRetentionSettings) SetRetentionDays(v int64) *RoomRetentionSettings {
+	s.RetentionDays = &v
 	return s
 }
 

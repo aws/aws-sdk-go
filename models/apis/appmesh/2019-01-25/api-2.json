@@ -396,6 +396,9 @@
           "shape": "NotFoundException"
         },
         {
+          "shape": "ResourceInUseException"
+        },
+        {
           "shape": "ServiceUnavailableException"
         },
         {
@@ -1814,15 +1817,24 @@
       "type": "structure",
       "required": [
         "arn",
+        "createdAt",
+        "lastUpdatedAt",
         "meshName",
         "meshOwner",
         "resourceOwner",
         "routeName",
+        "version",
         "virtualRouterName"
       ],
       "members": {
         "arn": {
           "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
         },
         "meshName": {
           "shape": "ResourceName"
@@ -1835,6 +1847,9 @@
         },
         "routeName": {
           "shape": "ResourceName"
+        },
+        "version": {
+          "shape": "Long"
         },
         "virtualRouterName": {
           "shape": "ResourceName"
@@ -2668,14 +2683,23 @@
       "type": "structure",
       "required": [
         "arn",
+        "createdAt",
+        "lastUpdatedAt",
         "meshName",
         "meshOwner",
         "resourceOwner",
+        "version",
         "virtualServiceName"
       ],
       "members": {
         "arn": {
           "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
         },
         "meshName": {
           "shape": "ResourceName"
@@ -2685,6 +2709,9 @@
         },
         "resourceOwner": {
           "shape": "AccountId"
+        },
+        "version": {
+          "shape": "Long"
         },
         "virtualServiceName": {
           "shape": "ServiceName"
@@ -2706,14 +2733,23 @@
       "type": "structure",
       "required": [
         "arn",
+        "createdAt",
+        "lastUpdatedAt",
         "meshName",
         "meshOwner",
         "resourceOwner",
+        "version",
         "virtualRouterName"
       ],
       "members": {
         "arn": {
           "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
         },
         "meshName": {
           "shape": "ResourceName"
@@ -2723,6 +2759,9 @@
         },
         "resourceOwner": {
           "shape": "AccountId"
+        },
+        "version": {
+          "shape": "Long"
         },
         "virtualRouterName": {
           "shape": "ResourceName"
@@ -2788,14 +2827,23 @@
       "type": "structure",
       "required": [
         "arn",
+        "createdAt",
+        "lastUpdatedAt",
         "meshName",
         "meshOwner",
         "resourceOwner",
+        "version",
         "virtualNodeName"
       ],
       "members": {
         "arn": {
           "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
         },
         "meshName": {
           "shape": "ResourceName"
@@ -2805,6 +2853,9 @@
         },
         "resourceOwner": {
           "shape": "AccountId"
+        },
+        "version": {
+          "shape": "Long"
         },
         "virtualNodeName": {
           "shape": "ResourceName"
@@ -3208,13 +3259,22 @@
       "type": "structure",
       "required": [
         "arn",
+        "createdAt",
+        "lastUpdatedAt",
         "meshName",
         "meshOwner",
-        "resourceOwner"
+        "resourceOwner",
+        "version"
       ],
       "members": {
         "arn": {
           "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
         },
         "meshName": {
           "shape": "ResourceName"
@@ -3224,6 +3284,9 @@
         },
         "resourceOwner": {
           "shape": "AccountId"
+        },
+        "version": {
+          "shape": "Long"
         }
       }
     },

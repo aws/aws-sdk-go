@@ -54,6 +54,7 @@
     "GetPhoneNumberOrder": "<p>Retrieves details for the specified phone number order, such as order creation timestamp, phone numbers in E.164 format, product type, and order status.</p>",
     "GetPhoneNumberSettings": "<p>Retrieves the phone number settings for the administrator's AWS account, such as the default outbound calling name.</p>",
     "GetProxySession": "<p>Gets the specified proxy session details for the specified Amazon Chime Voice Connector.</p>",
+    "GetRetentionSettings": "<p>Gets the retention settings for the specified Amazon Chime Enterprise account. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "GetRoom": "<p>Retrieves room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "GetUser": "<p>Retrieves details for the specified user ID, such as primary email address, license type, and personal meeting PIN.</p> <p>To retrieve user details with an email address instead of a user ID, use the <a>ListUsers</a> action, and then filter by email address.</p>",
     "GetUserSettings": "<p>Retrieves settings for the specified user ID, such as any associated phone number settings.</p>",
@@ -84,6 +85,7 @@
     "ListVoiceConnectors": "<p>Lists the Amazon Chime Voice Connectors for the administrator's AWS account.</p>",
     "LogoutUser": "<p>Logs out the specified user from all of the devices they are currently logged into.</p>",
     "PutEventsConfiguration": "<p>Creates an events configuration that allows a bot to receive outgoing events sent by Amazon Chime. Choose either an HTTPS endpoint or a Lambda function ARN. For more information, see <a>Bot</a>.</p>",
+    "PutRetentionSettings": "<p>Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html\">Logging Amazon Chime API Calls with AWS CloudTrail</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>To turn off existing retention settings, remove the number of days from the corresponding <b>RetentionDays</b> field in the <b>RetentionSettings</b> object. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "PutVoiceConnectorLoggingConfiguration": "<p>Adds a logging configuration for the specified Amazon Chime Voice Connector. The logging configuration specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p>",
     "PutVoiceConnectorProxy": "<p>Puts the specified proxy configuration to the specified Amazon Chime Voice Connector.</p>",
@@ -433,6 +435,12 @@
     "ConflictException": {
       "base": "<p>The request could not be processed because of conflict in the current state of the resource.</p>",
       "refs": {
+      }
+    },
+    "ConversationRetentionSettings": {
+      "base": "<p>The retention settings that determine how long to retain chat conversation messages for an Amazon Chime Enterprise account.</p>",
+      "refs": {
+        "RetentionSettings$ConversationRetentionSettings": "<p>The chat conversation retention settings.</p>"
       }
     },
     "Country": {
@@ -925,6 +933,16 @@
       "refs": {
       }
     },
+    "GetRetentionSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRetentionSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetRoomRequest": {
       "base": null,
       "refs": {
@@ -1105,6 +1123,7 @@
         "Bot$CreatedTimestamp": "<p>The bot creation timestamp, in ISO 8601 format.</p>",
         "Bot$UpdatedTimestamp": "<p>The updated bot timestamp, in ISO 8601 format.</p>",
         "GetPhoneNumberSettingsResponse$CallingNameUpdatedTimestamp": "<p>The updated outbound calling name timestamp, in ISO 8601 format.</p>",
+        "GetRetentionSettingsResponse$InitiateDeletionTimestamp": "<p>The timestamp representing the time at which the specified items are permanently deleted, in ISO 8601 format.</p>",
         "PhoneNumber$CreatedTimestamp": "<p>The phone number creation timestamp, in ISO 8601 format.</p>",
         "PhoneNumber$UpdatedTimestamp": "<p>The updated phone number timestamp, in ISO 8601 format.</p>",
         "PhoneNumber$DeletionTimestamp": "<p>The deleted phone number timestamp, in ISO 8601 format.</p>",
@@ -1114,6 +1133,7 @@
         "ProxySession$CreatedTimestamp": "<p>The created timestamp, in ISO 8601 format.</p>",
         "ProxySession$UpdatedTimestamp": "<p>The updated timestamp, in ISO 8601 format.</p>",
         "ProxySession$EndedTimestamp": "<p>The ended timestamp, in ISO 8601 format.</p>",
+        "PutRetentionSettingsResponse$InitiateDeletionTimestamp": "<p>The timestamp representing the time at which the specified items are permanently deleted, in ISO 8601 format.</p>",
         "Room$CreatedTimestamp": "<p>The room creation timestamp, in ISO 8601 format.</p>",
         "Room$UpdatedTimestamp": "<p>The room update timestamp, in ISO 8601 format.</p>",
         "RoomMembership$UpdatedTimestamp": "<p>The room membership update timestamp, in ISO 8601 format.</p>",
@@ -1449,6 +1469,7 @@
         "GetBotRequest$BotId": "<p>The bot ID.</p>",
         "GetEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
+        "GetRetentionSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetRoomRequest$RoomId": "<p>The room ID.</p>",
         "GetUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -1476,6 +1497,7 @@
         "PhoneNumberError$PhoneNumberId": "<p>The phone number ID for which the action failed.</p>",
         "PutEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "PutEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
+        "PutRetentionSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "PutVoiceConnectorLoggingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorStreamingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -1825,6 +1847,16 @@
       "refs": {
       }
     },
+    "PutRetentionSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutRetentionSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutVoiceConnectorLoggingConfigurationRequest": {
       "base": null,
       "refs": {
@@ -1956,6 +1988,21 @@
         "ListVoiceConnectorsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>"
       }
     },
+    "RetentionDays": {
+      "base": null,
+      "refs": {
+        "ConversationRetentionSettings$RetentionDays": "<p>The number of days for which to retain chat conversation messages.</p>",
+        "RoomRetentionSettings$RetentionDays": "<p>The number of days for which to retain chat room messages.</p>"
+      }
+    },
+    "RetentionSettings": {
+      "base": "<p>The retention settings for an Amazon Chime Enterprise account that determine how long to retain items such as chat room messages and chat conversation messages.</p>",
+      "refs": {
+        "GetRetentionSettingsResponse$RetentionSettings": "<p>The retention settings.</p>",
+        "PutRetentionSettingsRequest$RetentionSettings": "<p>The retention settings.</p>",
+        "PutRetentionSettingsResponse$RetentionSettings": "<p>The retention settings.</p>"
+      }
+    },
     "Room": {
       "base": "<p>The Amazon Chime chat room details.</p>",
       "refs": {
@@ -1992,6 +2039,12 @@
         "MembershipItem$Role": "<p>The member role.</p>",
         "RoomMembership$Role": "<p>The membership role.</p>",
         "UpdateRoomMembershipRequest$Role": "<p>The role of the member.</p>"
+      }
+    },
+    "RoomRetentionSettings": {
+      "base": "<p>The retention settings that determine how long to retain chat room messages for an Amazon Chime Enterprise account.</p>",
+      "refs": {
+        "RetentionSettings$RoomRetentionSettings": "<p>The chat room retention settings.</p>"
       }
     },
     "SearchAvailablePhoneNumbersRequest": {
