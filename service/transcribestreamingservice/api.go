@@ -151,6 +151,8 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionWithContext(ctx aws
 	return out, req.Send()
 }
 
+var _ awserr.Error
+
 // StartStreamTranscriptionEventStream provides the event stream handling for the StartStreamTranscription.
 type StartStreamTranscriptionEventStream struct {
 
@@ -280,6 +282,7 @@ func (es *StartStreamTranscriptionEventStream) runInputStream(r *request.Request
 // These events are:
 //
 //     * TranscriptEvent
+//     * TranscriptResultStreamUnknownEvent
 func (es *StartStreamTranscriptionEventStream) Events() <-chan TranscriptResultStreamEvent {
 	return es.Reader.Events()
 }
@@ -441,6 +444,8 @@ func (s *AudioEvent) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *AudioEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	msg.Headers.Set(":content-type", eventstream.StringValue("application/octet-stream"))
@@ -538,6 +543,8 @@ func (s *BadRequestException) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *BadRequestException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
@@ -622,6 +629,8 @@ func (s *ConflictException) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *ConflictException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
@@ -706,6 +715,8 @@ func (s *InternalFailureException) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *InternalFailureException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
@@ -858,6 +869,8 @@ func (s *LimitExceededException) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *LimitExceededException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
@@ -1009,6 +1022,8 @@ func (s *ServiceUnavailableException) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *ServiceUnavailableException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
@@ -1338,6 +1353,8 @@ func (s *TranscriptEvent) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *TranscriptEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	var buf bytes.Buffer
@@ -1368,6 +1385,7 @@ type TranscriptResultStreamEvent interface {
 // These events are:
 //
 //     * TranscriptEvent
+//     * TranscriptResultStreamUnknownEvent
 type TranscriptResultStreamReader interface {
 	// Returns a channel of events as they are read from the event stream.
 	Events() <-chan TranscriptResultStreamEvent
@@ -1442,6 +1460,9 @@ func (r *readTranscriptResultStream) readEventStream() {
 				return
 			default:
 			}
+			if _, ok := err.(*eventstreamapi.UnknownMessageTypeError); ok {
+				continue
+			}
 			r.err.SetError(err)
 			return
 		}
@@ -1473,12 +1494,37 @@ func (u unmarshalerForTranscriptResultStreamEvent) UnmarshalerForEventName(event
 	case "ServiceUnavailableException":
 		return newErrorServiceUnavailableException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	default:
-		return nil, awserr.New(
-			request.ErrCodeSerialization,
-			fmt.Sprintf("unknown event type name, %s, for TranscriptResultStream", eventType),
-			nil,
-		)
+		return &TranscriptResultStreamUnknownEvent{Type: eventType}, nil
 	}
+}
+
+// TranscriptResultStreamUnknownEvent provides a failsafe event for the
+// TranscriptResultStream group of events when an unknown event is received.
+type TranscriptResultStreamUnknownEvent struct {
+	Type    string
+	Message eventstream.Message
+}
+
+// The TranscriptResultStreamUnknownEvent is and event in the TranscriptResultStream
+// group of events.
+func (s *TranscriptResultStreamUnknownEvent) eventTranscriptResultStream() {}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (e *TranscriptResultStreamUnknownEvent) MarshalEvent(pm protocol.PayloadMarshaler) (
+	msg eventstream.Message, err error,
+) {
+	return e.Message.Clone(), nil
+}
+
+// UnmarshalEvent unmarshals the EventStream Message into the TranscriptResultStream value.
+// This method is only used internally within the SDK's EventStream handling.
+func (e *TranscriptResultStreamUnknownEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	e.Message = msg.Clone()
+	return nil
 }
 
 const (
