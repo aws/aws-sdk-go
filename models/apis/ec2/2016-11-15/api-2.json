@@ -22352,7 +22352,11 @@
         "CidrAuthorizationContext":{"shape":"CidrAuthorizationContext"},
         "PubliclyAdvertisable":{"shape":"Boolean"},
         "Description":{"shape":"String"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "PoolTagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"PoolTagSpecification"
+        }
       }
     },
     "ProvisionByoipCidrResult":{
@@ -22418,6 +22422,10 @@
         "TotalAvailableAddressCount":{
           "shape":"Integer",
           "locationName":"totalAvailableAddressCount"
+        },
+        "NetworkBorderGroup":{
+          "shape":"String",
+          "locationName":"networkBorderGroup"
         },
         "Tags":{
           "shape":"TagList",

@@ -737,7 +737,8 @@
       "members":{
         "name":{"shape":"ReportGroupName"},
         "type":{"shape":"ReportType"},
-        "exportConfig":{"shape":"ReportExportConfig"}
+        "exportConfig":{"shape":"ReportExportConfig"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateReportGroupOutput":{
@@ -1510,7 +1511,8 @@
         "type":{"shape":"ReportType"},
         "exportConfig":{"shape":"ReportExportConfig"},
         "created":{"shape":"Timestamp"},
-        "lastModified":{"shape":"Timestamp"}
+        "lastModified":{"shape":"Timestamp"},
+        "tags":{"shape":"TagList"}
       }
     },
     "ReportGroupArns":{
@@ -1831,7 +1833,8 @@
       "required":["arn"],
       "members":{
         "arn":{"shape":"NonEmptyString"},
-        "exportConfig":{"shape":"ReportExportConfig"}
+        "exportConfig":{"shape":"ReportExportConfig"},
+        "tags":{"shape":"TagList"}
       }
     },
     "UpdateReportGroupOutput":{
@@ -1859,7 +1862,7 @@
     "ValueInput":{
       "type":"string",
       "max":255,
-      "min":1,
+      "min":0,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=@+\\-]*)$"
     },
     "VpcConfig":{

@@ -6198,9 +6198,10 @@ func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, o
 
 // CreateTags API operation for Amazon Elastic Compute Cloud.
 //
-// Adds or overwrites the specified tags for the specified Amazon EC2 resource
-// or resources. Each resource can have a maximum of 50 tags. Each tag consists
-// of a key and optional value. Tag keys must be unique per resource.
+// Adds or overwrites only the specified tags for the specified Amazon EC2 resource
+// or resources. When you specify an existing tag key, the value is overwritten
+// with the new value. Each resource can have a maximum of 50 tags. Each tag
+// consists of a key and optional value. Tag keys must be unique per resource.
 //
 // For more information about tags, see Tagging Your Resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
 // in the Amazon Elastic Compute Cloud User Guide. For more information about
@@ -92450,6 +92451,9 @@ type ProvisionByoipCidrInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `type:"boolean"`
 
+	// The tags to apply to the address pool.
+	PoolTagSpecifications []*TagSpecification `locationName:"PoolTagSpecification" locationNameList:"item" type:"list"`
+
 	// (IPv6 only) Indicate whether the address range will be publicly advertised
 	// to the internet.
 	//
@@ -92506,6 +92510,12 @@ func (s *ProvisionByoipCidrInput) SetDescription(v string) *ProvisionByoipCidrIn
 // SetDryRun sets the DryRun field's value.
 func (s *ProvisionByoipCidrInput) SetDryRun(v bool) *ProvisionByoipCidrInput {
 	s.DryRun = &v
+	return s
+}
+
+// SetPoolTagSpecifications sets the PoolTagSpecifications field's value.
+func (s *ProvisionByoipCidrInput) SetPoolTagSpecifications(v []*TagSpecification) *ProvisionByoipCidrInput {
+	s.PoolTagSpecifications = v
 	return s
 }
 
@@ -92617,6 +92627,11 @@ type PublicIpv4Pool struct {
 	// A description of the address pool.
 	Description *string `locationName:"description" type:"string"`
 
+	// The name of the location from which the address pool is advertised. A network
+	// border group is a unique set of Availability Zones or Local Zones from where
+	// AWS advertises public IP addresses.
+	NetworkBorderGroup *string `locationName:"networkBorderGroup" type:"string"`
+
 	// The address ranges.
 	PoolAddressRanges []*PublicIpv4PoolRange `locationName:"poolAddressRangeSet" locationNameList:"item" type:"list"`
 
@@ -92646,6 +92661,12 @@ func (s PublicIpv4Pool) GoString() string {
 // SetDescription sets the Description field's value.
 func (s *PublicIpv4Pool) SetDescription(v string) *PublicIpv4Pool {
 	s.Description = &v
+	return s
+}
+
+// SetNetworkBorderGroup sets the NetworkBorderGroup field's value.
+func (s *PublicIpv4Pool) SetNetworkBorderGroup(v string) *PublicIpv4Pool {
+	s.NetworkBorderGroup = &v
 	return s
 }
 
@@ -103875,11 +103896,12 @@ type TagSpecification struct {
 
 	// The type of resource to tag. Currently, the resource types that support tagging
 	// on creation are: capacity-reservation | client-vpn-endpoint | dedicated-host
-	// | fleet | fpga-image | instance | key-pair | launch-template | | natgateway
-	// | spot-fleet-request | placement-group | snapshot | traffic-mirror-filter
-	// | traffic-mirror-session | traffic-mirror-target | transit-gateway | transit-gateway-attachment
-	// | transit-gateway-route-table | vpc-endpoint (for interface VPC endpoints)|
-	// vpc-endpoint-service (for gateway VPC endpoints) | volume | vpc-flow-log.
+	// | fleet | fpga-image | instance | ipv4pool-ec2 | ipv6pool-ec2 | key-pair
+	// | launch-template | natgateway | spot-fleet-request | placement-group | snapshot
+	// | traffic-mirror-filter | traffic-mirror-session | traffic-mirror-target
+	// | transit-gateway | transit-gateway-attachment | transit-gateway-route-table
+	// | vpc-endpoint (for interface VPC endpoints)| vpc-endpoint-service (for gateway
+	// VPC endpoints) | volume | vpc-flow-log.
 	//
 	// To tag a resource after it has been created, see CreateTags (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html).
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`

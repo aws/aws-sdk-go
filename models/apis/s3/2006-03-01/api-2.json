@@ -212,7 +212,8 @@
       "input":{"shape":"DeleteObjectsRequest"},
       "output":{"shape":"DeleteObjectsOutput"},
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/multiobjectdeleteapi.html",
-      "alias":"DeleteMultipleObjects"
+      "alias":"DeleteMultipleObjects",
+      "httpChecksumRequired":true
     },
     "DeletePublicAccessBlock":{
       "name":"DeletePublicAccessBlock",
@@ -631,7 +632,8 @@
         "requestUri":"/{Bucket}?acl"
       },
       "input":{"shape":"PutBucketAclRequest"},
-      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTacl.html"
+      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTacl.html",
+      "httpChecksumRequired":true
     },
     "PutBucketAnalyticsConfiguration":{
       "name":"PutBucketAnalyticsConfiguration",
@@ -648,7 +650,8 @@
         "requestUri":"/{Bucket}?cors"
       },
       "input":{"shape":"PutBucketCorsRequest"},
-      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTcors.html"
+      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTcors.html",
+      "httpChecksumRequired":true
     },
     "PutBucketEncryption":{
       "name":"PutBucketEncryption",
@@ -656,7 +659,8 @@
         "method":"PUT",
         "requestUri":"/{Bucket}?encryption"
       },
-      "input":{"shape":"PutBucketEncryptionRequest"}
+      "input":{"shape":"PutBucketEncryptionRequest"},
+      "httpChecksumRequired":true
     },
     "PutBucketInventoryConfiguration":{
       "name":"PutBucketInventoryConfiguration",
@@ -674,7 +678,8 @@
       },
       "input":{"shape":"PutBucketLifecycleRequest"},
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTlifecycle.html",
-      "deprecated":true
+      "deprecated":true,
+      "httpChecksumRequired":true
     },
     "PutBucketLifecycleConfiguration":{
       "name":"PutBucketLifecycleConfiguration",
@@ -682,7 +687,8 @@
         "method":"PUT",
         "requestUri":"/{Bucket}?lifecycle"
       },
-      "input":{"shape":"PutBucketLifecycleConfigurationRequest"}
+      "input":{"shape":"PutBucketLifecycleConfigurationRequest"},
+      "httpChecksumRequired":true
     },
     "PutBucketLogging":{
       "name":"PutBucketLogging",
@@ -691,7 +697,8 @@
         "requestUri":"/{Bucket}?logging"
       },
       "input":{"shape":"PutBucketLoggingRequest"},
-      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTlogging.html"
+      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTlogging.html",
+      "httpChecksumRequired":true
     },
     "PutBucketMetricsConfiguration":{
       "name":"PutBucketMetricsConfiguration",
@@ -709,7 +716,8 @@
       },
       "input":{"shape":"PutBucketNotificationRequest"},
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTnotification.html",
-      "deprecated":true
+      "deprecated":true,
+      "httpChecksumRequired":true
     },
     "PutBucketNotificationConfiguration":{
       "name":"PutBucketNotificationConfiguration",
@@ -726,7 +734,8 @@
         "requestUri":"/{Bucket}?policy"
       },
       "input":{"shape":"PutBucketPolicyRequest"},
-      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTpolicy.html"
+      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTpolicy.html",
+      "httpChecksumRequired":true
     },
     "PutBucketReplication":{
       "name":"PutBucketReplication",
@@ -734,7 +743,8 @@
         "method":"PUT",
         "requestUri":"/{Bucket}?replication"
       },
-      "input":{"shape":"PutBucketReplicationRequest"}
+      "input":{"shape":"PutBucketReplicationRequest"},
+      "httpChecksumRequired":true
     },
     "PutBucketRequestPayment":{
       "name":"PutBucketRequestPayment",
@@ -743,7 +753,8 @@
         "requestUri":"/{Bucket}?requestPayment"
       },
       "input":{"shape":"PutBucketRequestPaymentRequest"},
-      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTrequestPaymentPUT.html"
+      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTrequestPaymentPUT.html",
+      "httpChecksumRequired":true
     },
     "PutBucketTagging":{
       "name":"PutBucketTagging",
@@ -752,7 +763,8 @@
         "requestUri":"/{Bucket}?tagging"
       },
       "input":{"shape":"PutBucketTaggingRequest"},
-      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTtagging.html"
+      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTtagging.html",
+      "httpChecksumRequired":true
     },
     "PutBucketVersioning":{
       "name":"PutBucketVersioning",
@@ -761,7 +773,8 @@
         "requestUri":"/{Bucket}?versioning"
       },
       "input":{"shape":"PutBucketVersioningRequest"},
-      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html"
+      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html",
+      "httpChecksumRequired":true
     },
     "PutBucketWebsite":{
       "name":"PutBucketWebsite",
@@ -770,7 +783,8 @@
         "requestUri":"/{Bucket}?website"
       },
       "input":{"shape":"PutBucketWebsiteRequest"},
-      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTwebsite.html"
+      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTwebsite.html",
+      "httpChecksumRequired":true
     },
     "PutObject":{
       "name":"PutObject",
@@ -793,7 +807,8 @@
       "errors":[
         {"shape":"NoSuchKey"}
       ],
-      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTObjectPUTacl.html"
+      "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTObjectPUTacl.html",
+      "httpChecksumRequired":true
     },
     "PutObjectLegalHold":{
       "name":"PutObjectLegalHold",
@@ -802,7 +817,8 @@
         "requestUri":"/{Bucket}/{Key+}?legal-hold"
       },
       "input":{"shape":"PutObjectLegalHoldRequest"},
-      "output":{"shape":"PutObjectLegalHoldOutput"}
+      "output":{"shape":"PutObjectLegalHoldOutput"},
+      "httpChecksumRequired":true
     },
     "PutObjectLockConfiguration":{
       "name":"PutObjectLockConfiguration",
@@ -811,7 +827,8 @@
         "requestUri":"/{Bucket}?object-lock"
       },
       "input":{"shape":"PutObjectLockConfigurationRequest"},
-      "output":{"shape":"PutObjectLockConfigurationOutput"}
+      "output":{"shape":"PutObjectLockConfigurationOutput"},
+      "httpChecksumRequired":true
     },
     "PutObjectRetention":{
       "name":"PutObjectRetention",
@@ -820,7 +837,8 @@
         "requestUri":"/{Bucket}/{Key+}?retention"
       },
       "input":{"shape":"PutObjectRetentionRequest"},
-      "output":{"shape":"PutObjectRetentionOutput"}
+      "output":{"shape":"PutObjectRetentionOutput"},
+      "httpChecksumRequired":true
     },
     "PutObjectTagging":{
       "name":"PutObjectTagging",
@@ -829,7 +847,8 @@
         "requestUri":"/{Bucket}/{Key+}?tagging"
       },
       "input":{"shape":"PutObjectTaggingRequest"},
-      "output":{"shape":"PutObjectTaggingOutput"}
+      "output":{"shape":"PutObjectTaggingOutput"},
+      "httpChecksumRequired":true
     },
     "PutPublicAccessBlock":{
       "name":"PutPublicAccessBlock",
@@ -837,7 +856,8 @@
         "method":"PUT",
         "requestUri":"/{Bucket}?publicAccessBlock"
       },
-      "input":{"shape":"PutPublicAccessBlockRequest"}
+      "input":{"shape":"PutPublicAccessBlockRequest"},
+      "httpChecksumRequired":true
     },
     "RestoreObject":{
       "name":"RestoreObject",
@@ -4751,6 +4771,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -4827,6 +4849,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         }
@@ -4847,6 +4871,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -4912,6 +4938,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -4942,6 +4970,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         }
@@ -5008,6 +5038,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5033,6 +5065,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5059,6 +5093,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5089,6 +5125,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5114,6 +5152,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5139,6 +5179,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5169,6 +5211,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5214,6 +5258,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5304,6 +5350,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         }
@@ -5346,6 +5394,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         }
@@ -5610,6 +5660,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         }
@@ -5651,6 +5703,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5676,6 +5730,8 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
+          "deprecated":true,
+          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
