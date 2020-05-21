@@ -277,13 +277,15 @@
       "type":"structure",
       "required":["TimeoutInSeconds"],
       "members":{
-        "TimeoutInSeconds":{"shape":"MaxFifteenMinutesInSeconds"}
+        "TimeoutInSeconds":{"shape":"MaxFifteenMinutesInSeconds"},
+        "MemoryInMB":{"shape":"MaxSize3008"}
       }
     },
     "CanaryRunConfigOutput":{
       "type":"structure",
       "members":{
-        "TimeoutInSeconds":{"shape":"MaxFifteenMinutesInSeconds"}
+        "TimeoutInSeconds":{"shape":"MaxFifteenMinutesInSeconds"},
+        "MemoryInMB":{"shape":"MaxSize3008"}
       }
     },
     "CanaryRunState":{
@@ -553,6 +555,11 @@
       "type":"integer",
       "max":1024,
       "min":1
+    },
+    "MaxSize3008":{
+      "type":"integer",
+      "max":3008,
+      "min":960
     },
     "ResourceNotFoundException":{
       "type":"structure",

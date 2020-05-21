@@ -1,3 +1,15 @@
+Release v1.31.3 (2020-05-21)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * CodeBuild adds support for tagging with report groups
+* `service/ec2`: Updates service API and documentation
+  * From this release onwards ProvisionByoipCidr publicly supports IPv6. Updated ProvisionByoipCidr API to support tags for public IPv4 and IPv6 pools. Added NetworkBorderGroup to the DescribePublicIpv4Pools response.
+* `service/s3`: Updates service API, documentation, and examples
+  * Deprecates unusable input members bound to Content-MD5 header. Updates example and documentation.
+* `service/synthetics`: Updates service API and documentation
+
 Release v1.31.2 (2020-05-20)
 ===
 
