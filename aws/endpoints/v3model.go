@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-var regionValidationRegex = regexp.MustCompile(`^[[:alnum:]]([[:alnum:]\-]*[a-zA-Z0-9])?$`)
+var regionValidationRegex = regexp.MustCompile(`^[[:alnum:]]([[:alnum:]\-]*[[:alnum:]])?$`)
 
 type partitions []partition
 
