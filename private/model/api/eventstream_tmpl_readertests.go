@@ -140,6 +140,78 @@ func (c *loopReader) Read(p []byte) (int, error) {
 		}
 	}
 
+	func Test{{ $.Operation.ExportedName }}_ReadUnknownEvent(t *testing.T) {
+		expectEvents, eventMsgs := mock{{ $.Operation.ExportedName }}ReadEvents()
+
+		{{- if eq $.Operation.API.Metadata.Protocol "json" }}
+			eventOffset := 1
+		{{- else }}
+			var eventOffset int
+		{{- end }}
+
+		unknownEvent := eventstream.Message{
+			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
+				{
+					Name:  eventstreamapi.EventTypeHeader,
+					Value: eventstream.StringValue("UnknownEventName"),
+				},
+			},
+			Payload: []byte("some unknown event"),
+		}
+
+		eventMsgs = append(eventMsgs[:eventOffset],
+			append([]eventstream.Message{unknownEvent}, eventMsgs[eventOffset:]...)...)
+
+		expectEvents = append(expectEvents[:eventOffset],
+			append([]{{ $.OutputStream.Name }}Event{
+					&{{ $.OutputStream.StreamUnknownEventName }}{
+						Type: "UnknownEventName",
+						Message: unknownEvent,
+					},
+				},
+				expectEvents[eventOffset:]...)...)
+
+		sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+			eventstreamtest.ServeEventStream{
+				T:      t,
+				Events: eventMsgs,
+			},
+			true,
+		)
+		if err != nil {
+			t.Fatalf("expect no error, %v", err)
+		}
+		defer cleanupFn()
+
+		svc := New(sess)
+		resp, err := svc.{{ $.Operation.ExportedName }}(nil)
+		if err != nil {
+			t.Fatalf("expect no error got, %v", err)
+		}
+		defer resp.GetStream().Close()
+
+		{{- if eq $.Operation.API.Metadata.Protocol "json" }}
+			// Trim off response output type pseudo event so only event messages remain.
+			expectEvents = expectEvents[1:]
+		{{ end }}
+
+		var i int
+		for event := range resp.GetStream().Events() {
+			if event == nil {
+				t.Errorf("%d, expect event, got nil", i)
+			}
+			if e, a := expectEvents[i], event; !reflect.DeepEqual(e, a) {
+				t.Errorf("%d, expect %T %v, got %T %v", i, e, e, a, a)
+			}
+			i++
+		}
+
+		if err := resp.GetStream().Err(); err != nil {
+			t.Errorf("expect no error, %v", err)
+		}
+	}
+
 	func Benchmark{{ $.Operation.ExportedName }}_Read(b *testing.B) {
 		_, eventMsgs := mock{{ $.Operation.ExportedName }}ReadEvents()
 		var buf bytes.Buffer
