@@ -1,3 +1,11 @@
+Release v1.31.4 (2020-05-22)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * Documentation updates for Amazon EC2 Auto Scaling
+* `service/iotsitewise`: Updates service API and documentation
+
 Release v1.31.3 (2020-05-21)
 ===
 

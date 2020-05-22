@@ -7520,9 +7520,17 @@
         },
         "endpoints" : {
           "us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "serverlessrepo.us-gov-east-1.amazonaws.com",
             "protocols" : [ "https" ]
           },
           "us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "serverlessrepo.us-gov-west-1.amazonaws.com",
             "protocols" : [ "https" ]
           }
         }
