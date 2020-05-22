@@ -13,7 +13,7 @@
     "CreateGateway": "<p>Creates a gateway, which is a virtual or edge device that delivers industrial data streams from local servers to AWS IoT SiteWise. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/gateway-connector.html\">Ingesting data using a gateway</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
     "CreatePortal": "<p>Creates a portal, which can contain projects and dashboards. Before you can create a portal, you must configure AWS Single Sign-On in the current Region. AWS IoT SiteWise Monitor uses AWS SSO to manage user permissions. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso\">Enabling AWS SSO</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> <note> <p>Before you can sign in to a new portal, you must add at least one AWS SSO user or group to that portal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins\">Adding or Removing Portal Administrators</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> </note>",
     "CreateProject": "<p>Creates a project in the specified portal.</p>",
-    "DeleteAccessPolicy": "<p>Deletes an access policy that grants the specified AWS Single Sign-On identity access to the specified AWS IoT SiteWise Monitor resource. You can use this action to revoke access to an AWS IoT SiteWise Monitor resource.</p>",
+    "DeleteAccessPolicy": "<p>Deletes an access policy that grants the specified AWS Single Sign-On identity access to the specified AWS IoT SiteWise Monitor resource. You can use this operation to revoke access to an AWS IoT SiteWise Monitor resource.</p>",
     "DeleteAsset": "<p>Deletes an asset. This action can't be undone. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html\">Deleting Assets and Models</a> in the <i>AWS IoT SiteWise User Guide</i>. </p> <note> <p>You can't delete an asset that's associated to another asset. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DisassociateAssets.html\">DisassociateAssets</a>.</p> </note>",
     "DeleteAssetModel": "<p>Deletes an asset model. This action can't be undone. You must delete all assets created from an asset model before you can delete the model. Also, you can't delete an asset model if a parent asset model exists that contains a property formula expression that depends on the asset model that you want to delete. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html\">Deleting Assets and Models</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
     "DeleteDashboard": "<p>Deletes a dashboard from AWS IoT SiteWise Monitor.</p>",
@@ -49,7 +49,7 @@
     "UntagResource": "<p>Removes a tag from an AWS IoT SiteWise resource.</p>",
     "UpdateAccessPolicy": "<p>Updates an existing access policy that specifies an AWS SSO user or group's access to an AWS IoT SiteWise Monitor portal or project resource.</p>",
     "UpdateAsset": "<p>Updates an asset's name. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html\">Updating Assets and Models</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
-    "UpdateAssetModel": "<p>Updates an asset model and all of the assets that were created from the model. Each asset created from the model inherits the updated asset model's property and hierarchy definitions. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html\">Updating Assets and Models</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> <important> <p>This action overwrites the existing model with the provided model. To avoid deleting your asset model's properties or hierarchies, you must include their IDs and definitions in the updated asset model payload. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html\">DescribeAssetModel</a>.</p> <p>If you remove a property from an asset model or update a property's formula expression, AWS IoT SiteWise deletes all previous data for that property. If you remove a hierarchy definition from an asset model, AWS IoT SiteWise disassociates every asset associated with that hierarchy. You can't change the type or data type of an existing property.</p> </important>",
+    "UpdateAssetModel": "<p>Updates an asset model and all of the assets that were created from the model. Each asset created from the model inherits the updated asset model's property and hierarchy definitions. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html\">Updating Assets and Models</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> <important> <p>This operation overwrites the existing model with the provided model. To avoid deleting your asset model's properties or hierarchies, you must include their IDs and definitions in the updated asset model payload. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html\">DescribeAssetModel</a>.</p> <p>If you remove a property from an asset model or update a property's formula expression, AWS IoT SiteWise deletes all previous data for that property. If you remove a hierarchy definition from an asset model, AWS IoT SiteWise disassociates every asset associated with that hierarchy. You can't change the type or data type of an existing property.</p> </important>",
     "UpdateAssetProperty": "<p>Updates an asset property's alias and notification state.</p> <important> <p>This operation overwrites the property's existing alias and notification state. To keep your existing property's alias or notification state, you must include the existing values in the UpdateAssetProperty request. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetProperty.html\">DescribeAssetProperty</a>.</p> </important>",
     "UpdateDashboard": "<p>Updates an AWS IoT SiteWise Monitor dashboard.</p>",
     "UpdateGateway": "<p>Updates a gateway's name.</p>",
@@ -112,11 +112,12 @@
     "AggregatedDoubleValue": {
       "base": null,
       "refs": {
-        "Aggregates$average": "<p>The average (mean) value of the time series for the last time interval window.</p>",
-        "Aggregates$count": "<p>The count of data points in the time series for the last time interval window.</p>",
-        "Aggregates$maximum": "<p>The maximum value of the time series for the last time interval window.</p>",
-        "Aggregates$minimum": "<p>The minimum value of the time series for the last time interval window.</p>",
-        "Aggregates$sum": "<p>The sum of the time series for the last time interval window.</p>"
+        "Aggregates$average": "<p>The average (mean) value of the time series over a time interval window.</p>",
+        "Aggregates$count": "<p>The count of data points in the time series over a time interval window.</p>",
+        "Aggregates$maximum": "<p>The maximum value of the time series over a time interval window.</p>",
+        "Aggregates$minimum": "<p>The minimum value of the time series over a time interval window.</p>",
+        "Aggregates$sum": "<p>The sum of the time series over a time interval window.</p>",
+        "Aggregates$standardDeviation": "<p>The standard deviation of the time series over a time interval window.</p>"
       }
     },
     "AggregatedValue": {
@@ -245,10 +246,10 @@
       "base": "<p>Contains current status information for an asset model. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-and-model-states.html\">Asset and Model States</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
       "refs": {
         "AssetModelSummary$status": "<p>The current status of the asset model.</p>",
-        "CreateAssetModelResponse$assetModelStatus": "<p>The status of the asset model, which contains a state (<code>CREATING</code> after successfully calling this action) and any error message.</p>",
-        "DeleteAssetModelResponse$assetModelStatus": "<p>The status of the asset model, which contains a state (<code>DELETING</code> after successfully calling this action) and any error message.</p>",
+        "CreateAssetModelResponse$assetModelStatus": "<p>The status of the asset model, which contains a state (<code>CREATING</code> after successfully calling this operation) and any error message.</p>",
+        "DeleteAssetModelResponse$assetModelStatus": "<p>The status of the asset model, which contains a state (<code>DELETING</code> after successfully calling this operation) and any error message.</p>",
         "DescribeAssetModelResponse$assetModelStatus": "<p>The current status of the asset model, which contains a state and any error message.</p>",
-        "UpdateAssetModelResponse$assetModelStatus": "<p>The status of the asset model, which contains a state (<code>UPDATING</code> after successfully calling this action) and any error message.</p>"
+        "UpdateAssetModelResponse$assetModelStatus": "<p>The status of the asset model, which contains a state (<code>UPDATING</code> after successfully calling this operation) and any error message.</p>"
       }
     },
     "AssetModelSummaries": {
@@ -315,10 +316,10 @@
       "refs": {
         "AssetSummary$status": "<p>The current status of the asset.</p>",
         "AssociatedAssetsSummary$status": "<p>The current status of the asset.</p>",
-        "CreateAssetResponse$assetStatus": "<p>The status of the asset, which contains a state (<code>CREATING</code> after successfully calling this action) and any error message.</p>",
-        "DeleteAssetResponse$assetStatus": "<p>The status of the asset, which contains a state (<code>DELETING</code> after successfully calling this action) and any error message.</p>",
+        "CreateAssetResponse$assetStatus": "<p>The status of the asset, which contains a state (<code>CREATING</code> after successfully calling this operation) and any error message.</p>",
+        "DeleteAssetResponse$assetStatus": "<p>The status of the asset, which contains a state (<code>DELETING</code> after successfully calling this operation) and any error message.</p>",
         "DescribeAssetResponse$assetStatus": "<p>The current status of the asset, which contains a state and any error message.</p>",
-        "UpdateAssetResponse$assetStatus": "<p>The status of the asset, which contains a state (<code>UPDATING</code> after successfully calling this action) and any error message.</p>"
+        "UpdateAssetResponse$assetStatus": "<p>The status of the asset, which contains a state (<code>UPDATING</code> after successfully calling this operation) and any error message.</p>"
       }
     },
     "AssetSummaries": {
@@ -990,7 +991,9 @@
         "GetAssetPropertyValueRequest$assetId": "<p>The ID of the asset.</p>",
         "GetAssetPropertyValueRequest$propertyId": "<p>The ID of the asset property.</p>",
         "IDs$member": null,
-        "ListAccessPoliciesRequest$resourceId": "<p>The ID of the resource.</p>",
+        "Image$id": "<p>The ID of an existing image. Specify this parameter to keep an existing image.</p>",
+        "ImageLocation$id": "<p>The ID of the image.</p>",
+        "ListAccessPoliciesRequest$resourceId": "<p>The ID of the resource. This parameter is required if you specify <code>resourceType</code>.</p>",
         "ListAssetsRequest$assetModelId": "<p>The ID of the asset model by which to filter the list of assets. This parameter is required if you choose <code>ALL</code> for <code>filter</code>.</p>",
         "ListAssociatedAssetsRequest$assetId": "<p>The ID of the parent asset.</p>",
         "ListAssociatedAssetsRequest$hierarchyId": "<p>The hierarchy ID (of the parent asset model) whose associated assets are returned. To find a hierarchy ID, use the <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAsset.html\">DescribeAsset</a> or <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html\">DescribeAssetModel</a> actions.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html\">Asset Hierarchies</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
@@ -1036,39 +1039,45 @@
       "base": null,
       "refs": {
         "GroupIdentity$id": "<p>The AWS SSO ID of the group.</p>",
-        "ListAccessPoliciesRequest$identityId": "<p>The ID of the identity.</p>",
+        "ListAccessPoliciesRequest$identityId": "<p>The ID of the identity. This parameter is required if you specify <code>identityType</code>.</p>",
         "UserIdentity$id": "<p>The AWS SSO ID of the user.</p>"
       }
     },
     "IdentityType": {
       "base": null,
       "refs": {
-        "ListAccessPoliciesRequest$identityType": "<p>The type of identity (user or group).</p>"
+        "ListAccessPoliciesRequest$identityType": "<p>The type of identity (user or group). This parameter is required if you specify <code>identityId</code>.</p>"
       }
     },
     "Image": {
-      "base": "<p>Contains an image that is available at a URL.</p>",
+      "base": "<p>Contains an image that is one of the following:</p> <ul> <li> <p>An image file. Choose this option to upload a new image.</p> </li> <li> <p>The ID of an existing image. Choose this option to keep an existing image.</p> </li> </ul>",
       "refs": {
-        "DescribePortalResponse$portalLogoImage": "<p>The portal's logo image.</p>"
+        "UpdatePortalRequest$portalLogoImage": null
       }
     },
     "ImageFile": {
       "base": "<p>Contains an image file.</p>",
       "refs": {
         "CreatePortalRequest$portalLogoImageFile": "<p>A logo image to display in the portal. Upload a square, high-resolution image. The image is displayed on a dark background.</p>",
-        "UpdatePortalRequest$portalLogoImageFile": "<p>A logo image to display in the portal. Upload a square, high-resolution image. The image is displayed on a dark background.</p>"
+        "Image$file": null
       }
     },
     "ImageFileData": {
       "base": null,
       "refs": {
-        "ImageFile$encodedString": "<p>The image file contents, represented as a base64-encoded string. The file size must be less than 1 MB.</p>"
+        "ImageFile$data": "<p>The image file contents, represented as a base64-encoded string. The file size must be less than 1 MB.</p>"
       }
     },
     "ImageFileType": {
       "base": null,
       "refs": {
-        "ImageFile$fileType": "<p>The file type of the image.</p>"
+        "ImageFile$type": "<p>The file type of the image.</p>"
+      }
+    },
+    "ImageLocation": {
+      "base": "<p>Contains an image that is uploaded to AWS IoT SiteWise and available at a URL.</p>",
+      "refs": {
+        "DescribePortalResponse$portalLogoImageLocation": "<p>The portal's logo image, which is available at a URL.</p>"
       }
     },
     "InternalFailureException": {
@@ -1371,10 +1380,10 @@
     "PortalStatus": {
       "base": "<p>Contains information about the current status of a portal.</p>",
       "refs": {
-        "CreatePortalResponse$portalStatus": "<p>The status of the portal, which contains a state (<code>CREATING</code> after successfully calling this action) and any error message.</p>",
-        "DeletePortalResponse$portalStatus": "<p>The status of the portal, which contains a state (<code>DELETING</code> after successfully calling this action) and any error message.</p>",
+        "CreatePortalResponse$portalStatus": "<p>The status of the portal, which contains a state (<code>CREATING</code> after successfully calling this operation) and any error message.</p>",
+        "DeletePortalResponse$portalStatus": "<p>The status of the portal, which contains a state (<code>DELETING</code> after successfully calling this operation) and any error message.</p>",
         "DescribePortalResponse$portalStatus": "<p>The current status of the portal, which contains a state and any error message.</p>",
-        "UpdatePortalResponse$portalStatus": "<p>The status of the portal, which contains a state (<code>UPDATING</code> after successfully calling this action) and any error message.</p>"
+        "UpdatePortalResponse$portalStatus": "<p>The status of the portal, which contains a state (<code>UPDATING</code> after successfully calling this operation) and any error message.</p>"
       }
     },
     "PortalSummaries": {
@@ -1570,7 +1579,7 @@
     "ResourceType": {
       "base": null,
       "refs": {
-        "ListAccessPoliciesRequest$resourceType": "<p>The type of resource (portal or project).</p>"
+        "ListAccessPoliciesRequest$resourceType": "<p>The type of resource (portal or project). This parameter is required if you specify <code>resourceId</code>.</p>"
       }
     },
     "SSOApplicationId": {
@@ -1686,7 +1695,6 @@
         "GetAssetPropertyAggregatesRequest$endDate": "<p>The inclusive end of the range from which to query historical data, expressed in seconds in Unix epoch time.</p>",
         "GetAssetPropertyValueHistoryRequest$startDate": "<p>The exclusive start of the range from which to query historical data, expressed in seconds in Unix epoch time.</p>",
         "GetAssetPropertyValueHistoryRequest$endDate": "<p>The inclusive end of the range from which to query historical data, expressed in seconds in Unix epoch time.</p>",
-        "Image$lastUpdateDate": "<p>The date the image was last updated, in Unix epoch time.</p>",
         "PortalSummary$creationDate": "<p>The date the portal was created, in Unix epoch time.</p>",
         "PortalSummary$lastUpdateDate": "<p>The date the portal was last updated, in Unix epoch time.</p>",
         "ProjectSummary$creationDate": "<p>The date the project was created, in Unix epoch time.</p>",
@@ -1811,7 +1819,7 @@
       "refs": {
         "CreatePortalResponse$portalStartUrl": "<p>The public URL for the AWS IoT SiteWise Monitor portal.</p>",
         "DescribePortalResponse$portalStartUrl": "<p>The public root URL for the AWS IoT AWS IoT SiteWise Monitor application portal.</p>",
-        "Image$locationUrl": "<p>A URL at which the image is available. The URL is valid for 15 minutes for you to view and download the image.</p>",
+        "ImageLocation$url": "<p>The URL where the image is available. The URL is valid for 15 minutes so that you can view and download the image</p>",
         "PortalSummary$startUrl": "<p>The public root URL for the AWS IoT AWS IoT SiteWise Monitor application portal.</p>"
       }
     },

@@ -964,7 +964,8 @@
         "COUNT",
         "MAXIMUM",
         "MINIMUM",
-        "SUM"
+        "SUM",
+        "STANDARD_DEVIATION"
       ]
     },
     "AggregateTypes":{
@@ -996,7 +997,8 @@
         "count":{"shape":"AggregatedDoubleValue"},
         "maximum":{"shape":"AggregatedDoubleValue"},
         "minimum":{"shape":"AggregatedDoubleValue"},
-        "sum":{"shape":"AggregatedDoubleValue"}
+        "sum":{"shape":"AggregatedDoubleValue"},
+        "standardDeviation":{"shape":"AggregatedDoubleValue"}
       }
     },
     "AmazonResourceName":{
@@ -2119,7 +2121,7 @@
         "portalStatus":{"shape":"PortalStatus"},
         "portalCreationDate":{"shape":"Timestamp"},
         "portalLastUpdateDate":{"shape":"Timestamp"},
-        "portalLogoImage":{"shape":"Image"},
+        "portalLogoImageLocation":{"shape":"ImageLocation"},
         "roleArn":{"shape":"ARN"}
       }
     },
@@ -2487,25 +2489,40 @@
     "Image":{
       "type":"structure",
       "members":{
-        "locationUrl":{"shape":"Url"},
-        "lastUpdateDate":{"shape":"Timestamp"}
+        "id":{"shape":"ID"},
+        "file":{"shape":"ImageFile"}
       }
     },
     "ImageFile":{
       "type":"structure",
       "required":[
-        "encodedString",
-        "fileType"
+        "data",
+        "type"
       ],
       "members":{
-        "encodedString":{"shape":"ImageFileData"},
-        "fileType":{"shape":"ImageFileType"}
+        "data":{"shape":"ImageFileData"},
+        "type":{"shape":"ImageFileType"}
       }
     },
-    "ImageFileData":{"type":"blob"},
+    "ImageFileData":{
+      "type":"blob",
+      "max":1500000,
+      "min":1
+    },
     "ImageFileType":{
       "type":"string",
       "enum":["PNG"]
+    },
+    "ImageLocation":{
+      "type":"structure",
+      "required":[
+        "id",
+        "url"
+      ],
+      "members":{
+        "id":{"shape":"ID"},
+        "url":{"shape":"Url"}
+      }
     },
     "InternalFailureException":{
       "type":"structure",
@@ -3500,7 +3517,7 @@
         "portalName":{"shape":"Name"},
         "portalDescription":{"shape":"Description"},
         "portalContactEmail":{"shape":"Email"},
-        "portalLogoImageFile":{"shape":"ImageFile"},
+        "portalLogoImage":{"shape":"Image"},
         "roleArn":{"shape":"ARN"},
         "clientToken":{
           "shape":"ClientToken",

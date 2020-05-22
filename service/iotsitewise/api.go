@@ -1270,7 +1270,7 @@ func (c *IoTSiteWise) DeleteAccessPolicyRequest(input *DeleteAccessPolicyInput) 
 //
 // Deletes an access policy that grants the specified AWS Single Sign-On identity
 // access to the specified AWS IoT SiteWise Monitor resource. You can use this
-// action to revoke access to an AWS IoT SiteWise Monitor resource.
+// operation to revoke access to an AWS IoT SiteWise Monitor resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5458,9 +5458,9 @@ func (c *IoTSiteWise) UpdateAssetModelRequest(input *UpdateAssetModelInput) (req
 // Models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html)
 // in the AWS IoT SiteWise User Guide.
 //
-// This action overwrites the existing model with the provided model. To avoid
-// deleting your asset model's properties or hierarchies, you must include their
-// IDs and definitions in the updated asset model payload. For more information,
+// This operation overwrites the existing model with the provided model. To
+// avoid deleting your asset model's properties or hierarchies, you must include
+// their IDs and definitions in the updated asset model payload. For more information,
 // see DescribeAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html).
 //
 // If you remove a property from an asset model or update a property's formula
@@ -6276,19 +6276,22 @@ func (s *AggregatedValue) SetValue(v *Aggregates) *AggregatedValue {
 type Aggregates struct {
 	_ struct{} `type:"structure"`
 
-	// The average (mean) value of the time series for the last time interval window.
+	// The average (mean) value of the time series over a time interval window.
 	Average *float64 `locationName:"average" type:"double"`
 
-	// The count of data points in the time series for the last time interval window.
+	// The count of data points in the time series over a time interval window.
 	Count *float64 `locationName:"count" type:"double"`
 
-	// The maximum value of the time series for the last time interval window.
+	// The maximum value of the time series over a time interval window.
 	Maximum *float64 `locationName:"maximum" type:"double"`
 
-	// The minimum value of the time series for the last time interval window.
+	// The minimum value of the time series over a time interval window.
 	Minimum *float64 `locationName:"minimum" type:"double"`
 
-	// The sum of the time series for the last time interval window.
+	// The standard deviation of the time series over a time interval window.
+	StandardDeviation *float64 `locationName:"standardDeviation" type:"double"`
+
+	// The sum of the time series over a time interval window.
 	Sum *float64 `locationName:"sum" type:"double"`
 }
 
@@ -6323,6 +6326,12 @@ func (s *Aggregates) SetMaximum(v float64) *Aggregates {
 // SetMinimum sets the Minimum field's value.
 func (s *Aggregates) SetMinimum(v float64) *Aggregates {
 	s.Minimum = &v
+	return s
+}
+
+// SetStandardDeviation sets the StandardDeviation field's value.
+func (s *Aggregates) SetStandardDeviation(v float64) *Aggregates {
+	s.StandardDeviation = &v
 	return s
 }
 
@@ -8229,7 +8238,7 @@ type CreateAssetModelOutput struct {
 	AssetModelId *string `locationName:"assetModelId" min:"36" type:"string" required:"true"`
 
 	// The status of the asset model, which contains a state (CREATING after successfully
-	// calling this action) and any error message.
+	// calling this operation) and any error message.
 	//
 	// AssetModelStatus is a required field
 	AssetModelStatus *AssetModelStatus `locationName:"assetModelStatus" type:"structure" required:"true"`
@@ -8281,7 +8290,7 @@ type CreateAssetOutput struct {
 	AssetId *string `locationName:"assetId" min:"36" type:"string" required:"true"`
 
 	// The status of the asset, which contains a state (CREATING after successfully
-	// calling this action) and any error message.
+	// calling this operation) and any error message.
 	//
 	// AssetStatus is a required field
 	AssetStatus *AssetStatus `locationName:"assetStatus" type:"structure" required:"true"`
@@ -8738,7 +8747,7 @@ type CreatePortalOutput struct {
 	PortalStartUrl *string `locationName:"portalStartUrl" min:"1" type:"string" required:"true"`
 
 	// The status of the portal, which contains a state (CREATING after successfully
-	// calling this action) and any error message.
+	// calling this operation) and any error message.
 	//
 	// PortalStatus is a required field
 	PortalStatus *PortalStatus `locationName:"portalStatus" type:"structure" required:"true"`
@@ -9173,7 +9182,7 @@ type DeleteAssetModelOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the asset model, which contains a state (DELETING after successfully
-	// calling this action) and any error message.
+	// calling this operation) and any error message.
 	//
 	// AssetModelStatus is a required field
 	AssetModelStatus *AssetModelStatus `locationName:"assetModelStatus" type:"structure" required:"true"`
@@ -9199,7 +9208,7 @@ type DeleteAssetOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the asset, which contains a state (DELETING after successfully
-	// calling this action) and any error message.
+	// calling this operation) and any error message.
 	//
 	// AssetStatus is a required field
 	AssetStatus *AssetStatus `locationName:"assetStatus" type:"structure" required:"true"`
@@ -9404,7 +9413,7 @@ type DeletePortalOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the portal, which contains a state (DELETING after successfully
-	// calling this action) and any error message.
+	// calling this operation) and any error message.
 	//
 	// PortalStatus is a required field
 	PortalStatus *PortalStatus `locationName:"portalStatus" type:"structure" required:"true"`
@@ -10595,8 +10604,8 @@ type DescribePortalOutput struct {
 	// PortalLastUpdateDate is a required field
 	PortalLastUpdateDate *time.Time `locationName:"portalLastUpdateDate" type:"timestamp" required:"true"`
 
-	// The portal's logo image.
-	PortalLogoImage *Image `locationName:"portalLogoImage" type:"structure"`
+	// The portal's logo image, which is available at a URL.
+	PortalLogoImageLocation *ImageLocation `locationName:"portalLogoImageLocation" type:"structure"`
 
 	// The name of the portal.
 	//
@@ -10674,9 +10683,9 @@ func (s *DescribePortalOutput) SetPortalLastUpdateDate(v time.Time) *DescribePor
 	return s
 }
 
-// SetPortalLogoImage sets the PortalLogoImage field's value.
-func (s *DescribePortalOutput) SetPortalLogoImage(v *Image) *DescribePortalOutput {
-	s.PortalLogoImage = v
+// SetPortalLogoImageLocation sets the PortalLogoImageLocation field's value.
+func (s *DescribePortalOutput) SetPortalLogoImageLocation(v *ImageLocation) *DescribePortalOutput {
+	s.PortalLogoImageLocation = v
 	return s
 }
 
@@ -11823,16 +11832,20 @@ func (s *Identity) SetUser(v *UserIdentity) *Identity {
 	return s
 }
 
-// Contains an image that is available at a URL.
+// Contains an image that is one of the following:
+//
+//    * An image file. Choose this option to upload a new image.
+//
+//    * The ID of an existing image. Choose this option to keep an existing
+//    image.
 type Image struct {
 	_ struct{} `type:"structure"`
 
-	// The date the image was last updated, in Unix epoch time.
-	LastUpdateDate *time.Time `locationName:"lastUpdateDate" type:"timestamp"`
+	// Contains an image file.
+	File *ImageFile `locationName:"file" type:"structure"`
 
-	// A URL at which the image is available. The URL is valid for 15 minutes for
-	// you to view and download the image.
-	LocationUrl *string `locationName:"locationUrl" min:"1" type:"string"`
+	// The ID of an existing image. Specify this parameter to keep an existing image.
+	Id *string `locationName:"id" min:"36" type:"string"`
 }
 
 // String returns the string representation
@@ -11845,15 +11858,33 @@ func (s Image) GoString() string {
 	return s.String()
 }
 
-// SetLastUpdateDate sets the LastUpdateDate field's value.
-func (s *Image) SetLastUpdateDate(v time.Time) *Image {
-	s.LastUpdateDate = &v
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Image) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Image"}
+	if s.Id != nil && len(*s.Id) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 36))
+	}
+	if s.File != nil {
+		if err := s.File.Validate(); err != nil {
+			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFile sets the File field's value.
+func (s *Image) SetFile(v *ImageFile) *Image {
+	s.File = v
 	return s
 }
 
-// SetLocationUrl sets the LocationUrl field's value.
-func (s *Image) SetLocationUrl(v string) *Image {
-	s.LocationUrl = &v
+// SetId sets the Id field's value.
+func (s *Image) SetId(v string) *Image {
+	s.Id = &v
 	return s
 }
 
@@ -11864,15 +11895,15 @@ type ImageFile struct {
 	// The image file contents, represented as a base64-encoded string. The file
 	// size must be less than 1 MB.
 	//
-	// EncodedString is automatically base64 encoded/decoded by the SDK.
+	// Data is automatically base64 encoded/decoded by the SDK.
 	//
-	// EncodedString is a required field
-	EncodedString []byte `locationName:"encodedString" type:"blob" required:"true"`
+	// Data is a required field
+	Data []byte `locationName:"data" min:"1" type:"blob" required:"true"`
 
 	// The file type of the image.
 	//
-	// FileType is a required field
-	FileType *string `locationName:"fileType" type:"string" required:"true" enum:"ImageFileType"`
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"ImageFileType"`
 }
 
 // String returns the string representation
@@ -11888,11 +11919,14 @@ func (s ImageFile) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ImageFile) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ImageFile"}
-	if s.EncodedString == nil {
-		invalidParams.Add(request.NewErrParamRequired("EncodedString"))
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
 	}
-	if s.FileType == nil {
-		invalidParams.Add(request.NewErrParamRequired("FileType"))
+	if s.Data != nil && len(s.Data) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Data", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -11901,15 +11935,54 @@ func (s *ImageFile) Validate() error {
 	return nil
 }
 
-// SetEncodedString sets the EncodedString field's value.
-func (s *ImageFile) SetEncodedString(v []byte) *ImageFile {
-	s.EncodedString = v
+// SetData sets the Data field's value.
+func (s *ImageFile) SetData(v []byte) *ImageFile {
+	s.Data = v
 	return s
 }
 
-// SetFileType sets the FileType field's value.
-func (s *ImageFile) SetFileType(v string) *ImageFile {
-	s.FileType = &v
+// SetType sets the Type field's value.
+func (s *ImageFile) SetType(v string) *ImageFile {
+	s.Type = &v
+	return s
+}
+
+// Contains an image that is uploaded to AWS IoT SiteWise and available at a
+// URL.
+type ImageLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the image.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
+
+	// The URL where the image is available. The URL is valid for 15 minutes so
+	// that you can view and download the image
+	//
+	// Url is a required field
+	Url *string `locationName:"url" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ImageLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImageLocation) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ImageLocation) SetId(v string) *ImageLocation {
+	s.Id = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *ImageLocation) SetUrl(v string) *ImageLocation {
+	s.Url = &v
 	return s
 }
 
@@ -12090,10 +12163,11 @@ func (s *LimitExceededException) RequestID() string {
 type ListAccessPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the identity.
+	// The ID of the identity. This parameter is required if you specify identityType.
 	IdentityId *string `location:"querystring" locationName:"identityId" min:"1" type:"string"`
 
-	// The type of identity (user or group).
+	// The type of identity (user or group). This parameter is required if you specify
+	// identityId.
 	IdentityType *string `location:"querystring" locationName:"identityType" type:"string" enum:"IdentityType"`
 
 	// The maximum number of results to be returned per paginated request.
@@ -12102,10 +12176,11 @@ type ListAccessPoliciesInput struct {
 	// The token to be used for the next set of paginated results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// The ID of the resource.
+	// The ID of the resource. This parameter is required if you specify resourceType.
 	ResourceId *string `location:"querystring" locationName:"resourceId" min:"36" type:"string"`
 
-	// The type of resource (portal or project).
+	// The type of resource (portal or project). This parameter is required if you
+	// specify resourceId.
 	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" enum:"ResourceType"`
 }
 
@@ -14965,7 +15040,7 @@ type UpdateAssetModelOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the asset model, which contains a state (UPDATING after successfully
-	// calling this action) and any error message.
+	// calling this operation) and any error message.
 	//
 	// AssetModelStatus is a required field
 	AssetModelStatus *AssetModelStatus `locationName:"assetModelStatus" type:"structure" required:"true"`
@@ -14991,7 +15066,7 @@ type UpdateAssetOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the asset, which contains a state (UPDATING after successfully
-	// calling this action) and any error message.
+	// calling this operation) and any error message.
 	//
 	// AssetStatus is a required field
 	AssetStatus *AssetStatus `locationName:"assetStatus" type:"structure" required:"true"`
@@ -15465,9 +15540,13 @@ type UpdatePortalInput struct {
 	// PortalId is a required field
 	PortalId *string `location:"uri" locationName:"portalId" min:"36" type:"string" required:"true"`
 
-	// A logo image to display in the portal. Upload a square, high-resolution image.
-	// The image is displayed on a dark background.
-	PortalLogoImageFile *ImageFile `locationName:"portalLogoImageFile" type:"structure"`
+	// Contains an image that is one of the following:
+	//
+	//    * An image file. Choose this option to upload a new image.
+	//
+	//    * The ID of an existing image. Choose this option to keep an existing
+	//    image.
+	PortalLogoImage *Image `locationName:"portalLogoImage" type:"structure"`
 
 	// A new friendly name for the portal.
 	//
@@ -15527,9 +15606,9 @@ func (s *UpdatePortalInput) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
-	if s.PortalLogoImageFile != nil {
-		if err := s.PortalLogoImageFile.Validate(); err != nil {
-			invalidParams.AddNested("PortalLogoImageFile", err.(request.ErrInvalidParams))
+	if s.PortalLogoImage != nil {
+		if err := s.PortalLogoImage.Validate(); err != nil {
+			invalidParams.AddNested("PortalLogoImage", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -15563,9 +15642,9 @@ func (s *UpdatePortalInput) SetPortalId(v string) *UpdatePortalInput {
 	return s
 }
 
-// SetPortalLogoImageFile sets the PortalLogoImageFile field's value.
-func (s *UpdatePortalInput) SetPortalLogoImageFile(v *ImageFile) *UpdatePortalInput {
-	s.PortalLogoImageFile = v
+// SetPortalLogoImage sets the PortalLogoImage field's value.
+func (s *UpdatePortalInput) SetPortalLogoImage(v *Image) *UpdatePortalInput {
+	s.PortalLogoImage = v
 	return s
 }
 
@@ -15585,7 +15664,7 @@ type UpdatePortalOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the portal, which contains a state (UPDATING after successfully
-	// calling this action) and any error message.
+	// calling this operation) and any error message.
 	//
 	// PortalStatus is a required field
 	PortalStatus *PortalStatus `locationName:"portalStatus" type:"structure" required:"true"`
@@ -15888,6 +15967,9 @@ const (
 
 	// AggregateTypeSum is a AggregateType enum value
 	AggregateTypeSum = "SUM"
+
+	// AggregateTypeStandardDeviation is a AggregateType enum value
+	AggregateTypeStandardDeviation = "STANDARD_DEVIATION"
 )
 
 const (
