@@ -7,7 +7,7 @@ type CopyOutput struct {
 
 	// The version of the source object that was copied, if you have enabled versioning
 	// on the source bucket.
-	CopySourceVersionId *string `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
+	CopySourceVersionId *string
 
 	// Entity tag that identifies the newly created object's data. Objects with
 	// different object data will have different entity tags. The entity tag is
