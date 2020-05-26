@@ -452,10 +452,8 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *requ
 // Associates the specified Systems Manager document with the specified instances
 // or targets.
 //
-// When you associate a document with one or more instances using instance IDs
-// or tags, SSM Agent running on the instance processes the document and configures
-// the instance as specified.
-//
+// When you associate a document with one or more instances, SSM Agent running
+// on the instance processes the document and configures the instance as specified.
 // If you associate a document with an instance that already has an associated
 // document, the system returns the AssociationAlreadyExists exception.
 //
@@ -16858,7 +16856,7 @@ type CreateDocumentInput struct {
 	// You can't use the following strings as document name prefixes. These are
 	// reserved by AWS for use as document name prefixes:
 	//
-	//    * aws
+	//    * aws-
 	//
 	//    * amazon
 	//
@@ -37706,9 +37704,9 @@ type PutParameterInput struct {
 	//    * aws:ec2:image
 	//
 	// When you create a String parameter and specify aws:ec2:image, Systems Manager
-	// validates the parameter value you provide against that data type. The required
-	// format is ami-12345abcdeEXAMPLE. For more information, see Native parameter
-	// support for Amazon Machine Image IDs (http://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html)
+	// validates the parameter value is in the required format, such as ami-12345abcdeEXAMPLE,
+	// and that the specified AMI is available in your AWS account. For more information,
+	// see Native parameter support for Amazon Machine Image IDs (http://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html)
 	// in the AWS Systems Manager User Guide.
 	DataType *string `type:"string"`
 

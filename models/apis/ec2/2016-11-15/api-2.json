@@ -4826,6 +4826,9 @@
       }
     },
     "BareMetalFlag":{"type":"boolean"},
+    "BaselineBandwidthInMbps":{"type":"integer"},
+    "BaselineIops":{"type":"integer"},
+    "BaselineThroughputInMBps":{"type":"double"},
     "BatchState":{
       "type":"string",
       "enum":[
@@ -13507,6 +13510,10 @@
         "EncryptionSupport":{
           "shape":"EbsEncryptionSupport",
           "locationName":"encryptionSupport"
+        },
+        "EbsOptimizedInfo":{
+          "shape":"EbsOptimizedInfo",
+          "locationName":"ebsOptimizedInfo"
         }
       }
     },
@@ -13544,6 +13551,35 @@
         }
       }
     },
+    "EbsOptimizedInfo":{
+      "type":"structure",
+      "members":{
+        "BaselineBandwidthInMbps":{
+          "shape":"BaselineBandwidthInMbps",
+          "locationName":"baselineBandwidthInMbps"
+        },
+        "BaselineThroughputInMBps":{
+          "shape":"BaselineThroughputInMBps",
+          "locationName":"baselineThroughputInMBps"
+        },
+        "BaselineIops":{
+          "shape":"BaselineIops",
+          "locationName":"baselineIops"
+        },
+        "MaximumBandwidthInMbps":{
+          "shape":"MaximumBandwidthInMbps",
+          "locationName":"maximumBandwidthInMbps"
+        },
+        "MaximumThroughputInMBps":{
+          "shape":"MaximumThroughputInMBps",
+          "locationName":"maximumThroughputInMBps"
+        },
+        "MaximumIops":{
+          "shape":"MaximumIops",
+          "locationName":"maximumIops"
+        }
+      }
+    },
     "EbsOptimizedSupport":{
       "type":"string",
       "enum":[
@@ -13552,6 +13588,7 @@
         "default"
       ]
     },
+    "EfaSupportedFlag":{"type":"boolean"},
     "EgressOnlyInternetGateway":{
       "type":"structure",
       "members":{
@@ -18111,6 +18148,10 @@
           "shape":"RootDeviceTypeList",
           "locationName":"supportedRootDeviceTypes"
         },
+        "SupportedVirtualizationTypes":{
+          "shape":"VirtualizationTypeList",
+          "locationName":"supportedVirtualizationTypes"
+        },
         "BareMetal":{
           "shape":"BareMetalFlag",
           "locationName":"bareMetal"
@@ -19824,6 +19865,9 @@
     "MaxIpv6AddrPerInterface":{"type":"integer"},
     "MaxNetworkInterfaces":{"type":"integer"},
     "MaxResults":{"type":"integer"},
+    "MaximumBandwidthInMbps":{"type":"integer"},
+    "MaximumIops":{"type":"integer"},
+    "MaximumThroughputInMBps":{"type":"double"},
     "MembershipType":{
       "type":"string",
       "enum":[
@@ -21202,6 +21246,10 @@
         "EnaSupport":{
           "shape":"EnaSupport",
           "locationName":"enaSupport"
+        },
+        "EfaSupported":{
+          "shape":"EfaSupportedFlag",
+          "locationName":"efaSupported"
         }
       }
     },
@@ -28529,6 +28577,13 @@
         "hvm",
         "paravirtual"
       ]
+    },
+    "VirtualizationTypeList":{
+      "type":"list",
+      "member":{
+        "shape":"VirtualizationType",
+        "locationName":"item"
+      }
     },
     "Volume":{
       "type":"structure",

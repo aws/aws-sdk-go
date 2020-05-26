@@ -1245,7 +1245,8 @@
         "AuthTokenEnabled":{"shape":"BooleanOptional"},
         "AuthTokenLastModifiedDate":{"shape":"TStamp"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
-        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"}
+        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -1401,7 +1402,8 @@
         "CacheParameterGroupName":{"shape":"String"},
         "CacheParameterGroupFamily":{"shape":"String"},
         "Description":{"shape":"String"},
-        "IsGlobal":{"shape":"Boolean"}
+        "IsGlobal":{"shape":"Boolean"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -1480,7 +1482,8 @@
         "OwnerId":{"shape":"String"},
         "CacheSecurityGroupName":{"shape":"String"},
         "Description":{"shape":"String"},
-        "EC2SecurityGroups":{"shape":"EC2SecurityGroupList"}
+        "EC2SecurityGroups":{"shape":"EC2SecurityGroupList"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -1558,7 +1561,8 @@
         "CacheSubnetGroupName":{"shape":"String"},
         "CacheSubnetGroupDescription":{"shape":"String"},
         "VpcId":{"shape":"String"},
-        "Subnets":{"shape":"SubnetList"}
+        "Subnets":{"shape":"SubnetList"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2305,7 +2309,8 @@
         "GlobalNodeGroups":{"shape":"GlobalNodeGroupList"},
         "AuthTokenEnabled":{"shape":"BooleanOptional"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
-        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"}
+        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3111,7 +3116,8 @@
         "AuthTokenLastModifiedDate":{"shape":"TStamp"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
         "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3478,7 +3484,8 @@
         "NumNodeGroups":{"shape":"IntegerOptional"},
         "AutomaticFailover":{"shape":"AutomaticFailoverStatus"},
         "NodeSnapshots":{"shape":"NodeSnapshotList"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },

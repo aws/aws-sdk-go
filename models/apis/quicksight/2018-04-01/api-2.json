@@ -1865,6 +1865,8 @@
     "DashboardErrorType":{
       "type":"string",
       "enum":[
+        "ACCESS_DENIED",
+        "SOURCE_NOT_FOUND",
         "DATA_SET_NOT_FOUND",
         "INTERNAL_FAILURE",
         "PARAMETER_VALUE_INCOMPATIBLE",
@@ -1957,6 +1959,7 @@
         "Status":{"shape":"ResourceStatus"},
         "Arn":{"shape":"Arn"},
         "SourceEntityArn":{"shape":"Arn"},
+        "DataSetArns":{"shape":"DataSetArnsList"},
         "Description":{"shape":"VersionDescription"}
       }
     },
@@ -1992,6 +1995,11 @@
         "ColumnGroups":{"shape":"ColumnGroupList"},
         "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"}
       }
+    },
+    "DataSetArnsList":{
+      "type":"list",
+      "member":{"shape":"Arn"},
+      "max":100
     },
     "DataSetConfiguration":{
       "type":"structure",
@@ -4794,6 +4802,7 @@
     "TemplateErrorType":{
       "type":"string",
       "enum":[
+        "SOURCE_NOT_FOUND",
         "DATA_SET_NOT_FOUND",
         "INTERNAL_FAILURE"
       ]

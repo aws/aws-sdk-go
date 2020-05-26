@@ -16690,7 +16690,7 @@ func (c *EC2) DescribeInstanceTypesRequest(input *DescribeInstanceTypesInput) (r
 
 // DescribeInstanceTypes API operation for Amazon Elastic Compute Cloud.
 //
-// Returns a list of all instance types offered in your current AWS Region.
+// Describes the details of the instance types that are offered in a location.
 // The results can be filtered by the attributes of the instance types.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -16823,13 +16823,17 @@ func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *requ
 
 // DescribeInstances API operation for Amazon Elastic Compute Cloud.
 //
-// Describes the specified instances or all of AWS account's instances.
+// Describes the specified instances or all instances.
 //
-// If you specify one or more instance IDs, Amazon EC2 returns information for
-// those instances. If you do not specify instance IDs, Amazon EC2 returns information
-// for all relevant instances. If you specify an instance ID that is not valid,
-// an error is returned. If you specify an instance that you do not own, it
-// is not included in the returned results.
+// If you specify instance IDs, the output includes information for only the
+// specified instances. If you specify filters, the output includes information
+// for only those instances that meet the filter criteria. If you do not specify
+// instance IDs or filters, the output includes information for all instances,
+// which can affect performance. We recommend that you use pagination to ensure
+// that the operation returns quickly and successfully.
+//
+// If you specify an instance ID that is not valid, an error is returned. If
+// you specify an instance that you do not own, it is not included in the output.
 //
 // Recently terminated instances might appear in the returned results. This
 // interval is usually less than one hour.
@@ -60345,6 +60349,24 @@ type DescribeInstanceTypesInput struct {
 	//    * current-generation - Indicates whether this instance type is the latest
 	//    generation instance type of an instance family. (true | false)
 	//
+	//    * ebs-info.ebs-optimized-info.baseline-bandwidth-in-mbps - The baseline
+	//    bandwidth performance for an EBS-optimized instance type, in Mbps.
+	//
+	//    * ebs-info.ebs-optimized-info.baseline-throughput-in-mbps - The baseline
+	//    throughput performance for an EBS-optimized instance type, in MBps.
+	//
+	//    * ebs-info.ebs-optimized-info.baseline-iops - The baseline input/output
+	//    storage operations per second for an EBS-optimized instance type.
+	//
+	//    * ebs-info.ebs-optimized-info.maximum-bandwidth-in-mbps - The maximum
+	//    bandwidth performance for an EBS-optimized instance type, in Mbps.
+	//
+	//    * ebs-info.ebs-optimized-info.maximum-throughput-in-mbps - The maximum
+	//    throughput performance for an EBS-optimized instance type, in MBps.
+	//
+	//    * ebs-info.ebs-optimized-info.maximum-iops - The maximum input/output
+	//    storage operations per second for an EBS-optimized instance type.
+	//
 	//    * ebs-info.ebs-optimized-support - Indicates whether the instance type
 	//    is EBS-optimized. (supported | unsupported | default)
 	//
@@ -60377,6 +60399,9 @@ type DescribeInstanceTypesInput struct {
 	//
 	//    * network-info.ena-support - Indicates whether Elastic Network Adapter
 	//    (ENA) is supported or required. (required | supported | unsupported)
+	//
+	//    * network-info.efa-supported - Indicates whether the instance type supports
+	//    Elastic Fabric Adapter (EFA). (true | false)
 	//
 	//    * network-info.ipv4-addresses-per-interface - The maximum number of private
 	//    IPv4 addresses per network interface.
@@ -71618,6 +71643,9 @@ func (s *EbsBlockDevice) SetVolumeType(v string) *EbsBlockDevice {
 type EbsInfo struct {
 	_ struct{} `type:"structure"`
 
+	// Describes the optimized EBS performance for the instance type.
+	EbsOptimizedInfo *EbsOptimizedInfo `locationName:"ebsOptimizedInfo" type:"structure"`
+
 	// Indicates that the instance type is Amazon EBS-optimized. For more information,
 	// see Amazon EBS-Optimized Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)
 	// in Amazon EC2 User Guide for Linux Instances.
@@ -71635,6 +71663,12 @@ func (s EbsInfo) String() string {
 // GoString returns the string representation
 func (s EbsInfo) GoString() string {
 	return s.String()
+}
+
+// SetEbsOptimizedInfo sets the EbsOptimizedInfo field's value.
+func (s *EbsInfo) SetEbsOptimizedInfo(v *EbsOptimizedInfo) *EbsInfo {
+	s.EbsOptimizedInfo = v
+	return s
 }
 
 // SetEbsOptimizedSupport sets the EbsOptimizedSupport field's value.
@@ -71731,6 +71765,81 @@ func (s *EbsInstanceBlockDeviceSpecification) SetDeleteOnTermination(v bool) *Eb
 // SetVolumeId sets the VolumeId field's value.
 func (s *EbsInstanceBlockDeviceSpecification) SetVolumeId(v string) *EbsInstanceBlockDeviceSpecification {
 	s.VolumeId = &v
+	return s
+}
+
+// Describes the optimized EBS performance for supported instance types.
+type EbsOptimizedInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The baseline bandwidth performance for an EBS-optimized instance type, in
+	// Mbps.
+	BaselineBandwidthInMbps *int64 `locationName:"baselineBandwidthInMbps" type:"integer"`
+
+	// The baseline input/output storage operations per seconds for an EBS-optimized
+	// instance type.
+	BaselineIops *int64 `locationName:"baselineIops" type:"integer"`
+
+	// The baseline throughput performance for an EBS-optimized instance type, in
+	// MBps.
+	BaselineThroughputInMBps *float64 `locationName:"baselineThroughputInMBps" type:"double"`
+
+	// The maximum bandwidth performance for an EBS-optimized instance type, in
+	// Mbps.
+	MaximumBandwidthInMbps *int64 `locationName:"maximumBandwidthInMbps" type:"integer"`
+
+	// The maximum input/output storage operations per second for an EBS-optimized
+	// instance type.
+	MaximumIops *int64 `locationName:"maximumIops" type:"integer"`
+
+	// The maximum throughput performance for an EBS-optimized instance type, in
+	// MBps.
+	MaximumThroughputInMBps *float64 `locationName:"maximumThroughputInMBps" type:"double"`
+}
+
+// String returns the string representation
+func (s EbsOptimizedInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EbsOptimizedInfo) GoString() string {
+	return s.String()
+}
+
+// SetBaselineBandwidthInMbps sets the BaselineBandwidthInMbps field's value.
+func (s *EbsOptimizedInfo) SetBaselineBandwidthInMbps(v int64) *EbsOptimizedInfo {
+	s.BaselineBandwidthInMbps = &v
+	return s
+}
+
+// SetBaselineIops sets the BaselineIops field's value.
+func (s *EbsOptimizedInfo) SetBaselineIops(v int64) *EbsOptimizedInfo {
+	s.BaselineIops = &v
+	return s
+}
+
+// SetBaselineThroughputInMBps sets the BaselineThroughputInMBps field's value.
+func (s *EbsOptimizedInfo) SetBaselineThroughputInMBps(v float64) *EbsOptimizedInfo {
+	s.BaselineThroughputInMBps = &v
+	return s
+}
+
+// SetMaximumBandwidthInMbps sets the MaximumBandwidthInMbps field's value.
+func (s *EbsOptimizedInfo) SetMaximumBandwidthInMbps(v int64) *EbsOptimizedInfo {
+	s.MaximumBandwidthInMbps = &v
+	return s
+}
+
+// SetMaximumIops sets the MaximumIops field's value.
+func (s *EbsOptimizedInfo) SetMaximumIops(v int64) *EbsOptimizedInfo {
+	s.MaximumIops = &v
+	return s
+}
+
+// SetMaximumThroughputInMBps sets the MaximumThroughputInMBps field's value.
+func (s *EbsOptimizedInfo) SetMaximumThroughputInMBps(v float64) *EbsOptimizedInfo {
+	s.MaximumThroughputInMBps = &v
 	return s
 }
 
@@ -74372,19 +74481,30 @@ func (s *FleetLaunchTemplateOverridesRequest) SetWeightedCapacity(v float64) *Fl
 	return s
 }
 
-// Describes a launch template.
+// Describes the Amazon EC2 launch template and the launch template version
+// that can be used by a Spot Fleet request to configure Amazon EC2 instances.
+// For information about launch templates, see Launching an instance from a
+// launch template (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html)
+// in the Amazon EC2 User Guide for Linux Instances.
 type FleetLaunchTemplateSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the launch template. You must specify either a template ID or a
-	// template name.
+	// The ID of the launch template. If you specify the template ID, you can't
+	// specify the template name.
 	LaunchTemplateId *string `locationName:"launchTemplateId" type:"string"`
 
-	// The name of the launch template. You must specify either a template name
-	// or a template ID.
+	// The name of the launch template. If you specify the template name, you can't
+	// specify the template ID.
 	LaunchTemplateName *string `locationName:"launchTemplateName" min:"3" type:"string"`
 
-	// The version number of the launch template. You must specify a version number.
+	// The launch template version number, $Latest, or $Default. You must specify
+	// a value, otherwise the request fails.
+	//
+	// If the value is $Latest, Amazon EC2 uses the latest version of the launch
+	// template.
+	//
+	// If the value is $Default, Amazon EC2 uses the default version of the launch
+	// template.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -74429,19 +74549,30 @@ func (s *FleetLaunchTemplateSpecification) SetVersion(v string) *FleetLaunchTemp
 	return s
 }
 
-// The launch template to use. You must specify either the launch template ID
-// or launch template name in the request.
+// Describes the Amazon EC2 launch template and the launch template version
+// that can be used by an EC2 Fleet to configure Amazon EC2 instances. For information
+// about launch templates, see Launching an instance from a launch template
+// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 type FleetLaunchTemplateSpecificationRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the launch template.
+	// The ID of the launch template. If you specify the template ID, you can't
+	// specify the template name.
 	LaunchTemplateId *string `type:"string"`
 
-	// The name of the launch template.
+	// The name of the launch template. If you specify the template name, you can't
+	// specify the template ID.
 	LaunchTemplateName *string `min:"3" type:"string"`
 
-	// The version number of the launch template. Note: This is a required parameter
-	// and will be updated soon.
+	// The launch template version number, $Latest, or $Default. You must specify
+	// a value, otherwise the request fails.
+	//
+	// If the value is $Latest, Amazon EC2 uses the latest version of the launch
+	// template.
+	//
+	// If the value is $Default, Amazon EC2 uses the default version of the launch
+	// template.
 	Version *string `type:"string"`
 }
 
@@ -81634,6 +81765,9 @@ type InstanceTypeInfo struct {
 	// Indicates whether the instance type is offered for spot or On-Demand.
 	SupportedUsageClasses []*string `locationName:"supportedUsageClasses" locationNameList:"item" type:"list"`
 
+	// The supported virtualization types.
+	SupportedVirtualizationTypes []*string `locationName:"supportedVirtualizationTypes" locationNameList:"item" type:"list"`
+
 	// Describes the vCPU configurations for the instance type.
 	VCpuInfo *VCpuInfo `locationName:"vCpuInfo" type:"structure"`
 }
@@ -81771,6 +81905,12 @@ func (s *InstanceTypeInfo) SetSupportedRootDeviceTypes(v []*string) *InstanceTyp
 // SetSupportedUsageClasses sets the SupportedUsageClasses field's value.
 func (s *InstanceTypeInfo) SetSupportedUsageClasses(v []*string) *InstanceTypeInfo {
 	s.SupportedUsageClasses = v
+	return s
+}
+
+// SetSupportedVirtualizationTypes sets the SupportedVirtualizationTypes field's value.
+func (s *InstanceTypeInfo) SetSupportedVirtualizationTypes(v []*string) *InstanceTypeInfo {
+	s.SupportedVirtualizationTypes = v
 	return s
 }
 
@@ -90389,6 +90529,9 @@ func (s *NetworkAclEntry) SetRuleNumber(v int64) *NetworkAclEntry {
 type NetworkInfo struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether Elastic Fabric Adapter (EFA) is supported.
+	EfaSupported *bool `locationName:"efaSupported" type:"boolean"`
+
 	// Indicates whether Elastic Network Adapter (ENA) is supported.
 	EnaSupport *string `locationName:"enaSupport" type:"string" enum:"EnaSupport"`
 
@@ -90416,6 +90559,12 @@ func (s NetworkInfo) String() string {
 // GoString returns the string representation
 func (s NetworkInfo) GoString() string {
 	return s.String()
+}
+
+// SetEfaSupported sets the EfaSupported field's value.
+func (s *NetworkInfo) SetEfaSupported(v bool) *NetworkInfo {
+	s.EfaSupported = &v
+	return s
 }
 
 // SetEnaSupport sets the EnaSupport field's value.
@@ -98372,6 +98521,8 @@ type RunInstancesInput struct {
 	// An elastic inference accelerator to associate with the instance. Elastic
 	// inference accelerators are a resource you can attach to your Amazon EC2 instances
 	// to accelerate your Deep Learning (DL) inference workloads.
+	//
+	// You cannot specify accelerators from different generations in the same request.
 	ElasticInferenceAccelerators []*ElasticInferenceAccelerator `locationName:"ElasticInferenceAccelerator" locationNameList:"item" type:"list"`
 
 	// Indicates whether an instance is enabled for hibernation. For more information,
