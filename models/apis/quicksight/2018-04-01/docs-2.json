@@ -9,7 +9,7 @@
     "CreateGroup": "<p>Creates an Amazon QuickSight group.</p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;relevant-aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is a group object.</p>",
     "CreateGroupMembership": "<p>Adds an Amazon QuickSight user to an Amazon QuickSight group. </p>",
     "CreateIAMPolicyAssignment": "<p>Creates an assignment with one specified IAM policy, identified by its Amazon Resource Name (ARN). This policy will be assigned to specified groups or users of Amazon QuickSight. The users and groups need to be in the same namespace. </p>",
-    "CreateIngestion": "<p>Creates and starts a new SPICE ingestion on a dataset</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access control. For an example, see <a href=\"https://aws.example.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a> in the AWS Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.</p>",
+    "CreateIngestion": "<p>Creates and starts a new SPICE ingestion on a dataset</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access control. For an example, see <a href=\"https://aws.amazon.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a> in the AWS Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.</p>",
     "CreateTemplate": "<p>Creates a template from an existing QuickSight analysis or template. You can use the resulting template to create a dashboard.</p> <p>A <i>template</i> is an entity in QuickSight that encapsulates the metadata required to create an analysis and that you can use to create s dashboard. A template adds a layer of abstraction by using placeholders to replace the dataset associated with the analysis. You can use templates to create dashboards by replacing dataset placeholders with datasets that follow the same schema that was used to create the source analysis and template.</p>",
     "CreateTemplateAlias": "<p>Creates a template alias for a template.</p>",
     "DeleteDashboard": "<p>Deletes a dashboard.</p>",
@@ -142,6 +142,7 @@
         "DashboardVersionSummary$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "DashboardVersionSummary$SourceEntityArn": "<p>Source entity ARN.</p>",
         "DataSet$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "DataSetArnsList$member": null,
         "DataSetReference$DataSetArn": "<p>Dataset Amazon Resource Name (ARN).</p>",
         "DataSetSummary$Arn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DataSource$Arn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
@@ -170,7 +171,7 @@
         "TemplateSourceTemplate$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "TemplateSummary$Arn": "<p>A summary of a template.</p>",
         "TemplateVersion$SourceEntityArn": "<p>The Amazon Resource Name (ARN) of the analysis or template which was used to create this template.</p>",
-        "TemplateVersionSummary$Arn": "<p>The ARN of the template version.</p>",
+        "TemplateVersionSummary$Arn": "<p>The Amazon Resource Name (ARN) of the template version.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to untag.</p>",
         "UpdateDashboardPermissionsResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
         "UpdateDashboardPublishedVersionResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
@@ -608,7 +609,7 @@
       "base": null,
       "refs": {
         "CreateDashboardRequest$Name": "<p>The display name of the dashboard.</p>",
-        "Dashboard$Name": "<p>A display name for the dataset.</p>",
+        "Dashboard$Name": "<p>A display name for the dashboard.</p>",
         "DashboardSummary$Name": "<p>A display name for the dashboard.</p>",
         "UpdateDashboardRequest$Name": "<p>The display name of the dashboard.</p>"
       }
@@ -654,7 +655,7 @@
     "DashboardSummaryList": {
       "base": null,
       "refs": {
-        "ListDashboardsResponse$DashboardSummaryList": "<p>A structure that contains all of the dashboards shared with the user. This structure provides basic information about the dashboards.</p>",
+        "ListDashboardsResponse$DashboardSummaryList": "<p>A structure that contains all of the dashboards in your AWS account. This structure provides basic information about the dashboards.</p>",
         "SearchDashboardsResponse$DashboardSummaryList": "<p>The list of dashboards owned by the user specified in <code>Filters</code> in your request.</p>"
       }
     },
@@ -686,6 +687,12 @@
       "base": "<p>Dataset.</p>",
       "refs": {
         "DescribeDataSetResponse$DataSet": "<p>Information on the dataset.</p>"
+      }
+    },
+    "DataSetArnsList": {
+      "base": null,
+      "refs": {
+        "DashboardVersion$DataSetArns": "<p>The Amazon Resource Numbers (ARNs) for the datasets that are associated with a version of the dashboard.</p>"
       }
     },
     "DataSetConfiguration": {
@@ -2039,7 +2046,7 @@
     "RoleSessionName": {
       "base": null,
       "refs": {
-        "RegisterUserRequest$SessionName": "<p>You need to use this parameter only when you register one or more users using an assumed IAM role. You don't need to provide the session name for other scenarios, for example when you are registering an IAM user or an Amazon QuickSight user. You can register multiple users using the same IAM role if each user has a different session name. For more information on assuming IAM roles, see <a href=\"https://docs.aws.example.com/cli/latest/reference/sts/assume-role.html\"> <code>assume-role</code> </a> in the <i>AWS CLI Reference.</i> </p>"
+        "RegisterUserRequest$SessionName": "<p>You need to use this parameter only when you register one or more users using an assumed IAM role. You don't need to provide the session name for other scenarios, for example when you are registering an IAM user or an Amazon QuickSight user. You can register multiple users using the same IAM role if each user has a different session name. For more information on assuming IAM roles, see <a href=\"https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sts/assume-role.html\"> <code>assume-role</code> </a> in the <i>AWS CLI Reference.</i> </p>"
       }
     },
     "RowInfo": {

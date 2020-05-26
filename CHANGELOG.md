@@ -1,3 +1,19 @@
+Release v1.31.5 (2020-05-26)
+===
+
+### Service Client Updates
+* `service/dlm`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * ebsOptimizedInfo, efaSupported and supportedVirtualizationTypes added to DescribeInstanceTypes API
+* `service/elasticache`: Updates service API and documentation
+  * Amazon ElastiCache now allows you to use resource based policies to manage access to operations performed on ElastiCache resources. Also, Amazon ElastiCache now exposes ARN (Amazon Resource Names) for ElastiCache resources such as Cache Clusters and Parameter Groups. ARNs can be used to apply IAM policies to ElastiCache resources.
+* `service/macie`: Updates service documentation, paginators, and examples
+  * This is a documentation-only update to the Amazon Macie Classic API. This update corrects out-of-date references to the service name.
+* `service/quicksight`: Updates service API and documentation
+  * Add DataSetArns to QuickSight DescribeDashboard API response.
+* `service/ssm`: Updates service API and documentation
+  * The AWS Systems Manager GetOpsSummary API action now supports multiple OpsResultAttributes in the request. Currently, this feature only supports OpsResultAttributes with the following TypeNames: [AWS:EC2InstanceComputeOptimizer] or [AWS:EC2InstanceInformation, AWS:EC2InstanceComputeOptimizer]. These TypeNames can be used along with either or both of the following: [AWS:EC2InstanceRecommendation, AWS:RecommendationSource]
+
 Release v1.31.4 (2020-05-22)
 ===
 

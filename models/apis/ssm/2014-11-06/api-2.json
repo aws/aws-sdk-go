@@ -6987,7 +6987,6 @@
     "OpsResultAttributeList":{
       "type":"list",
       "member":{"shape":"OpsResultAttribute"},
-      "max":1,
       "min":1
     },
     "OutputSource":{
