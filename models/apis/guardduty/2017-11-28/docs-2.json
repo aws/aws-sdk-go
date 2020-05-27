@@ -984,12 +984,12 @@
     "Location": {
       "base": null,
       "refs": {
-        "CreateIPSetRequest$Location": "<p>The URI of the file that contains the IPSet. For example: .</p>",
-        "CreateThreatIntelSetRequest$Location": "<p>The URI of the file that contains the ThreatIntelSet. For example: .</p>",
-        "GetIPSetResponse$Location": "<p>The URI of the file that contains the IPSet. For example: .</p>",
-        "GetThreatIntelSetResponse$Location": "<p>The URI of the file that contains the ThreatIntelSet. For example: .</p>",
-        "UpdateIPSetRequest$Location": "<p>The updated URI of the file that contains the IPSet. For example: .</p>",
-        "UpdateThreatIntelSetRequest$Location": "<p>The updated URI of the file that contains the ThreateIntelSet. For example: .</p>"
+        "CreateIPSetRequest$Location": "<p>The URI of the file that contains the IPSet.</p>",
+        "CreateThreatIntelSetRequest$Location": "<p>The URI of the file that contains the ThreatIntelSet.</p>",
+        "GetIPSetResponse$Location": "<p>The URI of the file that contains the IPSet.</p>",
+        "GetThreatIntelSetResponse$Location": "<p>The URI of the file that contains the ThreatIntelSet.</p>",
+        "UpdateIPSetRequest$Location": "<p>The updated URI of the file that contains the IPSet.</p>",
+        "UpdateThreatIntelSetRequest$Location": "<p>The updated URI of the file that contains the ThreateIntelSet.</p>"
       }
     },
     "Long": {

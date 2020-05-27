@@ -1,3 +1,11 @@
+Release v1.31.6 (2020-05-27)
+===
+
+### Service Client Updates
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/guardduty`: Updates service documentation
+  * Documentation updates for GuardDuty
+
 Release v1.31.5 (2020-05-26)
 ===
 
