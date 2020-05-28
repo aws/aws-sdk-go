@@ -57,6 +57,22 @@ func (c *QLDBSession) SendCommandRequest(input *SendCommandInput) (req *request.
 //
 // Sends a command to an Amazon QLDB ledger.
 //
+// Instead of interacting directly with this API, we recommend that you use
+// the Amazon QLDB Driver or the QLDB Shell to execute data transactions on
+// a ledger.
+//
+//    * If you are working with an AWS SDK, use the QLDB Driver. The driver
+//    provides a high-level abstraction layer above this qldbsession data plane
+//    and manages SendCommand API calls for you. For information and a list
+//    of supported programming languages, see Getting started with the driver
+//    (https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started-driver.html)
+//    in the Amazon QLDB Developer Guide.
+//
+//    * If you are working with the AWS Command Line Interface (AWS CLI), use
+//    the QLDB Shell. The shell is a command line interface that uses the QLDB
+//    Driver to interact with a ledger. For information, see Accessing Amazon
+//    QLDB using the QLDB Shell (https://docs.aws.amazon.com/qldb/latest/developerguide/data-shell.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -70,11 +86,11 @@ func (c *QLDBSession) SendCommandRequest(input *SendCommandInput) (req *request.
 //   parameter value or a missing required parameter.
 //
 //   * InvalidSessionException
-//   Returned if the session doesn't exist anymore because it timed-out or expired.
+//   Returned if the session doesn't exist anymore because it timed out or expired.
 //
 //   * OccConflictException
 //   Returned when a transaction cannot be written to the journal due to a failure
-//   in the verification phase of Optimistic Concurrency Control.
+//   in the verification phase of optimistic concurrency control (OCC).
 //
 //   * RateExceededException
 //   Returned when the rate of requests exceeds the allowed throughput.
@@ -207,7 +223,7 @@ type CommitTransactionRequest struct {
 	// CommitDigest is a required field
 	CommitDigest []byte `type:"blob" required:"true"`
 
-	// Specifies the transaction id of the transaction to commit.
+	// Specifies the transaction ID of the transaction to commit.
 	//
 	// TransactionId is a required field
 	TransactionId *string `min:"22" type:"string" required:"true"`
@@ -263,7 +279,7 @@ type CommitTransactionResult struct {
 	// CommitDigest is automatically base64 encoded/decoded by the SDK.
 	CommitDigest []byte `type:"blob"`
 
-	// The transaction id of the committed transaction.
+	// The transaction ID of the committed transaction.
 	TransactionId *string `min:"22" type:"string"`
 }
 
@@ -331,7 +347,7 @@ type ExecuteStatementRequest struct {
 	// Statement is a required field
 	Statement *string `min:"1" type:"string" required:"true"`
 
-	// Specifies the transaction id of the request.
+	// Specifies the transaction ID of the request.
 	//
 	// TransactionId is a required field
 	TransactionId *string `min:"22" type:"string" required:"true"`
@@ -430,7 +446,7 @@ type FetchPageRequest struct {
 	// NextPageToken is a required field
 	NextPageToken *string `min:"4" type:"string" required:"true"`
 
-	// Specifies the transaction id of the page to be fetched.
+	// Specifies the transaction ID of the page to be fetched.
 	//
 	// TransactionId is a required field
 	TransactionId *string `min:"22" type:"string" required:"true"`
@@ -504,7 +520,7 @@ func (s *FetchPageResult) SetPage(v *Page) *FetchPageResult {
 	return s
 }
 
-// Returned if the session doesn't exist anymore because it timed-out or expired.
+// Returned if the session doesn't exist anymore because it timed out or expired.
 type InvalidSessionException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -619,7 +635,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 // Returned when a transaction cannot be written to the journal due to a failure
-// in the verification phase of Optimistic Concurrency Control.
+// in the verification phase of optimistic concurrency control (OCC).
 type OccConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -968,7 +984,7 @@ func (s *SendCommandOutput) SetStartTransaction(v *StartTransactionResult) *Send
 	return s
 }
 
-// Specifies a request to start a a new session.
+// Specifies a request to start a new session.
 type StartSessionRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -1054,7 +1070,7 @@ func (s StartTransactionRequest) GoString() string {
 type StartTransactionResult struct {
 	_ struct{} `type:"structure"`
 
-	// The transaction id of the started transaction.
+	// The transaction ID of the started transaction.
 	TransactionId *string `min:"22" type:"string"`
 }
 
@@ -1074,7 +1090,7 @@ func (s *StartTransactionResult) SetTransactionId(v string) *StartTransactionRes
 	return s
 }
 
-// A structure that can contains values in multiple encoding formats.
+// A structure that can contain an Amazon Ion value in multiple encoding formats.
 type ValueHolder struct {
 	_ struct{} `type:"structure"`
 

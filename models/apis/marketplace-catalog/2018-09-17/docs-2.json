@@ -1,13 +1,13 @@
 {
   "version": "2.0",
-  "service": "<p>Catalog API actions allow you to create, describe, list, and delete changes to your published entities. An entity is a product or an offer on AWS Marketplace.</p> <p>You can automate your entity update process by integrating the AWS Marketplace Catalog API with your AWS Marketplace product build or deployment pipelines. You can also create your own applications on top of the Catalog API to manage your products on AWS Marketplace.</p>",
+  "service": "<p>Catalog API actions allow you to manage your entities through list, describe, and update capabilities. An entity can be a product or an offer on AWS Marketplace.</p> <p>You can automate your entity update process by integrating the AWS Marketplace Catalog API with your AWS Marketplace product build or deployment pipelines. You can also create your own applications on top of the Catalog API to manage your products on AWS Marketplace.</p>",
   "operations": {
     "CancelChangeSet": "<p>Used to cancel an open change request. Must be sent before the status of the request changes to <code>APPLYING</code>, the final stage of completing your change request. You can describe a change during the 60-day request history retention period for API calls.</p>",
     "DescribeChangeSet": "<p>Provides information about a given change set.</p>",
     "DescribeEntity": "<p>Returns the metadata and content of the entity.</p>",
     "ListChangeSets": "<p>Returns the list of change sets owned by the account being used to make the call. You can filter this list by providing any combination of <code>entityId</code>, <code>ChangeSetName</code>, and status. If you provide more than one filter, the API operation applies a logical AND between the filters.</p> <p>You can describe a change during the 60-day request history retention period for API calls.</p>",
     "ListEntities": "<p>Provides the list of entities of a given type.</p>",
-    "StartChangeSet": "<p>This operation allows you to request changes in your entities.</p>"
+    "StartChangeSet": "<p>This operation allows you to request changes for your entities. Within a single ChangeSet, you cannot start the same change type against the same entity multiple times. Additionally, when a ChangeSet is running, all the entities targeted by the different changes are locked until the ChangeSet has completed (either succeeded, cancelled, or failed). If you try to start a ChangeSet containing a change against an entity that is already locked, you will receive a <code>ResourceInUseException</code>.</p> <p>For example, you cannot start the ChangeSet described in the <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples\">example</a> below because it contains two changes to execute the same change type (<code>AddRevisions</code>) against the same entity (<code>entity-id@1)</code>.</p>"
   },
   "shapes": {
     "ARN": {
@@ -209,6 +209,7 @@
       "base": null,
       "refs": {
         "Change$Details": "<p>This object contains details specific to the change type of the requested change.</p>",
+        "ChangeSummary$Details": "<p>This object contains details specific to the change type of the requested change.</p>",
         "DescribeEntityResponse$Details": "<p>This stringified JSON object includes the details of the entity.</p>"
       }
     },
@@ -295,10 +296,10 @@
       }
     },
     "Sort": {
-      "base": "<p>An object that contains two attributes, <code>sortBy</code> and <code>sortOrder</code>.</p>",
+      "base": "<p>An object that contains two attributes, <code>SortBy</code> and <code>SortOrder</code>.</p>",
       "refs": {
-        "ListChangeSetsRequest$Sort": "<p>An object that contains two attributes, <code>sortBy</code> and <code>sortOrder</code>.</p>",
-        "ListEntitiesRequest$Sort": "<p>An object that contains two attributes, <code>sortBy</code> and <code>sortOrder</code>.</p>"
+        "ListChangeSetsRequest$Sort": "<p>An object that contains two attributes, <code>SortBy</code> and <code>SortOrder</code>.</p>",
+        "ListEntitiesRequest$Sort": "<p>An object that contains two attributes, <code>SortBy</code> and <code>SortOrder</code>.</p>"
       }
     },
     "SortBy": {
@@ -329,9 +330,9 @@
         "AccessDeniedException$Message": null,
         "DescribeChangeSetResponse$FailureDescription": "<p>Returned if there is a failure on the change set, but that failure is not related to any of the changes in the request.</p>",
         "DescribeEntityResponse$LastModifiedDate": "<p>The last modified date of the entity, in ISO 8601 format (2018-02-27T13:45:22Z).</p>",
-        "EntitySummary$Name": "<p>The name for the entity. This value is not unique. It is defined by the provider.</p>",
+        "EntitySummary$Name": "<p>The name for the entity. This value is not unique. It is defined by the seller.</p>",
         "EntitySummary$LastModifiedDate": "<p>The last time the entity was published, using ISO 8601 format (2018-02-27T13:45:22Z).</p>",
-        "EntitySummary$Visibility": "<p>The visibility status of the entity to subscribers. This value can be <code>Public</code> (everyone can view the entity), <code>Limited</code> (the entity is visible to limited accounts only), or <code>Restricted</code> (the entity was published and then unpublished and only existing subscribers can view it). </p>",
+        "EntitySummary$Visibility": "<p>The visibility status of the entity to buyers. This value can be <code>Public</code> (everyone can view the entity), <code>Limited</code> (the entity is visible to limited accounts only), or <code>Restricted</code> (the entity was published and then unpublished and only existing buyers can view it). </p>",
         "ErrorDetail$ErrorCode": "<p>The error code that identifies the type of error.</p>",
         "ErrorDetail$ErrorMessage": "<p>The message for the error.</p>",
         "InternalServiceException$Message": null,

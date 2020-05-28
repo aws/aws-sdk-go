@@ -104,6 +104,10 @@ type WorkMailAPI interface {
 	DeleteResourceWithContext(aws.Context, *workmail.DeleteResourceInput, ...request.Option) (*workmail.DeleteResourceOutput, error)
 	DeleteResourceRequest(*workmail.DeleteResourceInput) (*request.Request, *workmail.DeleteResourceOutput)
 
+	DeleteRetentionPolicy(*workmail.DeleteRetentionPolicyInput) (*workmail.DeleteRetentionPolicyOutput, error)
+	DeleteRetentionPolicyWithContext(aws.Context, *workmail.DeleteRetentionPolicyInput, ...request.Option) (*workmail.DeleteRetentionPolicyOutput, error)
+	DeleteRetentionPolicyRequest(*workmail.DeleteRetentionPolicyInput) (*request.Request, *workmail.DeleteRetentionPolicyOutput)
+
 	DeleteUser(*workmail.DeleteUserInput) (*workmail.DeleteUserOutput, error)
 	DeleteUserWithContext(aws.Context, *workmail.DeleteUserInput, ...request.Option) (*workmail.DeleteUserOutput, error)
 	DeleteUserRequest(*workmail.DeleteUserInput) (*request.Request, *workmail.DeleteUserOutput)
@@ -139,6 +143,10 @@ type WorkMailAPI interface {
 	GetAccessControlEffect(*workmail.GetAccessControlEffectInput) (*workmail.GetAccessControlEffectOutput, error)
 	GetAccessControlEffectWithContext(aws.Context, *workmail.GetAccessControlEffectInput, ...request.Option) (*workmail.GetAccessControlEffectOutput, error)
 	GetAccessControlEffectRequest(*workmail.GetAccessControlEffectInput) (*request.Request, *workmail.GetAccessControlEffectOutput)
+
+	GetDefaultRetentionPolicy(*workmail.GetDefaultRetentionPolicyInput) (*workmail.GetDefaultRetentionPolicyOutput, error)
+	GetDefaultRetentionPolicyWithContext(aws.Context, *workmail.GetDefaultRetentionPolicyInput, ...request.Option) (*workmail.GetDefaultRetentionPolicyOutput, error)
+	GetDefaultRetentionPolicyRequest(*workmail.GetDefaultRetentionPolicyInput) (*request.Request, *workmail.GetDefaultRetentionPolicyOutput)
 
 	GetMailboxDetails(*workmail.GetMailboxDetailsInput) (*workmail.GetMailboxDetailsOutput, error)
 	GetMailboxDetailsWithContext(aws.Context, *workmail.GetMailboxDetailsInput, ...request.Option) (*workmail.GetMailboxDetailsOutput, error)
@@ -215,6 +223,10 @@ type WorkMailAPI interface {
 	PutMailboxPermissions(*workmail.PutMailboxPermissionsInput) (*workmail.PutMailboxPermissionsOutput, error)
 	PutMailboxPermissionsWithContext(aws.Context, *workmail.PutMailboxPermissionsInput, ...request.Option) (*workmail.PutMailboxPermissionsOutput, error)
 	PutMailboxPermissionsRequest(*workmail.PutMailboxPermissionsInput) (*request.Request, *workmail.PutMailboxPermissionsOutput)
+
+	PutRetentionPolicy(*workmail.PutRetentionPolicyInput) (*workmail.PutRetentionPolicyOutput, error)
+	PutRetentionPolicyWithContext(aws.Context, *workmail.PutRetentionPolicyInput, ...request.Option) (*workmail.PutRetentionPolicyOutput, error)
+	PutRetentionPolicyRequest(*workmail.PutRetentionPolicyInput) (*request.Request, *workmail.PutRetentionPolicyOutput)
 
 	RegisterToWorkMail(*workmail.RegisterToWorkMailInput) (*workmail.RegisterToWorkMailOutput, error)
 	RegisterToWorkMailWithContext(aws.Context, *workmail.RegisterToWorkMailInput, ...request.Option) (*workmail.RegisterToWorkMailOutput, error)
