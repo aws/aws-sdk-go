@@ -18,7 +18,7 @@ const (
 	// ErrCodeInvalidSessionException for service response error code
 	// "InvalidSessionException".
 	//
-	// Returned if the session doesn't exist anymore because it timed-out or expired.
+	// Returned if the session doesn't exist anymore because it timed out or expired.
 	ErrCodeInvalidSessionException = "InvalidSessionException"
 
 	// ErrCodeLimitExceededException for service response error code
@@ -31,7 +31,7 @@ const (
 	// "OccConflictException".
 	//
 	// Returned when a transaction cannot be written to the journal due to a failure
-	// in the verification phase of Optimistic Concurrency Control.
+	// in the verification phase of optimistic concurrency control (OCC).
 	ErrCodeOccConflictException = "OccConflictException"
 
 	// ErrCodeRateExceededException for service response error code

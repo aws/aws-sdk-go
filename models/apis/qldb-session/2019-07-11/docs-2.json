@@ -1,8 +1,8 @@
 {
   "version": "2.0",
-  "service": "<p>The transactional data APIs for Amazon QLDB</p>",
+  "service": "<p>The transactional data APIs for Amazon QLDB</p> <note> <p>Instead of interacting directly with this API, we recommend that you use the Amazon QLDB Driver or the QLDB Shell to execute data transactions on a ledger.</p> <ul> <li> <p>If you are working with an AWS SDK, use the QLDB Driver. The driver provides a high-level abstraction layer above this <code>qldbsession</code> data plane and manages <code>SendCommand</code> API calls for you. For information and a list of supported programming languages, see <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started-driver.html\">Getting started with the driver</a> in the <i>Amazon QLDB Developer Guide</i>.</p> </li> <li> <p>If you are working with the AWS Command Line Interface (AWS CLI), use the QLDB Shell. The shell is a command line interface that uses the QLDB Driver to interact with a ledger. For information, see <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/data-shell.html\">Accessing Amazon QLDB using the QLDB Shell</a>.</p> </li> </ul> </note>",
   "operations": {
-    "SendCommand": "<p>Sends a command to an Amazon QLDB ledger.</p>"
+    "SendCommand": "<p>Sends a command to an Amazon QLDB ledger.</p> <note> <p>Instead of interacting directly with this API, we recommend that you use the Amazon QLDB Driver or the QLDB Shell to execute data transactions on a ledger.</p> <ul> <li> <p>If you are working with an AWS SDK, use the QLDB Driver. The driver provides a high-level abstraction layer above this <code>qldbsession</code> data plane and manages <code>SendCommand</code> API calls for you. For information and a list of supported programming languages, see <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started-driver.html\">Getting started with the driver</a> in the <i>Amazon QLDB Developer Guide</i>.</p> </li> <li> <p>If you are working with the AWS Command Line Interface (AWS CLI), use the QLDB Shell. The shell is a command line interface that uses the QLDB Driver to interact with a ledger. For information, see <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/data-shell.html\">Accessing Amazon QLDB using the QLDB Shell</a>.</p> </li> </ul> </note>"
   },
   "shapes": {
     "AbortTransactionRequest": {
@@ -95,20 +95,20 @@
       }
     },
     "InvalidSessionException": {
-      "base": "<p>Returned if the session doesn't exist anymore because it timed-out or expired.</p>",
+      "base": "<p>Returned if the session doesn't exist anymore because it timed out or expired.</p>",
       "refs": {
       }
     },
     "IonBinary": {
       "base": null,
       "refs": {
-        "ValueHolder$IonBinary": "<p>An Amazon Ion binary value contained in a <code>ValueHolder</code> structure. </p>"
+        "ValueHolder$IonBinary": "<p>An Amazon Ion binary value contained in a <code>ValueHolder</code> structure.</p>"
       }
     },
     "IonText": {
       "base": null,
       "refs": {
-        "ValueHolder$IonText": "<p>An Amazon Ion plaintext value contained in a <code>ValueHolder</code> structure. </p>"
+        "ValueHolder$IonText": "<p>An Amazon Ion plaintext value contained in a <code>ValueHolder</code> structure.</p>"
       }
     },
     "LedgerName": {
@@ -123,7 +123,7 @@
       }
     },
     "OccConflictException": {
-      "base": "<p>Returned when a transaction cannot be written to the journal due to a failure in the verification phase of Optimistic Concurrency Control.</p>",
+      "base": "<p>Returned when a transaction cannot be written to the journal due to a failure in the verification phase of <i>optimistic concurrency control</i> (OCC).</p>",
       "refs": {
       }
     },
@@ -164,7 +164,7 @@
       }
     },
     "StartSessionRequest": {
-      "base": "<p>Specifies a request to start a a new session.</p>",
+      "base": "<p>Specifies a request to start a new session.</p>",
       "refs": {
         "SendCommandRequest$StartSession": "<p>Command to start a new session. A session token is obtained as part of the response.</p>"
       }
@@ -202,15 +202,15 @@
     "TransactionId": {
       "base": null,
       "refs": {
-        "CommitTransactionRequest$TransactionId": "<p>Specifies the transaction id of the transaction to commit.</p>",
-        "CommitTransactionResult$TransactionId": "<p>The transaction id of the committed transaction.</p>",
-        "ExecuteStatementRequest$TransactionId": "<p>Specifies the transaction id of the request.</p>",
-        "FetchPageRequest$TransactionId": "<p>Specifies the transaction id of the page to be fetched.</p>",
-        "StartTransactionResult$TransactionId": "<p>The transaction id of the started transaction.</p>"
+        "CommitTransactionRequest$TransactionId": "<p>Specifies the transaction ID of the transaction to commit.</p>",
+        "CommitTransactionResult$TransactionId": "<p>The transaction ID of the committed transaction.</p>",
+        "ExecuteStatementRequest$TransactionId": "<p>Specifies the transaction ID of the request.</p>",
+        "FetchPageRequest$TransactionId": "<p>Specifies the transaction ID of the page to be fetched.</p>",
+        "StartTransactionResult$TransactionId": "<p>The transaction ID of the started transaction.</p>"
       }
     },
     "ValueHolder": {
-      "base": "<p>A structure that can contains values in multiple encoding formats.</p>",
+      "base": "<p>A structure that can contain an Amazon Ion value in multiple encoding formats.</p>",
       "refs": {
         "StatementParameters$member": null,
         "ValueHolders$member": null

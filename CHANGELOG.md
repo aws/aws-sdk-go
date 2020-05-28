@@ -1,3 +1,13 @@
+Release v1.31.7 (2020-05-28)
+===
+
+### Service Client Updates
+* `service/kafka`: Updates service API and documentation
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/qldb-session`: Updates service documentation
+* `service/workmail`: Updates service API and documentation
+  * This release adds support for Amazon WorkMail organization-level retention policies.
+
 Release v1.31.6 (2020-05-27)
 ===
 
