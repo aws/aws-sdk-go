@@ -19,7 +19,7 @@ func getWriterStore(req *request.Request, path string, useTempFile bool) (io.Rea
 		return nil, err
 	}
 
-	req.Handlers.Send.PushBack(func(r *request.Request) {
+	req.Handlers.Complete.PushBack(func(r *request.Request) {
 		// Close the temp file and cleanup
 		f.Close()
 		os.Remove(f.Name())
