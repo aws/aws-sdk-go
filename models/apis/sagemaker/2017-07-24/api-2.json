@@ -7477,7 +7477,8 @@
       "members":{
         "UiTemplate":{"shape":"UiTemplate"},
         "Task":{"shape":"RenderableTask"},
-        "RoleArn":{"shape":"RoleArn"}
+        "RoleArn":{"shape":"RoleArn"},
+        "HumanTaskUiArn":{"shape":"HumanTaskUiArn"}
       }
     },
     "RenderUiTemplateResponse":{
@@ -8178,7 +8179,7 @@
     },
     "TaskTimeLimitInSeconds":{
       "type":"integer",
-      "max":28800,
+      "max":604800,
       "min":30
     },
     "TaskTitle":{
@@ -8831,7 +8832,8 @@
     "UiConfig":{
       "type":"structure",
       "members":{
-        "UiTemplateS3Uri":{"shape":"S3Uri"}
+        "UiTemplateS3Uri":{"shape":"S3Uri"},
+        "HumanTaskUiArn":{"shape":"HumanTaskUiArn"}
       }
     },
     "UiTemplate":{

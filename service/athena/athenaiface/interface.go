@@ -68,6 +68,10 @@ type AthenaAPI interface {
 	BatchGetQueryExecutionWithContext(aws.Context, *athena.BatchGetQueryExecutionInput, ...request.Option) (*athena.BatchGetQueryExecutionOutput, error)
 	BatchGetQueryExecutionRequest(*athena.BatchGetQueryExecutionInput) (*request.Request, *athena.BatchGetQueryExecutionOutput)
 
+	CreateDataCatalog(*athena.CreateDataCatalogInput) (*athena.CreateDataCatalogOutput, error)
+	CreateDataCatalogWithContext(aws.Context, *athena.CreateDataCatalogInput, ...request.Option) (*athena.CreateDataCatalogOutput, error)
+	CreateDataCatalogRequest(*athena.CreateDataCatalogInput) (*request.Request, *athena.CreateDataCatalogOutput)
+
 	CreateNamedQuery(*athena.CreateNamedQueryInput) (*athena.CreateNamedQueryOutput, error)
 	CreateNamedQueryWithContext(aws.Context, *athena.CreateNamedQueryInput, ...request.Option) (*athena.CreateNamedQueryOutput, error)
 	CreateNamedQueryRequest(*athena.CreateNamedQueryInput) (*request.Request, *athena.CreateNamedQueryOutput)
@@ -76,6 +80,10 @@ type AthenaAPI interface {
 	CreateWorkGroupWithContext(aws.Context, *athena.CreateWorkGroupInput, ...request.Option) (*athena.CreateWorkGroupOutput, error)
 	CreateWorkGroupRequest(*athena.CreateWorkGroupInput) (*request.Request, *athena.CreateWorkGroupOutput)
 
+	DeleteDataCatalog(*athena.DeleteDataCatalogInput) (*athena.DeleteDataCatalogOutput, error)
+	DeleteDataCatalogWithContext(aws.Context, *athena.DeleteDataCatalogInput, ...request.Option) (*athena.DeleteDataCatalogOutput, error)
+	DeleteDataCatalogRequest(*athena.DeleteDataCatalogInput) (*request.Request, *athena.DeleteDataCatalogOutput)
+
 	DeleteNamedQuery(*athena.DeleteNamedQueryInput) (*athena.DeleteNamedQueryOutput, error)
 	DeleteNamedQueryWithContext(aws.Context, *athena.DeleteNamedQueryInput, ...request.Option) (*athena.DeleteNamedQueryOutput, error)
 	DeleteNamedQueryRequest(*athena.DeleteNamedQueryInput) (*request.Request, *athena.DeleteNamedQueryOutput)
@@ -83,6 +91,14 @@ type AthenaAPI interface {
 	DeleteWorkGroup(*athena.DeleteWorkGroupInput) (*athena.DeleteWorkGroupOutput, error)
 	DeleteWorkGroupWithContext(aws.Context, *athena.DeleteWorkGroupInput, ...request.Option) (*athena.DeleteWorkGroupOutput, error)
 	DeleteWorkGroupRequest(*athena.DeleteWorkGroupInput) (*request.Request, *athena.DeleteWorkGroupOutput)
+
+	GetDataCatalog(*athena.GetDataCatalogInput) (*athena.GetDataCatalogOutput, error)
+	GetDataCatalogWithContext(aws.Context, *athena.GetDataCatalogInput, ...request.Option) (*athena.GetDataCatalogOutput, error)
+	GetDataCatalogRequest(*athena.GetDataCatalogInput) (*request.Request, *athena.GetDataCatalogOutput)
+
+	GetDatabase(*athena.GetDatabaseInput) (*athena.GetDatabaseOutput, error)
+	GetDatabaseWithContext(aws.Context, *athena.GetDatabaseInput, ...request.Option) (*athena.GetDatabaseOutput, error)
+	GetDatabaseRequest(*athena.GetDatabaseInput) (*request.Request, *athena.GetDatabaseOutput)
 
 	GetNamedQuery(*athena.GetNamedQueryInput) (*athena.GetNamedQueryOutput, error)
 	GetNamedQueryWithContext(aws.Context, *athena.GetNamedQueryInput, ...request.Option) (*athena.GetNamedQueryOutput, error)
@@ -99,9 +115,27 @@ type AthenaAPI interface {
 	GetQueryResultsPages(*athena.GetQueryResultsInput, func(*athena.GetQueryResultsOutput, bool) bool) error
 	GetQueryResultsPagesWithContext(aws.Context, *athena.GetQueryResultsInput, func(*athena.GetQueryResultsOutput, bool) bool, ...request.Option) error
 
+	GetTableMetadata(*athena.GetTableMetadataInput) (*athena.GetTableMetadataOutput, error)
+	GetTableMetadataWithContext(aws.Context, *athena.GetTableMetadataInput, ...request.Option) (*athena.GetTableMetadataOutput, error)
+	GetTableMetadataRequest(*athena.GetTableMetadataInput) (*request.Request, *athena.GetTableMetadataOutput)
+
 	GetWorkGroup(*athena.GetWorkGroupInput) (*athena.GetWorkGroupOutput, error)
 	GetWorkGroupWithContext(aws.Context, *athena.GetWorkGroupInput, ...request.Option) (*athena.GetWorkGroupOutput, error)
 	GetWorkGroupRequest(*athena.GetWorkGroupInput) (*request.Request, *athena.GetWorkGroupOutput)
+
+	ListDataCatalogs(*athena.ListDataCatalogsInput) (*athena.ListDataCatalogsOutput, error)
+	ListDataCatalogsWithContext(aws.Context, *athena.ListDataCatalogsInput, ...request.Option) (*athena.ListDataCatalogsOutput, error)
+	ListDataCatalogsRequest(*athena.ListDataCatalogsInput) (*request.Request, *athena.ListDataCatalogsOutput)
+
+	ListDataCatalogsPages(*athena.ListDataCatalogsInput, func(*athena.ListDataCatalogsOutput, bool) bool) error
+	ListDataCatalogsPagesWithContext(aws.Context, *athena.ListDataCatalogsInput, func(*athena.ListDataCatalogsOutput, bool) bool, ...request.Option) error
+
+	ListDatabases(*athena.ListDatabasesInput) (*athena.ListDatabasesOutput, error)
+	ListDatabasesWithContext(aws.Context, *athena.ListDatabasesInput, ...request.Option) (*athena.ListDatabasesOutput, error)
+	ListDatabasesRequest(*athena.ListDatabasesInput) (*request.Request, *athena.ListDatabasesOutput)
+
+	ListDatabasesPages(*athena.ListDatabasesInput, func(*athena.ListDatabasesOutput, bool) bool) error
+	ListDatabasesPagesWithContext(aws.Context, *athena.ListDatabasesInput, func(*athena.ListDatabasesOutput, bool) bool, ...request.Option) error
 
 	ListNamedQueries(*athena.ListNamedQueriesInput) (*athena.ListNamedQueriesOutput, error)
 	ListNamedQueriesWithContext(aws.Context, *athena.ListNamedQueriesInput, ...request.Option) (*athena.ListNamedQueriesOutput, error)
@@ -117,9 +151,19 @@ type AthenaAPI interface {
 	ListQueryExecutionsPages(*athena.ListQueryExecutionsInput, func(*athena.ListQueryExecutionsOutput, bool) bool) error
 	ListQueryExecutionsPagesWithContext(aws.Context, *athena.ListQueryExecutionsInput, func(*athena.ListQueryExecutionsOutput, bool) bool, ...request.Option) error
 
+	ListTableMetadata(*athena.ListTableMetadataInput) (*athena.ListTableMetadataOutput, error)
+	ListTableMetadataWithContext(aws.Context, *athena.ListTableMetadataInput, ...request.Option) (*athena.ListTableMetadataOutput, error)
+	ListTableMetadataRequest(*athena.ListTableMetadataInput) (*request.Request, *athena.ListTableMetadataOutput)
+
+	ListTableMetadataPages(*athena.ListTableMetadataInput, func(*athena.ListTableMetadataOutput, bool) bool) error
+	ListTableMetadataPagesWithContext(aws.Context, *athena.ListTableMetadataInput, func(*athena.ListTableMetadataOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*athena.ListTagsForResourceInput) (*athena.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *athena.ListTagsForResourceInput, ...request.Option) (*athena.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*athena.ListTagsForResourceInput) (*request.Request, *athena.ListTagsForResourceOutput)
+
+	ListTagsForResourcePages(*athena.ListTagsForResourceInput, func(*athena.ListTagsForResourceOutput, bool) bool) error
+	ListTagsForResourcePagesWithContext(aws.Context, *athena.ListTagsForResourceInput, func(*athena.ListTagsForResourceOutput, bool) bool, ...request.Option) error
 
 	ListWorkGroups(*athena.ListWorkGroupsInput) (*athena.ListWorkGroupsOutput, error)
 	ListWorkGroupsWithContext(aws.Context, *athena.ListWorkGroupsInput, ...request.Option) (*athena.ListWorkGroupsOutput, error)
@@ -143,6 +187,10 @@ type AthenaAPI interface {
 	UntagResource(*athena.UntagResourceInput) (*athena.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *athena.UntagResourceInput, ...request.Option) (*athena.UntagResourceOutput, error)
 	UntagResourceRequest(*athena.UntagResourceInput) (*request.Request, *athena.UntagResourceOutput)
+
+	UpdateDataCatalog(*athena.UpdateDataCatalogInput) (*athena.UpdateDataCatalogOutput, error)
+	UpdateDataCatalogWithContext(aws.Context, *athena.UpdateDataCatalogInput, ...request.Option) (*athena.UpdateDataCatalogOutput, error)
+	UpdateDataCatalogRequest(*athena.UpdateDataCatalogInput) (*request.Request, *athena.UpdateDataCatalogOutput)
 
 	UpdateWorkGroup(*athena.UpdateWorkGroupInput) (*athena.UpdateWorkGroupOutput, error)
 	UpdateWorkGroupWithContext(aws.Context, *athena.UpdateWorkGroupInput, ...request.Option) (*athena.UpdateWorkGroupOutput, error)

@@ -347,7 +347,8 @@
         {"shape":"InvalidKeyUsageException"},
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "GenerateDataKeyPairWithoutPlaintext":{
@@ -366,7 +367,8 @@
         {"shape":"InvalidKeyUsageException"},
         {"shape":"InvalidGrantTokenException"},
         {"shape":"KMSInternalException"},
-        {"shape":"KMSInvalidStateException"}
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "GenerateDataKeyWithoutPlaintext":{
@@ -738,6 +740,7 @@
         {"shape":"DependencyTimeoutException"},
         {"shape":"NotFoundException"},
         {"shape":"KMSInternalException"},
+        {"shape":"LimitExceededException"},
         {"shape":"KMSInvalidStateException"}
       ]
     },

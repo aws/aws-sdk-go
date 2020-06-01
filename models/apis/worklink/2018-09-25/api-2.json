@@ -302,6 +302,7 @@
         {"shape":"UnauthorizedException"},
         {"shape":"InternalServerErrorException"},
         {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -318,6 +319,18 @@
         {"shape":"InternalServerErrorException"},
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{ResourceArn}"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListWebsiteAuthorizationProviders":{
@@ -397,6 +410,30 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{ResourceArn}"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{ResourceArn}"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"}
       ]
     },
     "UpdateAuditStreamConfiguration":{
@@ -556,7 +593,10 @@
         "WebsiteCaId":{"shape":"Id"}
       }
     },
-    "AuditStreamArn":{"type":"string"},
+    "AuditStreamArn":{
+      "type":"string",
+      "pattern":"^arn:aws:kinesis:.+:[0-9]{12}:stream/AmazonWorkLink-.*$"
+    },
     "AuthorizationProviderType":{
       "type":"string",
       "enum":["SAML"]
@@ -585,7 +625,8 @@
       "members":{
         "FleetName":{"shape":"FleetName"},
         "DisplayName":{"shape":"DisplayName"},
-        "OptimizeForEndUserLocation":{"shape":"Boolean"}
+        "OptimizeForEndUserLocation":{"shape":"Boolean"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateFleetResponse":{
@@ -710,7 +751,8 @@
         "DisplayName":{"shape":"DisplayName"},
         "OptimizeForEndUserLocation":{"shape":"Boolean"},
         "CompanyCode":{"shape":"CompanyCode"},
-        "FleetStatus":{"shape":"FleetStatus"}
+        "FleetStatus":{"shape":"FleetStatus"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "DescribeIdentityProviderConfigurationRequest":{
@@ -911,7 +953,8 @@
         "FleetName":{"shape":"FleetName"},
         "DisplayName":{"shape":"DisplayName"},
         "CompanyCode":{"shape":"CompanyCode"},
-        "FleetStatus":{"shape":"FleetStatus"}
+        "FleetStatus":{"shape":"FleetStatus"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "FleetSummaryList":{
@@ -987,6 +1030,23 @@
       "members":{
         "FleetSummaryList":{"shape":"FleetSummaryList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{
+          "shape":"FleetArn",
+          "location":"uri",
+          "locationName":"ResourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagMap"}
       }
     },
     "ListWebsiteAuthorizationProvidersRequest":{
@@ -1117,6 +1177,49 @@
       "type":"list",
       "member":{"shape":"SubnetId"}
     },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?!aws:)[a-zA-Z+-=._:/]+$"
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":50,
+      "min":1
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":1
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "ResourceArn":{
+          "shape":"FleetArn",
+          "location":"uri",
+          "locationName":"ResourceArn"
+        },
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256
+    },
     "TooManyRequestsException":{
       "type":"structure",
       "members":{
@@ -1132,6 +1235,30 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceArn":{
+          "shape":"FleetArn",
+          "location":"uri",
+          "locationName":"ResourceArn"
+        },
+        "TagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateAuditStreamConfigurationRequest":{
       "type":"structure",

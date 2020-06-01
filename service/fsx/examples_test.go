@@ -490,6 +490,8 @@ func ExampleFSx_UpdateFileSystem_shared00() {
 				fmt.Println(fsx.ErrCodeFileSystemNotFound, aerr.Error())
 			case fsx.ErrCodeMissingFileSystemConfiguration:
 				fmt.Println(fsx.ErrCodeMissingFileSystemConfiguration, aerr.Error())
+			case fsx.ErrCodeServiceLimitExceeded:
+				fmt.Println(fsx.ErrCodeServiceLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

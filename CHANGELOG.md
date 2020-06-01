@@ -1,3 +1,18 @@
+Release v1.31.8 (2020-06-01)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API, documentation, and paginators
+  * This release adds support for connecting Athena to your own Apache Hive Metastores in addition to the AWS Glue Data Catalog. For more information, please see https://docs.aws.amazon.com/athena/latest/ug/connect-to-data-source-hive.html
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR now supports encrypting log files with AWS Key Management Service (KMS) customer managed keys.
+* `service/fsx`: Updates service API and documentation
+* `service/kms`: Updates service API and documentation
+  * AWS Key Management Service (AWS KMS): If the GenerateDataKeyPair or GenerateDataKeyPairWithoutPlaintext APIs are called on a CMK in a custom key store (origin == AWS_CLOUDHSM), they return an UnsupportedOperationException. If a call to UpdateAlias causes a customer to exceed the Alias resource quota, the UpdateAlias API returns a LimitExceededException.
+* `service/sagemaker`: Updates service API and documentation
+  * We are releasing HumanTaskUiArn as a new parameter in CreateLabelingJob and RenderUiTemplate which can take an ARN for a system managed UI to render a task.
+* `service/worklink`: Updates service API and documentation
+
 Release v1.31.7 (2020-05-28)
 ===
 
