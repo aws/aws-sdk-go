@@ -7192,6 +7192,12 @@
               "region" : "us-gov-west-1"
             },
             "hostname" : "iam.us-gov.amazonaws.com"
+          },
+          "iam-govcloud-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "iam.us-gov.amazonaws.com"
           }
         },
         "isRegionalized" : false,
@@ -7238,6 +7244,18 @@
       },
       "kinesis" : {
         "endpoints" : {
+          "fips-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "kinesis-fips.us-gov-east-1.amazonaws.com"
+          },
+          "fips-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "kinesis-fips.us-gov-west-1.amazonaws.com"
+          },
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }

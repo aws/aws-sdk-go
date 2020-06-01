@@ -251,7 +251,8 @@
         {"shape":"IncompatibleParameterError"},
         {"shape":"InternalServerError"},
         {"shape":"FileSystemNotFound"},
-        {"shape":"MissingFileSystemConfiguration"}
+        {"shape":"MissingFileSystemConfiguration"},
+        {"shape":"ServiceLimitExceeded"}
       ]
     }
   },
@@ -293,6 +294,35 @@
       "max":255,
       "min":1,
       "pattern":"^.{1,255}$"
+    },
+    "AdministrativeAction":{
+      "type":"structure",
+      "members":{
+        "AdministrativeActionType":{"shape":"AdministrativeActionType"},
+        "ProgressPercent":{"shape":"ProgressPercent"},
+        "RequestTime":{"shape":"RequestTime"},
+        "Status":{"shape":"Status"},
+        "TargetFileSystemValues":{"shape":"FileSystem"},
+        "FailureDetails":{"shape":"AdministrativeActionFailureDetails"}
+      }
+    },
+    "AdministrativeActionFailureDetails":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      }
+    },
+    "AdministrativeActionType":{
+      "type":"string",
+      "enum":[
+        "FILE_SYSTEM_UPDATE",
+        "STORAGE_OPTIMIZATION"
+      ]
+    },
+    "AdministrativeActions":{
+      "type":"list",
+      "member":{"shape":"AdministrativeAction"},
+      "max":50
     },
     "ArchivePath":{
       "type":"string",
@@ -841,7 +871,8 @@
         "ResourceARN":{"shape":"ResourceARN"},
         "Tags":{"shape":"Tags"},
         "WindowsConfiguration":{"shape":"WindowsFileSystemConfiguration"},
-        "LustreConfiguration":{"shape":"LustreFileSystemConfiguration"}
+        "LustreConfiguration":{"shape":"LustreFileSystemConfiguration"},
+        "AdministrativeActions":{"shape":"AdministrativeActions"}
       }
     },
     "FileSystemAdministratorsGroupName":{
@@ -1042,6 +1073,7 @@
     },
     "MaxResults":{
       "type":"integer",
+      "max":2147483647,
       "min":1
     },
     "Megabytes":{
@@ -1115,6 +1147,7 @@
       "type":"string",
       "enum":["FAILED_FILES_ONLY"]
     },
+    "RequestTime":{"type":"timestamp"},
     "ResourceARN":{
       "type":"string",
       "max":512,
@@ -1204,8 +1237,19 @@
       "exception":true
     },
     "StartTime":{"type":"timestamp"},
+    "Status":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "IN_PROGRESS",
+        "PENDING",
+        "COMPLETED",
+        "UPDATED_OPTIMIZING"
+      ]
+    },
     "StorageCapacity":{
       "type":"integer",
+      "max":2147483647,
       "min":0
     },
     "StorageType":{
@@ -1324,6 +1368,7 @@
           "shape":"ClientRequestToken",
           "idempotencyToken":true
         },
+        "StorageCapacity":{"shape":"StorageCapacity"},
         "WindowsConfiguration":{"shape":"UpdateFileSystemWindowsConfiguration"},
         "LustreConfiguration":{"shape":"UpdateFileSystemLustreConfiguration"}
       }
@@ -1340,6 +1385,7 @@
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
+        "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
         "SelfManagedActiveDirectoryConfiguration":{"shape":"SelfManagedActiveDirectoryConfigurationUpdates"}
       }
     },

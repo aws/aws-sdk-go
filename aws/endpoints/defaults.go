@@ -7547,6 +7547,12 @@ var awsusgovPartition = partition{
 						Region: "us-gov-west-1",
 					},
 				},
+				"iam-govcloud-fips": endpoint{
+					Hostname: "iam.us-gov.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-west-1",
+					},
+				},
 			},
 		},
 		"inspector": service{
@@ -7594,6 +7600,18 @@ var awsusgovPartition = partition{
 		"kinesis": service{
 
 			Endpoints: endpoints{
+				"fips-us-gov-east-1": endpoint{
+					Hostname: "kinesis-fips.us-gov-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-east-1",
+					},
+				},
+				"fips-us-gov-west-1": endpoint{
+					Hostname: "kinesis-fips.us-gov-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-west-1",
+					},
+				},
 				"us-gov-east-1": endpoint{},
 				"us-gov-west-1": endpoint{},
 			},
