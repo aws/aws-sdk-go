@@ -238,7 +238,7 @@ type Config struct {
 
 	// EnableEndpointDiscovery will allow for endpoint discovery on operations that
 	// have the definition in its model. By default, endpoint discovery is off.
-	// To use EndpointDiscovery, Endpoint must be set to nil.
+	// To use EndpointDiscovery, Endpoint should be unset or set to an empty string.
 	//
 	// Example:
 	//    sess := session.Must(session.NewSession(&aws.Config{
