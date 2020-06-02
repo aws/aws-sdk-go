@@ -9,7 +9,7 @@ import (
 )
 
 func TestBaseErrorSupportsUnwrap(t *testing.T) {
-	wrapped := fmt.Errorf("snap!")
+	wrapped := fmt.Errorf("badness")
 	cases := []struct {
 		input   error
 		unwraps bool
@@ -51,7 +51,7 @@ func TestBaseErrorSupportsUnwrap(t *testing.T) {
 }
 
 func TestBatchedErrorsDontUnwrap(t *testing.T) {
-	wrapped := fmt.Errorf("snap!")
+	wrapped := fmt.Errorf("badness")
 	for _, err := range []error{
 		NewBatchError("Code1", "one", nil),
 		NewBatchError("Code2", "two", []error{wrapped}),
