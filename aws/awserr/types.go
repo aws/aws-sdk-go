@@ -34,7 +34,7 @@ type baseError struct {
 
 	// Optional original error this error is based off of. Allows building
 	// chained errors.
-	errs []error
+	err error
 }
 
 // newBaseError returns an error object for the code, message, and errors.
@@ -45,13 +45,12 @@ type baseError struct {
 // message is the free flow string containing detailed information about the
 // error.
 //
-// origErrs is the error objects which will be nested under the new errors to
-// be returned.
-func newBaseError(code, message string, origErrs []error) *baseError {
+// origErr is the original error that this baseError wraps, may be nil.
+func newBaseError(code, message string, origErr error) *baseError {
 	b := &baseError{
 		code:    code,
 		message: message,
-		errs:    origErrs,
+		err:     origErr,
 	}
 
 	return b
@@ -63,12 +62,7 @@ func newBaseError(code, message string, origErrs []error) *baseError {
 //
 // Satisfies the error interface.
 func (b baseError) Error() string {
-	size := len(b.errs)
-	if size > 0 {
-		return SprintError(b.code, b.message, "", errorList(b.errs))
-	}
-
-	return SprintError(b.code, b.message, "", nil)
+	return SprintError(b.code, b.message, "", b.err)
 }
 
 // String returns the string representation of the error.
@@ -88,26 +82,39 @@ func (b baseError) Message() string {
 }
 
 // OrigErr returns the original error if one was set. Nil is returned if no
-// error was set. This only returns the first element in the list. If the full
-// list is needed, use BatchedErrors.
+// error was set.
 func (b baseError) OrigErr() error {
-	switch len(b.errs) {
-	case 0:
-		return nil
-	case 1:
-		return b.errs[0]
-	default:
-		if err, ok := b.errs[0].(Error); ok {
-			return NewBatchError(err.Code(), err.Message(), b.errs[1:])
-		}
-		return NewBatchError("BatchedErrors",
-			"multiple errors occurred", b.errs)
+	return b.err
+}
+
+// Unwrap returns the original error if one was set. Nil is returned if no
+// error was set.
+func (b baseError) Unwrap() error {
+	return b.err
+}
+
+type batchError struct {
+	awsError
+	errs []error
+}
+
+func newBatchError(code, message string, errs []error) *batchError {
+	return &batchError{
+		awsError: newBaseError(code, message, nil),
+		errs:     errs,
 	}
 }
 
-// OrigErrs returns the original errors if one was set. An empty slice is
-// returned if no error was set.
-func (b baseError) OrigErrs() []error {
+func (b batchError) Error() string {
+	if size := len(b.errs); size > 0 {
+		return SprintError(b.Code(), b.Message(), "", errorList(b.errs))
+	}
+
+	return SprintError(b.Code(), b.Message(), "", nil)
+}
+
+// OrigErrs returns the original errors, if any.
+func (b batchError) OrigErrs() []error {
 	return b.errs
 }
 
@@ -149,6 +156,17 @@ func (r requestError) Error() string {
 	return SprintError(r.Code(), r.Message(), extra, r.OrigErr())
 }
 
+// Unwrap returns the wrapped error, if applicable.
+func (r requestError) Unwrap() error {
+	u, ok := r.awsError.(interface {
+		Unwrap() error
+	})
+	if !ok {
+		return nil
+	}
+	return u.Unwrap()
+}
+
 // String returns the string representation of the error.
 // Alias for Error to satisfy the stringer interface.
 func (r requestError) String() string {
@@ -171,7 +189,7 @@ func (r requestError) OrigErrs() []error {
 	if b, ok := r.awsError.(BatchedErrors); ok {
 		return b.OrigErrs()
 	}
-	return []error{r.OrigErr()}
+	return nil
 }
 
 type unmarshalError struct {
