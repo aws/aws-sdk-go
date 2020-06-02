@@ -812,6 +812,19 @@
       "members":{
       }
     },
+    "AccessControlList":{
+      "type":"structure",
+      "members":{
+        "AllowsPublicReadAccess":{
+          "shape":"Boolean",
+          "locationName":"allowsPublicReadAccess"
+        },
+        "AllowsPublicWriteAccess":{
+          "shape":"Boolean",
+          "locationName":"allowsPublicWriteAccess"
+        }
+      }
+    },
     "AccessKeyDetails":{
       "type":"structure",
       "members":{
@@ -866,6 +879,15 @@
       "member":{"shape":"AccountId"},
       "max":50,
       "min":1
+    },
+    "AccountLevelPermissions":{
+      "type":"structure",
+      "members":{
+        "BlockPublicAccess":{
+          "shape":"BlockPublicAccess",
+          "locationName":"blockPublicAccess"
+        }
+      }
     },
     "Action":{
       "type":"structure",
@@ -983,7 +1005,58 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "BlockPublicAccess":{
+      "type":"structure",
+      "members":{
+        "IgnorePublicAcls":{
+          "shape":"Boolean",
+          "locationName":"ignorePublicAcls"
+        },
+        "RestrictPublicBuckets":{
+          "shape":"Boolean",
+          "locationName":"restrictPublicBuckets"
+        },
+        "BlockPublicAcls":{
+          "shape":"Boolean",
+          "locationName":"blockPublicAcls"
+        },
+        "BlockPublicPolicy":{
+          "shape":"Boolean",
+          "locationName":"blockPublicPolicy"
+        }
+      }
+    },
     "Boolean":{"type":"boolean"},
+    "BucketLevelPermissions":{
+      "type":"structure",
+      "members":{
+        "AccessControlList":{
+          "shape":"AccessControlList",
+          "locationName":"accessControlList"
+        },
+        "BucketPolicy":{
+          "shape":"BucketPolicy",
+          "locationName":"bucketPolicy"
+        },
+        "BlockPublicAccess":{
+          "shape":"BlockPublicAccess",
+          "locationName":"blockPublicAccess"
+        }
+      }
+    },
+    "BucketPolicy":{
+      "type":"structure",
+      "members":{
+        "AllowsPublicReadAccess":{
+          "shape":"Boolean",
+          "locationName":"allowsPublicReadAccess"
+        },
+        "AllowsPublicWriteAccess":{
+          "shape":"Boolean",
+          "locationName":"allowsPublicWriteAccess"
+        }
+      }
+    },
     "City":{
       "type":"structure",
       "members":{
@@ -1373,6 +1446,19 @@
         "UnprocessedAccounts":{
           "shape":"UnprocessedAccounts",
           "locationName":"unprocessedAccounts"
+        }
+      }
+    },
+    "DefaultServerSideEncryption":{
+      "type":"structure",
+      "members":{
+        "EncryptionType":{
+          "shape":"String",
+          "locationName":"encryptionType"
+        },
+        "KmsMasterKeyArn":{
+          "shape":"String",
+          "locationName":"kmsMasterKeyArn"
         }
       }
     },
@@ -3055,6 +3141,28 @@
         }
       }
     },
+    "Owner":{
+      "type":"structure",
+      "members":{
+        "Id":{
+          "shape":"String",
+          "locationName":"id"
+        }
+      }
+    },
+    "PermissionConfiguration":{
+      "type":"structure",
+      "members":{
+        "BucketLevelPermissions":{
+          "shape":"BucketLevelPermissions",
+          "locationName":"bucketLevelPermissions"
+        },
+        "AccountLevelPermissions":{
+          "shape":"AccountLevelPermissions",
+          "locationName":"accountLevelPermissions"
+        }
+      }
+    },
     "PortProbeAction":{
       "type":"structure",
       "members":{
@@ -3123,6 +3231,19 @@
       "type":"list",
       "member":{"shape":"ProductCode"}
     },
+    "PublicAccess":{
+      "type":"structure",
+      "members":{
+        "PermissionConfiguration":{
+          "shape":"PermissionConfiguration",
+          "locationName":"permissionConfiguration"
+        },
+        "EffectivePermission":{
+          "shape":"String",
+          "locationName":"effectivePermission"
+        }
+      }
+    },
     "PublishingStatus":{
       "type":"string",
       "enum":[
@@ -3179,6 +3300,10 @@
           "shape":"AccessKeyDetails",
           "locationName":"accessKeyDetails"
         },
+        "S3BucketDetails":{
+          "shape":"S3BucketDetails",
+          "locationName":"s3BucketDetails"
+        },
         "InstanceDetails":{
           "shape":"InstanceDetails",
           "locationName":"instanceDetails"
@@ -3188,6 +3313,47 @@
           "locationName":"resourceType"
         }
       }
+    },
+    "S3BucketDetail":{
+      "type":"structure",
+      "members":{
+        "Arn":{
+          "shape":"String",
+          "locationName":"arn"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"type"
+        },
+        "CreatedAt":{
+          "shape":"Timestamp",
+          "locationName":"createdAt"
+        },
+        "Owner":{
+          "shape":"Owner",
+          "locationName":"owner"
+        },
+        "Tags":{
+          "shape":"Tags",
+          "locationName":"tags"
+        },
+        "DefaultServerSideEncryption":{
+          "shape":"DefaultServerSideEncryption",
+          "locationName":"defaultServerSideEncryption"
+        },
+        "PublicAccess":{
+          "shape":"PublicAccess",
+          "locationName":"publicAccess"
+        }
+      }
+    },
+    "S3BucketDetails":{
+      "type":"list",
+      "member":{"shape":"S3BucketDetail"}
     },
     "SecurityGroup":{
       "type":"structure",
@@ -3438,6 +3604,7 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "Timestamp":{"type":"timestamp"},
     "UnarchiveFindingsRequest":{
       "type":"structure",
       "required":[

@@ -40,7 +40,7 @@
     "ListFindings": "<p>Lists Amazon GuardDuty findings for the specified detector ID.</p>",
     "ListIPSets": "<p>Lists the IPSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the IPSets returned are the IPSets from the associated master account.</p>",
     "ListInvitations": "<p>Lists all GuardDuty membership invitations that were sent to the current AWS account.</p>",
-    "ListMembers": "<p>Lists details about associated member accounts for the current GuardDuty master account.</p>",
+    "ListMembers": "<p>Lists details about all member accounts for the current GuardDuty master account.</p>",
     "ListOrganizationAdminAccounts": "<p>Lists the accounts configured as GuardDuty delegated administrators.</p>",
     "ListPublishingDestinations": "<p>Returns a list of publishing destinations associated with the specified <code>dectectorId</code>.</p>",
     "ListTagsForResource": "<p>Lists tags for a resource. Tagging is currently supported for detectors, finding filters, IP sets, and threat intel sets, with a limit of 50 tags per resource. When invoked, this operation returns all assigned tags for a given resource.</p>",
@@ -67,6 +67,12 @@
     "AcceptInvitationResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "AccessControlList": {
+      "base": "<p>Contains information on the current access control policies for the bucket.</p>",
+      "refs": {
+        "BucketLevelPermissions$AccessControlList": "<p>Contains information on how Access Control Policies are applied to the bucket.</p>"
       }
     },
     "AccessKeyDetails": {
@@ -109,6 +115,12 @@
         "InviteMembersRequest$AccountIds": "<p>A list of account IDs of the accounts that you want to invite to GuardDuty as members.</p>",
         "StartMonitoringMembersRequest$AccountIds": "<p>A list of account IDs of the GuardDuty member accounts to start monitoring.</p>",
         "StopMonitoringMembersRequest$AccountIds": "<p>A list of account IDs for the member accounts to stop monitoring.</p>"
+      }
+    },
+    "AccountLevelPermissions": {
+      "base": "<p>Contains information about the account level permissions on the S3 bucket.</p>",
+      "refs": {
+        "PermissionConfiguration$AccountLevelPermissions": "<p>Contains information about the account level permissions on the S3 bucket.</p>"
       }
     },
     "Action": {
@@ -156,9 +168,24 @@
       "refs": {
       }
     },
+    "BlockPublicAccess": {
+      "base": "<p>Contains information on how the bucker owner's S3 Block Public Access settings are being applied to the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html\">S3 Block Public Access</a> for more information. </p>",
+      "refs": {
+        "AccountLevelPermissions$BlockPublicAccess": "<p>Describes the S3 Block Public Access settings of the bucket's parent account.</p>",
+        "BucketLevelPermissions$BlockPublicAccess": "<p>Contains information on which account level S3 Block Public Access settings are applied to the S3 bucket.</p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
+        "AccessControlList$AllowsPublicReadAccess": "<p>A value that indicates whether public read access for the bucket is enabled through an Access Control List (ACL).</p>",
+        "AccessControlList$AllowsPublicWriteAccess": "<p>A value that indicates whether public write access for the bucket is enabled through an Access Control List (ACL).</p>",
+        "BlockPublicAccess$IgnorePublicAcls": "<p>Indicates if S3 Block Public Access is set to <code>IgnorePublicAcls</code>.</p>",
+        "BlockPublicAccess$RestrictPublicBuckets": "<p>Indicates if S3 Block Public Access is set to <code>RestrictPublicBuckets</code>.</p>",
+        "BlockPublicAccess$BlockPublicAcls": "<p>Indicates if S3 Block Public Access is set to <code>BlockPublicAcls</code>.</p>",
+        "BlockPublicAccess$BlockPublicPolicy": "<p>Indicates if S3 Block Public Access is set to <code>BlockPublicPolicy</code>.</p>",
+        "BucketPolicy$AllowsPublicReadAccess": "<p>A value that indicates whether public read access for the bucket is enabled through a bucket policy.</p>",
+        "BucketPolicy$AllowsPublicWriteAccess": "<p>A value that indicates whether public write access for the bucket is enabled through a bucket policy.</p>",
         "CreateDetectorRequest$Enable": "<p>A Boolean value that specifies whether the detector is to be enabled.</p>",
         "CreateIPSetRequest$Activate": "<p>A Boolean value that indicates whether GuardDuty is to start using the uploaded IPSet.</p>",
         "CreateThreatIntelSetRequest$Activate": "<p>A Boolean value that indicates whether GuardDuty is to start using the uploaded ThreatIntelSet.</p>",
@@ -172,6 +199,18 @@
         "UpdateIPSetRequest$Activate": "<p>The updated Boolean value that specifies whether the IPSet is active or not.</p>",
         "UpdateOrganizationConfigurationRequest$AutoEnable": "<p>Indicates whether to automatically enable member accounts in the organization.</p>",
         "UpdateThreatIntelSetRequest$Activate": "<p>The updated Boolean value that specifies whether the ThreateIntelSet is active or not.</p>"
+      }
+    },
+    "BucketLevelPermissions": {
+      "base": "<p>Contains information about the bucket level permissions for the S3 bucket.</p>",
+      "refs": {
+        "PermissionConfiguration$BucketLevelPermissions": "<p>Contains information about the bucket level permissions for the S3 bucket.</p>"
+      }
+    },
+    "BucketPolicy": {
+      "base": "<p>Contains information on the current bucket policies for the S3 bucket.</p>",
+      "refs": {
+        "BucketLevelPermissions$BucketPolicy": "<p>Contains information on the bucket policies for the S3 bucket.</p>"
       }
     },
     "City": {
@@ -292,6 +331,12 @@
     "DeclineInvitationsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DefaultServerSideEncryption": {
+      "base": "<p>Contains information on the server side encryption method used in the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AmazonS3/atest/dev/serv-side-encryption.html\">S3 Server-Side Encryption</a> for more information.</p>",
+      "refs": {
+        "S3BucketDetail$DefaultServerSideEncryption": "<p>Describes the server side encryption method used in the S3 bucket.</p>"
       }
     },
     "DeleteDetectorRequest": {
@@ -620,7 +665,7 @@
         "CreateFilterRequest$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p> <p>You can only use the following attributes to query findings:</p> <ul> <li> <p>accountId</p> </li> <li> <p>region</p> </li> <li> <p>confidence</p> </li> <li> <p>id</p> </li> <li> <p>resource.accessKeyDetails.accessKeyId</p> </li> <li> <p>resource.accessKeyDetails.principalId</p> </li> <li> <p>resource.accessKeyDetails.userName</p> </li> <li> <p>resource.accessKeyDetails.userType</p> </li> <li> <p>resource.instanceDetails.iamInstanceProfile.id</p> </li> <li> <p>resource.instanceDetails.imageId</p> </li> <li> <p>resource.instanceDetails.instanceId</p> </li> <li> <p>resource.instanceDetails.outpostArn</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.ipv6Addresses</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicDnsName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicIp</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.subnetId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.vpcId</p> </li> <li> <p>resource.instanceDetails.tags.key</p> </li> <li> <p>resource.instanceDetails.tags.value</p> </li> <li> <p>resource.resourceType</p> </li> <li> <p>service.action.actionType</p> </li> <li> <p>service.action.awsApiCallAction.api</p> </li> <li> <p>service.action.awsApiCallAction.callerType</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.dnsRequestAction.domain</p> </li> <li> <p>service.action.networkConnectionAction.blocked</p> </li> <li> <p>service.action.networkConnectionAction.connectionDirection</p> </li> <li> <p>service.action.networkConnectionAction.localPortDetails.port</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.networkConnectionAction.localIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.networkConnectionAction.remotePortDetails.port</p> </li> <li> <p>service.additionalInfo.threatListName</p> </li> <li> <p>service.archived</p> <p>When this attribute is set to TRUE, only archived findings are listed. When it's set to FALSE, only unarchived findings are listed. When this attribute is not set, all existing findings are listed.</p> </li> <li> <p>service.resourceRole</p> </li> <li> <p>severity</p> </li> <li> <p>type</p> </li> <li> <p>updatedAt</p> <p>Type: ISO 8601 string format: YYYY-MM-DDTHH:MM:SS.SSSZ or YYYY-MM-DDTHH:MM:SSZ depending on whether the value contains milliseconds.</p> </li> </ul>",
         "GetFilterResponse$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p>",
         "GetFindingsStatisticsRequest$FindingCriteria": "<p>Represents the criteria that is used for querying findings.</p>",
-        "ListFindingsRequest$FindingCriteria": "<p>Represents the criteria used for querying findings. Valid values include:</p> <ul> <li> <p>JSON field name</p> </li> <li> <p>accountId</p> </li> <li> <p>region</p> </li> <li> <p>confidence</p> </li> <li> <p>id</p> </li> <li> <p>resource.accessKeyDetails.accessKeyId</p> </li> <li> <p>resource.accessKeyDetails.principalId</p> </li> <li> <p>resource.accessKeyDetails.userName</p> </li> <li> <p>resource.accessKeyDetails.userType</p> </li> <li> <p>resource.instanceDetails.iamInstanceProfile.id</p> </li> <li> <p>resource.instanceDetails.imageId</p> </li> <li> <p>resource.instanceDetails.instanceId</p> </li> <li> <p>resource.instanceDetails.outpostArn</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.ipv6Addresses</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicDnsName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicIp</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.subnetId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.vpcId</p> </li> <li> <p>resource.instanceDetails.tags.key</p> </li> <li> <p>resource.instanceDetails.tags.value</p> </li> <li> <p>resource.resourceType</p> </li> <li> <p>service.action.actionType</p> </li> <li> <p>service.action.awsApiCallAction.api</p> </li> <li> <p>service.action.awsApiCallAction.callerType</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.dnsRequestAction.domain</p> </li> <li> <p>service.action.networkConnectionAction.blocked</p> </li> <li> <p>service.action.networkConnectionAction.connectionDirection</p> </li> <li> <p>service.action.networkConnectionAction.localPortDetails.port</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.networkConnectionAction.localIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.networkConnectionAction.remotePortDetails.port</p> </li> <li> <p>service.additionalInfo.threatListName</p> </li> <li> <p>service.archived</p> <p>When this attribute is set to 'true', only archived findings are listed. When it's set to 'false', only unarchived findings are listed. When this attribute is not set, all existing findings are listed.</p> </li> <li> <p>service.resourceRole</p> </li> <li> <p>severity</p> </li> <li> <p>type</p> </li> <li> <p>updatedAt</p> <p>Type: Timestamp in Unix Epoch millisecond format: 1486685375000</p> </li> </ul>",
+        "ListFindingsRequest$FindingCriteria": "<p>Represents the criteria used for querying findings. Valid values include:</p> <ul> <li> <p>JSON field name</p> </li> <li> <p>accountId</p> </li> <li> <p>region</p> </li> <li> <p>confidence</p> </li> <li> <p>id</p> </li> <li> <p>resource.accessKeyDetails.accessKeyId</p> </li> <li> <p>resource.accessKeyDetails.principalId</p> </li> <li> <p>resource.accessKeyDetails.userName</p> </li> <li> <p>resource.accessKeyDetails.userType</p> </li> <li> <p>resource.instanceDetails.iamInstanceProfile.id</p> </li> <li> <p>resource.instanceDetails.imageId</p> </li> <li> <p>resource.instanceDetails.instanceId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.ipv6Addresses</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicDnsName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.publicIp</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.securityGroups.groupName</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.subnetId</p> </li> <li> <p>resource.instanceDetails.networkInterfaces.vpcId</p> </li> <li> <p>resource.instanceDetails.tags.key</p> </li> <li> <p>resource.instanceDetails.tags.value</p> </li> <li> <p>resource.resourceType</p> </li> <li> <p>service.action.actionType</p> </li> <li> <p>service.action.awsApiCallAction.api</p> </li> <li> <p>service.action.awsApiCallAction.callerType</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.awsApiCallAction.serviceName</p> </li> <li> <p>service.action.dnsRequestAction.domain</p> </li> <li> <p>service.action.networkConnectionAction.blocked</p> </li> <li> <p>service.action.networkConnectionAction.connectionDirection</p> </li> <li> <p>service.action.networkConnectionAction.localPortDetails.port</p> </li> <li> <p>service.action.networkConnectionAction.protocol</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.city.cityName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.country.countryName</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.ipAddressV4</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asn</p> </li> <li> <p>service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg</p> </li> <li> <p>service.action.networkConnectionAction.remotePortDetails.port</p> </li> <li> <p>service.additionalInfo.threatListName</p> </li> <li> <p>service.archived</p> <p>When this attribute is set to 'true', only archived findings are listed. When it's set to 'false', only unarchived findings are listed. When this attribute is not set, all existing findings are listed.</p> </li> <li> <p>service.resourceRole</p> </li> <li> <p>severity</p> </li> <li> <p>type</p> </li> <li> <p>updatedAt</p> <p>Type: Timestamp in Unix Epoch millisecond format: 1486685375000</p> </li> </ul>",
         "UpdateFilterRequest$FindingCriteria": "<p>Represents the criteria to be used in the filter for querying findings.</p>"
       }
     },
@@ -984,12 +1029,12 @@
     "Location": {
       "base": null,
       "refs": {
-        "CreateIPSetRequest$Location": "<p>The URI of the file that contains the IPSet.</p>",
-        "CreateThreatIntelSetRequest$Location": "<p>The URI of the file that contains the ThreatIntelSet.</p>",
-        "GetIPSetResponse$Location": "<p>The URI of the file that contains the IPSet.</p>",
-        "GetThreatIntelSetResponse$Location": "<p>The URI of the file that contains the ThreatIntelSet.</p>",
-        "UpdateIPSetRequest$Location": "<p>The updated URI of the file that contains the IPSet.</p>",
-        "UpdateThreatIntelSetRequest$Location": "<p>The updated URI of the file that contains the ThreateIntelSet.</p>"
+        "CreateIPSetRequest$Location": "<p>The URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>",
+        "CreateThreatIntelSetRequest$Location": "<p>The URI of the file that contains the ThreatIntelSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>",
+        "GetIPSetResponse$Location": "<p>The URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>",
+        "GetThreatIntelSetResponse$Location": "<p>The URI of the file that contains the ThreatIntelSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>",
+        "UpdateIPSetRequest$Location": "<p>The updated URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>",
+        "UpdateThreatIntelSetRequest$Location": "<p>The updated URI of the file that contains the ThreateIntelSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.</p>"
       }
     },
     "Long": {
@@ -1088,6 +1133,18 @@
         "RemoteIpDetails$Organization": "<p>The ISP organization information of the remote IP address.</p>"
       }
     },
+    "Owner": {
+      "base": "<p>Contains information on the owner of the bucket.</p>",
+      "refs": {
+        "S3BucketDetail$Owner": "<p>The owner of the S3 bucket.</p>"
+      }
+    },
+    "PermissionConfiguration": {
+      "base": "<p>Contains information about how permissions are configured for the S3 bucket.</p>",
+      "refs": {
+        "PublicAccess$PermissionConfiguration": "<p>Contains information about how permissions are configured for the S3 bucket.</p>"
+      }
+    },
     "PortProbeAction": {
       "base": "<p>Contains information about the PORT_PROBE action described in the finding.</p>",
       "refs": {
@@ -1130,6 +1187,12 @@
         "InstanceDetails$ProductCodes": "<p>The product code of the EC2 instance.</p>"
       }
     },
+    "PublicAccess": {
+      "base": "<p>Describes the public access policies that apply to the S3 bucket.</p>",
+      "refs": {
+        "S3BucketDetail$PublicAccess": "<p>Describes the public access policies that apply to the S3 bucket.</p>"
+      }
+    },
     "PublishingStatus": {
       "base": null,
       "refs": {
@@ -1155,6 +1218,18 @@
       "base": "<p>Contains information about the AWS resource associated with the activity that prompted GuardDuty to generate a finding.</p>",
       "refs": {
         "Finding$Resource": null
+      }
+    },
+    "S3BucketDetail": {
+      "base": null,
+      "refs": {
+        "S3BucketDetails$member": null
+      }
+    },
+    "S3BucketDetails": {
+      "base": "<p>Contains information on the S3 bucket.</p>",
+      "refs": {
+        "Resource$S3BucketDetails": "<p>Contains information on the S3 bucket.</p>"
       }
     },
     "SecurityGroup": {
@@ -1226,6 +1301,8 @@
         "CreatePublishingDestinationResponse$DestinationId": "<p>The ID of the publishing destination that is created.</p>",
         "CreateThreatIntelSetResponse$ThreatIntelSetId": "<p>The ID of the ThreatIntelSet resource.</p>",
         "Criterion$key": null,
+        "DefaultServerSideEncryption$EncryptionType": "<p>The type of encryption used for objects within the S3 bucket.</p>",
+        "DefaultServerSideEncryption$KmsMasterKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS encryption key. Only available if the bucket <code>EncryptionType</code> is <code>aws:kms</code>.</p>",
         "DeleteFilterRequest$FilterName": "<p>The name of the filter that you want to delete.</p>",
         "DeleteIPSetRequest$IpSetId": "<p>The unique ID of the IPSet to delete.</p>",
         "DeletePublishingDestinationRequest$DestinationId": "<p>The ID of the publishing destination to delete.</p>",
@@ -1287,7 +1364,7 @@
         "ListInvitationsRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>",
         "ListInvitationsResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "ListMembersRequest$NextToken": "<p>You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>",
-        "ListMembersRequest$OnlyAssociated": "<p>Specifies what member accounts the response includes based on their relationship status with the master account. The default value is \"true\". If set to \"false\" the response includes all existing member accounts (including members who haven't been invited yet or have been disassociated).</p>",
+        "ListMembersRequest$OnlyAssociated": "<p>Specifies whether to only return associated members or to return all members (including members who haven't been invited yet or have been disassociated).</p>",
         "ListMembersResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
         "ListOrganizationAdminAccountsRequest$NextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListOrganizationAdminAccountsResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
@@ -1319,13 +1396,18 @@
         "Organization$AsnOrg": "<p>The organization that registered this ASN.</p>",
         "Organization$Isp": "<p>The ISP information for the internet provider.</p>",
         "Organization$Org": "<p>The name of the internet provider.</p>",
+        "Owner$Id": "<p>The canonical user ID of the bucket owner. For information about locating your canonical user ID see <a href=\"https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingCanonicalId\">Finding Your Account Canonical User ID.</a> </p>",
         "PrivateIpAddressDetails$PrivateDnsName": "<p>The private DNS name of the EC2 instance.</p>",
         "PrivateIpAddressDetails$PrivateIpAddress": "<p>The private IP address of the EC2 instance.</p>",
         "ProductCode$Code": "<p>The product code information.</p>",
         "ProductCode$ProductType": "<p>The product code type.</p>",
+        "PublicAccess$EffectivePermission": "<p>Describes the effective permission on this bucket after factoring all attached policies.</p>",
         "RemoteIpDetails$IpAddressV4": "<p>The IPv4 remote address of the connection.</p>",
         "RemotePortDetails$PortName": "<p>The port name of the remote connection.</p>",
         "Resource$ResourceType": "<p>The type of AWS resource.</p>",
+        "S3BucketDetail$Arn": "<p>The Amazon Resource Name (ARN) of the S3 bucket.</p>",
+        "S3BucketDetail$Name": "<p>The name of the S3 bucket.</p>",
+        "S3BucketDetail$Type": "<p>Describes whether the bucket is a source or destination bucket.</p>",
         "SecurityGroup$GroupId": "<p>The security group ID of the EC2 instance.</p>",
         "SecurityGroup$GroupName": "<p>The security group name of the EC2 instance.</p>",
         "Service$EventFirstSeen": "<p>The first-seen timestamp of the activity that prompted GuardDuty to generate this finding.</p>",
@@ -1400,7 +1482,8 @@
     "Tags": {
       "base": null,
       "refs": {
-        "InstanceDetails$Tags": "<p>The tags of the EC2 instance.</p>"
+        "InstanceDetails$Tags": "<p>The tags of the EC2 instance.</p>",
+        "S3BucketDetail$Tags": "<p>All tags attached to the S3 bucket</p>"
       }
     },
     "ThreatIntelSetFormat": {
@@ -1438,6 +1521,12 @@
       "base": null,
       "refs": {
         "ThreatIntelligenceDetail$ThreatNames": "<p>A list of names of the threats in the threat intelligence list that triggered the finding.</p>"
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "S3BucketDetail$CreatedAt": "<p>The date and time the bucket was created at.</p>"
       }
     },
     "UnarchiveFindingsRequest": {

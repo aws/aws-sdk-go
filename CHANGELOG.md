@@ -1,3 +1,10 @@
+Release v1.31.9 (2020-06-02)
+===
+
+### Service Client Updates
+* `service/guardduty`: Updates service API and documentation
+  * Amazon GuardDuty findings now include S3 bucket details under the resource section if an S3 Bucket was one of the affected resources
+
 Release v1.31.8 (2020-06-01)
 ===
 
