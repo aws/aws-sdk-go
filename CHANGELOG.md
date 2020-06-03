@@ -1,3 +1,20 @@
+Release v1.31.10 (2020-06-03)
+===
+
+### Service Client Updates
+* `service/directconnect`: Updates service API and documentation
+  * This release supports the virtual interface failover test, which allows you to verify that traffic routes over redundant virtual interfaces when you bring your primary virtual interface out of service.
+* `service/elasticache`: Updates service API and documentation
+  * This release improves the Multi-AZ feature in ElastiCache by adding a separate flag and proper validations.
+* `service/es`: Updates service API, documentation, and paginators
+  * Amazon Elasticsearch Service now offers support for cross-cluster search, enabling you to perform searches, aggregations, and visualizations across multiple Amazon Elasticsearch Service domains with a single query or from a single Kibana interface. New feature includes the ability to setup connection, required to perform cross-cluster search, between domains using an approval workflow.
+* `service/glue`: Updates service API and documentation
+  * Adding databaseName in the response for GetUserDefinedFunctions() API.
+* `service/iam`: Updates service API and documentation
+  * GenerateServiceLastAccessedDetails will now return ActionLastAccessed details for certain S3 control plane actions
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for the encoding of VP8 or VP9 video in WebM container with Vorbis or Opus audio.
+
 Release v1.31.9 (2020-06-02)
 ===
 

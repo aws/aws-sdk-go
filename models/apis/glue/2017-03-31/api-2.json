@@ -6230,6 +6230,7 @@
       "type":"structure",
       "members":{
         "FunctionName":{"shape":"NameString"},
+        "DatabaseName":{"shape":"NameString"},
         "ClassName":{"shape":"NameString"},
         "OwnerName":{"shape":"NameString"},
         "OwnerType":{"shape":"PrincipalType"},

@@ -1825,6 +1825,7 @@
         "GlobalReplicationGroupId":{"shape":"String"},
         "PrimaryClusterId":{"shape":"String"},
         "AutomaticFailoverEnabled":{"shape":"BooleanOptional"},
+        "MultiAZEnabled":{"shape":"BooleanOptional"},
         "NumCacheClusters":{"shape":"IntegerOptional"},
         "PreferredCacheClusterAZs":{"shape":"AvailabilityZonesList"},
         "NumNodeGroups":{"shape":"IntegerOptional"},
@@ -2661,6 +2662,7 @@
         "PrimaryClusterId":{"shape":"String"},
         "SnapshottingClusterId":{"shape":"String"},
         "AutomaticFailoverEnabled":{"shape":"BooleanOptional"},
+        "MultiAZEnabled":{"shape":"BooleanOptional"},
         "NodeGroupId":{
           "shape":"String",
           "deprecated":true
@@ -2708,6 +2710,13 @@
       "members":{
         "ReplicationGroup":{"shape":"ReplicationGroup"}
       }
+    },
+    "MultiAZStatus":{
+      "type":"string",
+      "enum":[
+        "enabled",
+        "disabled"
+      ]
     },
     "NoOperationFault":{
       "type":"structure",
@@ -3107,6 +3116,7 @@
         "NodeGroups":{"shape":"NodeGroupList"},
         "SnapshottingClusterId":{"shape":"String"},
         "AutomaticFailover":{"shape":"AutomaticFailoverStatus"},
+        "MultiAZ":{"shape":"MultiAZStatus"},
         "ConfigurationEndpoint":{"shape":"Endpoint"},
         "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
         "SnapshotWindow":{"shape":"String"},

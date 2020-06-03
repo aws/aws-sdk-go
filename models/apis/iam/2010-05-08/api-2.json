@@ -2151,6 +2151,13 @@
     }
   },
   "shapes":{
+    "AccessAdvisorUsageGranularityType":{
+      "type":"string",
+      "enum":[
+        "SERVICE_LEVEL",
+        "ACTION_LEVEL"
+      ]
+    },
     "AccessDetail":{
       "type":"structure",
       "required":[
@@ -3062,7 +3069,8 @@
       "type":"structure",
       "required":["Arn"],
       "members":{
-        "Arn":{"shape":"arnType"}
+        "Arn":{"shape":"arnType"},
+        "Granularity":{"shape":"AccessAdvisorUsageGranularityType"}
       }
     },
     "GenerateServiceLastAccessedDetailsResponse":{
@@ -3399,6 +3407,7 @@
       ],
       "members":{
         "JobStatus":{"shape":"jobStatusType"},
+        "JobType":{"shape":"AccessAdvisorUsageGranularityType"},
         "JobCreationDate":{"shape":"dateType"},
         "ServicesLastAccessed":{"shape":"ServicesLastAccessed"},
         "JobCompletionDate":{"shape":"dateType"},
@@ -4746,7 +4755,9 @@
         "LastAuthenticated":{"shape":"dateType"},
         "ServiceNamespace":{"shape":"serviceNamespaceType"},
         "LastAuthenticatedEntity":{"shape":"arnType"},
-        "TotalAuthenticatedEntities":{"shape":"integerType"}
+        "LastAuthenticatedRegion":{"shape":"stringType"},
+        "TotalAuthenticatedEntities":{"shape":"integerType"},
+        "TrackedActionsLastAccessed":{"shape":"TrackedActionsLastAccessed"}
       }
     },
     "ServiceNotSupportedException":{
@@ -4941,6 +4952,19 @@
         "UserName":{"shape":"existingUserNameType"},
         "Tags":{"shape":"tagListType"}
       }
+    },
+    "TrackedActionLastAccessed":{
+      "type":"structure",
+      "members":{
+        "ActionName":{"shape":"stringType"},
+        "LastAccessedEntity":{"shape":"arnType"},
+        "LastAccessedTime":{"shape":"dateType"},
+        "LastAccessedRegion":{"shape":"stringType"}
+      }
+    },
+    "TrackedActionsLastAccessed":{
+      "type":"list",
+      "member":{"shape":"TrackedActionLastAccessed"}
     },
     "UnmodifiableEntityException":{
       "type":"structure",
