@@ -10,6 +10,20 @@
     "uid":"es-2015-01-01"
   },
   "operations":{
+    "AcceptInboundCrossClusterSearchConnection":{
+      "name":"AcceptInboundCrossClusterSearchConnection",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2015-01-01/es/ccs/inboundConnection/{ConnectionId}/accept"
+      },
+      "input":{"shape":"AcceptInboundCrossClusterSearchConnectionRequest"},
+      "output":{"shape":"AcceptInboundCrossClusterSearchConnectionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
     "AddTags":{
       "name":"AddTags",
       "http":{
@@ -74,6 +88,21 @@
         {"shape":"ValidationException"}
       ]
     },
+    "CreateOutboundCrossClusterSearchConnection":{
+      "name":"CreateOutboundCrossClusterSearchConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-01-01/es/ccs/outboundConnection"
+      },
+      "input":{"shape":"CreateOutboundCrossClusterSearchConnectionRequest"},
+      "output":{"shape":"CreateOutboundCrossClusterSearchConnectionResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
     "CreatePackage":{
       "name":"CreatePackage",
       "http":{
@@ -117,6 +146,32 @@
         {"shape":"BaseException"},
         {"shape":"InternalException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "DeleteInboundCrossClusterSearchConnection":{
+      "name":"DeleteInboundCrossClusterSearchConnection",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2015-01-01/es/ccs/inboundConnection/{ConnectionId}"
+      },
+      "input":{"shape":"DeleteInboundCrossClusterSearchConnectionRequest"},
+      "output":{"shape":"DeleteInboundCrossClusterSearchConnectionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
+    "DeleteOutboundCrossClusterSearchConnection":{
+      "name":"DeleteOutboundCrossClusterSearchConnection",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2015-01-01/es/ccs/outboundConnection/{ConnectionId}"
+      },
+      "input":{"shape":"DeleteOutboundCrossClusterSearchConnectionRequest"},
+      "output":{"shape":"DeleteOutboundCrossClusterSearchConnectionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"DisabledOperationException"}
       ]
     },
     "DeletePackage":{
@@ -195,6 +250,32 @@
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "DescribeInboundCrossClusterSearchConnections":{
+      "name":"DescribeInboundCrossClusterSearchConnections",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-01-01/es/ccs/inboundConnection/search"
+      },
+      "input":{"shape":"DescribeInboundCrossClusterSearchConnectionsRequest"},
+      "output":{"shape":"DescribeInboundCrossClusterSearchConnectionsResponse"},
+      "errors":[
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
+    "DescribeOutboundCrossClusterSearchConnections":{
+      "name":"DescribeOutboundCrossClusterSearchConnections",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-01-01/es/ccs/outboundConnection/search"
+      },
+      "input":{"shape":"DescribeOutboundCrossClusterSearchConnectionsRequest"},
+      "output":{"shape":"DescribeOutboundCrossClusterSearchConnectionsResponse"},
+      "errors":[
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"DisabledOperationException"}
       ]
     },
     "DescribePackages":{
@@ -414,6 +495,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "RejectInboundCrossClusterSearchConnection":{
+      "name":"RejectInboundCrossClusterSearchConnection",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2015-01-01/es/ccs/inboundConnection/{ConnectionId}/reject"
+      },
+      "input":{"shape":"RejectInboundCrossClusterSearchConnectionRequest"},
+      "output":{"shape":"RejectInboundCrossClusterSearchConnectionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
     "RemoveTags":{
       "name":"RemoveTags",
       "http":{
@@ -479,6 +573,23 @@
   },
   "shapes":{
     "ARN":{"type":"string"},
+    "AcceptInboundCrossClusterSearchConnectionRequest":{
+      "type":"structure",
+      "required":["CrossClusterSearchConnectionId"],
+      "members":{
+        "CrossClusterSearchConnectionId":{
+          "shape":"CrossClusterSearchConnectionId",
+          "location":"uri",
+          "locationName":"ConnectionId"
+        }
+      }
+    },
+    "AcceptInboundCrossClusterSearchConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "CrossClusterSearchConnection":{"shape":"InboundCrossClusterSearchConnection"}
+      }
+    },
     "AccessDeniedException":{
       "type":"structure",
       "members":{
@@ -646,6 +757,10 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ConnectionAlias":{
+      "type":"string",
+      "max":20
+    },
     "CreateElasticsearchDomainRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -672,6 +787,29 @@
         "DomainStatus":{"shape":"ElasticsearchDomainStatus"}
       }
     },
+    "CreateOutboundCrossClusterSearchConnectionRequest":{
+      "type":"structure",
+      "required":[
+        "SourceDomainInfo",
+        "DestinationDomainInfo",
+        "ConnectionAlias"
+      ],
+      "members":{
+        "SourceDomainInfo":{"shape":"DomainInformation"},
+        "DestinationDomainInfo":{"shape":"DomainInformation"},
+        "ConnectionAlias":{"shape":"ConnectionAlias"}
+      }
+    },
+    "CreateOutboundCrossClusterSearchConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "SourceDomainInfo":{"shape":"DomainInformation"},
+        "DestinationDomainInfo":{"shape":"DomainInformation"},
+        "ConnectionAlias":{"shape":"ConnectionAlias"},
+        "ConnectionStatus":{"shape":"OutboundCrossClusterSearchConnectionStatus"},
+        "CrossClusterSearchConnectionId":{"shape":"CrossClusterSearchConnectionId"}
+      }
+    },
     "CreatePackageRequest":{
       "type":"structure",
       "required":[
@@ -693,6 +831,8 @@
       }
     },
     "CreatedAt":{"type":"timestamp"},
+    "CrossClusterSearchConnectionId":{"type":"string"},
+    "CrossClusterSearchConnectionStatusMessage":{"type":"string"},
     "DeleteElasticsearchDomainRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -708,6 +848,40 @@
       "type":"structure",
       "members":{
         "DomainStatus":{"shape":"ElasticsearchDomainStatus"}
+      }
+    },
+    "DeleteInboundCrossClusterSearchConnectionRequest":{
+      "type":"structure",
+      "required":["CrossClusterSearchConnectionId"],
+      "members":{
+        "CrossClusterSearchConnectionId":{
+          "shape":"CrossClusterSearchConnectionId",
+          "location":"uri",
+          "locationName":"ConnectionId"
+        }
+      }
+    },
+    "DeleteInboundCrossClusterSearchConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "CrossClusterSearchConnection":{"shape":"InboundCrossClusterSearchConnection"}
+      }
+    },
+    "DeleteOutboundCrossClusterSearchConnectionRequest":{
+      "type":"structure",
+      "required":["CrossClusterSearchConnectionId"],
+      "members":{
+        "CrossClusterSearchConnectionId":{
+          "shape":"CrossClusterSearchConnectionId",
+          "location":"uri",
+          "locationName":"ConnectionId"
+        }
+      }
+    },
+    "DeleteOutboundCrossClusterSearchConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "CrossClusterSearchConnection":{"shape":"OutboundCrossClusterSearchConnection"}
       }
     },
     "DeletePackageRequest":{
@@ -816,6 +990,36 @@
       "type":"structure",
       "members":{
         "LimitsByRole":{"shape":"LimitsByRole"}
+      }
+    },
+    "DescribeInboundCrossClusterSearchConnectionsRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"FilterList"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeInboundCrossClusterSearchConnectionsResponse":{
+      "type":"structure",
+      "members":{
+        "CrossClusterSearchConnections":{"shape":"InboundCrossClusterSearchConnections"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeOutboundCrossClusterSearchConnectionsRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"FilterList"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeOutboundCrossClusterSearchConnectionsResponse":{
+      "type":"structure",
+      "members":{
+        "CrossClusterSearchConnections":{"shape":"OutboundCrossClusterSearchConnections"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "DescribePackagesFilter":{
@@ -978,6 +1182,15 @@
     "DomainInfoList":{
       "type":"list",
       "member":{"shape":"DomainInfo"}
+    },
+    "DomainInformation":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "OwnerId":{"shape":"OwnerId"},
+        "DomainName":{"shape":"DomainName"},
+        "Region":{"shape":"Region"}
+      }
     },
     "DomainName":{
       "type":"string",
@@ -1241,6 +1454,17 @@
     },
     "ErrorMessage":{"type":"string"},
     "ErrorType":{"type":"string"},
+    "Filter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NonEmptyString"},
+        "Values":{"shape":"ValueStringList"}
+      }
+    },
+    "FilterList":{
+      "type":"list",
+      "member":{"shape":"Filter"}
+    },
     "GUID":{
       "type":"string",
       "pattern":"\\p{XDigit}{8}-\\p{XDigit}{4}-\\p{XDigit}{4}-\\p{XDigit}{4}-\\p{XDigit}{12}"
@@ -1314,6 +1538,37 @@
       "min":1,
       "pattern":"[\\w-]+:[0-9a-f-]+"
     },
+    "InboundCrossClusterSearchConnection":{
+      "type":"structure",
+      "members":{
+        "SourceDomainInfo":{"shape":"DomainInformation"},
+        "DestinationDomainInfo":{"shape":"DomainInformation"},
+        "CrossClusterSearchConnectionId":{"shape":"CrossClusterSearchConnectionId"},
+        "ConnectionStatus":{"shape":"InboundCrossClusterSearchConnectionStatus"}
+      }
+    },
+    "InboundCrossClusterSearchConnectionStatus":{
+      "type":"structure",
+      "members":{
+        "StatusCode":{"shape":"InboundCrossClusterSearchConnectionStatusCode"},
+        "Message":{"shape":"CrossClusterSearchConnectionStatusMessage"}
+      }
+    },
+    "InboundCrossClusterSearchConnectionStatusCode":{
+      "type":"string",
+      "enum":[
+        "PENDING_ACCEPTANCE",
+        "APPROVED",
+        "REJECTING",
+        "REJECTED",
+        "DELETING",
+        "DELETED"
+      ]
+    },
+    "InboundCrossClusterSearchConnections":{
+      "type":"list",
+      "member":{"shape":"InboundCrossClusterSearchConnection"}
+    },
     "InstanceCount":{
       "type":"integer",
       "min":1
@@ -1339,6 +1594,13 @@
       "members":{
       },
       "error":{"httpStatusCode":500},
+      "exception":true
+    },
+    "InvalidPaginationTokenException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "InvalidTypeException":{
@@ -1578,6 +1840,10 @@
         "Status":{"shape":"OptionStatus"}
       }
     },
+    "NonEmptyString":{
+      "type":"string",
+      "min":1
+    },
     "OptionState":{
       "type":"string",
       "enum":[
@@ -1600,6 +1866,45 @@
         "State":{"shape":"OptionState"},
         "PendingDeletion":{"shape":"Boolean"}
       }
+    },
+    "OutboundCrossClusterSearchConnection":{
+      "type":"structure",
+      "members":{
+        "SourceDomainInfo":{"shape":"DomainInformation"},
+        "DestinationDomainInfo":{"shape":"DomainInformation"},
+        "CrossClusterSearchConnectionId":{"shape":"CrossClusterSearchConnectionId"},
+        "ConnectionAlias":{"shape":"ConnectionAlias"},
+        "ConnectionStatus":{"shape":"OutboundCrossClusterSearchConnectionStatus"}
+      }
+    },
+    "OutboundCrossClusterSearchConnectionStatus":{
+      "type":"structure",
+      "members":{
+        "StatusCode":{"shape":"OutboundCrossClusterSearchConnectionStatusCode"},
+        "Message":{"shape":"CrossClusterSearchConnectionStatusMessage"}
+      }
+    },
+    "OutboundCrossClusterSearchConnectionStatusCode":{
+      "type":"string",
+      "enum":[
+        "PENDING_ACCEPTANCE",
+        "VALIDATING",
+        "VALIDATION_FAILED",
+        "PROVISIONING",
+        "ACTIVE",
+        "REJECTED",
+        "DELETING",
+        "DELETED"
+      ]
+    },
+    "OutboundCrossClusterSearchConnections":{
+      "type":"list",
+      "member":{"shape":"OutboundCrossClusterSearchConnection"}
+    },
+    "OwnerId":{
+      "type":"string",
+      "max":12,
+      "min":12
     },
     "PackageDescription":{
       "type":"string",
@@ -1689,6 +1994,24 @@
       "member":{"shape":"RecurringCharge"}
     },
     "ReferencePath":{"type":"string"},
+    "Region":{"type":"string"},
+    "RejectInboundCrossClusterSearchConnectionRequest":{
+      "type":"structure",
+      "required":["CrossClusterSearchConnectionId"],
+      "members":{
+        "CrossClusterSearchConnectionId":{
+          "shape":"CrossClusterSearchConnectionId",
+          "location":"uri",
+          "locationName":"ConnectionId"
+        }
+      }
+    },
+    "RejectInboundCrossClusterSearchConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "CrossClusterSearchConnection":{"shape":"InboundCrossClusterSearchConnection"}
+      }
+    },
     "RemoveTagsRequest":{
       "type":"structure",
       "required":[
@@ -2025,6 +2348,11 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "ValueStringList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "min":1
     },
     "VolumeType":{
       "type":"string",

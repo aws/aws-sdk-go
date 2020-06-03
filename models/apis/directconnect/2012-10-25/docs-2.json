@@ -22,9 +22,9 @@
     "CreateDirectConnectGatewayAssociationProposal": "<p>Creates a proposal to associate the specified virtual private gateway or transit gateway with the specified Direct Connect gateway.</p> <p>You can only associate a Direct Connect gateway and virtual private gateway or transit gateway when the account that owns the Direct Connect gateway and the account that owns the virtual private gateway or transit gateway have the same AWS Payer ID.</p>",
     "CreateInterconnect": "<p>Creates an interconnect between an AWS Direct Connect Partner's network and a specific AWS Direct Connect location.</p> <p>An interconnect is a connection that is capable of hosting other connections. The AWS Direct Connect partner can use an interconnect to provide AWS Direct Connect hosted connections to customers through their own network services. Like a standard connection, an interconnect links the partner's network to an AWS Direct Connect location over a standard Ethernet fiber-optic cable. One end is connected to the partner's router, the other to an AWS Direct Connect router.</p> <p>You can automatically add the new interconnect to a link aggregation group (LAG) by specifying a LAG ID in the request. This ensures that the new interconnect is allocated on the same AWS Direct Connect endpoint that hosts the specified LAG. If there are no available ports on the endpoint, the request fails and no interconnect is created.</p> <p>For each end customer, the AWS Direct Connect Partner provisions a connection on their interconnect by calling <a>AllocateHostedConnection</a>. The end customer can then connect to AWS resources by creating a virtual interface on their connection, using the VLAN assigned to them by the AWS Direct Connect Partner.</p> <note> <p>Intended for use by AWS Direct Connect Partners only.</p> </note>",
     "CreateLag": "<p>Creates a link aggregation group (LAG) with the specified number of bundled physical connections between the customer network and a specific AWS Direct Connect location. A LAG is a logical interface that uses the Link Aggregation Control Protocol (LACP) to aggregate multiple interfaces, enabling you to treat them as a single interface.</p> <p>All connections in a LAG must use the same bandwidth and must terminate at the same AWS Direct Connect endpoint.</p> <p>You can have up to 10 connections per LAG. Regardless of this limit, if you request more connections for the LAG than AWS Direct Connect can allocate on a single endpoint, no LAG is created.</p> <p>You can specify an existing physical connection or interconnect to include in the LAG (which counts towards the total number of connections). Doing so interrupts the current physical connection or hosted connections, and re-establishes them as a member of the LAG. The LAG will be created on the same AWS Direct Connect endpoint to which the connection terminates. Any virtual interfaces associated with the connection are automatically disassociated and re-associated with the LAG. The connection ID does not change.</p> <p>If the AWS account used to create a LAG is a registered AWS Direct Connect Partner, the LAG is automatically enabled to host sub-connections. For a LAG owned by a partner, any associated virtual interfaces cannot be directly configured.</p>",
-    "CreatePrivateVirtualInterface": "<p>Creates a private virtual interface. A virtual interface is the VLAN that transports AWS Direct Connect traffic. A private virtual interface can be connected to either a Direct Connect gateway or a Virtual Private Gateway (VGW). Connecting the private virtual interface to a Direct Connect gateway enables the possibility for connecting to multiple VPCs, including VPCs in different AWS Regions. Connecting the private virtual interface to a VGW only provides access to a single VPC within the same Region.</p>",
+    "CreatePrivateVirtualInterface": "<p>Creates a private virtual interface. A virtual interface is the VLAN that transports AWS Direct Connect traffic. A private virtual interface can be connected to either a Direct Connect gateway or a Virtual Private Gateway (VGW). Connecting the private virtual interface to a Direct Connect gateway enables the possibility for connecting to multiple VPCs, including VPCs in different AWS Regions. Connecting the private virtual interface to a VGW only provides access to a single VPC within the same Region.</p> <p>Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an update to the underlying physical connection if it wasn't updated to support jumbo frames. Updating the connection disrupts network connectivity for all virtual interfaces associated with the connection for up to 30 seconds. To check whether your connection supports jumbo frames, call <a>DescribeConnections</a>. To check whether your virtual interface supports jumbo frames, call <a>DescribeVirtualInterfaces</a>.</p>",
     "CreatePublicVirtualInterface": "<p>Creates a public virtual interface. A virtual interface is the VLAN that transports AWS Direct Connect traffic. A public virtual interface supports sending traffic to public services of AWS such as Amazon S3.</p> <p>When creating an IPv6 public virtual interface (<code>addressFamily</code> is <code>ipv6</code>), leave the <code>customer</code> and <code>amazon</code> address fields blank to use auto-assigned IPv6 space. Custom IPv6 addresses are not supported.</p>",
-    "CreateTransitVirtualInterface": "<p>Creates a transit virtual interface. A transit virtual interface should be used to access one or more transit gateways associated with Direct Connect gateways. A transit virtual interface enables the connection of multiple VPCs attached to a transit gateway to a Direct Connect gateway.</p> <important> <p>If you associate your transit gateway with one or more Direct Connect gateways, the Autonomous System Number (ASN) used by the transit gateway and the Direct Connect gateway must be different. For example, if you use the default ASN 64512 for both your the transit gateway and Direct Connect gateway, the association request fails.</p> </important>",
+    "CreateTransitVirtualInterface": "<p>Creates a transit virtual interface. A transit virtual interface should be used to access one or more transit gateways associated with Direct Connect gateways. A transit virtual interface enables the connection of multiple VPCs attached to a transit gateway to a Direct Connect gateway.</p> <important> <p>If you associate your transit gateway with one or more Direct Connect gateways, the Autonomous System Number (ASN) used by the transit gateway and the Direct Connect gateway must be different. For example, if you use the default ASN 64512 for both your the transit gateway and Direct Connect gateway, the association request fails.</p> </important> <p>Setting the MTU of a virtual interface to 8500 (jumbo frames) can cause an update to the underlying physical connection if it wasn't updated to support jumbo frames. Updating the connection disrupts network connectivity for all virtual interfaces associated with the connection for up to 30 seconds. To check whether your connection supports jumbo frames, call <a>DescribeConnections</a>. To check whether your virtual interface supports jumbo frames, call <a>DescribeVirtualInterfaces</a>.</p>",
     "DeleteBGPPeer": "<p>Deletes the specified BGP peer on the specified virtual interface with the specified customer address and ASN.</p> <p>You cannot delete the last BGP peer from a virtual interface.</p>",
     "DeleteConnection": "<p>Deletes the specified connection.</p> <p>Deleting a connection only stops the AWS Direct Connect port hour and data transfer charges. If you are partnering with any third parties to connect with the AWS Direct Connect location, you must cancel your service with them separately.</p>",
     "DeleteDirectConnectGateway": "<p>Deletes the specified Direct Connect gateway. You must first delete all virtual interfaces that are attached to the Direct Connect gateway and disassociate all virtual private gateways associated with the Direct Connect gateway.</p>",
@@ -50,11 +50,14 @@
     "DescribeVirtualGateways": "<p>Lists the virtual private gateways owned by the AWS account.</p> <p>You can create one or more AWS Direct Connect private virtual interfaces linked to a virtual private gateway.</p>",
     "DescribeVirtualInterfaces": "<p>Displays all virtual interfaces for an AWS account. Virtual interfaces deleted fewer than 15 minutes before you make the request are also returned. If you specify a connection ID, only the virtual interfaces associated with the connection are returned. If you specify a virtual interface ID, then only a single virtual interface is returned.</p> <p>A virtual interface (VLAN) transmits the traffic between the AWS Direct Connect location and the customer network.</p>",
     "DisassociateConnectionFromLag": "<p>Disassociates a connection from a link aggregation group (LAG). The connection is interrupted and re-established as a standalone connection (the connection is not deleted; to delete the connection, use the <a>DeleteConnection</a> request). If the LAG has associated virtual interfaces or hosted connections, they remain associated with the LAG. A disassociated connection owned by an AWS Direct Connect Partner is automatically converted to an interconnect.</p> <p>If disassociating the connection would cause the LAG to fall below its setting for minimum number of operational connections, the request fails, except when it's the last member of the LAG. If all connections are disassociated, the LAG continues to exist as an empty LAG with no physical connections. </p>",
+    "ListVirtualInterfaceTestHistory": "<p>Lists the virtual interface failover test history.</p>",
+    "StartBgpFailoverTest": "<p>Starts the virtual interface failover test that verifies your configuration meets your resiliency requirements by placing the BGP peering session in the DOWN state. You can then send traffic to verify that there are no outages.</p> <p>You can run the test on public, private, transit, and hosted virtual interfaces.</p> <p>You can use <a href=\"https://docs.aws.amazon.com/directconnect/latest/APIReference/API_ListVirtualInterfaceTestHistory.html\">ListVirtualInterfaceTestHistory</a> to view the virtual interface test history.</p> <p>If you need to stop the test before the test interval completes, use <a href=\"https://docs.aws.amazon.com/directconnect/latest/APIReference/API_StopBgpFailoverTest.html\">StopBgpFailoverTest</a>.</p>",
+    "StopBgpFailoverTest": "<p>Stops the virtual interface failover test.</p>",
     "TagResource": "<p>Adds the specified tags to the specified AWS Direct Connect resource. Each resource can have a maximum of 50 tags.</p> <p>Each tag consists of a key and an optional value. If a tag with the same key is already associated with the resource, this action updates its value.</p>",
     "UntagResource": "<p>Removes one or more tags from the specified AWS Direct Connect resource.</p>",
     "UpdateDirectConnectGatewayAssociation": "<p>Updates the specified attributes of the Direct Connect gateway association.</p> <p>Add or remove prefixes from the association.</p>",
     "UpdateLag": "<p>Updates the attributes of the specified link aggregation group (LAG).</p> <p>You can update the following attributes:</p> <ul> <li> <p>The name of the LAG.</p> </li> <li> <p>The value for the minimum number of connections that must be operational for the LAG itself to be operational. </p> </li> </ul> <p>When you create a LAG, the default value for the minimum number of operational connections is zero (0). If you update this value and the number of operational connections falls below the specified value, the LAG automatically goes down to avoid over-utilization of the remaining connections. Adjust this value with care, as it could force the LAG down if it is set higher than the current number of operational connections.</p>",
-    "UpdateVirtualInterfaceAttributes": "<p>Updates the specified attributes of the specified virtual private interface.</p> <p>Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an update to the underlying physical connection if it wasn't updated to support jumbo frames. Updating the connection disrupts network connectivity for all virtual interfaces associated with the connection for up to 30 seconds. To check whether your connection supports jumbo frames, call <a>DescribeConnections</a>. To check whether your virtual interface supports jumbo frames, call <a>DescribeVirtualInterfaces</a>.</p>"
+    "UpdateVirtualInterfaceAttributes": "<p>Updates the specified attributes of the specified virtual private interface.</p> <p>Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an update to the underlying physical connection if it wasn't updated to support jumbo frames. Updating the connection disrupts network connectivity for all virtual interfaces associated with the connection for up to 30 seconds. To check whether your connection supports jumbo frames, call <a>DescribeConnections</a>. To check whether your virtual q interface supports jumbo frames, call <a>DescribeVirtualInterfaces</a>.</p>"
   },
   "shapes": {
     "ASN": {
@@ -217,7 +220,16 @@
       "base": null,
       "refs": {
         "BGPPeer$bgpPeerId": "<p>The ID of the BGP peer.</p>",
+        "BGPPeerIdList$member": null,
         "DeleteBGPPeerRequest$bgpPeerId": "<p>The ID of the BGP peer.</p>"
+      }
+    },
+    "BGPPeerIdList": {
+      "base": null,
+      "refs": {
+        "ListVirtualInterfaceTestHistoryRequest$bgpPeers": "<p>The BGP peers that were placed in the DOWN state during the virtual interface failover test.</p>",
+        "StartBgpFailoverTestRequest$bgpPeers": "<p>The BGP peers to place in the DOWN state.</p>",
+        "VirtualInterfaceTestHistory$bgpPeers": "<p>The BGP peers that were put in the DOWN state as part of the virtual interface failover test.</p>"
       }
     },
     "BGPPeerList": {
@@ -792,11 +804,24 @@
       "refs": {
       }
     },
+    "EndTime": {
+      "base": null,
+      "refs": {
+        "VirtualInterfaceTestHistory$endTime": "<p>The time that the virtual interface moves out of the DOWN state.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
         "DirectConnectClientException$message": null,
         "DirectConnectServerException$message": null
+      }
+    },
+    "FailureTestHistoryStatus": {
+      "base": null,
+      "refs": {
+        "ListVirtualInterfaceTestHistoryRequest$status": "<p>The status of the virtual interface failover test.</p>",
+        "VirtualInterfaceTestHistory$status": "<p>The status of the virtual interface failover test.</p>"
       }
     },
     "GatewayIdToAssociate": {
@@ -923,6 +948,16 @@
       "refs": {
       }
     },
+    "ListVirtualInterfaceTestHistoryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVirtualInterfaceTestHistoryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Loa": {
       "base": "<p>Information about a Letter of Authorization - Connecting Facility Assignment (LOA-CFA) for a connection.</p>",
       "refs": {
@@ -1013,7 +1048,8 @@
         "DescribeDirectConnectGatewayAssociationProposalsRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If <code>MaxResults</code> is given a value larger than 100, only 100 results are returned.</p>",
         "DescribeDirectConnectGatewayAssociationsRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If <code>MaxResults</code> is given a value larger than 100, only 100 results are returned.</p>",
         "DescribeDirectConnectGatewayAttachmentsRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If <code>MaxResults</code> is given a value larger than 100, only 100 results are returned.</p>",
-        "DescribeDirectConnectGatewaysRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If <code>MaxResults</code> is given a value larger than 100, only 100 results are returned.</p>"
+        "DescribeDirectConnectGatewaysRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If <code>MaxResults</code> is given a value larger than 100, only 100 results are returned.</p>",
+        "ListVirtualInterfaceTestHistoryRequest$maxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If <code>MaxResults</code> is given a value larger than 100, only 100 results are returned.</p>"
       }
     },
     "NewBGPPeer": {
@@ -1076,7 +1112,8 @@
         "DirectConnectGatewayAssociationProposal$directConnectGatewayOwnerAccount": "<p>The ID of the AWS account that owns the Direct Connect gateway.</p>",
         "DirectConnectGatewayAttachment$virtualInterfaceOwnerAccount": "<p>The ID of the AWS account that owns the virtual interface.</p>",
         "Lag$ownerAccount": "<p>The ID of the AWS account that owns the LAG.</p>",
-        "VirtualInterface$ownerAccount": "<p>The ID of the AWS account that owns the virtual interface.</p>"
+        "VirtualInterface$ownerAccount": "<p>The ID of the AWS account that owns the virtual interface.</p>",
+        "VirtualInterfaceTestHistory$ownerAccount": "<p>The owner ID of the tested virtual interface.</p>"
       }
     },
     "PaginationToken": {
@@ -1089,7 +1126,9 @@
         "DescribeDirectConnectGatewayAttachmentsRequest$nextToken": "<p>The token provided in the previous call to retrieve the next page.</p>",
         "DescribeDirectConnectGatewayAttachmentsResult$nextToken": "<p>The token to retrieve the next page.</p>",
         "DescribeDirectConnectGatewaysRequest$nextToken": "<p>The token provided in the previous call to retrieve the next page.</p>",
-        "DescribeDirectConnectGatewaysResult$nextToken": "<p>The token to retrieve the next page.</p>"
+        "DescribeDirectConnectGatewaysResult$nextToken": "<p>The token to retrieve the next page.</p>",
+        "ListVirtualInterfaceTestHistoryRequest$nextToken": "<p>The token for the next page of results.</p>",
+        "ListVirtualInterfaceTestHistoryResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
       }
     },
     "PartnerName": {
@@ -1192,12 +1231,38 @@
         "VirtualInterface$customerRouterConfig": "<p>The customer router configuration.</p>"
       }
     },
+    "StartBgpFailoverTestRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartBgpFailoverTestResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartTime": {
+      "base": null,
+      "refs": {
+        "VirtualInterfaceTestHistory$startTime": "<p>The time that the virtual interface moves to the DOWN state.</p>"
+      }
+    },
     "StateChangeError": {
       "base": null,
       "refs": {
         "DirectConnectGateway$stateChangeError": "<p>The error message if the state of an object failed to advance.</p>",
         "DirectConnectGatewayAssociation$stateChangeError": "<p>The error message if the state of an object failed to advance.</p>",
         "DirectConnectGatewayAttachment$stateChangeError": "<p>The error message if the state of an object failed to advance.</p>"
+      }
+    },
+    "StopBgpFailoverTestRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopBgpFailoverTestResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "Tag": {
@@ -1255,6 +1320,20 @@
       "base": null,
       "refs": {
         "Tag$value": "<p>The value.</p>"
+      }
+    },
+    "TestDuration": {
+      "base": null,
+      "refs": {
+        "StartBgpFailoverTestRequest$testDurationInMinutes": "<p>The time in minutes that the virtual interface failover test will last.</p> <p>Maximum value: 180 minutes (3 hours).</p> <p>Default: 180 minutes (3 hours).</p>",
+        "VirtualInterfaceTestHistory$testDurationInMinutes": "<p>The time that the virtual interface failover test ran in minutes.</p>"
+      }
+    },
+    "TestId": {
+      "base": null,
+      "refs": {
+        "ListVirtualInterfaceTestHistoryRequest$testId": "<p>The ID of the virtual interface failover test.</p>",
+        "VirtualInterfaceTestHistory$testId": "<p>The ID of the virtual interface failover test.</p>"
       }
     },
     "TooManyTagsException": {
@@ -1372,8 +1451,12 @@
         "DescribeDirectConnectGatewayAttachmentsRequest$virtualInterfaceId": "<p>The ID of the virtual interface.</p>",
         "DescribeVirtualInterfacesRequest$virtualInterfaceId": "<p>The ID of the virtual interface.</p>",
         "DirectConnectGatewayAttachment$virtualInterfaceId": "<p>The ID of the virtual interface.</p>",
+        "ListVirtualInterfaceTestHistoryRequest$virtualInterfaceId": "<p>The ID of the virtual interface that was tested.</p>",
+        "StartBgpFailoverTestRequest$virtualInterfaceId": "<p>The ID of the virtual interface you want to test.</p>",
+        "StopBgpFailoverTestRequest$virtualInterfaceId": "<p>The ID of the virtual interface you no longer want to test.</p>",
         "UpdateVirtualInterfaceAttributesRequest$virtualInterfaceId": "<p>The ID of the virtual private interface.</p>",
-        "VirtualInterface$virtualInterfaceId": "<p>The ID of the virtual interface.</p>"
+        "VirtualInterface$virtualInterfaceId": "<p>The ID of the virtual interface.</p>",
+        "VirtualInterfaceTestHistory$virtualInterfaceId": "<p>The ID of the tested virtual interface.</p>"
       }
     },
     "VirtualInterfaceList": {
@@ -1385,13 +1468,13 @@
     "VirtualInterfaceName": {
       "base": null,
       "refs": {
-        "NewPrivateVirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network.</p>",
-        "NewPrivateVirtualInterfaceAllocation$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network.</p>",
-        "NewPublicVirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network.</p>",
-        "NewPublicVirtualInterfaceAllocation$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network.</p>",
-        "NewTransitVirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network.</p>",
-        "NewTransitVirtualInterfaceAllocation$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network.</p>",
-        "VirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network.</p>"
+        "NewPrivateVirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
+        "NewPrivateVirtualInterfaceAllocation$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
+        "NewPublicVirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
+        "NewPublicVirtualInterfaceAllocation$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
+        "NewTransitVirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
+        "NewTransitVirtualInterfaceAllocation$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
+        "VirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>"
       }
     },
     "VirtualInterfaceRegion": {
@@ -1408,6 +1491,20 @@
         "ConfirmTransitVirtualInterfaceResponse$virtualInterfaceState": "<p>The state of the virtual interface. The following are the possible values:</p> <ul> <li> <p> <code>confirming</code>: The creation of the virtual interface is pending confirmation from the virtual interface owner. If the owner of the virtual interface is different from the owner of the connection on which it is provisioned, then the virtual interface will remain in this state until it is confirmed by the virtual interface owner.</p> </li> <li> <p> <code>verifying</code>: This state only applies to public virtual interfaces. Each public virtual interface needs validation before the virtual interface can be created.</p> </li> <li> <p> <code>pending</code>: A virtual interface is in this state from the time that it is created until the virtual interface is ready to forward traffic.</p> </li> <li> <p> <code>available</code>: A virtual interface that is able to forward traffic.</p> </li> <li> <p> <code>down</code>: A virtual interface that is BGP down.</p> </li> <li> <p> <code>deleting</code>: A virtual interface is in this state immediately after calling <a>DeleteVirtualInterface</a> until it can no longer forward traffic.</p> </li> <li> <p> <code>deleted</code>: A virtual interface that cannot forward traffic.</p> </li> <li> <p> <code>rejected</code>: The virtual interface owner has declined creation of the virtual interface. If a virtual interface in the <code>Confirming</code> state is deleted by the virtual interface owner, the virtual interface enters the <code>Rejected</code> state.</p> </li> <li> <p> <code>unknown</code>: The state of the virtual interface is not available.</p> </li> </ul>",
         "DeleteVirtualInterfaceResponse$virtualInterfaceState": "<p>The state of the virtual interface. The following are the possible values:</p> <ul> <li> <p> <code>confirming</code>: The creation of the virtual interface is pending confirmation from the virtual interface owner. If the owner of the virtual interface is different from the owner of the connection on which it is provisioned, then the virtual interface will remain in this state until it is confirmed by the virtual interface owner.</p> </li> <li> <p> <code>verifying</code>: This state only applies to public virtual interfaces. Each public virtual interface needs validation before the virtual interface can be created.</p> </li> <li> <p> <code>pending</code>: A virtual interface is in this state from the time that it is created until the virtual interface is ready to forward traffic.</p> </li> <li> <p> <code>available</code>: A virtual interface that is able to forward traffic.</p> </li> <li> <p> <code>down</code>: A virtual interface that is BGP down.</p> </li> <li> <p> <code>deleting</code>: A virtual interface is in this state immediately after calling <a>DeleteVirtualInterface</a> until it can no longer forward traffic.</p> </li> <li> <p> <code>deleted</code>: A virtual interface that cannot forward traffic.</p> </li> <li> <p> <code>rejected</code>: The virtual interface owner has declined creation of the virtual interface. If a virtual interface in the <code>Confirming</code> state is deleted by the virtual interface owner, the virtual interface enters the <code>Rejected</code> state.</p> </li> <li> <p> <code>unknown</code>: The state of the virtual interface is not available.</p> </li> </ul>",
         "VirtualInterface$virtualInterfaceState": "<p>The state of the virtual interface. The following are the possible values:</p> <ul> <li> <p> <code>confirming</code>: The creation of the virtual interface is pending confirmation from the virtual interface owner. If the owner of the virtual interface is different from the owner of the connection on which it is provisioned, then the virtual interface will remain in this state until it is confirmed by the virtual interface owner.</p> </li> <li> <p> <code>verifying</code>: This state only applies to public virtual interfaces. Each public virtual interface needs validation before the virtual interface can be created.</p> </li> <li> <p> <code>pending</code>: A virtual interface is in this state from the time that it is created until the virtual interface is ready to forward traffic.</p> </li> <li> <p> <code>available</code>: A virtual interface that is able to forward traffic.</p> </li> <li> <p> <code>down</code>: A virtual interface that is BGP down.</p> </li> <li> <p> <code>deleting</code>: A virtual interface is in this state immediately after calling <a>DeleteVirtualInterface</a> until it can no longer forward traffic.</p> </li> <li> <p> <code>deleted</code>: A virtual interface that cannot forward traffic.</p> </li> <li> <p> <code>rejected</code>: The virtual interface owner has declined creation of the virtual interface. If a virtual interface in the <code>Confirming</code> state is deleted by the virtual interface owner, the virtual interface enters the <code>Rejected</code> state.</p> </li> <li> <p> <code>unknown</code>: The state of the virtual interface is not available.</p> </li> </ul>"
+      }
+    },
+    "VirtualInterfaceTestHistory": {
+      "base": "<p>Information about the virtual interface failover test.</p>",
+      "refs": {
+        "StartBgpFailoverTestResponse$virtualInterfaceTest": "<p>Information about the virtual interface failover test.</p>",
+        "StopBgpFailoverTestResponse$virtualInterfaceTest": "<p>Information about the virtual interface failover test.</p>",
+        "VirtualInterfaceTestHistoryList$member": null
+      }
+    },
+    "VirtualInterfaceTestHistoryList": {
+      "base": null,
+      "refs": {
+        "ListVirtualInterfaceTestHistoryResponse$virtualInterfaceTestHistory": "<p>The ID of the tested virtual interface.</p>"
       }
     },
     "VirtualInterfaceType": {

@@ -198,6 +198,7 @@
         "CacheCluster$AtRestEncryptionEnabled": "<p>A flag that enables encryption at-rest when set to <code>true</code>.</p> <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the cluster is created. To enable at-rest encryption on a cluster you must set <code>AtRestEncryptionEnabled</code> to <code>true</code> when you create a cluster.</p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p>",
         "CreateCacheClusterMessage$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
         "CreateReplicationGroupMessage$AutomaticFailoverEnabled": "<p>Specifies whether a read-only replica is automatically promoted to read/write primary if the existing primary fails.</p> <p>If <code>true</code>, Multi-AZ is enabled for this replication group. If <code>false</code>, Multi-AZ is disabled for this replication group.</p> <p> <code>AutomaticFailoverEnabled</code> must be enabled for Redis (cluster mode enabled) replication groups.</p> <p>Default: false</p> <p>Amazon ElastiCache for Redis does not support Multi-AZ with automatic failover on:</p> <ul> <li> <p>Redis versions earlier than 2.8.6.</p> </li> <li> <p>Redis (cluster mode disabled): T1 node types.</p> </li> <li> <p>Redis (cluster mode enabled): T1 node types.</p> </li> </ul>",
+        "CreateReplicationGroupMessage$MultiAZEnabled": null,
         "CreateReplicationGroupMessage$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
         "CreateReplicationGroupMessage$TransitEncryptionEnabled": "<p>A flag that enables in-transit encryption when set to <code>true</code>.</p> <p>You cannot modify the value of <code>TransitEncryptionEnabled</code> after the cluster is created. To enable in-transit encryption on a cluster you must set <code>TransitEncryptionEnabled</code> to <code>true</code> when you create a cluster.</p> <p>This parameter is valid only if the <code>Engine</code> parameter is <code>redis</code>, the <code>EngineVersion</code> parameter is <code>3.2.6</code>, <code>4.x</code> or later, and the cluster is being created in an Amazon VPC.</p> <p>If you enable in-transit encryption, you must also specify a value for <code>CacheSubnetGroup</code>.</p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p> <important> <p>For HIPAA compliance, you must specify <code>TransitEncryptionEnabled</code> as <code>true</code>, an <code>AuthToken</code>, and a <code>CacheSubnetGroup</code>.</p> </important>",
         "CreateReplicationGroupMessage$AtRestEncryptionEnabled": "<p>A flag that enables encryption at rest when set to <code>true</code>.</p> <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the replication group is created. To enable encryption at rest on a replication group you must set <code>AtRestEncryptionEnabled</code> to <code>true</code> when you create the replication group. </p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p>",
@@ -214,6 +215,7 @@
         "ModifyCacheClusterMessage$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
         "ModifyGlobalReplicationGroupMessage$AutomaticFailoverEnabled": "<p>Determines whether a read replica is automatically promoted to read/write primary if the existing primary encounters a failure. </p>",
         "ModifyReplicationGroupMessage$AutomaticFailoverEnabled": "<p>Determines whether a read replica is automatically promoted to read/write primary if the existing primary encounters a failure.</p> <p>Valid values: <code>true</code> | <code>false</code> </p> <p>Amazon ElastiCache for Redis does not support Multi-AZ with automatic failover on:</p> <ul> <li> <p>Redis versions earlier than 2.8.6.</p> </li> <li> <p>Redis (cluster mode disabled): T1 node types.</p> </li> <li> <p>Redis (cluster mode enabled): T1 node types.</p> </li> </ul>",
+        "ModifyReplicationGroupMessage$MultiAZEnabled": null,
         "ModifyReplicationGroupMessage$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
         "ReplicationGroup$ClusterEnabled": "<p>A flag indicating whether or not this replication group is cluster enabled; i.e., whether its data can be partitioned across multiple shards (API/CLI: node groups).</p> <p>Valid values: <code>true</code> | <code>false</code> </p>",
         "ReplicationGroup$AuthTokenEnabled": "<p>A flag that enables using an <code>AuthToken</code> (password) when issuing Redis commands.</p> <p>Default: <code>false</code> </p>",
@@ -1132,6 +1134,12 @@
     "ModifyReplicationGroupShardConfigurationResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "MultiAZStatus": {
+      "base": null,
+      "refs": {
+        "ReplicationGroup$MultiAZ": null
       }
     },
     "NoOperationFault": {

@@ -9125,6 +9125,8 @@ type CreateReplicationGroupInput struct {
 	// The ID of the KMS key used to encrypt the disk in the cluster.
 	KmsKeyId *string `type:"string"`
 
+	MultiAZEnabled *bool `type:"boolean"`
+
 	// A list of node group (shard) configuration options. Each node group (shard)
 	// configuration has the following members: PrimaryAvailabilityZone, ReplicaAvailabilityZones,
 	// ReplicaCount, and Slots.
@@ -9411,6 +9413,12 @@ func (s *CreateReplicationGroupInput) SetGlobalReplicationGroupId(v string) *Cre
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateReplicationGroupInput) SetKmsKeyId(v string) *CreateReplicationGroupInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetMultiAZEnabled sets the MultiAZEnabled field's value.
+func (s *CreateReplicationGroupInput) SetMultiAZEnabled(v bool) *CreateReplicationGroupInput {
+	s.MultiAZEnabled = &v
 	return s
 }
 
@@ -13848,6 +13856,8 @@ type ModifyReplicationGroupInput struct {
 	// and create it anew with the earlier engine version.
 	EngineVersion *string `type:"string"`
 
+	MultiAZEnabled *bool `type:"boolean"`
+
 	// Deprecated. This parameter is not used.
 	//
 	// Deprecated: NodeGroupId has been deprecated
@@ -14007,6 +14017,12 @@ func (s *ModifyReplicationGroupInput) SetCacheSecurityGroupNames(v []*string) *M
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *ModifyReplicationGroupInput) SetEngineVersion(v string) *ModifyReplicationGroupInput {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetMultiAZEnabled sets the MultiAZEnabled field's value.
+func (s *ModifyReplicationGroupInput) SetMultiAZEnabled(v bool) *ModifyReplicationGroupInput {
+	s.MultiAZEnabled = &v
 	return s
 }
 
@@ -15451,6 +15467,8 @@ type ReplicationGroup struct {
 	// The names of all the cache clusters that are part of this replication group.
 	MemberClusters []*string `locationNameList:"ClusterId" type:"list"`
 
+	MultiAZ *string `type:"string" enum:"MultiAZStatus"`
+
 	// A list of node groups in this replication group. For Redis (cluster mode
 	// disabled) replication groups, this is a single-element list. For Redis (cluster
 	// mode enabled) replication groups, the list contains an entry for each node
@@ -15583,6 +15601,12 @@ func (s *ReplicationGroup) SetKmsKeyId(v string) *ReplicationGroup {
 // SetMemberClusters sets the MemberClusters field's value.
 func (s *ReplicationGroup) SetMemberClusters(v []*string) *ReplicationGroup {
 	s.MemberClusters = v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *ReplicationGroup) SetMultiAZ(v string) *ReplicationGroup {
+	s.MultiAZ = &v
 	return s
 }
 
@@ -17306,6 +17330,14 @@ const (
 
 	// ChangeTypeRequiresReboot is a ChangeType enum value
 	ChangeTypeRequiresReboot = "requires-reboot"
+)
+
+const (
+	// MultiAZStatusEnabled is a MultiAZStatus enum value
+	MultiAZStatusEnabled = "enabled"
+
+	// MultiAZStatusDisabled is a MultiAZStatus enum value
+	MultiAZStatusDisabled = "disabled"
 )
 
 const (
