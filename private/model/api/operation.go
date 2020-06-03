@@ -268,8 +268,8 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	{{- end }}
 
 	{{- if .EndpointDiscovery }}
-        // if custom endpoint is unset or set as an empty string 
-        // for the request, we skip endpoint discovery workflow
+		// if custom endpoint for the request is set to a non empty string,
+		// we skip the endpoint discovery workflow.
 		if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
 			{{- if not .EndpointDiscovery.Required }}
 				if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
