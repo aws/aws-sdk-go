@@ -1895,6 +1895,7 @@
       },
       "exception":true
     },
+    "ApplyOnlyAtCronInterval":{"type":"boolean"},
     "ApproveAfterDays":{
       "type":"integer",
       "max":100,
@@ -1960,7 +1961,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
-        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"},
+        "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"}
       }
     },
     "AssociationDescriptionList":{
@@ -2215,7 +2217,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
-        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"},
+        "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"}
       }
     },
     "AssociationVersionLimitExceeded":{
@@ -3001,7 +3004,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
-        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"},
+        "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"}
       }
     },
     "CreateAssociationBatchResult":{
@@ -3027,7 +3031,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
-        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"},
+        "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"}
       }
     },
     "CreateAssociationResult":{
@@ -8933,7 +8938,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
-        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"},
+        "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"}
       }
     },
     "UpdateAssociationResult":{

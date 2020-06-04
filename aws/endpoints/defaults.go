@@ -6212,6 +6212,15 @@ var awscnPartition = partition{
 				"cn-northwest-1": endpoint{},
 			},
 		},
+		"autoscaling-plans": service{
+			Defaults: endpoint{
+				Protocols: []string{"http", "https"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1":     endpoint{},
+				"cn-northwest-1": endpoint{},
+			},
+		},
 		"backup": service{
 
 			Endpoints: endpoints{

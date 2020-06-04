@@ -1289,6 +1289,8 @@ func (c *MediaPackageVod) ListTagsForResourceRequest(input *ListTagsForResourceI
 
 // ListTagsForResource API operation for AWS Elemental MediaPackage VOD.
 //
+// Returns a list of the tags assigned to the specified resource.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1361,6 +1363,9 @@ func (c *MediaPackageVod) TagResourceRequest(input *TagResourceInput) (req *requ
 }
 
 // TagResource API operation for AWS Elemental MediaPackage VOD.
+//
+// Adds tags to the specified resource. You can specify one or more tags to
+// add.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1435,6 +1440,9 @@ func (c *MediaPackageVod) UntagResourceRequest(input *UntagResourceInput) (req *
 
 // UntagResource API operation for AWS Elemental MediaPackage VOD.
 //
+// Removes tags from the specified resource. You can specify one or more tags
+// to remove.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1458,6 +1466,95 @@ func (c *MediaPackageVod) UntagResource(input *UntagResourceInput) (*UntagResour
 // for more information on using Contexts.
 func (c *MediaPackageVod) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdatePackagingGroup = "UpdatePackagingGroup"
+
+// UpdatePackagingGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePackagingGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePackagingGroup for more information on using the UpdatePackagingGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePackagingGroupRequest method.
+//    req, resp := client.UpdatePackagingGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/UpdatePackagingGroup
+func (c *MediaPackageVod) UpdatePackagingGroupRequest(input *UpdatePackagingGroupInput) (req *request.Request, output *UpdatePackagingGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePackagingGroup,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/packaging_groups/{id}",
+	}
+
+	if input == nil {
+		input = &UpdatePackagingGroupInput{}
+	}
+
+	output = &UpdatePackagingGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePackagingGroup API operation for AWS Elemental MediaPackage VOD.
+//
+// Updates a specific packaging group. You can't change the id attribute or
+// any other system-generated attributes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaPackage VOD's
+// API operation UpdatePackagingGroup for usage and error information.
+//
+// Returned Error Types:
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * NotFoundException
+//
+//   * ServiceUnavailableException
+//
+//   * TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/UpdatePackagingGroup
+func (c *MediaPackageVod) UpdatePackagingGroup(input *UpdatePackagingGroupInput) (*UpdatePackagingGroupOutput, error) {
+	req, out := c.UpdatePackagingGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePackagingGroupWithContext is the same as UpdatePackagingGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePackagingGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaPackageVod) UpdatePackagingGroupWithContext(ctx aws.Context, input *UpdatePackagingGroupInput, opts ...request.Option) (*UpdatePackagingGroupOutput, error) {
+	req, out := c.UpdatePackagingGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1547,6 +1644,61 @@ func (s *AssetShallow) SetSourceRoleArn(v string) *AssetShallow {
 // SetTags sets the Tags field's value.
 func (s *AssetShallow) SetTags(v map[string]*string) *AssetShallow {
 	s.Tags = v
+	return s
+}
+
+// CDN Authorization credentials
+type Authorization struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the secret in AWS Secrets Manager that
+	// is used for CDN authorization.
+	//
+	// CdnIdentifierSecret is a required field
+	CdnIdentifierSecret *string `locationName:"cdnIdentifierSecret" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage
+	// to communicate with AWS Secrets Manager.
+	//
+	// SecretsRoleArn is a required field
+	SecretsRoleArn *string `locationName:"secretsRoleArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Authorization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Authorization) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Authorization) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Authorization"}
+	if s.CdnIdentifierSecret == nil {
+		invalidParams.Add(request.NewErrParamRequired("CdnIdentifierSecret"))
+	}
+	if s.SecretsRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretsRoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCdnIdentifierSecret sets the CdnIdentifierSecret field's value.
+func (s *Authorization) SetCdnIdentifierSecret(v string) *Authorization {
+	s.CdnIdentifierSecret = &v
+	return s
+}
+
+// SetSecretsRoleArn sets the SecretsRoleArn field's value.
+func (s *Authorization) SetSecretsRoleArn(v string) *Authorization {
+	s.SecretsRoleArn = &v
 	return s
 }
 
@@ -2033,6 +2185,9 @@ func (s *CreatePackagingConfigurationOutput) SetTags(v map[string]*string) *Crea
 type CreatePackagingGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
@@ -2056,11 +2211,22 @@ func (s *CreatePackagingGroupInput) Validate() error {
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
+	if s.Authorization != nil {
+		if err := s.Authorization.Validate(); err != nil {
+			invalidParams.AddNested("Authorization", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *CreatePackagingGroupInput) SetAuthorization(v *Authorization) *CreatePackagingGroupInput {
+	s.Authorization = v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -2079,6 +2245,9 @@ type CreatePackagingGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	Arn *string `locationName:"arn" type:"string"`
+
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
 
 	DomainName *string `locationName:"domainName" type:"string"`
 
@@ -2101,6 +2270,12 @@ func (s CreatePackagingGroupOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreatePackagingGroupOutput) SetArn(v string) *CreatePackagingGroupOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *CreatePackagingGroupOutput) SetAuthorization(v *Authorization) *CreatePackagingGroupOutput {
+	s.Authorization = v
 	return s
 }
 
@@ -2773,6 +2948,9 @@ type DescribePackagingGroupOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
 	DomainName *string `locationName:"domainName" type:"string"`
 
 	Id *string `locationName:"id" type:"string"`
@@ -2794,6 +2972,12 @@ func (s DescribePackagingGroupOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribePackagingGroupOutput) SetArn(v string) *DescribePackagingGroupOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *DescribePackagingGroupOutput) SetAuthorization(v *Authorization) *DescribePackagingGroupOutput {
+	s.Authorization = v
 	return s
 }
 
@@ -3759,6 +3943,9 @@ type PackagingGroup struct {
 	// The ARN of the PackagingGroup.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
 	// The fully qualified domain name for Assets in the PackagingGroup.
 	DomainName *string `locationName:"domainName" type:"string"`
 
@@ -3782,6 +3969,12 @@ func (s PackagingGroup) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *PackagingGroup) SetArn(v string) *PackagingGroup {
 	s.Arn = &v
+	return s
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *PackagingGroup) SetAuthorization(v *Authorization) *PackagingGroup {
+	s.Authorization = v
 	return s
 }
 
@@ -4207,6 +4400,115 @@ func (s UntagResourceOutput) String() string {
 // GoString returns the string representation
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type UpdatePackagingGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdatePackagingGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePackagingGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePackagingGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePackagingGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Authorization != nil {
+		if err := s.Authorization.Validate(); err != nil {
+			invalidParams.AddNested("Authorization", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *UpdatePackagingGroupInput) SetAuthorization(v *Authorization) *UpdatePackagingGroupInput {
+	s.Authorization = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdatePackagingGroupInput) SetId(v string) *UpdatePackagingGroupInput {
+	s.Id = &v
+	return s
+}
+
+type UpdatePackagingGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
+	DomainName *string `locationName:"domainName" type:"string"`
+
+	Id *string `locationName:"id" type:"string"`
+
+	// A collection of tags associated with a resource
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s UpdatePackagingGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePackagingGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdatePackagingGroupOutput) SetArn(v string) *UpdatePackagingGroupOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *UpdatePackagingGroupOutput) SetAuthorization(v *Authorization) *UpdatePackagingGroupOutput {
+	s.Authorization = v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *UpdatePackagingGroupOutput) SetDomainName(v string) *UpdatePackagingGroupOutput {
+	s.DomainName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdatePackagingGroupOutput) SetId(v string) *UpdatePackagingGroupOutput {
+	s.Id = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdatePackagingGroupOutput) SetTags(v map[string]*string) *UpdatePackagingGroupOutput {
+	s.Tags = v
+	return s
 }
 
 const (

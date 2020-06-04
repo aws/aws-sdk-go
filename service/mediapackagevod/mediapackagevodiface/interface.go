@@ -128,6 +128,10 @@ type MediaPackageVodAPI interface {
 	UntagResource(*mediapackagevod.UntagResourceInput) (*mediapackagevod.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *mediapackagevod.UntagResourceInput, ...request.Option) (*mediapackagevod.UntagResourceOutput, error)
 	UntagResourceRequest(*mediapackagevod.UntagResourceInput) (*request.Request, *mediapackagevod.UntagResourceOutput)
+
+	UpdatePackagingGroup(*mediapackagevod.UpdatePackagingGroupInput) (*mediapackagevod.UpdatePackagingGroupOutput, error)
+	UpdatePackagingGroupWithContext(aws.Context, *mediapackagevod.UpdatePackagingGroupInput, ...request.Option) (*mediapackagevod.UpdatePackagingGroupOutput, error)
+	UpdatePackagingGroupRequest(*mediapackagevod.UpdatePackagingGroupInput) (*request.Request, *mediapackagevod.UpdatePackagingGroupOutput)
 }
 
 var _ MediaPackageVodAPI = (*mediapackagevod.MediaPackageVod)(nil)

@@ -4108,7 +4108,9 @@
         "NetworkOut",
         "StatusCheckFailed",
         "StatusCheckFailed_Instance",
-        "StatusCheckFailed_System"
+        "StatusCheckFailed_System",
+        "BurstCapacityTime",
+        "BurstCapacityPercentage"
       ]
     },
     "InstanceNetworking":{
@@ -4513,7 +4515,9 @@
         "DiskQueueDepth",
         "FreeStorageSpace",
         "NetworkReceiveThroughput",
-        "NetworkTransmitThroughput"
+        "NetworkTransmitThroughput",
+        "BurstCapacityTime",
+        "BurstCapacityPercentage"
       ]
     },
     "MetricPeriod":{

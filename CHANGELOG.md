@@ -1,3 +1,20 @@
+Release v1.31.11 (2020-06-04)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * New C5a instances, the latest generation of EC2's compute-optimized instances featuring AMD's 2nd Generation EPYC processors. C5a instances offer up to 96 vCPUs, 192 GiB of instance memory, 20 Gbps in Network bandwidth; New G4dn.metal bare metal instance with 8 NVIDIA T4 GPUs.
+* `service/lightsail`: Updates service API and documentation
+  * This release adds the BurstCapacityPercentage and BurstCapacityTime instance metrics, which allow you to track the burst capacity available to your instance.
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/meteringmarketplace`: Updates service documentation
+  * Documentation updates for meteringmarketplace
+* `service/ssm`: Updates service API and documentation
+  * SSM State Manager support for executing an association only at specified CRON schedule after creating/updating an association.
+
+### SDK Bugs
+* `private/model`: Fixes SDK not enabling endpoint discovery when endpoint is set to empty string ([#3349](https://github.com/aws/aws-sdk-go/pull/3349))
+
 Release v1.31.10 (2020-06-03)
 ===
 

@@ -5972,6 +5972,15 @@
           "cn-northwest-1" : { }
         }
       },
+      "autoscaling-plans" : {
+        "defaults" : {
+          "protocols" : [ "http", "https" ]
+        },
+        "endpoints" : {
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
+        }
+      },
       "backup" : {
         "endpoints" : {
           "cn-north-1" : { },
