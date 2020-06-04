@@ -111319,6 +111319,30 @@ const (
 	// InstanceTypeC5Metal is a InstanceType enum value
 	InstanceTypeC5Metal = "c5.metal"
 
+	// InstanceTypeC5aLarge is a InstanceType enum value
+	InstanceTypeC5aLarge = "c5a.large"
+
+	// InstanceTypeC5aXlarge is a InstanceType enum value
+	InstanceTypeC5aXlarge = "c5a.xlarge"
+
+	// InstanceTypeC5a2xlarge is a InstanceType enum value
+	InstanceTypeC5a2xlarge = "c5a.2xlarge"
+
+	// InstanceTypeC5a4xlarge is a InstanceType enum value
+	InstanceTypeC5a4xlarge = "c5a.4xlarge"
+
+	// InstanceTypeC5a8xlarge is a InstanceType enum value
+	InstanceTypeC5a8xlarge = "c5a.8xlarge"
+
+	// InstanceTypeC5a12xlarge is a InstanceType enum value
+	InstanceTypeC5a12xlarge = "c5a.12xlarge"
+
+	// InstanceTypeC5a16xlarge is a InstanceType enum value
+	InstanceTypeC5a16xlarge = "c5a.16xlarge"
+
+	// InstanceTypeC5a24xlarge is a InstanceType enum value
+	InstanceTypeC5a24xlarge = "c5a.24xlarge"
+
 	// InstanceTypeC5dLarge is a InstanceType enum value
 	InstanceTypeC5dLarge = "c5d.large"
 
@@ -111405,6 +111429,9 @@ const (
 
 	// InstanceTypeG4dn16xlarge is a InstanceType enum value
 	InstanceTypeG4dn16xlarge = "g4dn.16xlarge"
+
+	// InstanceTypeG4dnMetal is a InstanceType enum value
+	InstanceTypeG4dnMetal = "g4dn.metal"
 
 	// InstanceTypeCg14xlarge is a InstanceType enum value
 	InstanceTypeCg14xlarge = "cg1.4xlarge"

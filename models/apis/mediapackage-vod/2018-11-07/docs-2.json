@@ -14,9 +14,10 @@
     "ListAssets" : "Returns a collection of MediaPackage VOD Asset resources.",
     "ListPackagingConfigurations" : "Returns a collection of MediaPackage VOD PackagingConfiguration resources.",
     "ListPackagingGroups" : "Returns a collection of MediaPackage VOD PackagingGroup resources.",
-    "ListTagsForResource" : null,
-    "TagResource" : null,
-    "UntagResource" : null
+    "ListTagsForResource" : "Returns a list of the tags assigned to the specified resource.",
+    "TagResource" : "Adds tags to the specified resource. You can specify one or more tags to add.",
+    "UntagResource" : "Removes tags from the specified resource. You can specify one or more tags to remove.",
+    "UpdatePackagingGroup" : "Updates a specific packaging group. You can't change the id attribute or any other system-generated attributes."
   },
   "shapes" : {
     "AdMarkers" : {
@@ -41,6 +42,14 @@
       "base" : "A MediaPackage VOD Asset resource.",
       "refs" : {
         "__listOfAssetShallow$member" : null
+      }
+    },
+    "Authorization" : {
+      "base" : "CDN Authorization credentials",
+      "refs" : {
+        "PackagingGroup$Authorization" : null,
+        "PackagingGroupCreateParameters$Authorization" : null,
+        "PackagingGroupUpdateParameters$Authorization" : null
       }
     },
     "CmafEncryption" : {
@@ -157,6 +166,10 @@
     },
     "PackagingGroupList" : {
       "base" : "A collection of MediaPackage VOD PackagingGroup resources.",
+      "refs" : { }
+    },
+    "PackagingGroupUpdateParameters" : {
+      "base" : "Parameters used to update a MediaPackage packaging group.",
       "refs" : { }
     },
     "Profile" : {
@@ -295,7 +308,7 @@
     "__mapOf__string" : {
       "base" : null,
       "refs" : {
-        "TagsModel$Tags" : null
+        "TagsModel$Tags" : "A collection of tags associated with a resource"
       }
     },
     "__string" : {
@@ -321,6 +334,8 @@
         "AssetShallow$ResourceId" : "The resource ID to include in SPEKE key requests.",
         "AssetShallow$SourceArn" : "ARN of the source object in S3.",
         "AssetShallow$SourceRoleArn" : "The IAM role ARN used to access the source S3 bucket.",
+        "Authorization$CdnIdentifierSecret" : "The Amazon Resource Name (ARN) for the secret in AWS Secrets Manager that is used for CDN authorization.",
+        "Authorization$SecretsRoleArn" : "The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager.",
         "DashManifest$ManifestName" : "An optional string to include in the name of the manifest.",
         "EgressEndpoint$PackagingConfigurationId" : "The ID of the PackagingConfiguration being applied to the Asset.",
         "EgressEndpoint$Url" : "The URL of the parent manifest for the repackaged Asset.",

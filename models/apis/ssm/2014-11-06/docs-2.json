@@ -234,6 +234,16 @@
       "refs": {
       }
     },
+    "ApplyOnlyAtCronInterval": {
+      "base": null,
+      "refs": {
+        "AssociationDescription$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it.</p>",
+        "AssociationVersionInfo$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it.</p>",
+        "CreateAssociationBatchRequestEntry$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it.</p>",
+        "CreateAssociationRequest$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it.</p>",
+        "UpdateAssociationRequest$ApplyOnlyAtCronInterval": "<p>By default, when you update an association, the system runs it immediately after it is updated and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you update it.</p> <p>Also, if you specified this option when you created the association, you can reset it. To do so, specify the <code>no-apply-only-at-cron-interval</code> parameter when you update the association from the command line. This parameter forces the association to run immediately after updating it and according to the interval specified.</p>"
+      }
+    },
     "ApproveAfterDays": {
       "base": null,
       "refs": {
