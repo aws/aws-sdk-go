@@ -84,6 +84,10 @@ type PersonalizeAPI interface {
 	CreateEventTrackerWithContext(aws.Context, *personalize.CreateEventTrackerInput, ...request.Option) (*personalize.CreateEventTrackerOutput, error)
 	CreateEventTrackerRequest(*personalize.CreateEventTrackerInput) (*request.Request, *personalize.CreateEventTrackerOutput)
 
+	CreateFilter(*personalize.CreateFilterInput) (*personalize.CreateFilterOutput, error)
+	CreateFilterWithContext(aws.Context, *personalize.CreateFilterInput, ...request.Option) (*personalize.CreateFilterOutput, error)
+	CreateFilterRequest(*personalize.CreateFilterInput) (*request.Request, *personalize.CreateFilterOutput)
+
 	CreateSchema(*personalize.CreateSchemaInput) (*personalize.CreateSchemaOutput, error)
 	CreateSchemaWithContext(aws.Context, *personalize.CreateSchemaInput, ...request.Option) (*personalize.CreateSchemaOutput, error)
 	CreateSchemaRequest(*personalize.CreateSchemaInput) (*request.Request, *personalize.CreateSchemaOutput)
@@ -111,6 +115,10 @@ type PersonalizeAPI interface {
 	DeleteEventTracker(*personalize.DeleteEventTrackerInput) (*personalize.DeleteEventTrackerOutput, error)
 	DeleteEventTrackerWithContext(aws.Context, *personalize.DeleteEventTrackerInput, ...request.Option) (*personalize.DeleteEventTrackerOutput, error)
 	DeleteEventTrackerRequest(*personalize.DeleteEventTrackerInput) (*request.Request, *personalize.DeleteEventTrackerOutput)
+
+	DeleteFilter(*personalize.DeleteFilterInput) (*personalize.DeleteFilterOutput, error)
+	DeleteFilterWithContext(aws.Context, *personalize.DeleteFilterInput, ...request.Option) (*personalize.DeleteFilterOutput, error)
+	DeleteFilterRequest(*personalize.DeleteFilterInput) (*request.Request, *personalize.DeleteFilterOutput)
 
 	DeleteSchema(*personalize.DeleteSchemaInput) (*personalize.DeleteSchemaOutput, error)
 	DeleteSchemaWithContext(aws.Context, *personalize.DeleteSchemaInput, ...request.Option) (*personalize.DeleteSchemaOutput, error)
@@ -151,6 +159,10 @@ type PersonalizeAPI interface {
 	DescribeFeatureTransformation(*personalize.DescribeFeatureTransformationInput) (*personalize.DescribeFeatureTransformationOutput, error)
 	DescribeFeatureTransformationWithContext(aws.Context, *personalize.DescribeFeatureTransformationInput, ...request.Option) (*personalize.DescribeFeatureTransformationOutput, error)
 	DescribeFeatureTransformationRequest(*personalize.DescribeFeatureTransformationInput) (*request.Request, *personalize.DescribeFeatureTransformationOutput)
+
+	DescribeFilter(*personalize.DescribeFilterInput) (*personalize.DescribeFilterOutput, error)
+	DescribeFilterWithContext(aws.Context, *personalize.DescribeFilterInput, ...request.Option) (*personalize.DescribeFilterOutput, error)
+	DescribeFilterRequest(*personalize.DescribeFilterInput) (*request.Request, *personalize.DescribeFilterOutput)
 
 	DescribeRecipe(*personalize.DescribeRecipeInput) (*personalize.DescribeRecipeOutput, error)
 	DescribeRecipeWithContext(aws.Context, *personalize.DescribeRecipeInput, ...request.Option) (*personalize.DescribeRecipeOutput, error)
@@ -213,6 +225,10 @@ type PersonalizeAPI interface {
 
 	ListEventTrackersPages(*personalize.ListEventTrackersInput, func(*personalize.ListEventTrackersOutput, bool) bool) error
 	ListEventTrackersPagesWithContext(aws.Context, *personalize.ListEventTrackersInput, func(*personalize.ListEventTrackersOutput, bool) bool, ...request.Option) error
+
+	ListFilters(*personalize.ListFiltersInput) (*personalize.ListFiltersOutput, error)
+	ListFiltersWithContext(aws.Context, *personalize.ListFiltersInput, ...request.Option) (*personalize.ListFiltersOutput, error)
+	ListFiltersRequest(*personalize.ListFiltersInput) (*request.Request, *personalize.ListFiltersOutput)
 
 	ListRecipes(*personalize.ListRecipesInput) (*personalize.ListRecipesOutput, error)
 	ListRecipesWithContext(aws.Context, *personalize.ListRecipesInput, ...request.Option) (*personalize.ListRecipesOutput, error)

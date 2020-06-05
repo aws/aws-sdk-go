@@ -8,6 +8,7 @@
     "CreateDatasetGroup": "<p>Creates an empty dataset group. A dataset group contains related datasets that supply data for training a model. A dataset group can contain at most three datasets, one for each type of dataset:</p> <ul> <li> <p>Interactions</p> </li> <li> <p>Items</p> </li> <li> <p>Users</p> </li> </ul> <p>To train a model (create a solution), a dataset group that contains an <code>Interactions</code> dataset is required. Call <a>CreateDataset</a> to add a dataset to the group.</p> <p>A dataset group can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING</p> </li> </ul> <p>To get the status of the dataset group, call <a>DescribeDatasetGroup</a>. If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the creation failed.</p> <note> <p>You must wait until the <code>status</code> of the dataset group is <code>ACTIVE</code> before adding a dataset to the group.</p> </note> <p>You can specify an AWS Key Management Service (KMS) key to encrypt the datasets in the group. If you specify a KMS key, you must also include an AWS Identity and Access Management (IAM) role that has permission to access the key.</p> <p class=\"title\"> <b>APIs that require a dataset group ARN in the request</b> </p> <ul> <li> <p> <a>CreateDataset</a> </p> </li> <li> <p> <a>CreateEventTracker</a> </p> </li> <li> <p> <a>CreateSolution</a> </p> </li> </ul> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListDatasetGroups</a> </p> </li> <li> <p> <a>DescribeDatasetGroup</a> </p> </li> <li> <p> <a>DeleteDatasetGroup</a> </p> </li> </ul>",
     "CreateDatasetImportJob": "<p>Creates a job that imports training data from your data source (an Amazon S3 bucket) to an Amazon Personalize dataset. To allow Amazon Personalize to import the training data, you must specify an AWS Identity and Access Management (IAM) role that has permission to read from the data source.</p> <important> <p>The dataset import job replaces any previous data in the dataset.</p> </important> <p> <b>Status</b> </p> <p>A dataset import job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul> <p>To get the status of the import job, call <a>DescribeDatasetImportJob</a>, providing the Amazon Resource Name (ARN) of the dataset import job. The dataset import is complete when the status shows as ACTIVE. If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the job failed.</p> <note> <p>Importing takes time. You must wait until the status shows as ACTIVE before training a model using the dataset.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListDatasetImportJobs</a> </p> </li> <li> <p> <a>DescribeDatasetImportJob</a> </p> </li> </ul>",
     "CreateEventTracker": "<p>Creates an event tracker that you use when sending event data to the specified dataset group using the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html\">PutEvents</a> API.</p> <p>When Amazon Personalize creates an event tracker, it also creates an <i>event-interactions</i> dataset in the dataset group associated with the event tracker. The event-interactions dataset stores the event data from the <code>PutEvents</code> call. The contents of this dataset are not available to the user.</p> <note> <p>Only one event tracker can be associated with a dataset group. You will get an error if you call <code>CreateEventTracker</code> using the same dataset group as an existing event tracker.</p> </note> <p>When you send event data you include your tracking ID. The tracking ID identifies the customer and authorizes the customer to send the data.</p> <p>The event tracker can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the status of the event tracker, call <a>DescribeEventTracker</a>.</p> <note> <p>The event tracker must be in the ACTIVE state before using the tracking ID.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListEventTrackers</a> </p> </li> <li> <p> <a>DescribeEventTracker</a> </p> </li> <li> <p> <a>DeleteEventTracker</a> </p> </li> </ul>",
+    "CreateFilter": "<p>Creates a recommendation filter. For more information, see Using Filters with Amazon Personalize.</p>",
     "CreateSchema": "<p>Creates an Amazon Personalize schema from the specified schema string. The schema you create must be in Avro JSON format.</p> <p>Amazon Personalize recognizes three schema variants. Each schema is associated with a dataset type and has a set of required field and keywords. You specify a schema when you call <a>CreateDataset</a>.</p> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListSchemas</a> </p> </li> <li> <p> <a>DescribeSchema</a> </p> </li> <li> <p> <a>DeleteSchema</a> </p> </li> </ul>",
     "CreateSolution": "<p>Creates the configuration for training a model. A trained model is known as a solution. After the configuration is created, you train the model (create a solution) by calling the <a>CreateSolutionVersion</a> operation. Every time you call <code>CreateSolutionVersion</code>, a new version of the solution is created.</p> <p>After creating a solution version, you check its accuracy by calling <a>GetSolutionMetrics</a>. When you are satisfied with the version, you deploy it using <a>CreateCampaign</a>. The campaign provides recommendations to a client through the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html\">GetRecommendations</a> API.</p> <p>To train a model, Amazon Personalize requires training data and a recipe. The training data comes from the dataset group that you provide in the request. A recipe specifies the training algorithm and a feature transformation. You can specify one of the predefined recipes provided by Amazon Personalize. Alternatively, you can specify <code>performAutoML</code> and Amazon Personalize will analyze your data and select the optimum USER_PERSONALIZATION recipe for you.</p> <p> <b>Status</b> </p> <p>A solution can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the status of the solution, call <a>DescribeSolution</a>. Wait until the status shows as ACTIVE before calling <code>CreateSolutionVersion</code>.</p> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListSolutions</a> </p> </li> <li> <p> <a>CreateSolutionVersion</a> </p> </li> <li> <p> <a>DescribeSolution</a> </p> </li> <li> <p> <a>DeleteSolution</a> </p> </li> </ul> <ul> <li> <p> <a>ListSolutionVersions</a> </p> </li> <li> <p> <a>DescribeSolutionVersion</a> </p> </li> </ul>",
     "CreateSolutionVersion": "<p>Trains or retrains an active solution. A solution is created using the <a>CreateSolution</a> operation and must be in the ACTIVE state before calling <code>CreateSolutionVersion</code>. A new version of the solution is created every time you call this operation.</p> <p> <b>Status</b> </p> <p>A solution version can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul> <p>To get the status of the version, call <a>DescribeSolutionVersion</a>. Wait until the status shows as ACTIVE before calling <code>CreateCampaign</code>.</p> <p>If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the job failed.</p> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListSolutionVersions</a> </p> </li> <li> <p> <a>DescribeSolutionVersion</a> </p> </li> </ul> <ul> <li> <p> <a>ListSolutions</a> </p> </li> <li> <p> <a>CreateSolution</a> </p> </li> <li> <p> <a>DescribeSolution</a> </p> </li> <li> <p> <a>DeleteSolution</a> </p> </li> </ul>",
@@ -15,6 +16,7 @@
     "DeleteDataset": "<p>Deletes a dataset. You can't delete a dataset if an associated <code>DatasetImportJob</code> or <code>SolutionVersion</code> is in the CREATE PENDING or IN PROGRESS state. For more information on datasets, see <a>CreateDataset</a>.</p>",
     "DeleteDatasetGroup": "<p>Deletes a dataset group. Before you delete a dataset group, you must delete the following:</p> <ul> <li> <p>All associated event trackers.</p> </li> <li> <p>All associated solutions.</p> </li> <li> <p>All datasets in the dataset group.</p> </li> </ul>",
     "DeleteEventTracker": "<p>Deletes the event tracker. Does not delete the event-interactions dataset from the associated dataset group. For more information on event trackers, see <a>CreateEventTracker</a>.</p>",
+    "DeleteFilter": "<p>Deletes a filter.</p>",
     "DeleteSchema": "<p>Deletes a schema. Before deleting a schema, you must delete all datasets referencing the schema. For more information on schemas, see <a>CreateSchema</a>.</p>",
     "DeleteSolution": "<p>Deletes all versions of a solution and the <code>Solution</code> object itself. Before deleting a solution, you must delete all campaigns based on the solution. To determine what campaigns are using the solution, call <a>ListCampaigns</a> and supply the Amazon Resource Name (ARN) of the solution. You can't delete a solution if an associated <code>SolutionVersion</code> is in the CREATE PENDING or IN PROGRESS state. For more information on solutions, see <a>CreateSolution</a>.</p>",
     "DescribeAlgorithm": "<p>Describes the given algorithm.</p>",
@@ -25,6 +27,7 @@
     "DescribeDatasetImportJob": "<p>Describes the dataset import job created by <a>CreateDatasetImportJob</a>, including the import job status.</p>",
     "DescribeEventTracker": "<p>Describes an event tracker. The response includes the <code>trackingId</code> and <code>status</code> of the event tracker. For more information on event trackers, see <a>CreateEventTracker</a>.</p>",
     "DescribeFeatureTransformation": "<p>Describes the given feature transformation.</p>",
+    "DescribeFilter": "<p>Describes a filter's properties.</p>",
     "DescribeRecipe": "<p>Describes a recipe.</p> <p>A recipe contains three items:</p> <ul> <li> <p>An algorithm that trains a model.</p> </li> <li> <p>Hyperparameters that govern the training.</p> </li> <li> <p>Feature transformation information for modifying the input data before training.</p> </li> </ul> <p>Amazon Personalize provides a set of predefined recipes. You specify a recipe when you create a solution with the <a>CreateSolution</a> API. <code>CreateSolution</code> trains a model by using the algorithm in the specified recipe and a training dataset. The solution, when deployed as a campaign, can provide recommendations using the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html\">GetRecommendations</a> API.</p>",
     "DescribeSchema": "<p>Describes a schema. For more information on schemas, see <a>CreateSchema</a>.</p>",
     "DescribeSolution": "<p>Describes a solution. For more information on solutions, see <a>CreateSolution</a>.</p>",
@@ -36,6 +39,7 @@
     "ListDatasetImportJobs": "<p>Returns a list of dataset import jobs that use the given dataset. When a dataset is not specified, all the dataset import jobs associated with the account are listed. The response provides the properties for each dataset import job, including the Amazon Resource Name (ARN). For more information on dataset import jobs, see <a>CreateDatasetImportJob</a>. For more information on datasets, see <a>CreateDataset</a>.</p>",
     "ListDatasets": "<p>Returns the list of datasets contained in the given dataset group. The response provides the properties for each dataset, including the Amazon Resource Name (ARN). For more information on datasets, see <a>CreateDataset</a>.</p>",
     "ListEventTrackers": "<p>Returns the list of event trackers associated with the account. The response provides the properties for each event tracker, including the Amazon Resource Name (ARN) and tracking ID. For more information on event trackers, see <a>CreateEventTracker</a>.</p>",
+    "ListFilters": "<p>Lists all filters that belong to a given dataset group.</p>",
     "ListRecipes": "<p>Returns a list of available recipes. The response provides the properties for each recipe, including the recipe's Amazon Resource Name (ARN).</p>",
     "ListSchemas": "<p>Returns the list of schemas associated with the account. The response provides the properties for each schema, including the Amazon Resource Name (ARN). For more information on schemas, see <a>CreateSchema</a>.</p>",
     "ListSolutionVersions": "<p>Returns a list of solution versions for the given solution. When a solution is not specified, all the solution versions associated with the account are listed. The response provides the properties for each solution version, including the Amazon Resource Name (ARN). For more information on solutions, see <a>CreateSolution</a>.</p>",
@@ -69,6 +73,7 @@
         "ArnList$member": null,
         "AutoMLResult$bestRecipeArn": "<p>The Amazon Resource Name (ARN) of the best recipe.</p>",
         "BatchInferenceJob$batchInferenceJobArn": "<p>The Amazon Resource Name (ARN) of the batch inference job.</p>",
+        "BatchInferenceJob$filterArn": "<p>The ARN of the filter used on the batch inference job.</p>",
         "BatchInferenceJob$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version from which the batch inference job was created.</p>",
         "BatchInferenceJobSummary$batchInferenceJobArn": "<p>The Amazon Resource Name (ARN) of the batch inference job.</p>",
         "BatchInferenceJobSummary$solutionVersionArn": "<p>The ARN of the solution version used by the batch inference job.</p>",
@@ -77,6 +82,7 @@
         "CampaignSummary$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
         "CampaignUpdateSummary$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the deployed solution version.</p>",
         "CreateBatchInferenceJobRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version that will be used to generate the batch inference recommendations.</p>",
+        "CreateBatchInferenceJobRequest$filterArn": "<p>The ARN of the filter to apply to the batch inference job. For more information on using filters, see Using Filters with Amazon Personalize.</p>",
         "CreateBatchInferenceJobResponse$batchInferenceJobArn": "<p>The ARN of the batch inference job.</p>",
         "CreateCampaignRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version to deploy.</p>",
         "CreateCampaignResponse$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
@@ -88,6 +94,8 @@
         "CreateDatasetResponse$datasetArn": "<p>The ARN of the dataset.</p>",
         "CreateEventTrackerRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that receives the event data.</p>",
         "CreateEventTrackerResponse$eventTrackerArn": "<p>The ARN of the event tracker.</p>",
+        "CreateFilterRequest$datasetGroupArn": "<p>The ARN of the dataset group that the filter will belong to.</p>",
+        "CreateFilterResponse$filterArn": "<p>The ARN of the new filter.</p>",
         "CreateSchemaResponse$schemaArn": "<p>The Amazon Resource Name (ARN) of the created schema.</p>",
         "CreateSolutionRequest$recipeArn": "<p>The ARN of the recipe to use for model training. Only specified when <code>performAutoML</code> is false.</p>",
         "CreateSolutionRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that provides the training data.</p>",
@@ -110,6 +118,7 @@
         "DeleteDatasetGroupRequest$datasetGroupArn": "<p>The ARN of the dataset group to delete.</p>",
         "DeleteDatasetRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to delete.</p>",
         "DeleteEventTrackerRequest$eventTrackerArn": "<p>The Amazon Resource Name (ARN) of the event tracker to delete.</p>",
+        "DeleteFilterRequest$filterArn": "<p>The ARN of the filter to delete.</p>",
         "DeleteSchemaRequest$schemaArn": "<p>The Amazon Resource Name (ARN) of the schema to delete.</p>",
         "DeleteSolutionRequest$solutionArn": "<p>The ARN of the solution to delete.</p>",
         "DescribeAlgorithmRequest$algorithmArn": "<p>The Amazon Resource Name (ARN) of the algorithm to describe.</p>",
@@ -120,6 +129,7 @@
         "DescribeDatasetRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to describe.</p>",
         "DescribeEventTrackerRequest$eventTrackerArn": "<p>The Amazon Resource Name (ARN) of the event tracker to describe.</p>",
         "DescribeFeatureTransformationRequest$featureTransformationArn": "<p>The Amazon Resource Name (ARN) of the feature transformation to describe.</p>",
+        "DescribeFilterRequest$filterArn": "<p>The ARN of the filter to describe.</p>",
         "DescribeRecipeRequest$recipeArn": "<p>The Amazon Resource Name (ARN) of the recipe to describe.</p>",
         "DescribeSchemaRequest$schemaArn": "<p>The Amazon Resource Name (ARN) of the schema to retrieve.</p>",
         "DescribeSolutionRequest$solutionArn": "<p>The Amazon Resource Name (ARN) of the solution to describe.</p>",
@@ -128,6 +138,10 @@
         "EventTracker$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that receives the event data.</p>",
         "EventTrackerSummary$eventTrackerArn": "<p>The Amazon Resource Name (ARN) of the event tracker.</p>",
         "FeatureTransformation$featureTransformationArn": "<p>The Amazon Resource Name (ARN) of the FeatureTransformation object.</p>",
+        "Filter$filterArn": "<p>The ARN of the filter.</p>",
+        "Filter$datasetGroupArn": "<p>The ARN of the dataset group to which the filter belongs.</p>",
+        "FilterSummary$filterArn": "<p>The ARN of the filter.</p>",
+        "FilterSummary$datasetGroupArn": "<p>The ARN of the dataset group to which the filter belongs.</p>",
         "GetSolutionMetricsRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version for which to get metrics.</p>",
         "GetSolutionMetricsResponse$solutionVersionArn": "<p>The same solution version ARN as specified in the request.</p>",
         "ListBatchInferenceJobsRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version from which the batch inference jobs were created.</p>",
@@ -135,6 +149,7 @@
         "ListDatasetImportJobsRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to list the dataset import jobs for.</p>",
         "ListDatasetsRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that contains the datasets to list.</p>",
         "ListEventTrackersRequest$datasetGroupArn": "<p>The ARN of a dataset group used to filter the response.</p>",
+        "ListFiltersRequest$datasetGroupArn": "<p>The ARN of the dataset group that contains the filters.</p>",
         "ListSolutionVersionsRequest$solutionArn": "<p>The Amazon Resource Name (ARN) of the solution.</p>",
         "ListSolutionsRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group.</p>",
         "Recipe$recipeArn": "<p>The Amazon Resource Name (ARN) of the recipe.</p>",
@@ -353,6 +368,16 @@
       "refs": {
       }
     },
+    "CreateFilterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFilterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateSchemaRequest": {
       "base": null,
       "refs": {
@@ -501,6 +526,10 @@
         "EventTrackerSummary$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the event tracker was last updated.</p>",
         "FeatureTransformation$creationDateTime": "<p>The creation date and time (in Unix time) of the feature transformation.</p>",
         "FeatureTransformation$lastUpdatedDateTime": "<p>The last update date and time (in Unix time) of the feature transformation.</p>",
+        "Filter$creationDateTime": "<p>The time at which the filter was created.</p>",
+        "Filter$lastUpdatedDateTime": "<p>The time at which the filter was last updated.</p>",
+        "FilterSummary$creationDateTime": "<p>The time at which the filter was created.</p>",
+        "FilterSummary$lastUpdatedDateTime": "<p>The time at which the filter was last updated.</p>",
         "Recipe$creationDateTime": "<p>The date and time (in Unix format) that the recipe was created.</p>",
         "Recipe$lastUpdatedDateTime": "<p>The date and time (in Unix format) that the recipe was last updated.</p>",
         "RecipeSummary$creationDateTime": "<p>The date and time (in Unix time) that the recipe was created.</p>",
@@ -573,6 +602,11 @@
       }
     },
     "DeleteEventTrackerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFilterRequest": {
       "base": null,
       "refs": {
       }
@@ -663,6 +697,16 @@
       }
     },
     "DescribeFeatureTransformationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFilterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFilterResponse": {
       "base": null,
       "refs": {
       }
@@ -774,6 +818,8 @@
         "DatasetGroupSummary$failureReason": "<p>If creating a dataset group fails, the reason behind the failure.</p>",
         "DatasetImportJob$failureReason": "<p>If a dataset import job fails, provides the reason why.</p>",
         "DatasetImportJobSummary$failureReason": "<p>If a dataset import job fails, the reason behind the failure.</p>",
+        "Filter$failureReason": "<p>If the filter failed, the reason for its failure.</p>",
+        "FilterSummary$failureReason": "<p>If the filter failed, the reason for the failure.</p>",
         "SolutionVersion$failureReason": "<p>If training a solution version fails, the reason for the failure.</p>",
         "SolutionVersionSummary$failureReason": "<p>If a solution version fails, the reason behind the failure.</p>"
       }
@@ -794,6 +840,31 @@
       "base": null,
       "refs": {
         "FeatureTransformation$defaultParameters": "<p>Provides the default parameters for feature transformation.</p>"
+      }
+    },
+    "Filter": {
+      "base": "<p>Contains information on a recommendation filter, including its ARN, status, and filter expression.</p>",
+      "refs": {
+        "DescribeFilterResponse$filter": "<p>The filter's details.</p>"
+      }
+    },
+    "FilterExpression": {
+      "base": null,
+      "refs": {
+        "CreateFilterRequest$filterExpression": "<p>The filter expression that designates the interaction types that the filter will filter out. A filter expression must follow the following format:</p> <p> <code>EXCLUDE itemId WHERE INTERACTIONS.event_type in (\"EVENT_TYPE\")</code> </p> <p>Where \"EVENT_TYPE\" is the type of event to filter out. To filter out all items with any interactions history, set <code>\"*\"</code> as the EVENT_TYPE. For more information, see Using Filters with Amazon Personalize.</p>",
+        "Filter$filterExpression": "<p>Specifies the type of item interactions to filter out of recommendation results. The filter expression must follow the following format:</p> <p> <code>EXCLUDE itemId WHERE INTERACTIONS.event_type in (\"EVENT_TYPE\")</code> </p> <p>Where \"EVENT_TYPE\" is the type of event to filter out. For more information, see Using Filters with Amazon Personalize.</p>"
+      }
+    },
+    "FilterSummary": {
+      "base": "<p>A short summary of a filter's attributes.</p>",
+      "refs": {
+        "Filters$member": null
+      }
+    },
+    "Filters": {
+      "base": null,
+      "refs": {
+        "ListFiltersResponse$Filters": "<p>A list of returned filters.</p>"
       }
     },
     "GetSolutionMetricsRequest": {
@@ -960,6 +1031,16 @@
       "refs": {
       }
     },
+    "ListFiltersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFiltersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListRecipesRequest": {
       "base": null,
       "refs": {
@@ -1009,6 +1090,7 @@
         "ListDatasetImportJobsRequest$maxResults": "<p>The maximum number of dataset import jobs to return.</p>",
         "ListDatasetsRequest$maxResults": "<p>The maximum number of datasets to return.</p>",
         "ListEventTrackersRequest$maxResults": "<p>The maximum number of event trackers to return.</p>",
+        "ListFiltersRequest$maxResults": "<p>The maximum number of filters to return.</p>",
         "ListRecipesRequest$maxResults": "<p>The maximum number of recipes to return.</p>",
         "ListSchemasRequest$maxResults": "<p>The maximum number of schemas to return.</p>",
         "ListSolutionVersionsRequest$maxResults": "<p>The maximum number of solution versions to return.</p>",
@@ -1056,6 +1138,7 @@
         "CreateDatasetImportJobRequest$jobName": "<p>The name for the dataset import job.</p>",
         "CreateDatasetRequest$name": "<p>The name for the dataset.</p>",
         "CreateEventTrackerRequest$name": "<p>The name for the event tracker.</p>",
+        "CreateFilterRequest$name": "<p>The name of the filter to create.</p>",
         "CreateSchemaRequest$name": "<p>The name for the schema.</p>",
         "CreateSolutionRequest$name": "<p>The name for the solution.</p>",
         "Dataset$name": "<p>The name of the dataset.</p>",
@@ -1069,6 +1152,8 @@
         "EventTracker$name": "<p>The name of the event tracker.</p>",
         "EventTrackerSummary$name": "<p>The name of the event tracker.</p>",
         "FeatureTransformation$name": "<p>The name of the feature transformation.</p>",
+        "Filter$name": "<p>The name of the filter.</p>",
+        "FilterSummary$name": "<p>The name of the filter.</p>",
         "Recipe$name": "<p>The name of the recipe.</p>",
         "RecipeSummary$name": "<p>The name of the recipe.</p>",
         "Solution$name": "<p>The name of the solution.</p>",
@@ -1090,6 +1175,8 @@
         "ListDatasetsResponse$nextToken": "<p>A token for getting the next set of datasets (if they exist).</p>",
         "ListEventTrackersRequest$nextToken": "<p>A token returned from the previous call to <code>ListEventTrackers</code> for getting the next set of event trackers (if they exist).</p>",
         "ListEventTrackersResponse$nextToken": "<p>A token for getting the next set of event trackers (if they exist).</p>",
+        "ListFiltersRequest$nextToken": "<p>A token returned from the previous call to <code>ListFilters</code> for getting the next set of filters (if they exist).</p>",
+        "ListFiltersResponse$nextToken": "<p>A token for getting the next set of filters (if they exist).</p>",
         "ListRecipesRequest$nextToken": "<p>A token returned from the previous call to <code>ListRecipes</code> for getting the next set of recipes (if they exist).</p>",
         "ListRecipesResponse$nextToken": "<p>A token for getting the next set of recipes.</p>",
         "ListSchemasRequest$nextToken": "<p>A token returned from the previous call to <code>ListSchemas</code> for getting the next set of schemas (if they exist).</p>",
@@ -1289,6 +1376,8 @@
         "EventTracker$status": "<p>The status of the event tracker.</p> <p>An event tracker can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "EventTrackerSummary$status": "<p>The status of the event tracker.</p> <p>An event tracker can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "FeatureTransformation$status": "<p>The status of the feature transformation.</p> <p>A feature transformation can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
+        "Filter$status": "<p>The status of the filter.</p>",
+        "FilterSummary$status": "<p>The status of the filter.</p>",
         "Recipe$status": "<p>The status of the recipe.</p>",
         "RecipeSummary$status": "<p>The status of the recipe.</p>",
         "Solution$status": "<p>The status of the solution.</p> <p>A solution can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
