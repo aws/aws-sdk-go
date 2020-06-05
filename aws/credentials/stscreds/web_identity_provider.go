@@ -15,6 +15,8 @@ import (
 )
 
 const (
+	defaultWebIdentityDuration = time.Hour
+
 	// ErrCodeWebIdentity will be used as an error code when constructing
 	// a new error to be returned during session creation or retrieval.
 	ErrCodeWebIdentity = "WebIdentityErr"
@@ -51,6 +53,9 @@ func (f FetchTokenPath) FetchToken(ctx credentials.Context) ([]byte, error) {
 type WebIdentityRoleProvider struct {
 	credentials.Expiry
 	PolicyArns []*sts.PolicyDescriptorType
+
+	// Expiry duration of the STS credentials. Defaults to 1hour if not set.
+	Duration time.Duration
 
 	client       stsiface.STSAPI
 	ExpiryWindow time.Duration
@@ -107,11 +112,17 @@ func (p *WebIdentityRoleProvider) RetrieveWithContext(ctx credentials.Context) (
 		// uses unix time in nanoseconds to uniquely identify sessions.
 		sessionName = strconv.FormatInt(now().UnixNano(), 10)
 	}
+
+	if p.Duration == 0 {
+		p.Duration = defaultWebIdentityDuration
+	}
+
 	req, resp := p.client.AssumeRoleWithWebIdentityRequest(&sts.AssumeRoleWithWebIdentityInput{
 		PolicyArns:       p.PolicyArns,
 		RoleArn:          &p.roleARN,
 		RoleSessionName:  &sessionName,
 		WebIdentityToken: aws.String(string(b)),
+		DurationSeconds:  aws.Int64(int64(p.Duration / time.Second)),
 	})
 
 	req.SetContext(ctx)
