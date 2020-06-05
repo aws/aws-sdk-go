@@ -244,7 +244,8 @@
         "RequestValidator$validateRequestParameters": "<p>A Boolean flag to indicate whether to validate request parameters (<code>true</code>) or not (<code>false</code>).</p>",
         "SdkConfigurationProperty$required": "<p>A boolean flag of an <a>SdkType</a> configuration property to indicate if the associated SDK configuration property is required (<code>true</code>) or not (<code>false</code>).</p>",
         "Stage$cacheClusterEnabled": "<p>Specifies whether a cache cluster is enabled for the stage.</p>",
-        "Stage$tracingEnabled": "<p>Specifies whether active tracing with X-ray is enabled for the <a>Stage</a>.</p>"
+        "Stage$tracingEnabled": "<p>Specifies whether active tracing with X-ray is enabled for the <a>Stage</a>.</p>",
+        "TlsConfig$insecureSkipVerification": "<p>Specifies whether API Gateway skips trust chain validation of the server certificate during the TLS handshake. Supported only for <code>HTTP</code> and <code>HTTP_PROXY</code> integrations. By default, API Gateway validates that certificates for integration endpoints are issued by a <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-supported-certificate-authorities-for-http-endpoints.html\">supported Certificate Authority</a>. If enabled, API Gateway skips trust chain validation of the server certificate. This is not recommended, but it enables you to use certificates that are signed by private Certificate Authorities, or certificates that are self-signed.</p>"
       }
     },
     "CacheClusterSize": {
@@ -1988,6 +1989,13 @@
         "RestApi$createdDate": "<p>The timestamp when the API was created.</p>",
         "Stage$createdDate": "<p>The timestamp when the stage was created.</p>",
         "Stage$lastUpdatedDate": "<p>The timestamp when the stage last updated.</p>"
+      }
+    },
+    "TlsConfig": {
+      "base": null,
+      "refs": {
+        "Integration$tlsConfig": "<p>Specifies the TLS configuration for an integration.</p>",
+        "PutIntegrationRequest$tlsConfig": null
       }
     },
     "TooManyRequestsException": {

@@ -39,6 +39,17 @@
         {"shape":"ManagedActionInvalidStateException"}
       ]
     },
+    "AssociateEnvironmentOperationsRole":{
+      "name":"AssociateEnvironmentOperationsRole",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateEnvironmentOperationsRoleMessage"},
+      "errors":[
+        {"shape":"InsufficientPrivilegesException"}
+      ]
+    },
     "CheckDNSAvailability":{
       "name":"CheckDNSAvailability",
       "http":{
@@ -412,6 +423,17 @@
       "errors":[
         {"shape":"InsufficientPrivilegesException"},
         {"shape":"ElasticBeanstalkServiceException"}
+      ]
+    },
+    "DisassociateEnvironmentOperationsRole":{
+      "name":"DisassociateEnvironmentOperationsRole",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateEnvironmentOperationsRoleMessage"},
+      "errors":[
+        {"shape":"InsufficientPrivilegesException"}
       ]
     },
     "ListAvailableSolutionStacks":{
@@ -801,6 +823,17 @@
         "Status":{"shape":"String"}
       }
     },
+    "AssociateEnvironmentOperationsRoleMessage":{
+      "type":"structure",
+      "required":[
+        "EnvironmentName",
+        "OperationsRole"
+      ],
+      "members":{
+        "EnvironmentName":{"shape":"EnvironmentName"},
+        "OperationsRole":{"shape":"OperationsRole"}
+      }
+    },
     "AutoCreateApplication":{"type":"boolean"},
     "AutoScalingGroup":{
       "type":"structure",
@@ -1075,7 +1108,8 @@
         "SolutionStackName":{"shape":"SolutionStackName"},
         "PlatformArn":{"shape":"PlatformArn"},
         "OptionSettings":{"shape":"ConfigurationOptionSettingsList"},
-        "OptionsToRemove":{"shape":"OptionsSpecifierList"}
+        "OptionsToRemove":{"shape":"OptionsSpecifierList"},
+        "OperationsRole":{"shape":"OperationsRole"}
       }
     },
     "CreatePlatformVersionRequest":{
@@ -1356,6 +1390,13 @@
       "type":"string",
       "max":200
     },
+    "DisassociateEnvironmentOperationsRoleMessage":{
+      "type":"structure",
+      "required":["EnvironmentName"],
+      "members":{
+        "EnvironmentName":{"shape":"EnvironmentName"}
+      }
+    },
     "Ec2InstanceId":{"type":"string"},
     "ElasticBeanstalkServiceException":{
       "type":"structure",
@@ -1388,7 +1429,8 @@
         "Resources":{"shape":"EnvironmentResourcesDescription"},
         "Tier":{"shape":"EnvironmentTier"},
         "EnvironmentLinks":{"shape":"EnvironmentLinks"},
-        "EnvironmentArn":{"shape":"EnvironmentArn"}
+        "EnvironmentArn":{"shape":"EnvironmentArn"},
+        "OperationsRole":{"shape":"OperationsRole"}
       }
     },
     "EnvironmentDescriptionsList":{
@@ -1877,6 +1919,11 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "OperationsRole":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "OptionNamespace":{"type":"string"},
     "OptionRestrictionMaxLength":{"type":"integer"},

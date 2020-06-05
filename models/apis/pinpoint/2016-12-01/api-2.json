@@ -4566,6 +4566,9 @@
     "Activity": {
       "type": "structure",
       "members": {
+        "CUSTOM": {
+          "shape": "CustomMessageActivity"
+        },
         "ConditionalSplit": {
           "shape": "ConditionalSplitActivity"
         },
@@ -4581,8 +4584,14 @@
         "MultiCondition": {
           "shape": "MultiConditionalSplitActivity"
         },
+        "PUSH": {
+          "shape": "PushMessageActivity"
+        },
         "RandomSplit": {
           "shape": "RandomSplitActivity"
+        },
+        "SMS": {
+          "shape": "SMSMessageActivity"
         },
         "Wait": {
           "shape": "WaitActivity"
@@ -5226,6 +5235,7 @@
     "ChannelType": {
       "type": "string",
       "enum": [
+        "PUSH",
         "GCM",
         "APNS",
         "APNS_SANDBOX",
@@ -5674,6 +5684,29 @@
       "required": [
         "DeliveryUri"
       ]
+    },
+    "CustomMessageActivity": {
+      "type": "structure",
+      "members": {
+        "DeliveryUri": {
+          "shape": "__string"
+        },
+        "EndpointTypes": {
+          "shape": "ListOf__EndpointTypesElement"
+        },
+        "MessageConfig": {
+          "shape": "JourneyCustomMessage"
+        },
+        "NextActivity": {
+          "shape": "__string"
+        },
+        "TemplateName": {
+          "shape": "__string"
+        },
+        "TemplateVersion": {
+          "shape": "__string"
+        }
+      }
     },
     "DefaultMessage": {
       "type": "structure",
@@ -8925,6 +8958,14 @@
         "FAILED"
       ]
     },
+    "JourneyCustomMessage": {
+      "type": "structure",
+      "members": {
+        "Data": {
+          "shape": "__string"
+        }
+      }
+    },
     "JourneyDateRangeKpiResponse": {
       "type": "structure",
       "members": {
@@ -9035,6 +9076,14 @@
         }
       }
     },
+    "JourneyPushMessage": {
+      "type": "structure",
+      "members": {
+        "TimeToLive": {
+          "shape": "__string"
+        }
+      }
+    },
     "JourneyResponse": {
       "type": "structure",
       "members": {
@@ -9090,6 +9139,17 @@
         "Id",
         "ApplicationId"
       ]
+    },
+    "JourneySMSMessage": {
+      "type": "structure",
+      "members": {
+        "MessageType": {
+          "shape": "MessageType"
+        },
+        "SenderId": {
+          "shape": "__string"
+        }
+      }
     },
     "JourneySchedule": {
       "type": "structure",
@@ -9656,6 +9716,23 @@
         }
       }
     },
+    "PushMessageActivity": {
+      "type": "structure",
+      "members": {
+        "MessageConfig": {
+          "shape": "JourneyPushMessage"
+        },
+        "NextActivity": {
+          "shape": "__string"
+        },
+        "TemplateName": {
+          "shape": "__string"
+        },
+        "TemplateVersion": {
+          "shape": "__string"
+        }
+      }
+    },
     "PushNotificationTemplateRequest": {
       "type": "structure",
       "members": {
@@ -10074,6 +10151,23 @@
         },
         "Substitutions": {
           "shape": "MapOfListOf__string"
+        }
+      }
+    },
+    "SMSMessageActivity": {
+      "type": "structure",
+      "members": {
+        "MessageConfig": {
+          "shape": "JourneySMSMessage"
+        },
+        "NextActivity": {
+          "shape": "__string"
+        },
+        "TemplateName": {
+          "shape": "__string"
+        },
+        "TemplateVersion": {
+          "shape": "__string"
         }
       }
     },
@@ -12003,6 +12097,7 @@
     "__EndpointTypesElement": {
       "type": "string",
       "enum": [
+        "PUSH",
         "GCM",
         "APNS",
         "APNS_SANDBOX",

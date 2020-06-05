@@ -1,3 +1,21 @@
+Release v1.31.12 (2020-06-05)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Amazon API Gateway now allows customers of REST APIs to skip trust chain validation for backend server certificates for HTTP and VPC Link Integration. This feature enables customers to configure their REST APIs to integrate with backends that are secured with certificates vended from private certificate authorities (CA) or certificates that are self-signed.
+* `service/cloudfront`: Updates service API and documentation
+  * Amazon CloudFront adds support for configurable origin connection attempts and origin connection timeout.
+* `service/elasticbeanstalk`: Updates service API and documentation
+  * These API changes enable an IAM user to associate an operations role with an Elastic Beanstalk environment, so that the IAM user can call Elastic Beanstalk actions without having access to underlying downstream AWS services that these actions call.
+* `service/personalize`: Updates service API and documentation
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * This release enables additional functionality for the Amazon Pinpoint journeys feature. With this release, you can send messages through additional channels, including SMS, push notifications, and custom channels.
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/servicecatalog`: Updates service API and documentation
+  * This release adds support for DescribeProduct and DescribeProductAsAdmin by product name, DescribeProvisioningArtifact by product name or provisioning artifact name, returning launch paths as part of DescribeProduct output and adds maximum length for provisioning artifact name and provisioning artifact description.
+
 Release v1.31.11 (2020-06-04)
 ===
 

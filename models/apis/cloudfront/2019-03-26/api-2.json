@@ -2963,7 +2963,9 @@
         "OriginPath":{"shape":"string"},
         "CustomHeaders":{"shape":"CustomHeaders"},
         "S3OriginConfig":{"shape":"S3OriginConfig"},
-        "CustomOriginConfig":{"shape":"CustomOriginConfig"}
+        "CustomOriginConfig":{"shape":"CustomOriginConfig"},
+        "ConnectionAttempts":{"shape":"integer"},
+        "ConnectionTimeout":{"shape":"integer"}
       }
     },
     "OriginCustomHeader":{

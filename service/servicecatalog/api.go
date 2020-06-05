@@ -2708,6 +2708,9 @@ func (c *ServiceCatalog) DescribeProductAsAdminRequest(input *DescribeProductAsA
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are not valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductAsAdmin
 func (c *ServiceCatalog) DescribeProductAsAdmin(input *DescribeProductAsAdminInput) (*DescribeProductAsAdminOutput, error) {
 	req, out := c.DescribeProductAsAdminRequest(input)
@@ -3030,6 +3033,9 @@ func (c *ServiceCatalog) DescribeProvisioningArtifactRequest(input *DescribeProv
 // Returned Error Types:
 //   * ResourceNotFoundException
 //   The specified resource was not found.
+//
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningArtifact
 func (c *ServiceCatalog) DescribeProvisioningArtifact(input *DescribeProvisioningArtifactInput) (*DescribeProvisioningArtifactOutput, error) {
@@ -10256,7 +10262,11 @@ type CreateServiceActionInput struct {
 	//
 	// Name
 	//
-	// The name of the AWS Systems Manager Document. For example, AWS-RestartEC2Instance.
+	// The name of the AWS Systems Manager document (SSM document). For example,
+	// AWS-RestartEC2Instance.
+	//
+	// If you are using a shared SSM document, you must provide the ARN instead
+	// of the name.
 	//
 	// Version
 	//
@@ -11491,9 +11501,10 @@ type DescribeProductAsAdminInput struct {
 	AcceptLanguage *string `type:"string"`
 
 	// The product identifier.
-	//
-	// Id is a required field
-	Id *string `min:"1" type:"string" required:"true"`
+	Id *string `min:"1" type:"string"`
+
+	// The product name.
+	Name *string `type:"string"`
 }
 
 // String returns the string representation
@@ -11509,9 +11520,6 @@ func (s DescribeProductAsAdminInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeProductAsAdminInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProductAsAdminInput"}
-	if s.Id == nil {
-		invalidParams.Add(request.NewErrParamRequired("Id"))
-	}
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
@@ -11531,6 +11539,12 @@ func (s *DescribeProductAsAdminInput) SetAcceptLanguage(v string) *DescribeProdu
 // SetId sets the Id field's value.
 func (s *DescribeProductAsAdminInput) SetId(v string) *DescribeProductAsAdminInput {
 	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeProductAsAdminInput) SetName(v string) *DescribeProductAsAdminInput {
+	s.Name = &v
 	return s
 }
 
@@ -11607,9 +11621,10 @@ type DescribeProductInput struct {
 	AcceptLanguage *string `type:"string"`
 
 	// The product identifier.
-	//
-	// Id is a required field
-	Id *string `min:"1" type:"string" required:"true"`
+	Id *string `min:"1" type:"string"`
+
+	// The product name.
+	Name *string `type:"string"`
 }
 
 // String returns the string representation
@@ -11625,9 +11640,6 @@ func (s DescribeProductInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeProductInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProductInput"}
-	if s.Id == nil {
-		invalidParams.Add(request.NewErrParamRequired("Id"))
-	}
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
@@ -11650,11 +11662,20 @@ func (s *DescribeProductInput) SetId(v string) *DescribeProductInput {
 	return s
 }
 
+// SetName sets the Name field's value.
+func (s *DescribeProductInput) SetName(v string) *DescribeProductInput {
+	s.Name = &v
+	return s
+}
+
 type DescribeProductOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the associated budgets.
 	Budgets []*BudgetDetail `type:"list"`
+
+	// Information about the associated launch paths.
+	LaunchPaths []*LaunchPath `type:"list"`
 
 	// Summary information about the product view.
 	ProductViewSummary *ProductViewSummary `type:"structure"`
@@ -11676,6 +11697,12 @@ func (s DescribeProductOutput) GoString() string {
 // SetBudgets sets the Budgets field's value.
 func (s *DescribeProductOutput) SetBudgets(v []*BudgetDetail) *DescribeProductOutput {
 	s.Budgets = v
+	return s
+}
+
+// SetLaunchPaths sets the LaunchPaths field's value.
+func (s *DescribeProductOutput) SetLaunchPaths(v []*LaunchPath) *DescribeProductOutput {
+	s.LaunchPaths = v
 	return s
 }
 
@@ -11997,14 +12024,16 @@ type DescribeProvisioningArtifactInput struct {
 	AcceptLanguage *string `type:"string"`
 
 	// The product identifier.
-	//
-	// ProductId is a required field
-	ProductId *string `min:"1" type:"string" required:"true"`
+	ProductId *string `min:"1" type:"string"`
+
+	// The product name.
+	ProductName *string `type:"string"`
 
 	// The identifier of the provisioning artifact.
-	//
-	// ProvisioningArtifactId is a required field
-	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
+	ProvisioningArtifactId *string `min:"1" type:"string"`
+
+	// The provisioning artifact name.
+	ProvisioningArtifactName *string `type:"string"`
 
 	// Indicates whether a verbose level of detail is enabled.
 	Verbose *bool `type:"boolean"`
@@ -12023,14 +12052,8 @@ func (s DescribeProvisioningArtifactInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeProvisioningArtifactInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProvisioningArtifactInput"}
-	if s.ProductId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ProductId"))
-	}
 	if s.ProductId != nil && len(*s.ProductId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ProductId", 1))
-	}
-	if s.ProvisioningArtifactId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ProvisioningArtifactId"))
 	}
 	if s.ProvisioningArtifactId != nil && len(*s.ProvisioningArtifactId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ProvisioningArtifactId", 1))
@@ -12054,9 +12077,21 @@ func (s *DescribeProvisioningArtifactInput) SetProductId(v string) *DescribeProv
 	return s
 }
 
+// SetProductName sets the ProductName field's value.
+func (s *DescribeProvisioningArtifactInput) SetProductName(v string) *DescribeProvisioningArtifactInput {
+	s.ProductName = &v
+	return s
+}
+
 // SetProvisioningArtifactId sets the ProvisioningArtifactId field's value.
 func (s *DescribeProvisioningArtifactInput) SetProvisioningArtifactId(v string) *DescribeProvisioningArtifactInput {
 	s.ProvisioningArtifactId = &v
+	return s
+}
+
+// SetProvisioningArtifactName sets the ProvisioningArtifactName field's value.
+func (s *DescribeProvisioningArtifactInput) SetProvisioningArtifactName(v string) *DescribeProvisioningArtifactInput {
+	s.ProvisioningArtifactName = &v
 	return s
 }
 
@@ -13617,6 +13652,39 @@ func (s *InvalidStateException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidStateException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A launch path object.
+type LaunchPath struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the launch path.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the launch path.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s LaunchPath) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LaunchPath) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *LaunchPath) SetId(v string) *LaunchPath {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *LaunchPath) SetName(v string) *LaunchPath {
+	s.Name = &v
+	return s
 }
 
 // Summary information about a product path for a user.
@@ -20043,9 +20111,9 @@ type UpdateProvisionedProductPropertiesInput struct {
 
 	// A map that contains the provisioned product properties to be updated.
 	//
-	// The OWNER key only accepts user ARNs. The owner is the user that is allowed
-	// to see, update, terminate, and execute service actions in the provisioned
-	// product.
+	// The OWNER key accepts user ARNs and role ARNs. The owner is the user that
+	// is allowed to see, update, terminate, and execute service actions in the
+	// provisioned product.
 	//
 	// The administrator can change the owner of a provisioned product to another
 	// IAM user within the same account. Both end user owners and administrators

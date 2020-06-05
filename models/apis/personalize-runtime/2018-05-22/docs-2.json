@@ -10,7 +10,8 @@
       "base": null,
       "refs": {
         "GetPersonalizedRankingRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign to use for generating the personalized ranking.</p>",
-        "GetRecommendationsRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign to use for getting recommendations.</p>"
+        "GetRecommendationsRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign to use for getting recommendations.</p>",
+        "GetRecommendationsRequest$filterArn": "<p>The ARN of the filter to apply to the returned recommendations. For more information, see Using Filters with Amazon Personalize.</p>"
       }
     },
     "AttributeName": {
@@ -105,7 +106,7 @@
     "Score": {
       "base": null,
       "refs": {
-        "PredictedItem$score": "<p>A numeric representation of the model's certainty in the item's suitability. For more information on scoring logic, see <a>how-scores-work</a>.</p>"
+        "PredictedItem$score": "<p>A numeric representation of the model's certainty that the item will be the next user selection. For more information on scoring logic, see <a>how-scores-work</a>.</p>"
       }
     },
     "UserID": {

@@ -304,6 +304,10 @@ type GetRecommendationsInput struct {
 	// a user's recommendations, such as the user's current location or device type.
 	Context map[string]*string `locationName:"context" type:"map"`
 
+	// The ARN of the filter to apply to the returned recommendations. For more
+	// information, see Using Filters with Amazon Personalize.
+	FilterArn *string `locationName:"filterArn" type:"string"`
+
 	// The item ID to provide recommendations for.
 	//
 	// Required for RELATED_ITEMS recipe type.
@@ -350,6 +354,12 @@ func (s *GetRecommendationsInput) SetCampaignArn(v string) *GetRecommendationsIn
 // SetContext sets the Context field's value.
 func (s *GetRecommendationsInput) SetContext(v map[string]*string) *GetRecommendationsInput {
 	s.Context = v
+	return s
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *GetRecommendationsInput) SetFilterArn(v string) *GetRecommendationsInput {
+	s.FilterArn = &v
 	return s
 }
 
@@ -460,8 +470,8 @@ type PredictedItem struct {
 	// The recommended item ID.
 	ItemId *string `locationName:"itemId" type:"string"`
 
-	// A numeric representation of the model's certainty in the item's suitability.
-	// For more information on scoring logic, see how-scores-work.
+	// A numeric representation of the model's certainty that the item will be the
+	// next user selection. For more information on scoring logic, see how-scores-work.
 	Score *float64 `locationName:"score" type:"double"`
 }
 
