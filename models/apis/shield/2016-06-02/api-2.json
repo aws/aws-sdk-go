@@ -65,6 +65,22 @@
         {"shape":"OptimisticLockException"}
       ]
     },
+    "AssociateProactiveEngagementDetails":{
+      "name":"AssociateProactiveEngagementDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateProactiveEngagementDetailsRequest"},
+      "output":{"shape":"AssociateProactiveEngagementDetailsResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OptimisticLockException"}
+      ]
+    },
     "CreateProtection":{
       "name":"CreateProtection",
       "http":{
@@ -191,6 +207,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DisableProactiveEngagement":{
+      "name":"DisableProactiveEngagement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableProactiveEngagementRequest"},
+      "output":{"shape":"DisableProactiveEngagementResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OptimisticLockException"}
+      ]
+    },
     "DisassociateDRTLogBucket":{
       "name":"DisassociateDRTLogBucket",
       "http":{
@@ -233,6 +265,22 @@
       "output":{"shape":"DisassociateHealthCheckResponse"},
       "errors":[
         {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OptimisticLockException"}
+      ]
+    },
+    "EnableProactiveEngagement":{
+      "name":"EnableProactiveEngagement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableProactiveEngagementRequest"},
+      "output":{"shape":"EnableProactiveEngagementResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidOperationException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"OptimisticLockException"}
@@ -365,6 +413,18 @@
       "members":{
       }
     },
+    "AssociateProactiveEngagementDetailsRequest":{
+      "type":"structure",
+      "required":["EmergencyContactList"],
+      "members":{
+        "EmergencyContactList":{"shape":"EmergencyContactList"}
+      }
+    },
+    "AssociateProactiveEngagementDetailsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AttackDetail":{
       "type":"structure",
       "members":{
@@ -450,6 +510,12 @@
         "ENABLED",
         "DISABLED"
       ]
+    },
+    "ContactNotes":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[\\w\\s\\.\\-,:/()+@]*$"
     },
     "Contributor":{
       "type":"structure",
@@ -569,6 +635,16 @@
         "Subscription":{"shape":"Subscription"}
       }
     },
+    "DisableProactiveEngagementRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisableProactiveEngagementResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateDRTLogBucketRequest":{
       "type":"structure",
       "required":["LogBucket"],
@@ -622,7 +698,9 @@
       "type":"structure",
       "required":["EmailAddress"],
       "members":{
-        "EmailAddress":{"shape":"EmailAddress"}
+        "EmailAddress":{"shape":"EmailAddress"},
+        "PhoneNumber":{"shape":"PhoneNumber"},
+        "ContactNotes":{"shape":"ContactNotes"}
       }
     },
     "EmergencyContactList":{
@@ -630,6 +708,16 @@
       "member":{"shape":"EmergencyContact"},
       "max":10,
       "min":0
+    },
+    "EnableProactiveEngagementRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "EnableProactiveEngagementResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "GetSubscriptionStateRequest":{
       "type":"structure",
@@ -794,6 +882,20 @@
       },
       "exception":true
     },
+    "PhoneNumber":{
+      "type":"string",
+      "max":40,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "ProactiveEngagementStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED",
+        "PENDING"
+      ]
+    },
     "Protection":{
       "type":"structure",
       "members":{
@@ -877,7 +979,8 @@
         "EndTime":{"shape":"Timestamp"},
         "TimeCommitmentInSeconds":{"shape":"DurationInSeconds"},
         "AutoRenew":{"shape":"AutoRenew"},
-        "Limits":{"shape":"Limits"}
+        "Limits":{"shape":"Limits"},
+        "ProactiveEngagementStatus":{"shape":"ProactiveEngagementStatus"}
       }
     },
     "SubscriptionState":{

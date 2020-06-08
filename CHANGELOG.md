@@ -1,3 +1,12 @@
+Release v1.31.13 (2020-06-08)
+===
+
+### Service Client Updates
+* `service/servicediscovery`: Updates service API, documentation, and examples
+  * Added support for tagging Service and Namespace type resources  in Cloud Map
+* `service/shield`: Updates service API, documentation, and paginators
+  * This release adds the option for customers to identify a contact name and method that the DDoS Response Team can proactively engage when a Route 53 Health Check that is associated with a Shield protected resource fails.
+
 Release v1.31.12 (2020-06-05)
 ===
 

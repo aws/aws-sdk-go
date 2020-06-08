@@ -25,7 +25,8 @@
         {"shape":"InvalidInput"},
         {"shape":"NamespaceAlreadyExists"},
         {"shape":"ResourceLimitExceeded"},
-        {"shape":"DuplicateRequest"}
+        {"shape":"DuplicateRequest"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreatePrivateDnsNamespace":{
@@ -40,7 +41,8 @@
         {"shape":"InvalidInput"},
         {"shape":"NamespaceAlreadyExists"},
         {"shape":"ResourceLimitExceeded"},
-        {"shape":"DuplicateRequest"}
+        {"shape":"DuplicateRequest"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreatePublicDnsNamespace":{
@@ -55,7 +57,8 @@
         {"shape":"InvalidInput"},
         {"shape":"NamespaceAlreadyExists"},
         {"shape":"ResourceLimitExceeded"},
-        {"shape":"DuplicateRequest"}
+        {"shape":"DuplicateRequest"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreateService":{
@@ -70,7 +73,8 @@
         {"shape":"InvalidInput"},
         {"shape":"ResourceLimitExceeded"},
         {"shape":"NamespaceNotFound"},
-        {"shape":"ServiceAlreadyExists"}
+        {"shape":"ServiceAlreadyExists"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "DeleteNamespace":{
@@ -129,7 +133,8 @@
       "errors":[
         {"shape":"ServiceNotFound"},
         {"shape":"NamespaceNotFound"},
-        {"shape":"InvalidInput"}
+        {"shape":"InvalidInput"},
+        {"shape":"RequestLimitExceeded"}
       ],
       "endpoint":{"hostPrefix":"data-"}
     },
@@ -249,6 +254,19 @@
         {"shape":"InvalidInput"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidInput"}
+      ]
+    },
     "RegisterInstance":{
       "name":"RegisterInstance",
       "http":{
@@ -263,6 +281,33 @@
         {"shape":"ResourceInUse"},
         {"shape":"ResourceLimitExceeded"},
         {"shape":"ServiceNotFound"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"InvalidInput"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidInput"}
       ]
     },
     "UpdateInstanceCustomHealthStatus":{
@@ -295,17 +340,24 @@
     }
   },
   "shapes":{
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1
+    },
     "Arn":{
       "type":"string",
       "max":255
     },
     "AttrKey":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"^[a-zA-Z0-9!-~]+$"
     },
     "AttrValue":{
       "type":"string",
-      "max":1024
+      "max":1024,
+      "pattern":"^([a-zA-Z0-9!-~][ \\ta-zA-Z0-9!-~]*){0,1}[a-zA-Z0-9!-~]{0,1}$"
     },
     "Attributes":{
       "type":"map",
@@ -322,7 +374,8 @@
           "shape":"ResourceId",
           "idempotencyToken":true
         },
-        "Description":{"shape":"ResourceDescription"}
+        "Description":{"shape":"ResourceDescription"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateHttpNamespaceResponse":{
@@ -344,7 +397,8 @@
           "idempotencyToken":true
         },
         "Description":{"shape":"ResourceDescription"},
-        "Vpc":{"shape":"ResourceId"}
+        "Vpc":{"shape":"ResourceId"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreatePrivateDnsNamespaceResponse":{
@@ -362,7 +416,8 @@
           "shape":"ResourceId",
           "idempotencyToken":true
         },
-        "Description":{"shape":"ResourceDescription"}
+        "Description":{"shape":"ResourceDescription"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreatePublicDnsNamespaceResponse":{
@@ -384,7 +439,8 @@
         "Description":{"shape":"ResourceDescription"},
         "DnsConfig":{"shape":"DnsConfig"},
         "HealthCheckConfig":{"shape":"HealthCheckConfig"},
-        "HealthCheckCustomConfig":{"shape":"HealthCheckCustomConfig"}
+        "HealthCheckCustomConfig":{"shape":"HealthCheckCustomConfig"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateServiceResponse":{
@@ -458,7 +514,7 @@
       "members":{
         "NamespaceName":{"shape":"NamespaceName"},
         "ServiceName":{"shape":"ServiceName"},
-        "MaxResults":{"shape":"MaxResults"},
+        "MaxResults":{"shape":"DiscoverMaxResults"},
         "QueryParameters":{"shape":"Attributes"},
         "HealthStatus":{"shape":"HealthStatusFilter"}
       }
@@ -468,6 +524,11 @@
       "members":{
         "Instances":{"shape":"HttpInstanceSummaryList"}
       }
+    },
+    "DiscoverMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
     },
     "DnsConfig":{
       "type":"structure",
@@ -778,6 +839,19 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "max":100,
@@ -1004,6 +1078,13 @@
         "OperationId":{"shape":"OperationId"}
       }
     },
+    "RequestLimitExceeded":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "ResourceCount":{"type":"integer"},
     "ResourceDescription":{
       "type":"string",
@@ -1021,6 +1102,13 @@
       "exception":true
     },
     "ResourceLimitExceeded":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "ResourceNotFoundException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ErrorMessage"}
@@ -1065,7 +1153,6 @@
     },
     "ServiceChange":{
       "type":"structure",
-      "required":["DnsConfig"],
       "members":{
         "Description":{"shape":"ResourceDescription"},
         "DnsConfig":{"shape":"DnsConfigChange"},
@@ -1121,7 +1208,80 @@
         "CreateDate":{"shape":"Timestamp"}
       }
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "Timestamp":{"type":"timestamp"},
+    "TooManyTagsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"},
+        "ResourceName":{"shape":"AmazonResourceName"}
+      },
+      "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateInstanceCustomHealthStatusRequest":{
       "type":"structure",
       "required":[
