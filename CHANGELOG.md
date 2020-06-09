@@ -1,3 +1,10 @@
+Release v1.31.14 (2020-06-09)
+===
+
+### Service Client Updates
+* `service/transfer`: Updates service API and documentation
+  * This release updates the API so customers can test use of Source IP to allow, deny or limit access to data in their S3 buckets after integrating their identity provider.
+
 Release v1.31.13 (2020-06-08)
 ===
 
