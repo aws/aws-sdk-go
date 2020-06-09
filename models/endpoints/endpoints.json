@@ -6628,7 +6628,19 @@
       },
       "api.sagemaker" : {
         "endpoints" : {
-          "us-gov-west-1" : { }
+          "us-gov-west-1" : { },
+          "us-gov-west-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "api-fips.sagemaker.us-gov-west-1.amazonaws.com"
+          },
+          "us-gov-west-1-fips-secondary" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "api.sagemaker.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "apigateway" : {
