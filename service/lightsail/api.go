@@ -19584,7 +19584,7 @@ type GetInstanceMetricDataInput struct {
 	// statistics to include in your request, and the published unit value.
 	//
 	//    * BurstCapacityPercentage - The percentage of CPU performance available
-	//    for your instance to burst above its baseline. Your instance continously
+	//    for your instance to burst above its baseline. Your instance continuously
 	//    accrues and consumes burst capacity. Burst capacity stops accruing when
 	//    your instance's BurstCapacityPercentage reaches 100%. For more information,
 	//    see Viewing instance burst capacity in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-viewing-instance-burst-capacity).
@@ -19592,15 +19592,16 @@ type GetInstanceMetricDataInput struct {
 	//    The published unit is Percent.
 	//
 	//    * BurstCapacityTime - The available amount of time for your instance to
-	//    burst at 100% CPU utilization. Your instance continously accrues and consumes
-	//    burst capacity. Burst capacity time stops accruing when your instance's
-	//    BurstCapacityPercentage metric reaches 100%. Burst capacity time is consumed
-	//    at the full rate only when your instance operates at 100% CPU utilization.
-	//    For example, if your instance operates at 50% CPU utilization in the burstable
-	//    zone for a 5-minute period, then it consumes CPU burst capacity minutes
-	//    at a 50% rate in that period. Your instance consumed 2 minutes and 30
-	//    seconds of CPU burst capacity minutes in the 5-minute period. For more
-	//    information, see Viewing instance burst capacity in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-viewing-instance-burst-capacity).
+	//    burst at 100% CPU utilization. Your instance continuously accrues and
+	//    consumes burst capacity. Burst capacity time stops accruing when your
+	//    instance's BurstCapacityPercentage metric reaches 100%. Burst capacity
+	//    time is consumed at the full rate only when your instance operates at
+	//    100% CPU utilization. For example, if your instance operates at 50% CPU
+	//    utilization in the burstable zone for a 5-minute period, then it consumes
+	//    CPU burst capacity minutes at a 50% rate in that period. Your instance
+	//    consumed 2 minutes and 30 seconds of CPU burst capacity minutes in the
+	//    5-minute period. For more information, see Viewing instance burst capacity
+	//    in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-viewing-instance-burst-capacity).
 	//    Statistics: The most useful statistics are Maximum and Average. Unit:
 	//    The published unit is Seconds.
 	//
@@ -23053,9 +23054,10 @@ type InstancePortInfo struct {
 	//
 	//    * TCP and UDP - 0 to 65535
 	//
-	//    * ICMP - 8 (to configure Ping) Ping is the only communication supported
-	//    through the ICMP protocol in Lightsail. To configure ping, specify the
-	//    fromPort parameter as 8, and the toPort parameter as -1.
+	//    * ICMP - The ICMP type. For example, specify 8 as the fromPort (ICMP type),
+	//    and -1 as the toPort (ICMP code), to enable ICMP Ping. For more information,
+	//    see Control Messages (https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages)
+	//    on Wikipedia.
 	FromPort *int64 `locationName:"fromPort" type:"integer"`
 
 	// The IP protocol name.
@@ -23082,9 +23084,9 @@ type InstancePortInfo struct {
 	//    * icmp - Internet Control Message Protocol (ICMP) is used to send error
 	//    messages and operational information indicating success or failure when
 	//    communicating with an instance. For example, an error is indicated when
-	//    an instance could not be reached. Ping is the only communication supported
-	//    through the ICMP protocol in Lightsail. To configure ping, specify the
-	//    fromPort parameter as 8, and the toPort parameter as -1.
+	//    an instance could not be reached. When you specify icmp as the protocol,
+	//    you must specify the ICMP type using the fromPort parameter, and ICMP
+	//    code using the toPort parameter.
 	Protocol *string `locationName:"protocol" type:"string" enum:"NetworkProtocol"`
 
 	// The last port in a range of open ports on an instance.
@@ -23093,9 +23095,10 @@ type InstancePortInfo struct {
 	//
 	//    * TCP and UDP - 0 to 65535
 	//
-	//    * ICMP - -1 (to configure Ping) Ping is the only communication supported
-	//    through the ICMP protocol in Lightsail. To configure ping, specify the
-	//    fromPort parameter as 8, and the toPort parameter as -1.
+	//    * ICMP - The ICMP code. For example, specify 8 as the fromPort (ICMP type),
+	//    and -1 as the toPort (ICMP code), to enable ICMP Ping. For more information,
+	//    see Control Messages (https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages)
+	//    on Wikipedia.
 	ToPort *int64 `locationName:"toPort" type:"integer"`
 }
 
@@ -23190,9 +23193,10 @@ type InstancePortState struct {
 	//
 	//    * TCP and UDP - 0 to 65535
 	//
-	//    * ICMP - 8 (to configure Ping) Ping is the only communication supported
-	//    through the ICMP protocol in Lightsail. To configure ping, specify the
-	//    fromPort parameter as 8, and the toPort parameter as -1.
+	//    * ICMP - The ICMP type. For example, specify 8 as the fromPort (ICMP type),
+	//    and -1 as the toPort (ICMP code), to enable ICMP Ping. For more information,
+	//    see Control Messages (https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages)
+	//    on Wikipedia.
 	FromPort *int64 `locationName:"fromPort" type:"integer"`
 
 	// The IP protocol name.
@@ -23219,9 +23223,9 @@ type InstancePortState struct {
 	//    * icmp - Internet Control Message Protocol (ICMP) is used to send error
 	//    messages and operational information indicating success or failure when
 	//    communicating with an instance. For example, an error is indicated when
-	//    an instance could not be reached. Ping is the only communication supported
-	//    through the ICMP protocol in Lightsail. To configure ping, specify the
-	//    fromPort parameter as 8, and the toPort parameter as -1.
+	//    an instance could not be reached. When you specify icmp as the protocol,
+	//    you must specify the ICMP type using the fromPort parameter, and ICMP
+	//    code using the toPort parameter.
 	Protocol *string `locationName:"protocol" type:"string" enum:"NetworkProtocol"`
 
 	// Specifies whether the instance port is open or closed.
@@ -23235,9 +23239,10 @@ type InstancePortState struct {
 	//
 	//    * TCP and UDP - 0 to 65535
 	//
-	//    * ICMP - -1 (to configure Ping) Ping is the only communication supported
-	//    through the ICMP protocol in Lightsail. To configure ping, specify the
-	//    fromPort parameter as 8, and the toPort parameter as -1.
+	//    * ICMP - The ICMP code. For example, specify 8 as the fromPort (ICMP type),
+	//    and -1 as the toPort (ICMP code), to enable ICMP Ping. For more information,
+	//    see Control Messages (https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages)
+	//    on Wikipedia.
 	ToPort *int64 `locationName:"toPort" type:"integer"`
 }
 
@@ -25054,9 +25059,10 @@ type PortInfo struct {
 	//
 	//    * TCP and UDP - 0 to 65535
 	//
-	//    * ICMP - 8 (to configure Ping) Ping is the only communication supported
-	//    through the ICMP protocol in Lightsail. To configure ping, specify the
-	//    fromPort parameter as 8, and the toPort parameter as -1.
+	//    * ICMP - The ICMP type. For example, specify 8 as the fromPort (ICMP type),
+	//    and -1 as the toPort (ICMP code), to enable ICMP Ping. For more information,
+	//    see Control Messages (https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages)
+	//    on Wikipedia.
 	FromPort *int64 `locationName:"fromPort" type:"integer"`
 
 	// The IP protocol name.
@@ -25083,9 +25089,9 @@ type PortInfo struct {
 	//    * icmp - Internet Control Message Protocol (ICMP) is used to send error
 	//    messages and operational information indicating success or failure when
 	//    communicating with an instance. For example, an error is indicated when
-	//    an instance could not be reached. Ping is the only communication supported
-	//    through the ICMP protocol in Lightsail. To configure ping, specify the
-	//    fromPort parameter as 8, and the toPort parameter as -1.
+	//    an instance could not be reached. When you specify icmp as the protocol,
+	//    you must specify the ICMP type using the fromPort parameter, and ICMP
+	//    code using the toPort parameter.
 	Protocol *string `locationName:"protocol" type:"string" enum:"NetworkProtocol"`
 
 	// The last port in a range of open ports on an instance.
@@ -25094,9 +25100,10 @@ type PortInfo struct {
 	//
 	//    * TCP and UDP - 0 to 65535
 	//
-	//    * ICMP - -1 (to configure Ping) Ping is the only communication supported
-	//    through the ICMP protocol in Lightsail. To configure ping, specify the
-	//    fromPort parameter as 8, and the toPort parameter as -1.
+	//    * ICMP - The ICMP code. For example, specify 8 as the fromPort (ICMP type),
+	//    and -1 as the toPort (ICMP code), to enable ICMP Ping. For more information,
+	//    see Control Messages (https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages)
+	//    on Wikipedia.
 	ToPort *int64 `locationName:"toPort" type:"integer"`
 }
 

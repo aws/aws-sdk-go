@@ -48,43 +48,6 @@
         }
       ]
     },
-    "ArchiveFindings": {
-      "name": "ArchiveFindings",
-      "http": {
-        "method": "POST",
-        "requestUri": "/findings/archive",
-        "responseCode": 200
-      },
-      "input": {
-        "shape": "ArchiveFindingsRequest"
-      },
-      "output": {
-        "shape": "ArchiveFindingsResponse"
-      },
-      "errors": [
-        {
-          "shape": "ValidationException"
-        },
-        {
-          "shape": "InternalServerException"
-        },
-        {
-          "shape": "ServiceQuotaExceededException"
-        },
-        {
-          "shape": "AccessDeniedException"
-        },
-        {
-          "shape": "ResourceNotFoundException"
-        },
-        {
-          "shape": "ThrottlingException"
-        },
-        {
-          "shape": "ConflictException"
-        }
-      ]
-    },
     "BatchGetCustomDataIdentifiers": {
       "name": "BatchGetCustomDataIdentifiers",
       "http": {
@@ -1669,43 +1632,6 @@
         }
       ]
     },
-    "UnarchiveFindings": {
-      "name": "UnarchiveFindings",
-      "http": {
-        "method": "POST",
-        "requestUri": "/findings/unarchive",
-        "responseCode": 200
-      },
-      "input": {
-        "shape": "UnarchiveFindingsRequest"
-      },
-      "output": {
-        "shape": "UnarchiveFindingsResponse"
-      },
-      "errors": [
-        {
-          "shape": "ValidationException"
-        },
-        {
-          "shape": "InternalServerException"
-        },
-        {
-          "shape": "ServiceQuotaExceededException"
-        },
-        {
-          "shape": "AccessDeniedException"
-        },
-        {
-          "shape": "ResourceNotFoundException"
-        },
-        {
-          "shape": "ThrottlingException"
-        },
-        {
-          "shape": "ConflictException"
-        }
-      ]
-    },
     "UntagResource": {
       "name": "UntagResource",
       "http": {
@@ -2021,22 +1947,6 @@
           "locationName": "lastSeen"
         }
       }
-    },
-    "ArchiveFindingsRequest": {
-      "type": "structure",
-      "members": {
-        "findingIds": {
-          "shape": "__listOf__string",
-          "locationName": "findingIds"
-        }
-      },
-      "required": [
-        "findingIds"
-      ]
-    },
-    "ArchiveFindingsResponse": {
-      "type": "structure",
-      "members": {}
     },
     "AssumedRole": {
       "type": "structure",
@@ -3185,7 +3095,8 @@
       "enum": [
         "NONE",
         "AES256",
-        "aws:kms"
+        "aws:kms",
+        "UNKNOWN"
       ]
     },
     "ErrorCode": {
@@ -5049,22 +4960,6 @@
       "error": {
         "httpStatusCode": 429
       }
-    },
-    "UnarchiveFindingsRequest": {
-      "type": "structure",
-      "members": {
-        "findingIds": {
-          "shape": "__listOf__string",
-          "locationName": "findingIds"
-        }
-      },
-      "required": [
-        "findingIds"
-      ]
-    },
-    "UnarchiveFindingsResponse": {
-      "type": "structure",
-      "members": {}
     },
     "Unit": {
       "type": "string",

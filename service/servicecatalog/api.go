@@ -327,6 +327,8 @@ func (c *ServiceCatalog) AssociateProductWithPortfolioRequest(input *AssociatePr
 //
 // Associates the specified product with the specified portfolio.
 //
+// A delegated admin is authorized to invoke this command.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -851,6 +853,8 @@ func (c *ServiceCatalog) CreateConstraintRequest(input *CreateConstraintInput) (
 //
 // Creates a constraint.
 //
+// A delegated admin is authorized to invoke this command.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -941,6 +945,8 @@ func (c *ServiceCatalog) CreatePortfolioRequest(input *CreatePortfolioInput) (re
 //
 // Creates a portfolio.
 //
+// A delegated admin is authorized to invoke this command.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1030,8 +1036,14 @@ func (c *ServiceCatalog) CreatePortfolioShareRequest(input *CreatePortfolioShare
 //
 // Shares the specified portfolio with the specified account or organization
 // node. Shares to an organization node can only be created by the master account
-// of an Organization. AWSOrganizationsAccess must be enabled in order to create
-// a portfolio share to an organization node.
+// of an organization or by a delegated administrator. You can share portfolios
+// to an organization, an organizational unit, or a specific account.
+//
+// Note that if a delegated admin is de-registered, they can no longer create
+// portfolio shares.
+//
+// AWSOrganizationsAccess must be enabled in order to create a portfolio share
+// to an organization node.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1127,6 +1139,8 @@ func (c *ServiceCatalog) CreateProductRequest(input *CreateProductInput) (req *r
 // CreateProduct API operation for AWS Service Catalog.
 //
 // Creates a product.
+//
+// A delegated admin is authorized to invoke this command.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1577,6 +1591,8 @@ func (c *ServiceCatalog) DeleteConstraintRequest(input *DeleteConstraintInput) (
 //
 // Deletes the specified constraint.
 //
+// A delegated admin is authorized to invoke this command.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1662,6 +1678,8 @@ func (c *ServiceCatalog) DeletePortfolioRequest(input *DeletePortfolioInput) (re
 //
 // You cannot delete a portfolio if it was shared with you or if it has associated
 // products, users, constraints, or shared accounts.
+//
+// A delegated admin is authorized to invoke this command.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1754,7 +1772,10 @@ func (c *ServiceCatalog) DeletePortfolioShareRequest(input *DeletePortfolioShare
 //
 // Stops sharing the specified portfolio with the specified account or organization
 // node. Shares to an organization node can only be deleted by the master account
-// of an Organization.
+// of an organization or by a delegated administrator.
+//
+// Note that if a delegated admin is de-registered, portfolio shares created
+// from that account are removed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1849,6 +1870,8 @@ func (c *ServiceCatalog) DeleteProductRequest(input *DeleteProductInput) (req *r
 //
 // You cannot delete a product if it was shared with you or is associated with
 // a portfolio.
+//
+// A delegated admin is authorized to invoke this command.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2449,6 +2472,8 @@ func (c *ServiceCatalog) DescribePortfolioRequest(input *DescribePortfolioInput)
 //
 // Gets information about the specified portfolio.
 //
+// A delegated admin is authorized to invoke this command.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2527,7 +2552,8 @@ func (c *ServiceCatalog) DescribePortfolioShareStatusRequest(input *DescribePort
 // DescribePortfolioShareStatus API operation for AWS Service Catalog.
 //
 // Gets the status of the specified portfolio share operation. This API can
-// only be called by the master account in the organization.
+// only be called by the master account in the organization or by a delegated
+// admin.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3534,6 +3560,11 @@ func (c *ServiceCatalog) DisableAWSOrganizationsAccessRequest(input *DisableAWSO
 // with your organization structure if it changes after calling this API. This
 // API can only be called by the master account in the organization.
 //
+// This API can't be invoked if there are active delegated administrators in
+// the organization.
+//
+// Note that a delegated administrator is not authorized to invoke DisableAWSOrganizationsAccess.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3784,6 +3815,8 @@ func (c *ServiceCatalog) DisassociateProductFromPortfolioRequest(input *Disassoc
 // DisassociateProductFromPortfolio API operation for AWS Service Catalog.
 //
 // Disassociates the specified product from the specified portfolio.
+//
+// A delegated admin is authorized to invoke this command.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4044,6 +4077,8 @@ func (c *ServiceCatalog) EnableAWSOrganizationsAccessRequest(input *EnableAWSOrg
 // By calling this API Service Catalog will make a call to organizations:EnableAWSServiceAccess
 // on your behalf so that your shares can be in sync with any changes in your
 // AWS Organizations structure.
+//
+// Note that a delegated administrator is not authorized to invoke EnableAWSOrganizationsAccess.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4306,7 +4341,8 @@ func (c *ServiceCatalog) GetAWSOrganizationsAccessStatusRequest(input *GetAWSOrg
 // GetAWSOrganizationsAccessStatus API operation for AWS Service Catalog.
 //
 // Get the Access Status for AWS Organization portfolio share feature. This
-// API can only be called by the master account in the organization.
+// API can only be called by the master account in the organization or by a
+// delegated admin.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4957,7 +4993,10 @@ func (c *ServiceCatalog) ListOrganizationPortfolioAccessRequest(input *ListOrgan
 // ListOrganizationPortfolioAccess API operation for AWS Service Catalog.
 //
 // Lists the organization nodes that have access to the specified portfolio.
-// This API can only be called by the master account in the organization.
+// This API can only be called by the master account in the organization or
+// by a delegated admin.
+//
+// If a delegated admin is de-registered, they can no longer perform this operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5101,6 +5140,10 @@ func (c *ServiceCatalog) ListPortfolioAccessRequest(input *ListPortfolioAccessIn
 // ListPortfolioAccess API operation for AWS Service Catalog.
 //
 // Lists the account IDs that have access to the specified portfolio.
+//
+// A delegated admin can list the accounts that have access to the shared portfolio.
+// Note that if a delegated admin is de-registered, they can no longer perform
+// this operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

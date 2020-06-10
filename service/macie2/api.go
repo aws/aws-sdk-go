@@ -119,111 +119,6 @@ func (c *Macie2) AcceptInvitationWithContext(ctx aws.Context, input *AcceptInvit
 	return out, req.Send()
 }
 
-const opArchiveFindings = "ArchiveFindings"
-
-// ArchiveFindingsRequest generates a "aws/request.Request" representing the
-// client's request for the ArchiveFindings operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See ArchiveFindings for more information on using the ArchiveFindings
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//
-//    // Example sending a request using the ArchiveFindingsRequest method.
-//    req, resp := client.ArchiveFindingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ArchiveFindings
-func (c *Macie2) ArchiveFindingsRequest(input *ArchiveFindingsInput) (req *request.Request, output *ArchiveFindingsOutput) {
-	op := &request.Operation{
-		Name:       opArchiveFindings,
-		HTTPMethod: "POST",
-		HTTPPath:   "/findings/archive",
-	}
-
-	if input == nil {
-		input = &ArchiveFindingsInput{}
-	}
-
-	output = &ArchiveFindingsOutput{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// ArchiveFindings API operation for Amazon Macie 2.
-//
-// Archives one or more findings.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Macie 2's
-// API operation ArchiveFindings for usage and error information.
-//
-// Returned Error Types:
-//   * ValidationException
-//   Provides information about an error that occurred due to a syntax error in
-//   a request.
-//
-//   * InternalServerException
-//   Provides information about an error that occurred due to an unknown internal
-//   server error, exception, or failure.
-//
-//   * ServiceQuotaExceededException
-//   Provides information about an error that occurred due to one or more service
-//   quotas for an account.
-//
-//   * AccessDeniedException
-//   Provides information about an error that occurred due to insufficient access
-//   to a specified resource.
-//
-//   * ResourceNotFoundException
-//   Provides information about an error that occurred because a specified resource
-//   wasn't found.
-//
-//   * ThrottlingException
-//   Provides information about an error that occurred because too many requests
-//   were sent during a certain amount of time.
-//
-//   * ConflictException
-//   Provides information about an error that occurred due to a versioning conflict
-//   for a specified resource.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ArchiveFindings
-func (c *Macie2) ArchiveFindings(input *ArchiveFindingsInput) (*ArchiveFindingsOutput, error) {
-	req, out := c.ArchiveFindingsRequest(input)
-	return out, req.Send()
-}
-
-// ArchiveFindingsWithContext is the same as ArchiveFindings with the addition of
-// the ability to pass a context and additional request options.
-//
-// See ArchiveFindings for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *Macie2) ArchiveFindingsWithContext(ctx aws.Context, input *ArchiveFindingsInput, opts ...request.Option) (*ArchiveFindingsOutput, error) {
-	req, out := c.ArchiveFindingsRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
 const opBatchGetCustomDataIdentifiers = "BatchGetCustomDataIdentifiers"
 
 // BatchGetCustomDataIdentifiersRequest generates a "aws/request.Request" representing the
@@ -4774,111 +4669,6 @@ func (c *Macie2) TestCustomDataIdentifierWithContext(ctx aws.Context, input *Tes
 	return out, req.Send()
 }
 
-const opUnarchiveFindings = "UnarchiveFindings"
-
-// UnarchiveFindingsRequest generates a "aws/request.Request" representing the
-// client's request for the UnarchiveFindings operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See UnarchiveFindings for more information on using the UnarchiveFindings
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//
-//    // Example sending a request using the UnarchiveFindingsRequest method.
-//    req, resp := client.UnarchiveFindingsRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UnarchiveFindings
-func (c *Macie2) UnarchiveFindingsRequest(input *UnarchiveFindingsInput) (req *request.Request, output *UnarchiveFindingsOutput) {
-	op := &request.Operation{
-		Name:       opUnarchiveFindings,
-		HTTPMethod: "POST",
-		HTTPPath:   "/findings/unarchive",
-	}
-
-	if input == nil {
-		input = &UnarchiveFindingsInput{}
-	}
-
-	output = &UnarchiveFindingsOutput{}
-	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	return
-}
-
-// UnarchiveFindings API operation for Amazon Macie 2.
-//
-// Reactivates (unarchives) one or more findings.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Macie 2's
-// API operation UnarchiveFindings for usage and error information.
-//
-// Returned Error Types:
-//   * ValidationException
-//   Provides information about an error that occurred due to a syntax error in
-//   a request.
-//
-//   * InternalServerException
-//   Provides information about an error that occurred due to an unknown internal
-//   server error, exception, or failure.
-//
-//   * ServiceQuotaExceededException
-//   Provides information about an error that occurred due to one or more service
-//   quotas for an account.
-//
-//   * AccessDeniedException
-//   Provides information about an error that occurred due to insufficient access
-//   to a specified resource.
-//
-//   * ResourceNotFoundException
-//   Provides information about an error that occurred because a specified resource
-//   wasn't found.
-//
-//   * ThrottlingException
-//   Provides information about an error that occurred because too many requests
-//   were sent during a certain amount of time.
-//
-//   * ConflictException
-//   Provides information about an error that occurred due to a versioning conflict
-//   for a specified resource.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/UnarchiveFindings
-func (c *Macie2) UnarchiveFindings(input *UnarchiveFindingsInput) (*UnarchiveFindingsOutput, error) {
-	req, out := c.UnarchiveFindingsRequest(input)
-	return out, req.Send()
-}
-
-// UnarchiveFindingsWithContext is the same as UnarchiveFindings with the addition of
-// the ability to pass a context and additional request options.
-//
-// See UnarchiveFindings for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *Macie2) UnarchiveFindingsWithContext(ctx aws.Context, input *UnarchiveFindingsInput, opts ...request.Option) (*UnarchiveFindingsOutput, error) {
-	req, out := c.UnarchiveFindingsRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -5801,57 +5591,6 @@ func (s *ApiCallDetails) SetFirstSeen(v time.Time) *ApiCallDetails {
 func (s *ApiCallDetails) SetLastSeen(v time.Time) *ApiCallDetails {
 	s.LastSeen = &v
 	return s
-}
-
-// Specifies one or more findings to archive.
-type ArchiveFindingsInput struct {
-	_ struct{} `type:"structure"`
-
-	// FindingIds is a required field
-	FindingIds []*string `locationName:"findingIds" type:"list" required:"true"`
-}
-
-// String returns the string representation
-func (s ArchiveFindingsInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s ArchiveFindingsInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ArchiveFindingsInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ArchiveFindingsInput"}
-	if s.FindingIds == nil {
-		invalidParams.Add(request.NewErrParamRequired("FindingIds"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetFindingIds sets the FindingIds field's value.
-func (s *ArchiveFindingsInput) SetFindingIds(v []*string) *ArchiveFindingsInput {
-	s.FindingIds = v
-	return s
-}
-
-type ArchiveFindingsOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation
-func (s ArchiveFindingsOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s ArchiveFindingsOutput) GoString() string {
-	return s.String()
 }
 
 // Reserved for future use.
@@ -12837,57 +12576,6 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies one or more findings to reactivate (unarchive).
-type UnarchiveFindingsInput struct {
-	_ struct{} `type:"structure"`
-
-	// FindingIds is a required field
-	FindingIds []*string `locationName:"findingIds" type:"list" required:"true"`
-}
-
-// String returns the string representation
-func (s UnarchiveFindingsInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s UnarchiveFindingsInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *UnarchiveFindingsInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "UnarchiveFindingsInput"}
-	if s.FindingIds == nil {
-		invalidParams.Add(request.NewErrParamRequired("FindingIds"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetFindingIds sets the FindingIds field's value.
-func (s *UnarchiveFindingsInput) SetFindingIds(v []*string) *UnarchiveFindingsInput {
-	s.FindingIds = v
-	return s
-}
-
-type UnarchiveFindingsOutput struct {
-	_ struct{} `type:"structure"`
-}
-
-// String returns the string representation
-func (s UnarchiveFindingsOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s UnarchiveFindingsOutput) GoString() string {
-	return s.String()
-}
-
 // Provides information about an account-related request that hasn't been processed.
 type UnprocessedAccount struct {
 	_ struct{} `type:"structure"`
@@ -13804,6 +13492,9 @@ const (
 
 	// EncryptionTypeAwsKms is a EncryptionType enum value
 	EncryptionTypeAwsKms = "aws:kms"
+
+	// EncryptionTypeUnknown is a EncryptionType enum value
+	EncryptionTypeUnknown = "UNKNOWN"
 )
 
 // The source of an error, issue, or delay. Possible values are:

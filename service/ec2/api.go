@@ -111169,6 +111169,33 @@ const (
 	// InstanceTypeR5ad24xlarge is a InstanceType enum value
 	InstanceTypeR5ad24xlarge = "r5ad.24xlarge"
 
+	// InstanceTypeR6gMetal is a InstanceType enum value
+	InstanceTypeR6gMetal = "r6g.metal"
+
+	// InstanceTypeR6gMedium is a InstanceType enum value
+	InstanceTypeR6gMedium = "r6g.medium"
+
+	// InstanceTypeR6gLarge is a InstanceType enum value
+	InstanceTypeR6gLarge = "r6g.large"
+
+	// InstanceTypeR6gXlarge is a InstanceType enum value
+	InstanceTypeR6gXlarge = "r6g.xlarge"
+
+	// InstanceTypeR6g2xlarge is a InstanceType enum value
+	InstanceTypeR6g2xlarge = "r6g.2xlarge"
+
+	// InstanceTypeR6g4xlarge is a InstanceType enum value
+	InstanceTypeR6g4xlarge = "r6g.4xlarge"
+
+	// InstanceTypeR6g8xlarge is a InstanceType enum value
+	InstanceTypeR6g8xlarge = "r6g.8xlarge"
+
+	// InstanceTypeR6g12xlarge is a InstanceType enum value
+	InstanceTypeR6g12xlarge = "r6g.12xlarge"
+
+	// InstanceTypeR6g16xlarge is a InstanceType enum value
+	InstanceTypeR6g16xlarge = "r6g.16xlarge"
+
 	// InstanceTypeX116xlarge is a InstanceType enum value
 	InstanceTypeX116xlarge = "x1.16xlarge"
 
@@ -111387,6 +111414,33 @@ const (
 
 	// InstanceTypeC5n18xlarge is a InstanceType enum value
 	InstanceTypeC5n18xlarge = "c5n.18xlarge"
+
+	// InstanceTypeC6gMetal is a InstanceType enum value
+	InstanceTypeC6gMetal = "c6g.metal"
+
+	// InstanceTypeC6gMedium is a InstanceType enum value
+	InstanceTypeC6gMedium = "c6g.medium"
+
+	// InstanceTypeC6gLarge is a InstanceType enum value
+	InstanceTypeC6gLarge = "c6g.large"
+
+	// InstanceTypeC6gXlarge is a InstanceType enum value
+	InstanceTypeC6gXlarge = "c6g.xlarge"
+
+	// InstanceTypeC6g2xlarge is a InstanceType enum value
+	InstanceTypeC6g2xlarge = "c6g.2xlarge"
+
+	// InstanceTypeC6g4xlarge is a InstanceType enum value
+	InstanceTypeC6g4xlarge = "c6g.4xlarge"
+
+	// InstanceTypeC6g8xlarge is a InstanceType enum value
+	InstanceTypeC6g8xlarge = "c6g.8xlarge"
+
+	// InstanceTypeC6g12xlarge is a InstanceType enum value
+	InstanceTypeC6g12xlarge = "c6g.12xlarge"
+
+	// InstanceTypeC6g16xlarge is a InstanceType enum value
+	InstanceTypeC6g16xlarge = "c6g.16xlarge"
 
 	// InstanceTypeCc14xlarge is a InstanceType enum value
 	InstanceTypeCc14xlarge = "cc1.4xlarge"

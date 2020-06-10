@@ -13,6 +13,63 @@
     "uid":"compute-optimizer-2019-11-01"
   },
   "operations":{
+    "DescribeRecommendationExportJobs":{
+      "name":"DescribeRecommendationExportJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRecommendationExportJobsRequest"},
+      "output":{"shape":"DescribeRecommendationExportJobsResponse"},
+      "errors":[
+        {"shape":"OptInRequiredException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ExportAutoScalingGroupRecommendations":{
+      "name":"ExportAutoScalingGroupRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExportAutoScalingGroupRecommendationsRequest"},
+      "output":{"shape":"ExportAutoScalingGroupRecommendationsResponse"},
+      "errors":[
+        {"shape":"OptInRequiredException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "ExportEC2InstanceRecommendations":{
+      "name":"ExportEC2InstanceRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExportEC2InstanceRecommendationsRequest"},
+      "output":{"shape":"ExportEC2InstanceRecommendationsResponse"},
+      "errors":[
+        {"shape":"OptInRequiredException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "GetAutoScalingGroupRecommendations":{
       "name":"GetAutoScalingGroupRecommendations",
       "http":{
@@ -184,9 +241,158 @@
       "member":{"shape":"AutoScalingGroupRecommendation"}
     },
     "Code":{"type":"string"},
+    "CreationTimestamp":{"type":"timestamp"},
     "CurrentInstanceType":{"type":"string"},
+    "DescribeRecommendationExportJobsRequest":{
+      "type":"structure",
+      "members":{
+        "jobIds":{"shape":"JobIds"},
+        "filters":{"shape":"JobFilters"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "DescribeRecommendationExportJobsResponse":{
+      "type":"structure",
+      "members":{
+        "recommendationExportJobs":{"shape":"RecommendationExportJobs"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "DesiredCapacity":{"type":"integer"},
+    "DestinationBucket":{"type":"string"},
+    "DestinationKey":{"type":"string"},
+    "DestinationKeyPrefix":{"type":"string"},
     "ErrorMessage":{"type":"string"},
+    "ExportAutoScalingGroupRecommendationsRequest":{
+      "type":"structure",
+      "required":["s3DestinationConfig"],
+      "members":{
+        "accountIds":{"shape":"AccountIds"},
+        "filters":{"shape":"Filters"},
+        "fieldsToExport":{"shape":"ExportableAutoScalingGroupFields"},
+        "s3DestinationConfig":{"shape":"S3DestinationConfig"},
+        "fileFormat":{"shape":"FileFormat"},
+        "includeMemberAccounts":{"shape":"IncludeMemberAccounts"}
+      }
+    },
+    "ExportAutoScalingGroupRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"JobId"},
+        "s3Destination":{"shape":"S3Destination"}
+      }
+    },
+    "ExportDestination":{
+      "type":"structure",
+      "members":{
+        "s3":{"shape":"S3Destination"}
+      }
+    },
+    "ExportEC2InstanceRecommendationsRequest":{
+      "type":"structure",
+      "required":["s3DestinationConfig"],
+      "members":{
+        "accountIds":{"shape":"AccountIds"},
+        "filters":{"shape":"Filters"},
+        "fieldsToExport":{"shape":"ExportableInstanceFields"},
+        "s3DestinationConfig":{"shape":"S3DestinationConfig"},
+        "fileFormat":{"shape":"FileFormat"},
+        "includeMemberAccounts":{"shape":"IncludeMemberAccounts"}
+      }
+    },
+    "ExportEC2InstanceRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"JobId"},
+        "s3Destination":{"shape":"S3Destination"}
+      }
+    },
+    "ExportableAutoScalingGroupField":{
+      "type":"string",
+      "enum":[
+        "AccountId",
+        "AutoScalingGroupArn",
+        "AutoScalingGroupName",
+        "Finding",
+        "UtilizationMetricsCpuMaximum",
+        "UtilizationMetricsMemoryMaximum",
+        "LookbackPeriodInDays",
+        "CurrentConfigurationInstanceType",
+        "CurrentConfigurationDesiredCapacity",
+        "CurrentConfigurationMinSize",
+        "CurrentConfigurationMaxSize",
+        "CurrentOnDemandPrice",
+        "CurrentStandardOneYearNoUpfrontReservedPrice",
+        "CurrentStandardThreeYearNoUpfrontReservedPrice",
+        "CurrentVCpus",
+        "CurrentMemory",
+        "CurrentStorage",
+        "CurrentNetwork",
+        "RecommendationOptionsConfigurationInstanceType",
+        "RecommendationOptionsConfigurationDesiredCapacity",
+        "RecommendationOptionsConfigurationMinSize",
+        "RecommendationOptionsConfigurationMaxSize",
+        "RecommendationOptionsProjectedUtilizationMetricsCpuMaximum",
+        "RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum",
+        "RecommendationOptionsPerformanceRisk",
+        "RecommendationOptionsOnDemandPrice",
+        "RecommendationOptionsStandardOneYearNoUpfrontReservedPrice",
+        "RecommendationOptionsStandardThreeYearNoUpfrontReservedPrice",
+        "RecommendationOptionsVcpus",
+        "RecommendationOptionsMemory",
+        "RecommendationOptionsStorage",
+        "RecommendationOptionsNetwork",
+        "LastRefreshTimestamp"
+      ]
+    },
+    "ExportableAutoScalingGroupFields":{
+      "type":"list",
+      "member":{"shape":"ExportableAutoScalingGroupField"}
+    },
+    "ExportableInstanceField":{
+      "type":"string",
+      "enum":[
+        "AccountId",
+        "InstanceArn",
+        "InstanceName",
+        "Finding",
+        "LookbackPeriodInDays",
+        "CurrentInstanceType",
+        "UtilizationMetricsCpuMaximum",
+        "UtilizationMetricsMemoryMaximum",
+        "CurrentOnDemandPrice",
+        "CurrentStandardOneYearNoUpfrontReservedPrice",
+        "CurrentStandardThreeYearNoUpfrontReservedPrice",
+        "CurrentVCpus",
+        "CurrentMemory",
+        "CurrentStorage",
+        "CurrentNetwork",
+        "RecommendationOptionsInstanceType",
+        "RecommendationOptionsProjectedUtilizationMetricsCpuMaximum",
+        "RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum",
+        "RecommendationOptionsPerformanceRisk",
+        "RecommendationOptionsVcpus",
+        "RecommendationOptionsMemory",
+        "RecommendationOptionsStorage",
+        "RecommendationOptionsNetwork",
+        "RecommendationOptionsOnDemandPrice",
+        "RecommendationOptionsStandardOneYearNoUpfrontReservedPrice",
+        "RecommendationOptionsStandardThreeYearNoUpfrontReservedPrice",
+        "RecommendationsSourcesRecommendationSourceArn",
+        "RecommendationsSourcesRecommendationSourceType",
+        "LastRefreshTimestamp"
+      ]
+    },
+    "ExportableInstanceFields":{
+      "type":"list",
+      "member":{"shape":"ExportableInstanceField"}
+    },
+    "FailureReason":{"type":"string"},
+    "FileFormat":{
+      "type":"string",
+      "enum":["Csv"]
+    },
     "Filter":{
       "type":"structure",
       "members":{
@@ -371,7 +577,48 @@
       "exception":true,
       "synthetic":true
     },
+    "JobFilter":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"JobFilterName"},
+        "values":{"shape":"FilterValues"}
+      }
+    },
+    "JobFilterName":{
+      "type":"string",
+      "enum":[
+        "ResourceType",
+        "JobStatus"
+      ]
+    },
+    "JobFilters":{
+      "type":"list",
+      "member":{"shape":"JobFilter"}
+    },
+    "JobId":{"type":"string"},
+    "JobIds":{
+      "type":"list",
+      "member":{"shape":"JobId"}
+    },
+    "JobStatus":{
+      "type":"string",
+      "enum":[
+        "Queued",
+        "InProgress",
+        "Complete",
+        "Failed"
+      ]
+    },
     "LastRefreshTimestamp":{"type":"timestamp"},
+    "LastUpdatedTimestamp":{"type":"timestamp"},
+    "LimitExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true,
+      "synthetic":true
+    },
     "LookBackPeriodInDays":{"type":"double"},
     "MaxResults":{
       "type":"integer",
@@ -380,6 +627,7 @@
     "MaxSize":{"type":"integer"},
     "MemberAccountsEnrolled":{"type":"boolean"},
     "Message":{"type":"string"},
+    "MetadataKey":{"type":"string"},
     "MetricName":{
       "type":"string",
       "enum":[
@@ -440,6 +688,22 @@
       "member":{"shape":"UtilizationMetric"}
     },
     "Rank":{"type":"integer"},
+    "RecommendationExportJob":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"JobId"},
+        "destination":{"shape":"ExportDestination"},
+        "resourceType":{"shape":"ResourceType"},
+        "status":{"shape":"JobStatus"},
+        "creationTimestamp":{"shape":"CreationTimestamp"},
+        "lastUpdatedTimestamp":{"shape":"LastUpdatedTimestamp"},
+        "failureReason":{"shape":"FailureReason"}
+      }
+    },
+    "RecommendationExportJobs":{
+      "type":"list",
+      "member":{"shape":"RecommendationExportJob"}
+    },
     "RecommendationOptions":{
       "type":"list",
       "member":{"shape":"InstanceRecommendationOption"}
@@ -495,6 +759,28 @@
       },
       "exception":true,
       "synthetic":true
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":[
+        "Ec2Instance",
+        "AutoScalingGroup"
+      ]
+    },
+    "S3Destination":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"DestinationBucket"},
+        "key":{"shape":"DestinationKey"},
+        "metadataKey":{"shape":"MetadataKey"}
+      }
+    },
+    "S3DestinationConfig":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"DestinationBucket"},
+        "keyPrefix":{"shape":"DestinationKeyPrefix"}
+      }
     },
     "ServiceUnavailableException":{
       "type":"structure",

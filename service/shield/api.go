@@ -634,15 +634,6 @@ func (c *Shield) CreateSubscriptionRequest(input *CreateSubscriptionInput) (req 
 //
 // Activates AWS Shield Advanced for an account.
 //
-// As part of this request you can specify EmergencySettings that automaticaly
-// grant the DDoS response team (DRT) needed permissions to assist you during
-// a suspected DDoS attack. For more information see Authorize the DDoS Response
-// Team to Create Rules and Web ACLs on Your Behalf (https://docs.aws.amazon.com/waf/latest/developerguide/authorize-DRT.html).
-//
-// To use the services of the DRT, you must be subscribed to the Business Support
-// plan (https://aws.amazon.com/premiumsupport/business-support/) or the Enterprise
-// Support plan (https://aws.amazon.com/premiumsupport/enterprise-support/).
-//
 // When you initally create a subscription, your subscription is set to be automatically
 // renewed at the end of the existing subscription period. You can change this
 // by submitting an UpdateSubscription request.

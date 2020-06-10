@@ -884,9 +884,9 @@
     },
     "PhoneNumber":{
       "type":"string",
-      "max":40,
+      "max":16,
       "min":1,
-      "pattern":"^.*$"
+      "pattern":"^\\+[1-9]\\d{1,14}$"
     },
     "ProactiveEngagementStatus":{
       "type":"string",

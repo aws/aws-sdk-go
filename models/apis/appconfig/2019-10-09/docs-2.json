@@ -53,14 +53,10 @@
     "Arn": {
       "base": null,
       "refs": {
-        "ConfigurationProfile$RetrievalRoleArn": "<p>The ARN of an IAM role with permission to access the configuration at the specified LocationUri.</p>",
-        "CreateConfigurationProfileRequest$RetrievalRoleArn": "<p>The ARN of an IAM role with permission to access the configuration at the specified LocationUri.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The resource ARN.</p>",
         "Monitor$AlarmArn": "<p>ARN of the Amazon CloudWatch alarm.</p>",
-        "Monitor$AlarmRoleArn": "<p>ARN of an IAM role for AppConfig to monitor <code>AlarmArn</code>.</p>",
         "TagResourceRequest$ResourceArn": "<p>The ARN of the resource for which to retrieve tags.</p>",
-        "UntagResourceRequest$ResourceArn": "<p>The ARN of the resource for which to remove tags.</p>",
-        "UpdateConfigurationProfileRequest$RetrievalRoleArn": "<p>The ARN of an IAM role with permission to access the configuration at the specified LocationUri.</p>"
+        "UntagResourceRequest$ResourceArn": "<p>The ARN of the resource for which to remove tags.</p>"
       }
     },
     "BadRequestException": {
@@ -508,6 +504,15 @@
     "ResourceTags": {
       "base": null,
       "refs": {
+      }
+    },
+    "RoleArn": {
+      "base": null,
+      "refs": {
+        "ConfigurationProfile$RetrievalRoleArn": "<p>The ARN of an IAM role with permission to access the configuration at the specified LocationUri.</p>",
+        "CreateConfigurationProfileRequest$RetrievalRoleArn": "<p>The ARN of an IAM role with permission to access the configuration at the specified LocationUri.</p>",
+        "Monitor$AlarmRoleArn": "<p>ARN of an IAM role for AppConfig to monitor <code>AlarmArn</code>.</p>",
+        "UpdateConfigurationProfileRequest$RetrievalRoleArn": "<p>The ARN of an IAM role with permission to access the configuration at the specified LocationUri.</p>"
       }
     },
     "StartDeploymentRequest": {

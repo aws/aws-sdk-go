@@ -64,10 +64,6 @@ type Macie2API interface {
 	AcceptInvitationWithContext(aws.Context, *macie2.AcceptInvitationInput, ...request.Option) (*macie2.AcceptInvitationOutput, error)
 	AcceptInvitationRequest(*macie2.AcceptInvitationInput) (*request.Request, *macie2.AcceptInvitationOutput)
 
-	ArchiveFindings(*macie2.ArchiveFindingsInput) (*macie2.ArchiveFindingsOutput, error)
-	ArchiveFindingsWithContext(aws.Context, *macie2.ArchiveFindingsInput, ...request.Option) (*macie2.ArchiveFindingsOutput, error)
-	ArchiveFindingsRequest(*macie2.ArchiveFindingsInput) (*request.Request, *macie2.ArchiveFindingsOutput)
-
 	BatchGetCustomDataIdentifiers(*macie2.BatchGetCustomDataIdentifiersInput) (*macie2.BatchGetCustomDataIdentifiersOutput, error)
 	BatchGetCustomDataIdentifiersWithContext(aws.Context, *macie2.BatchGetCustomDataIdentifiersInput, ...request.Option) (*macie2.BatchGetCustomDataIdentifiersOutput, error)
 	BatchGetCustomDataIdentifiersRequest(*macie2.BatchGetCustomDataIdentifiersInput) (*request.Request, *macie2.BatchGetCustomDataIdentifiersOutput)
@@ -243,10 +239,6 @@ type Macie2API interface {
 	TestCustomDataIdentifier(*macie2.TestCustomDataIdentifierInput) (*macie2.TestCustomDataIdentifierOutput, error)
 	TestCustomDataIdentifierWithContext(aws.Context, *macie2.TestCustomDataIdentifierInput, ...request.Option) (*macie2.TestCustomDataIdentifierOutput, error)
 	TestCustomDataIdentifierRequest(*macie2.TestCustomDataIdentifierInput) (*request.Request, *macie2.TestCustomDataIdentifierOutput)
-
-	UnarchiveFindings(*macie2.UnarchiveFindingsInput) (*macie2.UnarchiveFindingsOutput, error)
-	UnarchiveFindingsWithContext(aws.Context, *macie2.UnarchiveFindingsInput, ...request.Option) (*macie2.UnarchiveFindingsOutput, error)
-	UnarchiveFindingsRequest(*macie2.UnarchiveFindingsInput) (*request.Request, *macie2.UnarchiveFindingsOutput)
 
 	UntagResource(*macie2.UntagResourceInput) (*macie2.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *macie2.UntagResourceInput, ...request.Option) (*macie2.UntagResourceOutput, error)

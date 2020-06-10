@@ -1,3 +1,25 @@
+Release v1.31.15 (2020-06-10)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API and documentation
+* `service/codeartifact`: Adds new service
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/dlm`: Updates service API
+* `service/ec2`: Updates service API
+  * New C6g instances powered by AWS Graviton2 processors and ideal for running advanced, compute-intensive workloads; New R6g instances powered by AWS Graviton2 processors and ideal for running memory-intensive workloads.
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for lightsail
+* `service/macie2`: Updates service API and documentation
+* `service/servicecatalog`: Updates service documentation
+  * Service Catalog Documentation Update for Integration with AWS Organizations Delegated Administrator feature
+* `service/shield`: Updates service API and documentation
+  * Corrections to the supported format for contact phone numbers and to the description for the create subscription action.
+
+### SDK Enhancements
+* `aws/credentials`: Update documentation for shared credentials provider to specify the type of credentials it supports retrieving from shared credentials file.
+    * Related to [#3328](https://github.com/aws/aws-sdk-go/issues/3328)
+
 Release v1.31.14 (2020-06-09)
 ===
 
