@@ -507,7 +507,7 @@
     },
     "ScheduleName":{
       "type":"string",
-      "max":500,
+      "max":120,
       "min":0,
       "pattern":"[\\p{all}]*"
     },

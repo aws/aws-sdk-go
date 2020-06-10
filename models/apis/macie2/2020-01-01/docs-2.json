@@ -3,7 +3,6 @@
   "service" : "<p>Amazon Macie</p>",
   "operations" : {
     "AcceptInvitation" : "<p>Accepts an Amazon Macie membership invitation that was received from a specific account.</p>",
-    "ArchiveFindings" : " <p>Archives one or more findings.</p>",
     "BatchGetCustomDataIdentifiers" : "<p>Retrieves information about one or more custom data identifiers.</p>",
     "CreateClassificationJob" : " <p>Creates and defines the settings for a classification job.</p>",
     "CreateCustomDataIdentifier" : "<p>Creates and defines the criteria and other settings for a custom data identifier.</p>",
@@ -48,7 +47,6 @@
     "PutClassificationExportConfiguration" : "<p>Creates or updates the configuration settings for exporting data classification results.</p>",
     "TagResource" : "<p>Adds or updates one or more tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
     "TestCustomDataIdentifier" : "<p>Tests a custom data identifier.</p>",
-    "UnarchiveFindings" : " <p>Reactivates (unarchives) one or more findings.</p>",
     "UntagResource" : "<p>Removes one or more tags (keys and values) from a classification job, custom data identifier, findings filter, or member account.</p>",
     "UpdateClassificationJob" : "<p>Cancels a classification job.</p>",
     "UpdateFindingsFilter" : "<p>Updates the criteria and other settings for a findings filter.</p>",
@@ -100,10 +98,6 @@
       "refs" : {
         "FindingAction$ApiCallDetails" : "<p>For the affected resource:</p> <ul><li><p>The name of the operation that was invoked most recently and produced the finding (api).</p></li> <li><p>The first date and time when any operation was invoked and produced the finding (firstSeen).</p></li> <li><p>The most recent date and time when the specified operation was invoked and produced the finding (lastSeen).</p></li></ul> <p>All date and time values are in UTC and extended ISO 8601 format.</p>"
       }
-    },
-    "ArchiveFindingsRequest" : {
-      "base" : "<p>Specifies one or more findings to archive.</p>",
-      "refs" : { }
     },
     "AssumedRole" : {
       "base" : "<p>Reserved for future use.</p>",
@@ -1044,10 +1038,6 @@
       "base" : "<p>Provides information about an error that occurred because too many requests were sent during a certain amount of time.</p>",
       "refs" : { }
     },
-    "UnarchiveFindingsRequest" : {
-      "base" : "<p>Specifies one or more findings to reactivate (unarchive).</p>",
-      "refs" : { }
-    },
     "Unit" : {
       "base" : null,
       "refs" : {
@@ -1357,7 +1347,6 @@
     "__listOf__string" : {
       "base" : null,
       "refs" : {
-        "ArchiveFindingsRequest$FindingIds" : "<p>An array of strings that lists the unique identifiers for the findings to archive.</p>",
         "BatchGetCustomDataIdentifiersRequest$Ids" : "<p>An array of strings that lists the unique identifiers for the custom data identifiers to retrieve information about.</p>",
         "BatchGetCustomDataIdentifiersResponse$NotFoundIdentifierIds" : "<p>An array of identifiers, one for each identifier that was specified in the request, but doesn't correlate to an existing custom data identifier.</p>",
         "BucketCriteriaAdditionalProperties$Eq" : "<p>An equal to condition to apply to a specified attribute value for buckets.</p>",

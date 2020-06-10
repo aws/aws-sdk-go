@@ -156,7 +156,6 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"BadRequestException"}
       ]
     },
@@ -476,7 +475,10 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
-    "Blob":{"type":"blob"},
+    "Blob":{
+      "type":"blob",
+      "sensitive":true
+    },
     "Configuration":{
       "type":"structure",
       "members":{
@@ -502,7 +504,7 @@
         "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
         "LocationUri":{"shape":"Uri"},
-        "RetrievalRoleArn":{"shape":"Arn"},
+        "RetrievalRoleArn":{"shape":"RoleArn"},
         "Validators":{"shape":"ValidatorList"}
       }
     },
@@ -561,7 +563,7 @@
         "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
         "LocationUri":{"shape":"Uri"},
-        "RetrievalRoleArn":{"shape":"Arn"},
+        "RetrievalRoleArn":{"shape":"RoleArn"},
         "Validators":{"shape":"ValidatorList"},
         "Tags":{"shape":"TagMap"}
       }
@@ -753,7 +755,7 @@
     },
     "DeploymentStrategyId":{
       "type":"string",
-      "pattern":"([a-z0-9]{4,7}|arn:aws.*)"
+      "pattern":"(^[a-z0-9]{4,7}$|^AppConfig\\.[A-Za-z0-9]{9,40}$)"
     },
     "DeploymentStrategyList":{
       "type":"list",
@@ -1101,7 +1103,7 @@
       "type":"structure",
       "members":{
         "AlarmArn":{"shape":"Arn"},
-        "AlarmRoleArn":{"shape":"Arn"}
+        "AlarmRoleArn":{"shape":"RoleArn"}
       }
     },
     "MonitorList":{
@@ -1146,6 +1148,12 @@
       "members":{
         "Tags":{"shape":"TagMap"}
       }
+    },
+    "RoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^((arn):(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):(iam)::\\d{12}:role[/].*)$"
     },
     "StartDeploymentRequest":{
       "type":"structure",
@@ -1204,7 +1212,8 @@
     "StringWithLengthBetween0And32768":{
       "type":"string",
       "max":32768,
-      "min":0
+      "min":0,
+      "sensitive":true
     },
     "StringWithLengthBetween1And64":{
       "type":"string",
@@ -1308,7 +1317,7 @@
         },
         "Name":{"shape":"Name"},
         "Description":{"shape":"Description"},
-        "RetrievalRoleArn":{"shape":"Arn"},
+        "RetrievalRoleArn":{"shape":"RoleArn"},
         "Validators":{"shape":"ValidatorList"}
       }
     },

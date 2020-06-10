@@ -12,8 +12,9 @@
 // use to evaluate which recommendation provides the best price-performance
 // trade-off. The analysis of your usage patterns can help you decide when to
 // move or resize your running resources, and still meet your performance and
-// capacity requirements. For more information about Compute Optimizer, see
-// the AWS Compute Optimizer User Guide (https://docs.aws.amazon.com/compute-optimizer/latest/ug/).
+// capacity requirements. For more information about Compute Optimizer, including
+// the required permissions to use the service, see the AWS Compute Optimizer
+// User Guide (https://docs.aws.amazon.com/compute-optimizer/latest/ug/).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01 for more information on this service.
 //

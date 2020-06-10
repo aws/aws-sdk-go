@@ -887,9 +887,6 @@ func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *
 //   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
-//
 //   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
@@ -4565,7 +4562,7 @@ type GetConfigurationOutput struct {
 	ConfigurationVersion *string `location:"header" locationName:"Configuration-Version" min:"1" type:"string"`
 
 	// The content of the configuration or the configuration data.
-	Content []byte `type:"blob"`
+	Content []byte `type:"blob" sensitive:"true"`
 
 	// A standard MIME type describing the format of the configuration content.
 	// For more information, see Content-Type (http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
@@ -7412,7 +7409,7 @@ type Validator struct {
 	// Lambda function.
 	//
 	// Content is a required field
-	Content *string `type:"string" required:"true"`
+	Content *string `type:"string" required:"true" sensitive:"true"`
 
 	// AppConfig supports validators of type JSON_SCHEMA and LAMBDA
 	//

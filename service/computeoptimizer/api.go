@@ -12,6 +12,330 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
+const opDescribeRecommendationExportJobs = "DescribeRecommendationExportJobs"
+
+// DescribeRecommendationExportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRecommendationExportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRecommendationExportJobs for more information on using the DescribeRecommendationExportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRecommendationExportJobsRequest method.
+//    req, resp := client.DescribeRecommendationExportJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/DescribeRecommendationExportJobs
+func (c *ComputeOptimizer) DescribeRecommendationExportJobsRequest(input *DescribeRecommendationExportJobsInput) (req *request.Request, output *DescribeRecommendationExportJobsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRecommendationExportJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeRecommendationExportJobsInput{}
+	}
+
+	output = &DescribeRecommendationExportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRecommendationExportJobs API operation for AWS Compute Optimizer.
+//
+// Describes recommendation export jobs created in the last seven days.
+//
+// Use the ExportAutoScalingGroupRecommendations or ExportEC2InstanceRecommendations
+// actions to request an export of your recommendations. Then use the DescribeRecommendationExportJobs
+// action to view your export jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation DescribeRecommendationExportJobs for usage and error information.
+//
+// Returned Error Types:
+//   * OptInRequiredException
+//   The account is not opted in to AWS Compute Optimizer.
+//
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   An invalid or out-of-range value was supplied for the input parameter.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) AWS access key ID or
+//   X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/DescribeRecommendationExportJobs
+func (c *ComputeOptimizer) DescribeRecommendationExportJobs(input *DescribeRecommendationExportJobsInput) (*DescribeRecommendationExportJobsOutput, error) {
+	req, out := c.DescribeRecommendationExportJobsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRecommendationExportJobsWithContext is the same as DescribeRecommendationExportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRecommendationExportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) DescribeRecommendationExportJobsWithContext(ctx aws.Context, input *DescribeRecommendationExportJobsInput, opts ...request.Option) (*DescribeRecommendationExportJobsOutput, error) {
+	req, out := c.DescribeRecommendationExportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opExportAutoScalingGroupRecommendations = "ExportAutoScalingGroupRecommendations"
+
+// ExportAutoScalingGroupRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the ExportAutoScalingGroupRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExportAutoScalingGroupRecommendations for more information on using the ExportAutoScalingGroupRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ExportAutoScalingGroupRecommendationsRequest method.
+//    req, resp := client.ExportAutoScalingGroupRecommendationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportAutoScalingGroupRecommendations
+func (c *ComputeOptimizer) ExportAutoScalingGroupRecommendationsRequest(input *ExportAutoScalingGroupRecommendationsInput) (req *request.Request, output *ExportAutoScalingGroupRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opExportAutoScalingGroupRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ExportAutoScalingGroupRecommendationsInput{}
+	}
+
+	output = &ExportAutoScalingGroupRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExportAutoScalingGroupRecommendations API operation for AWS Compute Optimizer.
+//
+// Exports optimization recommendations for Auto Scaling groups.
+//
+// Recommendations are exported in a comma-separated values (.csv) file, and
+// its metadata in a JavaScript Object Notation (.json) file, to an existing
+// Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more
+// information, see Exporting Recommendations (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html)
+// in the Compute Optimizer User Guide.
+//
+// You can have only one Auto Scaling group export job in progress per AWS Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation ExportAutoScalingGroupRecommendations for usage and error information.
+//
+// Returned Error Types:
+//   * OptInRequiredException
+//   The account is not opted in to AWS Compute Optimizer.
+//
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   An invalid or out-of-range value was supplied for the input parameter.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) AWS access key ID or
+//   X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * LimitExceededException
+//   The request exceeds a limit of the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportAutoScalingGroupRecommendations
+func (c *ComputeOptimizer) ExportAutoScalingGroupRecommendations(input *ExportAutoScalingGroupRecommendationsInput) (*ExportAutoScalingGroupRecommendationsOutput, error) {
+	req, out := c.ExportAutoScalingGroupRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// ExportAutoScalingGroupRecommendationsWithContext is the same as ExportAutoScalingGroupRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportAutoScalingGroupRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) ExportAutoScalingGroupRecommendationsWithContext(ctx aws.Context, input *ExportAutoScalingGroupRecommendationsInput, opts ...request.Option) (*ExportAutoScalingGroupRecommendationsOutput, error) {
+	req, out := c.ExportAutoScalingGroupRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opExportEC2InstanceRecommendations = "ExportEC2InstanceRecommendations"
+
+// ExportEC2InstanceRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the ExportEC2InstanceRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExportEC2InstanceRecommendations for more information on using the ExportEC2InstanceRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ExportEC2InstanceRecommendationsRequest method.
+//    req, resp := client.ExportEC2InstanceRecommendationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportEC2InstanceRecommendations
+func (c *ComputeOptimizer) ExportEC2InstanceRecommendationsRequest(input *ExportEC2InstanceRecommendationsInput) (req *request.Request, output *ExportEC2InstanceRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opExportEC2InstanceRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ExportEC2InstanceRecommendationsInput{}
+	}
+
+	output = &ExportEC2InstanceRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExportEC2InstanceRecommendations API operation for AWS Compute Optimizer.
+//
+// Exports optimization recommendations for Amazon EC2 instances.
+//
+// Recommendations are exported in a comma-separated values (.csv) file, and
+// its metadata in a JavaScript Object Notation (.json) file, to an existing
+// Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more
+// information, see Exporting Recommendations (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html)
+// in the Compute Optimizer User Guide.
+//
+// You can have only one Amazon EC2 instance export job in progress per AWS
+// Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation ExportEC2InstanceRecommendations for usage and error information.
+//
+// Returned Error Types:
+//   * OptInRequiredException
+//   The account is not opted in to AWS Compute Optimizer.
+//
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   An invalid or out-of-range value was supplied for the input parameter.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) AWS access key ID or
+//   X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * LimitExceededException
+//   The request exceeds a limit of the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportEC2InstanceRecommendations
+func (c *ComputeOptimizer) ExportEC2InstanceRecommendations(input *ExportEC2InstanceRecommendationsInput) (*ExportEC2InstanceRecommendationsOutput, error) {
+	req, out := c.ExportEC2InstanceRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// ExportEC2InstanceRecommendationsWithContext is the same as ExportEC2InstanceRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportEC2InstanceRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) ExportEC2InstanceRecommendationsWithContext(ctx aws.Context, input *ExportEC2InstanceRecommendationsInput, opts ...request.Option) (*ExportEC2InstanceRecommendationsOutput, error) {
+	req, out := c.ExportEC2InstanceRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAutoScalingGroupRecommendations = "GetAutoScalingGroupRecommendations"
 
 // GetAutoScalingGroupRecommendationsRequest generates a "aws/request.Request" representing the
@@ -75,11 +399,10 @@ func (c *ComputeOptimizer) GetAutoScalingGroupRecommendationsRequest(input *GetA
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   You must opt in to the service to perform this action.
+//   The account is not opted in to AWS Compute Optimizer.
 //
 //   * InternalServerException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   An internal error has occurred. Try your call again.
 //
 //   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
@@ -91,14 +414,14 @@ func (c *ComputeOptimizer) GetAutoScalingGroupRecommendationsRequest(input *GetA
 //   An invalid or out-of-range value was supplied for the input parameter.
 //
 //   * ResourceNotFoundException
-//   The specified resource was not found.
+//   A resource that is required for the action doesn't exist.
 //
 //   * MissingAuthenticationToken
 //   The request must contain either a valid (registered) AWS access key ID or
 //   X.509 certificate.
 //
 //   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetAutoScalingGroupRecommendations
 func (c *ComputeOptimizer) GetAutoScalingGroupRecommendations(input *GetAutoScalingGroupRecommendationsInput) (*GetAutoScalingGroupRecommendationsOutput, error) {
@@ -182,11 +505,10 @@ func (c *ComputeOptimizer) GetEC2InstanceRecommendationsRequest(input *GetEC2Ins
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   You must opt in to the service to perform this action.
+//   The account is not opted in to AWS Compute Optimizer.
 //
 //   * InternalServerException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   An internal error has occurred. Try your call again.
 //
 //   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
@@ -198,14 +520,14 @@ func (c *ComputeOptimizer) GetEC2InstanceRecommendationsRequest(input *GetEC2Ins
 //   An invalid or out-of-range value was supplied for the input parameter.
 //
 //   * ResourceNotFoundException
-//   The specified resource was not found.
+//   A resource that is required for the action doesn't exist.
 //
 //   * MissingAuthenticationToken
 //   The request must contain either a valid (registered) AWS access key ID or
 //   X.509 certificate.
 //
 //   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetEC2InstanceRecommendations
 func (c *ComputeOptimizer) GetEC2InstanceRecommendations(input *GetEC2InstanceRecommendationsInput) (*GetEC2InstanceRecommendationsOutput, error) {
@@ -284,11 +606,10 @@ func (c *ComputeOptimizer) GetEC2RecommendationProjectedMetricsRequest(input *Ge
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   You must opt in to the service to perform this action.
+//   The account is not opted in to AWS Compute Optimizer.
 //
 //   * InternalServerException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   An internal error has occurred. Try your call again.
 //
 //   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
@@ -300,14 +621,14 @@ func (c *ComputeOptimizer) GetEC2RecommendationProjectedMetricsRequest(input *Ge
 //   An invalid or out-of-range value was supplied for the input parameter.
 //
 //   * ResourceNotFoundException
-//   The specified resource was not found.
+//   A resource that is required for the action doesn't exist.
 //
 //   * MissingAuthenticationToken
 //   The request must contain either a valid (registered) AWS access key ID or
 //   X.509 certificate.
 //
 //   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetEC2RecommendationProjectedMetrics
 func (c *ComputeOptimizer) GetEC2RecommendationProjectedMetrics(input *GetEC2RecommendationProjectedMetricsInput) (*GetEC2RecommendationProjectedMetricsOutput, error) {
@@ -378,7 +699,7 @@ func (c *ComputeOptimizer) GetEnrollmentStatusRequest(input *GetEnrollmentStatus
 // Returns the enrollment (opt in) status of an account to the AWS Compute Optimizer
 // service.
 //
-// If the account is a master account of an organization, this operation also
+// If the account is the master account of an organization, this action also
 // confirms the enrollment status of member accounts within the organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -390,8 +711,7 @@ func (c *ComputeOptimizer) GetEnrollmentStatusRequest(input *GetEnrollmentStatus
 //
 // Returned Error Types:
 //   * InternalServerException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   An internal error has occurred. Try your call again.
 //
 //   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
@@ -407,7 +727,7 @@ func (c *ComputeOptimizer) GetEnrollmentStatusRequest(input *GetEnrollmentStatus
 //   X.509 certificate.
 //
 //   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetEnrollmentStatus
 func (c *ComputeOptimizer) GetEnrollmentStatus(input *GetEnrollmentStatusInput) (*GetEnrollmentStatusOutput, error) {
@@ -491,11 +811,10 @@ func (c *ComputeOptimizer) GetRecommendationSummariesRequest(input *GetRecommend
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   You must opt in to the service to perform this action.
+//   The account is not opted in to AWS Compute Optimizer.
 //
 //   * InternalServerException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   An internal error has occurred. Try your call again.
 //
 //   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
@@ -511,7 +830,7 @@ func (c *ComputeOptimizer) GetRecommendationSummariesRequest(input *GetRecommend
 //   X.509 certificate.
 //
 //   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRecommendationSummaries
 func (c *ComputeOptimizer) GetRecommendationSummaries(input *GetRecommendationSummariesInput) (*GetRecommendationSummariesOutput, error) {
@@ -582,8 +901,8 @@ func (c *ComputeOptimizer) UpdateEnrollmentStatusRequest(input *UpdateEnrollment
 // Updates the enrollment (opt in) status of an account to the AWS Compute Optimizer
 // service.
 //
-// If the account is a master account of an organization, this operation can
-// also enroll member accounts within the organization.
+// If the account is a master account of an organization, this action can also
+// be used to enroll member accounts within the organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -594,8 +913,7 @@ func (c *ComputeOptimizer) UpdateEnrollmentStatusRequest(input *UpdateEnrollment
 //
 // Returned Error Types:
 //   * InternalServerException
-//   The request processing has failed because of an unknown error, exception,
-//   or failure.
+//   An internal error has occurred. Try your call again.
 //
 //   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
@@ -611,7 +929,7 @@ func (c *ComputeOptimizer) UpdateEnrollmentStatusRequest(input *UpdateEnrollment
 //   X.509 certificate.
 //
 //   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
+//   The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/UpdateEnrollmentStatus
 func (c *ComputeOptimizer) UpdateEnrollmentStatus(input *UpdateEnrollmentStatusInput) (*UpdateEnrollmentStatusOutput, error) {
@@ -914,29 +1232,461 @@ func (s *AutoScalingGroupRecommendationOption) SetRank(v int64) *AutoScalingGrou
 	return s
 }
 
+type DescribeRecommendationExportJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe a filter to return a more specific list
+	// of export jobs.
+	Filters []*JobFilter `locationName:"filters" type:"list"`
+
+	// The identification numbers of the export jobs to return.
+	//
+	// An export job ID is returned when you create an export using the ExportAutoScalingGroupRecommendations
+	// or ExportEC2InstanceRecommendations actions.
+	//
+	// All export jobs created in the last seven days are returned if this parameter
+	// is omitted.
+	JobIds []*string `locationName:"jobIds" type:"list"`
+
+	// The maximum number of export jobs to return with a single request.
+	//
+	// To retrieve the remaining results, make another request with the returned
+	// NextToken value.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token to advance to the next page of export jobs.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeRecommendationExportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRecommendationExportJobsInput) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeRecommendationExportJobsInput) SetFilters(v []*JobFilter) *DescribeRecommendationExportJobsInput {
+	s.Filters = v
+	return s
+}
+
+// SetJobIds sets the JobIds field's value.
+func (s *DescribeRecommendationExportJobsInput) SetJobIds(v []*string) *DescribeRecommendationExportJobsInput {
+	s.JobIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeRecommendationExportJobsInput) SetMaxResults(v int64) *DescribeRecommendationExportJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRecommendationExportJobsInput) SetNextToken(v string) *DescribeRecommendationExportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeRecommendationExportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to advance to the next page of export jobs.
+	//
+	// This value is null when there are no more pages of export jobs to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of objects that describe recommendation export jobs.
+	RecommendationExportJobs []*RecommendationExportJob `locationName:"recommendationExportJobs" type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeRecommendationExportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRecommendationExportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRecommendationExportJobsOutput) SetNextToken(v string) *DescribeRecommendationExportJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommendationExportJobs sets the RecommendationExportJobs field's value.
+func (s *DescribeRecommendationExportJobsOutput) SetRecommendationExportJobs(v []*RecommendationExportJob) *DescribeRecommendationExportJobsOutput {
+	s.RecommendationExportJobs = v
+	return s
+}
+
+type ExportAutoScalingGroupRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of the AWS accounts for which to export Auto Scaling group recommendations.
+	//
+	// If your account is the master account of an organization, use this parameter
+	// to specify the member accounts for which you want to export recommendations.
+	//
+	// This parameter cannot be specified together with the include member accounts
+	// parameter. The parameters are mutually exclusive.
+	//
+	// Recommendations for member accounts are not included in the export if this
+	// parameter, or the include member accounts parameter, is omitted.
+	//
+	// You can specify multiple account IDs per request.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+
+	// The recommendations data to include in the export file.
+	FieldsToExport []*string `locationName:"fieldsToExport" type:"list"`
+
+	// The format of the export file.
+	//
+	// The only export file format currently supported is Csv.
+	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
+
+	// An array of objects that describe a filter to export a more specific set
+	// of Auto Scaling group recommendations.
+	Filters []*Filter `locationName:"filters" type:"list"`
+
+	// Indicates whether to include recommendations for resources in all member
+	// accounts of the organization if your account is the master account of an
+	// organization.
+	//
+	// The member accounts must also be opted in to Compute Optimizer.
+	//
+	// Recommendations for member accounts of the organization are not included
+	// in the export file if this parameter is omitted.
+	//
+	// This parameter cannot be specified together with the account IDs parameter.
+	// The parameters are mutually exclusive.
+	//
+	// Recommendations for member accounts are not included in the export if this
+	// parameter, or the account IDs parameter, is omitted.
+	IncludeMemberAccounts *bool `locationName:"includeMemberAccounts" type:"boolean"`
+
+	// An object to specify the destination Amazon Simple Storage Service (Amazon
+	// S3) bucket name and key prefix for the export job.
+	//
+	// You must create the destination Amazon S3 bucket for your recommendations
+	// export before you create the export job. Compute Optimizer does not create
+	// the S3 bucket for you. After you create the S3 bucket, ensure that it has
+	// the required permission policy to allow Compute Optimizer to write the export
+	// file to it. If you plan to specify an object prefix when you create the export
+	// job, you must include the object prefix in the policy that you add to the
+	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
+	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
+	// in the Compute Optimizer user guide.
+	//
+	// S3DestinationConfig is a required field
+	S3DestinationConfig *S3DestinationConfig `locationName:"s3DestinationConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ExportAutoScalingGroupRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportAutoScalingGroupRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportAutoScalingGroupRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportAutoScalingGroupRecommendationsInput"}
+	if s.S3DestinationConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DestinationConfig"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *ExportAutoScalingGroupRecommendationsInput) SetAccountIds(v []*string) *ExportAutoScalingGroupRecommendationsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFieldsToExport sets the FieldsToExport field's value.
+func (s *ExportAutoScalingGroupRecommendationsInput) SetFieldsToExport(v []*string) *ExportAutoScalingGroupRecommendationsInput {
+	s.FieldsToExport = v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *ExportAutoScalingGroupRecommendationsInput) SetFileFormat(v string) *ExportAutoScalingGroupRecommendationsInput {
+	s.FileFormat = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ExportAutoScalingGroupRecommendationsInput) SetFilters(v []*Filter) *ExportAutoScalingGroupRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludeMemberAccounts sets the IncludeMemberAccounts field's value.
+func (s *ExportAutoScalingGroupRecommendationsInput) SetIncludeMemberAccounts(v bool) *ExportAutoScalingGroupRecommendationsInput {
+	s.IncludeMemberAccounts = &v
+	return s
+}
+
+// SetS3DestinationConfig sets the S3DestinationConfig field's value.
+func (s *ExportAutoScalingGroupRecommendationsInput) SetS3DestinationConfig(v *S3DestinationConfig) *ExportAutoScalingGroupRecommendationsInput {
+	s.S3DestinationConfig = v
+	return s
+}
+
+type ExportAutoScalingGroupRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identification number of the export job.
+	//
+	// Use the DescribeRecommendationExportJobs action, and specify the job ID to
+	// view the status of an export job.
+	JobId *string `locationName:"jobId" type:"string"`
+
+	// An object that describes the destination Amazon S3 bucket of a recommendations
+	// export file.
+	S3Destination *S3Destination `locationName:"s3Destination" type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportAutoScalingGroupRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportAutoScalingGroupRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ExportAutoScalingGroupRecommendationsOutput) SetJobId(v string) *ExportAutoScalingGroupRecommendationsOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetS3Destination sets the S3Destination field's value.
+func (s *ExportAutoScalingGroupRecommendationsOutput) SetS3Destination(v *S3Destination) *ExportAutoScalingGroupRecommendationsOutput {
+	s.S3Destination = v
+	return s
+}
+
+// Describes the destination of the recommendations export and metadata files.
+type ExportDestination struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes the destination Amazon Simple Storage Service (Amazon
+	// S3) bucket name and object keys of a recommendations export file, and its
+	// associated metadata file.
+	S3 *S3Destination `locationName:"s3" type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportDestination) GoString() string {
+	return s.String()
+}
+
+// SetS3 sets the S3 field's value.
+func (s *ExportDestination) SetS3(v *S3Destination) *ExportDestination {
+	s.S3 = v
+	return s
+}
+
+type ExportEC2InstanceRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of the AWS accounts for which to export instance recommendations.
+	//
+	// If your account is the master account of an organization, use this parameter
+	// to specify the member accounts for which you want to export recommendations.
+	//
+	// This parameter cannot be specified together with the include member accounts
+	// parameter. The parameters are mutually exclusive.
+	//
+	// Recommendations for member accounts are not included in the export if this
+	// parameter, or the include member accounts parameter, is omitted.
+	//
+	// You can specify multiple account IDs per request.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+
+	// The recommendations data to include in the export file.
+	FieldsToExport []*string `locationName:"fieldsToExport" type:"list"`
+
+	// The format of the export file.
+	//
+	// The only export file format currently supported is Csv.
+	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
+
+	// An array of objects that describe a filter to export a more specific set
+	// of instance recommendations.
+	Filters []*Filter `locationName:"filters" type:"list"`
+
+	// Indicates whether to include recommendations for resources in all member
+	// accounts of the organization if your account is the master account of an
+	// organization.
+	//
+	// The member accounts must also be opted in to Compute Optimizer.
+	//
+	// Recommendations for member accounts of the organization are not included
+	// in the export file if this parameter is omitted.
+	//
+	// Recommendations for member accounts are not included in the export if this
+	// parameter, or the account IDs parameter, is omitted.
+	IncludeMemberAccounts *bool `locationName:"includeMemberAccounts" type:"boolean"`
+
+	// An object to specify the destination Amazon Simple Storage Service (Amazon
+	// S3) bucket name and key prefix for the export job.
+	//
+	// You must create the destination Amazon S3 bucket for your recommendations
+	// export before you create the export job. Compute Optimizer does not create
+	// the S3 bucket for you. After you create the S3 bucket, ensure that it has
+	// the required permission policy to allow Compute Optimizer to write the export
+	// file to it. If you plan to specify an object prefix when you create the export
+	// job, you must include the object prefix in the policy that you add to the
+	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
+	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
+	// in the Compute Optimizer user guide.
+	//
+	// S3DestinationConfig is a required field
+	S3DestinationConfig *S3DestinationConfig `locationName:"s3DestinationConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ExportEC2InstanceRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportEC2InstanceRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportEC2InstanceRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportEC2InstanceRecommendationsInput"}
+	if s.S3DestinationConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DestinationConfig"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *ExportEC2InstanceRecommendationsInput) SetAccountIds(v []*string) *ExportEC2InstanceRecommendationsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFieldsToExport sets the FieldsToExport field's value.
+func (s *ExportEC2InstanceRecommendationsInput) SetFieldsToExport(v []*string) *ExportEC2InstanceRecommendationsInput {
+	s.FieldsToExport = v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *ExportEC2InstanceRecommendationsInput) SetFileFormat(v string) *ExportEC2InstanceRecommendationsInput {
+	s.FileFormat = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ExportEC2InstanceRecommendationsInput) SetFilters(v []*Filter) *ExportEC2InstanceRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludeMemberAccounts sets the IncludeMemberAccounts field's value.
+func (s *ExportEC2InstanceRecommendationsInput) SetIncludeMemberAccounts(v bool) *ExportEC2InstanceRecommendationsInput {
+	s.IncludeMemberAccounts = &v
+	return s
+}
+
+// SetS3DestinationConfig sets the S3DestinationConfig field's value.
+func (s *ExportEC2InstanceRecommendationsInput) SetS3DestinationConfig(v *S3DestinationConfig) *ExportEC2InstanceRecommendationsInput {
+	s.S3DestinationConfig = v
+	return s
+}
+
+type ExportEC2InstanceRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identification number of the export job.
+	//
+	// Use the DescribeRecommendationExportJobs action, and specify the job ID to
+	// view the status of an export job.
+	JobId *string `locationName:"jobId" type:"string"`
+
+	// An object that describes the destination Amazon S3 bucket of a recommendations
+	// export file.
+	S3Destination *S3Destination `locationName:"s3Destination" type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportEC2InstanceRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportEC2InstanceRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ExportEC2InstanceRecommendationsOutput) SetJobId(v string) *ExportEC2InstanceRecommendationsOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetS3Destination sets the S3Destination field's value.
+func (s *ExportEC2InstanceRecommendationsOutput) SetS3Destination(v *S3Destination) *ExportEC2InstanceRecommendationsOutput {
+	s.S3Destination = v
+	return s
+}
+
 // Describes a filter that returns a more specific list of recommendations.
 type Filter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the filter.
 	//
-	// Specify Finding to filter the results to a specific findings classification.
+	// Specify Finding to return recommendations with a specific findings classification
+	// (e.g., Overprovisioned).
 	//
-	// Specify RecommendationSourceType to filter the results to a specific resource
-	// type.
+	// Specify RecommendationSourceType to return recommendations of a specific
+	// resource type (e.g., AutoScalingGroup).
 	Name *string `locationName:"name" type:"string" enum:"FilterName"`
 
 	// The value of the filter.
 	//
-	// If you specify the name parameter as Finding, and you're recommendations
+	// If you specify the name parameter as Finding, and you request recommendations
 	// for an instance, then the valid values are Underprovisioned, Overprovisioned,
 	// NotOptimized, or Optimized.
 	//
-	// If you specify the name parameter as Finding, and you're recommendations
+	// If you specify the name parameter as Finding, and you request recommendations
 	// for an Auto Scaling group, then the valid values are Optimized, or NotOptimized.
 	//
 	// If you specify the name parameter as RecommendationSourceType, then the valid
-	// values are EC2Instance, or AutoScalingGroup.
+	// values are Ec2Instance, or AutoScalingGroup.
 	Values []*string `locationName:"values" type:"list"`
 }
 
@@ -965,7 +1715,11 @@ func (s *Filter) SetValues(v []*string) *Filter {
 type GetAutoScalingGroupRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account IDs for which to return Auto Scaling group recommendations.
+	// The IDs of the AWS accounts for which to return Auto Scaling group recommendations.
+	//
+	// If your account is the master account of an organization, use this parameter
+	// to specify the member accounts for which you want to return Auto Scaling
+	// group recommendations.
 	//
 	// Only one account ID can be specified per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
@@ -979,10 +1733,10 @@ type GetAutoScalingGroupRecommendationsInput struct {
 	Filters []*Filter `locationName:"filters" type:"list"`
 
 	// The maximum number of Auto Scaling group recommendations to return with a
-	// single call.
+	// single request.
 	//
-	// To retrieve the remaining results, make another call with the returned NextToken
-	// value.
+	// To retrieve the remaining results, make another request with the returned
+	// NextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to advance to the next page of Auto Scaling group recommendations.
@@ -1079,7 +1833,10 @@ func (s *GetAutoScalingGroupRecommendationsOutput) SetNextToken(v string) *GetAu
 type GetEC2InstanceRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account IDs for which to return instance recommendations.
+	// The IDs of the AWS accounts for which to return instance recommendations.
+	//
+	// If your account is the master account of an organization, use this parameter
+	// to specify the member accounts for which you want to return instance recommendations.
 	//
 	// Only one account ID can be specified per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
@@ -1091,10 +1848,10 @@ type GetEC2InstanceRecommendationsInput struct {
 	// The Amazon Resource Name (ARN) of the instances for which to return recommendations.
 	InstanceArns []*string `locationName:"instanceArns" type:"list"`
 
-	// The maximum number of instance recommendations to return with a single call.
+	// The maximum number of instance recommendations to return with a single request.
 	//
-	// To retrieve the remaining results, make another call with the returned NextToken
-	// value.
+	// To retrieve the remaining results, make another request with the returned
+	// NextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to advance to the next page of instance recommendations.
@@ -1414,15 +2171,19 @@ func (s *GetRecommendationError) SetMessage(v string) *GetRecommendationError {
 type GetRecommendationSummariesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account IDs for which to return recommendation summaries.
+	// The IDs of the AWS accounts for which to return recommendation summaries.
+	//
+	// If your account is the master account of an organization, use this parameter
+	// to specify the member accounts for which you want to return recommendation
+	// summaries.
 	//
 	// Only one account ID can be specified per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
 
-	// The maximum number of recommendation summaries to return with a single call.
+	// The maximum number of recommendation summaries to return with a single request.
 	//
-	// To retrieve the remaining results, make another call with the returned NextToken
-	// value.
+	// To retrieve the remaining results, make another request with the returned
+	// NextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to advance to the next page of recommendation summaries.
@@ -1496,7 +2257,7 @@ func (s *GetRecommendationSummariesOutput) SetRecommendationSummaries(v []*Recom
 type InstanceRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the instance recommendation.
+	// The AWS account ID of the instance.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The instance type of the current instance.
@@ -1679,8 +2440,7 @@ func (s *InstanceRecommendationOption) SetRank(v int64) *InstanceRecommendationO
 	return s
 }
 
-// The request processing has failed because of an unknown error, exception,
-// or failure.
+// An internal error has occurred. Try your call again.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1792,6 +2552,109 @@ func (s *InvalidParameterValueException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes a filter that returns a more specific list of recommendation export
+// jobs.
+//
+// This filter is used with the DescribeRecommendationExportJobs action.
+type JobFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter.
+	//
+	// Specify ResourceType to return export jobs of a specific resource type (e.g.,
+	// Ec2Instance).
+	//
+	// Specify JobStatus to return export jobs with a specific status (e.g, Complete).
+	Name *string `locationName:"name" type:"string" enum:"JobFilterName"`
+
+	// The value of the filter.
+	//
+	// If you specify the name parameter as ResourceType, the valid values are Ec2Instance
+	// or AutoScalingGroup.
+	//
+	// If you specify the name parameter as JobStatus, the valid values are Queued,
+	// InProgress, Complete, or Failed.
+	Values []*string `locationName:"values" type:"list"`
+}
+
+// String returns the string representation
+func (s JobFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JobFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *JobFilter) SetName(v string) *JobFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *JobFilter) SetValues(v []*string) *JobFilter {
+	s.Values = v
+	return s
+}
+
+// The request exceeds a limit of the service.
+type LimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *LimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *LimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The request must contain either a valid (registered) AWS access key ID or
 // X.509 certificate.
 type MissingAuthenticationToken struct {
@@ -1849,7 +2712,7 @@ func (s *MissingAuthenticationToken) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// You must opt in to the service to perform this action.
+// The account is not opted in to AWS Compute Optimizer.
 type OptInRequiredException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1949,6 +2812,90 @@ func (s *ProjectedMetric) SetTimestamps(v []*time.Time) *ProjectedMetric {
 // SetValues sets the Values field's value.
 func (s *ProjectedMetric) SetValues(v []*float64) *ProjectedMetric {
 	s.Values = v
+	return s
+}
+
+// Describes a recommendation export job.
+//
+// Use the DescribeRecommendationExportJobs action to view your recommendation
+// export jobs.
+//
+// Use the ExportAutoScalingGroupRecommendations or ExportEC2InstanceRecommendations
+// actions to request an export of your recommendations.
+type RecommendationExportJob struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the export job was created.
+	CreationTimestamp *time.Time `locationName:"creationTimestamp" type:"timestamp"`
+
+	// An object that describes the destination of the export file.
+	Destination *ExportDestination `locationName:"destination" type:"structure"`
+
+	// The reason for an export job failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The identification number of the export job.
+	JobId *string `locationName:"jobId" type:"string"`
+
+	// The timestamp of when the export job was last updated.
+	LastUpdatedTimestamp *time.Time `locationName:"lastUpdatedTimestamp" type:"timestamp"`
+
+	// The resource type of the exported recommendations.
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	// The status of the export job.
+	Status *string `locationName:"status" type:"string" enum:"JobStatus"`
+}
+
+// String returns the string representation
+func (s RecommendationExportJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RecommendationExportJob) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *RecommendationExportJob) SetCreationTimestamp(v time.Time) *RecommendationExportJob {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetDestination sets the Destination field's value.
+func (s *RecommendationExportJob) SetDestination(v *ExportDestination) *RecommendationExportJob {
+	s.Destination = v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *RecommendationExportJob) SetFailureReason(v string) *RecommendationExportJob {
+	s.FailureReason = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *RecommendationExportJob) SetJobId(v string) *RecommendationExportJob {
+	s.JobId = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *RecommendationExportJob) SetLastUpdatedTimestamp(v time.Time) *RecommendationExportJob {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *RecommendationExportJob) SetResourceType(v string) *RecommendationExportJob {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RecommendationExportJob) SetStatus(v string) *RecommendationExportJob {
+	s.Status = &v
 	return s
 }
 
@@ -2076,7 +3023,7 @@ func (s *RecommendedOptionProjectedMetric) SetRecommendedInstanceType(v string) 
 	return s
 }
 
-// The specified resource was not found.
+// A resource that is required for the action doesn't exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2130,6 +3077,99 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
+// name and object keys of a recommendations export file, and its associated
+// metadata file.
+type S3Destination struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket used as the destination of an export file.
+	Bucket *string `locationName:"bucket" type:"string"`
+
+	// The Amazon S3 bucket key of an export file.
+	//
+	// The key uniquely identifies the object, or export file, in the S3 bucket.
+	Key *string `locationName:"key" type:"string"`
+
+	// The Amazon S3 bucket key of a metadata file.
+	//
+	// The key uniquely identifies the object, or metadata file, in the S3 bucket.
+	MetadataKey *string `locationName:"metadataKey" type:"string"`
+}
+
+// String returns the string representation
+func (s S3Destination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3Destination) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3Destination) SetBucket(v string) *S3Destination {
+	s.Bucket = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *S3Destination) SetKey(v string) *S3Destination {
+	s.Key = &v
+	return s
+}
+
+// SetMetadataKey sets the MetadataKey field's value.
+func (s *S3Destination) SetMetadataKey(v string) *S3Destination {
+	s.MetadataKey = &v
+	return s
+}
+
+// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
+// name and key prefix for a recommendations export job.
+//
+// You must create the destination Amazon S3 bucket for your recommendations
+// export before you create the export job. Compute Optimizer does not create
+// the S3 bucket for you. After you create the S3 bucket, ensure that it has
+// the required permission policy to allow Compute Optimizer to write the export
+// file to it. If you plan to specify an object prefix when you create the export
+// job, you must include the object prefix in the policy that you add to the
+// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
+// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
+// in the Compute Optimizer user guide.
+type S3DestinationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket to use as the destination for an export
+	// job.
+	Bucket *string `locationName:"bucket" type:"string"`
+
+	// The Amazon S3 bucket prefix for an export job.
+	KeyPrefix *string `locationName:"keyPrefix" type:"string"`
+}
+
+// String returns the string representation
+func (s S3DestinationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3DestinationConfig) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3DestinationConfig) SetBucket(v string) *S3DestinationConfig {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefix sets the KeyPrefix field's value.
+func (s *S3DestinationConfig) SetKeyPrefix(v string) *S3DestinationConfig {
+	s.KeyPrefix = &v
+	return s
 }
 
 // The request has failed due to a temporary failure of the server.
@@ -2221,7 +3261,7 @@ func (s *Summary) SetValue(v float64) *Summary {
 	return s
 }
 
-// The limit on the number of requests per second was exceeded.
+// The request was denied due to request throttling.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2280,8 +3320,8 @@ func (s *ThrottlingException) RequestID() string {
 type UpdateEnrollmentStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether to enroll member accounts within the organization, if the
-	// account is a master account of an organization.
+	// Indicates whether to enroll member accounts of the organization if the your
+	// account is the master account of an organization.
 	IncludeMemberAccounts *bool `locationName:"includeMemberAccounts" type:"boolean"`
 
 	// The new enrollment status of the account.
@@ -2409,6 +3449,201 @@ func (s *UtilizationMetric) SetValue(v float64) *UtilizationMetric {
 }
 
 const (
+	// ExportableAutoScalingGroupFieldAccountId is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldAccountId = "AccountId"
+
+	// ExportableAutoScalingGroupFieldAutoScalingGroupArn is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldAutoScalingGroupArn = "AutoScalingGroupArn"
+
+	// ExportableAutoScalingGroupFieldAutoScalingGroupName is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldAutoScalingGroupName = "AutoScalingGroupName"
+
+	// ExportableAutoScalingGroupFieldFinding is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldFinding = "Finding"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsCpuMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsCpuMaximum = "UtilizationMetricsCpuMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsMemoryMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsMemoryMaximum = "UtilizationMetricsMemoryMaximum"
+
+	// ExportableAutoScalingGroupFieldLookbackPeriodInDays is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldLookbackPeriodInDays = "LookbackPeriodInDays"
+
+	// ExportableAutoScalingGroupFieldCurrentConfigurationInstanceType is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentConfigurationInstanceType = "CurrentConfigurationInstanceType"
+
+	// ExportableAutoScalingGroupFieldCurrentConfigurationDesiredCapacity is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentConfigurationDesiredCapacity = "CurrentConfigurationDesiredCapacity"
+
+	// ExportableAutoScalingGroupFieldCurrentConfigurationMinSize is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentConfigurationMinSize = "CurrentConfigurationMinSize"
+
+	// ExportableAutoScalingGroupFieldCurrentConfigurationMaxSize is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentConfigurationMaxSize = "CurrentConfigurationMaxSize"
+
+	// ExportableAutoScalingGroupFieldCurrentOnDemandPrice is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentOnDemandPrice = "CurrentOnDemandPrice"
+
+	// ExportableAutoScalingGroupFieldCurrentStandardOneYearNoUpfrontReservedPrice is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentStandardOneYearNoUpfrontReservedPrice = "CurrentStandardOneYearNoUpfrontReservedPrice"
+
+	// ExportableAutoScalingGroupFieldCurrentStandardThreeYearNoUpfrontReservedPrice is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentStandardThreeYearNoUpfrontReservedPrice = "CurrentStandardThreeYearNoUpfrontReservedPrice"
+
+	// ExportableAutoScalingGroupFieldCurrentVcpus is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentVcpus = "CurrentVCpus"
+
+	// ExportableAutoScalingGroupFieldCurrentMemory is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentMemory = "CurrentMemory"
+
+	// ExportableAutoScalingGroupFieldCurrentStorage is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentStorage = "CurrentStorage"
+
+	// ExportableAutoScalingGroupFieldCurrentNetwork is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentNetwork = "CurrentNetwork"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationInstanceType is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationInstanceType = "RecommendationOptionsConfigurationInstanceType"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationDesiredCapacity is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationDesiredCapacity = "RecommendationOptionsConfigurationDesiredCapacity"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationMinSize is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationMinSize = "RecommendationOptionsConfigurationMinSize"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationMaxSize is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationMaxSize = "RecommendationOptionsConfigurationMaxSize"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum = "RecommendationOptionsProjectedUtilizationMetricsCpuMaximum"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum = "RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsPerformanceRisk is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsPerformanceRisk = "RecommendationOptionsPerformanceRisk"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsOnDemandPrice is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsOnDemandPrice = "RecommendationOptionsOnDemandPrice"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsStandardOneYearNoUpfrontReservedPrice is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsStandardOneYearNoUpfrontReservedPrice = "RecommendationOptionsStandardOneYearNoUpfrontReservedPrice"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsStandardThreeYearNoUpfrontReservedPrice is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsStandardThreeYearNoUpfrontReservedPrice = "RecommendationOptionsStandardThreeYearNoUpfrontReservedPrice"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsVcpus is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsVcpus = "RecommendationOptionsVcpus"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsMemory is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsMemory = "RecommendationOptionsMemory"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsStorage is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsStorage = "RecommendationOptionsStorage"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsNetwork is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsNetwork = "RecommendationOptionsNetwork"
+
+	// ExportableAutoScalingGroupFieldLastRefreshTimestamp is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldLastRefreshTimestamp = "LastRefreshTimestamp"
+)
+
+const (
+	// ExportableInstanceFieldAccountId is a ExportableInstanceField enum value
+	ExportableInstanceFieldAccountId = "AccountId"
+
+	// ExportableInstanceFieldInstanceArn is a ExportableInstanceField enum value
+	ExportableInstanceFieldInstanceArn = "InstanceArn"
+
+	// ExportableInstanceFieldInstanceName is a ExportableInstanceField enum value
+	ExportableInstanceFieldInstanceName = "InstanceName"
+
+	// ExportableInstanceFieldFinding is a ExportableInstanceField enum value
+	ExportableInstanceFieldFinding = "Finding"
+
+	// ExportableInstanceFieldLookbackPeriodInDays is a ExportableInstanceField enum value
+	ExportableInstanceFieldLookbackPeriodInDays = "LookbackPeriodInDays"
+
+	// ExportableInstanceFieldCurrentInstanceType is a ExportableInstanceField enum value
+	ExportableInstanceFieldCurrentInstanceType = "CurrentInstanceType"
+
+	// ExportableInstanceFieldUtilizationMetricsCpuMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsCpuMaximum = "UtilizationMetricsCpuMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsMemoryMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsMemoryMaximum = "UtilizationMetricsMemoryMaximum"
+
+	// ExportableInstanceFieldCurrentOnDemandPrice is a ExportableInstanceField enum value
+	ExportableInstanceFieldCurrentOnDemandPrice = "CurrentOnDemandPrice"
+
+	// ExportableInstanceFieldCurrentStandardOneYearNoUpfrontReservedPrice is a ExportableInstanceField enum value
+	ExportableInstanceFieldCurrentStandardOneYearNoUpfrontReservedPrice = "CurrentStandardOneYearNoUpfrontReservedPrice"
+
+	// ExportableInstanceFieldCurrentStandardThreeYearNoUpfrontReservedPrice is a ExportableInstanceField enum value
+	ExportableInstanceFieldCurrentStandardThreeYearNoUpfrontReservedPrice = "CurrentStandardThreeYearNoUpfrontReservedPrice"
+
+	// ExportableInstanceFieldCurrentVcpus is a ExportableInstanceField enum value
+	ExportableInstanceFieldCurrentVcpus = "CurrentVCpus"
+
+	// ExportableInstanceFieldCurrentMemory is a ExportableInstanceField enum value
+	ExportableInstanceFieldCurrentMemory = "CurrentMemory"
+
+	// ExportableInstanceFieldCurrentStorage is a ExportableInstanceField enum value
+	ExportableInstanceFieldCurrentStorage = "CurrentStorage"
+
+	// ExportableInstanceFieldCurrentNetwork is a ExportableInstanceField enum value
+	ExportableInstanceFieldCurrentNetwork = "CurrentNetwork"
+
+	// ExportableInstanceFieldRecommendationOptionsInstanceType is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsInstanceType = "RecommendationOptionsInstanceType"
+
+	// ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum = "RecommendationOptionsProjectedUtilizationMetricsCpuMaximum"
+
+	// ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum = "RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum"
+
+	// ExportableInstanceFieldRecommendationOptionsPerformanceRisk is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsPerformanceRisk = "RecommendationOptionsPerformanceRisk"
+
+	// ExportableInstanceFieldRecommendationOptionsVcpus is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsVcpus = "RecommendationOptionsVcpus"
+
+	// ExportableInstanceFieldRecommendationOptionsMemory is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsMemory = "RecommendationOptionsMemory"
+
+	// ExportableInstanceFieldRecommendationOptionsStorage is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsStorage = "RecommendationOptionsStorage"
+
+	// ExportableInstanceFieldRecommendationOptionsNetwork is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsNetwork = "RecommendationOptionsNetwork"
+
+	// ExportableInstanceFieldRecommendationOptionsOnDemandPrice is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsOnDemandPrice = "RecommendationOptionsOnDemandPrice"
+
+	// ExportableInstanceFieldRecommendationOptionsStandardOneYearNoUpfrontReservedPrice is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsStandardOneYearNoUpfrontReservedPrice = "RecommendationOptionsStandardOneYearNoUpfrontReservedPrice"
+
+	// ExportableInstanceFieldRecommendationOptionsStandardThreeYearNoUpfrontReservedPrice is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsStandardThreeYearNoUpfrontReservedPrice = "RecommendationOptionsStandardThreeYearNoUpfrontReservedPrice"
+
+	// ExportableInstanceFieldRecommendationsSourcesRecommendationSourceArn is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationsSourcesRecommendationSourceArn = "RecommendationsSourcesRecommendationSourceArn"
+
+	// ExportableInstanceFieldRecommendationsSourcesRecommendationSourceType is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationsSourcesRecommendationSourceType = "RecommendationsSourcesRecommendationSourceType"
+
+	// ExportableInstanceFieldLastRefreshTimestamp is a ExportableInstanceField enum value
+	ExportableInstanceFieldLastRefreshTimestamp = "LastRefreshTimestamp"
+)
+
+const (
+	// FileFormatCsv is a FileFormat enum value
+	FileFormatCsv = "Csv"
+)
+
+const (
 	// FilterNameFinding is a FilterName enum value
 	FilterNameFinding = "Finding"
 
@@ -2428,6 +3663,28 @@ const (
 
 	// FindingNotOptimized is a Finding enum value
 	FindingNotOptimized = "NotOptimized"
+)
+
+const (
+	// JobFilterNameResourceType is a JobFilterName enum value
+	JobFilterNameResourceType = "ResourceType"
+
+	// JobFilterNameJobStatus is a JobFilterName enum value
+	JobFilterNameJobStatus = "JobStatus"
+)
+
+const (
+	// JobStatusQueued is a JobStatus enum value
+	JobStatusQueued = "Queued"
+
+	// JobStatusInProgress is a JobStatus enum value
+	JobStatusInProgress = "InProgress"
+
+	// JobStatusComplete is a JobStatus enum value
+	JobStatusComplete = "Complete"
+
+	// JobStatusFailed is a JobStatus enum value
+	JobStatusFailed = "Failed"
 )
 
 const (
@@ -2452,6 +3709,14 @@ const (
 
 	// RecommendationSourceTypeAutoScalingGroup is a RecommendationSourceType enum value
 	RecommendationSourceTypeAutoScalingGroup = "AutoScalingGroup"
+)
+
+const (
+	// ResourceTypeEc2instance is a ResourceType enum value
+	ResourceTypeEc2instance = "Ec2Instance"
+
+	// ResourceTypeAutoScalingGroup is a ResourceType enum value
+	ResourceTypeAutoScalingGroup = "AutoScalingGroup"
 )
 
 const (
