@@ -1,13 +1,14 @@
 {
   "version":"2.0",
   "metadata":{
-    "uid":"iot-data-2015-05-28",
     "apiVersion":"2015-05-28",
     "endpointPrefix":"data.iot",
     "protocol":"rest-json",
     "serviceFullName":"AWS IoT Data Plane",
+    "serviceId":"IoT Data Plane",
     "signatureVersion":"v4",
-    "signingName":"iotdata"
+    "signingName":"iotdata",
+    "uid":"iot-data-2015-05-28"
   },
   "operations":{
     "DeleteThingShadow":{
@@ -46,6 +47,24 @@
         {"shape":"InternalFailureException"},
         {"shape":"MethodNotAllowedException"},
         {"shape":"UnsupportedDocumentEncodingException"}
+      ]
+    },
+    "ListNamedShadowsForThing":{
+      "name":"ListNamedShadowsForThing",
+      "http":{
+        "method":"GET",
+        "requestUri":"/api/things/shadow/ListNamedShadowsForThing/{thingName}"
+      },
+      "input":{"shape":"ListNamedShadowsForThingRequest"},
+      "output":{"shape":"ListNamedShadowsForThingResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"MethodNotAllowedException"}
       ]
     },
     "Publish":{
@@ -87,7 +106,7 @@
     "ConflictException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"errorMessage"}
       },
       "error":{"httpStatusCode":409},
       "exception":true
@@ -100,6 +119,11 @@
           "shape":"ThingName",
           "location":"uri",
           "locationName":"thingName"
+        },
+        "shadowName":{
+          "shape":"ShadowName",
+          "location":"querystring",
+          "locationName":"name"
         }
       }
     },
@@ -111,7 +135,6 @@
       },
       "payload":"payload"
     },
-    "ErrorMessage":{"type":"string"},
     "GetThingShadowRequest":{
       "type":"structure",
       "required":["thingName"],
@@ -120,6 +143,11 @@
           "shape":"ThingName",
           "location":"uri",
           "locationName":"thingName"
+        },
+        "shadowName":{
+          "shape":"ShadowName",
+          "location":"querystring",
+          "locationName":"name"
         }
       }
     },
@@ -148,13 +176,52 @@
       "exception":true
     },
     "JsonDocument":{"type":"blob"},
+    "ListNamedShadowsForThingRequest":{
+      "type":"structure",
+      "required":["thingName"],
+      "members":{
+        "thingName":{
+          "shape":"ThingName",
+          "location":"uri",
+          "locationName":"thingName"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "pageSize":{
+          "shape":"PageSize",
+          "location":"querystring",
+          "locationName":"pageSize"
+        }
+      }
+    },
+    "ListNamedShadowsForThingResponse":{
+      "type":"structure",
+      "members":{
+        "results":{"shape":"NamedShadowList"},
+        "nextToken":{"shape":"NextToken"},
+        "timestamp":{"shape":"Timestamp"}
+      }
+    },
     "MethodNotAllowedException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"errorMessage"}
       },
       "error":{"httpStatusCode":405},
       "exception":true
+    },
+    "NamedShadowList":{
+      "type":"list",
+      "member":{"shape":"ShadowName"}
+    },
+    "NextToken":{"type":"string"},
+    "PageSize":{
+      "type":"integer",
+      "max":100,
+      "min":1
     },
     "Payload":{"type":"blob"},
     "PublishRequest":{
@@ -183,7 +250,7 @@
     "RequestEntityTooLargeException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"errorMessage"}
       },
       "error":{"httpStatusCode":413},
       "exception":true
@@ -205,11 +272,17 @@
       "exception":true,
       "fault":true
     },
+    "ShadowName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9:_-]+"
+    },
     "ThingName":{
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"[a-zA-Z0-9_-]+"
+      "pattern":"[a-zA-Z0-9:_-]+"
     },
     "ThrottlingException":{
       "type":"structure",
@@ -219,6 +292,7 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "Timestamp":{"type":"long"},
     "Topic":{"type":"string"},
     "UnauthorizedException":{
       "type":"structure",
@@ -247,6 +321,11 @@
           "shape":"ThingName",
           "location":"uri",
           "locationName":"thingName"
+        },
+        "shadowName":{
+          "shape":"ShadowName",
+          "location":"querystring",
+          "locationName":"name"
         },
         "payload":{"shape":"JsonDocument"}
       },
