@@ -50,7 +50,8 @@
         {"shape":"CallRateLimitExceededException"},
         {"shape":"InvalidVersionNumberException"},
         {"shape":"ResourceInUseException"},
-        {"shape":"InvalidParameterCombinationException"}
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateDistributionConfiguration":{
@@ -71,7 +72,8 @@
         {"shape":"CallRateLimitExceededException"},
         {"shape":"ResourceInUseException"},
         {"shape":"ResourceAlreadyExistsException"},
-        {"shape":"InvalidParameterCombinationException"}
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateImage":{
@@ -90,7 +92,8 @@
         {"shape":"IdempotentParameterMismatchException"},
         {"shape":"ForbiddenException"},
         {"shape":"CallRateLimitExceededException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateImagePipeline":{
@@ -110,7 +113,8 @@
         {"shape":"ForbiddenException"},
         {"shape":"CallRateLimitExceededException"},
         {"shape":"ResourceInUseException"},
-        {"shape":"ResourceAlreadyExistsException"}
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateImageRecipe":{
@@ -131,7 +135,8 @@
         {"shape":"CallRateLimitExceededException"},
         {"shape":"InvalidVersionNumberException"},
         {"shape":"ResourceInUseException"},
-        {"shape":"ResourceAlreadyExistsException"}
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateInfrastructureConfiguration":{
@@ -151,7 +156,8 @@
         {"shape":"ForbiddenException"},
         {"shape":"CallRateLimitExceededException"},
         {"shape":"ResourceInUseException"},
-        {"shape":"ResourceAlreadyExistsException"}
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "DeleteComponent":{
@@ -1061,6 +1067,7 @@
         "parentImage":{"shape":"NonEmptyString"},
         "blockDeviceMappings":{"shape":"InstanceBlockDeviceMappings"},
         "tags":{"shape":"TagMap"},
+        "workingDirectory":{"shape":"NonEmptyString"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -1121,6 +1128,7 @@
         "keyPair":{"shape":"NonEmptyString"},
         "terminateInstanceOnFailure":{"shape":"NullableBoolean"},
         "snsTopicArn":{"shape":"SnsTopicArn"},
+        "resourceTags":{"shape":"ResourceTagMap"},
         "tags":{"shape":"TagMap"},
         "clientToken":{
           "shape":"ClientToken",
@@ -1392,7 +1400,7 @@
       "required":["componentBuildVersionArn"],
       "members":{
         "componentBuildVersionArn":{
-          "shape":"ComponentBuildVersionArn",
+          "shape":"ComponentVersionArnOrBuildVersionArn",
           "location":"querystring",
           "locationName":"componentBuildVersionArn"
         }
@@ -1500,7 +1508,7 @@
       "required":["imageBuildVersionArn"],
       "members":{
         "imageBuildVersionArn":{
-          "shape":"ImageBuildVersionArn",
+          "shape":"ImageVersionArnOrBuildVersionArn",
           "location":"querystring",
           "locationName":"imageBuildVersionArn"
         }
@@ -1610,7 +1618,8 @@
         "parentImage":{"shape":"NonEmptyString"},
         "blockDeviceMappings":{"shape":"InstanceBlockDeviceMappings"},
         "dateCreated":{"shape":"DateTime"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "workingDirectory":{"shape":"NonEmptyString"}
       }
     },
     "ImageRecipeArn":{
@@ -1703,6 +1712,10 @@
       "type":"string",
       "pattern":"^arn:aws[^:]*:imagebuilder:[^:]+:(?:\\d{12}|aws):image/[a-z0-9-_]+/\\d+\\.\\d+\\.\\d+$"
     },
+    "ImageVersionArnOrBuildVersionArn":{
+      "type":"string",
+      "pattern":"^arn:aws[^:]*:imagebuilder:[^:]+:(?:\\d{12}|aws):image/[a-z0-9-_]+/(?:(?:(\\d+|x)\\.(\\d+|x)\\.(\\d+|x))|(?:\\d+\\.\\d+\\.\\d+/\\d+))$"
+    },
     "ImageVersionList":{
       "type":"list",
       "member":{"shape":"ImageVersion"}
@@ -1759,6 +1772,7 @@
         "snsTopicArn":{"shape":"NonEmptyString"},
         "dateCreated":{"shape":"DateTime"},
         "dateUpdated":{"shape":"DateTime"},
+        "resourceTags":{"shape":"ResourceTagMap"},
         "tags":{"shape":"TagMap"}
       }
     },
@@ -1774,6 +1788,7 @@
         "description":{"shape":"NonEmptyString"},
         "dateCreated":{"shape":"DateTime"},
         "dateUpdated":{"shape":"DateTime"},
+        "resourceTags":{"shape":"ResourceTagMap"},
         "tags":{"shape":"TagMap"}
       }
     },
@@ -2207,6 +2222,13 @@
       "max":30000,
       "min":1
     },
+    "ResourceTagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":30,
+      "min":1
+    },
     "RestrictedInteger":{
       "type":"integer",
       "max":25,
@@ -2236,6 +2258,14 @@
         "message":{"shape":"ErrorMessage"}
       },
       "error":{"httpStatusCode":500},
+      "exception":true
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":402},
       "exception":true
     },
     "ServiceUnavailableException":{
@@ -2421,7 +2451,8 @@
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "resourceTags":{"shape":"ResourceTagMap"}
       }
     },
     "UpdateInfrastructureConfigurationResponse":{

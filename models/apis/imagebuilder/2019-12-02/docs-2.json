@@ -28,11 +28,11 @@
     "ListComponentBuildVersions": "<p> Returns the list of component build versions for the specified semantic version. </p>",
     "ListComponents": "<p>Returns the list of component build versions for the specified semantic version. </p>",
     "ListDistributionConfigurations": "<p> Returns a list of distribution configurations. </p>",
-    "ListImageBuildVersions": "<p> Returns a list of distribution configurations. </p>",
+    "ListImageBuildVersions": "<p> Returns a list of image build versions. </p>",
     "ListImagePipelineImages": "<p> Returns a list of images created by the specified pipeline. </p>",
     "ListImagePipelines": "<p>Returns a list of image pipelines. </p>",
     "ListImageRecipes": "<p> Returns a list of image recipes. </p>",
-    "ListImages": "<p> Returns the list of image build versions for the specified semantic version. </p>",
+    "ListImages": "<p> Returns the list of images that you have access to. </p>",
     "ListInfrastructureConfigurations": "<p> Returns a list of infrastructure configurations. </p>",
     "ListTagsForResource": "<p> Returns the list of tags for the specified resource. </p>",
     "PutComponentPolicy": "<p> Applies a policy to a component. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutComponentPolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared. </p>",
@@ -154,7 +154,6 @@
         "DeleteComponentRequest$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component build version to delete. </p>",
         "DeleteComponentResponse$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component build version that was deleted. </p>",
         "GetComponentPolicyRequest$componentArn": "<p>The Amazon Resource Name (ARN) of the component whose policy you want to retrieve. </p>",
-        "GetComponentRequest$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component that you want to retrieve. Regex requires \"/\\d+$\" suffix.</p>",
         "ImportComponentResponse$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the imported component. </p>",
         "PutComponentPolicyRequest$componentArn": "<p>The Amazon Resource Name (ARN) of the component that this policy should be applied to. </p>",
         "PutComponentPolicyResponse$componentArn": "<p>The Amazon Resource Name (ARN) of the component that this policy was applied to. </p>"
@@ -221,7 +220,8 @@
     "ComponentVersionArnOrBuildVersionArn": {
       "base": null,
       "refs": {
-        "ComponentConfiguration$componentArn": "<p>The Amazon Resource Name (ARN) of the component. </p>"
+        "ComponentConfiguration$componentArn": "<p>The Amazon Resource Name (ARN) of the component. </p>",
+        "GetComponentRequest$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component that you want to retrieve. Regex requires \"/\\d+$\" suffix.</p>"
       }
     },
     "ComponentVersionList": {
@@ -476,6 +476,7 @@
         "ResourceInUseException$message": null,
         "ResourceNotFoundException$message": null,
         "ServiceException$message": null,
+        "ServiceQuotaExceededException$message": null,
         "ServiceUnavailableException$message": null
       }
     },
@@ -631,7 +632,6 @@
         "DeleteImageRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image to delete. </p>",
         "DeleteImageResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that was deleted. </p>",
         "GetImagePolicyRequest$imageArn": "<p>The Amazon Resource Name (ARN) of the image whose policy you want to retrieve. </p>",
-        "GetImageRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that you want to retrieve. </p>",
         "PutImagePolicyRequest$imageArn": "<p>The Amazon Resource Name (ARN) of the image that this policy should be applied to. </p>",
         "PutImagePolicyResponse$imageArn": "<p>The Amazon Resource Name (ARN) of the image that this policy was applied to. </p>",
         "StartImagePipelineExecutionResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that was created by this request.</p>"
@@ -771,6 +771,12 @@
       "base": null,
       "refs": {
         "ListImageBuildVersionsRequest$imageVersionArn": "<p>The Amazon Resource Name (ARN) of the image whose build versions you want to retrieve. </p>"
+      }
+    },
+    "ImageVersionArnOrBuildVersionArn": {
+      "base": null,
+      "refs": {
+        "GetImageRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that you want to retrieve. </p>"
       }
     },
     "ImageVersionList": {
@@ -1028,6 +1034,7 @@
         "CreateImagePipelineResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "CreateImageRecipeRequest$description": "<p> The description of the image recipe. </p>",
         "CreateImageRecipeRequest$parentImage": "<p>The parent image of the image recipe. The value of the string can be the ARN of the parent image or an AMI ID. The format for the ARN follows this example: <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/2019.x.x</code>. The ARN ends with <code>/20xx.x.x</code>, which communicates to EC2 Image Builder that you want to use the latest AMI created in 20xx (year). You can provide the specific version that you want to use, or you can use a wildcard in all of the fields. If you enter an AMI ID for the string value, you must have access to the AMI, and the AMI must be in the same Region in which you are using Image Builder. </p>",
+        "CreateImageRecipeRequest$workingDirectory": "<p>The working directory to be used during build and test workflows.</p>",
         "CreateImageRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "CreateImageResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "CreateInfrastructureConfigurationRequest$description": "<p>The description of the infrastructure configuration. </p>",
@@ -1059,6 +1066,7 @@
         "ImageRecipe$description": "<p>The description of the image recipe.</p>",
         "ImageRecipe$owner": "<p>The owner of the image recipe.</p>",
         "ImageRecipe$parentImage": "<p>The parent image of the image recipe.</p>",
+        "ImageRecipe$workingDirectory": "<p>The working directory to be used during build and test workflows.</p>",
         "ImageRecipeSummary$owner": "<p>The owner of the image recipe.</p>",
         "ImageRecipeSummary$parentImage": "<p>The parent image of the image recipe.</p>",
         "ImageState$reason": "<p>The reason for the image's status. </p>",
@@ -1290,6 +1298,15 @@
         "PutImageRecipePolicyRequest$policy": "<p>The policy to apply. </p>"
       }
     },
+    "ResourceTagMap": {
+      "base": null,
+      "refs": {
+        "CreateInfrastructureConfigurationRequest$resourceTags": "<p>The tags attached to the resource created by Image Builder.</p>",
+        "InfrastructureConfiguration$resourceTags": "<p>The tags attached to the resource created by Image Builder.</p>",
+        "InfrastructureConfigurationSummary$resourceTags": "<p>The tags attached to the image created by Image Builder.</p>",
+        "UpdateInfrastructureConfigurationRequest$resourceTags": "<p>The tags attached to the resource created by Image Builder.</p>"
+      }
+    },
     "RestrictedInteger": {
       "base": null,
       "refs": {
@@ -1331,6 +1348,11 @@
       "refs": {
       }
     },
+    "ServiceQuotaExceededException": {
+      "base": "<p>You have exceeded the number of permitted resources or operations for this service. For service quotas, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder\">EC2 Image Builder endpoints and quotas</a>.</p>",
+      "refs": {
+      }
+    },
     "ServiceUnavailableException": {
       "base": "<p>The service is unable to process your request at this time.</p>",
       "refs": {
@@ -1362,6 +1384,7 @@
     "TagKey": {
       "base": null,
       "refs": {
+        "ResourceTagMap$key": null,
         "TagKeyList$member": null,
         "TagMap$key": null
       }
@@ -1411,6 +1434,7 @@
     "TagValue": {
       "base": null,
       "refs": {
+        "ResourceTagMap$value": null,
         "TagMap$value": null
       }
     },
