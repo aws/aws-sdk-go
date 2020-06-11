@@ -750,6 +750,21 @@
       "refs": {
       }
     },
+    "KendraConfiguration": {
+      "base": "<p>Provides configuration information for the AMAZON.KendraSearchIntent intent. When you use this intent, Amazon Lex searches the specified Amazon Kendra index and returns documents from the index that match the user's utterance. For more information, see <a href=\"http://docs.aws.amazon.com/lex/latest/dg/built-in-intent-kendra-search.html\"> AMAZON.KendraSearchIntent</a>.</p>",
+      "refs": {
+        "CreateIntentVersionResponse$kendraConfiguration": "<p>Configuration information, if any, for connectin an Amazon Kendra index with the <code>AMAZON.KendraSearchIntent</code> intent.</p>",
+        "GetIntentResponse$kendraConfiguration": "<p>Configuration information, if any, to connect to an Amazon Kendra index with the <code>AMAZON.KendraSearchIntent</code> intent.</p>",
+        "PutIntentRequest$kendraConfiguration": "<p>Configuration information required to use the <code>AMAZON.KendraSearchIntent</code> intent to connect to an Amazon Kendra index. For more information, see <a href=\"http://docs.aws.amazon.com/lex/latest/dg/built-in-intent-kendra-search.html\"> AMAZON.KendraSearchIntent</a>.</p>",
+        "PutIntentResponse$kendraConfiguration": "<p>Configuration information, if any, required to connect to an Amazon Kendra index and use the <code>AMAZON.KendraSearchIntent</code> intent.</p>"
+      }
+    },
+    "KendraIndexArn": {
+      "base": null,
+      "refs": {
+        "KendraConfiguration$kendraIndex": "<p>The Amazon Resource Name (ARN) of the Amazon Kendra index that you want the AMAZON.KendraSearchIntent intent to search. The index must be in the same account and Region as the Amazon Lex bot. If the Amazon Kendra index does not exist, you get an exception when you call the <code>PutIntent</code> operation.</p>"
+      }
+    },
     "KmsKeyArn": {
       "base": null,
       "refs": {
@@ -947,7 +962,7 @@
     "Priority": {
       "base": null,
       "refs": {
-        "Slot$priority": "<p> Directs Lex the order in which to elicit this slot value from the user. For example, if the intent has two slots with priorities 1 and 2, AWS Lex first elicits a value for the slot with priority 1.</p> <p>If multiple slots share the same priority, the order in which Lex elicits values is arbitrary.</p>"
+        "Slot$priority": "<p> Directs Amazon Lex the order in which to elicit this slot value from the user. For example, if the intent has two slots with priorities 1 and 2, AWS Amazon Lex first elicits a value for the slot with priority 1.</p> <p>If multiple slots share the same priority, the order in which Amazon Lex elicits values is arbitrary.</p>"
       }
     },
     "ProcessBehavior": {
@@ -1015,6 +1030,12 @@
     "PutSlotTypeResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "QueryFilterString": {
+      "base": null,
+      "refs": {
+        "KendraConfiguration$queryFilterString": "<p>A query filter that Amazon Lex sends to Amazon Kendra to filter the response from the query. The filter is in the format defined by Amazon Kendra. For more information, see <a href=\"http://docs.aws.amazon.com/kendra/latest/dg/filtering.html\">Filtering queries</a>.</p> <p>You can override this filter string with a new filter string at runtime.</p>"
       }
     },
     "ReferenceType": {
@@ -1442,6 +1463,12 @@
         "Slot$slotTypeVersion": "<p>The version of the slot type.</p>",
         "SlotTypeMetadata$version": "<p>The version of the slot type.</p>",
         "UtteranceList$botVersion": "<p>The version of the bot that processed the list.</p>"
+      }
+    },
+    "roleArn": {
+      "base": null,
+      "refs": {
+        "KendraConfiguration$role": "<p>The Amazon Resource Name (ARN) of an IAM role that has permission to search the Amazon Kendra index. The role must be in the same account and Region as the Amazon Lex bot. If the role does not exist, you get an exception when you call the <code>PutIntent</code> operation.</p>"
       }
     }
   }

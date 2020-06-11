@@ -917,7 +917,8 @@
         "lastUpdatedDate":{"shape":"Timestamp"},
         "createdDate":{"shape":"Timestamp"},
         "version":{"shape":"Version"},
-        "checksum":{"shape":"String"}
+        "checksum":{"shape":"String"},
+        "kendraConfiguration":{"shape":"KendraConfiguration"}
       }
     },
     "CreateSlotTypeVersionRequest":{
@@ -1598,7 +1599,8 @@
         "lastUpdatedDate":{"shape":"Timestamp"},
         "createdDate":{"shape":"Timestamp"},
         "version":{"shape":"Version"},
-        "checksum":{"shape":"String"}
+        "checksum":{"shape":"String"},
+        "kendraConfiguration":{"shape":"KendraConfiguration"}
       }
     },
     "GetIntentVersionsRequest":{
@@ -1787,7 +1789,7 @@
       "type":"string",
       "max":2048,
       "min":20,
-      "pattern":"^arn:[\\w\\-]+:iam::[\\d]{12}:role\\/[\\w+=,\\.@\\-]{1,64}$"
+      "pattern":"^arn:[\\w\\-]+:iam::[\\d]{12}:role/.+$"
     },
     "ImportStatus":{
       "type":"string",
@@ -1846,6 +1848,24 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "KendraConfiguration":{
+      "type":"structure",
+      "required":[
+        "kendraIndex",
+        "role"
+      ],
+      "members":{
+        "kendraIndex":{"shape":"KendraIndexArn"},
+        "queryFilterString":{"shape":"QueryFilterString"},
+        "role":{"shape":"roleArn"}
+      }
+    },
+    "KendraIndexArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws:kendra:[a-z]+-[a-z]+-[0-9]:[0-9]{12}:index\\/[a-zA-Z0-9][a-zA-Z0-9_-]*"
     },
     "KmsKeyArn":{
       "type":"string",
@@ -2159,7 +2179,8 @@
         "fulfillmentActivity":{"shape":"FulfillmentActivity"},
         "parentIntentSignature":{"shape":"BuiltinIntentSignature"},
         "checksum":{"shape":"String"},
-        "createVersion":{"shape":"Boolean"}
+        "createVersion":{"shape":"Boolean"},
+        "kendraConfiguration":{"shape":"KendraConfiguration"}
       }
     },
     "PutIntentResponse":{
@@ -2180,7 +2201,8 @@
         "createdDate":{"shape":"Timestamp"},
         "version":{"shape":"Version"},
         "checksum":{"shape":"String"},
-        "createVersion":{"shape":"Boolean"}
+        "createVersion":{"shape":"Boolean"},
+        "kendraConfiguration":{"shape":"KendraConfiguration"}
       }
     },
     "PutSlotTypeRequest":{
@@ -2216,6 +2238,10 @@
         "parentSlotTypeSignature":{"shape":"CustomOrBuiltinSlotTypeName"},
         "slotTypeConfigurations":{"shape":"SlotTypeConfigurations"}
       }
+    },
+    "QueryFilterString":{
+      "type":"string",
+      "min":0
     },
     "ReferenceType":{
       "type":"string",
@@ -2545,6 +2571,12 @@
       "max":64,
       "min":1,
       "pattern":"\\$LATEST|[0-9]+"
+    },
+    "roleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws:iam::[0-9]{12}:role/.*"
     }
   }
 }

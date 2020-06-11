@@ -1,3 +1,15 @@
+Release v1.32.0 (2020-06-11)
+===
+
+### Service Client Updates
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for deleting capacity providers.
+* `service/imagebuilder`: Updates service API and documentation
+* `service/lex-models`: Updates service API and documentation
+
+### SDK Features
+* `service/iotdataplane`: As part of this release, we are introducing a new feature called named shadow, which extends the capability of AWS IoT Device Shadow to support multiple shadows for a single IoT device. With this release, customers can store different device state data into different shadows, and as a result access only the required state data when needed and reduce individual shadow size.
+
 Release v1.31.15 (2020-06-10)
 ===
 
