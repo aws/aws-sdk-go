@@ -68,6 +68,10 @@ type IoTDataPlaneAPI interface {
 	GetThingShadowWithContext(aws.Context, *iotdataplane.GetThingShadowInput, ...request.Option) (*iotdataplane.GetThingShadowOutput, error)
 	GetThingShadowRequest(*iotdataplane.GetThingShadowInput) (*request.Request, *iotdataplane.GetThingShadowOutput)
 
+	ListNamedShadowsForThing(*iotdataplane.ListNamedShadowsForThingInput) (*iotdataplane.ListNamedShadowsForThingOutput, error)
+	ListNamedShadowsForThingWithContext(aws.Context, *iotdataplane.ListNamedShadowsForThingInput, ...request.Option) (*iotdataplane.ListNamedShadowsForThingOutput, error)
+	ListNamedShadowsForThingRequest(*iotdataplane.ListNamedShadowsForThingInput) (*request.Request, *iotdataplane.ListNamedShadowsForThingOutput)
+
 	Publish(*iotdataplane.PublishInput) (*iotdataplane.PublishOutput, error)
 	PublishWithContext(aws.Context, *iotdataplane.PublishInput, ...request.Option) (*iotdataplane.PublishOutput, error)
 	PublishRequest(*iotdataplane.PublishInput) (*request.Request, *iotdataplane.PublishOutput)
