@@ -1,3 +1,16 @@
+Release v1.32.1 (2020-06-12)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway
+* `service/cloudformation`: Updates service documentation
+  * The following parameters now return the organization root ID or organizational unit (OU) IDs that you specified for DeploymentTargets: the OrganizationalUnitIds parameter on StackSet and the OrganizationalUnitId parameter on StackInstance, StackInstanceSummary, and StackSetOperationResultSummary
+* `service/glue`: Updates service API and documentation
+  * You can now choose to crawl the entire table or just a sample of records in DynamoDB when using AWS Glue crawlers. Additionally, you can also specify a scanning rate for crawling DynamoDB tables.
+* `service/storagegateway`: Updates service API and documentation
+  * Display EndpointType in DescribeGatewayInformation
+
 Release v1.32.0 (2020-06-11)
 ===
 
