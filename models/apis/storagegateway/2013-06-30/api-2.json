@@ -1781,7 +1781,8 @@
         "Tags":{"shape":"Tags"},
         "VPCEndpoint":{"shape":"string"},
         "CloudWatchLogGroupARN":{"shape":"CloudWatchLogGroupARN"},
-        "HostEnvironment":{"shape":"HostEnvironment"}
+        "HostEnvironment":{"shape":"HostEnvironment"},
+        "EndpointType":{"shape":"EndpointType"}
       }
     },
     "DescribeMaintenanceStartTimeInput":{
@@ -2085,6 +2086,11 @@
     "DoubleObject":{"type":"double"},
     "Ec2InstanceId":{"type":"string"},
     "Ec2InstanceRegion":{"type":"string"},
+    "EndpointType":{
+      "type":"string",
+      "max":8,
+      "min":4
+    },
     "ErrorCode":{
       "type":"string",
       "enum":[

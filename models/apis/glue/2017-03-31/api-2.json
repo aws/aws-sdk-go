@@ -3430,7 +3430,9 @@
     "DynamoDBTarget":{
       "type":"structure",
       "members":{
-        "Path":{"shape":"Path"}
+        "Path":{"shape":"Path"},
+        "scanAll":{"shape":"NullableBoolean"},
+        "scanRate":{"shape":"NullableDouble"}
       }
     },
     "DynamoDBTargetList":{
