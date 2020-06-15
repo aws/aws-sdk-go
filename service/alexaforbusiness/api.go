@@ -9297,7 +9297,9 @@ type BusinessReportContentRange struct {
 	_ struct{} `type:"structure"`
 
 	// The interval of the content range.
-	Interval *string `type:"string" enum:"BusinessReportInterval"`
+	//
+	// Interval is a required field
+	Interval *string `type:"string" required:"true" enum:"BusinessReportInterval"`
 }
 
 // String returns the string representation
@@ -9308,6 +9310,19 @@ func (s BusinessReportContentRange) String() string {
 // GoString returns the string representation
 func (s BusinessReportContentRange) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BusinessReportContentRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BusinessReportContentRange"}
+	if s.Interval == nil {
+		invalidParams.Add(request.NewErrParamRequired("Interval"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetInterval sets the Interval field's value.
@@ -10010,6 +10025,9 @@ type CreateBusinessReportScheduleInput struct {
 
 	// The name identifier of the schedule.
 	ScheduleName *string `type:"string"`
+
+	// The tags for the business report schedule.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -10033,6 +10051,21 @@ func (s *CreateBusinessReportScheduleInput) Validate() error {
 	}
 	if s.Format == nil {
 		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.ContentRange != nil {
+		if err := s.ContentRange.Validate(); err != nil {
+			invalidParams.AddNested("ContentRange", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10080,6 +10113,12 @@ func (s *CreateBusinessReportScheduleInput) SetS3KeyPrefix(v string) *CreateBusi
 // SetScheduleName sets the ScheduleName field's value.
 func (s *CreateBusinessReportScheduleInput) SetScheduleName(v string) *CreateBusinessReportScheduleInput {
 	s.ScheduleName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateBusinessReportScheduleInput) SetTags(v []*Tag) *CreateBusinessReportScheduleInput {
+	s.Tags = v
 	return s
 }
 
@@ -10898,6 +10937,9 @@ type CreateProfileInput struct {
 	// Whether room profile setup is enabled.
 	SetupModeDisabled *bool `type:"boolean"`
 
+	// The tags for the profile.
+	Tags []*Tag `type:"list"`
+
 	// The temperature unit to be used by devices in the profile.
 	//
 	// TemperatureUnit is a required field
@@ -10965,6 +11007,16 @@ func (s *CreateProfileInput) Validate() error {
 			invalidParams.AddNested("MeetingRoomConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11023,6 +11075,12 @@ func (s *CreateProfileInput) SetProfileName(v string) *CreateProfileInput {
 // SetSetupModeDisabled sets the SetupModeDisabled field's value.
 func (s *CreateProfileInput) SetSetupModeDisabled(v bool) *CreateProfileInput {
 	s.SetupModeDisabled = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateProfileInput) SetTags(v []*Tag) *CreateProfileInput {
+	s.Tags = v
 	return s
 }
 
@@ -11132,7 +11190,7 @@ type CreateRoomInput struct {
 	// The description for the room.
 	Description *string `min:"1" type:"string"`
 
-	// The profile ARN for the room.
+	// The profile ARN for the room. This is required.
 	ProfileArn *string `type:"string"`
 
 	// The calendar ARN for the room.
@@ -11261,6 +11319,9 @@ type CreateSkillGroupInput struct {
 	//
 	// SkillGroupName is a required field
 	SkillGroupName *string `min:"1" type:"string" required:"true"`
+
+	// The tags for the skill group.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -11288,6 +11349,16 @@ func (s *CreateSkillGroupInput) Validate() error {
 	if s.SkillGroupName != nil && len(*s.SkillGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SkillGroupName", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11310,6 +11381,12 @@ func (s *CreateSkillGroupInput) SetDescription(v string) *CreateSkillGroupInput 
 // SetSkillGroupName sets the SkillGroupName field's value.
 func (s *CreateSkillGroupInput) SetSkillGroupName(v string) *CreateSkillGroupInput {
 	s.SkillGroupName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSkillGroupInput) SetTags(v []*Tag) *CreateSkillGroupInput {
+	s.Tags = v
 	return s
 }
 
@@ -18456,6 +18533,8 @@ type SkillDetails struct {
 	// The date when the skill was released.
 	ReleaseDate *string `type:"string"`
 
+	// This member has been deprecated.
+	//
 	// The list of reviews for the skill, including Key and Value pair.
 	Reviews map[string]*string `type:"map"`
 
@@ -20927,6 +21006,12 @@ const (
 
 	// DeviceStatusDetailCodePasswordNotFound is a DeviceStatusDetailCode enum value
 	DeviceStatusDetailCodePasswordNotFound = "PASSWORD_NOT_FOUND"
+
+	// DeviceStatusDetailCodePasswordManagerAccessDenied is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodePasswordManagerAccessDenied = "PASSWORD_MANAGER_ACCESS_DENIED"
+
+	// DeviceStatusDetailCodeCertificateAuthorityAccessDenied is a DeviceStatusDetailCode enum value
+	DeviceStatusDetailCodeCertificateAuthorityAccessDenied = "CERTIFICATE_AUTHORITY_ACCESS_DENIED"
 )
 
 const (

@@ -1,3 +1,15 @@
+Release v1.32.2 (2020-06-15)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/appconfig`: Updates service API, documentation, and paginators
+* `service/chime`: Updates service API and documentation
+  * feature: Chime: This release introduces the ability to create an AWS Chime SDK meeting with attendees.
+* `service/cognito-idp`: Updates service API and documentation
+* `service/iot`: Updates service API and documentation
+  * Added support for job executions rollout configuration, job abort configuration, and job executions timeout configuration for AWS IoT Over-the-Air (OTA) Update Feature.
+
 Release v1.32.1 (2020-06-12)
 ===
 

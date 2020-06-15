@@ -34,8 +34,8 @@
 //    * Feature toggle: Use AppConfig to turn on new features that require a
 //    timely deployment, such as a product launch or announcement.
 //
-//    * User membership: Use AppConfig to allow premium subscribers to access
-//    paid content.
+//    * Allow list: Use AppConfig to allow premium subscribers to access paid
+//    content.
 //
 //    * Operational issues: Use AppConfig to reduce stress on your application
 //    when a dependency or other external factor impacts the system.

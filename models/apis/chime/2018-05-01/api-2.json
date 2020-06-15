@@ -301,6 +301,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "CreateMeetingWithAttendees":{
+      "name":"CreateMeetingWithAttendees",
+      "http":{
+        "method":"POST",
+        "requestUri":"/meetings?operation=create-attendees",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateMeetingWithAttendeesRequest"},
+      "output":{"shape":"CreateMeetingWithAttendeesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "CreatePhoneNumberOrder":{
       "name":"CreatePhoneNumberOrder",
       "http":{
@@ -2697,6 +2716,36 @@
       "type":"structure",
       "members":{
         "Meeting":{"shape":"Meeting"}
+      }
+    },
+    "CreateMeetingWithAttendeesRequest":{
+      "type":"structure",
+      "required":["ClientRequestToken"],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "ExternalMeetingId":{"shape":"ExternalMeetingIdType"},
+        "MeetingHostId":{"shape":"ExternalUserIdType"},
+        "MediaRegion":{"shape":"String"},
+        "Tags":{"shape":"MeetingTagList"},
+        "NotificationsConfiguration":{"shape":"MeetingNotificationConfiguration"},
+        "Attendees":{"shape":"CreateMeetingWithAttendeesRequestItemList"}
+      }
+    },
+    "CreateMeetingWithAttendeesRequestItemList":{
+      "type":"list",
+      "member":{"shape":"CreateAttendeeRequestItem"},
+      "max":5,
+      "min":1
+    },
+    "CreateMeetingWithAttendeesResponse":{
+      "type":"structure",
+      "members":{
+        "Meeting":{"shape":"Meeting"},
+        "Attendees":{"shape":"AttendeeList"},
+        "Errors":{"shape":"BatchCreateAttendeeErrorList"}
       }
     },
     "CreatePhoneNumberOrderRequest":{

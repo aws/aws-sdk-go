@@ -170,7 +170,7 @@
     "RegisterThing": "<p>Provisions a thing in the device registry. RegisterThing calls other AWS IoT control plane APIs. These calls might exceed your account level <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot\"> AWS IoT Throttling Limits</a> and cause throttle errors. Please contact <a href=\"https://console.aws.amazon.com/support/home\">AWS Customer Support</a> to raise your throttling limits if necessary.</p>",
     "RejectCertificateTransfer": "<p>Rejects a pending certificate transfer. After AWS IoT rejects a certificate transfer, the certificate status changes from <b>PENDING_TRANSFER</b> to <b>INACTIVE</b>.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>This operation can only be called by the transfer destination. After it is called, the certificate will be returned to the source's account in the INACTIVE state.</p>",
     "RemoveThingFromBillingGroup": "<p>Removes the given thing from the billing group.</p>",
-    "RemoveThingFromThingGroup": "<p>Remove the specified thing from the specified group.</p>",
+    "RemoveThingFromThingGroup": "<p>Remove the specified thing from the specified group.</p> <p>You must specify either a <code>thingGroupArn</code> or a <code>thingGroupName</code> to identify the thing group and either a <code>thingArn</code> or a <code>thingName</code> to identify the thing to remove from the thing group. </p>",
     "ReplaceTopicRule": "<p>Replaces the rule. You must specify all parameters for the new rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
     "SearchIndex": "<p>The query search index.</p>",
     "SetDefaultAuthorizer": "<p>Sets the default authorizer. This will be used if a websocket connection is made without specifying an authorizer.</p>",
@@ -214,11 +214,11 @@
     "AbortAction": {
       "base": null,
       "refs": {
-        "AbortCriteria$action": "<p>The type of abort action to initiate a job abort.</p>"
+        "AbortCriteria$action": "<p>The type of job action to take to initiate the job abort.</p>"
       }
     },
     "AbortConfig": {
-      "base": "<p>Details of abort criteria to abort the job.</p>",
+      "base": "<p>The criteria that determine when and how a job abort takes place.</p>",
       "refs": {
         "CreateJobRequest$abortConfig": "<p>Allows you to create criteria to abort a job.</p>",
         "Job$abortConfig": "<p>Configuration for criteria to abort the job.</p>",
@@ -226,7 +226,7 @@
       }
     },
     "AbortCriteria": {
-      "base": "<p>Details of abort criteria to define rules to abort the job.</p>",
+      "base": "<p>The criteria that determine when and how a job abort takes place.</p>",
       "refs": {
         "AbortCriteriaList$member": null
       }
@@ -234,13 +234,13 @@
     "AbortCriteriaList": {
       "base": null,
       "refs": {
-        "AbortConfig$criteriaList": "<p>The list of abort criteria to define rules to abort the job.</p>"
+        "AbortConfig$criteriaList": "<p>The list of criteria that determine when and how to abort the job.</p>"
       }
     },
     "AbortThresholdPercentage": {
       "base": null,
       "refs": {
-        "AbortCriteria$thresholdPercentage": "<p>The threshold as a percentage of the total number of executed things that will initiate a job abort.</p> <p>AWS IoT supports up to two digits after the decimal (for example, 10.9 and 10.99, but not 10.999).</p>"
+        "AbortCriteria$thresholdPercentage": "<p>The minimum percentage of job execution failures that must occur to initiate the job abort.</p> <p>AWS IoT supports up to two digits after the decimal (for example, 10.9 and 10.99, but not 10.999).</p>"
       }
     },
     "AcceptCertificateTransferRequest": {
@@ -986,6 +986,48 @@
         "TopicRulePayload$awsIotSqlVersion": "<p>The version of the SQL rules engine to use when evaluating the rule.</p>"
       }
     },
+    "AwsJobAbortConfig": {
+      "base": "<p>The criteria that determine when and how a job abort takes place.</p>",
+      "refs": {
+        "CreateOTAUpdateRequest$awsJobAbortConfig": "<p>The criteria that determine when and how a job abort takes place.</p>"
+      }
+    },
+    "AwsJobAbortCriteria": {
+      "base": "<p>The criteria that determine when and how a job abort takes place.</p>",
+      "refs": {
+        "AwsJobAbortCriteriaList$member": null
+      }
+    },
+    "AwsJobAbortCriteriaAbortAction": {
+      "base": null,
+      "refs": {
+        "AwsJobAbortCriteria$action": "<p>The type of job action to take to initiate the job abort.</p>"
+      }
+    },
+    "AwsJobAbortCriteriaAbortThresholdPercentage": {
+      "base": null,
+      "refs": {
+        "AwsJobAbortCriteria$thresholdPercentage": "<p>The minimum percentage of job execution failures that must occur to initiate the job abort.</p> <p>AWS IoT supports up to two digits after the decimal (for example, 10.9 and 10.99, but not 10.999).</p>"
+      }
+    },
+    "AwsJobAbortCriteriaFailureType": {
+      "base": null,
+      "refs": {
+        "AwsJobAbortCriteria$failureType": "<p>The type of job execution failures that can initiate a job abort.</p>"
+      }
+    },
+    "AwsJobAbortCriteriaList": {
+      "base": null,
+      "refs": {
+        "AwsJobAbortConfig$abortCriteriaList": "<p>The list of criteria that determine when and how to abort the job.</p>"
+      }
+    },
+    "AwsJobAbortCriteriaMinimumNumberOfExecutedThings": {
+      "base": null,
+      "refs": {
+        "AwsJobAbortCriteria$minNumberOfExecutedThings": "<p>The minimum number of things which must receive job execution notifications before the job can be aborted.</p>"
+      }
+    },
     "AwsJobExecutionsRolloutConfig": {
       "base": "<p>Configuration for the rollout of OTA updates.</p>",
       "refs": {
@@ -993,11 +1035,54 @@
         "OTAUpdateInfo$awsJobExecutionsRolloutConfig": "<p>Configuration for the rollout of OTA updates.</p>"
       }
     },
+    "AwsJobExponentialRolloutRate": {
+      "base": "<p>The rate of increase for a job rollout. This parameter allows you to define an exponential rate increase for a job rollout.</p>",
+      "refs": {
+        "AwsJobExecutionsRolloutConfig$exponentialRate": "<p>The rate of increase for a job rollout. This parameter allows you to define an exponential rate increase for a job rollout.</p>"
+      }
+    },
     "AwsJobPresignedUrlConfig": {
       "base": "<p>Configuration information for pre-signed URLs. Valid when <code>protocols</code> contains HTTP.</p>",
       "refs": {
         "CreateOTAUpdateRequest$awsJobPresignedUrlConfig": "<p>Configuration information for pre-signed URLs.</p>",
         "OTAUpdateInfo$awsJobPresignedUrlConfig": "<p>Configuration information for pre-signed URLs. Valid when <code>protocols</code> contains HTTP.</p>"
+      }
+    },
+    "AwsJobRateIncreaseCriteria": {
+      "base": "<p>The criteria to initiate the increase in rate of rollout for a job.</p>",
+      "refs": {
+        "AwsJobExponentialRolloutRate$rateIncreaseCriteria": "<p>The criteria to initiate the increase in rate of rollout for a job.</p> <p>AWS IoT supports up to one digit after the decimal (for example, 1.5, but not 1.55).</p>"
+      }
+    },
+    "AwsJobRateIncreaseCriteriaNumberOfThings": {
+      "base": null,
+      "refs": {
+        "AwsJobRateIncreaseCriteria$numberOfNotifiedThings": "<p>When this number of things have been notified, it will initiate an increase in the rollout rate.</p>",
+        "AwsJobRateIncreaseCriteria$numberOfSucceededThings": "<p>When this number of things have succeeded in their job execution, it will initiate an increase in the rollout rate.</p>"
+      }
+    },
+    "AwsJobRolloutIncrementFactor": {
+      "base": null,
+      "refs": {
+        "AwsJobExponentialRolloutRate$incrementFactor": "<p>The rate of increase for a job rollout. The number of things notified is multiplied by this factor.</p>"
+      }
+    },
+    "AwsJobRolloutRatePerMinute": {
+      "base": null,
+      "refs": {
+        "AwsJobExponentialRolloutRate$baseRatePerMinute": "<p>The minimum number of things that will be notified of a pending job, per minute, at the start of the job rollout. This is the initial rate of the rollout.</p>"
+      }
+    },
+    "AwsJobTimeoutConfig": {
+      "base": "<p>Specifies the amount of time each device has to finish its execution of the job. A timer is started when the job execution status is set to <code>IN_PROGRESS</code>. If the job execution status is not set to another terminal state before the timer expires, it will be automatically set to <code>TIMED_OUT</code>.</p>",
+      "refs": {
+        "CreateOTAUpdateRequest$awsJobTimeoutConfig": "<p>Specifies the amount of time each device has to finish its execution of the job. A timer is started when the job execution status is set to <code>IN_PROGRESS</code>. If the job execution status is not set to another terminal state before the timer expires, it will be automatically set to <code>TIMED_OUT</code>.</p>"
+      }
+    },
+    "AwsJobTimeoutInProgressTimeoutInMinutes": {
+      "base": null,
+      "refs": {
+        "AwsJobTimeoutConfig$inProgressTimeoutInMinutes": "<p>Specifies the amount of time, in minutes, this device has to finish execution of this job. The timeout interval can be anywhere between 1 minute and 7 days (1 to 10080 minutes). The in progress timer can't be updated and will apply to all job executions for the job. Whenever a job execution remains in the IN_PROGRESS status for longer than this interval, the job execution will fail and switch to the terminal <code>TIMED_OUT</code> status.</p>"
       }
     },
     "Behavior": {
@@ -2939,7 +3024,7 @@
     "ForceDeleteAWSJob": {
       "base": null,
       "refs": {
-        "DeleteOTAUpdateRequest$forceDeleteAWSJob": "<p>Specifies if the AWS Job associated with the OTA update should be deleted with the OTA update is deleted.</p>"
+        "DeleteOTAUpdateRequest$forceDeleteAWSJob": "<p>Specifies if the AWS Job associated with the OTA update should be deleted when the OTA update is deleted.</p>"
       }
     },
     "ForceFlag": {
@@ -3432,7 +3517,7 @@
     "JobExecutionFailureType": {
       "base": null,
       "refs": {
-        "AbortCriteria$failureType": "<p>The type of job execution failure to define a rule to initiate a job abort.</p>"
+        "AbortCriteria$failureType": "<p>The type of job execution failures that can initiate a job abort.</p>"
       }
     },
     "JobExecutionStatus": {
@@ -4272,7 +4357,7 @@
     "MinimumNumberOfExecutedThings": {
       "base": null,
       "refs": {
-        "AbortCriteria$minNumberOfExecutedThings": "<p>Minimum number of executed things before evaluating an abort rule.</p>"
+        "AbortCriteria$minNumberOfExecutedThings": "<p>The minimum number of things which must receive job execution notifications before the job can be aborted.</p>"
       }
     },
     "MissingContextValue": {
@@ -4540,7 +4625,7 @@
       "refs": {
         "CreateOTAUpdateRequest$otaUpdateId": "<p>The ID of the OTA update to be created.</p>",
         "CreateOTAUpdateResponse$otaUpdateId": "<p>The OTA update ID.</p>",
-        "DeleteOTAUpdateRequest$otaUpdateId": "<p>The OTA update ID to delete.</p>",
+        "DeleteOTAUpdateRequest$otaUpdateId": "<p>The ID of the OTA update to delete.</p>",
         "GetOTAUpdateRequest$otaUpdateId": "<p>The OTA update ID.</p>",
         "OTAUpdateInfo$otaUpdateId": "<p>The OTA update ID.</p>",
         "OTAUpdateSummary$otaUpdateId": "<p>The OTA update ID.</p>"
@@ -4780,7 +4865,7 @@
     "PolicyTarget": {
       "base": null,
       "refs": {
-        "AttachPolicyRequest$target": "<p>The <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html\">identity</a> to which the policy is attached.</p>",
+        "AttachPolicyRequest$target": "<p>The <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html\">identity</a> to which the policy is attached.</p>",
         "DetachPolicyRequest$target": "<p>The target from which the policy will be detached.</p>",
         "ListAttachedPoliciesRequest$target": "<p>The group or principal for which the policies will be listed.</p>",
         "PolicyTargets$member": null
@@ -5396,7 +5481,7 @@
         "AlertTarget$roleArn": "<p>The ARN of the role that grants permission to send alerts to the notification target.</p>",
         "AuditNotificationTarget$roleArn": "<p>The ARN of the role that grants permission to send notifications to the target.</p>",
         "CreateMitigationActionRequest$roleArn": "<p>The ARN of the IAM role that is used to apply the mitigation action.</p>",
-        "CreateOTAUpdateRequest$roleArn": "<p>The IAM role that allows access to the AWS IoT Jobs service.</p>",
+        "CreateOTAUpdateRequest$roleArn": "<p>The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs and AWS Code Signing resources to create an OTA update job.</p>",
         "CreateProvisioningTemplateRequest$provisioningRoleArn": "<p>The role ARN for the role associated with the fleet provisioning template. This IoT role grants permission to provision a device.</p>",
         "CreateRoleAliasRequest$roleArn": "<p>The role ARN.</p>",
         "CreateStreamRequest$roleArn": "<p>An IAM role that allows the IoT service principal assumes to access your S3 files.</p>",
@@ -6177,7 +6262,7 @@
     "Targets": {
       "base": null,
       "refs": {
-        "CreateOTAUpdateRequest$targets": "<p>The targeted devices to receive OTA updates.</p>",
+        "CreateOTAUpdateRequest$targets": "<p>The devices targeted to receive OTA updates.</p>",
         "OTAUpdateInfo$targets": "<p>The targets of the OTA update.</p>"
       }
     },

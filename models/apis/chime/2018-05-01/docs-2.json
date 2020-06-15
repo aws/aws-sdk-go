@@ -16,7 +16,8 @@
     "CreateAccount": "<p>Creates an Amazon Chime account under the administrator's AWS account. Only <code>Team</code> account types are currently supported for this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "CreateAttendee": "<p>Creates a new attendee for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "CreateBot": "<p>Creates a bot for an Amazon Chime Enterprise account.</p>",
-    "CreateMeeting": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "CreateMeeting": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "CreateMeetingWithAttendees": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p>",
     "CreateProxySession": "<p>Creates a proxy session on the specified Amazon Chime Voice Connector for the specified participant phone numbers.</p>",
     "CreateRoom": "<p>Creates a chat room for the specified Amazon Chime Enterprise account.</p>",
@@ -236,6 +237,7 @@
       "base": null,
       "refs": {
         "BatchCreateAttendeeResponse$Attendees": "<p>The attendee information, including attendees IDs and join tokens.</p>",
+        "CreateMeetingWithAttendeesResponse$Attendees": "<p>The attendee information, including attendees IDs and join tokens.</p>",
         "ListAttendeesResponse$Attendees": "<p>The Amazon Chime SDK attendee information.</p>"
       }
     },
@@ -261,7 +263,8 @@
     "BatchCreateAttendeeErrorList": {
       "base": null,
       "refs": {
-        "BatchCreateAttendeeResponse$Errors": "<p>If the action fails for one or more of the attendees in the request, a list of the attendees is returned, along with error codes and error messages.</p>"
+        "BatchCreateAttendeeResponse$Errors": "<p>If the action fails for one or more of the attendees in the request, a list of the attendees is returned, along with error codes and error messages.</p>",
+        "CreateMeetingWithAttendeesResponse$Errors": "<p>If the action fails for one or more of the attendees in the request, a list of the attendees is returned, along with error codes and error messages.</p>"
       }
     },
     "BatchCreateAttendeeRequest": {
@@ -429,6 +432,7 @@
       "base": null,
       "refs": {
         "CreateMeetingRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different meetings.</p>",
+        "CreateMeetingWithAttendeesRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different meetings.</p>",
         "CreateRoomRequest$ClientRequestToken": "<p>The idempotency token for the request.</p>"
       }
     },
@@ -486,7 +490,8 @@
     "CreateAttendeeRequestItem": {
       "base": "<p>The Amazon Chime SDK attendee fields to create, used with the BatchCreateAttendee action.</p>",
       "refs": {
-        "CreateAttendeeRequestItemList$member": null
+        "CreateAttendeeRequestItemList$member": null,
+        "CreateMeetingWithAttendeesRequestItemList$member": null
       }
     },
     "CreateAttendeeRequestItemList": {
@@ -516,6 +521,22 @@
       }
     },
     "CreateMeetingResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMeetingWithAttendeesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMeetingWithAttendeesRequestItemList": {
+      "base": null,
+      "refs": {
+        "CreateMeetingWithAttendeesRequest$Attendees": "<p>The request containing the attendees to create.</p>"
+      }
+    },
+    "CreateMeetingWithAttendeesResponse": {
       "base": null,
       "refs": {
       }
@@ -801,6 +822,7 @@
       "base": null,
       "refs": {
         "CreateMeetingRequest$ExternalMeetingId": "<p>The external meeting ID.</p>",
+        "CreateMeetingWithAttendeesRequest$ExternalMeetingId": "<p>The external meeting ID.</p>",
         "Meeting$ExternalMeetingId": "<p>The external meeting ID.</p>"
       }
     },
@@ -811,7 +833,8 @@
         "CreateAttendeeError$ExternalUserId": "<p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
         "CreateAttendeeRequest$ExternalUserId": "<p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
         "CreateAttendeeRequestItem$ExternalUserId": "<p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
-        "CreateMeetingRequest$MeetingHostId": "<p>Reserved.</p>"
+        "CreateMeetingRequest$MeetingHostId": "<p>Reserved.</p>",
+        "CreateMeetingWithAttendeesRequest$MeetingHostId": "<p>Reserved.</p>"
       }
     },
     "ForbiddenException": {
@@ -1356,6 +1379,7 @@
       "base": "<p>A meeting created using the Amazon Chime SDK.</p>",
       "refs": {
         "CreateMeetingResponse$Meeting": "<p>The meeting information, including the meeting ID and <code>MediaPlacement</code>.</p>",
+        "CreateMeetingWithAttendeesResponse$Meeting": null,
         "GetMeetingResponse$Meeting": "<p>The Amazon Chime SDK meeting information.</p>",
         "MeetingList$member": null
       }
@@ -1367,9 +1391,10 @@
       }
     },
     "MeetingNotificationConfiguration": {
-      "base": "<p>The configuration for resource targets to receive notifications when Amazon Chime SDK meeting and attendee events occur.</p>",
+      "base": "<p>The configuration for resource targets to receive notifications when Amazon Chime SDK meeting and attendee events occur. The Amazon Chime SDK supports resource targets located in the US East (N. Virginia) AWS Region (<code>us-east-1</code>).</p>",
       "refs": {
-        "CreateMeetingRequest$NotificationsConfiguration": "<p>The configuration for resource targets to receive notifications when meeting and attendee events occur.</p>"
+        "CreateMeetingRequest$NotificationsConfiguration": "<p>The configuration for resource targets to receive notifications when meeting and attendee events occur.</p>",
+        "CreateMeetingWithAttendeesRequest$NotificationsConfiguration": null
       }
     },
     "MeetingTagKeyList": {
@@ -1382,6 +1407,7 @@
       "base": null,
       "refs": {
         "CreateMeetingRequest$Tags": "<p>The tag key-value pairs.</p>",
+        "CreateMeetingWithAttendeesRequest$Tags": "<p>The tag key-value pairs.</p>",
         "TagMeetingRequest$Tags": "<p>The tag key-value pairs.</p>"
       }
     },
@@ -2147,7 +2173,8 @@
         "ConflictException$Message": null,
         "CreateAttendeeError$ErrorCode": "<p>The error code.</p>",
         "CreateAttendeeError$ErrorMessage": "<p>The error message.</p>",
-        "CreateMeetingRequest$MediaRegion": "<p>The Region in which to create the meeting. Available values: <code>ap-northeast-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
+        "CreateMeetingRequest$MediaRegion": "<p>The Region in which to create the meeting. Default: <code>us-east-1</code>.</p> <p>Available values: <code>ap-northeast-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
+        "CreateMeetingWithAttendeesRequest$MediaRegion": "<p>The Region in which to create the meeting. Default: <code>us-east-1</code>.</p> <p>Available values: <code>ap-northeast-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
         "CreateUserRequest$Username": "<p>The user name.</p>",
         "DeletePhoneNumberRequest$PhoneNumberId": "<p>The phone number ID.</p>",
         "DisassociatePhoneNumberFromUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",

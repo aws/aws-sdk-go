@@ -1499,8 +1499,10 @@ func (c *Chime) CreateMeetingRequest(input *CreateMeetingInput) (req *request.Re
 // CreateMeeting API operation for Amazon Chime.
 //
 // Creates a new Amazon Chime SDK meeting in the specified media Region with
-// no initial attendees. For more information about the Amazon Chime SDK, see
-// Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// no initial attendees. For more information about specifying media Regions,
+// see Amazon Chime SDK Media Regions (https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html)
+// in the Amazon Chime Developer Guide. For more information about the Amazon
+// Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
 // in the Amazon Chime Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1550,6 +1552,109 @@ func (c *Chime) CreateMeeting(input *CreateMeetingInput) (*CreateMeetingOutput, 
 // for more information on using Contexts.
 func (c *Chime) CreateMeetingWithContext(ctx aws.Context, input *CreateMeetingInput, opts ...request.Option) (*CreateMeetingOutput, error) {
 	req, out := c.CreateMeetingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateMeetingWithAttendees = "CreateMeetingWithAttendees"
+
+// CreateMeetingWithAttendeesRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMeetingWithAttendees operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMeetingWithAttendees for more information on using the CreateMeetingWithAttendees
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateMeetingWithAttendeesRequest method.
+//    req, resp := client.CreateMeetingWithAttendeesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateMeetingWithAttendees
+func (c *Chime) CreateMeetingWithAttendeesRequest(input *CreateMeetingWithAttendeesInput) (req *request.Request, output *CreateMeetingWithAttendeesOutput) {
+	op := &request.Operation{
+		Name:       opCreateMeetingWithAttendees,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings?operation=create-attendees",
+	}
+
+	if input == nil {
+		input = &CreateMeetingWithAttendeesInput{}
+	}
+
+	output = &CreateMeetingWithAttendeesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMeetingWithAttendees API operation for Amazon Chime.
+//
+// Creates a new Amazon Chime SDK meeting in the specified media Region, with
+// attendees. For more information about specifying media Regions, see Amazon
+// Chime SDK Media Regions (https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html)
+// in the Amazon Chime Developer Guide. For more information about the Amazon
+// Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// in the Amazon Chime Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateMeetingWithAttendees for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateMeetingWithAttendees
+func (c *Chime) CreateMeetingWithAttendees(input *CreateMeetingWithAttendeesInput) (*CreateMeetingWithAttendeesOutput, error) {
+	req, out := c.CreateMeetingWithAttendeesRequest(input)
+	return out, req.Send()
+}
+
+// CreateMeetingWithAttendeesWithContext is the same as CreateMeetingWithAttendees with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMeetingWithAttendees for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateMeetingWithAttendeesWithContext(ctx aws.Context, input *CreateMeetingWithAttendeesInput, opts ...request.Option) (*CreateMeetingWithAttendeesOutput, error) {
+	req, out := c.CreateMeetingWithAttendeesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -14101,9 +14206,11 @@ type CreateMeetingInput struct {
 	// The external meeting ID.
 	ExternalMeetingId *string `min:"2" type:"string" sensitive:"true"`
 
-	// The Region in which to create the meeting. Available values: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-west-1,
-	// eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2.
+	// The Region in which to create the meeting. Default: us-east-1.
+	//
+	// Available values: ap-northeast-1, ap-southeast-1, ap-southeast-2, ca-central-1,
+	// eu-central-1, eu-north-1, eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1,
+	// us-east-2, us-west-1, us-west-2.
 	MediaRegion *string `type:"string"`
 
 	// Reserved.
@@ -14219,6 +14326,182 @@ func (s CreateMeetingOutput) GoString() string {
 
 // SetMeeting sets the Meeting field's value.
 func (s *CreateMeetingOutput) SetMeeting(v *Meeting) *CreateMeetingOutput {
+	s.Meeting = v
+	return s
+}
+
+type CreateMeetingWithAttendeesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The request containing the attendees to create.
+	Attendees []*CreateAttendeeRequestItem `min:"1" type:"list"`
+
+	// The unique identifier for the client request. Use a different token for different
+	// meetings.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The external meeting ID.
+	ExternalMeetingId *string `min:"2" type:"string" sensitive:"true"`
+
+	// The Region in which to create the meeting. Default: us-east-1.
+	//
+	// Available values: ap-northeast-1, ap-southeast-1, ap-southeast-2, ca-central-1,
+	// eu-central-1, eu-north-1, eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1,
+	// us-east-2, us-west-1, us-west-2.
+	MediaRegion *string `type:"string"`
+
+	// Reserved.
+	MeetingHostId *string `min:"2" type:"string" sensitive:"true"`
+
+	// The configuration for resource targets to receive notifications when Amazon
+	// Chime SDK meeting and attendee events occur. The Amazon Chime SDK supports
+	// resource targets located in the US East (N. Virginia) AWS Region (us-east-1).
+	NotificationsConfiguration *MeetingNotificationConfiguration `type:"structure"`
+
+	// The tag key-value pairs.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateMeetingWithAttendeesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMeetingWithAttendeesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMeetingWithAttendeesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMeetingWithAttendeesInput"}
+	if s.Attendees != nil && len(s.Attendees) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Attendees", 1))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.ExternalMeetingId != nil && len(*s.ExternalMeetingId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalMeetingId", 2))
+	}
+	if s.MeetingHostId != nil && len(*s.MeetingHostId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingHostId", 2))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Attendees != nil {
+		for i, v := range s.Attendees {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attendees", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.NotificationsConfiguration != nil {
+		if err := s.NotificationsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("NotificationsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendees sets the Attendees field's value.
+func (s *CreateMeetingWithAttendeesInput) SetAttendees(v []*CreateAttendeeRequestItem) *CreateMeetingWithAttendeesInput {
+	s.Attendees = v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateMeetingWithAttendeesInput) SetClientRequestToken(v string) *CreateMeetingWithAttendeesInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetExternalMeetingId sets the ExternalMeetingId field's value.
+func (s *CreateMeetingWithAttendeesInput) SetExternalMeetingId(v string) *CreateMeetingWithAttendeesInput {
+	s.ExternalMeetingId = &v
+	return s
+}
+
+// SetMediaRegion sets the MediaRegion field's value.
+func (s *CreateMeetingWithAttendeesInput) SetMediaRegion(v string) *CreateMeetingWithAttendeesInput {
+	s.MediaRegion = &v
+	return s
+}
+
+// SetMeetingHostId sets the MeetingHostId field's value.
+func (s *CreateMeetingWithAttendeesInput) SetMeetingHostId(v string) *CreateMeetingWithAttendeesInput {
+	s.MeetingHostId = &v
+	return s
+}
+
+// SetNotificationsConfiguration sets the NotificationsConfiguration field's value.
+func (s *CreateMeetingWithAttendeesInput) SetNotificationsConfiguration(v *MeetingNotificationConfiguration) *CreateMeetingWithAttendeesInput {
+	s.NotificationsConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMeetingWithAttendeesInput) SetTags(v []*Tag) *CreateMeetingWithAttendeesInput {
+	s.Tags = v
+	return s
+}
+
+type CreateMeetingWithAttendeesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The attendee information, including attendees IDs and join tokens.
+	Attendees []*Attendee `type:"list"`
+
+	// If the action fails for one or more of the attendees in the request, a list
+	// of the attendees is returned, along with error codes and error messages.
+	Errors []*CreateAttendeeError `type:"list"`
+
+	// A meeting created using the Amazon Chime SDK.
+	Meeting *Meeting `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateMeetingWithAttendeesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMeetingWithAttendeesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttendees sets the Attendees field's value.
+func (s *CreateMeetingWithAttendeesOutput) SetAttendees(v []*Attendee) *CreateMeetingWithAttendeesOutput {
+	s.Attendees = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *CreateMeetingWithAttendeesOutput) SetErrors(v []*CreateAttendeeError) *CreateMeetingWithAttendeesOutput {
+	s.Errors = v
+	return s
+}
+
+// SetMeeting sets the Meeting field's value.
+func (s *CreateMeetingWithAttendeesOutput) SetMeeting(v *Meeting) *CreateMeetingWithAttendeesOutput {
 	s.Meeting = v
 	return s
 }
@@ -19671,7 +19954,8 @@ func (s *Meeting) SetMeetingId(v string) *Meeting {
 }
 
 // The configuration for resource targets to receive notifications when Amazon
-// Chime SDK meeting and attendee events occur.
+// Chime SDK meeting and attendee events occur. The Amazon Chime SDK supports
+// resource targets located in the US East (N. Virginia) AWS Region (us-east-1).
 type MeetingNotificationConfiguration struct {
 	_ struct{} `type:"structure"`
 

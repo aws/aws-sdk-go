@@ -120,6 +120,10 @@ type ChimeAPI interface {
 	CreateMeetingWithContext(aws.Context, *chime.CreateMeetingInput, ...request.Option) (*chime.CreateMeetingOutput, error)
 	CreateMeetingRequest(*chime.CreateMeetingInput) (*request.Request, *chime.CreateMeetingOutput)
 
+	CreateMeetingWithAttendees(*chime.CreateMeetingWithAttendeesInput) (*chime.CreateMeetingWithAttendeesOutput, error)
+	CreateMeetingWithAttendeesWithContext(aws.Context, *chime.CreateMeetingWithAttendeesInput, ...request.Option) (*chime.CreateMeetingWithAttendeesOutput, error)
+	CreateMeetingWithAttendeesRequest(*chime.CreateMeetingWithAttendeesInput) (*request.Request, *chime.CreateMeetingWithAttendeesOutput)
+
 	CreatePhoneNumberOrder(*chime.CreatePhoneNumberOrderInput) (*chime.CreatePhoneNumberOrderOutput, error)
 	CreatePhoneNumberOrderWithContext(aws.Context, *chime.CreatePhoneNumberOrderInput, ...request.Option) (*chime.CreatePhoneNumberOrderOutput, error)
 	CreatePhoneNumberOrderRequest(*chime.CreatePhoneNumberOrderInput) (*request.Request, *chime.CreatePhoneNumberOrderOutput)
