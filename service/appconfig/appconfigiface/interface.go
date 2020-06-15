@@ -76,6 +76,10 @@ type AppConfigAPI interface {
 	CreateEnvironmentWithContext(aws.Context, *appconfig.CreateEnvironmentInput, ...request.Option) (*appconfig.CreateEnvironmentOutput, error)
 	CreateEnvironmentRequest(*appconfig.CreateEnvironmentInput) (*request.Request, *appconfig.CreateEnvironmentOutput)
 
+	CreateHostedConfigurationVersion(*appconfig.CreateHostedConfigurationVersionInput) (*appconfig.CreateHostedConfigurationVersionOutput, error)
+	CreateHostedConfigurationVersionWithContext(aws.Context, *appconfig.CreateHostedConfigurationVersionInput, ...request.Option) (*appconfig.CreateHostedConfigurationVersionOutput, error)
+	CreateHostedConfigurationVersionRequest(*appconfig.CreateHostedConfigurationVersionInput) (*request.Request, *appconfig.CreateHostedConfigurationVersionOutput)
+
 	DeleteApplication(*appconfig.DeleteApplicationInput) (*appconfig.DeleteApplicationOutput, error)
 	DeleteApplicationWithContext(aws.Context, *appconfig.DeleteApplicationInput, ...request.Option) (*appconfig.DeleteApplicationOutput, error)
 	DeleteApplicationRequest(*appconfig.DeleteApplicationInput) (*request.Request, *appconfig.DeleteApplicationOutput)
@@ -91,6 +95,10 @@ type AppConfigAPI interface {
 	DeleteEnvironment(*appconfig.DeleteEnvironmentInput) (*appconfig.DeleteEnvironmentOutput, error)
 	DeleteEnvironmentWithContext(aws.Context, *appconfig.DeleteEnvironmentInput, ...request.Option) (*appconfig.DeleteEnvironmentOutput, error)
 	DeleteEnvironmentRequest(*appconfig.DeleteEnvironmentInput) (*request.Request, *appconfig.DeleteEnvironmentOutput)
+
+	DeleteHostedConfigurationVersion(*appconfig.DeleteHostedConfigurationVersionInput) (*appconfig.DeleteHostedConfigurationVersionOutput, error)
+	DeleteHostedConfigurationVersionWithContext(aws.Context, *appconfig.DeleteHostedConfigurationVersionInput, ...request.Option) (*appconfig.DeleteHostedConfigurationVersionOutput, error)
+	DeleteHostedConfigurationVersionRequest(*appconfig.DeleteHostedConfigurationVersionInput) (*request.Request, *appconfig.DeleteHostedConfigurationVersionOutput)
 
 	GetApplication(*appconfig.GetApplicationInput) (*appconfig.GetApplicationOutput, error)
 	GetApplicationWithContext(aws.Context, *appconfig.GetApplicationInput, ...request.Option) (*appconfig.GetApplicationOutput, error)
@@ -115,6 +123,10 @@ type AppConfigAPI interface {
 	GetEnvironment(*appconfig.GetEnvironmentInput) (*appconfig.GetEnvironmentOutput, error)
 	GetEnvironmentWithContext(aws.Context, *appconfig.GetEnvironmentInput, ...request.Option) (*appconfig.GetEnvironmentOutput, error)
 	GetEnvironmentRequest(*appconfig.GetEnvironmentInput) (*request.Request, *appconfig.GetEnvironmentOutput)
+
+	GetHostedConfigurationVersion(*appconfig.GetHostedConfigurationVersionInput) (*appconfig.GetHostedConfigurationVersionOutput, error)
+	GetHostedConfigurationVersionWithContext(aws.Context, *appconfig.GetHostedConfigurationVersionInput, ...request.Option) (*appconfig.GetHostedConfigurationVersionOutput, error)
+	GetHostedConfigurationVersionRequest(*appconfig.GetHostedConfigurationVersionInput) (*request.Request, *appconfig.GetHostedConfigurationVersionOutput)
 
 	ListApplications(*appconfig.ListApplicationsInput) (*appconfig.ListApplicationsOutput, error)
 	ListApplicationsWithContext(aws.Context, *appconfig.ListApplicationsInput, ...request.Option) (*appconfig.ListApplicationsOutput, error)
@@ -150,6 +162,13 @@ type AppConfigAPI interface {
 
 	ListEnvironmentsPages(*appconfig.ListEnvironmentsInput, func(*appconfig.ListEnvironmentsOutput, bool) bool) error
 	ListEnvironmentsPagesWithContext(aws.Context, *appconfig.ListEnvironmentsInput, func(*appconfig.ListEnvironmentsOutput, bool) bool, ...request.Option) error
+
+	ListHostedConfigurationVersions(*appconfig.ListHostedConfigurationVersionsInput) (*appconfig.ListHostedConfigurationVersionsOutput, error)
+	ListHostedConfigurationVersionsWithContext(aws.Context, *appconfig.ListHostedConfigurationVersionsInput, ...request.Option) (*appconfig.ListHostedConfigurationVersionsOutput, error)
+	ListHostedConfigurationVersionsRequest(*appconfig.ListHostedConfigurationVersionsInput) (*request.Request, *appconfig.ListHostedConfigurationVersionsOutput)
+
+	ListHostedConfigurationVersionsPages(*appconfig.ListHostedConfigurationVersionsInput, func(*appconfig.ListHostedConfigurationVersionsOutput, bool) bool) error
+	ListHostedConfigurationVersionsPagesWithContext(aws.Context, *appconfig.ListHostedConfigurationVersionsInput, func(*appconfig.ListHostedConfigurationVersionsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*appconfig.ListTagsForResourceInput) (*appconfig.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *appconfig.ListTagsForResourceInput, ...request.Option) (*appconfig.ListTagsForResourceOutput, error)

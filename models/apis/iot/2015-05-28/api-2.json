@@ -4038,10 +4038,72 @@
     "AwsIotJobArn":{"type":"string"},
     "AwsIotJobId":{"type":"string"},
     "AwsIotSqlVersion":{"type":"string"},
+    "AwsJobAbortConfig":{
+      "type":"structure",
+      "required":["abortCriteriaList"],
+      "members":{
+        "abortCriteriaList":{"shape":"AwsJobAbortCriteriaList"}
+      }
+    },
+    "AwsJobAbortCriteria":{
+      "type":"structure",
+      "required":[
+        "failureType",
+        "action",
+        "thresholdPercentage",
+        "minNumberOfExecutedThings"
+      ],
+      "members":{
+        "failureType":{"shape":"AwsJobAbortCriteriaFailureType"},
+        "action":{"shape":"AwsJobAbortCriteriaAbortAction"},
+        "thresholdPercentage":{"shape":"AwsJobAbortCriteriaAbortThresholdPercentage"},
+        "minNumberOfExecutedThings":{"shape":"AwsJobAbortCriteriaMinimumNumberOfExecutedThings"}
+      }
+    },
+    "AwsJobAbortCriteriaAbortAction":{
+      "type":"string",
+      "enum":["CANCEL"]
+    },
+    "AwsJobAbortCriteriaAbortThresholdPercentage":{
+      "type":"double",
+      "max":100
+    },
+    "AwsJobAbortCriteriaFailureType":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "REJECTED",
+        "TIMED_OUT",
+        "ALL"
+      ]
+    },
+    "AwsJobAbortCriteriaList":{
+      "type":"list",
+      "member":{"shape":"AwsJobAbortCriteria"},
+      "min":1
+    },
+    "AwsJobAbortCriteriaMinimumNumberOfExecutedThings":{
+      "type":"integer",
+      "min":1
+    },
     "AwsJobExecutionsRolloutConfig":{
       "type":"structure",
       "members":{
-        "maximumPerMinute":{"shape":"MaximumPerMinute"}
+        "maximumPerMinute":{"shape":"MaximumPerMinute"},
+        "exponentialRate":{"shape":"AwsJobExponentialRolloutRate"}
+      }
+    },
+    "AwsJobExponentialRolloutRate":{
+      "type":"structure",
+      "required":[
+        "baseRatePerMinute",
+        "incrementFactor",
+        "rateIncreaseCriteria"
+      ],
+      "members":{
+        "baseRatePerMinute":{"shape":"AwsJobRolloutRatePerMinute"},
+        "incrementFactor":{"shape":"AwsJobRolloutIncrementFactor"},
+        "rateIncreaseCriteria":{"shape":"AwsJobRateIncreaseCriteria"}
       }
     },
     "AwsJobPresignedUrlConfig":{
@@ -4050,6 +4112,30 @@
         "expiresInSec":{"shape":"ExpiresInSeconds"}
       }
     },
+    "AwsJobRateIncreaseCriteria":{
+      "type":"structure",
+      "members":{
+        "numberOfNotifiedThings":{"shape":"AwsJobRateIncreaseCriteriaNumberOfThings"},
+        "numberOfSucceededThings":{"shape":"AwsJobRateIncreaseCriteriaNumberOfThings"}
+      }
+    },
+    "AwsJobRateIncreaseCriteriaNumberOfThings":{
+      "type":"integer",
+      "min":1
+    },
+    "AwsJobRolloutIncrementFactor":{"type":"double"},
+    "AwsJobRolloutRatePerMinute":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "AwsJobTimeoutConfig":{
+      "type":"structure",
+      "members":{
+        "inProgressTimeoutInMinutes":{"shape":"AwsJobTimeoutInProgressTimeoutInMinutes"}
+      }
+    },
+    "AwsJobTimeoutInProgressTimeoutInMinutes":{"type":"long"},
     "Behavior":{
       "type":"structure",
       "required":["name"],
@@ -4781,6 +4867,8 @@
         "targetSelection":{"shape":"TargetSelection"},
         "awsJobExecutionsRolloutConfig":{"shape":"AwsJobExecutionsRolloutConfig"},
         "awsJobPresignedUrlConfig":{"shape":"AwsJobPresignedUrlConfig"},
+        "awsJobAbortConfig":{"shape":"AwsJobAbortConfig"},
+        "awsJobTimeoutConfig":{"shape":"AwsJobTimeoutConfig"},
         "files":{"shape":"OTAUpdateFiles"},
         "roleArn":{"shape":"RoleArn"},
         "additionalParameters":{"shape":"AdditionalParameterMap"},

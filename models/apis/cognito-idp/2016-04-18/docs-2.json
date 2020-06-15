@@ -592,12 +592,6 @@
         "InitiateAuthRequest$AuthParameters": "<p>The authentication parameters. These are inputs corresponding to the <code>AuthFlow</code> that you are invoking. The required values depend on the value of <code>AuthFlow</code>:</p> <ul> <li> <p>For <code>USER_SRP_AUTH</code>: <code>USERNAME</code> (required), <code>SRP_A</code> (required), <code>SECRET_HASH</code> (required if the app client is configured with a client secret), <code>DEVICE_KEY</code> </p> </li> <li> <p>For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>: <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required if the app client is configured with a client secret), <code>DEVICE_KEY</code> </p> </li> <li> <p>For <code>CUSTOM_AUTH</code>: <code>USERNAME</code> (required), <code>SECRET_HASH</code> (if app client is configured with client secret), <code>DEVICE_KEY</code> </p> </li> </ul>"
       }
     },
-    "AuthParametersValueType": {
-      "base": null,
-      "refs": {
-        "AuthParametersType$value": null
-      }
-    },
     "AuthenticationResultType": {
       "base": "<p>The authentication result.</p>",
       "refs": {
@@ -2538,6 +2532,7 @@
         "AttributeMappingType$value": null,
         "AuthEventType$EventId": "<p>The event ID.</p>",
         "AuthParametersType$key": null,
+        "AuthParametersType$value": null,
         "AuthenticationResultType$TokenType": "<p>The token type.</p>",
         "BlockedIPRangeListType$member": null,
         "ChallengeParametersType$key": null,

@@ -71,6 +71,24 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "CreateHostedConfigurationVersion":{
+      "name":"CreateHostedConfigurationVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateHostedConfigurationVersionRequest"},
+      "output":{"shape":"HostedConfigurationVersion"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"PayloadTooLargeException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteApplication":{
       "name":"DeleteApplication",
       "http":{
@@ -127,6 +145,20 @@
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"BadRequestException"}
+      ]
+    },
+    "DeleteHostedConfigurationVersion":{
+      "name":"DeleteHostedConfigurationVersion",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteHostedConfigurationVersionRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "GetApplication":{
@@ -219,6 +251,21 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetHostedConfigurationVersion":{
+      "name":"GetHostedConfigurationVersion",
+      "http":{
+        "method":"GET",
+        "requestUri":"/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetHostedConfigurationVersionRequest"},
+      "output":{"shape":"HostedConfigurationVersion"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListApplications":{
       "name":"ListApplications",
       "http":{
@@ -290,6 +337,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"BadRequestException"}
+      ]
+    },
+    "ListHostedConfigurationVersions":{
+      "name":"ListHostedConfigurationVersions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListHostedConfigurationVersionsRequest"},
+      "output":{"shape":"HostedConfigurationVersions"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "ListTagsForResource":{
@@ -479,6 +541,10 @@
       "type":"blob",
       "sensitive":true
     },
+    "BytesMeasure":{
+      "type":"string",
+      "enum":["KILOBYTES"]
+    },
     "Configuration":{
       "type":"structure",
       "members":{
@@ -551,8 +617,7 @@
       "required":[
         "ApplicationId",
         "Name",
-        "LocationUri",
-        "RetrievalRoleArn"
+        "LocationUri"
       ],
       "members":{
         "ApplicationId":{
@@ -611,6 +676,45 @@
         "Tags":{"shape":"TagMap"}
       }
     },
+    "CreateHostedConfigurationVersionRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationId",
+        "ConfigurationProfileId",
+        "Content",
+        "ContentType"
+      ],
+      "members":{
+        "ApplicationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ApplicationId"
+        },
+        "ConfigurationProfileId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ConfigurationProfileId"
+        },
+        "Description":{
+          "shape":"Description",
+          "location":"header",
+          "locationName":"Description"
+        },
+        "Content":{"shape":"Blob"},
+        "ContentType":{
+          "shape":"StringWithLengthBetween1And255",
+          "location":"header",
+          "locationName":"Content-Type"
+        },
+        "LatestVersionNumber":{
+          "shape":"Integer",
+          "box":true,
+          "location":"header",
+          "locationName":"Latest-Version-Number"
+        }
+      },
+      "payload":"Content"
+    },
     "DeleteApplicationRequest":{
       "type":"structure",
       "required":["ApplicationId"],
@@ -668,6 +772,31 @@
           "shape":"Id",
           "location":"uri",
           "locationName":"EnvironmentId"
+        }
+      }
+    },
+    "DeleteHostedConfigurationVersionRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationId",
+        "ConfigurationProfileId",
+        "VersionNumber"
+      ],
+      "members":{
+        "ApplicationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ApplicationId"
+        },
+        "ConfigurationProfileId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ConfigurationProfileId"
+        },
+        "VersionNumber":{
+          "shape":"Integer",
+          "location":"uri",
+          "locationName":"VersionNumber"
         }
       }
     },
@@ -820,6 +949,7 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "Float":{"type":"float"},
     "GetApplicationRequest":{
       "type":"structure",
       "required":["ApplicationId"],
@@ -942,6 +1072,31 @@
         }
       }
     },
+    "GetHostedConfigurationVersionRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationId",
+        "ConfigurationProfileId",
+        "VersionNumber"
+      ],
+      "members":{
+        "ApplicationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ApplicationId"
+        },
+        "ConfigurationProfileId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ConfigurationProfileId"
+        },
+        "VersionNumber":{
+          "shape":"Integer",
+          "location":"uri",
+          "locationName":"VersionNumber"
+        }
+      }
+    },
     "GrowthFactor":{
       "type":"float",
       "max":100.0,
@@ -953,6 +1108,59 @@
         "LINEAR",
         "EXPONENTIAL"
       ]
+    },
+    "HostedConfigurationVersion":{
+      "type":"structure",
+      "members":{
+        "ApplicationId":{
+          "shape":"Id",
+          "location":"header",
+          "locationName":"Application-Id"
+        },
+        "ConfigurationProfileId":{
+          "shape":"Id",
+          "location":"header",
+          "locationName":"Configuration-Profile-Id"
+        },
+        "VersionNumber":{
+          "shape":"Integer",
+          "location":"header",
+          "locationName":"Version-Number"
+        },
+        "Description":{
+          "shape":"Description",
+          "location":"header",
+          "locationName":"Description"
+        },
+        "Content":{"shape":"Blob"},
+        "ContentType":{
+          "shape":"StringWithLengthBetween1And255",
+          "location":"header",
+          "locationName":"Content-Type"
+        }
+      },
+      "payload":"Content"
+    },
+    "HostedConfigurationVersionSummary":{
+      "type":"structure",
+      "members":{
+        "ApplicationId":{"shape":"Id"},
+        "ConfigurationProfileId":{"shape":"Id"},
+        "VersionNumber":{"shape":"Integer"},
+        "Description":{"shape":"Description"},
+        "ContentType":{"shape":"StringWithLengthBetween1And255"}
+      }
+    },
+    "HostedConfigurationVersionSummaryList":{
+      "type":"list",
+      "member":{"shape":"HostedConfigurationVersionSummary"}
+    },
+    "HostedConfigurationVersions":{
+      "type":"structure",
+      "members":{
+        "Items":{"shape":"HostedConfigurationVersionSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "Id":{
       "type":"string",
@@ -1078,6 +1286,36 @@
         }
       }
     },
+    "ListHostedConfigurationVersionsRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationId",
+        "ConfigurationProfileId"
+      ],
+      "members":{
+        "ApplicationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ApplicationId"
+        },
+        "ConfigurationProfileId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"ConfigurationProfileId"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max_results"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"next_token"
+        }
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -1122,6 +1360,17 @@
       "max":2048,
       "min":1
     },
+    "PayloadTooLargeException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"},
+        "Measure":{"shape":"BytesMeasure"},
+        "Limit":{"shape":"Float"},
+        "Size":{"shape":"Float"}
+      },
+      "error":{"httpStatusCode":413},
+      "exception":true
+    },
     "Percentage":{
       "type":"float",
       "max":100.0,
@@ -1154,6 +1403,14 @@
       "max":2048,
       "min":20,
       "pattern":"^((arn):(aws|aws-cn|aws-iso|aws-iso-[a-z]{1}|aws-us-gov):(iam)::\\d{12}:role[/].*)$"
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":402},
+      "exception":true
     },
     "StartDeploymentRequest":{
       "type":"structure",
@@ -1214,6 +1471,11 @@
       "max":32768,
       "min":0,
       "sensitive":true
+    },
+    "StringWithLengthBetween1And255":{
+      "type":"string",
+      "max":255,
+      "min":1
     },
     "StringWithLengthBetween1And64":{
       "type":"string",
@@ -1430,7 +1692,7 @@
     },
     "Version":{
       "type":"string",
-      "max":128,
+      "max":1024,
       "min":1
     }
   }

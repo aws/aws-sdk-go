@@ -208,7 +208,7 @@
         "CreateNetworkProfileRequest$CertificateAuthorityArn": "<p>The ARN of the Private Certificate Authority (PCA) created in AWS Certificate Manager (ACM). This is used to issue certificates to the devices. </p>",
         "CreateNetworkProfileResponse$NetworkProfileArn": "<p>The ARN of the network profile associated with a device.</p>",
         "CreateProfileResponse$ProfileArn": "<p>The ARN of the newly created room profile in the response.</p>",
-        "CreateRoomRequest$ProfileArn": "<p>The profile ARN for the room.</p>",
+        "CreateRoomRequest$ProfileArn": "<p>The profile ARN for the room. This is required.</p>",
         "CreateRoomResponse$RoomArn": "<p>The ARN of the newly created room in the response.</p>",
         "CreateSkillGroupResponse$SkillGroupArn": "<p>The ARN of the newly created skill group in the response.</p>",
         "CreateUserResponse$UserArn": "<p>The ARN of the newly created user in the response.</p>",
@@ -1056,6 +1056,12 @@
     "DeviceNotRegisteredException": {
       "base": "<p>The request failed because this device is no longer registered and therefore no longer managed by this account.</p>",
       "refs": {
+      }
+    },
+    "DeviceRoomName": {
+      "base": null,
+      "refs": {
+        "DeviceData$RoomName": "<p>The name of the room associated with a device.</p>"
       }
     },
     "DeviceSerialNumber": {
@@ -2136,7 +2142,7 @@
     "Reviews": {
       "base": null,
       "refs": {
-        "SkillDetails$Reviews": "<p>The list of reviews for the skill, including Key and Value pair.</p>"
+        "SkillDetails$Reviews": "<p> <i>This member has been deprecated.</i> </p> <p>The list of reviews for the skill, including Key and Value pair.</p>"
       }
     },
     "RevokeInvitationRequest": {
@@ -2180,7 +2186,6 @@
       "base": null,
       "refs": {
         "CreateRoomRequest$RoomName": "<p>The name for the room.</p>",
-        "DeviceData$RoomName": "<p>The name of the room associated with a device.</p>",
         "ResolveRoomResponse$RoomName": "<p>The name of the room from which the skill request was invoked.</p>",
         "Room$RoomName": "<p>The name of a room.</p>",
         "RoomData$RoomName": "<p>The name of a room.</p>",
@@ -2608,7 +2613,10 @@
     "TagList": {
       "base": null,
       "refs": {
+        "CreateBusinessReportScheduleRequest$Tags": "<p>The tags for the business report schedule.</p>",
+        "CreateProfileRequest$Tags": "<p>The tags for the profile.</p>",
         "CreateRoomRequest$Tags": "<p>The tags for the room.</p>",
+        "CreateSkillGroupRequest$Tags": "<p>The tags for the skill group.</p>",
         "CreateUserRequest$Tags": "<p>The tags for the user.</p>",
         "ListTagsResponse$Tags": "<p>The tags requested for the specified resource.</p>",
         "TagResourceRequest$Tags": "<p>The tags to be added to the specified resource. Do not provide system tags. Required. </p>"

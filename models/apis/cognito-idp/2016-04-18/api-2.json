@@ -271,6 +271,7 @@
         {"shape":"NotAuthorizedException"},
         {"shape":"UserNotFoundException"},
         {"shape":"AliasExistsException"},
+        {"shape":"LimitExceededException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -2584,10 +2585,7 @@
     "AuthParametersType":{
       "type":"map",
       "key":{"shape":"StringType"},
-      "value":{"shape":"AuthParametersValueType"}
-    },
-    "AuthParametersValueType":{
-      "type":"string",
+      "value":{"shape":"StringType"},
       "sensitive":true
     },
     "AuthenticationResultType":{
