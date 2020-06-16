@@ -56,7 +56,7 @@ func FormatTime(name string, t time.Time) string {
 	case ISO8601TimeFormatName:
 		return t.Format(ISO8601OutputTimeFormat)
 	case UnixTimeFormatName:
-		return strconv.FormatInt(t.Unix(), 10)
+		return strconv.FormatFloat(float64(t.UnixNano())/float64(time.Second), 'f', -1, 64)
 	default:
 		panic("unknown timestamp format name, " + name)
 	}
