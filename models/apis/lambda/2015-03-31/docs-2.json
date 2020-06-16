@@ -40,7 +40,7 @@
     "PublishLayerVersion": "<p>Creates an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">AWS Lambda layer</a> from a ZIP archive. Each time you call <code>PublishLayerVersion</code> with the same layer name, a new version is created.</p> <p>Add layers to your function with <a>CreateFunction</a> or <a>UpdateFunctionConfiguration</a>.</p>",
     "PublishVersion": "<p>Creates a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html\">version</a> from the current code and configuration of a function. Use versions to create a snapshot of your function code and configuration that doesn't change.</p> <p>AWS Lambda doesn't publish a version if the function's configuration and code haven't changed since the last version. Use <a>UpdateFunctionCode</a> or <a>UpdateFunctionConfiguration</a> to update the function before publishing a version.</p> <p>Clients can invoke versions directly or with an alias. To create an alias, use <a>CreateAlias</a>.</p>",
     "PutFunctionConcurrency": "<p>Sets the maximum number of simultaneous executions for a function, and reserves capacity for that concurrency level.</p> <p>Concurrency settings apply to the function as a whole, including all published versions and the unpublished version. Reserving concurrency both ensures that your function has capacity to process the specified number of events simultaneously, and prevents it from scaling beyond that level. Use <a>GetFunction</a> to see the current setting for a function.</p> <p>Use <a>GetAccountSettings</a> to see your Regional concurrency limit. You can reserve concurrency for as many functions as you like, as long as you leave at least 100 simultaneous executions unreserved for functions that aren't configured with a per-function limit. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html\">Managing Concurrency</a>.</p>",
-    "PutFunctionEventInvokeConfig": "<p>Configures options for <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html\">asynchronous invocation</a> on a function, version, or alias. If a configuration already exists for a function, version, or alias, this operation overwrites it. If you exclude any settings, they are removed. To set one option without affecting existing settings for other options, use <a>PutFunctionEventInvokeConfig</a>.</p> <p>By default, Lambda retries an asynchronous invocation twice if the function returns an error. It retains events in a queue for up to six hours. When an event fails all processing attempts or stays in the asynchronous invocation queue for too long, Lambda discards it. To retain discarded events, configure a dead-letter queue with <a>UpdateFunctionConfiguration</a>.</p> <p>To send an invocation record to a queue, topic, function, or event bus, specify a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations\">destination</a>. You can configure separate destinations for successful invocations (on-success) and events that fail all processing attempts (on-failure). You can configure destinations in addition to or instead of a dead-letter queue.</p>",
+    "PutFunctionEventInvokeConfig": "<p>Configures options for <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html\">asynchronous invocation</a> on a function, version, or alias. If a configuration already exists for a function, version, or alias, this operation overwrites it. If you exclude any settings, they are removed. To set one option without affecting existing settings for other options, use <a>UpdateFunctionEventInvokeConfig</a>.</p> <p>By default, Lambda retries an asynchronous invocation twice if the function returns an error. It retains events in a queue for up to six hours. When an event fails all processing attempts or stays in the asynchronous invocation queue for too long, Lambda discards it. To retain discarded events, configure a dead-letter queue with <a>UpdateFunctionConfiguration</a>.</p> <p>To send an invocation record to a queue, topic, function, or event bus, specify a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations\">destination</a>. You can configure separate destinations for successful invocations (on-success) and events that fail all processing attempts (on-failure). You can configure destinations in addition to or instead of a dead-letter queue.</p>",
     "PutProvisionedConcurrencyConfig": "<p>Adds a provisioned concurrency configuration to a function's alias or version.</p>",
     "RemoveLayerVersionPermission": "<p>Removes a statement from the permissions policy for a version of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">AWS Lambda layer</a>. For more information, see <a>AddLayerVersionPermission</a>.</p>",
     "RemovePermission": "<p>Revokes function-use permission from an AWS service or another account. You can get the ID of the statement from the output of <a>GetPolicy</a>.</p>",
@@ -100,7 +100,7 @@
     "AdditionalVersionWeights": {
       "base": null,
       "refs": {
-        "AliasRoutingConfiguration$AdditionalVersionWeights": "<p>The name of the second alias, and the percentage of traffic that's routed to it.</p>"
+        "AliasRoutingConfiguration$AdditionalVersionWeights": "<p>The second version, and the percentage of traffic that's routed to it.</p>"
       }
     },
     "Alias": {
@@ -129,8 +129,8 @@
       "base": "<p>The <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html\">traffic-shifting</a> configuration of a Lambda function alias.</p>",
       "refs": {
         "AliasConfiguration$RoutingConfig": "<p>The <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html\">routing configuration</a> of the alias.</p>",
-        "CreateAliasRequest$RoutingConfig": "<p>The <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html\">routing configuration</a> of the alias.</p>",
-        "UpdateAliasRequest$RoutingConfig": "<p>The <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-traffic-shifting-using-aliases.html\">routing configuration</a> of the alias.</p>"
+        "CreateAliasRequest$RoutingConfig": "<p>The <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html#configuring-alias-routing\">routing configuration</a> of the alias.</p>",
+        "UpdateAliasRequest$RoutingConfig": "<p>The <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html#configuring-alias-routing\">routing configuration</a> of the alias.</p>"
       }
     },
     "Arn": {
@@ -317,6 +317,26 @@
       "refs": {
       }
     },
+    "EFSIOException": {
+      "base": "<p>An error occured when reading from or writing to a connected file system.</p>",
+      "refs": {
+      }
+    },
+    "EFSMountConnectivityException": {
+      "base": "<p>The function couldn't make a network connection to the configured file system.</p>",
+      "refs": {
+      }
+    },
+    "EFSMountFailureException": {
+      "base": "<p>The function couldn't mount the configured file system due to a permission or configuration issue.</p>",
+      "refs": {
+      }
+    },
+    "EFSMountTimeoutException": {
+      "base": "<p>The function was able to make a network connection to the configured file system, but the mount operation timed out.</p>",
+      "refs": {
+      }
+    },
     "ENILimitReachedException": {
       "base": "<p>AWS Lambda was not able to create an elastic network interface in the VPC, specified as part of Lambda function configuration, because the limit for network interfaces has been reached.</p>",
       "refs": {
@@ -389,6 +409,26 @@
       "base": null,
       "refs": {
         "AddPermissionRequest$EventSourceToken": "<p>For Alexa Smart Home functions, a token that must be supplied by the invoker.</p>"
+      }
+    },
+    "FileSystemArn": {
+      "base": null,
+      "refs": {
+        "FileSystemConfig$Arn": "<p>The Amazon Resource Name (ARN) of the Amazon EFS access point that provides access to the file system.</p>"
+      }
+    },
+    "FileSystemConfig": {
+      "base": "<p>Details about the connection between a Lambda function and an Amazon EFS file system.</p>",
+      "refs": {
+        "FileSystemConfigList$member": null
+      }
+    },
+    "FileSystemConfigList": {
+      "base": null,
+      "refs": {
+        "CreateFunctionRequest$FileSystemConfigs": "<p>Connection settings for an Amazon EFS file system.</p>",
+        "FunctionConfiguration$FileSystemConfigs": "<p>Connection settings for an Amazon EFS file system.</p>",
+        "UpdateFunctionConfigurationRequest$FileSystemConfigs": "<p>Connection settings for an Amazon EFS file system.</p>"
       }
     },
     "FunctionArn": {
@@ -911,6 +951,12 @@
       "refs": {
       }
     },
+    "LocalMountPath": {
+      "base": null,
+      "refs": {
+        "FileSystemConfig$LocalMountPath": "<p>The path where the function can access the file system, starting with <code>/mnt/</code>.</p>"
+      }
+    },
     "LogType": {
       "base": null,
       "refs": {
@@ -1212,7 +1258,7 @@
       }
     },
     "ResourceInUseException": {
-      "base": "<p>The operation conflicts with the resource's availability. For example, you attempted to update an EventSource Mapping in CREATING, or tried to delete a EventSource mapping currently in the UPDATING state. </p>",
+      "base": "<p>The operation conflicts with the resource's availability. For example, you attempted to update an EventSource Mapping in CREATING, or tried to delete a EventSource mapping currently in the UPDATING state.</p>",
       "refs": {
       }
     },
@@ -1344,6 +1390,14 @@
         "EC2UnexpectedException$Type": null,
         "EC2UnexpectedException$Message": null,
         "EC2UnexpectedException$EC2ErrorCode": null,
+        "EFSIOException$Type": null,
+        "EFSIOException$Message": null,
+        "EFSMountConnectivityException$Type": null,
+        "EFSMountConnectivityException$Message": null,
+        "EFSMountFailureException$Type": null,
+        "EFSMountFailureException$Message": null,
+        "EFSMountTimeoutException$Type": null,
+        "EFSMountTimeoutException$Message": null,
         "ENILimitReachedException$Type": null,
         "ENILimitReachedException$Message": null,
         "EnvironmentError$ErrorCode": "<p>The error code.</p>",

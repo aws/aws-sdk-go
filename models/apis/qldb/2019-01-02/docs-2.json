@@ -9,7 +9,7 @@
     "DescribeJournalS3Export": "<p>Returns information about a journal export job, including the ledger name, export ID, when it was created, current status, and its start and end time export parameters.</p> <p>This action does not return any expired export jobs. For more information, see <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration\">Export Job Expiration</a> in the <i>Amazon QLDB Developer Guide</i>.</p> <p>If the export job with the given <code>ExportId</code> doesn't exist, then throws <code>ResourceNotFoundException</code>.</p> <p>If the ledger with the given <code>Name</code> doesn't exist, then throws <code>ResourceNotFoundException</code>.</p>",
     "DescribeLedger": "<p>Returns information about a ledger, including its state and when it was created.</p>",
     "ExportJournalToS3": "<p>Exports journal contents within a date and time range from a ledger into a specified Amazon Simple Storage Service (Amazon S3) bucket. The data is written as files in Amazon Ion format.</p> <p>If the ledger with the given <code>Name</code> doesn't exist, then throws <code>ResourceNotFoundException</code>.</p> <p>If the ledger with the given <code>Name</code> is in <code>CREATING</code> status, then throws <code>ResourcePreconditionNotMetException</code>.</p> <p>You can initiate up to two concurrent journal export requests for each ledger. Beyond this limit, journal export requests throw <code>LimitExceededException</code>.</p>",
-    "GetBlock": "<p>Returns a journal block object at a specified address in a ledger. Also returns a proof of the specified block for verification if <code>DigestTipAddress</code> is provided.</p> <p>If the specified ledger doesn't exist or is in <code>DELETING</code> status, then throws <code>ResourceNotFoundException</code>.</p> <p>If the specified ledger is in <code>CREATING</code> status, then throws <code>ResourcePreconditionNotMetException</code>.</p> <p>If no block exists with the specified address, then throws <code>InvalidParameterException</code>.</p>",
+    "GetBlock": "<p>Returns a block object at a specified address in a journal. Also returns a proof of the specified block for verification if <code>DigestTipAddress</code> is provided.</p> <p>For information about the data contents in a block, see <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/journal-contents.html\">Journal contents</a> in the <i>Amazon QLDB Developer Guide</i>.</p> <p>If the specified ledger doesn't exist or is in <code>DELETING</code> status, then throws <code>ResourceNotFoundException</code>.</p> <p>If the specified ledger is in <code>CREATING</code> status, then throws <code>ResourcePreconditionNotMetException</code>.</p> <p>If no block exists with the specified address, then throws <code>InvalidParameterException</code>.</p>",
     "GetDigest": "<p>Returns the digest of a ledger at the latest committed block in the journal. The response includes a 256-bit hash value and a block address.</p>",
     "GetRevision": "<p>Returns a revision data object for a specified document ID and block address. Also returns a proof of the specified revision for verification if <code>DigestTipAddress</code> is provided.</p>",
     "ListJournalKinesisStreamsForLedger": "<p>Returns an array of all Amazon QLDB journal stream descriptors for a given ledger. The output of each stream descriptor includes the same details that are returned by <code>DescribeJournalKinesisStream</code>.</p> <p>This action returns a maximum of <code>MaxResults</code> items. It is paginated so that you can retrieve all the items by calling <code>ListJournalKinesisStreamsForLedger</code> multiple times.</p>",
@@ -17,7 +17,7 @@
     "ListJournalS3ExportsForLedger": "<p>Returns an array of journal export job descriptions for a specified ledger.</p> <p>This action returns a maximum of <code>MaxResults</code> items, and is paginated so that you can retrieve all the items by calling <code>ListJournalS3ExportsForLedger</code> multiple times.</p> <p>This action does not return any expired export jobs. For more information, see <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration\">Export Job Expiration</a> in the <i>Amazon QLDB Developer Guide</i>.</p>",
     "ListLedgers": "<p>Returns an array of ledger summaries that are associated with the current AWS account and Region.</p> <p>This action returns a maximum of 100 items and is paginated so that you can retrieve all the items by calling <code>ListLedgers</code> multiple times.</p>",
     "ListTagsForResource": "<p>Returns all tags for a specified Amazon QLDB resource.</p>",
-    "StreamJournalToKinesis": "<p>Creates a stream for a given Amazon QLDB ledger that delivers the journal data to a specified Amazon Kinesis Data Streams resource. The stream captures every document revision that is committed to your journal and sends it to the Kinesis data stream.</p>",
+    "StreamJournalToKinesis": "<p>Creates a journal stream for a given Amazon QLDB ledger. The stream captures every document revision that is committed to the ledger's journal and delivers the data to a specified Amazon Kinesis Data Streams resource.</p>",
     "TagResource": "<p>Adds one or more tags to a specified Amazon QLDB resource.</p> <p>A resource can have up to 50 tags. If you try to create more than 50 tags for a resource, your request fails and returns an error.</p>",
     "UntagResource": "<p>Removes one or more tags from a specified Amazon QLDB resource. You can specify up to 50 tag keys to remove.</p>",
     "UpdateLedger": "<p>Updates properties on a ledger.</p>"
@@ -44,7 +44,7 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "KinesisConfiguration$AggregationEnabled": "<p>Enables QLDB to publish multiple stream records in a single Kinesis Data Streams record. To learn more, see <a href=\"https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html\">KPL Key Concepts</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p>"
+        "KinesisConfiguration$AggregationEnabled": "<p>Enables QLDB to publish multiple data records in a single Kinesis Data Streams record. To learn more, see <a href=\"https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html\">KPL Key Concepts</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.</p>"
       }
     },
     "CancelJournalKinesisStreamRequest": {
@@ -236,7 +236,7 @@
       "base": null,
       "refs": {
         "CancelJournalKinesisStreamRequest$LedgerName": "<p>The name of the ledger.</p>",
-        "CreateLedgerRequest$Name": "<p>The name of the ledger that you want to create. The name must be unique among all of your ledgers in the current AWS Region.</p>",
+        "CreateLedgerRequest$Name": "<p>The name of the ledger that you want to create. The name must be unique among all of your ledgers in the current AWS Region.</p> <p>Naming constraints for ledger names are defined in <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/limits.html#limits.naming\">Quotas in Amazon QLDB</a> in the <i>Amazon QLDB Developer Guide</i>.</p>",
         "CreateLedgerResponse$Name": "<p>The name of the ledger.</p>",
         "DeleteLedgerRequest$Name": "<p>The name of the ledger that you want to delete.</p>",
         "DescribeJournalKinesisStreamRequest$LedgerName": "<p>The name of the ledger.</p>",
@@ -445,7 +445,7 @@
       "base": null,
       "refs": {
         "JournalKinesisStreamDescription$StreamName": "<p>The user-defined name of the QLDB journal stream.</p>",
-        "StreamJournalToKinesisRequest$StreamName": "<p>The name that you want to assign to the QLDB journal stream. User-defined names can help identify and indicate the purpose of a stream.</p> <p>Your stream name must be unique among other <i>active</i> streams for a given ledger. If you try to create a stream with the same name and configuration of an active, existing stream for the same ledger, QLDB simply returns the existing stream. Stream names have the same naming constraints as ledger names, as defined in <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/limits.html#limits.naming\">Quotas in Amazon QLDB</a> in the <i>Amazon QLDB Developer Guide</i>.</p>"
+        "StreamJournalToKinesisRequest$StreamName": "<p>The name that you want to assign to the QLDB journal stream. User-defined names can help identify and indicate the purpose of a stream.</p> <p>Your stream name must be unique among other <i>active</i> streams for a given ledger. Stream names have the same naming constraints as ledger names, as defined in <a href=\"https://docs.aws.amazon.com/qldb/latest/developerguide/limits.html#limits.naming\">Quotas in Amazon QLDB</a> in the <i>Amazon QLDB Developer Guide</i>.</p>"
       }
     },
     "StreamStatus": {
@@ -507,7 +507,7 @@
         "JournalS3ExportDescription$ExclusiveEndTime": "<p>The exclusive end date and time for the range of journal contents that are specified in the original export request.</p>",
         "LedgerSummary$CreationDateTime": "<p>The date and time, in epoch time format, when the ledger was created. (Epoch time format is the number of seconds elapsed since 12:00:00 AM January 1, 1970 UTC.)</p>",
         "StreamJournalToKinesisRequest$InclusiveStartTime": "<p>The inclusive start date and time from which to start streaming journal data. This parameter must be in <code>ISO 8601</code> date and time format and in Universal Coordinated Time (UTC). For example: <code>2019-06-13T21:36:34Z</code> </p> <p>The <code>InclusiveStartTime</code> cannot be in the future and must be before <code>ExclusiveEndTime</code>.</p> <p>If you provide an <code>InclusiveStartTime</code> that is before the ledger's <code>CreationDateTime</code>, QLDB effectively defaults it to the ledger's <code>CreationDateTime</code>.</p>",
-        "StreamJournalToKinesisRequest$ExclusiveEndTime": "<p>The exclusive date and time that specifies when the stream ends. If you keep this parameter blank, the stream runs indefinitely until you cancel it.</p> <p>The <code>ExclusiveEndTime</code> must be in <code>ISO 8601</code> date and time format and in Universal Coordinated Time (UTC). For example: <code>2019-06-13T21:36:34Z</code> </p>",
+        "StreamJournalToKinesisRequest$ExclusiveEndTime": "<p>The exclusive date and time that specifies when the stream ends. If you don't define this parameter, the stream runs indefinitely until you cancel it.</p> <p>The <code>ExclusiveEndTime</code> must be in <code>ISO 8601</code> date and time format and in Universal Coordinated Time (UTC). For example: <code>2019-06-13T21:36:34Z</code> </p>",
         "UpdateLedgerResponse$CreationDateTime": "<p>The date and time, in epoch time format, when the ledger was created. (Epoch time format is the number of seconds elapsed since 12:00:00 AM January 1, 1970 UTC.)</p>"
       }
     },
@@ -546,7 +546,7 @@
       }
     },
     "ValueHolder": {
-      "base": "<p>A structure that can contain an Amazon Ion value in multiple encoding formats.</p>",
+      "base": "<p>A structure that can contain a value in multiple encoding formats.</p>",
       "refs": {
         "GetBlockRequest$BlockAddress": "<p>The location of the block that you want to request. An address is an Amazon Ion structure that has two fields: <code>strandId</code> and <code>sequenceNo</code>.</p> <p>For example: <code>{strandId:\"BlFTjlSXze9BIh1KOszcE3\",sequenceNo:14}</code> </p>",
         "GetBlockRequest$DigestTipAddress": "<p>The latest block location covered by the digest for which to request a proof. An address is an Amazon Ion structure that has two fields: <code>strandId</code> and <code>sequenceNo</code>.</p> <p>For example: <code>{strandId:\"BlFTjlSXze9BIh1KOszcE3\",sequenceNo:49}</code> </p>",

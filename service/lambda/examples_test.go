@@ -926,9 +926,9 @@ func ExampleLambda_GetPolicy_shared00() {
 	fmt.Println(result)
 }
 
-// To get a provisioned concurrency configuration
+// To view a provisioned concurrency configuration
 //
-// The following example returns details for the provisioned concurrency configuration
+// The following example displays details for the provisioned concurrency configuration
 // for the BLUE alias of the specified function.
 func ExampleLambda_GetProvisionedConcurrencyConfig_shared00() {
 	svc := lambda.New(session.New())
@@ -965,9 +965,9 @@ func ExampleLambda_GetProvisionedConcurrencyConfig_shared00() {
 	fmt.Println(result)
 }
 
-// To view a provisioned concurrency configuration
+// To get a provisioned concurrency configuration
 //
-// The following example displays details for the provisioned concurrency configuration
+// The following example returns details for the provisioned concurrency configuration
 // for the BLUE alias of the specified function.
 func ExampleLambda_GetProvisionedConcurrencyConfig_shared01() {
 	svc := lambda.New(session.New())
@@ -1040,6 +1040,14 @@ func ExampleLambda_Invoke_shared00() {
 				fmt.Println(lambda.ErrCodeSubnetIPAddressLimitReachedException, aerr.Error())
 			case lambda.ErrCodeENILimitReachedException:
 				fmt.Println(lambda.ErrCodeENILimitReachedException, aerr.Error())
+			case lambda.ErrCodeEFSMountConnectivityException:
+				fmt.Println(lambda.ErrCodeEFSMountConnectivityException, aerr.Error())
+			case lambda.ErrCodeEFSMountFailureException:
+				fmt.Println(lambda.ErrCodeEFSMountFailureException, aerr.Error())
+			case lambda.ErrCodeEFSMountTimeoutException:
+				fmt.Println(lambda.ErrCodeEFSMountTimeoutException, aerr.Error())
+			case lambda.ErrCodeEFSIOException:
+				fmt.Println(lambda.ErrCodeEFSIOException, aerr.Error())
 			case lambda.ErrCodeEC2ThrottledException:
 				fmt.Println(lambda.ErrCodeEC2ThrottledException, aerr.Error())
 			case lambda.ErrCodeEC2AccessDeniedException:
@@ -1114,6 +1122,14 @@ func ExampleLambda_Invoke_shared01() {
 				fmt.Println(lambda.ErrCodeSubnetIPAddressLimitReachedException, aerr.Error())
 			case lambda.ErrCodeENILimitReachedException:
 				fmt.Println(lambda.ErrCodeENILimitReachedException, aerr.Error())
+			case lambda.ErrCodeEFSMountConnectivityException:
+				fmt.Println(lambda.ErrCodeEFSMountConnectivityException, aerr.Error())
+			case lambda.ErrCodeEFSMountFailureException:
+				fmt.Println(lambda.ErrCodeEFSMountFailureException, aerr.Error())
+			case lambda.ErrCodeEFSMountTimeoutException:
+				fmt.Println(lambda.ErrCodeEFSMountTimeoutException, aerr.Error())
+			case lambda.ErrCodeEFSIOException:
+				fmt.Println(lambda.ErrCodeEFSIOException, aerr.Error())
 			case lambda.ErrCodeEC2ThrottledException:
 				fmt.Println(lambda.ErrCodeEC2ThrottledException, aerr.Error())
 			case lambda.ErrCodeEC2AccessDeniedException:
