@@ -1,3 +1,18 @@
+Release v1.32.3 (2020-06-16)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Introducing instance refresh, a feature that helps you update all instances in an Auto Scaling group in a rolling fashion (for example, to apply a new AMI or instance type). You can control the pace of the refresh by defining the percentage of the group that must remain running/healthy during the replacement process and the time for new instances to warm up between replacements.
+* `service/cloudfront`: Updates service documentation
+  * Documentation updates for CloudFront
+* `service/dataexchange`: Updates service API
+* `service/lambda`: Updates service API, documentation, and examples
+  * Adds support for using Amazon Elastic File System (persistent storage) with AWS Lambda. This enables customers to share data across function invocations, read large reference data files, and write function output to a persistent and shared store.
+* `service/polly`: Updates service API
+  * Amazon Polly adds new US English child voice - Kevin. Kevin is available as Neural voice only.
+* `service/qldb`: Updates service documentation
+
 Release v1.32.2 (2020-06-15)
 ===
 
