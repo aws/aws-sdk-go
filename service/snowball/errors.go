@@ -34,7 +34,7 @@ const (
 	// ErrCodeInvalidInputCombinationException for service response error code
 	// "InvalidInputCombinationException".
 	//
-	// Job or cluster creation failed. One ore more inputs were invalid. Confirm
+	// Job or cluster creation failed. One or more inputs were invalid. Confirm
 	// that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 	// and try again.
 	ErrCodeInvalidInputCombinationException = "InvalidInputCombinationException"

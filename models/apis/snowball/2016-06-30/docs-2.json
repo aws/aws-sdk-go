@@ -67,7 +67,8 @@
       "refs": {
         "Address$IsRestricted": "<p>If the address you are creating is a primary address, then set this option to true. This field is not supported in most regions.</p>",
         "JobListEntry$IsMaster": "<p>A value that indicates that this job is a master job. A master job represents a successful request to create an export job. Master jobs aren't associated with any Snowballs. Instead, each master job will have at least one job part, and each job part is associated with a Snowball. It might take some time before the job parts associated with a particular master job are listed, because they are created after the master job is created.</p>",
-        "Notification$NotifyAll": "<p>Any change in job state will trigger a notification for this job.</p>"
+        "Notification$NotifyAll": "<p>Any change in job state will trigger a notification for this job.</p>",
+        "WirelessConnection$IsWifiEnabled": "<p>Enables the Wi-Fi adapter on an AWS Snowcone device.</p>"
       }
     },
     "CancelClusterRequest": {
@@ -219,6 +220,13 @@
       "refs": {
       }
     },
+    "DeviceConfiguration": {
+      "base": "<p>The container for <code>SnowconeDeviceConfiguration</code>. </p>",
+      "refs": {
+        "CreateJobRequest$DeviceConfiguration": "<p>Defines the device configuration for an AWS Snowcone job.</p>",
+        "JobMetadata$DeviceConfiguration": null
+      }
+    },
     "Ec2AmiResource": {
       "base": "<p>A JSON-formatted object that contains the IDs for an Amazon Machine Image (AMI), including the Amazon EC2 AMI ID and the Snowball Edge AMI ID. Each AMI has these two IDs to simplify identifying the AMI in both the AWS Cloud and on the device.</p>",
       "refs": {
@@ -297,7 +305,7 @@
     "INDTaxDocuments": {
       "base": "<p>The tax documents required in AWS Regions in India.</p>",
       "refs": {
-        "TaxDocuments$IND": "<p>The tax documents required in AWS Regions in India.</p>"
+        "TaxDocuments$IND": null
       }
     },
     "Integer": {
@@ -313,7 +321,7 @@
       }
     },
     "InvalidInputCombinationException": {
-      "base": "<p>Job or cluster creation failed. One ore more inputs were invalid. Confirm that the <a>CreateClusterRequest$SnowballType</a> value supports your <a>CreateJobRequest$JobType</a>, and try again.</p>",
+      "base": "<p>Job or cluster creation failed. One or more inputs were invalid. Confirm that the <a>CreateClusterRequest$SnowballType</a> value supports your <a>CreateJobRequest$JobType</a>, and try again.</p>",
       "refs": {
       }
     },
@@ -561,7 +569,7 @@
       "base": null,
       "refs": {
         "ClusterMetadata$ShippingOption": "<p>The shipping speed for each node in this cluster. This speed doesn't dictate how soon you'll get each Snowball Edge device, rather it represents how quickly each device moves to its destination while in transit. Regional shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access to express shipping. Typically, devices shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snowball Edges shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowball Edges are delivered in one to seven days.</p> </li> <li> <p>In the US, you have access to one-day shipping and two-day shipping.</p> </li> </ul>",
-        "CreateClusterRequest$ShippingOption": "<p>The shipping speed for each node in this cluster. This speed doesn't dictate how soon you'll get each Snowball Edge device, rather it represents how quickly each device moves to its destination while in transit. Regional shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access to express shipping. Typically, devices shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snowball Edges shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowball Edges are delivered in one to seven days.</p> </li> <li> <p>In the US, you have access to one-day shipping and two-day shipping.</p> </li> </ul>",
+        "CreateClusterRequest$ShippingOption": "<p>The shipping speed for each node in this cluster. This speed doesn't dictate how soon you'll get each Snowball Edge device, rather it represents how quickly each device moves to its destination while in transit. Regional shipping speeds are as follows: </p> <ul> <li> <p>In Australia, you have access to express shipping. Typically, Snowballs shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snowballs shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowballs are delivered in one to seven days.</p> </li> <li> <p>In the United States of America (US), you have access to one-day shipping and two-day shipping.</p> </li> </ul> <ul> <li> <p>In Australia, you have access to express shipping. Typically, devices shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snowball Edges shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowball Edges are delivered in one to seven days.</p> </li> <li> <p>In the US, you have access to one-day shipping and two-day shipping.</p> </li> </ul>",
         "CreateJobRequest$ShippingOption": "<p>The shipping speed for this job. This speed doesn't dictate how soon you'll get the Snowball, rather it represents how quickly the Snowball moves to its destination while in transit. Regional shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access to express shipping. Typically, Snowballs shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snowballs shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowballs are delivered in one to seven days.</p> </li> <li> <p>In the US, you have access to one-day shipping and two-day shipping.</p> </li> </ul>",
         "ShippingDetails$ShippingOption": "<p>The shipping speed for a particular job. This speed doesn't dictate how soon you'll get the Snowball from the job's creation date. This speed represents how quickly it moves to its destination while in transit. Regional shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access to express shipping. Typically, Snowballs shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snowballs shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowballs are delivered in one to seven days.</p> </li> <li> <p>In the United States of America (US), you have access to one-day shipping and two-day shipping.</p> </li> </ul>",
         "UpdateClusterRequest$ShippingOption": "<p>The updated shipping option value of this cluster's <a>ShippingDetails</a> object.</p>",
@@ -579,11 +587,17 @@
     "SnowballType": {
       "base": null,
       "refs": {
-        "ClusterMetadata$SnowballType": "<p>The type of AWS Snowball device to use for this cluster. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html\">Snowball Edge Device Options</a> in the Snowball Edge Developer Guide.</p>",
-        "CreateClusterRequest$SnowballType": "<p>The type of AWS Snowball device to use for this cluster. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html\">Snowball Edge Device Options</a> in the Snowball Edge Developer Guide.</p>",
-        "CreateJobRequest$SnowballType": "<p>The type of AWS Snowball device to use for this job. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html\">Snowball Edge Device Options</a> in the Snowball Edge Developer Guide.</p>",
+        "ClusterMetadata$SnowballType": "<p>The type of AWS Snowball device to use for this cluster. </p> <note> <p>For cluster jobs, AWS Snowball currently supports only the <code>EDGE</code> device type.</p> </note>",
+        "CreateClusterRequest$SnowballType": "<p>The type of AWS Snowball device to use for this cluster. </p> <note> <p>For cluster jobs, AWS Snowball currently supports only the <code>EDGE</code> device type.</p> </note>",
+        "CreateJobRequest$SnowballType": "<p>The type of AWS Snowball device to use for this job. </p> <note> <p>For cluster jobs, AWS Snowball currently supports only the <code>EDGE</code> device type.</p> </note> <p>The type of AWS Snowball device to use for this job. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html\">Snowball Edge Device Options</a> in the Snowball Edge Developer Guide.</p>",
         "JobListEntry$SnowballType": "<p>The type of device used with this job.</p>",
         "JobMetadata$SnowballType": "<p>The type of device used with this job.</p>"
+      }
+    },
+    "SnowconeDeviceConfiguration": {
+      "base": "<p>Specifies the device configuration for an AWS Snowcone job. </p>",
+      "refs": {
+        "DeviceConfiguration$SnowconeDeviceConfiguration": "<p>Returns information about the device configuration for an AWS Snowcone job.</p>"
       }
     },
     "SnsTopicARN": {
@@ -697,6 +711,12 @@
     "UpdateJobResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "WirelessConnection": {
+      "base": "<p>Configures the wireless connection on an AWS Snowcone device.</p>",
+      "refs": {
+        "SnowconeDeviceConfiguration$WirelessConnection": "<p>Configures the wireless connection for the AWS Snowcone device.</p>"
       }
     }
   }

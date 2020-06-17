@@ -132,6 +132,13 @@ func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHoste
 //   To request a higher limit, create a case (http://aws.amazon.com/route53-request)
 //   with the AWS Support Center.
 //
+//   * ErrCodePriorRequestNotComplete "PriorRequestNotComplete"
+//   If Amazon Route 53 can't process a request before the next request arrives,
+//   it will reject subsequent requests for the same hosted zone and return an
+//   HTTP 400 error (Bad request). If Route 53 returns this error repeatedly for
+//   the same request, we recommend that you wait, in intervals of increasing
+//   duration, before you try the request again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/AssociateVPCWithHostedZone
 func (c *Route53) AssociateVPCWithHostedZone(input *AssociateVPCWithHostedZoneInput) (*AssociateVPCWithHostedZoneOutput, error) {
 	req, out := c.AssociateVPCWithHostedZoneRequest(input)
