@@ -1,3 +1,19 @@
+Release v1.32.4 (2020-06-17)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * nvmeSupport added to DescribeInstanceTypes API
+* `service/macie2`: Updates service documentation
+* `service/route53`: Updates service API
+  * Add PriorRequestNotComplete exception to AssociateVPCWithHostedZone API
+* `service/snowball`: Updates service API and documentation
+  * AWS Snowcone is a portable, rugged and secure device for edge computing and data transfer. You can use Snowcone to collect, process, and move data to AWS, either offline by shipping the device to AWS or online by using AWS DataSync. With 2 CPUs and 4 GB RAM of compute and 8 TB of storage, Snowcone can run edge computing workloads and store data securely. Snowcone's small size (8.94" x 5.85" x 3.25" / 227 mm x 148.6 mm x 82.65 mm) allows you to set it next to machinery in a factory. Snowcone weighs about 4.5 lbs. (2 kg), so you can carry one in a backpack, use it with battery-based operation, and use the Wi-Fi interface to gather sensor data. Snowcone supports a file interface with NFS support.
+
+### SDK Enhancements
+* `private/protocol`: Adds support for decimal precision UNIX timestamps up to thousandths of a second ([#3376](https://github.com/aws/aws-sdk-go/pull/3376))
+
 Release v1.32.3 (2020-06-16)
 ===
 

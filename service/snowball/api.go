@@ -348,7 +348,7 @@ func (c *Snowball) CreateClusterRequest(input *CreateClusterInput) (req *request
 //   the specified CreateJob or UpdateJob action.
 //
 //   * InvalidInputCombinationException
-//   Job or cluster creation failed. One ore more inputs were invalid. Confirm
+//   Job or cluster creation failed. One or more inputs were invalid. Confirm
 //   that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 //   and try again.
 //
@@ -445,7 +445,7 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //   the specified CreateJob or UpdateJob action.
 //
 //   * InvalidInputCombinationException
-//   Job or cluster creation failed. One ore more inputs were invalid. Confirm
+//   Job or cluster creation failed. One or more inputs were invalid. Confirm
 //   that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 //   and try again.
 //
@@ -1697,7 +1697,7 @@ func (c *Snowball) UpdateClusterRequest(input *UpdateClusterInput) (req *request
 //   the specified CreateJob or UpdateJob action.
 //
 //   * InvalidInputCombinationException
-//   Job or cluster creation failed. One ore more inputs were invalid. Confirm
+//   Job or cluster creation failed. One or more inputs were invalid. Confirm
 //   that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 //   and try again.
 //
@@ -1797,7 +1797,7 @@ func (c *Snowball) UpdateJobRequest(input *UpdateJobInput) (req *request.Request
 //   the specified CreateJob or UpdateJob action.
 //
 //   * InvalidInputCombinationException
-//   Job or cluster creation failed. One ore more inputs were invalid. Confirm
+//   Job or cluster creation failed. One or more inputs were invalid. Confirm
 //   that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 //   and try again.
 //
@@ -2316,11 +2316,9 @@ type ClusterMetadata struct {
 	//    * In the US, you have access to one-day shipping and two-day shipping.
 	ShippingOption *string `type:"string" enum:"ShippingOption"`
 
-	// The type of AWS Snowball device to use for this cluster. Currently, the only
-	// supported device type for cluster jobs is EDGE.
+	// The type of AWS Snowball device to use for this cluster.
 	//
-	// For more information, see Snowball Edge Device Options (https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html)
-	// in the Snowball Edge Developer Guide.
+	// For cluster jobs, AWS Snowball currently supports only the EDGE device type.
 	SnowballType *string `type:"string" enum:"Type"`
 
 	// The tax documents required in your AWS Region.
@@ -2574,6 +2572,19 @@ type CreateClusterInput struct {
 	// each device moves to its destination while in transit. Regional shipping
 	// speeds are as follows:
 	//
+	//    * In Australia, you have access to express shipping. Typically, Snowballs
+	//    shipped express are delivered in about a day.
+	//
+	//    * In the European Union (EU), you have access to express shipping. Typically,
+	//    Snowballs shipped express are delivered in about a day. In addition, most
+	//    countries in the EU have access to standard shipping, which typically
+	//    takes less than a week, one way.
+	//
+	//    * In India, Snowballs are delivered in one to seven days.
+	//
+	//    * In the United States of America (US), you have access to one-day shipping
+	//    and two-day shipping.
+	//
 	//    * In Australia, you have access to express shipping. Typically, devices
 	//    shipped express are delivered in about a day.
 	//
@@ -2589,11 +2600,9 @@ type CreateClusterInput struct {
 	// ShippingOption is a required field
 	ShippingOption *string `type:"string" required:"true" enum:"ShippingOption"`
 
-	// The type of AWS Snowball device to use for this cluster. Currently, the only
-	// supported device type for cluster jobs is EDGE.
+	// The type of AWS Snowball device to use for this cluster.
 	//
-	// For more information, see Snowball Edge Device Options (https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html)
-	// in the Snowball Edge Developer Guide.
+	// For cluster jobs, AWS Snowball currently supports only the EDGE device type.
 	SnowballType *string `type:"string" enum:"Type"`
 
 	// The tax documents required in your AWS Region.
@@ -2753,6 +2762,9 @@ type CreateJobInput struct {
 	// Photos 2016-08-11.
 	Description *string `min:"1" type:"string"`
 
+	// Defines the device configuration for an AWS Snowcone job.
+	DeviceConfiguration *DeviceConfiguration `type:"structure"`
+
 	// The forwarding address ID for a job. This field is not supported in most
 	// regions.
 	ForwardingAddressId *string `min:"40" type:"string"`
@@ -2808,6 +2820,10 @@ type CreateJobInput struct {
 	// Snowballs come with 80 TB in storage capacity.
 	SnowballCapacityPreference *string `type:"string" enum:"Capacity"`
 
+	// The type of AWS Snowball device to use for this job.
+	//
+	// For cluster jobs, AWS Snowball currently supports only the EDGE device type.
+	//
 	// The type of AWS Snowball device to use for this job. Currently, the only
 	// supported device type for cluster jobs is EDGE.
 	//
@@ -2871,6 +2887,12 @@ func (s *CreateJobInput) SetClusterId(v string) *CreateJobInput {
 // SetDescription sets the Description field's value.
 func (s *CreateJobInput) SetDescription(v string) *CreateJobInput {
 	s.Description = &v
+	return s
+}
+
+// SetDeviceConfiguration sets the DeviceConfiguration field's value.
+func (s *CreateJobInput) SetDeviceConfiguration(v *DeviceConfiguration) *CreateJobInput {
+	s.DeviceConfiguration = v
 	return s
 }
 
@@ -3297,6 +3319,30 @@ func (s *DescribeJobOutput) SetJobMetadata(v *JobMetadata) *DescribeJobOutput {
 // SetSubJobMetadata sets the SubJobMetadata field's value.
 func (s *DescribeJobOutput) SetSubJobMetadata(v []*JobMetadata) *DescribeJobOutput {
 	s.SubJobMetadata = v
+	return s
+}
+
+// The container for SnowconeDeviceConfiguration.
+type DeviceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Returns information about the device configuration for an AWS Snowcone job.
+	SnowconeDeviceConfiguration *SnowconeDeviceConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeviceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeviceConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetSnowconeDeviceConfiguration sets the SnowconeDeviceConfiguration field's value.
+func (s *DeviceConfiguration) SetSnowconeDeviceConfiguration(v *SnowconeDeviceConfiguration) *DeviceConfiguration {
+	s.SnowconeDeviceConfiguration = v
 	return s
 }
 
@@ -3767,7 +3813,7 @@ func (s *InvalidAddressException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Job or cluster creation failed. One ore more inputs were invalid. Confirm
+// Job or cluster creation failed. One or more inputs were invalid. Confirm
 // that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 // and try again.
 type InvalidInputCombinationException struct {
@@ -4168,6 +4214,9 @@ type JobMetadata struct {
 	// The description of the job, provided at job creation.
 	Description *string `min:"1" type:"string"`
 
+	// The container for SnowconeDeviceConfiguration.
+	DeviceConfiguration *DeviceConfiguration `type:"structure"`
+
 	// The ID of the address that you want a job shipped to, after it will be shipped
 	// to its primary address. This field is not supported in most regions.
 	ForwardingAddressId *string `min:"40" type:"string"`
@@ -4260,6 +4309,12 @@ func (s *JobMetadata) SetDataTransferProgress(v *DataTransfer) *JobMetadata {
 // SetDescription sets the Description field's value.
 func (s *JobMetadata) SetDescription(v string) *JobMetadata {
 	s.Description = &v
+	return s
+}
+
+// SetDeviceConfiguration sets the DeviceConfiguration field's value.
+func (s *JobMetadata) SetDeviceConfiguration(v *DeviceConfiguration) *JobMetadata {
+	s.DeviceConfiguration = v
 	return s
 }
 
@@ -5115,6 +5170,30 @@ func (s *ShippingDetails) SetShippingOption(v string) *ShippingDetails {
 	return s
 }
 
+// Specifies the device configuration for an AWS Snowcone job.
+type SnowconeDeviceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configures the wireless connection for the AWS Snowcone device.
+	WirelessConnection *WirelessConnection `type:"structure"`
+}
+
+// String returns the string representation
+func (s SnowconeDeviceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SnowconeDeviceConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetWirelessConnection sets the WirelessConnection field's value.
+func (s *SnowconeDeviceConfiguration) SetWirelessConnection(v *WirelessConnection) *SnowconeDeviceConfiguration {
+	s.WirelessConnection = v
+	return s
+}
+
 // The tax documents required in your AWS Region.
 type TaxDocuments struct {
 	_ struct{} `type:"structure"`
@@ -5478,6 +5557,30 @@ func (s UpdateJobOutput) GoString() string {
 	return s.String()
 }
 
+// Configures the wireless connection on an AWS Snowcone device.
+type WirelessConnection struct {
+	_ struct{} `type:"structure"`
+
+	// Enables the Wi-Fi adapter on an AWS Snowcone device.
+	IsWifiEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s WirelessConnection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WirelessConnection) GoString() string {
+	return s.String()
+}
+
+// SetIsWifiEnabled sets the IsWifiEnabled field's value.
+func (s *WirelessConnection) SetIsWifiEnabled(v bool) *WirelessConnection {
+	s.IsWifiEnabled = &v
+	return s
+}
+
 const (
 	// CapacityT50 is a Capacity enum value
 	CapacityT50 = "T50"
@@ -5493,6 +5596,9 @@ const (
 
 	// CapacityT98 is a Capacity enum value
 	CapacityT98 = "T98"
+
+	// CapacityT8 is a Capacity enum value
+	CapacityT8 = "T8"
 
 	// CapacityNoPreference is a Capacity enum value
 	CapacityNoPreference = "NoPreference"
@@ -5596,4 +5702,7 @@ const (
 
 	// TypeEdgeS is a Type enum value
 	TypeEdgeS = "EDGE_S"
+
+	// TypeSnc1Hdd is a Type enum value
+	TypeSnc1Hdd = "SNC1_HDD"
 )

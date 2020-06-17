@@ -13514,6 +13514,10 @@
         "EbsOptimizedInfo":{
           "shape":"EbsOptimizedInfo",
           "locationName":"ebsOptimizedInfo"
+        },
+        "NvmeSupport":{
+          "shape":"EbsNvmeSupport",
+          "locationName":"nvmeSupport"
         }
       }
     },
@@ -13550,6 +13554,14 @@
           "locationName":"volumeId"
         }
       }
+    },
+    "EbsNvmeSupport":{
+      "type":"string",
+      "enum":[
+        "unsupported",
+        "supported",
+        "required"
+      ]
     },
     "EbsOptimizedInfo":{
       "type":"structure",

@@ -1442,6 +1442,7 @@
       },
       "datasync" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
@@ -1451,6 +1452,7 @@
           "ca-central-1" : { },
           "eu-central-1" : { },
           "eu-north-1" : { },
+          "eu-south-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
@@ -3230,6 +3232,7 @@
       },
       "license-manager" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
@@ -3239,6 +3242,7 @@
           "ca-central-1" : { },
           "eu-central-1" : { },
           "eu-north-1" : { },
+          "eu-south-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
@@ -6031,6 +6035,18 @@
           "cn-north-1" : { },
           "cn-northwest-1" : { }
         }
+      },
+      "budgets" : {
+        "endpoints" : {
+          "aws-cn-global" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "budgets.amazonaws.com.cn"
+          }
+        },
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-cn-global"
       },
       "cloudformation" : {
         "endpoints" : {

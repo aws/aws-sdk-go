@@ -31,7 +31,8 @@
         {"shape":"InvalidInput"},
         {"shape":"PublicZoneVPCAssociation"},
         {"shape":"ConflictingDomainExists"},
-        {"shape":"LimitsExceeded"}
+        {"shape":"LimitsExceeded"},
+        {"shape":"PriorRequestNotComplete"}
       ]
     },
     "ChangeResourceRecordSets":{

@@ -1,6 +1,6 @@
 {
   "version" : "2.0",
-  "service" : "<p>Amazon Macie</p>",
+  "service" : "<p>Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS. Macie automates the discovery of sensitive data, such as PII and intellectual property, to provide you with insight into the data that your organization stores in AWS. Macie also provides an inventory of your Amazon S3 buckets, which it continually monitors for you. If Macie detects sensitive data or potential data access issues, it generates detailed findings for you to review and act upon as necessary.</p>",
   "operations" : {
     "AcceptInvitation" : "<p>Accepts an Amazon Macie membership invitation that was received from a specific account.</p>",
     "BatchGetCustomDataIdentifiers" : "<p>Retrieves information about one or more custom data identifiers.</p>",
@@ -25,7 +25,7 @@
     "EnableMacie" : "<p>Enables Amazon Macie and specifies the configuration settings for a Macie account.</p>",
     "EnableOrganizationAdminAccount" : "<p>Enables an account as a delegated administrator of Amazon Macie for an AWS organization.</p>",
     "GetBucketStatistics" : " <p>Retrieves (queries) aggregated statistical data for all the S3 buckets that Amazon Macie monitors and analyzes.</p>",
-    "GetClassificationExportConfiguration" : "<p>Retrieves the configuration settings for exporting data classification results.</p>",
+    "GetClassificationExportConfiguration" : "<p>Retrieves the configuration settings for storing data classification results.</p>",
     "GetCustomDataIdentifier" : "<p>Retrieves information about the criteria and other settings for a custom data identifier.</p>",
     "GetFindingStatistics" : " <p>Retrieves (queries) aggregated statistical data about findings.</p>",
     "GetFindings" : "<p>Retrieves information about one or more findings.</p>",
@@ -44,7 +44,7 @@
     "ListMembers" : "<p>Retrieves information about the accounts that are associated with an Amazon Macie master account.</p>",
     "ListOrganizationAdminAccounts" : "<p>Retrieves information about the account that's designated as the delegated administrator of Amazon Macie for an AWS organization.</p>",
     "ListTagsForResource" : "<p>Retrieves the tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
-    "PutClassificationExportConfiguration" : "<p>Creates or updates the configuration settings for exporting data classification results.</p>",
+    "PutClassificationExportConfiguration" : "<p>Creates or updates the configuration settings for storing data classification results.</p>",
     "TagResource" : "<p>Adds or updates one or more tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
     "TestCustomDataIdentifier" : "<p>Tests a custom data identifier.</p>",
     "UntagResource" : "<p>Removes one or more tags (keys and values) from a classification job, custom data identifier, findings filter, or member account.</p>",
@@ -212,11 +212,11 @@
       }
     },
     "ClassificationExportConfiguration" : {
-      "base" : "<p>Specifies where to export data classification results to, and the encryption settings to use when storing results in that location. Currently, you can export classification results only to an S3 bucket.</p>",
+      "base" : "<p>Specifies where to store data classification results, and the encryption settings to use when storing results in that location. Currently, you can store classification results only in an S3 bucket.</p>",
       "refs" : {
-        "GetClassificationExportConfigurationResponse$Configuration" : "<p>The location that data classification results are exported to, and the encryption settings that are used when storing results in that location.</p>",
-        "PutClassificationExportConfigurationRequest$Configuration" : "<p>The location to export data classification results to, and the encryption settings to use when storing results in that location.</p>",
-        "PutClassificationExportConfigurationResponse$Configuration" : "<p>The location that data classification results are exported to, and the encryption settings that are used when storing results in that location.</p>"
+        "GetClassificationExportConfigurationResponse$Configuration" : "<p>The location where data classification results are stored, and the encryption settings that are used when storing results in that location.</p>",
+        "PutClassificationExportConfigurationRequest$Configuration" : "<p>The location to store data classification results in, and the encryption settings to use when storing results in that location.</p>",
+        "PutClassificationExportConfigurationResponse$Configuration" : "<p>The location where the data classification results are stored, and the encryption settings that are used when storing results in that location.</p>"
       }
     },
     "ClassificationResult" : {
@@ -433,15 +433,15 @@
       }
     },
     "FindingActionType" : {
-      "base" : null,
+      "base" : "<p>The type of action that occurred for the resource and produced the policy finding.</p>",
       "refs" : {
         "FindingAction$ActionType" : "<p>The type of action that occurred for the affected resource. This value is typically AWS_API_CALL, which indicates that an entity invoked an API operation for the resource.</p>"
       }
     },
     "FindingActor" : {
-      "base" : "<p>Provides information about an entity who performed an action that produced a policy finding for a resource.</p>",
+      "base" : "<p>Provides information about an entity that performed an action that produced a policy finding for a resource.</p>",
       "refs" : {
-        "PolicyDetails$Actor" : "<p>The entity who performed the action that produced the finding.</p>"
+        "PolicyDetails$Actor" : "<p>The entity that performed the action that produced the finding.</p>"
       }
     },
     "FindingCategory" : {
@@ -461,11 +461,11 @@
       }
     },
     "FindingPublishingFrequency" : {
-      "base" : "<p>The frequency with which Amazon Macie publishes findings for an account. This includes adding findings to AWS Security Hub and exporting finding events to Amazon CloudWatch. Valid values are:</p>",
+      "base" : "<p>The frequency with which Amazon Macie publishes updates to policy findings for an account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values are:</p>",
       "refs" : {
-        "EnableMacieRequest$FindingPublishingFrequency" : "Specifies how often to publish findings for the account. This includes adding findings to AWS Security Hub and exporting finding events to Amazon CloudWatch.",
-        "GetMacieSessionResponse$FindingPublishingFrequency" : "<p>The frequency with which Amazon Macie publishes findings for the account. This includes adding findings to AWS Security Hub and exporting finding events to Amazon CloudWatch.</p>",
-        "UpdateMacieSessionRequest$FindingPublishingFrequency" : "Specifies how often to publish findings for the account. This includes adding findings to AWS Security Hub and exporting finding events to Amazon CloudWatch."
+        "EnableMacieRequest$FindingPublishingFrequency" : "Specifies how often to publish updates to policy findings for the account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events).",
+        "GetMacieSessionResponse$FindingPublishingFrequency" : "<p>The frequency with which Amazon Macie publishes updates to policy findings for the account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events).</p>",
+        "UpdateMacieSessionRequest$FindingPublishingFrequency" : "Specifies how often to publish updates to policy findings for the account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events)."
       }
     },
     "FindingStatisticsSortAttributeName" : {
@@ -488,11 +488,11 @@
       }
     },
     "FindingsFilterAction" : {
-      "base" : "<p>The action to perform on findings that meet the filter criteria. Valid values are:</p>",
+      "base" : "<p>The action to perform on findings that meet the filter criteria. To suppress (automatically archive) findings that meet the criteria, set this value to ARCHIVE. Valid values are:</p>",
       "refs" : {
-        "CreateFindingsFilterRequest$Action" : "<p>The action to perform on findings that meet the filter criteria (findingCriteria). Valid values are: ARCHIVE, automatically archive the findings; and, NOOP, don't perform any action on the findings.</p>",
-        "GetFindingsFilterResponse$Action" : "<p>The action that's performed on findings that meet the filter criteria (findingCriteria). Possible values are: ARCHIVE, automatically archive the findings; and, NOOP, don't perform any action on the findings.</p>",
-        "UpdateFindingsFilterRequest$Action" : "<p>The action to perform on findings that meet the filter criteria (findingCriteria). Valid values are: ARCHIVE, automatically archive the findings; and, NOOP, don't perform any action on the findings.</p>"
+        "CreateFindingsFilterRequest$Action" : "<p>The action to perform on findings that meet the filter criteria (findingCriteria). Valid values are: ARCHIVE, suppress (automatically archive) the findings; and, NOOP, don't perform any action on the findings.</p>",
+        "GetFindingsFilterResponse$Action" : "<p>The action that's performed on findings that meet the filter criteria (findingCriteria). Possible values are: ARCHIVE, suppress (automatically archive) the findings; and, NOOP, don't perform any action on the findings.</p>",
+        "UpdateFindingsFilterRequest$Action" : "<p>The action to perform on findings that meet the filter criteria (findingCriteria). Valid values are: ARCHIVE, suppress (automatically archive) the findings; and, NOOP, don't perform any action on the findings.</p>"
       }
     },
     "FindingsFilterListItem" : {
@@ -510,7 +510,7 @@
       "refs" : { }
     },
     "GetClassificationExportConfigurationResponse" : {
-      "base" : "<p>Provides information about the current configuration settings for exporting data classification results.</p>",
+      "base" : "<p>Provides information about the current configuration settings for storing data classification results.</p>",
       "refs" : { }
     },
     "GetCustomDataIdentifierResponse" : {
@@ -806,11 +806,11 @@
       }
     },
     "PutClassificationExportConfigurationRequest" : {
-      "base" : "<p>Specifies where to export data classification results to, and the encryption settings to use when storing results in that location. Currently, you can export classification results only to an S3 bucket.</p>",
+      "base" : "<p>Specifies where to store data classification results, and the encryption settings to use when storing results in that location. Currently, you can store classification results only in an S3 bucket.</p>",
       "refs" : { }
     },
     "PutClassificationExportConfigurationResponse" : {
-      "base" : "<p>Provides information about updated settings for exporting data classification results.</p>",
+      "base" : "<p>Provides information about updated settings for storing data classification results.</p>",
       "refs" : { }
     },
     "RelationshipStatus" : {
@@ -856,9 +856,9 @@
       }
     },
     "S3Destination" : {
-      "base" : "<p>Specifies an S3 bucket to export data classification results to, and the encryption settings to use when storing results in that bucket.</p>",
+      "base" : "<p>Specifies an S3 bucket to store data classification results in, and the encryption settings to use when storing results in that bucket.</p>",
       "refs" : {
-        "ClassificationExportConfiguration$S3Destination" : "<p>The S3 bucket to export data classification results to, and the encryption settings to use when storing results in that bucket.</p>"
+        "ClassificationExportConfiguration$S3Destination" : "<p>The S3 bucket to store data classification results in, and the encryption settings to use when storing results in that bucket.</p>"
       }
     },
     "S3JobDefinition" : {
@@ -899,9 +899,9 @@
       }
     },
     "SensitiveDataItemCategory" : {
-      "base" : null,
+      "base" : "<p>The category of sensitive data that was detected and produced the finding.</p>",
       "refs" : {
-        "SensitiveDataItem$Category" : "<p>The category of sensitive data that was detected. For example, FINANCIAL_INFORMATION, for financial information such as credit card numbers, or PERSONAL_INFORMATION, for personally identifiable information such as names and addresses.</p>"
+        "SensitiveDataItem$Category" : "<p>The category of sensitive data that was detected. For example: FINANCIAL_INFORMATION, for financial information such as credit card numbers; PERSONAL_INFORMATION, for personally identifiable information such as full names and mailing addresses; or, CUSTOM_IDENTIFIER, for data that was detected by a custom data identifier.</p>"
       }
     },
     "ServerSideEncryption" : {
@@ -922,7 +922,7 @@
       "refs" : { }
     },
     "SessionContext" : {
-      "base" : "<p>Provides information about a session that was created for an entity who performed an action by using temporary security credentials.</p>",
+      "base" : "<p>Provides information about a session that was created for an entity that performed an action by using temporary security credentials.</p>",
       "refs" : {
         "AssumedRole$SessionContext" : "<p>Reserved for future use.</p>",
         "FederatedUser$SessionContext" : "<p>Reserved for future use.</p>"
@@ -1130,7 +1130,7 @@
     "UserIdentity" : {
       "base" : null,
       "refs" : {
-        "FindingActor$UserIdentity" : "<p>The name and type of entity who performed the action on the affected resource.</p>"
+        "FindingActor$UserIdentity" : "<p>The name and type of entity that performed the action on the affected resource.</p>"
       }
     },
     "UserIdentityRoot" : {
@@ -1197,7 +1197,7 @@
       "base" : null,
       "refs" : {
         "CreateClassificationJobRequest$SamplingPercentage" : "<p>The sampling depth, as a percentage, to apply when processing objects. This value determines the percentage of eligible objects that the job analyzes. If the value is less than 100, Amazon Macie randomly selects the objects to analyze, up to the specified percentage.</p>",
-        "CreateCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 300.</p>",
+        "CreateCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 50.</p>",
         "CreateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>",
         "DescribeBucketsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response. The default value is 50.</p>",
         "DescribeClassificationJobResponse$SamplingPercentage" : "<p>The sampling depth, as a percentage, that the job applies when it processes objects.</p>",
@@ -1209,7 +1209,7 @@
         "ListCustomDataIdentifiersRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "ListFindingsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "MonthlySchedule$DayOfMonth" : null,
-        "TestCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 300.</p>",
+        "TestCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 50.</p>",
         "TestCustomDataIdentifierResponse$MatchCount" : "<p>The number of instances of sample text that matched the detection criteria specified in the custom data identifier.</p>",
         "UpdateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>"
       }
@@ -1370,7 +1370,6 @@
         "SimpleScopeTerm$Values" : "<p>An array that lists one or more values to use in the condition.</p>",
         "TestCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters.</p>",
         "TestCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters.</p>",
-        "UnarchiveFindingsRequest$FindingIds" : "<p>An array of strings that lists the unique identifiers for the findings to reactivate.</p>",
         "UsageStatisticsFilter$Values" : "<p>An array that lists the AWS account ID for each account to include in the results.</p>"
       }
     },
@@ -1561,9 +1560,9 @@
         "S3BucketDefinitionForJob$AccountId" : "<p>The unique identifier for the AWS account that owns one or more of the buckets. If specified, the job analyzes objects in all the buckets that are owned by the account and meet other conditions specified for the job.</p>",
         "S3BucketOwner$DisplayName" : "<p>The display name of the user who owns the bucket.</p>",
         "S3BucketOwner$Id" : "<p>The AWS account ID for the user who owns the bucket.</p>",
-        "S3Destination$BucketName" : "<p>The Amazon Resource Name (ARN) of the bucket. This must be the ARN of an existing bucket.</p>",
+        "S3Destination$BucketName" : "<p>The name of the bucket.</p>",
         "S3Destination$KeyPrefix" : "<p>The path prefix to use in the path to the location in the bucket. This prefix specifies where to store classification results in the bucket.</p>",
-        "S3Destination$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the AWS Key Management Service master key to use for encryption of the exported results. This must be the ARN of an existing KMS key. In addition, the key must be in the same AWS Region as the bucket.</p>",
+        "S3Destination$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the AWS Key Management Service customer master key (CMK) to use for encryption of the results. This must be the ARN of an existing CMK that's in the same AWS Region as the bucket.</p>",
         "S3Object$BucketArn" : "<p>The Amazon Resource Name (ARN) of the bucket that contains the object.</p>",
         "S3Object$ETag" : "<p>The entity tag (ETag) that identifies the affected version of the object. If the object was overwritten or changed after Amazon Macie produced the finding, this value might be different from the current ETag for the object.</p>",
         "S3Object$Extension" : "<p>The file extension of the object. If the object doesn't have a file extension, this value is \"\".</p>",

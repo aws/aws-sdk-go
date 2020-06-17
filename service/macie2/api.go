@@ -2470,7 +2470,7 @@ func (c *Macie2) GetClassificationExportConfigurationRequest(input *GetClassific
 
 // GetClassificationExportConfiguration API operation for Amazon Macie 2.
 //
-// Retrieves the configuration settings for exporting data classification results.
+// Retrieves the configuration settings for storing data classification results.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4427,7 +4427,7 @@ func (c *Macie2) PutClassificationExportConfigurationRequest(input *PutClassific
 
 // PutClassificationExportConfiguration API operation for Amazon Macie 2.
 //
-// Creates or updates the configuration settings for exporting data classification
+// Creates or updates the configuration settings for storing data classification
 // results.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5605,8 +5605,8 @@ type AssumedRole struct {
 
 	PrincipalId *string `locationName:"principalId" type:"string"`
 
-	// Provides information about a session that was created for an entity who performed
-	// an action by using temporary security credentials.
+	// Provides information about a session that was created for an entity that
+	// performed an action by using temporary security credentials.
 	SessionContext *SessionContext `locationName:"sessionContext" type:"structure"`
 }
 
@@ -6443,14 +6443,14 @@ func (s *ClassificationDetails) SetResult(v *ClassificationResult) *Classificati
 	return s
 }
 
-// Specifies where to export data classification results to, and the encryption
+// Specifies where to store data classification results, and the encryption
 // settings to use when storing results in that location. Currently, you can
-// export classification results only to an S3 bucket.
+// store classification results only in an S3 bucket.
 type ClassificationExportConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies an S3 bucket to export data classification results to, and the
-	// encryption settings to use when storing results in that bucket.
+	// Specifies an S3 bucket to store data classification results in, and the encryption
+	// settings to use when storing results in that bucket.
 	S3Destination *S3Destination `locationName:"s3Destination" type:"structure"`
 }
 
@@ -6903,8 +6903,9 @@ func (s *CreateCustomDataIdentifierOutput) SetCustomDataIdentifierId(v string) *
 type CreateFindingsFilterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The action to perform on findings that meet the filter criteria. Valid values
-	// are:
+	// The action to perform on findings that meet the filter criteria. To suppress
+	// (automatically archive) findings that meet the criteria, set this value to
+	// ARCHIVE. Valid values are:
 	//
 	// Action is a required field
 	Action *string `locationName:"action" type:"string" required:"true" enum:"FindingsFilterAction"`
@@ -8261,9 +8262,10 @@ type EnableMacieInput struct {
 
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The frequency with which Amazon Macie publishes findings for an account.
-	// This includes adding findings to AWS Security Hub and exporting finding events
-	// to Amazon CloudWatch. Valid values are:
+	// The frequency with which Amazon Macie publishes updates to policy findings
+	// for an account. This includes publishing updates to AWS Security Hub and
+	// Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values
+	// are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
 	// The status of an Amazon Macie account. Valid values are:
@@ -8385,8 +8387,8 @@ type FederatedUser struct {
 
 	PrincipalId *string `locationName:"principalId" type:"string"`
 
-	// Provides information about a session that was created for an entity who performed
-	// an action by using temporary security credentials.
+	// Provides information about a session that was created for an entity that
+	// performed an action by using temporary security credentials.
 	SessionContext *SessionContext `locationName:"sessionContext" type:"structure"`
 }
 
@@ -8601,6 +8603,8 @@ func (s *Finding) SetUpdatedAt(v time.Time) *Finding {
 type FindingAction struct {
 	_ struct{} `type:"structure"`
 
+	// The type of action that occurred for the resource and produced the policy
+	// finding.
 	ActionType *string `locationName:"actionType" type:"string" enum:"FindingActionType"`
 
 	// For the affected resource:
@@ -8640,7 +8644,7 @@ func (s *FindingAction) SetApiCallDetails(v *ApiCallDetails) *FindingAction {
 	return s
 }
 
-// Provides information about an entity who performed an action that produced
+// Provides information about an entity that performed an action that produced
 // a policy finding for a resource.
 type FindingActor struct {
 	_ struct{} `type:"structure"`
@@ -8921,14 +8925,14 @@ func (s GetClassificationExportConfigurationInput) GoString() string {
 	return s.String()
 }
 
-// Provides information about the current configuration settings for exporting
+// Provides information about the current configuration settings for storing
 // data classification results.
 type GetClassificationExportConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies where to export data classification results to, and the encryption
+	// Specifies where to store data classification results, and the encryption
 	// settings to use when storing results in that location. Currently, you can
-	// export classification results only to an S3 bucket.
+	// store classification results only in an S3 bucket.
 	Configuration *ClassificationExportConfiguration `locationName:"configuration" type:"structure"`
 }
 
@@ -9227,8 +9231,9 @@ func (s *GetFindingsFilterInput) SetId(v string) *GetFindingsFilterInput {
 type GetFindingsFilterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The action to perform on findings that meet the filter criteria. Valid values
-	// are:
+	// The action to perform on findings that meet the filter criteria. To suppress
+	// (automatically archive) findings that meet the criteria, set this value to
+	// ARCHIVE. Valid values are:
 	Action *string `locationName:"action" type:"string" enum:"FindingsFilterAction"`
 
 	Arn *string `locationName:"arn" type:"string"`
@@ -9438,9 +9443,10 @@ type GetMacieSessionOutput struct {
 
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The frequency with which Amazon Macie publishes findings for an account.
-	// This includes adding findings to AWS Security Hub and exporting finding events
-	// to Amazon CloudWatch. Valid values are:
+	// The frequency with which Amazon Macie publishes updates to policy findings
+	// for an account. This includes publishing updates to AWS Security Hub and
+	// Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values
+	// are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
 	ServiceRole *string `locationName:"serviceRole" type:"string"`
@@ -11226,7 +11232,7 @@ type PolicyDetails struct {
 	// a policy finding.
 	Action *FindingAction `locationName:"action" type:"structure"`
 
-	// Provides information about an entity who performed an action that produced
+	// Provides information about an entity that performed an action that produced
 	// a policy finding for a resource.
 	Actor *FindingActor `locationName:"actor" type:"structure"`
 }
@@ -11253,15 +11259,15 @@ func (s *PolicyDetails) SetActor(v *FindingActor) *PolicyDetails {
 	return s
 }
 
-// Specifies where to export data classification results to, and the encryption
+// Specifies where to store data classification results, and the encryption
 // settings to use when storing results in that location. Currently, you can
-// export classification results only to an S3 bucket.
+// store classification results only in an S3 bucket.
 type PutClassificationExportConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies where to export data classification results to, and the encryption
+	// Specifies where to store data classification results, and the encryption
 	// settings to use when storing results in that location. Currently, you can
-	// export classification results only to an S3 bucket.
+	// store classification results only in an S3 bucket.
 	//
 	// Configuration is a required field
 	Configuration *ClassificationExportConfiguration `locationName:"configuration" type:"structure" required:"true"`
@@ -11301,14 +11307,14 @@ func (s *PutClassificationExportConfigurationInput) SetConfiguration(v *Classifi
 	return s
 }
 
-// Provides information about updated settings for exporting data classification
+// Provides information about updated settings for storing data classification
 // results.
 type PutClassificationExportConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies where to export data classification results to, and the encryption
+	// Specifies where to store data classification results, and the encryption
 	// settings to use when storing results in that location. Currently, you can
-	// export classification results only to an S3 bucket.
+	// store classification results only in an S3 bucket.
 	Configuration *ClassificationExportConfiguration `locationName:"configuration" type:"structure"`
 }
 
@@ -11599,8 +11605,8 @@ func (s *S3BucketOwner) SetId(v string) *S3BucketOwner {
 	return s
 }
 
-// Specifies an S3 bucket to export data classification results to, and the
-// encryption settings to use when storing results in that bucket.
+// Specifies an S3 bucket to store data classification results in, and the encryption
+// settings to use when storing results in that bucket.
 type S3Destination struct {
 	_ struct{} `type:"structure"`
 
@@ -11841,6 +11847,7 @@ func (s *Scoping) SetIncludes(v *JobScopingBlock) *Scoping {
 type SensitiveDataItem struct {
 	_ struct{} `type:"structure"`
 
+	// The category of sensitive data that was detected and produced the finding.
 	Category *string `locationName:"category" type:"string" enum:"SensitiveDataItemCategory"`
 
 	// Reserved for future use.
@@ -12007,8 +12014,8 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Provides information about a session that was created for an entity who performed
-// an action by using temporary security credentials.
+// Provides information about a session that was created for an entity that
+// performed an action by using temporary security credentials.
 type SessionContext struct {
 	_ struct{} `type:"structure"`
 
@@ -12754,8 +12761,9 @@ func (s UpdateClassificationJobOutput) GoString() string {
 type UpdateFindingsFilterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The action to perform on findings that meet the filter criteria. Valid values
-	// are:
+	// The action to perform on findings that meet the filter criteria. To suppress
+	// (automatically archive) findings that meet the criteria, set this value to
+	// ARCHIVE. Valid values are:
 	Action *string `locationName:"action" type:"string" enum:"FindingsFilterAction"`
 
 	Description *string `locationName:"description" type:"string"`
@@ -12870,9 +12878,10 @@ func (s *UpdateFindingsFilterOutput) SetId(v string) *UpdateFindingsFilterOutput
 type UpdateMacieSessionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The frequency with which Amazon Macie publishes findings for an account.
-	// This includes adding findings to AWS Security Hub and exporting finding events
-	// to Amazon CloudWatch. Valid values are:
+	// The frequency with which Amazon Macie publishes updates to policy findings
+	// for an account. This includes publishing updates to AWS Security Hub and
+	// Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values
+	// are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
 	// The status of an Amazon Macie account. Valid values are:
@@ -13506,6 +13515,8 @@ const (
 	ErrorCodeInternalError = "InternalError"
 )
 
+// The type of action that occurred for the resource and produced the policy
+// finding.
 const (
 	// FindingActionTypeAwsApiCall is a FindingActionType enum value
 	FindingActionTypeAwsApiCall = "AWS_API_CALL"
@@ -13520,9 +13531,10 @@ const (
 	FindingCategoryPolicy = "POLICY"
 )
 
-// The frequency with which Amazon Macie publishes findings for an account.
-// This includes adding findings to AWS Security Hub and exporting finding events
-// to Amazon CloudWatch. Valid values are:
+// The frequency with which Amazon Macie publishes updates to policy findings
+// for an account. This includes publishing updates to AWS Security Hub and
+// Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values
+// are:
 const (
 	// FindingPublishingFrequencyFifteenMinutes is a FindingPublishingFrequency enum value
 	FindingPublishingFrequencyFifteenMinutes = "FIFTEEN_MINUTES"
@@ -13576,8 +13588,9 @@ const (
 	FindingTypePolicyIamuserS3blockPublicAccessDisabled = "Policy:IAMUser/S3BlockPublicAccessDisabled"
 )
 
-// The action to perform on findings that meet the filter criteria. Valid values
-// are:
+// The action to perform on findings that meet the filter criteria. To suppress
+// (automatically archive) findings that meet the criteria, set this value to
+// ARCHIVE. Valid values are:
 const (
 	// FindingsFilterActionArchive is a FindingsFilterAction enum value
 	FindingsFilterActionArchive = "ARCHIVE"
@@ -13745,6 +13758,7 @@ const (
 	ScopeFilterKeyTag = "TAG"
 )
 
+// The category of sensitive data that was detected and produced the finding.
 const (
 	// SensitiveDataItemCategoryFinancialInformation is a SensitiveDataItemCategory enum value
 	SensitiveDataItemCategoryFinancialInformation = "FINANCIAL_INFORMATION"

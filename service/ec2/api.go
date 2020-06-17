@@ -20884,12 +20884,12 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *requ
 // (if you own the snapshots), self for snapshots for which you own or have
 // explicit permissions, or all for public snapshots.
 //
-// If you are describing a long list of snapshots, you can paginate the output
-// to make the list more manageable. The MaxResults parameter sets the maximum
-// number of results returned in a single page. If the list of results exceeds
-// your MaxResults value, then that number of results is returned along with
-// a NextToken value that can be passed to a subsequent DescribeSnapshots request
-// to retrieve the remaining results.
+// If you are describing a long list of snapshots, we recommend that you paginate
+// the output to make the list more manageable. The MaxResults parameter sets
+// the maximum number of results returned in a single page. If the list of results
+// exceeds your MaxResults value, then that number of results is returned along
+// with a NextToken value that can be passed to a subsequent DescribeSnapshots
+// request to retrieve the remaining results.
 //
 // To get the state of fast snapshot restores for a snapshot, use DescribeFastSnapshotRestores.
 //
@@ -23524,12 +23524,12 @@ func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *request.
 //
 // Describes the specified EBS volumes or all of your EBS volumes.
 //
-// If you are describing a long list of volumes, you can paginate the output
-// to make the list more manageable. The MaxResults parameter sets the maximum
-// number of results returned in a single page. If the list of results exceeds
-// your MaxResults value, then that number of results is returned along with
-// a NextToken value that can be passed to a subsequent DescribeVolumes request
-// to retrieve the remaining results.
+// If you are describing a long list of volumes, we recommend that you paginate
+// the output to make the list more manageable. The MaxResults parameter sets
+// the maximum number of results returned in a single page. If the list of results
+// exceeds your MaxResults value, then that number of results is returned along
+// with a NextToken value that can be passed to a subsequent DescribeVolumes
+// request to retrieve the remaining results.
 //
 // For more information about EBS volumes, see Amazon EBS Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html)
 // in the Amazon Elastic Compute Cloud User Guide.
@@ -23664,19 +23664,17 @@ func (c *EC2) DescribeVolumesModificationsRequest(input *DescribeVolumesModifica
 
 // DescribeVolumesModifications API operation for Amazon Elastic Compute Cloud.
 //
-// Reports the current modification status of EBS volumes.
+// Describes the most recent volume modification request for the specified EBS
+// volumes.
 //
-// Current-generation EBS volumes support modification of attributes including
-// type, size, and (for io1 volumes) IOPS provisioning while either attached
-// to or detached from an instance. Following an action from the API or the
-// console to modify a volume, the status of the modification may be modifying,
-// optimizing, completed, or failed. If a volume has never been modified, then
-// certain elements of the returned VolumeModification objects are null.
+// If a volume has never been modified, some information in the output will
+// be null. If a volume has been modified more than once, the output includes
+// only the most recent modification request.
 //
 // You can also use CloudWatch Events to check the status of a modification
 // to an EBS volume. For information about CloudWatch Events, see the Amazon
 // CloudWatch Events User Guide (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/).
-// For more information, see Monitoring Volume Modifications" (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-expand-volume.html#monitoring_mods)
+// For more information, see Monitoring Volume Modifications (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-expand-volume.html#monitoring_mods)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -57518,10 +57516,11 @@ type DescribeFastSnapshotRestoreSuccessItem struct {
 	// The time at which fast snapshot restores entered the optimizing state.
 	OptimizingTime *time.Time `locationName:"optimizingTime" type:"timestamp"`
 
-	// The alias of the snapshot owner.
+	// The AWS owner alias that enabled fast snapshot restores on the snapshot.
+	// This is intended for future use.
 	OwnerAlias *string `locationName:"ownerAlias" type:"string"`
 
-	// The ID of the AWS account that owns the snapshot.
+	// The ID of the AWS account that enabled fast snapshot restores on the snapshot.
 	OwnerId *string `locationName:"ownerId" type:"string"`
 
 	// The ID of the snapshot.
@@ -57629,7 +57628,8 @@ type DescribeFastSnapshotRestoresInput struct {
 	//
 	//    * availability-zone: The Availability Zone of the snapshot.
 	//
-	//    * owner-id: The ID of the AWS account that owns the snapshot.
+	//    * owner-id: The ID of the AWS account that enabled fast snapshot restore
+	//    on the snapshot.
 	//
 	//    * snapshot-id: The ID of the snapshot.
 	//
@@ -60372,6 +60372,9 @@ type DescribeInstanceTypesInput struct {
 	//
 	//    * ebs-info.encryption-support - Indicates whether EBS encryption is supported.
 	//    (supported | unsupported)
+	//
+	//    * ebs-info.nvme-support - Indicates whether non-volatile memory express
+	//    (NVMe) is supported or required. (required | supported | unsupported)
 	//
 	//    * free-tier-eligible - Indicates whether the instance type is eligible
 	//    to use in the free tier. (true | false)
@@ -64990,12 +64993,12 @@ type DescribeSnapshotsInput struct {
 	//
 	//    * encrypted - Indicates whether the snapshot is encrypted (true | false)
 	//
-	//    * owner-alias - Value from an Amazon-maintained list (amazon | self |
-	//    all | aws-marketplace | microsoft) of snapshot owners. Not to be confused
-	//    with the user-configured AWS account alias, which is set from the IAM
-	//    console.
+	//    * owner-alias - The owner alias, from an Amazon-maintained list (amazon).
+	//    This is not the user-configured AWS account alias set using the IAM console.
+	//    We recommend that you use the related parameter instead of this filter.
 	//
-	//    * owner-id - The ID of the AWS account that owns the snapshot.
+	//    * owner-id - The AWS account ID of the owner. We recommend that you use
+	//    the related parameter instead of this filter.
 	//
 	//    * progress - The progress of the snapshot, as a percentage (for example,
 	//    80%).
@@ -65039,7 +65042,8 @@ type DescribeSnapshotsInput struct {
 	// to return.
 	NextToken *string `type:"string"`
 
-	// Describes the snapshots owned by these owners.
+	// Scopes the results to snapshots with the specified owners. You can specify
+	// a combination of AWS account IDs, self, and amazon.
 	OwnerIds []*string `locationName:"Owner" locationNameList:"Owner" type:"list"`
 
 	// The IDs of the AWS accounts that can create volumes from the snapshot.
@@ -67778,9 +67782,34 @@ type DescribeVolumesModificationsInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `type:"boolean"`
 
-	// The filters. Supported filters: volume-id | modification-state | target-size
-	// | target-iops | target-volume-type | original-size | original-iops | original-volume-type
-	// | start-time | originalMultiAttachEnabled | targetMultiAttachEnabled.
+	// The filters.
+	//
+	//    * modification-state - The current modification state (modifying | optimizing
+	//    | completed | failed).
+	//
+	//    * original-iops - The original IOPS rate of the volume.
+	//
+	//    * original-size - The original size of the volume, in GiB.
+	//
+	//    * original-volume-type - The original volume type of the volume (standard
+	//    | io1 | gp2 | sc1 | st1).
+	//
+	//    * originalMultiAttachEnabled - Indicates whether Multi-Attach support
+	//    was enabled (true | false).
+	//
+	//    * start-time - The modification start time.
+	//
+	//    * target-iops - The target IOPS rate of the volume.
+	//
+	//    * target-size - The target size of the volume, in GiB.
+	//
+	//    * target-volume-type - The target volume type of the volume (standard
+	//    | io1 | gp2 | sc1 | st1).
+	//
+	//    * targetMultiAttachEnabled - Indicates whether Multi-Attach support is
+	//    to be enabled (true | false).
+	//
+	//    * volume-id - The ID of the volume.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results (up to a limit of 500) to be returned in a
@@ -67790,7 +67819,7 @@ type DescribeVolumesModificationsInput struct {
 	// The nextToken value returned by a previous paginated request.
 	NextToken *string `type:"string"`
 
-	// The IDs of the volumes for which in-progress modifications will be described.
+	// The IDs of the volumes.
 	VolumeIds []*string `locationName:"VolumeId" locationNameList:"VolumeId" type:"list"`
 }
 
@@ -70101,10 +70130,11 @@ type DisableFastSnapshotRestoreSuccessItem struct {
 	// The time at which fast snapshot restores entered the optimizing state.
 	OptimizingTime *time.Time `locationName:"optimizingTime" type:"timestamp"`
 
-	// The alias of the snapshot owner.
+	// The AWS owner alias that enabled fast snapshot restores on the snapshot.
+	// This is intended for future use.
 	OwnerAlias *string `locationName:"ownerAlias" type:"string"`
 
-	// The ID of the AWS account that owns the snapshot.
+	// The ID of the AWS account that enabled fast snapshot restores on the snapshot.
 	OwnerId *string `locationName:"ownerId" type:"string"`
 
 	// The ID of the snapshot.
@@ -71653,6 +71683,9 @@ type EbsInfo struct {
 
 	// Indicates whether Amazon EBS encryption is supported.
 	EncryptionSupport *string `locationName:"encryptionSupport" type:"string" enum:"EbsEncryptionSupport"`
+
+	// Indicates whether non-volatile memory express (NVMe) is supported.
+	NvmeSupport *string `locationName:"nvmeSupport" type:"string" enum:"EbsNvmeSupport"`
 }
 
 // String returns the string representation
@@ -71680,6 +71713,12 @@ func (s *EbsInfo) SetEbsOptimizedSupport(v string) *EbsInfo {
 // SetEncryptionSupport sets the EncryptionSupport field's value.
 func (s *EbsInfo) SetEncryptionSupport(v string) *EbsInfo {
 	s.EncryptionSupport = &v
+	return s
+}
+
+// SetNvmeSupport sets the NvmeSupport field's value.
+func (s *EbsInfo) SetNvmeSupport(v string) *EbsInfo {
+	s.NvmeSupport = &v
 	return s
 }
 
@@ -72115,7 +72154,7 @@ type ElasticInferenceAccelerator struct {
 	Count *int64 `min:"1" type:"integer"`
 
 	// The type of elastic inference accelerator. The possible values are eia1.medium,
-	// eia1.large, and eia1.xlarge.
+	// eia1.large, eia1.xlarge, eia2.medium, eia2.large, and eia2.xlarge.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true"`
@@ -72383,10 +72422,11 @@ type EnableFastSnapshotRestoreSuccessItem struct {
 	// The time at which fast snapshot restores entered the optimizing state.
 	OptimizingTime *time.Time `locationName:"optimizingTime" type:"timestamp"`
 
-	// The alias of the snapshot owner.
+	// The AWS owner alias that enabled fast snapshot restores on the snapshot.
+	// This is intended for future use.
 	OwnerAlias *string `locationName:"ownerAlias" type:"string"`
 
-	// The ID of the AWS account that owns the snapshot.
+	// The ID of the AWS account that enabled fast snapshot restores on the snapshot.
 	OwnerId *string `locationName:"ownerId" type:"string"`
 
 	// The ID of the snapshot.
@@ -101192,9 +101232,10 @@ type Snapshot struct {
 	// key for the parent volume.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
-	// Value from an Amazon-maintained list (amazon | self | all | aws-marketplace
-	// | microsoft) of snapshot owners. Not to be confused with the user-configured
-	// AWS account alias, which is set from the IAM console.
+	// The AWS owner alias, as maintained by Amazon. The possible values are: amazon
+	// | self | all | aws-marketplace | microsoft. This AWS owner alias is not to
+	// be confused with the user-configured AWS account alias, which is set from
+	// the IAM console.
 	OwnerAlias *string `locationName:"ownerAlias" type:"string"`
 
 	// The AWS account ID of the EBS snapshot owner.
@@ -108031,7 +108072,7 @@ type VolumeModification struct {
 	// The original IOPS rate of the volume.
 	OriginalIops *int64 `locationName:"originalIops" type:"integer"`
 
-	// The original size of the volume.
+	// The original size of the volume, in GiB.
 	OriginalSize *int64 `locationName:"originalSize" type:"integer"`
 
 	// The original EBS volume type of the volume.
@@ -110437,6 +110478,17 @@ const (
 
 	// EbsEncryptionSupportSupported is a EbsEncryptionSupport enum value
 	EbsEncryptionSupportSupported = "supported"
+)
+
+const (
+	// EbsNvmeSupportUnsupported is a EbsNvmeSupport enum value
+	EbsNvmeSupportUnsupported = "unsupported"
+
+	// EbsNvmeSupportSupported is a EbsNvmeSupport enum value
+	EbsNvmeSupportSupported = "supported"
+
+	// EbsNvmeSupportRequired is a EbsNvmeSupport enum value
+	EbsNvmeSupportRequired = "required"
 )
 
 const (

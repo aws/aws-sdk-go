@@ -1741,6 +1741,23 @@
         "senderFault": true
       }
     },
+    "ListenerTimeout": {
+      "type": "structure",
+      "members": {
+        "grpc": {
+          "shape": "GrpcTimeout"
+        },
+        "http": {
+          "shape": "HttpTimeout"
+        },
+        "http2": {
+          "shape": "HttpTimeout"
+        },
+        "tcp": {
+          "shape": "TcpTimeout"
+        }
+      }
+    },
     "MeshList": {
       "type": "list",
       "member": {
@@ -2209,6 +2226,17 @@
       "members": {
         "virtualRouterName": {
           "shape": "ResourceName"
+        }
+      }
+    },
+    "HttpTimeout": {
+      "type": "structure",
+      "members": {
+        "idle": {
+          "shape": "Duration"
+        },
+        "perRequest": {
+          "shape": "Duration"
         }
       }
     },
@@ -2718,6 +2746,17 @@
         }
       }
     },
+    "GrpcTimeout": {
+      "type": "structure",
+      "members": {
+        "idle": {
+          "shape": "Duration"
+        },
+        "perRequest": {
+          "shape": "Duration"
+        }
+      }
+    },
     "VirtualNodeStatus": {
       "type": "structure",
       "required": [
@@ -3040,6 +3079,9 @@
       "members": {
         "action": {
           "shape": "TcpRouteAction"
+        },
+        "timeout": {
+          "shape": "TcpTimeout"
         }
       }
     },
@@ -3390,6 +3432,9 @@
         "portMapping": {
           "shape": "PortMapping"
         },
+        "timeout": {
+          "shape": "ListenerTimeout"
+        },
         "tls": {
           "shape": "ListenerTls"
         }
@@ -3410,6 +3455,9 @@
         },
         "retryPolicy": {
           "shape": "GrpcRetryPolicy"
+        },
+        "timeout": {
+          "shape": "GrpcTimeout"
         }
       }
     },
@@ -3646,6 +3694,14 @@
     "String": {
       "type": "string"
     },
+    "TcpTimeout": {
+      "type": "structure",
+      "members": {
+        "idle": {
+          "shape": "Duration"
+        }
+      }
+    },
     "HttpScheme": {
       "type": "string",
       "enum": [
@@ -3706,6 +3762,9 @@
         },
         "retryPolicy": {
           "shape": "HttpRetryPolicy"
+        },
+        "timeout": {
+          "shape": "HttpTimeout"
         }
       }
     },
