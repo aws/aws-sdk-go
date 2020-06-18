@@ -12,6 +12,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
@@ -212,9 +213,9 @@ func (c *copier) copy() (*CopyOutput, error) {
 
 	if c.src.size <= c.cfg.MultipartCopyThreshold || c.partCount < 2 {
 		return c.simpleCopy()
+	} else {
+		return c.multipartCopy()
 	}
-
-	return c.multipartCopy()
 }
 
 // init sets up the copier.
@@ -340,18 +341,33 @@ func (c *copier) discoverSourceRegion() (string, error) {
 
 // getHeadObject returns information about the source object.
 func (c *copier) getHeadObject() (*s3.HeadObjectOutput, error) {
-	opts := c.cfg.RequestOptions
-	if c.src.region != "" {
-		opts = append([]request.Option{}, opts...)
-		opts = append(opts, requestWithRegion(c.src.region))
+
+	iface := c.cfg.S3
+	if region := c.src.region; region != "" {
+		switch x := iface.(type) {
+		case *s3.S3:
+			newConfig := x.Config
+			newConfig.Region = aws.String(c.src.region)
+
+			sess, err := session.NewSession(&newConfig)
+			if err != nil {
+				return nil, fmt.Errorf("unable to open session for region %s: %+v", region, err)
+			}
+
+			iface = s3.New(sess)
+
+		default:
+			// cannot override source region
+			// hope for the best
+		}
 	}
 
-	return c.cfg.S3.HeadObjectWithContext(
+	return iface.HeadObjectWithContext(
 		c.ctx, &s3.HeadObjectInput{
 			Bucket:    &c.src.bucket,
 			Key:       &c.src.key,
 			VersionId: c.src.version,
-		}, opts...)
+		}, c.cfg.RequestOptions...)
 }
 
 // copyMetadata either copies metadata from the source, or otherwise
