@@ -124,32 +124,3 @@ func (mock *copierHeadObjectMock) HeadObjectWithContext(
 
 	return nil, nil
 }
-
-func TestCopierHeadObjectRegionWhenNoRegion(t *testing.T) {
-	m := copierHeadObjectMock{}
-	c := copier{}
-	c.in = &CopyInput{}
-	c.cfg.S3 = &m
-	c.src.region = ""
-	_, _ = c.getHeadObject()
-
-	if m.r.Config.Region != nil {
-		t.Errorf("expected request region to remain nil")
-	}
-}
-
-func TestCopierHeadObjectRegionWhenSourceRegionGiven(t *testing.T) {
-	m := copierHeadObjectMock{}
-	c := copier{}
-	c.in = &CopyInput{}
-	c.cfg.S3 = &m
-	c.src.region = "x-central-1"
-	_, _ = c.getHeadObject()
-
-	switch actual := m.r.Config.Region; {
-	case actual == nil:
-		t.Errorf("expected request region; got nil")
-	case *actual != "x-central-1":
-		t.Errorf("expected request region to equal x-central-1; got %v", *actual)
-	}
-}
