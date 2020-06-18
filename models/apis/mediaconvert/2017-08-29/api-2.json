@@ -6721,6 +6721,27 @@
         }
       }
     },
+    "NexGuardFileMarkerSettings": {
+      "type": "structure",
+      "members": {
+        "License": {
+          "shape": "__stringMin1Max100000",
+          "locationName": "license"
+        },
+        "Payload": {
+          "shape": "__integerMin0Max4194303",
+          "locationName": "payload"
+        },
+        "Preset": {
+          "shape": "__stringMin1Max256",
+          "locationName": "preset"
+        },
+        "Strength": {
+          "shape": "WatermarkingStrength",
+          "locationName": "strength"
+        }
+      }
+    },
     "NielsenConfiguration": {
       "type": "structure",
       "members": {
@@ -7003,6 +7024,15 @@
         "HlsSettings": {
           "shape": "HlsSettings",
           "locationName": "hlsSettings"
+        }
+      }
+    },
+    "PartnerWatermarking": {
+      "type": "structure",
+      "members": {
+        "NexguardFileMarkerSettings": {
+          "shape": "NexGuardFileMarkerSettings",
+          "locationName": "nexguardFileMarkerSettings"
         }
       }
     },
@@ -8055,6 +8085,10 @@
           "shape": "NoiseReducer",
           "locationName": "noiseReducer"
         },
+        "PartnerWatermarking": {
+          "shape": "PartnerWatermarking",
+          "locationName": "partnerWatermarking"
+        },
         "TimecodeBurnin": {
           "shape": "TimecodeBurnin",
           "locationName": "timecodeBurnin"
@@ -8300,6 +8334,16 @@
         }
       }
     },
+    "WatermarkingStrength": {
+      "type": "string",
+      "enum": [
+        "LIGHTEST",
+        "LIGHTER",
+        "DEFAULT",
+        "STRONGER",
+        "STRONGEST"
+      ]
+    },
     "WavFormat": {
       "type": "string",
       "enum": [
@@ -8447,6 +8491,11 @@
       "type": "integer",
       "min": 0,
       "max": 4
+    },
+    "__integerMin0Max4194303": {
+      "type": "integer",
+      "min": 0,
+      "max": 4194303
     },
     "__integerMin0Max47185920": {
       "type": "integer",
@@ -9052,6 +9101,11 @@
       "min": 16,
       "max": 24,
       "pattern": "^[A-Za-z0-9+\\/]{22}==$|^[A-Za-z0-9+\\/]{16}$"
+    },
+    "__stringMin1Max100000": {
+      "type": "string",
+      "min": 1,
+      "max": 100000
     },
     "__stringMin1Max256": {
       "type": "string",

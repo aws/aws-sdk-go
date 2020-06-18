@@ -7037,11 +7037,11 @@ func (s *EmailContent) SetTemplate(v *Template) *EmailContent {
 }
 
 // In the Amazon SES API v2, events include message sends, deliveries, opens,
-// clicks, bounces, and complaints. Event destinations are places that you can
-// send information about these events to. For example, you can send event data
-// to Amazon SNS to receive notifications when you receive bounces or complaints,
-// or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for
-// long-term storage.
+// clicks, bounces, complaints and delivery delays. Event destinations are places
+// that you can send information about these events to. For example, you can
+// send event data to Amazon SNS to receive notifications when you receive bounces
+// or complaints, or you can use Amazon Kinesis Data Firehose to stream data
+// to Amazon S3 for long-term storage.
 type EventDestination struct {
 	_ struct{} `type:"structure"`
 
@@ -12258,6 +12258,9 @@ const (
 
 	// EventTypeRenderingFailure is a EventType enum value
 	EventTypeRenderingFailure = "RENDERING_FAILURE"
+
+	// EventTypeDeliveryDelay is a EventType enum value
+	EventTypeDeliveryDelay = "DELIVERY_DELAY"
 )
 
 // The email identity type. The identity type can be one of the following:

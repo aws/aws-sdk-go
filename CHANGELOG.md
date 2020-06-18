@@ -1,3 +1,21 @@
+Release v1.32.5 (2020-06-18)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for NexGuard FileMarker SDK, which allows NexGuard partners to watermark proprietary content in mezzanine and OTT streaming contexts.
+* `service/meteringmarketplace`: Updates service documentation
+  * Documentation updates for meteringmarketplace
+* `service/rds`: Updates service API and documentation
+  * Adding support for global write forwarding on secondary clusters in an Aurora global database.
+* `service/route53`: Updates service API and documentation
+  * Added a new ListHostedZonesByVPC API for customers to list all the private hosted zones that a specified VPC is associated with.
+* `service/sesv2`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * Added offset support for specifying the number of days to wait after the date and time specified by a CRON expression before running the maintenance window.
+* `service/support`: Updates service documentation
+  * Documentation updates for support
+
 Release v1.32.4 (2020-06-17)
 ===
 
