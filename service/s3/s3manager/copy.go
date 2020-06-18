@@ -346,6 +346,10 @@ func (c *copier) getHeadObject() (*s3.HeadObjectOutput, error) {
 	if region := c.src.region; region != "" {
 		switch x := iface.(type) {
 		case *s3.S3:
+			if aws.StringValue(x.Config.Region) == c.src.region {
+				break
+			}
+
 			newConfig := x.Config
 			newConfig.Region = aws.String(c.src.region)
 
