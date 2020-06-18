@@ -284,9 +284,9 @@
       }
     },
     "Av1FramerateConversionAlgorithm": {
-      "base": "When set to INTERPOLATE, produces smoother motion during frame rate conversion.",
+      "base": "Optional. Specify how the transcoder performs framerate conversion. The default behavior is to use duplicate drop conversion.",
       "refs": {
-        "Av1Settings$FramerateConversionAlgorithm": "When set to INTERPOLATE, produces smoother motion during frame rate conversion."
+        "Av1Settings$FramerateConversionAlgorithm": "Optional. Specify how the transcoder performs framerate conversion. The default behavior is to use duplicate drop conversion."
       }
     },
     "Av1QvbrSettings": {
@@ -1253,9 +1253,9 @@
       }
     },
     "H264ParControl": {
-      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To use a different PAR, choose (SPECIFIED). In the console, SPECIFIED corresponds to any value other than Follow source. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
+      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
       "refs": {
-        "H264Settings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To use a different PAR, choose (SPECIFIED). In the console, SPECIFIED corresponds to any value other than Follow source. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings."
+        "H264Settings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings."
       }
     },
     "H264QualityTuningLevel": {
@@ -1373,9 +1373,9 @@
       }
     },
     "H265FramerateConversionAlgorithm": {
-      "base": "When set to INTERPOLATE, produces smoother motion during frame rate conversion.",
+      "base": "Optional. Specify how the transcoder performs framerate conversion. The default behavior is to use duplicate drop conversion.",
       "refs": {
-        "H265Settings$FramerateConversionAlgorithm": "When set to INTERPOLATE, produces smoother motion during frame rate conversion."
+        "H265Settings$FramerateConversionAlgorithm": "Optional. Specify how the transcoder performs framerate conversion. The default behavior is to use duplicate drop conversion."
       }
     },
     "H265GopBReference": {
@@ -1397,9 +1397,9 @@
       }
     },
     "H265ParControl": {
-      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To use a different PAR, choose (SPECIFIED). In the console, SPECIFIED corresponds to any value other than Follow source. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
+      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
       "refs": {
-        "H265Settings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To use a different PAR, choose (SPECIFIED). In the console, SPECIFIED corresponds to any value other than Follow source. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings."
+        "H265Settings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings."
       }
     },
     "H265QualityTuningLevel": {
@@ -2159,9 +2159,9 @@
       }
     },
     "Mpeg2ParControl": {
-      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To use a different PAR, choose (SPECIFIED). In the console, SPECIFIED corresponds to any value other than Follow source. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
+      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
       "refs": {
-        "Mpeg2Settings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To use a different PAR, choose (SPECIFIED). In the console, SPECIFIED corresponds to any value other than Follow source. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings."
+        "Mpeg2Settings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings."
       }
     },
     "Mpeg2QualityTuningLevel": {
@@ -2258,6 +2258,12 @@
       "base": "MXF settings",
       "refs": {
         "ContainerSettings$MxfSettings": "MXF settings"
+      }
+    },
+    "NexGuardFileMarkerSettings": {
+      "base": "For forensic video watermarking, MediaConvert supports Nagra NexGuard File Marker watermarking. MediaConvert supports both PreRelease Content (NGPR/G2) and OTT Streaming workflows.",
+      "refs": {
+        "PartnerWatermarking$NexguardFileMarkerSettings": "For forensic video watermarking, MediaConvert supports Nagra NexGuard File Marker watermarking. MediaConvert supports both PreRelease Content (NGPR/G2) and OTT Streaming workflows."
       }
     },
     "NielsenConfiguration": {
@@ -2377,6 +2383,12 @@
         "Output$OutputSettings": "Specific settings for this type of output."
       }
     },
+    "PartnerWatermarking": {
+      "base": "If you work with a third party video watermarking partner, use the group of settings that correspond with your watermarking partner to include watermarks in your output.",
+      "refs": {
+        "VideoPreprocessor$PartnerWatermarking": "If you work with a third party video watermarking partner, use the group of settings that correspond with your watermarking partner to include watermarks in your output."
+      }
+    },
     "Preset": {
       "base": "A preset is a collection of preconfigured media conversion settings that you want MediaConvert to apply to the output during the conversion process.",
       "refs": {
@@ -2432,9 +2444,9 @@
       }
     },
     "ProresParControl": {
-      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To use a different PAR, choose (SPECIFIED). In the console, SPECIFIED corresponds to any value other than Follow source. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
+      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
       "refs": {
-        "ProresSettings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To use a different PAR, choose (SPECIFIED). In the console, SPECIFIED corresponds to any value other than Follow source. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings."
+        "ProresSettings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings."
       }
     },
     "ProresSettings": {
@@ -2832,9 +2844,9 @@
       }
     },
     "Vp8ParControl": {
-      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output.  To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
+      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
       "refs": {
-        "Vp8Settings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output.  To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings."
+        "Vp8Settings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings."
       }
     },
     "Vp8QualityTuningLevel": {
@@ -2868,7 +2880,7 @@
       }
     },
     "Vp9ParControl": {
-      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output.  To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
+      "base": "Optional. Specify how the service determines the pixel aspect ratio (PAR) for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE), uses the PAR from your input video for your output. To specify a different PAR in the console, choose any value other than Follow source. To specify a different PAR by editing the JSON job specification, choose SPECIFIED. When you choose SPECIFIED for this setting, you must also specify values for the parNumerator and parDenominator settings.",
       "refs": {
         "Vp9Settings$ParControl": "Optional. Specify how the service determines the pixel aspect ratio for this output. The default behavior is to use the same pixel aspect ratio as your input video."
       }
@@ -2889,6 +2901,12 @@
       "base": "Required when you set (Codec) under (VideoDescription)>(CodecSettings) to the value VP9.",
       "refs": {
         "VideoCodecSettings$Vp9Settings": "Required when you set (Codec) under (VideoDescription)>(CodecSettings) to the value VP9."
+      }
+    },
+    "WatermarkingStrength": {
+      "base": "Optional. Ignore this setting unless Nagra support directs you to specify a value. When you don't specify a value here, the Nagra NexGuard library uses its default value.",
+      "refs": {
+        "NexGuardFileMarkerSettings$Strength": "Optional. Ignore this setting unless Nagra support directs you to specify a value. When you don't specify a value here, the Nagra NexGuard library uses its default value."
       }
     },
     "WavFormat": {
@@ -3130,6 +3148,12 @@
         "NoiseReducerTemporalFilterSettings$AggressiveMode": "Use Aggressive mode for content that has complex motion. Higher values produce stronger temporal filtering. This filters highly complex scenes more aggressively and creates better VQ for low bitrate outputs."
       }
     },
+    "__integerMin0Max4194303": {
+      "base": null,
+      "refs": {
+        "NexGuardFileMarkerSettings$Payload": "Specify the payload ID that you want associated with this output. Valid values vary depending on your Nagra NexGuard forensic watermarking workflow. Required when you include Nagra NexGuard File Marker watermarking (NexGuardWatermarkingSettings) in your job. For PreRelease Content (NGPR/G2), specify an integer from 1 through 4,194,303. You must generate a unique ID for each asset you watermark, and keep a record of which ID you have assigned to each asset. Neither Nagra nor MediaConvert keep track of the relationship between output files and your IDs. For OTT Streaming, create two adaptive bitrate (ABR) stacks for each asset. Do this by setting up two output groups. For one output group, set the value of Payload ID (payload) to 0 in every output. For the other output group, set Payload ID (payload) to 1 in every output."
+      }
+    },
     "__integerMin0Max47185920": {
       "base": null,
       "refs": {
@@ -3354,23 +3378,23 @@
         "FrameCaptureSettings$FramerateNumerator": "Frame capture will encode the first frame of the output stream, then one frame every framerateDenominator/framerateNumerator seconds. For example, settings of framerateNumerator = 1 and framerateDenominator = 3 (a rate of 1/3 frame per second) will capture the first frame, then 1 frame every 3s. Files will be named as filename.NNNNNNN.jpg where N is the 0-based frame sequence number zero padded to 7 decimal places.",
         "H264Settings$FramerateDenominator": "When you use the API for transcode jobs that use frame rate conversion, specify the frame rate as a fraction. For example,  24000 / 1001 = 23.976 fps. Use FramerateDenominator to specify the denominator of this fraction. In this example, use 1001 for the value of FramerateDenominator. When you use the console for transcode jobs that use frame rate conversion, provide the value as a decimal number for Framerate. In this example, specify 23.976.",
         "H264Settings$FramerateNumerator": "Frame rate numerator - frame rate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
-        "H264Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
-        "H264Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
+        "H264Settings$ParDenominator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parDenominator is 33.",
+        "H264Settings$ParNumerator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parNumerator is 40.",
         "H265Settings$FramerateDenominator": "Frame rate denominator.",
         "H265Settings$FramerateNumerator": "Frame rate numerator - frame rate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
-        "H265Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
-        "H265Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
+        "H265Settings$ParDenominator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parDenominator is 33.",
+        "H265Settings$ParNumerator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parNumerator is 40.",
         "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create (in seconds). Note that segments will end on the next keyframe after this number of seconds, so actual segment length may be longer.",
         "HlsGroupSettings$SegmentsPerSubdirectory": "Number of segments to write to a subdirectory before starting a new one. directoryStructure must be SINGLE_DIRECTORY for this setting to have an effect.",
         "Input$ProgramNumber": "Use Program (programNumber) to select a specific program from within a multi-program transport stream. Note that Quad 4K is not currently supported. Default is the first program within the transport stream. If the program you specify doesn't exist, the transcoding service will use this default.",
         "InputTemplate$ProgramNumber": "Use Program (programNumber) to select a specific program from within a multi-program transport stream. Note that Quad 4K is not currently supported. Default is the first program within the transport stream. If the program you specify doesn't exist, the transcoding service will use this default.",
-        "Mpeg2Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
-        "Mpeg2Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
+        "Mpeg2Settings$ParDenominator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parDenominator is 33.",
+        "Mpeg2Settings$ParNumerator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parNumerator is 40.",
         "MsSmoothGroupSettings$FragmentLength": "Use Fragment length (FragmentLength) to specify the mp4 fragment sizes in seconds. Fragment length must be compatible with GOP size and frame rate.",
         "ProresSettings$FramerateDenominator": "Frame rate denominator.",
         "ProresSettings$FramerateNumerator": "When you use the API for transcode jobs that use frame rate conversion, specify the frame rate as a fraction. For example,  24000 / 1001 = 23.976 fps. Use FramerateNumerator to specify the numerator of this fraction. In this example, use 24000 for the value of FramerateNumerator.",
-        "ProresSettings$ParDenominator": "Pixel Aspect Ratio denominator.",
-        "ProresSettings$ParNumerator": "Pixel Aspect Ratio numerator.",
+        "ProresSettings$ParDenominator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parDenominator is 33.",
+        "ProresSettings$ParNumerator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parNumerator is 40.",
         "TrackSourceSettings$TrackNumber": "Use this setting to select a single captions track from a source. Track numbers correspond to the order in the captions source file. For IMF sources, track numbering is based on the order that the captions appear in the CPL. For example, use 1 to select the captions asset that is listed first in the CPL. To include more than one captions track in your job outputs, create multiple input captions selectors. Specify one track per selector.",
         "VideoSelector$Pid": "Use PID (Pid) to select specific video data from an input file. Specify this value as an integer; the system automatically converts it to the hexidecimal value. For example, 257 selects PID 0x101. A PID, or packet identifier, is an identifier for a set of data in an MPEG-2 transport stream container.",
         "Vp8Settings$FramerateDenominator": "When you use the API for transcode jobs that use frame rate conversion, specify the frame rate as a fraction. For example,  24000 / 1001 = 23.976 fps. Use FramerateDenominator to specify the denominator of this fraction. In this example, use 1001 for the value of FramerateDenominator. When you use the console for transcode jobs that use frame rate conversion, provide the value as a decimal number for Framerate. In this example, specify 23.976.",
@@ -3880,8 +3904,8 @@
     "__mapOfCaptionSelector": {
       "base": null,
       "refs": {
-        "Input$CaptionSelectors": "Use Captions selectors (CaptionSelectors) to specify the captions data from the input that you will use in your outputs. You can use multiple captions selectors per input.",
-        "InputTemplate$CaptionSelectors": "Use Captions selectors (CaptionSelectors) to specify the captions data from the input that you will use in your outputs. You can use multiple captions selectors per input."
+        "Input$CaptionSelectors": "Use captions selectors to specify the captions data from your input that you use in your outputs. You can use up to 20 captions selectors per input.",
+        "InputTemplate$CaptionSelectors": "Use captions selectors to specify the captions data from your input that you use in your outputs. You can use up to 20 captions selectors per input."
       }
     },
     "__mapOf__string": {
@@ -4049,12 +4073,19 @@
         "InputDecryptionSettings$InitializationVector": "Specify the initialization vector that you used when you encrypted your content before uploading it to Amazon S3. You can use a 16-byte initialization vector with any encryption mode. Or, you can use a 12-byte initialization vector with GCM or CTR. MediaConvert accepts only initialization vectors that are base64-encoded."
       }
     },
+    "__stringMin1Max100000": {
+      "base": null,
+      "refs": {
+        "NexGuardFileMarkerSettings$License": "Use the base64 license string that Nagra provides you. Enter it directly in your JSON job specification or in the console. Required when you include Nagra NexGuard File Marker watermarking (NexGuardWatermarkingSettings) in your job."
+      }
+    },
     "__stringMin1Max256": {
       "base": null,
       "refs": {
         "DvbNitSettings$NetworkName": "The network name text placed in the network_name_descriptor inside the Network Information Table. Maximum length is 256 characters.",
         "DvbSdtSettings$ServiceName": "The service name placed in the service_descriptor in the Service Description Table. Maximum length is 256 characters.",
-        "DvbSdtSettings$ServiceProviderName": "The service provider name placed in the service_descriptor in the Service Description Table. Maximum length is 256 characters."
+        "DvbSdtSettings$ServiceProviderName": "The service provider name placed in the service_descriptor in the Service Description Table. Maximum length is 256 characters.",
+        "NexGuardFileMarkerSettings$Preset": "Enter one of the watermarking preset strings that Nagra provides you. Required when you include Nagra NexGuard File Marker watermarking (NexGuardWatermarkingSettings) in your job."
       }
     },
     "__stringMin24Max512PatternAZaZ0902": {

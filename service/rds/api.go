@@ -620,7 +620,7 @@ func (c *RDS) BacktrackDBClusterRequest(input *BacktrackDBClusterInput) (req *re
 // (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Backtrack.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// This action only applies to Aurora MySQL DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2720,7 +2720,6 @@ func (c *RDS) CreateGlobalClusterRequest(input *CreateGlobalClusterInput) (req *
 
 // CreateGlobalCluster API operation for Amazon Relational Database Service.
 //
-//
 // Creates an Aurora global database spread across multiple regions. The global
 // database contains a single primary cluster with read-write capability, and
 // a read-only secondary cluster that receives data from the primary cluster
@@ -4724,7 +4723,7 @@ func (c *RDS) DescribeDBClusterBacktracksRequest(input *DescribeDBClusterBacktra
 // For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// This action only applies to Aurora MySQL DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10025,16 +10024,19 @@ func (c *RDS) ModifyDBClusterSnapshotAttributeRequest(input *ModifyDBClusterSnap
 // as the AttributeName and use the ValuesToAdd parameter to add a list of IDs
 // of the AWS accounts that are authorized to restore the manual DB cluster
 // snapshot. Use the value all to make the manual DB cluster snapshot public,
-// which means that it can be copied or restored by all AWS accounts. Do not
-// add the all value for any manual DB cluster snapshots that contain private
-// information that you don't want available to all AWS accounts. If a manual
-// DB cluster snapshot is encrypted, it can be shared, but only by specifying
-// a list of authorized AWS account IDs for the ValuesToAdd parameter. You can't
-// use all as a value for that parameter in this case.
+// which means that it can be copied or restored by all AWS accounts.
+//
+// Don't add the all value for any manual DB cluster snapshots that contain
+// private information that you don't want available to all AWS accounts.
+//
+// If a manual DB cluster snapshot is encrypted, it can be shared, but only
+// by specifying a list of authorized AWS account IDs for the ValuesToAdd parameter.
+// You can't use all as a value for that parameter in this case.
 //
 // To view which AWS accounts have access to copy or restore a manual DB cluster
-// snapshot, or whether a manual DB cluster snapshot public or private, use
-// the DescribeDBClusterSnapshotAttributes API action.
+// snapshot, or whether a manual DB cluster snapshot is public or private, use
+// the DescribeDBClusterSnapshotAttributes API action. The accounts are returned
+// as values for the restore attribute.
 //
 // This action only applies to Aurora DB clusters.
 //
@@ -10630,16 +10632,18 @@ func (c *RDS) ModifyDBSnapshotAttributeRequest(input *ModifyDBSnapshotAttributeI
 // the AttributeName and use the ValuesToAdd parameter to add a list of IDs
 // of the AWS accounts that are authorized to restore the manual DB snapshot.
 // Uses the value all to make the manual DB snapshot public, which means it
-// can be copied or restored by all AWS accounts. Do not add the all value for
-// any manual DB snapshots that contain private information that you don't want
-// available to all AWS accounts. If the manual DB snapshot is encrypted, it
-// can be shared, but only by specifying a list of authorized AWS account IDs
-// for the ValuesToAdd parameter. You can't use all as a value for that parameter
-// in this case.
+// can be copied or restored by all AWS accounts.
+//
+// Don't add the all value for any manual DB snapshots that contain private
+// information that you don't want available to all AWS accounts.
+//
+// If the manual DB snapshot is encrypted, it can be shared, but only by specifying
+// a list of authorized AWS account IDs for the ValuesToAdd parameter. You can't
+// use all as a value for that parameter in this case.
 //
 // To view which AWS accounts have access to copy or restore a manual DB snapshot,
 // or whether a manual DB snapshot public or private, use the DescribeDBSnapshotAttributes
-// API action.
+// API action. The accounts are returned as values for the restore attribute.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16490,6 +16494,8 @@ type CreateDBClusterInput struct {
 	// The target backtrack window, in seconds. To disable backtracking, set this
 	// value to 0.
 	//
+	// Currently, Backtrack is only supported for Aurora MySQL DB clusters.
+	//
 	// Default: 0
 	//
 	// Constraints:
@@ -16578,6 +16584,13 @@ type CreateDBClusterInput struct {
 	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon Aurora User Guide.
 	EnableCloudwatchLogsExports []*string `type:"list"`
+
+	// A value that indicates whether to enable write operations to be forwarded
+	// from this cluster to the primary cluster in an Aurora global database. The
+	// resulting changes are replicated back to this cluster. This parameter only
+	// applies to DB clusters that are secondary clusters in an Aurora global database.
+	// By default, Aurora disallows write operations for secondary clusters.
+	EnableGlobalWriteForwarding *bool `type:"boolean"`
 
 	// A value that indicates whether to enable the HTTP endpoint for an Aurora
 	// Serverless DB cluster. By default, the HTTP endpoint is disabled.
@@ -16908,6 +16921,12 @@ func (s *CreateDBClusterInput) SetDomainIAMRoleName(v string) *CreateDBClusterIn
 // SetEnableCloudwatchLogsExports sets the EnableCloudwatchLogsExports field's value.
 func (s *CreateDBClusterInput) SetEnableCloudwatchLogsExports(v []*string) *CreateDBClusterInput {
 	s.EnableCloudwatchLogsExports = v
+	return s
+}
+
+// SetEnableGlobalWriteForwarding sets the EnableGlobalWriteForwarding field's value.
+func (s *CreateDBClusterInput) SetEnableGlobalWriteForwarding(v bool) *CreateDBClusterInput {
+	s.EnableGlobalWriteForwarding = &v
 	return s
 }
 
@@ -17964,10 +17983,16 @@ type CreateDBInstanceInput struct {
 	// Valid Values: 0 - 15
 	PromotionTier *int64 `type:"integer"`
 
-	// A value that indicates whether the DB instance is publicly accessible. When
-	// the DB instance is publicly accessible, it is an Internet-facing instance
-	// with a publicly resolvable DNS name, which resolves to a public IP address.
-	// When the DB instance isn't publicly accessible, it is an internal instance
+	// A value that indicates whether the DB instance is publicly accessible.
+	//
+	// When the DB instance is publicly accessible, its DNS endpoint resolves to
+	// the private IP address from within the DB instance's VPC, and to the public
+	// IP address from outside of the DB instance's VPC. Access to the DB instance
+	// is ultimately controlled by the security group it uses, and that public access
+	// is not permitted if the security group assigned to the DB instance doesn't
+	// permit it.
+	//
+	// When the DB instance isn't publicly accessible, it is an internal DB instance
 	// with a DNS name that resolves to a private IP address.
 	//
 	// Default: The default behavior varies depending on whether DBSubnetGroupName
@@ -18618,12 +18643,19 @@ type CreateDBInstanceReadReplicaInput struct {
 	// class of the DB instance.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
-	// A value that indicates whether the DB instance is publicly accessible. When
-	// the DB instance is publicly accessible, it is an Internet-facing instance
-	// with a publicly resolvable DNS name, which resolves to a public IP address.
-	// When the DB instance isn't publicly accessible, it is an internal instance
-	// with a DNS name that resolves to a private IP address. For more information,
-	// see CreateDBInstance.
+	// A value that indicates whether the DB instance is publicly accessible.
+	//
+	// When the DB instance is publicly accessible, its DNS endpoint resolves to
+	// the private IP address from within the DB instance's VPC, and to the public
+	// IP address from outside of the DB instance's VPC. Access to the DB instance
+	// is ultimately controlled by the security group it uses, and that public access
+	// is not permitted if the security group assigned to the DB instance doesn't
+	// permit it.
+	//
+	// When the DB instance isn't publicly accessible, it is an internal DB instance
+	// with a DNS name that resolves to a private IP address.
+	//
+	// For more information, see CreateDBInstance.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// The identifier of the DB instance that will act as the source for the read
@@ -20134,6 +20166,17 @@ type DBCluster struct {
 	// Indicates the database engine version.
 	EngineVersion *string `type:"string"`
 
+	// Specifies whether you have requested to enable write forwarding for a secondary
+	// cluster in an Aurora global database. Because write forwarding takes time
+	// to enable, check the value of GlobalWriteForwardingStatus to confirm that
+	// the request has completed before using the write forwarding feature for this
+	// cluster.
+	GlobalWriteForwardingRequested *bool `type:"boolean"`
+
+	// Specifies whether a secondary cluster in an Aurora global database has write
+	// forwarding enabled, not enabled, or is in the process of enabling it.
+	GlobalWriteForwardingStatus *string `type:"string" enum:"WriteForwardingStatus"`
+
 	// Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.
 	HostedZoneId *string `type:"string"`
 
@@ -20429,6 +20472,18 @@ func (s *DBCluster) SetEngineMode(v string) *DBCluster {
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *DBCluster) SetEngineVersion(v string) *DBCluster {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetGlobalWriteForwardingRequested sets the GlobalWriteForwardingRequested field's value.
+func (s *DBCluster) SetGlobalWriteForwardingRequested(v bool) *DBCluster {
+	s.GlobalWriteForwardingRequested = &v
+	return s
+}
+
+// SetGlobalWriteForwardingStatus sets the GlobalWriteForwardingStatus field's value.
+func (s *DBCluster) SetGlobalWriteForwardingStatus(v string) *DBCluster {
+	s.GlobalWriteForwardingStatus = &v
 	return s
 }
 
@@ -21567,10 +21622,19 @@ type DBInstance struct {
 	// in the Amazon Aurora User Guide.
 	PromotionTier *int64 `type:"integer"`
 
-	// Specifies the accessibility options for the DB instance. A value of true
-	// specifies an Internet-facing instance with a publicly resolvable DNS name,
-	// which resolves to a public IP address. A value of false specifies an internal
-	// instance with a DNS name that resolves to a private IP address.
+	// Specifies the accessibility options for the DB instance.
+	//
+	// When the DB instance is publicly accessible, its DNS endpoint resolves to
+	// the private IP address from within the DB instance's VPC, and to the public
+	// IP address from outside of the DB instance's VPC. Access to the DB instance
+	// is ultimately controlled by the security group it uses, and that public access
+	// is not permitted if the security group assigned to the DB instance doesn't
+	// permit it.
+	//
+	// When the DB instance isn't publicly accessible, it is an internal DB instance
+	// with a DNS name that resolves to a private IP address.
+	//
+	// For more information, see CreateDBInstance.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// Contains one or more identifiers of Aurora DB clusters to which the RDS DB
@@ -22982,8 +23046,8 @@ type DBSnapshot struct {
 	// accounts is enabled, and otherwise false.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
-	// Specifies the time when the snapshot was taken, in Universal Coordinated
-	// Time (UTC).
+	// Specifies the time in Coordinated Universal Time (UTC) when the DB instance,
+	// from which the snapshot was taken, was created.
 	InstanceCreateTime *time.Time `type:"timestamp"`
 
 	// Specifies the Provisioned IOPS (I/O operations per second) value of the DB
@@ -23013,8 +23077,7 @@ type DBSnapshot struct {
 	// class of the DB instance when the DB snapshot was created.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
-	// Provides the time when the snapshot was taken, in Universal Coordinated Time
-	// (UTC).
+	// Specifies when the snapshot was taken in Coodinated Universal Time (UTC).
 	SnapshotCreateTime *time.Time `type:"timestamp"`
 
 	// Provides the type of the DB snapshot.
@@ -30858,6 +30921,10 @@ type GlobalClusterMember struct {
 	// The Amazon Resource Name (ARN) for each Aurora cluster.
 	DBClusterArn *string `type:"string"`
 
+	// Specifies whether a secondary cluster in an Aurora global database has write
+	// forwarding enabled, not enabled, or is in the process of enabling it.
+	GlobalWriteForwardingStatus *string `type:"string" enum:"WriteForwardingStatus"`
+
 	// Specifies whether the Aurora cluster is the primary cluster (that is, has
 	// read-write capability) for the Aurora global database with which it is associated.
 	IsWriter *bool `type:"boolean"`
@@ -30880,6 +30947,12 @@ func (s GlobalClusterMember) GoString() string {
 // SetDBClusterArn sets the DBClusterArn field's value.
 func (s *GlobalClusterMember) SetDBClusterArn(v string) *GlobalClusterMember {
 	s.DBClusterArn = &v
+	return s
+}
+
+// SetGlobalWriteForwardingStatus sets the GlobalWriteForwardingStatus field's value.
+func (s *GlobalClusterMember) SetGlobalWriteForwardingStatus(v string) *GlobalClusterMember {
+	s.GlobalWriteForwardingStatus = &v
 	return s
 }
 
@@ -31809,6 +31882,8 @@ type ModifyDBClusterInput struct {
 	// The target backtrack window, in seconds. To disable backtracking, set this
 	// value to 0.
 	//
+	// Currently, Backtrack is only supported for Aurora MySQL DB clusters.
+	//
 	// Default: 0
 	//
 	// Constraints:
@@ -31877,6 +31952,13 @@ type ModifyDBClusterInput struct {
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
 	DomainIAMRoleName *string `type:"string"`
+
+	// A value that indicates whether to enable write operations to be forwarded
+	// from this cluster to the primary cluster in an Aurora global database. The
+	// resulting changes are replicated back to this cluster. This parameter only
+	// applies to DB clusters that are secondary clusters in an Aurora global database.
+	// By default, Aurora disallows write operations for secondary clusters.
+	EnableGlobalWriteForwarding *bool `type:"boolean"`
 
 	// A value that indicates whether to enable the HTTP endpoint for an Aurora
 	// Serverless DB cluster. By default, the HTTP endpoint is disabled.
@@ -32093,6 +32175,12 @@ func (s *ModifyDBClusterInput) SetDomainIAMRoleName(v string) *ModifyDBClusterIn
 	return s
 }
 
+// SetEnableGlobalWriteForwarding sets the EnableGlobalWriteForwarding field's value.
+func (s *ModifyDBClusterInput) SetEnableGlobalWriteForwarding(v bool) *ModifyDBClusterInput {
+	s.EnableGlobalWriteForwarding = &v
+	return s
+}
+
 // SetEnableHttpEndpoint sets the EnableHttpEndpoint field's value.
 func (s *ModifyDBClusterInput) SetEnableHttpEndpoint(v bool) *ModifyDBClusterInput {
 	s.EnableHttpEndpoint = &v
@@ -32244,6 +32332,9 @@ type ModifyDBClusterSnapshotAttributeInput struct {
 	//
 	// To manage authorization for other AWS accounts to copy or restore a manual
 	// DB cluster snapshot, set this value to restore.
+	//
+	// To view the list of attributes available to modify, use the DescribeDBClusterSnapshotAttributes
+	// API action.
 	//
 	// AttributeName is a required field
 	AttributeName *string `type:"string" required:"true"`
@@ -32831,10 +32922,16 @@ type ModifyDBInstanceInput struct {
 	// Valid Values: 0 - 15
 	PromotionTier *int64 `type:"integer"`
 
-	// A value that indicates whether the DB instance is publicly accessible. When
-	// the DB instance is publicly accessible, it is an Internet-facing instance
-	// with a publicly resolvable DNS name, which resolves to a public IP address.
-	// When the DB instance isn't publicly accessible, it is an internal instance
+	// A value that indicates whether the DB instance is publicly accessible.
+	//
+	// When the DB instance is publicly accessible, its DNS endpoint resolves to
+	// the private IP address from within the DB instance's VPC, and to the public
+	// IP address from outside of the DB instance's VPC. Access to the DB instance
+	// is ultimately controlled by the security group it uses, and that public access
+	// is not permitted if the security group assigned to the DB instance doesn't
+	// permit it.
+	//
+	// When the DB instance isn't publicly accessible, it is an internal DB instance
 	// with a DNS name that resolves to a private IP address.
 	//
 	// PubliclyAccessible only applies to DB instances in a VPC. The DB instance
@@ -33498,6 +33595,9 @@ type ModifyDBSnapshotAttributeInput struct {
 	//
 	// To manage authorization for other AWS accounts to copy or restore a manual
 	// DB snapshot, set this value to restore.
+	//
+	// To view the list of attributes available to modify, use the DescribeDBSnapshotAttributes
+	// API action.
 	//
 	// AttributeName is a required field
 	AttributeName *string `type:"string" required:"true"`
@@ -36860,6 +36960,8 @@ type RestoreDBClusterFromS3Input struct {
 	// The target backtrack window, in seconds. To disable backtracking, set this
 	// value to 0.
 	//
+	// Currently, Backtrack is only supported for Aurora MySQL DB clusters.
+	//
 	// Default: 0
 	//
 	// Constraints:
@@ -37379,6 +37481,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// The target backtrack window, in seconds. To disable backtracking, set this
 	// value to 0.
 	//
+	// Currently, Backtrack is only supported for Aurora MySQL DB clusters.
+	//
 	// Default: 0
 	//
 	// Constraints:
@@ -37746,6 +37850,8 @@ type RestoreDBClusterToPointInTimeInput struct {
 
 	// The target backtrack window, in seconds. To disable backtracking, set this
 	// value to 0.
+	//
+	// Currently, Backtrack is only supported for Aurora MySQL DB clusters.
 	//
 	// Default: 0
 	//
@@ -38291,12 +38397,19 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// class of the DB instance.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
-	// A value that indicates whether the DB instance is publicly accessible. When
-	// the DB instance is publicly accessible, it is an Internet-facing instance
-	// with a publicly resolvable DNS name, which resolves to a public IP address.
-	// When the DB instance isn't publicly accessible, it is an internal instance
-	// with a DNS name that resolves to a private IP address. For more information,
-	// see CreateDBInstance.
+	// A value that indicates whether the DB instance is publicly accessible.
+	//
+	// When the DB instance is publicly accessible, its DNS endpoint resolves to
+	// the private IP address from within the DB instance's VPC, and to the public
+	// IP address from outside of the DB instance's VPC. Access to the DB instance
+	// is ultimately controlled by the security group it uses, and that public access
+	// is not permitted if the security group assigned to the DB instance doesn't
+	// permit it.
+	//
+	// When the DB instance isn't publicly accessible, it is an internal DB instance
+	// with a DNS name that resolves to a private IP address.
+	//
+	// For more information, see CreateDBInstance.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// Specifies the storage type to be associated with the DB instance.
@@ -38803,12 +38916,19 @@ type RestoreDBInstanceFromS3Input struct {
 	// class of the DB instance.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
-	// A value that indicates whether the DB instance is publicly accessible. When
-	// the DB instance is publicly accessible, it is an Internet-facing instance
-	// with a publicly resolvable DNS name, which resolves to a public IP address.
-	// When the DB instance isn't publicly accessible, it is an internal instance
-	// with a DNS name that resolves to a private IP address. For more information,
-	// see CreateDBInstance.
+	// A value that indicates whether the DB instance is publicly accessible.
+	//
+	// When the DB instance is publicly accessible, its DNS endpoint resolves to
+	// the private IP address from within the DB instance's VPC, and to the public
+	// IP address from outside of the DB instance's VPC. Access to the DB instance
+	// is ultimately controlled by the security group it uses, and that public access
+	// is not permitted if the security group assigned to the DB instance doesn't
+	// permit it.
+	//
+	// When the DB instance isn't publicly accessible, it is an internal DB instance
+	// with a DNS name that resolves to a private IP address.
+	//
+	// For more information, see CreateDBInstance.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// The name of your Amazon S3 bucket that contains your database backup file.
@@ -39360,12 +39480,19 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// class of the DB instance.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
-	// A value that indicates whether the DB instance is publicly accessible. When
-	// the DB instance is publicly accessible, it is an Internet-facing instance
-	// with a publicly resolvable DNS name, which resolves to a public IP address.
-	// When the DB instance isn't publicly accessible, it is an internal instance
-	// with a DNS name that resolves to a private IP address. For more information,
-	// see CreateDBInstance.
+	// A value that indicates whether the DB instance is publicly accessible.
+	//
+	// When the DB instance is publicly accessible, its DNS endpoint resolves to
+	// the private IP address from within the DB instance's VPC, and to the public
+	// IP address from outside of the DB instance's VPC. Access to the DB instance
+	// is ultimately controlled by the security group it uses, and that public access
+	// is not permitted if the security group assigned to the DB instance doesn't
+	// permit it.
+	//
+	// When the DB instance isn't publicly accessible, it is an internal DB instance
+	// with a DNS name that resolves to a private IP address.
+	//
+	// For more information, see CreateDBInstance.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// The date and time to restore from.
@@ -41535,4 +41662,21 @@ const (
 
 	// TargetTypeTrackedCluster is a TargetType enum value
 	TargetTypeTrackedCluster = "TRACKED_CLUSTER"
+)
+
+const (
+	// WriteForwardingStatusEnabled is a WriteForwardingStatus enum value
+	WriteForwardingStatusEnabled = "enabled"
+
+	// WriteForwardingStatusDisabled is a WriteForwardingStatus enum value
+	WriteForwardingStatusDisabled = "disabled"
+
+	// WriteForwardingStatusEnabling is a WriteForwardingStatus enum value
+	WriteForwardingStatusEnabling = "enabling"
+
+	// WriteForwardingStatusDisabling is a WriteForwardingStatus enum value
+	WriteForwardingStatusDisabling = "disabling"
+
+	// WriteForwardingStatusUnknown is a WriteForwardingStatus enum value
+	WriteForwardingStatusUnknown = "unknown"
 )

@@ -3081,6 +3081,10 @@
         "EndDate":{"shape":"MaintenanceWindowStringDateTime"},
         "Schedule":{"shape":"MaintenanceWindowSchedule"},
         "ScheduleTimezone":{"shape":"MaintenanceWindowTimezone"},
+        "ScheduleOffset":{
+          "shape":"MaintenanceWindowOffset",
+          "box":true
+        },
         "Duration":{"shape":"MaintenanceWindowDurationHours"},
         "Cutoff":{"shape":"MaintenanceWindowCutoff"},
         "AllowUnassociatedTargets":{"shape":"MaintenanceWindowAllowUnassociatedTargets"},
@@ -4676,6 +4680,10 @@
         "EndDate":{"shape":"MaintenanceWindowStringDateTime"},
         "Schedule":{"shape":"MaintenanceWindowSchedule"},
         "ScheduleTimezone":{"shape":"MaintenanceWindowTimezone"},
+        "ScheduleOffset":{
+          "shape":"MaintenanceWindowOffset",
+          "box":true
+        },
         "NextExecutionTime":{"shape":"MaintenanceWindowStringDateTime"},
         "Duration":{"shape":"MaintenanceWindowDurationHours"},
         "Cutoff":{"shape":"MaintenanceWindowCutoff"},
@@ -6303,6 +6311,10 @@
         "Cutoff":{"shape":"MaintenanceWindowCutoff"},
         "Schedule":{"shape":"MaintenanceWindowSchedule"},
         "ScheduleTimezone":{"shape":"MaintenanceWindowTimezone"},
+        "ScheduleOffset":{
+          "shape":"MaintenanceWindowOffset",
+          "box":true
+        },
         "EndDate":{"shape":"MaintenanceWindowStringDateTime"},
         "StartDate":{"shape":"MaintenanceWindowStringDateTime"},
         "NextExecutionTime":{"shape":"MaintenanceWindowStringDateTime"}
@@ -6352,6 +6364,11 @@
       "max":128,
       "min":3,
       "pattern":"^[a-zA-Z0-9_\\-.]{3,128}$"
+    },
+    "MaintenanceWindowOffset":{
+      "type":"integer",
+      "max":6,
+      "min":1
     },
     "MaintenanceWindowResourceType":{
       "type":"string",
@@ -9017,6 +9034,10 @@
         "EndDate":{"shape":"MaintenanceWindowStringDateTime"},
         "Schedule":{"shape":"MaintenanceWindowSchedule"},
         "ScheduleTimezone":{"shape":"MaintenanceWindowTimezone"},
+        "ScheduleOffset":{
+          "shape":"MaintenanceWindowOffset",
+          "box":true
+        },
         "Duration":{
           "shape":"MaintenanceWindowDurationHours",
           "box":true
@@ -9049,6 +9070,10 @@
         "EndDate":{"shape":"MaintenanceWindowStringDateTime"},
         "Schedule":{"shape":"MaintenanceWindowSchedule"},
         "ScheduleTimezone":{"shape":"MaintenanceWindowTimezone"},
+        "ScheduleOffset":{
+          "shape":"MaintenanceWindowOffset",
+          "box":true
+        },
         "Duration":{"shape":"MaintenanceWindowDurationHours"},
         "Cutoff":{"shape":"MaintenanceWindowCutoff"},
         "AllowUnassociatedTargets":{"shape":"MaintenanceWindowAllowUnassociatedTargets"},

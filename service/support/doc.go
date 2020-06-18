@@ -11,12 +11,12 @@
 //    * You must have a Business or Enterprise support plan to use the AWS Support
 //    API.
 //
-//    * If you call the AWS Support API from an account that doesn't have a
+//    * If you call the AWS Support API from an account that does not have a
 //    Business or Enterprise support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
-// The AWS Support service also exposes a set of Trusted Advisor (http://aws.amazon.com/premiumsupport/trustedadvisor/)
+// The AWS Support service also exposes a set of AWS Trusted Advisor (http://aws.amazon.com/premiumsupport/trustedadvisor/)
 // features. You can retrieve a list of checks and their descriptions, get check
 // results, specify checks to refresh, and get the refresh status of checks.
 //
@@ -43,7 +43,7 @@
 //
 //    * Using the checkId for a specific check returned by DescribeTrustedAdvisorChecks,
 //    you can call DescribeTrustedAdvisorCheckResult to obtain the results for
-//    the check you specified.
+//    the check that you specified.
 //
 //    * DescribeTrustedAdvisorCheckSummaries returns summarized results for
 //    one or more Trusted Advisor checks.
