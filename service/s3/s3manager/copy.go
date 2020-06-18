@@ -213,9 +213,9 @@ func (c *copier) copy() (*CopyOutput, error) {
 
 	if c.src.size <= c.cfg.MultipartCopyThreshold || c.partCount < 2 {
 		return c.simpleCopy()
-	} else {
-		return c.multipartCopy()
 	}
+
+	return c.multipartCopy()
 }
 
 // init sets up the copier.
