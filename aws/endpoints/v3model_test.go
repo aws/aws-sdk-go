@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"reflect"
 	"regexp"
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -209,9 +210,12 @@ func TestEndpointResolve(t *testing.T) {
 		SSLCommonName:     "new sslCommonName",
 	}
 
-	resolved := e.resolve("service", "partitionID", "region", "dnsSuffix",
+	resolved, err := e.resolve("service", "partitionID", "region", "dnsSuffix",
 		defs, Options{},
 	)
+	if err != nil {
+		t.Errorf("expected no error, got %v", err)
+	}
 
 	if e, a := "https://service.region.dnsSuffix", resolved.URL; e != a {
 		t.Errorf("expect %v, got %v", e, a)
@@ -224,6 +228,14 @@ func TestEndpointResolve(t *testing.T) {
 	}
 	if e, a := "v4", resolved.SigningMethod; e != a {
 		t.Errorf("expect %v, got %v", e, a)
+	}
+
+	// Check Invalid Region Identifier Format
+	_, err = e.resolve("service", "partitionID", "notvalid.com", "dnsSuffix",
+		defs, Options{},
+	)
+	if err == nil {
+		t.Errorf("expected err, got nil")
 	}
 }
 
@@ -595,6 +607,42 @@ func TestEndpointFor_EmptyRegion(t *testing.T) {
 				t.Errorf("expect %v signing region, got %v", e, a)
 			}
 
+		})
+	}
+}
+
+func TestRegionValidator(t *testing.T) {
+	cases := []struct {
+		Region string
+		Valid  bool
+	}{
+		0: {
+			Region: "us-east-1",
+			Valid:  true,
+		},
+		1: {
+			Region: "invalid.com",
+			Valid:  false,
+		},
+		2: {
+			Region: "@invalid.com/%23",
+			Valid:  false,
+		},
+		3: {
+			Region: "local",
+			Valid:  true,
+		},
+		4: {
+			Region: "9-west-1",
+			Valid:  true,
+		},
+	}
+
+	for i, tt := range cases {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
+			if e, a := tt.Valid, validateInputRegion(tt.Region); e != a {
+				t.Errorf("expected %v, got %v", e, a)
+			}
 		})
 	}
 }
