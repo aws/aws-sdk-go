@@ -414,11 +414,21 @@ func (c *copier) simpleCopy() (*CopyOutput, error) {
 		return nil, err
 	}
 
-	out := CopyOutput{}
-	awsutil.Copy(&out, result)
-	out.ETag = result.CopyObjectResult.ETag
-
-	return &out, nil
+	return &CopyOutput{
+		Bucket:              in.Bucket,
+		CopySourceVersionId: result.CopySourceVersionId,
+		ETag:                result.CopyObjectResult.ETag,
+		Expiration:          result.Expiration,
+		Key:                 in.Key,
+		Location: aws.String(fmt.Sprintf(
+			"https://%s/%s",
+			aws.StringValue(in.Bucket),
+			strings.TrimPrefix(aws.StringValue(in.Key), "/"))),
+		RequestCharged:       result.RequestCharged,
+		SSEKMSKeyId:          result.SSEKMSKeyId,
+		ServerSideEncryption: result.ServerSideEncryption,
+		VersionId:            result.VersionId,
+	}, nil
 }
 
 func (c *copier) multipartCopy() (*CopyOutput, error) {
@@ -525,10 +535,18 @@ func (c *copier) multipartCopy() (*CopyOutput, error) {
 	}
 	shouldAbortUpload = false
 
-	out := CopyOutput{}
-	awsutil.Copy(&out, completed)
-	out.CopySourceVersionId = firstPart.CopySourceVersionId
-	return &out, nil
+	return &CopyOutput{
+		Bucket:               completed.Bucket,
+		CopySourceVersionId:  firstPart.CopySourceVersionId,
+		ETag:                 completed.ETag,
+		Expiration:           completed.Expiration,
+		Key:                  completed.Key,
+		Location:             completed.Location,
+		RequestCharged:       completed.RequestCharged,
+		SSEKMSKeyId:          completed.SSEKMSKeyId,
+		ServerSideEncryption: completed.ServerSideEncryption,
+		VersionId:            completed.VersionId,
+	}, nil
 }
 
 func (c *copier) createUpload() (*s3.CreateMultipartUploadOutput, error) {
