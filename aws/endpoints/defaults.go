@@ -7404,7 +7404,7 @@ var awsusgovPartition = partition{
 
 			Endpoints: endpoints{
 				"fips": endpoint{
-					Hostname: "elasticache-fips.us-gov-west-1.amazonaws.com",
+					Hostname: "elasticache.us-gov-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-gov-west-1",
 					},

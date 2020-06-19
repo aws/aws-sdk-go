@@ -770,6 +770,18 @@
         "UpdateChannel$EncoderSettings": "The encoder settings for this channel."
       }
     },
+    "FeatureActivations": {
+      "base": "Feature Activations",
+      "refs": {
+        "EncoderSettings$FeatureActivations": "Feature Activations"
+      }
+    },
+    "FeatureActivationsInputPrepareScheduleActions": {
+      "base": "Feature Activations Input Prepare Schedule Actions",
+      "refs": {
+        "FeatureActivations$InputPrepareScheduleActions": "Enables the Input Prepare feature. You can create Input Prepare actions in the schedule only if this feature is enabled.\nIf you disable the feature on an existing schedule, make sure that you first delete all input prepare actions from the schedule."
+      }
+    },
     "FecOutputIncludeFec": {
       "base": "Fec Output Include Fec",
       "refs": {
@@ -1374,6 +1386,7 @@
     "InputClippingSettings": {
       "base": "Settings to let you create a clip of the file input, in order to set up the input to ingest only a portion of the file.",
       "refs": {
+        "InputPrepareScheduleActionSettings$InputClippingSettings": "Settings to let you create a clip of the file input, in order to set up the input to ingest only a portion of the file.",
         "InputSwitchScheduleActionSettings$InputClippingSettings": "Settings to let you create a clip of the file input, in order to set up the input to ingest only a portion of the file."
       }
     },
@@ -1572,6 +1585,12 @@
       "base": "Input preference when deciding which input to make active when a previously failed input has recovered.\nIf \\\"EQUAL_INPUT_PREFERENCE\\\", then the active input will stay active as long as it is healthy.\nIf \\\"PRIMARY_INPUT_PREFERRED\\\", then always switch back to the primary input when it is healthy.\n",
       "refs": {
         "AutomaticInputFailoverSettings$InputPreference": "Input preference when deciding which input to make active when a previously failed input has recovered."
+      }
+    },
+    "InputPrepareScheduleActionSettings": {
+      "base": "Action to prepare an input for a future immediate input switch.",
+      "refs": {
+        "ScheduleActionSettings$InputPrepareSettings": "Action to prepare an input for a future immediate input switch"
       }
     },
     "InputResolution": {
@@ -3622,6 +3641,7 @@
         "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
         "Input$SecurityGroups": "A list of IDs for all the Input Security Groups attached to the input.",
         "InputDeviceNetworkSettings$DnsAddresses": "The DNS addresses of the input device.",
+        "InputPrepareScheduleActionSettings$UrlPath": "The value for the variable portion of the URL for the dynamic input, for this instance of the input. Each time you use the same dynamic input in an input switch action, you can provide a different value, in order to connect the input to a different content source.",
         "InputSecurityGroup$Inputs": "The list of inputs currently using this Input Security Group.",
         "InputSwitchScheduleActionSettings$UrlPath": "The value for the variable portion of the URL for the dynamic input, for this instance of the input. Each time you use the same dynamic input in an input switch action, you can provide a different value, in order to connect the input to a different content source.",
         "InputVpcRequest$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Input VPC network interfaces.\nRequires subnetIds. If none are specified then the VPC default security group will be used.\n",
@@ -3741,6 +3761,7 @@
         "InputLocation$PasswordParam": "key used to extract the password from EC2 Parameter store",
         "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\".",
         "InputLocation$Username": "Username if credentials are required to access a file or publishing point.  This can be either a plaintext username, or a reference to an AWS parameter store name from which the username can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
+        "InputPrepareScheduleActionSettings$InputAttachmentNameReference": "The name of the input attachment that should be prepared by this action. If no name is provided, the action will stop the most recent prepare (if any) when activated.",
         "InputSecurityGroup$Arn": "Unique ARN of Input Security Group",
         "InputSecurityGroup$Id": "The Id of the Input Security Group",
         "InputSource$PasswordParam": "The key used to extract the password from EC2 Parameter store.",

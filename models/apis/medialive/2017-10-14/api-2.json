@@ -4715,6 +4715,10 @@
           "shape": "__listOfCaptionDescription",
           "locationName": "captionDescriptions"
         },
+        "FeatureActivations": {
+          "shape": "FeatureActivations",
+          "locationName": "featureActivations"
+        },
         "GlobalConfiguration": {
           "shape": "GlobalConfiguration",
           "locationName": "globalConfiguration"
@@ -4741,6 +4745,22 @@
         "AudioDescriptions",
         "OutputGroups",
         "TimecodeConfig"
+      ]
+    },
+    "FeatureActivations": {
+      "type": "structure",
+      "members": {
+        "InputPrepareScheduleActions": {
+          "shape": "FeatureActivationsInputPrepareScheduleActions",
+          "locationName": "inputPrepareScheduleActions"
+        }
+      }
+    },
+    "FeatureActivationsInputPrepareScheduleActions": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
       ]
     },
     "FecOutputIncludeFec": {
@@ -6704,6 +6724,26 @@
       "enum": [
         "EQUAL_INPUT_PREFERENCE",
         "PRIMARY_INPUT_PREFERRED"
+      ]
+    },
+    "InputPrepareScheduleActionSettings": {
+      "type": "structure",
+      "members": {
+        "InputAttachmentNameReference": {
+          "shape": "__string",
+          "locationName": "inputAttachmentNameReference"
+        },
+        "InputClippingSettings": {
+          "shape": "InputClippingSettings",
+          "locationName": "inputClippingSettings"
+        },
+        "UrlPath": {
+          "shape": "__listOf__string",
+          "locationName": "urlPath"
+        }
+      },
+      "required": [
+        "InputAttachmentNameReference"
       ]
     },
     "InputResolution": {
@@ -9202,6 +9242,10 @@
         "HlsTimedMetadataSettings": {
           "shape": "HlsTimedMetadataScheduleActionSettings",
           "locationName": "hlsTimedMetadataSettings"
+        },
+        "InputPrepareSettings": {
+          "shape": "InputPrepareScheduleActionSettings",
+          "locationName": "inputPrepareSettings"
         },
         "InputSwitchSettings": {
           "shape": "InputSwitchScheduleActionSettings",
