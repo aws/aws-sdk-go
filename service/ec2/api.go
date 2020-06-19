@@ -112402,6 +112402,9 @@ const (
 	// ResourceTypeElasticIp is a ResourceType enum value
 	ResourceTypeElasticIp = "elastic-ip"
 
+	// ResourceTypeElasticGpu is a ResourceType enum value
+	ResourceTypeElasticGpu = "elastic-gpu"
+
 	// ResourceTypeFleet is a ResourceType enum value
 	ResourceTypeFleet = "fleet"
 
@@ -113140,6 +113143,9 @@ const (
 
 	// VolumeTypeIo1 is a VolumeType enum value
 	VolumeTypeIo1 = "io1"
+
+	// VolumeTypeIo2 is a VolumeType enum value
+	VolumeTypeIo2 = "io2"
 
 	// VolumeTypeGp2 is a VolumeType enum value
 	VolumeTypeGp2 = "gp2"

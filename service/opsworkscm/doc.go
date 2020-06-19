@@ -60,6 +60,9 @@
 //
 //    * opsworks-cm.eu-west-1.amazonaws.com
 //
+// For more information, see AWS OpsWorks endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/opsworks-service.html)
+// in the AWS General Reference.
+//
 // Throttling limits
 //
 // All API operations allow for five requests per second with a burst of 10

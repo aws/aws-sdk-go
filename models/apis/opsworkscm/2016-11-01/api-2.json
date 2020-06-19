@@ -406,6 +406,7 @@
     "CreateServerRequest":{
       "type":"structure",
       "required":[
+        "Engine",
         "ServerName",
         "InstanceProfileArn",
         "InstanceType",

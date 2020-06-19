@@ -1,3 +1,16 @@
+Release v1.32.6 (2020-06-19)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * Adds support to tag elastic-gpu on the RunInstances api
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports Input Prepare schedule actions. This feature improves existing input switching by allowing users to prepare an input prior to switching to it.
+* `service/opsworkscm`: Updates service API and documentation
+  * Documentation updates for AWS OpsWorks CM.
+
 Release v1.32.5 (2020-06-18)
 ===
 
