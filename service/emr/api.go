@@ -4900,11 +4900,18 @@ type ComputeLimits struct {
 	// MaximumCapacityUnits is a required field
 	MaximumCapacityUnits *int64 `type:"integer" required:"true"`
 
-	// The upper boundary of on-demand EC2 units. It is measured through VCPU cores
+	// The upper boundary of EC2 units for core node type in a cluster. It is measured
+	// through VCPU cores or instances for instance groups and measured through
+	// units for instance fleets. The core units are not allowed to scale beyond
+	// this boundary. The parameter is used to split capacity allocation between
+	// core and task nodes.
+	MaximumCoreCapacityUnits *int64 `type:"integer"`
+
+	// The upper boundary of On-Demand EC2 units. It is measured through VCPU cores
 	// or instances for instance groups and measured through units for instance
-	// fleets. The on-demand units are not allowed to scale beyond this boundary.
-	// The limit only applies to the core and task nodes. The master node cannot
-	// be scaled after initial configuration.
+	// fleets. The On-Demand units are not allowed to scale beyond this boundary.
+	// The parameter is used to split capacity allocation between On-Demand and
+	// Spot instances.
 	MaximumOnDemandCapacityUnits *int64 `type:"integer"`
 
 	// The lower boundary of EC2 units. It is measured through VCPU cores or instances
@@ -4954,6 +4961,12 @@ func (s *ComputeLimits) Validate() error {
 // SetMaximumCapacityUnits sets the MaximumCapacityUnits field's value.
 func (s *ComputeLimits) SetMaximumCapacityUnits(v int64) *ComputeLimits {
 	s.MaximumCapacityUnits = &v
+	return s
+}
+
+// SetMaximumCoreCapacityUnits sets the MaximumCoreCapacityUnits field's value.
+func (s *ComputeLimits) SetMaximumCoreCapacityUnits(v int64) *ComputeLimits {
+	s.MaximumCoreCapacityUnits = &v
 	return s
 }
 

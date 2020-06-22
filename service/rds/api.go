@@ -4482,6 +4482,12 @@ func (c *RDS) DescribeCertificatesRequest(input *DescribeCertificatesInput) (req
 		Name:       opDescribeCertificates,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4528,6 +4534,58 @@ func (c *RDS) DescribeCertificatesWithContext(ctx aws.Context, input *DescribeCe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeCertificatesPages iterates over the pages of a DescribeCertificates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeCertificates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeCertificates operation.
+//    pageNum := 0
+//    err := client.DescribeCertificatesPages(params,
+//        func(page *rds.DescribeCertificatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RDS) DescribeCertificatesPages(input *DescribeCertificatesInput, fn func(*DescribeCertificatesOutput, bool) bool) error {
+	return c.DescribeCertificatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeCertificatesPagesWithContext same as DescribeCertificatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeCertificatesPagesWithContext(ctx aws.Context, input *DescribeCertificatesInput, fn func(*DescribeCertificatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeCertificatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeCertificatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeCertificatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeCustomAvailabilityZones = "DescribeCustomAvailabilityZones"
@@ -4705,6 +4763,12 @@ func (c *RDS) DescribeDBClusterBacktracksRequest(input *DescribeDBClusterBacktra
 		Name:       opDescribeDBClusterBacktracks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4761,6 +4825,58 @@ func (c *RDS) DescribeDBClusterBacktracksWithContext(ctx aws.Context, input *Des
 	return out, req.Send()
 }
 
+// DescribeDBClusterBacktracksPages iterates over the pages of a DescribeDBClusterBacktracks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBClusterBacktracks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBClusterBacktracks operation.
+//    pageNum := 0
+//    err := client.DescribeDBClusterBacktracksPages(params,
+//        func(page *rds.DescribeDBClusterBacktracksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RDS) DescribeDBClusterBacktracksPages(input *DescribeDBClusterBacktracksInput, fn func(*DescribeDBClusterBacktracksOutput, bool) bool) error {
+	return c.DescribeDBClusterBacktracksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDBClusterBacktracksPagesWithContext same as DescribeDBClusterBacktracksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBClusterBacktracksPagesWithContext(ctx aws.Context, input *DescribeDBClusterBacktracksInput, fn func(*DescribeDBClusterBacktracksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDBClusterBacktracksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDBClusterBacktracksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDBClusterBacktracksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeDBClusterEndpoints = "DescribeDBClusterEndpoints"
 
 // DescribeDBClusterEndpointsRequest generates a "aws/request.Request" representing the
@@ -4792,6 +4908,12 @@ func (c *RDS) DescribeDBClusterEndpointsRequest(input *DescribeDBClusterEndpoint
 		Name:       opDescribeDBClusterEndpoints,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4842,6 +4964,58 @@ func (c *RDS) DescribeDBClusterEndpointsWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
+// DescribeDBClusterEndpointsPages iterates over the pages of a DescribeDBClusterEndpoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBClusterEndpoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBClusterEndpoints operation.
+//    pageNum := 0
+//    err := client.DescribeDBClusterEndpointsPages(params,
+//        func(page *rds.DescribeDBClusterEndpointsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RDS) DescribeDBClusterEndpointsPages(input *DescribeDBClusterEndpointsInput, fn func(*DescribeDBClusterEndpointsOutput, bool) bool) error {
+	return c.DescribeDBClusterEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDBClusterEndpointsPagesWithContext same as DescribeDBClusterEndpointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBClusterEndpointsPagesWithContext(ctx aws.Context, input *DescribeDBClusterEndpointsInput, fn func(*DescribeDBClusterEndpointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDBClusterEndpointsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDBClusterEndpointsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDBClusterEndpointsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeDBClusterParameterGroups = "DescribeDBClusterParameterGroups"
 
 // DescribeDBClusterParameterGroupsRequest generates a "aws/request.Request" representing the
@@ -4873,6 +5047,12 @@ func (c *RDS) DescribeDBClusterParameterGroupsRequest(input *DescribeDBClusterPa
 		Name:       opDescribeDBClusterParameterGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4928,6 +5108,58 @@ func (c *RDS) DescribeDBClusterParameterGroupsWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+// DescribeDBClusterParameterGroupsPages iterates over the pages of a DescribeDBClusterParameterGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBClusterParameterGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBClusterParameterGroups operation.
+//    pageNum := 0
+//    err := client.DescribeDBClusterParameterGroupsPages(params,
+//        func(page *rds.DescribeDBClusterParameterGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RDS) DescribeDBClusterParameterGroupsPages(input *DescribeDBClusterParameterGroupsInput, fn func(*DescribeDBClusterParameterGroupsOutput, bool) bool) error {
+	return c.DescribeDBClusterParameterGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDBClusterParameterGroupsPagesWithContext same as DescribeDBClusterParameterGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBClusterParameterGroupsPagesWithContext(ctx aws.Context, input *DescribeDBClusterParameterGroupsInput, fn func(*DescribeDBClusterParameterGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDBClusterParameterGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDBClusterParameterGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDBClusterParameterGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeDBClusterParameters = "DescribeDBClusterParameters"
 
 // DescribeDBClusterParametersRequest generates a "aws/request.Request" representing the
@@ -4959,6 +5191,12 @@ func (c *RDS) DescribeDBClusterParametersRequest(input *DescribeDBClusterParamet
 		Name:       opDescribeDBClusterParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5011,6 +5249,58 @@ func (c *RDS) DescribeDBClusterParametersWithContext(ctx aws.Context, input *Des
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeDBClusterParametersPages iterates over the pages of a DescribeDBClusterParameters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBClusterParameters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBClusterParameters operation.
+//    pageNum := 0
+//    err := client.DescribeDBClusterParametersPages(params,
+//        func(page *rds.DescribeDBClusterParametersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RDS) DescribeDBClusterParametersPages(input *DescribeDBClusterParametersInput, fn func(*DescribeDBClusterParametersOutput, bool) bool) error {
+	return c.DescribeDBClusterParametersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDBClusterParametersPagesWithContext same as DescribeDBClusterParametersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBClusterParametersPagesWithContext(ctx aws.Context, input *DescribeDBClusterParametersInput, fn func(*DescribeDBClusterParametersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDBClusterParametersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDBClusterParametersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDBClusterParametersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeDBClusterSnapshotAttributes = "DescribeDBClusterSnapshotAttributes"
@@ -5136,6 +5426,12 @@ func (c *RDS) DescribeDBClusterSnapshotsRequest(input *DescribeDBClusterSnapshot
 		Name:       opDescribeDBClusterSnapshots,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5188,6 +5484,58 @@ func (c *RDS) DescribeDBClusterSnapshotsWithContext(ctx aws.Context, input *Desc
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeDBClusterSnapshotsPages iterates over the pages of a DescribeDBClusterSnapshots operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBClusterSnapshots method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBClusterSnapshots operation.
+//    pageNum := 0
+//    err := client.DescribeDBClusterSnapshotsPages(params,
+//        func(page *rds.DescribeDBClusterSnapshotsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RDS) DescribeDBClusterSnapshotsPages(input *DescribeDBClusterSnapshotsInput, fn func(*DescribeDBClusterSnapshotsOutput, bool) bool) error {
+	return c.DescribeDBClusterSnapshotsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDBClusterSnapshotsPagesWithContext same as DescribeDBClusterSnapshotsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBClusterSnapshotsPagesWithContext(ctx aws.Context, input *DescribeDBClusterSnapshotsInput, fn func(*DescribeDBClusterSnapshotsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDBClusterSnapshotsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDBClusterSnapshotsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDBClusterSnapshotsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeDBClusters = "DescribeDBClusters"
@@ -8528,6 +8876,12 @@ func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMai
 		Name:       opDescribePendingMaintenanceActions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -8575,6 +8929,58 @@ func (c *RDS) DescribePendingMaintenanceActionsWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribePendingMaintenanceActionsPages iterates over the pages of a DescribePendingMaintenanceActions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribePendingMaintenanceActions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribePendingMaintenanceActions operation.
+//    pageNum := 0
+//    err := client.DescribePendingMaintenanceActionsPages(params,
+//        func(page *rds.DescribePendingMaintenanceActionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RDS) DescribePendingMaintenanceActionsPages(input *DescribePendingMaintenanceActionsInput, fn func(*DescribePendingMaintenanceActionsOutput, bool) bool) error {
+	return c.DescribePendingMaintenanceActionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribePendingMaintenanceActionsPagesWithContext same as DescribePendingMaintenanceActionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribePendingMaintenanceActionsPagesWithContext(ctx aws.Context, input *DescribePendingMaintenanceActionsInput, fn func(*DescribePendingMaintenanceActionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribePendingMaintenanceActionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribePendingMaintenanceActionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribePendingMaintenanceActionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeReservedDBInstances = "DescribeReservedDBInstances"
@@ -8883,6 +9289,12 @@ func (c *RDS) DescribeSourceRegionsRequest(input *DescribeSourceRegionsInput) (r
 		Name:       opDescribeSourceRegions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -8926,6 +9338,58 @@ func (c *RDS) DescribeSourceRegionsWithContext(ctx aws.Context, input *DescribeS
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeSourceRegionsPages iterates over the pages of a DescribeSourceRegions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeSourceRegions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeSourceRegions operation.
+//    pageNum := 0
+//    err := client.DescribeSourceRegionsPages(params,
+//        func(page *rds.DescribeSourceRegionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RDS) DescribeSourceRegionsPages(input *DescribeSourceRegionsInput, fn func(*DescribeSourceRegionsOutput, bool) bool) error {
+	return c.DescribeSourceRegionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeSourceRegionsPagesWithContext same as DescribeSourceRegionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeSourceRegionsPagesWithContext(ctx aws.Context, input *DescribeSourceRegionsInput, fn func(*DescribeSourceRegionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeSourceRegionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeSourceRegionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeSourceRegionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeValidDBInstanceModifications = "DescribeValidDBInstanceModifications"
@@ -36989,7 +37453,7 @@ type RestoreDBClusterFromS3Input struct {
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The name of the DB cluster to create from the source data in the Amazon S3
-	// bucket. This parameter is isn't case-sensitive.
+	// bucket. This parameter isn't case-sensitive.
 	//
 	// Constraints:
 	//
@@ -37197,9 +37661,9 @@ type RestoreDBClusterFromS3Input struct {
 
 	// The version of the database that the backup files were created from.
 	//
-	// MySQL version 5.5 and 5.6 are supported.
+	// MySQL versions 5.5, 5.6, and 5.7 are supported.
 	//
-	// Example: 5.6.22
+	// Example: 5.6.40
 	//
 	// SourceEngineVersion is a required field
 	SourceEngineVersion *string `type:"string" required:"true"`
@@ -38952,9 +39416,11 @@ type RestoreDBInstanceFromS3Input struct {
 	// SourceEngine is a required field
 	SourceEngine *string `type:"string" required:"true"`
 
-	// The engine version of your source database.
+	// The version of the database that the backup files were created from.
 	//
-	// Valid Values: 5.6
+	// MySQL versions 5.6 and 5.7 are supported.
+	//
+	// Example: 5.6.40
 	//
 	// SourceEngineVersion is a required field
 	SourceEngineVersion *string `type:"string" required:"true"`

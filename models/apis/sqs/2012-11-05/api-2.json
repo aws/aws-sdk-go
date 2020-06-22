@@ -368,6 +368,10 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "BoxedInteger":{
+      "type":"integer",
+      "box":true
+    },
     "ChangeMessageVisibilityBatchRequest":{
       "type":"structure",
       "required":[
@@ -609,14 +613,17 @@
       "type":"structure",
       "required":["QueueUrl"],
       "members":{
-        "QueueUrl":{"shape":"String"}
+        "QueueUrl":{"shape":"String"},
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"BoxedInteger"}
       }
     },
     "ListDeadLetterSourceQueuesResult":{
       "type":"structure",
       "required":["queueUrls"],
       "members":{
-        "queueUrls":{"shape":"QueueUrlList"}
+        "queueUrls":{"shape":"QueueUrlList"},
+        "NextToken":{"shape":"Token"}
       }
     },
     "ListQueueTagsRequest":{
@@ -638,13 +645,16 @@
     "ListQueuesRequest":{
       "type":"structure",
       "members":{
-        "QueueNamePrefix":{"shape":"String"}
+        "QueueNamePrefix":{"shape":"String"},
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"BoxedInteger"}
       }
     },
     "ListQueuesResult":{
       "type":"structure",
       "members":{
-        "QueueUrls":{"shape":"QueueUrlList"}
+        "QueueUrls":{"shape":"QueueUrlList"},
+        "NextToken":{"shape":"Token"}
       }
     },
     "Message":{
@@ -1091,6 +1101,7 @@
       }
     },
     "TagValue":{"type":"string"},
+    "Token":{"type":"string"},
     "TooManyEntriesInBatchRequest":{
       "type":"structure",
       "members":{

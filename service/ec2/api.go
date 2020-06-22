@@ -4432,7 +4432,7 @@ func (c *EC2) CreateInstanceExportTaskRequest(input *CreateInstanceExportTaskInp
 
 // CreateInstanceExportTask API operation for Amazon Elastic Compute Cloud.
 //
-// Exports a running or stopped instance to an S3 bucket.
+// Exports a running or stopped instance to an Amazon S3 bucket.
 //
 // For information about the supported operating systems, image formats, and
 // known limitations for the types of instances you can export, see Exporting
@@ -13984,7 +13984,7 @@ func (c *EC2) DescribeExportImageTasksRequest(input *DescribeExportImageTasksInp
 
 // DescribeExportImageTasks API operation for Amazon Elastic Compute Cloud.
 //
-// Describes the specified export image tasks or all your export image tasks.
+// Describes the specified export image tasks or all of your export image tasks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14110,7 +14110,7 @@ func (c *EC2) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *
 
 // DescribeExportTasks API operation for Amazon Elastic Compute Cloud.
 //
-// Describes the specified export instance tasks or all your export instance
+// Describes the specified export instance tasks or all of your export instance
 // tasks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -46259,7 +46259,7 @@ type CreateInstanceExportTaskInput struct {
 	_ struct{} `type:"structure"`
 
 	// A description for the conversion task or the resource being exported. The
-	// maximum length is 255 bytes.
+	// maximum length is 255 characters.
 	Description *string `locationName:"description" type:"string"`
 
 	// The format and location for an instance export task.
@@ -46269,6 +46269,9 @@ type CreateInstanceExportTaskInput struct {
 	//
 	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
+
+	// The tags to apply to the instance export task during creation.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 
 	// The target virtualization environment.
 	TargetEnvironment *string `locationName:"targetEnvironment" type:"string" enum:"ExportEnvironment"`
@@ -46312,6 +46315,12 @@ func (s *CreateInstanceExportTaskInput) SetExportToS3Task(v *ExportToS3TaskSpeci
 // SetInstanceId sets the InstanceId field's value.
 func (s *CreateInstanceExportTaskInput) SetInstanceId(v string) *CreateInstanceExportTaskInput {
 	s.InstanceId = &v
+	return s
+}
+
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *CreateInstanceExportTaskInput) SetTagSpecifications(v []*TagSpecification) *CreateInstanceExportTaskInput {
+	s.TagSpecifications = v
 	return s
 }
 
@@ -73238,7 +73247,7 @@ type ExportImageInput struct {
 	// Token to enable idempotency for export image requests.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// A description of the image being exported. The maximum length is 255 bytes.
+	// A description of the image being exported. The maximum length is 255 characters.
 	Description *string `type:"string"`
 
 	// The disk image format.
@@ -73258,15 +73267,18 @@ type ExportImageInput struct {
 	ImageId *string `type:"string" required:"true"`
 
 	// The name of the role that grants VM Import/Export permission to export images
-	// to your S3 bucket. If this parameter is not specified, the default role is
-	// named 'vmimport'.
+	// to your Amazon S3 bucket. If this parameter is not specified, the default
+	// role is named 'vmimport'.
 	RoleName *string `type:"string"`
 
-	// Information about the destination S3 bucket. The bucket must exist and grant
-	// WRITE and READ_ACP permissions to the AWS account vm-import-export@amazon.com.
+	// Information about the destination Amazon S3 bucket. The bucket must exist
+	// and grant WRITE and READ_ACP permissions to the AWS account vm-import-export@amazon.com.
 	//
 	// S3ExportLocation is a required field
 	S3ExportLocation *ExportTaskS3LocationRequest `type:"structure" required:"true"`
+
+	// The tags to apply to the image being exported.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -73345,6 +73357,12 @@ func (s *ExportImageInput) SetS3ExportLocation(v *ExportTaskS3LocationRequest) *
 	return s
 }
 
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *ExportImageInput) SetTagSpecifications(v []*TagSpecification) *ExportImageInput {
+	s.TagSpecifications = v
+	return s
+}
+
 type ExportImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -73364,10 +73382,10 @@ type ExportImageOutput struct {
 	Progress *string `locationName:"progress" type:"string"`
 
 	// The name of the role that grants VM Import/Export permission to export images
-	// to your S3 bucket.
+	// to your Amazon S3 bucket.
 	RoleName *string `locationName:"roleName" type:"string"`
 
-	// Information about the destination S3 bucket.
+	// Information about the destination Amazon S3 bucket.
 	S3ExportLocation *ExportTaskS3Location `locationName:"s3ExportLocation" type:"structure"`
 
 	// The status of the export image task. The possible values are active, completed,
@@ -73376,6 +73394,9 @@ type ExportImageOutput struct {
 
 	// The status message for the export image task.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// Any tags assigned to the image being exported.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -73442,6 +73463,12 @@ func (s *ExportImageOutput) SetStatusMessage(v string) *ExportImageOutput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *ExportImageOutput) SetTags(v []*Tag) *ExportImageOutput {
+	s.Tags = v
+	return s
+}
+
 // Describes an export image task.
 type ExportImageTask struct {
 	_ struct{} `type:"structure"`
@@ -73458,7 +73485,7 @@ type ExportImageTask struct {
 	// The percent complete of the export image task.
 	Progress *string `locationName:"progress" type:"string"`
 
-	// Information about the destination S3 bucket.
+	// Information about the destination Amazon S3 bucket.
 	S3ExportLocation *ExportTaskS3Location `locationName:"s3ExportLocation" type:"structure"`
 
 	// The status of the export image task. The possible values are active, completed,
@@ -73467,6 +73494,9 @@ type ExportImageTask struct {
 
 	// The status message for the export image task.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// Any tags assigned to the image being exported.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -73518,6 +73548,12 @@ func (s *ExportImageTask) SetStatus(v string) *ExportImageTask {
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *ExportImageTask) SetStatusMessage(v string) *ExportImageTask {
 	s.StatusMessage = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ExportImageTask) SetTags(v []*Tag) *ExportImageTask {
+	s.Tags = v
 	return s
 }
 
@@ -73603,7 +73639,7 @@ func (s *ExportTask) SetTags(v []*Tag) *ExportTask {
 type ExportTaskS3Location struct {
 	_ struct{} `type:"structure"`
 
-	// The destination S3 bucket.
+	// The destination Amazon S3 bucket.
 	S3Bucket *string `locationName:"s3Bucket" type:"string"`
 
 	// The prefix (logical hierarchy) in the bucket.
@@ -73636,7 +73672,7 @@ func (s *ExportTaskS3Location) SetS3Prefix(v string) *ExportTaskS3Location {
 type ExportTaskS3LocationRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The destination S3 bucket.
+	// The destination Amazon S3 bucket.
 	//
 	// S3Bucket is a required field
 	S3Bucket *string `type:"string" required:"true"`
@@ -73691,8 +73727,8 @@ type ExportToS3Task struct {
 	// The format for the exported image.
 	DiskImageFormat *string `locationName:"diskImageFormat" type:"string" enum:"DiskImageFormat"`
 
-	// The S3 bucket for the destination image. The destination bucket must exist
-	// and grant WRITE and READ_ACP permissions to the AWS account vm-import-export@amazon.com.
+	// The Amazon S3 bucket for the destination image. The destination bucket must
+	// exist and grant WRITE and READ_ACP permissions to the AWS account vm-import-export@amazon.com.
 	S3Bucket *string `locationName:"s3Bucket" type:"string"`
 
 	// The encryption key for your S3 bucket.
@@ -73744,12 +73780,12 @@ type ExportToS3TaskSpecification struct {
 	// The format for the exported image.
 	DiskImageFormat *string `locationName:"diskImageFormat" type:"string" enum:"DiskImageFormat"`
 
-	// The S3 bucket for the destination image. The destination bucket must exist
-	// and grant WRITE and READ_ACP permissions to the AWS account vm-import-export@amazon.com.
+	// The Amazon S3 bucket for the destination image. The destination bucket must
+	// exist and grant WRITE and READ_ACP permissions to the AWS account vm-import-export@amazon.com.
 	S3Bucket *string `locationName:"s3Bucket" type:"string"`
 
-	// The image is written to a single object in the S3 bucket at the S3 key s3prefix
-	// + exportTaskId + '.' + diskImageFormat.
+	// The image is written to a single object in the Amazon S3 bucket at the S3
+	// key s3prefix + exportTaskId + '.' + diskImageFormat.
 	S3Prefix *string `locationName:"s3Prefix" type:"string"`
 }
 
@@ -78183,7 +78219,7 @@ type ImageDiskContainer struct {
 
 	// The format of the disk image being imported.
 	//
-	// Valid values: VHD | VMDK | OVA
+	// Valid values: OVA | VHD | VHDX |VMDK
 	Format *string `type:"string"`
 
 	// The ID of the EBS snapshot to be used for importing the snapshot.
@@ -78425,6 +78461,9 @@ type ImportImageInput struct {
 
 	// The name of the role to use when not using the default role, 'vmimport'.
 	RoleName *string `type:"string"`
+
+	// The tags to apply to the image being imported.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -78515,6 +78554,12 @@ func (s *ImportImageInput) SetRoleName(v string) *ImportImageInput {
 	return s
 }
 
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *ImportImageInput) SetTagSpecifications(v []*TagSpecification) *ImportImageInput {
+	s.TagSpecifications = v
+	return s
+}
+
 // The request information of license configurations.
 type ImportImageLicenseConfigurationRequest struct {
 	_ struct{} `type:"structure"`
@@ -78572,7 +78617,7 @@ type ImportImageOutput struct {
 	// A description of the import task.
 	Description *string `locationName:"description" type:"string"`
 
-	// Indicates whether the AMI is encypted.
+	// Indicates whether the AMI is encrypted.
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
 	// The target hypervisor of the import task.
@@ -78608,6 +78653,9 @@ type ImportImageOutput struct {
 
 	// A detailed status message of the import task.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// Any tags assigned to the image being imported.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -78701,6 +78749,12 @@ func (s *ImportImageOutput) SetStatus(v string) *ImportImageOutput {
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *ImportImageOutput) SetStatusMessage(v string) *ImportImageOutput {
 	s.StatusMessage = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportImageOutput) SetTags(v []*Tag) *ImportImageOutput {
+	s.Tags = v
 	return s
 }
 
@@ -79404,6 +79458,9 @@ type ImportSnapshotInput struct {
 
 	// The name of the role to use when not using the default role, 'vmimport'.
 	RoleName *string `type:"string"`
+
+	// The tags to apply to the snapshot being imported.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -79464,6 +79521,12 @@ func (s *ImportSnapshotInput) SetRoleName(v string) *ImportSnapshotInput {
 	return s
 }
 
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *ImportSnapshotInput) SetTagSpecifications(v []*TagSpecification) *ImportSnapshotInput {
+	s.TagSpecifications = v
+	return s
+}
+
 type ImportSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -79475,6 +79538,9 @@ type ImportSnapshotOutput struct {
 
 	// Information about the import snapshot task.
 	SnapshotTaskDetail *SnapshotTaskDetail `locationName:"snapshotTaskDetail" type:"structure"`
+
+	// Any tags assigned to the snapshot being imported.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -79502,6 +79568,12 @@ func (s *ImportSnapshotOutput) SetImportTaskId(v string) *ImportSnapshotOutput {
 // SetSnapshotTaskDetail sets the SnapshotTaskDetail field's value.
 func (s *ImportSnapshotOutput) SetSnapshotTaskDetail(v *SnapshotTaskDetail) *ImportSnapshotOutput {
 	s.SnapshotTaskDetail = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportSnapshotOutput) SetTags(v []*Tag) *ImportSnapshotOutput {
+	s.Tags = v
 	return s
 }
 
@@ -101398,7 +101470,7 @@ type SnapshotDetail struct {
 	// The URL used to access the disk image.
 	Url *string `locationName:"url" type:"string"`
 
-	// The S3 bucket for the disk image.
+	// The Amazon S3 bucket for the disk image.
 	UserBucket *UserBucketDetails `locationName:"userBucket" type:"structure"`
 }
 
@@ -101488,7 +101560,7 @@ type SnapshotDiskContainer struct {
 	// a https URL (https://..) or an Amazon S3 URL (s3://..).
 	Url *string `type:"string"`
 
-	// The S3 bucket for the disk image.
+	// The Amazon S3 bucket for the disk image.
 	UserBucket *UserBucket `type:"structure"`
 }
 
@@ -101668,7 +101740,7 @@ type SnapshotTaskDetail struct {
 	// The URL of the disk image from which the snapshot is created.
 	Url *string `locationName:"url" type:"string"`
 
-	// The S3 bucket for the disk image.
+	// The Amazon S3 bucket for the disk image.
 	UserBucket *UserBucketDetails `locationName:"userBucket" type:"structure"`
 }
 
@@ -107398,11 +107470,11 @@ func (s *UpdateSecurityGroupRuleDescriptionsIngressOutput) SetReturn(v bool) *Up
 	return s
 }
 
-// Describes the S3 bucket for the disk image.
+// Describes the Amazon S3 bucket for the disk image.
 type UserBucket struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the S3 bucket where the disk image is located.
+	// The name of the Amazon S3 bucket where the disk image is located.
 	S3Bucket *string `type:"string"`
 
 	// The file name of the disk image.
@@ -107431,11 +107503,11 @@ func (s *UserBucket) SetS3Key(v string) *UserBucket {
 	return s
 }
 
-// Describes the S3 bucket for the disk image.
+// Describes the Amazon S3 bucket for the disk image.
 type UserBucketDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket from which the disk image was created.
+	// The Amazon S3 bucket from which the disk image was created.
 	S3Bucket *string `locationName:"s3Bucket" type:"string"`
 
 	// The file name of the disk image.
@@ -112405,6 +112477,12 @@ const (
 	// ResourceTypeElasticGpu is a ResourceType enum value
 	ResourceTypeElasticGpu = "elastic-gpu"
 
+	// ResourceTypeExportImageTask is a ResourceType enum value
+	ResourceTypeExportImageTask = "export-image-task"
+
+	// ResourceTypeExportInstanceTask is a ResourceType enum value
+	ResourceTypeExportInstanceTask = "export-instance-task"
+
 	// ResourceTypeFleet is a ResourceType enum value
 	ResourceTypeFleet = "fleet"
 
@@ -112417,6 +112495,12 @@ const (
 	// ResourceTypeImage is a ResourceType enum value
 	ResourceTypeImage = "image"
 
+	// ResourceTypeImportImageTask is a ResourceType enum value
+	ResourceTypeImportImageTask = "import-image-task"
+
+	// ResourceTypeImportSnapshotTask is a ResourceType enum value
+	ResourceTypeImportSnapshotTask = "import-snapshot-task"
+
 	// ResourceTypeInstance is a ResourceType enum value
 	ResourceTypeInstance = "instance"
 
@@ -112428,6 +112512,9 @@ const (
 
 	// ResourceTypeLaunchTemplate is a ResourceType enum value
 	ResourceTypeLaunchTemplate = "launch-template"
+
+	// ResourceTypeLocalGatewayRouteTableVpcAssociation is a ResourceType enum value
+	ResourceTypeLocalGatewayRouteTableVpcAssociation = "local-gateway-route-table-vpc-association"
 
 	// ResourceTypeNatgateway is a ResourceType enum value
 	ResourceTypeNatgateway = "natgateway"
@@ -113143,9 +113230,6 @@ const (
 
 	// VolumeTypeIo1 is a VolumeType enum value
 	VolumeTypeIo1 = "io1"
-
-	// VolumeTypeIo2 is a VolumeType enum value
-	VolumeTypeIo2 = "io2"
 
 	// VolumeTypeGp2 is a VolumeType enum value
 	VolumeTypeGp2 = "gp2"

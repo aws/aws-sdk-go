@@ -6786,6 +6786,10 @@
         "TargetEnvironment":{
           "shape":"ExportEnvironment",
           "locationName":"targetEnvironment"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },
@@ -14196,7 +14200,11 @@
         "DryRun":{"shape":"Boolean"},
         "ImageId":{"shape":"ImageId"},
         "S3ExportLocation":{"shape":"ExportTaskS3LocationRequest"},
-        "RoleName":{"shape":"String"}
+        "RoleName":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "ExportImageResult":{
@@ -14237,6 +14245,10 @@
         "StatusMessage":{
           "shape":"String",
           "locationName":"statusMessage"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -14270,6 +14282,10 @@
         "StatusMessage":{
           "shape":"String",
           "locationName":"statusMessage"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -16347,7 +16363,11 @@
         "LicenseType":{"shape":"String"},
         "Platform":{"shape":"String"},
         "RoleName":{"shape":"String"},
-        "LicenseSpecifications":{"shape":"ImportImageLicenseSpecificationListRequest"}
+        "LicenseSpecifications":{"shape":"ImportImageLicenseSpecificationListRequest"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "ImportImageResult":{
@@ -16374,11 +16394,11 @@
           "locationName":"imageId"
         },
         "ImportTaskId":{
-          "shape":"String",
+          "shape":"ImportImageTaskId",
           "locationName":"importTaskId"
         },
         "KmsKeyId":{
-          "shape":"String",
+          "shape":"KmsKeyId",
           "locationName":"kmsKeyId"
         },
         "LicenseType":{
@@ -16408,6 +16428,10 @@
         "LicenseSpecifications":{
           "shape":"ImportImageLicenseSpecificationListResponse",
           "locationName":"licenseSpecifications"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -16685,7 +16709,11 @@
         "DryRun":{"shape":"Boolean"},
         "Encrypted":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"KmsKeyId"},
-        "RoleName":{"shape":"String"}
+        "RoleName":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "ImportSnapshotResult":{
@@ -16702,6 +16730,10 @@
         "SnapshotTaskDetail":{
           "shape":"SnapshotTaskDetail",
           "locationName":"snapshotTaskDetail"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -24141,14 +24173,19 @@
         "dhcp-options",
         "elastic-ip",
         "elastic-gpu",
+        "export-image-task",
+        "export-instance-task",
         "fleet",
         "fpga-image",
         "host-reservation",
         "image",
+        "import-image-task",
+        "import-snapshot-task",
         "instance",
         "internet-gateway",
         "key-pair",
         "launch-template",
+        "local-gateway-route-table-vpc-association",
         "natgateway",
         "network-acl",
         "network-interface",
@@ -29025,7 +29062,6 @@
       "enum":[
         "standard",
         "io1",
-        "io2",
         "gp2",
         "sc1",
         "st1"

@@ -807,7 +807,8 @@
         "UnitType":{"shape":"ComputeLimitsUnitType"},
         "MinimumCapacityUnits":{"shape":"Integer"},
         "MaximumCapacityUnits":{"shape":"Integer"},
-        "MaximumOnDemandCapacityUnits":{"shape":"Integer"}
+        "MaximumOnDemandCapacityUnits":{"shape":"Integer"},
+        "MaximumCoreCapacityUnits":{"shape":"Integer"}
       }
     },
     "ComputeLimitsUnitType":{

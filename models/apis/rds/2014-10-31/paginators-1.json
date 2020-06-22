@@ -1,10 +1,46 @@
 {
   "pagination": {
+    "DescribeCertificates": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "Certificates"
+    },
     "DescribeCustomAvailabilityZones": {
       "input_token": "Marker",
       "limit_key": "MaxRecords",
       "output_token": "Marker",
       "result_key": "CustomAvailabilityZones"
+    },
+    "DescribeDBClusterBacktracks": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "DBClusterBacktracks"
+    },
+    "DescribeDBClusterEndpoints": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "DBClusterEndpoints"
+    },
+    "DescribeDBClusterParameterGroups": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "DBClusterParameterGroups"
+    },
+    "DescribeDBClusterParameters": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "Parameters"
+    },
+    "DescribeDBClusterSnapshots": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "DBClusterSnapshots"
     },
     "DescribeDBClusters": {
       "input_token": "Marker",
@@ -138,6 +174,12 @@
       "output_token": "Marker",
       "result_key": "OrderableDBInstanceOptions"
     },
+    "DescribePendingMaintenanceActions": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "PendingMaintenanceActions"
+    },
     "DescribeReservedDBInstances": {
       "input_token": "Marker",
       "limit_key": "MaxRecords",
@@ -149,6 +191,12 @@
       "limit_key": "MaxRecords",
       "output_token": "Marker",
       "result_key": "ReservedDBInstancesOfferings"
+    },
+    "DescribeSourceRegions": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "SourceRegions"
     },
     "DownloadDBLogFilePortion": {
       "input_token": "Marker",

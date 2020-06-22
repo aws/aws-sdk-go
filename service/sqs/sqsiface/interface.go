@@ -100,6 +100,9 @@ type SQSAPI interface {
 	ListDeadLetterSourceQueuesWithContext(aws.Context, *sqs.ListDeadLetterSourceQueuesInput, ...request.Option) (*sqs.ListDeadLetterSourceQueuesOutput, error)
 	ListDeadLetterSourceQueuesRequest(*sqs.ListDeadLetterSourceQueuesInput) (*request.Request, *sqs.ListDeadLetterSourceQueuesOutput)
 
+	ListDeadLetterSourceQueuesPages(*sqs.ListDeadLetterSourceQueuesInput, func(*sqs.ListDeadLetterSourceQueuesOutput, bool) bool) error
+	ListDeadLetterSourceQueuesPagesWithContext(aws.Context, *sqs.ListDeadLetterSourceQueuesInput, func(*sqs.ListDeadLetterSourceQueuesOutput, bool) bool, ...request.Option) error
+
 	ListQueueTags(*sqs.ListQueueTagsInput) (*sqs.ListQueueTagsOutput, error)
 	ListQueueTagsWithContext(aws.Context, *sqs.ListQueueTagsInput, ...request.Option) (*sqs.ListQueueTagsOutput, error)
 	ListQueueTagsRequest(*sqs.ListQueueTagsInput) (*request.Request, *sqs.ListQueueTagsOutput)
@@ -107,6 +110,9 @@ type SQSAPI interface {
 	ListQueues(*sqs.ListQueuesInput) (*sqs.ListQueuesOutput, error)
 	ListQueuesWithContext(aws.Context, *sqs.ListQueuesInput, ...request.Option) (*sqs.ListQueuesOutput, error)
 	ListQueuesRequest(*sqs.ListQueuesInput) (*request.Request, *sqs.ListQueuesOutput)
+
+	ListQueuesPages(*sqs.ListQueuesInput, func(*sqs.ListQueuesOutput, bool) bool) error
+	ListQueuesPagesWithContext(aws.Context, *sqs.ListQueuesInput, func(*sqs.ListQueuesOutput, bool) bool, ...request.Option) error
 
 	PurgeQueue(*sqs.PurgeQueueInput) (*sqs.PurgeQueueOutput, error)
 	PurgeQueueWithContext(aws.Context, *sqs.PurgeQueueInput, ...request.Option) (*sqs.PurgeQueueOutput, error)

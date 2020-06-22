@@ -42,6 +42,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "GetSegmentDetection": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "GetTextDetection": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
