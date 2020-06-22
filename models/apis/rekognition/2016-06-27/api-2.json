@@ -484,6 +484,24 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetSegmentDetection":{
+      "name":"GetSegmentDetection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSegmentDetectionRequest"},
+      "output":{"shape":"GetSegmentDetectionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetTextDetection":{
       "name":"GetTextDetection",
       "http":{
@@ -778,6 +796,27 @@
         {"shape":"ProvisionedThroughputExceededException"}
       ]
     },
+    "StartSegmentDetection":{
+      "name":"StartSegmentDetection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartSegmentDetectionRequest"},
+      "output":{"shape":"StartSegmentDetectionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidS3ObjectException"},
+        {"shape":"InternalServerError"},
+        {"shape":"VideoTooLargeException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
     "StartStreamProcessor":{
       "name":"StartStreamProcessor",
       "http":{
@@ -888,6 +927,19 @@
     "Attributes":{
       "type":"list",
       "member":{"shape":"Attribute"}
+    },
+    "AudioMetadata":{
+      "type":"structure",
+      "members":{
+        "Codec":{"shape":"String"},
+        "DurationMillis":{"shape":"ULong"},
+        "SampleRate":{"shape":"ULong"},
+        "NumberOfChannels":{"shape":"ULong"}
+      }
+    },
+    "AudioMetadataList":{
+      "type":"list",
+      "member":{"shape":"AudioMetadata"}
     },
     "Beard":{
       "type":"structure",
@@ -1714,6 +1766,27 @@
         "Persons":{"shape":"PersonDetections"}
       }
     },
+    "GetSegmentDetectionRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "GetSegmentDetectionResponse":{
+      "type":"structure",
+      "members":{
+        "JobStatus":{"shape":"VideoJobStatus"},
+        "StatusMessage":{"shape":"StatusMessage"},
+        "VideoMetadata":{"shape":"VideoMetadataList"},
+        "AudioMetadata":{"shape":"AudioMetadataList"},
+        "NextToken":{"shape":"PaginationToken"},
+        "Segments":{"shape":"SegmentDetections"},
+        "SelectedSegmentTypes":{"shape":"SegmentTypesInfo"}
+      }
+    },
     "GetTextDetectionRequest":{
       "type":"structure",
       "required":["JobId"],
@@ -2462,6 +2535,59 @@
         "FaceModelVersion":{"shape":"String"}
       }
     },
+    "SegmentConfidence":{
+      "type":"float",
+      "max":100,
+      "min":50
+    },
+    "SegmentDetection":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"SegmentType"},
+        "StartTimestampMillis":{"shape":"Timestamp"},
+        "EndTimestampMillis":{"shape":"Timestamp"},
+        "DurationMillis":{"shape":"ULong"},
+        "StartTimecodeSMPTE":{"shape":"Timecode"},
+        "EndTimecodeSMPTE":{"shape":"Timecode"},
+        "DurationSMPTE":{"shape":"Timecode"},
+        "TechnicalCueSegment":{"shape":"TechnicalCueSegment"},
+        "ShotSegment":{"shape":"ShotSegment"}
+      }
+    },
+    "SegmentDetections":{
+      "type":"list",
+      "member":{"shape":"SegmentDetection"}
+    },
+    "SegmentType":{
+      "type":"string",
+      "enum":[
+        "TECHNICAL_CUE",
+        "SHOT"
+      ]
+    },
+    "SegmentTypeInfo":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"SegmentType"},
+        "ModelVersion":{"shape":"String"}
+      }
+    },
+    "SegmentTypes":{
+      "type":"list",
+      "member":{"shape":"SegmentType"},
+      "min":1
+    },
+    "SegmentTypesInfo":{
+      "type":"list",
+      "member":{"shape":"SegmentTypeInfo"}
+    },
+    "ShotSegment":{
+      "type":"structure",
+      "members":{
+        "Index":{"shape":"ULong"},
+        "Confidence":{"shape":"SegmentConfidence"}
+      }
+    },
     "Smile":{
       "type":"structure",
       "members":{
@@ -2590,6 +2716,40 @@
         "Status":{"shape":"ProjectVersionStatus"}
       }
     },
+    "StartSegmentDetectionFilters":{
+      "type":"structure",
+      "members":{
+        "TechnicalCueFilter":{"shape":"StartTechnicalCueDetectionFilter"},
+        "ShotFilter":{"shape":"StartShotDetectionFilter"}
+      }
+    },
+    "StartSegmentDetectionRequest":{
+      "type":"structure",
+      "required":[
+        "Video",
+        "SegmentTypes"
+      ],
+      "members":{
+        "Video":{"shape":"Video"},
+        "ClientRequestToken":{"shape":"ClientRequestToken"},
+        "NotificationChannel":{"shape":"NotificationChannel"},
+        "JobTag":{"shape":"JobTag"},
+        "Filters":{"shape":"StartSegmentDetectionFilters"},
+        "SegmentTypes":{"shape":"SegmentTypes"}
+      }
+    },
+    "StartSegmentDetectionResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "StartShotDetectionFilter":{
+      "type":"structure",
+      "members":{
+        "MinSegmentConfidence":{"shape":"SegmentConfidence"}
+      }
+    },
     "StartStreamProcessorRequest":{
       "type":"structure",
       "required":["Name"],
@@ -2600,6 +2760,12 @@
     "StartStreamProcessorResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "StartTechnicalCueDetectionFilter":{
+      "type":"structure",
+      "members":{
+        "MinSegmentConfidence":{"shape":"SegmentConfidence"}
       }
     },
     "StartTextDetectionFilters":{
@@ -2715,6 +2881,21 @@
         "Confidence":{"shape":"Percent"}
       }
     },
+    "TechnicalCueSegment":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"TechnicalCueType"},
+        "Confidence":{"shape":"SegmentConfidence"}
+      }
+    },
+    "TechnicalCueType":{
+      "type":"string",
+      "enum":[
+        "ColorBars",
+        "EndCredits",
+        "BlackFrames"
+      ]
+    },
     "TestingData":{
       "type":"structure",
       "members":{
@@ -2769,6 +2950,7 @@
       "exception":true,
       "fault":true
     },
+    "Timecode":{"type":"string"},
     "Timestamp":{"type":"long"},
     "TrainingData":{
       "type":"structure",
@@ -2843,6 +3025,10 @@
         "FrameHeight":{"shape":"ULong"},
         "FrameWidth":{"shape":"ULong"}
       }
+    },
+    "VideoMetadataList":{
+      "type":"list",
+      "member":{"shape":"VideoMetadata"}
     },
     "VideoTooLargeException":{
       "type":"structure",

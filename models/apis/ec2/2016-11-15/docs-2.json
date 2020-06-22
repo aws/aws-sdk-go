@@ -55,7 +55,7 @@
     "CreateFlowLogs": "<p>Creates one or more flow logs to capture information about IP traffic for a specific network interface, subnet, or VPC. </p> <p>Flow log data for a monitored network interface is recorded as flow log records, which are log events consisting of fields that describe the traffic flow. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records\">Flow Log Records</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>When publishing to CloudWatch Logs, flow log records are published to a log group, and each network interface has a unique log stream in the log group. When publishing to Amazon S3, flow log records for all of the monitored network interfaces are published to a single log file object that is stored in the specified bucket.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html\">VPC Flow Logs</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateFpgaImage": "<p>Creates an Amazon FPGA Image (AFI) from the specified design checkpoint (DCP).</p> <p>The create operation is asynchronous. To verify that the AFI is ready for use, check the output logs.</p> <p>An AFI contains the FPGA bitstream that is ready to download to an FPGA. You can securely deploy an AFI on multiple FPGA-accelerated instances. For more information, see the <a href=\"https://github.com/aws/aws-fpga/\">AWS FPGA Hardware Development Kit</a>.</p>",
     "CreateImage": "<p>Creates an Amazon EBS-backed AMI from an Amazon EBS-backed instance that is either running or stopped.</p> <p>If you customized your instance with instance store volumes or EBS volumes in addition to the root device volume, the new AMI contains block device mapping information for those volumes. When you launch an instance from this new AMI, the instance automatically launches with those additional volumes.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html\">Creating Amazon EBS-Backed Linux AMIs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "CreateInstanceExportTask": "<p>Exports a running or stopped instance to an S3 bucket.</p> <p>For information about the supported operating systems, image formats, and known limitations for the types of instances you can export, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmexport.html\">Exporting an Instance as a VM Using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>",
+    "CreateInstanceExportTask": "<p>Exports a running or stopped instance to an Amazon S3 bucket.</p> <p>For information about the supported operating systems, image formats, and known limitations for the types of instances you can export, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmexport.html\">Exporting an Instance as a VM Using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>",
     "CreateInternetGateway": "<p>Creates an internet gateway for use with a VPC. After creating the internet gateway, you attach it to a VPC using <a>AttachInternetGateway</a>.</p> <p>For more information about your VPC and internet gateway, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/\">Amazon Virtual Private Cloud User Guide</a>.</p>",
     "CreateKeyPair": "<p>Creates a 2048-bit RSA key pair with the specified name. Amazon EC2 stores the public key and displays the private key for you to save to a file. The private key is returned as an unencrypted PEM encoded PKCS#1 private key. If a key with the specified name already exists, Amazon EC2 returns an error.</p> <p>You can have up to five thousand key pairs per Region.</p> <p>The key pair returned to you is available only in the Region in which you create it. If you prefer, you can create your own key pair using a third-party tool and upload it to any Region using <a>ImportKeyPair</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateLaunchTemplate": "<p>Creates a launch template. A launch template contains the parameters to launch an instance. When you launch an instance using <a>RunInstances</a>, you can specify a launch template instead of providing the launch parameters in the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html\">Launching an instance from a launch template</a>in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -167,8 +167,8 @@
     "DescribeDhcpOptions": "<p>Describes one or more of your DHCP options sets.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "DescribeEgressOnlyInternetGateways": "<p>Describes one or more of your egress-only internet gateways.</p>",
     "DescribeElasticGpus": "<p>Describes the Elastic Graphics accelerator associated with your instances. For more information about Elastic Graphics, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html\">Amazon Elastic Graphics</a>.</p>",
-    "DescribeExportImageTasks": "<p>Describes the specified export image tasks or all your export image tasks.</p>",
-    "DescribeExportTasks": "<p>Describes the specified export instance tasks or all your export instance tasks.</p>",
+    "DescribeExportImageTasks": "<p>Describes the specified export image tasks or all of your export image tasks.</p>",
+    "DescribeExportTasks": "<p>Describes the specified export instance tasks or all of your export instance tasks.</p>",
     "DescribeFastSnapshotRestores": "<p>Describes the state of fast snapshot restores for your snapshots.</p>",
     "DescribeFleetHistory": "<p>Describes the events for the specified EC2 Fleet during the specified time.</p> <p>EC2 Fleet events are delayed by up to 30 seconds before they can be described. This ensures that you can query by the last evaluated time and not miss a recorded event. EC2 Fleet events are available for 48 hours.</p>",
     "DescribeFleetInstances": "<p>Describes the running instances for the specified EC2 Fleet.</p>",
@@ -1430,7 +1430,7 @@
         "ImportClientVpnClientCertificateRevocationListResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "ImportImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ImportImageRequest$Encrypted": "<p>Specifies whether the destination AMI of the imported image should be encrypted. The default CMK for EBS is used unless you specify a non-default AWS Key Management Service (AWS KMS) CMK using <code>KmsKeyId</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-        "ImportImageResult$Encrypted": "<p>Indicates whether the AMI is encypted.</p>",
+        "ImportImageResult$Encrypted": "<p>Indicates whether the AMI is encrypted.</p>",
         "ImportImageTask$Encrypted": "<p>Indicates whether the image is encrypted.</p>",
         "ImportInstanceLaunchSpecification$Monitoring": "<p>Indicates whether monitoring is enabled.</p>",
         "ImportInstanceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -5917,14 +5917,14 @@
     "ExportTaskS3Location": {
       "base": "<p>Describes the destination for an export image task.</p>",
       "refs": {
-        "ExportImageResult$S3ExportLocation": "<p>Information about the destination S3 bucket.</p>",
-        "ExportImageTask$S3ExportLocation": "<p>Information about the destination S3 bucket.</p>"
+        "ExportImageResult$S3ExportLocation": "<p>Information about the destination Amazon S3 bucket.</p>",
+        "ExportImageTask$S3ExportLocation": "<p>Information about the destination Amazon S3 bucket.</p>"
       }
     },
     "ExportTaskS3LocationRequest": {
       "base": "<p>Describes the destination for an export image task.</p>",
       "refs": {
-        "ExportImageRequest$S3ExportLocation": "<p>Information about the destination S3 bucket. The bucket must exist and grant WRITE and READ_ACP permissions to the AWS account vm-import-export@amazon.com.</p>"
+        "ExportImageRequest$S3ExportLocation": "<p>Information about the destination Amazon S3 bucket. The bucket must exist and grant WRITE and READ_ACP permissions to the AWS account vm-import-export@amazon.com.</p>"
       }
     },
     "ExportTaskState": {
@@ -7031,6 +7031,7 @@
     "ImportImageTaskId": {
       "base": null,
       "refs": {
+        "ImportImageResult$ImportTaskId": "<p>The task ID of the import image task.</p>",
         "ImportTaskIdList$member": null
       }
     },
@@ -8200,6 +8201,7 @@
         "CopySnapshotRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>",
         "CreateVolumeRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>",
         "ImportImageRequest$KmsKeyId": "<p>An identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted AMI. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the AMI is being copied to.</p> <p>Amazon EBS does not support asymmetric CMKs.</p>",
+        "ImportImageResult$KmsKeyId": "<p>The identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to create the encrypted AMI.</p>",
         "ImportSnapshotRequest$KmsKeyId": "<p>An identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted snapshot. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to.</p> <p>Amazon EBS does not support asymmetric CMKs.</p>",
         "LaunchTemplateEbsBlockDevice$KmsKeyId": "<p>The ARN of the AWS Key Management Service (AWS KMS) CMK used for encryption.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$KmsKeyId": "<p>The ARN of the symmetric AWS Key Management Service (AWS KMS) CMK used for encryption.</p>",
@@ -12175,7 +12177,7 @@
         "CreateImageRequest$Description": "<p>A description for the new image.</p>",
         "CreateImageRequest$Name": "<p>A name for the new image.</p> <p>Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets ([]), spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('), at-signs (@), or underscores(_)</p>",
         "CreateImageResult$ImageId": "<p>The ID of the new AMI.</p>",
-        "CreateInstanceExportTaskRequest$Description": "<p>A description for the conversion task or the resource being exported. The maximum length is 255 bytes.</p>",
+        "CreateInstanceExportTaskRequest$Description": "<p>A description for the conversion task or the resource being exported. The maximum length is 255 characters.</p>",
         "CreateKeyPairRequest$KeyName": "<p>A unique name for the key pair.</p> <p>Constraints: Up to 255 ASCII characters</p>",
         "CreateLaunchTemplateRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraint: Maximum 128 ASCII characters.</p>",
         "CreateLaunchTemplateVersionRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraint: Maximum 128 ASCII characters.</p>",
@@ -12491,12 +12493,12 @@
         "ExportClientVpnClientCertificateRevocationListResult$CertificateRevocationList": "<p>Information about the client certificate revocation list.</p>",
         "ExportClientVpnClientConfigurationResult$ClientConfiguration": "<p>The contents of the Client VPN endpoint configuration file.</p>",
         "ExportImageRequest$ClientToken": "<p>Token to enable idempotency for export image requests.</p>",
-        "ExportImageRequest$Description": "<p>A description of the image being exported. The maximum length is 255 bytes.</p>",
-        "ExportImageRequest$RoleName": "<p>The name of the role that grants VM Import/Export permission to export images to your S3 bucket. If this parameter is not specified, the default role is named 'vmimport'.</p>",
+        "ExportImageRequest$Description": "<p>A description of the image being exported. The maximum length is 255 characters.</p>",
+        "ExportImageRequest$RoleName": "<p>The name of the role that grants VM Import/Export permission to export images to your Amazon S3 bucket. If this parameter is not specified, the default role is named 'vmimport'.</p>",
         "ExportImageResult$Description": "<p>A description of the image being exported.</p>",
         "ExportImageResult$ExportImageTaskId": "<p>The ID of the export image task.</p>",
         "ExportImageResult$ImageId": "<p>The ID of the image.</p>",
-        "ExportImageResult$RoleName": "<p>The name of the role that grants VM Import/Export permission to export images to your S3 bucket.</p>",
+        "ExportImageResult$RoleName": "<p>The name of the role that grants VM Import/Export permission to export images to your Amazon S3 bucket.</p>",
         "ExportImageResult$Progress": "<p>The percent complete of the export image task.</p>",
         "ExportImageResult$Status": "<p>The status of the export image task. The possible values are <code>active</code>, <code>completed</code>, <code>deleting</code>, and <code>deleted</code>.</p>",
         "ExportImageResult$StatusMessage": "<p>The status message for the export image task.</p>",
@@ -12509,14 +12511,14 @@
         "ExportTask$Description": "<p>A description of the resource being exported.</p>",
         "ExportTask$ExportTaskId": "<p>The ID of the export task.</p>",
         "ExportTask$StatusMessage": "<p>The status message related to the export task.</p>",
-        "ExportTaskS3Location$S3Bucket": "<p>The destination S3 bucket.</p>",
+        "ExportTaskS3Location$S3Bucket": "<p>The destination Amazon S3 bucket.</p>",
         "ExportTaskS3Location$S3Prefix": "<p>The prefix (logical hierarchy) in the bucket.</p>",
-        "ExportTaskS3LocationRequest$S3Bucket": "<p>The destination S3 bucket.</p>",
+        "ExportTaskS3LocationRequest$S3Bucket": "<p>The destination Amazon S3 bucket.</p>",
         "ExportTaskS3LocationRequest$S3Prefix": "<p>The prefix (logical hierarchy) in the bucket.</p>",
-        "ExportToS3Task$S3Bucket": "<p>The S3 bucket for the destination image. The destination bucket must exist and grant WRITE and READ_ACP permissions to the AWS account <code>vm-import-export@amazon.com</code>.</p>",
+        "ExportToS3Task$S3Bucket": "<p>The Amazon S3 bucket for the destination image. The destination bucket must exist and grant WRITE and READ_ACP permissions to the AWS account <code>vm-import-export@amazon.com</code>.</p>",
         "ExportToS3Task$S3Key": "<p>The encryption key for your S3 bucket.</p>",
-        "ExportToS3TaskSpecification$S3Bucket": "<p>The S3 bucket for the destination image. The destination bucket must exist and grant WRITE and READ_ACP permissions to the AWS account <code>vm-import-export@amazon.com</code>.</p>",
-        "ExportToS3TaskSpecification$S3Prefix": "<p>The image is written to a single object in the S3 bucket at the S3 key s3prefix + exportTaskId + '.' + diskImageFormat.</p>",
+        "ExportToS3TaskSpecification$S3Bucket": "<p>The Amazon S3 bucket for the destination image. The destination bucket must exist and grant WRITE and READ_ACP permissions to the AWS account <code>vm-import-export@amazon.com</code>.</p>",
+        "ExportToS3TaskSpecification$S3Prefix": "<p>The image is written to a single object in the Amazon S3 bucket at the S3 key s3prefix + exportTaskId + '.' + diskImageFormat.</p>",
         "ExportTransitGatewayRoutesRequest$S3Bucket": "<p>The name of the S3 bucket.</p>",
         "ExportTransitGatewayRoutesResult$S3Location": "<p>The URL of the exported file in Amazon S3. For example, s3://<i>bucket_name</i>/VPCTransitGateway/TransitGatewayRouteTables/<i>file_name</i>.</p>",
         "FailedQueuedPurchaseDeletion$ReservedInstancesId": "<p>The ID of the Reserved Instance.</p>",
@@ -12628,7 +12630,7 @@
         "ImageAttribute$ImageId": "<p>The ID of the AMI.</p>",
         "ImageDiskContainer$Description": "<p>The description of the disk image.</p>",
         "ImageDiskContainer$DeviceName": "<p>The block device mapping for the disk.</p>",
-        "ImageDiskContainer$Format": "<p>The format of the disk image being imported.</p> <p>Valid values: <code>VHD</code> | <code>VMDK</code> | <code>OVA</code> </p>",
+        "ImageDiskContainer$Format": "<p>The format of the disk image being imported.</p> <p>Valid values: <code>OVA</code> | <code>VHD</code> | <code>VHDX</code> |<code>VMDK</code> </p>",
         "ImageDiskContainer$Url": "<p>The URL to the Amazon S3-based disk image being imported. The URL can either be a https URL (https://..) or an Amazon S3 URL (s3://..)</p>",
         "ImportClientVpnClientCertificateRevocationListRequest$CertificateRevocationList": "<p>The client certificate revocation list file. For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/cvpn-working-certificates.html#cvpn-working-certificates-generate\">Generate a Client Certificate Revocation List</a> in the <i>AWS Client VPN Administrator Guide</i>.</p>",
         "ImportImageLicenseConfigurationRequest$LicenseConfigurationArn": "<p>The ARN of a license configuration.</p>",
@@ -12644,8 +12646,6 @@
         "ImportImageResult$Description": "<p>A description of the import task.</p>",
         "ImportImageResult$Hypervisor": "<p>The target hypervisor of the import task.</p>",
         "ImportImageResult$ImageId": "<p>The ID of the Amazon Machine Image (AMI) created by the import task.</p>",
-        "ImportImageResult$ImportTaskId": "<p>The task ID of the import image task.</p>",
-        "ImportImageResult$KmsKeyId": "<p>The identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to create the encrypted AMI.</p>",
         "ImportImageResult$LicenseType": "<p>The license type of the virtual machine.</p>",
         "ImportImageResult$Platform": "<p>The operating system of the virtual machine.</p>",
         "ImportImageResult$Progress": "<p>The progress of the task.</p>",
@@ -13330,9 +13330,9 @@
         "UnsuccessfulItem$ResourceId": "<p>The ID of the resource.</p>",
         "UnsuccessfulItemError$Code": "<p>The error code.</p>",
         "UnsuccessfulItemError$Message": "<p>The error message accompanying the error code.</p>",
-        "UserBucket$S3Bucket": "<p>The name of the S3 bucket where the disk image is located.</p>",
+        "UserBucket$S3Bucket": "<p>The name of the Amazon S3 bucket where the disk image is located.</p>",
         "UserBucket$S3Key": "<p>The file name of the disk image.</p>",
-        "UserBucketDetails$S3Bucket": "<p>The S3 bucket from which the disk image was created.</p>",
+        "UserBucketDetails$S3Bucket": "<p>The Amazon S3 bucket from which the disk image was created.</p>",
         "UserBucketDetails$S3Key": "<p>The file name of the disk image.</p>",
         "UserData$Data": "<p>The user data. If you are using an AWS SDK or command line tool, Base64-encoding is performed for you, and you can load the text from a file. Otherwise, you must provide Base64-encoded text.</p>",
         "UserGroupStringList$member": null,
@@ -13578,6 +13578,8 @@
         "DhcpOptions$Tags": "<p>Any tags assigned to the DHCP options set.</p>",
         "EgressOnlyInternetGateway$Tags": "<p>The tags assigned to the egress-only internet gateway.</p>",
         "ElasticGpus$Tags": "<p>The tags assigned to the Elastic Graphics accelerator.</p>",
+        "ExportImageResult$Tags": "<p>Any tags assigned to the image being exported.</p>",
+        "ExportImageTask$Tags": "<p>Any tags assigned to the image being exported.</p>",
         "ExportTask$Tags": "<p>The tags for the export task.</p>",
         "FleetData$Tags": "<p>The tags for an EC2 Fleet resource.</p>",
         "FlowLog$Tags": "<p>The tags for the flow log.</p>",
@@ -13585,8 +13587,10 @@
         "Host$Tags": "<p>Any tags assigned to the Dedicated Host.</p>",
         "HostReservation$Tags": "<p>Any tags assigned to the Dedicated Host Reservation.</p>",
         "Image$Tags": "<p>Any tags assigned to the image.</p>",
+        "ImportImageResult$Tags": "<p>Any tags assigned to the image being imported.</p>",
         "ImportImageTask$Tags": "<p>The tags for the import image task.</p>",
         "ImportKeyPairResult$Tags": "<p>The tags applied to the imported key pair.</p>",
+        "ImportSnapshotResult$Tags": "<p>Any tags assigned to the snapshot being imported.</p>",
         "ImportSnapshotTask$Tags": "<p>The tags for the import snapshot task.</p>",
         "Instance$Tags": "<p>Any tags assigned to the instance.</p>",
         "InternetGateway$Tags": "<p>Any tags assigned to the internet gateway.</p>",
@@ -13654,6 +13658,7 @@
         "CreateFleetRequest$TagSpecifications": "<p>The key-value pair for tagging the EC2 Fleet request on creation. The value for <code>ResourceType</code> must be <code>fleet</code>, otherwise the fleet request fails. To tag instances at launch, specify the tags in the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template\">launch template</a>. For information about tagging after launch, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-resources\">Tagging Your Resources</a>. </p>",
         "CreateFlowLogsRequest$TagSpecifications": "<p>The tags to apply to the flow logs.</p>",
         "CreateFpgaImageRequest$TagSpecifications": "<p>The tags to apply to the FPGA image during creation.</p>",
+        "CreateInstanceExportTaskRequest$TagSpecifications": "<p>The tags to apply to the instance export task during creation.</p>",
         "CreateKeyPairRequest$TagSpecifications": "<p>The tags to apply to the new key pair.</p>",
         "CreateLaunchTemplateRequest$TagSpecifications": "<p>The tags to apply to the launch template during creation.</p>",
         "CreateLocalGatewayRouteTableVpcAssociationRequest$TagSpecifications": "<p>The tags to assign to the local gateway route table VPC association.</p>",
@@ -13672,7 +13677,10 @@
         "CreateVolumeRequest$TagSpecifications": "<p>The tags to apply to the volume during creation.</p>",
         "CreateVpcEndpointRequest$TagSpecifications": "<p>The tags to associate with the endpoint.</p>",
         "CreateVpcEndpointServiceConfigurationRequest$TagSpecifications": "<p>The tags to associate with the service.</p>",
+        "ExportImageRequest$TagSpecifications": "<p>The tags to apply to the image being exported.</p>",
+        "ImportImageRequest$TagSpecifications": "<p>The tags to apply to the image being imported.</p>",
         "ImportKeyPairRequest$TagSpecifications": "<p>The tags to apply to the imported key pair.</p>",
+        "ImportSnapshotRequest$TagSpecifications": "<p>The tags to apply to the snapshot being imported.</p>",
         "ProvisionByoipCidrRequest$PoolTagSpecifications": "<p>The tags to apply to the address pool.</p>",
         "RunInstancesRequest$TagSpecifications": "<p>The tags to apply to the resources during launch. You can only tag instances and volumes on launch. The specified tags are applied to all instances or volumes that are created during launch. To tag a resource after it has been created, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html\">CreateTags</a>.</p>",
         "SpotFleetRequestConfigData$TagSpecifications": "<p>The key-value pair for tagging the Spot Fleet request on creation. The value for <code>ResourceType</code> must be <code>spot-fleet-request</code>, otherwise the Spot Fleet request fails. To tag instances at launch, specify the tags in the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template\">launch template</a> (valid only if you use <code>LaunchTemplateConfigs</code>) or in the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_SpotFleetTagSpecification.html\"> <code>SpotFleetTagSpecification</code> </a> (valid only if you use <code>LaunchSpecifications</code>). For information about tagging after launch, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-resources\">Tagging Your Resources</a>.</p>"
@@ -14620,17 +14628,17 @@
       }
     },
     "UserBucket": {
-      "base": "<p>Describes the S3 bucket for the disk image.</p>",
+      "base": "<p>Describes the Amazon S3 bucket for the disk image.</p>",
       "refs": {
         "ImageDiskContainer$UserBucket": "<p>The S3 bucket for the disk image.</p>",
-        "SnapshotDiskContainer$UserBucket": "<p>The S3 bucket for the disk image.</p>"
+        "SnapshotDiskContainer$UserBucket": "<p>The Amazon S3 bucket for the disk image.</p>"
       }
     },
     "UserBucketDetails": {
-      "base": "<p>Describes the S3 bucket for the disk image.</p>",
+      "base": "<p>Describes the Amazon S3 bucket for the disk image.</p>",
       "refs": {
-        "SnapshotDetail$UserBucket": "<p>The S3 bucket for the disk image.</p>",
-        "SnapshotTaskDetail$UserBucket": "<p>The S3 bucket for the disk image.</p>"
+        "SnapshotDetail$UserBucket": "<p>The Amazon S3 bucket for the disk image.</p>",
+        "SnapshotTaskDetail$UserBucket": "<p>The Amazon S3 bucket for the disk image.</p>"
       }
     },
     "UserData": {

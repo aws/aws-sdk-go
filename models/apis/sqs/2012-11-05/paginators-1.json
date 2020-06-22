@@ -1,6 +1,15 @@
 {
   "pagination": {
+    "ListDeadLetterSourceQueues": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "queueUrls"
+    },
     "ListQueues": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
       "result_key": "QueueUrls"
     }
   }

@@ -92,6 +92,8 @@ const (
 
 	// ErrCodeResourceInUseException for service response error code
 	// "ResourceInUseException".
+	//
+	// The specified resource is already being used.
 	ErrCodeResourceInUseException = "ResourceInUseException"
 
 	// ErrCodeResourceNotFoundException for service response error code

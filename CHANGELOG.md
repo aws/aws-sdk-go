@@ -1,3 +1,18 @@
+Release v1.32.7 (2020-06-22)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds Tag On Create feature support for the ImportImage, ImportSnapshot, ExportImage and CreateInstanceExportTask APIs.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Adding support for MaximumCoreCapacityUnits parameter for EMR Managed Scaling. It allows users to control how many units/nodes are added to the CORE group/fleet. Remaining units/nodes are added to the TASK groups/fleet in the cluster.
+* `service/rds`: Updates service documentation and paginators
+  * Added paginators for various APIs.
+* `service/rekognition`: Updates service API, documentation, and paginators
+  * This update adds the ability to detect black frames, end credits, shots, and color bars in stored videos
+* `service/sqs`: Updates service API, documentation, and paginators
+  * AWS SQS adds pagination support for ListQueues and ListDeadLetterSourceQueues APIs
+
 Release v1.32.6 (2020-06-19)
 ===
 
