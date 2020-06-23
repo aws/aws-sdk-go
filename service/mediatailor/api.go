@@ -645,6 +645,38 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The configuration for bumpers. Bumpers are short audio or video clips that
+// play at the start or before the end of an ad break.
+type Bumper struct {
+	_ struct{} `type:"structure"`
+
+	EndUrl *string `type:"string"`
+
+	StartUrl *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Bumper) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Bumper) GoString() string {
+	return s.String()
+}
+
+// SetEndUrl sets the EndUrl field's value.
+func (s *Bumper) SetEndUrl(v string) *Bumper {
+	s.EndUrl = &v
+	return s
+}
+
+// SetStartUrl sets the StartUrl field's value.
+func (s *Bumper) SetStartUrl(v string) *Bumper {
+	s.StartUrl = &v
+	return s
+}
+
 // The configuration for using a content delivery network (CDN), like Amazon
 // CloudFront, for content and ad segment management.
 type CdnConfiguration struct {
@@ -891,6 +923,10 @@ type GetPlaybackConfigurationOutput struct {
 	// The configuration for Avail Suppression.
 	AvailSuppression *AvailSuppression `type:"structure"`
 
+	// The configuration for bumpers. Bumpers are short audio or video clips that
+	// play at the start or before the end of an ad break.
+	Bumper *Bumper `type:"structure"`
+
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
@@ -961,6 +997,12 @@ func (s *GetPlaybackConfigurationOutput) SetAdDecisionServerUrl(v string) *GetPl
 // SetAvailSuppression sets the AvailSuppression field's value.
 func (s *GetPlaybackConfigurationOutput) SetAvailSuppression(v *AvailSuppression) *GetPlaybackConfigurationOutput {
 	s.AvailSuppression = v
+	return s
+}
+
+// SetBumper sets the Bumper field's value.
+func (s *GetPlaybackConfigurationOutput) SetBumper(v *Bumper) *GetPlaybackConfigurationOutput {
+	s.Bumper = v
 	return s
 }
 
@@ -1380,6 +1422,10 @@ type PutPlaybackConfigurationInput struct {
 	// The configuration for Avail Suppression.
 	AvailSuppression *AvailSuppression `type:"structure"`
 
+	// The configuration for bumpers. Bumpers are short audio or video clips that
+	// play at the start or before the end of an ad break.
+	Bumper *Bumper `type:"structure"`
+
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
@@ -1452,6 +1498,12 @@ func (s *PutPlaybackConfigurationInput) SetAvailSuppression(v *AvailSuppression)
 	return s
 }
 
+// SetBumper sets the Bumper field's value.
+func (s *PutPlaybackConfigurationInput) SetBumper(v *Bumper) *PutPlaybackConfigurationInput {
+	s.Bumper = v
+	return s
+}
+
 // SetCdnConfiguration sets the CdnConfiguration field's value.
 func (s *PutPlaybackConfigurationInput) SetCdnConfiguration(v *CdnConfiguration) *PutPlaybackConfigurationInput {
 	s.CdnConfiguration = v
@@ -1513,6 +1565,10 @@ type PutPlaybackConfigurationOutput struct {
 
 	AvailSuppression *AvailSuppression `type:"structure"`
 
+	// The configuration for bumpers. Bumpers are short audio or video clips that
+	// play at the start or before the end of an ad break.
+	Bumper *Bumper `type:"structure"`
+
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
@@ -1562,6 +1618,12 @@ func (s *PutPlaybackConfigurationOutput) SetAdDecisionServerUrl(v string) *PutPl
 // SetAvailSuppression sets the AvailSuppression field's value.
 func (s *PutPlaybackConfigurationOutput) SetAvailSuppression(v *AvailSuppression) *PutPlaybackConfigurationOutput {
 	s.AvailSuppression = v
+	return s
+}
+
+// SetBumper sets the Bumper field's value.
+func (s *PutPlaybackConfigurationOutput) SetBumper(v *Bumper) *PutPlaybackConfigurationOutput {
+	s.Bumper = v
 	return s
 }
 

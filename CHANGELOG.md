@@ -1,3 +1,11 @@
+Release v1.32.8 (2020-06-23)
+===
+
+### Service Client Updates
+* `service/mediatailor`: Updates service API and documentation
+* `service/organizations`: Updates service API and documentation
+  * Added a new error message to support the requirement for a Business License on AWS accounts in China to create an organization.
+
 Release v1.32.7 (2020-06-22)
 ===
 

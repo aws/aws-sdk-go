@@ -96,6 +96,10 @@ const (
 	// Some of the reasons in the following list might not be applicable to this
 	// specific API or operation:
 	//
+	//    * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+	//    account from the organization. You can't remove the master account. Instead,
+	//    after you remove all member accounts, delete the organization itself.
+	//
 	//    * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 	//    from the organization that doesn't yet have enough information to exist
 	//    as a standalone account. This account requires you to first agree to the
@@ -125,14 +129,27 @@ const (
 	//    try again. If after an hour it continues to fail with this error, contact
 	//    AWS Support (https://console.aws.amazon.com/support/home#/).
 	//
-	//    * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-	//    only a member account as a delegated administrator.
+	//    * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+	//    register the master account of the organization as a delegated administrator
+	//    for an AWS service integrated with Organizations. You can designate only
+	//    a member account as a delegated administrator.
 	//
-	//    * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-	//    you must first deregister this account as a delegated administrator.
+	//    * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+	//    an account that is registered as a delegated administrator for a service
+	//    integrated with your organization. To complete this operation, you must
+	//    first deregister this account as a delegated administrator.
 	//
-	//    * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-	//    you must first deregister all delegated administrators for this service.
+	//    * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+	//    organization in the specified region, you must enable all features mode.
+	//
+	//    * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+	//    an AWS account as a delegated administrator for an AWS service that already
+	//    has a delegated administrator. To complete this operation, you must first
+	//    deregister any existing delegated administrators for this service.
+	//
+	//    * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+	//    valid for a limited period of time. You must resubmit the request and
+	//    generate a new verfication code.
 	//
 	//    * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 	//    handshakes that you can send in one day.
@@ -143,6 +160,10 @@ const (
 	//    For example, accounts with India addresses must be associated with the
 	//    AISPL marketplace. All accounts in an organization must be associated
 	//    with the same marketplace.
+	//
+	//    * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+	//    in China. To create an organization, the master must have an valid business
+	//    license. For more information, contact customer support.
 	//
 	//    * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 	//    must first provide contact a valid address and phone number for the master
@@ -182,19 +203,26 @@ const (
 	//    policy from an entity that would cause the entity to have fewer than the
 	//    minimum number of policies of a certain type required.
 	//
-	//    * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-	//    too many levels deep.
-	//
 	//    * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 	//    that requires the organization to be configured to support all features.
 	//    An organization that supports only consolidated billing features can't
 	//    perform this operation.
 	//
+	//    * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+	//    too many levels deep.
+	//
 	//    * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 	//    that you can have in an organization.
 	//
-	//    * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+	//    * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+	//    is larger than the maximum size.
+	//
+	//    * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 	//    policies that you can have in an organization.
+	//
+	//    * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+	//    tags that are not compliant with the tag policy requirements for this
+	//    account.
 	ErrCodeConstraintViolationException = "ConstraintViolationException"
 
 	// ErrCodeCreateAccountStatusNotFoundException for service response error code
