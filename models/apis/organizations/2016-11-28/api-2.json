@@ -428,7 +428,8 @@
         {"shape":"ConstraintViolationException"},
         {"shape":"InvalidInputException"},
         {"shape":"ServiceException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnsupportedAPIEndpointException"}
       ]
     },
     "DisablePolicyType":{
@@ -467,7 +468,8 @@
         {"shape":"ConstraintViolationException"},
         {"shape":"InvalidInputException"},
         {"shape":"ServiceException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnsupportedAPIEndpointException"}
       ]
     },
     "EnableAllFeatures":{
@@ -564,7 +566,8 @@
         {"shape":"ConstraintViolationException"},
         {"shape":"InvalidInputException"},
         {"shape":"ServiceException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnsupportedAPIEndpointException"}
       ]
     },
     "ListAccounts":{
@@ -1190,7 +1193,8 @@
         "MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED",
         "CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR",
         "CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG",
-        "DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE"
+        "DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE",
+        "MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE"
       ]
     },
     "CreateAccountFailureReason":{

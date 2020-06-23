@@ -373,6 +373,10 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -402,14 +406,27 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -420,6 +437,10 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -459,19 +480,26 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * DuplicatePolicyAttachmentException
 //   The selected policy is already attached to the specified target.
@@ -920,6 +948,10 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -949,14 +981,27 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -967,6 +1012,10 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -1006,19 +1055,26 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -1306,6 +1362,10 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -1335,14 +1395,27 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -1353,6 +1426,10 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -1392,19 +1469,26 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -1606,6 +1690,10 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -1635,14 +1723,27 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -1653,6 +1754,10 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -1692,19 +1797,26 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -1898,6 +2010,10 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -1927,14 +2043,27 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -1945,6 +2074,10 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -1984,19 +2117,26 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * DuplicateOrganizationalUnitException
 //   An OU with the same name already exists.
@@ -2188,6 +2328,10 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -2217,14 +2361,27 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -2235,6 +2392,10 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -2274,19 +2435,26 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * DuplicatePolicyException
 //   A policy with the same name already exists.
@@ -3220,6 +3388,10 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -3249,14 +3421,27 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -3267,6 +3452,10 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -3306,19 +3495,26 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -3852,6 +4048,10 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -3881,14 +4081,27 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -3899,6 +4112,10 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -3938,19 +4155,26 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * ServiceException
 //   AWS Organizations can't complete your request because of an internal service
@@ -4782,6 +5006,10 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -4811,14 +5039,27 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -4829,6 +5070,10 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -4868,19 +5113,26 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -5103,6 +5355,10 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -5132,14 +5388,27 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -5150,6 +5419,10 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -5189,19 +5462,26 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -5278,6 +5558,9 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //   For information on limits that affect AWS Organizations, see Limits of AWS
 //   Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)
 //   in the AWS Organizations User Guide.
+//
+//   * UnsupportedAPIEndpointException
+//   This action isn't available in the current Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/DisableAWSServiceAccess
 func (c *Organizations) DisableAWSServiceAccess(input *DisableAWSServiceAccessInput) (*DisableAWSServiceAccessOutput, error) {
@@ -5396,6 +5679,10 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -5425,14 +5712,27 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -5443,6 +5743,10 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -5482,19 +5786,26 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -5711,6 +6022,10 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -5740,14 +6055,27 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -5758,6 +6086,10 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -5797,19 +6129,26 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -5886,6 +6225,9 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //   For information on limits that affect AWS Organizations, see Limits of AWS
 //   Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)
 //   in the AWS Organizations User Guide.
+//
+//   * UnsupportedAPIEndpointException
+//   This action isn't available in the current Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/EnableAWSServiceAccess
 func (c *Organizations) EnableAWSServiceAccess(input *EnableAWSServiceAccessInput) (*EnableAWSServiceAccessOutput, error) {
@@ -6238,6 +6580,10 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -6267,14 +6613,27 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -6285,6 +6644,10 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -6324,19 +6687,26 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -6814,6 +7184,10 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -6843,14 +7217,27 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -6861,6 +7248,10 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -6900,19 +7291,26 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -7110,6 +7508,10 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -7139,14 +7541,27 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -7157,6 +7572,10 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -7196,19 +7615,26 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -7285,6 +7711,9 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //   For information on limits that affect AWS Organizations, see Limits of AWS
 //   Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)
 //   in the AWS Organizations User Guide.
+//
+//   * UnsupportedAPIEndpointException
+//   This action isn't available in the current Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/ListAWSServiceAccessForOrganization
 func (c *Organizations) ListAWSServiceAccessForOrganization(input *ListAWSServiceAccessForOrganizationInput) (*ListAWSServiceAccessForOrganizationOutput, error) {
@@ -8380,6 +8809,10 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -8409,14 +8842,27 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -8427,6 +8873,10 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -8466,19 +8916,26 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -8726,6 +9183,10 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -8755,14 +9216,27 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -8773,6 +9247,10 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -8812,19 +9290,26 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -11377,6 +11862,10 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -11406,14 +11895,27 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -11424,6 +11926,10 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -11463,19 +11969,26 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -11688,6 +12201,10 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -11717,14 +12234,27 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -11735,6 +12265,10 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -11774,19 +12308,26 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -11979,6 +12520,10 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -12008,14 +12553,27 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -12026,6 +12584,10 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -12065,19 +12627,26 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -12265,6 +12834,10 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -12294,14 +12867,27 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -12312,6 +12898,10 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -12351,19 +12941,26 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -12724,6 +13321,10 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation:
 //
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//      account from the organization. You can't remove the master account. Instead,
+//      after you remove all member accounts, delete the organization itself.
+//
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
 //      as a standalone account. This account requires you to first agree to the
@@ -12753,14 +13354,27 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //      try again. If after an hour it continues to fail with this error, contact
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//      only a member account as a delegated administrator.
+//      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//      register the master account of the organization as a delegated administrator
+//      for an AWS service integrated with Organizations. You can designate only
+//      a member account as a delegated administrator.
 //
-//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//      you must first deregister this account as a delegated administrator.
+//      * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//      an account that is registered as a delegated administrator for a service
+//      integrated with your organization. To complete this operation, you must
+//      first deregister this account as a delegated administrator.
 //
-//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//      you must first deregister all delegated administrators for this service.
+//      * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//      organization in the specified region, you must enable all features mode.
+//
+//      * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//      an AWS account as a delegated administrator for an AWS service that already
+//      has a delegated administrator. To complete this operation, you must first
+//      deregister any existing delegated administrators for this service.
+//
+//      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//      valid for a limited period of time. You must resubmit the request and
+//      generate a new verfication code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -12771,6 +13385,10 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //      For example, accounts with India addresses must be associated with the
 //      AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
+//
+//      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//      in China. To create an organization, the master must have an valid business
+//      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //      must first provide contact a valid address and phone number for the master
@@ -12810,19 +13428,26 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //      policy from an entity that would cause the entity to have fewer than the
 //      minimum number of policies of a certain type required.
 //
-//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//      too many levels deep.
-//
 //      * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //      that requires the organization to be configured to support all features.
 //      An organization that supports only consolidated billing features can't
 //      perform this operation.
 //
+//      * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//      too many levels deep.
+//
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//      is larger than the maximum size.
+//
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//      tags that are not compliant with the tag policy requirements for this
+//      account.
 //
 //   * DuplicatePolicyException
 //   A policy with the same name already exists.
@@ -13878,6 +14503,10 @@ func (s *ConcurrentModificationException) RequestID() string {
 // Some of the reasons in the following list might not be applicable to this
 // specific API or operation:
 //
+//    * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
+//    account from the organization. You can't remove the master account. Instead,
+//    after you remove all member accounts, delete the organization itself.
+//
 //    * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //    from the organization that doesn't yet have enough information to exist
 //    as a standalone account. This account requires you to first agree to the
@@ -13907,14 +14536,27 @@ func (s *ConcurrentModificationException) RequestID() string {
 //    try again. If after an hour it continues to fail with this error, contact
 //    AWS Support (https://console.aws.amazon.com/support/home#/).
 //
-//    * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You can designate
-//    only a member account as a delegated administrator.
+//    * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
+//    register the master account of the organization as a delegated administrator
+//    for an AWS service integrated with Organizations. You can designate only
+//    a member account as a delegated administrator.
 //
-//    * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: To complete this operation,
-//    you must first deregister this account as a delegated administrator.
+//    * CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG: You attempted to remove
+//    an account that is registered as a delegated administrator for a service
+//    integrated with your organization. To complete this operation, you must
+//    first deregister this account as a delegated administrator.
 //
-//    * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: To complete this operation,
-//    you must first deregister all delegated administrators for this service.
+//    * CREATE_ORGANIZATION_IN_BILLING_MODE_UNSUPPORTED_REGION: To create an
+//    organization in the specified region, you must enable all features mode.
+//
+//    * DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE: You attempted to register
+//    an AWS account as a delegated administrator for an AWS service that already
+//    has a delegated administrator. To complete this operation, you must first
+//    deregister any existing delegated administrators for this service.
+//
+//    * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
+//    valid for a limited period of time. You must resubmit the request and
+//    generate a new verfication code.
 //
 //    * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //    handshakes that you can send in one day.
@@ -13925,6 +14567,10 @@ func (s *ConcurrentModificationException) RequestID() string {
 //    For example, accounts with India addresses must be associated with the
 //    AISPL marketplace. All accounts in an organization must be associated
 //    with the same marketplace.
+//
+//    * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
+//    in China. To create an organization, the master must have an valid business
+//    license. For more information, contact customer support.
 //
 //    * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
 //    must first provide contact a valid address and phone number for the master
@@ -13964,19 +14610,26 @@ func (s *ConcurrentModificationException) RequestID() string {
 //    policy from an entity that would cause the entity to have fewer than the
 //    minimum number of policies of a certain type required.
 //
-//    * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
-//    too many levels deep.
-//
 //    * ORGANIZATION_NOT_IN_ALL_FEATURES_MODE: You attempted to perform an operation
 //    that requires the organization to be configured to support all features.
 //    An organization that supports only consolidated billing features can't
 //    perform this operation.
 //
+//    * OU_DEPTH_LIMIT_EXCEEDED: You attempted to create an OU tree that is
+//    too many levels deep.
+//
 //    * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //    that you can have in an organization.
 //
-//    * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//    * POLICY_CONTENT_LIMIT_EXCEEDED: You attempted to create a policy that
+//    is larger than the maximum size.
+//
+//    * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //    policies that you can have in an organization.
+//
+//    * TAG_POLICY_VIOLATION: You attempted to create or update a resource with
+//    tags that are not compliant with the tag policy requirements for this
+//    account.
 type ConstraintViolationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21412,6 +22065,9 @@ const (
 
 	// ConstraintViolationExceptionReasonDelegatedAdministratorExistsForThisService is a ConstraintViolationExceptionReason enum value
 	ConstraintViolationExceptionReasonDelegatedAdministratorExistsForThisService = "DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE"
+
+	// ConstraintViolationExceptionReasonMasterAccountMissingBusinessLicense is a ConstraintViolationExceptionReason enum value
+	ConstraintViolationExceptionReasonMasterAccountMissingBusinessLicense = "MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE"
 )
 
 const (
