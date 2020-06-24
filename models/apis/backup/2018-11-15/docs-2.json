@@ -16,7 +16,7 @@
     "DescribeCopyJob": "<p>Returns metadata associated with creating a copy of a resource.</p>",
     "DescribeProtectedResource": "<p>Returns information about a saved resource, including the last time it was backed up, its Amazon Resource Name (ARN), and the AWS service type of the saved resource.</p>",
     "DescribeRecoveryPoint": "<p>Returns metadata associated with a recovery point, including ID, status, encryption, and lifecycle.</p>",
-    "DescribeRegionSettings": "<p>Returns the current service opt-in settings for the region. If the service has a value set to true, AWS Backup will attempt to protect that service's resources in this region, when included in an on-demand backup or scheduled backup plan. If the value is set to false for a service, AWS Backup will not attempt to protect that service's resources in this region.</p>",
+    "DescribeRegionSettings": "<p>Returns the current service opt-in settings for the Region. If the service has a value set to <code>true</code>, AWS Backup attempts to protect that service's resources in this Region, when included in an on-demand backup or scheduled backup plan. If the value is set to <code>false</code> for a service, AWS Backup does not attempt to protect that service's resources in this Region.</p>",
     "DescribeRestoreJob": "<p>Returns metadata associated with a restore job that is specified by a job ID.</p>",
     "ExportBackupPlanTemplate": "<p>Returns the backup plan that is specified by the plan ID as a backup template.</p>",
     "GetBackupPlan": "<p>Returns the body of a backup plan in JSON format, in addition to plan metadata.</p>",
@@ -49,7 +49,7 @@
     "UntagResource": "<p>Removes a set of key-value pairs from a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN)</p>",
     "UpdateBackupPlan": "<p>Replaces the body of a saved backup plan identified by its <code>backupPlanId</code> with the input document in JSON format. The new version is uniquely identified by a <code>VersionId</code>.</p>",
     "UpdateRecoveryPointLifecycle": "<p>Sets the transition lifecycle of a recovery point.</p> <p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. AWS Backup transitions and expires backups automatically according to the lifecycle that you define. </p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “expire after days” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold. </p>",
-    "UpdateRegionSettings": "<p>Updates the current service opt-in settings for the region. If the service has a value set to true, AWS Backup will attempt to protect that service's resources in this region, when included in an on-demand backup or scheduled backup plan. If the value is set to false for a service, AWS Backup will not attempt to protect that service's resources in this region.</p>"
+    "UpdateRegionSettings": "<p>Updates the current service opt-in settings for the Region. If the service has a value set to <code>true</code>, AWS Backup attempts to protect that service's resources in this Region, when included in an on-demand backup or scheduled backup plan. If the value is set to <code>false</code> for a service, AWS Backup does not attempt to protect that service's resources in this Region.</p>"
   },
   "shapes": {
     "ARN": {
@@ -123,6 +123,19 @@
         "UpdateRecoveryPointLifecycleOutput$RecoveryPointArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for example, <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</code>.</p>"
       }
     },
+    "AccountId": {
+      "base": null,
+      "refs": {
+        "BackupJob$AccountId": "<p>The account ID that owns the backup job.</p>",
+        "CopyJob$AccountId": "<p>The account ID that owns the copy job.</p>",
+        "DescribeBackupJobOutput$AccountId": "<p>Returns the account ID that owns the backup job.</p>",
+        "DescribeRestoreJobOutput$AccountId": "<p>Returns the account ID that owns the restore job.</p>",
+        "ListBackupJobsInput$ByAccountId": "<p>The account ID to list the jobs from. Returns only backup jobs associated with the specified account ID.</p>",
+        "ListCopyJobsInput$ByAccountId": "<p>The account ID to list the jobs from. Returns only copy jobs associated with the specified account ID.</p>",
+        "ListRestoreJobsInput$ByAccountId": "<p>The account ID to list the jobs from. Returns only restore jobs associated with the specified account ID.</p>",
+        "RestoreJobsListMember$AccountId": "<p>The account ID that owns the restore job.</p>"
+      }
+    },
     "AlreadyExistsException": {
       "base": "<p>The required resource already exists.</p>",
       "refs": {
@@ -167,7 +180,7 @@
       "base": null,
       "refs": {
         "BackupPlan$BackupPlanName": "<p>The display name of a backup plan.</p>",
-        "BackupPlanInput$BackupPlanName": "<p>The display name of a backup plan.</p>",
+        "BackupPlanInput$BackupPlanName": "<p>The optional display name of a backup plan.</p>",
         "BackupPlansListMember$BackupPlanName": "<p>The display name of a saved backup plan.</p>"
       }
     },
@@ -946,14 +959,16 @@
         "DescribeBackupJobOutput$ResourceType": "<p>The type of AWS resource to be backed up; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
         "DescribeProtectedResourceOutput$ResourceType": "<p>The type of AWS resource saved as a recovery point; for example, an EBS volume or an Amazon RDS database.</p>",
         "DescribeRecoveryPointOutput$ResourceType": "<p>The type of AWS resource to save as a recovery point; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
-        "ListBackupJobsInput$ByResourceType": "<p>Returns only backup jobs for the specified resources:</p> <ul> <li> <p> <code>DynamoDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Storage Gateway</code> for AWS Storage Gateway</p> </li> </ul>",
-        "ListCopyJobsInput$ByResourceType": "<p>Returns only backup jobs for the specified resources:</p> <ul> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Storage Gateway</code> for AWS Storage Gateway</p> </li> </ul>",
+        "DescribeRestoreJobOutput$ResourceType": "<p>Returns metadata associated with a restore job listed by resource type.</p>",
+        "ListBackupJobsInput$ByResourceType": "<p>Returns only backup jobs for the specified resources:</p> <ul> <li> <p> <code>DynamoDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EC2</code> for Amazon Elastic Compute Cloud</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Storage Gateway</code> for AWS Storage Gateway</p> </li> </ul>",
+        "ListCopyJobsInput$ByResourceType": "<p>Returns only backup jobs for the specified resources:</p> <ul> <li> <p> <code>DynamoDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EC2</code> for Amazon Elastic Compute Cloud</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Storage Gateway</code> for AWS Storage Gateway</p> </li> </ul>",
         "ListRecoveryPointsByBackupVaultInput$ByResourceType": "<p>Returns only recovery points that match the specified resource type.</p>",
         "ProtectedResource$ResourceType": "<p>The type of AWS resource; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
         "RecoveryPointByBackupVault$ResourceType": "<p>The type of AWS resource saved as a recovery point; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
         "ResourceTypeOptInPreference$key": null,
         "ResourceTypes$member": null,
-        "StartRestoreJobInput$ResourceType": "<p>Starts a job to restore a recovery point for one of the following resources:</p> <ul> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>Storage Gateway</code> for AWS Storage Gateway</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>DDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> </ul>"
+        "RestoreJobsListMember$ResourceType": "<p>The resource type of the listed restore jobs; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
+        "StartRestoreJobInput$ResourceType": "<p>Starts a job to restore a recovery point for one of the following resources:</p> <ul> <li> <p> <code>DynamoDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EC2</code> for Amazon Elastic Compute Cloud</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Storage Gateway</code> for AWS Storage Gateway</p> </li> </ul>"
       }
     },
     "ResourceTypeOptInPreference": {
@@ -966,7 +981,7 @@
     "ResourceTypes": {
       "base": null,
       "refs": {
-        "GetSupportedResourceTypesOutput$ResourceTypes": "<p>Contains a string with the supported AWS resource types:</p> <ul> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>Storage Gateway</code> for AWS Storage Gateway</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>DDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> </ul>"
+        "GetSupportedResourceTypesOutput$ResourceTypes": "<p>Contains a string with the supported AWS resource types:</p> <ul> <li> <p> <code>DynamoDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EC2</code> for Amazon Elastic Compute Cloud</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Storage Gateway</code> for AWS Storage Gateway</p> </li> </ul>"
       }
     },
     "RestoreJobId": {
@@ -980,6 +995,7 @@
       "base": null,
       "refs": {
         "DescribeRestoreJobOutput$Status": "<p>Status code specifying the state of the job that is initiated by AWS Backup to restore a recovery point.</p>",
+        "ListRestoreJobsInput$ByStatus": "<p>Returns only restore jobs associated with the specified job status.</p>",
         "RestoreJobsListMember$Status": "<p>A status code specifying the state of the job initiated by AWS Backup to restore a recovery point.</p>"
       }
     },
@@ -1182,7 +1198,7 @@
         "DescribeBackupVaultOutput$CreatorRequestId": "<p>A unique string that identifies the request and allows failed requests to be retried without the risk of executing the operation twice.</p>",
         "DescribeCopyJobInput$CopyJobId": "<p>Uniquely identifies a copy job.</p>",
         "DescribeRestoreJobOutput$RestoreJobId": "<p>Uniquely identifies the job that restores a recovery point.</p>",
-        "DescribeRestoreJobOutput$StatusMessage": "<p>A detailed message explaining the status of a job to restore a recovery point.</p>",
+        "DescribeRestoreJobOutput$StatusMessage": "<p>A message showing the status of a job to restore a recovery point.</p>",
         "DescribeRestoreJobOutput$PercentDone": "<p>Contains an estimated percentage that is complete of a job at the time the job status was queried.</p>",
         "ExportBackupPlanTemplateInput$BackupPlanId": "<p>Uniquely identifies a backup plan.</p>",
         "ExportBackupPlanTemplateOutput$BackupPlanTemplateJson": "<p>The body of a backup plan template in JSON format.</p> <note> <p>This is a signed JSON document that cannot be modified before being passed to <code>GetBackupPlanFromJSON.</code> </p> </note>",
@@ -1282,14 +1298,14 @@
         "BackupVaultListMember$CreationDate": "<p>The date and time a resource backup is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CalculatedLifecycle$MoveToColdStorageAt": "<p>A timestamp that specifies when to transition a recovery point to cold storage.</p>",
         "CalculatedLifecycle$DeleteAt": "<p>A timestamp that specifies when to delete a recovery point.</p>",
-        "CopyJob$CreationDate": "<p>The date and time a copy job is created, in Unix format and Coordinated Universal Time (UTC). The value of CreationDate is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM. </p>",
-        "CopyJob$CompletionDate": "<p>The date and time a copy job is completed, in Unix format and Coordinated Universal Time (UTC). The value of CompletionDate is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM. </p>",
+        "CopyJob$CreationDate": "<p>The date and time a copy job is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "CopyJob$CompletionDate": "<p>The date and time a copy job is completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>CompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateBackupPlanOutput$CreationDate": "<p>The date and time that a backup plan is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateBackupSelectionOutput$CreationDate": "<p>The date and time a backup selection is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateBackupVaultOutput$CreationDate": "<p>The date and time a backup vault is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
-        "DeleteBackupPlanOutput$DeletionDate": "<p>The date and time a backup plan is deleted, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "DeleteBackupPlanOutput$DeletionDate": "<p>The date and time a backup plan is deleted, in Unix format and Coordinated Universal Time (UTC). The value of <code>DeletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "DescribeBackupJobOutput$CreationDate": "<p>The date and time that a backup job is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
-        "DescribeBackupJobOutput$CompletionDate": "<p>The date and time that a job to create a backup job is completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "DescribeBackupJobOutput$CompletionDate": "<p>The date and time that a job to create a backup job is completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>CompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "DescribeBackupJobOutput$ExpectedCompletionDate": "<p>The date and time that a job to back up resources is expected to be completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>ExpectedCompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "DescribeBackupJobOutput$StartBy": "<p>Specifies the time in Unix format and Coordinated Universal Time (UTC) when a backup job must be started before it is canceled. The value is calculated by adding the start window to the scheduled time. So if the scheduled time were 6:00 PM and the start window is 2 hours, the <code>StartBy</code> time would be 8:00 PM on the date specified. The value of <code>StartBy</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "DescribeBackupVaultOutput$CreationDate": "<p>The date and time that a backup vault is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
@@ -1300,7 +1316,7 @@
         "DescribeRestoreJobOutput$CreationDate": "<p>The date and time that a restore job is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "DescribeRestoreJobOutput$CompletionDate": "<p>The date and time that a job to restore a recovery point is completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>CompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "GetBackupPlanOutput$CreationDate": "<p>The date and time that a backup plan is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
-        "GetBackupPlanOutput$DeletionDate": "<p>The date and time that a backup plan is deleted, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "GetBackupPlanOutput$DeletionDate": "<p>The date and time that a backup plan is deleted, in Unix format and Coordinated Universal Time (UTC). The value of <code>DeletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "GetBackupPlanOutput$LastExecutionDate": "<p>The last time a job to back up resources was executed with this backup plan. A date and time, in Unix format and Coordinated Universal Time (UTC). The value of <code>LastExecutionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "GetBackupSelectionOutput$CreationDate": "<p>The date and time a backup selection is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "ListBackupJobsInput$ByCreatedBefore": "<p>Returns only backup jobs that were created before the specified date.</p>",
@@ -1309,6 +1325,8 @@
         "ListCopyJobsInput$ByCreatedAfter": "<p>Returns only copy jobs that were created after the specified date.</p>",
         "ListRecoveryPointsByBackupVaultInput$ByCreatedBefore": "<p>Returns only recovery points that were created before the specified timestamp.</p>",
         "ListRecoveryPointsByBackupVaultInput$ByCreatedAfter": "<p>Returns only recovery points that were created after the specified timestamp.</p>",
+        "ListRestoreJobsInput$ByCreatedBefore": "<p>Returns only restore jobs that were created before the specified date.</p>",
+        "ListRestoreJobsInput$ByCreatedAfter": "<p>Returns only restore jobs that were created after the specified date.</p>",
         "ProtectedResource$LastBackupTime": "<p>The date and time a resource was last backed up, in Unix format and Coordinated Universal Time (UTC). The value of <code>LastBackupTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "RecoveryPointByBackupVault$CreationDate": "<p>The date and time a recovery point is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "RecoveryPointByBackupVault$CompletionDate": "<p>The date and time a job to restore a recovery point is completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>CompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",

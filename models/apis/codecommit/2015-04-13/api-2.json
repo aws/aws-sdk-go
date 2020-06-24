@@ -669,8 +669,31 @@
       "output":{"shape":"GetCommentOutput"},
       "errors":[
         {"shape":"CommentDoesNotExistException"},
+        {"shape":"CommentDeletedException"},
         {"shape":"CommentIdRequiredException"},
         {"shape":"InvalidCommentIdException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
+      ]
+    },
+    "GetCommentReactions":{
+      "name":"GetCommentReactions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCommentReactionsInput"},
+      "output":{"shape":"GetCommentReactionsOutput"},
+      "errors":[
+        {"shape":"CommentDoesNotExistException"},
+        {"shape":"CommentIdRequiredException"},
+        {"shape":"InvalidCommentIdException"},
+        {"shape":"InvalidReactionUserArnException"},
+        {"shape":"InvalidMaxResultsException"},
+        {"shape":"InvalidContinuationTokenException"},
         {"shape":"CommentDeletedException"}
       ]
     },
@@ -1441,15 +1464,16 @@
         {"shape":"InvalidFilePositionException"},
         {"shape":"CommitIdRequiredException"},
         {"shape":"InvalidCommitIdException"},
+        {"shape":"BeforeCommitIdAndAfterCommitIdAreSameException"},
         {"shape":"EncryptionIntegrityChecksFailedException"},
         {"shape":"EncryptionKeyAccessDeniedException"},
         {"shape":"EncryptionKeyDisabledException"},
         {"shape":"EncryptionKeyNotFoundException"},
         {"shape":"EncryptionKeyUnavailableException"},
-        {"shape":"BeforeCommitIdAndAfterCommitIdAreSameException"},
         {"shape":"CommitDoesNotExistException"},
         {"shape":"InvalidPathException"},
-        {"shape":"PathDoesNotExistException"}
+        {"shape":"PathDoesNotExistException"},
+        {"shape":"PathRequiredException"}
       ],
       "idempotent":true
     },
@@ -1480,6 +1504,7 @@
         {"shape":"InvalidFilePositionException"},
         {"shape":"CommitIdRequiredException"},
         {"shape":"InvalidCommitIdException"},
+        {"shape":"BeforeCommitIdAndAfterCommitIdAreSameException"},
         {"shape":"EncryptionIntegrityChecksFailedException"},
         {"shape":"EncryptionKeyAccessDeniedException"},
         {"shape":"EncryptionKeyDisabledException"},
@@ -1488,8 +1513,7 @@
         {"shape":"CommitDoesNotExistException"},
         {"shape":"InvalidPathException"},
         {"shape":"PathDoesNotExistException"},
-        {"shape":"PathRequiredException"},
-        {"shape":"BeforeCommitIdAndAfterCommitIdAreSameException"}
+        {"shape":"PathRequiredException"}
       ],
       "idempotent":true
     },
@@ -1512,6 +1536,23 @@
         {"shape":"InvalidCommentIdException"}
       ],
       "idempotent":true
+    },
+    "PutCommentReaction":{
+      "name":"PutCommentReaction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutCommentReactionInput"},
+      "errors":[
+        {"shape":"CommentDoesNotExistException"},
+        {"shape":"CommentIdRequiredException"},
+        {"shape":"InvalidCommentIdException"},
+        {"shape":"InvalidReactionValueException"},
+        {"shape":"ReactionValueRequiredException"},
+        {"shape":"ReactionLimitExceededException"},
+        {"shape":"CommentDeletedException"}
+      ]
     },
     "PutFile":{
       "name":"PutFile",
@@ -2313,6 +2354,10 @@
       },
       "exception":true
     },
+    "CallerReactions":{
+      "type":"list",
+      "member":{"shape":"ReactionValue"}
+    },
     "CannotDeleteApprovalRuleFromTemplateException":{
       "type":"structure",
       "members":{
@@ -2353,7 +2398,9 @@
         "lastModifiedDate":{"shape":"LastModifiedDate"},
         "authorArn":{"shape":"Arn"},
         "deleted":{"shape":"IsCommentDeleted"},
-        "clientRequestToken":{"shape":"ClientRequestToken"}
+        "clientRequestToken":{"shape":"ClientRequestToken"},
+        "callerReactions":{"shape":"CallerReactions"},
+        "reactionCounts":{"shape":"ReactionCountsMap"}
       }
     },
     "CommentContentRequiredException":{
@@ -2555,6 +2602,7 @@
       "member":{"shape":"Conflict"}
     },
     "Content":{"type":"string"},
+    "Count":{"type":"integer"},
     "CreateApprovalRuleTemplateInput":{
       "type":"structure",
       "required":[
@@ -3178,6 +3226,24 @@
         "comment":{"shape":"Comment"}
       }
     },
+    "GetCommentReactionsInput":{
+      "type":"structure",
+      "required":["commentId"],
+      "members":{
+        "commentId":{"shape":"CommentId"},
+        "reactionUserArn":{"shape":"Arn"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "GetCommentReactionsOutput":{
+      "type":"structure",
+      "required":["reactionsForComment"],
+      "members":{
+        "reactionsForComment":{"shape":"ReactionsForCommentList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "GetCommentsForComparedCommitInput":{
       "type":"structure",
       "required":[
@@ -3708,6 +3774,18 @@
       "exception":true
     },
     "InvalidPullRequestStatusUpdateException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidReactionUserArnException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "InvalidReactionValueException":{
       "type":"structure",
       "members":{
       },
@@ -4641,6 +4719,17 @@
       "type":"list",
       "member":{"shape":"PullRequestTarget"}
     },
+    "PutCommentReactionInput":{
+      "type":"structure",
+      "required":[
+        "commentId",
+        "reactionValue"
+      ],
+      "members":{
+        "commentId":{"shape":"CommentId"},
+        "reactionValue":{"shape":"ReactionValue"}
+      }
+    },
     "PutFileEntries":{
       "type":"list",
       "member":{"shape":"PutFileEntry"}
@@ -4710,6 +4799,51 @@
       "members":{
         "configurationId":{"shape":"RepositoryTriggersConfigurationId"}
       }
+    },
+    "ReactionCountsMap":{
+      "type":"map",
+      "key":{"shape":"ReactionValue"},
+      "value":{"shape":"Count"}
+    },
+    "ReactionEmoji":{"type":"string"},
+    "ReactionForComment":{
+      "type":"structure",
+      "members":{
+        "reaction":{"shape":"ReactionValueFormats"},
+        "reactionUsers":{"shape":"ReactionUsersList"},
+        "reactionsFromDeletedUsersCount":{"shape":"Count"}
+      }
+    },
+    "ReactionLimitExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ReactionShortCode":{"type":"string"},
+    "ReactionUnicode":{"type":"string"},
+    "ReactionUsersList":{
+      "type":"list",
+      "member":{"shape":"Arn"}
+    },
+    "ReactionValue":{"type":"string"},
+    "ReactionValueFormats":{
+      "type":"structure",
+      "members":{
+        "emoji":{"shape":"ReactionEmoji"},
+        "shortCode":{"shape":"ReactionShortCode"},
+        "unicode":{"shape":"ReactionUnicode"}
+      }
+    },
+    "ReactionValueRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ReactionsForCommentList":{
+      "type":"list",
+      "member":{"shape":"ReactionForComment"}
     },
     "ReferenceDoesNotExistException":{
       "type":"structure",

@@ -174,6 +174,13 @@ type CodeCommitAPI interface {
 	GetCommentWithContext(aws.Context, *codecommit.GetCommentInput, ...request.Option) (*codecommit.GetCommentOutput, error)
 	GetCommentRequest(*codecommit.GetCommentInput) (*request.Request, *codecommit.GetCommentOutput)
 
+	GetCommentReactions(*codecommit.GetCommentReactionsInput) (*codecommit.GetCommentReactionsOutput, error)
+	GetCommentReactionsWithContext(aws.Context, *codecommit.GetCommentReactionsInput, ...request.Option) (*codecommit.GetCommentReactionsOutput, error)
+	GetCommentReactionsRequest(*codecommit.GetCommentReactionsInput) (*request.Request, *codecommit.GetCommentReactionsOutput)
+
+	GetCommentReactionsPages(*codecommit.GetCommentReactionsInput, func(*codecommit.GetCommentReactionsOutput, bool) bool) error
+	GetCommentReactionsPagesWithContext(aws.Context, *codecommit.GetCommentReactionsInput, func(*codecommit.GetCommentReactionsOutput, bool) bool, ...request.Option) error
+
 	GetCommentsForComparedCommit(*codecommit.GetCommentsForComparedCommitInput) (*codecommit.GetCommentsForComparedCommitOutput, error)
 	GetCommentsForComparedCommitWithContext(aws.Context, *codecommit.GetCommentsForComparedCommitInput, ...request.Option) (*codecommit.GetCommentsForComparedCommitOutput, error)
 	GetCommentsForComparedCommitRequest(*codecommit.GetCommentsForComparedCommitInput) (*request.Request, *codecommit.GetCommentsForComparedCommitOutput)
@@ -327,6 +334,10 @@ type CodeCommitAPI interface {
 	PostCommentReply(*codecommit.PostCommentReplyInput) (*codecommit.PostCommentReplyOutput, error)
 	PostCommentReplyWithContext(aws.Context, *codecommit.PostCommentReplyInput, ...request.Option) (*codecommit.PostCommentReplyOutput, error)
 	PostCommentReplyRequest(*codecommit.PostCommentReplyInput) (*request.Request, *codecommit.PostCommentReplyOutput)
+
+	PutCommentReaction(*codecommit.PutCommentReactionInput) (*codecommit.PutCommentReactionOutput, error)
+	PutCommentReactionWithContext(aws.Context, *codecommit.PutCommentReactionInput, ...request.Option) (*codecommit.PutCommentReactionOutput, error)
+	PutCommentReactionRequest(*codecommit.PutCommentReactionInput) (*request.Request, *codecommit.PutCommentReactionOutput)
 
 	PutFile(*codecommit.PutFileInput) (*codecommit.PutFileOutput, error)
 	PutFileWithContext(aws.Context, *codecommit.PutFileInput, ...request.Option) (*codecommit.PutFileOutput, error)

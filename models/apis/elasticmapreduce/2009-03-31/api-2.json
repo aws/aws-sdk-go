@@ -1124,9 +1124,9 @@
     },
     "InstanceFleetProvisioningSpecifications":{
       "type":"structure",
-      "required":["SpotSpecification"],
       "members":{
-        "SpotSpecification":{"shape":"SpotProvisioningSpecification"}
+        "SpotSpecification":{"shape":"SpotProvisioningSpecification"},
+        "OnDemandSpecification":{"shape":"OnDemandProvisioningSpecification"}
       }
     },
     "InstanceFleetState":{
@@ -1780,6 +1780,17 @@
       "type":"double",
       "min":0.0
     },
+    "OnDemandProvisioningAllocationStrategy":{
+      "type":"string",
+      "enum":["lowest-price"]
+    },
+    "OnDemandProvisioningSpecification":{
+      "type":"structure",
+      "required":["AllocationStrategy"],
+      "members":{
+        "AllocationStrategy":{"shape":"OnDemandProvisioningAllocationStrategy"}
+      }
+    },
     "OptionalArnType":{
       "type":"string",
       "max":2048,
@@ -2065,6 +2076,10 @@
         "CoolDown":{"shape":"Integer"}
       }
     },
+    "SpotProvisioningAllocationStrategy":{
+      "type":"string",
+      "enum":["capacity-optimized"]
+    },
     "SpotProvisioningSpecification":{
       "type":"structure",
       "required":[
@@ -2074,7 +2089,8 @@
       "members":{
         "TimeoutDurationMinutes":{"shape":"WholeNumber"},
         "TimeoutAction":{"shape":"SpotProvisioningTimeoutAction"},
-        "BlockDurationMinutes":{"shape":"WholeNumber"}
+        "BlockDurationMinutes":{"shape":"WholeNumber"},
+        "AllocationStrategy":{"shape":"SpotProvisioningAllocationStrategy"}
       }
     },
     "SpotProvisioningTimeoutAction":{

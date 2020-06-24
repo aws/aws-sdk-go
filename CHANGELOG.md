@@ -1,3 +1,22 @@
+Release v1.32.9 (2020-06-24)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/autoscaling`: Updates service documentation
+  * Documentation updates for Amazon EC2 Auto Scaling.
+* `service/backup`: Updates service API and documentation
+* `service/codecommit`: Updates service API, documentation, and paginators
+  * This release introduces support for reactions to CodeCommit comments. Users will be able to select from a pre-defined list of emojis to express their reaction to any comments.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR customers can now set allocation strategies for On-Demand and Spot instances in their EMR clusters with instance fleets. These allocation strategies use real-time capacity insights to provision clusters faster and make the most efficient use of available spare capacity to allocate Spot instances to reduce interruptions.
+* `service/fsx`: Updates service API and documentation
+* `service/honeycode`: Adds new service
+* `service/iam`: Updates service documentation
+  * Documentation updates for iam
+* `service/organizations`: Updates service API and documentation
+  * This release adds support for a new backup policy type for AWS Organizations.
+
 Release v1.32.8 (2020-06-23)
 ===
 
