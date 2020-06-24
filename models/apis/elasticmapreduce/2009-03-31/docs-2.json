@@ -647,7 +647,7 @@
       }
     },
     "InstanceFleetProvisioningSpecifications": {
-      "base": "<p>The launch specification for Spot instances in the fleet, which determines the defined duration and provisioning timeout behavior.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
+      "base": "<p>The launch specification for Spot instances in the fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. On-Demand and Spot instance allocation strategies are available in Amazon EMR version 5.12.1 and later.</p> </note>",
       "refs": {
         "InstanceFleet$LaunchSpecifications": "<p>Describes the launch specification for an instance fleet. </p>",
         "InstanceFleetConfig$LaunchSpecifications": "<p>The launch specification for the instance fleet.</p>"
@@ -1178,6 +1178,18 @@
         "InstanceTypeSpecification$BidPriceAsPercentageOfOnDemandPrice": "<p>The bid price, as a percentage of On-Demand price, for each EC2 Spot instance as defined by <code>InstanceType</code>. Expressed as a number (for example, 20 specifies 20%).</p>"
       }
     },
+    "OnDemandProvisioningAllocationStrategy": {
+      "base": null,
+      "refs": {
+        "OnDemandProvisioningSpecification$AllocationStrategy": "<p> Specifies the strategy to use in launching On-Demand instance fleets. Currently, the only option is lowest-price (the default), which launches the lowest price first. </p>"
+      }
+    },
+    "OnDemandProvisioningSpecification": {
+      "base": "<p> The launch specification for On-Demand instances in the instance fleet, which determines the allocation strategy. </p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. On-Demand instances allocation strategy is available in Amazon EMR version 5.12.1 and later.</p> </note>",
+      "refs": {
+        "InstanceFleetProvisioningSpecifications$OnDemandSpecification": "<p> The launch specification for On-Demand instances in the instance fleet, which determines the allocation strategy. </p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. On-Demand instances allocation strategy is available in Amazon EMR version 5.12.1 and later.</p> </note>"
+      }
+    },
     "OptionalArnType": {
       "base": null,
       "refs": {
@@ -1383,10 +1395,16 @@
         "ScalingAction$SimpleScalingPolicyConfiguration": "<p>The type of adjustment the automatic scaling activity makes when triggered, and the periodicity of the adjustment.</p>"
       }
     },
-    "SpotProvisioningSpecification": {
-      "base": "<p>The launch specification for Spot instances in the instance fleet, which determines the defined duration and provisioning timeout behavior.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
+    "SpotProvisioningAllocationStrategy": {
+      "base": null,
       "refs": {
-        "InstanceFleetProvisioningSpecifications$SpotSpecification": "<p>The launch specification for Spot instances in the fleet, which determines the defined duration and provisioning timeout behavior.</p>"
+        "SpotProvisioningSpecification$AllocationStrategy": "<p> Specifies the strategy to use in launching Spot instance fleets. Currently, the only option is capacity-optimized (the default), which launches instances from Spot instance pools with optimal capacity for the number of instances that are launching. </p>"
+      }
+    },
+    "SpotProvisioningSpecification": {
+      "base": "<p>The launch specification for Spot instances in the instance fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. Spot instance allocation strategy is available in Amazon EMR version 5.12.1 and later.</p> </note>",
+      "refs": {
+        "InstanceFleetProvisioningSpecifications$SpotSpecification": "<p>The launch specification for Spot instances in the fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p>"
       }
     },
     "SpotProvisioningTimeoutAction": {

@@ -10,6 +10,11 @@
       "limit_key": "maxResults",
       "output_token": "nextToken"
     },
+    "GetCommentReactions": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken"
+    },
     "GetCommentsForComparedCommit": {
       "input_token": "nextToken",
       "limit_key": "maxResults",

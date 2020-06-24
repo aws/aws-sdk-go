@@ -91,10 +91,10 @@ const (
 	// an OU or root, inviting or creating too many accounts to the organization,
 	// or attaching too many policies to an account, OU, or root. This exception
 	// includes a reason that contains additional information about the violated
-	// limit.
+	// limit:
 	//
 	// Some of the reasons in the following list might not be applicable to this
-	// specific API or operation:
+	// specific API or operation.
 	//
 	//    * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
 	//    account from the organization. You can't remove the master account. Instead,
@@ -103,15 +103,15 @@ const (
 	//    * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 	//    from the organization that doesn't yet have enough information to exist
 	//    as a standalone account. This account requires you to first agree to the
-	//    AWS Customer Agreement. Follow the steps at To leave an organization when
-	//    all required account information has not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
-	//    in the AWS Organizations User Guide.
+	//    AWS Customer Agreement. Follow the steps at Removing a member account
+	//    from your organization (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#orgs_manage_accounts_remove-from-master)in
+	//    the AWS Organizations User Guide.
 	//
 	//    * ACCOUNT_CANNOT_LEAVE_WITHOUT_PHONE_VERIFICATION: You attempted to remove
 	//    an account from the organization that doesn't yet have enough information
 	//    to exist as a standalone account. This account requires you to first complete
-	//    phone verification. Follow the steps at To leave an organization when
-	//    all required account information has not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+	//    phone verification. Follow the steps at Removing a member account from
+	//    your organization (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#orgs_manage_accounts_remove-from-master)
 	//    in the AWS Organizations User Guide.
 	//
 	//    * ACCOUNT_CREATION_RATE_LIMIT_EXCEEDED: You attempted to exceed the number
@@ -124,9 +124,9 @@ const (
 	//    tried to send would cause you to exceed the limit of accounts in your
 	//    organization. Send fewer invitations or contact AWS Support to request
 	//    an increase in the number of accounts. Deleted and closed accounts still
-	//    count toward your limit. If you get receive this exception when running
-	//    a command immediately after creating the organization, wait one hour and
-	//    try again. If after an hour it continues to fail with this error, contact
+	//    count toward your limit. If you get this exception when running a command
+	//    immediately after creating the organization, wait one hour and try again.
+	//    After an hour, if the command continues to fail with this error, contact
 	//    AWS Support (https://console.aws.amazon.com/support/home#/).
 	//
 	//    * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
@@ -166,7 +166,7 @@ const (
 	//    license. For more information, contact customer support.
 	//
 	//    * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-	//    must first provide contact a valid address and phone number for the master
+	//    must first provide a valid contact address and phone number for the master
 	//    account. Then try the operation again.
 	//
 	//    * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
@@ -363,7 +363,7 @@ const (
 	// contains additional information about the violated limit:
 	//
 	// Some of the reasons in the following list might not be applicable to this
-	// specific API or operation:
+	// specific API or operation.
 	//
 	//    * IMMUTABLE_POLICY: You specified a policy that is managed by AWS and
 	//    can't be modified.
@@ -502,9 +502,9 @@ const (
 	//
 	// You can't use the specified policy type with the feature set currently enabled
 	// for this organization. For example, you can enable SCPs only after you enable
-	// all features in the organization. For more information, see Enabling and
-	// Disabling a Policy Type on a Root (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html#enable_policies_on_root)
-	// in the AWS Organizations User Guide.
+	// all features in the organization. For more information, see Managing AWS
+	// Organizations Policies (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html#enable_policies_on_root)in
+	// the AWS Organizations User Guide.
 	ErrCodePolicyTypeNotAvailableForOrganizationException = "PolicyTypeNotAvailableForOrganizationException"
 
 	// ErrCodePolicyTypeNotEnabledException for service response error code
@@ -545,18 +545,18 @@ const (
 	// ErrCodeTooManyRequestsException for service response error code
 	// "TooManyRequestsException".
 	//
-	// You have sent too many requests in too short a period of time. The limit
+	// You have sent too many requests in too short a period of time. The quota
 	// helps protect against denial-of-service attacks. Try again later.
 	//
-	// For information on limits that affect AWS Organizations, see Limits of AWS
-	// Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)
-	// in the AWS Organizations User Guide.
+	// For information about quotas that affect AWS Organizations, see Quotas for
+	// AWS Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)in
+	// the AWS Organizations User Guide.
 	ErrCodeTooManyRequestsException = "TooManyRequestsException"
 
 	// ErrCodeUnsupportedAPIEndpointException for service response error code
 	// "UnsupportedAPIEndpointException".
 	//
-	// This action isn't available in the current Region.
+	// This action isn't available in the current AWS Region.
 	ErrCodeUnsupportedAPIEndpointException = "UnsupportedAPIEndpointException"
 )
 

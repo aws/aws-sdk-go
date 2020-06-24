@@ -410,7 +410,6 @@
       "output":{"shape":"ListBackupJobsOutput"},
       "errors":[
         {"shape":"InvalidParameterValueException"},
-        {"shape":"InvalidRequestException"},
         {"shape":"ServiceUnavailableException"}
       ],
       "idempotent":true
@@ -759,6 +758,10 @@
   },
   "shapes":{
     "ARN":{"type":"string"},
+    "AccountId":{
+      "type":"string",
+      "pattern":"^[0-9]{12}$"
+    },
     "AlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -774,6 +777,7 @@
     "BackupJob":{
       "type":"structure",
       "members":{
+        "AccountId":{"shape":"AccountId"},
         "BackupJobId":{"shape":"string"},
         "BackupVaultName":{"shape":"BackupVaultName"},
         "BackupVaultArn":{"shape":"ARN"},
@@ -1029,6 +1033,7 @@
     "CopyJob":{
       "type":"structure",
       "members":{
+        "AccountId":{"shape":"AccountId"},
         "CopyJobId":{"shape":"string"},
         "SourceBackupVaultArn":{"shape":"ARN"},
         "SourceRecoveryPointArn":{"shape":"ARN"},
@@ -1239,6 +1244,7 @@
     "DescribeBackupJobOutput":{
       "type":"structure",
       "members":{
+        "AccountId":{"shape":"AccountId"},
         "BackupJobId":{"shape":"string"},
         "BackupVaultName":{"shape":"BackupVaultName"},
         "BackupVaultArn":{"shape":"ARN"},
@@ -1382,6 +1388,7 @@
     "DescribeRestoreJobOutput":{
       "type":"structure",
       "members":{
+        "AccountId":{"shape":"AccountId"},
         "RestoreJobId":{"shape":"string"},
         "RecoveryPointArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
@@ -1392,7 +1399,8 @@
         "BackupSizeInBytes":{"shape":"Long"},
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "ExpectedCompletionTimeMinutes":{"shape":"Long"},
-        "CreatedResourceArn":{"shape":"ARN"}
+        "CreatedResourceArn":{"shape":"ARN"},
+        "ResourceType":{"shape":"ResourceType"}
       }
     },
     "ExportBackupPlanTemplateInput":{
@@ -1654,6 +1662,11 @@
           "shape":"ResourceType",
           "location":"querystring",
           "locationName":"resourceType"
+        },
+        "ByAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"accountId"
         }
       }
     },
@@ -1833,6 +1846,11 @@
           "shape":"string",
           "location":"querystring",
           "locationName":"destinationVaultArn"
+        },
+        "ByAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"accountId"
         }
       }
     },
@@ -1962,6 +1980,26 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "ByAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"accountId"
+        },
+        "ByCreatedBefore":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"createdBefore"
+        },
+        "ByCreatedAfter":{
+          "shape":"timestamp",
+          "location":"querystring",
+          "locationName":"createdAfter"
+        },
+        "ByStatus":{
+          "shape":"RestoreJobStatus",
+          "location":"querystring",
+          "locationName":"status"
         }
       }
     },
@@ -2168,6 +2206,7 @@
     "RestoreJobsListMember":{
       "type":"structure",
       "members":{
+        "AccountId":{"shape":"AccountId"},
         "RestoreJobId":{"shape":"string"},
         "RecoveryPointArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
@@ -2178,7 +2217,8 @@
         "BackupSizeInBytes":{"shape":"Long"},
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "ExpectedCompletionTimeMinutes":{"shape":"Long"},
-        "CreatedResourceArn":{"shape":"ARN"}
+        "CreatedResourceArn":{"shape":"ARN"},
+        "ResourceType":{"shape":"ResourceType"}
       }
     },
     "ServiceUnavailableException":{
