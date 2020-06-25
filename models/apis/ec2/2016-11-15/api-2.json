@@ -22642,7 +22642,11 @@
         "CurrencyCode":{"shape":"CurrencyCodeValues"},
         "HostIdSet":{"shape":"RequestHostIdSet"},
         "LimitPrice":{"shape":"String"},
-        "OfferingId":{"shape":"OfferingId"}
+        "OfferingId":{"shape":"OfferingId"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "PurchaseHostReservationResult":{

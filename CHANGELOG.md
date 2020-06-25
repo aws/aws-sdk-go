@@ -1,3 +1,12 @@
+Release v1.32.10 (2020-06-25)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Added support for tag-on-create for Host Reservations in Dedicated Hosts. You can now specify tags when you create a Host Reservation for a Dedicated Host. For more information about tagging, see AWS Tagging Strategies.
+* `service/glue`: Updates service API and documentation
+  * This release adds new APIs to support column level statistics in AWS Glue Data Catalog
+
 Release v1.32.9 (2020-06-24)
 ===
 
