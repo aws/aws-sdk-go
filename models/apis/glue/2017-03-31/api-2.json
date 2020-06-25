@@ -453,6 +453,38 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "DeleteColumnStatisticsForPartition":{
+      "name":"DeleteColumnStatisticsForPartition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteColumnStatisticsForPartitionRequest"},
+      "output":{"shape":"DeleteColumnStatisticsForPartitionResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"}
+      ]
+    },
+    "DeleteColumnStatisticsForTable":{
+      "name":"DeleteColumnStatisticsForTable",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteColumnStatisticsForTableRequest"},
+      "output":{"shape":"DeleteColumnStatisticsForTableResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"}
+      ]
+    },
     "DeleteConnection":{
       "name":"DeleteConnection",
       "http":{
@@ -697,6 +729,38 @@
       "output":{"shape":"GetClassifiersResponse"},
       "errors":[
         {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "GetColumnStatisticsForPartition":{
+      "name":"GetColumnStatisticsForPartition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetColumnStatisticsForPartitionRequest"},
+      "output":{"shape":"GetColumnStatisticsForPartitionResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"}
+      ]
+    },
+    "GetColumnStatisticsForTable":{
+      "name":"GetColumnStatisticsForTable",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetColumnStatisticsForTableRequest"},
+      "output":{"shape":"GetColumnStatisticsForTableResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"}
       ]
     },
     "GetConnection":{
@@ -1726,6 +1790,38 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "UpdateColumnStatisticsForPartition":{
+      "name":"UpdateColumnStatisticsForPartition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateColumnStatisticsForPartitionRequest"},
+      "output":{"shape":"UpdateColumnStatisticsForPartitionResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"}
+      ]
+    },
+    "UpdateColumnStatisticsForTable":{
+      "name":"UpdateColumnStatisticsForTable",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateColumnStatisticsForTableRequest"},
+      "output":{"shape":"UpdateColumnStatisticsForTableResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"}
+      ]
+    },
     "UpdateConnection":{
       "name":"UpdateConnection",
       "http":{
@@ -2208,7 +2304,34 @@
       "type":"list",
       "member":{"shape":"BatchStopJobRunSuccessfulSubmission"}
     },
+    "BinaryColumnStatisticsData":{
+      "type":"structure",
+      "required":[
+        "MaximumLength",
+        "AverageLength",
+        "NumberOfNulls"
+      ],
+      "members":{
+        "MaximumLength":{"shape":"NonNegativeLong"},
+        "AverageLength":{"shape":"NonNegativeDouble"},
+        "NumberOfNulls":{"shape":"NonNegativeLong"}
+      }
+    },
+    "Blob":{"type":"blob"},
     "Boolean":{"type":"boolean"},
+    "BooleanColumnStatisticsData":{
+      "type":"structure",
+      "required":[
+        "NumberOfTrues",
+        "NumberOfFalses",
+        "NumberOfNulls"
+      ],
+      "members":{
+        "NumberOfTrues":{"shape":"NonNegativeLong"},
+        "NumberOfFalses":{"shape":"NonNegativeLong"},
+        "NumberOfNulls":{"shape":"NonNegativeLong"}
+      }
+    },
     "BooleanNullable":{"type":"boolean"},
     "BooleanValue":{"type":"boolean"},
     "BoundedPartitionValueList":{
@@ -2387,6 +2510,17 @@
         "Parameters":{"shape":"ParametersMap"}
       }
     },
+    "ColumnError":{
+      "type":"structure",
+      "members":{
+        "ColumnName":{"shape":"NameString"},
+        "Error":{"shape":"ErrorDetail"}
+      }
+    },
+    "ColumnErrors":{
+      "type":"list",
+      "member":{"shape":"ColumnError"}
+    },
     "ColumnList":{
       "type":"list",
       "member":{"shape":"Column"}
@@ -2396,6 +2530,62 @@
       "max":1024,
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "ColumnStatistics":{
+      "type":"structure",
+      "required":[
+        "ColumnName",
+        "ColumnType",
+        "AnalyzedTime",
+        "StatisticsData"
+      ],
+      "members":{
+        "ColumnName":{"shape":"NameString"},
+        "ColumnType":{"shape":"TypeString"},
+        "AnalyzedTime":{"shape":"Timestamp"},
+        "StatisticsData":{"shape":"ColumnStatisticsData"}
+      }
+    },
+    "ColumnStatisticsData":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"ColumnStatisticsType"},
+        "BooleanColumnStatisticsData":{"shape":"BooleanColumnStatisticsData"},
+        "DateColumnStatisticsData":{"shape":"DateColumnStatisticsData"},
+        "DecimalColumnStatisticsData":{"shape":"DecimalColumnStatisticsData"},
+        "DoubleColumnStatisticsData":{"shape":"DoubleColumnStatisticsData"},
+        "LongColumnStatisticsData":{"shape":"LongColumnStatisticsData"},
+        "StringColumnStatisticsData":{"shape":"StringColumnStatisticsData"},
+        "BinaryColumnStatisticsData":{"shape":"BinaryColumnStatisticsData"}
+      }
+    },
+    "ColumnStatisticsError":{
+      "type":"structure",
+      "members":{
+        "ColumnStatistics":{"shape":"ColumnStatistics"},
+        "Error":{"shape":"ErrorDetail"}
+      }
+    },
+    "ColumnStatisticsErrors":{
+      "type":"list",
+      "member":{"shape":"ColumnStatisticsError"}
+    },
+    "ColumnStatisticsList":{
+      "type":"list",
+      "member":{"shape":"ColumnStatistics"}
+    },
+    "ColumnStatisticsType":{
+      "type":"string",
+      "enum":[
+        "BOOLEAN",
+        "DATE",
+        "DECIMAL",
+        "DOUBLE",
+        "LONG",
+        "STRING",
+        "BINARY"
+      ]
     },
     "ColumnTypeString":{
       "type":"string",
@@ -3141,6 +3331,43 @@
       "member":{"shape":"Database"}
     },
     "DatabaseName":{"type":"string"},
+    "DateColumnStatisticsData":{
+      "type":"structure",
+      "required":[
+        "NumberOfNulls",
+        "NumberOfDistinctValues"
+      ],
+      "members":{
+        "MinimumValue":{"shape":"Timestamp"},
+        "MaximumValue":{"shape":"Timestamp"},
+        "NumberOfNulls":{"shape":"NonNegativeLong"},
+        "NumberOfDistinctValues":{"shape":"NonNegativeLong"}
+      }
+    },
+    "DecimalColumnStatisticsData":{
+      "type":"structure",
+      "required":[
+        "NumberOfNulls",
+        "NumberOfDistinctValues"
+      ],
+      "members":{
+        "MinimumValue":{"shape":"DecimalNumber"},
+        "MaximumValue":{"shape":"DecimalNumber"},
+        "NumberOfNulls":{"shape":"NonNegativeLong"},
+        "NumberOfDistinctValues":{"shape":"NonNegativeLong"}
+      }
+    },
+    "DecimalNumber":{
+      "type":"structure",
+      "required":[
+        "UnscaledValue",
+        "Scale"
+      ],
+      "members":{
+        "UnscaledValue":{"shape":"Blob"},
+        "Scale":{"shape":"Integer"}
+      }
+    },
     "DeleteBehavior":{
       "type":"string",
       "enum":[
@@ -3157,6 +3384,46 @@
       }
     },
     "DeleteClassifierResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteColumnStatisticsForPartitionRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName",
+        "PartitionValues",
+        "ColumnName"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "PartitionValues":{"shape":"ValueStringList"},
+        "ColumnName":{"shape":"NameString"}
+      }
+    },
+    "DeleteColumnStatisticsForPartitionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteColumnStatisticsForTableRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName",
+        "ColumnName"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "ColumnName":{"shape":"NameString"}
+      }
+    },
+    "DeleteColumnStatisticsForTableResponse":{
       "type":"structure",
       "members":{
       }
@@ -3427,6 +3694,20 @@
       "max":25,
       "min":1
     },
+    "Double":{"type":"double"},
+    "DoubleColumnStatisticsData":{
+      "type":"structure",
+      "required":[
+        "NumberOfNulls",
+        "NumberOfDistinctValues"
+      ],
+      "members":{
+        "MinimumValue":{"shape":"Double"},
+        "MaximumValue":{"shape":"Double"},
+        "NumberOfNulls":{"shape":"NonNegativeLong"},
+        "NumberOfDistinctValues":{"shape":"NonNegativeLong"}
+      }
+    },
     "DynamoDBTarget":{
       "type":"structure",
       "members":{
@@ -3603,6 +3884,56 @@
       "members":{
         "Classifiers":{"shape":"ClassifierList"},
         "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetColumnNamesList":{
+      "type":"list",
+      "member":{"shape":"NameString"},
+      "max":100,
+      "min":0
+    },
+    "GetColumnStatisticsForPartitionRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName",
+        "PartitionValues",
+        "ColumnNames"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "PartitionValues":{"shape":"ValueStringList"},
+        "ColumnNames":{"shape":"GetColumnNamesList"}
+      }
+    },
+    "GetColumnStatisticsForPartitionResponse":{
+      "type":"structure",
+      "members":{
+        "ColumnStatisticsList":{"shape":"ColumnStatisticsList"},
+        "Errors":{"shape":"ColumnErrors"}
+      }
+    },
+    "GetColumnStatisticsForTableRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName",
+        "ColumnNames"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "ColumnNames":{"shape":"GetColumnNamesList"}
+      }
+    },
+    "GetColumnStatisticsForTableResponse":{
+      "type":"structure",
+      "members":{
+        "ColumnStatisticsList":{"shape":"ColumnStatisticsList"},
+        "Errors":{"shape":"ColumnErrors"}
       }
     },
     "GetConnectionRequest":{
@@ -4761,6 +5092,20 @@
       "type":"string",
       "enum":["EQUALS"]
     },
+    "Long":{"type":"long"},
+    "LongColumnStatisticsData":{
+      "type":"structure",
+      "required":[
+        "NumberOfNulls",
+        "NumberOfDistinctValues"
+      ],
+      "members":{
+        "MinimumValue":{"shape":"Long"},
+        "MaximumValue":{"shape":"Long"},
+        "NumberOfNulls":{"shape":"NonNegativeLong"},
+        "NumberOfDistinctValues":{"shape":"NonNegativeLong"}
+      }
+    },
     "MLTransform":{
       "type":"structure",
       "members":{
@@ -4875,6 +5220,10 @@
     },
     "NonNegativeInteger":{
       "type":"integer",
+      "min":0
+    },
+    "NonNegativeLong":{
+      "type":"long",
       "min":0
     },
     "NotificationProperty":{
@@ -5579,6 +5928,21 @@
         "StoredAsSubDirectories":{"shape":"Boolean"}
       }
     },
+    "StringColumnStatisticsData":{
+      "type":"structure",
+      "required":[
+        "MaximumLength",
+        "AverageLength",
+        "NumberOfNulls",
+        "NumberOfDistinctValues"
+      ],
+      "members":{
+        "MaximumLength":{"shape":"NonNegativeLong"},
+        "AverageLength":{"shape":"NonNegativeDouble"},
+        "NumberOfNulls":{"shape":"NonNegativeLong"},
+        "NumberOfDistinctValues":{"shape":"NonNegativeLong"}
+      }
+    },
     "StringList":{
       "type":"list",
       "member":{"shape":"GenericString"}
@@ -5926,6 +6290,12 @@
         "Predicate":{"shape":"Predicate"}
       }
     },
+    "TypeString":{
+      "type":"string",
+      "max":20000,
+      "min":0,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
     "URI":{
       "type":"string",
       "max":1024,
@@ -5968,6 +6338,54 @@
       "type":"structure",
       "members":{
       }
+    },
+    "UpdateColumnStatisticsForPartitionRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName",
+        "PartitionValues",
+        "ColumnStatisticsList"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "PartitionValues":{"shape":"ValueStringList"},
+        "ColumnStatisticsList":{"shape":"UpdateColumnStatisticsList"}
+      }
+    },
+    "UpdateColumnStatisticsForPartitionResponse":{
+      "type":"structure",
+      "members":{
+        "Errors":{"shape":"ColumnStatisticsErrors"}
+      }
+    },
+    "UpdateColumnStatisticsForTableRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName",
+        "ColumnStatisticsList"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "ColumnStatisticsList":{"shape":"UpdateColumnStatisticsList"}
+      }
+    },
+    "UpdateColumnStatisticsForTableResponse":{
+      "type":"structure",
+      "members":{
+        "Errors":{"shape":"ColumnStatisticsErrors"}
+      }
+    },
+    "UpdateColumnStatisticsList":{
+      "type":"list",
+      "member":{"shape":"ColumnStatistics"},
+      "max":25,
+      "min":0
     },
     "UpdateConnectionRequest":{
       "type":"structure",

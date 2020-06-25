@@ -5397,7 +5397,7 @@ func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req
 // instances in one partition do not share the same hardware with instances
 // in another partition.
 //
-// For more information, see Placement Groups (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html)
+// For more information, see Placement groups (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9318,7 +9318,7 @@ func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req
 //
 // Deletes the specified placement group. You must terminate all instances in
 // the placement group before you can delete the placement group. For more information,
-// see Placement Groups (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html)
+// see Placement groups (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -16195,7 +16195,7 @@ func (c *EC2) DescribeInstanceCreditSpecificationsRequest(input *DescribeInstanc
 // all, the call fails. If you specify only instance IDs in an unaffected zone,
 // the call works normally.
 //
-// For more information, see Burstable Performance Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
+// For more information, see Burstable performance instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -16411,18 +16411,18 @@ func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) 
 //
 //    * Status checks - Amazon EC2 performs status checks on running EC2 instances
 //    to identify hardware and software issues. For more information, see Status
-//    Checks for Your Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)
-//    and Troubleshooting Instances with Failed Status Checks (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)
+//    checks for your instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html)
+//    and Troubleshooting instances with failed status checks (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)
 //    in the Amazon Elastic Compute Cloud User Guide.
 //
 //    * Scheduled events - Amazon EC2 can schedule events (such as reboot, stop,
 //    or terminate) for your instances related to hardware issues, software
-//    updates, or system maintenance. For more information, see Scheduled Events
-//    for Your Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html)
+//    updates, or system maintenance. For more information, see Scheduled events
+//    for your instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html)
 //    in the Amazon Elastic Compute Cloud User Guide.
 //
 //    * Instance state - You can manage your instances from the moment you launch
-//    them through their termination. For more information, see Instance Lifecycle
+//    them through their termination. For more information, see Instance lifecycle
 //    (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
 //    in the Amazon Elastic Compute Cloud User Guide.
 //
@@ -19111,7 +19111,7 @@ func (c *EC2) DescribePlacementGroupsRequest(input *DescribePlacementGroupsInput
 // DescribePlacementGroups API operation for Amazon Elastic Compute Cloud.
 //
 // Describes the specified placement groups or all of your placement groups.
-// For more information, see Placement Groups (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html)
+// For more information, see Placement groups (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -28054,7 +28054,7 @@ func (c *EC2) GetDefaultCreditSpecificationRequest(input *GetDefaultCreditSpecif
 // Describes the default credit option for CPU usage of a burstable performance
 // instance family.
 //
-// For more information, see Burstable Performance Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
+// For more information, see Burstable performance instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -29852,7 +29852,7 @@ func (c *EC2) ModifyDefaultCreditSpecificationRequest(input *ModifyDefaultCredit
 // can call GetDefaultCreditSpecification and check DefaultCreditSpecification
 // for updates.
 //
-// For more information, see Burstable Performance Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
+// For more information, see Burstable performance instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -30564,7 +30564,7 @@ func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput
 // we recommend that you use the ModifyNetworkInterfaceAttribute action.
 //
 // To modify some attributes, the instance must be stopped. For more information,
-// see Modifying Attributes of a Stopped Instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html)
+// see Modifying attributes of a stopped instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -30719,7 +30719,7 @@ func (c *EC2) ModifyInstanceCreditSpecificationRequest(input *ModifyInstanceCred
 // Modifies the credit option for CPU usage on a running or stopped burstable
 // performance instance. The credit options are standard and unlimited.
 //
-// For more information, see Burstable Performance Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
+// For more information, see Burstable performance instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -30874,7 +30874,7 @@ func (c *EC2) ModifyInstanceMetadataOptionsRequest(input *ModifyInstanceMetadata
 // the API responds with a state of “pending”. After the parameter modifications
 // are successfully applied to the instance, the state of the modifications
 // changes from “pending” to “applied” in subsequent describe-instances
-// API calls. For more information, see Instance Metadata and User Data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).
+// API calls. For more information, see Instance metadata and user data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -32877,7 +32877,7 @@ func (c *EC2) MonitorInstancesRequest(input *MonitorInstancesInput) (req *reques
 // MonitorInstances API operation for Amazon Elastic Compute Cloud.
 //
 // Enables detailed monitoring for a running instance. Otherwise, basic monitoring
-// is enabled. For more information, see Monitoring Your Instances and Volumes
+// is enabled. For more information, see Monitoring your instances and volumes
 // (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
@@ -33381,8 +33381,8 @@ func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *request.
 // If an instance does not cleanly shut down within four minutes, Amazon EC2
 // performs a hard reboot.
 //
-// For more information about troubleshooting, see Getting Console Output and
-// Rebooting Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-console.html)
+// For more information about troubleshooting, see Getting console output and
+// rebooting instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-console.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -35836,17 +35836,17 @@ func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *request.Reques
 //
 //    * Some instance types must be launched into a VPC. If you do not have
 //    a default VPC, or if you do not specify a subnet ID, the request fails.
-//    For more information, see Instance Types Available Only in a VPC (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html#vpc-only-instance-types).
+//    For more information, see Instance types available only in a VPC (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html#vpc-only-instance-types).
 //
 //    * [EC2-VPC] All instances have a network interface with a primary private
 //    IPv4 address. If you don't specify this address, we choose one from the
 //    IPv4 range of your subnet.
 //
 //    * Not all instance types support IPv6 addresses. For more information,
-//    see Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
+//    see Instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
 //
 //    * If you don't specify a security group ID, we use the default security
-//    group. For more information, see Security Groups (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html).
+//    group. For more information, see Security groups (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html).
 //
 //    * If any of the AMIs have a product code attached for which the user has
 //    not subscribed, the request fails.
@@ -35863,17 +35863,17 @@ func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *request.Reques
 // An instance is ready for you to use when it's in the running state. You can
 // check the state of your instance using DescribeInstances. You can tag instances
 // and EBS volumes during launch, after launch, or both. For more information,
-// see CreateTags and Tagging Your Amazon EC2 Resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html).
+// see CreateTags and Tagging your Amazon EC2 resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html).
 //
 // Linux instances have access to the public key of the key pair at boot. You
 // can use this key to provide secure access to the instance. Amazon EC2 public
 // images use this feature to provide secure access without passwords. For more
-// information, see Key Pairs (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+// information, see Key pairs (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
-// For troubleshooting, see What To Do If An Instance Immediately Terminates
+// For troubleshooting, see What to do if an instance immediately terminates
 // (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html),
-// and Troubleshooting Connecting to Your Instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
+// and Troubleshooting connecting to your instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -36386,8 +36386,8 @@ func (c *EC2) SendDiagnosticInterruptRequest(input *SendDiagnosticInterruptInput
 // system is configured to perform the required diagnostic tasks.
 //
 // For more information about configuring your operating system to generate
-// a crash dump when a kernel panic or stop error occurs, see Send a Diagnostic
-// Interrupt (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/diagnostic-interrupt.html)
+// a crash dump when a kernel panic or stop error occurs, see Send a diagnostic
+// interrupt (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/diagnostic-interrupt.html)
 // (Linux instances) or Send a Diagnostic Interrupt (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/diagnostic-interrupt.html)
 // (Windows instances).
 //
@@ -36484,7 +36484,7 @@ func (c *EC2) StartInstancesRequest(input *StartInstancesInput) (req *request.Re
 // Performing this operation on an instance that uses an instance store as its
 // root device returns an error.
 //
-// For more information, see Stopping Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)
+// For more information, see Stopping instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -36647,7 +36647,7 @@ func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *request.Requ
 // You can use the Stop action to hibernate an instance if the instance is enabled
 // for hibernation (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#enabling-hibernation)
 // and it meets the hibernation prerequisites (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites).
-// For more information, see Hibernate Your Instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
+// For more information, see Hibernate your instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // We don't charge usage for a stopped instance, or data transfer fees; however,
@@ -36663,7 +36663,7 @@ func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *request.Requ
 // You can't stop or hibernate instance store-backed instances. You can't use
 // the Stop action to hibernate Spot Instances, but you can specify that Amazon
 // EC2 should hibernate Spot Instances when they are interrupted. For more information,
-// see Hibernating Interrupted Spot Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#hibernate-spot-instances)
+// see Hibernating interrupted Spot Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#hibernate-spot-instances)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // When you stop or hibernate an instance, we shut it down. You can restart
@@ -36679,13 +36679,13 @@ func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *request.Requ
 // an instance, the root device and any other devices attached during the instance
 // launch are automatically deleted. For more information about the differences
 // between rebooting, stopping, hibernating, and terminating instances, see
-// Instance Lifecycle (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
+// Instance lifecycle (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // When you stop an instance, we attempt to shut it down forcibly after a short
 // while. If your instance appears stuck in the stopping state after a period
 // of time, there may be an issue with the underlying host computer. For more
-// information, see Troubleshooting Stopping Your Instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html)
+// information, see Troubleshooting stopping your instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -36855,11 +36855,11 @@ func (c *EC2) TerminateInstancesRequest(input *TerminateInstancesInput) (req *re
 // an instance, any attached EBS volumes with the DeleteOnTermination block
 // device mapping parameter set to true are automatically deleted. For more
 // information about the differences between stopping and terminating instances,
-// see Instance Lifecycle (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
+// see Instance lifecycle (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
-// For more information about troubleshooting, see Troubleshooting Terminating
-// Your Instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesShuttingDown.html)
+// For more information about troubleshooting, see Troubleshooting terminating
+// your instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesShuttingDown.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -37084,7 +37084,7 @@ func (c *EC2) UnmonitorInstancesRequest(input *UnmonitorInstancesInput) (req *re
 // UnmonitorInstances API operation for Amazon Elastic Compute Cloud.
 //
 // Disables detailed monitoring for a running instance. For more information,
-// see Monitoring Your Instances and Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)
+// see Monitoring your instances and volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -71556,7 +71556,7 @@ type EbsBlockDevice struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates whether the EBS volume is deleted on instance termination. For
-	// more information, see Preserving Amazon EBS Volumes on Instance Termination
+	// more information, see Preserving Amazon EBS volumes on instance termination
 	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#preserving-volumes-on-termination)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
@@ -71571,7 +71571,7 @@ type EbsBlockDevice struct {
 	// In no case can you remove encryption from an encrypted volume.
 	//
 	// Encrypted volumes can only be attached to instances that support Amazon EBS
-	// encryption. For more information, see Supported Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances).
+	// encryption. For more information, see Supported instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances).
 	//
 	// This parameter is not returned by .
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
@@ -71580,7 +71580,7 @@ type EbsBlockDevice struct {
 	// For io1 volumes, this represents the number of IOPS that are provisioned
 	// for the volume. For gp2 volumes, this represents the baseline performance
 	// of the volume and the rate at which the volume accumulates I/O credits for
-	// bursting. For more information, see Amazon EBS Volume Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
+	// bursting. For more information, see Amazon EBS volume types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
 	// Constraints: Range is 100-16,000 IOPS for gp2 volumes and 100 to 64,000IOPS
@@ -77041,7 +77041,7 @@ func (s *GroupIdentifier) SetGroupName(v string) *GroupIdentifier {
 
 // Indicates whether your instance is configured for hibernation. This parameter
 // is valid only if the instance meets the hibernation prerequisites (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites).
-// For more information, see Hibernate Your Instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
+// For more information, see Hibernate your instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 type HibernationOptions struct {
 	_ struct{} `type:"structure"`
@@ -77069,7 +77069,7 @@ func (s *HibernationOptions) SetConfigured(v bool) *HibernationOptions {
 
 // Indicates whether your instance is configured for hibernation. This parameter
 // is valid only if the instance meets the hibernation prerequisites (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites).
-// For more information, see Hibernate Your Instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
+// For more information, see Hibernate your instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 type HibernationOptionsRequest struct {
 	_ struct{} `type:"structure"`
@@ -86684,7 +86684,7 @@ type ModifyInstanceAttributeInput struct {
 	//
 	// To add instance store volumes to an Amazon EBS-backed instance, you must
 	// add them when you launch the instance. For more information, see Updating
-	// the Block Device Mapping when Launching an Instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM)
+	// the block device mapping when launching an instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	BlockDeviceMappings []*InstanceBlockDeviceMappingSpecification `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
 
@@ -86727,7 +86727,7 @@ type ModifyInstanceAttributeInput struct {
 	InstanceInitiatedShutdownBehavior *AttributeValue `locationName:"instanceInitiatedShutdownBehavior" type:"structure"`
 
 	// Changes the instance type to the specified value. For more information, see
-	// Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
+	// Instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
 	// If the instance type is not valid, the error returned is InvalidInstanceAttributeValue.
 	InstanceType *AttributeValue `locationName:"instanceType" type:"structure"`
 
@@ -93129,6 +93129,9 @@ type PurchaseHostReservationInput struct {
 	//
 	// OfferingId is a required field
 	OfferingId *string `type:"string" required:"true"`
+
+	// The tags to apply to the Dedicated Host Reservation during purchase.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -93184,6 +93187,12 @@ func (s *PurchaseHostReservationInput) SetLimitPrice(v string) *PurchaseHostRese
 // SetOfferingId sets the OfferingId field's value.
 func (s *PurchaseHostReservationInput) SetOfferingId(v string) *PurchaseHostReservationInput {
 	s.OfferingId = &v
+	return s
+}
+
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *PurchaseHostReservationInput) SetTagSpecifications(v []*TagSpecification) *PurchaseHostReservationInput {
+	s.TagSpecifications = v
 	return s
 }
 
@@ -98587,14 +98596,14 @@ type RunInstancesInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// The CPU options for the instance. For more information, see Optimizing CPU
-	// Options (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html)
+	// options (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	CpuOptions *CpuOptionsRequest `type:"structure"`
 
 	// The credit option for CPU usage of the burstable performance instance. Valid
 	// values are standard and unlimited. To change this attribute after launch,
 	// use ModifyInstanceCreditSpecification (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceCreditSpecification.html).
-	// For more information, see Burstable Performance Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
+	// For more information, see Burstable performance instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
 	// Default: standard (T2 instances) or unlimited (T3/T3a instances)
@@ -98638,7 +98647,7 @@ type RunInstancesInput struct {
 	ElasticInferenceAccelerators []*ElasticInferenceAccelerator `locationName:"ElasticInferenceAccelerator" locationNameList:"item" type:"list"`
 
 	// Indicates whether an instance is enabled for hibernation. For more information,
-	// see Hibernate Your Instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
+	// see Hibernate your instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	HibernationOptions *HibernationOptionsRequest `type:"structure"`
 
@@ -98661,7 +98670,7 @@ type RunInstancesInput struct {
 	// InstanceInterruptionBehavior is set to either hibernate or stop.
 	InstanceMarketOptions *InstanceMarketOptionsRequest `type:"structure"`
 
-	// The instance type. For more information, see Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// The instance type. For more information, see Instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
 	// Default: m1.small
@@ -98721,7 +98730,7 @@ type RunInstancesInput struct {
 	MaxCount *int64 `type:"integer" required:"true"`
 
 	// The metadata options for the instance. For more information, see Instance
-	// Metadata and User Data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).
+	// metadata and user data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).
 	MetadataOptions *InstanceMetadataOptionsRequest `type:"structure"`
 
 	// The minimum number of instances to launch. If you specify a minimum that
@@ -98798,7 +98807,7 @@ type RunInstancesInput struct {
 	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 
 	// The user data to make available to the instance. For more information, see
-	// Running Commands on Your Linux Instance at Launch (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
+	// Running commands on your Linux instance at launch (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
 	// (Linux) and Adding User Data (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data)
 	// (Windows). If you are using a command line tool, base64-encoding is performed
 	// for you, and you can load the text from a file. Otherwise, you must provide
@@ -103595,7 +103604,7 @@ type StopInstancesInput struct {
 
 	// Hibernates the instance if the instance was enabled for hibernation at launch.
 	// If the instance cannot hibernate successfully, a normal shutdown occurs.
-	// For more information, see Hibernate Your Instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
+	// For more information, see Hibernate your instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
 	// Default: false
@@ -104160,12 +104169,12 @@ type TagSpecification struct {
 
 	// The type of resource to tag. Currently, the resource types that support tagging
 	// on creation are: capacity-reservation | client-vpn-endpoint | dedicated-host
-	// | fleet | fpga-image | instance | ipv4pool-ec2 | ipv6pool-ec2 | key-pair
-	// | launch-template | natgateway | spot-fleet-request | placement-group | snapshot
-	// | traffic-mirror-filter | traffic-mirror-session | traffic-mirror-target
+	// | fleet | fpga-image | host-reservation | instance | ipv4pool-ec2 | ipv6pool-ec2
+	// | key-pair | launch-template | natgateway | spot-fleet-request | placement-group
+	// | snapshot | traffic-mirror-filter | traffic-mirror-session | traffic-mirror-target
 	// | transit-gateway | transit-gateway-attachment | transit-gateway-route-table
-	// | vpc-endpoint (for interface VPC endpoints)| vpc-endpoint-service (for gateway
-	// VPC endpoints) | volume | vpc-flow-log.
+	// | vpc-endpoint (for interface and gateway endpoints) | vpc-endpoint-service
+	// (for AWS PrivateLink) | volume | vpc-flow-log.
 	//
 	// To tag a resource after it has been created, see CreateTags (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html).
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
