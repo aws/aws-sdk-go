@@ -1,3 +1,17 @@
+Release v1.32.11 (2020-06-26)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * ListStackInstances and DescribeStackInstance now return a new `StackInstanceStatus` object that contains `DetailedStatus` values: a disambiguation of the more generic `Status` value. ListStackInstances output can now be filtered on `DetailedStatus` using the new `Filters` parameter.
+* `service/cognito-idp`: Updates service API
+* `service/dms`: Updates service documentation
+  * This release contains miscellaneous API documentation updates for AWS DMS in response to several customer reported issues.
+* `service/quicksight`: Updates service API and documentation
+  * Added support for cross-region DataSource credentials copying.
+* `service/sagemaker`: Updates service API and documentation
+  * The new 'ModelClientConfig' parameter being added for CreateTransformJob and DescribeTransformJob api actions enable customers to configure model invocation related parameters such as timeout and retry.
+
 Release v1.32.10 (2020-06-25)
 ===
 

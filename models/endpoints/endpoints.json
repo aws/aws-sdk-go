@@ -2804,6 +2804,11 @@
           "us-east-1" : { }
         }
       },
+      "honeycode" : {
+        "endpoints" : {
+          "us-west-2" : { }
+        }
+      },
       "iam" : {
         "endpoints" : {
           "aws-global" : {
@@ -6788,6 +6793,12 @@
         "defaults" : {
           "protocols" : [ "http", "https" ]
         },
+        "endpoints" : {
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
+        }
+      },
+      "backup" : {
         "endpoints" : {
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }

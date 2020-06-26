@@ -2994,6 +2994,7 @@
         "TransformJobName":{"shape":"TransformJobName"},
         "ModelName":{"shape":"ModelName"},
         "MaxConcurrentTransforms":{"shape":"MaxConcurrentTransforms"},
+        "ModelClientConfig":{"shape":"ModelClientConfig"},
         "MaxPayloadInMB":{"shape":"MaxPayloadInMB"},
         "BatchStrategy":{"shape":"BatchStrategy"},
         "Environment":{"shape":"TransformEnvironmentMap"},
@@ -4071,6 +4072,7 @@
         "FailureReason":{"shape":"FailureReason"},
         "ModelName":{"shape":"ModelName"},
         "MaxConcurrentTransforms":{"shape":"MaxConcurrentTransforms"},
+        "ModelClientConfig":{"shape":"ModelClientConfig"},
         "MaxPayloadInMB":{"shape":"MaxPayloadInMB"},
         "BatchStrategy":{"shape":"BatchStrategy"},
         "Environment":{"shape":"TransformEnvironmentMap"},
@@ -5231,6 +5233,16 @@
       "max":20,
       "min":0
     },
+    "InvocationsMaxRetries":{
+      "type":"integer",
+      "max":3,
+      "min":0
+    },
+    "InvocationsTimeoutInSeconds":{
+      "type":"integer",
+      "max":3600,
+      "min":1
+    },
     "JobReferenceCode":{
       "type":"string",
       "min":1,
@@ -6280,6 +6292,13 @@
       "required":["S3ModelArtifacts"],
       "members":{
         "S3ModelArtifacts":{"shape":"S3Uri"}
+      }
+    },
+    "ModelClientConfig":{
+      "type":"structure",
+      "members":{
+        "InvocationsTimeoutInSeconds":{"shape":"InvocationsTimeoutInSeconds"},
+        "InvocationsMaxRetries":{"shape":"InvocationsMaxRetries"}
       }
     },
     "ModelName":{
