@@ -1260,7 +1260,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "ListDevices":{
       "name":"ListDevices",
@@ -1480,7 +1481,8 @@
         {"shape":"AliasExistsException"},
         {"shape":"InternalErrorException"},
         {"shape":"SoftwareTokenMFANotFoundException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "SetRiskConfiguration":{
       "name":"SetRiskConfiguration",

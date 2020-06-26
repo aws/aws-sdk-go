@@ -1444,6 +1444,10 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "CopySourceArn":{
+      "type":"string",
+      "pattern":"^arn:[-a-z0-9]*:quicksight:[-a-z0-9]*:[0-9]{12}:datasource/.+"
+    },
     "CreateColumnsOperation":{
       "type":"structure",
       "required":["Columns"],
@@ -1809,7 +1813,8 @@
       ],
       "members":{
         "Username":{"shape":"Username"},
-        "Password":{"shape":"Password"}
+        "Password":{"shape":"Password"},
+        "AlternateDataSourceParameters":{"shape":"DataSourceParametersList"}
       }
     },
     "CustomSql":{
@@ -2075,6 +2080,7 @@
         "CreatedTime":{"shape":"Timestamp"},
         "LastUpdatedTime":{"shape":"Timestamp"},
         "DataSourceParameters":{"shape":"DataSourceParameters"},
+        "AlternateDataSourceParameters":{"shape":"DataSourceParametersList"},
         "VpcConnectionProperties":{"shape":"VpcConnectionProperties"},
         "SslProperties":{"shape":"SslProperties"},
         "ErrorInfo":{"shape":"DataSourceErrorInfo"}
@@ -2083,7 +2089,8 @@
     "DataSourceCredentials":{
       "type":"structure",
       "members":{
-        "CredentialPair":{"shape":"CredentialPair"}
+        "CredentialPair":{"shape":"CredentialPair"},
+        "CopySourceArn":{"shape":"CopySourceArn"}
       },
       "sensitive":true
     },
@@ -2097,6 +2104,8 @@
     "DataSourceErrorInfoType":{
       "type":"string",
       "enum":[
+        "ACCESS_DENIED",
+        "COPY_SOURCE_NOT_FOUND",
         "TIMEOUT",
         "ENGINE_VERSION_NOT_SUPPORTED",
         "UNKNOWN_HOST",
@@ -2132,6 +2141,12 @@
         "TeradataParameters":{"shape":"TeradataParameters"},
         "TwitterParameters":{"shape":"TwitterParameters"}
       }
+    },
+    "DataSourceParametersList":{
+      "type":"list",
+      "member":{"shape":"DataSourceParameters"},
+      "max":50,
+      "min":1
     },
     "DataSourceType":{
       "type":"string",
