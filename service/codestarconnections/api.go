@@ -72,6 +72,12 @@ func (c *CodeStarConnections) CreateConnectionRequest(input *CreateConnectionInp
 //   * LimitExceededException
 //   Exceeded the maximum limit for connections.
 //
+//   * ResourceNotFoundException
+//   Resource not found. Verify the connection resource ARN and try again.
+//
+//   * ResourceUnavailableException
+//   Resource not found. Verify the ARN for the host resource and try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/CreateConnection
 func (c *CodeStarConnections) CreateConnection(input *CreateConnectionInput) (*CreateConnectionOutput, error) {
 	req, out := c.CreateConnectionRequest(input)
@@ -89,6 +95,91 @@ func (c *CodeStarConnections) CreateConnection(input *CreateConnectionInput) (*C
 // for more information on using Contexts.
 func (c *CodeStarConnections) CreateConnectionWithContext(ctx aws.Context, input *CreateConnectionInput, opts ...request.Option) (*CreateConnectionOutput, error) {
 	req, out := c.CreateConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateHost = "CreateHost"
+
+// CreateHostRequest generates a "aws/request.Request" representing the
+// client's request for the CreateHost operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateHost for more information on using the CreateHost
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateHostRequest method.
+//    req, resp := client.CreateHostRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/CreateHost
+func (c *CodeStarConnections) CreateHostRequest(input *CreateHostInput) (req *request.Request, output *CreateHostOutput) {
+	op := &request.Operation{
+		Name:       opCreateHost,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateHostInput{}
+	}
+
+	output = &CreateHostOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateHost API operation for AWS CodeStar connections.
+//
+// Creates a resource that represents the infrastructure where a third-party
+// provider is installed. The host is used when you create connections to an
+// installed third-party provider type, such as GitHub Enterprise Server. You
+// create one host for all connections to that provider.
+//
+// A host created through the CLI or the SDK is in `PENDING` status by default.
+// You can make its status `AVAILABLE` by setting up the host in the console.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeStar connections's
+// API operation CreateHost for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   Exceeded the maximum limit for connections.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/CreateHost
+func (c *CodeStarConnections) CreateHost(input *CreateHostInput) (*CreateHostOutput, error) {
+	req, out := c.CreateHostRequest(input)
+	return out, req.Send()
+}
+
+// CreateHostWithContext is the same as CreateHost with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateHost for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeStarConnections) CreateHostWithContext(ctx aws.Context, input *CreateHostInput, opts ...request.Option) (*CreateHostOutput, error) {
+	req, out := c.CreateHostRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -174,6 +265,93 @@ func (c *CodeStarConnections) DeleteConnectionWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opDeleteHost = "DeleteHost"
+
+// DeleteHostRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteHost operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteHost for more information on using the DeleteHost
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteHostRequest method.
+//    req, resp := client.DeleteHostRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/DeleteHost
+func (c *CodeStarConnections) DeleteHostRequest(input *DeleteHostInput) (req *request.Request, output *DeleteHostOutput) {
+	op := &request.Operation{
+		Name:       opDeleteHost,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteHostInput{}
+	}
+
+	output = &DeleteHostOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteHost API operation for AWS CodeStar connections.
+//
+// The host to be deleted. Before you delete a host, all connections associated
+// to the host must be deleted.
+//
+// A host cannot be deleted if it is in the VPC_CONFIG_INITIALIZING or VPC_CONFIG_DELETING
+// state.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeStar connections's
+// API operation DeleteHost for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   Resource not found. Verify the connection resource ARN and try again.
+//
+//   * ResourceUnavailableException
+//   Resource not found. Verify the ARN for the host resource and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/DeleteHost
+func (c *CodeStarConnections) DeleteHost(input *DeleteHostInput) (*DeleteHostOutput, error) {
+	req, out := c.DeleteHostRequest(input)
+	return out, req.Send()
+}
+
+// DeleteHostWithContext is the same as DeleteHost with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteHost for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeStarConnections) DeleteHostWithContext(ctx aws.Context, input *DeleteHostInput, opts ...request.Option) (*DeleteHostOutput, error) {
+	req, out := c.DeleteHostRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetConnection = "GetConnection"
 
 // GetConnectionRequest generates a "aws/request.Request" representing the
@@ -232,6 +410,9 @@ func (c *CodeStarConnections) GetConnectionRequest(input *GetConnectionInput) (r
 //   * ResourceNotFoundException
 //   Resource not found. Verify the connection resource ARN and try again.
 //
+//   * ResourceUnavailableException
+//   Resource not found. Verify the ARN for the host resource and try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/GetConnection
 func (c *CodeStarConnections) GetConnection(input *GetConnectionInput) (*GetConnectionOutput, error) {
 	req, out := c.GetConnectionRequest(input)
@@ -249,6 +430,86 @@ func (c *CodeStarConnections) GetConnection(input *GetConnectionInput) (*GetConn
 // for more information on using Contexts.
 func (c *CodeStarConnections) GetConnectionWithContext(ctx aws.Context, input *GetConnectionInput, opts ...request.Option) (*GetConnectionOutput, error) {
 	req, out := c.GetConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetHost = "GetHost"
+
+// GetHostRequest generates a "aws/request.Request" representing the
+// client's request for the GetHost operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetHost for more information on using the GetHost
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetHostRequest method.
+//    req, resp := client.GetHostRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/GetHost
+func (c *CodeStarConnections) GetHostRequest(input *GetHostInput) (req *request.Request, output *GetHostOutput) {
+	op := &request.Operation{
+		Name:       opGetHost,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetHostInput{}
+	}
+
+	output = &GetHostOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetHost API operation for AWS CodeStar connections.
+//
+// Returns the host ARN and details such as status, provider type, endpoint,
+// and, if applicable, the VPC configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeStar connections's
+// API operation GetHost for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   Resource not found. Verify the connection resource ARN and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/GetHost
+func (c *CodeStarConnections) GetHost(input *GetHostInput) (*GetHostOutput, error) {
+	req, out := c.GetHostRequest(input)
+	return out, req.Send()
+}
+
+// GetHostWithContext is the same as GetHost with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetHost for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeStarConnections) GetHostWithContext(ctx aws.Context, input *GetHostInput, opts ...request.Option) (*GetHostOutput, error) {
+	req, out := c.GetHostRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -379,6 +640,138 @@ func (c *CodeStarConnections) ListConnectionsPagesWithContext(ctx aws.Context, i
 
 	for p.Next() {
 		if !fn(p.Page().(*ListConnectionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListHosts = "ListHosts"
+
+// ListHostsRequest generates a "aws/request.Request" representing the
+// client's request for the ListHosts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListHosts for more information on using the ListHosts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListHostsRequest method.
+//    req, resp := client.ListHostsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/ListHosts
+func (c *CodeStarConnections) ListHostsRequest(input *ListHostsInput) (req *request.Request, output *ListHostsOutput) {
+	op := &request.Operation{
+		Name:       opListHosts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListHostsInput{}
+	}
+
+	output = &ListHostsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListHosts API operation for AWS CodeStar connections.
+//
+// Lists the hosts associated with your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeStar connections's
+// API operation ListHosts for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/ListHosts
+func (c *CodeStarConnections) ListHosts(input *ListHostsInput) (*ListHostsOutput, error) {
+	req, out := c.ListHostsRequest(input)
+	return out, req.Send()
+}
+
+// ListHostsWithContext is the same as ListHosts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListHosts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeStarConnections) ListHostsWithContext(ctx aws.Context, input *ListHostsInput, opts ...request.Option) (*ListHostsOutput, error) {
+	req, out := c.ListHostsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListHostsPages iterates over the pages of a ListHosts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListHosts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListHosts operation.
+//    pageNum := 0
+//    err := client.ListHostsPages(params,
+//        func(page *codestarconnections.ListHostsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CodeStarConnections) ListHostsPages(input *ListHostsInput, fn func(*ListHostsOutput, bool) bool) error {
+	return c.ListHostsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListHostsPagesWithContext same as ListHostsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeStarConnections) ListHostsPagesWithContext(ctx aws.Context, input *ListHostsInput, fn func(*ListHostsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListHostsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListHostsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListHostsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -629,12 +1022,12 @@ func (c *CodeStarConnections) UntagResourceWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
-// The AWS::CodeStarConnections::Connection resource can be used to connect
-// external source providers with services like AWS CodePipeline.
+// A resource that is used to connect third-party source providers with services
+// like AWS CodePipeline.
 //
-// Note: A connection created through CloudFormation is in `PENDING` status
-// by default. You can make its status `AVAILABLE` by editing the connection
-// in the CodePipeline console.
+// Note: A connection created through CloudFormation, the CLI, or the SDK is
+// in `PENDING` status by default. You can make its status `AVAILABLE` by updating
+// the connection in the console.
 type Connection struct {
 	_ struct{} `type:"structure"`
 
@@ -651,13 +1044,16 @@ type Connection struct {
 	// The current status of the connection.
 	ConnectionStatus *string `type:"string" enum:"ConnectionStatus"`
 
+	// The Amazon Resource Name (ARN) of the host associated with the connection.
+	HostArn *string `type:"string"`
+
 	// The identifier of the external provider where your third-party code repository
 	// is configured. For Bitbucket, this is the account ID of the owner of the
 	// Bitbucket repository.
 	OwnerAccountId *string `min:"12" type:"string"`
 
 	// The name of the external provider where your third-party code repository
-	// is configured. Currently, the valid provider type is Bitbucket.
+	// is configured. The valid provider type is Bitbucket.
 	ProviderType *string `type:"string" enum:"ProviderType"`
 }
 
@@ -689,6 +1085,12 @@ func (s *Connection) SetConnectionStatus(v string) *Connection {
 	return s
 }
 
+// SetHostArn sets the HostArn field's value.
+func (s *Connection) SetHostArn(v string) *Connection {
+	s.HostArn = &v
+	return s
+}
+
 // SetOwnerAccountId sets the OwnerAccountId field's value.
 func (s *Connection) SetOwnerAccountId(v string) *Connection {
 	s.OwnerAccountId = &v
@@ -710,11 +1112,13 @@ type CreateConnectionInput struct {
 	// ConnectionName is a required field
 	ConnectionName *string `min:"1" type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the host associated with the connection
+	// to be created.
+	HostArn *string `type:"string"`
+
 	// The name of the external provider where your third-party code repository
-	// is configured. Currently, the valid provider type is Bitbucket.
-	//
-	// ProviderType is a required field
-	ProviderType *string `type:"string" required:"true" enum:"ProviderType"`
+	// is configured. The valid provider type is Bitbucket.
+	ProviderType *string `type:"string" enum:"ProviderType"`
 
 	// The key-value pair to use when tagging the resource.
 	Tags []*Tag `type:"list"`
@@ -739,9 +1143,6 @@ func (s *CreateConnectionInput) Validate() error {
 	if s.ConnectionName != nil && len(*s.ConnectionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ConnectionName", 1))
 	}
-	if s.ProviderType == nil {
-		invalidParams.Add(request.NewErrParamRequired("ProviderType"))
-	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -762,6 +1163,12 @@ func (s *CreateConnectionInput) Validate() error {
 // SetConnectionName sets the ConnectionName field's value.
 func (s *CreateConnectionInput) SetConnectionName(v string) *CreateConnectionInput {
 	s.ConnectionName = &v
+	return s
+}
+
+// SetHostArn sets the HostArn field's value.
+func (s *CreateConnectionInput) SetHostArn(v string) *CreateConnectionInput {
+	s.HostArn = &v
 	return s
 }
 
@@ -812,6 +1219,121 @@ func (s *CreateConnectionOutput) SetConnectionArn(v string) *CreateConnectionOut
 // SetTags sets the Tags field's value.
 func (s *CreateConnectionOutput) SetTags(v []*Tag) *CreateConnectionOutput {
 	s.Tags = v
+	return s
+}
+
+type CreateHostInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the host to be created. The name must be unique in the calling
+	// AWS account.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The endpoint of the infrastructure to be represented by the host after it
+	// is created.
+	//
+	// ProviderEndpoint is a required field
+	ProviderEndpoint *string `min:"1" type:"string" required:"true"`
+
+	// The name of the installed provider to be associated with your connection.
+	// The host resource represents the infrastructure where your provider type
+	// is installed. The valid provider type is GitHub Enterprise Server.
+	//
+	// ProviderType is a required field
+	ProviderType *string `type:"string" required:"true" enum:"ProviderType"`
+
+	// The VPC configuration to be provisioned for the host. A VPC must be configured
+	// and the infrastructure to be represented by the host must already be connected
+	// to the VPC.
+	VpcConfiguration *VpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateHostInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateHostInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateHostInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateHostInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ProviderEndpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProviderEndpoint"))
+	}
+	if s.ProviderEndpoint != nil && len(*s.ProviderEndpoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProviderEndpoint", 1))
+	}
+	if s.ProviderType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProviderType"))
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateHostInput) SetName(v string) *CreateHostInput {
+	s.Name = &v
+	return s
+}
+
+// SetProviderEndpoint sets the ProviderEndpoint field's value.
+func (s *CreateHostInput) SetProviderEndpoint(v string) *CreateHostInput {
+	s.ProviderEndpoint = &v
+	return s
+}
+
+// SetProviderType sets the ProviderType field's value.
+func (s *CreateHostInput) SetProviderType(v string) *CreateHostInput {
+	s.ProviderType = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *CreateHostInput) SetVpcConfiguration(v *VpcConfiguration) *CreateHostInput {
+	s.VpcConfiguration = v
+	return s
+}
+
+type CreateHostOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the host to be created.
+	HostArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateHostOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateHostOutput) GoString() string {
+	return s.String()
+}
+
+// SetHostArn sets the HostArn field's value.
+func (s *CreateHostOutput) SetHostArn(v string) *CreateHostOutput {
+	s.HostArn = &v
 	return s
 }
 
@@ -866,6 +1388,58 @@ func (s DeleteConnectionOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteConnectionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteHostInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the host to be deleted.
+	//
+	// HostArn is a required field
+	HostArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteHostInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteHostInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteHostInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteHostInput"}
+	if s.HostArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostArn sets the HostArn field's value.
+func (s *DeleteHostInput) SetHostArn(v string) *DeleteHostInput {
+	s.HostArn = &v
+	return s
+}
+
+type DeleteHostOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteHostOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteHostOutput) GoString() string {
 	return s.String()
 }
 
@@ -930,6 +1504,190 @@ func (s *GetConnectionOutput) SetConnection(v *Connection) *GetConnectionOutput 
 	return s
 }
 
+type GetHostInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the requested host.
+	//
+	// HostArn is a required field
+	HostArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetHostInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetHostInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetHostInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetHostInput"}
+	if s.HostArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostArn sets the HostArn field's value.
+func (s *GetHostInput) SetHostArn(v string) *GetHostInput {
+	s.HostArn = &v
+	return s
+}
+
+type GetHostOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the requested host.
+	Name *string `min:"1" type:"string"`
+
+	// The endpoint of the infrastructure represented by the requested host.
+	ProviderEndpoint *string `min:"1" type:"string"`
+
+	// The provider type of the requested host, such as GitHub Enterprise Server.
+	ProviderType *string `type:"string" enum:"ProviderType"`
+
+	// The status of the requested host.
+	Status *string `type:"string"`
+
+	// The VPC configuration of the requested host.
+	VpcConfiguration *VpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetHostOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetHostOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *GetHostOutput) SetName(v string) *GetHostOutput {
+	s.Name = &v
+	return s
+}
+
+// SetProviderEndpoint sets the ProviderEndpoint field's value.
+func (s *GetHostOutput) SetProviderEndpoint(v string) *GetHostOutput {
+	s.ProviderEndpoint = &v
+	return s
+}
+
+// SetProviderType sets the ProviderType field's value.
+func (s *GetHostOutput) SetProviderType(v string) *GetHostOutput {
+	s.ProviderType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetHostOutput) SetStatus(v string) *GetHostOutput {
+	s.Status = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *GetHostOutput) SetVpcConfiguration(v *VpcConfiguration) *GetHostOutput {
+	s.VpcConfiguration = v
+	return s
+}
+
+// A resource that represents the infrastructure where a third-party provider
+// is installed. The host is used when you create connections to an installed
+// third-party provider type, such as GitHub Enterprise Server. You create one
+// host for all connections to that provider.
+//
+// A host created through the CLI or the SDK is in `PENDING` status by default.
+// You can make its status `AVAILABLE` by setting up the host in the console.
+type Host struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the host.
+	HostArn *string `type:"string"`
+
+	// The name of the host.
+	Name *string `min:"1" type:"string"`
+
+	// The endpoint of the infrastructure where your provider type is installed.
+	ProviderEndpoint *string `min:"1" type:"string"`
+
+	// The name of the installed provider to be associated with your connection.
+	// The host resource represents the infrastructure where your provider type
+	// is installed. The valid provider type is GitHub Enterprise Server.
+	ProviderType *string `type:"string" enum:"ProviderType"`
+
+	// The status of the host, such as PENDING, AVAILABLE, VPC_CONFIG_DELETING,
+	// VPC_CONFIG_INITIALIZING, and VPC_CONFIG_FAILED_INITIALIZATION.
+	Status *string `type:"string"`
+
+	// The status description for the host.
+	StatusMessage *string `type:"string"`
+
+	// The VPC configuration provisioned for the host.
+	VpcConfiguration *VpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s Host) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Host) GoString() string {
+	return s.String()
+}
+
+// SetHostArn sets the HostArn field's value.
+func (s *Host) SetHostArn(v string) *Host {
+	s.HostArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Host) SetName(v string) *Host {
+	s.Name = &v
+	return s
+}
+
+// SetProviderEndpoint sets the ProviderEndpoint field's value.
+func (s *Host) SetProviderEndpoint(v string) *Host {
+	s.ProviderEndpoint = &v
+	return s
+}
+
+// SetProviderType sets the ProviderType field's value.
+func (s *Host) SetProviderType(v string) *Host {
+	s.ProviderType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Host) SetStatus(v string) *Host {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *Host) SetStatusMessage(v string) *Host {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *Host) SetVpcConfiguration(v *VpcConfiguration) *Host {
+	s.VpcConfiguration = v
+	return s
+}
+
 // Exceeded the maximum limit for connections.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -989,6 +1747,9 @@ func (s *LimitExceededException) RequestID() string {
 type ListConnectionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Filters the list of connections to those associated with a specified host.
+	HostArnFilter *string `type:"string"`
+
 	// The maximum number of results to return in a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
 	MaxResults *int64 `type:"integer"`
@@ -1023,6 +1784,12 @@ func (s *ListConnectionsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetHostArnFilter sets the HostArnFilter field's value.
+func (s *ListConnectionsInput) SetHostArnFilter(v string) *ListConnectionsInput {
+	s.HostArnFilter = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -1074,6 +1841,88 @@ func (s *ListConnectionsOutput) SetConnections(v []*Connection) *ListConnections
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListConnectionsOutput) SetNextToken(v string) *ListConnectionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListHostsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `type:"integer"`
+
+	// The token that was returned from the previous ListHosts call, which can be
+	// used to return the next set of hosts in the list.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListHostsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListHostsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListHostsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListHostsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListHostsInput) SetMaxResults(v int64) *ListHostsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListHostsInput) SetNextToken(v string) *ListHostsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListHostsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of hosts and the details for each host, such as status, endpoint,
+	// and provider type.
+	Hosts []*Host `type:"list"`
+
+	// A token that can be used in the next ListHosts call. To view all items in
+	// the list, continue to call this operation with each subsequent token until
+	// no more nextToken values are returned.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListHostsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListHostsOutput) GoString() string {
+	return s.String()
+}
+
+// SetHosts sets the Hosts field's value.
+func (s *ListHostsOutput) SetHosts(v []*Host) *ListHostsOutput {
+	s.Hosts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListHostsOutput) SetNextToken(v string) *ListHostsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -1196,6 +2045,62 @@ func (s *ResourceNotFoundException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Resource not found. Verify the ARN for the host resource and try again.
+type ResourceUnavailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ResourceUnavailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceUnavailableException) Code() string {
+	return "ResourceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceUnavailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1406,6 +2311,95 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The VPC configuration provisioned for the host.
+type VpcConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the security group or security groups associated with the Amazon
+	// VPC connected to the infrastructure where your provider type is installed.
+	//
+	// SecurityGroupIds is a required field
+	SecurityGroupIds []*string `min:"1" type:"list" required:"true"`
+
+	// The ID of the subnet or subnets associated with the Amazon VPC connected
+	// to the infrastructure where your provider type is installed.
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `min:"1" type:"list" required:"true"`
+
+	// The value of the Transport Layer Security (TLS) certificate associated with
+	// the infrastructure where your provider type is installed.
+	TlsCertificate *string `min:"1" type:"string"`
+
+	// The ID of the Amazon VPC connected to the infrastructure where your provider
+	// type is installed.
+	//
+	// VpcId is a required field
+	VpcId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VpcConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VpcConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VpcConfiguration"}
+	if s.SecurityGroupIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
+	}
+	if s.SecurityGroupIds != nil && len(s.SecurityGroupIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupIds", 1))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.SubnetIds != nil && len(s.SubnetIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubnetIds", 1))
+	}
+	if s.TlsCertificate != nil && len(*s.TlsCertificate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TlsCertificate", 1))
+	}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *VpcConfiguration) SetSecurityGroupIds(v []*string) *VpcConfiguration {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *VpcConfiguration) SetSubnetIds(v []*string) *VpcConfiguration {
+	s.SubnetIds = v
+	return s
+}
+
+// SetTlsCertificate sets the TlsCertificate field's value.
+func (s *VpcConfiguration) SetTlsCertificate(v string) *VpcConfiguration {
+	s.TlsCertificate = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcConfiguration) SetVpcId(v string) *VpcConfiguration {
+	s.VpcId = &v
+	return s
+}
+
 const (
 	// ConnectionStatusPending is a ConnectionStatus enum value
 	ConnectionStatusPending = "PENDING"
@@ -1420,4 +2414,7 @@ const (
 const (
 	// ProviderTypeBitbucket is a ProviderType enum value
 	ProviderTypeBitbucket = "Bitbucket"
+
+	// ProviderTypeGitHubEnterpriseServer is a ProviderType enum value
+	ProviderTypeGitHubEnterpriseServer = "GitHubEnterpriseServer"
 )

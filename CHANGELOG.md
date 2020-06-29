@@ -1,3 +1,14 @@
+Release v1.32.12 (2020-06-29)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation and examples
+  * Documentation updates for Amazon EC2 Auto Scaling.
+* `service/codeguruprofiler`: Updates service API, documentation, and paginators
+* `service/codestar-connections`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Virtual Private Cloud (VPC) customers can now create and manage their own Prefix Lists to simplify VPC configurations.
+
 Release v1.32.11 (2020-06-26)
 ===
 

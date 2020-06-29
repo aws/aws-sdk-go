@@ -4243,7 +4243,8 @@ func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *requ
 
 // ExecutePolicy API operation for Auto Scaling.
 //
-// Executes the specified policy.
+// Executes the specified policy. This can be useful for testing the design
+// of your scaling policy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9693,9 +9694,7 @@ type Ebs struct {
 
 	// The snapshot ID of the volume to use.
 	//
-	// SnapshotId is optional if you specify a volume size. If you specify both
-	// SnapshotId and VolumeSize, the volume size must be equal or greater than
-	// the size of the snapshot.
+	// You must specify either a VolumeSize or a SnapshotId.
 	SnapshotId *string `min:"1" type:"string"`
 
 	// The volume size, in Gibibytes (GiB).
@@ -9707,7 +9706,9 @@ type Ebs struct {
 	// Default: If you create a volume from a snapshot and you don't specify a volume
 	// size, the default is the snapshot size.
 	//
-	// At least one of VolumeSize or SnapshotId is required.
+	// You must specify either a VolumeSize or a SnapshotId. If you specify both
+	// SnapshotId and VolumeSize, the volume size must be equal or greater than
+	// the size of the snapshot.
 	VolumeSize *int64 `min:"1" type:"integer"`
 
 	// The volume type, which can be standard for Magnetic, io1 for Provisioned
@@ -10061,9 +10062,8 @@ type ExecutePolicyInput struct {
 	// Indicates whether Amazon EC2 Auto Scaling waits for the cooldown period to
 	// complete before executing the policy.
 	//
-	// This parameter is not supported if the policy type is StepScaling or TargetTrackingScaling.
-	//
-	// For more information, see Scaling Cooldowns for Amazon EC2 Auto Scaling (https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html)
+	// Valid only if the policy type is SimpleScaling. For more information, see
+	// Scaling Cooldowns for Amazon EC2 Auto Scaling (https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	HonorCooldown *bool `type:"boolean"`
 

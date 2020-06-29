@@ -249,6 +249,12 @@
       "output_token": "NextToken",
       "result_key": "LocalGateways"
     },
+    "DescribeManagedPrefixLists": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "PrefixLists"
+    },
     "DescribeMovingAddresses": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -517,6 +523,18 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "Ipv6CidrAssociations"
+    },
+    "GetManagedPrefixListAssociations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "PrefixListAssociations"
+    },
+    "GetManagedPrefixListEntries": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Entries"
     },
     "GetTransitGatewayAttachmentPropagations": {
       "input_token": "NextToken",

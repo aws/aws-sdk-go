@@ -13,6 +13,193 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAddNotificationChannels = "AddNotificationChannels"
+
+// AddNotificationChannelsRequest generates a "aws/request.Request" representing the
+// client's request for the AddNotificationChannels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddNotificationChannels for more information on using the AddNotificationChannels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AddNotificationChannelsRequest method.
+//    req, resp := client.AddNotificationChannelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/AddNotificationChannels
+func (c *CodeGuruProfiler) AddNotificationChannelsRequest(input *AddNotificationChannelsInput) (req *request.Request, output *AddNotificationChannelsOutput) {
+	op := &request.Operation{
+		Name:       opAddNotificationChannels,
+		HTTPMethod: "POST",
+		HTTPPath:   "/profilingGroups/{profilingGroupName}/notificationConfiguration",
+	}
+
+	if input == nil {
+		input = &AddNotificationChannelsInput{}
+	}
+
+	output = &AddNotificationChannelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddNotificationChannels API operation for Amazon CodeGuru Profiler.
+//
+// Add up to 2 anomaly notifications channels for a profiling group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation AddNotificationChannels for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceQuotaExceededException
+//   You have exceeded your service quota. To perform the requested action, remove
+//   some of the relevant resources, or use Service Quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html)
+//   to request a service quota increase.
+//
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ConflictException
+//   The requested operation would cause a conflict with the current state of
+//   a service resource associated with the request. Resolve the conflict before
+//   retrying this request.
+//
+//   * ValidationException
+//   The parameter is not valid.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/AddNotificationChannels
+func (c *CodeGuruProfiler) AddNotificationChannels(input *AddNotificationChannelsInput) (*AddNotificationChannelsOutput, error) {
+	req, out := c.AddNotificationChannelsRequest(input)
+	return out, req.Send()
+}
+
+// AddNotificationChannelsWithContext is the same as AddNotificationChannels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddNotificationChannels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) AddNotificationChannelsWithContext(ctx aws.Context, input *AddNotificationChannelsInput, opts ...request.Option) (*AddNotificationChannelsOutput, error) {
+	req, out := c.AddNotificationChannelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchGetFrameMetricData = "BatchGetFrameMetricData"
+
+// BatchGetFrameMetricDataRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetFrameMetricData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetFrameMetricData for more information on using the BatchGetFrameMetricData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchGetFrameMetricDataRequest method.
+//    req, resp := client.BatchGetFrameMetricDataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/BatchGetFrameMetricData
+func (c *CodeGuruProfiler) BatchGetFrameMetricDataRequest(input *BatchGetFrameMetricDataInput) (req *request.Request, output *BatchGetFrameMetricDataOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetFrameMetricData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/profilingGroups/{profilingGroupName}/frames/-/metrics",
+	}
+
+	if input == nil {
+		input = &BatchGetFrameMetricDataInput{}
+	}
+
+	output = &BatchGetFrameMetricDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetFrameMetricData API operation for Amazon CodeGuru Profiler.
+//
+// Returns the time series of values for a requested list of frame metrics from
+// a time period.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation BatchGetFrameMetricData for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The parameter is not valid.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/BatchGetFrameMetricData
+func (c *CodeGuruProfiler) BatchGetFrameMetricData(input *BatchGetFrameMetricDataInput) (*BatchGetFrameMetricDataOutput, error) {
+	req, out := c.BatchGetFrameMetricDataRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetFrameMetricDataWithContext is the same as BatchGetFrameMetricData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetFrameMetricData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) BatchGetFrameMetricDataWithContext(ctx aws.Context, input *BatchGetFrameMetricDataInput, opts ...request.Option) (*BatchGetFrameMetricDataOutput, error) {
+	req, out := c.BatchGetFrameMetricDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opConfigureAgent = "ConfigureAgent"
 
 // ConfigureAgentRequest generates a "aws/request.Request" representing the
@@ -56,6 +243,10 @@ func (c *CodeGuruProfiler) ConfigureAgentRequest(input *ConfigureAgentInput) (re
 }
 
 // ConfigureAgent API operation for Amazon CodeGuru Profiler.
+//
+// Used by profiler agents to report their current state and to receive remote
+// configuration updates. For example, ConfigureAgent can be used to tell and
+// agent whether to profile or not and for how long to return profiling data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -327,7 +518,8 @@ func (c *CodeGuruProfiler) DescribeProfilingGroupRequest(input *DescribeProfilin
 
 // DescribeProfilingGroup API operation for Amazon CodeGuru Profiler.
 //
-// Describes a profiling group.
+// Returns a ProfilingGroupDescription (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
+// object that contains information about the requested profiling group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -366,6 +558,239 @@ func (c *CodeGuruProfiler) DescribeProfilingGroup(input *DescribeProfilingGroupI
 // for more information on using Contexts.
 func (c *CodeGuruProfiler) DescribeProfilingGroupWithContext(ctx aws.Context, input *DescribeProfilingGroupInput, opts ...request.Option) (*DescribeProfilingGroupOutput, error) {
 	req, out := c.DescribeProfilingGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetFindingsReportAccountSummary = "GetFindingsReportAccountSummary"
+
+// GetFindingsReportAccountSummaryRequest generates a "aws/request.Request" representing the
+// client's request for the GetFindingsReportAccountSummary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFindingsReportAccountSummary for more information on using the GetFindingsReportAccountSummary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFindingsReportAccountSummaryRequest method.
+//    req, resp := client.GetFindingsReportAccountSummaryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetFindingsReportAccountSummary
+func (c *CodeGuruProfiler) GetFindingsReportAccountSummaryRequest(input *GetFindingsReportAccountSummaryInput) (req *request.Request, output *GetFindingsReportAccountSummaryOutput) {
+	op := &request.Operation{
+		Name:       opGetFindingsReportAccountSummary,
+		HTTPMethod: "GET",
+		HTTPPath:   "/internal/findingsReports",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetFindingsReportAccountSummaryInput{}
+	}
+
+	output = &GetFindingsReportAccountSummaryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFindingsReportAccountSummary API operation for Amazon CodeGuru Profiler.
+//
+// Returns a list of FindingsReportSummary (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_FindingsReportSummary.html)
+// objects that contain analysis results for all profiling groups in your AWS
+// account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation GetFindingsReportAccountSummary for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The parameter is not valid.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetFindingsReportAccountSummary
+func (c *CodeGuruProfiler) GetFindingsReportAccountSummary(input *GetFindingsReportAccountSummaryInput) (*GetFindingsReportAccountSummaryOutput, error) {
+	req, out := c.GetFindingsReportAccountSummaryRequest(input)
+	return out, req.Send()
+}
+
+// GetFindingsReportAccountSummaryWithContext is the same as GetFindingsReportAccountSummary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFindingsReportAccountSummary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) GetFindingsReportAccountSummaryWithContext(ctx aws.Context, input *GetFindingsReportAccountSummaryInput, opts ...request.Option) (*GetFindingsReportAccountSummaryOutput, error) {
+	req, out := c.GetFindingsReportAccountSummaryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetFindingsReportAccountSummaryPages iterates over the pages of a GetFindingsReportAccountSummary operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetFindingsReportAccountSummary method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetFindingsReportAccountSummary operation.
+//    pageNum := 0
+//    err := client.GetFindingsReportAccountSummaryPages(params,
+//        func(page *codeguruprofiler.GetFindingsReportAccountSummaryOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CodeGuruProfiler) GetFindingsReportAccountSummaryPages(input *GetFindingsReportAccountSummaryInput, fn func(*GetFindingsReportAccountSummaryOutput, bool) bool) error {
+	return c.GetFindingsReportAccountSummaryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetFindingsReportAccountSummaryPagesWithContext same as GetFindingsReportAccountSummaryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) GetFindingsReportAccountSummaryPagesWithContext(ctx aws.Context, input *GetFindingsReportAccountSummaryInput, fn func(*GetFindingsReportAccountSummaryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetFindingsReportAccountSummaryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetFindingsReportAccountSummaryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetFindingsReportAccountSummaryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetNotificationConfiguration = "GetNotificationConfiguration"
+
+// GetNotificationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetNotificationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetNotificationConfiguration for more information on using the GetNotificationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetNotificationConfigurationRequest method.
+//    req, resp := client.GetNotificationConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetNotificationConfiguration
+func (c *CodeGuruProfiler) GetNotificationConfigurationRequest(input *GetNotificationConfigurationInput) (req *request.Request, output *GetNotificationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetNotificationConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/profilingGroups/{profilingGroupName}/notificationConfiguration",
+	}
+
+	if input == nil {
+		input = &GetNotificationConfigurationInput{}
+	}
+
+	output = &GetNotificationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetNotificationConfiguration API operation for Amazon CodeGuru Profiler.
+//
+// Get the current configuration for anomaly notifications for a profiling group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation GetNotificationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The parameter is not valid.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetNotificationConfiguration
+func (c *CodeGuruProfiler) GetNotificationConfiguration(input *GetNotificationConfigurationInput) (*GetNotificationConfigurationOutput, error) {
+	req, out := c.GetNotificationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetNotificationConfigurationWithContext is the same as GetNotificationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetNotificationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) GetNotificationConfigurationWithContext(ctx aws.Context, input *GetNotificationConfigurationInput, opts ...request.Option) (*GetNotificationConfigurationOutput, error) {
+	req, out := c.GetNotificationConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -415,7 +840,7 @@ func (c *CodeGuruProfiler) GetPolicyRequest(input *GetPolicyInput) (req *request
 
 // GetPolicy API operation for Amazon CodeGuru Profiler.
 //
-// Gets the profiling group policy.
+// Returns the JSON-formatted resource-based policy on a profiling group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -500,18 +925,41 @@ func (c *CodeGuruProfiler) GetProfileRequest(input *GetProfileInput) (req *reque
 
 // GetProfile API operation for Amazon CodeGuru Profiler.
 //
-// Gets the aggregated profile of a profiling group for the specified time range.
-// If the requested time range does not align with the available aggregated
-// profiles, it is expanded to attain alignment. If aggregated profiles are
-// available only for part of the period requested, the profile is returned
-// from the earliest available to the latest within the requested time range.
+// Gets the aggregated profile of a profiling group for a specified time range.
+// Amazon CodeGuru Profiler collects posted agent profiles for a profiling group
+// into aggregated profiles.
 //
-// For example, if the requested time range is from 00:00 to 00:20 and the available
-// profiles are from 00:15 to 00:25, the returned profile will be from 00:15
-// to 00:20.
-//
-// You must specify exactly two of the following parameters: startTime, period,
-// and endTime.
+//    <note> <p> Because aggregated profiles expire over time <code>GetProfile</code>
+//    is not idempotent. </p> </note> <p> Specify the time range for the requested
+//    aggregated profile using 1 or 2 of the following parameters: <code>startTime</code>,
+//    <code>endTime</code>, <code>period</code>. The maximum time range allowed
+//    is 7 days. If you specify all 3 parameters, an exception is thrown. If
+//    you specify only <code>period</code>, the latest aggregated profile is
+//    returned. </p> <p> Aggregated profiles are available with aggregation
+//    periods of 5 minutes, 1 hour, and 1 day, aligned to UTC. The aggregation
+//    period of an aggregated profile determines how long it is retained. For
+//    more information, see <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AggregatedProfileTime.html">
+//    <code>AggregatedProfileTime</code> </a>. The aggregated profile's aggregation
+//    period determines how long it is retained by CodeGuru Profiler. </p> <ul>
+//    <li> <p> If the aggregation period is 5 minutes, the aggregated profile
+//    is retained for 15 days. </p> </li> <li> <p> If the aggregation period
+//    is 1 hour, the aggregated profile is retained for 60 days. </p> </li>
+//    <li> <p> If the aggregation period is 1 day, the aggregated profile is
+//    retained for 3 years. </p> </li> </ul> <p>There are two use cases for
+//    calling <code>GetProfile</code>.</p> <ol> <li> <p> If you want to return
+//    an aggregated profile that already exists, use <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ListProfileTimes.html">
+//    <code>ListProfileTimes</code> </a> to view the time ranges of existing
+//    aggregated profiles. Use them in a <code>GetProfile</code> request to
+//    return a specific, existing aggregated profile. </p> </li> <li> <p> If
+//    you want to return an aggregated profile for a time range that doesn't
+//    align with an existing aggregated profile, then CodeGuru Profiler makes
+//    a best effort to combine existing aggregated profiles from the requested
+//    time range and return them as one aggregated profile. </p> <p> If aggregated
+//    profiles do not exist for the full time range requested, then aggregated
+//    profiles for a smaller time range are returned. For example, if the requested
+//    time range is from 00:00 to 00:20, and the existing aggregated profiles
+//    are from 00:15 and 00:25, then the aggregated profiles from 00:15 to 00:20
+//    are returned. </p> </li> </ol>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -553,6 +1001,244 @@ func (c *CodeGuruProfiler) GetProfileWithContext(ctx aws.Context, input *GetProf
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opGetRecommendations = "GetRecommendations"
+
+// GetRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the GetRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRecommendations for more information on using the GetRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRecommendationsRequest method.
+//    req, resp := client.GetRecommendationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetRecommendations
+func (c *CodeGuruProfiler) GetRecommendationsRequest(input *GetRecommendationsInput) (req *request.Request, output *GetRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opGetRecommendations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/internal/profilingGroups/{profilingGroupName}/recommendations",
+	}
+
+	if input == nil {
+		input = &GetRecommendationsInput{}
+	}
+
+	output = &GetRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRecommendations API operation for Amazon CodeGuru Profiler.
+//
+// Returns a list of Recommendation (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_Recommendation.html)
+// objects that contain recommendations for a profiling group for a given time
+// period. A list of Anomaly (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_Anomaly.html)
+// objects that contains details about anomalies detected in the profiling group
+// for the same time period is also returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation GetRecommendations for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The parameter is not valid.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetRecommendations
+func (c *CodeGuruProfiler) GetRecommendations(input *GetRecommendationsInput) (*GetRecommendationsOutput, error) {
+	req, out := c.GetRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// GetRecommendationsWithContext is the same as GetRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) GetRecommendationsWithContext(ctx aws.Context, input *GetRecommendationsInput, opts ...request.Option) (*GetRecommendationsOutput, error) {
+	req, out := c.GetRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListFindingsReports = "ListFindingsReports"
+
+// ListFindingsReportsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFindingsReports operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFindingsReports for more information on using the ListFindingsReports
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFindingsReportsRequest method.
+//    req, resp := client.ListFindingsReportsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListFindingsReports
+func (c *CodeGuruProfiler) ListFindingsReportsRequest(input *ListFindingsReportsInput) (req *request.Request, output *ListFindingsReportsOutput) {
+	op := &request.Operation{
+		Name:       opListFindingsReports,
+		HTTPMethod: "GET",
+		HTTPPath:   "/internal/profilingGroups/{profilingGroupName}/findingsReports",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFindingsReportsInput{}
+	}
+
+	output = &ListFindingsReportsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFindingsReports API operation for Amazon CodeGuru Profiler.
+//
+// List the available reports for a given profiling group and time range.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation ListFindingsReports for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The parameter is not valid.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListFindingsReports
+func (c *CodeGuruProfiler) ListFindingsReports(input *ListFindingsReportsInput) (*ListFindingsReportsOutput, error) {
+	req, out := c.ListFindingsReportsRequest(input)
+	return out, req.Send()
+}
+
+// ListFindingsReportsWithContext is the same as ListFindingsReports with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFindingsReports for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) ListFindingsReportsWithContext(ctx aws.Context, input *ListFindingsReportsInput, opts ...request.Option) (*ListFindingsReportsOutput, error) {
+	req, out := c.ListFindingsReportsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFindingsReportsPages iterates over the pages of a ListFindingsReports operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFindingsReports method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFindingsReports operation.
+//    pageNum := 0
+//    err := client.ListFindingsReportsPages(params,
+//        func(page *codeguruprofiler.ListFindingsReportsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CodeGuruProfiler) ListFindingsReportsPages(input *ListFindingsReportsInput, fn func(*ListFindingsReportsOutput, bool) bool) error {
+	return c.ListFindingsReportsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFindingsReportsPagesWithContext same as ListFindingsReportsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) ListFindingsReportsPagesWithContext(ctx aws.Context, input *ListFindingsReportsInput, fn func(*ListFindingsReportsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFindingsReportsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFindingsReportsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFindingsReportsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListProfileTimes = "ListProfileTimes"
@@ -605,7 +1291,7 @@ func (c *CodeGuruProfiler) ListProfileTimesRequest(input *ListProfileTimesInput)
 
 // ListProfileTimes API operation for Amazon CodeGuru Profiler.
 //
-// List the start times of the available aggregated profiles of a profiling
+// Lists the start times of the available aggregated profiles of a profiling
 // group for an aggregation period within the specified time range.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -752,7 +1438,9 @@ func (c *CodeGuruProfiler) ListProfilingGroupsRequest(input *ListProfilingGroups
 
 // ListProfilingGroups API operation for Amazon CodeGuru Profiler.
 //
-// Lists profiling groups.
+// Returns a list of profiling groups. The profiling groups are returned as
+// ProfilingGroupDescription (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
+// objects.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -887,6 +1575,10 @@ func (c *CodeGuruProfiler) PostAgentProfileRequest(input *PostAgentProfileInput)
 
 // PostAgentProfile API operation for Amazon CodeGuru Profiler.
 //
+// Submits profiling data to an aggregated profile of a profiling group. To
+// get an aggregated profile that is created with this profiling data, use GetProfile
+// (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_GetProfile.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -973,8 +1665,23 @@ func (c *CodeGuruProfiler) PutPermissionRequest(input *PutPermissionInput) (req 
 
 // PutPermission API operation for Amazon CodeGuru Profiler.
 //
-// Provides permission to the principals. This overwrites the existing permissions,
-// and is not additive.
+// Adds permissions to a profiling group's resource-based policy that are provided
+// using an action group. If a profiling group doesn't have a resource-based
+// policy, one is created for it using the permissions in the action group and
+// the roles and users in the principals parameter.
+//
+//    <p> The one supported action group that can be added is <code>agentPermission</code>
+//    which grants <code>ConfigureAgent</code> and <code>PostAgent</code> permissions.
+//    For more information, see <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-ug/resource-based-policies.html">Resource-based
+//    policies in CodeGuru Profiler</a> in the <i>Amazon CodeGuru Profiler User
+//    Guide</i>, <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html">
+//    <code>ConfigureAgent</code> </a>, and <a href="https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_PostAgentProfile.html">
+//    <code>PostAgentProfile</code> </a>. </p> <p> The first time you call <code>PutPermission</code>
+//    on a profiling group, do not specify a <code>revisionId</code> because
+//    it doesn't have a resource-based policy. Subsequent calls must provide
+//    a <code>revisionId</code> to specify which revision of the resource-based
+//    policy to add the permissions to. </p> <p> The response contains the profiling
+//    group's JSON-formatted resource policy. </p>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1018,6 +1725,94 @@ func (c *CodeGuruProfiler) PutPermission(input *PutPermissionInput) (*PutPermiss
 // for more information on using Contexts.
 func (c *CodeGuruProfiler) PutPermissionWithContext(ctx aws.Context, input *PutPermissionInput, opts ...request.Option) (*PutPermissionOutput, error) {
 	req, out := c.PutPermissionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRemoveNotificationChannel = "RemoveNotificationChannel"
+
+// RemoveNotificationChannelRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveNotificationChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveNotificationChannel for more information on using the RemoveNotificationChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveNotificationChannelRequest method.
+//    req, resp := client.RemoveNotificationChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/RemoveNotificationChannel
+func (c *CodeGuruProfiler) RemoveNotificationChannelRequest(input *RemoveNotificationChannelInput) (req *request.Request, output *RemoveNotificationChannelOutput) {
+	op := &request.Operation{
+		Name:       opRemoveNotificationChannel,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/profilingGroups/{profilingGroupName}/notificationConfiguration/{channelId}",
+	}
+
+	if input == nil {
+		input = &RemoveNotificationChannelInput{}
+	}
+
+	output = &RemoveNotificationChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RemoveNotificationChannel API operation for Amazon CodeGuru Profiler.
+//
+// Remove one anomaly notifications channel for a profiling group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation RemoveNotificationChannel for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The parameter is not valid.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/RemoveNotificationChannel
+func (c *CodeGuruProfiler) RemoveNotificationChannel(input *RemoveNotificationChannelInput) (*RemoveNotificationChannelOutput, error) {
+	req, out := c.RemoveNotificationChannelRequest(input)
+	return out, req.Send()
+}
+
+// RemoveNotificationChannelWithContext is the same as RemoveNotificationChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveNotificationChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) RemoveNotificationChannelWithContext(ctx aws.Context, input *RemoveNotificationChannelInput, opts ...request.Option) (*RemoveNotificationChannelOutput, error) {
+	req, out := c.RemoveNotificationChannelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1067,7 +1862,12 @@ func (c *CodeGuruProfiler) RemovePermissionRequest(input *RemovePermissionInput)
 
 // RemovePermission API operation for Amazon CodeGuru Profiler.
 //
-// Removes statement for the provided action group from the policy.
+// Removes permissions from a profiling group's resource-based policy that are
+// provided using an action group. The one supported action group that can be
+// removed is agentPermission which grants ConfigureAgent and PostAgent permissions.
+// For more information, see Resource-based policies in CodeGuru Profiler (https://docs.aws.amazon.com/codeguru/latest/profiler-ug/resource-based-policies.html)
+// in the Amazon CodeGuru Profiler User Guide, ConfigureAgent (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html),
+// and PostAgentProfile (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_PostAgentProfile.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1111,6 +1911,96 @@ func (c *CodeGuruProfiler) RemovePermission(input *RemovePermissionInput) (*Remo
 // for more information on using Contexts.
 func (c *CodeGuruProfiler) RemovePermissionWithContext(ctx aws.Context, input *RemovePermissionInput, opts ...request.Option) (*RemovePermissionOutput, error) {
 	req, out := c.RemovePermissionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSubmitFeedback = "SubmitFeedback"
+
+// SubmitFeedbackRequest generates a "aws/request.Request" representing the
+// client's request for the SubmitFeedback operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SubmitFeedback for more information on using the SubmitFeedback
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SubmitFeedbackRequest method.
+//    req, resp := client.SubmitFeedbackRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/SubmitFeedback
+func (c *CodeGuruProfiler) SubmitFeedbackRequest(input *SubmitFeedbackInput) (req *request.Request, output *SubmitFeedbackOutput) {
+	op := &request.Operation{
+		Name:       opSubmitFeedback,
+		HTTPMethod: "POST",
+		HTTPPath:   "/internal/profilingGroups/{profilingGroupName}/anomalies/{anomalyInstanceId}/feedback",
+	}
+
+	if input == nil {
+		input = &SubmitFeedbackInput{}
+	}
+
+	output = &SubmitFeedbackOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// SubmitFeedback API operation for Amazon CodeGuru Profiler.
+//
+// Sends feedback to CodeGuru Profiler about whether the anomaly detected by
+// the analysis is useful or not.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation SubmitFeedback for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The parameter is not valid.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/SubmitFeedback
+func (c *CodeGuruProfiler) SubmitFeedback(input *SubmitFeedbackInput) (*SubmitFeedbackOutput, error) {
+	req, out := c.SubmitFeedbackRequest(input)
+	return out, req.Send()
+}
+
+// SubmitFeedbackWithContext is the same as SubmitFeedback with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SubmitFeedback for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) SubmitFeedbackWithContext(ctx aws.Context, input *SubmitFeedbackInput, opts ...request.Option) (*SubmitFeedbackOutput, error) {
+	req, out := c.SubmitFeedbackRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1209,12 +2099,138 @@ func (c *CodeGuruProfiler) UpdateProfilingGroupWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+// The structure representing the AddNotificationChannelsRequest.
+type AddNotificationChannelsInput struct {
+	_ struct{} `type:"structure"`
+
+	// One or 2 channels to report to when anomalies are detected.
+	//
+	// Channels is a required field
+	Channels []*Channel `locationName:"channels" min:"1" type:"list" required:"true"`
+
+	// The name of the profiling group that we are setting up notifications for.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AddNotificationChannelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddNotificationChannelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddNotificationChannelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddNotificationChannelsInput"}
+	if s.Channels == nil {
+		invalidParams.Add(request.NewErrParamRequired("Channels"))
+	}
+	if s.Channels != nil && len(s.Channels) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Channels", 1))
+	}
+	if s.ProfilingGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfilingGroupName"))
+	}
+	if s.ProfilingGroupName != nil && len(*s.ProfilingGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfilingGroupName", 1))
+	}
+	if s.Channels != nil {
+		for i, v := range s.Channels {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Channels", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannels sets the Channels field's value.
+func (s *AddNotificationChannelsInput) SetChannels(v []*Channel) *AddNotificationChannelsInput {
+	s.Channels = v
+	return s
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *AddNotificationChannelsInput) SetProfilingGroupName(v string) *AddNotificationChannelsInput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// The structure representing the AddNotificationChannelsResponse.
+type AddNotificationChannelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The new notification configuration for this profiling group.
+	NotificationConfiguration *NotificationConfiguration `locationName:"notificationConfiguration" type:"structure"`
+}
+
+// String returns the string representation
+func (s AddNotificationChannelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddNotificationChannelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNotificationConfiguration sets the NotificationConfiguration field's value.
+func (s *AddNotificationChannelsOutput) SetNotificationConfiguration(v *NotificationConfiguration) *AddNotificationChannelsOutput {
+	s.NotificationConfiguration = v
+	return s
+}
+
+// The response of ConfigureAgent (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html)
+// that specifies if an agent profiles or not and for how long to return profiling
+// data.
 type AgentConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Parameters used by the profiler. The valid parameters are:
+	//
+	//    * MaxStackDepth - The maximum depth of the stacks in the code that is
+	//    represented in the profile. For example, if CodeGuru Profiler finds a
+	//    method A, which calls method B, which calls method C, which calls method
+	//    D, then the depth is 4. If the maxDepth is set to 2, then the profiler
+	//    evaluates A and B.
+	//
+	//    * MemoryUsageLimitPercent - The percentage of memory that is used by the
+	//    profiler.
+	//
+	//    * MinimumTimeForReportingInMilliseconds - The minimum time in milliseconds
+	//    between sending reports.
+	//
+	//    * ReportingIntervalInMilliseconds - The reporting interval in milliseconds
+	//    used to report profiles.
+	//
+	//    * SamplingIntervalInMilliseconds - The sampling interval in milliseconds
+	//    that is used to profile samples.
+	AgentParameters map[string]*string `locationName:"agentParameters" type:"map"`
+
+	// How long a profiling agent should send profiling data using ConfigureAgent
+	// (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html).
+	// For example, if this is set to 300, the profiling agent calls ConfigureAgent
+	// (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html)
+	// every 5 minutes to submit the profiled data collected during that period.
+	//
 	// PeriodInSeconds is a required field
 	PeriodInSeconds *int64 `locationName:"periodInSeconds" type:"integer" required:"true"`
 
+	// A Boolean that specifies whether the profiling agent collects profiling data
+	// or not. Set to true to enable profiling.
+	//
 	// ShouldProfile is a required field
 	ShouldProfile *bool `locationName:"shouldProfile" type:"boolean" required:"true"`
 }
@@ -1229,6 +2245,12 @@ func (s AgentConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetAgentParameters sets the AgentParameters field's value.
+func (s *AgentConfiguration) SetAgentParameters(v map[string]*string) *AgentConfiguration {
+	s.AgentParameters = v
+	return s
+}
+
 // SetPeriodInSeconds sets the PeriodInSeconds field's value.
 func (s *AgentConfiguration) SetPeriodInSeconds(v int64) *AgentConfiguration {
 	s.PeriodInSeconds = &v
@@ -1241,9 +2263,15 @@ func (s *AgentConfiguration) SetShouldProfile(v bool) *AgentConfiguration {
 	return s
 }
 
+// Specifies whether profiling is enabled or disabled for a profiling group.
+// It is used by ConfigureAgent (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html)
+// to enable or disable profiling for a profiling group.
 type AgentOrchestrationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// A Boolean that specifies whether the profiling agent collects profiling data
+	// or not. Set to true to enable profiling.
+	//
 	// ProfilingEnabled is a required field
 	ProfilingEnabled *bool `locationName:"profilingEnabled" type:"boolean" required:"true"`
 }
@@ -1277,14 +2305,31 @@ func (s *AgentOrchestrationConfig) SetProfilingEnabled(v bool) *AgentOrchestrati
 	return s
 }
 
-// Information about the time range of the latest available aggregated profile.
+// Specifies the aggregation period and aggregation start time for an aggregated
+// profile. An aggregated profile is used to collect posted agent profiles during
+// an aggregation period. There are three possible aggregation periods (1 day,
+// 1 hour, or 5 minutes).
 type AggregatedProfileTime struct {
 	_ struct{} `type:"structure"`
 
-	// The time period.
+	// The aggregation period. This indicates the period during which an aggregation
+	// profile collects posted agent profiles for a profiling group. Use one of
+	// three valid durations that are specified using the ISO 8601 format.
+	//
+	//    * P1D — 1 day
+	//
+	//    * PT1H — 1 hour
+	//
+	//    * PT5M — 5 minutes
 	Period *string `locationName:"period" type:"string" enum:"AggregationPeriod"`
 
-	// The start time.
+	// The time that aggregation of posted agent profiles for a profiling group
+	// starts. The aggregation profile contains profiles posted by the agent starting
+	// at this time for an aggregation period specified by the period property of
+	// the AggregatedProfileTime object.
+	//
+	// Specify start using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z
+	// represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.
 	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -1310,12 +2355,446 @@ func (s *AggregatedProfileTime) SetStart(v time.Time) *AggregatedProfileTime {
 	return s
 }
 
+// Details about an anomaly in a specific metric of application profile. The
+// anomaly is detected using analysis of the metric data over a period of time.
+type Anomaly struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the instances of the detected anomalies during the requested period.
+	//
+	// Instances is a required field
+	Instances []*AnomalyInstance `locationName:"instances" type:"list" required:"true"`
+
+	// Details about the metric that the analysis used when it detected the anomaly.
+	// The metric includes the name of the frame that was analyzed with the type
+	// and thread states used to derive the metric value for that frame.
+	//
+	// Metric is a required field
+	Metric *Metric `locationName:"metric" type:"structure" required:"true"`
+
+	// The reason for which metric was flagged as anomalous.
+	//
+	// Reason is a required field
+	Reason *string `locationName:"reason" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Anomaly) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Anomaly) GoString() string {
+	return s.String()
+}
+
+// SetInstances sets the Instances field's value.
+func (s *Anomaly) SetInstances(v []*AnomalyInstance) *Anomaly {
+	s.Instances = v
+	return s
+}
+
+// SetMetric sets the Metric field's value.
+func (s *Anomaly) SetMetric(v *Metric) *Anomaly {
+	s.Metric = v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *Anomaly) SetReason(v string) *Anomaly {
+	s.Reason = &v
+	return s
+}
+
+// The specific duration in which the metric is flagged as anomalous.
+type AnomalyInstance struct {
+	_ struct{} `type:"structure"`
+
+	// The end time of the period during which the metric is flagged as anomalous.
+	// This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z
+	// represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The universally unique identifier (UUID) of an instance of an anomaly in
+	// a metric.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The start time of the period during which the metric is flagged as anomalous.
+	// This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z
+	// represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// Feedback type on a specific instance of anomaly submitted by the user.
+	UserFeedback *UserFeedback `locationName:"userFeedback" type:"structure"`
+}
+
+// String returns the string representation
+func (s AnomalyInstance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AnomalyInstance) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *AnomalyInstance) SetEndTime(v time.Time) *AnomalyInstance {
+	s.EndTime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AnomalyInstance) SetId(v string) *AnomalyInstance {
+	s.Id = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *AnomalyInstance) SetStartTime(v time.Time) *AnomalyInstance {
+	s.StartTime = &v
+	return s
+}
+
+// SetUserFeedback sets the UserFeedback field's value.
+func (s *AnomalyInstance) SetUserFeedback(v *UserFeedback) *AnomalyInstance {
+	s.UserFeedback = v
+	return s
+}
+
+// The structure representing the BatchGetFrameMetricDataRequest.
+type BatchGetFrameMetricDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The end time of the time period for the returned time series values. This
+	// is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z
+	// represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The details of the metrics that are used to request a time series of values.
+	// The metric includes the name of the frame, the aggregation type to calculate
+	// the metric value for the frame, and the thread states to use to get the count
+	// for the metric value of the frame.
+	FrameMetrics []*FrameMetric `locationName:"frameMetrics" type:"list"`
+
+	// The duration of the frame metrics used to return the time series values.
+	// Specify using the ISO 8601 format. The maximum period duration is one day
+	// (PT24H or P1D).
+	Period *string `location:"querystring" locationName:"period" min:"1" type:"string"`
+
+	// The name of the profiling group associated with the the frame metrics used
+	// to return the time series values.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+
+	// The start time of the time period for the frame metrics used to return the
+	// time series values. This is specified using the ISO 8601 format. For example,
+	// 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02
+	// PM UTC.
+	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The requested resolution of time steps for the returned time series of values.
+	// If the requested target resolution is not available due to data not being
+	// retained we provide a best effort result by falling back to the most granular
+	// available resolution after the target resolution. There are 3 valid values.
+	//
+	//    * P1D — 1 day
+	//
+	//    * PT1H — 1 hour
+	//
+	//    * PT5M — 5 minutes
+	TargetResolution *string `location:"querystring" locationName:"targetResolution" type:"string" enum:"AggregationPeriod"`
+}
+
+// String returns the string representation
+func (s BatchGetFrameMetricDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetFrameMetricDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetFrameMetricDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetFrameMetricDataInput"}
+	if s.Period != nil && len(*s.Period) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Period", 1))
+	}
+	if s.ProfilingGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfilingGroupName"))
+	}
+	if s.ProfilingGroupName != nil && len(*s.ProfilingGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfilingGroupName", 1))
+	}
+	if s.FrameMetrics != nil {
+		for i, v := range s.FrameMetrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FrameMetrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *BatchGetFrameMetricDataInput) SetEndTime(v time.Time) *BatchGetFrameMetricDataInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetFrameMetrics sets the FrameMetrics field's value.
+func (s *BatchGetFrameMetricDataInput) SetFrameMetrics(v []*FrameMetric) *BatchGetFrameMetricDataInput {
+	s.FrameMetrics = v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *BatchGetFrameMetricDataInput) SetPeriod(v string) *BatchGetFrameMetricDataInput {
+	s.Period = &v
+	return s
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *BatchGetFrameMetricDataInput) SetProfilingGroupName(v string) *BatchGetFrameMetricDataInput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *BatchGetFrameMetricDataInput) SetStartTime(v time.Time) *BatchGetFrameMetricDataInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetTargetResolution sets the TargetResolution field's value.
+func (s *BatchGetFrameMetricDataInput) SetTargetResolution(v string) *BatchGetFrameMetricDataInput {
+	s.TargetResolution = &v
+	return s
+}
+
+// The structure representing the BatchGetFrameMetricDataResponse.
+type BatchGetFrameMetricDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The end time of the time period for the returned time series values. This
+	// is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z
+	// represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// List of instances, or time steps, in the time series. For example, if the
+	// period is one day (PT24H)), and the resolution is five minutes (PT5M), then
+	// there are 288 endTimes in the list that are each five minutes appart.
+	//
+	// EndTimes is a required field
+	EndTimes []*TimestampStructure `locationName:"endTimes" type:"list" required:"true"`
+
+	// Details of the metrics to request a time series of values. The metric includes
+	// the name of the frame, the aggregation type to calculate the metric value
+	// for the frame, and the thread states to use to get the count for the metric
+	// value of the frame.
+	//
+	// FrameMetricData is a required field
+	FrameMetricData []*FrameMetricDatum `locationName:"frameMetricData" type:"list" required:"true"`
+
+	// Resolution or granularity of the profile data used to generate the time series.
+	// This is the value used to jump through time steps in a time series. There
+	// are 3 valid values.
+	//
+	//    * P1D — 1 day
+	//
+	//    * PT1H — 1 hour
+	//
+	//    * PT5M — 5 minutes
+	//
+	// Resolution is a required field
+	Resolution *string `locationName:"resolution" type:"string" required:"true" enum:"AggregationPeriod"`
+
+	// The start time of the time period for the returned time series values. This
+	// is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z
+	// represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// List of instances which remained unprocessed. This will create a missing
+	// time step in the list of end times.
+	//
+	// UnprocessedEndTimes is a required field
+	UnprocessedEndTimes map[string][]*TimestampStructure `locationName:"unprocessedEndTimes" type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchGetFrameMetricDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetFrameMetricDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *BatchGetFrameMetricDataOutput) SetEndTime(v time.Time) *BatchGetFrameMetricDataOutput {
+	s.EndTime = &v
+	return s
+}
+
+// SetEndTimes sets the EndTimes field's value.
+func (s *BatchGetFrameMetricDataOutput) SetEndTimes(v []*TimestampStructure) *BatchGetFrameMetricDataOutput {
+	s.EndTimes = v
+	return s
+}
+
+// SetFrameMetricData sets the FrameMetricData field's value.
+func (s *BatchGetFrameMetricDataOutput) SetFrameMetricData(v []*FrameMetricDatum) *BatchGetFrameMetricDataOutput {
+	s.FrameMetricData = v
+	return s
+}
+
+// SetResolution sets the Resolution field's value.
+func (s *BatchGetFrameMetricDataOutput) SetResolution(v string) *BatchGetFrameMetricDataOutput {
+	s.Resolution = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *BatchGetFrameMetricDataOutput) SetStartTime(v time.Time) *BatchGetFrameMetricDataOutput {
+	s.StartTime = &v
+	return s
+}
+
+// SetUnprocessedEndTimes sets the UnprocessedEndTimes field's value.
+func (s *BatchGetFrameMetricDataOutput) SetUnprocessedEndTimes(v map[string][]*TimestampStructure) *BatchGetFrameMetricDataOutput {
+	s.UnprocessedEndTimes = v
+	return s
+}
+
+// Notification medium for users to get alerted for events that occur in application
+// profile. We support SNS topic as a notification channel.
+type Channel struct {
+	_ struct{} `type:"structure"`
+
+	// List of publishers for different type of events that may be detected in an
+	// application from the profile. Anomaly detection is the only event publisher
+	// in Profiler.
+	//
+	// EventPublishers is a required field
+	EventPublishers []*string `locationName:"eventPublishers" min:"1" type:"list" required:"true"`
+
+	// Unique identifier for each Channel in the notification configuration of a
+	// Profiling Group. A random UUID for channelId is used when adding a channel
+	// to the notification configuration if not specified in the request.
+	Id *string `locationName:"id" type:"string"`
+
+	// Unique arn of the resource to be used for notifications. We support a valid
+	// SNS topic arn as a channel uri.
+	//
+	// Uri is a required field
+	Uri *string `locationName:"uri" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Channel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Channel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Channel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Channel"}
+	if s.EventPublishers == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventPublishers"))
+	}
+	if s.EventPublishers != nil && len(s.EventPublishers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventPublishers", 1))
+	}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventPublishers sets the EventPublishers field's value.
+func (s *Channel) SetEventPublishers(v []*string) *Channel {
+	s.EventPublishers = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Channel) SetId(v string) *Channel {
+	s.Id = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *Channel) SetUri(v string) *Channel {
+	s.Uri = &v
+	return s
+}
+
 // The structure representing the configureAgentRequest.
 type ConfigureAgentInput struct {
 	_ struct{} `type:"structure"`
 
+	// A universally unique identifier (UUID) for a profiling instance. For example,
+	// if the profiling instance is an Amazon EC2 instance, it is the instance ID.
+	// If it is an AWS Fargate container, it is the container's task ID.
 	FleetInstanceId *string `locationName:"fleetInstanceId" min:"1" type:"string"`
 
+	// Metadata captured about the compute platform the agent is running on. It
+	// includes information about sampling and reporting. The valid fields are:
+	//
+	//    * COMPUTE_PLATFORM - The compute platform on which the agent is running
+	//
+	//    * AGENT_ID - The ID for an agent instance.
+	//
+	//    * AWS_REQUEST_ID - The AWS request ID of a Lambda invocation.
+	//
+	//    * EXECUTION_ENVIRONMENT - The execution environment a Lambda function
+	//    is running on.
+	//
+	//    * LAMBDA_FUNCTION_ARN - The Amazon Resource Name (ARN) that is used to
+	//    invoke a Lambda function.
+	//
+	//    * LAMBDA_MEMORY_LIMIT_IN_MB - The memory allocated to a Lambda function.
+	//
+	//    * LAMBDA_REMAINING_TIME_IN_MILLISECONDS - The time in milliseconds before
+	//    execution of a Lambda function times out.
+	//
+	//    * LAMBDA_TIME_GAP_BETWEEN_INVOKES_IN_MILLISECONDS - The time in milliseconds
+	//    between two invocations of a Lambda function.
+	//
+	//    * LAMBDA_PREVIOUS_EXECUTION_TIME_IN_MILLISECONDS - The time in milliseconds
+	//    for the previous Lambda invocation.
+	Metadata map[string]*string `locationName:"metadata" type:"map"`
+
+	// The name of the profiling group for which the configured agent is collecting
+	// profiling data.
+	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
@@ -1355,6 +2834,12 @@ func (s *ConfigureAgentInput) SetFleetInstanceId(v string) *ConfigureAgentInput 
 	return s
 }
 
+// SetMetadata sets the Metadata field's value.
+func (s *ConfigureAgentInput) SetMetadata(v map[string]*string) *ConfigureAgentInput {
+	s.Metadata = v
+	return s
+}
+
 // SetProfilingGroupName sets the ProfilingGroupName field's value.
 func (s *ConfigureAgentInput) SetProfilingGroupName(v string) *ConfigureAgentInput {
 	s.ProfilingGroupName = &v
@@ -1365,6 +2850,10 @@ func (s *ConfigureAgentInput) SetProfilingGroupName(v string) *ConfigureAgentInp
 type ConfigureAgentOutput struct {
 	_ struct{} `type:"structure" payload:"Configuration"`
 
+	// An AgentConfiguration (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AgentConfiguration.html)
+	// object that specifies if an agent profiles or not and for how long to return
+	// profiling data.
+	//
 	// Configuration is a required field
 	Configuration *AgentConfiguration `locationName:"configuration" type:"structure" required:"true"`
 }
@@ -1447,17 +2936,22 @@ func (s *ConflictException) RequestID() string {
 type CreateProfilingGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The agent orchestration configuration.
+	// Specifies whether profiling is enabled or disabled for the created profiling
+	// group.
 	AgentOrchestrationConfig *AgentOrchestrationConfig `locationName:"agentOrchestrationConfig" type:"structure"`
 
-	// Unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
-	//
-	// This parameter specifies a unique identifier for the new profiling group
-	// that helps ensure idempotency.
+	// Amazon CodeGuru Profiler uses this universally unique identifier (UUID) to
+	// prevent the accidental creation of duplicate profiling groups if there are
+	// failures and retries.
 	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The name of the profiling group.
+	// The compute platform of the profiling group. Use AWSLambda if your application
+	// runs on AWS Lambda. Use Default if your application runs on a compute platform
+	// that is not AWS Lambda, such an Amazon EC2 instance, an on-premises server,
+	// or a different platform. If not specified, Default is used.
+	ComputePlatform *string `locationName:"computePlatform" type:"string" enum:"ComputePlatform"`
+
+	// The name of the profiling group to create.
 	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
@@ -1509,6 +3003,12 @@ func (s *CreateProfilingGroupInput) SetClientToken(v string) *CreateProfilingGro
 	return s
 }
 
+// SetComputePlatform sets the ComputePlatform field's value.
+func (s *CreateProfilingGroupInput) SetComputePlatform(v string) *CreateProfilingGroupInput {
+	s.ComputePlatform = &v
+	return s
+}
+
 // SetProfilingGroupName sets the ProfilingGroupName field's value.
 func (s *CreateProfilingGroupInput) SetProfilingGroupName(v string) *CreateProfilingGroupInput {
 	s.ProfilingGroupName = &v
@@ -1519,7 +3019,8 @@ func (s *CreateProfilingGroupInput) SetProfilingGroupName(v string) *CreateProfi
 type CreateProfilingGroupOutput struct {
 	_ struct{} `type:"structure" payload:"ProfilingGroup"`
 
-	// Information about the new profiling group
+	// The returned ProfilingGroupDescription (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
+	// object that contains information about the created profiling group.
 	//
 	// ProfilingGroup is a required field
 	ProfilingGroup *ProfilingGroupDescription `locationName:"profilingGroup" type:"structure" required:"true"`
@@ -1545,7 +3046,7 @@ func (s *CreateProfilingGroupOutput) SetProfilingGroup(v *ProfilingGroupDescript
 type DeleteProfilingGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The profiling group name to delete.
+	// The name of the profiling group to delete.
 	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
@@ -1602,7 +3103,7 @@ func (s DeleteProfilingGroupOutput) GoString() string {
 type DescribeProfilingGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The profiling group name.
+	// The name of the profiling group to get information about.
 	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
@@ -1644,7 +3145,8 @@ func (s *DescribeProfilingGroupInput) SetProfilingGroupName(v string) *DescribeP
 type DescribeProfilingGroupOutput struct {
 	_ struct{} `type:"structure" payload:"ProfilingGroup"`
 
-	// Information about a profiling group.
+	// The returned ProfilingGroupDescription (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
+	// object that contains information about the requested profiling group.
 	//
 	// ProfilingGroup is a required field
 	ProfilingGroup *ProfilingGroupDescription `locationName:"profilingGroup" type:"structure" required:"true"`
@@ -1663,6 +3165,363 @@ func (s DescribeProfilingGroupOutput) GoString() string {
 // SetProfilingGroup sets the ProfilingGroup field's value.
 func (s *DescribeProfilingGroupOutput) SetProfilingGroup(v *ProfilingGroupDescription) *DescribeProfilingGroupOutput {
 	s.ProfilingGroup = v
+	return s
+}
+
+// Information about potential recommendations that might be created from the
+// analysis of profiling data.
+type FindingsReportSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The universally unique identifier (UUID) of the recommendation report.
+	Id *string `locationName:"id" type:"string"`
+
+	// The end time of the period during which the metric is flagged as anomalous.
+	// This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z
+	// represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	ProfileEndTime *time.Time `locationName:"profileEndTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The start time of the profile the analysis data is about. This is specified
+	// using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents
+	// 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	ProfileStartTime *time.Time `locationName:"profileStartTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The name of the profiling group that is associated with the analysis data.
+	ProfilingGroupName *string `locationName:"profilingGroupName" type:"string"`
+
+	// The total number of different recommendations that were found by the analysis.
+	TotalNumberOfFindings *int64 `locationName:"totalNumberOfFindings" type:"integer"`
+}
+
+// String returns the string representation
+func (s FindingsReportSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FindingsReportSummary) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *FindingsReportSummary) SetId(v string) *FindingsReportSummary {
+	s.Id = &v
+	return s
+}
+
+// SetProfileEndTime sets the ProfileEndTime field's value.
+func (s *FindingsReportSummary) SetProfileEndTime(v time.Time) *FindingsReportSummary {
+	s.ProfileEndTime = &v
+	return s
+}
+
+// SetProfileStartTime sets the ProfileStartTime field's value.
+func (s *FindingsReportSummary) SetProfileStartTime(v time.Time) *FindingsReportSummary {
+	s.ProfileStartTime = &v
+	return s
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *FindingsReportSummary) SetProfilingGroupName(v string) *FindingsReportSummary {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// SetTotalNumberOfFindings sets the TotalNumberOfFindings field's value.
+func (s *FindingsReportSummary) SetTotalNumberOfFindings(v int64) *FindingsReportSummary {
+	s.TotalNumberOfFindings = &v
+	return s
+}
+
+// The frame name, metric type, and thread states. These are used to derive
+// the value of the metric for the frame.
+type FrameMetric struct {
+	_ struct{} `type:"structure"`
+
+	// Name of the method common across the multiple occurrences of a frame in an
+	// application profile.
+	//
+	// FrameName is a required field
+	FrameName *string `locationName:"frameName" type:"string" required:"true"`
+
+	// List of application runtime thread states used to get the counts for a frame
+	// a derive a metric value.
+	//
+	// ThreadStates is a required field
+	ThreadStates []*string `locationName:"threadStates" type:"list" required:"true"`
+
+	// A type of aggregation that specifies how a metric for a frame is analyzed.
+	// The supported value AggregatedRelativeTotalTime is an aggregation of the
+	// metric value for one frame that is calculated across the occurrences of all
+	// frames in a profile.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"MetricType"`
+}
+
+// String returns the string representation
+func (s FrameMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FrameMetric) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FrameMetric) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FrameMetric"}
+	if s.FrameName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FrameName"))
+	}
+	if s.ThreadStates == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThreadStates"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFrameName sets the FrameName field's value.
+func (s *FrameMetric) SetFrameName(v string) *FrameMetric {
+	s.FrameName = &v
+	return s
+}
+
+// SetThreadStates sets the ThreadStates field's value.
+func (s *FrameMetric) SetThreadStates(v []*string) *FrameMetric {
+	s.ThreadStates = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *FrameMetric) SetType(v string) *FrameMetric {
+	s.Type = &v
+	return s
+}
+
+// Information about a frame metric and its values.
+type FrameMetricDatum struct {
+	_ struct{} `type:"structure"`
+
+	// The frame name, metric type, and thread states. These are used to derive
+	// the value of the metric for the frame.
+	//
+	// FrameMetric is a required field
+	FrameMetric *FrameMetric `locationName:"frameMetric" type:"structure" required:"true"`
+
+	// A list of values that are associated with a frame metric.
+	//
+	// Values is a required field
+	Values []*float64 `locationName:"values" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s FrameMetricDatum) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FrameMetricDatum) GoString() string {
+	return s.String()
+}
+
+// SetFrameMetric sets the FrameMetric field's value.
+func (s *FrameMetricDatum) SetFrameMetric(v *FrameMetric) *FrameMetricDatum {
+	s.FrameMetric = v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *FrameMetricDatum) SetValues(v []*float64) *FrameMetricDatum {
+	s.Values = v
+	return s
+}
+
+// The structure representing the GetFindingsReportAccountSummaryRequest.
+type GetFindingsReportAccountSummaryInput struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value indicating whether to only return reports from daily profiles.
+	// If set to True, only analysis data from daily profiles is returned. If set
+	// to False, analysis data is returned from smaller time windows (for example,
+	// one hour).
+	DailyReportsOnly *bool `location:"querystring" locationName:"dailyReportsOnly" type:"boolean"`
+
+	// The maximum number of results returned by GetFindingsReportAccountSummary
+	// in paginated output. When this parameter is used, GetFindingsReportAccountSummary
+	// only returns maxResults results in a single page along with a nextToken response
+	// element. The remaining results of the initial request can be seen by sending
+	// another GetFindingsReportAccountSummary request with the returned nextToken
+	// value.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The nextToken value returned from a previous paginated GetFindingsReportAccountSummary
+	// request where maxResults was used and the results exceeded the value of that
+	// parameter. Pagination continues from the end of the previous results that
+	// returned the nextToken value.
+	//
+	// This token should be treated as an opaque identifier that is only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetFindingsReportAccountSummaryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFindingsReportAccountSummaryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFindingsReportAccountSummaryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFindingsReportAccountSummaryInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDailyReportsOnly sets the DailyReportsOnly field's value.
+func (s *GetFindingsReportAccountSummaryInput) SetDailyReportsOnly(v bool) *GetFindingsReportAccountSummaryInput {
+	s.DailyReportsOnly = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetFindingsReportAccountSummaryInput) SetMaxResults(v int64) *GetFindingsReportAccountSummaryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetFindingsReportAccountSummaryInput) SetNextToken(v string) *GetFindingsReportAccountSummaryInput {
+	s.NextToken = &v
+	return s
+}
+
+// The structure representing the GetFindingsReportAccountSummaryResponse.
+type GetFindingsReportAccountSummaryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The nextToken value to include in a future GetFindingsReportAccountSummary
+	// request. When the results of a GetFindingsReportAccountSummary request exceed
+	// maxResults, this value can be used to retrieve the next page of results.
+	// This value is null when there are no more results to return.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The return list of FindingsReportSummary (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_FindingsReportSummary.html)
+	// objects taht contain summaries of analysis results for all profiling groups
+	// in your AWS account.
+	//
+	// ReportSummaries is a required field
+	ReportSummaries []*FindingsReportSummary `locationName:"reportSummaries" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s GetFindingsReportAccountSummaryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFindingsReportAccountSummaryOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetFindingsReportAccountSummaryOutput) SetNextToken(v string) *GetFindingsReportAccountSummaryOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReportSummaries sets the ReportSummaries field's value.
+func (s *GetFindingsReportAccountSummaryOutput) SetReportSummaries(v []*FindingsReportSummary) *GetFindingsReportAccountSummaryOutput {
+	s.ReportSummaries = v
+	return s
+}
+
+// The structure representing the GetNotificationConfigurationRequest.
+type GetNotificationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the profiling group we want to get the notification configuration
+	// for.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetNotificationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetNotificationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetNotificationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetNotificationConfigurationInput"}
+	if s.ProfilingGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfilingGroupName"))
+	}
+	if s.ProfilingGroupName != nil && len(*s.ProfilingGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfilingGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *GetNotificationConfigurationInput) SetProfilingGroupName(v string) *GetNotificationConfigurationInput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// The structure representing the GetNotificationConfigurationResponse.
+type GetNotificationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current notification configuration for this profiling group.
+	//
+	// NotificationConfiguration is a required field
+	NotificationConfiguration *NotificationConfiguration `locationName:"notificationConfiguration" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetNotificationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetNotificationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetNotificationConfiguration sets the NotificationConfiguration field's value.
+func (s *GetNotificationConfigurationOutput) SetNotificationConfiguration(v *NotificationConfiguration) *GetNotificationConfigurationOutput {
+	s.NotificationConfiguration = v
 	return s
 }
 
@@ -1712,12 +3571,12 @@ func (s *GetPolicyInput) SetProfilingGroupName(v string) *GetPolicyInput {
 type GetPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource-based policy attached to the ProfilingGroup.
+	// The JSON-formatted resource-based policy attached to the ProfilingGroup.
 	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" type:"string" required:"true"`
 
-	// A unique identifier for the current revision of the policy.
+	// A unique identifier for the current revision of the returned policy.
 	//
 	// RevisionId is a required field
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
@@ -1749,22 +3608,36 @@ func (s *GetPolicyOutput) SetRevisionId(v string) *GetPolicyOutput {
 type GetProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// The format of the profile to return. You can choose application/json or the
-	// default application/x-amzn-ion.
+	// The format of the returned profiling data. The format maps to the Accept
+	// and Content-Type headers of the HTTP request. You can specify one of the
+	// following: or the default .
+	//
+	//    <ul> <li> <p> <code>application/json</code> — standard JSON format </p>
+	//    </li> <li> <p> <code>application/x-amzn-ion</code> — the Amazon Ion
+	//    data format. For more information, see <a href="http://amzn.github.io/ion-docs/">Amazon
+	//    Ion</a>. </p> </li> </ul>
 	Accept *string `location:"header" locationName:"Accept" type:"string"`
 
-	// You must specify exactly two of the following parameters: startTime, period,
-	// and endTime.
+	// The end time of the requested profile. Specify using the ISO 8601 format.
+	// For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June
+	// 1, 2020 1:15:02 PM UTC.
+	//
+	// If you specify endTime, then you must also specify period or startTime, but
+	// not both.
 	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The maximum depth of the graph.
+	// The maximum depth of the stacks in the code that is represented in the aggregated
+	// profile. For example, if CodeGuru Profiler finds a method A, which calls
+	// method B, which calls method C, which calls method D, then the depth is 4.
+	// If the maxDepth is set to 2, then the aggregated profile contains representations
+	// of methods A and B.
 	MaxDepth *int64 `location:"querystring" locationName:"maxDepth" min:"1" type:"integer"`
 
-	// The period of the profile to get. The time range must be in the past and
-	// not longer than one week.
+	// Used with startTime or endTime to specify the time range for the returned
+	// aggregated profile. Specify using the ISO 8601 format. For example, P1DT1H1M1S.
 	//
-	// You must specify exactly two of the following parameters: startTime, period,
-	// and endTime.
+	//    <p> To get the latest aggregated profile, specify only <code>period</code>.
+	//    </p>
 	Period *string `location:"querystring" locationName:"period" min:"1" type:"string"`
 
 	// The name of the profiling group to get.
@@ -1772,10 +3645,12 @@ type GetProfileInput struct {
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 
-	// The start time of the profile to get.
+	// The start time of the profile to get. Specify using the ISO 8601 format.
+	// For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June
+	// 1, 2020 1:15:02 PM UTC.
 	//
-	// You must specify exactly two of the following parameters: startTime, period,
-	// and endTime.
+	//    <p> If you specify <code>startTime</code>, then you must also specify
+	//    <code>period</code> or <code>endTime</code>, but not both. </p>
 	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -1894,6 +3769,188 @@ func (s *GetProfileOutput) SetProfile(v []byte) *GetProfileOutput {
 	return s
 }
 
+// The structure representing the GetRecommendationsRequest.
+type GetRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The start time of the profile to get analysis data about. You must specify
+	// startTime and endTime. This is specified using the ISO 8601 format. For example,
+	// 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02
+	// PM UTC.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The language used to provide analysis. Specify using a string that is one
+	// of the following BCP 47 language codes.
+	//
+	//    * de-DE - German, Germany
+	//
+	//    * en-GB - English, United Kingdom
+	//
+	//    * en-US - English, United States
+	//
+	//    * es-ES - Spanish, Spain
+	//
+	//    * fr-FR - French, France
+	//
+	//    * it-IT - Italian, Italy
+	//
+	//    * ja-JP - Japanese, Japan
+	//
+	//    * ko-KR - Korean, Republic of Korea
+	//
+	//    * pt-BR - Portugese, Brazil
+	//
+	//    * zh-CN - Chinese, China
+	//
+	//    * zh-TW - Chinese, Taiwan
+	Locale *string `location:"querystring" locationName:"locale" type:"string"`
+
+	// The name of the profiling group to get analysis data about.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+
+	// The end time of the profile to get analysis data about. You must specify
+	// startTime and endTime. This is specified using the ISO 8601 format. For example,
+	// 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02
+	// PM UTC.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation
+func (s GetRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRecommendationsInput"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.ProfilingGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfilingGroupName"))
+	}
+	if s.ProfilingGroupName != nil && len(*s.ProfilingGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfilingGroupName", 1))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetRecommendationsInput) SetEndTime(v time.Time) *GetRecommendationsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetLocale sets the Locale field's value.
+func (s *GetRecommendationsInput) SetLocale(v string) *GetRecommendationsInput {
+	s.Locale = &v
+	return s
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *GetRecommendationsInput) SetProfilingGroupName(v string) *GetRecommendationsInput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetRecommendationsInput) SetStartTime(v time.Time) *GetRecommendationsInput {
+	s.StartTime = &v
+	return s
+}
+
+// The structure representing the GetRecommendationsResponse.
+type GetRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of anomalies that the analysis has found for this profile.
+	//
+	// Anomalies is a required field
+	Anomalies []*Anomaly `locationName:"anomalies" type:"list" required:"true"`
+
+	// The end time of the profile the analysis data is about. This is specified
+	// using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents
+	// 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	//
+	// ProfileEndTime is a required field
+	ProfileEndTime *time.Time `locationName:"profileEndTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The start time of the profile the analysis data is about. This is specified
+	// using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents
+	// 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	//
+	// ProfileStartTime is a required field
+	ProfileStartTime *time.Time `locationName:"profileStartTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The name of the profiling group the analysis data is about.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+
+	// The list of recommendations that the analysis found for this profile.
+	//
+	// Recommendations is a required field
+	Recommendations []*Recommendation `locationName:"recommendations" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s GetRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnomalies sets the Anomalies field's value.
+func (s *GetRecommendationsOutput) SetAnomalies(v []*Anomaly) *GetRecommendationsOutput {
+	s.Anomalies = v
+	return s
+}
+
+// SetProfileEndTime sets the ProfileEndTime field's value.
+func (s *GetRecommendationsOutput) SetProfileEndTime(v time.Time) *GetRecommendationsOutput {
+	s.ProfileEndTime = &v
+	return s
+}
+
+// SetProfileStartTime sets the ProfileStartTime field's value.
+func (s *GetRecommendationsOutput) SetProfileStartTime(v time.Time) *GetRecommendationsOutput {
+	s.ProfileStartTime = &v
+	return s
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *GetRecommendationsOutput) SetProfilingGroupName(v string) *GetRecommendationsOutput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// SetRecommendations sets the Recommendations field's value.
+func (s *GetRecommendationsOutput) SetRecommendations(v []*Recommendation) *GetRecommendationsOutput {
+	s.Recommendations = v
+	return s
+}
+
 // The server encountered an internal error and is unable to complete the request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -1950,6 +4007,166 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The structure representing the ListFindingsReportsRequest.
+type ListFindingsReportsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value indicating whether to only return reports from daily profiles.
+	// If set to True, only analysis data from daily profiles is returned. If set
+	// to False, analysis data is returned from smaller time windows (for example,
+	// one hour).
+	DailyReportsOnly *bool `location:"querystring" locationName:"dailyReportsOnly" type:"boolean"`
+
+	// The end time of the profile to get analysis data about. You must specify
+	// startTime and endTime. This is specified using the ISO 8601 format. For example,
+	// 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02
+	// PM UTC.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The maximum number of report results returned by ListFindingsReports in paginated
+	// output. When this parameter is used, ListFindingsReports only returns maxResults
+	// results in a single page along with a nextToken response element. The remaining
+	// results of the initial request can be seen by sending another ListFindingsReports
+	// request with the returned nextToken value.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The nextToken value returned from a previous paginated ListFindingsReportsRequest
+	// request where maxResults was used and the results exceeded the value of that
+	// parameter. Pagination continues from the end of the previous results that
+	// returned the nextToken value.
+	//
+	// This token should be treated as an opaque identifier that is only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The name of the profiling group from which to search for analysis data.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+
+	// The start time of the profile to get analysis data about. You must specify
+	// startTime and endTime. This is specified using the ISO 8601 format. For example,
+	// 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02
+	// PM UTC.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation
+func (s ListFindingsReportsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFindingsReportsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFindingsReportsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFindingsReportsInput"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ProfilingGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfilingGroupName"))
+	}
+	if s.ProfilingGroupName != nil && len(*s.ProfilingGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfilingGroupName", 1))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDailyReportsOnly sets the DailyReportsOnly field's value.
+func (s *ListFindingsReportsInput) SetDailyReportsOnly(v bool) *ListFindingsReportsInput {
+	s.DailyReportsOnly = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ListFindingsReportsInput) SetEndTime(v time.Time) *ListFindingsReportsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFindingsReportsInput) SetMaxResults(v int64) *ListFindingsReportsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFindingsReportsInput) SetNextToken(v string) *ListFindingsReportsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *ListFindingsReportsInput) SetProfilingGroupName(v string) *ListFindingsReportsInput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ListFindingsReportsInput) SetStartTime(v time.Time) *ListFindingsReportsInput {
+	s.StartTime = &v
+	return s
+}
+
+// The structure representing the ListFindingsReportsResponse.
+type ListFindingsReportsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of analysis results summaries.
+	//
+	// FindingsReportSummaries is a required field
+	FindingsReportSummaries []*FindingsReportSummary `locationName:"findingsReportSummaries" type:"list" required:"true"`
+
+	// The nextToken value to include in a future ListFindingsReports request. When
+	// the results of a ListFindingsReports request exceed maxResults, this value
+	// can be used to retrieve the next page of results. This value is null when
+	// there are no more results to return.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFindingsReportsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFindingsReportsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFindingsReportSummaries sets the FindingsReportSummaries field's value.
+func (s *ListFindingsReportsOutput) SetFindingsReportSummaries(v []*FindingsReportSummary) *ListFindingsReportsOutput {
+	s.FindingsReportSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFindingsReportsOutput) SetNextToken(v string) *ListFindingsReportsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // The structure representing the listProfileTimesRequest.
 type ListProfileTimesInput struct {
 	_ struct{} `type:"structure"`
@@ -1979,7 +4196,15 @@ type ListProfileTimesInput struct {
 	// listing profiles. Defaults to TIMESTAMP_DESCENDING.
 	OrderBy *string `location:"querystring" locationName:"orderBy" type:"string" enum:"OrderBy"`
 
-	// The aggregation period.
+	// The aggregation period. This specifies the period during which an aggregation
+	// profile collects posted agent profiles for a profiling group. There are 3
+	// valid values.
+	//
+	//    * P1D — 1 day
+	//
+	//    * PT1H — 1 hour
+	//
+	//    * PT5M — 5 minutes
 	//
 	// Period is a required field
 	Period *string `location:"querystring" locationName:"period" type:"string" required:"true" enum:"AggregationPeriod"`
@@ -2121,7 +4346,10 @@ func (s *ListProfileTimesOutput) SetProfileTimes(v []*ProfileTime) *ListProfileT
 type ListProfilingGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A Boolean value indicating whether to include a description.
+	// A Boolean value indicating whether to include a description. If true, then
+	// a list of ProfilingGroupDescription (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
+	// objects that contain detailed information about profiling groups is returned.
+	// If false, then a list of profiling group names is returned.
 	IncludeDescription *bool `location:"querystring" locationName:"includeDescription" type:"boolean"`
 
 	// The maximum number of profiling groups results returned by ListProfilingGroups
@@ -2195,12 +4423,18 @@ type ListProfilingGroupsOutput struct {
 	// there are no more results to return.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// Information about profiling group names.
+	// A returned list of profiling group names. A list of the names is returned
+	// only if includeDescription is false, otherwise a list of ProfilingGroupDescription
+	// (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
+	// objects is returned.
 	//
 	// ProfilingGroupNames is a required field
 	ProfilingGroupNames []*string `locationName:"profilingGroupNames" type:"list" required:"true"`
 
-	// Information about profiling groups.
+	// A returned list ProfilingGroupDescription (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
+	// objects. A list of ProfilingGroupDescription (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
+	// objects is returned only if includeDescription is true, otherwise a list
+	// of profiling group names is returned.
 	ProfilingGroups []*ProfilingGroupDescription `locationName:"profilingGroups" type:"list"`
 }
 
@@ -2232,18 +4466,241 @@ func (s *ListProfilingGroupsOutput) SetProfilingGroups(v []*ProfilingGroupDescri
 	return s
 }
 
+// The part of a profile that contains a recommendation found during analysis.
+type Match struct {
+	_ struct{} `type:"structure"`
+
+	// The location in the profiling graph that contains a recommendation found
+	// during analysis.
+	FrameAddress *string `locationName:"frameAddress" type:"string"`
+
+	// The target frame that triggered a match.
+	TargetFramesIndex *int64 `locationName:"targetFramesIndex" type:"integer"`
+
+	// The value in the profile data that exceeded the recommendation threshold.
+	ThresholdBreachValue *float64 `locationName:"thresholdBreachValue" type:"double"`
+}
+
+// String returns the string representation
+func (s Match) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Match) GoString() string {
+	return s.String()
+}
+
+// SetFrameAddress sets the FrameAddress field's value.
+func (s *Match) SetFrameAddress(v string) *Match {
+	s.FrameAddress = &v
+	return s
+}
+
+// SetTargetFramesIndex sets the TargetFramesIndex field's value.
+func (s *Match) SetTargetFramesIndex(v int64) *Match {
+	s.TargetFramesIndex = &v
+	return s
+}
+
+// SetThresholdBreachValue sets the ThresholdBreachValue field's value.
+func (s *Match) SetThresholdBreachValue(v float64) *Match {
+	s.ThresholdBreachValue = &v
+	return s
+}
+
+// Details about the metric that the analysis used when it detected the anomaly.
+// The metric what is analyzed to create recommendations. It includes the name
+// of the frame that was analyzed and the type and thread states used to derive
+// the metric value for that frame.
+type Metric struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the method that appears as a frame in any stack in a profile.
+	//
+	// FrameName is a required field
+	FrameName *string `locationName:"frameName" type:"string" required:"true"`
+
+	// The list of application runtime thread states that is used to calculate the
+	// metric value for the frame.
+	//
+	// ThreadStates is a required field
+	ThreadStates []*string `locationName:"threadStates" type:"list" required:"true"`
+
+	// A type that specifies how a metric for a frame is analyzed. The supported
+	// value AggregatedRelativeTotalTime is an aggregation of the metric value for
+	// one frame that is calculated across the occurences of all frames in a profile.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"MetricType"`
+}
+
+// String returns the string representation
+func (s Metric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Metric) GoString() string {
+	return s.String()
+}
+
+// SetFrameName sets the FrameName field's value.
+func (s *Metric) SetFrameName(v string) *Metric {
+	s.FrameName = &v
+	return s
+}
+
+// SetThreadStates sets the ThreadStates field's value.
+func (s *Metric) SetThreadStates(v []*string) *Metric {
+	s.ThreadStates = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Metric) SetType(v string) *Metric {
+	s.Type = &v
+	return s
+}
+
+// The configuration for notifications stored for each profiling group. This
+// includes up to to two channels and a list of event publishers associated
+// with each channel.
+type NotificationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// List of up to two channels to be used for sending notifications for events
+	// detected from the application profile.
+	Channels []*Channel `locationName:"channels" min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s NotificationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotificationConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetChannels sets the Channels field's value.
+func (s *NotificationConfiguration) SetChannels(v []*Channel) *NotificationConfiguration {
+	s.Channels = v
+	return s
+}
+
+// A set of rules used to make a recommendation during an analysis.
+type Pattern struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the different counters used to determine if there is a match.
+	CountersToAggregate []*string `locationName:"countersToAggregate" type:"list"`
+
+	// The description of the recommendation. This explains a potential inefficiency
+	// in a profiled application.
+	Description *string `locationName:"description" type:"string"`
+
+	// The universally unique identifier (UUID) of this pattern.
+	Id *string `locationName:"id" type:"string"`
+
+	// The name for this pattern.
+	Name *string `locationName:"name" type:"string"`
+
+	// A string that contains the steps recommended to address the potential inefficiency.
+	ResolutionSteps *string `locationName:"resolutionSteps" type:"string"`
+
+	// A list of frame names that were searched during the analysis that generated
+	// a recommendation.
+	TargetFrames [][]*string `locationName:"targetFrames" type:"list"`
+
+	// The percentage of time an application spends in one method that triggers
+	// a recommendation. The percentage of time is the same as the percentage of
+	// the total gathered sample counts during analysis.
+	ThresholdPercent *float64 `locationName:"thresholdPercent" type:"double"`
+}
+
+// String returns the string representation
+func (s Pattern) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Pattern) GoString() string {
+	return s.String()
+}
+
+// SetCountersToAggregate sets the CountersToAggregate field's value.
+func (s *Pattern) SetCountersToAggregate(v []*string) *Pattern {
+	s.CountersToAggregate = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Pattern) SetDescription(v string) *Pattern {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Pattern) SetId(v string) *Pattern {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Pattern) SetName(v string) *Pattern {
+	s.Name = &v
+	return s
+}
+
+// SetResolutionSteps sets the ResolutionSteps field's value.
+func (s *Pattern) SetResolutionSteps(v string) *Pattern {
+	s.ResolutionSteps = &v
+	return s
+}
+
+// SetTargetFrames sets the TargetFrames field's value.
+func (s *Pattern) SetTargetFrames(v [][]*string) *Pattern {
+	s.TargetFrames = v
+	return s
+}
+
+// SetThresholdPercent sets the ThresholdPercent field's value.
+func (s *Pattern) SetThresholdPercent(v float64) *Pattern {
+	s.ThresholdPercent = &v
+	return s
+}
+
 // The structure representing the postAgentProfileRequest.
 type PostAgentProfileInput struct {
 	_ struct{} `type:"structure" payload:"AgentProfile"`
 
+	// The submitted profiling data.
+	//
 	// AgentProfile is a required field
 	AgentProfile []byte `locationName:"agentProfile" type:"blob" required:"true"`
 
+	// The format of the submitted profiling data. The format maps to the Accept
+	// and Content-Type headers of the HTTP request. You can specify one of the
+	// following: or the default .
+	//
+	//    <ul> <li> <p> <code>application/json</code> — standard JSON format </p>
+	//    </li> <li> <p> <code>application/x-amzn-ion</code> — the Amazon Ion
+	//    data format. For more information, see <a href="http://amzn.github.io/ion-docs/">Amazon
+	//    Ion</a>. </p> </li> </ul>
+	//
 	// ContentType is a required field
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string" required:"true"`
 
+	// Amazon CodeGuru Profiler uses this universally unique identifier (UUID) to
+	// prevent the accidental submission of duplicate profiling data if there are
+	// failures and retries.
 	ProfileToken *string `location:"querystring" locationName:"profileToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The name of the profiling group with the aggregated profile that receives
+	// the submitted profiling data.
+	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
@@ -2322,11 +4779,13 @@ func (s PostAgentProfileOutput) GoString() string {
 	return s.String()
 }
 
-// Information about the profile time.
+// Contains the start time of a profile.
 type ProfileTime struct {
 	_ struct{} `type:"structure"`
 
-	// The start time of the profile.
+	// The start time of a profile. It is specified using the ISO 8601 format. For
+	// example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020
+	// 1:15:02 PM UTC.
 	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -2346,26 +4805,41 @@ func (s *ProfileTime) SetStart(v time.Time) *ProfileTime {
 	return s
 }
 
-// The description of a profiling group.
+// Contains information about a profiling group.
 type ProfilingGroupDescription struct {
 	_ struct{} `type:"structure"`
 
+	// An AgentOrchestrationConfig (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AgentOrchestrationConfig.html)
+	// object that indicates if the profiling group is enabled for profiled or not.
 	AgentOrchestrationConfig *AgentOrchestrationConfig `locationName:"agentOrchestrationConfig" type:"structure"`
 
-	// The Amazon Resource Name (ARN) identifying the profiling group.
+	// The Amazon Resource Name (ARN) identifying the profiling group resource.
 	Arn *string `locationName:"arn" type:"string"`
 
-	// The time, in milliseconds since the epoch, when the profiling group was created.
+	// The compute platform of the profiling group. If it is set to AWSLambda, then
+	// the profiled application runs on AWS Lambda. If it is set to Default, then
+	// the profiled application runs on a compute platform that is not AWS Lambda,
+	// such an Amazon EC2 instance, an on-premises server, or a different platform.
+	// The default is Default.
+	ComputePlatform *string `locationName:"computePlatform" type:"string" enum:"ComputePlatform"`
+
+	// The time when the profiling group was created. Specify using the ISO 8601
+	// format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past
+	// June 1, 2020 1:15:02 PM UTC.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The name of the profiling group.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The status of the profiling group.
+	// A ProfilingStatus (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingStatus.html)
+	// object that includes information about the last time a profile agent pinged
+	// back, the last time a profile was received, and the aggregation period and
+	// start time for the most recent aggregated profile.
 	ProfilingStatus *ProfilingStatus `locationName:"profilingStatus" type:"structure"`
 
-	// The time, in milliseconds since the epoch, when the profiling group was last
-	// updated.
+	// The date and time when the profiling group was last updated. Specify using
+	// the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond
+	// past June 1, 2020 1:15:02 PM UTC.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -2388,6 +4862,12 @@ func (s *ProfilingGroupDescription) SetAgentOrchestrationConfig(v *AgentOrchestr
 // SetArn sets the Arn field's value.
 func (s *ProfilingGroupDescription) SetArn(v string) *ProfilingGroupDescription {
 	s.Arn = &v
+	return s
+}
+
+// SetComputePlatform sets the ComputePlatform field's value.
+func (s *ProfilingGroupDescription) SetComputePlatform(v string) *ProfilingGroupDescription {
+	s.ComputePlatform = &v
 	return s
 }
 
@@ -2415,17 +4895,25 @@ func (s *ProfilingGroupDescription) SetUpdatedAt(v time.Time) *ProfilingGroupDes
 	return s
 }
 
-// Information about the profiling status.
+// Profiling status includes information about the last time a profile agent
+// pinged back, the last time a profile was received, and the aggregation period
+// and start time for the most recent aggregated profile.
 type ProfilingStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The time, in milliseconds since the epoch, when the latest agent was orchestrated.
+	// The date and time when the profiling agent most recently pinged back. Specify
+	// using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents
+	// 1 millisecond past June 1, 2020 1:15:02 PM UTC.
 	LatestAgentOrchestratedAt *time.Time `locationName:"latestAgentOrchestratedAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The time, in milliseconds since the epoch, when the latest agent was reported..
+	// The date and time when the most recent profile was received. Specify using
+	// the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond
+	// past June 1, 2020 1:15:02 PM UTC.
 	LatestAgentProfileReportedAt *time.Time `locationName:"latestAgentProfileReportedAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The latest aggregated profile
+	// An AggregatedProfileTime (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AggregatedProfileTime.html)
+	// object that contains the aggregation period and start time for an aggregated
+	// profile.
 	LatestAggregatedProfile *AggregatedProfileTime `locationName:"latestAggregatedProfile" type:"structure"`
 }
 
@@ -2461,26 +4949,29 @@ func (s *ProfilingStatus) SetLatestAggregatedProfile(v *AggregatedProfileTime) *
 type PutPermissionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of actions that the users and roles can perform on the profiling
-	// group.
+	// Specifies an action group that contains permissions to add to a profiling
+	// group resource. One action group is supported, agentPermissions, which grants
+	// permission to perform actions required by the profiling agent, ConfigureAgent
+	// and PostAgentProfile permissions.
 	//
 	// ActionGroup is a required field
 	ActionGroup *string `location:"uri" locationName:"actionGroup" type:"string" required:"true" enum:"ActionGroup"`
 
-	// The list of role and user ARNs or the accountId that needs access (wildcards
-	// are not allowed).
+	// A list ARNs for the roles and users you want to grant access to the profiling
+	// group. Wildcards are not are supported in the ARNs.
 	//
 	// Principals is a required field
 	Principals []*string `locationName:"principals" min:"1" type:"list" required:"true"`
 
-	// The name of the profiling group.
+	// The name of the profiling group to grant access to.
 	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 
-	// A unique identifier for the current revision of the policy. This is required,
-	// if a policy exists for the profiling group. This is not required when creating
-	// the policy for the first time.
+	// A universally unique identifier (UUID) for the revision of the policy you
+	// are adding to the profiling group. Do not specify this when you add permissions
+	// to a profiling group for the first time. If a policy already exists on the
+	// profiling group, you must specify the revisionId.
 	RevisionId *string `locationName:"revisionId" type:"string"`
 }
 
@@ -2550,12 +5041,15 @@ func (s *PutPermissionInput) SetRevisionId(v string) *PutPermissionInput {
 type PutPermissionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource-based policy.
+	// The JSON-formatted resource-based policy on the profiling group that includes
+	// the added permissions.
 	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" type:"string" required:"true"`
 
-	// A unique identifier for the current revision of the policy.
+	// A universally unique identifier (UUID) for the revision of the resource-based
+	// policy that includes the added permissions. The JSON-formatted policy is
+	// in the policy element of the response.
 	//
 	// RevisionId is a required field
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
@@ -2583,12 +5077,181 @@ func (s *PutPermissionOutput) SetRevisionId(v string) *PutPermissionOutput {
 	return s
 }
 
-// The structure representing the removePermissionRequest.
+// A potential improvement that was found from analyzing the profiling data.
+type Recommendation struct {
+	_ struct{} `type:"structure"`
+
+	// How many different places in the profile graph triggered a match.
+	//
+	// AllMatchesCount is a required field
+	AllMatchesCount *int64 `locationName:"allMatchesCount" type:"integer" required:"true"`
+
+	// How much of the total sample count is potentially affected.
+	//
+	// AllMatchesSum is a required field
+	AllMatchesSum *float64 `locationName:"allMatchesSum" type:"double" required:"true"`
+
+	// End time of the profile that was used by this analysis. This is specified
+	// using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents
+	// 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The pattern that analysis recognized in the profile to make this recommendation.
+	//
+	// Pattern is a required field
+	Pattern *Pattern `locationName:"pattern" type:"structure" required:"true"`
+
+	// The start time of the profile that was used by this analysis. This is specified
+	// using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents
+	// 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// List of the matches with most impact.
+	//
+	// TopMatches is a required field
+	TopMatches []*Match `locationName:"topMatches" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s Recommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Recommendation) GoString() string {
+	return s.String()
+}
+
+// SetAllMatchesCount sets the AllMatchesCount field's value.
+func (s *Recommendation) SetAllMatchesCount(v int64) *Recommendation {
+	s.AllMatchesCount = &v
+	return s
+}
+
+// SetAllMatchesSum sets the AllMatchesSum field's value.
+func (s *Recommendation) SetAllMatchesSum(v float64) *Recommendation {
+	s.AllMatchesSum = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *Recommendation) SetEndTime(v time.Time) *Recommendation {
+	s.EndTime = &v
+	return s
+}
+
+// SetPattern sets the Pattern field's value.
+func (s *Recommendation) SetPattern(v *Pattern) *Recommendation {
+	s.Pattern = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *Recommendation) SetStartTime(v time.Time) *Recommendation {
+	s.StartTime = &v
+	return s
+}
+
+// SetTopMatches sets the TopMatches field's value.
+func (s *Recommendation) SetTopMatches(v []*Match) *Recommendation {
+	s.TopMatches = v
+	return s
+}
+
+// The structure representing the RemoveNotificationChannelRequest.
+type RemoveNotificationChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The id of the channel that we want to stop receiving notifications.
+	//
+	// ChannelId is a required field
+	ChannelId *string `location:"uri" locationName:"channelId" type:"string" required:"true"`
+
+	// The name of the profiling group we want to change notification configuration
+	// for.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveNotificationChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveNotificationChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveNotificationChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveNotificationChannelInput"}
+	if s.ChannelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelId"))
+	}
+	if s.ChannelId != nil && len(*s.ChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelId", 1))
+	}
+	if s.ProfilingGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfilingGroupName"))
+	}
+	if s.ProfilingGroupName != nil && len(*s.ProfilingGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfilingGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelId sets the ChannelId field's value.
+func (s *RemoveNotificationChannelInput) SetChannelId(v string) *RemoveNotificationChannelInput {
+	s.ChannelId = &v
+	return s
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *RemoveNotificationChannelInput) SetProfilingGroupName(v string) *RemoveNotificationChannelInput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// The structure representing the RemoveNotificationChannelResponse.
+type RemoveNotificationChannelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The new notification configuration for this profiling group.
+	NotificationConfiguration *NotificationConfiguration `locationName:"notificationConfiguration" type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveNotificationChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveNotificationChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetNotificationConfiguration sets the NotificationConfiguration field's value.
+func (s *RemoveNotificationChannelOutput) SetNotificationConfiguration(v *NotificationConfiguration) *RemoveNotificationChannelOutput {
+	s.NotificationConfiguration = v
+	return s
+}
+
 type RemovePermissionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of actions that the users and roles can perform on the profiling
-	// group.
+	// Specifies an action group that contains the permissions to remove from a
+	// profiling group's resource-based policy. One action group is supported, agentPermissions,
+	// which grants ConfigureAgent and PostAgentProfile permissions.
 	//
 	// ActionGroup is a required field
 	ActionGroup *string `location:"uri" locationName:"actionGroup" type:"string" required:"true" enum:"ActionGroup"`
@@ -2598,7 +5261,8 @@ type RemovePermissionInput struct {
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 
-	// A unique identifier for the current revision of the policy.
+	// A universally unique identifier (UUID) for the revision of the resource-based
+	// policy from which you want to remove permissions.
 	//
 	// RevisionId is a required field
 	RevisionId *string `location:"querystring" locationName:"revisionId" type:"string" required:"true"`
@@ -2661,12 +5325,15 @@ func (s *RemovePermissionInput) SetRevisionId(v string) *RemovePermissionInput {
 type RemovePermissionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource-based policy.
+	// The JSON-formatted resource-based policy on the profiling group after the
+	// specified permissions were removed.
 	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" type:"string" required:"true"`
 
-	// A unique identifier for the current revision of the policy.
+	// A universally unique identifier (UUID) for the revision of the resource-based
+	// policy after the specified permissions were removed. The updated JSON-formatted
+	// policy is in the policy element of the response.
 	//
 	// RevisionId is a required field
 	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
@@ -2808,6 +5475,104 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The structure representing the SubmitFeedbackRequest.
+type SubmitFeedbackInput struct {
+	_ struct{} `type:"structure"`
+
+	// The universally unique identifier (UUID) of the AnomalyInstance (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AnomalyInstance.html)
+	// object that is included in the analysis data.
+	//
+	// AnomalyInstanceId is a required field
+	AnomalyInstanceId *string `location:"uri" locationName:"anomalyInstanceId" type:"string" required:"true"`
+
+	// Optional feedback about this anomaly.
+	Comment *string `locationName:"comment" type:"string"`
+
+	// The name of the profiling group that is associated with the analysis data.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+
+	// The feedback tpye. Thee are two valid values, Positive and Negative.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"FeedbackType"`
+}
+
+// String returns the string representation
+func (s SubmitFeedbackInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SubmitFeedbackInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubmitFeedbackInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubmitFeedbackInput"}
+	if s.AnomalyInstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnomalyInstanceId"))
+	}
+	if s.AnomalyInstanceId != nil && len(*s.AnomalyInstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnomalyInstanceId", 1))
+	}
+	if s.ProfilingGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfilingGroupName"))
+	}
+	if s.ProfilingGroupName != nil && len(*s.ProfilingGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfilingGroupName", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnomalyInstanceId sets the AnomalyInstanceId field's value.
+func (s *SubmitFeedbackInput) SetAnomalyInstanceId(v string) *SubmitFeedbackInput {
+	s.AnomalyInstanceId = &v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *SubmitFeedbackInput) SetComment(v string) *SubmitFeedbackInput {
+	s.Comment = &v
+	return s
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *SubmitFeedbackInput) SetProfilingGroupName(v string) *SubmitFeedbackInput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SubmitFeedbackInput) SetType(v string) *SubmitFeedbackInput {
+	s.Type = &v
+	return s
+}
+
+// The structure representing the SubmitFeedbackResponse.
+type SubmitFeedbackOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s SubmitFeedbackOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SubmitFeedbackOutput) GoString() string {
+	return s.String()
+}
+
 // The request was denied due to request throttling.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -2864,10 +5629,41 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A data type that contains a Timestamp object. This is specified using the
+// ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond
+// past June 1, 2020 1:15:02 PM UTC.
+type TimestampStructure struct {
+	_ struct{} `type:"structure"`
+
+	// A Timestamp. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z
+	// represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.
+	//
+	// Value is a required field
+	Value *time.Time `locationName:"value" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation
+func (s TimestampStructure) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TimestampStructure) GoString() string {
+	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *TimestampStructure) SetValue(v time.Time) *TimestampStructure {
+	s.Value = &v
+	return s
+}
+
 // The structure representing the updateProfilingGroupRequest.
 type UpdateProfilingGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether profiling is enabled or disabled for a profiling group.
+	//
 	// AgentOrchestrationConfig is a required field
 	AgentOrchestrationConfig *AgentOrchestrationConfig `locationName:"agentOrchestrationConfig" type:"structure" required:"true"`
 
@@ -2927,7 +5723,8 @@ func (s *UpdateProfilingGroupInput) SetProfilingGroupName(v string) *UpdateProfi
 type UpdateProfilingGroupOutput struct {
 	_ struct{} `type:"structure" payload:"ProfilingGroup"`
 
-	// Updated information about the profiling group.
+	// A ProfilingGroupDescription (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
+	// that contains information about the returned updated profiling group.
 	//
 	// ProfilingGroup is a required field
 	ProfilingGroup *ProfilingGroupDescription `locationName:"profilingGroup" type:"structure" required:"true"`
@@ -2946,6 +5743,35 @@ func (s UpdateProfilingGroupOutput) GoString() string {
 // SetProfilingGroup sets the ProfilingGroup field's value.
 func (s *UpdateProfilingGroupOutput) SetProfilingGroup(v *ProfilingGroupDescription) *UpdateProfilingGroupOutput {
 	s.ProfilingGroup = v
+	return s
+}
+
+// Feedback that can be submitted for each instance of an anomaly by the user.
+// Feedback is be used for improvements in generating recommendations for the
+// application.
+type UserFeedback struct {
+	_ struct{} `type:"structure"`
+
+	// Optional Positive or Negative feedback submitted by the user about whether
+	// the recommendation is useful or not.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"FeedbackType"`
+}
+
+// String returns the string representation
+func (s UserFeedback) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserFeedback) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *UserFeedback) SetType(v string) *UserFeedback {
+	s.Type = &v
 	return s
 }
 
@@ -3011,6 +5837,23 @@ const (
 )
 
 const (
+	// AgentParameterFieldMaxStackDepth is a AgentParameterField enum value
+	AgentParameterFieldMaxStackDepth = "MaxStackDepth"
+
+	// AgentParameterFieldMemoryUsageLimitPercent is a AgentParameterField enum value
+	AgentParameterFieldMemoryUsageLimitPercent = "MemoryUsageLimitPercent"
+
+	// AgentParameterFieldMinimumTimeForReportingInMilliseconds is a AgentParameterField enum value
+	AgentParameterFieldMinimumTimeForReportingInMilliseconds = "MinimumTimeForReportingInMilliseconds"
+
+	// AgentParameterFieldReportingIntervalInMilliseconds is a AgentParameterField enum value
+	AgentParameterFieldReportingIntervalInMilliseconds = "ReportingIntervalInMilliseconds"
+
+	// AgentParameterFieldSamplingIntervalInMilliseconds is a AgentParameterField enum value
+	AgentParameterFieldSamplingIntervalInMilliseconds = "SamplingIntervalInMilliseconds"
+)
+
+const (
 	// AggregationPeriodP1d is a AggregationPeriod enum value
 	AggregationPeriodP1d = "P1D"
 
@@ -3019,6 +5862,61 @@ const (
 
 	// AggregationPeriodPt5m is a AggregationPeriod enum value
 	AggregationPeriodPt5m = "PT5M"
+)
+
+const (
+	// ComputePlatformAwslambda is a ComputePlatform enum value
+	ComputePlatformAwslambda = "AWSLambda"
+
+	// ComputePlatformDefault is a ComputePlatform enum value
+	ComputePlatformDefault = "Default"
+)
+
+const (
+	// EventPublisherAnomalyDetection is a EventPublisher enum value
+	EventPublisherAnomalyDetection = "AnomalyDetection"
+)
+
+const (
+	// FeedbackTypeNegative is a FeedbackType enum value
+	FeedbackTypeNegative = "Negative"
+
+	// FeedbackTypePositive is a FeedbackType enum value
+	FeedbackTypePositive = "Positive"
+)
+
+const (
+	// MetadataFieldAgentId is a MetadataField enum value
+	MetadataFieldAgentId = "AgentId"
+
+	// MetadataFieldAwsRequestId is a MetadataField enum value
+	MetadataFieldAwsRequestId = "AwsRequestId"
+
+	// MetadataFieldComputePlatform is a MetadataField enum value
+	MetadataFieldComputePlatform = "ComputePlatform"
+
+	// MetadataFieldExecutionEnvironment is a MetadataField enum value
+	MetadataFieldExecutionEnvironment = "ExecutionEnvironment"
+
+	// MetadataFieldLambdaFunctionArn is a MetadataField enum value
+	MetadataFieldLambdaFunctionArn = "LambdaFunctionArn"
+
+	// MetadataFieldLambdaMemoryLimitInMb is a MetadataField enum value
+	MetadataFieldLambdaMemoryLimitInMb = "LambdaMemoryLimitInMB"
+
+	// MetadataFieldLambdaPreviousExecutionTimeInMilliseconds is a MetadataField enum value
+	MetadataFieldLambdaPreviousExecutionTimeInMilliseconds = "LambdaPreviousExecutionTimeInMilliseconds"
+
+	// MetadataFieldLambdaRemainingTimeInMilliseconds is a MetadataField enum value
+	MetadataFieldLambdaRemainingTimeInMilliseconds = "LambdaRemainingTimeInMilliseconds"
+
+	// MetadataFieldLambdaTimeGapBetweenInvokesInMilliseconds is a MetadataField enum value
+	MetadataFieldLambdaTimeGapBetweenInvokesInMilliseconds = "LambdaTimeGapBetweenInvokesInMilliseconds"
+)
+
+const (
+	// MetricTypeAggregatedRelativeTotalTime is a MetricType enum value
+	MetricTypeAggregatedRelativeTotalTime = "AggregatedRelativeTotalTime"
 )
 
 const (
