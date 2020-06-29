@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon CodeGuru Profiler.
 //    func myFunc(svc codeguruprofileriface.CodeGuruProfilerAPI) bool {
-//        // Make svc.ConfigureAgent request
+//        // Make svc.AddNotificationChannels request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockCodeGuruProfilerClient struct {
 //        codeguruprofileriface.CodeGuruProfilerAPI
 //    }
-//    func (m *mockCodeGuruProfilerClient) ConfigureAgent(input *codeguruprofiler.ConfigureAgentInput) (*codeguruprofiler.ConfigureAgentOutput, error) {
+//    func (m *mockCodeGuruProfilerClient) AddNotificationChannels(input *codeguruprofiler.AddNotificationChannelsInput) (*codeguruprofiler.AddNotificationChannelsOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,14 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type CodeGuruProfilerAPI interface {
+	AddNotificationChannels(*codeguruprofiler.AddNotificationChannelsInput) (*codeguruprofiler.AddNotificationChannelsOutput, error)
+	AddNotificationChannelsWithContext(aws.Context, *codeguruprofiler.AddNotificationChannelsInput, ...request.Option) (*codeguruprofiler.AddNotificationChannelsOutput, error)
+	AddNotificationChannelsRequest(*codeguruprofiler.AddNotificationChannelsInput) (*request.Request, *codeguruprofiler.AddNotificationChannelsOutput)
+
+	BatchGetFrameMetricData(*codeguruprofiler.BatchGetFrameMetricDataInput) (*codeguruprofiler.BatchGetFrameMetricDataOutput, error)
+	BatchGetFrameMetricDataWithContext(aws.Context, *codeguruprofiler.BatchGetFrameMetricDataInput, ...request.Option) (*codeguruprofiler.BatchGetFrameMetricDataOutput, error)
+	BatchGetFrameMetricDataRequest(*codeguruprofiler.BatchGetFrameMetricDataInput) (*request.Request, *codeguruprofiler.BatchGetFrameMetricDataOutput)
+
 	ConfigureAgent(*codeguruprofiler.ConfigureAgentInput) (*codeguruprofiler.ConfigureAgentOutput, error)
 	ConfigureAgentWithContext(aws.Context, *codeguruprofiler.ConfigureAgentInput, ...request.Option) (*codeguruprofiler.ConfigureAgentOutput, error)
 	ConfigureAgentRequest(*codeguruprofiler.ConfigureAgentInput) (*request.Request, *codeguruprofiler.ConfigureAgentOutput)
@@ -76,6 +84,17 @@ type CodeGuruProfilerAPI interface {
 	DescribeProfilingGroupWithContext(aws.Context, *codeguruprofiler.DescribeProfilingGroupInput, ...request.Option) (*codeguruprofiler.DescribeProfilingGroupOutput, error)
 	DescribeProfilingGroupRequest(*codeguruprofiler.DescribeProfilingGroupInput) (*request.Request, *codeguruprofiler.DescribeProfilingGroupOutput)
 
+	GetFindingsReportAccountSummary(*codeguruprofiler.GetFindingsReportAccountSummaryInput) (*codeguruprofiler.GetFindingsReportAccountSummaryOutput, error)
+	GetFindingsReportAccountSummaryWithContext(aws.Context, *codeguruprofiler.GetFindingsReportAccountSummaryInput, ...request.Option) (*codeguruprofiler.GetFindingsReportAccountSummaryOutput, error)
+	GetFindingsReportAccountSummaryRequest(*codeguruprofiler.GetFindingsReportAccountSummaryInput) (*request.Request, *codeguruprofiler.GetFindingsReportAccountSummaryOutput)
+
+	GetFindingsReportAccountSummaryPages(*codeguruprofiler.GetFindingsReportAccountSummaryInput, func(*codeguruprofiler.GetFindingsReportAccountSummaryOutput, bool) bool) error
+	GetFindingsReportAccountSummaryPagesWithContext(aws.Context, *codeguruprofiler.GetFindingsReportAccountSummaryInput, func(*codeguruprofiler.GetFindingsReportAccountSummaryOutput, bool) bool, ...request.Option) error
+
+	GetNotificationConfiguration(*codeguruprofiler.GetNotificationConfigurationInput) (*codeguruprofiler.GetNotificationConfigurationOutput, error)
+	GetNotificationConfigurationWithContext(aws.Context, *codeguruprofiler.GetNotificationConfigurationInput, ...request.Option) (*codeguruprofiler.GetNotificationConfigurationOutput, error)
+	GetNotificationConfigurationRequest(*codeguruprofiler.GetNotificationConfigurationInput) (*request.Request, *codeguruprofiler.GetNotificationConfigurationOutput)
+
 	GetPolicy(*codeguruprofiler.GetPolicyInput) (*codeguruprofiler.GetPolicyOutput, error)
 	GetPolicyWithContext(aws.Context, *codeguruprofiler.GetPolicyInput, ...request.Option) (*codeguruprofiler.GetPolicyOutput, error)
 	GetPolicyRequest(*codeguruprofiler.GetPolicyInput) (*request.Request, *codeguruprofiler.GetPolicyOutput)
@@ -83,6 +102,17 @@ type CodeGuruProfilerAPI interface {
 	GetProfile(*codeguruprofiler.GetProfileInput) (*codeguruprofiler.GetProfileOutput, error)
 	GetProfileWithContext(aws.Context, *codeguruprofiler.GetProfileInput, ...request.Option) (*codeguruprofiler.GetProfileOutput, error)
 	GetProfileRequest(*codeguruprofiler.GetProfileInput) (*request.Request, *codeguruprofiler.GetProfileOutput)
+
+	GetRecommendations(*codeguruprofiler.GetRecommendationsInput) (*codeguruprofiler.GetRecommendationsOutput, error)
+	GetRecommendationsWithContext(aws.Context, *codeguruprofiler.GetRecommendationsInput, ...request.Option) (*codeguruprofiler.GetRecommendationsOutput, error)
+	GetRecommendationsRequest(*codeguruprofiler.GetRecommendationsInput) (*request.Request, *codeguruprofiler.GetRecommendationsOutput)
+
+	ListFindingsReports(*codeguruprofiler.ListFindingsReportsInput) (*codeguruprofiler.ListFindingsReportsOutput, error)
+	ListFindingsReportsWithContext(aws.Context, *codeguruprofiler.ListFindingsReportsInput, ...request.Option) (*codeguruprofiler.ListFindingsReportsOutput, error)
+	ListFindingsReportsRequest(*codeguruprofiler.ListFindingsReportsInput) (*request.Request, *codeguruprofiler.ListFindingsReportsOutput)
+
+	ListFindingsReportsPages(*codeguruprofiler.ListFindingsReportsInput, func(*codeguruprofiler.ListFindingsReportsOutput, bool) bool) error
+	ListFindingsReportsPagesWithContext(aws.Context, *codeguruprofiler.ListFindingsReportsInput, func(*codeguruprofiler.ListFindingsReportsOutput, bool) bool, ...request.Option) error
 
 	ListProfileTimes(*codeguruprofiler.ListProfileTimesInput) (*codeguruprofiler.ListProfileTimesOutput, error)
 	ListProfileTimesWithContext(aws.Context, *codeguruprofiler.ListProfileTimesInput, ...request.Option) (*codeguruprofiler.ListProfileTimesOutput, error)
@@ -106,9 +136,17 @@ type CodeGuruProfilerAPI interface {
 	PutPermissionWithContext(aws.Context, *codeguruprofiler.PutPermissionInput, ...request.Option) (*codeguruprofiler.PutPermissionOutput, error)
 	PutPermissionRequest(*codeguruprofiler.PutPermissionInput) (*request.Request, *codeguruprofiler.PutPermissionOutput)
 
+	RemoveNotificationChannel(*codeguruprofiler.RemoveNotificationChannelInput) (*codeguruprofiler.RemoveNotificationChannelOutput, error)
+	RemoveNotificationChannelWithContext(aws.Context, *codeguruprofiler.RemoveNotificationChannelInput, ...request.Option) (*codeguruprofiler.RemoveNotificationChannelOutput, error)
+	RemoveNotificationChannelRequest(*codeguruprofiler.RemoveNotificationChannelInput) (*request.Request, *codeguruprofiler.RemoveNotificationChannelOutput)
+
 	RemovePermission(*codeguruprofiler.RemovePermissionInput) (*codeguruprofiler.RemovePermissionOutput, error)
 	RemovePermissionWithContext(aws.Context, *codeguruprofiler.RemovePermissionInput, ...request.Option) (*codeguruprofiler.RemovePermissionOutput, error)
 	RemovePermissionRequest(*codeguruprofiler.RemovePermissionInput) (*request.Request, *codeguruprofiler.RemovePermissionOutput)
+
+	SubmitFeedback(*codeguruprofiler.SubmitFeedbackInput) (*codeguruprofiler.SubmitFeedbackOutput, error)
+	SubmitFeedbackWithContext(aws.Context, *codeguruprofiler.SubmitFeedbackInput, ...request.Option) (*codeguruprofiler.SubmitFeedbackOutput, error)
+	SubmitFeedbackRequest(*codeguruprofiler.SubmitFeedbackInput) (*request.Request, *codeguruprofiler.SubmitFeedbackOutput)
 
 	UpdateProfilingGroup(*codeguruprofiler.UpdateProfilingGroupInput) (*codeguruprofiler.UpdateProfilingGroupOutput, error)
 	UpdateProfilingGroupWithContext(aws.Context, *codeguruprofiler.UpdateProfilingGroupInput, ...request.Option) (*codeguruprofiler.UpdateProfilingGroupOutput, error)

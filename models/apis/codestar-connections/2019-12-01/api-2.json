@@ -22,6 +22,20 @@
       "input":{"shape":"CreateConnectionInput"},
       "output":{"shape":"CreateConnectionOutput"},
       "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "CreateHost":{
+      "name":"CreateHost",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateHostInput"},
+      "output":{"shape":"CreateHostOutput"},
+      "errors":[
         {"shape":"LimitExceededException"}
       ]
     },
@@ -37,6 +51,19 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteHost":{
+      "name":"DeleteHost",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteHostInput"},
+      "output":{"shape":"DeleteHostOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "GetConnection":{
       "name":"GetConnection",
       "http":{
@@ -45,6 +72,19 @@
       },
       "input":{"shape":"GetConnectionInput"},
       "output":{"shape":"GetConnectionOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "GetHost":{
+      "name":"GetHost",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetHostInput"},
+      "output":{"shape":"GetHostOutput"},
       "errors":[
         {"shape":"ResourceNotFoundException"}
       ]
@@ -57,6 +97,15 @@
       },
       "input":{"shape":"ListConnectionsInput"},
       "output":{"shape":"ListConnectionsOutput"}
+    },
+    "ListHosts":{
+      "name":"ListHosts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListHostsInput"},
+      "output":{"shape":"ListHostsOutput"}
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -115,7 +164,8 @@
         "ConnectionArn":{"shape":"ConnectionArn"},
         "ProviderType":{"shape":"ProviderType"},
         "OwnerAccountId":{"shape":"AccountId"},
-        "ConnectionStatus":{"shape":"ConnectionStatus"}
+        "ConnectionStatus":{"shape":"ConnectionStatus"},
+        "HostArn":{"shape":"HostArn"}
       }
     },
     "ConnectionArn":{
@@ -143,14 +193,12 @@
     },
     "CreateConnectionInput":{
       "type":"structure",
-      "required":[
-        "ProviderType",
-        "ConnectionName"
-      ],
+      "required":["ConnectionName"],
       "members":{
         "ProviderType":{"shape":"ProviderType"},
         "ConnectionName":{"shape":"ConnectionName"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "HostArn":{"shape":"HostArn"}
       }
     },
     "CreateConnectionOutput":{
@@ -161,6 +209,26 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "CreateHostInput":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ProviderType",
+        "ProviderEndpoint"
+      ],
+      "members":{
+        "Name":{"shape":"HostName"},
+        "ProviderType":{"shape":"ProviderType"},
+        "ProviderEndpoint":{"shape":"Url"},
+        "VpcConfiguration":{"shape":"VpcConfiguration"}
+      }
+    },
+    "CreateHostOutput":{
+      "type":"structure",
+      "members":{
+        "HostArn":{"shape":"HostArn"}
+      }
+    },
     "DeleteConnectionInput":{
       "type":"structure",
       "required":["ConnectionArn"],
@@ -169,6 +237,18 @@
       }
     },
     "DeleteConnectionOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteHostInput":{
+      "type":"structure",
+      "required":["HostArn"],
+      "members":{
+        "HostArn":{"shape":"HostArn"}
+      }
+    },
+    "DeleteHostOutput":{
       "type":"structure",
       "members":{
       }
@@ -190,6 +270,52 @@
         "Connection":{"shape":"Connection"}
       }
     },
+    "GetHostInput":{
+      "type":"structure",
+      "required":["HostArn"],
+      "members":{
+        "HostArn":{"shape":"HostArn"}
+      }
+    },
+    "GetHostOutput":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"HostName"},
+        "Status":{"shape":"HostStatus"},
+        "ProviderType":{"shape":"ProviderType"},
+        "ProviderEndpoint":{"shape":"Url"},
+        "VpcConfiguration":{"shape":"VpcConfiguration"}
+      }
+    },
+    "Host":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"HostName"},
+        "HostArn":{"shape":"HostArn"},
+        "ProviderType":{"shape":"ProviderType"},
+        "ProviderEndpoint":{"shape":"Url"},
+        "VpcConfiguration":{"shape":"VpcConfiguration"},
+        "Status":{"shape":"HostStatus"},
+        "StatusMessage":{"shape":"HostStatusMessage"}
+      }
+    },
+    "HostArn":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"arn:aws(-[\\w]+)*:codestar-connections:.+:[0-9]{12}:host\\/.+"
+    },
+    "HostList":{
+      "type":"list",
+      "member":{"shape":"Host"}
+    },
+    "HostName":{
+      "type":"string",
+      "max":32,
+      "min":1
+    },
+    "HostStatus":{"type":"string"},
+    "HostStatusMessage":{"type":"string"},
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -201,6 +327,7 @@
       "type":"structure",
       "members":{
         "ProviderTypeFilter":{"shape":"ProviderType"},
+        "HostArnFilter":{"shape":"HostArn"},
         "MaxResults":{"shape":"MaxResults"},
         "NextToken":{"shape":"NextToken"}
       }
@@ -209,6 +336,20 @@
       "type":"structure",
       "members":{
         "Connections":{"shape":"ConnectionList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListHostsInput":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListHostsOutput":{
+      "type":"structure",
+      "members":{
+        "Hosts":{"shape":"HostList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -227,7 +368,7 @@
     },
     "MaxResults":{
       "type":"integer",
-      "max":5000,
+      "max":100,
       "min":0
     },
     "NextToken":{
@@ -237,7 +378,10 @@
     },
     "ProviderType":{
       "type":"string",
-      "enum":["Bitbucket"]
+      "enum":[
+        "Bitbucket",
+        "GitHubEnterpriseServer"
+      ]
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -245,6 +389,33 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ResourceUnavailableException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "SecurityGroupId":{
+      "type":"string",
+      "pattern":"sg-\\w{8}(\\w{9})?"
+    },
+    "SecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"SecurityGroupId"},
+      "max":10,
+      "min":1
+    },
+    "SubnetId":{
+      "type":"string",
+      "pattern":"subnet-\\w{8}(\\w{9})?"
+    },
+    "SubnetIds":{
+      "type":"list",
+      "member":{"shape":"SubnetId"},
+      "max":10,
+      "min":1
     },
     "Tag":{
       "type":"structure",
@@ -295,6 +466,11 @@
       "max":256,
       "min":0
     },
+    "TlsCertificate":{
+      "type":"string",
+      "max":16384,
+      "min":1
+    },
     "UntagResourceInput":{
       "type":"structure",
       "required":[
@@ -310,6 +486,29 @@
       "type":"structure",
       "members":{
       }
+    },
+    "Url":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
+    "VpcConfiguration":{
+      "type":"structure",
+      "required":[
+        "VpcId",
+        "SubnetIds",
+        "SecurityGroupIds"
+      ],
+      "members":{
+        "VpcId":{"shape":"VpcId"},
+        "SubnetIds":{"shape":"SubnetIds"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIds"},
+        "TlsCertificate":{"shape":"TlsCertificate"}
+      }
+    },
+    "VpcId":{
+      "type":"string",
+      "pattern":"vpc-\\w{8}(\\w{9})?"
     }
   }
 }

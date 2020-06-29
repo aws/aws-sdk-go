@@ -58,6 +58,25 @@
         "title": "To attach a load balancer to an Auto Scaling group"
       }
     ],
+    "CancelInstanceRefresh": [
+      {
+        "input": {
+          "AutoScalingGroupName": "my-auto-scaling-group"
+        },
+        "output": {
+          "InstanceRefreshId": "08b91cf7-8fa6-48af-b6a6-d227f40f1b9b"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example cancels an instance refresh operation in progress.",
+        "id": "to-cancel-an-instance-refresh-1592960979817",
+        "title": "To cancel an instance refresh"
+      }
+    ],
     "CompleteLifecycleAction": [
       {
         "input": {
@@ -81,10 +100,14 @@
       {
         "input": {
           "AutoScalingGroupName": "my-auto-scaling-group",
-          "LaunchConfigurationName": "my-launch-config",
+          "LaunchTemplate": {
+            "LaunchTemplateId": "lt-0a20c965061f64abc",
+            "Version": "$Latest"
+          },
+          "MaxInstanceLifetime": 2592000,
           "MaxSize": 3,
           "MinSize": 1,
-          "VPCZoneIdentifier": "subnet-4176792c"
+          "VPCZoneIdentifier": "subnet-057fa0918fEXAMPLE"
         },
         "comments": {
           "input": {
@@ -95,6 +118,29 @@
         "description": "This example creates an Auto Scaling group.",
         "id": "autoscaling-create-auto-scaling-group-1",
         "title": "To create an Auto Scaling group"
+      },
+      {
+        "input": {
+          "AutoScalingGroupName": "my-auto-scaling-group",
+          "HealthCheckGracePeriod": 120,
+          "HealthCheckType": "ELB",
+          "LaunchConfigurationName": "my-launch-config",
+          "MaxSize": 3,
+          "MinSize": 1,
+          "TargetGroupARNs": [
+            "arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067"
+          ],
+          "VPCZoneIdentifier": "subnet-057fa0918fEXAMPLE, subnet-610acd08EXAMPLE"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example creates an Auto Scaling group and attaches the specified target group.",
+        "id": "autoscaling-create-auto-scaling-group-2",
+        "title": "To create an Auto Scaling group with an attached target group"
       },
       {
         "input": {
@@ -118,31 +164,8 @@
           }
         },
         "description": "This example creates an Auto Scaling group and attaches the specified Classic Load Balancer.",
-        "id": "autoscaling-create-auto-scaling-group-2",
-        "title": "To create an Auto Scaling group with an attached load balancer"
-      },
-      {
-        "input": {
-          "AutoScalingGroupName": "my-auto-scaling-group",
-          "HealthCheckGracePeriod": 120,
-          "HealthCheckType": "ELB",
-          "LaunchConfigurationName": "my-launch-config",
-          "MaxSize": 3,
-          "MinSize": 1,
-          "TargetGroupARNs": [
-            "arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/my-targets/73e2d6bc24d8a067"
-          ],
-          "VPCZoneIdentifier": "subnet-4176792c, subnet-65ea5f08"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "This example creates an Auto Scaling group and attaches the specified target group.",
         "id": "autoscaling-create-auto-scaling-group-3",
-        "title": "To create an Auto Scaling group with an attached target group"
+        "title": "To create an Auto Scaling group with an attached load balancer"
       }
     ],
     "CreateLaunchConfiguration": [
@@ -283,7 +306,7 @@
       {
         "input": {
           "AutoScalingGroupName": "my-auto-scaling-group",
-          "PolicyName": "ScaleIn"
+          "PolicyName": "my-step-scale-out-policy"
         },
         "comments": {
           "input": {
@@ -378,7 +401,7 @@
         },
         "description": "This example describes the available adjustment types.",
         "id": "autoscaling-describe-adjustment-types-1",
-        "title": "To describe the Auto Scaling adjustment types"
+        "title": "To describe the Amazon EC2 Auto Scaling adjustment types"
       }
     ],
     "DescribeAutoScalingGroups": [
@@ -496,6 +519,43 @@
         "description": "This example describes the available notification types.",
         "id": "autoscaling-describe-auto-scaling-notification-types-1",
         "title": "To describe the Auto Scaling notification types"
+      }
+    ],
+    "DescribeInstanceRefreshes": [
+      {
+        "input": {
+          "AutoScalingGroupName": "my-auto-scaling-group"
+        },
+        "output": {
+          "InstanceRefreshes": [
+            {
+              "AutoScalingGroupName": "my-auto-scaling-group",
+              "InstanceRefreshId": "08b91cf7-8fa6-48af-b6a6-d227f40f1b9b",
+              "InstancesToUpdate": 5,
+              "PercentageComplete": 0,
+              "StartTime": "2020-06-02T18:11:27Z",
+              "Status": "InProgress"
+            },
+            {
+              "AutoScalingGroupName": "my-auto-scaling-group",
+              "EndTime": "2020-06-02T16:53:37Z",
+              "InstanceRefreshId": "dd7728d0-5bc4-4575-96a3-1b2c52bf8bb1",
+              "InstancesToUpdate": 0,
+              "PercentageComplete": 100,
+              "StartTime": "2020-06-02T16:43:19Z",
+              "Status": "Successful"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example describes the instance refreshes for the specified Auto Scaling group.",
+        "id": "to-list-instance-refreshes-1592959593746",
+        "title": "To list instance refreshes"
       }
     ],
     "DescribeLaunchConfigurations": [
@@ -752,7 +812,7 @@
         },
         "description": "This example describes the policies for the specified Auto Scaling group.",
         "id": "autoscaling-describe-policies-1",
-        "title": "To describe Auto Scaling policies"
+        "title": "To describe scaling policies"
       }
     ],
     "DescribeScalingActivities": [
@@ -1067,8 +1127,9 @@
       {
         "input": {
           "AutoScalingGroupName": "my-auto-scaling-group",
-          "HonorCooldown": true,
-          "PolicyName": "ScaleIn"
+          "BreachThreshold": 50.0,
+          "MetricValue": 59.0,
+          "PolicyName": "my-step-scale-out-policy"
         },
         "comments": {
           "input": {
@@ -1076,9 +1137,9 @@
           "output": {
           }
         },
-        "description": "This example executes the specified Auto Scaling policy for the specified Auto Scaling group.",
+        "description": "This example executes the specified policy.",
         "id": "autoscaling-execute-policy-1",
-        "title": "To execute an Auto Scaling policy"
+        "title": "To execute a scaling policy"
       }
     ],
     "ExitStandby": [
@@ -1157,13 +1218,29 @@
     "PutScalingPolicy": [
       {
         "input": {
-          "AdjustmentType": "ChangeInCapacity",
           "AutoScalingGroupName": "my-auto-scaling-group",
-          "PolicyName": "ScaleIn",
-          "ScalingAdjustment": -1
+          "PolicyName": "alb1000-target-tracking-scaling-policy",
+          "PolicyType": "TargetTrackingScaling",
+          "TargetTrackingConfiguration": {
+            "PredefinedMetricSpecification": {
+              "PredefinedMetricType": "ALBRequestCountPerTarget",
+              "ResourceLabel": "app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d"
+            },
+            "TargetValue": 1000.0
+          }
         },
         "output": {
-          "PolicyARN": "arn:aws:autoscaling:us-west-2:123456789012:scalingPolicy:2233f3d7-6290-403b-b632-93c553560106:autoScalingGroupName/my-auto-scaling-group:policyName/ScaleIn"
+          "Alarms": [
+            {
+              "AlarmARN": "arn:aws:cloudwatch:us-west-2:123456789012:alarm:TargetTracking-my-asg-AlarmHigh-fc0e4183-23ac-497e-9992-691c9980c38e",
+              "AlarmName": "TargetTracking-my-asg-AlarmHigh-fc0e4183-23ac-497e-9992-691c9980c38e"
+            },
+            {
+              "AlarmARN": "arn:aws:cloudwatch:us-west-2:123456789012:alarm:TargetTracking-my-asg-AlarmLow-61a39305-ed0c-47af-bd9e-471a352ee1a2",
+              "AlarmName": "TargetTracking-my-asg-AlarmLow-61a39305-ed0c-47af-bd9e-471a352ee1a2"
+            }
+          ],
+          "PolicyARN": "arn:aws:autoscaling:us-west-2:123456789012:scalingPolicy:228f02c2-c665-4bfd-aaac-8b04080bea3c:autoScalingGroupName/my-auto-scaling-group:policyName/alb1000-target-tracking-scaling-policy"
         },
         "comments": {
           "input": {
@@ -1306,6 +1383,29 @@
         "description": "This example disables instance protection for the specified instance.",
         "id": "autoscaling-set-instance-protection-2",
         "title": "To disable instance protection for an instance"
+      }
+    ],
+    "StartInstanceRefresh": [
+      {
+        "input": {
+          "AutoScalingGroupName": "my-auto-scaling-group",
+          "Preferences": {
+            "InstanceWarmup": 400,
+            "MinHealthyPercentage": 50
+          }
+        },
+        "output": {
+          "InstanceRefreshId": "08b91cf7-8fa6-48af-b6a6-d227f40f1b9b"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example starts an instance refresh for the specified Auto Scaling group.",
+        "id": "to-start-an-instance-refresh-1592957271522",
+        "title": "To start an instance refresh"
       }
     ],
     "SuspendProcesses": [
