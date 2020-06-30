@@ -617,7 +617,8 @@
       "enum":[
         "CodeCommit",
         "GitHub",
-        "Bitbucket"
+        "Bitbucket",
+        "GitHubEnterpriseServer"
       ]
     },
     "ProviderTypes":{
@@ -714,7 +715,8 @@
       "type":"structure",
       "members":{
         "CodeCommit":{"shape":"CodeCommitRepository"},
-        "Bitbucket":{"shape":"ThirdPartySourceRepository"}
+        "Bitbucket":{"shape":"ThirdPartySourceRepository"},
+        "GitHubEnterpriseServer":{"shape":"ThirdPartySourceRepository"}
       }
     },
     "RepositoryAssociation":{

@@ -5938,6 +5938,9 @@ const (
 
 	// RelationshipTypeDirection is a RelationshipType enum value
 	RelationshipTypeDirection = "DIRECTION"
+
+	// RelationshipTypeSystemOrganSite is a RelationshipType enum value
+	RelationshipTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
 )
 
 const (

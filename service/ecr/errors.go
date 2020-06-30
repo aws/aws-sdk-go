@@ -21,6 +21,13 @@ const (
 	// the manifest or image tag after the last push.
 	ErrCodeImageAlreadyExistsException = "ImageAlreadyExistsException"
 
+	// ErrCodeImageDigestDoesNotMatchException for service response error code
+	// "ImageDigestDoesNotMatchException".
+	//
+	// The specified image digest does not match the digest that Amazon ECR calculated
+	// for the image.
+	ErrCodeImageDigestDoesNotMatchException = "ImageDigestDoesNotMatchException"
+
 	// ErrCodeImageNotFoundException for service response error code
 	// "ImageNotFoundException".
 	//
@@ -186,6 +193,7 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"EmptyUploadException":                      newErrorEmptyUploadException,
 	"ImageAlreadyExistsException":               newErrorImageAlreadyExistsException,
+	"ImageDigestDoesNotMatchException":          newErrorImageDigestDoesNotMatchException,
 	"ImageNotFoundException":                    newErrorImageNotFoundException,
 	"ImageTagAlreadyExistsException":            newErrorImageTagAlreadyExistsException,
 	"InvalidLayerException":                     newErrorInvalidLayerException,

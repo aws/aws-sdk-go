@@ -2236,10 +2236,6 @@ func (c *RDS) CreateDBProxyRequest(input *CreateDBProxyInput) (req *request.Requ
 
 // CreateDBProxy API operation for Amazon Relational Database Service.
 //
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Creates a new DB proxy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3645,10 +3641,6 @@ func (c *RDS) DeleteDBProxyRequest(input *DeleteDBProxyInput) (req *request.Requ
 
 // DeleteDBProxy API operation for Amazon Relational Database Service.
 //
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Deletes an existing proxy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4319,10 +4311,6 @@ func (c *RDS) DeregisterDBProxyTargetsRequest(input *DeregisterDBProxyTargetsInp
 }
 
 // DeregisterDBProxyTargets API operation for Amazon Relational Database Service.
-//
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
 //
 // Remove the association between one or more DBProxyTarget data structures
 // and a DBProxyTargetGroup.
@@ -6560,10 +6548,6 @@ func (c *RDS) DescribeDBProxiesRequest(input *DescribeDBProxiesInput) (req *requ
 
 // DescribeDBProxies API operation for Amazon Relational Database Service.
 //
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Returns information about DB proxies.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6701,10 +6685,6 @@ func (c *RDS) DescribeDBProxyTargetGroupsRequest(input *DescribeDBProxyTargetGro
 }
 
 // DescribeDBProxyTargetGroups API operation for Amazon Relational Database Service.
-//
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
 //
 // Returns information about DB proxy target groups, represented by DBProxyTargetGroup
 // data structures.
@@ -6851,10 +6831,6 @@ func (c *RDS) DescribeDBProxyTargetsRequest(input *DescribeDBProxyTargetsInput) 
 }
 
 // DescribeDBProxyTargets API operation for Amazon Relational Database Service.
-//
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
 //
 // Returns information about DBProxyTarget objects. This API supports pagination.
 //
@@ -10825,10 +10801,6 @@ func (c *RDS) ModifyDBProxyRequest(input *ModifyDBProxyInput) (req *request.Requ
 
 // ModifyDBProxy API operation for Amazon Relational Database Service.
 //
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Changes the settings for an existing DB proxy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10915,10 +10887,6 @@ func (c *RDS) ModifyDBProxyTargetGroupRequest(input *ModifyDBProxyTargetGroupInp
 }
 
 // ModifyDBProxyTargetGroup API operation for Amazon Relational Database Service.
-//
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
 //
 // Modifies the properties of a DBProxyTargetGroup.
 //
@@ -11911,10 +11879,6 @@ func (c *RDS) RegisterDBProxyTargetsRequest(input *RegisterDBProxyTargetsInput) 
 }
 
 // RegisterDBProxyTargets API operation for Amazon Relational Database Service.
-//
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
 //
 // Associate one or more DBProxyTarget data structures with a DBProxyTargetGroup.
 //
@@ -15609,10 +15573,6 @@ func (s *CloudwatchLogsExportConfiguration) SetEnableLogTypes(v []*string) *Clou
 	return s
 }
 
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Specifies the settings that control the size and behavior of the connection
 // pool associated with a DBProxyTargetGroup.
 type ConnectionPoolConfiguration struct {
@@ -15632,8 +15592,6 @@ type ConnectionPoolConfiguration struct {
 	// has identical settings such as time zone and character set. For multiple
 	// statements, use semicolons as the separator. You can also include multiple
 	// variables in a single SET statement, such as SET x=1, y=2.
-	//
-	// InitQuery is not currently supported for PostgreSQL.
 	//
 	// Default: no initialization query
 	InitQuery *string `type:"string"`
@@ -15708,10 +15666,6 @@ func (s *ConnectionPoolConfiguration) SetSessionPinningFilters(v []*string) *Con
 	return s
 }
 
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Displays the settings that control the size and behavior of the connection
 // pool associated with a DBProxyTarget.
 type ConnectionPoolConfigurationInfo struct {
@@ -15728,8 +15682,6 @@ type ConnectionPoolConfigurationInfo struct {
 	// is empty by default. For multiple statements, use semicolons as the separator.
 	// You can also include multiple variables in a single SET statement, such as
 	// SET x=1, y=2.
-	//
-	// InitQuery is not currently supported for PostgreSQL.
 	InitQuery *string `type:"string"`
 
 	// The maximum size of the connection pool for each target in a target group.
@@ -22987,10 +22939,6 @@ func (s *DBParameterGroupStatus) SetParameterApplyStatus(v string) *DBParameterG
 	return s
 }
 
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // The data structure representing a proxy managed by the RDS Proxy.
 //
 // This data type is used as a response element in the DescribeDBProxies action.
@@ -23154,10 +23102,6 @@ func (s *DBProxy) SetVpcSubnetIds(v []*string) *DBProxy {
 	return s
 }
 
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Contains the details for an RDS Proxy target. It represents an RDS DB instance
 // or Aurora DB cluster that the proxy can connect to. One or more targets are
 // associated with an RDS Proxy target group.
@@ -23245,10 +23189,6 @@ func (s *DBProxyTarget) SetType(v string) *DBProxyTarget {
 	return s
 }
 
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Represents a set of RDS DB instances, Aurora DB clusters, or both that a
 // proxy can connect to. Currently, each target group is associated with exactly
 // one RDS DB instance or Aurora DB cluster.
@@ -41508,10 +41448,6 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Information about the connection health of an RDS Proxy target.
 type TargetHealth struct {
 	_ struct{} `type:"structure"`
@@ -41646,10 +41582,6 @@ func (s *UpgradeTarget) SetIsMajorVersionUpgrade(v bool) *UpgradeTarget {
 	return s
 }
 
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Specifies the details of authentication used by a proxy to log in as a specific
 // database user.
 type UserAuthConfig struct {
@@ -41716,10 +41648,6 @@ func (s *UserAuthConfig) SetUserName(v string) *UserAuthConfig {
 	return s
 }
 
-//
-// This is prerelease documentation for the RDS Database Proxy feature in preview
-// release. It is subject to change.
-//
 // Returns the details of authentication used by a proxy to log in as a specific
 // database user.
 type UserAuthConfigInfo struct {

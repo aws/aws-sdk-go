@@ -314,7 +314,8 @@
         {"shape":"LayersNotFoundException"},
         {"shape":"ReferencedImagesNotFoundException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ImageTagAlreadyExistsException"}
+        {"shape":"ImageTagAlreadyExistsException"},
+        {"shape":"ImageDigestDoesNotMatchException"}
       ]
     },
     "PutImageScanningConfiguration":{
@@ -887,6 +888,13 @@
       "member":{"shape":"ImageDetail"}
     },
     "ImageDigest":{"type":"string"},
+    "ImageDigestDoesNotMatchException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "ImageFailure":{
       "type":"structure",
       "members":{
@@ -1289,7 +1297,8 @@
         "repositoryName":{"shape":"RepositoryName"},
         "imageManifest":{"shape":"ImageManifest"},
         "imageManifestMediaType":{"shape":"MediaType"},
-        "imageTag":{"shape":"ImageTag"}
+        "imageTag":{"shape":"ImageTag"},
+        "imageDigest":{"shape":"ImageDigest"}
       }
     },
     "PutImageResponse":{

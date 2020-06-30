@@ -1,3 +1,16 @@
+Release v1.32.13 (2020-06-30)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service API and documentation
+* `service/comprehendmedical`: Updates service API
+* `service/ec2`: Updates service API and documentation
+  * Added support for tag-on-create for CreateVpc, CreateEgressOnlyInternetGateway, CreateSecurityGroup, CreateSubnet, CreateNetworkInterface, CreateNetworkAcl, CreateDhcpOptions and CreateInternetGateway. You can now specify tags when creating any of these resources. For more information about tagging, see AWS Tagging Strategies.
+* `service/ecr`: Updates service API and documentation
+  * Add a new parameter (ImageDigest) and a new exception (ImageDigestDoesNotMatchException) to PutImage API to support pushing image by digest.
+* `service/rds`: Updates service documentation
+  * Documentation updates for rds
+
 Release v1.32.12 (2020-06-29)
 ===
 
