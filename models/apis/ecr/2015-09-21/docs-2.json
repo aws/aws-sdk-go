@@ -236,6 +236,7 @@
       "refs": {
         "EmptyUploadException$message": "<p>The error message associated with the exception.</p>",
         "ImageAlreadyExistsException$message": "<p>The error message associated with the exception.</p>",
+        "ImageDigestDoesNotMatchException$message": null,
         "ImageNotFoundException$message": null,
         "ImageTagAlreadyExistsException$message": null,
         "InvalidLayerException$message": "<p>The error message associated with the exception.</p>",
@@ -398,7 +399,13 @@
       "refs": {
         "ImageDetail$imageDigest": "<p>The <code>sha256</code> digest of the image manifest.</p>",
         "ImageIdentifier$imageDigest": "<p>The <code>sha256</code> digest of the image manifest.</p>",
-        "LifecyclePolicyPreviewResult$imageDigest": "<p>The <code>sha256</code> digest of the image manifest.</p>"
+        "LifecyclePolicyPreviewResult$imageDigest": "<p>The <code>sha256</code> digest of the image manifest.</p>",
+        "PutImageRequest$imageDigest": "<p>The image digest of the image manifest corresponding to the image.</p>"
+      }
+    },
+    "ImageDigestDoesNotMatchException": {
+      "base": "<p>The specified image digest does not match the digest that Amazon ECR calculated for the image.</p>",
+      "refs": {
       }
     },
     "ImageFailure": {

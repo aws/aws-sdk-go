@@ -6589,6 +6589,10 @@
           "shape":"NewDhcpConfigurationList",
           "locationName":"dhcpConfiguration"
         },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -6610,7 +6614,11 @@
       "members":{
         "ClientToken":{"shape":"String"},
         "DryRun":{"shape":"Boolean"},
-        "VpcId":{"shape":"VpcId"}
+        "VpcId":{"shape":"VpcId"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CreateEgressOnlyInternetGatewayResult":{
@@ -6882,6 +6890,10 @@
     "CreateInternetGatewayRequest":{
       "type":"structure",
       "members":{
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -7148,6 +7160,10 @@
         "VpcId":{
           "shape":"VpcId",
           "locationName":"vpcId"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },
@@ -7223,6 +7239,10 @@
         "SubnetId":{
           "shape":"SubnetId",
           "locationName":"subnetId"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },
@@ -7396,6 +7416,10 @@
         },
         "GroupName":{"shape":"String"},
         "VpcId":{"shape":"VpcId"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -7408,6 +7432,10 @@
         "GroupId":{
           "shape":"String",
           "locationName":"groupId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -7484,6 +7512,10 @@
         "VpcId"
       ],
       "members":{
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "AvailabilityZone":{"shape":"String"},
         "AvailabilityZoneId":{"shape":"String"},
         "CidrBlock":{"shape":"String"},
@@ -8016,7 +8048,11 @@
           "shape":"Tenancy",
           "locationName":"instanceTenancy"
         },
-        "Ipv6CidrBlockNetworkBorderGroup":{"shape":"String"}
+        "Ipv6CidrBlockNetworkBorderGroup":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CreateVpcResult":{

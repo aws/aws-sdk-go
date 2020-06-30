@@ -2184,6 +2184,10 @@ func (c *ECR) PutImageRequest(input *PutImageInput) (req *request.Request, outpu
 //   The specified image is tagged with a tag that already exists. The repository
 //   is configured for tag immutability.
 //
+//   * ImageDigestDoesNotMatchException
+//   The specified image digest does not match the digest that Amazon ECR calculated
+//   for the image.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/PutImage
 func (c *ECR) PutImage(input *PutImageInput) (*PutImageOutput, error) {
 	req, out := c.PutImageRequest(input)
@@ -5280,6 +5284,63 @@ func (s *ImageDetail) SetRepositoryName(v string) *ImageDetail {
 	return s
 }
 
+// The specified image digest does not match the digest that Amazon ECR calculated
+// for the image.
+type ImageDigestDoesNotMatchException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ImageDigestDoesNotMatchException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImageDigestDoesNotMatchException) GoString() string {
+	return s.String()
+}
+
+func newErrorImageDigestDoesNotMatchException(v protocol.ResponseMetadata) error {
+	return &ImageDigestDoesNotMatchException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ImageDigestDoesNotMatchException) Code() string {
+	return "ImageDigestDoesNotMatchException"
+}
+
+// Message returns the exception's message.
+func (s *ImageDigestDoesNotMatchException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ImageDigestDoesNotMatchException) OrigErr() error {
+	return nil
+}
+
+func (s *ImageDigestDoesNotMatchException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ImageDigestDoesNotMatchException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ImageDigestDoesNotMatchException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // An object representing an Amazon ECR image failure.
 type ImageFailure struct {
 	_ struct{} `type:"structure"`
@@ -6929,6 +6990,9 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type PutImageInput struct {
 	_ struct{} `type:"structure"`
 
+	// The image digest of the image manifest corresponding to the image.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
 	// The image manifest corresponding to the image to be uploaded.
 	//
 	// ImageManifest is a required field
@@ -6987,6 +7051,12 @@ func (s *PutImageInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetImageDigest sets the ImageDigest field's value.
+func (s *PutImageInput) SetImageDigest(v string) *PutImageInput {
+	s.ImageDigest = &v
+	return s
 }
 
 // SetImageManifest sets the ImageManifest field's value.
