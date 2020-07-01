@@ -804,6 +804,7 @@
         "name":{"shape":"AmiNameString"},
         "description":{"shape":"NonEmptyString"},
         "amiTags":{"shape":"TagMap"},
+        "kmsKeyId":{"shape":"NonEmptyString"},
         "launchPermission":{"shape":"LaunchPermissionConfiguration"}
       }
     },

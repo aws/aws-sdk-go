@@ -733,6 +733,16 @@
       "type":"list",
       "member":{"shape":"AvailabilityZone"}
     },
+    "AwsAutoScalingAutoScalingGroupDetails":{
+      "type":"structure",
+      "members":{
+        "LaunchConfigurationName":{"shape":"NonEmptyString"},
+        "LoadBalancerNames":{"shape":"StringList"},
+        "HealthCheckType":{"shape":"NonEmptyString"},
+        "HealthCheckGracePeriod":{"shape":"Integer"},
+        "CreatedTime":{"shape":"NonEmptyString"}
+      }
+    },
     "AwsCloudFrontDistributionDetails":{
       "type":"structure",
       "members":{
@@ -933,6 +943,40 @@
     "AwsEc2SecurityGroupUserIdGroupPairList":{
       "type":"list",
       "member":{"shape":"AwsEc2SecurityGroupUserIdGroupPair"}
+    },
+    "AwsEc2VolumeAttachment":{
+      "type":"structure",
+      "members":{
+        "AttachTime":{"shape":"NonEmptyString"},
+        "DeleteOnTermination":{"shape":"Boolean"},
+        "InstanceId":{"shape":"NonEmptyString"},
+        "Status":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2VolumeAttachmentList":{
+      "type":"list",
+      "member":{"shape":"AwsEc2VolumeAttachment"}
+    },
+    "AwsEc2VolumeDetails":{
+      "type":"structure",
+      "members":{
+        "CreateTime":{"shape":"NonEmptyString"},
+        "Encrypted":{"shape":"Boolean"},
+        "Size":{"shape":"Integer"},
+        "SnapshotId":{"shape":"NonEmptyString"},
+        "Status":{"shape":"NonEmptyString"},
+        "KmsKeyId":{"shape":"NonEmptyString"},
+        "Attachments":{"shape":"AwsEc2VolumeAttachmentList"}
+      }
+    },
+    "AwsEc2VpcDetails":{
+      "type":"structure",
+      "members":{
+        "CidrBlockAssociationSet":{"shape":"CidrBlockAssociationList"},
+        "Ipv6CidrBlockAssociationSet":{"shape":"Ipv6CidrBlockAssociationList"},
+        "DhcpOptionsId":{"shape":"NonEmptyString"},
+        "State":{"shape":"NonEmptyString"}
+      }
     },
     "AwsElasticsearchDomainDetails":{
       "type":"structure",
@@ -1265,6 +1309,7 @@
         "UserDefinedFields":{"shape":"FieldMap"},
         "Malware":{"shape":"MalwareList"},
         "Network":{"shape":"Network"},
+        "NetworkPath":{"shape":"NetworkPathList"},
         "Process":{"shape":"ProcessDetails"},
         "ThreatIntelIndicators":{"shape":"ThreatIntelIndicatorList"},
         "Resources":{"shape":"ResourceList"},
@@ -1274,7 +1319,8 @@
         "Workflow":{"shape":"Workflow"},
         "RecordState":{"shape":"RecordState"},
         "RelatedFindings":{"shape":"RelatedFindingList"},
-        "Note":{"shape":"Note"}
+        "Note":{"shape":"Note"},
+        "Vulnerabilities":{"shape":"VulnerabilityList"}
       }
     },
     "AwsSecurityFindingFilters":{
@@ -1532,6 +1578,18 @@
       "type":"list",
       "member":{"shape":"NonEmptyString"}
     },
+    "CidrBlockAssociation":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{"shape":"NonEmptyString"},
+        "CidrBlock":{"shape":"NonEmptyString"},
+        "CidrBlockState":{"shape":"NonEmptyString"}
+      }
+    },
+    "CidrBlockAssociationList":{
+      "type":"list",
+      "member":{"shape":"CidrBlockAssociation"}
+    },
     "Compliance":{
       "type":"structure",
       "members":{
@@ -1616,6 +1674,18 @@
       "members":{
         "UnprocessedAccounts":{"shape":"ResultList"}
       }
+    },
+    "Cvss":{
+      "type":"structure",
+      "members":{
+        "Version":{"shape":"NonEmptyString"},
+        "BaseScore":{"shape":"Double"},
+        "BaseVector":{"shape":"NonEmptyString"}
+      }
+    },
+    "CvssList":{
+      "type":"list",
+      "member":{"shape":"Cvss"}
     },
     "DateFilter":{
       "type":"structure",
@@ -2138,6 +2208,18 @@
       "type":"list",
       "member":{"shape":"IpFilter"}
     },
+    "Ipv6CidrBlockAssociation":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{"shape":"NonEmptyString"},
+        "Ipv6CidrBlock":{"shape":"NonEmptyString"},
+        "CidrBlockState":{"shape":"NonEmptyString"}
+      }
+    },
+    "Ipv6CidrBlockAssociationList":{
+      "type":"list",
+      "member":{"shape":"Ipv6CidrBlockAssociation"}
+    },
     "KeywordFilter":{
       "type":"structure",
       "members":{
@@ -2335,6 +2417,7 @@
       "members":{
         "Direction":{"shape":"NetworkDirection"},
         "Protocol":{"shape":"NonEmptyString"},
+        "OpenPortRange":{"shape":"PortRange"},
         "SourceIpV4":{"shape":"NonEmptyString"},
         "SourceIpV6":{"shape":"NonEmptyString"},
         "SourcePort":{"shape":"Integer"},
@@ -2352,6 +2435,34 @@
         "IN",
         "OUT"
       ]
+    },
+    "NetworkHeader":{
+      "type":"structure",
+      "members":{
+        "Protocol":{"shape":"NonEmptyString"},
+        "Destination":{"shape":"NetworkPathComponentDetails"},
+        "Source":{"shape":"NetworkPathComponentDetails"}
+      }
+    },
+    "NetworkPathComponent":{
+      "type":"structure",
+      "members":{
+        "ComponentId":{"shape":"NonEmptyString"},
+        "ComponentType":{"shape":"NonEmptyString"},
+        "Egress":{"shape":"NetworkHeader"},
+        "Ingress":{"shape":"NetworkHeader"}
+      }
+    },
+    "NetworkPathComponentDetails":{
+      "type":"structure",
+      "members":{
+        "Address":{"shape":"StringList"},
+        "PortRanges":{"shape":"PortRangeList"}
+      }
+    },
+    "NetworkPathList":{
+      "type":"list",
+      "member":{"shape":"NetworkPathComponent"}
     },
     "NextToken":{"type":"string"},
     "NonEmptyString":{
@@ -2405,6 +2516,17 @@
         "aws-cn",
         "aws-us-gov"
       ]
+    },
+    "PortRange":{
+      "type":"structure",
+      "members":{
+        "Begin":{"shape":"Integer"},
+        "End":{"shape":"Integer"}
+      }
+    },
+    "PortRangeList":{
+      "type":"list",
+      "member":{"shape":"PortRange"}
     },
     "ProcessDetails":{
       "type":"structure",
@@ -2515,11 +2637,14 @@
     "ResourceDetails":{
       "type":"structure",
       "members":{
+        "AwsAutoScalingAutoScalingGroup":{"shape":"AwsAutoScalingAutoScalingGroupDetails"},
         "AwsCodeBuildProject":{"shape":"AwsCodeBuildProjectDetails"},
         "AwsCloudFrontDistribution":{"shape":"AwsCloudFrontDistributionDetails"},
         "AwsEc2Instance":{"shape":"AwsEc2InstanceDetails"},
         "AwsEc2NetworkInterface":{"shape":"AwsEc2NetworkInterfaceDetails"},
         "AwsEc2SecurityGroup":{"shape":"AwsEc2SecurityGroupDetails"},
+        "AwsEc2Volume":{"shape":"AwsEc2VolumeDetails"},
+        "AwsEc2Vpc":{"shape":"AwsEc2VpcDetails"},
         "AwsElbv2LoadBalancer":{"shape":"AwsElbv2LoadBalancerDetails"},
         "AwsElasticsearchDomain":{"shape":"AwsElasticsearchDomainDetails"},
         "AwsS3Bucket":{"shape":"AwsS3BucketDetails"},
@@ -2600,6 +2725,20 @@
         "Product":{"shape":"Double"},
         "Label":{"shape":"SeverityLabel"}
       }
+    },
+    "SoftwarePackage":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NonEmptyString"},
+        "Version":{"shape":"NonEmptyString"},
+        "Epoch":{"shape":"NonEmptyString"},
+        "Release":{"shape":"NonEmptyString"},
+        "Architecture":{"shape":"NonEmptyString"}
+      }
+    },
+    "SoftwarePackageList":{
+      "type":"list",
+      "member":{"shape":"SoftwarePackage"}
     },
     "SortCriteria":{
       "type":"list",
@@ -2933,6 +3072,33 @@
         "FALSE_POSITIVE",
         "BENIGN_POSITIVE"
       ]
+    },
+    "Vulnerability":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"NonEmptyString"},
+        "VulnerablePackages":{"shape":"SoftwarePackageList"},
+        "Cvss":{"shape":"CvssList"},
+        "RelatedVulnerabilities":{"shape":"StringList"},
+        "Vendor":{"shape":"VulnerabilityVendor"},
+        "ReferenceUrls":{"shape":"StringList"}
+      }
+    },
+    "VulnerabilityList":{
+      "type":"list",
+      "member":{"shape":"Vulnerability"}
+    },
+    "VulnerabilityVendor":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NonEmptyString"},
+        "Url":{"shape":"NonEmptyString"},
+        "VendorSeverity":{"shape":"NonEmptyString"},
+        "VendorCreatedAt":{"shape":"NonEmptyString"},
+        "VendorUpdatedAt":{"shape":"NonEmptyString"}
+      }
     },
     "WafAction":{
       "type":"structure",

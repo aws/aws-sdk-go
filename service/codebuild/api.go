@@ -4322,6 +4322,66 @@ func (s *BuildPhase) SetStartTime(v time.Time) *BuildPhase {
 	return s
 }
 
+// Contains information that defines how the AWS CodeBuild build project reports
+// the build status to the source provider.
+type BuildStatusConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the context of the build status CodeBuild sends to the source provider.
+	// The usage of this parameter depends on the source provider.
+	//
+	// Bitbucket
+	//
+	// This parameter is used for the name parameter in the Bitbucket commit status.
+	// For more information, see build (https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/commit/%7Bnode%7D/statuses/build)
+	// in the Bitbucket API documentation.
+	//
+	// GitHub/GitHub Enterprise Server
+	//
+	// This parameter is used for the context parameter in the GitHub commit status.
+	// For more information, see Create a commit status (https://developer.github.com/v3/repos/statuses/#create-a-commit-status)
+	// in the GitHub developer guide.
+	Context *string `locationName:"context" type:"string"`
+
+	// Specifies the target url of the build status CodeBuild sends to the source
+	// provider. The usage of this parameter depends on the source provider.
+	//
+	// Bitbucket
+	//
+	// This parameter is used for the url parameter in the Bitbucket commit status.
+	// For more information, see build (https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Bworkspace%7D/%7Brepo_slug%7D/commit/%7Bnode%7D/statuses/build)
+	// in the Bitbucket API documentation.
+	//
+	// GitHub/GitHub Enterprise Server
+	//
+	// This parameter is used for the target_url parameter in the GitHub commit
+	// status. For more information, see Create a commit status (https://developer.github.com/v3/repos/statuses/#create-a-commit-status)
+	// in the GitHub developer guide.
+	TargetUrl *string `locationName:"targetUrl" type:"string"`
+}
+
+// String returns the string representation
+func (s BuildStatusConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BuildStatusConfig) GoString() string {
+	return s.String()
+}
+
+// SetContext sets the Context field's value.
+func (s *BuildStatusConfig) SetContext(v string) *BuildStatusConfig {
+	s.Context = &v
+	return s
+}
+
+// SetTargetUrl sets the TargetUrl field's value.
+func (s *BuildStatusConfig) SetTargetUrl(v string) *BuildStatusConfig {
+	s.TargetUrl = &v
+	return s
+}
+
 // Information about Amazon CloudWatch Logs for a build project.
 type CloudWatchLogsConfig struct {
 	_ struct{} `type:"structure"`
@@ -8124,6 +8184,11 @@ type ProjectSource struct {
 	// not get or set this information directly.
 	Auth *SourceAuth `locationName:"auth" type:"structure"`
 
+	// Contains information that defines how the build project reports the build
+	// status to the source provider. This option is only used when the source provider
+	// is GITHUB, GITHUB_ENTERPRISE, or BITBUCKET.
+	BuildStatusConfig *BuildStatusConfig `locationName:"buildStatusConfig" type:"structure"`
+
 	// The buildspec file declaration to use for the builds in this build project.
 	//
 	// If this value is set, it can be either an inline buildspec definition, the
@@ -8210,9 +8275,10 @@ type ProjectSource struct {
 	//    * CODEPIPELINE: The source code settings are specified in the source action
 	//    of a pipeline in AWS CodePipeline.
 	//
-	//    * GITHUB: The source code is in a GitHub repository.
+	//    * GITHUB: The source code is in a GitHub or GitHub Enterprise Cloud repository.
 	//
-	//    * GITHUB_ENTERPRISE: The source code is in a GitHub Enterprise repository.
+	//    * GITHUB_ENTERPRISE: The source code is in a GitHub Enterprise Server
+	//    repository.
 	//
 	//    * NO_SOURCE: The project does not have input source code.
 	//
@@ -8259,6 +8325,12 @@ func (s *ProjectSource) Validate() error {
 // SetAuth sets the Auth field's value.
 func (s *ProjectSource) SetAuth(v *SourceAuth) *ProjectSource {
 	s.Auth = v
+	return s
+}
+
+// SetBuildStatusConfig sets the BuildStatusConfig field's value.
+func (s *ProjectSource) SetBuildStatusConfig(v *BuildStatusConfig) *ProjectSource {
+	s.BuildStatusConfig = v
 	return s
 }
 
@@ -9189,6 +9261,11 @@ type StartBuildInput struct {
 	// ones already defined in the build project.
 	ArtifactsOverride *ProjectArtifacts `locationName:"artifactsOverride" type:"structure"`
 
+	// Contains information that defines how the build project reports the build
+	// status to the source provider. This option is only used when the source provider
+	// is GITHUB, GITHUB_ENTERPRISE, or BITBUCKET.
+	BuildStatusConfigOverride *BuildStatusConfig `locationName:"buildStatusConfigOverride" type:"structure"`
+
 	// A buildspec file declaration that overrides, for this build only, the latest
 	// one already defined in the build project.
 	//
@@ -9243,7 +9320,7 @@ type StartBuildInput struct {
 
 	// A unique, case sensitive identifier you provide to ensure the idempotency
 	// of the StartBuild request. The token is included in the StartBuild request
-	// and is valid for 12 hours. If you repeat the StartBuild request with the
+	// and is valid for 5 minutes. If you repeat the StartBuild request with the
 	// same token, but change a parameter, AWS CodeBuild returns a parameter mismatch
 	// error.
 	IdempotencyToken *string `locationName:"idempotencyToken" type:"string"`
@@ -9472,6 +9549,12 @@ func (s *StartBuildInput) Validate() error {
 // SetArtifactsOverride sets the ArtifactsOverride field's value.
 func (s *StartBuildInput) SetArtifactsOverride(v *ProjectArtifacts) *StartBuildInput {
 	s.ArtifactsOverride = v
+	return s
+}
+
+// SetBuildStatusConfigOverride sets the BuildStatusConfigOverride field's value.
+func (s *StartBuildInput) SetBuildStatusConfigOverride(v *BuildStatusConfig) *StartBuildInput {
+	s.BuildStatusConfigOverride = v
 	return s
 }
 
@@ -10667,8 +10750,8 @@ type WebhookFilter struct {
 	// Pattern is a required field
 	Pattern *string `locationName:"pattern" type:"string" required:"true"`
 
-	// The type of webhook filter. There are five webhook filter types: EVENT, ACTOR_ACCOUNT_ID,
-	// HEAD_REF, BASE_REF, and FILE_PATH.
+	// The type of webhook filter. There are six webhook filter types: EVENT, ACTOR_ACCOUNT_ID,
+	// HEAD_REF, BASE_REF, FILE_PATH, and COMMIT_MESSAGE.
 	//
 	// EVENT
 	//
@@ -10705,7 +10788,18 @@ type WebhookFilter struct {
 	// A webhook triggers a build when the path of a changed file matches the regular
 	// expression pattern.
 	//
-	// Works with GitHub and GitHub Enterprise push events only.
+	// Works with GitHub and Bitbucket events push and pull requests events. Also
+	// works with GitHub Enterprise push events, but does not work with GitHub Enterprise
+	// pull request events.
+	//
+	// COMMIT_MESSAGE
+	//
+	// A webhook triggers a build when the head commit message matches the regular
+	// expression pattern.
+	//
+	// Works with GitHub and Bitbucket events push and pull requests events. Also
+	// works with GitHub Enterprise push events, but does not work with GitHub Enterprise
+	// pull request events.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"WebhookFilterType"`

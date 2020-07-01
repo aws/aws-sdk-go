@@ -1,3 +1,22 @@
+Release v1.33.0 (2020-07-01)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/chime`: Updates service API and documentation
+  * This release supports third party emergency call routing configuration for Amazon Chime Voice Connectors.
+* `service/codebuild`: Updates service API and documentation
+  * Support build status config in project source
+* `service/imagebuilder`: Updates service API and documentation
+* `service/rds`: Updates service API
+  * This release adds the exceptions KMSKeyNotAccessibleFault and InvalidDBClusterStateFault to the Amazon RDS ModifyDBInstance API.
+* `service/securityhub`: Updates service API and documentation
+
+### SDK Features
+* `service/s3/s3crypto`: Introduces `EncryptionClientV2` and `DecryptionClientV2` encryption and decryption clients which support a new key wrapping algorithm `kms+context`. ([#3403](https://github.com/aws/aws-sdk-go/pull/3403))
+  * `DecryptionClientV2` maintains the ability to decrypt objects encrypted using the `EncryptionClient`.
+  * Please see `s3crypto` documentation for migration details.
+
 Release v1.32.13 (2020-06-30)
 ===
 

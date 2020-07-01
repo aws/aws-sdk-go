@@ -1573,7 +1573,9 @@
         {"shape":"AuthorizationNotFoundFault"},
         {"shape":"CertificateNotFoundFault"},
         {"shape":"DomainNotFoundFault"},
-        {"shape":"BackupPolicyNotFoundFault"}
+        {"shape":"BackupPolicyNotFoundFault"},
+        {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"InvalidDBClusterStateFault"}
       ]
     },
     "ModifyDBParameterGroup":{

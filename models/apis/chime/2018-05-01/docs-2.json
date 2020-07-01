@@ -34,11 +34,12 @@
     "DeleteRoom": "<p>Deletes a chat room in an Amazon Chime Enterprise account.</p>",
     "DeleteRoomMembership": "<p>Removes a member from a chat room in an Amazon Chime Enterprise account.</p>",
     "DeleteVoiceConnector": "<p>Deletes the specified Amazon Chime Voice Connector. Any phone numbers associated with the Amazon Chime Voice Connector must be disassociated from it before it can be deleted.</p>",
+    "DeleteVoiceConnectorEmergencyCallingConfiguration": "<p>Deletes the emergency calling configuration details from the specified Amazon Chime Voice Connector.</p>",
     "DeleteVoiceConnectorGroup": "<p>Deletes the specified Amazon Chime Voice Connector group. Any <code>VoiceConnectorItems</code> and phone numbers associated with the group must be removed before it can be deleted.</p>",
-    "DeleteVoiceConnectorOrigination": "<p>Deletes the origination settings for the specified Amazon Chime Voice Connector.</p>",
+    "DeleteVoiceConnectorOrigination": "<p>Deletes the origination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to deleting the origination settings.</p> </note>",
     "DeleteVoiceConnectorProxy": "<p>Deletes the proxy configuration from the specified Amazon Chime Voice Connector.</p>",
     "DeleteVoiceConnectorStreamingConfiguration": "<p>Deletes the streaming configuration for the specified Amazon Chime Voice Connector.</p>",
-    "DeleteVoiceConnectorTermination": "<p>Deletes the termination settings for the specified Amazon Chime Voice Connector.</p>",
+    "DeleteVoiceConnectorTermination": "<p>Deletes the termination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to deleting the termination settings.</p> </note>",
     "DeleteVoiceConnectorTerminationCredentials": "<p>Deletes the specified SIP credentials used by your equipment to authenticate during call termination.</p>",
     "DisassociatePhoneNumberFromUser": "<p>Disassociates the primary provisioned phone number from the specified Amazon Chime user.</p>",
     "DisassociatePhoneNumbersFromVoiceConnector": "<p>Disassociates the specified phone numbers from the specified Amazon Chime Voice Connector.</p>",
@@ -60,6 +61,7 @@
     "GetUser": "<p>Retrieves details for the specified user ID, such as primary email address, license type, and personal meeting PIN.</p> <p>To retrieve user details with an email address instead of a user ID, use the <a>ListUsers</a> action, and then filter by email address.</p>",
     "GetUserSettings": "<p>Retrieves settings for the specified user ID, such as any associated phone number settings.</p>",
     "GetVoiceConnector": "<p>Retrieves details for the specified Amazon Chime Voice Connector, such as timestamps, name, outbound host, and encryption requirements.</p>",
+    "GetVoiceConnectorEmergencyCallingConfiguration": "<p>Gets the emergency calling configuration details for the specified Amazon Chime Voice Connector.</p>",
     "GetVoiceConnectorGroup": "<p>Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps, name, and associated <code>VoiceConnectorItems</code>.</p>",
     "GetVoiceConnectorLoggingConfiguration": "<p>Retrieves the logging configuration details for the specified Amazon Chime Voice Connector. Shows whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "GetVoiceConnectorOrigination": "<p>Retrieves origination setting details for the specified Amazon Chime Voice Connector.</p>",
@@ -87,11 +89,12 @@
     "LogoutUser": "<p>Logs out the specified user from all of the devices they are currently logged into.</p>",
     "PutEventsConfiguration": "<p>Creates an events configuration that allows a bot to receive outgoing events sent by Amazon Chime. Choose either an HTTPS endpoint or a Lambda function ARN. For more information, see <a>Bot</a>.</p>",
     "PutRetentionSettings": "<p>Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html\">Logging Amazon Chime API Calls with AWS CloudTrail</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>To turn off existing retention settings, remove the number of days from the corresponding <b>RetentionDays</b> field in the <b>RetentionSettings</b> object. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+    "PutVoiceConnectorEmergencyCallingConfiguration": "<p>Puts emergency calling configuration details to the specified Amazon Chime Voice Connector, such as emergency phone numbers and calling countries. Origination and termination settings must be enabled for the Amazon Chime Voice Connector before emergency calling can be configured.</p>",
     "PutVoiceConnectorLoggingConfiguration": "<p>Adds a logging configuration for the specified Amazon Chime Voice Connector. The logging configuration specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
-    "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p>",
+    "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to turning off origination settings.</p> </note>",
     "PutVoiceConnectorProxy": "<p>Puts the specified proxy configuration to the specified Amazon Chime Voice Connector.</p>",
     "PutVoiceConnectorStreamingConfiguration": "<p>Adds a streaming configuration for the specified Amazon Chime Voice Connector. The streaming configuration specifies whether media streaming is enabled for sending to Amazon Kinesis. It also sets the retention period, in hours, for the Amazon Kinesis data.</p>",
-    "PutVoiceConnectorTermination": "<p>Adds termination settings for the specified Amazon Chime Voice Connector.</p>",
+    "PutVoiceConnectorTermination": "<p>Adds termination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to turning off termination settings.</p> </note>",
     "PutVoiceConnectorTerminationCredentials": "<p>Adds termination SIP credentials for the specified Amazon Chime Voice Connector.</p>",
     "RedactConversationMessage": "<p>Redacts the specified message from the specified Amazon Chime conversation.</p>",
     "RedactRoomMessage": "<p>Redacts the specified message from the specified Amazon Chime chat room.</p>",
@@ -167,6 +170,12 @@
         "UpdateUserRequest$AlexaForBusinessMetadata": "<p>The Alexa for Business metadata.</p>",
         "UpdateUserRequestItem$AlexaForBusinessMetadata": "<p>The Alexa for Business metadata.</p>",
         "User$AlexaForBusinessMetadata": "<p>The Alexa for Business metadata.</p>"
+      }
+    },
+    "Alpha2CountryCode": {
+      "base": null,
+      "refs": {
+        "DNISEmergencyCallingConfiguration$CallingCountry": "<p>The country from which emergency calls are allowed, in ISO 3166-1 alpha-2 format.</p>"
       }
     },
     "AreaCode": {
@@ -623,6 +632,18 @@
         "PutVoiceConnectorTerminationCredentialsRequest$Credentials": "<p>The termination SIP credentials.</p>"
       }
     },
+    "DNISEmergencyCallingConfiguration": {
+      "base": "<p>The Dialed Number Identification Service (DNIS) emergency calling configuration details associated with an Amazon Chime Voice Connector's emergency calling configuration.</p>",
+      "refs": {
+        "DNISEmergencyCallingConfigurationList$member": null
+      }
+    },
+    "DNISEmergencyCallingConfigurationList": {
+      "base": null,
+      "refs": {
+        "EmergencyCallingConfiguration$DNIS": "<p>The Dialed Number Identification Service (DNIS) emergency calling configuration details.</p>"
+      }
+    },
     "DataRetentionInHours": {
       "base": null,
       "refs": {
@@ -670,6 +691,11 @@
       }
     },
     "DeleteRoomRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorEmergencyCallingConfigurationRequest": {
       "base": null,
       "refs": {
       }
@@ -753,6 +779,8 @@
       "base": null,
       "refs": {
         "AssociatePhoneNumberWithUserRequest$E164PhoneNumber": "<p>The phone number, in E.164 format.</p>",
+        "DNISEmergencyCallingConfiguration$EmergencyPhoneNumber": "<p>The DNIS phone number to route emergency calls to, in E.164 format.</p>",
+        "DNISEmergencyCallingConfiguration$TestPhoneNumber": "<p>The DNIS phone number to route test emergency calls to, in E.164 format.</p>",
         "E164PhoneNumberList$member": null,
         "OrderedPhoneNumber$E164PhoneNumber": "<p>The phone number, in E.164 format.</p>",
         "Participant$PhoneNumber": "<p>The participant's phone number.</p>",
@@ -790,6 +818,14 @@
       "base": null,
       "refs": {
         "Invite$EmailStatus": "<p>The status of the invite email.</p>"
+      }
+    },
+    "EmergencyCallingConfiguration": {
+      "base": "<p>The emergency calling configuration details associated with an Amazon Chime Voice Connector.</p>",
+      "refs": {
+        "GetVoiceConnectorEmergencyCallingConfigurationResponse$EmergencyCallingConfiguration": "<p>The emergency calling configuration details.</p>",
+        "PutVoiceConnectorEmergencyCallingConfigurationRequest$EmergencyCallingConfiguration": "<p>The emergency calling configuration details.</p>",
+        "PutVoiceConnectorEmergencyCallingConfigurationResponse$EmergencyCallingConfiguration": "<p>The emergency calling configuration details.</p>"
       }
     },
     "ErrorCode": {
@@ -992,6 +1028,16 @@
       }
     },
     "GetUserSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorEmergencyCallingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorEmergencyCallingConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -1480,6 +1526,7 @@
         "DeleteRoomMembershipRequest$MemberId": "<p>The member ID (user ID or bot ID).</p>",
         "DeleteRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteRoomRequest$RoomId": "<p>The chat room ID.</p>",
+        "DeleteVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "DeleteVoiceConnectorGroupRequest$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
         "DeleteVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "DeleteVoiceConnectorRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -1500,6 +1547,7 @@
         "GetRoomRequest$RoomId": "<p>The room ID.</p>",
         "GetUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetUserRequest$UserId": "<p>The user ID.</p>",
+        "GetVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "GetVoiceConnectorGroupRequest$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
         "GetVoiceConnectorLoggingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "GetVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -1524,6 +1572,7 @@
         "PutEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "PutEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
         "PutRetentionSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "PutVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorLoggingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorStreamingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -1879,6 +1928,16 @@
       }
     },
     "PutRetentionSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorEmergencyCallingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorEmergencyCallingConfigurationResponse": {
       "base": null,
       "refs": {
       }
