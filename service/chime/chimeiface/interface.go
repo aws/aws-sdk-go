@@ -188,6 +188,10 @@ type ChimeAPI interface {
 	DeleteVoiceConnectorWithContext(aws.Context, *chime.DeleteVoiceConnectorInput, ...request.Option) (*chime.DeleteVoiceConnectorOutput, error)
 	DeleteVoiceConnectorRequest(*chime.DeleteVoiceConnectorInput) (*request.Request, *chime.DeleteVoiceConnectorOutput)
 
+	DeleteVoiceConnectorEmergencyCallingConfiguration(*chime.DeleteVoiceConnectorEmergencyCallingConfigurationInput) (*chime.DeleteVoiceConnectorEmergencyCallingConfigurationOutput, error)
+	DeleteVoiceConnectorEmergencyCallingConfigurationWithContext(aws.Context, *chime.DeleteVoiceConnectorEmergencyCallingConfigurationInput, ...request.Option) (*chime.DeleteVoiceConnectorEmergencyCallingConfigurationOutput, error)
+	DeleteVoiceConnectorEmergencyCallingConfigurationRequest(*chime.DeleteVoiceConnectorEmergencyCallingConfigurationInput) (*request.Request, *chime.DeleteVoiceConnectorEmergencyCallingConfigurationOutput)
+
 	DeleteVoiceConnectorGroup(*chime.DeleteVoiceConnectorGroupInput) (*chime.DeleteVoiceConnectorGroupOutput, error)
 	DeleteVoiceConnectorGroupWithContext(aws.Context, *chime.DeleteVoiceConnectorGroupInput, ...request.Option) (*chime.DeleteVoiceConnectorGroupOutput, error)
 	DeleteVoiceConnectorGroupRequest(*chime.DeleteVoiceConnectorGroupInput) (*request.Request, *chime.DeleteVoiceConnectorGroupOutput)
@@ -291,6 +295,10 @@ type ChimeAPI interface {
 	GetVoiceConnector(*chime.GetVoiceConnectorInput) (*chime.GetVoiceConnectorOutput, error)
 	GetVoiceConnectorWithContext(aws.Context, *chime.GetVoiceConnectorInput, ...request.Option) (*chime.GetVoiceConnectorOutput, error)
 	GetVoiceConnectorRequest(*chime.GetVoiceConnectorInput) (*request.Request, *chime.GetVoiceConnectorOutput)
+
+	GetVoiceConnectorEmergencyCallingConfiguration(*chime.GetVoiceConnectorEmergencyCallingConfigurationInput) (*chime.GetVoiceConnectorEmergencyCallingConfigurationOutput, error)
+	GetVoiceConnectorEmergencyCallingConfigurationWithContext(aws.Context, *chime.GetVoiceConnectorEmergencyCallingConfigurationInput, ...request.Option) (*chime.GetVoiceConnectorEmergencyCallingConfigurationOutput, error)
+	GetVoiceConnectorEmergencyCallingConfigurationRequest(*chime.GetVoiceConnectorEmergencyCallingConfigurationInput) (*request.Request, *chime.GetVoiceConnectorEmergencyCallingConfigurationOutput)
 
 	GetVoiceConnectorGroup(*chime.GetVoiceConnectorGroupInput) (*chime.GetVoiceConnectorGroupOutput, error)
 	GetVoiceConnectorGroupWithContext(aws.Context, *chime.GetVoiceConnectorGroupInput, ...request.Option) (*chime.GetVoiceConnectorGroupOutput, error)
@@ -435,6 +443,10 @@ type ChimeAPI interface {
 	PutRetentionSettings(*chime.PutRetentionSettingsInput) (*chime.PutRetentionSettingsOutput, error)
 	PutRetentionSettingsWithContext(aws.Context, *chime.PutRetentionSettingsInput, ...request.Option) (*chime.PutRetentionSettingsOutput, error)
 	PutRetentionSettingsRequest(*chime.PutRetentionSettingsInput) (*request.Request, *chime.PutRetentionSettingsOutput)
+
+	PutVoiceConnectorEmergencyCallingConfiguration(*chime.PutVoiceConnectorEmergencyCallingConfigurationInput) (*chime.PutVoiceConnectorEmergencyCallingConfigurationOutput, error)
+	PutVoiceConnectorEmergencyCallingConfigurationWithContext(aws.Context, *chime.PutVoiceConnectorEmergencyCallingConfigurationInput, ...request.Option) (*chime.PutVoiceConnectorEmergencyCallingConfigurationOutput, error)
+	PutVoiceConnectorEmergencyCallingConfigurationRequest(*chime.PutVoiceConnectorEmergencyCallingConfigurationInput) (*request.Request, *chime.PutVoiceConnectorEmergencyCallingConfigurationOutput)
 
 	PutVoiceConnectorLoggingConfiguration(*chime.PutVoiceConnectorLoggingConfigurationInput) (*chime.PutVoiceConnectorLoggingConfigurationOutput, error)
 	PutVoiceConnectorLoggingConfigurationWithContext(aws.Context, *chime.PutVoiceConnectorLoggingConfigurationInput, ...request.Option) (*chime.PutVoiceConnectorLoggingConfigurationOutput, error)

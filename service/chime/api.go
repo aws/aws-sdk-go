@@ -3311,6 +3311,106 @@ func (c *Chime) DeleteVoiceConnectorWithContext(ctx aws.Context, input *DeleteVo
 	return out, req.Send()
 }
 
+const opDeleteVoiceConnectorEmergencyCallingConfiguration = "DeleteVoiceConnectorEmergencyCallingConfiguration"
+
+// DeleteVoiceConnectorEmergencyCallingConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVoiceConnectorEmergencyCallingConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVoiceConnectorEmergencyCallingConfiguration for more information on using the DeleteVoiceConnectorEmergencyCallingConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteVoiceConnectorEmergencyCallingConfigurationRequest method.
+//    req, resp := client.DeleteVoiceConnectorEmergencyCallingConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteVoiceConnectorEmergencyCallingConfiguration
+func (c *Chime) DeleteVoiceConnectorEmergencyCallingConfigurationRequest(input *DeleteVoiceConnectorEmergencyCallingConfigurationInput) (req *request.Request, output *DeleteVoiceConnectorEmergencyCallingConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVoiceConnectorEmergencyCallingConfiguration,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/voice-connectors/{voiceConnectorId}/emergency-calling-configuration",
+	}
+
+	if input == nil {
+		input = &DeleteVoiceConnectorEmergencyCallingConfigurationInput{}
+	}
+
+	output = &DeleteVoiceConnectorEmergencyCallingConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteVoiceConnectorEmergencyCallingConfiguration API operation for Amazon Chime.
+//
+// Deletes the emergency calling configuration details from the specified Amazon
+// Chime Voice Connector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteVoiceConnectorEmergencyCallingConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteVoiceConnectorEmergencyCallingConfiguration
+func (c *Chime) DeleteVoiceConnectorEmergencyCallingConfiguration(input *DeleteVoiceConnectorEmergencyCallingConfigurationInput) (*DeleteVoiceConnectorEmergencyCallingConfigurationOutput, error) {
+	req, out := c.DeleteVoiceConnectorEmergencyCallingConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVoiceConnectorEmergencyCallingConfigurationWithContext is the same as DeleteVoiceConnectorEmergencyCallingConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVoiceConnectorEmergencyCallingConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteVoiceConnectorEmergencyCallingConfigurationWithContext(ctx aws.Context, input *DeleteVoiceConnectorEmergencyCallingConfigurationInput, opts ...request.Option) (*DeleteVoiceConnectorEmergencyCallingConfigurationOutput, error) {
+	req, out := c.DeleteVoiceConnectorEmergencyCallingConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteVoiceConnectorGroup = "DeleteVoiceConnectorGroup"
 
 // DeleteVoiceConnectorGroupRequest generates a "aws/request.Request" representing the
@@ -3462,6 +3562,9 @@ func (c *Chime) DeleteVoiceConnectorOriginationRequest(input *DeleteVoiceConnect
 // DeleteVoiceConnectorOrigination API operation for Amazon Chime.
 //
 // Deletes the origination settings for the specified Amazon Chime Voice Connector.
+//
+// If emergency calling is configured for the Amazon Chime Voice Connector,
+// it must be deleted prior to deleting the origination settings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3760,6 +3863,9 @@ func (c *Chime) DeleteVoiceConnectorTerminationRequest(input *DeleteVoiceConnect
 // DeleteVoiceConnectorTermination API operation for Amazon Chime.
 //
 // Deletes the termination settings for the specified Amazon Chime Voice Connector.
+//
+// If emergency calling is configured for the Amazon Chime Voice Connector,
+// it must be deleted prior to deleting the termination settings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5895,6 +6001,105 @@ func (c *Chime) GetVoiceConnector(input *GetVoiceConnectorInput) (*GetVoiceConne
 // for more information on using Contexts.
 func (c *Chime) GetVoiceConnectorWithContext(ctx aws.Context, input *GetVoiceConnectorInput, opts ...request.Option) (*GetVoiceConnectorOutput, error) {
 	req, out := c.GetVoiceConnectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetVoiceConnectorEmergencyCallingConfiguration = "GetVoiceConnectorEmergencyCallingConfiguration"
+
+// GetVoiceConnectorEmergencyCallingConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetVoiceConnectorEmergencyCallingConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetVoiceConnectorEmergencyCallingConfiguration for more information on using the GetVoiceConnectorEmergencyCallingConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetVoiceConnectorEmergencyCallingConfigurationRequest method.
+//    req, resp := client.GetVoiceConnectorEmergencyCallingConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetVoiceConnectorEmergencyCallingConfiguration
+func (c *Chime) GetVoiceConnectorEmergencyCallingConfigurationRequest(input *GetVoiceConnectorEmergencyCallingConfigurationInput) (req *request.Request, output *GetVoiceConnectorEmergencyCallingConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetVoiceConnectorEmergencyCallingConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/voice-connectors/{voiceConnectorId}/emergency-calling-configuration",
+	}
+
+	if input == nil {
+		input = &GetVoiceConnectorEmergencyCallingConfigurationInput{}
+	}
+
+	output = &GetVoiceConnectorEmergencyCallingConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetVoiceConnectorEmergencyCallingConfiguration API operation for Amazon Chime.
+//
+// Gets the emergency calling configuration details for the specified Amazon
+// Chime Voice Connector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetVoiceConnectorEmergencyCallingConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetVoiceConnectorEmergencyCallingConfiguration
+func (c *Chime) GetVoiceConnectorEmergencyCallingConfiguration(input *GetVoiceConnectorEmergencyCallingConfigurationInput) (*GetVoiceConnectorEmergencyCallingConfigurationOutput, error) {
+	req, out := c.GetVoiceConnectorEmergencyCallingConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetVoiceConnectorEmergencyCallingConfigurationWithContext is the same as GetVoiceConnectorEmergencyCallingConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetVoiceConnectorEmergencyCallingConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetVoiceConnectorEmergencyCallingConfigurationWithContext(ctx aws.Context, input *GetVoiceConnectorEmergencyCallingConfigurationInput, opts ...request.Option) (*GetVoiceConnectorEmergencyCallingConfigurationOutput, error) {
+	req, out := c.GetVoiceConnectorEmergencyCallingConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9269,6 +9474,107 @@ func (c *Chime) PutRetentionSettingsWithContext(ctx aws.Context, input *PutReten
 	return out, req.Send()
 }
 
+const opPutVoiceConnectorEmergencyCallingConfiguration = "PutVoiceConnectorEmergencyCallingConfiguration"
+
+// PutVoiceConnectorEmergencyCallingConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutVoiceConnectorEmergencyCallingConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutVoiceConnectorEmergencyCallingConfiguration for more information on using the PutVoiceConnectorEmergencyCallingConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutVoiceConnectorEmergencyCallingConfigurationRequest method.
+//    req, resp := client.PutVoiceConnectorEmergencyCallingConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutVoiceConnectorEmergencyCallingConfiguration
+func (c *Chime) PutVoiceConnectorEmergencyCallingConfigurationRequest(input *PutVoiceConnectorEmergencyCallingConfigurationInput) (req *request.Request, output *PutVoiceConnectorEmergencyCallingConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutVoiceConnectorEmergencyCallingConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/voice-connectors/{voiceConnectorId}/emergency-calling-configuration",
+	}
+
+	if input == nil {
+		input = &PutVoiceConnectorEmergencyCallingConfigurationInput{}
+	}
+
+	output = &PutVoiceConnectorEmergencyCallingConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutVoiceConnectorEmergencyCallingConfiguration API operation for Amazon Chime.
+//
+// Puts emergency calling configuration details to the specified Amazon Chime
+// Voice Connector, such as emergency phone numbers and calling countries. Origination
+// and termination settings must be enabled for the Amazon Chime Voice Connector
+// before emergency calling can be configured.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation PutVoiceConnectorEmergencyCallingConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutVoiceConnectorEmergencyCallingConfiguration
+func (c *Chime) PutVoiceConnectorEmergencyCallingConfiguration(input *PutVoiceConnectorEmergencyCallingConfigurationInput) (*PutVoiceConnectorEmergencyCallingConfigurationOutput, error) {
+	req, out := c.PutVoiceConnectorEmergencyCallingConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutVoiceConnectorEmergencyCallingConfigurationWithContext is the same as PutVoiceConnectorEmergencyCallingConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutVoiceConnectorEmergencyCallingConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) PutVoiceConnectorEmergencyCallingConfigurationWithContext(ctx aws.Context, input *PutVoiceConnectorEmergencyCallingConfigurationInput, opts ...request.Option) (*PutVoiceConnectorEmergencyCallingConfigurationOutput, error) {
+	req, out := c.PutVoiceConnectorEmergencyCallingConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutVoiceConnectorLoggingConfiguration = "PutVoiceConnectorLoggingConfiguration"
 
 // PutVoiceConnectorLoggingConfigurationRequest generates a "aws/request.Request" representing the
@@ -9414,6 +9720,9 @@ func (c *Chime) PutVoiceConnectorOriginationRequest(input *PutVoiceConnectorOrig
 // PutVoiceConnectorOrigination API operation for Amazon Chime.
 //
 // Adds origination settings for the specified Amazon Chime Voice Connector.
+//
+// If emergency calling is configured for the Amazon Chime Voice Connector,
+// it must be deleted prior to turning off origination settings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9715,6 +10024,9 @@ func (c *Chime) PutVoiceConnectorTerminationRequest(input *PutVoiceConnectorTerm
 // PutVoiceConnectorTermination API operation for Amazon Chime.
 //
 // Adds termination settings for the specified Amazon Chime Voice Connector.
+//
+// If emergency calling is configured for the Amazon Chime Voice Connector,
+// it must be deleted prior to turning off termination settings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12680,7 +12992,9 @@ type AssociatePhoneNumbersWithVoiceConnectorGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// List of phone numbers, in E.164 format.
-	E164PhoneNumbers []*string `type:"list"`
+	//
+	// E164PhoneNumbers is a required field
+	E164PhoneNumbers []*string `type:"list" required:"true"`
 
 	// If true, associates the provided phone numbers with the provided Amazon Chime
 	// Voice Connector Group and removes any previously existing associations. If
@@ -12707,6 +13021,9 @@ func (s AssociatePhoneNumbersWithVoiceConnectorGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssociatePhoneNumbersWithVoiceConnectorGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssociatePhoneNumbersWithVoiceConnectorGroupInput"}
+	if s.E164PhoneNumbers == nil {
+		invalidParams.Add(request.NewErrParamRequired("E164PhoneNumbers"))
+	}
 	if s.VoiceConnectorGroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorGroupId"))
 	}
@@ -12767,7 +13084,9 @@ type AssociatePhoneNumbersWithVoiceConnectorInput struct {
 	_ struct{} `type:"structure"`
 
 	// List of phone numbers, in E.164 format.
-	E164PhoneNumbers []*string `type:"list"`
+	//
+	// E164PhoneNumbers is a required field
+	E164PhoneNumbers []*string `type:"list" required:"true"`
 
 	// If true, associates the provided phone numbers with the provided Amazon Chime
 	// Voice Connector and removes any previously existing associations. If false,
@@ -12793,6 +13112,9 @@ func (s AssociatePhoneNumbersWithVoiceConnectorInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssociatePhoneNumbersWithVoiceConnectorInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssociatePhoneNumbersWithVoiceConnectorInput"}
+	if s.E164PhoneNumbers == nil {
+		invalidParams.Add(request.NewErrParamRequired("E164PhoneNumbers"))
+	}
 	if s.VoiceConnectorId == nil {
 		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
 	}
@@ -15223,6 +15545,71 @@ func (s *Credential) SetUsername(v string) *Credential {
 	return s
 }
 
+// The Dialed Number Identification Service (DNIS) emergency calling configuration
+// details associated with an Amazon Chime Voice Connector's emergency calling
+// configuration.
+type DNISEmergencyCallingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The country from which emergency calls are allowed, in ISO 3166-1 alpha-2
+	// format.
+	//
+	// CallingCountry is a required field
+	CallingCountry *string `type:"string" required:"true"`
+
+	// The DNIS phone number to route emergency calls to, in E.164 format.
+	//
+	// EmergencyPhoneNumber is a required field
+	EmergencyPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
+
+	// The DNIS phone number to route test emergency calls to, in E.164 format.
+	TestPhoneNumber *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s DNISEmergencyCallingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DNISEmergencyCallingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DNISEmergencyCallingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DNISEmergencyCallingConfiguration"}
+	if s.CallingCountry == nil {
+		invalidParams.Add(request.NewErrParamRequired("CallingCountry"))
+	}
+	if s.EmergencyPhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmergencyPhoneNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCallingCountry sets the CallingCountry field's value.
+func (s *DNISEmergencyCallingConfiguration) SetCallingCountry(v string) *DNISEmergencyCallingConfiguration {
+	s.CallingCountry = &v
+	return s
+}
+
+// SetEmergencyPhoneNumber sets the EmergencyPhoneNumber field's value.
+func (s *DNISEmergencyCallingConfiguration) SetEmergencyPhoneNumber(v string) *DNISEmergencyCallingConfiguration {
+	s.EmergencyPhoneNumber = &v
+	return s
+}
+
+// SetTestPhoneNumber sets the TestPhoneNumber field's value.
+func (s *DNISEmergencyCallingConfiguration) SetTestPhoneNumber(v string) *DNISEmergencyCallingConfiguration {
+	s.TestPhoneNumber = &v
+	return s
+}
+
 type DeleteAccountInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15765,6 +16152,61 @@ func (s DeleteRoomOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteVoiceConnectorEmergencyCallingConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime Voice Connector ID.
+	//
+	// VoiceConnectorId is a required field
+	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteVoiceConnectorEmergencyCallingConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVoiceConnectorEmergencyCallingConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVoiceConnectorEmergencyCallingConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVoiceConnectorEmergencyCallingConfigurationInput"}
+	if s.VoiceConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
+	}
+	if s.VoiceConnectorId != nil && len(*s.VoiceConnectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceConnectorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVoiceConnectorId sets the VoiceConnectorId field's value.
+func (s *DeleteVoiceConnectorEmergencyCallingConfigurationInput) SetVoiceConnectorId(v string) *DeleteVoiceConnectorEmergencyCallingConfigurationInput {
+	s.VoiceConnectorId = &v
+	return s
+}
+
+type DeleteVoiceConnectorEmergencyCallingConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVoiceConnectorEmergencyCallingConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVoiceConnectorEmergencyCallingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteVoiceConnectorGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16045,7 +16487,9 @@ type DeleteVoiceConnectorTerminationCredentialsInput struct {
 
 	// The RFC2617 compliant username associated with the SIP credentials, in US-ASCII
 	// format.
-	Usernames []*string `type:"list"`
+	//
+	// Usernames is a required field
+	Usernames []*string `type:"list" required:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -16066,6 +16510,9 @@ func (s DeleteVoiceConnectorTerminationCredentialsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteVoiceConnectorTerminationCredentialsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteVoiceConnectorTerminationCredentialsInput"}
+	if s.Usernames == nil {
+		invalidParams.Add(request.NewErrParamRequired("Usernames"))
+	}
 	if s.VoiceConnectorId == nil {
 		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
 	}
@@ -16236,7 +16683,9 @@ type DisassociatePhoneNumbersFromVoiceConnectorGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// List of phone numbers, in E.164 format.
-	E164PhoneNumbers []*string `type:"list"`
+	//
+	// E164PhoneNumbers is a required field
+	E164PhoneNumbers []*string `type:"list" required:"true"`
 
 	// The Amazon Chime Voice Connector group ID.
 	//
@@ -16257,6 +16706,9 @@ func (s DisassociatePhoneNumbersFromVoiceConnectorGroupInput) GoString() string 
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DisassociatePhoneNumbersFromVoiceConnectorGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DisassociatePhoneNumbersFromVoiceConnectorGroupInput"}
+	if s.E164PhoneNumbers == nil {
+		invalidParams.Add(request.NewErrParamRequired("E164PhoneNumbers"))
+	}
 	if s.VoiceConnectorGroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorGroupId"))
 	}
@@ -16311,7 +16763,9 @@ type DisassociatePhoneNumbersFromVoiceConnectorInput struct {
 	_ struct{} `type:"structure"`
 
 	// List of phone numbers, in E.164 format.
-	E164PhoneNumbers []*string `type:"list"`
+	//
+	// E164PhoneNumbers is a required field
+	E164PhoneNumbers []*string `type:"list" required:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -16332,6 +16786,9 @@ func (s DisassociatePhoneNumbersFromVoiceConnectorInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DisassociatePhoneNumbersFromVoiceConnectorInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DisassociatePhoneNumbersFromVoiceConnectorInput"}
+	if s.E164PhoneNumbers == nil {
+		invalidParams.Add(request.NewErrParamRequired("E164PhoneNumbers"))
+	}
 	if s.VoiceConnectorId == nil {
 		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
 	}
@@ -16452,6 +16909,52 @@ func (s DisassociateSigninDelegateGroupsFromAccountOutput) String() string {
 // GoString returns the string representation
 func (s DisassociateSigninDelegateGroupsFromAccountOutput) GoString() string {
 	return s.String()
+}
+
+// The emergency calling configuration details associated with an Amazon Chime
+// Voice Connector.
+type EmergencyCallingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Dialed Number Identification Service (DNIS) emergency calling configuration
+	// details.
+	DNIS []*DNISEmergencyCallingConfiguration `type:"list"`
+}
+
+// String returns the string representation
+func (s EmergencyCallingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EmergencyCallingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EmergencyCallingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EmergencyCallingConfiguration"}
+	if s.DNIS != nil {
+		for i, v := range s.DNIS {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DNIS", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDNIS sets the DNIS field's value.
+func (s *EmergencyCallingConfiguration) SetDNIS(v []*DNISEmergencyCallingConfiguration) *EmergencyCallingConfiguration {
+	s.DNIS = v
+	return s
 }
 
 // The configuration that allows a bot to receive outgoing events. Can be either
@@ -17659,6 +18162,70 @@ func (s GetUserSettingsOutput) GoString() string {
 // SetUserSettings sets the UserSettings field's value.
 func (s *GetUserSettingsOutput) SetUserSettings(v *UserSettings) *GetUserSettingsOutput {
 	s.UserSettings = v
+	return s
+}
+
+type GetVoiceConnectorEmergencyCallingConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime Voice Connector ID.
+	//
+	// VoiceConnectorId is a required field
+	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetVoiceConnectorEmergencyCallingConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetVoiceConnectorEmergencyCallingConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetVoiceConnectorEmergencyCallingConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetVoiceConnectorEmergencyCallingConfigurationInput"}
+	if s.VoiceConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
+	}
+	if s.VoiceConnectorId != nil && len(*s.VoiceConnectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceConnectorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVoiceConnectorId sets the VoiceConnectorId field's value.
+func (s *GetVoiceConnectorEmergencyCallingConfigurationInput) SetVoiceConnectorId(v string) *GetVoiceConnectorEmergencyCallingConfigurationInput {
+	s.VoiceConnectorId = &v
+	return s
+}
+
+type GetVoiceConnectorEmergencyCallingConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The emergency calling configuration details.
+	EmergencyCallingConfiguration *EmergencyCallingConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetVoiceConnectorEmergencyCallingConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetVoiceConnectorEmergencyCallingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEmergencyCallingConfiguration sets the EmergencyCallingConfiguration field's value.
+func (s *GetVoiceConnectorEmergencyCallingConfigurationOutput) SetEmergencyCallingConfiguration(v *EmergencyCallingConfiguration) *GetVoiceConnectorEmergencyCallingConfigurationOutput {
+	s.EmergencyCallingConfiguration = v
 	return s
 }
 
@@ -21130,6 +21697,89 @@ func (s *PutRetentionSettingsOutput) SetInitiateDeletionTimestamp(v time.Time) *
 // SetRetentionSettings sets the RetentionSettings field's value.
 func (s *PutRetentionSettingsOutput) SetRetentionSettings(v *RetentionSettings) *PutRetentionSettingsOutput {
 	s.RetentionSettings = v
+	return s
+}
+
+type PutVoiceConnectorEmergencyCallingConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The emergency calling configuration details.
+	//
+	// EmergencyCallingConfiguration is a required field
+	EmergencyCallingConfiguration *EmergencyCallingConfiguration `type:"structure" required:"true"`
+
+	// The Amazon Chime Voice Connector ID.
+	//
+	// VoiceConnectorId is a required field
+	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutVoiceConnectorEmergencyCallingConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutVoiceConnectorEmergencyCallingConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutVoiceConnectorEmergencyCallingConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutVoiceConnectorEmergencyCallingConfigurationInput"}
+	if s.EmergencyCallingConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmergencyCallingConfiguration"))
+	}
+	if s.VoiceConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceConnectorId"))
+	}
+	if s.VoiceConnectorId != nil && len(*s.VoiceConnectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoiceConnectorId", 1))
+	}
+	if s.EmergencyCallingConfiguration != nil {
+		if err := s.EmergencyCallingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EmergencyCallingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEmergencyCallingConfiguration sets the EmergencyCallingConfiguration field's value.
+func (s *PutVoiceConnectorEmergencyCallingConfigurationInput) SetEmergencyCallingConfiguration(v *EmergencyCallingConfiguration) *PutVoiceConnectorEmergencyCallingConfigurationInput {
+	s.EmergencyCallingConfiguration = v
+	return s
+}
+
+// SetVoiceConnectorId sets the VoiceConnectorId field's value.
+func (s *PutVoiceConnectorEmergencyCallingConfigurationInput) SetVoiceConnectorId(v string) *PutVoiceConnectorEmergencyCallingConfigurationInput {
+	s.VoiceConnectorId = &v
+	return s
+}
+
+type PutVoiceConnectorEmergencyCallingConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The emergency calling configuration details.
+	EmergencyCallingConfiguration *EmergencyCallingConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutVoiceConnectorEmergencyCallingConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutVoiceConnectorEmergencyCallingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEmergencyCallingConfiguration sets the EmergencyCallingConfiguration field's value.
+func (s *PutVoiceConnectorEmergencyCallingConfigurationOutput) SetEmergencyCallingConfiguration(v *EmergencyCallingConfiguration) *PutVoiceConnectorEmergencyCallingConfigurationOutput {
+	s.EmergencyCallingConfiguration = v
 	return s
 }
 

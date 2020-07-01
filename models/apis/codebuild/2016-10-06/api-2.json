@@ -648,6 +648,13 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "BuildStatusConfig":{
+      "type":"structure",
+      "members":{
+        "context":{"shape":"String"},
+        "targetUrl":{"shape":"String"}
+      }
+    },
     "Builds":{
       "type":"list",
       "member":{"shape":"Build"}
@@ -1408,6 +1415,7 @@
         "buildspec":{"shape":"String"},
         "auth":{"shape":"SourceAuth"},
         "reportBuildStatus":{"shape":"WrapperBoolean"},
+        "buildStatusConfig":{"shape":"BuildStatusConfig"},
         "insecureSsl":{"shape":"WrapperBoolean"},
         "sourceIdentifier":{"shape":"String"}
       }
@@ -1690,6 +1698,7 @@
         "buildspecOverride":{"shape":"String"},
         "insecureSslOverride":{"shape":"WrapperBoolean"},
         "reportBuildStatusOverride":{"shape":"WrapperBoolean"},
+        "buildStatusConfigOverride":{"shape":"BuildStatusConfig"},
         "environmentTypeOverride":{"shape":"EnvironmentType"},
         "imageOverride":{"shape":"NonEmptyString"},
         "computeTypeOverride":{"shape":"ComputeType"},
