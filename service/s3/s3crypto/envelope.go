@@ -32,6 +32,6 @@ type Envelope struct {
 	WrapAlg               string `json:"x-amz-wrap-alg"`
 	CEKAlg                string `json:"x-amz-cek-alg"`
 	TagLen                string `json:"x-amz-tag-len"`
-	UnencryptedMD5        string `json:"x-amz-unencrypted-content-md5"`
+	UnencryptedMD5        string `json:"-"`
 	UnencryptedContentLen string `json:"x-amz-unencrypted-content-length"`
 }

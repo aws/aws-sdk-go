@@ -15,8 +15,14 @@ type cbcContentCipherBuilder struct {
 	padder    Padder
 }
 
+func (cbcContentCipherBuilder) isUsingDeprecatedFeatures() error {
+	return errDeprecatedCipherBuilder
+}
+
 // AESCBCContentCipherBuilder returns a new encryption only mode structure with a specific cipher
 // for the master key
+//
+// deprecated: This content cipher builder has been deprecated. Users should migrate to AESGCMContentCipherBuilder
 func AESCBCContentCipherBuilder(generator CipherDataGenerator, padder Padder) ContentCipherBuilder {
 	return cbcContentCipherBuilder{generator: generator, padder: padder}
 }

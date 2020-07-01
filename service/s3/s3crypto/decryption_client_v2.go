@@ -11,23 +11,21 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
-// WrapEntry is builder that return a proper key decrypter and error
-type WrapEntry func(Envelope) (CipherDataDecrypter, error)
-
-// CEKEntry is a builder thatn returns a proper content decrypter and error
-type CEKEntry func(CipherData) (ContentCipher, error)
-
-// DecryptionClient is an S3 crypto client. The decryption client
+// DecryptionClientV2 is an S3 crypto client. The decryption client
 // will handle all get object requests from Amazon S3.
 // Supported key wrapping algorithms:
-//	*AWS KMS
+//	* AWS KMS
+//	* AWS KMS + Context
 //
 // Supported content ciphers:
 //	* AES/GCM
 //	* AES/CBC
-//
-// deprecated: See DecryptionClientV2
-type DecryptionClient struct {
+type DecryptionClientV2 struct {
+	options DecryptionClientOptions
+}
+
+// DecryptionClientOptions is the configuration options for DecryptionClientV2.
+type DecryptionClientOptions struct {
 	S3Client s3iface.S3API
 	// LoadStrategy is used to load the metadata either from the metadata of the object
 	// or from a separate file in s3.
@@ -40,31 +38,30 @@ type DecryptionClient struct {
 	PadderRegistry map[string]Padder
 }
 
-// NewDecryptionClient instantiates a new S3 crypto client
+// NewDecryptionClientV2 instantiates a new V2 S3 crypto client. The returned DecryptionClientV2 will be able to decrypt
+// object encrypted by both the V1 and V2 clients.
 //
 // Example:
-//	sess := session.New()
-//	svc := s3crypto.NewDecryptionClient(sess, func(svc *s3crypto.DecryptionClient{
+//	sess := session.Must(session.NewSession())
+//	svc := s3crypto.NewDecryptionClientV2(sess, func(svc *s3crypto.DecryptionClientOptions{
 //		// Custom client options here
 //	}))
-//
-// deprecated: see NewDecryptionClientV2
-func NewDecryptionClient(prov client.ConfigProvider, options ...func(*DecryptionClient)) *DecryptionClient {
+func NewDecryptionClientV2(prov client.ConfigProvider, options ...func(clientOptions *DecryptionClientOptions)) *DecryptionClientV2 {
 	s3client := s3.New(prov)
 
 	s3client.Handlers.Build.PushBack(func(r *request.Request) {
-		request.AddToUserAgent(r, "S3Crypto")
+		request.AddToUserAgent(r, "S3CryptoV2")
 	})
 
-	client := &DecryptionClient{
+	kmsClient := kms.New(prov)
+	clientOptions := &DecryptionClientOptions{
 		S3Client: s3client,
 		LoadStrategy: defaultV2LoadStrategy{
 			client: s3client,
 		},
 		WrapRegistry: map[string]WrapEntry{
-			KMSWrap: (kmsKeyHandler{
-				kms: kms.New(prov),
-			}).decryptHandler,
+			KMSWrap:        NewKMSWrapEntry(kmsClient),
+			KMSContextWrap: NewKMSContextWrapEntry(kmsClient),
 		},
 		CEKRegistry: map[string]CEKEntry{
 			AESGCMNoPadding: newAESGCMContentCipher,
@@ -76,10 +73,10 @@ func NewDecryptionClient(prov client.ConfigProvider, options ...func(*Decryption
 		},
 	}
 	for _, option := range options {
-		option(client)
+		option(clientOptions)
 	}
 
-	return client
+	return &DecryptionClientV2{options: *clientOptions}
 }
 
 // GetObjectRequest will make a request to s3 and retrieve the object. In this process
@@ -87,23 +84,20 @@ func NewDecryptionClient(prov client.ConfigProvider, options ...func(*Decryption
 //
 // Example:
 //  sess := session.Must(session.NewSession())
-//	svc := s3crypto.NewDecryptionClient(sess)
+//	svc := s3crypto.NewDecryptionClientV2(sess)
 //	req, out := svc.GetObjectRequest(&s3.GetObjectInput {
 //	  Key: aws.String("testKey"),
 //	  Bucket: aws.String("testBucket"),
 //	})
 //	err := req.Send()
-//
-// deprecated: see DecryptionClientV2.GetObjectRequest
-func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
-	return getObjectRequest(c.getClientOptions(), input)
+func (c *DecryptionClientV2) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
+	return getObjectRequest(c.options, input)
 }
 
 // GetObject is a wrapper for GetObjectRequest
-//
-// deprecated: see DecryptionClientV2.GetObject
-func (c *DecryptionClient) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOutput, error) {
-	return getObject(c.getClientOptions(), input)
+func (c *DecryptionClientV2) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOutput, error) {
+	req, out := getObjectRequest(c.options, input)
+	return out, req.Send()
 }
 
 // GetObjectWithContext is a wrapper for GetObjectRequest with the additional
@@ -113,18 +107,9 @@ func (c *DecryptionClient) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOut
 // Context input parameters. The Context must not be nil. A nil Context will
 // cause a panic. Use the Context to add deadlining, timeouts, etc. In the future
 // this may create sub-contexts for individual underlying requests.
-//
-// deprecated: see DecryptionClientV2.GetObjectWithContext
-func (c *DecryptionClient) GetObjectWithContext(ctx aws.Context, input *s3.GetObjectInput, opts ...request.Option) (*s3.GetObjectOutput, error) {
-	return getObjectWithContext(c.getClientOptions(), ctx, input, opts...)
-}
-
-func (c *DecryptionClient) getClientOptions() DecryptionClientOptions {
-	return DecryptionClientOptions{
-		S3Client:       c.S3Client,
-		LoadStrategy:   c.LoadStrategy,
-		WrapRegistry:   c.WrapRegistry,
-		CEKRegistry:    c.CEKRegistry,
-		PadderRegistry: c.PadderRegistry,
-	}
+func (c *DecryptionClientV2) GetObjectWithContext(ctx aws.Context, input *s3.GetObjectInput, opts ...request.Option) (*s3.GetObjectOutput, error) {
+	req, out := getObjectRequest(c.options, input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
