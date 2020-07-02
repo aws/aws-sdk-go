@@ -1,3 +1,11 @@
+Release v1.33.1 (2020-07-02)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service documentation
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+
 Release v1.33.0 (2020-07-01)
 ===
 
