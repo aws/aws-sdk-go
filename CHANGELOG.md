@@ -1,3 +1,13 @@
+Release v1.33.2 (2020-07-06)
+===
+
+### Service Client Updates
+* `service/iotsitewise`: Updates service API
+* `service/quicksight`: Updates service API and documentation
+  * Add Theme APIs and update Dashboard APIs to support theme overrides.
+* `service/rds`: Updates service API and documentation
+  * Adds support for Amazon RDS on AWS Outposts.
+
 Release v1.33.1 (2020-07-02)
 ===
 
