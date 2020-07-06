@@ -11429,9 +11429,7 @@ type GetAssetPropertyValueHistoryInput struct {
 
 	// The inclusive end of the range from which to query historical data, expressed
 	// in seconds in Unix epoch time.
-	//
-	// EndDate is a required field
-	EndDate *time.Time `location:"querystring" locationName:"endDate" type:"timestamp" required:"true"`
+	EndDate *time.Time `location:"querystring" locationName:"endDate" type:"timestamp"`
 
 	// The maximum number of results to be returned per paginated request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -11454,9 +11452,7 @@ type GetAssetPropertyValueHistoryInput struct {
 
 	// The exclusive start of the range from which to query historical data, expressed
 	// in seconds in Unix epoch time.
-	//
-	// StartDate is a required field
-	StartDate *time.Time `location:"querystring" locationName:"startDate" type:"timestamp" required:"true"`
+	StartDate *time.Time `location:"querystring" locationName:"startDate" type:"timestamp"`
 
 	// The chronological sorting order of the requested information.
 	TimeOrdering *string `location:"querystring" locationName:"timeOrdering" type:"string" enum:"TimeOrdering"`
@@ -11478,9 +11474,6 @@ func (s *GetAssetPropertyValueHistoryInput) Validate() error {
 	if s.AssetId != nil && len(*s.AssetId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
 	}
-	if s.EndDate == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndDate"))
-	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -11495,9 +11488,6 @@ func (s *GetAssetPropertyValueHistoryInput) Validate() error {
 	}
 	if s.Qualities != nil && len(s.Qualities) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Qualities", 1))
-	}
-	if s.StartDate == nil {
-		invalidParams.Add(request.NewErrParamRequired("StartDate"))
 	}
 
 	if invalidParams.Len() > 0 {

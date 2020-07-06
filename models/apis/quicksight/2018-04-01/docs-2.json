@@ -12,6 +12,8 @@
     "CreateIngestion": "<p>Creates and starts a new SPICE ingestion on a dataset</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access control. For an example, see <a href=\"https://aws.amazon.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a> in the AWS Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.</p>",
     "CreateTemplate": "<p>Creates a template from an existing QuickSight analysis or template. You can use the resulting template to create a dashboard.</p> <p>A <i>template</i> is an entity in QuickSight that encapsulates the metadata required to create an analysis and that you can use to create s dashboard. A template adds a layer of abstraction by using placeholders to replace the dataset associated with the analysis. You can use templates to create dashboards by replacing dataset placeholders with datasets that follow the same schema that was used to create the source analysis and template.</p>",
     "CreateTemplateAlias": "<p>Creates a template alias for a template.</p>",
+    "CreateTheme": "<p>Creates a theme.</p> <p>A <i>theme</i> is set of configuration options for color and layout. Themes apply to analyses and dashboards. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
+    "CreateThemeAlias": "<p>Creates a theme alias for a theme.</p>",
     "DeleteDashboard": "<p>Deletes a dashboard.</p>",
     "DeleteDataSet": "<p>Deletes a dataset.</p>",
     "DeleteDataSource": "<p>Deletes the data source permanently. This action breaks all the datasets that reference the deleted data source.</p>",
@@ -20,6 +22,8 @@
     "DeleteIAMPolicyAssignment": "<p>Deletes an existing IAM policy assignment.</p>",
     "DeleteTemplate": "<p>Deletes a template.</p>",
     "DeleteTemplateAlias": "<p>Deletes the item that the specified template alias points to. If you provide a specific alias, you delete the version of the template that the alias points to.</p>",
+    "DeleteTheme": "<p>Deletes a theme.</p>",
+    "DeleteThemeAlias": "<p>Deletes the version of the theme that the specified theme alias points to. If you provide a specific alias, you delete the version of the theme that the alias points to.</p>",
     "DeleteUser": "<p>Deletes the Amazon QuickSight user that is associated with the identity of the AWS Identity and Access Management (IAM) user or role that's making the call. The IAM user isn't deleted as a result of this call. </p>",
     "DeleteUserByPrincipalId": "<p>Deletes a user identified by its principal ID. </p>",
     "DescribeDashboard": "<p>Provides a summary for a dashboard.</p>",
@@ -34,6 +38,9 @@
     "DescribeTemplate": "<p>Describes a template's metadata.</p>",
     "DescribeTemplateAlias": "<p>Describes the template alias for a template.</p>",
     "DescribeTemplatePermissions": "<p>Describes read and write permissions on a template.</p>",
+    "DescribeTheme": "<p>Describes a theme.</p>",
+    "DescribeThemeAlias": "<p>Describes the alias for a theme.</p>",
+    "DescribeThemePermissions": "<p>Describes the read and write permissions for a theme.</p>",
     "DescribeUser": "<p>Returns information about a user, given the user name. </p>",
     "GetDashboardEmbedUrl": "<p>Generates a URL and authorization code that you can embed in your web server code. Before you use this command, make sure that you have configured the dashboards and permissions. </p> <p>Currently, you can use <code>GetDashboardEmbedURL</code> only from the server, not from the user's browser. The following rules apply to the combination of URL and authorization code:</p> <ul> <li> <p>They must be used together.</p> </li> <li> <p>They can be used one time only.</p> </li> <li> <p>They are valid for 5 minutes after you run this command.</p> </li> <li> <p>The resulting user session is valid for 10 hours.</p> </li> </ul> <p> For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedding-dashboards.html\">Embedding Amazon QuickSight Dashboards</a> in the <i>Amazon QuickSight User Guide</i> or <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/qs-dev-embedded-dashboards.html\">Embedding Amazon QuickSight Dashboards</a> in the <i>Amazon QuickSight API Reference</i>.</p>",
     "ListDashboardVersions": "<p>Lists all the versions of the dashboards in the QuickSight subscription.</p>",
@@ -49,6 +56,9 @@
     "ListTemplateAliases": "<p>Lists all the aliases of a template.</p>",
     "ListTemplateVersions": "<p>Lists all the versions of the templates in the current Amazon QuickSight account.</p>",
     "ListTemplates": "<p>Lists all the templates in the current Amazon QuickSight account.</p>",
+    "ListThemeAliases": "<p>Lists all the aliases of a theme.</p>",
+    "ListThemeVersions": "<p>Lists all the versions of the themes in the current AWS account.</p>",
+    "ListThemes": "<p>Lists all the themes in the current AWS account.</p>",
     "ListUserGroups": "<p>Lists the Amazon QuickSight groups that an Amazon QuickSight user is a member of.</p>",
     "ListUsers": "<p>Returns a list of all of the Amazon QuickSight users belonging to this account. </p>",
     "RegisterUser": "<p>Creates an Amazon QuickSight user, whose identity is associated with the AWS Identity and Access Management (IAM) identity or role specified in the request. </p>",
@@ -67,6 +77,9 @@
     "UpdateTemplate": "<p>Updates a template from an existing Amazon QuickSight analysis or another template.</p>",
     "UpdateTemplateAlias": "<p>Updates the template alias of a template.</p>",
     "UpdateTemplatePermissions": "<p>Updates the resource permissions for a template.</p>",
+    "UpdateTheme": "<p>Updates a theme.</p>",
+    "UpdateThemeAlias": "<p>Updates an alias of a theme.</p>",
+    "UpdateThemePermissions": "<p>Updates the resource permissions for a theme. Permissions apply to the action to grant or revoke permissions on, for example <code>\"quicksight:DescribeTheme\"</code>.</p> <p>Theme permissions apply in groupings. Valid groupings include the following for the three levels of permissions, which are user, owner, or no permissions: </p> <ul> <li> <p>User</p> <ul> <li> <p> <code>\"quicksight:DescribeTheme\"</code> </p> </li> <li> <p> <code>\"quicksight:DescribeThemeAlias\"</code> </p> </li> <li> <p> <code>\"quicksight:ListThemeAliases\"</code> </p> </li> <li> <p> <code>\"quicksight:ListThemeVersions\"</code> </p> </li> </ul> </li> <li> <p>Owner</p> <ul> <li> <p> <code>\"quicksight:DescribeTheme\"</code> </p> </li> <li> <p> <code>\"quicksight:DescribeThemeAlias\"</code> </p> </li> <li> <p> <code>\"quicksight:ListThemeAliases\"</code> </p> </li> <li> <p> <code>\"quicksight:ListThemeVersions\"</code> </p> </li> <li> <p> <code>\"quicksight:DeleteTheme\"</code> </p> </li> <li> <p> <code>\"quicksight:UpdateTheme\"</code> </p> </li> <li> <p> <code>\"quicksight:CreateThemeAlias\"</code> </p> </li> <li> <p> <code>\"quicksight:DeleteThemeAlias\"</code> </p> </li> <li> <p> <code>\"quicksight:UpdateThemeAlias\"</code> </p> </li> <li> <p> <code>\"quicksight:UpdateThemePermissions\"</code> </p> </li> <li> <p> <code>\"quicksight:DescribeThemePermissions\"</code> </p> </li> </ul> </li> <li> <p>To specify no permissions, omit the permissions list.</p> </li> </ul>",
     "UpdateUser": "<p>Updates an Amazon QuickSight user.</p>"
   },
   "shapes": {
@@ -103,13 +116,20 @@
       "base": null,
       "refs": {
         "CreateTemplateAliasRequest$AliasName": "<p>The name that you want to give to the template alias that you're creating. Don't start the alias name with the <code>$</code> character. Alias names that start with <code>$</code> are reserved by QuickSight. </p>",
+        "CreateThemeAliasRequest$AliasName": "<p>The name that you want to give to the theme alias that you are creating. The alias name can't begin with a <code>$</code>. Alias names that start with <code>$</code> are reserved by Amazon QuickSight. </p>",
         "DeleteTemplateAliasRequest$AliasName": "<p>The name for the template alias. To delete a specific alias, you delete the version that the alias points to. You can specify the alias name, or specify the latest version of the template by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. </p>",
         "DeleteTemplateAliasResponse$AliasName": "<p>The name for the template alias.</p>",
+        "DeleteThemeAliasRequest$AliasName": "<p>The unique name for the theme alias to delete.</p>",
+        "DeleteThemeAliasResponse$AliasName": "<p>The name for the theme alias.</p>",
         "DescribeDashboardRequest$AliasName": "<p>The alias name.</p>",
         "DescribeTemplateAliasRequest$AliasName": "<p>The name of the template alias that you want to describe. If you name a specific alias, you describe the version that the alias points to. You can specify the latest version of the template by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. The keyword <code>$PUBLISHED</code> doesn't apply to templates.</p>",
         "DescribeTemplateRequest$AliasName": "<p>The alias of the template that you want to describe. If you name a specific alias, you describe the version that the alias points to. You can specify the latest version of the template by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. The keyword <code>$PUBLISHED</code> doesn't apply to templates.</p>",
+        "DescribeThemeAliasRequest$AliasName": "<p>The name of the theme alias that you want to describe.</p>",
+        "DescribeThemeRequest$AliasName": "<p>The alias of the theme that you want to describe. If you name a specific alias, you describe the version that the alias points to. You can specify the latest version of the theme by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. The keyword <code>$PUBLISHED</code> doesn't apply to themes.</p>",
         "TemplateAlias$AliasName": "<p>The display name of the template alias.</p>",
-        "UpdateTemplateAliasRequest$AliasName": "<p>The alias of the template that you want to update. If you name a specific alias, you update the version that the alias points to. You can specify the latest version of the template by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. The keyword <code>$PUBLISHED</code> doesn't apply to templates.</p>"
+        "ThemeAlias$AliasName": "<p>The display name of the theme alias.</p>",
+        "UpdateTemplateAliasRequest$AliasName": "<p>The alias of the template that you want to update. If you name a specific alias, you update the version that the alias points to. You can specify the latest version of the template by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. The keyword <code>$PUBLISHED</code> doesn't apply to templates.</p>",
+        "UpdateThemeAliasRequest$AliasName": "<p>The name of the theme alias that you want to update.</p>"
       }
     },
     "AmazonElasticsearchParameters": {
@@ -123,7 +143,8 @@
       "refs": {
         "ActiveIAMPolicyAssignment$PolicyArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "CancelIngestionResponse$Arn": "<p>The Amazon Resource Name (ARN) for the data ingestion.</p>",
-        "CreateDashboardResponse$Arn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
+        "CreateDashboardRequest$ThemeArn": "<p>The Amazon Resource Name (ARN) of the theme that is being used for this dashboard. If you add a value for this field, it overrides the value that is used in the source entity. The theme ARN must exist in the same AWS account where you create the dashboard.</p>",
+        "CreateDashboardResponse$Arn": "<p>The ARN of the dashboard.</p>",
         "CreateDashboardResponse$VersionArn": "<p>The ARN of the dashboard, including the version number of the first version that is created.</p>",
         "CreateDataSetResponse$Arn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "CreateDataSetResponse$IngestionArn": "<p>The ARN for the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE.</p>",
@@ -133,6 +154,8 @@
         "CreateIngestionResponse$Arn": "<p>The Amazon Resource Name (ARN) for the data ingestion.</p>",
         "CreateTemplateResponse$Arn": "<p>The ARN for the template.</p>",
         "CreateTemplateResponse$VersionArn": "<p>The ARN for the template, including the version information of the first version.</p>",
+        "CreateThemeResponse$Arn": "<p>The Amazon Resource Name (ARN) for the theme.</p>",
+        "CreateThemeResponse$VersionArn": "<p>The Amazon Resource Name (ARN) for the new theme.</p>",
         "CustomSql$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "Dashboard$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "DashboardSourceTemplate$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
@@ -151,10 +174,13 @@
         "DeleteDataSourceResponse$Arn": "<p>The Amazon Resource Name (ARN) of the data source that you deleted.</p>",
         "DeleteTemplateAliasResponse$Arn": "<p>The Amazon Resource Name (ARN) of the template you want to delete.</p>",
         "DeleteTemplateResponse$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "DeleteThemeAliasResponse$Arn": "<p>The Amazon Resource Name (ARN) of the theme resource using the deleted alias.</p>",
+        "DeleteThemeResponse$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "DescribeDashboardPermissionsResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
         "DescribeDataSetPermissionsResponse$DataSetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DescribeDataSourcePermissionsResponse$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "DescribeTemplatePermissionsResponse$TemplateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
+        "DescribeThemePermissionsResponse$ThemeArn": "<p>The Amazon Resource Name (ARN) of the theme.</p>",
         "GetDashboardEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's Amazon Resource Name (ARN), for use with <code>QUICKSIGHT</code> identity type. You can use this for any Amazon QuickSight users in your account (readers, authors, or admins) authenticated as one of the following:</p> <ul> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited nonfederated users</p> </li> <li> <p>IAM users and IAM role-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAM federation.</p> </li> </ul>",
         "Group$Arn": "<p>The Amazon Resource Name (ARN) for the group.</p>",
         "GroupMember$Arn": "<p>The Amazon Resource Name (ARN) for the group member (user).</p>",
@@ -172,9 +198,15 @@
         "TemplateSummary$Arn": "<p>A summary of a template.</p>",
         "TemplateVersion$SourceEntityArn": "<p>The Amazon Resource Name (ARN) of the analysis or template which was used to create this template.</p>",
         "TemplateVersionSummary$Arn": "<p>The Amazon Resource Name (ARN) of the template version.</p>",
+        "Theme$Arn": "<p>The Amazon Resource Name (ARN) of the theme.</p>",
+        "ThemeAlias$Arn": "<p>The Amazon Resource Name (ARN) of the theme alias.</p>",
+        "ThemeSummary$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "ThemeVersion$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "ThemeVersionSummary$Arn": "<p>The Amazon Resource Name (ARN) of the theme version.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to untag.</p>",
         "UpdateDashboardPermissionsResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
         "UpdateDashboardPublishedVersionResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
+        "UpdateDashboardRequest$ThemeArn": "<p>The Amazon Resource Name (ARN) of the theme that is being used for this dashboard. If you add a value for this field, it overrides the value that was originally associated with the entity. The theme ARN must exist in the same AWS account where you create the dashboard.</p>",
         "UpdateDashboardResponse$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UpdateDashboardResponse$VersionArn": "<p>The ARN of the dashboard, including the version number.</p>",
         "UpdateDataSetPermissionsResponse$DataSetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
@@ -187,6 +219,9 @@
         "UpdateTemplatePermissionsResponse$TemplateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "UpdateTemplateResponse$Arn": "<p>The Amazon Resource Name (ARN) for the template.</p>",
         "UpdateTemplateResponse$VersionArn": "<p>The ARN for the template, including the version information of the first version.</p>",
+        "UpdateThemePermissionsResponse$ThemeArn": "<p>The Amazon Resource Name (ARN) of the theme.</p>",
+        "UpdateThemeResponse$Arn": "<p>The Amazon Resource Name (ARN) for the theme.</p>",
+        "UpdateThemeResponse$VersionArn": "<p>The Amazon Resource Name (ARN) for the new version of the theme.</p>",
         "User$Arn": "<p>The Amazon Resource Name (ARN) for the user.</p>",
         "VpcConnectionProperties$VpcConnectionArn": "<p>The Amazon Resource Name (ARN) for the VPC connection.</p>"
       }
@@ -234,6 +269,8 @@
         "CreateIngestionRequest$AwsAccountId": "<p>The AWS account ID.</p>",
         "CreateTemplateAliasRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template that you creating an alias for.</p>",
         "CreateTemplateRequest$AwsAccountId": "<p>The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
+        "CreateThemeAliasRequest$AwsAccountId": "<p>The ID of the AWS account that contains the theme for the new theme alias.</p>",
+        "CreateThemeRequest$AwsAccountId": "<p>The ID of the AWS account where you want to store the new theme. </p>",
         "DeleteDashboardRequest$AwsAccountId": "<p>The ID of the AWS account that contains the dashboard that you're deleting.</p>",
         "DeleteDataSetRequest$AwsAccountId": "<p>The AWS account ID.</p>",
         "DeleteDataSourceRequest$AwsAccountId": "<p>The AWS account ID.</p>",
@@ -242,6 +279,8 @@
         "DeleteIAMPolicyAssignmentRequest$AwsAccountId": "<p>The AWS account ID where you want to delete the IAM policy assignment.</p>",
         "DeleteTemplateAliasRequest$AwsAccountId": "<p>The ID of the AWS account that contains the item to delete.</p>",
         "DeleteTemplateRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template that you're deleting.</p>",
+        "DeleteThemeAliasRequest$AwsAccountId": "<p>The ID of the AWS account that contains the theme alias to delete.</p>",
+        "DeleteThemeRequest$AwsAccountId": "<p>The ID of the AWS account that contains the theme that you're deleting.</p>",
         "DeleteUserByPrincipalIdRequest$AwsAccountId": "<p>The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "DeleteUserRequest$AwsAccountId": "<p>The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "DescribeDashboardPermissionsRequest$AwsAccountId": "<p>The ID of the AWS account that contains the dashboard that you're describing permissions for.</p>",
@@ -256,6 +295,8 @@
         "DescribeTemplateAliasRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template alias that you're describing.</p>",
         "DescribeTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template that you're describing.</p>",
         "DescribeTemplateRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template that you're describing.</p>",
+        "DescribeThemeAliasRequest$AwsAccountId": "<p>The ID of the AWS account that contains the theme alias that you're describing.</p>",
+        "DescribeThemePermissionsRequest$AwsAccountId": "<p>The ID of the AWS account that contains the theme that you're describing.</p>",
         "DescribeUserRequest$AwsAccountId": "<p>The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "GetDashboardEmbedUrlRequest$AwsAccountId": "<p>The ID for the AWS account that contains the dashboard that you're embedding.</p>",
         "IAMPolicyAssignment$AwsAccountId": "<p>The AWS account ID.</p>",
@@ -271,6 +312,9 @@
         "ListTemplateAliasesRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template aliases that you're listing.</p>",
         "ListTemplateVersionsRequest$AwsAccountId": "<p>The ID of the AWS account that contains the templates that you're listing.</p>",
         "ListTemplatesRequest$AwsAccountId": "<p>The ID of the AWS account that contains the templates that you're listing.</p>",
+        "ListThemeAliasesRequest$AwsAccountId": "<p>The ID of the AWS account that contains the theme aliases that you're listing.</p>",
+        "ListThemeVersionsRequest$AwsAccountId": "<p>The ID of the AWS account that contains the themes that you're listing.</p>",
+        "ListThemesRequest$AwsAccountId": "<p>The ID of the AWS account that contains the themes that you're listing.</p>",
         "ListUserGroupsRequest$AwsAccountId": "<p>The AWS account ID that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "ListUsersRequest$AwsAccountId": "<p>The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "RegisterUserRequest$AwsAccountId": "<p>The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
@@ -287,7 +331,16 @@
         "UpdateTemplateAliasRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template alias that you're updating.</p>",
         "UpdateTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template.</p>",
         "UpdateTemplateRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template that you're updating.</p>",
+        "UpdateThemeAliasRequest$AwsAccountId": "<p>The ID of the AWS account that contains the theme alias that you're updating.</p>",
+        "UpdateThemePermissionsRequest$AwsAccountId": "<p>The ID of the AWS account that contains the theme.</p>",
+        "UpdateThemeRequest$AwsAccountId": "<p>The ID of the AWS account that contains the theme that you're updating.</p>",
         "UpdateUserRequest$AwsAccountId": "<p>The ID for the AWS account that the user is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>"
+      }
+    },
+    "AwsAndAccountId": {
+      "base": null,
+      "refs": {
+        "DescribeThemeRequest$AwsAccountId": "<p>The ID of the AWS account that contains the theme that you're describing.</p>"
       }
     },
     "AwsIotAnalyticsParameters": {
@@ -302,6 +355,12 @@
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
         "UploadSettings$ContainsHeader": "<p>Whether the file has a header row, or the files each have a header row.</p>",
         "User$Active": "<p>The active status of user. When you create an Amazon QuickSight user that’s not an IAM user or an Active Directory user, that user is inactive until they sign in and provide a password.</p>"
+      }
+    },
+    "BorderStyle": {
+      "base": "<p>The display options for tile borders for visuals.</p>",
+      "refs": {
+        "TileStyle$Border": "<p>The border around a tile.</p>"
       }
     },
     "CalculatedColumn": {
@@ -342,6 +401,13 @@
       "base": null,
       "refs": {
         "RedshiftParameters$ClusterId": "<p>Cluster ID. This field can be blank if the <code>Host</code> and <code>Port</code> are provided.</p>"
+      }
+    },
+    "ColorList": {
+      "base": null,
+      "refs": {
+        "DataColorPalette$Colors": "<p>The hexadecimal codes for the colors.</p>",
+        "DataColorPalette$MinMaxGradient": "<p>The minimum and maximum hexadecimal codes that describe a color gradient. </p>"
       }
     },
     "ColumnDataType": {
@@ -556,6 +622,26 @@
       "refs": {
       }
     },
+    "CreateThemeAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateThemeAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateThemeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateThemeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CredentialPair": {
       "base": "<p>The combination of user name and password that are used as credentials.</p>",
       "refs": {
@@ -623,7 +709,7 @@
     "DashboardPublishOptions": {
       "base": "<p>Dashboard publish options.</p>",
       "refs": {
-        "CreateDashboardRequest$DashboardPublishOptions": "<p>Options for publishing the dashboard when you create it:</p> <ul> <li> <p> <code>AvailabilityStatus</code> for <code>AdHocFilteringOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. When this is set to <code>DISABLED</code>, QuickSight disables the left filter pane on the published dashboard, which can be used for ad hoc (one-time) filtering. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>ExportToCSVOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to .csv format isn't enabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>VisibilityState</code> for <code>SheetControlsOption</code> - This visibility state can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. This option is <code>COLLAPSED</code> by default.</p> </li> </ul>",
+        "CreateDashboardRequest$DashboardPublishOptions": "<p>Options for publishing the dashboard when you create it:</p> <ul> <li> <p> <code>AvailabilityStatus</code> for <code>AdHocFilteringOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. When this is set to <code>DISABLED</code>, QuickSight disables the left filter pane on the published dashboard, which can be used for ad hoc (one-time) filtering. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>ExportToCSVOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to .csv format isn't enabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>VisibilityState</code> for <code>SheetControlsOption</code> - This visibility state can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. This option is <code>COLLAPSED</code> by default. </p> </li> </ul>",
         "UpdateDashboardRequest$DashboardPublishOptions": "<p>Options for publishing the dashboard when you create it:</p> <ul> <li> <p> <code>AvailabilityStatus</code> for <code>AdHocFilteringOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. When this is set to <code>DISABLED</code>, QuickSight disables the left filter pane on the published dashboard, which can be used for ad hoc (one-time) filtering. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>AvailabilityStatus</code> for <code>ExportToCSVOption</code> - This status can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to .csv format isn't enabled when this is set to <code>DISABLED</code>. This option is <code>ENABLED</code> by default. </p> </li> <li> <p> <code>VisibilityState</code> for <code>SheetControlsOption</code> - This visibility state can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. This option is <code>COLLAPSED</code> by default. </p> </li> </ul>"
       }
     },
@@ -687,6 +773,12 @@
       "base": null,
       "refs": {
         "ListDashboardVersionsResponse$DashboardVersionSummaryList": "<p>A structure that contains information about each version of the dashboard.</p>"
+      }
+    },
+    "DataColorPalette": {
+      "base": "<p>The theme colors that are used for data colors in charts. The colors description is a hexidecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. </p>",
+      "refs": {
+        "ThemeConfiguration$DataColorPalette": "<p>Color properties that apply to chart data colors.</p>"
       }
     },
     "DataSet": {
@@ -933,6 +1025,26 @@
       "refs": {
       }
     },
+    "DeleteThemeAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteThemeAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteThemeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteThemeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteUserByPrincipalIdRequest": {
       "base": "<p/>",
       "refs": {
@@ -1075,6 +1187,36 @@
       }
     },
     "DescribeTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeThemeAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeThemeAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeThemePermissionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeThemePermissionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeThemeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeThemeResponse": {
       "base": null,
       "refs": {
       }
@@ -1250,6 +1392,35 @@
         "UpdateGroupRequest$GroupName": "<p>The name of the group that you want to update.</p>"
       }
     },
+    "GutterStyle": {
+      "base": "<p>The display options for gutter spacing between tiles on a sheet.</p>",
+      "refs": {
+        "TileLayoutStyle$Gutter": "<p>The gutter settings that apply between tiles. </p>"
+      }
+    },
+    "HexColor": {
+      "base": null,
+      "refs": {
+        "ColorList$member": null,
+        "DataColorPalette$EmptyFillColor": "<p>The hexadecimal code of a color that applies to charts where a lack of data is highlighted.</p>",
+        "UIColorPalette$PrimaryForeground": "<p>The color of text and other foreground elements that appear over the primary background regions, such as grid lines, borders, table banding, icons, and so on.</p>",
+        "UIColorPalette$PrimaryBackground": "<p>The background color that applies to visuals and other high emphasis UI.</p>",
+        "UIColorPalette$SecondaryForeground": "<p>The foreground color that applies to any sheet title, sheet control text, or UI that appears over the secondary background.</p>",
+        "UIColorPalette$SecondaryBackground": "<p>The background color that applies to the sheet background and sheet controls.</p>",
+        "UIColorPalette$Accent": "<p>This color is that applies to selected states and buttons.</p>",
+        "UIColorPalette$AccentForeground": "<p>The foreground color that applies to any text or other elements that appear over the accent color.</p>",
+        "UIColorPalette$Danger": "<p>The color that applies to error messages.</p>",
+        "UIColorPalette$DangerForeground": "<p>The foreground color that applies to any text or other elements that appear over the error color.</p>",
+        "UIColorPalette$Warning": "<p>This color that applies to warning and informational messages.</p>",
+        "UIColorPalette$WarningForeground": "<p>The foreground color that applies to any text or other elements that appear over the warning color.</p>",
+        "UIColorPalette$Success": "<p>The color that applies to success messages, for example the check mark for a successful download.</p>",
+        "UIColorPalette$SuccessForeground": "<p>The foreground color that applies to any text or other elements that appear over the success color.</p>",
+        "UIColorPalette$Dimension": "<p>The color that applies to the names of fields that are identified as dimensions.</p>",
+        "UIColorPalette$DimensionForeground": "<p>The foreground color that applies to any text or other elements that appear over the dimension color.</p>",
+        "UIColorPalette$Measure": "<p>The color that applies to the names of fields that are identified as measures.</p>",
+        "UIColorPalette$MeasureForeground": "<p>The foreground color that applies to any text or other elements that appear over the measure color.</p>"
+      }
+    },
     "Host": {
       "base": null,
       "refs": {
@@ -1267,7 +1438,7 @@
       }
     },
     "IAMPolicyAssignment": {
-      "base": "<p>An IAM policy assignment.</p>",
+      "base": "<p>An AWS Identity and Access Management (IAM) policy assignment.</p>",
       "refs": {
         "DescribeIAMPolicyAssignmentResponse$IAMPolicyAssignment": "<p>Information describing the IAM policy assignment.</p>"
       }
@@ -1595,6 +1766,36 @@
       "refs": {
       }
     },
+    "ListThemeAliasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListThemeAliasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListThemeVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListThemeVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListThemesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListThemesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListUserGroupsRequest": {
       "base": null,
       "refs": {
@@ -1668,6 +1869,12 @@
         "S3Parameters$ManifestFileLocation": "<p>Location of the Amazon S3 manifest file. This is NULL if the manifest file was uploaded in the console.</p>"
       }
     },
+    "MarginStyle": {
+      "base": "<p>The display options for margins around the outside edge of sheets.</p>",
+      "refs": {
+        "TileLayoutStyle$Margin": "<p>The margin settings that apply around the outside edge of sheets.</p>"
+      }
+    },
     "MariaDbParameters": {
       "base": "<p>MariaDB parameters.</p>",
       "refs": {
@@ -1688,6 +1895,9 @@
         "ListTemplateAliasesRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListTemplateVersionsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListTemplatesRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "ListThemeAliasesRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "ListThemeVersionsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "ListThemesRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListUserGroupsRequest$MaxResults": "<p>The maximum number of results to return from this request.</p>",
         "ListUsersRequest$MaxResults": "<p>The maximum number of results to return from this request.</p>",
         "SearchDashboardsRequest$MaxResults": "<p>The maximum number of results to be returned per request.</p>"
@@ -1734,7 +1944,8 @@
         "DecimalParameter$Name": "<p>A display name for the dataset.</p>",
         "IntegerParameter$Name": "<p>A display name for the dataset.</p>",
         "StringParameter$Name": "<p>A display name for the dataset.</p>",
-        "TemplateError$Message": "<p>Description of the error type.</p>"
+        "TemplateError$Message": "<p>Description of the error type.</p>",
+        "ThemeError$Message": "<p>The error message.</p>"
       }
     },
     "OnClause": {
@@ -1764,8 +1975,8 @@
     "Parameters": {
       "base": "<p>Parameters.</p>",
       "refs": {
-        "CreateDashboardRequest$Parameters": "<p>A structure that contains the parameters of the dashboard. These are parameter overrides for a dashboard. A dashboard can have any type of parameters, and some parameters might accept multiple values. </p>",
-        "UpdateDashboardRequest$Parameters": "<p>A structure that contains the parameters of the dashboard. These are parameter overrides for a dashboard. A dashboard can have any type of parameters, and some parameters might accept multiple values. </p>"
+        "CreateDashboardRequest$Parameters": "<p>The parameters for the creation of the dashboard, which you want to use to override the default settings. A dashboard can have any type of parameters, and some parameters might accept multiple values. </p>",
+        "UpdateDashboardRequest$Parameters": "<p>A structure that contains the parameters of the dashboard. These are parameter overrides for a dashboard. A dashboard can have any type of parameters, and some parameters might accept multiple values.</p>"
       }
     },
     "Password": {
@@ -1836,7 +2047,7 @@
     "Principal": {
       "base": null,
       "refs": {
-        "ResourcePermission$Principal": "<p>The Amazon Resource Name (ARN) of an Amazon QuickSight user or group, or an IAM ARN. If you are using cross-account resource sharing, this is the IAM ARN of an account root. Otherwise, it is the ARN of a QuickSight user or group. .</p>"
+        "ResourcePermission$Principal": "<p>The Amazon Resource Name (ARN) of the principal. This can be one of the following:</p> <ul> <li> <p>The ARN of an Amazon QuickSight user, group, or namespace. (This is most common.)</p> </li> <li> <p>The ARN of an AWS account root: This is an IAM ARN rather than a QuickSight ARN. Use this option only to share resources (templates) across AWS accounts. (This is less common.) </p> </li> </ul>"
       }
     },
     "ProjectOperation": {
@@ -1982,16 +2193,19 @@
         "CreateDataSetRequest$Permissions": "<p>A list of resource permissions on the dataset.</p>",
         "CreateDataSourceRequest$Permissions": "<p>A list of resource permissions on the data source.</p>",
         "CreateTemplateRequest$Permissions": "<p>A list of resource permissions to be set on the template. </p>",
+        "CreateThemeRequest$Permissions": "<p>A valid grouping of resource permissions to apply to the new theme. </p>",
         "DescribeDashboardPermissionsResponse$Permissions": "<p>A structure that contains the permissions for the dashboard.</p>",
         "DescribeDataSetPermissionsResponse$Permissions": "<p>A list of resource permissions on the dataset.</p>",
         "DescribeDataSourcePermissionsResponse$Permissions": "<p>A list of resource permissions on the data source.</p>",
         "DescribeTemplatePermissionsResponse$Permissions": "<p>A list of resource permissions to be set on the template. </p>",
+        "DescribeThemePermissionsResponse$Permissions": "<p>A list of resource permissions set on the theme. </p>",
         "UpdateDashboardPermissionsResponse$Permissions": "<p>Information about the permissions on the dashboard.</p>",
         "UpdateDataSetPermissionsRequest$GrantPermissions": "<p>The resource permissions that you want to grant to the dataset.</p>",
         "UpdateDataSetPermissionsRequest$RevokePermissions": "<p>The resource permissions that you want to revoke from the dataset.</p>",
         "UpdateDataSourcePermissionsRequest$GrantPermissions": "<p>A list of resource permissions that you want to grant on the data source.</p>",
         "UpdateDataSourcePermissionsRequest$RevokePermissions": "<p>A list of resource permissions that you want to revoke on the data source.</p>",
-        "UpdateTemplatePermissionsResponse$Permissions": "<p>A list of resource permissions to be set on the template.</p>"
+        "UpdateTemplatePermissionsResponse$Permissions": "<p>A list of resource permissions to be set on the template.</p>",
+        "UpdateThemePermissionsResponse$Permissions": "<p>The resulting list of resource permissions for the theme.</p>"
       }
     },
     "ResourceStatus": {
@@ -2000,14 +2214,18 @@
         "CreateDashboardResponse$CreationStatus": "<p>The status of the dashboard creation request.</p>",
         "CreateDataSourceResponse$CreationStatus": "<p>The status of creating the data source.</p>",
         "CreateTemplateResponse$CreationStatus": "<p>The template creation status.</p>",
+        "CreateThemeResponse$CreationStatus": "<p>The theme creation status.</p>",
         "DashboardVersion$Status": "<p>The HTTP status of the request.</p>",
         "DashboardVersionSummary$Status": "<p>The HTTP status of the request.</p>",
         "DataSource$Status": "<p>The HTTP status of the request.</p>",
         "TemplateVersion$Status": "<p>The HTTP status of the request.</p>",
         "TemplateVersionSummary$Status": "<p>The status of the template version.</p>",
+        "ThemeVersion$Status": "<p>The status of the theme version.</p>",
+        "ThemeVersionSummary$Status": "<p>The status of the theme version.</p>",
         "UpdateDashboardResponse$CreationStatus": "<p>The creation status of the request.</p>",
         "UpdateDataSourceResponse$UpdateStatus": "<p>The update status of the data source's last update.</p>",
-        "UpdateTemplateResponse$CreationStatus": "<p>The creation status of the template.</p>"
+        "UpdateTemplateResponse$CreationStatus": "<p>The creation status of the template.</p>",
+        "UpdateThemeResponse$CreationStatus": "<p>The creation status of the theme.</p>"
       }
     },
     "ResourceUnavailableException": {
@@ -2023,6 +2241,10 @@
         "CreateTemplateAliasRequest$TemplateId": "<p>An ID for the template.</p>",
         "CreateTemplateRequest$TemplateId": "<p>An ID for the template that you want to create. This template is unique per AWS Region in each AWS account.</p>",
         "CreateTemplateResponse$TemplateId": "<p>The ID of the template.</p>",
+        "CreateThemeAliasRequest$ThemeId": "<p>An ID for the theme alias.</p>",
+        "CreateThemeRequest$ThemeId": "<p>An ID for the theme that you want to create. The theme ID is unique per AWS Region in each AWS account.</p>",
+        "CreateThemeRequest$BaseThemeId": "<p>The ID of the theme that a custom theme will inherit from. All themes inherit from one of the starting themes defined by Amazon QuickSight. For a list of the starting themes, use <code>ListThemes</code> or choose <b>Themes</b> from within a QuickSight analysis. </p>",
+        "CreateThemeResponse$ThemeId": "<p>The ID of the theme.</p>",
         "Dashboard$DashboardId": "<p>Dashboard ID.</p>",
         "DashboardSummary$DashboardId": "<p>Dashboard ID.</p>",
         "DeleteDashboardRequest$DashboardId": "<p>The ID for the dashboard.</p>",
@@ -2031,6 +2253,10 @@
         "DeleteTemplateAliasResponse$TemplateId": "<p>An ID for the template associated with the deletion.</p>",
         "DeleteTemplateRequest$TemplateId": "<p>An ID for the template you want to delete.</p>",
         "DeleteTemplateResponse$TemplateId": "<p>An ID for the template.</p>",
+        "DeleteThemeAliasRequest$ThemeId": "<p>The ID for the theme that the specified alias is for.</p>",
+        "DeleteThemeAliasResponse$ThemeId": "<p>An ID for the theme associated with the deletion.</p>",
+        "DeleteThemeRequest$ThemeId": "<p>An ID for the theme that you want to delete.</p>",
+        "DeleteThemeResponse$ThemeId": "<p>An ID for the theme.</p>",
         "DescribeDashboardPermissionsRequest$DashboardId": "<p>The ID for the dashboard, also added to the IAM policy.</p>",
         "DescribeDashboardPermissionsResponse$DashboardId": "<p>The ID for the dashboard.</p>",
         "DescribeDashboardRequest$DashboardId": "<p>The ID for the dashboard.</p>",
@@ -2038,12 +2264,21 @@
         "DescribeTemplatePermissionsRequest$TemplateId": "<p>The ID for the template.</p>",
         "DescribeTemplatePermissionsResponse$TemplateId": "<p>The ID for the template.</p>",
         "DescribeTemplateRequest$TemplateId": "<p>The ID for the template.</p>",
+        "DescribeThemeAliasRequest$ThemeId": "<p>The ID for the theme.</p>",
+        "DescribeThemePermissionsRequest$ThemeId": "<p>The ID for the theme that you want to describe permissions for.</p>",
+        "DescribeThemePermissionsResponse$ThemeId": "<p>The ID for the theme.</p>",
+        "DescribeThemeRequest$ThemeId": "<p>The ID for the theme.</p>",
         "GetDashboardEmbedUrlRequest$DashboardId": "<p>The ID for the dashboard, also added to the IAM policy.</p>",
         "ListDashboardVersionsRequest$DashboardId": "<p>The ID for the dashboard.</p>",
         "ListTemplateAliasesRequest$TemplateId": "<p>The ID for the template.</p>",
         "ListTemplateVersionsRequest$TemplateId": "<p>The ID for the template.</p>",
+        "ListThemeAliasesRequest$ThemeId": "<p>The ID for the theme.</p>",
+        "ListThemeVersionsRequest$ThemeId": "<p>The ID for the theme.</p>",
         "Template$TemplateId": "<p>The ID for the template. This is unique per AWS Region for each AWS account.</p>",
         "TemplateSummary$TemplateId": "<p>The ID of the template. This ID is unique per AWS Region for each AWS account.</p>",
+        "Theme$ThemeId": "<p>The identifier that the user gives to the theme.</p>",
+        "ThemeSummary$ThemeId": "<p>The ID of the theme. This ID is unique per AWS Region for each AWS account.</p>",
+        "ThemeVersion$BaseThemeId": "<p>The Amazon QuickSight-defined ID of the theme that a custom theme inherits from. All themes initially inherit from a default QuickSight theme.</p>",
         "UpdateDashboardPermissionsRequest$DashboardId": "<p>The ID for the dashboard.</p>",
         "UpdateDashboardPermissionsResponse$DashboardId": "<p>The ID for the dashboard.</p>",
         "UpdateDashboardPublishedVersionRequest$DashboardId": "<p>The ID for the dashboard.</p>",
@@ -2054,7 +2289,13 @@
         "UpdateTemplatePermissionsRequest$TemplateId": "<p>The ID for the template.</p>",
         "UpdateTemplatePermissionsResponse$TemplateId": "<p>The ID for the template.</p>",
         "UpdateTemplateRequest$TemplateId": "<p>The ID for the template.</p>",
-        "UpdateTemplateResponse$TemplateId": "<p>The ID for the template.</p>"
+        "UpdateTemplateResponse$TemplateId": "<p>The ID for the template.</p>",
+        "UpdateThemeAliasRequest$ThemeId": "<p>The ID for the theme.</p>",
+        "UpdateThemePermissionsRequest$ThemeId": "<p>The ID for the theme.</p>",
+        "UpdateThemePermissionsResponse$ThemeId": "<p>The ID for the theme.</p>",
+        "UpdateThemeRequest$ThemeId": "<p>The ID for the theme.</p>",
+        "UpdateThemeRequest$BaseThemeId": "<p>The theme ID, defined by Amazon QuickSight, that a custom theme inherits from. All themes initially inherit from a default QuickSight theme.</p>",
+        "UpdateThemeResponse$ThemeId": "<p>The ID for the theme.</p>"
       }
     },
     "RoleSessionName": {
@@ -2141,6 +2382,12 @@
         "DashboardPublishOptions$SheetControlsOption": "<p>Sheet controls option.</p>"
       }
     },
+    "SheetStyle": {
+      "base": "<p>The theme display options for sheets. </p>",
+      "refs": {
+        "ThemeConfiguration$Sheet": "<p>Display options related to sheets.</p>"
+      }
+    },
     "SiteBaseUrl": {
       "base": null,
       "refs": {
@@ -2193,6 +2440,8 @@
         "CreateIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateThemeResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteDashboardResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -2201,6 +2450,8 @@
         "DeleteIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteThemeResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteUserByPrincipalIdResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDashboardPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -2215,6 +2466,9 @@
         "DescribeTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeThemePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeThemeResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeUserResponse$Status": "<p>The HTTP status of the request.</p>",
         "GetDashboardEmbedUrlResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListDashboardVersionsResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -2230,6 +2484,9 @@
         "ListTemplateAliasesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListTemplateVersionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListTemplatesResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListThemeAliasesResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListThemeVersionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListThemesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListUserGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListUsersResponse$Status": "<p>The HTTP status of the request.</p>",
         "RegisterUserResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -2248,6 +2505,9 @@
         "UpdateTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateThemeAliasResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateThemePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateThemeResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateUserResponse$Status": "<p>The HTTP status of the request.</p>"
       }
     },
@@ -2275,6 +2535,8 @@
         "CreateIAMPolicyAssignmentResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "CreateTemplateAliasResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "CreateTemplateResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "CreateThemeAliasResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "CreateThemeResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DashboardSearchFilter$Value": "<p>The value of the named item, in this case <code>QUICKSIGHT_USER</code>, that you want to use as a filter, for example, <code>\"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>. </p>",
         "DataSetConfiguration$Placeholder": "<p>Placeholder.</p>",
         "DataSourceErrorInfo$Message": "<p>Error message.</p>",
@@ -2286,6 +2548,8 @@
         "DeleteIAMPolicyAssignmentResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DeleteTemplateAliasResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DeleteTemplateResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "DeleteThemeAliasResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "DeleteThemeResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DeleteUserByPrincipalIdRequest$PrincipalId": "<p>The principal ID of the user.</p>",
         "DeleteUserByPrincipalIdResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DeleteUserResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
@@ -2299,6 +2563,10 @@
         "DescribeIAMPolicyAssignmentResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DescribeTemplateAliasResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DescribeTemplatePermissionsResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "DescribeTemplateResponse$RequestId": null,
+        "DescribeThemeAliasResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "DescribeThemePermissionsResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "DescribeThemeResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DescribeUserResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "DomainNotWhitelistedException$Message": null,
         "DomainNotWhitelistedException$RequestId": "<p>The AWS request ID for this request.</p>",
@@ -2350,6 +2618,15 @@
         "ListTemplatesRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListTemplatesResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListTemplatesResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "ListThemeAliasesRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListThemeAliasesResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "ListThemeAliasesResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListThemeVersionsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListThemeVersionsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListThemeVersionsResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "ListThemesRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListThemesResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListThemesResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "ListUserGroupsRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListUserGroupsResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListUserGroupsResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
@@ -2396,6 +2673,9 @@
         "UpdateTemplateAliasResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "UpdateTemplatePermissionsResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "UpdateTemplateResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "UpdateThemeAliasResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "UpdateThemePermissionsResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
+        "UpdateThemeResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "UpdateUserRequest$Email": "<p>The email address of the user that you want to update.</p>",
         "UpdateUserResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "User$Email": "<p>The user's email address.</p>",
@@ -2452,6 +2732,7 @@
         "CreateDataSetRequest$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the dataset.</p>",
         "CreateDataSourceRequest$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the data source.</p>",
         "CreateTemplateRequest$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>",
+        "CreateThemeRequest$Tags": "<p>A map of the key-value pairs for the resource tag or tags that you want to add to the resource.</p>",
         "ListTagsForResourceResponse$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>",
         "TagResourceRequest$Tags": "<p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>"
       }
@@ -2581,9 +2862,114 @@
         "UploadSettings$TextQualifier": "<p>Text qualifier.</p>"
       }
     },
+    "Theme": {
+      "base": "<p/>",
+      "refs": {
+        "DescribeThemeResponse$Theme": "<p>The information about the theme that you are describing.</p>"
+      }
+    },
+    "ThemeAlias": {
+      "base": "<p>An alias for a theme.</p>",
+      "refs": {
+        "CreateThemeAliasResponse$ThemeAlias": "<p>Information about the theme alias.</p>",
+        "DescribeThemeAliasResponse$ThemeAlias": "<p>Information about the theme alias.</p>",
+        "ThemeAliasList$member": null,
+        "UpdateThemeAliasResponse$ThemeAlias": "<p>Information about the theme alias.</p>"
+      }
+    },
+    "ThemeAliasList": {
+      "base": null,
+      "refs": {
+        "ListThemeAliasesResponse$ThemeAliasList": "<p>A structure containing the list of the theme's aliases.</p>"
+      }
+    },
+    "ThemeConfiguration": {
+      "base": "<p>The theme configuration. This configuration contains all of the display properties for a theme.</p>",
+      "refs": {
+        "CreateThemeRequest$Configuration": "<p>The theme configuration, which contains the theme display properties.</p>",
+        "ThemeVersion$Configuration": "<p>The theme configuration, which contains all the theme display properties.</p>",
+        "UpdateThemeRequest$Configuration": "<p>The theme configuration, which contains the theme display properties.</p>"
+      }
+    },
+    "ThemeError": {
+      "base": "<p>Theme error.</p>",
+      "refs": {
+        "ThemeErrorList$member": null
+      }
+    },
+    "ThemeErrorList": {
+      "base": null,
+      "refs": {
+        "ThemeVersion$Errors": "<p>Errors associated with the theme.</p>"
+      }
+    },
+    "ThemeErrorType": {
+      "base": null,
+      "refs": {
+        "ThemeError$Type": "<p>The type of error.</p>"
+      }
+    },
+    "ThemeName": {
+      "base": null,
+      "refs": {
+        "CreateThemeRequest$Name": "<p>A display name for the theme.</p>",
+        "Theme$Name": "<p>The name that the user gives to the theme.</p>",
+        "ThemeSummary$Name": "<p>the display name for the theme.</p>",
+        "UpdateThemeRequest$Name": "<p>The name for the theme.</p>"
+      }
+    },
+    "ThemeSummary": {
+      "base": "<p>The theme summary.</p>",
+      "refs": {
+        "ThemeSummaryList$member": null
+      }
+    },
+    "ThemeSummaryList": {
+      "base": null,
+      "refs": {
+        "ListThemesResponse$ThemeSummaryList": "<p>Information about the themes in the list.</p>"
+      }
+    },
+    "ThemeType": {
+      "base": null,
+      "refs": {
+        "ListThemesRequest$Type": "<p>The type of themes that you want to list. Valid options include the following:</p> <ul> <li> <p> <code>ALL (default)</code>- Display all existing themes.</p> </li> <li> <p> <code>CUSTOM</code> - Display only the themes created by people using Amazon QuickSight.</p> </li> <li> <p> <code>QUICKSIGHT</code> - Display only the starting themes defined by QuickSight.</p> </li> </ul>",
+        "Theme$Type": "<p>The type of theme, based on how it was created. Valid values include: <code>QUICKSIGHT</code> and <code>CUSTOM</code>.</p>"
+      }
+    },
+    "ThemeVersion": {
+      "base": "<p>A version of a theme.</p>",
+      "refs": {
+        "Theme$Version": null
+      }
+    },
+    "ThemeVersionSummary": {
+      "base": "<p>The theme version.</p>",
+      "refs": {
+        "ThemeVersionSummaryList$member": null
+      }
+    },
+    "ThemeVersionSummaryList": {
+      "base": null,
+      "refs": {
+        "ListThemeVersionsResponse$ThemeVersionSummaryList": "<p>A structure containing a list of all the versions of the specified theme.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>Access is throttled.</p>",
       "refs": {
+      }
+    },
+    "TileLayoutStyle": {
+      "base": "<p>The display options for the layout of tiles on a sheet.</p>",
+      "refs": {
+        "SheetStyle$TileLayout": "<p>The layout options for tiles.</p>"
+      }
+    },
+    "TileStyle": {
+      "base": "<p>Display options related to tiles on a sheet.</p>",
+      "refs": {
+        "SheetStyle$Tile": "<p>The display options for tiles.</p>"
       }
     },
     "Timestamp": {
@@ -2609,6 +2995,12 @@
         "TemplateSummary$LastUpdatedTime": "<p>The last time that this template was updated.</p>",
         "TemplateVersion$CreatedTime": "<p>The time that this template version was created.</p>",
         "TemplateVersionSummary$CreatedTime": "<p>The time that this template version was created.</p>",
+        "Theme$CreatedTime": "<p>The date and time that the theme was created.</p>",
+        "Theme$LastUpdatedTime": "<p>The date and time that the theme was last updated.</p>",
+        "ThemeSummary$CreatedTime": "<p>The date and time that this theme was created.</p>",
+        "ThemeSummary$LastUpdatedTime": "<p>The last date and time that this theme was updated.</p>",
+        "ThemeVersion$CreatedTime": "<p>The date and time that this theme version was created.</p>",
+        "ThemeVersionSummary$CreatedTime": "<p>The date and time that this theme version was created.</p>",
         "TimestampList$member": null
       }
     },
@@ -2640,6 +3032,12 @@
       "base": null,
       "refs": {
         "CastColumnTypeOperation$Format": "<p>When casting a column from string to datetime type, you can supply a string in a format supported by Amazon QuickSight to denote the source data format.</p>"
+      }
+    },
+    "UIColorPalette": {
+      "base": "<p>The theme colors that apply to UI and to charts, excluding data colors. The colors description is a hexidecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p>",
+      "refs": {
+        "ThemeConfiguration$UIColorPalette": "<p>Color properties that apply to the UI and to charts, excluding the colors that apply to data. </p>"
       }
     },
     "UnsupportedUserEditionException": {
@@ -2753,7 +3151,9 @@
         "UpdateDashboardPermissionsRequest$GrantPermissions": "<p>The permissions that you want to grant on this resource.</p>",
         "UpdateDashboardPermissionsRequest$RevokePermissions": "<p>The permissions that you want to revoke from this resource.</p>",
         "UpdateTemplatePermissionsRequest$GrantPermissions": "<p>A list of resource permissions to be granted on the template. </p>",
-        "UpdateTemplatePermissionsRequest$RevokePermissions": "<p>A list of resource permissions to be revoked from the template. </p>"
+        "UpdateTemplatePermissionsRequest$RevokePermissions": "<p>A list of resource permissions to be revoked from the template. </p>",
+        "UpdateThemePermissionsRequest$GrantPermissions": "<p>A list of resource permissions to be granted for the theme.</p>",
+        "UpdateThemePermissionsRequest$RevokePermissions": "<p>A list of resource permissions to be revoked from the theme.</p>"
       }
     },
     "UpdateTemplateAliasRequest": {
@@ -2782,6 +3182,36 @@
       }
     },
     "UpdateTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateThemeAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateThemeAliasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateThemePermissionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateThemePermissionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateThemeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateThemeResponse": {
       "base": null,
       "refs": {
       }
@@ -2848,31 +3278,43 @@
       "refs": {
         "CreateDashboardRequest$VersionDescription": "<p>A description for the first version of the dashboard being created.</p>",
         "CreateTemplateRequest$VersionDescription": "<p>A description of the current template version being created. This API operation creates the first version of the template. Every time <code>UpdateTemplate</code> is called, a new version is created. Each version of the template maintains a description of the version in the <code>VersionDescription</code> field.</p>",
+        "CreateThemeRequest$VersionDescription": "<p>A description of the first version of the theme that you're creating. Every time <code>UpdateTheme</code> is called, a new version is created. Each version of the theme has a description of the version in the <code>VersionDescription</code> field.</p>",
         "DashboardVersion$Description": "<p>Description.</p>",
         "DashboardVersionSummary$Description": "<p>Description.</p>",
         "TemplateVersion$Description": "<p>The description of the template.</p>",
         "TemplateVersionSummary$Description": "<p>The description of the template version.</p>",
+        "ThemeVersion$Description": "<p>The description of the theme.</p>",
+        "ThemeVersionSummary$Description": "<p>The description of the theme version.</p>",
         "UpdateDashboardRequest$VersionDescription": "<p>A description for the first version of the dashboard being created.</p>",
-        "UpdateTemplateRequest$VersionDescription": "<p>A description of the current template version that is being updated. Every time you call <code>UpdateTemplate</code>, you create a new version of the template. Each version of the template maintains a description of the version in the <code>VersionDescription</code> field.</p>"
+        "UpdateTemplateRequest$VersionDescription": "<p>A description of the current template version that is being updated. Every time you call <code>UpdateTemplate</code>, you create a new version of the template. Each version of the template maintains a description of the version in the <code>VersionDescription</code> field.</p>",
+        "UpdateThemeRequest$VersionDescription": "<p>A description of the theme version that you're updating Every time that you call <code>UpdateTheme</code>, you create a new version of the theme. Each version of the theme maintains a description of the version in <code>VersionDescription</code>.</p>"
       }
     },
     "VersionNumber": {
       "base": null,
       "refs": {
         "CreateTemplateAliasRequest$TemplateVersionNumber": "<p>The version number of the template.</p>",
+        "CreateThemeAliasRequest$ThemeVersionNumber": "<p>The version number of the theme.</p>",
         "DashboardSummary$PublishedVersionNumber": "<p>Published version number.</p>",
         "DashboardVersion$VersionNumber": "<p>Version number.</p>",
         "DashboardVersionSummary$VersionNumber": "<p>Version number.</p>",
         "DeleteDashboardRequest$VersionNumber": "<p>The version number of the dashboard. If the version number property is provided, only the specified version of the dashboard is deleted.</p>",
         "DeleteTemplateRequest$VersionNumber": "<p>Specifies the version of the template that you want to delete. If you don't provide a version number, <code>DeleteTemplate</code> deletes all versions of the template. </p>",
+        "DeleteThemeRequest$VersionNumber": "<p>The version of the theme that you want to delete. </p> <p> <b>Note:</b> If you don't provide a version number, you're using this call to <code>DeleteTheme</code> to delete all versions of the theme.</p>",
         "DescribeDashboardRequest$VersionNumber": "<p>The version number for the dashboard. If a version number isn't passed, the latest published dashboard version is described. </p>",
         "DescribeTemplateRequest$VersionNumber": "<p>(Optional) The number for the version to describe. If a <code>VersionNumber</code> parameter value isn't provided, the latest version of the template is described.</p>",
+        "DescribeThemeRequest$VersionNumber": "<p>The version number for the version to describe. If a <code>VersionNumber</code> parameter value isn't provided, the latest version of the theme is described.</p>",
         "TemplateAlias$TemplateVersionNumber": "<p>The version number of the template alias.</p>",
         "TemplateSummary$LatestVersionNumber": "<p>A structure containing a list of version numbers for the template summary.</p>",
         "TemplateVersion$VersionNumber": "<p>The version number of the template.</p>",
         "TemplateVersionSummary$VersionNumber": "<p>The version number of the template version.</p>",
+        "ThemeAlias$ThemeVersionNumber": "<p>The version number of the theme alias.</p>",
+        "ThemeSummary$LatestVersionNumber": "<p>The latest version number for the theme. </p>",
+        "ThemeVersion$VersionNumber": "<p>The version number of the theme.</p>",
+        "ThemeVersionSummary$VersionNumber": "<p>The version number of the theme version.</p>",
         "UpdateDashboardPublishedVersionRequest$VersionNumber": "<p>The version number of the dashboard.</p>",
-        "UpdateTemplateAliasRequest$TemplateVersionNumber": "<p>The version number of the template.</p>"
+        "UpdateTemplateAliasRequest$TemplateVersionNumber": "<p>The version number of the template.</p>",
+        "UpdateThemeAliasRequest$ThemeVersionNumber": "<p>The version number of the theme that the alias should reference.</p>"
       }
     },
     "VpcConnectionProperties": {
@@ -2898,8 +3340,11 @@
     "boolean": {
       "base": null,
       "refs": {
+        "BorderStyle$Show": "<p>The option to enable display of borders for visuals.</p>",
         "GetDashboardEmbedUrlRequest$UndoRedoDisabled": "<p>Remove the undo/redo button on the embedded dashboard. The default is FALSE, which enables the undo/redo button.</p>",
-        "GetDashboardEmbedUrlRequest$ResetDisabled": "<p>Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.</p>"
+        "GetDashboardEmbedUrlRequest$ResetDisabled": "<p>Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.</p>",
+        "GutterStyle$Show": "<p>This Boolean value controls whether to display a gutter space between sheet tiles. </p>",
+        "MarginStyle$Show": "<p>This Boolean value controls whether to display sheet margins.</p>"
       }
     },
     "long": {

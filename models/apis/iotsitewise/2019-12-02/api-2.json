@@ -2354,10 +2354,6 @@
     },
     "GetAssetPropertyValueHistoryRequest":{
       "type":"structure",
-      "required":[
-        "startDate",
-        "endDate"
-      ],
       "members":{
         "assetId":{
           "shape":"ID",

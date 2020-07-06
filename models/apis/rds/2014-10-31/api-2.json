@@ -6412,7 +6412,8 @@
         "AvailableProcessorFeatures":{"shape":"AvailableProcessorFeatureList"},
         "SupportedEngineModes":{"shape":"EngineModeList"},
         "SupportsStorageAutoscaling":{"shape":"BooleanOptional"},
-        "SupportsKerberosAuthentication":{"shape":"BooleanOptional"}
+        "SupportsKerberosAuthentication":{"shape":"BooleanOptional"},
+        "OutpostCapable":{"shape":"Boolean"}
       },
       "wrapper":true
     },
@@ -6428,6 +6429,12 @@
       "members":{
         "OrderableDBInstanceOptions":{"shape":"OrderableDBInstanceOptionsList"},
         "Marker":{"shape":"String"}
+      }
+    },
+    "Outpost":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"String"}
       }
     },
     "Parameter":{
@@ -7461,6 +7468,7 @@
       "members":{
         "SubnetIdentifier":{"shape":"String"},
         "SubnetAvailabilityZone":{"shape":"AvailabilityZone"},
+        "SubnetOutpost":{"shape":"Outpost"},
         "SubnetStatus":{"shape":"String"}
       }
     },

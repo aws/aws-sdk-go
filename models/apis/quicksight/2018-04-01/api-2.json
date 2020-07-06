@@ -175,6 +175,7 @@
         {"shape":"ThrottlingException"},
         {"shape":"LimitExceededException"},
         {"shape":"UnsupportedUserEditionException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -192,6 +193,45 @@
         {"shape":"ConflictException"},
         {"shape":"ResourceExistsException"},
         {"shape":"LimitExceededException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "CreateTheme":{
+      "name":"CreateTheme",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}"
+      },
+      "input":{"shape":"CreateThemeRequest"},
+      "output":{"shape":"CreateThemeResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "CreateThemeAlias":{
+      "name":"CreateThemeAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}/aliases/{AliasName}"
+      },
+      "input":{"shape":"CreateThemeAliasRequest"},
+      "output":{"shape":"CreateThemeAliasResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
       ]
@@ -328,6 +368,42 @@
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "DeleteTheme":{
+      "name":"DeleteTheme",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}"
+      },
+      "input":{"shape":"DeleteThemeRequest"},
+      "output":{"shape":"DeleteThemeResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "DeleteThemeAlias":{
+      "name":"DeleteThemeAlias",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}/aliases/{AliasName}"
+      },
+      "input":{"shape":"DeleteThemeAliasRequest"},
+      "output":{"shape":"DeleteThemeAliasResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
       ]
@@ -566,6 +642,58 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DescribeTheme":{
+      "name":"DescribeTheme",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}"
+      },
+      "input":{"shape":"DescribeThemeRequest"},
+      "output":{"shape":"DescribeThemeResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "DescribeThemeAlias":{
+      "name":"DescribeThemeAlias",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}/aliases/{AliasName}"
+      },
+      "input":{"shape":"DescribeThemeAliasRequest"},
+      "output":{"shape":"DescribeThemeAliasResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "DescribeThemePermissions":{
+      "name":"DescribeThemePermissions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}/permissions"
+      },
+      "input":{"shape":"DescribeThemePermissionsRequest"},
+      "output":{"shape":"DescribeThemePermissionsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DescribeUser":{
       "name":"DescribeUser",
       "http":{
@@ -785,6 +913,7 @@
       "input":{"shape":"ListTemplateAliasesRequest"},
       "output":{"shape":"ListTemplateAliasesResponse"},
       "errors":[
+        {"shape":"InvalidNextTokenException"},
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"UnsupportedUserEditionException"},
@@ -821,6 +950,60 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidNextTokenException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListThemeAliases":{
+      "name":"ListThemeAliases",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}/aliases"
+      },
+      "input":{"shape":"ListThemeAliasesRequest"},
+      "output":{"shape":"ListThemeAliasesResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListThemeVersions":{
+      "name":"ListThemeVersions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}/versions"
+      },
+      "input":{"shape":"ListThemeVersionsRequest"},
+      "output":{"shape":"ListThemeVersionsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListThemes":{
+      "name":"ListThemes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/themes"
+      },
+      "input":{"shape":"ListThemesRequest"},
+      "output":{"shape":"ListThemesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
       ]
@@ -1120,6 +1303,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"UnsupportedUserEditionException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -1136,6 +1320,60 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "UpdateTheme":{
+      "name":"UpdateTheme",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}"
+      },
+      "input":{"shape":"UpdateThemeRequest"},
+      "output":{"shape":"UpdateThemeResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "UpdateThemeAlias":{
+      "name":"UpdateThemeAlias",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}/aliases/{AliasName}"
+      },
+      "input":{"shape":"UpdateThemeAliasRequest"},
+      "output":{"shape":"UpdateThemeAliasResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "UpdateThemePermissions":{
+      "name":"UpdateThemePermissions",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{AwsAccountId}/themes/{ThemeId}/permissions"
+      },
+      "input":{"shape":"UpdateThemePermissionsRequest"},
+      "output":{"shape":"UpdateThemePermissionsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
       ]
@@ -1251,6 +1489,10 @@
       "min":12,
       "pattern":"^[0-9]{12}$"
     },
+    "AwsAndAccountId":{
+      "type":"string",
+      "pattern":"^(aws|[0-9]{12})$"
+    },
     "AwsIotAnalyticsParameters":{
       "type":"structure",
       "required":["DataSetName"],
@@ -1259,6 +1501,15 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "BorderStyle":{
+      "type":"structure",
+      "members":{
+        "Show":{
+          "shape":"boolean",
+          "box":true
+        }
+      }
+    },
     "CalculatedColumn":{
       "type":"structure",
       "required":[
@@ -1335,6 +1586,11 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "ColorList":{
+      "type":"list",
+      "member":{"shape":"HexColor"},
+      "max":100
     },
     "ColumnDataType":{
       "type":"string",
@@ -1480,7 +1736,8 @@
         "SourceEntity":{"shape":"DashboardSourceEntity"},
         "Tags":{"shape":"TagList"},
         "VersionDescription":{"shape":"VersionDescription"},
-        "DashboardPublishOptions":{"shape":"DashboardPublishOptions"}
+        "DashboardPublishOptions":{"shape":"DashboardPublishOptions"},
+        "ThemeArn":{"shape":"Arn"}
       }
     },
     "CreateDashboardResponse":{
@@ -1805,6 +2062,86 @@
         "RequestId":{"shape":"String"}
       }
     },
+    "CreateThemeAliasRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId",
+        "AliasName",
+        "ThemeVersionNumber"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "AliasName":{
+          "shape":"AliasName",
+          "location":"uri",
+          "locationName":"AliasName"
+        },
+        "ThemeVersionNumber":{"shape":"VersionNumber"}
+      }
+    },
+    "CreateThemeAliasResponse":{
+      "type":"structure",
+      "members":{
+        "ThemeAlias":{"shape":"ThemeAlias"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
+    "CreateThemeRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId",
+        "Name",
+        "BaseThemeId",
+        "Configuration"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "Name":{"shape":"ThemeName"},
+        "BaseThemeId":{"shape":"RestrictiveResourceId"},
+        "VersionDescription":{"shape":"VersionDescription"},
+        "Configuration":{"shape":"ThemeConfiguration"},
+        "Permissions":{"shape":"ResourcePermissionList"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateThemeResponse":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "VersionArn":{"shape":"Arn"},
+        "ThemeId":{"shape":"RestrictiveResourceId"},
+        "CreationStatus":{"shape":"ResourceStatus"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
     "CredentialPair":{
       "type":"structure",
       "required":[
@@ -1983,6 +2320,14 @@
       "type":"list",
       "member":{"shape":"DashboardVersionSummary"},
       "max":100
+    },
+    "DataColorPalette":{
+      "type":"structure",
+      "members":{
+        "Colors":{"shape":"ColorList"},
+        "MinMaxGradient":{"shape":"ColorList"},
+        "EmptyFillColor":{"shape":"HexColor"}
+      }
     },
     "DataSet":{
       "type":"structure",
@@ -2495,6 +2840,80 @@
         }
       }
     },
+    "DeleteThemeAliasRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId",
+        "AliasName"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "AliasName":{
+          "shape":"AliasName",
+          "location":"uri",
+          "locationName":"AliasName"
+        }
+      }
+    },
+    "DeleteThemeAliasResponse":{
+      "type":"structure",
+      "members":{
+        "AliasName":{"shape":"AliasName"},
+        "Arn":{"shape":"Arn"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "ThemeId":{"shape":"RestrictiveResourceId"}
+      }
+    },
+    "DeleteThemeRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "VersionNumber":{
+          "shape":"VersionNumber",
+          "location":"querystring",
+          "locationName":"version-number"
+        }
+      }
+    },
+    "DeleteThemeResponse":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "ThemeId":{"shape":"RestrictiveResourceId"}
+      }
+    },
     "DeleteUserByPrincipalIdRequest":{
       "type":"structure",
       "required":[
@@ -2978,7 +3397,116 @@
         "Status":{
           "shape":"StatusCode",
           "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
+    "DescribeThemeAliasRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId",
+        "AliasName"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "AliasName":{
+          "shape":"AliasName",
+          "location":"uri",
+          "locationName":"AliasName"
         }
+      }
+    },
+    "DescribeThemeAliasResponse":{
+      "type":"structure",
+      "members":{
+        "ThemeAlias":{"shape":"ThemeAlias"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
+    "DescribeThemePermissionsRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        }
+      }
+    },
+    "DescribeThemePermissionsResponse":{
+      "type":"structure",
+      "members":{
+        "ThemeId":{"shape":"RestrictiveResourceId"},
+        "ThemeArn":{"shape":"Arn"},
+        "Permissions":{"shape":"ResourcePermissionList"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "DescribeThemeRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAndAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "VersionNumber":{
+          "shape":"VersionNumber",
+          "location":"querystring",
+          "locationName":"version-number"
+        },
+        "AliasName":{
+          "shape":"AliasName",
+          "location":"querystring",
+          "locationName":"alias-name"
+        }
+      }
+    },
+    "DescribeThemeResponse":{
+      "type":"structure",
+      "members":{
+        "Theme":{"shape":"Theme"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
       }
     },
     "DescribeUserRequest":{
@@ -3218,6 +3746,19 @@
       "type":"string",
       "min":1,
       "pattern":"[\\u0020-\\u00FF]+"
+    },
+    "GutterStyle":{
+      "type":"structure",
+      "members":{
+        "Show":{
+          "shape":"boolean",
+          "box":true
+        }
+      }
+    },
+    "HexColor":{
+      "type":"string",
+      "pattern":"^#[A-F0-9]{6}$"
     },
     "Host":{
       "type":"string",
@@ -4021,6 +4562,129 @@
         "RequestId":{"shape":"String"}
       }
     },
+    "ListThemeAliasesRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-result"
+        }
+      }
+    },
+    "ListThemeAliasesResponse":{
+      "type":"structure",
+      "members":{
+        "ThemeAliasList":{"shape":"ThemeAliasList"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListThemeVersionsRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListThemeVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "ThemeVersionSummaryList":{"shape":"ThemeVersionSummaryList"},
+        "NextToken":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
+    "ListThemesRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "Type":{
+          "shape":"ThemeType",
+          "location":"querystring",
+          "locationName":"type"
+        }
+      }
+    },
+    "ListThemesResponse":{
+      "type":"structure",
+      "members":{
+        "ThemeSummaryList":{"shape":"ThemeSummaryList"},
+        "NextToken":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
     "ListUserGroupsRequest":{
       "type":"structure",
       "required":[
@@ -4162,6 +4826,15 @@
       "members":{
         "Bucket":{"shape":"S3Bucket"},
         "Key":{"shape":"S3Key"}
+      }
+    },
+    "MarginStyle":{
+      "type":"structure",
+      "members":{
+        "Show":{
+          "shape":"boolean",
+          "box":true
+        }
       }
     },
     "MariaDbParameters":{
@@ -4634,6 +5307,13 @@
         "VisibilityState":{"shape":"DashboardUIState"}
       }
     },
+    "SheetStyle":{
+      "type":"structure",
+      "members":{
+        "Tile":{"shape":"TileStyle"},
+        "TileLayout":{"shape":"TileLayoutStyle"}
+      }
+    },
     "SiteBaseUrl":{
       "type":"string",
       "max":1024,
@@ -4916,6 +5596,112 @@
         "SINGLE_QUOTE"
       ]
     },
+    "Theme":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Name":{"shape":"ThemeName"},
+        "ThemeId":{"shape":"RestrictiveResourceId"},
+        "Version":{"shape":"ThemeVersion"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "Type":{"shape":"ThemeType"}
+      }
+    },
+    "ThemeAlias":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "AliasName":{"shape":"AliasName"},
+        "ThemeVersionNumber":{"shape":"VersionNumber"}
+      }
+    },
+    "ThemeAliasList":{
+      "type":"list",
+      "member":{"shape":"ThemeAlias"},
+      "max":100
+    },
+    "ThemeConfiguration":{
+      "type":"structure",
+      "members":{
+        "DataColorPalette":{"shape":"DataColorPalette"},
+        "UIColorPalette":{"shape":"UIColorPalette"},
+        "Sheet":{"shape":"SheetStyle"}
+      }
+    },
+    "ThemeError":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ThemeErrorType"},
+        "Message":{"shape":"NonEmptyString"}
+      }
+    },
+    "ThemeErrorList":{
+      "type":"list",
+      "member":{"shape":"ThemeError"},
+      "min":1
+    },
+    "ThemeErrorType":{
+      "type":"string",
+      "enum":["INTERNAL_FAILURE"]
+    },
+    "ThemeName":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "ThemeSummary":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Name":{"shape":"ThemeName"},
+        "ThemeId":{"shape":"RestrictiveResourceId"},
+        "LatestVersionNumber":{"shape":"VersionNumber"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastUpdatedTime":{"shape":"Timestamp"}
+      }
+    },
+    "ThemeSummaryList":{
+      "type":"list",
+      "member":{"shape":"ThemeSummary"},
+      "max":100
+    },
+    "ThemeType":{
+      "type":"string",
+      "enum":[
+        "QUICKSIGHT",
+        "CUSTOM",
+        "ALL"
+      ]
+    },
+    "ThemeVersion":{
+      "type":"structure",
+      "members":{
+        "VersionNumber":{"shape":"VersionNumber"},
+        "Arn":{"shape":"Arn"},
+        "Description":{"shape":"VersionDescription"},
+        "BaseThemeId":{"shape":"RestrictiveResourceId"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "Configuration":{"shape":"ThemeConfiguration"},
+        "Errors":{"shape":"ThemeErrorList"},
+        "Status":{"shape":"ResourceStatus"}
+      }
+    },
+    "ThemeVersionSummary":{
+      "type":"structure",
+      "members":{
+        "VersionNumber":{"shape":"VersionNumber"},
+        "Arn":{"shape":"Arn"},
+        "Description":{"shape":"VersionDescription"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "Status":{"shape":"ResourceStatus"}
+      }
+    },
+    "ThemeVersionSummaryList":{
+      "type":"list",
+      "member":{"shape":"ThemeVersionSummary"},
+      "max":100
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{
@@ -4924,6 +5710,19 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "TileLayoutStyle":{
+      "type":"structure",
+      "members":{
+        "Gutter":{"shape":"GutterStyle"},
+        "Margin":{"shape":"MarginStyle"}
+      }
+    },
+    "TileStyle":{
+      "type":"structure",
+      "members":{
+        "Border":{"shape":"BorderStyle"}
+      }
     },
     "Timestamp":{"type":"timestamp"},
     "TimestampList":{
@@ -4961,6 +5760,27 @@
     "TypeCastFormat":{
       "type":"string",
       "max":32
+    },
+    "UIColorPalette":{
+      "type":"structure",
+      "members":{
+        "PrimaryForeground":{"shape":"HexColor"},
+        "PrimaryBackground":{"shape":"HexColor"},
+        "SecondaryForeground":{"shape":"HexColor"},
+        "SecondaryBackground":{"shape":"HexColor"},
+        "Accent":{"shape":"HexColor"},
+        "AccentForeground":{"shape":"HexColor"},
+        "Danger":{"shape":"HexColor"},
+        "DangerForeground":{"shape":"HexColor"},
+        "Warning":{"shape":"HexColor"},
+        "WarningForeground":{"shape":"HexColor"},
+        "Success":{"shape":"HexColor"},
+        "SuccessForeground":{"shape":"HexColor"},
+        "Dimension":{"shape":"HexColor"},
+        "DimensionForeground":{"shape":"HexColor"},
+        "Measure":{"shape":"HexColor"},
+        "MeasureForeground":{"shape":"HexColor"}
+      }
     },
     "UnsupportedUserEditionException":{
       "type":"structure",
@@ -5094,7 +5914,8 @@
         "SourceEntity":{"shape":"DashboardSourceEntity"},
         "Parameters":{"shape":"Parameters"},
         "VersionDescription":{"shape":"VersionDescription"},
-        "DashboardPublishOptions":{"shape":"DashboardPublishOptions"}
+        "DashboardPublishOptions":{"shape":"DashboardPublishOptions"},
+        "ThemeArn":{"shape":"Arn"}
       }
     },
     "UpdateDashboardResponse":{
@@ -5337,8 +6158,7 @@
     "UpdateResourcePermissionList":{
       "type":"list",
       "member":{"shape":"ResourcePermission"},
-      "max":100,
-      "min":1
+      "max":100
     },
     "UpdateTemplateAliasRequest":{
       "type":"structure",
@@ -5439,6 +6259,116 @@
       "type":"structure",
       "members":{
         "TemplateId":{"shape":"RestrictiveResourceId"},
+        "Arn":{"shape":"Arn"},
+        "VersionArn":{"shape":"Arn"},
+        "CreationStatus":{"shape":"ResourceStatus"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
+    "UpdateThemeAliasRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId",
+        "AliasName",
+        "ThemeVersionNumber"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "AliasName":{
+          "shape":"AliasName",
+          "location":"uri",
+          "locationName":"AliasName"
+        },
+        "ThemeVersionNumber":{"shape":"VersionNumber"}
+      }
+    },
+    "UpdateThemeAliasResponse":{
+      "type":"structure",
+      "members":{
+        "ThemeAlias":{"shape":"ThemeAlias"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
+    "UpdateThemePermissionsRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "GrantPermissions":{"shape":"UpdateResourcePermissionList"},
+        "RevokePermissions":{"shape":"UpdateResourcePermissionList"}
+      }
+    },
+    "UpdateThemePermissionsResponse":{
+      "type":"structure",
+      "members":{
+        "ThemeId":{"shape":"RestrictiveResourceId"},
+        "ThemeArn":{"shape":"Arn"},
+        "Permissions":{"shape":"ResourcePermissionList"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "UpdateThemeRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "ThemeId",
+        "BaseThemeId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "ThemeId":{
+          "shape":"RestrictiveResourceId",
+          "location":"uri",
+          "locationName":"ThemeId"
+        },
+        "Name":{"shape":"ThemeName"},
+        "BaseThemeId":{"shape":"RestrictiveResourceId"},
+        "VersionDescription":{"shape":"VersionDescription"},
+        "Configuration":{"shape":"ThemeConfiguration"}
+      }
+    },
+    "UpdateThemeResponse":{
+      "type":"structure",
+      "members":{
+        "ThemeId":{"shape":"RestrictiveResourceId"},
         "Arn":{"shape":"Arn"},
         "VersionArn":{"shape":"Arn"},
         "CreationStatus":{"shape":"ResourceStatus"},

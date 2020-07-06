@@ -18900,7 +18900,7 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// The Active Directory directory ID to create the DB instance in.
 	//
-	// For Oracle DB instances, Amazon RDS can use Kerberos Authentication to authenticate
+	// For Oracle DB instances, Amazon RDS can use Kerberos authentication to authenticate
 	// users that connect to the DB instance. For more information, see Using Kerberos
 	// Authentication with Amazon RDS for Oracle (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/oracle-kerberos.html)
 	// in the Amazon RDS User Guide.
@@ -33093,7 +33093,7 @@ type ModifyDBInstanceInput struct {
 	// SQL Server (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerWinAuth.html)
 	// in the Amazon RDS User Guide.
 	//
-	// For Oracle DB instances, Amazon RDS can use Kerberos Authentication to authenticate
+	// For Oracle DB instances, Amazon RDS can use Kerberos authentication to authenticate
 	// users that connect to the DB instance. For more information, see Using Kerberos
 	// Authentication with Amazon RDS for Oracle (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/oracle-kerberos.html)
 	// in the Amazon RDS User Guide.
@@ -35362,6 +35362,13 @@ type OrderableDBInstanceOption struct {
 	// Indicates whether a DB instance is Multi-AZ capable.
 	MultiAZCapable *bool `type:"boolean"`
 
+	// Whether a DB instance supports RDS on Outposts.
+	//
+	// For more information about RDS on Outposts, see Amazon RDS on AWS Outposts
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	OutpostCapable *bool `type:"boolean"`
+
 	// Indicates whether a DB instance can have a read replica.
 	ReadReplicaCapable *bool `type:"boolean"`
 
@@ -35496,6 +35503,12 @@ func (s *OrderableDBInstanceOption) SetMultiAZCapable(v bool) *OrderableDBInstan
 	return s
 }
 
+// SetOutpostCapable sets the OutpostCapable field's value.
+func (s *OrderableDBInstanceOption) SetOutpostCapable(v bool) *OrderableDBInstanceOption {
+	s.OutpostCapable = &v
+	return s
+}
+
 // SetReadReplicaCapable sets the ReadReplicaCapable field's value.
 func (s *OrderableDBInstanceOption) SetReadReplicaCapable(v bool) *OrderableDBInstanceOption {
 	s.ReadReplicaCapable = &v
@@ -35559,6 +35572,34 @@ func (s *OrderableDBInstanceOption) SetSupportsStorageEncryption(v bool) *Ordera
 // SetVpc sets the Vpc field's value.
 func (s *OrderableDBInstanceOption) SetVpc(v bool) *OrderableDBInstanceOption {
 	s.Vpc = &v
+	return s
+}
+
+// A data type that represents an Outpost.
+//
+// For more information about RDS on Outposts, see Amazon RDS on AWS Outposts
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+// in the Amazon RDS User Guide.
+type Outpost struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Outpost.
+	Arn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Outpost) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Outpost) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Outpost) SetArn(v string) *Outpost {
+	s.Arn = &v
 	return s
 }
 
@@ -38704,7 +38745,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// SQL Server (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerWinAuth.html)
 	// in the Amazon RDS User Guide.
 	//
-	// For Oracle DB instances, Amazon RDS can use Kerberos Authentication to authenticate
+	// For Oracle DB instances, Amazon RDS can use Kerberos authentication to authenticate
 	// users that connect to the DB instance. For more information, see Using Kerberos
 	// Authentication with Amazon RDS for Oracle (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/oracle-kerberos.html)
 	// in the Amazon RDS User Guide.
@@ -39795,7 +39836,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// SQL Server (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerWinAuth.html)
 	// in the Amazon RDS User Guide.
 	//
-	// For Oracle DB instances, Amazon RDS can use Kerberos Authentication to authenticate
+	// For Oracle DB instances, Amazon RDS can use Kerberos authentication to authenticate
 	// users that connect to the DB instance. For more information, see Using Kerberos
 	// Authentication with Amazon RDS for Oracle (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/oracle-kerberos.html)
 	// in the Amazon RDS User Guide.
@@ -41369,8 +41410,8 @@ func (s *StopDBInstanceOutput) SetDBInstance(v *DBInstance) *StopDBInstanceOutpu
 	return s
 }
 
-// This data type is used as a response element in the DescribeDBSubnetGroups
-// action.
+// This data type is used as a response element for the DescribeDBSubnetGroups
+// operation.
 type Subnet struct {
 	_ struct{} `type:"structure"`
 
@@ -41380,10 +41421,17 @@ type Subnet struct {
 	// type.
 	SubnetAvailabilityZone *AvailabilityZone `type:"structure"`
 
-	// Specifies the identifier of the subnet.
+	// The identifier of the subnet.
 	SubnetIdentifier *string `type:"string"`
 
-	// Specifies the status of the subnet.
+	// If the subnet is associated with an Outpost, this value specifies the Outpost.
+	//
+	// For more information about RDS on Outposts, see Amazon RDS on AWS Outposts
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	SubnetOutpost *Outpost `type:"structure"`
+
+	// The status of the subnet.
 	SubnetStatus *string `type:"string"`
 }
 
@@ -41406,6 +41454,12 @@ func (s *Subnet) SetSubnetAvailabilityZone(v *AvailabilityZone) *Subnet {
 // SetSubnetIdentifier sets the SubnetIdentifier field's value.
 func (s *Subnet) SetSubnetIdentifier(v string) *Subnet {
 	s.SubnetIdentifier = &v
+	return s
+}
+
+// SetSubnetOutpost sets the SubnetOutpost field's value.
+func (s *Subnet) SetSubnetOutpost(v *Outpost) *Subnet {
+	s.SubnetOutpost = v
 	return s
 }
 
