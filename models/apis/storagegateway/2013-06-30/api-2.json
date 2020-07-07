@@ -1242,6 +1242,13 @@
       "min":51200
     },
     "Boolean":{"type":"boolean"},
+    "CacheAttributes":{
+      "type":"structure",
+      "members":{
+        "CacheStaleTimeoutInSeconds":{"shape":"CacheStaleTimeoutInSeconds"}
+      }
+    },
+    "CacheStaleTimeoutInSeconds":{"type":"integer"},
     "CachediSCSIVolume":{
       "type":"structure",
       "members":{
@@ -1297,6 +1304,13 @@
       "members":{
         "TapeARN":{"shape":"TapeARN"}
       }
+    },
+    "CaseSensitivity":{
+      "type":"string",
+      "enum":[
+        "ClientSpecified",
+        "CaseSensitive"
+      ]
     },
     "ChapCredentials":{
       "type":"list",
@@ -1378,7 +1392,9 @@
         "ReadOnly":{"shape":"Boolean"},
         "GuessMIMETypeEnabled":{"shape":"Boolean"},
         "RequesterPays":{"shape":"Boolean"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "FileShareName":{"shape":"FileShareName"},
+        "CacheAttributes":{"shape":"CacheAttributes"}
       }
     },
     "CreateNFSFileShareOutput":{
@@ -1413,7 +1429,10 @@
         "InvalidUserList":{"shape":"FileShareUserList"},
         "AuditDestinationARN":{"shape":"AuditDestinationARN"},
         "Authentication":{"shape":"Authentication"},
-        "Tags":{"shape":"Tags"}
+        "CaseSensitivity":{"shape":"CaseSensitivity"},
+        "Tags":{"shape":"Tags"},
+        "FileShareName":{"shape":"FileShareName"},
+        "CacheAttributes":{"shape":"CacheAttributes"}
       }
     },
     "CreateSMBFileShareOutput":{
@@ -2194,6 +2213,11 @@
       "type":"list",
       "member":{"shape":"FileShareInfo"}
     },
+    "FileShareName":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "FileShareStatus":{
       "type":"string",
       "max":50,
@@ -2286,6 +2310,8 @@
     },
     "Host":{
       "type":"string",
+      "max":1024,
+      "min":6,
       "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])(:(\\d+))?$"
     },
     "HostEnvironment":{
@@ -2370,7 +2396,8 @@
     "KMSKey":{
       "type":"string",
       "max":2048,
-      "min":7
+      "min":7,
+      "pattern":"(^arn:(aws|aws-cn|aws-us-gov):kms:([a-zA-Z0-9-]+):([0-9]+):(key|alias)/(\\S+)$)|(^alias/(\\S+)$)"
     },
     "LastSoftwareUpdate":{
       "type":"string",
@@ -2517,7 +2544,7 @@
     },
     "LocationARN":{
       "type":"string",
-      "max":310,
+      "max":1400,
       "min":16
     },
     "Marker":{
@@ -2569,7 +2596,9 @@
         "ReadOnly":{"shape":"Boolean"},
         "GuessMIMETypeEnabled":{"shape":"Boolean"},
         "RequesterPays":{"shape":"Boolean"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "FileShareName":{"shape":"FileShareName"},
+        "CacheAttributes":{"shape":"CacheAttributes"}
       }
     },
     "NFSFileShareInfoList":{
@@ -2753,7 +2782,8 @@
     "Role":{
       "type":"string",
       "max":2048,
-      "min":20
+      "min":20,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov):iam::([0-9]+):role/(\\S+)$"
     },
     "SMBFileShareInfo":{
       "type":"structure",
@@ -2778,7 +2808,10 @@
         "InvalidUserList":{"shape":"FileShareUserList"},
         "AuditDestinationARN":{"shape":"AuditDestinationARN"},
         "Authentication":{"shape":"Authentication"},
-        "Tags":{"shape":"Tags"}
+        "CaseSensitivity":{"shape":"CaseSensitivity"},
+        "Tags":{"shape":"Tags"},
+        "FileShareName":{"shape":"FileShareName"},
+        "CacheAttributes":{"shape":"CacheAttributes"}
       }
     },
     "SMBFileShareInfoList":{
@@ -3193,7 +3226,9 @@
         "Squash":{"shape":"Squash"},
         "ReadOnly":{"shape":"Boolean"},
         "GuessMIMETypeEnabled":{"shape":"Boolean"},
-        "RequesterPays":{"shape":"Boolean"}
+        "RequesterPays":{"shape":"Boolean"},
+        "FileShareName":{"shape":"FileShareName"},
+        "CacheAttributes":{"shape":"CacheAttributes"}
       }
     },
     "UpdateNFSFileShareOutput":{
@@ -3218,7 +3253,10 @@
         "AdminUserList":{"shape":"FileShareUserList"},
         "ValidUserList":{"shape":"FileShareUserList"},
         "InvalidUserList":{"shape":"FileShareUserList"},
-        "AuditDestinationARN":{"shape":"AuditDestinationARN"}
+        "AuditDestinationARN":{"shape":"AuditDestinationARN"},
+        "CaseSensitivity":{"shape":"CaseSensitivity"},
+        "FileShareName":{"shape":"FileShareName"},
+        "CacheAttributes":{"shape":"CacheAttributes"}
       }
     },
     "UpdateSMBFileShareOutput":{

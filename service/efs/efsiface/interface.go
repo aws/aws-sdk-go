@@ -103,6 +103,10 @@ type EFSAPI interface {
 	DescribeAccessPointsPages(*efs.DescribeAccessPointsInput, func(*efs.DescribeAccessPointsOutput, bool) bool) error
 	DescribeAccessPointsPagesWithContext(aws.Context, *efs.DescribeAccessPointsInput, func(*efs.DescribeAccessPointsOutput, bool) bool, ...request.Option) error
 
+	DescribeBackupPolicy(*efs.DescribeBackupPolicyInput) (*efs.DescribeBackupPolicyOutput, error)
+	DescribeBackupPolicyWithContext(aws.Context, *efs.DescribeBackupPolicyInput, ...request.Option) (*efs.DescribeBackupPolicyOutput, error)
+	DescribeBackupPolicyRequest(*efs.DescribeBackupPolicyInput) (*request.Request, *efs.DescribeBackupPolicyOutput)
+
 	DescribeFileSystemPolicy(*efs.DescribeFileSystemPolicyInput) (*efs.DescribeFileSystemPolicyOutput, error)
 	DescribeFileSystemPolicyWithContext(aws.Context, *efs.DescribeFileSystemPolicyInput, ...request.Option) (*efs.DescribeFileSystemPolicyOutput, error)
 	DescribeFileSystemPolicyRequest(*efs.DescribeFileSystemPolicyInput) (*request.Request, *efs.DescribeFileSystemPolicyOutput)
@@ -143,6 +147,10 @@ type EFSAPI interface {
 	ModifyMountTargetSecurityGroups(*efs.ModifyMountTargetSecurityGroupsInput) (*efs.ModifyMountTargetSecurityGroupsOutput, error)
 	ModifyMountTargetSecurityGroupsWithContext(aws.Context, *efs.ModifyMountTargetSecurityGroupsInput, ...request.Option) (*efs.ModifyMountTargetSecurityGroupsOutput, error)
 	ModifyMountTargetSecurityGroupsRequest(*efs.ModifyMountTargetSecurityGroupsInput) (*request.Request, *efs.ModifyMountTargetSecurityGroupsOutput)
+
+	PutBackupPolicy(*efs.PutBackupPolicyInput) (*efs.PutBackupPolicyOutput, error)
+	PutBackupPolicyWithContext(aws.Context, *efs.PutBackupPolicyInput, ...request.Option) (*efs.PutBackupPolicyOutput, error)
+	PutBackupPolicyRequest(*efs.PutBackupPolicyInput) (*request.Request, *efs.PutBackupPolicyOutput)
 
 	PutFileSystemPolicy(*efs.PutFileSystemPolicyInput) (*efs.PutFileSystemPolicyOutput, error)
 	PutFileSystemPolicyWithContext(aws.Context, *efs.PutFileSystemPolicyInput, ...request.Option) (*efs.PutFileSystemPolicyOutput, error)

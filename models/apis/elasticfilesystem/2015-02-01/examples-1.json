@@ -189,7 +189,7 @@
         },
         "output": {
           "SecurityGroups": [
-            "sg-fghi4567"
+            "sg-4567abcd"
           ]
         },
         "comments": {

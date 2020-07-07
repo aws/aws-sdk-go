@@ -59,7 +59,7 @@
     "ListVolumeRecoveryPoints": "<p>Lists the recovery points for a specified gateway. This operation is only supported in the cached volume gateway type.</p> <p>Each cache volume has one recovery point. A volume recovery point is a point in time at which all data of the volume is consistent and from which you can create a snapshot or clone a new cached volume from a source volume. To create a snapshot from a volume recovery point use the <a>CreateSnapshotFromVolumeRecoveryPoint</a> operation.</p>",
     "ListVolumes": "<p>Lists the iSCSI stored volumes of a gateway. Results are sorted by volume ARN. The response includes only the volume ARNs. If you want additional volume information, use the <a>DescribeStorediSCSIVolumes</a> or the <a>DescribeCachediSCSIVolumes</a> API.</p> <p>The operation supports pagination. By default, the operation returns a maximum of up to 100 volumes. You can optionally specify the <code>Limit</code> field in the body to limit the number of volumes in the response. If the number of volumes returned in the response is truncated, the response includes a Marker field. You can use this Marker value in your subsequent request to retrieve the next set of volumes. This operation is only supported in the cached volume and stored volume gateway types.</p>",
     "NotifyWhenUploaded": "<p>Sends you notification through CloudWatch Events when all files written to your file share have been uploaded to Amazon S3.</p> <p>AWS Storage Gateway can send a notification through Amazon CloudWatch Events when all files written to your file share up to that point in time have been uploaded to Amazon S3. These files include files written to the file share up to the time that you make a request for notification. When the upload is done, Storage Gateway sends you notification through an Amazon CloudWatch Event. You can configure CloudWatch Events to send the notification through event targets such as Amazon SNS or AWS Lambda function. This operation is only supported for file gateways.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-upload-notification\">Getting file upload notification</a> in the <i>AWS Storage Gateway User Guide</i>.</p>",
-    "RefreshCache": "<p>Refreshes the cache for the specified file share. This operation finds objects in the Amazon S3 bucket that were added, removed or replaced since the gateway last listed the bucket's contents and cached the results. This operation is only supported in the file gateway type. You can subscribe to be notified through an Amazon CloudWatch event when your RefreshCache operation completes. For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>When this API is called, it only initiates the refresh operation. When the API call completes and returns a success code, it doesn't necessarily mean that the file refresh has completed. You should use the refresh-complete notification to determine that the operation has completed before you check for new files on the gateway file share. You can subscribe to be notified through an CloudWatch event when your <code>RefreshCache</code> operation completes.</p> <p>Throttle limit: This API is asynchronous so the gateway will accept no more than two refreshes at any time. We recommend using the refresh-complete CloudWatch event notification before issuing additional requests. For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>If you invoke the RefreshCache API when two requests are already being processed, any new request will cause an <code>InvalidGatewayRequestException</code> error because too many requests were sent to the server.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p>",
+    "RefreshCache": "<p>Refreshes the cache for the specified file share. This operation finds objects in the Amazon S3 bucket that were added, removed, or replaced since the gateway last listed the bucket's contents and cached the results. This operation is only supported in the file gateway type. You can subscribe to be notified through an Amazon CloudWatch event when your RefreshCache operation completes. For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>When this API is called, it only initiates the refresh operation. When the API call completes and returns a success code, it doesn't necessarily mean that the file refresh has completed. You should use the refresh-complete notification to determine that the operation has completed before you check for new files on the gateway file share. You can subscribe to be notified through an CloudWatch event when your <code>RefreshCache</code> operation completes.</p> <p>Throttle limit: This API is asynchronous so the gateway will accept no more than two refreshes at any time. We recommend using the refresh-complete CloudWatch event notification before issuing additional requests. For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>If you invoke the RefreshCache API when two requests are already being processed, any new request will cause an <code>InvalidGatewayRequestException</code> error because too many requests were sent to the server.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p>",
     "RemoveTagsFromResource": "<p>Removes one or more tags from the specified resource. This operation is supported in storage gateways of all types.</p>",
     "ResetCache": "<p>Resets all cache disks that have encountered an error and makes the disks available for reconfiguration as cache storage. If your cache disk encounters an error, the gateway prevents read and write operations on virtual tapes in the gateway. For example, an error can occur when a disk is corrupted or removed from the gateway. When a cache is reset, the gateway loses its cache storage. At this point, you can reconfigure the disks as cache disks. This operation is only supported in the cached volume and tape types.</p> <important> <p>If the cache disk you are resetting contains data that has not been uploaded to Amazon S3 yet, that data can be lost. After you reset cache disks, there will be no configured cache disks left in the gateway, so you must configure at least one new cache disk for your gateway to function properly.</p> </important>",
     "RetrieveTapeArchive": "<p>Retrieves an archived virtual tape from the virtual tape shelf (VTS) to a tape gateway. Virtual tapes archived in the VTS are not associated with any gateway. However after a tape is retrieved, it is associated with a gateway, even though it is also listed in the VTS, that is, archive. This operation is only supported in the tape gateway type.</p> <p>Once a tape is successfully retrieved to a gateway, it cannot be retrieved again to another gateway. You must archive the tape again before you can retrieve it to another gateway. This operation is only supported in the tape gateway type.</p>",
@@ -268,6 +268,23 @@
         "UpdateSMBFileShareInput$SMBACLEnabled": "<p>Set this value to <code>true</code> to enable access control list (ACL) on the SMB file share. Set it to <code>false</code> to map file and directory permissions to the POSIX permissions.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html\">Using Microsoft Windows ACLs to control access to an SMB file share</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>"
       }
     },
+    "CacheAttributes": {
+      "base": "<p>Lists refresh cache information.</p>",
+      "refs": {
+        "CreateNFSFileShareInput$CacheAttributes": "<p>Refresh cache information.</p>",
+        "CreateSMBFileShareInput$CacheAttributes": "<p>Refresh cache information.</p>",
+        "NFSFileShareInfo$CacheAttributes": "<p>Refresh cache information.</p>",
+        "SMBFileShareInfo$CacheAttributes": "<p>Refresh cache information.</p>",
+        "UpdateNFSFileShareInput$CacheAttributes": "<p>Refresh cache information.</p>",
+        "UpdateSMBFileShareInput$CacheAttributes": "<p>Refresh cache information.</p>"
+      }
+    },
+    "CacheStaleTimeoutInSeconds": {
+      "base": null,
+      "refs": {
+        "CacheAttributes$CacheStaleTimeoutInSeconds": "<p>Refreshes a file share's cache by using Time To Live (TTL). TTL is the length of time since the last refresh after which access to the directory would cause the file gateway to first refresh that directory's contents from the Amazon S3 bucket. The TTL duration is in seconds.</p> <p>Valid Values: 300 to 2,592,000 seconds (5 minutes to 30 days)</p>"
+      }
+    },
     "CachediSCSIVolume": {
       "base": "<p>Describes an iSCSI cached volume.</p>",
       "refs": {
@@ -298,6 +315,14 @@
     "CancelRetrievalOutput": {
       "base": "<p>CancelRetrievalOutput</p>",
       "refs": {
+      }
+    },
+    "CaseSensitivity": {
+      "base": null,
+      "refs": {
+        "CreateSMBFileShareInput$CaseSensitivity": "<p>The case of an object name in an Amazon S3 bucket. For <code>ClientSpecified</code>, the client determines the case sensitivity. For <code>CaseSensitive</code>, the gateway determines the case sensitivity. The default value is <code>ClientSpecified</code>.</p>",
+        "SMBFileShareInfo$CaseSensitivity": "<p>The case of an object name in an Amazon S3 bucket. For <code>ClientSpecified</code>, the client determines the case sensitivity. For <code>CaseSensitive</code>, the gateway determines the case sensitivity. The default value is <code>ClientSpecified</code>.</p>",
+        "UpdateSMBFileShareInput$CaseSensitivity": "<p>The case of an object name in an Amazon S3 bucket. For <code>ClientSpecified</code>, the client determines the case sensitivity. For <code>CaseSensitive</code>, the gateway determines the case sensitivity. The default value is <code>ClientSpecified</code>.</p>"
       }
     },
     "ChapCredentials": {
@@ -907,6 +932,17 @@
         "ListFileSharesOutput$FileShareInfoList": "<p>An array of information about the file gateway's file shares.</p>"
       }
     },
+    "FileShareName": {
+      "base": null,
+      "refs": {
+        "CreateNFSFileShareInput$FileShareName": "<p>The name of the file share. Optional.</p> <note> <p> <code>FileShareName</code> must be set if an S3 prefix name is set in <code>LocationARN</code>.</p> </note>",
+        "CreateSMBFileShareInput$FileShareName": "<p>The name of the file share. Optional.</p> <note> <p> <code>FileShareName</code> must be set if an S3 prefix name is set in <code>LocationARN</code>.</p> </note>",
+        "NFSFileShareInfo$FileShareName": "<p>The name of the file share. Optional.</p> <note> <p> <code>FileShareName</code> must be set if an S3 prefix name is set in <code>LocationARN</code>.</p> </note>",
+        "SMBFileShareInfo$FileShareName": "<p>The name of the file share. Optional.</p> <note> <p> <code>FileShareName</code> must be set if an S3 prefix name is set in <code>LocationARN</code>.</p> </note>",
+        "UpdateNFSFileShareInput$FileShareName": "<p>The name of the file share. Optional.</p> <note> <p> <code>FileShareName</code> must be set if an S3 prefix name is set in <code>LocationARN</code>.</p> </note>",
+        "UpdateSMBFileShareInput$FileShareName": "<p>The name of the file share. Optional.</p> <note> <p> <code>FileShareName</code> must be set if an S3 prefix name is set in <code>LocationARN</code>.</p> </note>"
+      }
+    },
     "FileShareStatus": {
       "base": "<p>The status of the file share.</p> <p>Valid Values: <code>CREATING</code> | <code>UPDATING</code> | <code>AVAILABLE</code> | <code>DELETING</code> </p>",
       "refs": {
@@ -930,15 +966,15 @@
     "FileShareUserList": {
       "base": null,
       "refs": {
-        "CreateSMBFileShareInput$AdminUserList": "<p>A list of users in the Active Directory that will be granted administrator privileges on the file share. These users can do all file operations as the super-user.</p> <important> <p>Use this option very carefully, because any user in this list can do anything they like on the file share, regardless of file permissions.</p> </important>",
-        "CreateSMBFileShareInput$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. For example, <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "CreateSMBFileShareInput$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. For example, <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "SMBFileShareInfo$AdminUserList": "<p>A list of users or groups in the Active Directory that have administrator rights to the file share. A group must be prefixed with the @ character. For example <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "SMBFileShareInfo$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. For example, <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "SMBFileShareInfo$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. For example <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "UpdateSMBFileShareInput$AdminUserList": "<p>A list of users in the Active Directory that have administrator rights to the file share. A group must be prefixed with the @ character. For example, <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "UpdateSMBFileShareInput$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. For example, <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "UpdateSMBFileShareInput$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. For example <code>@group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>"
+        "CreateSMBFileShareInput$AdminUserList": "<p>A list of users or groups in the Active Directory that will be granted administrator privileges on the file share. These users can do all file operations as the super-user. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>.</p> <important> <p>Use this option very carefully, because any user in this list can do anything they like on the file share, regardless of file permissions.</p> </important>",
+        "CreateSMBFileShareInput$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file <a href=\"\"/> share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "CreateSMBFileShareInput$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "SMBFileShareInfo$AdminUserList": "<p>A list of users or groups in the Active Directory that have administrator rights to the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "SMBFileShareInfo$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "SMBFileShareInfo$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "UpdateSMBFileShareInput$AdminUserList": "<p>A list of users or groups in the Active Directory that have administrator rights to the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "UpdateSMBFileShareInput$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "UpdateSMBFileShareInput$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>"
       }
     },
     "Folder": {
@@ -1308,10 +1344,10 @@
       }
     },
     "LocationARN": {
-      "base": "<p>The ARN of the backend storage used for storing file data.</p>",
+      "base": "<p>The ARN of the backend storage used for storing file data. A prefix name can be added to the S3 bucket name. It must end with a \"/\".</p>",
       "refs": {
-        "CreateNFSFileShareInput$LocationARN": "<p>The ARN of the backed storage used for storing file data.</p>",
-        "CreateSMBFileShareInput$LocationARN": "<p>The ARN of the backed storage used for storing file data.</p>",
+        "CreateNFSFileShareInput$LocationARN": "<p>The ARN of the backend storage used for storing file data. A prefix name can be added to the S3 bucket name. It must end with a \"/\".</p>",
+        "CreateSMBFileShareInput$LocationARN": "<p>The ARN of the backend storage used for storing file data. A prefix name can be added to the S3 bucket name. It must end with a \"/\".</p>",
         "NFSFileShareInfo$LocationARN": null,
         "SMBFileShareInfo$LocationARN": null
       }

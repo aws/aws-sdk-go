@@ -318,7 +318,7 @@
     "ImportKeyPair": "<p>Imports the public key from an RSA key pair that you created with a third-party tool. Compare this with <a>CreateKeyPair</a>, in which AWS creates the key pair and gives the keys to you (AWS keeps a copy of the public key). With ImportKeyPair, you create the key pair and give AWS just the public key. The private key is never transferred between you and AWS.</p> <p>For more information about key pairs, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ImportSnapshot": "<p>Imports a disk into an EBS snapshot.</p>",
     "ImportVolume": "<p>Creates an import volume task using metadata from the specified disk image.For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/importing-your-volumes-into-amazon-ebs.html\">Importing Disks to Amazon EBS</a>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
-    "ModifyAvailabilityZoneGroup": "<p>Enables or disables an Availability Zone group for your account.</p> <p>Use <a href=\"https://docs.aws.amazon.com/AWSEC2ApiDocReef/build/server-root/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html\">describe-availability-zones</a> to view the value for <code>GroupName</code>.</p>",
+    "ModifyAvailabilityZoneGroup": "<p>Enables or disables an Availability Zone group for your account.</p> <p>Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html\"> DescribeAvailabilityZones</a> to view the value for <code>GroupName</code>.</p>",
     "ModifyCapacityReservation": "<p>Modifies a Capacity Reservation's capacity and the conditions under which it is to be released. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes.</p>",
     "ModifyClientVpnEndpoint": "<p>Modifies the specified Client VPN endpoint. Modifying the DNS server resets existing client connections.</p>",
     "ModifyDefaultCreditSpecification": "<p>Modifies the default credit option for CPU usage of burstable performance instances. The default credit option is set at the account level per AWS Region, and is specified per instance family. All new burstable performance instances in the account launch using the default credit option.</p> <p> <code>ModifyDefaultCreditSpecification</code> is an asynchronous operation, which works at an AWS Region level and modifies the credit option for each Availability Zone. All zones in a Region are updated within five minutes. But if instances are launched during this operation, they might not get the new credit option until the zone is updated. To verify whether the update has occurred, you can call <code>GetDefaultCreditSpecification</code> and check <code>DefaultCreditSpecification</code> for updates.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable performance instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -964,7 +964,7 @@
       }
     },
     "AvailabilityZone": {
-      "base": "<p>Describes an Availability Zone or Local Zone.</p>",
+      "base": "<p>Describes a Zone.</p>",
       "refs": {
         "AvailabilityZoneList$member": null
       }
@@ -972,11 +972,11 @@
     "AvailabilityZoneList": {
       "base": null,
       "refs": {
-        "DescribeAvailabilityZonesResult$AvailabilityZones": "<p>Information about the Availability Zones and Local Zones.</p>"
+        "DescribeAvailabilityZonesResult$AvailabilityZones": "<p>Information about the Zones.</p>"
       }
     },
     "AvailabilityZoneMessage": {
-      "base": "<p>Describes a message about an Availability Zone or Local Zone.</p>",
+      "base": "<p>Describes a message about a Zone.</p>",
       "refs": {
         "AvailabilityZoneMessageList$member": null
       }
@@ -984,7 +984,7 @@
     "AvailabilityZoneMessageList": {
       "base": null,
       "refs": {
-        "AvailabilityZone$Messages": "<p>Any messages about the Availability Zone or Local Zone.</p>"
+        "AvailabilityZone$Messages": "<p>Any messages about the Zone.</p>"
       }
     },
     "AvailabilityZoneOptInStatus": {
@@ -996,7 +996,7 @@
     "AvailabilityZoneState": {
       "base": null,
       "refs": {
-        "AvailabilityZone$State": "<p>The state of the Availability Zone or Local Zone.</p>"
+        "AvailabilityZone$State": "<p>The state of the Zone.</p>"
       }
     },
     "AvailabilityZoneStringList": {
@@ -6060,7 +6060,7 @@
       "base": null,
       "refs": {
         "DescribeAddressesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>allocation-id</code> - [EC2-VPC] The allocation ID for the address.</p> </li> <li> <p> <code>association-id</code> - [EC2-VPC] The association ID for the address.</p> </li> <li> <p> <code>domain</code> - Indicates whether the address is for use in EC2-Classic (<code>standard</code>) or in a VPC (<code>vpc</code>).</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance the address is associated with, if any.</p> </li> <li> <p> <code>network-border-group</code> - The location from where the IP address is advertised.</p> </li> <li> <p> <code>network-interface-id</code> - [EC2-VPC] The ID of the network interface that the address is associated with, if any.</p> </li> <li> <p> <code>network-interface-owner-id</code> - The AWS account ID of the owner.</p> </li> <li> <p> <code>private-ip-address</code> - [EC2-VPC] The private IP address associated with the Elastic IP address.</p> </li> <li> <p> <code>public-ip</code> - The Elastic IP address.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
-        "DescribeAvailabilityZonesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>group-name</code> - For Availability Zones, use the Region name. For Local Zones, use the name of the group associated with the Local Zone (for example, <code>us-west-2-lax-1</code>).</p> </li> <li> <p> <code>message</code> - The Availability Zone or Local Zone message.</p> </li> <li> <p> <code>opt-in-status</code> - The opt in status (<code>opted-in</code>, and <code>not-opted-in</code> | <code>opt-in-not-required</code>).</p> </li> <li> <p> <code>region-name</code> - The name of the Region for the Availability Zone or Local Zone (for example, <code>us-east-1</code>).</p> </li> <li> <p> <code>state</code> - The state of the Availability Zone or Local Zone (<code>available</code> | <code>information</code> | <code>impaired</code> | <code>unavailable</code>).</p> </li> <li> <p> <code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>) or the Local Zone (for example, use <code>usw2-lax1-az1</code>).</p> </li> <li> <p> <code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>) or the Local Zone (for example, use <code>us-west-2-lax-1a</code>).</p> </li> </ul>",
+        "DescribeAvailabilityZonesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>group-name</code> - For Availability Zones, use the Region name. For Local Zones, use the name of the group associated with the Local Zone (for example, <code>us-west-2-lax-1</code>).</p> </li> <li> <p> <code>message</code> - The Zone message.</p> </li> <li> <p> <code>opt-in-status</code> - The opt in status (<code>opted-in</code>, and <code>not-opted-in</code> | <code>opt-in-not-required</code>).</p> </li> <li> <p> <code>region-name</code> - The name of the Region for the Zone (for example, <code>us-east-1</code>).</p> </li> <li> <p> <code>state</code> - The state of the Availability Zone or Local Zone (<code>available</code> | <code>information</code> | <code>impaired</code> | <code>unavailable</code>).</p> </li> <li> <p> <code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>) or the Local Zone (for example, use <code>usw2-lax1-az1</code>).</p> </li> <li> <p> <code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>) or the Local Zone (for example, use <code>us-west-2-lax-1a</code>).</p> </li> </ul>",
         "DescribeBundleTasksRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>bundle-id</code> - The ID of the bundle task.</p> </li> <li> <p> <code>error-code</code> - If the task failed, the error code returned.</p> </li> <li> <p> <code>error-message</code> - If the task failed, the error message returned.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>progress</code> - The level of task completion, as a percentage (for example, 20%).</p> </li> <li> <p> <code>s3-bucket</code> - The Amazon S3 bucket to store the AMI.</p> </li> <li> <p> <code>s3-prefix</code> - The beginning of the AMI name.</p> </li> <li> <p> <code>start-time</code> - The time the task started (for example, 2013-09-15T17:15:20.000Z).</p> </li> <li> <p> <code>state</code> - The state of the task (<code>pending</code> | <code>waiting-for-shutdown</code> | <code>bundling</code> | <code>storing</code> | <code>cancelling</code> | <code>complete</code> | <code>failed</code>).</p> </li> <li> <p> <code>update-time</code> - The time of the most recent update for the task.</p> </li> </ul>",
         "DescribeCapacityReservationsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>instance-type</code> - The type of instance for which the Capacity Reservation reserves capacity.</p> </li> <li> <p> <code>owner-id</code> - The ID of the AWS account that owns the Capacity Reservation.</p> </li> <li> <p> <code>availability-zone-id</code> - The Availability Zone ID of the Capacity Reservation.</p> </li> <li> <p> <code>instance-platform</code> - The type of operating system for which the Capacity Reservation reserves capacity.</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone ID of the Capacity Reservation.</p> </li> <li> <p> <code>tenancy</code> - Indicates the tenancy of the Capacity Reservation. A Capacity Reservation can have one of the following tenancy settings:</p> <ul> <li> <p> <code>default</code> - The Capacity Reservation is created on hardware that is shared with other AWS accounts.</p> </li> <li> <p> <code>dedicated</code> - The Capacity Reservation is created on single-tenant hardware that is dedicated to a single AWS account.</p> </li> </ul> </li> <li> <p> <code>state</code> - The current state of the Capacity Reservation. A Capacity Reservation can be in one of the following states:</p> <ul> <li> <p> <code>active</code>- The Capacity Reservation is active and the capacity is available for your use.</p> </li> <li> <p> <code>expired</code> - The Capacity Reservation expired automatically at the date and time specified in your request. The reserved capacity is no longer available for your use.</p> </li> <li> <p> <code>cancelled</code> - The Capacity Reservation was manually cancelled. The reserved capacity is no longer available for your use.</p> </li> <li> <p> <code>pending</code> - The Capacity Reservation request was successful but the capacity provisioning is still pending.</p> </li> <li> <p> <code>failed</code> - The Capacity Reservation request has failed. A request might fail due to invalid request parameters, capacity constraints, or instance limit constraints. Failed requests are retained for 60 minutes.</p> </li> </ul> </li> <li> <p> <code>end-date</code> - The date and time at which the Capacity Reservation expires. When a Capacity Reservation expires, the reserved capacity is released and you can no longer launch instances into it. The Capacity Reservation's state changes to expired when it reaches its end date and time.</p> </li> <li> <p> <code>end-date-type</code> - Indicates the way in which the Capacity Reservation ends. A Capacity Reservation can have one of the following end types:</p> <ul> <li> <p> <code>unlimited</code> - The Capacity Reservation remains active until you explicitly cancel it.</p> </li> <li> <p> <code>limited</code> - The Capacity Reservation expires automatically at a specified date and time.</p> </li> </ul> </li> <li> <p> <code>instance-match-criteria</code> - Indicates the type of instance launches that the Capacity Reservation accepts. The options include:</p> <ul> <li> <p> <code>open</code> - The Capacity Reservation accepts all instances that have matching attributes (instance type, platform, and Availability Zone). Instances that have matching attributes launch into the Capacity Reservation automatically without specifying any additional parameters.</p> </li> <li> <p> <code>targeted</code> - The Capacity Reservation only accepts instances that have matching attributes (instance type, platform, and Availability Zone), and explicitly target the Capacity Reservation. This ensures that only permitted instances can use the reserved capacity.</p> </li> </ul> </li> </ul>",
         "DescribeClassicLinkInstancesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>group-id</code> - The ID of a VPC security group that's associated with the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC to which the instance is linked.</p> <p> <code>vpc-id</code> - The ID of the VPC that the instance is linked to.</p> </li> </ul>",
@@ -12231,11 +12231,14 @@
         "AuthorizeSecurityGroupIngressRequest$SourceSecurityGroupName": "<p>[EC2-Classic, default VPC] The name of the source security group. You can't specify this parameter in combination with the following parameters: the CIDR IP address range, the start of the port range, the IP protocol, and the end of the port range. Creates rules that grant full ICMP, UDP, and TCP access. To create a rule with a specific IP protocol and port range, use a set of IP permissions instead. For EC2-VPC, the source security group must be in the same VPC.</p>",
         "AuthorizeSecurityGroupIngressRequest$SourceSecurityGroupOwnerId": "<p>[nondefault VPC] The AWS account ID for the source security group, if the source security group is in a different account. You can't specify this parameter in combination with the following parameters: the CIDR IP address range, the IP protocol, the start of the port range, and the end of the port range. Creates rules that grant full ICMP, UDP, and TCP access. To create a rule with a specific IP protocol and port range, use a set of IP permissions instead.</p>",
         "AvailabilityZone$RegionName": "<p>The name of the Region.</p>",
-        "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone or Local Zone.</p>",
-        "AvailabilityZone$ZoneId": "<p>The ID of the Availability Zone or Local Zone.</p>",
+        "AvailabilityZone$ZoneName": "<p>The name of the Zone.</p>",
+        "AvailabilityZone$ZoneId": "<p>The ID of the Zone.</p>",
         "AvailabilityZone$GroupName": "<p> For Availability Zones, this parameter has the same value as the Region name.</p> <p>For Local Zones, the name of the associated group, for example <code>us-west-2-lax-1</code>.</p>",
         "AvailabilityZone$NetworkBorderGroup": "<p>The name of the location from which the address is advertised.</p>",
-        "AvailabilityZoneMessage$Message": "<p>The message about the Availability Zone or Local Zone.</p>",
+        "AvailabilityZone$ZoneType": "<p>The type of zone. The valid values are <code>availability-zone</code> and <code>local-zone</code>.</p>",
+        "AvailabilityZone$ParentZoneName": "<p>The name of the zone that handles some of the Local Zone control plane operations, such as API calls.</p>",
+        "AvailabilityZone$ParentZoneId": "<p>The ID of the zone that handles some of the Local Zone control plane operations, such as API calls.</p>",
+        "AvailabilityZoneMessage$Message": "<p>The message about the Zone.</p>",
         "AvailabilityZoneStringList$member": null,
         "BillingProductList$member": null,
         "BlockDeviceMapping$DeviceName": "<p>The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p>",
@@ -15652,13 +15655,13 @@
     "ZoneIdStringList": {
       "base": null,
       "refs": {
-        "DescribeAvailabilityZonesRequest$ZoneIds": "<p>The IDs of the Availability Zones and Local Zones.</p>"
+        "DescribeAvailabilityZonesRequest$ZoneIds": "<p>The IDs of the Zones.</p>"
       }
     },
     "ZoneNameStringList": {
       "base": null,
       "refs": {
-        "DescribeAvailabilityZonesRequest$ZoneNames": "<p>The names of the Availability Zones and Local Zones.</p>"
+        "DescribeAvailabilityZonesRequest$ZoneNames": "<p>The names of the Zones.</p>"
       }
     },
     "scope": {

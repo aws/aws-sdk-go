@@ -7226,6 +7226,95 @@ func (c *Glue) GetPlanWithContext(ctx aws.Context, input *GetPlanInput, opts ...
 	return out, req.Send()
 }
 
+const opGetResourcePolicies = "GetResourcePolicies"
+
+// GetResourcePoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourcePolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourcePolicies for more information on using the GetResourcePolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetResourcePoliciesRequest method.
+//    req, resp := client.GetResourcePoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetResourcePolicies
+func (c *Glue) GetResourcePoliciesRequest(input *GetResourcePoliciesInput) (req *request.Request, output *GetResourcePoliciesOutput) {
+	op := &request.Operation{
+		Name:       opGetResourcePolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResourcePoliciesInput{}
+	}
+
+	output = &GetResourcePoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourcePolicies API operation for AWS Glue.
+//
+// Retrieves the security configurations for the resource policies set on individual
+// resources, and also the account-level policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetResourcePolicies for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * EncryptionException
+//   An encryption operation failed.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetResourcePolicies
+func (c *Glue) GetResourcePolicies(input *GetResourcePoliciesInput) (*GetResourcePoliciesOutput, error) {
+	req, out := c.GetResourcePoliciesRequest(input)
+	return out, req.Send()
+}
+
+// GetResourcePoliciesWithContext is the same as GetResourcePolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourcePolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetResourcePoliciesWithContext(ctx aws.Context, input *GetResourcePoliciesInput, opts ...request.Option) (*GetResourcePoliciesOutput, error) {
+	req, out := c.GetResourcePoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetResourcePolicy = "GetResourcePolicy"
 
 // GetResourcePolicyRequest generates a "aws/request.Request" representing the
@@ -16154,8 +16243,7 @@ type Connection struct {
 	//    to which a Kafka client will connect to and bootstrap itself.
 	ConnectionProperties map[string]*string `type:"map"`
 
-	// The type of the connection. Currently, only JDBC is supported; SFTP is not
-	// supported.
+	// The type of the connection. Currently, SFTP is not supported.
 	ConnectionType *string `type:"string" enum:"ConnectionType"`
 
 	// The time that this connection definition was created.
@@ -19735,6 +19823,9 @@ func (s *DataLakePrincipal) SetDataLakePrincipalIdentifier(v string) *DataLakePr
 type Database struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Data Catalog in which the database resides.
+	CatalogId *string `min:"1" type:"string"`
+
 	// Creates a set of default permissions on the table for principals.
 	CreateTableDefaultPermissions []*PrincipalPermissions `type:"list"`
 
@@ -19755,6 +19846,10 @@ type Database struct {
 
 	// These key-value pairs define parameters and properties of the database.
 	Parameters map[string]*string `type:"map"`
+
+	// A DatabaseIdentifier structure that describes a target database for resource
+	// linking.
+	TargetDatabase *DatabaseIdentifier `type:"structure"`
 }
 
 // String returns the string representation
@@ -19765,6 +19860,12 @@ func (s Database) String() string {
 // GoString returns the string representation
 func (s Database) GoString() string {
 	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *Database) SetCatalogId(v string) *Database {
+	s.CatalogId = &v
+	return s
 }
 
 // SetCreateTableDefaultPermissions sets the CreateTableDefaultPermissions field's value.
@@ -19803,6 +19904,61 @@ func (s *Database) SetParameters(v map[string]*string) *Database {
 	return s
 }
 
+// SetTargetDatabase sets the TargetDatabase field's value.
+func (s *Database) SetTargetDatabase(v *DatabaseIdentifier) *Database {
+	s.TargetDatabase = v
+	return s
+}
+
+// A structure that describes a target database for resource linking.
+type DatabaseIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Data Catalog in which the database resides.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The name of the catalog database.
+	DatabaseName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DatabaseIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatabaseIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatabaseIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatabaseIdentifier"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *DatabaseIdentifier) SetCatalogId(v string) *DatabaseIdentifier {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DatabaseIdentifier) SetDatabaseName(v string) *DatabaseIdentifier {
+	s.DatabaseName = &v
+	return s
+}
+
 // The structure used to create or update a database.
 type DatabaseInput struct {
 	_ struct{} `type:"structure"`
@@ -19826,6 +19982,10 @@ type DatabaseInput struct {
 	//
 	// These key-value pairs define parameters and properties of the database.
 	Parameters map[string]*string `type:"map"`
+
+	// A DatabaseIdentifier structure that describes a target database for resource
+	// linking.
+	TargetDatabase *DatabaseIdentifier `type:"structure"`
 }
 
 // String returns the string representation
@@ -19858,6 +20018,11 @@ func (s *DatabaseInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CreateTableDefaultPermissions", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.TargetDatabase != nil {
+		if err := s.TargetDatabase.Validate(); err != nil {
+			invalidParams.AddNested("TargetDatabase", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -19894,6 +20059,12 @@ func (s *DatabaseInput) SetName(v string) *DatabaseInput {
 // SetParameters sets the Parameters field's value.
 func (s *DatabaseInput) SetParameters(v map[string]*string) *DatabaseInput {
 	s.Parameters = v
+	return s
+}
+
+// SetTargetDatabase sets the TargetDatabase field's value.
+func (s *DatabaseInput) SetTargetDatabase(v *DatabaseIdentifier) *DatabaseInput {
+	s.TargetDatabase = v
 	return s
 }
 
@@ -20853,6 +21024,9 @@ type DeleteResourcePolicyInput struct {
 
 	// The hash value returned when this policy was set.
 	PolicyHashCondition *string `min:"1" type:"string"`
+
+	// The ARN of the AWS Glue resource for the resource policy to be deleted.
+	ResourceArn *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -20871,6 +21045,9 @@ func (s *DeleteResourcePolicyInput) Validate() error {
 	if s.PolicyHashCondition != nil && len(*s.PolicyHashCondition) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PolicyHashCondition", 1))
 	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -20881,6 +21058,12 @@ func (s *DeleteResourcePolicyInput) Validate() error {
 // SetPolicyHashCondition sets the PolicyHashCondition field's value.
 func (s *DeleteResourcePolicyInput) SetPolicyHashCondition(v string) *DeleteResourcePolicyInput {
 	s.PolicyHashCondition = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyInput) SetResourceArn(v string) *DeleteResourcePolicyInput {
+	s.ResourceArn = &v
 	return s
 }
 
@@ -22962,8 +23145,7 @@ func (s *GetConnectionOutput) SetConnection(v *Connection) *GetConnectionOutput 
 type GetConnectionsFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The type of connections to return. Currently, only JDBC is supported; SFTP
-	// is not supported.
+	// The type of connections to return. Currently, SFTP is not supported.
 	ConnectionType *string `type:"string" enum:"ConnectionType"`
 
 	// A criteria string that must match the criteria recorded in the connection
@@ -23485,6 +23667,15 @@ type GetDatabasesInput struct {
 
 	// A continuation token, if this is a continuation call.
 	NextToken *string `type:"string"`
+
+	// Allows you to specify that you want to list the databases shared with your
+	// account. The allowable values are FOREIGN or ALL.
+	//
+	//    * If set to FOREIGN, will list the databases shared with your account.
+	//
+	//    * If set to ALL, will list the databases shared with your account, as
+	//    well as the databases in yor local account.
+	ResourceShareType *string `type:"string" enum:"ResourceShareType"`
 }
 
 // String returns the string representation
@@ -23528,6 +23719,12 @@ func (s *GetDatabasesInput) SetMaxResults(v int64) *GetDatabasesInput {
 // SetNextToken sets the NextToken field's value.
 func (s *GetDatabasesInput) SetNextToken(v string) *GetDatabasesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetResourceShareType sets the ResourceShareType field's value.
+func (s *GetDatabasesInput) SetResourceShareType(v string) *GetDatabasesInput {
+	s.ResourceShareType = &v
 	return s
 }
 
@@ -25361,8 +25558,92 @@ func (s *GetPlanOutput) SetScalaCode(v string) *GetPlanOutput {
 	return s
 }
 
+type GetResourcePoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum size of a list to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is a continuation request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetResourcePoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetResourcePoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourcePoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourcePoliciesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetResourcePoliciesInput) SetMaxResults(v int64) *GetResourcePoliciesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetResourcePoliciesInput) SetNextToken(v string) *GetResourcePoliciesInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetResourcePoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the individual resource policies and the account-level resource
+	// policy.
+	GetResourcePoliciesResponseList []*GluePolicy `type:"list"`
+
+	// A continuation token, if the returned list does not contain the last resource
+	// policy available.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetResourcePoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetResourcePoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetGetResourcePoliciesResponseList sets the GetResourcePoliciesResponseList field's value.
+func (s *GetResourcePoliciesOutput) SetGetResourcePoliciesResponseList(v []*GluePolicy) *GetResourcePoliciesOutput {
+	s.GetResourcePoliciesResponseList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetResourcePoliciesOutput) SetNextToken(v string) *GetResourcePoliciesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
+
+	// The ARN of the AWS Glue resource for the resource policy to be retrieved.
+	// For more information about AWS Glue resource ARNs, see the AWS Glue ARN string
+	// pattern (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id)
+	ResourceArn *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -25373,6 +25654,25 @@ func (s GetResourcePolicyInput) String() string {
 // GoString returns the string representation
 func (s GetResourcePolicyInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourcePolicyInput"}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetResourcePolicyInput) SetResourceArn(v string) *GetResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
 }
 
 type GetResourcePolicyOutput struct {
@@ -26794,6 +27094,57 @@ func (s *GetWorkflowRunsOutput) SetNextToken(v string) *GetWorkflowRunsOutput {
 // SetRuns sets the Runs field's value.
 func (s *GetWorkflowRunsOutput) SetRuns(v []*WorkflowRun) *GetWorkflowRunsOutput {
 	s.Runs = v
+	return s
+}
+
+// A structure for returning a resource policy.
+type GluePolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time at which the policy was created.
+	CreateTime *time.Time `type:"timestamp"`
+
+	// Contains the hash value associated with this policy.
+	PolicyHash *string `min:"1" type:"string"`
+
+	// Contains the requested policy document, in JSON format.
+	PolicyInJson *string `min:"2" type:"string"`
+
+	// The date and time at which the policy was last updated.
+	UpdateTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s GluePolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GluePolicy) GoString() string {
+	return s.String()
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *GluePolicy) SetCreateTime(v time.Time) *GluePolicy {
+	s.CreateTime = &v
+	return s
+}
+
+// SetPolicyHash sets the PolicyHash field's value.
+func (s *GluePolicy) SetPolicyHash(v string) *GluePolicy {
+	s.PolicyHash = &v
+	return s
+}
+
+// SetPolicyInJson sets the PolicyInJson field's value.
+func (s *GluePolicy) SetPolicyInJson(v string) *GluePolicy {
+	s.PolicyInJson = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *GluePolicy) SetUpdateTime(v time.Time) *GluePolicy {
+	s.UpdateTime = &v
 	return s
 }
 
@@ -29740,6 +30091,9 @@ func (s *Order) SetSortOrder(v int64) *Order {
 type Partition struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Data Catalog in which the partition resides.
+	CatalogId *string `min:"1" type:"string"`
+
 	// The time at which the partition was created.
 	CreationTime *time.Time `type:"timestamp"`
 
@@ -29773,6 +30127,12 @@ func (s Partition) String() string {
 // GoString returns the string representation
 func (s Partition) GoString() string {
 	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *Partition) SetCatalogId(v string) *Partition {
+	s.CatalogId = &v
+	return s
 }
 
 // SetCreationTime sets the CreationTime field's value.
@@ -30287,6 +30647,15 @@ func (s PutDataCatalogEncryptionSettingsOutput) GoString() string {
 type PutResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
+	// Allows you to specify if you want to use both resource-level and account/catalog-level
+	// resource policies. A resource-level policy is a policy attached to an individual
+	// resource such as a database or a table.
+	//
+	// The default value of NO indicates that resource-level policies cannot co-exist
+	// with an account-level policy. A value of YES means the use of both resource-level
+	// and account/catalog-level resource policies is allowed.
+	EnableHybrid *string `type:"string" enum:"EnableHybridValues"`
+
 	// A value of MUST_EXIST is used to update a policy. A value of NOT_EXIST is
 	// used to create a new policy. If a value of NONE or a null value is used,
 	// the call will not depend on the existence of a policy.
@@ -30301,6 +30670,11 @@ type PutResourcePolicyInput struct {
 	//
 	// PolicyInJson is a required field
 	PolicyInJson *string `min:"2" type:"string" required:"true"`
+
+	// The ARN of the AWS Glue resource for the resource policy to be set. For more
+	// information about AWS Glue resource ARNs, see the AWS Glue ARN string pattern
+	// (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id)
+	ResourceArn *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -30325,11 +30699,20 @@ func (s *PutResourcePolicyInput) Validate() error {
 	if s.PolicyInJson != nil && len(*s.PolicyInJson) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("PolicyInJson", 2))
 	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnableHybrid sets the EnableHybrid field's value.
+func (s *PutResourcePolicyInput) SetEnableHybrid(v string) *PutResourcePolicyInput {
+	s.EnableHybrid = &v
+	return s
 }
 
 // SetPolicyExistsCondition sets the PolicyExistsCondition field's value.
@@ -30347,6 +30730,12 @@ func (s *PutResourcePolicyInput) SetPolicyHashCondition(v string) *PutResourcePo
 // SetPolicyInJson sets the PolicyInJson field's value.
 func (s *PutResourcePolicyInput) SetPolicyInJson(v string) *PutResourcePolicyInput {
 	s.PolicyInJson = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PutResourcePolicyInput) SetResourceArn(v string) *PutResourcePolicyInput {
+	s.ResourceArn = &v
 	return s
 }
 
@@ -31004,6 +31393,15 @@ type SearchTablesInput struct {
 	// A continuation token, included if this is a continuation call.
 	NextToken *string `type:"string"`
 
+	// Allows you to specify that you want to search the tables shared with your
+	// account. The allowable values are FOREIGN or ALL.
+	//
+	//    * If set to FOREIGN, will search the tables shared with your account.
+	//
+	//    * If set to ALL, will search the tables shared with your account, as well
+	//    as the tables in yor local account.
+	ResourceShareType *string `type:"string" enum:"ResourceShareType"`
+
 	// A string used for a text search.
 	//
 	// Specifying a value in quotes filters based on an exact match to the value.
@@ -31061,6 +31459,12 @@ func (s *SearchTablesInput) SetMaxResults(v int64) *SearchTablesInput {
 // SetNextToken sets the NextToken field's value.
 func (s *SearchTablesInput) SetNextToken(v string) *SearchTablesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetResourceShareType sets the ResourceShareType field's value.
+func (s *SearchTablesInput) SetResourceShareType(v string) *SearchTablesInput {
+	s.ResourceShareType = &v
 	return s
 }
 
@@ -32681,6 +33085,9 @@ func (s *Table) SetTableName(v string) *Table {
 type TableData struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Data Catalog in which the table resides.
+	CatalogId *string `min:"1" type:"string"`
+
 	// The time when the table definition was created in the Data Catalog.
 	CreateTime *time.Time `type:"timestamp"`
 
@@ -32735,6 +33142,9 @@ type TableData struct {
 	// The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
 	TableType *string `type:"string"`
 
+	// A TableIdentifier structure that describes a target table for resource linking.
+	TargetTable *TableIdentifier `type:"structure"`
+
 	// The last time that the table was updated.
 	UpdateTime *time.Time `type:"timestamp"`
 
@@ -32753,6 +33163,12 @@ func (s TableData) String() string {
 // GoString returns the string representation
 func (s TableData) GoString() string {
 	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *TableData) SetCatalogId(v string) *TableData {
+	s.CatalogId = &v
+	return s
 }
 
 // SetCreateTime sets the CreateTime field's value.
@@ -32839,6 +33255,12 @@ func (s *TableData) SetTableType(v string) *TableData {
 	return s
 }
 
+// SetTargetTable sets the TargetTable field's value.
+func (s *TableData) SetTargetTable(v *TableIdentifier) *TableData {
+	s.TargetTable = v
+	return s
+}
+
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *TableData) SetUpdateTime(v time.Time) *TableData {
 	s.UpdateTime = &v
@@ -32890,6 +33312,67 @@ func (s *TableError) SetTableName(v string) *TableError {
 	return s
 }
 
+// A structure that describes a target table for resource linking.
+type TableIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Data Catalog in which the table resides.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The name of the catalog database that contains the target table.
+	DatabaseName *string `min:"1" type:"string"`
+
+	// The name of the target table.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s TableIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TableIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TableIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TableIdentifier"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *TableIdentifier) SetCatalogId(v string) *TableIdentifier {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *TableIdentifier) SetDatabaseName(v string) *TableIdentifier {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TableIdentifier) SetName(v string) *TableIdentifier {
+	s.Name = &v
+	return s
+}
+
 // A structure used to define a table.
 type TableInput struct {
 	_ struct{} `type:"structure"`
@@ -32935,6 +33418,9 @@ type TableInput struct {
 	// The type of this table (EXTERNAL_TABLE, VIRTUAL_VIEW, etc.).
 	TableType *string `type:"string"`
 
+	// A TableIdentifier structure that describes a target table for resource linking.
+	TargetTable *TableIdentifier `type:"structure"`
+
 	// If the table is a view, the expanded text of the view; otherwise null.
 	ViewExpandedText *string `type:"string"`
 
@@ -32977,6 +33463,11 @@ func (s *TableInput) Validate() error {
 	if s.StorageDescriptor != nil {
 		if err := s.StorageDescriptor.Validate(); err != nil {
 			invalidParams.AddNested("StorageDescriptor", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TargetTable != nil {
+		if err := s.TargetTable.Validate(); err != nil {
+			invalidParams.AddNested("TargetTable", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -33043,6 +33534,12 @@ func (s *TableInput) SetStorageDescriptor(v *StorageDescriptor) *TableInput {
 // SetTableType sets the TableType field's value.
 func (s *TableInput) SetTableType(v string) *TableInput {
 	s.TableType = &v
+	return s
+}
+
+// SetTargetTable sets the TargetTable field's value.
+func (s *TableInput) SetTargetTable(v *TableIdentifier) *TableInput {
+	s.TargetTable = v
 	return s
 }
 
@@ -35943,13 +36440,16 @@ func (s *UpdateXMLClassifierRequest) SetRowTag(v string) *UpdateXMLClassifierReq
 type UserDefinedFunction struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Data Catalog in which the function resides.
+	CatalogId *string `min:"1" type:"string"`
+
 	// The Java class that contains the function code.
 	ClassName *string `min:"1" type:"string"`
 
 	// The time at which the function was created.
 	CreateTime *time.Time `type:"timestamp"`
 
-	// The name of the database where the function resides.
+	// The name of the catalog database that contains the function.
 	DatabaseName *string `min:"1" type:"string"`
 
 	// The name of the function.
@@ -35973,6 +36473,12 @@ func (s UserDefinedFunction) String() string {
 // GoString returns the string representation
 func (s UserDefinedFunction) GoString() string {
 	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *UserDefinedFunction) SetCatalogId(v string) *UserDefinedFunction {
+	s.CatalogId = &v
+	return s
 }
 
 // SetClassName sets the ClassName field's value.
@@ -36748,6 +37254,14 @@ const (
 )
 
 const (
+	// EnableHybridValuesTrue is a EnableHybridValues enum value
+	EnableHybridValuesTrue = "TRUE"
+
+	// EnableHybridValuesFalse is a EnableHybridValues enum value
+	EnableHybridValuesFalse = "FALSE"
+)
+
+const (
 	// ExistConditionMustExist is a ExistCondition enum value
 	ExistConditionMustExist = "MUST_EXIST"
 
@@ -36870,6 +37384,14 @@ const (
 
 	// PrincipalTypeGroup is a PrincipalType enum value
 	PrincipalTypeGroup = "GROUP"
+)
+
+const (
+	// ResourceShareTypeForeign is a ResourceShareType enum value
+	ResourceShareTypeForeign = "FOREIGN"
+
+	// ResourceShareTypeAll is a ResourceShareType enum value
+	ResourceShareTypeAll = "ALL"
 )
 
 const (

@@ -6,13 +6,13 @@
     "BatchRevokePermissions": "<p>Batch operation to revoke permissions from the principal.</p>",
     "DeregisterResource": "<p>Deregisters the resource as managed by the Data Catalog.</p> <p>When you deregister a path, Lake Formation removes the path from the inline policy attached to your service-linked role.</p>",
     "DescribeResource": "<p>Retrieves the current data access role for the given resource registered in AWS Lake Formation.</p>",
-    "GetDataLakeSettings": "<p>The AWS Lake Formation principal.</p>",
-    "GetEffectivePermissionsForPath": "<p>Returns the permissions for a specified table or database resource located at a path in Amazon S3.</p>",
-    "GrantPermissions": "<p>Grants permissions to the principal to access metadata in the Data Catalog and data organized in underlying data storage such as Amazon S3.</p> <p>For information about permissions, see <a href=\"https://docs-aws.amazon.com/michigan/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
-    "ListPermissions": "<p>Returns a list of the principal permissions on the resource, filtered by the permissions of the caller. For example, if you are granted an ALTER permission, you are able to see only the principal permissions for ALTER.</p> <p>This operation returns only those permissions that have been explicitly granted.</p> <p>For information about permissions, see <a href=\"https://docs-aws.amazon.com/michigan/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
+    "GetDataLakeSettings": "<p>Retrieves the list of the data lake administrators of a Lake Formation-managed data lake. </p>",
+    "GetEffectivePermissionsForPath": "<p>Returns the Lake Formation permissions for a specified table or database resource located at a path in Amazon S3. <code>GetEffectivePermissionsForPath</code> will not return databases and tables if the catalog is encrypted.</p>",
+    "GrantPermissions": "<p>Grants permissions to the principal to access metadata in the Data Catalog and data organized in underlying data storage such as Amazon S3.</p> <p>For information about permissions, see <a href=\"https://docs-aws.amazon.com/lake-formation/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
+    "ListPermissions": "<p>Returns a list of the principal permissions on the resource, filtered by the permissions of the caller. For example, if you are granted an ALTER permission, you are able to see only the principal permissions for ALTER.</p> <p>This operation returns only those permissions that have been explicitly granted.</p> <p>For information about permissions, see <a href=\"https://docs-aws.amazon.com/lake-formation/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
     "ListResources": "<p>Lists the resources registered to be managed by the Data Catalog.</p>",
-    "PutDataLakeSettings": "<p>The AWS Lake Formation principal.</p>",
-    "RegisterResource": "<p>Registers the resource as managed by the Data Catalog.</p> <p>To add or update data, Lake Formation needs read/write access to the chosen Amazon S3 path. Choose a role that you know has permission to do this, or choose the AWSServiceRoleForLakeFormationDataAccess service-linked role. When you register the first Amazon S3 path, the service-linked role and a new inline policy are created on your behalf. Lake Formation adds the first path to the inline policy and attaches it to the service-linked role. When you register subsequent paths, Lake Formation adds the path to the existing policy.</p>",
+    "PutDataLakeSettings": "<p>Sets the list of data lake administrators who have admin privileges on all resources managed by Lake Formation. For more information on admin privileges, see <a href=\"https://docs.aws.amazon.com/lake-formation/latest/dg/lake-formation-permissions.html\">Granting Lake Formation Permissions</a>.</p> <p>This API replaces the current list of data lake admins with the new list being passed. To add an admin, fetch the current list and add the new admin to that list and pass that list in this API.</p>",
+    "RegisterResource": "<p>Registers the resource as managed by the Data Catalog.</p> <p>To add or update data, Lake Formation needs read/write access to the chosen Amazon S3 path. Choose a role that you know has permission to do this, or choose the AWSServiceRoleForLakeFormationDataAccess service-linked role. When you register the first Amazon S3 path, the service-linked role and a new inline policy are created on your behalf. Lake Formation adds the first path to the inline policy and attaches it to the service-linked role. When you register subsequent paths, Lake Formation adds the path to the existing policy.</p> <p>The following request registers a new location and gives AWS Lake Formation permission to use the service-linked role to access that location.</p> <p> <code>ResourceArn = arn:aws:s3:::my-bucket UseServiceLinkedRole = true</code> </p> <p>If <code>UseServiceLinkedRole</code> is not set to true, you must provide or set the <code>RoleArn</code>:</p> <p> <code>arn:aws:iam::12345:role/my-data-access-role</code> </p>",
     "RevokePermissions": "<p>Revokes permissions to the principal to access metadata in the Data Catalog and data organized in underlying data storage such as Amazon S3.</p>",
     "UpdateResource": "<p>Updates the data access role used for vending access to the given (registered) resource in AWS Lake Formation. </p>"
   },
@@ -74,12 +74,17 @@
       "refs": {
         "BatchGrantPermissionsRequest$CatalogId": "<p>The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your AWS Lake Formation environment. </p>",
         "BatchRevokePermissionsRequest$CatalogId": "<p>The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your AWS Lake Formation environment. </p>",
+        "DataLocationResource$CatalogId": "<p>The identifier for the Data Catalog where the location is registered with AWS Lake Formation. By default, it is the account ID of the caller.</p>",
+        "DatabaseResource$CatalogId": "<p>The identifier for the Data Catalog. By default, it is the account ID of the caller.</p>",
         "GetDataLakeSettingsRequest$CatalogId": "<p>The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your AWS Lake Formation environment. </p>",
         "GetEffectivePermissionsForPathRequest$CatalogId": "<p>The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your AWS Lake Formation environment. </p>",
         "GrantPermissionsRequest$CatalogId": "<p>The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your AWS Lake Formation environment. </p>",
         "ListPermissionsRequest$CatalogId": "<p>The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your AWS Lake Formation environment. </p>",
         "PutDataLakeSettingsRequest$CatalogId": "<p>The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your AWS Lake Formation environment. </p>",
-        "RevokePermissionsRequest$CatalogId": "<p>The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your AWS Lake Formation environment. </p>"
+        "RevokePermissionsRequest$CatalogId": "<p>The identifier for the Data Catalog. By default, the account ID. The Data Catalog is the persistent metadata store. It contains database definitions, table definitions, and other control information to manage your AWS Lake Formation environment. </p>",
+        "TableResource$CatalogId": "<p>The identifier for the Data Catalog. By default, it is the account ID of the caller.</p>",
+        "TableWithColumnsResource$CatalogId": "<p>The identifier for the Data Catalog. By default, it is the account ID of the caller.</p>",
+        "TrustedResourceOwners$member": null
       }
     },
     "CatalogResource": {
@@ -113,7 +118,7 @@
       }
     },
     "DataLakePrincipal": {
-      "base": "<p>The AWS Lake Formation principal.</p>",
+      "base": "<p>The AWS Lake Formation principal. Supported principals are IAM users or IAM roles.</p>",
       "refs": {
         "BatchPermissionsRequestEntry$Principal": "<p>The principal to be granted a permission.</p>",
         "DataLakePrincipalList$member": null,
@@ -127,7 +132,7 @@
     "DataLakePrincipalList": {
       "base": null,
       "refs": {
-        "DataLakeSettings$DataLakeAdmins": "<p>A list of AWS Lake Formation principals.</p>"
+        "DataLakeSettings$DataLakeAdmins": "<p>A list of AWS Lake Formation principals. Supported principals are IAM users or IAM roles.</p>"
       }
     },
     "DataLakePrincipalString": {
@@ -143,10 +148,10 @@
       }
     },
     "DataLakeSettings": {
-      "base": "<p>The AWS Lake Formation principal.</p>",
+      "base": "<p>A structure representing a list of AWS Lake Formation principals designated as data lake administrators and lists of principal permission entries for default create database and default create table permissions.</p>",
       "refs": {
-        "GetDataLakeSettingsResponse$DataLakeSettings": "<p>A list of AWS Lake Formation principals. </p>",
-        "PutDataLakeSettingsRequest$DataLakeSettings": "<p>A list of AWS Lake Formation principals.</p>"
+        "GetDataLakeSettingsResponse$DataLakeSettings": "<p>A structure representing a list of AWS Lake Formation principals designated as data lake administrators.</p>",
+        "PutDataLakeSettingsRequest$DataLakeSettings": "<p>A structure representing a list of AWS Lake Formation principals designated as data lake administrators.</p>"
       }
     },
     "DataLocationResource": {
@@ -249,7 +254,7 @@
     "IAMRoleArn": {
       "base": null,
       "refs": {
-        "RegisterResourceRequest$RoleArn": "<p>The identifier for the role.</p>",
+        "RegisterResourceRequest$RoleArn": "<p>The identifier for the role that registers the resource.</p>",
         "ResourceInfo$RoleArn": "<p>The IAM role that registered a resource.</p>",
         "UpdateResourceRequest$RoleArn": "<p>The new role to use for the given resource registered in AWS Lake Formation.</p>"
       }
@@ -322,7 +327,7 @@
     "NullableBoolean": {
       "base": null,
       "refs": {
-        "RegisterResourceRequest$UseServiceLinkedRole": "<p>Designates a trusted caller, an IAM principal, by registering this caller with the Data Catalog. </p>"
+        "RegisterResourceRequest$UseServiceLinkedRole": "<p>Designates an AWS Identity and Access Management (IAM) service-linked role by registering this role with the Data Catalog. A service-linked role is a unique type of IAM role that is linked directly to Lake Formation.</p> <p>For more information, see <a href=\"https://docs-aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html\">Using Service-Linked Roles for Lake Formation</a>.</p>"
       }
     },
     "OperationTimeoutException": {
@@ -354,7 +359,7 @@
         "PrincipalPermissions$Permissions": "<p>The permissions that are granted to the principal.</p>",
         "PrincipalResourcePermissions$Permissions": "<p>The permissions to be granted or revoked on the resource.</p>",
         "PrincipalResourcePermissions$PermissionsWithGrantOption": "<p>Indicates whether to grant the ability to grant permissions (as a subset of permissions granted).</p>",
-        "RevokePermissionsRequest$Permissions": "<p>The permissions revoked to the principal on the resource. For information about permissions, see <a href=\"https://docs-aws.amazon.com/michigan/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
+        "RevokePermissionsRequest$Permissions": "<p>The permissions revoked to the principal on the resource. For information about permissions, see <a href=\"https://docs-aws.amazon.com/lake-formation/latest/dg/security-data-access.html\">Security and Access Control to Metadata and Data</a>.</p>",
         "RevokePermissionsRequest$PermissionsWithGrantOption": "<p>Indicates a list of permissions for which to revoke the grant option allowing the principal to pass permissions to other principals.</p>"
       }
     },
@@ -367,8 +372,8 @@
     "PrincipalPermissionsList": {
       "base": null,
       "refs": {
-        "DataLakeSettings$CreateDatabaseDefaultPermissions": "<p>A list of up to three principal permissions entries for default create database permissions.</p>",
-        "DataLakeSettings$CreateTableDefaultPermissions": "<p>A list of up to three principal permissions entries for default create table permissions.</p>"
+        "DataLakeSettings$CreateDatabaseDefaultPermissions": "<p>A structure representing a list of up to three principal permissions entries for default create database permissions.</p>",
+        "DataLakeSettings$CreateTableDefaultPermissions": "<p>A structure representing a list of up to three principal permissions entries for default create table permissions.</p>"
       }
     },
     "PrincipalResourcePermissions": {
@@ -467,6 +472,12 @@
         "Resource$Table": "<p>The table for the resource. A table is a metadata definition that represents your data. You can Grant and Revoke table privileges to a principal. </p>"
       }
     },
+    "TableWildcard": {
+      "base": "<p>A wildcard object representing every table under a database.</p>",
+      "refs": {
+        "TableResource$TableWildcard": "<p>A wildcard object representing every table under a database.</p> <p>At least one of <code>TableResource$Name</code> or <code>TableResource$TableWildcard</code> is required.</p>"
+      }
+    },
     "TableWithColumnsResource": {
       "base": "<p>A structure for a table with columns object. This object is only used when granting a SELECT permission.</p> <p>This object must take a value for at least one of <code>ColumnsNames</code>, <code>ColumnsIndexes</code>, or <code>ColumnsWildcard</code>.</p>",
       "refs": {
@@ -482,6 +493,12 @@
         "ListPermissionsResponse$NextToken": "<p>A continuation token, if this is not the first call to retrieve this list.</p>",
         "ListResourcesRequest$NextToken": "<p>A continuation token, if this is not the first call to retrieve these resources.</p>",
         "ListResourcesResponse$NextToken": "<p>A continuation token, if this is not the first call to retrieve these resources.</p>"
+      }
+    },
+    "TrustedResourceOwners": {
+      "base": null,
+      "refs": {
+        "DataLakeSettings$TrustedResourceOwners": "<p>A list of the resource-owning account IDs that the caller's account can use to share their user access details (user ARNs). The user ARNs can be logged in the resource owner's AWS CloudTrail log.</p> <p>You may want to specify this property when you are in a high-trust boundary, such as the same team or company. </p>"
       }
     },
     "UpdateResourceRequest": {

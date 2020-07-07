@@ -1116,6 +1116,21 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "GetResourcePolicies":{
+      "name":"GetResourcePolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourcePoliciesRequest"},
+      "output":{"shape":"GetResourcePoliciesResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"GlueEncryptionException"}
+      ]
+    },
     "GetResourcePolicy":{
       "name":"GetResourcePolicy",
       "http":{
@@ -3312,7 +3327,16 @@
         "LocationUri":{"shape":"URI"},
         "Parameters":{"shape":"ParametersMap"},
         "CreateTime":{"shape":"Timestamp"},
-        "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"}
+        "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"},
+        "TargetDatabase":{"shape":"DatabaseIdentifier"},
+        "CatalogId":{"shape":"CatalogIdString"}
+      }
+    },
+    "DatabaseIdentifier":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"}
       }
     },
     "DatabaseInput":{
@@ -3323,7 +3347,8 @@
         "Description":{"shape":"DescriptionString"},
         "LocationUri":{"shape":"URI"},
         "Parameters":{"shape":"ParametersMap"},
-        "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"}
+        "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"},
+        "TargetDatabase":{"shape":"DatabaseIdentifier"}
       }
     },
     "DatabaseList":{
@@ -3532,7 +3557,8 @@
     "DeleteResourcePolicyRequest":{
       "type":"structure",
       "members":{
-        "PolicyHashCondition":{"shape":"HashString"}
+        "PolicyHashCondition":{"shape":"HashString"},
+        "ResourceArn":{"shape":"GlueResourceArn"}
       }
     },
     "DeleteResourcePolicyResponse":{
@@ -3730,6 +3756,13 @@
     "EdgeList":{
       "type":"list",
       "member":{"shape":"Edge"}
+    },
+    "EnableHybridValues":{
+      "type":"string",
+      "enum":[
+        "TRUE",
+        "FALSE"
+      ]
     },
     "EncryptionAtRest":{
       "type":"structure",
@@ -4048,7 +4081,8 @@
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"PageSize"},
+        "ResourceShareType":{"shape":"ResourceShareType"}
       }
     },
     "GetDatabasesResponse":{
@@ -4345,9 +4379,28 @@
         "ScalaCode":{"shape":"ScalaCode"}
       }
     },
+    "GetResourcePoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"PageSize"}
+      }
+    },
+    "GetResourcePoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "GetResourcePoliciesResponseList":{"shape":"GetResourcePoliciesResponseList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetResourcePoliciesResponseList":{
+      "type":"list",
+      "member":{"shape":"GluePolicy"}
+    },
     "GetResourcePolicyRequest":{
       "type":"structure",
       "members":{
+        "ResourceArn":{"shape":"GlueResourceArn"}
       }
     },
     "GetResourcePolicyResponse":{
@@ -4615,6 +4668,15 @@
         "Message":{"shape":"MessageString"}
       },
       "exception":true
+    },
+    "GluePolicy":{
+      "type":"structure",
+      "members":{
+        "PolicyInJson":{"shape":"PolicyJsonString"},
+        "PolicyHash":{"shape":"HashString"},
+        "CreateTime":{"shape":"Timestamp"},
+        "UpdateTime":{"shape":"Timestamp"}
+      }
     },
     "GlueResourceArn":{
       "type":"string",
@@ -5301,7 +5363,8 @@
         "LastAccessTime":{"shape":"Timestamp"},
         "StorageDescriptor":{"shape":"StorageDescriptor"},
         "Parameters":{"shape":"ParametersMap"},
-        "LastAnalyzedTime":{"shape":"Timestamp"}
+        "LastAnalyzedTime":{"shape":"Timestamp"},
+        "CatalogId":{"shape":"CatalogIdString"}
       }
     },
     "PartitionError":{
@@ -5452,8 +5515,10 @@
       "required":["PolicyInJson"],
       "members":{
         "PolicyInJson":{"shape":"PolicyJsonString"},
+        "ResourceArn":{"shape":"GlueResourceArn"},
         "PolicyHashCondition":{"shape":"HashString"},
-        "PolicyExistsCondition":{"shape":"ExistCondition"}
+        "PolicyExistsCondition":{"shape":"ExistCondition"},
+        "EnableHybrid":{"shape":"EnableHybridValues"}
       }
     },
     "PutResourcePolicyResponse":{
@@ -5510,6 +5575,13 @@
         "Message":{"shape":"MessageString"}
       },
       "exception":true
+    },
+    "ResourceShareType":{
+      "type":"string",
+      "enum":[
+        "FOREIGN",
+        "ALL"
+      ]
     },
     "ResourceType":{
       "type":"string",
@@ -5635,7 +5707,8 @@
         "Filters":{"shape":"SearchPropertyPredicates"},
         "SearchText":{"shape":"ValueString"},
         "SortCriteria":{"shape":"SortCriteria"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"PageSize"},
+        "ResourceShareType":{"shape":"ResourceShareType"}
       }
     },
     "SearchTablesResponse":{
@@ -5967,7 +6040,9 @@
         "TableType":{"shape":"TableTypeString"},
         "Parameters":{"shape":"ParametersMap"},
         "CreatedBy":{"shape":"NameString"},
-        "IsRegisteredWithLakeFormation":{"shape":"Boolean"}
+        "IsRegisteredWithLakeFormation":{"shape":"Boolean"},
+        "TargetTable":{"shape":"TableIdentifier"},
+        "CatalogId":{"shape":"CatalogIdString"}
       }
     },
     "TableError":{
@@ -5980,6 +6055,14 @@
     "TableErrors":{
       "type":"list",
       "member":{"shape":"TableError"}
+    },
+    "TableIdentifier":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "Name":{"shape":"NameString"}
+      }
     },
     "TableInput":{
       "type":"structure",
@@ -5996,7 +6079,8 @@
         "ViewOriginalText":{"shape":"ViewTextString"},
         "ViewExpandedText":{"shape":"ViewTextString"},
         "TableType":{"shape":"TableTypeString"},
-        "Parameters":{"shape":"ParametersMap"}
+        "Parameters":{"shape":"ParametersMap"},
+        "TargetTable":{"shape":"TableIdentifier"}
       }
     },
     "TableList":{
@@ -6655,7 +6739,8 @@
         "OwnerName":{"shape":"NameString"},
         "OwnerType":{"shape":"PrincipalType"},
         "CreateTime":{"shape":"Timestamp"},
-        "ResourceUris":{"shape":"ResourceUriList"}
+        "ResourceUris":{"shape":"ResourceUriList"},
+        "CatalogId":{"shape":"CatalogIdString"}
       }
     },
     "UserDefinedFunctionInput":{

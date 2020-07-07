@@ -6527,11 +6527,18 @@
       "snowball" : {
         "endpoints" : {
           "cn-north-1" : { },
+          "cn-northwest-1" : { },
           "fips-cn-north-1" : {
             "credentialScope" : {
               "region" : "cn-north-1"
             },
             "hostname" : "snowball-fips.cn-north-1.amazonaws.com.cn"
+          },
+          "fips-cn-northwest-1" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "snowball-fips.cn-northwest-1.amazonaws.com.cn"
           }
         }
       },
