@@ -75,6 +75,7 @@
     "GetPartition": "<p>Retrieves information about a specified partition.</p>",
     "GetPartitions": "<p>Retrieves information about the partitions in a table.</p>",
     "GetPlan": "<p>Gets code to perform a specified mapping.</p>",
+    "GetResourcePolicies": "<p>Retrieves the security configurations for the resource policies set on individual resources, and also the account-level policy.</p>",
     "GetResourcePolicy": "<p>Retrieves a specified resource policy.</p>",
     "GetSecurityConfiguration": "<p>Retrieves a specified security configuration.</p>",
     "GetSecurityConfigurations": "<p>Retrieves a list of all security configurations.</p>",
@@ -437,6 +438,8 @@
         "CreatePartitionRequest$CatalogId": "<p>The AWS account ID of the catalog in which the partition is to be created.</p>",
         "CreateTableRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the <code>Table</code>. If none is supplied, the AWS account ID is used by default.</p>",
         "CreateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the function. If none is provided, the AWS account ID is used by default.</p>",
+        "Database$CatalogId": "<p>The ID of the Data Catalog in which the database resides.</p>",
+        "DatabaseIdentifier$CatalogId": "<p>The ID of the Data Catalog in which the database resides.</p>",
         "DeleteColumnStatisticsForPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
         "DeleteColumnStatisticsForTableRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
         "DeleteConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>",
@@ -462,15 +465,19 @@
         "GetUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be retrieved is located. If none is provided, the AWS account ID is used by default.</p>",
         "GetUserDefinedFunctionsRequest$CatalogId": "<p>The ID of the Data Catalog where the functions to be retrieved are located. If none is provided, the AWS account ID is used by default.</p>",
         "ImportCatalogToGlueRequest$CatalogId": "<p>The ID of the catalog to import. Currently, this should be the AWS account ID.</p>",
+        "Partition$CatalogId": "<p>The ID of the Data Catalog in which the partition resides.</p>",
         "PutDataCatalogEncryptionSettingsRequest$CatalogId": "<p>The ID of the Data Catalog to set the security configuration for. If none is provided, the AWS account ID is used by default.</p>",
         "SearchTablesRequest$CatalogId": "<p>A unique identifier, consisting of <code> <i>account_id</i>/datalake</code>.</p>",
+        "Table$CatalogId": "<p>The ID of the Data Catalog in which the table resides.</p>",
+        "TableIdentifier$CatalogId": "<p>The ID of the Data Catalog in which the table resides.</p>",
         "UpdateColumnStatisticsForPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
         "UpdateColumnStatisticsForTableRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
         "UpdateConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>",
         "UpdateDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the metadata database resides. If none is provided, the AWS account ID is used by default.</p>",
         "UpdatePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be updated resides. If none is provided, the AWS account ID is used by default.</p>",
         "UpdateTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>",
-        "UpdateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be updated is located. If none is provided, the AWS account ID is used by default.</p>"
+        "UpdateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be updated is located. If none is provided, the AWS account ID is used by default.</p>",
+        "UserDefinedFunction$CatalogId": "<p>The ID of the Data Catalog in which the function resides.</p>"
       }
     },
     "CatalogImportStatus": {
@@ -783,9 +790,9 @@
     "ConnectionType": {
       "base": null,
       "refs": {
-        "Connection$ConnectionType": "<p>The type of the connection. Currently, only JDBC is supported; SFTP is not supported.</p>",
+        "Connection$ConnectionType": "<p>The type of the connection. Currently, SFTP is not supported.</p>",
         "ConnectionInput$ConnectionType": "<p>The type of the connection. Currently, these types are supported:</p> <ul> <li> <p> <code>JDBC</code> - Designates a connection to a database through Java Database Connectivity (JDBC).</p> </li> <li> <p> <code>KAFKA</code> - Designates a connection to an Apache Kafka streaming platform.</p> </li> <li> <p> <code>MONGODB</code> - Designates a connection to a MongoDB document database.</p> </li> </ul> <p>SFTP is not supported.</p>",
-        "GetConnectionsFilter$ConnectionType": "<p>The type of connections to return. Currently, only JDBC is supported; SFTP is not supported.</p>"
+        "GetConnectionsFilter$ConnectionType": "<p>The type of connections to return. Currently, SFTP is not supported.</p>"
       }
     },
     "ConnectionsList": {
@@ -1160,6 +1167,13 @@
         "GetDatabaseResponse$Database": "<p>The definition of the specified database in the Data Catalog.</p>"
       }
     },
+    "DatabaseIdentifier": {
+      "base": "<p>A structure that describes a target database for resource linking.</p>",
+      "refs": {
+        "Database$TargetDatabase": "<p>A <code>DatabaseIdentifier</code> structure that describes a target database for resource linking.</p>",
+        "DatabaseInput$TargetDatabase": "<p>A <code>DatabaseIdentifier</code> structure that describes a target database for resource linking.</p>"
+      }
+    },
     "DatabaseInput": {
       "base": "<p>The structure used to create or update a database.</p>",
       "refs": {
@@ -1482,6 +1496,12 @@
       "base": null,
       "refs": {
         "WorkflowGraph$Edges": "<p>A list of all the directed connections between the nodes belonging to the workflow.</p>"
+      }
+    },
+    "EnableHybridValues": {
+      "base": null,
+      "refs": {
+        "PutResourcePolicyRequest$EnableHybrid": "<p>Allows you to specify if you want to use both resource-level and account/catalog-level resource policies. A resource-level policy is a policy attached to an individual resource such as a database or a table.</p> <p>The default value of <code>NO</code> indicates that resource-level policies cannot co-exist with an account-level policy. A value of <code>YES</code> means the use of both resource-level and account/catalog-level resource policies is allowed.</p>"
       }
     },
     "EncryptionAtRest": {
@@ -2006,6 +2026,22 @@
       "refs": {
       }
     },
+    "GetResourcePoliciesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePoliciesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResourcePoliciesResponseList": {
+      "base": null,
+      "refs": {
+        "GetResourcePoliciesResponse$GetResourcePoliciesResponseList": "<p>A list of the individual resource policies and the account-level resource policy.</p>"
+      }
+    },
     "GetResourcePolicyRequest": {
       "base": null,
       "refs": {
@@ -2177,10 +2213,19 @@
       "refs": {
       }
     },
+    "GluePolicy": {
+      "base": "<p>A structure for returning a resource policy.</p>",
+      "refs": {
+        "GetResourcePoliciesResponseList$member": null
+      }
+    },
     "GlueResourceArn": {
       "base": null,
       "refs": {
+        "DeleteResourcePolicyRequest$ResourceArn": "<p>The ARN of the AWS Glue resource for the resource policy to be deleted.</p>",
+        "GetResourcePolicyRequest$ResourceArn": "<p>The ARN of the AWS Glue resource for the resource policy to be retrieved. For more information about AWS Glue resource ARNs, see the <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id\">AWS Glue ARN string pattern</a> </p>",
         "GetTagsRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which to retrieve tags.</p>",
+        "PutResourcePolicyRequest$ResourceArn": "<p>The ARN of the AWS Glue resource for the resource policy to be set. For more information about AWS Glue resource ARNs, see the <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id\">AWS Glue ARN string pattern</a> </p>",
         "TagResourceRequest$ResourceArn": "<p>The ARN of the AWS Glue resource to which to add the tags. For more information about AWS Glue resource ARNs, see the <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id\">AWS Glue ARN string pattern</a>.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to remove the tags.</p>"
       }
@@ -2251,6 +2296,7 @@
         "GetMLTransformRequest$TransformId": "<p>The unique identifier of the transform, generated at the time that the transform was created.</p>",
         "GetMLTransformResponse$TransformId": "<p>The unique identifier of the transform, generated at the time that the transform was created.</p>",
         "GetResourcePolicyResponse$PolicyHash": "<p>Contains the hash value associated with this policy.</p>",
+        "GluePolicy$PolicyHash": "<p>Contains the hash value associated with this policy.</p>",
         "MLTransform$TransformId": "<p>The unique transform ID that is generated for the machine learning transform. The ID is guaranteed to be unique and does not change.</p>",
         "PutResourcePolicyRequest$PolicyHashCondition": "<p>The hash value returned when the previous policy was set using <code>PutResourcePolicy</code>. Its purpose is to prevent concurrent modifications of a policy. Do not use this parameter if no previous policy has been set.</p>",
         "PutResourcePolicyResponse$PolicyHash": "<p>A hash of the policy that has just been set. This must be included in a subsequent call that overwrites or updates this policy.</p>",
@@ -2808,6 +2854,7 @@
         "CsvClassifier$Name": "<p>The name of the classifier.</p>",
         "CsvHeader$member": null,
         "Database$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
+        "DatabaseIdentifier$DatabaseName": "<p>The name of the catalog database.</p>",
         "DatabaseInput$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
         "DeleteClassifierRequest$Name": "<p>Name of the classifier to remove.</p>",
         "DeleteColumnStatisticsForPartitionRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
@@ -2925,6 +2972,8 @@
         "Table$Owner": "<p>The owner of the table.</p>",
         "Table$CreatedBy": "<p>The person or entity who created the table.</p>",
         "TableError$TableName": "<p>The name of the table. For Hive compatibility, this must be entirely lowercase.</p>",
+        "TableIdentifier$DatabaseName": "<p>The name of the catalog database that contains the target table.</p>",
+        "TableIdentifier$Name": "<p>The name of the target table.</p>",
         "TableInput$Name": "<p>The table name. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
         "TableInput$Owner": "<p>The table owner.</p>",
         "TableVersionError$TableName": "<p>The name of the table in question.</p>",
@@ -2957,7 +3006,7 @@
         "UpdateWorkflowResponse$Name": "<p>The name of the workflow which was specified in input.</p>",
         "UpdateXMLClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "UserDefinedFunction$FunctionName": "<p>The name of the function.</p>",
-        "UserDefinedFunction$DatabaseName": "<p>The name of the database where the function resides.</p>",
+        "UserDefinedFunction$DatabaseName": "<p>The name of the catalog database that contains the function.</p>",
         "UserDefinedFunction$ClassName": "<p>The Java class that contains the function code.</p>",
         "UserDefinedFunction$OwnerName": "<p>The owner of the function.</p>",
         "UserDefinedFunctionInput$FunctionName": "<p>The name of the function.</p>",
@@ -3149,6 +3198,7 @@
         "GetMLTaskRunsRequest$MaxResults": "<p>The maximum number of results to return. </p>",
         "GetMLTransformsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetPartitionsRequest$MaxResults": "<p>The maximum number of partitions to return in a single response.</p>",
+        "GetResourcePoliciesRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "GetSecurityConfigurationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetTableVersionsRequest$MaxResults": "<p>The maximum number of table versions to return in one response.</p>",
         "GetTablesRequest$MaxResults": "<p>The maximum number of tables to return in a single response.</p>",
@@ -3282,6 +3332,7 @@
       "base": null,
       "refs": {
         "GetResourcePolicyResponse$PolicyInJson": "<p>Contains the requested policy document, in JSON format.</p>",
+        "GluePolicy$PolicyInJson": "<p>Contains the requested policy document, in JSON format.</p>",
         "PutResourcePolicyRequest$PolicyInJson": "<p>Contains the policy document to set, in JSON format.</p>"
       }
     },
@@ -3419,6 +3470,13 @@
     "ResourceNumberLimitExceededException": {
       "base": "<p>A resource numerical limit was exceeded.</p>",
       "refs": {
+      }
+    },
+    "ResourceShareType": {
+      "base": null,
+      "refs": {
+        "GetDatabasesRequest$ResourceShareType": "<p>Allows you to specify that you want to list the databases shared with your account. The allowable values are <code>FOREIGN</code> or <code>ALL</code>. </p> <ul> <li> <p>If set to <code>FOREIGN</code>, will list the databases shared with your account. </p> </li> <li> <p>If set to <code>ALL</code>, will list the databases shared with your account, as well as the databases in yor local account. </p> </li> </ul>",
+        "SearchTablesRequest$ResourceShareType": "<p>Allows you to specify that you want to search the tables shared with your account. The allowable values are <code>FOREIGN</code> or <code>ALL</code>. </p> <ul> <li> <p>If set to <code>FOREIGN</code>, will search the tables shared with your account. </p> </li> <li> <p>If set to <code>ALL</code>, will search the tables shared with your account, as well as the tables in yor local account. </p> </li> </ul>"
       }
     },
     "ResourceType": {
@@ -3828,6 +3886,13 @@
         "BatchDeleteTableResponse$Errors": "<p>A list of errors encountered in attempting to delete the specified tables.</p>"
       }
     },
+    "TableIdentifier": {
+      "base": "<p>A structure that describes a target table for resource linking.</p>",
+      "refs": {
+        "Table$TargetTable": "<p>A <code>TableIdentifier</code> structure that describes a target table for resource linking.</p>",
+        "TableInput$TargetTable": "<p>A <code>TableIdentifier</code> structure that describes a target table for resource linking.</p>"
+      }
+    },
     "TableInput": {
       "base": "<p>A structure used to define a table.</p>",
       "refs": {
@@ -4019,6 +4084,8 @@
         "GetMLTransformResponse$LastModifiedOn": "<p>The date and time when the transform was last modified.</p>",
         "GetResourcePolicyResponse$CreateTime": "<p>The date and time at which the policy was created.</p>",
         "GetResourcePolicyResponse$UpdateTime": "<p>The date and time at which the policy was last updated.</p>",
+        "GluePolicy$CreateTime": "<p>The date and time at which the policy was created.</p>",
+        "GluePolicy$UpdateTime": "<p>The date and time at which the policy was last updated.</p>",
         "GrokClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
         "GrokClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>",
         "JsonClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
@@ -4087,6 +4154,8 @@
         "GetDatabasesResponse$NextToken": "<p>A continuation token for paginating the returned list of tokens, returned if the current segment of the list is not the last.</p>",
         "GetPartitionsRequest$NextToken": "<p>A continuation token, if this is not the first call to retrieve these partitions.</p>",
         "GetPartitionsResponse$NextToken": "<p>A continuation token, if the returned list of partitions does not include the last one.</p>",
+        "GetResourcePoliciesRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
+        "GetResourcePoliciesResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last resource policy available.</p>",
         "GetTableVersionsRequest$NextToken": "<p>A continuation token, if this is not the first call.</p>",
         "GetTableVersionsResponse$NextToken": "<p>A continuation token, if the list of available versions does not include the last one.</p>",
         "GetTablesRequest$NextToken": "<p>A continuation token, included if this is a continuation call.</p>",

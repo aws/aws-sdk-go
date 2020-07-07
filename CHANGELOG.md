@@ -1,3 +1,19 @@
+Release v1.33.3 (2020-07-07)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * Amazon CloudFront adds support for a new security policy, TLSv1.2_2019.
+* `service/ec2`: Updates service API and documentation
+  * DescribeAvailabilityZones now returns additional data about Availability Zones and Local Zones.
+* `service/elasticfilesystem`: Updates service API, documentation, and examples
+  * This release adds support for automatic backups of Amazon EFS file systems to further simplify backup management.
+* `service/glue`: Updates service API and documentation
+  * AWS Glue Data Catalog supports cross account sharing of tables through AWS Lake Formation
+* `service/lakeformation`: Updates service API and documentation
+* `service/storagegateway`: Updates service API and documentation
+  * Adding support for file-system driven directory refresh, Case Sensitivity toggle for SMB File Shares, and S3 Prefixes and custom File Share names
+
 Release v1.33.2 (2020-07-06)
 ===
 

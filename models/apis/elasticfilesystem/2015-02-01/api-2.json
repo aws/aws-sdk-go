@@ -23,6 +23,7 @@
       "errors":[
         {"shape":"BadRequest"},
         {"shape":"AccessPointAlreadyExists"},
+        {"shape":"IncorrectFileSystemLifeCycleState"},
         {"shape":"InternalServerError"},
         {"shape":"FileSystemNotFound"},
         {"shape":"AccessPointLimitExceeded"}
@@ -176,6 +177,23 @@
         {"shape":"AccessPointNotFound"}
       ]
     },
+    "DescribeBackupPolicy":{
+      "name":"DescribeBackupPolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2015-02-01/file-systems/{FileSystemId}/backup-policy",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeBackupPolicyRequest"},
+      "output":{"shape":"BackupPolicyDescription"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"InternalServerError"},
+        {"shape":"PolicyNotFound"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeFileSystemPolicy":{
       "name":"DescribeFileSystemPolicy",
       "http":{
@@ -302,6 +320,23 @@
         {"shape":"IncorrectMountTargetState"},
         {"shape":"SecurityGroupLimitExceeded"},
         {"shape":"SecurityGroupNotFound"}
+      ]
+    },
+    "PutBackupPolicy":{
+      "name":"PutBackupPolicy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2015-02-01/file-systems/{FileSystemId}/backup-policy",
+        "responseCode":200
+      },
+      "input":{"shape":"PutBackupPolicyRequest"},
+      "output":{"shape":"BackupPolicyDescription"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"IncorrectFileSystemLifeCycleState"},
+        {"shape":"InternalServerError"},
+        {"shape":"ValidationException"}
       ]
     },
     "PutFileSystemPolicy":{
@@ -444,7 +479,24 @@
     },
     "AvailabilityZoneId":{"type":"string"},
     "AvailabilityZoneName":{"type":"string"},
-    "AwsAccountId":{"type":"string"},
+    "AwsAccountId":{
+      "type":"string",
+      "max":14,
+      "pattern":"^(\\d{12})|(\\d{4}-\\d{4}-\\d{4})$"
+    },
+    "BackupPolicy":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"Status"}
+      }
+    },
+    "BackupPolicyDescription":{
+      "type":"structure",
+      "members":{
+        "BackupPolicy":{"shape":"BackupPolicy"}
+      }
+    },
     "BadRequest":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -538,7 +590,8 @@
     "CreationToken":{
       "type":"string",
       "max":64,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "DeleteAccessPointRequest":{
       "type":"structure",
@@ -639,6 +692,17 @@
       "members":{
         "AccessPoints":{"shape":"AccessPointDescriptions"},
         "NextToken":{"shape":"Token"}
+      }
+    },
+    "DescribeBackupPolicyRequest":{
+      "type":"structure",
+      "required":["FileSystemId"],
+      "members":{
+        "FileSystemId":{
+          "shape":"FileSystemId",
+          "location":"uri",
+          "locationName":"FileSystemId"
+        }
       }
     },
     "DescribeFileSystemPolicyRequest":{
@@ -802,6 +866,7 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "FileSystemArn":{"type":"string"},
     "FileSystemDescription":{
       "type":"structure",
       "required":[
@@ -819,6 +884,7 @@
         "OwnerId":{"shape":"AwsAccountId"},
         "CreationToken":{"shape":"CreationToken"},
         "FileSystemId":{"shape":"FileSystemId"},
+        "FileSystemArn":{"shape":"FileSystemArn"},
         "CreationTime":{"shape":"Timestamp"},
         "LifeCycleState":{"shape":"LifeCycleState"},
         "Name":{"shape":"TagValue"},
@@ -836,7 +902,11 @@
       "type":"list",
       "member":{"shape":"FileSystemDescription"}
     },
-    "FileSystemId":{"type":"string"},
+    "FileSystemId":{
+      "type":"string",
+      "max":128,
+      "pattern":"^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$"
+    },
     "FileSystemInUse":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -946,7 +1016,12 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
-    "IpAddress":{"type":"string"},
+    "IpAddress":{
+      "type":"string",
+      "max":15,
+      "min":7,
+      "pattern":"^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$"
+    },
     "IpAddressInUse":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -960,7 +1035,7 @@
     "KmsKeyId":{
       "type":"string",
       "max":2048,
-      "min":1
+      "pattern":"^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(alias/[a-zA-Z0-9/_-]+))))$"
     },
     "LifeCycleState":{
       "type":"string",
@@ -1016,7 +1091,12 @@
         "NextToken":{"shape":"Token"}
       }
     },
-    "Marker":{"type":"string"},
+    "Marker":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":".+"
+    },
     "MaxItems":{
       "type":"integer",
       "min":1
@@ -1068,14 +1148,20 @@
         "IpAddress":{"shape":"IpAddress"},
         "NetworkInterfaceId":{"shape":"NetworkInterfaceId"},
         "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
-        "AvailabilityZoneName":{"shape":"AvailabilityZoneName"}
+        "AvailabilityZoneName":{"shape":"AvailabilityZoneName"},
+        "VpcId":{"shape":"VpcId"}
       }
     },
     "MountTargetDescriptions":{
       "type":"list",
       "member":{"shape":"MountTargetDescription"}
     },
-    "MountTargetId":{"type":"string"},
+    "MountTargetId":{
+      "type":"string",
+      "max":45,
+      "min":13,
+      "pattern":"^fsmt-[0-9a-f]{8,40}$"
+    },
     "MountTargetNotFound":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -1160,6 +1246,21 @@
       "type":"double",
       "min":1.0
     },
+    "PutBackupPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "FileSystemId",
+        "BackupPolicy"
+      ],
+      "members":{
+        "FileSystemId":{
+          "shape":"FileSystemId",
+          "location":"uri",
+          "locationName":"FileSystemId"
+        },
+        "BackupPolicy":{"shape":"BackupPolicy"}
+      }
+    },
     "PutFileSystemPolicyRequest":{
       "type":"structure",
       "required":[
@@ -1205,7 +1306,12 @@
       "max":16,
       "min":0
     },
-    "SecurityGroup":{"type":"string"},
+    "SecurityGroup":{
+      "type":"string",
+      "max":43,
+      "min":11,
+      "pattern":"^sg-[0-9a-f]{8,40}"
+    },
     "SecurityGroupLimitExceeded":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -1231,7 +1337,21 @@
       "member":{"shape":"SecurityGroup"},
       "max":5
     },
-    "SubnetId":{"type":"string"},
+    "Status":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "ENABLING",
+        "DISABLED",
+        "DISABLING"
+      ]
+    },
+    "SubnetId":{
+      "type":"string",
+      "max":47,
+      "min":15,
+      "pattern":"^subnet-[0-9a-f]{8,40}$"
+    },
     "SubnetNotFound":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -1256,7 +1376,8 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"^(?![aA]{1}[wW]{1}[sS]{1}:)([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]+)$"
     },
     "TagKeys":{
       "type":"list",
@@ -1281,7 +1402,8 @@
     },
     "TagValue":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "Tags":{
       "type":"list",
@@ -1372,6 +1494,17 @@
         "ThroughputMode":{"shape":"ThroughputMode"},
         "ProvisionedThroughputInMibps":{"shape":"ProvisionedThroughputInMibps"}
       }
-    }
+    },
+    "ValidationException":{
+      "type":"structure",
+      "required":["ErrorCode"],
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "VpcId":{"type":"string"}
   }
 }

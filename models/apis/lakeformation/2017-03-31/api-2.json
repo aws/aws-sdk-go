@@ -335,13 +335,15 @@
       "members":{
         "DataLakeAdmins":{"shape":"DataLakePrincipalList"},
         "CreateDatabaseDefaultPermissions":{"shape":"PrincipalPermissionsList"},
-        "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"}
+        "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"},
+        "TrustedResourceOwners":{"shape":"TrustedResourceOwners"}
       }
     },
     "DataLocationResource":{
       "type":"structure",
       "required":["ResourceArn"],
       "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
         "ResourceArn":{"shape":"ResourceArnString"}
       }
     },
@@ -349,6 +351,7 @@
       "type":"structure",
       "required":["Name"],
       "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
         "Name":{"shape":"NameString"}
       }
     },
@@ -559,6 +562,7 @@
         "DROP",
         "DELETE",
         "INSERT",
+        "DESCRIBE",
         "CREATE_DATABASE",
         "CREATE_TABLE",
         "DATA_LOCATION_ACCESS"
@@ -669,18 +673,27 @@
     },
     "TableResource":{
       "type":"structure",
+      "required":["DatabaseName"],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "Name":{"shape":"NameString"},
+        "TableWildcard":{"shape":"TableWildcard"}
+      }
+    },
+    "TableWildcard":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TableWithColumnsResource":{
+      "type":"structure",
       "required":[
         "DatabaseName",
         "Name"
       ],
       "members":{
-        "DatabaseName":{"shape":"NameString"},
-        "Name":{"shape":"NameString"}
-      }
-    },
-    "TableWithColumnsResource":{
-      "type":"structure",
-      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
         "Name":{"shape":"NameString"},
         "ColumnNames":{"shape":"ColumnNames"},
@@ -688,6 +701,10 @@
       }
     },
     "Token":{"type":"string"},
+    "TrustedResourceOwners":{
+      "type":"list",
+      "member":{"shape":"CatalogIdString"}
+    },
     "UpdateResourceRequest":{
       "type":"structure",
       "required":[

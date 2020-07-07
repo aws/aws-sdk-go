@@ -385,6 +385,10 @@ type GlueAPI interface {
 	GetPlanWithContext(aws.Context, *glue.GetPlanInput, ...request.Option) (*glue.GetPlanOutput, error)
 	GetPlanRequest(*glue.GetPlanInput) (*request.Request, *glue.GetPlanOutput)
 
+	GetResourcePolicies(*glue.GetResourcePoliciesInput) (*glue.GetResourcePoliciesOutput, error)
+	GetResourcePoliciesWithContext(aws.Context, *glue.GetResourcePoliciesInput, ...request.Option) (*glue.GetResourcePoliciesOutput, error)
+	GetResourcePoliciesRequest(*glue.GetResourcePoliciesInput) (*request.Request, *glue.GetResourcePoliciesOutput)
+
 	GetResourcePolicy(*glue.GetResourcePolicyInput) (*glue.GetResourcePolicyOutput, error)
 	GetResourcePolicyWithContext(aws.Context, *glue.GetResourcePolicyInput, ...request.Option) (*glue.GetResourcePolicyOutput, error)
 	GetResourcePolicyRequest(*glue.GetResourcePolicyInput) (*request.Request, *glue.GetResourcePolicyOutput)

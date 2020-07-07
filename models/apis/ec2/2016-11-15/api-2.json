@@ -4832,6 +4832,18 @@
         "NetworkBorderGroup":{
           "shape":"String",
           "locationName":"networkBorderGroup"
+        },
+        "ZoneType":{
+          "shape":"String",
+          "locationName":"zoneType"
+        },
+        "ParentZoneName":{
+          "shape":"String",
+          "locationName":"parentZoneName"
+        },
+        "ParentZoneId":{
+          "shape":"String",
+          "locationName":"parentZoneId"
         }
       }
     },

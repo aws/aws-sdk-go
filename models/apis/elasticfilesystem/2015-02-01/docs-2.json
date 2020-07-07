@@ -12,6 +12,7 @@
     "DeleteMountTarget": "<p>Deletes the specified mount target.</p> <p>This operation forcibly breaks any mounts of the file system by using the mount target that is being deleted, which might disrupt instances or applications using those mounts. To avoid applications getting cut off abruptly, you might consider unmounting any mounts of the mount target, if feasible. The operation also deletes the associated network interface. Uncommitted writes might be lost, but breaking a mount target using this operation does not corrupt the file system itself. The file system you created remains. You can mount an EC2 instance in your VPC by using another mount target.</p> <p>This operation requires permissions for the following action on the file system:</p> <ul> <li> <p> <code>elasticfilesystem:DeleteMountTarget</code> </p> </li> </ul> <note> <p>The <code>DeleteMountTarget</code> call returns while the mount target state is still <code>deleting</code>. You can check the mount target deletion by calling the <a>DescribeMountTargets</a> operation, which returns a list of mount target descriptions for the given file system. </p> </note> <p>The operation also requires permissions for the following Amazon EC2 action on the mount target's network interface:</p> <ul> <li> <p> <code>ec2:DeleteNetworkInterface</code> </p> </li> </ul>",
     "DeleteTags": "<p>Deletes the specified tags from a file system. If the <code>DeleteTags</code> request includes a tag key that doesn't exist, Amazon EFS ignores it and doesn't cause an error. For more information about tags and related restrictions, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html\">Tag Restrictions</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p> <p>This operation requires permissions for the <code>elasticfilesystem:DeleteTags</code> action.</p>",
     "DescribeAccessPoints": "<p>Returns the description of a specific Amazon EFS access point if the <code>AccessPointId</code> is provided. If you provide an EFS <code>FileSystemId</code>, it returns descriptions of all access points for that file system. You can provide either an <code>AccessPointId</code> or a <code>FileSystemId</code> in the request, but not both. </p> <p>This operation requires permissions for the <code>elasticfilesystem:DescribeAccessPoints</code> action.</p>",
+    "DescribeBackupPolicy": "<p>Returns the backup policy for the specified EFS file system.</p>",
     "DescribeFileSystemPolicy": "<p>Returns the <code>FileSystemPolicy</code> for the specified EFS file system.</p> <p>This operation requires permissions for the <code>elasticfilesystem:DescribeFileSystemPolicy</code> action.</p>",
     "DescribeFileSystems": "<p>Returns the description of a specific Amazon EFS file system if either the file system <code>CreationToken</code> or the <code>FileSystemId</code> is provided. Otherwise, it returns descriptions of all file systems owned by the caller's AWS account in the AWS Region of the endpoint that you're calling.</p> <p>When retrieving all file system descriptions, you can optionally specify the <code>MaxItems</code> parameter to limit the number of descriptions in a response. Currently, this number is automatically set to 10. If more file system descriptions remain, Amazon EFS returns a <code>NextMarker</code>, an opaque token, in the response. In this case, you should send a subsequent request with the <code>Marker</code> request parameter set to the value of <code>NextMarker</code>. </p> <p>To retrieve a list of your file system descriptions, this operation is used in an iterative process, where <code>DescribeFileSystems</code> is called first without the <code>Marker</code> and then the operation continues to call it with the <code>Marker</code> parameter set to the value of the <code>NextMarker</code> from the previous response until the response has no <code>NextMarker</code>. </p> <p> The order of file systems returned in the response of one <code>DescribeFileSystems</code> call and the order of file systems returned across the responses of a multi-call iteration is unspecified. </p> <p> This operation requires permissions for the <code>elasticfilesystem:DescribeFileSystems</code> action. </p>",
     "DescribeLifecycleConfiguration": "<p>Returns the current <code>LifecycleConfiguration</code> object for the specified Amazon EFS file system. EFS lifecycle management uses the <code>LifecycleConfiguration</code> object to identify which files to move to the EFS Infrequent Access (IA) storage class. For a file system without a <code>LifecycleConfiguration</code> object, the call returns an empty array in the response.</p> <p>This operation requires permissions for the <code>elasticfilesystem:DescribeLifecycleConfiguration</code> operation.</p>",
@@ -20,6 +21,7 @@
     "DescribeTags": "<p>Returns the tags associated with a file system. The order of tags returned in the response of one <code>DescribeTags</code> call and the order of tags returned across the responses of a multiple-call iteration (when using pagination) is unspecified. </p> <p> This operation requires permissions for the <code>elasticfilesystem:DescribeTags</code> action. </p>",
     "ListTagsForResource": "<p>Lists all tags for a top-level EFS resource. You must provide the ID of the resource that you want to retrieve the tags for.</p> <p>This operation requires permissions for the <code>elasticfilesystem:DescribeAccessPoints</code> action.</p>",
     "ModifyMountTargetSecurityGroups": "<p>Modifies the set of security groups in effect for a mount target.</p> <p>When you create a mount target, Amazon EFS also creates a new network interface. For more information, see <a>CreateMountTarget</a>. This operation replaces the security groups in effect for the network interface associated with a mount target, with the <code>SecurityGroups</code> provided in the request. This operation requires that the network interface of the mount target has been created and the lifecycle state of the mount target is not <code>deleted</code>. </p> <p>The operation requires permissions for the following actions:</p> <ul> <li> <p> <code>elasticfilesystem:ModifyMountTargetSecurityGroups</code> action on the mount target's file system. </p> </li> <li> <p> <code>ec2:ModifyNetworkInterfaceAttribute</code> action on the mount target's network interface. </p> </li> </ul>",
+    "PutBackupPolicy": "<p>Updates the file system's backup policy. Use this action to start or stop automatic backups of the file system. </p>",
     "PutFileSystemPolicy": "<p>Applies an Amazon EFS <code>FileSystemPolicy</code> to an Amazon EFS file system. A file system policy is an IAM resource-based policy and can contain multiple policy statements. A file system always has exactly one file system policy, which can be the default policy or an explicit policy set or updated using this API operation. When an explicit policy is set, it overrides the default policy. For more information about the default file system policy, see <a href=\"https://docs.aws.amazon.com/efs/latest/ug/iam-access-control-nfs-efs.html#default-filesystempolicy\">Default EFS File System Policy</a>. </p> <p>This operation requires permissions for the <code>elasticfilesystem:PutFileSystemPolicy</code> action.</p>",
     "PutLifecycleConfiguration": "<p>Enables lifecycle management by creating a new <code>LifecycleConfiguration</code> object. A <code>LifecycleConfiguration</code> object defines when files in an Amazon EFS file system are automatically transitioned to the lower-cost EFS Infrequent Access (IA) storage class. A <code>LifecycleConfiguration</code> applies to all files in a file system.</p> <p>Each Amazon EFS file system supports one lifecycle configuration, which applies to all files in the file system. If a <code>LifecycleConfiguration</code> object already exists for the specified file system, a <code>PutLifecycleConfiguration</code> call modifies the existing configuration. A <code>PutLifecycleConfiguration</code> call with an empty <code>LifecyclePolicies</code> array in the request body deletes any existing <code>LifecycleConfiguration</code> and disables lifecycle management.</p> <p>In the request, specify the following: </p> <ul> <li> <p>The ID for the file system for which you are enabling, disabling, or modifying lifecycle management.</p> </li> <li> <p>A <code>LifecyclePolicies</code> array of <code>LifecyclePolicy</code> objects that define when files are moved to the IA storage class. The array can contain only one <code>LifecyclePolicy</code> item.</p> </li> </ul> <p>This operation requires permissions for the <code>elasticfilesystem:PutLifecycleConfiguration</code> operation.</p> <p>To apply a <code>LifecycleConfiguration</code> object to an encrypted file system, you need the same AWS Key Management Service (AWS KMS) permissions as when you created the encrypted file system. </p>",
     "TagResource": "<p>Creates a tag for an EFS resource. You can create tags for EFS file systems and access points using this API operation.</p> <p>This operation requires permissions for the <code>elasticfilesystem:TagResource</code> action.</p>",
@@ -88,6 +90,18 @@
         "AccessPointDescription$OwnerId": "<p>Identified the AWS account that owns the access point resource.</p>",
         "FileSystemDescription$OwnerId": "<p>The AWS account that created the file system. If the file system was created by an IAM user, the parent account to which the user belongs is the owner.</p>",
         "MountTargetDescription$OwnerId": "<p>AWS account ID that owns the resource.</p>"
+      }
+    },
+    "BackupPolicy": {
+      "base": "<p>The backup policy for the file system, showing the curent status. If <code>ENABLED</code>, the file system is being backed up.</p>",
+      "refs": {
+        "BackupPolicyDescription$BackupPolicy": "<p>Describes the file system's backup policy, indicating whether automatic backups are turned on or off..</p>",
+        "PutBackupPolicyRequest$BackupPolicy": "<p>The backup policy included in the <code>PutBackupPolicy</code> request.</p>"
+      }
+    },
+    "BackupPolicyDescription": {
+      "base": null,
+      "refs": {
       }
     },
     "BadRequest": {
@@ -182,6 +196,11 @@
       "refs": {
       }
     },
+    "DescribeBackupPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeFileSystemPolicyRequest": {
       "base": null,
       "refs": {
@@ -267,7 +286,8 @@
         "SubnetNotFound$ErrorCode": null,
         "ThroughputLimitExceeded$ErrorCode": null,
         "TooManyRequests$ErrorCode": null,
-        "UnsupportedAvailabilityZone$ErrorCode": null
+        "UnsupportedAvailabilityZone$ErrorCode": null,
+        "ValidationException$ErrorCode": null
       }
     },
     "ErrorMessage": {
@@ -298,12 +318,19 @@
         "SubnetNotFound$Message": null,
         "ThroughputLimitExceeded$Message": null,
         "TooManyRequests$Message": null,
-        "UnsupportedAvailabilityZone$Message": null
+        "UnsupportedAvailabilityZone$Message": null,
+        "ValidationException$Message": null
       }
     },
     "FileSystemAlreadyExists": {
       "base": "<p>Returned if the file system you are trying to create already exists, with the creation token you provided.</p>",
       "refs": {
+      }
+    },
+    "FileSystemArn": {
+      "base": null,
+      "refs": {
+        "FileSystemDescription$FileSystemArn": "<p>The Amazon Resource Name (ARN) for the EFS file system, in the format <code>arn:aws:elasticfilesystem:<i>region</i>:<i>account-id</i>:file-system/<i>file-system-id</i> </code>. Example with sample data: <code>arn:aws:elasticfilesystem:us-west-2:1111333322228888:file-system/fs-01234567</code> </p>"
       }
     },
     "FileSystemDescription": {
@@ -329,6 +356,7 @@
         "DeleteFileSystemRequest$FileSystemId": "<p>The ID of the file system you want to delete.</p>",
         "DeleteTagsRequest$FileSystemId": "<p>The ID of the file system whose tags you want to delete (String).</p>",
         "DescribeAccessPointsRequest$FileSystemId": "<p>(Optional) If you provide a <code>FileSystemId</code>, EFS returns all access points for that file system; mutually exclusive with <code>AccessPointId</code>.</p>",
+        "DescribeBackupPolicyRequest$FileSystemId": "<p>Specifies which EFS file system to retrieve the <code>BackupPolicy</code> for.</p>",
         "DescribeFileSystemPolicyRequest$FileSystemId": "<p>Specifies which EFS file system to retrieve the <code>FileSystemPolicy</code> for.</p>",
         "DescribeFileSystemsRequest$FileSystemId": "<p>(Optional) ID of the file system whose description you want to retrieve (String).</p>",
         "DescribeLifecycleConfigurationRequest$FileSystemId": "<p>The ID of the file system whose <code>LifecycleConfiguration</code> object you want to retrieve (String).</p>",
@@ -338,6 +366,7 @@
         "FileSystemDescription$FileSystemId": "<p>The ID of the file system, assigned by Amazon EFS.</p>",
         "FileSystemPolicyDescription$FileSystemId": "<p>Specifies the EFS file system to which the <code>FileSystemPolicy</code> applies.</p>",
         "MountTargetDescription$FileSystemId": "<p>The ID of the file system for which the mount target is intended.</p>",
+        "PutBackupPolicyRequest$FileSystemId": "<p>Specifies which EFS file system to update the backup policy for.</p>",
         "PutFileSystemPolicyRequest$FileSystemId": "<p>The ID of the EFS file system that you want to create or update the <code>FileSystemPolicy</code> for.</p>",
         "PutLifecycleConfigurationRequest$FileSystemId": "<p>The ID of the file system for which you are creating the <code>LifecycleConfiguration</code> object (String).</p>",
         "UpdateFileSystemRequest$FileSystemId": "<p>The ID of the file system that you want to update.</p>"
@@ -621,6 +650,11 @@
         "UpdateFileSystemRequest$ProvisionedThroughputInMibps": "<p>(Optional) The amount of throughput, in MiB/s, that you want to provision for your file system. Valid values are 1-1024. Required if <code>ThroughputMode</code> is changed to <code>provisioned</code> on update. If you're not updating the amount of provisioned throughput for your file system, you don't need to provide this value in your request. </p>"
       }
     },
+    "PutBackupPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutFileSystemPolicyRequest": {
       "base": null,
       "refs": {
@@ -674,6 +708,12 @@
         "CreateMountTargetRequest$SecurityGroups": "<p>Up to five VPC security group IDs, of the form <code>sg-xxxxxxxx</code>. These must be for the same VPC as subnet specified.</p>",
         "DescribeMountTargetSecurityGroupsResponse$SecurityGroups": "<p>An array of security groups.</p>",
         "ModifyMountTargetSecurityGroupsRequest$SecurityGroups": "<p>An array of up to five VPC security group IDs.</p>"
+      }
+    },
+    "Status": {
+      "base": null,
+      "refs": {
+        "BackupPolicy$Status": "<p>Describes the status of the file system's backup policy.</p> <ul> <li> <p> <i> <code>ENABLED</code> - EFS is automatically backing up the file system.</i> </p> </li> <li> <p> <i> <code>ENABLING</code> - EFS is turning on automatic backups for the file system.</i> </p> </li> <li> <p> <i> <code>DISABLED</code> - automatic back ups are turned off for the file system.</i> </p> </li> <li> <p> <i> <code>DISABLED</code> - EFS is turning off automatic backups for the file system.</i> </p> </li> </ul>"
       }
     },
     "SubnetId": {
@@ -792,6 +832,17 @@
     "UpdateFileSystemRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p>Returned if the AWS Backup service is not available in the region that the request was made.</p>",
+      "refs": {
+      }
+    },
+    "VpcId": {
+      "base": null,
+      "refs": {
+        "MountTargetDescription$VpcId": "<p>The Virtual Private Cloud (VPC) ID that the mount target is configured in.</p>"
       }
     }
   }
