@@ -92,6 +92,10 @@ type KafkaAPI interface {
 	GetBootstrapBrokersWithContext(aws.Context, *kafka.GetBootstrapBrokersInput, ...request.Option) (*kafka.GetBootstrapBrokersOutput, error)
 	GetBootstrapBrokersRequest(*kafka.GetBootstrapBrokersInput) (*request.Request, *kafka.GetBootstrapBrokersOutput)
 
+	GetCompatibleKafkaVersions(*kafka.GetCompatibleKafkaVersionsInput) (*kafka.GetCompatibleKafkaVersionsOutput, error)
+	GetCompatibleKafkaVersionsWithContext(aws.Context, *kafka.GetCompatibleKafkaVersionsInput, ...request.Option) (*kafka.GetCompatibleKafkaVersionsOutput, error)
+	GetCompatibleKafkaVersionsRequest(*kafka.GetCompatibleKafkaVersionsInput) (*request.Request, *kafka.GetCompatibleKafkaVersionsOutput)
+
 	ListClusterOperations(*kafka.ListClusterOperationsInput) (*kafka.ListClusterOperationsOutput, error)
 	ListClusterOperationsWithContext(aws.Context, *kafka.ListClusterOperationsInput, ...request.Option) (*kafka.ListClusterOperationsOutput, error)
 	ListClusterOperationsRequest(*kafka.ListClusterOperationsInput) (*request.Request, *kafka.ListClusterOperationsOutput)
@@ -157,6 +161,10 @@ type KafkaAPI interface {
 	UpdateClusterConfiguration(*kafka.UpdateClusterConfigurationInput) (*kafka.UpdateClusterConfigurationOutput, error)
 	UpdateClusterConfigurationWithContext(aws.Context, *kafka.UpdateClusterConfigurationInput, ...request.Option) (*kafka.UpdateClusterConfigurationOutput, error)
 	UpdateClusterConfigurationRequest(*kafka.UpdateClusterConfigurationInput) (*request.Request, *kafka.UpdateClusterConfigurationOutput)
+
+	UpdateClusterKafkaVersion(*kafka.UpdateClusterKafkaVersionInput) (*kafka.UpdateClusterKafkaVersionOutput, error)
+	UpdateClusterKafkaVersionWithContext(aws.Context, *kafka.UpdateClusterKafkaVersionInput, ...request.Option) (*kafka.UpdateClusterKafkaVersionOutput, error)
+	UpdateClusterKafkaVersionRequest(*kafka.UpdateClusterKafkaVersionInput) (*request.Request, *kafka.UpdateClusterKafkaVersionOutput)
 
 	UpdateMonitoring(*kafka.UpdateMonitoringInput) (*kafka.UpdateMonitoringOutput, error)
 	UpdateMonitoringWithContext(aws.Context, *kafka.UpdateMonitoringInput, ...request.Option) (*kafka.UpdateMonitoringOutput, error)

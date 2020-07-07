@@ -2,18 +2,24 @@
   "version": "2.0",
   "service": "<fullname>Amazon Elasticsearch Configuration Service</fullname> <p>Use the Amazon Elasticsearch Configuration API to create, configure, and manage Elasticsearch domains.</p> <p>For sample code that uses the Configuration API, see the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-configuration-samples.html\">Amazon Elasticsearch Service Developer Guide</a>. The guide also contains <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-request-signing.html\">sample code for sending signed HTTP requests to the Elasticsearch APIs</a>.</p> <p>The endpoint for configuration service requests is region-specific: es.<i>region</i>.amazonaws.com. For example, es.us-east-1.amazonaws.com. For a current list of supported regions and endpoints, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticsearch-service-regions\" target=\"_blank\">Regions and Endpoints</a>.</p>",
   "operations": {
+    "AcceptInboundCrossClusterSearchConnection": "<p>Allows the destination domain owner to accept an inbound cross-cluster search connection request.</p>",
     "AddTags": "<p>Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may have up to 10 tags. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging\" target=\"_blank\"> Tagging Amazon Elasticsearch Service Domains for more information.</a></p>",
     "AssociatePackage": "<p>Associates a package with an Amazon ES domain.</p>",
     "CancelElasticsearchServiceSoftwareUpdate": "<p>Cancels a scheduled service software update for an Amazon ES domain. You can only perform this operation before the <code>AutomatedUpdateDate</code> and when the <code>UpdateStatus</code> is in the <code>PENDING_UPDATE</code> state.</p>",
     "CreateElasticsearchDomain": "<p>Creates a new Elasticsearch domain. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains\" target=\"_blank\">Creating Elasticsearch Domains</a> in the <i>Amazon Elasticsearch Service Developer Guide</i>.</p>",
+    "CreateOutboundCrossClusterSearchConnection": "<p>Creates a new cross-cluster search connection from a source domain to a destination domain.</p>",
     "CreatePackage": "<p>Create a package for use with Amazon ES domains.</p>",
     "DeleteElasticsearchDomain": "<p>Permanently deletes the specified Elasticsearch domain and all of its data. Once a domain is deleted, it cannot be recovered.</p>",
     "DeleteElasticsearchServiceRole": "<p>Deletes the service-linked role that Elasticsearch Service uses to manage and maintain VPC domains. Role deletion will fail if any existing VPC domains use the role. You must delete any such Elasticsearch domains before deleting the role. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-enabling-slr\" target=\"_blank\">Deleting Elasticsearch Service Role</a> in <i>VPC Endpoints for Amazon Elasticsearch Service Domains</i>.</p>",
+    "DeleteInboundCrossClusterSearchConnection": "<p>Allows the destination domain owner to delete an existing inbound cross-cluster search connection.</p>",
+    "DeleteOutboundCrossClusterSearchConnection": "<p>Allows the source domain owner to delete an existing outbound cross-cluster search connection.</p>",
     "DeletePackage": "<p>Delete the package.</p>",
     "DescribeElasticsearchDomain": "<p>Returns domain configuration information about the specified Elasticsearch domain, including the domain ID, domain endpoint, and domain ARN.</p>",
     "DescribeElasticsearchDomainConfig": "<p>Provides cluster configuration information about the specified Elasticsearch domain, such as the state, creation date, update version, and update date for cluster options.</p>",
     "DescribeElasticsearchDomains": "<p>Returns domain configuration information about the specified Elasticsearch domains, including the domain ID, domain endpoint, and domain ARN.</p>",
     "DescribeElasticsearchInstanceTypeLimits": "<p> Describe Elasticsearch Limits for a given InstanceType and ElasticsearchVersion. When modifying existing Domain, specify the <code> <a>DomainName</a> </code> to know what Limits are supported for modifying. </p>",
+    "DescribeInboundCrossClusterSearchConnections": "<p>Lists all the inbound cross-cluster search connections for a destination domain.</p>",
+    "DescribeOutboundCrossClusterSearchConnections": "<p>Lists all the outbound cross-cluster search connections for a source domain.</p>",
     "DescribePackages": "<p>Describes all packages available to Amazon ES. Includes options for filtering, limiting the number of results, and pagination.</p>",
     "DescribeReservedElasticsearchInstanceOfferings": "<p>Lists available reserved Elasticsearch instance offerings.</p>",
     "DescribeReservedElasticsearchInstances": "<p>Returns information about reserved Elasticsearch instances for this account.</p>",
@@ -28,6 +34,7 @@
     "ListPackagesForDomain": "<p>Lists all packages associated with the Amazon ES domain.</p>",
     "ListTags": "<p>Returns all tags for the given Elasticsearch domain.</p>",
     "PurchaseReservedElasticsearchInstanceOffering": "<p>Allows you to purchase reserved Elasticsearch instances.</p>",
+    "RejectInboundCrossClusterSearchConnection": "<p>Allows the destination domain owner to reject an inbound cross-cluster search connection request.</p>",
     "RemoveTags": "<p>Removes the specified set of tags from the specified Elasticsearch domain.</p>",
     "StartElasticsearchServiceSoftwareUpdate": "<p>Schedules a service software update for an Amazon ES domain.</p>",
     "UpdateElasticsearchDomainConfig": "<p>Modifies the cluster configuration of the specified Elasticsearch domain, setting as setting the instance type and the number of instances. </p>",
@@ -42,6 +49,16 @@
         "ListTagsRequest$ARN": "<p> Specify the <code>ARN</code> for the Elasticsearch domain to which the tags are attached that you want to view.</p>",
         "MasterUserOptions$MasterUserARN": "<p>ARN for the master user (if IAM is enabled).</p>",
         "RemoveTagsRequest$ARN": "<p>Specifies the <code>ARN</code> for the Elasticsearch domain from which you want to delete the specified tags.</p>"
+      }
+    },
+    "AcceptInboundCrossClusterSearchConnectionRequest": {
+      "base": "<p>Container for the parameters to the <code><a>AcceptInboundCrossClusterSearchConnection</a></code> operation.</p>",
+      "refs": {
+      }
+    },
+    "AcceptInboundCrossClusterSearchConnectionResponse": {
+      "base": "<p>The result of a <code><a>AcceptInboundCrossClusterSearchConnection</a></code> operation. Contains details of accepted inbound connection.</p>",
+      "refs": {
       }
     },
     "AccessDeniedException": {
@@ -198,6 +215,14 @@
       "refs": {
       }
     },
+    "ConnectionAlias": {
+      "base": null,
+      "refs": {
+        "CreateOutboundCrossClusterSearchConnectionRequest$ConnectionAlias": "<p>Specifies the connection alias that will be used by the customer for this connection.</p>",
+        "CreateOutboundCrossClusterSearchConnectionResponse$ConnectionAlias": "<p>Specifies the connection alias provided during the create connection request.</p>",
+        "OutboundCrossClusterSearchConnection$ConnectionAlias": "<p>Specifies the connection alias for the outbound cross-cluster search connection.</p>"
+      }
+    },
     "CreateElasticsearchDomainRequest": {
       "base": null,
       "refs": {
@@ -205,6 +230,16 @@
     },
     "CreateElasticsearchDomainResponse": {
       "base": "<p>The result of a <code>CreateElasticsearchDomain</code> operation. Contains the status of the newly created Elasticsearch domain.</p>",
+      "refs": {
+      }
+    },
+    "CreateOutboundCrossClusterSearchConnectionRequest": {
+      "base": "<p>Container for the parameters to the <code><a>CreateOutboundCrossClusterSearchConnection</a></code> operation.</p>",
+      "refs": {
+      }
+    },
+    "CreateOutboundCrossClusterSearchConnectionResponse": {
+      "base": "<p>The result of a <code><a>CreateOutboundCrossClusterSearchConnection</a></code> request. Contains the details of the newly created cross-cluster search connection.</p>",
       "refs": {
       }
     },
@@ -224,6 +259,25 @@
         "PackageDetails$CreatedAt": "<p>Timestamp which tells creation date of the package.</p>"
       }
     },
+    "CrossClusterSearchConnectionId": {
+      "base": null,
+      "refs": {
+        "AcceptInboundCrossClusterSearchConnectionRequest$CrossClusterSearchConnectionId": "<p>The id of the inbound connection that you want to accept.</p>",
+        "CreateOutboundCrossClusterSearchConnectionResponse$CrossClusterSearchConnectionId": "<p>Unique id for the created outbound connection, which is used for subsequent operations on connection.</p>",
+        "DeleteInboundCrossClusterSearchConnectionRequest$CrossClusterSearchConnectionId": "<p>The id of the inbound connection that you want to permanently delete.</p>",
+        "DeleteOutboundCrossClusterSearchConnectionRequest$CrossClusterSearchConnectionId": "<p>The id of the outbound connection that you want to permanently delete.</p>",
+        "InboundCrossClusterSearchConnection$CrossClusterSearchConnectionId": "<p>Specifies the connection id for the inbound cross-cluster search connection.</p>",
+        "OutboundCrossClusterSearchConnection$CrossClusterSearchConnectionId": "<p>Specifies the connection id for the outbound cross-cluster search connection.</p>",
+        "RejectInboundCrossClusterSearchConnectionRequest$CrossClusterSearchConnectionId": "<p>The id of the inbound connection that you want to reject.</p>"
+      }
+    },
+    "CrossClusterSearchConnectionStatusMessage": {
+      "base": null,
+      "refs": {
+        "InboundCrossClusterSearchConnectionStatus$Message": "<p>Specifies verbose information for the inbound connection status.</p>",
+        "OutboundCrossClusterSearchConnectionStatus$Message": "<p>Specifies verbose information for the outbound connection status.</p>"
+      }
+    },
     "DeleteElasticsearchDomainRequest": {
       "base": "<p>Container for the parameters to the <code><a>DeleteElasticsearchDomain</a></code> operation. Specifies the name of the Elasticsearch domain that you want to delete.</p>",
       "refs": {
@@ -231,6 +285,26 @@
     },
     "DeleteElasticsearchDomainResponse": {
       "base": "<p>The result of a <code>DeleteElasticsearchDomain</code> request. Contains the status of the pending deletion, or no status if the domain and all of its resources have been deleted.</p>",
+      "refs": {
+      }
+    },
+    "DeleteInboundCrossClusterSearchConnectionRequest": {
+      "base": "<p>Container for the parameters to the <code><a>DeleteInboundCrossClusterSearchConnection</a></code> operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteInboundCrossClusterSearchConnectionResponse": {
+      "base": "<p>The result of a <code><a>DeleteInboundCrossClusterSearchConnection</a></code> operation. Contains details of deleted inbound connection.</p>",
+      "refs": {
+      }
+    },
+    "DeleteOutboundCrossClusterSearchConnectionRequest": {
+      "base": "<p>Container for the parameters to the <code><a>DeleteOutboundCrossClusterSearchConnection</a></code> operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteOutboundCrossClusterSearchConnectionResponse": {
+      "base": "<p>The result of a <code><a>DeleteOutboundCrossClusterSearchConnection</a></code> operation. Contains details of deleted outbound connection.</p>",
       "refs": {
       }
     },
@@ -293,6 +367,26 @@
     },
     "DescribeElasticsearchInstanceTypeLimitsResponse": {
       "base": "<p> Container for the parameters received from <code> <a>DescribeElasticsearchInstanceTypeLimits</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "DescribeInboundCrossClusterSearchConnectionsRequest": {
+      "base": "<p>Container for the parameters to the <code><a>DescribeInboundCrossClusterSearchConnections</a></code> operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeInboundCrossClusterSearchConnectionsResponse": {
+      "base": "<p>The result of a <code><a>DescribeInboundCrossClusterSearchConnections</a></code> request. Contains the list of connections matching the filter criteria.</p>",
+      "refs": {
+      }
+    },
+    "DescribeOutboundCrossClusterSearchConnectionsRequest": {
+      "base": "<p>Container for the parameters to the <code><a>DescribeOutboundCrossClusterSearchConnections</a></code> operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeOutboundCrossClusterSearchConnectionsResponse": {
+      "base": "<p>The result of a <code><a>DescribeOutboundCrossClusterSearchConnections</a></code> request. Contains the list of connections matching the filter criteria.</p>",
       "refs": {
       }
     },
@@ -404,6 +498,19 @@
         "ListDomainNamesResponse$DomainNames": "<p>List of Elasticsearch domain names.</p>"
       }
     },
+    "DomainInformation": {
+      "base": null,
+      "refs": {
+        "CreateOutboundCrossClusterSearchConnectionRequest$SourceDomainInfo": "<p>Specifies the <code><a>DomainInformation</a></code> for the source Elasticsearch domain.</p>",
+        "CreateOutboundCrossClusterSearchConnectionRequest$DestinationDomainInfo": "<p>Specifies the <code><a>DomainInformation</a></code> for the destination Elasticsearch domain.</p>",
+        "CreateOutboundCrossClusterSearchConnectionResponse$SourceDomainInfo": "<p>Specifies the <code><a>DomainInformation</a></code> for the source Elasticsearch domain.</p>",
+        "CreateOutboundCrossClusterSearchConnectionResponse$DestinationDomainInfo": "<p>Specifies the <code><a>DomainInformation</a></code> for the destination Elasticsearch domain.</p>",
+        "InboundCrossClusterSearchConnection$SourceDomainInfo": "<p>Specifies the <code><a>DomainInformation</a></code> for the source Elasticsearch domain.</p>",
+        "InboundCrossClusterSearchConnection$DestinationDomainInfo": "<p>Specifies the <code><a>DomainInformation</a></code> for the destination Elasticsearch domain.</p>",
+        "OutboundCrossClusterSearchConnection$SourceDomainInfo": "<p>Specifies the <code><a>DomainInformation</a></code> for the source Elasticsearch domain.</p>",
+        "OutboundCrossClusterSearchConnection$DestinationDomainInfo": "<p>Specifies the <code><a>DomainInformation</a></code> for the destination Elasticsearch domain.</p>"
+      }
+    },
     "DomainName": {
       "base": "<p>The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
       "refs": {
@@ -416,6 +523,7 @@
         "DescribeElasticsearchInstanceTypeLimitsRequest$DomainName": "<p> DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for Elasticsearch <code> <a>Limits</a> </code> for existing domain. </p>",
         "DissociatePackageRequest$DomainName": "<p>Name of the domain that you want to associate the package with.</p>",
         "DomainInfo$DomainName": "<p> Specifies the <code>DomainName</code>.</p>",
+        "DomainInformation$DomainName": null,
         "DomainNameList$member": null,
         "DomainPackageDetails$DomainName": "<p>Name of the domain you've associated a package with.</p>",
         "ElasticsearchDomainStatus$DomainName": "<p>The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
@@ -610,6 +718,19 @@
         "ErrorDetails$ErrorType": null
       }
     },
+    "Filter": {
+      "base": "<p> A filter used to limit results when describing inbound or outbound cross-cluster search connections. Multiple values can be specified per filter. A cross-cluster search connection must match at least one of the specified values for it to be returned from an operation. </p>",
+      "refs": {
+        "FilterList$member": null
+      }
+    },
+    "FilterList": {
+      "base": null,
+      "refs": {
+        "DescribeInboundCrossClusterSearchConnectionsRequest$Filters": "<p> A list of filters used to match properties for inbound cross-cluster search connection. Available <code><a>Filter</a></code> names for this operation are: <ul> <li>cross-cluster-search-connection-id</li> <li>source-domain-info.domain-name</li> <li>source-domain-info.owner-id</li> <li>source-domain-info.region</li> <li>destination-domain-info.domain-name</li> </ul> </p>",
+        "DescribeOutboundCrossClusterSearchConnectionsRequest$Filters": "<p> A list of filters used to match properties for outbound cross-cluster search connection. Available <code><a>Filter</a></code> names for this operation are: <ul> <li>cross-cluster-search-connection-id</li> <li>destination-domain-info.domain-name</li> <li>destination-domain-info.owner-id</li> <li>destination-domain-info.region</li> <li>source-domain-info.domain-name</li> </ul> </p>"
+      }
+    },
     "GUID": {
       "base": null,
       "refs": {
@@ -655,6 +776,33 @@
       "base": null,
       "refs": {
         "CognitoOptions$IdentityPoolId": "<p>Specifies the Cognito identity pool ID for Kibana authentication.</p>"
+      }
+    },
+    "InboundCrossClusterSearchConnection": {
+      "base": "<p>Specifies details of an inbound connection.</p>",
+      "refs": {
+        "AcceptInboundCrossClusterSearchConnectionResponse$CrossClusterSearchConnection": "<p>Specifies the <code><a>InboundCrossClusterSearchConnection</a></code> of accepted inbound connection. </p>",
+        "DeleteInboundCrossClusterSearchConnectionResponse$CrossClusterSearchConnection": "<p>Specifies the <code><a>InboundCrossClusterSearchConnection</a></code> of deleted inbound connection. </p>",
+        "InboundCrossClusterSearchConnections$member": null,
+        "RejectInboundCrossClusterSearchConnectionResponse$CrossClusterSearchConnection": "<p>Specifies the <code><a>InboundCrossClusterSearchConnection</a></code> of rejected inbound connection. </p>"
+      }
+    },
+    "InboundCrossClusterSearchConnectionStatus": {
+      "base": "<p>Specifies the coonection status of an inbound cross-cluster search connection.</p>",
+      "refs": {
+        "InboundCrossClusterSearchConnection$ConnectionStatus": "<p>Specifies the <code><a>InboundCrossClusterSearchConnectionStatus</a></code> for the outbound connection.</p>"
+      }
+    },
+    "InboundCrossClusterSearchConnectionStatusCode": {
+      "base": null,
+      "refs": {
+        "InboundCrossClusterSearchConnectionStatus$StatusCode": "<p>The state code for inbound connection. This can be one of the following:</p> <ul> <li>PENDING_ACCEPTANCE: Inbound connection is not yet accepted by destination domain owner.</li> <li>APPROVED: Inbound connection is pending acceptance by destination domain owner.</li> <li>REJECTING: Inbound connection rejection is in process.</li> <li>REJECTED: Inbound connection is rejected.</li> <li>DELETING: Inbound connection deletion is in progress.</li> <li>DELETED: Inbound connection is deleted and cannot be used further.</li> </ul>"
+      }
+    },
+    "InboundCrossClusterSearchConnections": {
+      "base": null,
+      "refs": {
+        "DescribeInboundCrossClusterSearchConnectionsResponse$CrossClusterSearchConnections": "<p>Consists of list of <code><a>InboundCrossClusterSearchConnection</a></code> matching the specified filter criteria.</p>"
       }
     },
     "InstanceCount": {
@@ -703,6 +851,11 @@
     },
     "InternalException": {
       "base": "<p>The request processing has failed because of an unknown error, exception or failure (the failure is internal to the service) . Gives http status code of 500.</p>",
+      "refs": {
+      }
+    },
+    "InvalidPaginationTokenException": {
+      "base": "<p>The request processing has failed because of invalid pagination token provided by customer. Returns an HTTP status code of 400. </p>",
       "refs": {
       }
     },
@@ -863,6 +1016,8 @@
     "MaxResults": {
       "base": "<p> Set this value to limit the number of results returned. </p>",
       "refs": {
+        "DescribeInboundCrossClusterSearchConnectionsRequest$MaxResults": "<p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>",
+        "DescribeOutboundCrossClusterSearchConnectionsRequest$MaxResults": "<p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>",
         "DescribePackagesRequest$MaxResults": "<p>Limits results to a maximum number of packages.</p>",
         "DescribeReservedElasticsearchInstanceOfferingsRequest$MaxResults": "<p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>",
         "DescribeReservedElasticsearchInstancesRequest$MaxResults": "<p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>",
@@ -888,6 +1043,10 @@
     "NextToken": {
       "base": "<p> Paginated APIs accepts NextToken input to returns next page results and provides a NextToken output in the response which can be used by the client to retrieve more results. </p>",
       "refs": {
+        "DescribeInboundCrossClusterSearchConnectionsRequest$NextToken": "<p> NextToken is sent in case the earlier API call results contain the NextToken. It is used for pagination.</p>",
+        "DescribeInboundCrossClusterSearchConnectionsResponse$NextToken": "<p>If more results are available and NextToken is present, make the next request to the same API with the received NextToken to paginate the remaining results. </p>",
+        "DescribeOutboundCrossClusterSearchConnectionsRequest$NextToken": "<p> NextToken is sent in case the earlier API call results contain the NextToken. It is used for pagination.</p>",
+        "DescribeOutboundCrossClusterSearchConnectionsResponse$NextToken": "<p>If more results are available and NextToken is present, make the next request to the same API with the received NextToken to paginate the remaining results. </p>",
         "DescribePackagesRequest$NextToken": "<p>Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.</p>",
         "DescribeReservedElasticsearchInstanceOfferingsRequest$NextToken": "<p>NextToken should be sent in case if earlier API call produced result containing NextToken. It is used for pagination.</p>",
         "DescribeReservedElasticsearchInstanceOfferingsResponse$NextToken": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
@@ -915,6 +1074,13 @@
         "ElasticsearchDomainConfig$NodeToNodeEncryptionOptions": "<p>Specifies the <code>NodeToNodeEncryptionOptions</code> for the Elasticsearch domain.</p>"
       }
     },
+    "NonEmptyString": {
+      "base": null,
+      "refs": {
+        "Filter$Name": "<p> Specifies the name of the filter. </p>",
+        "ValueStringList$member": null
+      }
+    },
     "OptionState": {
       "base": "<p>The state of a requested change. One of the following:</p> <ul> <li>Processing: The request change is still in-process.</li> <li>Active: The request change is processed and deployed to the Elasticsearch domain.</li> </ul>",
       "refs": {
@@ -937,6 +1103,38 @@
         "NodeToNodeEncryptionOptionsStatus$Status": "<p>Specifies the status of the node-to-node encryption options for the specified Elasticsearch domain.</p>",
         "SnapshotOptionsStatus$Status": "<p>Specifies the status of a daily automated snapshot.</p>",
         "VPCDerivedInfoStatus$Status": "<p> Specifies the status of the VPC options for the specified Elasticsearch domain.</p>"
+      }
+    },
+    "OutboundCrossClusterSearchConnection": {
+      "base": "<p>Specifies details of an outbound connection.</p>",
+      "refs": {
+        "DeleteOutboundCrossClusterSearchConnectionResponse$CrossClusterSearchConnection": "<p>Specifies the <code><a>OutboundCrossClusterSearchConnection</a></code> of deleted outbound connection. </p>",
+        "OutboundCrossClusterSearchConnections$member": null
+      }
+    },
+    "OutboundCrossClusterSearchConnectionStatus": {
+      "base": "<p>Specifies the connection status of an outbound cross-cluster search connection.</p>",
+      "refs": {
+        "CreateOutboundCrossClusterSearchConnectionResponse$ConnectionStatus": "<p>Specifies the <code><a>OutboundCrossClusterSearchConnectionStatus</a></code> for the newly created connection.</p>",
+        "OutboundCrossClusterSearchConnection$ConnectionStatus": "<p>Specifies the <code><a>OutboundCrossClusterSearchConnectionStatus</a></code> for the outbound connection.</p>"
+      }
+    },
+    "OutboundCrossClusterSearchConnectionStatusCode": {
+      "base": null,
+      "refs": {
+        "OutboundCrossClusterSearchConnectionStatus$StatusCode": "<p>The state code for outbound connection. This can be one of the following:</p> <ul> <li>VALIDATING: The outbound connection request is being validated.</li> <li>VALIDATION_FAILED: Validation failed for the connection request.</li> <li>PENDING_ACCEPTANCE: Outbound connection request is validated and is not yet accepted by destination domain owner.</li> <li>PROVISIONING: Outbound connection request is in process.</li> <li>ACTIVE: Outbound connection is active and ready to use.</li> <li>REJECTED: Outbound connection request is rejected by destination domain owner.</li> <li>DELETING: Outbound connection deletion is in progress.</li> <li>DELETED: Outbound connection is deleted and cannot be used further.</li> </ul>"
+      }
+    },
+    "OutboundCrossClusterSearchConnections": {
+      "base": null,
+      "refs": {
+        "DescribeOutboundCrossClusterSearchConnectionsResponse$CrossClusterSearchConnections": "<p>Consists of list of <code><a>OutboundCrossClusterSearchConnection</a></code> matching the specified filter criteria.</p>"
+      }
+    },
+    "OwnerId": {
+      "base": null,
+      "refs": {
+        "DomainInformation$OwnerId": null
       }
     },
     "PackageDescription": {
@@ -1041,6 +1239,22 @@
       "base": null,
       "refs": {
         "DomainPackageDetails$ReferencePath": "<p>The relative path on Amazon ES nodes, which can be used as synonym_path when the package is synonym file.</p>"
+      }
+    },
+    "Region": {
+      "base": null,
+      "refs": {
+        "DomainInformation$Region": null
+      }
+    },
+    "RejectInboundCrossClusterSearchConnectionRequest": {
+      "base": "<p>Container for the parameters to the <code><a>RejectInboundCrossClusterSearchConnection</a></code> operation.</p>",
+      "refs": {
+      }
+    },
+    "RejectInboundCrossClusterSearchConnectionResponse": {
+      "base": "<p>The result of a <code><a>RejectInboundCrossClusterSearchConnection</a></code> operation. Contains details of rejected inbound connection.</p>",
+      "refs": {
       }
     },
     "RemoveTagsRequest": {
@@ -1377,6 +1591,12 @@
     "ValidationException": {
       "base": "<p>An exception for missing / invalid input fields. Gives http status code of 400.</p>",
       "refs": {
+      }
+    },
+    "ValueStringList": {
+      "base": null,
+      "refs": {
+        "Filter$Values": "<p> Contains one or more values for the filter. </p>"
       }
     },
     "VolumeType": {

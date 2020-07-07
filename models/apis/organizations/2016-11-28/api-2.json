@@ -428,7 +428,8 @@
         {"shape":"ConstraintViolationException"},
         {"shape":"InvalidInputException"},
         {"shape":"ServiceException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnsupportedAPIEndpointException"}
       ]
     },
     "DisablePolicyType":{
@@ -467,7 +468,8 @@
         {"shape":"ConstraintViolationException"},
         {"shape":"InvalidInputException"},
         {"shape":"ServiceException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnsupportedAPIEndpointException"}
       ]
     },
     "EnableAllFeatures":{
@@ -564,7 +566,8 @@
         {"shape":"ConstraintViolationException"},
         {"shape":"InvalidInputException"},
         {"shape":"ServiceException"},
-        {"shape":"TooManyRequestsException"}
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnsupportedAPIEndpointException"}
       ]
     },
     "ListAccounts":{
@@ -1028,6 +1031,7 @@
     },
     "AccountId":{
       "type":"string",
+      "max":12,
       "pattern":"^\\d{12}$"
     },
     "AccountJoinedMethod":{
@@ -1126,6 +1130,7 @@
     },
     "ChildId":{
       "type":"string",
+      "max":100,
       "pattern":"^(\\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$"
     },
     "ChildNotFoundException":{
@@ -1190,7 +1195,8 @@
         "MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED",
         "CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR",
         "CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG",
-        "DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE"
+        "DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE",
+        "MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE"
       ]
     },
     "CreateAccountFailureReason":{
@@ -1220,6 +1226,7 @@
     },
     "CreateAccountRequestId":{
       "type":"string",
+      "max":36,
       "pattern":"^car-[a-z0-9]{8,32}$"
     },
     "CreateAccountResponse":{
@@ -1579,7 +1586,10 @@
     },
     "EffectivePolicyType":{
       "type":"string",
-      "enum":["TAG_POLICY"]
+      "enum":[
+        "TAG_POLICY",
+        "BACKUP_POLICY"
+      ]
     },
     "Email":{
       "type":"string",
@@ -1701,6 +1711,7 @@
     },
     "HandshakeId":{
       "type":"string",
+      "max":34,
       "pattern":"^h-[0-9a-z]{8,32}$"
     },
     "HandshakeNotFoundException":{
@@ -1713,6 +1724,7 @@
     "HandshakeNotes":{
       "type":"string",
       "max":1024,
+      "pattern":"[\\s\\S]*",
       "sensitive":true
     },
     "HandshakeParties":{
@@ -1734,6 +1746,7 @@
       "type":"string",
       "max":64,
       "min":1,
+      "pattern":"[\\s\\S]*",
       "sensitive":true
     },
     "HandshakePartyType":{
@@ -2137,7 +2150,11 @@
         "DestinationParentId":{"shape":"ParentId"}
       }
     },
-    "NextToken":{"type":"string"},
+    "NextToken":{
+      "type":"string",
+      "max":100000,
+      "pattern":"[\\s\\S]*"
+    },
     "Organization":{
       "type":"structure",
       "members":{
@@ -2186,12 +2203,14 @@
     },
     "OrganizationalUnitId":{
       "type":"string",
+      "max":68,
       "pattern":"^ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$"
     },
     "OrganizationalUnitName":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "OrganizationalUnitNotEmptyException":{
       "type":"structure",
@@ -2220,6 +2239,7 @@
     },
     "ParentId":{
       "type":"string",
+      "max":100,
       "pattern":"^(r-[0-9a-z]{4,32})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$"
     },
     "ParentNotFoundException":{
@@ -2265,14 +2285,17 @@
     "PolicyContent":{
       "type":"string",
       "max":1000000,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "PolicyDescription":{
       "type":"string",
-      "max":512
+      "max":512,
+      "pattern":"[\\s\\S]*"
     },
     "PolicyId":{
       "type":"string",
+      "max":130,
       "pattern":"^p-[0-9a-zA-Z_]{8,128}$"
     },
     "PolicyInUseException":{
@@ -2285,7 +2308,8 @@
     "PolicyName":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"[\\s\\S]*"
     },
     "PolicyNotAttachedException":{
       "type":"structure",
@@ -2314,6 +2338,7 @@
     },
     "PolicyTargetId":{
       "type":"string",
+      "max":100,
       "pattern":"^(r-[0-9a-z]{4,32})|(\\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$"
     },
     "PolicyTargetSummary":{
@@ -2333,7 +2358,8 @@
       "type":"string",
       "enum":[
         "SERVICE_CONTROL_POLICY",
-        "TAG_POLICY"
+        "TAG_POLICY",
+        "BACKUP_POLICY"
       ]
     },
     "PolicyTypeAlreadyEnabledException":{
@@ -2396,6 +2422,7 @@
     },
     "RoleName":{
       "type":"string",
+      "max":64,
       "pattern":"[\\w+=,.@-]{1,64}"
     },
     "Root":{
@@ -2413,6 +2440,7 @@
     },
     "RootId":{
       "type":"string",
+      "max":34,
       "pattern":"^r-[0-9a-z]{4,32}$"
     },
     "RootName":{
@@ -2491,6 +2519,7 @@
     },
     "TaggableResourceId":{
       "type":"string",
+      "max":12,
       "pattern":"^\\d{12}$"
     },
     "Tags":{

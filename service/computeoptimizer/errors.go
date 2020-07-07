@@ -17,8 +17,7 @@ const (
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// The request processing has failed because of an unknown error, exception,
-	// or failure.
+	// An internal error has occurred. Try your call again.
 	ErrCodeInternalServerException = "InternalServerException"
 
 	// ErrCodeInvalidParameterValueException for service response error code
@@ -26,6 +25,12 @@ const (
 	//
 	// An invalid or out-of-range value was supplied for the input parameter.
 	ErrCodeInvalidParameterValueException = "InvalidParameterValueException"
+
+	// ErrCodeLimitExceededException for service response error code
+	// "LimitExceededException".
+	//
+	// The request exceeds a limit of the service.
+	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeMissingAuthenticationToken for service response error code
 	// "MissingAuthenticationToken".
@@ -37,13 +42,13 @@ const (
 	// ErrCodeOptInRequiredException for service response error code
 	// "OptInRequiredException".
 	//
-	// You must opt in to the service to perform this action.
+	// The account is not opted in to AWS Compute Optimizer.
 	ErrCodeOptInRequiredException = "OptInRequiredException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// The specified resource was not found.
+	// A resource that is required for the action doesn't exist.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServiceUnavailableException for service response error code
@@ -55,7 +60,7 @@ const (
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// The limit on the number of requests per second was exceeded.
+	// The request was denied due to request throttling.
 	ErrCodeThrottlingException = "ThrottlingException"
 )
 
@@ -63,6 +68,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":          newErrorAccessDeniedException,
 	"InternalServerException":        newErrorInternalServerException,
 	"InvalidParameterValueException": newErrorInvalidParameterValueException,
+	"LimitExceededException":         newErrorLimitExceededException,
 	"MissingAuthenticationToken":     newErrorMissingAuthenticationToken,
 	"OptInRequiredException":         newErrorOptInRequiredException,
 	"ResourceNotFoundException":      newErrorResourceNotFoundException,

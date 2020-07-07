@@ -92,7 +92,8 @@
         "StartTime":{"shape":"Double"},
         "EndTime":{"shape":"Double"},
         "Type":{"shape":"ItemType"},
-        "Content":{"shape":"String"}
+        "Content":{"shape":"String"},
+        "VocabularyFilterMatch":{"shape":"Boolean"}
       }
     },
     "ItemList":{
@@ -195,7 +196,17 @@
           "location":"header",
           "locationName":"x-amzn-transcribe-session-id"
         },
-        "AudioStream":{"shape":"AudioStream"}
+        "AudioStream":{"shape":"AudioStream"},
+        "VocabularyFilterName":{
+          "shape":"VocabularyFilterName",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-filter-name"
+        },
+        "VocabularyFilterMethod":{
+          "shape":"VocabularyFilterMethod",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-filter-method"
+        }
       },
       "payload":"AudioStream"
     },
@@ -232,7 +243,17 @@
           "location":"header",
           "locationName":"x-amzn-transcribe-session-id"
         },
-        "TranscriptResultStream":{"shape":"TranscriptResultStream"}
+        "TranscriptResultStream":{"shape":"TranscriptResultStream"},
+        "VocabularyFilterName":{
+          "shape":"VocabularyFilterName",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-filter-name"
+        },
+        "VocabularyFilterMethod":{
+          "shape":"VocabularyFilterMethod",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-vocabulary-filter-method"
+        }
       },
       "payload":"TranscriptResultStream"
     },
@@ -261,6 +282,20 @@
         "ServiceUnavailableException":{"shape":"ServiceUnavailableException"}
       },
       "eventstream":true
+    },
+    "VocabularyFilterMethod":{
+      "type":"string",
+      "enum":[
+        "remove",
+        "mask",
+        "tag"
+      ]
+    },
+    "VocabularyFilterName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z._-]+"
     },
     "VocabularyName":{
       "type":"string",

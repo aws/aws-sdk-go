@@ -3,6 +3,7 @@ package s3crypto_test
 import (
 	"testing"
 
+	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
 	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
 
@@ -25,4 +26,8 @@ func TestAESGCMContentCipherNewEncryptor(t *testing.T) {
 	if cipher == nil {
 		t.Errorf("expected non-nil vaue")
 	}
+}
+
+type mockKMS struct {
+	kmsiface.KMSAPI
 }

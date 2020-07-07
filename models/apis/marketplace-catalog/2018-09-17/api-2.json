@@ -215,6 +215,7 @@
       "members":{
         "ChangeType":{"shape":"ChangeType"},
         "Entity":{"shape":"Entity"},
+        "Details":{"shape":"Json"},
         "ErrorDetailList":{"shape":"ErrorDetailList"}
       }
     },

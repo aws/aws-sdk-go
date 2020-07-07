@@ -658,6 +658,45 @@
         {"shape":"DirectConnectClientException"}
       ]
     },
+    "ListVirtualInterfaceTestHistory":{
+      "name":"ListVirtualInterfaceTestHistory",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListVirtualInterfaceTestHistoryRequest"},
+      "output":{"shape":"ListVirtualInterfaceTestHistoryResponse"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
+    "StartBgpFailoverTest":{
+      "name":"StartBgpFailoverTest",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartBgpFailoverTestRequest"},
+      "output":{"shape":"StartBgpFailoverTestResponse"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
+    "StopBgpFailoverTest":{
+      "name":"StopBgpFailoverTest",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopBgpFailoverTestRequest"},
+      "output":{"shape":"StopBgpFailoverTestResponse"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -904,6 +943,10 @@
       }
     },
     "BGPPeerId":{"type":"string"},
+    "BGPPeerIdList":{
+      "type":"list",
+      "member":{"shape":"BGPPeerId"}
+    },
     "BGPPeerList":{
       "type":"list",
       "member":{"shape":"BGPPeer"}
@@ -1587,7 +1630,9 @@
       },
       "exception":true
     },
+    "EndTime":{"type":"timestamp"},
     "ErrorMessage":{"type":"string"},
+    "FailureTestHistoryStatus":{"type":"string"},
     "GatewayIdToAssociate":{"type":"string"},
     "GatewayIdentifier":{"type":"string"},
     "GatewayType":{
@@ -1693,6 +1738,24 @@
       "type":"structure",
       "members":{
         "lags":{"shape":"LagList"}
+      }
+    },
+    "ListVirtualInterfaceTestHistoryRequest":{
+      "type":"structure",
+      "members":{
+        "testId":{"shape":"TestId"},
+        "virtualInterfaceId":{"shape":"VirtualInterfaceId"},
+        "bgpPeers":{"shape":"BGPPeerIdList"},
+        "status":{"shape":"FailureTestHistoryStatus"},
+        "maxResults":{"shape":"MaxResultSetSize"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListVirtualInterfaceTestHistoryResponse":{
+      "type":"structure",
+      "members":{
+        "virtualInterfaceTestHistory":{"shape":"VirtualInterfaceTestHistoryList"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "Loa":{
@@ -1890,7 +1953,36 @@
       "member":{"shape":"RouteFilterPrefix"}
     },
     "RouterConfig":{"type":"string"},
+    "StartBgpFailoverTestRequest":{
+      "type":"structure",
+      "required":["virtualInterfaceId"],
+      "members":{
+        "virtualInterfaceId":{"shape":"VirtualInterfaceId"},
+        "bgpPeers":{"shape":"BGPPeerIdList"},
+        "testDurationInMinutes":{"shape":"TestDuration"}
+      }
+    },
+    "StartBgpFailoverTestResponse":{
+      "type":"structure",
+      "members":{
+        "virtualInterfaceTest":{"shape":"VirtualInterfaceTestHistory"}
+      }
+    },
+    "StartTime":{"type":"timestamp"},
     "StateChangeError":{"type":"string"},
+    "StopBgpFailoverTestRequest":{
+      "type":"structure",
+      "required":["virtualInterfaceId"],
+      "members":{
+        "virtualInterfaceId":{"shape":"VirtualInterfaceId"}
+      }
+    },
+    "StopBgpFailoverTestResponse":{
+      "type":"structure",
+      "members":{
+        "virtualInterfaceTest":{"shape":"VirtualInterfaceTestHistory"}
+      }
+    },
     "Tag":{
       "type":"structure",
       "required":["key"],
@@ -1936,6 +2028,11 @@
       "min":0,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
+    "TestDuration":{
+      "type":"integer",
+      "box":true
+    },
+    "TestId":{"type":"string"},
     "TooManyTagsException":{
       "type":"structure",
       "members":{
@@ -2062,6 +2159,23 @@
         "rejected",
         "unknown"
       ]
+    },
+    "VirtualInterfaceTestHistory":{
+      "type":"structure",
+      "members":{
+        "testId":{"shape":"TestId"},
+        "virtualInterfaceId":{"shape":"VirtualInterfaceId"},
+        "bgpPeers":{"shape":"BGPPeerIdList"},
+        "status":{"shape":"FailureTestHistoryStatus"},
+        "ownerAccount":{"shape":"OwnerAccount"},
+        "testDurationInMinutes":{"shape":"TestDuration"},
+        "startTime":{"shape":"StartTime"},
+        "endTime":{"shape":"EndTime"}
+      }
+    },
+    "VirtualInterfaceTestHistoryList":{
+      "type":"list",
+      "member":{"shape":"VirtualInterfaceTestHistory"}
     },
     "VirtualInterfaceType":{"type":"string"},
     "VirtualInterfaces":{

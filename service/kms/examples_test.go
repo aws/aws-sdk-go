@@ -1400,6 +1400,8 @@ func ExampleKMS_UpdateAlias_shared00() {
 				fmt.Println(kms.ErrCodeNotFoundException, aerr.Error())
 			case kms.ErrCodeInternalException:
 				fmt.Println(kms.ErrCodeInternalException, aerr.Error())
+			case kms.ErrCodeLimitExceededException:
+				fmt.Println(kms.ErrCodeLimitExceededException, aerr.Error())
 			case kms.ErrCodeInvalidStateException:
 				fmt.Println(kms.ErrCodeInvalidStateException, aerr.Error())
 			default:

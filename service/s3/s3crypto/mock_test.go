@@ -8,8 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
 
-type mockGenerator struct {
-}
+type mockGenerator struct{}
 
 func (m mockGenerator) GenerateCipherData(keySize, ivSize int) (s3crypto.CipherData, error) {
 	cd := s3crypto.CipherData{
@@ -27,7 +26,6 @@ func (m mockGenerator) EncryptKey(key []byte) ([]byte, error) {
 
 func (m mockGenerator) DecryptKey(key []byte) ([]byte, error) {
 	return make([]byte, 16), nil
-
 }
 
 type mockCipherBuilder struct {

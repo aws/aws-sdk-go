@@ -31,9 +31,10 @@ type Operation struct {
 
 	EventStreamAPI *EventStreamAPI
 
-	IsEndpointDiscoveryOp bool               `json:"endpointoperation"`
-	EndpointDiscovery     *EndpointDiscovery `json:"endpointdiscovery"`
-	Endpoint              *EndpointTrait     `json:"endpoint"`
+	IsEndpointDiscoveryOp  bool               `json:"endpointoperation"`
+	EndpointDiscovery      *EndpointDiscovery `json:"endpointdiscovery"`
+	Endpoint               *EndpointTrait     `json:"endpoint"`
+	IsHttpChecksumRequired bool               `json:"httpChecksumRequired"`
 }
 
 // EndpointTrait provides the structure of the modeled endpoint trait, and its
@@ -267,9 +268,9 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	{{- end }}
 
 	{{- if .EndpointDiscovery }}
-		// if a custom endpoint is provided for the request, 
-		// we skip endpoint discovery workflow
-		if req.Config.Endpoint == nil {
+		// if custom endpoint for the request is set to a non empty string,
+		// we skip the endpoint discovery workflow.
+		if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
 			{{- if not .EndpointDiscovery.Required }}
 				if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
 			{{- end }}
@@ -309,6 +310,14 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 	{{- range $_, $handler := $.CustomBuildHandlers }}
 		req.Handlers.Build.PushBackNamed({{ $handler }})
+	{{- end }}
+
+	{{- if .IsHttpChecksumRequired }}
+		{{- $_ := .API.AddSDKImport "private/checksum" }}
+		req.Handlers.Build.PushBackNamed(request.NamedHandler{
+			Name: "contentMd5Handler",
+			Fn: checksum.AddBodyContentMD5Handler,
+		})
 	{{- end }}
 	return
 }

@@ -92,7 +92,8 @@
         "itemId":{"shape":"ItemID"},
         "userId":{"shape":"UserID"},
         "numResults":{"shape":"NumResults"},
-        "context":{"shape":"Context"}
+        "context":{"shape":"Context"},
+        "filterArn":{"shape":"Arn"}
       }
     },
     "GetRecommendationsResponse":{

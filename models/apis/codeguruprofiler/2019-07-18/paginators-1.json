@@ -1,5 +1,15 @@
 {
   "pagination": {
+    "GetFindingsReportAccountSummary": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListFindingsReports": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListProfileTimes": {
       "input_token": "nextToken",
       "output_token": "nextToken",

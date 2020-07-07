@@ -332,6 +332,7 @@ func (c *Rekognition) CreateProjectRequest(input *CreateProjectInput) (req *requ
 //
 // Returned Error Types:
 //   * ResourceInUseException
+//   The specified resource is already being used.
 //
 //   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
@@ -446,6 +447,7 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 //
 // Returned Error Types:
 //   * ResourceInUseException
+//   The specified resource is already being used.
 //
 //   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
@@ -585,6 +587,7 @@ func (c *Rekognition) CreateStreamProcessorRequest(input *CreateStreamProcessorI
 //   below the Amazon Rekognition service limit.
 //
 //   * ResourceInUseException
+//   The specified resource is already being used.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -850,8 +853,8 @@ func (c *Rekognition) DeleteProjectRequest(input *DeleteProjectInput) (req *requ
 // DeleteProject API operation for Amazon Rekognition.
 //
 // Deletes an Amazon Rekognition Custom Labels project. To delete a project
-// you must first delete all versions of the model associated with the project.
-// To delete a version of a model, see DeleteProjectVersion.
+// you must first delete all models associated with the project. To delete a
+// model, see DeleteProjectVersion.
 //
 // This operation requires permissions to perform the rekognition:DeleteProject
 // action.
@@ -865,6 +868,7 @@ func (c *Rekognition) DeleteProjectRequest(input *DeleteProjectInput) (req *requ
 //
 // Returned Error Types:
 //   * ResourceInUseException
+//   The specified resource is already being used.
 //
 //   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
@@ -950,11 +954,12 @@ func (c *Rekognition) DeleteProjectVersionRequest(input *DeleteProjectVersionInp
 
 // DeleteProjectVersion API operation for Amazon Rekognition.
 //
-// Deletes a version of a model.
+// Deletes an Amazon Rekognition Custom Labels model.
 //
-// You must first stop the model before you can delete it. To check if a model
-// is running, use the Status field returned from DescribeProjectVersions. To
-// stop a running model call StopProjectVersion.
+// You can't delete a model if it is running or if it is training. To check
+// the status of a model, use the Status field returned from DescribeProjectVersions.
+// To stop a running model call StopProjectVersion. If the model is training,
+// wait until it finishes.
 //
 // This operation requires permissions to perform the rekognition:DeleteProjectVersion
 // action.
@@ -971,6 +976,7 @@ func (c *Rekognition) DeleteProjectVersionRequest(input *DeleteProjectVersionInp
 //   The collection specified in the request cannot be found.
 //
 //   * ResourceInUseException
+//   The specified resource is already being used.
 //
 //   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
@@ -1085,6 +1091,7 @@ func (c *Rekognition) DeleteStreamProcessorRequest(input *DeleteStreamProcessorI
 //   The collection specified in the request cannot be found.
 //
 //   * ResourceInUseException
+//   The specified resource is already being used.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -3527,6 +3534,192 @@ func (c *Rekognition) GetPersonTrackingPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opGetSegmentDetection = "GetSegmentDetection"
+
+// GetSegmentDetectionRequest generates a "aws/request.Request" representing the
+// client's request for the GetSegmentDetection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSegmentDetection for more information on using the GetSegmentDetection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSegmentDetectionRequest method.
+//    req, resp := client.GetSegmentDetectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) GetSegmentDetectionRequest(input *GetSegmentDetectionInput) (req *request.Request, output *GetSegmentDetectionOutput) {
+	op := &request.Operation{
+		Name:       opGetSegmentDetection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetSegmentDetectionInput{}
+	}
+
+	output = &GetSegmentDetectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSegmentDetection API operation for Amazon Rekognition.
+//
+// Gets the segment detection results of a Amazon Rekognition Video analysis
+// started by StartSegmentDetection.
+//
+// Segment detection with Amazon Rekognition Video is an asynchronous operation.
+// You start segment detection by calling StartSegmentDetection which returns
+// a job identifier (JobId). When the segment detection operation finishes,
+// Amazon Rekognition publishes a completion status to the Amazon Simple Notification
+// Service topic registered in the initial call to StartSegmentDetection. To
+// get the results of the segment detection operation, first check that the
+// status value published to the Amazon SNS topic is SUCCEEDED. if so, call
+// GetSegmentDetection and pass the job identifier (JobId) from the initial
+// call of StartSegmentDetection.
+//
+// GetSegmentDetection returns detected segments in an array (Segments) of SegmentDetection
+// objects. Segments is sorted by the segment types specified in the SegmentTypes
+// input parameter of StartSegmentDetection. Each element of the array includes
+// the detected segment, the precentage confidence in the acuracy of the detected
+// segment, the type of the segment, and the frame in which the segment was
+// detected.
+//
+// Use SelectedSegmentTypes to find out the type of segment detection requested
+// in the call to StartSegmentDetection.
+//
+// Use the MaxResults parameter to limit the number of segment detections returned.
+// If there are more results than specified in MaxResults, the value of NextToken
+// in the operation response contains a pagination token for getting the next
+// set of results. To get the next page of results, call GetSegmentDetection
+// and populate the NextToken request parameter with the token value returned
+// from the previous call to GetSegmentDetection.
+//
+// For more information, see Detecting Video Segments in Stored Video in the
+// Amazon Rekognition Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation GetSegmentDetection for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * InvalidPaginationTokenException
+//   Pagination token in the request is not valid.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * ResourceNotFoundException
+//   The collection specified in the request cannot be found.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+func (c *Rekognition) GetSegmentDetection(input *GetSegmentDetectionInput) (*GetSegmentDetectionOutput, error) {
+	req, out := c.GetSegmentDetectionRequest(input)
+	return out, req.Send()
+}
+
+// GetSegmentDetectionWithContext is the same as GetSegmentDetection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSegmentDetection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) GetSegmentDetectionWithContext(ctx aws.Context, input *GetSegmentDetectionInput, opts ...request.Option) (*GetSegmentDetectionOutput, error) {
+	req, out := c.GetSegmentDetectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetSegmentDetectionPages iterates over the pages of a GetSegmentDetection operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetSegmentDetection method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetSegmentDetection operation.
+//    pageNum := 0
+//    err := client.GetSegmentDetectionPages(params,
+//        func(page *rekognition.GetSegmentDetectionOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Rekognition) GetSegmentDetectionPages(input *GetSegmentDetectionInput, fn func(*GetSegmentDetectionOutput, bool) bool) error {
+	return c.GetSegmentDetectionPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetSegmentDetectionPagesWithContext same as GetSegmentDetectionPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) GetSegmentDetectionPagesWithContext(ctx aws.Context, input *GetSegmentDetectionInput, fn func(*GetSegmentDetectionOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetSegmentDetectionInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetSegmentDetectionRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetSegmentDetectionOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetTextDetection = "GetTextDetection"
 
 // GetTextDetectionRequest generates a "aws/request.Request" representing the
@@ -3777,7 +3970,7 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // For more information, see Model Versioning in the Amazon Rekognition Developer
 // Guide.
 //
-// If you provide the optional ExternalImageID for the input image you provided,
+// If you provide the optional ExternalImageId for the input image you provided,
 // Amazon Rekognition associates this ID with all faces that it detects. When
 // you call the ListFaces operation, the response returns the external ID. You
 // can use this external image ID to create a client-side index to associate
@@ -5580,6 +5773,7 @@ func (c *Rekognition) StartProjectVersionRequest(input *StartProjectVersionInput
 //   The collection specified in the request cannot be found.
 //
 //   * ResourceInUseException
+//   The specified resource is already being used.
 //
 //   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
@@ -5622,6 +5816,137 @@ func (c *Rekognition) StartProjectVersion(input *StartProjectVersionInput) (*Sta
 // for more information on using Contexts.
 func (c *Rekognition) StartProjectVersionWithContext(ctx aws.Context, input *StartProjectVersionInput, opts ...request.Option) (*StartProjectVersionOutput, error) {
 	req, out := c.StartProjectVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartSegmentDetection = "StartSegmentDetection"
+
+// StartSegmentDetectionRequest generates a "aws/request.Request" representing the
+// client's request for the StartSegmentDetection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSegmentDetection for more information on using the StartSegmentDetection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartSegmentDetectionRequest method.
+//    req, resp := client.StartSegmentDetectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) StartSegmentDetectionRequest(input *StartSegmentDetectionInput) (req *request.Request, output *StartSegmentDetectionOutput) {
+	op := &request.Operation{
+		Name:       opStartSegmentDetection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartSegmentDetectionInput{}
+	}
+
+	output = &StartSegmentDetectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSegmentDetection API operation for Amazon Rekognition.
+//
+// Starts asynchronous detection of segment detection in a stored video.
+//
+// Amazon Rekognition Video can detect segments in a video stored in an Amazon
+// S3 bucket. Use Video to specify the bucket name and the filename of the video.
+// StartSegmentDetection returns a job identifier (JobId) which you use to get
+// the results of the operation. When segment detection is finished, Amazon
+// Rekognition Video publishes a completion status to the Amazon Simple Notification
+// Service topic that you specify in NotificationChannel.
+//
+// You can use the Filters (StartSegmentDetectionFilters) input parameter to
+// specify the minimum detection confidence returned in the response. Within
+// Filters, use ShotFilter (StartShotDetectionFilter) to filter detected shots.
+// Use TechnicalCueFilter (StartTechnicalCueDetectionFilter) to filter technical
+// cues.
+//
+// To get the results of the segment detection operation, first check that the
+// status value published to the Amazon SNS topic is SUCCEEDED. if so, call
+// GetSegmentDetection and pass the job identifier (JobId) from the initial
+// call to StartSegmentDetection.
+//
+// For more information, see Detecting Video Segments in Stored Video in the
+// Amazon Rekognition Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation StartSegmentDetection for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * IdempotentParameterMismatchException
+//   A ClientRequestToken input parameter was reused with an operation, but at
+//   least one of the other input parameters is different from the previous call
+//   to the operation.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * InvalidS3ObjectException
+//   Amazon Rekognition is unable to access the S3 object specified in the request.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * VideoTooLargeException
+//   The file size or duration of the supplied media is too large. The maximum
+//   file size is 10GB. The maximum duration is 6 hours.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * LimitExceededException
+//   An Amazon Rekognition service limit was exceeded. For example, if you start
+//   too many Amazon Rekognition Video jobs concurrently, calls to start operations
+//   (StartLabelDetection, for example) will raise a LimitExceededException exception
+//   (HTTP status code: 400) until the number of concurrently running jobs is
+//   below the Amazon Rekognition service limit.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+func (c *Rekognition) StartSegmentDetection(input *StartSegmentDetectionInput) (*StartSegmentDetectionOutput, error) {
+	req, out := c.StartSegmentDetectionRequest(input)
+	return out, req.Send()
+}
+
+// StartSegmentDetectionWithContext is the same as StartSegmentDetection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSegmentDetection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) StartSegmentDetectionWithContext(ctx aws.Context, input *StartSegmentDetectionInput, opts ...request.Option) (*StartSegmentDetectionOutput, error) {
+	req, out := c.StartSegmentDetectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5700,6 +6025,7 @@ func (c *Rekognition) StartStreamProcessorRequest(input *StartStreamProcessorInp
 //   The collection specified in the request cannot be found.
 //
 //   * ResourceInUseException
+//   The specified resource is already being used.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -5905,6 +6231,7 @@ func (c *Rekognition) StopProjectVersionRequest(input *StopProjectVersionInput) 
 //   The collection specified in the request cannot be found.
 //
 //   * ResourceInUseException
+//   The specified resource is already being used.
 //
 //   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
@@ -6016,6 +6343,7 @@ func (c *Rekognition) StopStreamProcessorRequest(input *StopStreamProcessorInput
 //   The collection specified in the request cannot be found.
 //
 //   * ResourceInUseException
+//   The specified resource is already being used.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -6173,6 +6501,58 @@ func (s *Asset) Validate() error {
 // SetGroundTruthManifest sets the GroundTruthManifest field's value.
 func (s *Asset) SetGroundTruthManifest(v *GroundTruthManifest) *Asset {
 	s.GroundTruthManifest = v
+	return s
+}
+
+// Metadata information about an audio stream. An array of AudioMetadata objects
+// for the audio streams found in a stored video is returned by GetSegmentDetection.
+type AudioMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The audio codec used to encode or decode the audio stream.
+	Codec *string `type:"string"`
+
+	// The duration of the audio stream in milliseconds.
+	DurationMillis *int64 `type:"long"`
+
+	// The number of audio channels in the segement.
+	NumberOfChannels *int64 `type:"long"`
+
+	// The sample rate for the audio stream.
+	SampleRate *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s AudioMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AudioMetadata) GoString() string {
+	return s.String()
+}
+
+// SetCodec sets the Codec field's value.
+func (s *AudioMetadata) SetCodec(v string) *AudioMetadata {
+	s.Codec = &v
+	return s
+}
+
+// SetDurationMillis sets the DurationMillis field's value.
+func (s *AudioMetadata) SetDurationMillis(v int64) *AudioMetadata {
+	s.DurationMillis = &v
+	return s
+}
+
+// SetNumberOfChannels sets the NumberOfChannels field's value.
+func (s *AudioMetadata) SetNumberOfChannels(v int64) *AudioMetadata {
+	s.NumberOfChannels = &v
+	return s
+}
+
+// SetSampleRate sets the SampleRate field's value.
+func (s *AudioMetadata) SetSampleRate(v int64) *AudioMetadata {
+	s.SampleRate = &v
 	return s
 }
 
@@ -7720,7 +8100,9 @@ type DescribeProjectVersionsInput struct {
 
 	// A list of model version names that you want to describe. You can add up to
 	// 10 model version names to the list. If you don't specify a value, all model
-	// descriptions are returned.
+	// descriptions are returned. A version name is part of a model (ProjectVersion)
+	// ARN. For example, my-model.2020-01-21T09.10.15 is the version name in the
+	// following ARN. arn:aws:rekognition:us-east-1:123456789012:project/getting-started/version/my-model.2020-01-21T09.10.15/1234567890123.
 	VersionNames []*string `min:"1" type:"list"`
 }
 
@@ -10275,10 +10657,162 @@ func (s *GetPersonTrackingOutput) SetVideoMetadata(v *VideoMetadata) *GetPersonT
 	return s
 }
 
+type GetSegmentDetectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Job identifier for the text detection operation for which you want results
+	// returned. You get the job identifer from an initial call to StartSegmentDetection.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// Maximum number of results to return per paginated call. The largest value
+	// you can specify is 1000.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the response is truncated, Amazon Rekognition Video returns this token
+	// that you can use in the subsequent request to retrieve the next set of text.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetSegmentDetectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSegmentDetectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSegmentDetectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSegmentDetectionInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetSegmentDetectionInput) SetJobId(v string) *GetSegmentDetectionInput {
+	s.JobId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetSegmentDetectionInput) SetMaxResults(v int64) *GetSegmentDetectionInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSegmentDetectionInput) SetNextToken(v string) *GetSegmentDetectionInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetSegmentDetectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects. There can be multiple audio streams. Each AudioMetadata
+	// object contains metadata for a single audio stream. Audio information in
+	// an AudioMetadata objects includes the audio codec, the number of audio channels,
+	// the duration of the audio stream, and the sample rate. Audio metadata is
+	// returned in each page of information returned by GetSegmentDetection.
+	AudioMetadata []*AudioMetadata `type:"list"`
+
+	// Current status of the segment detection job.
+	JobStatus *string `type:"string" enum:"VideoJobStatus"`
+
+	// If the previous response was incomplete (because there are more labels to
+	// retrieve), Amazon Rekognition Video returns a pagination token in the response.
+	// You can use this pagination token to retrieve the next set of text.
+	NextToken *string `type:"string"`
+
+	// An array of segments detected in a video.
+	Segments []*SegmentDetection `type:"list"`
+
+	// An array containing the segment types requested in the call to StartSegmentDetection.
+	SelectedSegmentTypes []*SegmentTypeInfo `type:"list"`
+
+	// If the job fails, StatusMessage provides a descriptive error message.
+	StatusMessage *string `type:"string"`
+
+	// Currently, Amazon Rekognition Video returns a single object in the VideoMetadata
+	// array. The object contains information about the video stream in the input
+	// file that Amazon Rekognition Video chose to analyze. The VideoMetadata object
+	// includes the video codec, video format and other information. Video metadata
+	// is returned in each page of information returned by GetSegmentDetection.
+	VideoMetadata []*VideoMetadata `type:"list"`
+}
+
+// String returns the string representation
+func (s GetSegmentDetectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSegmentDetectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAudioMetadata sets the AudioMetadata field's value.
+func (s *GetSegmentDetectionOutput) SetAudioMetadata(v []*AudioMetadata) *GetSegmentDetectionOutput {
+	s.AudioMetadata = v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *GetSegmentDetectionOutput) SetJobStatus(v string) *GetSegmentDetectionOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSegmentDetectionOutput) SetNextToken(v string) *GetSegmentDetectionOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSegments sets the Segments field's value.
+func (s *GetSegmentDetectionOutput) SetSegments(v []*SegmentDetection) *GetSegmentDetectionOutput {
+	s.Segments = v
+	return s
+}
+
+// SetSelectedSegmentTypes sets the SelectedSegmentTypes field's value.
+func (s *GetSegmentDetectionOutput) SetSelectedSegmentTypes(v []*SegmentTypeInfo) *GetSegmentDetectionOutput {
+	s.SelectedSegmentTypes = v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *GetSegmentDetectionOutput) SetStatusMessage(v string) *GetSegmentDetectionOutput {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetVideoMetadata sets the VideoMetadata field's value.
+func (s *GetSegmentDetectionOutput) SetVideoMetadata(v []*VideoMetadata) *GetSegmentDetectionOutput {
+	s.VideoMetadata = v
+	return s
+}
+
 type GetTextDetectionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Job identifier for the label detection operation for which you want results
+	// Job identifier for the text detection operation for which you want results
 	// returned. You get the job identifer from an initial call to StartTextDetection.
 	//
 	// JobId is a required field
@@ -10512,7 +11046,9 @@ type HumanLoopConfig struct {
 	// Sets attributes of the input data.
 	DataAttributes *HumanLoopDataAttributes `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the flow definition.
+	// The Amazon Resource Name (ARN) of the flow definition. You can create a flow
+	// definition by using the Amazon Sagemaker CreateFlowDefinition (https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html)
+	// Operation.
 	//
 	// FlowDefinitionArn is a required field
 	FlowDefinitionArn *string `type:"string" required:"true"`
@@ -10604,10 +11140,13 @@ type HumanLoopQuotaExceededException struct {
 
 	Message_ *string `locationName:"message" type:"string"`
 
+	// The quota code.
 	QuotaCode *string `type:"string"`
 
+	// The resource type.
 	ResourceType *string `type:"string"`
 
+	// The service code.
 	ServiceCode *string `type:"string"`
 }
 
@@ -12793,6 +13332,7 @@ func (s *ResourceAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The specified resource is already being used.
 type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13311,6 +13851,180 @@ func (s *SearchFacesOutput) SetFaceModelVersion(v string) *SearchFacesOutput {
 // SetSearchedFaceId sets the SearchedFaceId field's value.
 func (s *SearchFacesOutput) SetSearchedFaceId(v string) *SearchFacesOutput {
 	s.SearchedFaceId = &v
+	return s
+}
+
+// A technical cue or shot detection segment detected in a video. An array of
+// SegmentDetection objects containing all segments detected in a stored video
+// is returned by GetSegmentDetection.
+type SegmentDetection struct {
+	_ struct{} `type:"structure"`
+
+	// The duration of the detected segment in milliseconds.
+	DurationMillis *int64 `type:"long"`
+
+	// The duration of the timecode for the detected segment in SMPTE format.
+	DurationSMPTE *string `type:"string"`
+
+	// The frame-accurate SMPTE timecode, from the start of a video, for the end
+	// of a detected segment. EndTimecode is in HH:MM:SS:fr format (and ;fr for
+	// drop frame-rates).
+	EndTimecodeSMPTE *string `type:"string"`
+
+	// The end time of the detected segment, in milliseconds, from the start of
+	// the video.
+	EndTimestampMillis *int64 `type:"long"`
+
+	// If the segment is a shot detection, contains information about the shot detection.
+	ShotSegment *ShotSegment `type:"structure"`
+
+	// The frame-accurate SMPTE timecode, from the start of a video, for the start
+	// of a detected segment. StartTimecode is in HH:MM:SS:fr format (and ;fr for
+	// drop frame-rates).
+	StartTimecodeSMPTE *string `type:"string"`
+
+	// The start time of the detected segment in milliseconds from the start of
+	// the video.
+	StartTimestampMillis *int64 `type:"long"`
+
+	// If the segment is a technical cue, contains information about the technical
+	// cue.
+	TechnicalCueSegment *TechnicalCueSegment `type:"structure"`
+
+	// The type of the segment. Valid values are TECHNICAL_CUE and SHOT.
+	Type *string `type:"string" enum:"SegmentType"`
+}
+
+// String returns the string representation
+func (s SegmentDetection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SegmentDetection) GoString() string {
+	return s.String()
+}
+
+// SetDurationMillis sets the DurationMillis field's value.
+func (s *SegmentDetection) SetDurationMillis(v int64) *SegmentDetection {
+	s.DurationMillis = &v
+	return s
+}
+
+// SetDurationSMPTE sets the DurationSMPTE field's value.
+func (s *SegmentDetection) SetDurationSMPTE(v string) *SegmentDetection {
+	s.DurationSMPTE = &v
+	return s
+}
+
+// SetEndTimecodeSMPTE sets the EndTimecodeSMPTE field's value.
+func (s *SegmentDetection) SetEndTimecodeSMPTE(v string) *SegmentDetection {
+	s.EndTimecodeSMPTE = &v
+	return s
+}
+
+// SetEndTimestampMillis sets the EndTimestampMillis field's value.
+func (s *SegmentDetection) SetEndTimestampMillis(v int64) *SegmentDetection {
+	s.EndTimestampMillis = &v
+	return s
+}
+
+// SetShotSegment sets the ShotSegment field's value.
+func (s *SegmentDetection) SetShotSegment(v *ShotSegment) *SegmentDetection {
+	s.ShotSegment = v
+	return s
+}
+
+// SetStartTimecodeSMPTE sets the StartTimecodeSMPTE field's value.
+func (s *SegmentDetection) SetStartTimecodeSMPTE(v string) *SegmentDetection {
+	s.StartTimecodeSMPTE = &v
+	return s
+}
+
+// SetStartTimestampMillis sets the StartTimestampMillis field's value.
+func (s *SegmentDetection) SetStartTimestampMillis(v int64) *SegmentDetection {
+	s.StartTimestampMillis = &v
+	return s
+}
+
+// SetTechnicalCueSegment sets the TechnicalCueSegment field's value.
+func (s *SegmentDetection) SetTechnicalCueSegment(v *TechnicalCueSegment) *SegmentDetection {
+	s.TechnicalCueSegment = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SegmentDetection) SetType(v string) *SegmentDetection {
+	s.Type = &v
+	return s
+}
+
+// Information about the type of a segment requested in a call to StartSegmentDetection.
+// An array of SegmentTypeInfo objects is returned by the response from GetSegmentDetection.
+type SegmentTypeInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The version of the model used to detect segments.
+	ModelVersion *string `type:"string"`
+
+	// The type of a segment (technical cue or shot detection).
+	Type *string `type:"string" enum:"SegmentType"`
+}
+
+// String returns the string representation
+func (s SegmentTypeInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SegmentTypeInfo) GoString() string {
+	return s.String()
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *SegmentTypeInfo) SetModelVersion(v string) *SegmentTypeInfo {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SegmentTypeInfo) SetType(v string) *SegmentTypeInfo {
+	s.Type = &v
+	return s
+}
+
+// Information about a shot detection segment detected in a video. For more
+// information, see SegmentDetection.
+type ShotSegment struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence that Amazon Rekognition Video has in the accuracy of the detected
+	// segment.
+	Confidence *float64 `min:"50" type:"float"`
+
+	// An Identifier for a shot detection segment detected in a video
+	Index *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s ShotSegment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ShotSegment) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *ShotSegment) SetConfidence(v float64) *ShotSegment {
+	s.Confidence = &v
+	return s
+}
+
+// SetIndex sets the Index field's value.
+func (s *ShotSegment) SetIndex(v int64) *ShotSegment {
+	s.Index = &v
 	return s
 }
 
@@ -14182,6 +14896,251 @@ func (s *StartProjectVersionOutput) SetStatus(v string) *StartProjectVersionOutp
 	return s
 }
 
+// Filters applied to the technical cue or shot detection segments. For more
+// information, see StartSegmentDetection.
+type StartSegmentDetectionFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Filters that are specific to shot detections.
+	ShotFilter *StartShotDetectionFilter `type:"structure"`
+
+	// Filters that are specific to technical cues.
+	TechnicalCueFilter *StartTechnicalCueDetectionFilter `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartSegmentDetectionFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartSegmentDetectionFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSegmentDetectionFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSegmentDetectionFilters"}
+	if s.ShotFilter != nil {
+		if err := s.ShotFilter.Validate(); err != nil {
+			invalidParams.AddNested("ShotFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TechnicalCueFilter != nil {
+		if err := s.TechnicalCueFilter.Validate(); err != nil {
+			invalidParams.AddNested("TechnicalCueFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetShotFilter sets the ShotFilter field's value.
+func (s *StartSegmentDetectionFilters) SetShotFilter(v *StartShotDetectionFilter) *StartSegmentDetectionFilters {
+	s.ShotFilter = v
+	return s
+}
+
+// SetTechnicalCueFilter sets the TechnicalCueFilter field's value.
+func (s *StartSegmentDetectionFilters) SetTechnicalCueFilter(v *StartTechnicalCueDetectionFilter) *StartSegmentDetectionFilters {
+	s.TechnicalCueFilter = v
+	return s
+}
+
+type StartSegmentDetectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotent token used to identify the start request. If you use the same
+	// token with multiple StartSegmentDetection requests, the same JobId is returned.
+	// Use ClientRequestToken to prevent the same job from being accidently started
+	// more than once.
+	ClientRequestToken *string `min:"1" type:"string"`
+
+	// Filters for technical cue or shot detection.
+	Filters *StartSegmentDetectionFilters `type:"structure"`
+
+	// An identifier you specify that's returned in the completion notification
+	// that's published to your Amazon Simple Notification Service topic. For example,
+	// you can use JobTag to group related jobs and identify them in the completion
+	// notification.
+	JobTag *string `min:"1" type:"string"`
+
+	// The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video
+	// to publish the completion status of the segment detection operation.
+	NotificationChannel *NotificationChannel `type:"structure"`
+
+	// An array of segment types to detect in the video. Valid values are TECHNICAL_CUE
+	// and SHOT.
+	//
+	// SegmentTypes is a required field
+	SegmentTypes []*string `min:"1" type:"list" required:"true"`
+
+	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
+	// operations such as StartLabelDetection use Video to specify a video for analysis.
+	// The supported file formats are .mp4, .mov and .avi.
+	//
+	// Video is a required field
+	Video *Video `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StartSegmentDetectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartSegmentDetectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSegmentDetectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSegmentDetectionInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.JobTag != nil && len(*s.JobTag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobTag", 1))
+	}
+	if s.SegmentTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("SegmentTypes"))
+	}
+	if s.SegmentTypes != nil && len(s.SegmentTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SegmentTypes", 1))
+	}
+	if s.Video == nil {
+		invalidParams.Add(request.NewErrParamRequired("Video"))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NotificationChannel != nil {
+		if err := s.NotificationChannel.Validate(); err != nil {
+			invalidParams.AddNested("NotificationChannel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Video != nil {
+		if err := s.Video.Validate(); err != nil {
+			invalidParams.AddNested("Video", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartSegmentDetectionInput) SetClientRequestToken(v string) *StartSegmentDetectionInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *StartSegmentDetectionInput) SetFilters(v *StartSegmentDetectionFilters) *StartSegmentDetectionInput {
+	s.Filters = v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *StartSegmentDetectionInput) SetJobTag(v string) *StartSegmentDetectionInput {
+	s.JobTag = &v
+	return s
+}
+
+// SetNotificationChannel sets the NotificationChannel field's value.
+func (s *StartSegmentDetectionInput) SetNotificationChannel(v *NotificationChannel) *StartSegmentDetectionInput {
+	s.NotificationChannel = v
+	return s
+}
+
+// SetSegmentTypes sets the SegmentTypes field's value.
+func (s *StartSegmentDetectionInput) SetSegmentTypes(v []*string) *StartSegmentDetectionInput {
+	s.SegmentTypes = v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *StartSegmentDetectionInput) SetVideo(v *Video) *StartSegmentDetectionInput {
+	s.Video = v
+	return s
+}
+
+type StartSegmentDetectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier for the segment detection job. The JobId is returned from
+	// StartSegmentDetection.
+	JobId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StartSegmentDetectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartSegmentDetectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartSegmentDetectionOutput) SetJobId(v string) *StartSegmentDetectionOutput {
+	s.JobId = &v
+	return s
+}
+
+// Filters for the shot detection segments returned by GetSegmentDetection.
+// For more information, see StartSegmentDetectionFilters.
+type StartShotDetectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the minimum confidence that Amazon Rekognition Video must have
+	// in order to return a detected segment. Confidence represents how certain
+	// Amazon Rekognition is that a segment is correctly identified. 0 is the lowest
+	// confidence. 100 is the highest confidence. Amazon Rekognition Video doesn't
+	// return any segments with a confidence level lower than this specified value.
+	//
+	// If you don't specify MinSegmentConfidence, the GetSegmentDetection returns
+	// segments with confidence values greater than or equal to 50 percent.
+	MinSegmentConfidence *float64 `min:"50" type:"float"`
+}
+
+// String returns the string representation
+func (s StartShotDetectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartShotDetectionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartShotDetectionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartShotDetectionFilter"}
+	if s.MinSegmentConfidence != nil && *s.MinSegmentConfidence < 50 {
+		invalidParams.Add(request.NewErrParamMinValue("MinSegmentConfidence", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMinSegmentConfidence sets the MinSegmentConfidence field's value.
+func (s *StartShotDetectionFilter) SetMinSegmentConfidence(v float64) *StartShotDetectionFilter {
+	s.MinSegmentConfidence = &v
+	return s
+}
+
 type StartStreamProcessorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14235,6 +15194,51 @@ func (s StartStreamProcessorOutput) String() string {
 // GoString returns the string representation
 func (s StartStreamProcessorOutput) GoString() string {
 	return s.String()
+}
+
+// Filters for the technical segments returned by GetSegmentDetection. For more
+// information, see StartSegmentDetectionFilters.
+type StartTechnicalCueDetectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the minimum confidence that Amazon Rekognition Video must have
+	// in order to return a detected segment. Confidence represents how certain
+	// Amazon Rekognition is that a segment is correctly identified. 0 is the lowest
+	// confidence. 100 is the highest confidence. Amazon Rekognition Video doesn't
+	// return any segments with a confidence level lower than this specified value.
+	//
+	// If you don't specify MinSegmentConfidence, GetSegmentDetection returns segments
+	// with confidence values greater than or equal to 50 percent.
+	MinSegmentConfidence *float64 `min:"50" type:"float"`
+}
+
+// String returns the string representation
+func (s StartTechnicalCueDetectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartTechnicalCueDetectionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartTechnicalCueDetectionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartTechnicalCueDetectionFilter"}
+	if s.MinSegmentConfidence != nil && *s.MinSegmentConfidence < 50 {
+		invalidParams.Add(request.NewErrParamMinValue("MinSegmentConfidence", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMinSegmentConfidence sets the MinSegmentConfidence field's value.
+func (s *StartTechnicalCueDetectionFilter) SetMinSegmentConfidence(v float64) *StartTechnicalCueDetectionFilter {
+	s.MinSegmentConfidence = &v
+	return s
 }
 
 // Set of optional parameters that let you set the criteria text must meet to
@@ -14715,6 +15719,40 @@ func (s *Sunglasses) SetConfidence(v float64) *Sunglasses {
 // SetValue sets the Value field's value.
 func (s *Sunglasses) SetValue(v bool) *Sunglasses {
 	s.Value = &v
+	return s
+}
+
+// Information about a technical cue segment. For more information, see SegmentDetection.
+type TechnicalCueSegment struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence that Amazon Rekognition Video has in the accuracy of the detected
+	// segment.
+	Confidence *float64 `min:"50" type:"float"`
+
+	// The type of the technical cue.
+	Type *string `type:"string" enum:"TechnicalCueType"`
+}
+
+// String returns the string representation
+func (s TechnicalCueSegment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TechnicalCueSegment) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *TechnicalCueSegment) SetConfidence(v float64) *TechnicalCueSegment {
+	s.Confidence = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TechnicalCueSegment) SetType(v string) *TechnicalCueSegment {
+	s.Type = &v
 	return s
 }
 
@@ -15572,6 +16610,14 @@ const (
 )
 
 const (
+	// SegmentTypeTechnicalCue is a SegmentType enum value
+	SegmentTypeTechnicalCue = "TECHNICAL_CUE"
+
+	// SegmentTypeShot is a SegmentType enum value
+	SegmentTypeShot = "SHOT"
+)
+
+const (
 	// StreamProcessorStatusStopped is a StreamProcessorStatus enum value
 	StreamProcessorStatusStopped = "STOPPED"
 
@@ -15586,6 +16632,17 @@ const (
 
 	// StreamProcessorStatusStopping is a StreamProcessorStatus enum value
 	StreamProcessorStatusStopping = "STOPPING"
+)
+
+const (
+	// TechnicalCueTypeColorBars is a TechnicalCueType enum value
+	TechnicalCueTypeColorBars = "ColorBars"
+
+	// TechnicalCueTypeEndCredits is a TechnicalCueType enum value
+	TechnicalCueTypeEndCredits = "EndCredits"
+
+	// TechnicalCueTypeBlackFrames is a TechnicalCueType enum value
+	TechnicalCueTypeBlackFrames = "BlackFrames"
 )
 
 const (

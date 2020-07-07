@@ -1464,6 +1464,7 @@
         "Type":{"shape":"RegistryType"},
         "TypeName":{"shape":"TypeName"},
         "DefaultVersionId":{"shape":"TypeVersionId"},
+        "IsDefaultVersion":{"shape":"IsDefaultVersion"},
         "Description":{"shape":"Description"},
         "Schema":{"shape":"TypeSchema"},
         "ProvisioningType":{"shape":"ProvisioningType"},
@@ -1774,6 +1775,7 @@
       },
       "exception":true
     },
+    "IsDefaultVersion":{"type":"boolean"},
     "Key":{"type":"string"},
     "LastUpdatedTime":{"type":"timestamp"},
     "LimitExceededException":{
@@ -1839,6 +1841,7 @@
         "StackSetName":{"shape":"StackSetName"},
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{"shape":"MaxResults"},
+        "Filters":{"shape":"StackInstanceFilters"},
         "StackInstanceAccount":{"shape":"Account"},
         "StackInstanceRegion":{"shape":"Region"}
       }
@@ -2677,11 +2680,50 @@
         "StackId":{"shape":"StackId"},
         "ParameterOverrides":{"shape":"Parameters"},
         "Status":{"shape":"StackInstanceStatus"},
+        "StackInstanceStatus":{"shape":"StackInstanceComprehensiveStatus"},
         "StatusReason":{"shape":"Reason"},
         "OrganizationalUnitId":{"shape":"OrganizationalUnitId"},
         "DriftStatus":{"shape":"StackDriftStatus"},
         "LastDriftCheckTimestamp":{"shape":"Timestamp"}
       }
+    },
+    "StackInstanceComprehensiveStatus":{
+      "type":"structure",
+      "members":{
+        "DetailedStatus":{"shape":"StackInstanceDetailedStatus"}
+      }
+    },
+    "StackInstanceDetailedStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLED",
+        "INOPERABLE"
+      ]
+    },
+    "StackInstanceFilter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"StackInstanceFilterName"},
+        "Values":{"shape":"StackInstanceFilterValues"}
+      }
+    },
+    "StackInstanceFilterName":{
+      "type":"string",
+      "enum":["DETAILED_STATUS"]
+    },
+    "StackInstanceFilterValues":{
+      "type":"string",
+      "max":10,
+      "min":6
+    },
+    "StackInstanceFilters":{
+      "type":"list",
+      "member":{"shape":"StackInstanceFilter"},
+      "max":1
     },
     "StackInstanceNotFoundException":{
       "type":"structure",
@@ -2715,6 +2757,7 @@
         "StackId":{"shape":"StackId"},
         "Status":{"shape":"StackInstanceStatus"},
         "StatusReason":{"shape":"Reason"},
+        "StackInstanceStatus":{"shape":"StackInstanceComprehensiveStatus"},
         "OrganizationalUnitId":{"shape":"OrganizationalUnitId"},
         "DriftStatus":{"shape":"StackDriftStatus"},
         "LastDriftCheckTimestamp":{"shape":"Timestamp"}
@@ -3298,6 +3341,7 @@
         "Type":{"shape":"RegistryType"},
         "TypeName":{"shape":"TypeName"},
         "VersionId":{"shape":"TypeVersionId"},
+        "IsDefaultVersion":{"shape":"IsDefaultVersion"},
         "Arn":{"shape":"TypeArn"},
         "TimeCreated":{"shape":"Timestamp"},
         "Description":{"shape":"Description"}

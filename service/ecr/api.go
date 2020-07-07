@@ -483,8 +483,7 @@ func (c *ECR) CreateRepositoryRequest(input *CreateRepositoryInput) (req *reques
 //
 //   * LimitExceededException
 //   The operation did not succeed because it would have exceeded a service limit
-//   for your account. For more information, see Amazon ECR Default Service Limits
-//   (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
+//   for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 //   in the Amazon Elastic Container Registry User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/CreateRepository
@@ -2178,13 +2177,16 @@ func (c *ECR) PutImageRequest(input *PutImageInput) (req *request.Request, outpu
 //
 //   * LimitExceededException
 //   The operation did not succeed because it would have exceeded a service limit
-//   for your account. For more information, see Amazon ECR Default Service Limits
-//   (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
+//   for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 //   in the Amazon Elastic Container Registry User Guide.
 //
 //   * ImageTagAlreadyExistsException
 //   The specified image is tagged with a tag that already exists. The repository
 //   is configured for tag immutability.
+//
+//   * ImageDigestDoesNotMatchException
+//   The specified image digest does not match the digest that Amazon ECR calculated
+//   for the image.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/PutImage
 func (c *ECR) PutImage(input *PutImageInput) (*PutImageOutput, error) {
@@ -2517,7 +2519,7 @@ func (c *ECR) SetRepositoryPolicyRequest(input *SetRepositoryPolicyInput) (req *
 // SetRepositoryPolicy API operation for Amazon EC2 Container Registry.
 //
 // Applies a repository policy to the specified repository to control access
-// permissions. For more information, see Amazon ECR Repository Policies (https://docs.aws.amazon.com/AmazonECR/latest/userguide/RepositoryPolicies.html)
+// permissions. For more information, see Amazon ECR Repository Policies (https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html)
 // in the Amazon Elastic Container Registry User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2630,8 +2632,7 @@ func (c *ECR) StartImageScanRequest(input *StartImageScanInput) (req *request.Re
 //
 //   * LimitExceededException
 //   The operation did not succeed because it would have exceeded a service limit
-//   for your account. For more information, see Amazon ECR Default Service Limits
-//   (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
+//   for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 //   in the Amazon Elastic Container Registry User Guide.
 //
 //   * RepositoryNotFoundException
@@ -3037,8 +3038,7 @@ func (c *ECR) UploadLayerPartRequest(input *UploadLayerPartInput) (req *request.
 //
 //   * LimitExceededException
 //   The operation did not succeed because it would have exceeded a service limit
-//   for your account. For more information, see Amazon ECR Default Service Limits
-//   (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
+//   for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 //   in the Amazon Elastic Container Registry User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/UploadLayerPart
@@ -5080,6 +5080,9 @@ type Image struct {
 	// The image manifest associated with the image.
 	ImageManifest *string `locationName:"imageManifest" min:"1" type:"string"`
 
+	// The media type associated with the image manifest.
+	ImageManifestMediaType *string `locationName:"imageManifestMediaType" type:"string"`
+
 	// The AWS account ID associated with the registry containing the image.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
@@ -5106,6 +5109,12 @@ func (s *Image) SetImageId(v *ImageIdentifier) *Image {
 // SetImageManifest sets the ImageManifest field's value.
 func (s *Image) SetImageManifest(v string) *Image {
 	s.ImageManifest = &v
+	return s
+}
+
+// SetImageManifestMediaType sets the ImageManifestMediaType field's value.
+func (s *Image) SetImageManifestMediaType(v string) *Image {
+	s.ImageManifestMediaType = &v
 	return s
 }
 
@@ -5273,6 +5282,63 @@ func (s *ImageDetail) SetRegistryId(v string) *ImageDetail {
 func (s *ImageDetail) SetRepositoryName(v string) *ImageDetail {
 	s.RepositoryName = &v
 	return s
+}
+
+// The specified image digest does not match the digest that Amazon ECR calculated
+// for the image.
+type ImageDigestDoesNotMatchException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ImageDigestDoesNotMatchException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImageDigestDoesNotMatchException) GoString() string {
+	return s.String()
+}
+
+func newErrorImageDigestDoesNotMatchException(v protocol.ResponseMetadata) error {
+	return &ImageDigestDoesNotMatchException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ImageDigestDoesNotMatchException) Code() string {
+	return "ImageDigestDoesNotMatchException"
+}
+
+// Message returns the exception's message.
+func (s *ImageDigestDoesNotMatchException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ImageDigestDoesNotMatchException) OrigErr() error {
+	return nil
+}
+
+func (s *ImageDigestDoesNotMatchException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ImageDigestDoesNotMatchException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ImageDigestDoesNotMatchException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // An object representing an Amazon ECR image failure.
@@ -6647,8 +6713,7 @@ func (s *LifecyclePolicyRuleAction) SetType(v string) *LifecyclePolicyRuleAction
 }
 
 // The operation did not succeed because it would have exceeded a service limit
-// for your account. For more information, see Amazon ECR Default Service Limits
-// (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
+// for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 // in the Amazon Elastic Container Registry User Guide.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -6925,10 +6990,18 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type PutImageInput struct {
 	_ struct{} `type:"structure"`
 
+	// The image digest of the image manifest corresponding to the image.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
 	// The image manifest corresponding to the image to be uploaded.
 	//
 	// ImageManifest is a required field
 	ImageManifest *string `locationName:"imageManifest" min:"1" type:"string" required:"true"`
+
+	// The media type of the image manifest. If you push an image manifest that
+	// does not contain the mediaType field, you must specify the imageManifestMediaType
+	// in the request.
+	ImageManifestMediaType *string `locationName:"imageManifestMediaType" type:"string"`
 
 	// The tag to associate with the image. This parameter is required for images
 	// that use the Docker Image Manifest V2 Schema 2 or OCI formats.
@@ -6980,9 +7053,21 @@ func (s *PutImageInput) Validate() error {
 	return nil
 }
 
+// SetImageDigest sets the ImageDigest field's value.
+func (s *PutImageInput) SetImageDigest(v string) *PutImageInput {
+	s.ImageDigest = &v
+	return s
+}
+
 // SetImageManifest sets the ImageManifest field's value.
 func (s *PutImageInput) SetImageManifest(v string) *PutImageInput {
 	s.ImageManifest = &v
+	return s
+}
+
+// SetImageManifestMediaType sets the ImageManifestMediaType field's value.
+func (s *PutImageInput) SetImageManifestMediaType(v string) *PutImageInput {
+	s.ImageManifestMediaType = &v
 	return s
 }
 
@@ -7847,7 +7932,7 @@ type SetRepositoryPolicyInput struct {
 	Force *bool `locationName:"force" type:"boolean"`
 
 	// The JSON repository policy text to apply to the repository. For more information,
-	// see Amazon ECR Repository Policy Examples (https://docs.aws.amazon.com/AmazonECR/latest/userguide/RepositoryPolicyExamples.html)
+	// see Amazon ECR Repository Policies (https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html)
 	// in the Amazon Elastic Container Registry User Guide.
 	//
 	// PolicyText is a required field
@@ -8489,12 +8574,14 @@ type UploadLayerPartInput struct {
 	// LayerPartBlob is a required field
 	LayerPartBlob []byte `locationName:"layerPartBlob" type:"blob" required:"true"`
 
-	// The integer value of the first byte of the layer part.
+	// The position of the first byte of the layer part witin the overall image
+	// layer.
 	//
 	// PartFirstByte is a required field
 	PartFirstByte *int64 `locationName:"partFirstByte" type:"long" required:"true"`
 
-	// The integer value of the last byte of the layer part.
+	// The position of the last byte of the layer part within the overall image
+	// layer.
 	//
 	// PartLastByte is a required field
 	PartLastByte *int64 `locationName:"partLastByte" type:"long" required:"true"`

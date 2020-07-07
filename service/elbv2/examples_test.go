@@ -126,6 +126,8 @@ func ExampleELBV2_CreateListener_shared00() {
 				fmt.Println(elbv2.ErrCodeInvalidLoadBalancerActionException, aerr.Error())
 			case elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException:
 				fmt.Println(elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException, aerr.Error())
+			case elbv2.ErrCodeALPNPolicyNotSupportedException:
+				fmt.Println(elbv2.ErrCodeALPNPolicyNotSupportedException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -204,6 +206,8 @@ func ExampleELBV2_CreateListener_shared01() {
 				fmt.Println(elbv2.ErrCodeInvalidLoadBalancerActionException, aerr.Error())
 			case elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException:
 				fmt.Println(elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException, aerr.Error())
+			case elbv2.ErrCodeALPNPolicyNotSupportedException:
+				fmt.Println(elbv2.ErrCodeALPNPolicyNotSupportedException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -986,6 +990,8 @@ func ExampleELBV2_ModifyListener_shared00() {
 				fmt.Println(elbv2.ErrCodeInvalidLoadBalancerActionException, aerr.Error())
 			case elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException:
 				fmt.Println(elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException, aerr.Error())
+			case elbv2.ErrCodeALPNPolicyNotSupportedException:
+				fmt.Println(elbv2.ErrCodeALPNPolicyNotSupportedException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1050,6 +1056,8 @@ func ExampleELBV2_ModifyListener_shared01() {
 				fmt.Println(elbv2.ErrCodeInvalidLoadBalancerActionException, aerr.Error())
 			case elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException:
 				fmt.Println(elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException, aerr.Error())
+			case elbv2.ErrCodeALPNPolicyNotSupportedException:
+				fmt.Println(elbv2.ErrCodeALPNPolicyNotSupportedException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

@@ -178,15 +178,18 @@
     },
     "CreateRule":{
       "type":"structure",
-      "required":[
-        "Interval",
-        "IntervalUnit"
-      ],
       "members":{
         "Interval":{"shape":"Interval"},
         "IntervalUnit":{"shape":"IntervalUnitValues"},
-        "Times":{"shape":"TimesList"}
+        "Times":{"shape":"TimesList"},
+        "CronExpression":{"shape":"CronExpression"}
       }
+    },
+    "CronExpression":{
+      "type":"string",
+      "max":106,
+      "min":17,
+      "pattern":"cron\\([^\\n]{11,100}\\)"
     },
     "CrossRegionCopyRetainRule":{
       "type":"structure",
@@ -504,7 +507,7 @@
     },
     "ScheduleName":{
       "type":"string",
-      "max":500,
+      "max":120,
       "min":0,
       "pattern":"[\\p{all}]*"
     },

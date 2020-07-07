@@ -61,6 +61,14 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 // a case or case communication. The set is available for 1 hour after it's
 // created. The expiryTime returned in the response is when the set expires.
 //
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -153,14 +161,18 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 
 // AddCommunicationToCase API operation for AWS Support.
 //
-// Adds additional customer communication to an AWS Support case. You use the
-// caseId value to identify the case to add communication to. You can list a
-// set of email addresses to copy on the communication using the ccEmailAddresses
-// value. The communicationBody value contains the text of the communication.
+// Adds additional customer communication to an AWS Support case. Use the caseId
+// parameter to identify the case to which to add communication. You can list
+// a set of email addresses to copy on the communication by using the ccEmailAddresses
+// parameter. The communicationBody value contains the text of the communication.
 //
-// The response indicates the success or failure of the request.
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
 //
-// This operation implements a subset of the features of the AWS Support Center.
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -264,12 +276,20 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 //
 // A successful CreateCase request returns an AWS Support case number. You can
 // use the DescribeCases operation and specify the case number to get existing
-// AWS Support cases. After you create a case, you can use the AddCommunicationToCase
+// AWS Support cases. After you create a case, use the AddCommunicationToCase
 // operation to add additional communication or attachments to an existing case.
 //
-//    * The caseId is separate from the displayId that appears in the Support
-//    Center (https://console.aws.amazon.com/support). You can use the DescribeCases
-//    operation to get the displayId.
+// The caseId is separate from the displayId that appears in the AWS Support
+// Center (https://console.aws.amazon.com/support). Use the DescribeCases operation
+// to get the displayId.
+//
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -364,6 +384,14 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 // to a case or case communication. Attachment IDs are returned in the AttachmentDetails
 // objects that are returned by the DescribeCommunications operation.
 //
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -455,20 +483,28 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.
 // DescribeCases API operation for AWS Support.
 //
 // Returns a list of cases that you specify by passing one or more case IDs.
-// In addition, you can filter the cases by date by setting values for the afterTime
-// and beforeTime request parameters. You can set values for the includeResolvedCases
-// and includeCommunications request parameters to control how much information
-// is returned.
-//
-// Case data is available for 12 months after creation. If a case was created
-// more than 12 months ago, a request for data might cause an error.
+// You can use the afterTime and beforeTime parameters to filter the cases by
+// date. You can set values for the includeResolvedCases and includeCommunications
+// parameters to specify how much information to return.
 //
 // The response returns the following in JSON format:
 //
-//    * One or more CaseDetails data types.
+//    * One or more CaseDetails (https://docs.aws.amazon.com/awssupport/latest/APIReference/API_CaseDetails.html)
+//    data types.
 //
 //    * One or more nextToken values, which specify where to paginate the returned
 //    records represented by the CaseDetails objects.
+//
+// Case data is available for 12 months after creation. If a case was created
+// more than 12 months ago, a request might return an error.
+//
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -608,16 +644,24 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 
 // DescribeCommunications API operation for AWS Support.
 //
-// Returns communications (and attachments) for one or more support cases. You
-// can use the afterTime and beforeTime parameters to filter by date. You can
-// use the caseId parameter to restrict the results to a particular case.
+// Returns communications and attachments for one or more support cases. Use
+// the afterTime and beforeTime parameters to filter by date. You can use the
+// caseId parameter to restrict the results to a specific case.
 //
 // Case data is available for 12 months after creation. If a case was created
 // more than 12 months ago, a request for data might cause an error.
 //
 // You can use the maxResults and nextToken parameters to control the pagination
-// of the result set. Set maxResults to the number of cases you want displayed
+// of the results. Set maxResults to the number of cases that you want to display
 // on each page, and use nextToken to specify the resumption of pagination.
+//
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -752,16 +796,23 @@ func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *re
 // DescribeServices API operation for AWS Support.
 //
 // Returns the current list of AWS services and a list of service categories
-// that applies to each one. You then use service names and categories in your
-// CreateCase requests. Each AWS service has its own set of categories.
+// for each service. You then use service names and categories in your CreateCase
+// requests. Each AWS service has its own set of categories.
 //
-// The service codes and category codes correspond to the values that are displayed
-// in the Service and Category drop-down lists on the AWS Support Center Create
-// Case (https://console.aws.amazon.com/support/home#/case/create) page. The
-// values in those fields, however, do not necessarily match the service codes
-// and categories returned by the DescribeServices request. Always use the service
-// codes and categories obtained programmatically. This practice ensures that
-// you always have the most recent set of service and category codes.
+// The service codes and category codes correspond to the values that appear
+// in the Service and Category lists on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+// page. The values in those fields don't necessarily match the service codes
+// and categories returned by the DescribeServices operation. Always use the
+// service codes and categories that the DescribeServices operation returns,
+// so that you have the most recent set of service and category codes.
+//
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -842,7 +893,15 @@ func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInp
 //
 // Returns the list of severity levels that you can assign to an AWS Support
 // case. The severity level for a case is also a field in the CaseDetails data
-// type included in any CreateCase request.
+// type that you include for a CreateCase request.
+//
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -921,12 +980,22 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 
 // DescribeTrustedAdvisorCheckRefreshStatuses API operation for AWS Support.
 //
-// Returns the refresh status of the Trusted Advisor checks that have the specified
-// check IDs. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
+// Returns the refresh status of the AWS Trusted Advisor checks that have the
+// specified check IDs. You can get the check IDs by calling the DescribeTrustedAdvisorChecks
+// operation.
 //
-// Some checks are refreshed automatically, and their refresh statuses cannot
-// be retrieved by using this operation. Use of the DescribeTrustedAdvisorCheckRefreshStatuses
-// operation for these checks causes an InvalidParameterValue error.
+// Some checks are refreshed automatically, and you can't return their refresh
+// statuses by using the DescribeTrustedAdvisorCheckRefreshStatuses operation.
+// If you call this operation for these checks, you might see an InvalidParameterValue
+// error.
+//
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1005,8 +1074,9 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 
 // DescribeTrustedAdvisorCheckResult API operation for AWS Support.
 //
-// Returns the results of the Trusted Advisor check that has the specified check
-// ID. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
+// Returns the results of the AWS Trusted Advisor check that has the specified
+// check ID. You can get the check IDs by calling the DescribeTrustedAdvisorChecks
+// operation.
 //
 // The response contains a TrustedAdvisorCheckResult object, which contains
 // these three objects:
@@ -1019,12 +1089,20 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 //
 // In addition, the response contains these fields:
 //
-//    * status. The alert status of the check: "ok" (green), "warning" (yellow),
+//    * status - The alert status of the check: "ok" (green), "warning" (yellow),
 //    "error" (red), or "not_available".
 //
-//    * timestamp. The time of the last refresh of the check.
+//    * timestamp - The time of the last refresh of the check.
 //
-//    * checkId. The unique identifier for the check.
+//    * checkId - The unique identifier for the check.
+//
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1103,10 +1181,19 @@ func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTru
 
 // DescribeTrustedAdvisorCheckSummaries API operation for AWS Support.
 //
-// Returns the summaries of the results of the Trusted Advisor checks that have
-// the specified check IDs. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
+// Returns the results for the AWS Trusted Advisor check summaries for the check
+// IDs that you specified. You can get the check IDs by calling the DescribeTrustedAdvisorChecks
+// operation.
 //
 // The response contains an array of TrustedAdvisorCheckSummary objects.
+//
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1185,11 +1272,19 @@ func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvi
 
 // DescribeTrustedAdvisorChecks API operation for AWS Support.
 //
-// Returns information about all available Trusted Advisor checks, including
-// name, ID, category, description, and metadata. You must specify a language
-// code; English ("en") and Japanese ("ja") are currently supported. The response
-// contains a TrustedAdvisorCheckDescription for each check. The region must
-// be set to us-east-1.
+// Returns information about all available AWS Trusted Advisor checks, including
+// the name, ID, category, description, and metadata. You must specify a language
+// code. The AWS Support API currently supports English ("en") and Japanese
+// ("ja"). The response contains a TrustedAdvisorCheckDescription object for
+// each check. You must set the AWS Region to us-east-1.
+//
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1268,26 +1363,22 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 
 // RefreshTrustedAdvisorCheck API operation for AWS Support.
 //
-// Requests a refresh of the Trusted Advisor check that has the specified check
-// ID. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
+// Refreshes the AWS Trusted Advisor check that you specify using the check
+// ID. You can get the check IDs by calling the DescribeTrustedAdvisorChecks
+// operation.
 //
-// Some checks are refreshed automatically, and they cannot be refreshed by
-// using this operation. Use of the RefreshTrustedAdvisorCheck operation for
-// these checks causes an InvalidParameterValue error.
+// Some checks are refreshed automatically. If you call the RefreshTrustedAdvisorCheck
+// operation to refresh them, you might see the InvalidParameterValue error.
 //
-// The response contains a TrustedAdvisorCheckRefreshStatus object, which contains
-// these fields:
+// The response contains a TrustedAdvisorCheckRefreshStatus object.
 //
-//    * status. The refresh status of the check: none: The check is not refreshed
-//    or the non-success status exceeds the timeout enqueued: The check refresh
-//    requests has entered the refresh queue processing: The check refresh request
-//    is picked up by the rule processing engine success: The check is successfully
-//    refreshed abandoned: The check refresh has failed
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
 //
-//    * millisUntilNextRefreshable. The amount of time, in milliseconds, until
-//    the check is eligible for refresh.
-//
-//    * checkId. The unique identifier for the check.
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1366,8 +1457,16 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *request.Requ
 
 // ResolveCase API operation for AWS Support.
 //
-// Takes a caseId and returns the initial state of the case along with the state
-// of the case after the call to ResolveCase completed.
+// Resolves a support case. This operation takes a caseId and returns the initial
+// and final state of the case.
+//
+//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    API.
+//
+//    * If you call the AWS Support API from an account that does not have a
+//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    error message appears. For information about changing your support plan,
+//    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1498,7 +1597,6 @@ func (s *AddAttachmentsToSetOutput) SetExpiryTime(v string) *AddAttachmentsToSet
 	return s
 }
 
-// To be written.
 type AddCommunicationToCaseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2014,7 +2112,7 @@ func (s *CaseCreationLimitExceeded) RequestID() string {
 }
 
 // A JSON-formatted object that contains the metadata for a support case. It
-// is contained the response from a DescribeCases request. CaseDetails contains
+// is contained in the response from a DescribeCases request. CaseDetails contains
 // the following fields:
 //
 //    * caseId. The AWS Support case ID requested or returned in the call. The
@@ -2031,10 +2129,10 @@ func (s *CaseCreationLimitExceeded) RequestID() string {
 //    Language parameters must be passed explicitly for operations that take
 //    them.
 //
+//    * nextToken. A resumption point for pagination.
+//
 //    * recentCommunications. One or more Communication objects. Fields of these
 //    objects are attachments, body, caseId, submittedBy, and timeCreated.
-//
-//    * nextToken. A resumption point for pagination.
 //
 //    * serviceCode. The identifier for the AWS service that corresponds to
 //    the service code defined in the call to DescribeServices.
@@ -2108,7 +2206,7 @@ type CaseDetails struct {
 	// The email address of the account that submitted the case.
 	SubmittedBy *string `locationName:"submittedBy" type:"string"`
 
-	// The time that the case was case created in the AWS Support Center.
+	// The time that the case was created in the AWS Support Center.
 	TimeCreated *string `locationName:"timeCreated" type:"string"`
 }
 
@@ -2664,12 +2762,12 @@ type DescribeCasesInput struct {
 	// The ID displayed for a case in the AWS Support Center user interface.
 	DisplayId *string `locationName:"displayId" type:"string"`
 
-	// Specifies whether communications should be included in the DescribeCases
-	// results. The default is true.
+	// Specifies whether to include communications in the DescribeCases response.
+	// By default, communications are incuded.
 	IncludeCommunications *bool `locationName:"includeCommunications" type:"boolean"`
 
-	// Specifies whether resolved support cases should be included in the DescribeCases
-	// results. The default is false.
+	// Specifies whether to include resolved support cases in the DescribeCases
+	// response. By default, resolved cases aren't included.
 	IncludeResolvedCases *bool `locationName:"includeResolvedCases" type:"boolean"`
 
 	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
@@ -2761,8 +2859,9 @@ func (s *DescribeCasesInput) SetNextToken(v string) *DescribeCasesInput {
 	return s
 }
 
-// Returns an array of CaseDetails objects and a nextToken that defines a point
-// for pagination in the result set.
+// Returns an array of CaseDetails (https://docs.aws.amazon.com/awssupport/latest/APIReference/API_CaseDetails.html)
+// objects and a nextToken that defines a point for pagination in the result
+// set.
 type DescribeCasesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3019,9 +3118,10 @@ func (s *DescribeSeverityLevelsOutput) SetSeverityLevels(v []*SeverityLevel) *De
 type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the Trusted Advisor checks to get the status of. Note: Specifying
-	// the check ID of a check that is automatically refreshed causes an InvalidParameterValue
-	// error.
+	// The IDs of the Trusted Advisor checks to get the status of.
+	//
+	// If you specify the check ID of a check that is automatically refreshed, you
+	// might see an InvalidParameterValue error.
 	//
 	// CheckIds is a required field
 	CheckIds []*string `locationName:"checkIds" type:"list" required:"true"`
@@ -3551,7 +3651,8 @@ func (s *Service) SetName(v string) *Service {
 
 // A code and name pair that represents the severity level of a support case.
 // The available values depend on the support plan for the account. For more
-// information, see Choosing a Severity (https://docs.aws.amazon.com/awssupport/latest/user/getting-started.html#choosing-severity).
+// information, see Choosing a severity (https://docs.aws.amazon.com/awssupport/latest/user/case-management.html#choosing-severity)
+// in the AWS Support User Guide.
 type SeverityLevel struct {
 	_ struct{} `type:"structure"`
 
@@ -3577,7 +3678,8 @@ type SeverityLevel struct {
 	//
 	//    * critical: Business-critical system down
 	//
-	// For more information, see Choosing a Severity (https://docs.aws.amazon.com/awssupport/latest/user/getting-started.html#choosing-severity)
+	// For more information, see Choosing a severity (https://docs.aws.amazon.com/awssupport/latest/user/case-management.html#choosing-severity)
+	// in the AWS Support User Guide.
 	Name *string `locationName:"name" type:"string"`
 }
 

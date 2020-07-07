@@ -9,8 +9,8 @@
     "CreateStreamProcessor": "<p>Creates an Amazon Rekognition stream processor that you can use to detect and recognize faces in a streaming video.</p> <p>Amazon Rekognition Video is a consumer of live video from Amazon Kinesis Video Streams. Amazon Rekognition Video sends analysis results to Amazon Kinesis Data Streams.</p> <p>You provide as input a Kinesis video stream (<code>Input</code>) and a Kinesis data stream (<code>Output</code>) stream. You also specify the face recognition criteria in <code>Settings</code>. For example, the collection containing faces that you want to recognize. Use <code>Name</code> to assign an identifier for the stream processor. You use <code>Name</code> to manage the stream processor. For example, you can start processing the source video by calling <a>StartStreamProcessor</a> with the <code>Name</code> field. </p> <p>After you have finished analyzing a streaming video, use <a>StopStreamProcessor</a> to stop processing. You can delete the stream processor by calling <a>DeleteStreamProcessor</a>.</p>",
     "DeleteCollection": "<p>Deletes the specified collection. Note that this operation removes all faces in the collection. For an example, see <a>delete-collection-procedure</a>.</p> <p>This operation requires permissions to perform the <code>rekognition:DeleteCollection</code> action.</p>",
     "DeleteFaces": "<p>Deletes faces from a collection. You specify a collection ID and an array of face IDs to remove from the collection.</p> <p>This operation requires permissions to perform the <code>rekognition:DeleteFaces</code> action.</p>",
-    "DeleteProject": "<p>Deletes an Amazon Rekognition Custom Labels project. To delete a project you must first delete all versions of the model associated with the project. To delete a version of a model, see <a>DeleteProjectVersion</a>.</p> <p>This operation requires permissions to perform the <code>rekognition:DeleteProject</code> action. </p>",
-    "DeleteProjectVersion": "<p>Deletes a version of a model. </p> <p>You must first stop the model before you can delete it. To check if a model is running, use the <code>Status</code> field returned from <a>DescribeProjectVersions</a>. To stop a running model call <a>StopProjectVersion</a>. </p> <p>This operation requires permissions to perform the <code>rekognition:DeleteProjectVersion</code> action. </p>",
+    "DeleteProject": "<p>Deletes an Amazon Rekognition Custom Labels project. To delete a project you must first delete all models associated with the project. To delete a model, see <a>DeleteProjectVersion</a>.</p> <p>This operation requires permissions to perform the <code>rekognition:DeleteProject</code> action. </p>",
+    "DeleteProjectVersion": "<p>Deletes an Amazon Rekognition Custom Labels model. </p> <p>You can't delete a model if it is running or if it is training. To check the status of a model, use the <code>Status</code> field returned from <a>DescribeProjectVersions</a>. To stop a running model call <a>StopProjectVersion</a>. If the model is training, wait until it finishes.</p> <p>This operation requires permissions to perform the <code>rekognition:DeleteProjectVersion</code> action. </p>",
     "DeleteStreamProcessor": "<p>Deletes the stream processor identified by <code>Name</code>. You assign the value for <code>Name</code> when you create the stream processor with <a>CreateStreamProcessor</a>. You might not be able to use the same name for a stream processor for a few seconds after calling <code>DeleteStreamProcessor</code>.</p>",
     "DescribeCollection": "<p>Describes the specified collection. You can use <code>DescribeCollection</code> to get information, such as the number of faces indexed into a collection and the version of the model used by the collection for face detection.</p> <p>For more information, see Describing a Collection in the Amazon Rekognition Developer Guide.</p>",
     "DescribeProjectVersions": "<p>Lists and describes the models in an Amazon Rekognition Custom Labels project. You can specify up to 10 model versions in <code>ProjectVersionArns</code>. If you don't specify a value, descriptions for all models are returned.</p> <p>This operation requires permissions to perform the <code>rekognition:DescribeProjectVersions</code> action.</p>",
@@ -28,8 +28,9 @@
     "GetFaceSearch": "<p>Gets the face search results for Amazon Rekognition Video face search started by <a>StartFaceSearch</a>. The search returns faces in a collection that match the faces of persons detected in a video. It also includes the time(s) that faces are matched in the video.</p> <p>Face search in a video is an asynchronous operation. You start face search by calling to <a>StartFaceSearch</a> which returns a job identifier (<code>JobId</code>). When the search operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to <code>StartFaceSearch</code>. To get the search results, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetFaceSearch</code> and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartFaceSearch</code>.</p> <p>For more information, see Searching Faces in a Collection in the Amazon Rekognition Developer Guide.</p> <p>The search results are retured in an array, <code>Persons</code>, of <a>PersonMatch</a> objects. Each<code>PersonMatch</code> element contains details about the matching faces in the input collection, person information (facial attributes, bounding boxes, and person identifer) for the matched person, and the time the person was matched in the video.</p> <note> <p> <code>GetFaceSearch</code> only returns the default facial attributes (<code>BoundingBox</code>, <code>Confidence</code>, <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>). The other facial attributes listed in the <code>Face</code> object of the following response syntax are not returned. For more information, see FaceDetail in the Amazon Rekognition Developer Guide. </p> </note> <p>By default, the <code>Persons</code> array is sorted by the time, in milliseconds from the start of the video, persons are matched. You can also sort by persons by specifying <code>INDEX</code> for the <code>SORTBY</code> input parameter.</p>",
     "GetLabelDetection": "<p>Gets the label detection results of a Amazon Rekognition Video analysis started by <a>StartLabelDetection</a>. </p> <p>The label detection operation is started by a call to <a>StartLabelDetection</a> which returns a job identifier (<code>JobId</code>). When the label detection operation finishes, Amazon Rekognition publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to <code>StartlabelDetection</code>. To get the results of the label detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetLabelDetection</a> and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLabelDetection</code>.</p> <p> <code>GetLabelDetection</code> returns an array of detected labels (<code>Labels</code>) sorted by the time the labels were detected. You can also sort by the label name by specifying <code>NAME</code> for the <code>SortBy</code> input parameter.</p> <p>The labels returned include the label name, the percentage confidence in the accuracy of the detected label, and the time the label was detected in the video.</p> <p>The returned labels also include bounding box information for common objects, a hierarchical taxonomy of detected labels, and the version of the label model used for detection.</p> <p>Use MaxResults parameter to limit the number of labels returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetlabelDetection</code> and populate the <code>NextToken</code> request parameter with the token value returned from the previous call to <code>GetLabelDetection</code>.</p>",
     "GetPersonTracking": "<p>Gets the path tracking results of a Amazon Rekognition Video analysis started by <a>StartPersonTracking</a>.</p> <p>The person path tracking operation is started by a call to <code>StartPersonTracking</code> which returns a job identifier (<code>JobId</code>). When the operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to <code>StartPersonTracking</code>.</p> <p>To get the results of the person path tracking operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetPersonTracking</a> and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartPersonTracking</code>.</p> <p> <code>GetPersonTracking</code> returns an array, <code>Persons</code>, of tracked persons and the time(s) their paths were tracked in the video. </p> <note> <p> <code>GetPersonTracking</code> only returns the default facial attributes (<code>BoundingBox</code>, <code>Confidence</code>, <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>). The other facial attributes listed in the <code>Face</code> object of the following response syntax are not returned. </p> <p>For more information, see FaceDetail in the Amazon Rekognition Developer Guide.</p> </note> <p>By default, the array is sorted by the time(s) a person's path is tracked in the video. You can sort by tracked persons by specifying <code>INDEX</code> for the <code>SortBy</code> input parameter.</p> <p>Use the <code>MaxResults</code> parameter to limit the number of items returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetPersonTracking</code> and populate the <code>NextToken</code> request parameter with the token value returned from the previous call to <code>GetPersonTracking</code>.</p>",
+    "GetSegmentDetection": "<p>Gets the segment detection results of a Amazon Rekognition Video analysis started by <a>StartSegmentDetection</a>.</p> <p>Segment detection with Amazon Rekognition Video is an asynchronous operation. You start segment detection by calling <a>StartSegmentDetection</a> which returns a job identifier (<code>JobId</code>). When the segment detection operation finishes, Amazon Rekognition publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to <code>StartSegmentDetection</code>. To get the results of the segment detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call <code>GetSegmentDetection</code> and pass the job identifier (<code>JobId</code>) from the initial call of <code>StartSegmentDetection</code>.</p> <p> <code>GetSegmentDetection</code> returns detected segments in an array (<code>Segments</code>) of <a>SegmentDetection</a> objects. <code>Segments</code> is sorted by the segment types specified in the <code>SegmentTypes</code> input parameter of <code>StartSegmentDetection</code>. Each element of the array includes the detected segment, the precentage confidence in the acuracy of the detected segment, the type of the segment, and the frame in which the segment was detected.</p> <p>Use <code>SelectedSegmentTypes</code> to find out the type of segment detection requested in the call to <code>StartSegmentDetection</code>.</p> <p>Use the <code>MaxResults</code> parameter to limit the number of segment detections returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetSegmentDetection</code> and populate the <code>NextToken</code> request parameter with the token value returned from the previous call to <code>GetSegmentDetection</code>.</p> <p>For more information, see Detecting Video Segments in Stored Video in the Amazon Rekognition Developer Guide.</p>",
     "GetTextDetection": "<p>Gets the text detection results of a Amazon Rekognition Video analysis started by <a>StartTextDetection</a>.</p> <p>Text detection with Amazon Rekognition Video is an asynchronous operation. You start text detection by calling <a>StartTextDetection</a> which returns a job identifier (<code>JobId</code>) When the text detection operation finishes, Amazon Rekognition publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to <code>StartTextDetection</code>. To get the results of the text detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call <code>GetTextDetection</code> and pass the job identifier (<code>JobId</code>) from the initial call of <code>StartLabelDetection</code>.</p> <p> <code>GetTextDetection</code> returns an array of detected text (<code>TextDetections</code>) sorted by the time the text was detected, up to 50 words per frame of video.</p> <p>Each element of the array includes the detected text, the precentage confidence in the acuracy of the detected text, the time the text was detected, bounding box information for where the text was located, and unique identifiers for words and their lines.</p> <p>Use MaxResults parameter to limit the number of text detections returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetTextDetection</code> and populate the <code>NextToken</code> request parameter with the token value returned from the previous call to <code>GetTextDetection</code>.</p>",
-    "IndexFaces": "<p>Detects faces in the input image and adds them to the specified collection. </p> <p>Amazon Rekognition doesn't save the actual faces that are detected. Instead, the underlying detection algorithm first detects the faces in the input image. For each face, the algorithm extracts facial features into a feature vector, and stores it in the backend database. Amazon Rekognition uses feature vectors when it performs face match and search operations using the <a>SearchFaces</a> and <a>SearchFacesByImage</a> operations.</p> <p>For more information, see Adding Faces to a Collection in the Amazon Rekognition Developer Guide.</p> <p>To get the number of faces in a collection, call <a>DescribeCollection</a>. </p> <p>If you're using version 1.0 of the face detection model, <code>IndexFaces</code> indexes the 15 largest faces in the input image. Later versions of the face detection model index the 100 largest faces in the input image. </p> <p>If you're using version 4 or later of the face model, image orientation information is not returned in the <code>OrientationCorrection</code> field. </p> <p>To determine which version of the model you're using, call <a>DescribeCollection</a> and supply the collection ID. You can also get the model version from the value of <code>FaceModelVersion</code> in the response from <code>IndexFaces</code> </p> <p>For more information, see Model Versioning in the Amazon Rekognition Developer Guide.</p> <p>If you provide the optional <code>ExternalImageID</code> for the input image you provided, Amazon Rekognition associates this ID with all faces that it detects. When you call the <a>ListFaces</a> operation, the response returns the external ID. You can use this external image ID to create a client-side index to associate the faces with each image. You can then use the index to find all faces in an image.</p> <p>You can specify the maximum number of faces to index with the <code>MaxFaces</code> input parameter. This is useful when you want to index the largest faces in an image and don't want to index smaller faces, such as those belonging to people standing in the background.</p> <p>The <code>QualityFilter</code> input parameter allows you to filter out detected faces that don’t meet a required quality bar. The quality bar is based on a variety of common use cases. By default, <code>IndexFaces</code> chooses the quality bar that's used to filter faces. You can also explicitly choose the quality bar. Use <code>QualityFilter</code>, to set the quality bar by specifying <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>. If you do not want to filter detected faces, specify <code>NONE</code>. </p> <note> <p>To use quality filtering, you need a collection associated with version 3 of the face model or higher. To get the version of the face model associated with a collection, call <a>DescribeCollection</a>. </p> </note> <p>Information about faces detected in an image, but not indexed, is returned in an array of <a>UnindexedFace</a> objects, <code>UnindexedFaces</code>. Faces aren't indexed for reasons such as:</p> <ul> <li> <p>The number of faces detected exceeds the value of the <code>MaxFaces</code> request parameter.</p> </li> <li> <p>The face is too small compared to the image dimensions.</p> </li> <li> <p>The face is too blurry.</p> </li> <li> <p>The image is too dark.</p> </li> <li> <p>The face has an extreme pose.</p> </li> <li> <p>The face doesn’t have enough detail to be suitable for face search.</p> </li> </ul> <p>In response, the <code>IndexFaces</code> operation returns an array of metadata for all detected faces, <code>FaceRecords</code>. This includes: </p> <ul> <li> <p>The bounding box, <code>BoundingBox</code>, of the detected face. </p> </li> <li> <p>A confidence value, <code>Confidence</code>, which indicates the confidence that the bounding box contains a face.</p> </li> <li> <p>A face ID, <code>FaceId</code>, assigned by the service for each face that's detected and stored.</p> </li> <li> <p>An image ID, <code>ImageId</code>, assigned by the service for the input image.</p> </li> </ul> <p>If you request all facial attributes (by using the <code>detectionAttributes</code> parameter), Amazon Rekognition returns detailed facial attributes, such as facial landmarks (for example, location of eye and mouth) and other facial attributes. If you provide the same image, specify the same collection, and use the same external ID in the <code>IndexFaces</code> operation, Amazon Rekognition doesn't save duplicate face metadata.</p> <p/> <p>The input image is passed either as base64-encoded image bytes, or as a reference to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes isn't supported. The image must be formatted as a PNG or JPEG file. </p> <p>This operation requires permissions to perform the <code>rekognition:IndexFaces</code> action.</p>",
+    "IndexFaces": "<p>Detects faces in the input image and adds them to the specified collection. </p> <p>Amazon Rekognition doesn't save the actual faces that are detected. Instead, the underlying detection algorithm first detects the faces in the input image. For each face, the algorithm extracts facial features into a feature vector, and stores it in the backend database. Amazon Rekognition uses feature vectors when it performs face match and search operations using the <a>SearchFaces</a> and <a>SearchFacesByImage</a> operations.</p> <p>For more information, see Adding Faces to a Collection in the Amazon Rekognition Developer Guide.</p> <p>To get the number of faces in a collection, call <a>DescribeCollection</a>. </p> <p>If you're using version 1.0 of the face detection model, <code>IndexFaces</code> indexes the 15 largest faces in the input image. Later versions of the face detection model index the 100 largest faces in the input image. </p> <p>If you're using version 4 or later of the face model, image orientation information is not returned in the <code>OrientationCorrection</code> field. </p> <p>To determine which version of the model you're using, call <a>DescribeCollection</a> and supply the collection ID. You can also get the model version from the value of <code>FaceModelVersion</code> in the response from <code>IndexFaces</code> </p> <p>For more information, see Model Versioning in the Amazon Rekognition Developer Guide.</p> <p>If you provide the optional <code>ExternalImageId</code> for the input image you provided, Amazon Rekognition associates this ID with all faces that it detects. When you call the <a>ListFaces</a> operation, the response returns the external ID. You can use this external image ID to create a client-side index to associate the faces with each image. You can then use the index to find all faces in an image.</p> <p>You can specify the maximum number of faces to index with the <code>MaxFaces</code> input parameter. This is useful when you want to index the largest faces in an image and don't want to index smaller faces, such as those belonging to people standing in the background.</p> <p>The <code>QualityFilter</code> input parameter allows you to filter out detected faces that don’t meet a required quality bar. The quality bar is based on a variety of common use cases. By default, <code>IndexFaces</code> chooses the quality bar that's used to filter faces. You can also explicitly choose the quality bar. Use <code>QualityFilter</code>, to set the quality bar by specifying <code>LOW</code>, <code>MEDIUM</code>, or <code>HIGH</code>. If you do not want to filter detected faces, specify <code>NONE</code>. </p> <note> <p>To use quality filtering, you need a collection associated with version 3 of the face model or higher. To get the version of the face model associated with a collection, call <a>DescribeCollection</a>. </p> </note> <p>Information about faces detected in an image, but not indexed, is returned in an array of <a>UnindexedFace</a> objects, <code>UnindexedFaces</code>. Faces aren't indexed for reasons such as:</p> <ul> <li> <p>The number of faces detected exceeds the value of the <code>MaxFaces</code> request parameter.</p> </li> <li> <p>The face is too small compared to the image dimensions.</p> </li> <li> <p>The face is too blurry.</p> </li> <li> <p>The image is too dark.</p> </li> <li> <p>The face has an extreme pose.</p> </li> <li> <p>The face doesn’t have enough detail to be suitable for face search.</p> </li> </ul> <p>In response, the <code>IndexFaces</code> operation returns an array of metadata for all detected faces, <code>FaceRecords</code>. This includes: </p> <ul> <li> <p>The bounding box, <code>BoundingBox</code>, of the detected face. </p> </li> <li> <p>A confidence value, <code>Confidence</code>, which indicates the confidence that the bounding box contains a face.</p> </li> <li> <p>A face ID, <code>FaceId</code>, assigned by the service for each face that's detected and stored.</p> </li> <li> <p>An image ID, <code>ImageId</code>, assigned by the service for the input image.</p> </li> </ul> <p>If you request all facial attributes (by using the <code>detectionAttributes</code> parameter), Amazon Rekognition returns detailed facial attributes, such as facial landmarks (for example, location of eye and mouth) and other facial attributes. If you provide the same image, specify the same collection, and use the same external ID in the <code>IndexFaces</code> operation, Amazon Rekognition doesn't save duplicate face metadata.</p> <p/> <p>The input image is passed either as base64-encoded image bytes, or as a reference to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes isn't supported. The image must be formatted as a PNG or JPEG file. </p> <p>This operation requires permissions to perform the <code>rekognition:IndexFaces</code> action.</p>",
     "ListCollections": "<p>Returns list of collection IDs in your account. If the result is truncated, the response also provides a <code>NextToken</code> that you can use in the subsequent request to fetch the next set of collection IDs.</p> <p>For an example, see Listing Collections in the Amazon Rekognition Developer Guide.</p> <p>This operation requires permissions to perform the <code>rekognition:ListCollections</code> action.</p>",
     "ListFaces": "<p>Returns metadata for faces in the specified collection. This metadata includes information such as the bounding box coordinates, the confidence (that the bounding box contains a face), and face ID. For an example, see Listing Faces in a Collection in the Amazon Rekognition Developer Guide.</p> <p>This operation requires permissions to perform the <code>rekognition:ListFaces</code> action.</p>",
     "ListStreamProcessors": "<p>Gets a list of stream processors that you have created with <a>CreateStreamProcessor</a>. </p>",
@@ -43,6 +44,7 @@
     "StartLabelDetection": "<p>Starts asynchronous detection of labels in a stored video.</p> <p>Amazon Rekognition Video can detect labels in a video. Labels are instances of real-world entities. This includes objects like flower, tree, and table; events like wedding, graduation, and birthday party; concepts like landscape, evening, and nature; and activities like a person getting out of a car or a person skiing.</p> <p>The video must be stored in an Amazon S3 bucket. Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartLabelDetection</code> returns a job identifier (<code>JobId</code>) which you use to get the results of the operation. When label detection is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>.</p> <p>To get the results of the label detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetLabelDetection</a> and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartLabelDetection</code>.</p> <p/>",
     "StartPersonTracking": "<p>Starts the asynchronous tracking of a person's path in a stored video.</p> <p>Amazon Rekognition Video can track the path of people in a video stored in an Amazon S3 bucket. Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartPersonTracking</code> returns a job identifier (<code>JobId</code>) which you use to get the results of the operation. When label detection is finished, Amazon Rekognition publishes a completion status to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>. </p> <p>To get the results of the person detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetPersonTracking</a> and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartPersonTracking</code>.</p>",
     "StartProjectVersion": "<p>Starts the running of the version of a model. Starting a model takes a while to complete. To check the current state of the model, use <a>DescribeProjectVersions</a>.</p> <p>Once the model is running, you can detect custom labels in new images by calling <a>DetectCustomLabels</a>.</p> <note> <p>You are charged for the amount of time that the model is running. To stop a running model, call <a>StopProjectVersion</a>.</p> </note> <p>This operation requires permissions to perform the <code>rekognition:StartProjectVersion</code> action.</p>",
+    "StartSegmentDetection": "<p>Starts asynchronous detection of segment detection in a stored video.</p> <p>Amazon Rekognition Video can detect segments in a video stored in an Amazon S3 bucket. Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartSegmentDetection</code> returns a job identifier (<code>JobId</code>) which you use to get the results of the operation. When segment detection is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>.</p> <p>You can use the <code>Filters</code> (<a>StartSegmentDetectionFilters</a>) input parameter to specify the minimum detection confidence returned in the response. Within <code>Filters</code>, use <code>ShotFilter</code> (<a>StartShotDetectionFilter</a>) to filter detected shots. Use <code>TechnicalCueFilter</code> (<a>StartTechnicalCueDetectionFilter</a>) to filter technical cues. </p> <p>To get the results of the segment detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call <a>GetSegmentDetection</a> and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartSegmentDetection</code>. </p> <p>For more information, see Detecting Video Segments in Stored Video in the Amazon Rekognition Developer Guide.</p>",
     "StartStreamProcessor": "<p>Starts processing a stream processor. You create a stream processor by calling <a>CreateStreamProcessor</a>. To tell <code>StartStreamProcessor</code> which stream processor to start, use the value of the <code>Name</code> field specified in the call to <code>CreateStreamProcessor</code>.</p>",
     "StartTextDetection": "<p>Starts asynchronous detection of text in a stored video.</p> <p>Amazon Rekognition Video can detect text in a video stored in an Amazon S3 bucket. Use <a>Video</a> to specify the bucket name and the filename of the video. <code>StartTextDetection</code> returns a job identifier (<code>JobId</code>) which you use to get the results of the operation. When text detection is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in <code>NotificationChannel</code>.</p> <p>To get the results of the text detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. if so, call <a>GetTextDetection</a> and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartTextDetection</code>. </p>",
     "StopProjectVersion": "<p>Stops a running model. The operation might take a while to complete. To check the current status, call <a>DescribeProjectVersions</a>. </p>",
@@ -84,6 +86,18 @@
       "refs": {
         "DetectFacesRequest$Attributes": "<p>An array of facial attributes you want to be returned. This can be the default list of attributes or all attributes. If you don't specify a value for <code>Attributes</code> or if you specify <code>[\"DEFAULT\"]</code>, the API returns the following subset of facial attributes: <code>BoundingBox</code>, <code>Confidence</code>, <code>Pose</code>, <code>Quality</code>, and <code>Landmarks</code>. If you provide <code>[\"ALL\"]</code>, all facial attributes are returned, but the operation takes longer to complete.</p> <p>If you provide both, <code>[\"ALL\", \"DEFAULT\"]</code>, the service uses a logical AND operator to determine which attributes to return (in this case, all attributes). </p>",
         "IndexFacesRequest$DetectionAttributes": "<p>An array of facial attributes that you want to be returned. This can be the default list of attributes or all attributes. If you don't specify a value for <code>Attributes</code> or if you specify <code>[\"DEFAULT\"]</code>, the API returns the following subset of facial attributes: <code>BoundingBox</code>, <code>Confidence</code>, <code>Pose</code>, <code>Quality</code>, and <code>Landmarks</code>. If you provide <code>[\"ALL\"]</code>, all facial attributes are returned, but the operation takes longer to complete.</p> <p>If you provide both, <code>[\"ALL\", \"DEFAULT\"]</code>, the service uses a logical AND operator to determine which attributes to return (in this case, all attributes). </p>"
+      }
+    },
+    "AudioMetadata": {
+      "base": "<p>Metadata information about an audio stream. An array of <code>AudioMetadata</code> objects for the audio streams found in a stored video is returned by <a>GetSegmentDetection</a>. </p>",
+      "refs": {
+        "AudioMetadataList$member": null
+      }
+    },
+    "AudioMetadataList": {
+      "base": null,
+      "refs": {
+        "GetSegmentDetectionResponse$AudioMetadata": "<p>An array of objects. There can be multiple audio streams. Each <code>AudioMetadata</code> object contains metadata for a single audio stream. Audio information in an <code>AudioMetadata</code> objects includes the audio codec, the number of audio channels, the duration of the audio stream, and the sample rate. Audio metadata is returned in each page of information returned by <code>GetSegmentDetection</code>.</p>"
       }
     },
     "Beard": {
@@ -177,6 +191,7 @@
         "StartFaceSearchRequest$ClientRequestToken": "<p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartFaceSearch</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently started more than once. </p>",
         "StartLabelDetectionRequest$ClientRequestToken": "<p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartLabelDetection</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently started more than once. </p>",
         "StartPersonTrackingRequest$ClientRequestToken": "<p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartPersonTracking</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently started more than once. </p>",
+        "StartSegmentDetectionRequest$ClientRequestToken": "<p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartSegmentDetection</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidently started more than once. </p>",
         "StartTextDetectionRequest$ClientRequestToken": "<p>Idempotent token used to identify the start request. If you use the same token with multiple <code>StartTextDetection</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidentaly started more than once.</p>"
       }
     },
@@ -686,7 +701,7 @@
     "FlowDefinitionArn": {
       "base": null,
       "refs": {
-        "HumanLoopConfig$FlowDefinitionArn": "<p>The Amazon Resource Name (ARN) of the flow definition.</p>"
+        "HumanLoopConfig$FlowDefinitionArn": "<p>The Amazon Resource Name (ARN) of the flow definition. You can create a flow definition by using the Amazon Sagemaker <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html\">CreateFlowDefinition</a> Operation. </p>"
       }
     },
     "Gender": {
@@ -774,6 +789,16 @@
       }
     },
     "GetPersonTrackingResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSegmentDetectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSegmentDetectionResponse": {
       "base": null,
       "refs": {
       }
@@ -954,13 +979,15 @@
         "GetFaceSearchRequest$JobId": "<p>The job identifer for the search request. You get the job identifier from an initial call to <code>StartFaceSearch</code>.</p>",
         "GetLabelDetectionRequest$JobId": "<p>Job identifier for the label detection operation for which you want results returned. You get the job identifer from an initial call to <code>StartlabelDetection</code>.</p>",
         "GetPersonTrackingRequest$JobId": "<p>The identifier for a job that tracks persons in a video. You get the <code>JobId</code> from a call to <code>StartPersonTracking</code>. </p>",
-        "GetTextDetectionRequest$JobId": "<p>Job identifier for the label detection operation for which you want results returned. You get the job identifer from an initial call to <code>StartTextDetection</code>.</p>",
+        "GetSegmentDetectionRequest$JobId": "<p>Job identifier for the text detection operation for which you want results returned. You get the job identifer from an initial call to <code>StartSegmentDetection</code>.</p>",
+        "GetTextDetectionRequest$JobId": "<p>Job identifier for the text detection operation for which you want results returned. You get the job identifer from an initial call to <code>StartTextDetection</code>.</p>",
         "StartCelebrityRecognitionResponse$JobId": "<p>The identifier for the celebrity recognition analysis job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetCelebrityRecognition</code>.</p>",
         "StartContentModerationResponse$JobId": "<p>The identifier for the unsafe content analysis job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetContentModeration</code>.</p>",
         "StartFaceDetectionResponse$JobId": "<p>The identifier for the face detection job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetFaceDetection</code>.</p>",
         "StartFaceSearchResponse$JobId": "<p>The identifier for the search job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetFaceSearch</code>. </p>",
         "StartLabelDetectionResponse$JobId": "<p>The identifier for the label detection job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetLabelDetection</code>. </p>",
         "StartPersonTrackingResponse$JobId": "<p>The identifier for the person detection job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetPersonTracking</code>.</p>",
+        "StartSegmentDetectionResponse$JobId": "<p>Unique identifier for the segment detection job. The <code>JobId</code> is returned from <code>StartSegmentDetection</code>. </p>",
         "StartTextDetectionResponse$JobId": "<p>Identifier for the text detection job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetTextDetection</code>.</p>"
       }
     },
@@ -973,6 +1000,7 @@
         "StartFaceSearchRequest$JobTag": "<p>An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use <code>JobTag</code> to group related jobs and identify them in the completion notification.</p>",
         "StartLabelDetectionRequest$JobTag": "<p>An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use <code>JobTag</code> to group related jobs and identify them in the completion notification.</p>",
         "StartPersonTrackingRequest$JobTag": "<p>An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use <code>JobTag</code> to group related jobs and identify them in the completion notification.</p>",
+        "StartSegmentDetectionRequest$JobTag": "<p>An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use <code>JobTag</code> to group related jobs and identify them in the completion notification.</p>",
         "StartTextDetectionRequest$JobTag": "<p>An identifier returned in the completion status published by your Amazon Simple Notification Service topic. For example, you can use <code>JobTag</code> to group related jobs and identify them in the completion notification.</p>"
       }
     },
@@ -1107,6 +1135,7 @@
         "GetFaceSearchRequest$MaxResults": "<p>Maximum number of results to return per paginated call. The largest value you can specify is 1000. If you specify a value greater than 1000, a maximum of 1000 results is returned. The default value is 1000.</p>",
         "GetLabelDetectionRequest$MaxResults": "<p>Maximum number of results to return per paginated call. The largest value you can specify is 1000. If you specify a value greater than 1000, a maximum of 1000 results is returned. The default value is 1000.</p>",
         "GetPersonTrackingRequest$MaxResults": "<p>Maximum number of results to return per paginated call. The largest value you can specify is 1000. If you specify a value greater than 1000, a maximum of 1000 results is returned. The default value is 1000.</p>",
+        "GetSegmentDetectionRequest$MaxResults": "<p>Maximum number of results to return per paginated call. The largest value you can specify is 1000.</p>",
         "GetTextDetectionRequest$MaxResults": "<p>Maximum number of results to return per paginated call. The largest value you can specify is 1000.</p>",
         "ListStreamProcessorsRequest$MaxResults": "<p>Maximum number of stream processors you want Amazon Rekognition Video to return in the response. The default is 1000. </p>"
       }
@@ -1145,6 +1174,7 @@
         "StartFaceSearchRequest$NotificationChannel": "<p>The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the search. </p>",
         "StartLabelDetectionRequest$NotificationChannel": "<p>The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the completion status of the label detection operation to. </p>",
         "StartPersonTrackingRequest$NotificationChannel": "<p>The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the completion status of the people detection operation to.</p>",
+        "StartSegmentDetectionRequest$NotificationChannel": "<p>The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the segment detection operation.</p>",
         "StartTextDetectionRequest$NotificationChannel": null
       }
     },
@@ -1188,6 +1218,8 @@
         "GetLabelDetectionResponse$NextToken": "<p>If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of labels.</p>",
         "GetPersonTrackingRequest$NextToken": "<p>If the previous response was incomplete (because there are more persons to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of persons. </p>",
         "GetPersonTrackingResponse$NextToken": "<p>If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of persons. </p>",
+        "GetSegmentDetectionRequest$NextToken": "<p>If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of text.</p>",
+        "GetSegmentDetectionResponse$NextToken": "<p>If the previous response was incomplete (because there are more labels to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of text.</p>",
         "GetTextDetectionRequest$NextToken": "<p>If the previous response was incomplete (because there are more labels to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of text.</p>",
         "GetTextDetectionResponse$NextToken": "<p>If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of text.</p>",
         "ListCollectionsRequest$NextToken": "<p>Pagination token from the previous response.</p>",
@@ -1451,7 +1483,7 @@
       }
     },
     "ResourceInUseException": {
-      "base": "<p/>",
+      "base": "<p>The specified resource is already being used.</p>",
       "refs": {
       }
     },
@@ -1533,6 +1565,59 @@
       "refs": {
       }
     },
+    "SegmentConfidence": {
+      "base": null,
+      "refs": {
+        "ShotSegment$Confidence": "<p>The confidence that Amazon Rekognition Video has in the accuracy of the detected segment.</p>",
+        "StartShotDetectionFilter$MinSegmentConfidence": "<p>Specifies the minimum confidence that Amazon Rekognition Video must have in order to return a detected segment. Confidence represents how certain Amazon Rekognition is that a segment is correctly identified. 0 is the lowest confidence. 100 is the highest confidence. Amazon Rekognition Video doesn't return any segments with a confidence level lower than this specified value.</p> <p>If you don't specify <code>MinSegmentConfidence</code>, the <code>GetSegmentDetection</code> returns segments with confidence values greater than or equal to 50 percent.</p>",
+        "StartTechnicalCueDetectionFilter$MinSegmentConfidence": "<p>Specifies the minimum confidence that Amazon Rekognition Video must have in order to return a detected segment. Confidence represents how certain Amazon Rekognition is that a segment is correctly identified. 0 is the lowest confidence. 100 is the highest confidence. Amazon Rekognition Video doesn't return any segments with a confidence level lower than this specified value.</p> <p>If you don't specify <code>MinSegmentConfidence</code>, <code>GetSegmentDetection</code> returns segments with confidence values greater than or equal to 50 percent.</p>",
+        "TechnicalCueSegment$Confidence": "<p>The confidence that Amazon Rekognition Video has in the accuracy of the detected segment.</p>"
+      }
+    },
+    "SegmentDetection": {
+      "base": "<p>A technical cue or shot detection segment detected in a video. An array of <code>SegmentDetection</code> objects containing all segments detected in a stored video is returned by <a>GetSegmentDetection</a>. </p>",
+      "refs": {
+        "SegmentDetections$member": null
+      }
+    },
+    "SegmentDetections": {
+      "base": null,
+      "refs": {
+        "GetSegmentDetectionResponse$Segments": "<p>An array of segments detected in a video.</p>"
+      }
+    },
+    "SegmentType": {
+      "base": null,
+      "refs": {
+        "SegmentDetection$Type": "<p>The type of the segment. Valid values are <code>TECHNICAL_CUE</code> and <code>SHOT</code>.</p>",
+        "SegmentTypeInfo$Type": "<p>The type of a segment (technical cue or shot detection).</p>",
+        "SegmentTypes$member": null
+      }
+    },
+    "SegmentTypeInfo": {
+      "base": "<p>Information about the type of a segment requested in a call to <a>StartSegmentDetection</a>. An array of <code>SegmentTypeInfo</code> objects is returned by the response from <a>GetSegmentDetection</a>.</p>",
+      "refs": {
+        "SegmentTypesInfo$member": null
+      }
+    },
+    "SegmentTypes": {
+      "base": null,
+      "refs": {
+        "StartSegmentDetectionRequest$SegmentTypes": "<p>An array of segment types to detect in the video. Valid values are TECHNICAL_CUE and SHOT.</p>"
+      }
+    },
+    "SegmentTypesInfo": {
+      "base": null,
+      "refs": {
+        "GetSegmentDetectionResponse$SelectedSegmentTypes": "<p>An array containing the segment types requested in the call to <code>StartSegmentDetection</code>. </p>"
+      }
+    },
+    "ShotSegment": {
+      "base": "<p>Information about a shot detection segment detected in a video. For more information, see <a>SegmentDetection</a>.</p>",
+      "refs": {
+        "SegmentDetection$ShotSegment": "<p>If the segment is a shot detection, contains information about the shot detection.</p>"
+      }
+    },
     "Smile": {
       "base": "<p>Indicates whether or not the face is smiling, and the confidence level in the determination.</p>",
       "refs": {
@@ -1609,6 +1694,28 @@
       "refs": {
       }
     },
+    "StartSegmentDetectionFilters": {
+      "base": "<p>Filters applied to the technical cue or shot detection segments. For more information, see <a>StartSegmentDetection</a>. </p>",
+      "refs": {
+        "StartSegmentDetectionRequest$Filters": "<p>Filters for technical cue or shot detection.</p>"
+      }
+    },
+    "StartSegmentDetectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSegmentDetectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartShotDetectionFilter": {
+      "base": "<p>Filters for the shot detection segments returned by <code>GetSegmentDetection</code>. For more information, see <a>StartSegmentDetectionFilters</a>.</p>",
+      "refs": {
+        "StartSegmentDetectionFilters$ShotFilter": "<p>Filters that are specific to shot detections.</p>"
+      }
+    },
     "StartStreamProcessorRequest": {
       "base": null,
       "refs": {
@@ -1617,6 +1724,12 @@
     "StartStreamProcessorResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "StartTechnicalCueDetectionFilter": {
+      "base": "<p>Filters for the technical segments returned by <a>GetSegmentDetection</a>. For more information, see <a>StartSegmentDetectionFilters</a>.</p>",
+      "refs": {
+        "StartSegmentDetectionFilters$TechnicalCueFilter": "<p>Filters that are specific to technical cues.</p>"
       }
     },
     "StartTextDetectionFilters": {
@@ -1644,6 +1757,7 @@
         "GetFaceSearchResponse$StatusMessage": "<p>If the job fails, <code>StatusMessage</code> provides a descriptive error message.</p>",
         "GetLabelDetectionResponse$StatusMessage": "<p>If the job fails, <code>StatusMessage</code> provides a descriptive error message.</p>",
         "GetPersonTrackingResponse$StatusMessage": "<p>If the job fails, <code>StatusMessage</code> provides a descriptive error message.</p>",
+        "GetSegmentDetectionResponse$StatusMessage": "<p>If the job fails, <code>StatusMessage</code> provides a descriptive error message.</p>",
         "GetTextDetectionResponse$StatusMessage": "<p>If the job fails, <code>StatusMessage</code> provides a descriptive error message.</p>",
         "ProjectVersionDescription$StatusMessage": "<p>A descriptive message for an error or warning that occurred.</p>"
       }
@@ -1730,6 +1844,7 @@
     "String": {
       "base": null,
       "refs": {
+        "AudioMetadata$Codec": "<p>The audio codec used to encode or decode the audio stream. </p>",
         "Celebrity$Name": "<p>The name of the celebrity.</p>",
         "CelebrityDetail$Name": "<p>The name of the celebrity.</p>",
         "CreateCollectionResponse$CollectionArn": "<p>Amazon Resource Name (ARN) of the collection. You can use this to manage permissions on your resources. </p>",
@@ -1746,9 +1861,9 @@
         "GetContentModerationResponse$ModerationModelVersion": "<p>Version number of the moderation detection model that was used to detect unsafe content.</p>",
         "GetLabelDetectionResponse$LabelModelVersion": "<p>Version number of the label detection model that was used to detect labels.</p>",
         "GetTextDetectionResponse$TextModelVersion": "<p>Version number of the text detection model that was used to detect text.</p>",
-        "HumanLoopQuotaExceededException$ResourceType": null,
-        "HumanLoopQuotaExceededException$QuotaCode": null,
-        "HumanLoopQuotaExceededException$ServiceCode": null,
+        "HumanLoopQuotaExceededException$ResourceType": "<p>The resource type.</p>",
+        "HumanLoopQuotaExceededException$QuotaCode": "<p>The quota code.</p>",
+        "HumanLoopQuotaExceededException$ServiceCode": "<p>The service code.</p>",
         "IndexFacesResponse$FaceModelVersion": "<p>The version number of the face detection model that's associated with the input collection (<code>CollectionId</code>).</p>",
         "Label$Name": "<p>The name (label) of the object or scene.</p>",
         "ListFacesResponse$NextToken": "<p>If the response is truncated, Amazon Rekognition returns this token that you can use in the subsequent request to retrieve the next set of faces.</p>",
@@ -1758,6 +1873,7 @@
         "Parent$Name": "<p>The name of the parent label.</p>",
         "SearchFacesByImageResponse$FaceModelVersion": "<p>Version number of the face detection model associated with the input collection (<code>CollectionId</code>).</p>",
         "SearchFacesResponse$FaceModelVersion": "<p>Version number of the face detection model associated with the input collection (<code>CollectionId</code>).</p>",
+        "SegmentTypeInfo$ModelVersion": "<p>The version of the model used to detect segments.</p>",
         "TextDetection$DetectedText": "<p>The word or line of text recognized by Amazon Rekognition. </p>",
         "VideoMetadata$Codec": "<p>Type of compression used in the analyzed video. </p>",
         "VideoMetadata$Format": "<p>Format of the analyzed video. Possible values are MP4, MOV and AVI. </p>"
@@ -1773,6 +1889,18 @@
       "base": "<p>Indicates whether or not the face is wearing sunglasses, and the confidence level in the determination.</p>",
       "refs": {
         "FaceDetail$Sunglasses": "<p>Indicates whether or not the face is wearing sunglasses, and the confidence level in the determination.</p>"
+      }
+    },
+    "TechnicalCueSegment": {
+      "base": "<p>Information about a technical cue segment. For more information, see <a>SegmentDetection</a>.</p>",
+      "refs": {
+        "SegmentDetection$TechnicalCueSegment": "<p>If the segment is a technical cue, contains information about the technical cue.</p>"
+      }
+    },
+    "TechnicalCueType": {
+      "base": null,
+      "refs": {
+        "TechnicalCueSegment$Type": "<p>The type of the technical cue.</p>"
       }
     },
     "TestingData": {
@@ -1825,6 +1953,14 @@
       "refs": {
       }
     },
+    "Timecode": {
+      "base": null,
+      "refs": {
+        "SegmentDetection$StartTimecodeSMPTE": "<p>The frame-accurate SMPTE timecode, from the start of a video, for the start of a detected segment. <code>StartTimecode</code> is in <i>HH:MM:SS:fr</i> format (and <i>;fr</i> for drop frame-rates). </p>",
+        "SegmentDetection$EndTimecodeSMPTE": "<p>The frame-accurate SMPTE timecode, from the start of a video, for the end of a detected segment. <code>EndTimecode</code> is in <i>HH:MM:SS:fr</i> format (and <i>;fr</i> for drop frame-rates).</p>",
+        "SegmentDetection$DurationSMPTE": "<p>The duration of the timecode for the detected segment in SMPTE format.</p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
@@ -1834,6 +1970,8 @@
         "LabelDetection$Timestamp": "<p>Time, in milliseconds from the start of the video, that the label was detected.</p>",
         "PersonDetection$Timestamp": "<p>The time, in milliseconds from the start of the video, that the person's path was tracked.</p>",
         "PersonMatch$Timestamp": "<p>The time, in milliseconds from the beginning of the video, that the person was matched in the video.</p>",
+        "SegmentDetection$StartTimestampMillis": "<p>The start time of the detected segment in milliseconds from the start of the video.</p>",
+        "SegmentDetection$EndTimestampMillis": "<p>The end time of the detected segment, in milliseconds, from the start of the video.</p>",
         "TextDetectionResult$Timestamp": "<p>The time, in milliseconds from the start of the video, that the text was detected.</p>"
       }
     },
@@ -1867,8 +2005,13 @@
     "ULong": {
       "base": null,
       "refs": {
+        "AudioMetadata$DurationMillis": "<p>The duration of the audio stream in milliseconds.</p>",
+        "AudioMetadata$SampleRate": "<p>The sample rate for the audio stream.</p>",
+        "AudioMetadata$NumberOfChannels": "<p>The number of audio channels in the segement.</p>",
         "DescribeCollectionResponse$FaceCount": "<p>The number of faces that are indexed into the collection. To index faces into a collection, use <a>IndexFaces</a>.</p>",
         "ProjectVersionDescription$BillableTrainingTimeInSeconds": "<p>The duration, in seconds, that the model version has been billed for training. This value is only returned if the model version has been successfully trained.</p>",
+        "SegmentDetection$DurationMillis": "<p>The duration of the detected segment in milliseconds. </p>",
+        "ShotSegment$Index": "<p>An Identifier for a shot detection segment detected in a video </p>",
         "VideoMetadata$DurationMillis": "<p>Length of the video in milliseconds.</p>",
         "VideoMetadata$FrameHeight": "<p>Vertical pixel dimension of the video.</p>",
         "VideoMetadata$FrameWidth": "<p>Horizontal pixel dimension of the video.</p>"
@@ -1910,7 +2053,7 @@
     "VersionNames": {
       "base": null,
       "refs": {
-        "DescribeProjectVersionsRequest$VersionNames": "<p>A list of model version names that you want to describe. You can add up to 10 model version names to the list. If you don't specify a value, all model descriptions are returned.</p>"
+        "DescribeProjectVersionsRequest$VersionNames": "<p>A list of model version names that you want to describe. You can add up to 10 model version names to the list. If you don't specify a value, all model descriptions are returned. A version name is part of a model (ProjectVersion) ARN. For example, <code>my-model.2020-01-21T09.10.15</code> is the version name in the following ARN. <code>arn:aws:rekognition:us-east-1:123456789012:project/getting-started/version/<i>my-model.2020-01-21T09.10.15</i>/1234567890123</code>.</p>"
       }
     },
     "Video": {
@@ -1922,6 +2065,7 @@
         "StartFaceSearchRequest$Video": "<p>The video you want to search. The video must be stored in an Amazon S3 bucket. </p>",
         "StartLabelDetectionRequest$Video": "<p>The video in which you want to detect labels. The video must be stored in an Amazon S3 bucket.</p>",
         "StartPersonTrackingRequest$Video": "<p>The video in which you want to detect people. The video must be stored in an Amazon S3 bucket.</p>",
+        "StartSegmentDetectionRequest$Video": null,
         "StartTextDetectionRequest$Video": null
       }
     },
@@ -1934,6 +2078,7 @@
         "GetFaceSearchResponse$JobStatus": "<p>The current status of the face search job.</p>",
         "GetLabelDetectionResponse$JobStatus": "<p>The current status of the label detection job.</p>",
         "GetPersonTrackingResponse$JobStatus": "<p>The current status of the person tracking job.</p>",
+        "GetSegmentDetectionResponse$JobStatus": "<p>Current status of the segment detection job.</p>",
         "GetTextDetectionResponse$JobStatus": "<p>Current status of the text detection job.</p>"
       }
     },
@@ -1946,7 +2091,14 @@
         "GetFaceSearchResponse$VideoMetadata": "<p>Information about a video that Amazon Rekognition analyzed. <code>Videometadata</code> is returned in every page of paginated responses from a Amazon Rekognition Video operation. </p>",
         "GetLabelDetectionResponse$VideoMetadata": "<p>Information about a video that Amazon Rekognition Video analyzed. <code>Videometadata</code> is returned in every page of paginated responses from a Amazon Rekognition video operation.</p>",
         "GetPersonTrackingResponse$VideoMetadata": "<p>Information about a video that Amazon Rekognition Video analyzed. <code>Videometadata</code> is returned in every page of paginated responses from a Amazon Rekognition Video operation.</p>",
-        "GetTextDetectionResponse$VideoMetadata": null
+        "GetTextDetectionResponse$VideoMetadata": null,
+        "VideoMetadataList$member": null
+      }
+    },
+    "VideoMetadataList": {
+      "base": null,
+      "refs": {
+        "GetSegmentDetectionResponse$VideoMetadata": "<p>Currently, Amazon Rekognition Video returns a single object in the <code>VideoMetadata</code> array. The object contains information about the video stream in the input file that Amazon Rekognition Video chose to analyze. The <code>VideoMetadata</code> object includes the video codec, video format and other information. Video metadata is returned in each page of information returned by <code>GetSegmentDetection</code>.</p>"
       }
     },
     "VideoTooLargeException": {

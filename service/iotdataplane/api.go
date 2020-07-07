@@ -54,7 +54,7 @@ func (c *IoTDataPlane) DeleteThingShadowRequest(input *DeleteThingShadowInput) (
 
 // DeleteThingShadow API operation for AWS IoT Data Plane.
 //
-// Deletes the thing shadow for the specified thing.
+// Deletes the shadow for the specified thing.
 //
 // For more information, see DeleteThingShadow (http://docs.aws.amazon.com/iot/latest/developerguide/API_DeleteThingShadow.html)
 // in the AWS IoT Developer Guide.
@@ -154,7 +154,7 @@ func (c *IoTDataPlane) GetThingShadowRequest(input *GetThingShadowInput) (req *r
 
 // GetThingShadow API operation for AWS IoT Data Plane.
 //
-// Gets the thing shadow for the specified thing.
+// Gets the shadow for the specified thing.
 //
 // For more information, see GetThingShadow (http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html)
 // in the AWS IoT Developer Guide.
@@ -207,6 +207,100 @@ func (c *IoTDataPlane) GetThingShadow(input *GetThingShadowInput) (*GetThingShad
 // for more information on using Contexts.
 func (c *IoTDataPlane) GetThingShadowWithContext(ctx aws.Context, input *GetThingShadowInput, opts ...request.Option) (*GetThingShadowOutput, error) {
 	req, out := c.GetThingShadowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListNamedShadowsForThing = "ListNamedShadowsForThing"
+
+// ListNamedShadowsForThingRequest generates a "aws/request.Request" representing the
+// client's request for the ListNamedShadowsForThing operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListNamedShadowsForThing for more information on using the ListNamedShadowsForThing
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListNamedShadowsForThingRequest method.
+//    req, resp := client.ListNamedShadowsForThingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoTDataPlane) ListNamedShadowsForThingRequest(input *ListNamedShadowsForThingInput) (req *request.Request, output *ListNamedShadowsForThingOutput) {
+	op := &request.Operation{
+		Name:       opListNamedShadowsForThing,
+		HTTPMethod: "GET",
+		HTTPPath:   "/api/things/shadow/ListNamedShadowsForThing/{thingName}",
+	}
+
+	if input == nil {
+		input = &ListNamedShadowsForThingInput{}
+	}
+
+	output = &ListNamedShadowsForThingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListNamedShadowsForThing API operation for AWS IoT Data Plane.
+//
+// Lists the shadows for the specified thing.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Data Plane's
+// API operation ListNamedShadowsForThing for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * MethodNotAllowedException
+//   The specified combination of HTTP verb and URI is not supported.
+//
+func (c *IoTDataPlane) ListNamedShadowsForThing(input *ListNamedShadowsForThingInput) (*ListNamedShadowsForThingOutput, error) {
+	req, out := c.ListNamedShadowsForThingRequest(input)
+	return out, req.Send()
+}
+
+// ListNamedShadowsForThingWithContext is the same as ListNamedShadowsForThing with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListNamedShadowsForThing for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTDataPlane) ListNamedShadowsForThingWithContext(ctx aws.Context, input *ListNamedShadowsForThingInput, opts ...request.Option) (*ListNamedShadowsForThingOutput, error) {
+	req, out := c.ListNamedShadowsForThingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -343,7 +437,7 @@ func (c *IoTDataPlane) UpdateThingShadowRequest(input *UpdateThingShadowInput) (
 
 // UpdateThingShadow API operation for AWS IoT Data Plane.
 //
-// Updates the thing shadow for the specified thing.
+// Updates the shadow for the specified thing.
 //
 // For more information, see UpdateThingShadow (http://docs.aws.amazon.com/iot/latest/developerguide/API_UpdateThingShadow.html)
 // in the AWS IoT Developer Guide.
@@ -465,6 +559,9 @@ func (s *ConflictException) RequestID() string {
 type DeleteThingShadowInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the shadow.
+	ShadowName *string `location:"querystring" locationName:"name" min:"1" type:"string"`
+
 	// The name of the thing.
 	//
 	// ThingName is a required field
@@ -484,6 +581,9 @@ func (s DeleteThingShadowInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteThingShadowInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteThingShadowInput"}
+	if s.ShadowName != nil && len(*s.ShadowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ShadowName", 1))
+	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
 	}
@@ -495,6 +595,12 @@ func (s *DeleteThingShadowInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetShadowName sets the ShadowName field's value.
+func (s *DeleteThingShadowInput) SetShadowName(v string) *DeleteThingShadowInput {
+	s.ShadowName = &v
+	return s
 }
 
 // SetThingName sets the ThingName field's value.
@@ -533,6 +639,9 @@ func (s *DeleteThingShadowOutput) SetPayload(v []byte) *DeleteThingShadowOutput 
 type GetThingShadowInput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the shadow.
+	ShadowName *string `location:"querystring" locationName:"name" min:"1" type:"string"`
+
 	// The name of the thing.
 	//
 	// ThingName is a required field
@@ -552,6 +661,9 @@ func (s GetThingShadowInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetThingShadowInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetThingShadowInput"}
+	if s.ShadowName != nil && len(*s.ShadowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ShadowName", 1))
+	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
 	}
@@ -563,6 +675,12 @@ func (s *GetThingShadowInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetShadowName sets the ShadowName field's value.
+func (s *GetThingShadowInput) SetShadowName(v string) *GetThingShadowInput {
+	s.ShadowName = &v
+	return s
 }
 
 // SetThingName sets the ThingName field's value.
@@ -707,6 +825,110 @@ func (s *InvalidRequestException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListNamedShadowsForThingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The result page size.
+	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
+
+	// The name of the thing.
+	//
+	// ThingName is a required field
+	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListNamedShadowsForThingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListNamedShadowsForThingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListNamedShadowsForThingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListNamedShadowsForThingInput"}
+	if s.PageSize != nil && *s.PageSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PageSize", 1))
+	}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListNamedShadowsForThingInput) SetNextToken(v string) *ListNamedShadowsForThingInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *ListNamedShadowsForThingInput) SetPageSize(v int64) *ListNamedShadowsForThingInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *ListNamedShadowsForThingInput) SetThingName(v string) *ListNamedShadowsForThingInput {
+	s.ThingName = &v
+	return s
+}
+
+type ListNamedShadowsForThingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The list of shadows for the specified thing.
+	Results []*string `locationName:"results" type:"list"`
+
+	// The Epoch date and time the response was generated by AWS IoT.
+	Timestamp *int64 `locationName:"timestamp" type:"long"`
+}
+
+// String returns the string representation
+func (s ListNamedShadowsForThingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListNamedShadowsForThingOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListNamedShadowsForThingOutput) SetNextToken(v string) *ListNamedShadowsForThingOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *ListNamedShadowsForThingOutput) SetResults(v []*string) *ListNamedShadowsForThingOutput {
+	s.Results = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *ListNamedShadowsForThingOutput) SetTimestamp(v int64) *ListNamedShadowsForThingOutput {
+	s.Timestamp = &v
+	return s
 }
 
 // The specified combination of HTTP verb and URI is not supported.
@@ -1191,6 +1413,9 @@ type UpdateThingShadowInput struct {
 	// Payload is a required field
 	Payload []byte `locationName:"payload" type:"blob" required:"true"`
 
+	// The name of the shadow.
+	ShadowName *string `location:"querystring" locationName:"name" min:"1" type:"string"`
+
 	// The name of the thing.
 	//
 	// ThingName is a required field
@@ -1213,6 +1438,9 @@ func (s *UpdateThingShadowInput) Validate() error {
 	if s.Payload == nil {
 		invalidParams.Add(request.NewErrParamRequired("Payload"))
 	}
+	if s.ShadowName != nil && len(*s.ShadowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ShadowName", 1))
+	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
 	}
@@ -1229,6 +1457,12 @@ func (s *UpdateThingShadowInput) Validate() error {
 // SetPayload sets the Payload field's value.
 func (s *UpdateThingShadowInput) SetPayload(v []byte) *UpdateThingShadowInput {
 	s.Payload = v
+	return s
+}
+
+// SetShadowName sets the ShadowName field's value.
+func (s *UpdateThingShadowInput) SetShadowName(v string) *UpdateThingShadowInput {
+	s.ShadowName = &v
 	return s
 }
 

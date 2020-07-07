@@ -178,6 +178,8 @@ func ExampleFSx_CreateFileSystemFromBackup_shared00() {
 				fmt.Println(fsx.ErrCodeIncompatibleParameterError, aerr.Error())
 			case fsx.ErrCodeInvalidNetworkSettings:
 				fmt.Println(fsx.ErrCodeInvalidNetworkSettings, aerr.Error())
+			case fsx.ErrCodeInvalidPerUnitStorageThroughput:
+				fmt.Println(fsx.ErrCodeInvalidPerUnitStorageThroughput, aerr.Error())
 			case fsx.ErrCodeServiceLimitExceeded:
 				fmt.Println(fsx.ErrCodeServiceLimitExceeded, aerr.Error())
 			case fsx.ErrCodeBackupNotFound:
@@ -490,6 +492,8 @@ func ExampleFSx_UpdateFileSystem_shared00() {
 				fmt.Println(fsx.ErrCodeFileSystemNotFound, aerr.Error())
 			case fsx.ErrCodeMissingFileSystemConfiguration:
 				fmt.Println(fsx.ErrCodeMissingFileSystemConfiguration, aerr.Error())
+			case fsx.ErrCodeServiceLimitExceeded:
+				fmt.Println(fsx.ErrCodeServiceLimitExceeded, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

@@ -145,6 +145,10 @@ type WorkLinkAPI interface {
 	ListFleetsPages(*worklink.ListFleetsInput, func(*worklink.ListFleetsOutput, bool) bool) error
 	ListFleetsPagesWithContext(aws.Context, *worklink.ListFleetsInput, func(*worklink.ListFleetsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*worklink.ListTagsForResourceInput) (*worklink.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *worklink.ListTagsForResourceInput, ...request.Option) (*worklink.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*worklink.ListTagsForResourceInput) (*request.Request, *worklink.ListTagsForResourceOutput)
+
 	ListWebsiteAuthorizationProviders(*worklink.ListWebsiteAuthorizationProvidersInput) (*worklink.ListWebsiteAuthorizationProvidersOutput, error)
 	ListWebsiteAuthorizationProvidersWithContext(aws.Context, *worklink.ListWebsiteAuthorizationProvidersInput, ...request.Option) (*worklink.ListWebsiteAuthorizationProvidersOutput, error)
 	ListWebsiteAuthorizationProvidersRequest(*worklink.ListWebsiteAuthorizationProvidersInput) (*request.Request, *worklink.ListWebsiteAuthorizationProvidersOutput)
@@ -170,6 +174,14 @@ type WorkLinkAPI interface {
 	SignOutUser(*worklink.SignOutUserInput) (*worklink.SignOutUserOutput, error)
 	SignOutUserWithContext(aws.Context, *worklink.SignOutUserInput, ...request.Option) (*worklink.SignOutUserOutput, error)
 	SignOutUserRequest(*worklink.SignOutUserInput) (*request.Request, *worklink.SignOutUserOutput)
+
+	TagResource(*worklink.TagResourceInput) (*worklink.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *worklink.TagResourceInput, ...request.Option) (*worklink.TagResourceOutput, error)
+	TagResourceRequest(*worklink.TagResourceInput) (*request.Request, *worklink.TagResourceOutput)
+
+	UntagResource(*worklink.UntagResourceInput) (*worklink.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *worklink.UntagResourceInput, ...request.Option) (*worklink.UntagResourceOutput, error)
+	UntagResourceRequest(*worklink.UntagResourceInput) (*request.Request, *worklink.UntagResourceOutput)
 
 	UpdateAuditStreamConfiguration(*worklink.UpdateAuditStreamConfigurationInput) (*worklink.UpdateAuditStreamConfigurationOutput, error)
 	UpdateAuditStreamConfigurationWithContext(aws.Context, *worklink.UpdateAuditStreamConfigurationInput, ...request.Option) (*worklink.UpdateAuditStreamConfigurationOutput, error)

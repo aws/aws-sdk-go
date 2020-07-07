@@ -212,6 +212,21 @@
       ],
       "idempotent":true
     },
+    "DeleteRetentionPolicy":{
+      "name":"DeleteRetentionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRetentionPolicyRequest"},
+      "output":{"shape":"DeleteRetentionPolicyResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
+    },
     "DeleteUser":{
       "name":"DeleteUser",
       "http":{
@@ -361,6 +376,22 @@
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"}
       ]
+    },
+    "GetDefaultRetentionPolicy":{
+      "name":"GetDefaultRetentionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDefaultRetentionPolicyRequest"},
+      "output":{"shape":"GetDefaultRetentionPolicyResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"EntityNotFoundException"}
+      ],
+      "idempotent":true
     },
     "GetMailboxDetails":{
       "name":"GetMailboxDetails",
@@ -558,6 +589,22 @@
         {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
+    },
+    "PutRetentionPolicy":{
+      "name":"PutRetentionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutRetentionPolicyRequest"},
+      "output":{"shape":"PutRetentionPolicyResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"LimitExceededException"}
       ],
       "idempotent":true
     },
@@ -979,6 +1026,22 @@
       "members":{
       }
     },
+    "DeleteRetentionPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "Id"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "Id":{"shape":"ShortString"}
+      }
+    },
+    "DeleteRetentionPolicyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteUserRequest":{
       "type":"structure",
       "required":[
@@ -1194,6 +1257,32 @@
       },
       "exception":true
     },
+    "FolderConfiguration":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Action"
+      ],
+      "members":{
+        "Name":{"shape":"FolderName"},
+        "Action":{"shape":"RetentionAction"},
+        "Period":{"shape":"RetentionPeriod"}
+      }
+    },
+    "FolderConfigurations":{
+      "type":"list",
+      "member":{"shape":"FolderConfiguration"}
+    },
+    "FolderName":{
+      "type":"string",
+      "enum":[
+        "INBOX",
+        "DELETED_ITEMS",
+        "SENT_ITEMS",
+        "DRAFTS",
+        "JUNK_EMAIL"
+      ]
+    },
     "GetAccessControlEffectRequest":{
       "type":"structure",
       "required":[
@@ -1214,6 +1303,22 @@
       "members":{
         "Effect":{"shape":"AccessControlRuleEffect"},
         "MatchedRules":{"shape":"AccessControlRuleNameList"}
+      }
+    },
+    "GetDefaultRetentionPolicyRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"}
+      }
+    },
+    "GetDefaultRetentionPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ShortString"},
+        "Name":{"shape":"ShortString"},
+        "Description":{"shape":"String"},
+        "FolderConfigurations":{"shape":"FolderConfigurations"}
       }
     },
     "GetMailboxDetailsRequest":{
@@ -1604,6 +1709,11 @@
       "type":"list",
       "member":{"shape":"Permission"}
     },
+    "PolicyDescription":{
+      "type":"string",
+      "max":256,
+      "pattern":"[\\w\\d\\s\\S\\-!?=,.;:'_]+"
+    },
     "PutAccessControlRuleRequest":{
       "type":"structure",
       "required":[
@@ -1646,6 +1756,26 @@
       }
     },
     "PutMailboxPermissionsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutRetentionPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "Name",
+        "FolderConfigurations"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "Id":{"shape":"ShortString"},
+        "Name":{"shape":"ShortString"},
+        "Description":{"shape":"PolicyDescription"},
+        "FolderConfigurations":{"shape":"FolderConfigurations"}
+      }
+    },
+    "PutRetentionPolicyResponse":{
       "type":"structure",
       "members":{
       }
@@ -1736,6 +1866,26 @@
     "Resources":{
       "type":"list",
       "member":{"shape":"Resource"}
+    },
+    "RetentionAction":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "DELETE",
+        "PERMANENTLY_DELETE"
+      ]
+    },
+    "RetentionPeriod":{
+      "type":"integer",
+      "box":true,
+      "max":730,
+      "min":1
+    },
+    "ShortString":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
     },
     "String":{
       "type":"string",

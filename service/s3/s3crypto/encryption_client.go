@@ -1,13 +1,9 @@
 package s3crypto
 
 import (
-	"encoding/hex"
-	"io"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/internal/sdkio"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
@@ -20,6 +16,8 @@ const DefaultMinFileSize = 1024 * 512 * 5
 // will use KMS for key wrapping and AES GCM for content encryption.
 // AES GCM will load all data into memory. However, the rest of the content algorithms
 // do not load the entire contents into memory.
+//
+// deprecated: See EncryptionClientV2
 type EncryptionClient struct {
 	S3Client             s3iface.S3API
 	ContentCipherBuilder ContentCipherBuilder
@@ -39,9 +37,11 @@ type EncryptionClient struct {
 //
 // Example:
 //	cmkID := "arn:aws:kms:region:000000000000:key/00000000-0000-0000-0000-000000000000"
-//	sess := session.New()
+//  sess := session.Must(session.NewSession())
 //	handler := s3crypto.NewKMSKeyGenerator(kms.New(sess), cmkID)
-//	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
+//	svc := s3crypto.NewEncryptionClient(sess, s3crypto.AESGCMContentCipherBuilder(handler))
+//
+// deprecated: See NewEncryptionClientV2
 func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilder, options ...func(*EncryptionClient)) *EncryptionClient {
 	s3client := s3.New(prov)
 
@@ -74,75 +74,17 @@ func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilde
 //	  Body: strings.NewReader("test data"),
 //	})
 //	err := req.Send()
+//
+// deprecated: See EncryptionClientV2.PutObjectRequest
 func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
-	req, out := c.S3Client.PutObjectRequest(input)
-
-	// Get Size of file
-	n, err := aws.SeekerLen(input.Body)
-	if err != nil {
-		req.Error = err
-		return req, out
-	}
-
-	dst, err := getWriterStore(req, c.TempFolderPath, n >= c.MinFileSize)
-	if err != nil {
-		req.Error = err
-		return req, out
-	}
-
-	req.Handlers.Build.PushFront(func(r *request.Request) {
-		if err != nil {
-			r.Error = err
-			return
-		}
-		var encryptor ContentCipher
-		if v, ok := c.ContentCipherBuilder.(ContentCipherBuilderWithContext); ok {
-			encryptor, err = v.ContentCipherWithContext(r.Context())
-		} else {
-			encryptor, err = c.ContentCipherBuilder.ContentCipher()
-		}
-		if err != nil {
-			r.Error = err
-		}
-
-		md5 := newMD5Reader(input.Body)
-		sha := newSHA256Writer(dst)
-		reader, err := encryptor.EncryptContents(md5)
-		if err != nil {
-			r.Error = err
-			return
-		}
-
-		_, err = io.Copy(sha, reader)
-		if err != nil {
-			r.Error = err
-			return
-		}
-
-		data := encryptor.GetCipherData()
-		env, err := encodeMeta(md5, data)
-		if err != nil {
-			r.Error = err
-			return
-		}
-
-		shaHex := hex.EncodeToString(sha.GetValue())
-		req.HTTPRequest.Header.Set("X-Amz-Content-Sha256", shaHex)
-
-		dst.Seek(0, sdkio.SeekStart)
-		input.Body = dst
-
-		err = c.SaveStrategy.Save(env, r)
-		r.Error = err
-	})
-
-	return req, out
+	return putObjectRequest(c.getClientOptions(), input)
 }
 
 // PutObject is a wrapper for PutObjectRequest
+//
+// deprecated: See EncryptionClientV2.PutObject
 func (c *EncryptionClient) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error) {
-	req, out := c.PutObjectRequest(input)
-	return out, req.Send()
+	return putObject(c.getClientOptions(), input)
 }
 
 // PutObjectWithContext is a wrapper for PutObjectRequest with the additional
@@ -152,9 +94,19 @@ func (c *EncryptionClient) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOut
 // Context input parameters. The Context must not be nil. A nil Context will
 // cause a panic. Use the Context to add deadlining, timeouts, etc. In the future
 // this may create sub-contexts for individual underlying requests.
+// PutObject is a wrapper for PutObjectRequest
+//
+// deprecated: See EncryptionClientV2.PutObjectWithContext
 func (c *EncryptionClient) PutObjectWithContext(ctx aws.Context, input *s3.PutObjectInput, opts ...request.Option) (*s3.PutObjectOutput, error) {
-	req, out := c.PutObjectRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
+	return putObjectWithContext(c.getClientOptions(), ctx, input, opts...)
+}
+
+func (c *EncryptionClient) getClientOptions() EncryptionClientOptions {
+	return EncryptionClientOptions{
+		S3Client:             c.S3Client,
+		ContentCipherBuilder: c.ContentCipherBuilder,
+		SaveStrategy:         c.SaveStrategy,
+		TempFolderPath:       c.TempFolderPath,
+		MinFileSize:          c.MinFileSize,
+	}
 }

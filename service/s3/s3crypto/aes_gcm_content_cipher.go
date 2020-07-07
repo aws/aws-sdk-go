@@ -15,6 +15,13 @@ type gcmContentCipherBuilder struct {
 	generator CipherDataGenerator
 }
 
+func (builder gcmContentCipherBuilder) isUsingDeprecatedFeatures() error {
+	if feature, ok := builder.generator.(deprecatedFeatures); ok {
+		return feature.isUsingDeprecatedFeatures()
+	}
+	return nil
+}
+
 // AESGCMContentCipherBuilder returns a new encryption only mode structure with a specific cipher
 // for the master key
 func AESGCMContentCipherBuilder(generator CipherDataGenerator) ContentCipherBuilder {
@@ -29,9 +36,14 @@ func (builder gcmContentCipherBuilder) ContentCipherWithContext(ctx aws.Context)
 	var cd CipherData
 	var err error
 
-	if v, ok := builder.generator.(CipherDataGeneratorWithContext); ok {
+	switch v := builder.generator.(type) {
+	case CipherDataGeneratorWithCEKAlgWithContext:
+		cd, err = v.GenerateCipherDataWithCEKAlgWithContext(ctx, gcmKeySize, gcmNonceSize, AESGCMNoPadding)
+	case CipherDataGeneratorWithCEKAlg:
+		cd, err = v.GenerateCipherDataWithCEKAlg(gcmKeySize, gcmNonceSize, AESGCMNoPadding)
+	case CipherDataGeneratorWithContext:
 		cd, err = v.GenerateCipherDataWithContext(ctx, gcmKeySize, gcmNonceSize)
-	} else {
+	default:
 		cd, err = builder.generator.GenerateCipherData(gcmKeySize, gcmNonceSize)
 	}
 	if err != nil {

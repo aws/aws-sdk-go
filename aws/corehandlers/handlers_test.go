@@ -13,6 +13,8 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/client"
+	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -62,7 +64,11 @@ type mockCredsProvider struct {
 
 func (m *mockCredsProvider) Retrieve() (credentials.Value, error) {
 	m.retrieveCalled = true
-	return credentials.Value{ProviderName: "mockCredsProvider"}, nil
+	return credentials.Value{
+		AccessKeyID:     "AKID",
+		SecretAccessKey: "SECRET",
+		ProviderName:    "mockCredsProvider",
+	}, nil
 }
 
 func (m *mockCredsProvider) IsExpired() bool {
@@ -75,44 +81,83 @@ func TestAfterRetryRefreshCreds(t *testing.T) {
 
 	credProvider := &mockCredsProvider{}
 
-	svc := awstesting.NewClient(&aws.Config{
+	sess := unit.Session.Copy(&aws.Config{
 		Credentials: credentials.NewCredentials(credProvider),
-		MaxRetries:  aws.Int(1),
+		MaxRetries:  aws.Int(2),
+	})
+	clientInfo := metadata.ClientInfo{
+		Endpoint:    "http://endpoint",
+		SigningName: "",
+	}
+	svc := client.New(*sess.Config, clientInfo, sess.Handlers)
+
+	svc.Handlers.Sign.PushBack(func(r *request.Request) {
+		if !svc.Config.Credentials.IsExpired() {
+			t.Errorf("expect credentials of of been expired before request attempt")
+		}
+		_, err := svc.Config.Credentials.Get()
+		r.Error = err
 	})
 
-	svc.Handlers.Clear()
-	svc.Handlers.ValidateResponse.PushBack(func(r *request.Request) {
-		r.Error = awserr.New("UnknownError", "", nil)
-		r.HTTPResponse = &http.Response{StatusCode: 400, Body: ioutil.NopCloser(bytes.NewBuffer([]byte{}))}
+	var respID int
+	resps := []struct {
+		Resp *http.Response
+		Err  error
+	}{
+		{
+			Resp: &http.Response{
+				StatusCode: 403,
+				Header:     http.Header{},
+				Body:       ioutil.NopCloser(bytes.NewBuffer([]byte{})),
+			},
+			Err: awserr.New("ExpiredToken", "", nil),
+		},
+		{
+			Resp: &http.Response{
+				StatusCode: 403,
+				Header:     http.Header{},
+				Body:       ioutil.NopCloser(bytes.NewBuffer([]byte{})),
+			},
+			Err: awserr.New("ExpiredToken", "", nil),
+		},
+		{
+			Resp: &http.Response{
+				StatusCode: 200,
+				Header:     http.Header{},
+				Body:       ioutil.NopCloser(bytes.NewBuffer([]byte{})),
+			},
+		},
+	}
+	svc.Handlers.Send.Clear()
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
+		r.HTTPResponse = resps[respID].Resp
 	})
 	svc.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
-		r.Error = awserr.New("ExpiredTokenException", "", nil)
+		r.Error = resps[respID].Err
 	})
-	svc.Handlers.AfterRetry.PushBackNamed(corehandlers.AfterRetryHandler)
+	svc.Handlers.CompleteAttempt.PushBack(func(r *request.Request) {
+		respID++
+	})
 
 	if !svc.Config.Credentials.IsExpired() {
-		t.Errorf("Expect to start out expired")
+		t.Fatalf("expect to start out expired")
 	}
 	if credProvider.retrieveCalled {
-		t.Errorf("expect not called")
+		t.Fatalf("expect retrieve not yet called")
 	}
 
 	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
-	req.Send()
-
-	if !svc.Config.Credentials.IsExpired() {
-		t.Errorf("Expect to start out expired")
+	if err := req.Send(); err != nil {
+		t.Fatalf("expect no error, got %v", err)
 	}
-	if credProvider.retrieveCalled {
-		t.Errorf("expect not called")
+	if e, a := len(resps)-1, req.RetryCount; e != a {
+		t.Errorf("expect %v retries, got %v", e, a)
 	}
-
-	_, err := svc.Config.Credentials.Get()
-	if err != nil {
-		t.Errorf("expect no error, got %v", err)
+	if svc.Config.Credentials.IsExpired() {
+		t.Errorf("expect credentials not to be expired")
 	}
 	if !credProvider.retrieveCalled {
-		t.Errorf("expect not called")
+		t.Errorf("expect retrieve to be called")
 	}
 }
 

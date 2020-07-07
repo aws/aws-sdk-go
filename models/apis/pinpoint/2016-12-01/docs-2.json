@@ -405,6 +405,12 @@
         "WriteTreatmentResource$CustomDeliveryConfiguration" : "<p>The delivery configuration settings for sending the treatment through a custom channel. This object is required if the MessageConfiguration object for the treatment specifies a CustomMessage object.</p>"
       }
     },
+    "CustomMessageActivity" : {
+      "base" : "<p>The settings for a custom message activity. This type of activity calls an AWS Lambda function or web hook that sends messages to participants.</p>",
+      "refs" : {
+        "Activity$CUSTOM" : "<p>The settings for a custom message activity. This type of activity calls an AWS Lambda function or web hook that sends messages to participants.</p>"
+      }
+    },
     "DefaultMessage" : {
       "base" : "<p>Specifies the default message for all channels.</p>",
       "refs" : {
@@ -709,6 +715,12 @@
         "ImportJobResponse$JobStatus" : "<p>The status of the import job. The job status is FAILED if Amazon Pinpoint wasn't able to process one or more pieces in the job.</p>"
       }
     },
+    "JourneyCustomMessage" : {
+      "base" : "<p>Specifies the message content for a custom channel message that's sent to participants in a journey.</p>",
+      "refs" : {
+        "CustomMessageActivity$MessageConfig" : "<p>Specifies the message data included in a custom channel message that's sent to participants in a journey.</p>"
+      }
+    },
     "JourneyDateRangeKpiResponse" : {
       "base" : "<p>Provides the results of a query that retrieved the data for a standard engagement metric that applies to a journey, and provides information about that query.</p>",
       "refs" : { }
@@ -716,7 +728,7 @@
     "JourneyEmailMessage" : {
       "base" : "<p>Specifies the \"From\" address for an email message that's sent to participants in a journey.</p>",
       "refs" : {
-        "EmailMessageActivity$MessageConfig" : "<p>The \"From\" address to use for the message.</p>"
+        "EmailMessageActivity$MessageConfig" : "<p>Specifies the sender address for an email message that's sent to participants in the journey.</p>"
       }
     },
     "JourneyExecutionActivityMetricsResponse" : {
@@ -734,10 +746,22 @@
         "WriteJourneyRequest$Limits" : "<p>The messaging and entry limits for the journey.</p>"
       }
     },
+    "JourneyPushMessage" : {
+      "base" : "<p>Specifies the message configuration for a push notification that's sent to participants in a journey.</p>",
+      "refs" : {
+        "PushMessageActivity$MessageConfig" : "<p>Specifies the time to live (TTL) value for push notifications that are sent to participants in a journey.</p>"
+      }
+    },
     "JourneyResponse" : {
       "base" : "<p>Provides information about the status, configuration, and other settings for a journey.</p>",
       "refs" : {
         "ListOfJourneyResponse$member" : null
+      }
+    },
+    "JourneySMSMessage" : {
+      "base" : "<p>Specifies the sender ID and message type for an SMS message that's sent to participants in a journey.</p>",
+      "refs" : {
+        "SMSMessageActivity$MessageConfig" : "<p>Specifies the sender ID and message type for an SMS message that's sent to participants in a journey.</p>"
       }
     },
     "JourneySchedule" : {
@@ -799,8 +823,9 @@
     "MessageType" : {
       "base" : null,
       "refs" : {
-        "CampaignSmsMessage$MessageType" : "<p>The type of SMS message. Valid values are: TRANSACTIONAL, the message is critical or time-sensitive, such as a one-time password that supports a customer transaction; and, PROMOTIONAL, the message isn't critical or time-sensitive, such as a marketing message.</p>",
-        "SMSMessage$MessageType" : "<p>The SMS message type. Valid values are: TRANSACTIONAL, the message is critical or time-sensitive, such as a one-time password that supports a customer transaction; and, PROMOTIONAL, the message is not critical or time-sensitive, such as a marketing message.</p>"
+        "CampaignSmsMessage$MessageType" : "<p>The SMS message type. Valid values are TRANSACTIONAL (for messages that are critical or time-sensitive, such as a one-time passwords) and PROMOTIONAL (for messsages that aren't critical or time-sensitive, such as marketing messages).</p>",
+        "JourneySMSMessage$MessageType" : "<p>The SMS message type. Valid values are TRANSACTIONAL (for messages that are critical or time-sensitive, such as a one-time passwords) and PROMOTIONAL (for messsages that aren't critical or time-sensitive, such as marketing messages).</p>",
+        "SMSMessage$MessageType" : "<p>The SMS message type. Valid values are TRANSACTIONAL (for messages that are critical or time-sensitive, such as a one-time passwords) and PROMOTIONAL (for messsages that aren't critical or time-sensitive, such as marketing messages).</p>"
       }
     },
     "MethodNotAllowedException" : {
@@ -857,6 +882,12 @@
       "base" : "<p>Specifies the properties and attributes of an endpoint that's associated with an event.</p>",
       "refs" : {
         "EventsBatch$Endpoint" : "<p>A set of properties and attributes that are associated with the endpoint.</p>"
+      }
+    },
+    "PushMessageActivity" : {
+      "base" : "<p>Specifies the settings for a push notification activity in a journey. This type of activity sends a push notification to participants.</p>",
+      "refs" : {
+        "Activity$PUSH" : "<p>The settings for a push notification activity. This type of activity sends a push notification to participants.</p>"
       }
     },
     "PushNotificationTemplateRequest" : {
@@ -937,6 +968,12 @@
       "base" : "<p>Specifies the default settings for a one-time SMS message that's sent directly to an endpoint.</p>",
       "refs" : {
         "DirectMessageConfiguration$SMSMessage" : "<p>The default message for the SMS channel. This message overrides the default message (DefaultMessage).</p>"
+      }
+    },
+    "SMSMessageActivity" : {
+      "base" : "<p>Specifies the settings for an SMS activity in a journey. This type of activity sends a text message to participants.</p>",
+      "refs" : {
+        "Activity$SMS" : "<p>The settings for an SMS activity. This type of activity sends a text message to participants.</p>"
       }
     },
     "SMSTemplateRequest" : {
@@ -1535,7 +1572,8 @@
     "ListOf__EndpointTypesElement" : {
       "base" : null,
       "refs" : {
-        "CustomDeliveryConfiguration$EndpointTypes" : "<p>The types of endpoints to send the campaign or treatment to. Each valid value maps to a type of channel that you can associate with an endpoint by using the ChannelType property of an endpoint.</p>"
+        "CustomDeliveryConfiguration$EndpointTypes" : "<p>The types of endpoints to send the campaign or treatment to. Each valid value maps to a type of channel that you can associate with an endpoint by using the ChannelType property of an endpoint.</p>",
+        "CustomMessageActivity$EndpointTypes" : "<p>The types of endpoints to send the custom message to. Each valid value maps to a type of channel that you can associate with an endpoint by using the ChannelType property of an endpoint.</p>"
       }
     },
     "ListOf__string" : {
@@ -1689,8 +1727,8 @@
         "EndpointSendConfiguration$Context" : "<p>A map of custom attributes to attach to the message for the address. Attribute names are case sensitive.</p> <p>For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "Event$Attributes" : "<p>One or more custom attributes that are associated with the event.</p>",
         "GCMMessage$Data" : "<p>The JSON data payload to use for the push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
-        "JourneyExecutionActivityMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. The results vary depending on the type of activity (ActivityType). For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\">Amazon Pinpoint Developer Guide</a>.</p>",
-        "JourneyExecutionMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\">Amazon Pinpoint Developer Guide</a>.</p>",
+        "JourneyExecutionActivityMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. The results vary depending on the type of activity (ActivityType). For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/analytics-standard-metrics.html\">Amazon Pinpoint Developer Guide</a>.</p>",
+        "JourneyExecutionMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/analytics-standard-metrics.html\">Amazon Pinpoint Developer Guide</a>.</p>",
         "JourneyResponse$tags" : "<p>This object is not used or supported.</p>",
         "MessageRequest$Context" : "<p>A map of custom attributes to attach to the message. For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "PushNotificationTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
@@ -1904,6 +1942,10 @@
         "CreateTemplateMessageBody$Message" : "<p>The message that's returned from the API for the request to create the message template.</p>",
         "CreateTemplateMessageBody$RequestID" : "<p>The unique identifier for the request to create the message template.</p>",
         "CustomDeliveryConfiguration$DeliveryUri" : "<p>The destination to send the campaign or treatment to. This value can be one of the following:</p> <ul><li><p>The name or Amazon Resource Name (ARN) of an AWS Lambda function to invoke to handle delivery of the campaign or treatment.</p></li> <li><p>The URL for a web application or service that supports HTTPS and can receive the message. The URL has to be a full URL, including the HTTPS protocol.</p></li></ul> ",
+        "CustomMessageActivity$DeliveryUri" : "<p>The destination to send the custom message to. This value can be one of the following:</p> <ul><li><p>The name or Amazon Resource Name (ARN) of an AWS Lambda function to invoke to handle delivery of the custom message.</p></li> <li><p>The URL for a web application or service that supports HTTPS and can receive the message. The URL has to be a full URL, including the HTTPS protocol.</p></li></ul>",
+        "CustomMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after Amazon Pinpoint calls the AWS Lambda function or web hook.</p>",
+        "CustomMessageActivity$TemplateName" : "<p>The name of the custom message template to use for the message. If specified, this value must match the name of an existing message template.</p>",
+        "CustomMessageActivity$TemplateVersion" : "<p>The unique identifier for the version of the message template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active version</i> of the template. The <i>active version</i> is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
         "DefaultMessage$Body" : "<p>The default body of the message.</p>",
         "DefaultPushNotificationMessage$Body" : "<p>The default body of the notification message.</p>",
         "DefaultPushNotificationMessage$Title" : "<p>The default title to display above the notification message on a recipient's device.</p>",
@@ -1930,7 +1972,7 @@
         "EmailMessage$FeedbackForwardingAddress" : "<p>The email address to forward bounces and complaints to, if feedback forwarding is enabled.</p>",
         "EmailMessage$FromAddress" : "<p>The verified email address to send the email message from. The default value is the FromAddress specified for the email channel.</p>",
         "EmailMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after the message is sent.</p>",
-        "EmailMessageActivity$TemplateName" : "<p>The name of the email template to use for the message.</p>",
+        "EmailMessageActivity$TemplateName" : "<p>The name of the email message template to use for the message. If specified, this value must match the name of an existing message template.</p>",
         "EmailMessageActivity$TemplateVersion" : "<p>The unique identifier for the version of the email template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active version</i> of the template. The <i>active version</i> is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
         "EmailTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
         "EmailTemplateRequest$HtmlPart" : "<p>The message body, in HTML format, to use in email messages that are based on the message template. We recommend using HTML format for email clients that render HTML content. You can include links, formatted text, and more in an HTML message.</p>",
@@ -2054,6 +2096,7 @@
         "ImportJobResponse$Id" : "<p>The unique identifier for the import job.</p>",
         "ImportJobResponse$Type" : "<p>The job type. This value is IMPORT for import jobs.</p>",
         "ImportJobsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
+        "JourneyCustomMessage$Data" : "<p>The message content that's passed to an AWS Lambda function or to a web hook.</p>",
         "JourneyDateRangeKpiResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
         "JourneyDateRangeKpiResponse$EndTime" : "<p>The last date and time of the date range that was used to filter the query results, in extended ISO 8601 format. The date range is inclusive.</p>",
         "JourneyDateRangeKpiResponse$JourneyId" : "<p>The unique identifier for the journey that the metric applies to.</p>",
@@ -2069,6 +2112,7 @@
         "JourneyExecutionMetricsResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
         "JourneyExecutionMetricsResponse$JourneyId" : "<p>The unique identifier for the journey that the metric applies to.</p>",
         "JourneyExecutionMetricsResponse$LastEvaluatedTime" : "<p>The date and time, in ISO 8601 format, when Amazon Pinpoint last evaluated the journey and updated the data for the metric.</p>",
+        "JourneyPushMessage$TimeToLive" : "<p>The number of seconds that the push notification service should keep the message, if the service is unable to deliver the notification the first time. This value is converted to an expiration value when it's sent to a push-notification service. If this value is 0, the service treats the notification as if it expires immediately and the service doesn't store or try to deliver the notification again.</p> <p>This value doesn't apply to messages that are sent through the Amazon Device Messaging (ADM) service.</p>",
         "JourneyResponse$ApplicationId" : "<p>The unique identifier for the application that the journey applies to.</p>",
         "JourneyResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the journey was created.</p>",
         "JourneyResponse$Id" : "<p>The unique identifier for the journey.</p>",
@@ -2076,6 +2120,7 @@
         "JourneyResponse$Name" : "<p>The name of the journey.</p>",
         "JourneyResponse$RefreshFrequency" : "<p>The frequency with which Amazon Pinpoint evaluates segment and event data for the journey, as a duration in ISO 8601 format.</p>",
         "JourneyResponse$StartActivity" : "<p>The unique identifier for the first activity in the journey.</p>",
+        "JourneySMSMessage$SenderId" : "<p>The sender ID to display as the sender of the message on a recipient's device. Support for sender IDs varies by country or region. For more information, see <a href=\"https://docs.aws.amazon.com.amazon.com/pinpoint/latest/userguide/channels-sms-countries.html\">Supported Countries and Regions</a> in the Amazon Pinpoint User Guide.</p>",
         "JourneySchedule$EndTime" : "<p>The scheduled time, in ISO 8601 format, when the journey ended or will end.</p>",
         "JourneySchedule$StartTime" : "<p>The scheduled time, in ISO 8601 format, when the journey began or will begin.</p>",
         "JourneySchedule$Timezone" : "<p>The starting UTC offset for the journey schedule, if the value of the journey's LocalTime property is true. Valid values are: UTC,\n                  UTC+01, UTC+02, UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05, UTC+05:30,\n                  UTC+05:45, UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+08:45, UTC+09, UTC+09:30,\n                  UTC+10, UTC+10:30, UTC+11, UTC+12, UTC+12:45, UTC+13, UTC+13:45, UTC-02,\n                  UTC-02:30, UTC-03, UTC-03:30, UTC-04, UTC-05, UTC-06, UTC-07, UTC-08, UTC-09,\n                  UTC-09:30, UTC-10, and UTC-11.</p>",
@@ -2121,6 +2166,9 @@
         "PublicEndpoint$EndpointStatus" : "<p>Specifies whether to send messages or push notifications to the endpoint. Valid values are: ACTIVE, messages are sent to the endpoint; and, INACTIVE, messages aren’t sent to the endpoint.</p> <p>Amazon Pinpoint automatically sets this value to ACTIVE when you create an endpoint or update an existing endpoint. Amazon Pinpoint automatically sets this value to INACTIVE if you update another endpoint that has the same address specified by the Address property.</p>",
         "PublicEndpoint$OptOut" : "<p>Specifies whether the user who's associated with the endpoint has opted out of receiving messages and push notifications from you. Possible values are: ALL, the user has opted out and doesn't want to receive any messages or push notifications; and, NONE, the user hasn't opted out and wants to receive all messages and push notifications.</p>",
         "PublicEndpoint$RequestId" : "<p>A unique identifier that's generated each time the endpoint is updated.</p>",
+        "PushMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after the message is sent.</p>",
+        "PushMessageActivity$TemplateName" : "<p>The name of the push notification template to use for the message. If specified, this value must match the name of an existing message template.</p>",
+        "PushMessageActivity$TemplateVersion" : "<p>The unique identifier for the version of the push notification template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active version</i> of the template. The <i>active version</i> is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
         "PushNotificationTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
         "PushNotificationTemplateRequest$RecommenderId" : "<p>The unique identifier for the recommender model to use for the message template. Amazon Pinpoint uses this value to determine how to retrieve and process data from a recommender model when it sends messages that use the template, if the template contains message variables for recommendation data.</p>",
         "PushNotificationTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
@@ -2164,6 +2212,9 @@
         "SMSMessage$MediaUrl" : "<p>The URL of an image or video to display in the SMS message.</p>",
         "SMSMessage$OriginationNumber" : "<p>The number to send the SMS message from. This value should be one of the dedicated long or short codes that's assigned to your AWS account. If you don't specify a long or short code, Amazon Pinpoint assigns a random long code to the SMS message and sends the message from that code.</p>",
         "SMSMessage$SenderId" : "<p>The sender ID to display as the sender of the message on a recipient's device. Support for sender IDs varies by country or region.</p>",
+        "SMSMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after the message is sent.</p>",
+        "SMSMessageActivity$TemplateName" : "<p>The name of the SMS message template to use for the message. If specified, this value must match the name of an existing message template.</p>",
+        "SMSMessageActivity$TemplateVersion" : "<p>The unique identifier for the version of the SMS template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active version</i> of the template. The <i>active version</i> is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
         "SMSTemplateRequest$Body" : "<p>The message body to use in text messages that are based on the message template.</p>",
         "SMSTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
         "SMSTemplateRequest$RecommenderId" : "<p>The unique identifier for the recommender model to use for the message template. Amazon Pinpoint uses this value to determine how to retrieve and process data from a recommender model when it sends messages that use the template, if the template contains message variables for recommendation data.</p>",

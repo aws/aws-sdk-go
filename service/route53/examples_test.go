@@ -58,6 +58,8 @@ func ExampleRoute53_AssociateVPCWithHostedZone_shared00() {
 				fmt.Println(route53.ErrCodeConflictingDomainExists, aerr.Error())
 			case route53.ErrCodeLimitsExceeded:
 				fmt.Println(route53.ErrCodeLimitsExceeded, aerr.Error())
+			case route53.ErrCodePriorRequestNotComplete:
+				fmt.Println(route53.ErrCodePriorRequestNotComplete, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

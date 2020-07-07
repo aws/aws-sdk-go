@@ -648,6 +648,13 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "BuildStatusConfig":{
+      "type":"structure",
+      "members":{
+        "context":{"shape":"String"},
+        "targetUrl":{"shape":"String"}
+      }
+    },
     "Builds":{
       "type":"list",
       "member":{"shape":"Build"}
@@ -737,7 +744,8 @@
       "members":{
         "name":{"shape":"ReportGroupName"},
         "type":{"shape":"ReportType"},
-        "exportConfig":{"shape":"ReportExportConfig"}
+        "exportConfig":{"shape":"ReportExportConfig"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateReportGroupOutput":{
@@ -1407,6 +1415,7 @@
         "buildspec":{"shape":"String"},
         "auth":{"shape":"SourceAuth"},
         "reportBuildStatus":{"shape":"WrapperBoolean"},
+        "buildStatusConfig":{"shape":"BuildStatusConfig"},
         "insecureSsl":{"shape":"WrapperBoolean"},
         "sourceIdentifier":{"shape":"String"}
       }
@@ -1510,7 +1519,8 @@
         "type":{"shape":"ReportType"},
         "exportConfig":{"shape":"ReportExportConfig"},
         "created":{"shape":"Timestamp"},
-        "lastModified":{"shape":"Timestamp"}
+        "lastModified":{"shape":"Timestamp"},
+        "tags":{"shape":"TagList"}
       }
     },
     "ReportGroupArns":{
@@ -1688,6 +1698,7 @@
         "buildspecOverride":{"shape":"String"},
         "insecureSslOverride":{"shape":"WrapperBoolean"},
         "reportBuildStatusOverride":{"shape":"WrapperBoolean"},
+        "buildStatusConfigOverride":{"shape":"BuildStatusConfig"},
         "environmentTypeOverride":{"shape":"EnvironmentType"},
         "imageOverride":{"shape":"NonEmptyString"},
         "computeTypeOverride":{"shape":"ComputeType"},
@@ -1831,7 +1842,8 @@
       "required":["arn"],
       "members":{
         "arn":{"shape":"NonEmptyString"},
-        "exportConfig":{"shape":"ReportExportConfig"}
+        "exportConfig":{"shape":"ReportExportConfig"},
+        "tags":{"shape":"TagList"}
       }
     },
     "UpdateReportGroupOutput":{
@@ -1859,7 +1871,7 @@
     "ValueInput":{
       "type":"string",
       "max":255,
-      "min":1,
+      "min":0,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=@+\\-]*)$"
     },
     "VpcConfig":{

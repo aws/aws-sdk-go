@@ -208,6 +208,43 @@
         }
       ]
     },
+    "StackRollbackComplete": {
+      "delay": 30,
+      "operation": "DescribeStacks",
+      "maxAttempts": 120,
+      "description": "Wait until stack status is UPDATE_ROLLBACK_COMPLETE.",
+      "acceptors": [
+        {
+          "argument": "Stacks[].StackStatus",
+          "expected": "UPDATE_ROLLBACK_COMPLETE",
+          "matcher": "pathAll",
+          "state": "success"
+        },
+        {
+          "argument": "Stacks[].StackStatus",
+          "expected": "UPDATE_FAILED",
+          "matcher": "pathAny",
+          "state": "failure"
+        },
+        {
+          "argument": "Stacks[].StackStatus",
+          "expected": "UPDATE_ROLLBACK_FAILED",
+          "matcher": "pathAny",
+          "state": "failure"
+        },
+        {
+          "argument": "Stacks[].StackStatus",
+          "expected": "DELETE_FAILED",
+          "matcher": "pathAny",
+          "state": "failure"
+        },
+        {
+          "expected": "ValidationError",
+          "matcher": "error",
+          "state": "failure"
+        }
+      ]
+    },
     "ChangeSetCreateComplete": {
       "delay": 30,
       "operation": "DescribeChangeSet",

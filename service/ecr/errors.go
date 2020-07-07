@@ -21,6 +21,13 @@ const (
 	// the manifest or image tag after the last push.
 	ErrCodeImageAlreadyExistsException = "ImageAlreadyExistsException"
 
+	// ErrCodeImageDigestDoesNotMatchException for service response error code
+	// "ImageDigestDoesNotMatchException".
+	//
+	// The specified image digest does not match the digest that Amazon ECR calculated
+	// for the image.
+	ErrCodeImageDigestDoesNotMatchException = "ImageDigestDoesNotMatchException"
+
 	// ErrCodeImageNotFoundException for service response error code
 	// "ImageNotFoundException".
 	//
@@ -112,8 +119,7 @@ const (
 	// "LimitExceededException".
 	//
 	// The operation did not succeed because it would have exceeded a service limit
-	// for your account. For more information, see Amazon ECR Default Service Limits
-	// (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
+	// for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 	// in the Amazon Elastic Container Registry User Guide.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
@@ -187,6 +193,7 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"EmptyUploadException":                      newErrorEmptyUploadException,
 	"ImageAlreadyExistsException":               newErrorImageAlreadyExistsException,
+	"ImageDigestDoesNotMatchException":          newErrorImageDigestDoesNotMatchException,
 	"ImageNotFoundException":                    newErrorImageNotFoundException,
 	"ImageTagAlreadyExistsException":            newErrorImageTagAlreadyExistsException,
 	"InvalidLayerException":                     newErrorInvalidLayerException,

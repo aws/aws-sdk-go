@@ -143,9 +143,21 @@ type ServiceDiscoveryAPI interface {
 	ListServicesPages(*servicediscovery.ListServicesInput, func(*servicediscovery.ListServicesOutput, bool) bool) error
 	ListServicesPagesWithContext(aws.Context, *servicediscovery.ListServicesInput, func(*servicediscovery.ListServicesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*servicediscovery.ListTagsForResourceInput) (*servicediscovery.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *servicediscovery.ListTagsForResourceInput, ...request.Option) (*servicediscovery.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*servicediscovery.ListTagsForResourceInput) (*request.Request, *servicediscovery.ListTagsForResourceOutput)
+
 	RegisterInstance(*servicediscovery.RegisterInstanceInput) (*servicediscovery.RegisterInstanceOutput, error)
 	RegisterInstanceWithContext(aws.Context, *servicediscovery.RegisterInstanceInput, ...request.Option) (*servicediscovery.RegisterInstanceOutput, error)
 	RegisterInstanceRequest(*servicediscovery.RegisterInstanceInput) (*request.Request, *servicediscovery.RegisterInstanceOutput)
+
+	TagResource(*servicediscovery.TagResourceInput) (*servicediscovery.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *servicediscovery.TagResourceInput, ...request.Option) (*servicediscovery.TagResourceOutput, error)
+	TagResourceRequest(*servicediscovery.TagResourceInput) (*request.Request, *servicediscovery.TagResourceOutput)
+
+	UntagResource(*servicediscovery.UntagResourceInput) (*servicediscovery.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *servicediscovery.UntagResourceInput, ...request.Option) (*servicediscovery.UntagResourceOutput, error)
+	UntagResourceRequest(*servicediscovery.UntagResourceInput) (*request.Request, *servicediscovery.UntagResourceOutput)
 
 	UpdateInstanceCustomHealthStatus(*servicediscovery.UpdateInstanceCustomHealthStatusInput) (*servicediscovery.UpdateInstanceCustomHealthStatusOutput, error)
 	UpdateInstanceCustomHealthStatusWithContext(aws.Context, *servicediscovery.UpdateInstanceCustomHealthStatusInput, ...request.Option) (*servicediscovery.UpdateInstanceCustomHealthStatusOutput, error)

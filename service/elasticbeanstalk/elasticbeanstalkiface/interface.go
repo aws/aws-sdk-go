@@ -68,6 +68,10 @@ type ElasticBeanstalkAPI interface {
 	ApplyEnvironmentManagedActionWithContext(aws.Context, *elasticbeanstalk.ApplyEnvironmentManagedActionInput, ...request.Option) (*elasticbeanstalk.ApplyEnvironmentManagedActionOutput, error)
 	ApplyEnvironmentManagedActionRequest(*elasticbeanstalk.ApplyEnvironmentManagedActionInput) (*request.Request, *elasticbeanstalk.ApplyEnvironmentManagedActionOutput)
 
+	AssociateEnvironmentOperationsRole(*elasticbeanstalk.AssociateEnvironmentOperationsRoleInput) (*elasticbeanstalk.AssociateEnvironmentOperationsRoleOutput, error)
+	AssociateEnvironmentOperationsRoleWithContext(aws.Context, *elasticbeanstalk.AssociateEnvironmentOperationsRoleInput, ...request.Option) (*elasticbeanstalk.AssociateEnvironmentOperationsRoleOutput, error)
+	AssociateEnvironmentOperationsRoleRequest(*elasticbeanstalk.AssociateEnvironmentOperationsRoleInput) (*request.Request, *elasticbeanstalk.AssociateEnvironmentOperationsRoleOutput)
+
 	CheckDNSAvailability(*elasticbeanstalk.CheckDNSAvailabilityInput) (*elasticbeanstalk.CheckDNSAvailabilityOutput, error)
 	CheckDNSAvailabilityWithContext(aws.Context, *elasticbeanstalk.CheckDNSAvailabilityInput, ...request.Option) (*elasticbeanstalk.CheckDNSAvailabilityOutput, error)
 	CheckDNSAvailabilityRequest(*elasticbeanstalk.CheckDNSAvailabilityInput) (*request.Request, *elasticbeanstalk.CheckDNSAvailabilityOutput)
@@ -174,6 +178,10 @@ type ElasticBeanstalkAPI interface {
 	DescribePlatformVersion(*elasticbeanstalk.DescribePlatformVersionInput) (*elasticbeanstalk.DescribePlatformVersionOutput, error)
 	DescribePlatformVersionWithContext(aws.Context, *elasticbeanstalk.DescribePlatformVersionInput, ...request.Option) (*elasticbeanstalk.DescribePlatformVersionOutput, error)
 	DescribePlatformVersionRequest(*elasticbeanstalk.DescribePlatformVersionInput) (*request.Request, *elasticbeanstalk.DescribePlatformVersionOutput)
+
+	DisassociateEnvironmentOperationsRole(*elasticbeanstalk.DisassociateEnvironmentOperationsRoleInput) (*elasticbeanstalk.DisassociateEnvironmentOperationsRoleOutput, error)
+	DisassociateEnvironmentOperationsRoleWithContext(aws.Context, *elasticbeanstalk.DisassociateEnvironmentOperationsRoleInput, ...request.Option) (*elasticbeanstalk.DisassociateEnvironmentOperationsRoleOutput, error)
+	DisassociateEnvironmentOperationsRoleRequest(*elasticbeanstalk.DisassociateEnvironmentOperationsRoleInput) (*request.Request, *elasticbeanstalk.DisassociateEnvironmentOperationsRoleOutput)
 
 	ListAvailableSolutionStacks(*elasticbeanstalk.ListAvailableSolutionStacksInput) (*elasticbeanstalk.ListAvailableSolutionStacksOutput, error)
 	ListAvailableSolutionStacksWithContext(aws.Context, *elasticbeanstalk.ListAvailableSolutionStacksInput, ...request.Option) (*elasticbeanstalk.ListAvailableSolutionStacksOutput, error)

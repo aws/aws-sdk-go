@@ -10,6 +10,7 @@
     "DescribeConfiguration" : "<p>Returns a description of this MSK configuration.</p>",
     "DescribeConfigurationRevision" : "<p>Returns a description of this revision of the configuration.</p>",
     "GetBootstrapBrokers" : "<p>A list of brokers that a client application can use to bootstrap.</p>",
+    "GetCompatibleKafkaVersions" : "<p>Gets the Apache Kafka versions to which you can update the MSK cluster.</p>",
     "ListClusterOperations" : "<p>Returns a list of all the operations that have been performed on the specified MSK cluster.</p>",
     "ListClusters" : "<p>Returns a list of all the MSK clusters in the current Region.</p>",
     "ListConfigurationRevisions" : "<p>Returns a list of all the revisions of an MSK configuration.</p>",
@@ -22,6 +23,7 @@
     "UpdateBrokerCount" : "<p>Updates the number of broker nodes in the cluster. You can use this operation to increase the number of brokers in an existing cluster. You can't decrease the number of brokers.</p>",
     "UpdateBrokerStorage" : "<p>Updates the EBS storage associated with MSK brokers.</p>",
     "UpdateClusterConfiguration" : "<p>Updates the cluster with the configuration that is specified in the request body.</p>",
+    "UpdateClusterKafkaVersion" : "<p>Updates the Apache Kafka version for the cluster.</p>",
     "UpdateMonitoring" : "<p>Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.</p>"
   },
   "shapes" : {
@@ -100,12 +102,30 @@
         "__listOfClusterOperationInfo$member" : null
       }
     },
+    "ClusterOperationStep" : {
+      "base" : "<p>Step taken during a cluster operation.</p>",
+      "refs" : {
+        "__listOfClusterOperationStep$member" : null
+      }
+    },
+    "ClusterOperationStepInfo" : {
+      "base" : "<p>State information about the operation step.</p>",
+      "refs" : {
+        "ClusterOperationStep$StepInfo" : "<p>Information about the step and its status.</p>"
+      }
+    },
     "ClusterState" : {
       "base" : "<p>The state of a Kafka cluster.</p>",
       "refs" : {
         "ClusterInfo$State" : "<p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>",
         "CreateClusterResponse$State" : "<p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>",
         "DeleteClusterResponse$State" : "<p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>"
+      }
+    },
+    "CompatibleKafkaVersion" : {
+      "base" : "<p>Contains source Kafka versions and compatible target Kafka versions.</p>",
+      "refs" : {
+        "__listOfCompatibleKafkaVersion$member" : null
       }
     },
     "Configuration" : {
@@ -227,6 +247,10 @@
     },
     "GetBootstrapBrokersResponse" : {
       "base" : "<p>Returns a string containing one or more hostname:port pairs.</p>",
+      "refs" : { }
+    },
+    "GetCompatibleKafkaVersionsResponse" : {
+      "base" : "<p>Response body for GetCompatibleKafkaVersions.</p>",
       "refs" : { }
     },
     "InternalServerErrorException" : {
@@ -419,6 +443,14 @@
       "base" : "<p>Response body for UpdateClusterConfiguration.</p>",
       "refs" : { }
     },
+    "UpdateClusterKafkaVersionRequest" : {
+      "base" : "<p>Request body for UpdateClusterKafkaVersion.</p>",
+      "refs" : { }
+    },
+    "UpdateClusterKafkaVersionResponse" : {
+      "base" : "<p>Response body for UpdateClusterKafkaVersion.</p>",
+      "refs" : { }
+    },
     "UpdateMonitoringRequest" : {
       "base" : "<p>Request body for UpdateMonitoring.</p>",
       "refs" : { }
@@ -492,6 +524,18 @@
       "base" : null,
       "refs" : {
         "ListClusterOperationsResponse$ClusterOperationInfoList" : "<p>An array of cluster operation information objects.</p>"
+      }
+    },
+    "__listOfClusterOperationStep" : {
+      "base" : null,
+      "refs" : {
+        "ClusterOperationInfo$OperationSteps" : "<p>Steps completed during the operation.</p>"
+      }
+    },
+    "__listOfCompatibleKafkaVersion" : {
+      "base" : null,
+      "refs" : {
+        "GetCompatibleKafkaVersionsResponse$CompatibleKafkaVersions" : "<p>A list of CompatibleKafkaVersion objects.</p>"
       }
     },
     "__listOfConfiguration" : {
@@ -569,6 +613,8 @@
         "ClusterOperationInfo$OperationArn" : "<p>ARN of the cluster operation.</p>",
         "ClusterOperationInfo$OperationState" : "<p>State of the cluster operation.</p>",
         "ClusterOperationInfo$OperationType" : "<p>Type of the cluster operation.</p>",
+        "ClusterOperationStep$StepName" : "<p>The name of the step.</p>",
+        "ClusterOperationStepInfo$StepStatus" : "<p>The steps current status.</p>",
         "Configuration$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "Configuration$Description" : "<p>The description of the configuration.</p>",
         "Configuration$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
@@ -617,6 +663,10 @@
         "UpdateClusterConfigurationRequest$CurrentVersion" : "<p>The version of the cluster that you want to update.</p>",
         "UpdateClusterConfigurationResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateClusterConfigurationResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "UpdateClusterKafkaVersionRequest$CurrentVersion" : "<p>Current cluster version.</p>",
+        "UpdateClusterKafkaVersionRequest$TargetKafkaVersion" : "<p>Target Kafka version.</p>",
+        "UpdateClusterKafkaVersionResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "UpdateClusterKafkaVersionResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
         "UpdateMonitoringRequest$CurrentVersion" : "<p>The version of cluster to update from. A successful operation will then generate a new version.</p>",
         "UpdateMonitoringResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateMonitoringResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",

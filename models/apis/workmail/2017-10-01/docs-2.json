@@ -13,6 +13,7 @@
     "DeleteGroup": "<p>Deletes a group from Amazon WorkMail.</p>",
     "DeleteMailboxPermissions": "<p>Deletes permissions granted to a member (user or group).</p>",
     "DeleteResource": "<p>Deletes the specified resource. </p>",
+    "DeleteRetentionPolicy": "<p>Deletes the specified retention policy from the specified organization.</p>",
     "DeleteUser": "<p>Deletes a user from Amazon WorkMail and all subsequent systems. Before you can delete a user, the user state must be <code>DISABLED</code>. Use the <a>DescribeUser</a> action to confirm the user state.</p> <p>Deleting a user is permanent and cannot be undone. WorkMail archives user mailboxes for 30 days before they are permanently removed.</p>",
     "DeregisterFromWorkMail": "<p>Mark a user, group, or resource as no longer used in Amazon WorkMail. This action disassociates the mailbox and schedules it for clean-up. WorkMail keeps mailboxes for 30 days before they are permanently removed. The functionality in the console is <i>Disable</i>.</p>",
     "DescribeGroup": "<p>Returns the data available for the group.</p>",
@@ -22,6 +23,7 @@
     "DisassociateDelegateFromResource": "<p>Removes a member from the resource's set of delegates.</p>",
     "DisassociateMemberFromGroup": "<p>Removes a member from a group.</p>",
     "GetAccessControlEffect": "<p>Gets the effects of an organization's access control rules as they apply to a specified IPv4 address, access protocol action, or user ID. </p>",
+    "GetDefaultRetentionPolicy": "<p>Gets the default retention policy details for the specified organization.</p>",
     "GetMailboxDetails": "<p>Requests a user's mailbox details for a specified organization and user.</p>",
     "ListAccessControlRules": "<p>Lists the access control rules for the specified organization.</p>",
     "ListAliases": "<p>Creates a paginated call to list the aliases associated with a given entity.</p>",
@@ -35,6 +37,7 @@
     "ListUsers": "<p>Returns summaries of the organization's users.</p>",
     "PutAccessControlRule": "<p>Adds a new access control rule for the specified organization. The rule allows or denies access to the organization for the specified IPv4 addresses, access protocol actions, and user IDs. Adding a new rule with the same name as an existing rule replaces the older rule.</p>",
     "PutMailboxPermissions": "<p>Sets permissions for a user, group, or resource. This replaces any pre-existing permissions.</p>",
+    "PutRetentionPolicy": "<p>Puts a retention policy to the specified organization.</p>",
     "RegisterToWorkMail": "<p>Registers an existing and disabled user, group, or resource for Amazon WorkMail use by associating a mailbox and calendaring capabilities. It performs no change if the user, group, or resource is enabled and fails if the user, group, or resource is deleted. This operation results in the accumulation of costs. For more information, see <a href=\"https://aws.amazon.com/workmail/pricing\">Pricing</a>. The equivalent console functionality for this operation is <i>Enable</i>. </p> <p>Users can either be created by calling the <a>CreateUser</a> API operation or they can be synchronized from your directory. For more information, see <a>DeregisterFromWorkMail</a>.</p>",
     "ResetPassword": "<p>Allows the administrator to reset the password for a user.</p>",
     "TagResource": "<p>Applies the specified tags to the specified Amazon WorkMail organization resource.</p>",
@@ -248,6 +251,16 @@
       "refs": {
       }
     },
+    "DeleteRetentionPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRetentionPolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteUserRequest": {
       "base": null,
       "refs": {
@@ -386,12 +399,41 @@
       "refs": {
       }
     },
+    "FolderConfiguration": {
+      "base": "<p>The configuration applied to an organization's folders by its retention policy.</p>",
+      "refs": {
+        "FolderConfigurations$member": null
+      }
+    },
+    "FolderConfigurations": {
+      "base": null,
+      "refs": {
+        "GetDefaultRetentionPolicyResponse$FolderConfigurations": "<p>The retention policy folder configurations.</p>",
+        "PutRetentionPolicyRequest$FolderConfigurations": "<p>The retention policy folder configurations.</p>"
+      }
+    },
+    "FolderName": {
+      "base": null,
+      "refs": {
+        "FolderConfiguration$Name": "<p>The folder name.</p>"
+      }
+    },
     "GetAccessControlEffectRequest": {
       "base": null,
       "refs": {
       }
     },
     "GetAccessControlEffectResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDefaultRetentionPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDefaultRetentionPolicyResponse": {
       "base": null,
       "refs": {
       }
@@ -663,6 +705,7 @@
         "DeleteGroupRequest$OrganizationId": "<p>The organization that contains the group.</p>",
         "DeleteMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the member (user or group) exists.</p>",
         "DeleteResourceRequest$OrganizationId": "<p>The identifier associated with the organization from which the resource is deleted.</p>",
+        "DeleteRetentionPolicyRequest$OrganizationId": "<p>The organization ID.</p>",
         "DeleteUserRequest$OrganizationId": "<p>The organization that contains the user to be deleted.</p>",
         "DeregisterFromWorkMailRequest$OrganizationId": "<p>The identifier for the organization under which the Amazon WorkMail entity exists.</p>",
         "DescribeGroupRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
@@ -673,6 +716,7 @@
         "DisassociateDelegateFromResourceRequest$OrganizationId": "<p>The identifier for the organization under which the resource exists.</p>",
         "DisassociateMemberFromGroupRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
         "GetAccessControlEffectRequest$OrganizationId": "<p>The identifier for the organization.</p>",
+        "GetDefaultRetentionPolicyRequest$OrganizationId": "<p>The organization ID.</p>",
         "GetMailboxDetailsRequest$OrganizationId": "<p>The identifier for the organization that contains the user whose mailbox details are being requested.</p>",
         "ListAccessControlRulesRequest$OrganizationId": "<p>The identifier for the organization.</p>",
         "ListAliasesRequest$OrganizationId": "<p>The identifier for the organization under which the entity exists.</p>",
@@ -685,6 +729,7 @@
         "OrganizationSummary$OrganizationId": "<p>The identifier associated with the organization.</p>",
         "PutAccessControlRuleRequest$OrganizationId": "<p>The identifier of the organization.</p>",
         "PutMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the user, group, or resource exists.</p>",
+        "PutRetentionPolicyRequest$OrganizationId": "<p>The organization ID.</p>",
         "RegisterToWorkMailRequest$OrganizationId": "<p>The identifier for the organization under which the user, group, or resource exists.</p>",
         "ResetPasswordRequest$OrganizationId": "<p>The identifier of the organization that contains the user for which the password is reset.</p>",
         "UpdateMailboxQuotaRequest$OrganizationId": "<p>The identifier for the organization that contains the user for whom to update the mailbox quota.</p>",
@@ -753,6 +798,12 @@
         "ListMailboxPermissionsResponse$Permissions": "<p>One page of the user, group, or resource mailbox permissions.</p>"
       }
     },
+    "PolicyDescription": {
+      "base": null,
+      "refs": {
+        "PutRetentionPolicyRequest$Description": "<p>The retention policy description.</p>"
+      }
+    },
     "PutAccessControlRuleRequest": {
       "base": null,
       "refs": {
@@ -769,6 +820,16 @@
       }
     },
     "PutMailboxPermissionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutRetentionPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutRetentionPolicyResponse": {
       "base": null,
       "refs": {
       }
@@ -850,6 +911,28 @@
         "ListResourcesResponse$Resources": "<p>One page of the organization's resource representation.</p>"
       }
     },
+    "RetentionAction": {
+      "base": null,
+      "refs": {
+        "FolderConfiguration$Action": "<p>The action to take on the folder contents at the end of the folder configuration period.</p>"
+      }
+    },
+    "RetentionPeriod": {
+      "base": null,
+      "refs": {
+        "FolderConfiguration$Period": "<p>The period of time at which the folder configuration action is applied.</p>"
+      }
+    },
+    "ShortString": {
+      "base": null,
+      "refs": {
+        "DeleteRetentionPolicyRequest$Id": "<p>The retention policy ID.</p>",
+        "GetDefaultRetentionPolicyResponse$Id": "<p>The retention policy ID.</p>",
+        "GetDefaultRetentionPolicyResponse$Name": "<p>The retention policy name.</p>",
+        "PutRetentionPolicyRequest$Id": "<p>The retention policy ID.</p>",
+        "PutRetentionPolicyRequest$Name": "<p>The retention policy name.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -867,6 +950,7 @@
         "EntityAlreadyRegisteredException$Message": null,
         "EntityNotFoundException$Message": null,
         "EntityStateException$Message": null,
+        "GetDefaultRetentionPolicyResponse$Description": "<p>The retention policy description.</p>",
         "InvalidConfigurationException$Message": null,
         "InvalidParameterException$Message": null,
         "InvalidPasswordException$Message": null,

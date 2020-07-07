@@ -25,7 +25,8 @@
         {"shape":"ServerException"},
         {"shape":"ClientException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"UpdateInProgressException"}
       ]
     },
     "CreateCluster":{
@@ -107,6 +108,20 @@
       "errors":[
         {"shape":"ClusterNotFoundException"},
         {"shape":"TargetNotFoundException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
+    "DeleteCapacityProvider":{
+      "name":"DeleteCapacityProvider",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCapacityProviderRequest"},
+      "output":{"shape":"DeleteCapacityProviderResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
         {"shape":"InvalidParameterException"}
       ]
     },
@@ -883,6 +898,8 @@
         "name":{"shape":"String"},
         "status":{"shape":"CapacityProviderStatus"},
         "autoScalingGroupProvider":{"shape":"AutoScalingGroupProvider"},
+        "updateStatus":{"shape":"CapacityProviderUpdateStatus"},
+        "updateStatusReason":{"shape":"String"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -896,7 +913,10 @@
     },
     "CapacityProviderStatus":{
       "type":"string",
-      "enum":["ACTIVE"]
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
     },
     "CapacityProviderStrategy":{
       "type":"list",
@@ -920,6 +940,14 @@
       "type":"integer",
       "max":1000,
       "min":0
+    },
+    "CapacityProviderUpdateStatus":{
+      "type":"string",
+      "enum":[
+        "DELETE_IN_PROGRESS",
+        "DELETE_COMPLETE",
+        "DELETE_FAILED"
+      ]
     },
     "CapacityProviders":{
       "type":"list",
@@ -1070,6 +1098,7 @@
         "entryPoint":{"shape":"StringList"},
         "command":{"shape":"StringList"},
         "environment":{"shape":"EnvironmentVariables"},
+        "environmentFiles":{"shape":"EnvironmentFiles"},
         "mountPoints":{"shape":"MountPointList"},
         "volumesFrom":{"shape":"VolumeFromList"},
         "linuxParameters":{"shape":"LinuxParameters"},
@@ -1167,6 +1196,7 @@
         "name":{"shape":"String"},
         "command":{"shape":"StringList"},
         "environment":{"shape":"EnvironmentVariables"},
+        "environmentFiles":{"shape":"EnvironmentFiles"},
         "cpu":{"shape":"BoxedInteger"},
         "memory":{"shape":"BoxedInteger"},
         "memoryReservation":{"shape":"BoxedInteger"},
@@ -1319,6 +1349,19 @@
       "type":"structure",
       "members":{
         "attributes":{"shape":"Attributes"}
+      }
+    },
+    "DeleteCapacityProviderRequest":{
+      "type":"structure",
+      "required":["capacityProvider"],
+      "members":{
+        "capacityProvider":{"shape":"String"}
+      }
+    },
+    "DeleteCapacityProviderResponse":{
+      "type":"structure",
+      "members":{
+        "capacityProvider":{"shape":"CapacityProvider"}
       }
     },
     "DeleteClusterRequest":{
@@ -1648,6 +1691,25 @@
         "transitEncryptionPort":{"shape":"BoxedInteger"},
         "authorizationConfig":{"shape":"EFSAuthorizationConfig"}
       }
+    },
+    "EnvironmentFile":{
+      "type":"structure",
+      "required":[
+        "value",
+        "type"
+      ],
+      "members":{
+        "value":{"shape":"String"},
+        "type":{"shape":"EnvironmentFileType"}
+      }
+    },
+    "EnvironmentFileType":{
+      "type":"string",
+      "enum":["s3"]
+    },
+    "EnvironmentFiles":{
+      "type":"list",
+      "member":{"shape":"EnvironmentFile"}
     },
     "EnvironmentVariables":{
       "type":"list",

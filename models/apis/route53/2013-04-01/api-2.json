@@ -31,7 +31,8 @@
         {"shape":"InvalidInput"},
         {"shape":"PublicZoneVPCAssociation"},
         {"shape":"ConflictingDomainExists"},
-        {"shape":"LimitsExceeded"}
+        {"shape":"LimitsExceeded"},
+        {"shape":"PriorRequestNotComplete"}
       ]
     },
     "ChangeResourceRecordSets":{
@@ -635,6 +636,19 @@
         {"shape":"InvalidDomainName"}
       ]
     },
+    "ListHostedZonesByVPC":{
+      "name":"ListHostedZonesByVPC",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/hostedzonesbyvpc"
+      },
+      "input":{"shape":"ListHostedZonesByVPCRequest"},
+      "output":{"shape":"ListHostedZonesByVPCResponse"},
+      "errors":[
+        {"shape":"InvalidInput"},
+        {"shape":"InvalidPaginationToken"}
+      ]
+    },
     "ListQueryLoggingConfigs":{
       "name":"ListQueryLoggingConfigs",
       "http":{
@@ -878,6 +892,7 @@
     }
   },
   "shapes":{
+    "AWSAccountID":{"type":"string"},
     "AccountLimit":{
       "type":"structure",
       "required":[
@@ -2243,7 +2258,38 @@
       },
       "exception":true
     },
+    "HostedZoneOwner":{
+      "type":"structure",
+      "members":{
+        "OwningAccount":{"shape":"AWSAccountID"},
+        "OwningService":{"shape":"HostedZoneOwningService"}
+      }
+    },
+    "HostedZoneOwningService":{
+      "type":"string",
+      "max":128
+    },
     "HostedZoneRRSetCount":{"type":"long"},
+    "HostedZoneSummaries":{
+      "type":"list",
+      "member":{
+        "shape":"HostedZoneSummary",
+        "locationName":"HostedZoneSummary"
+      }
+    },
+    "HostedZoneSummary":{
+      "type":"structure",
+      "required":[
+        "HostedZoneId",
+        "Name",
+        "Owner"
+      ],
+      "members":{
+        "HostedZoneId":{"shape":"ResourceId"},
+        "Name":{"shape":"DNSName"},
+        "Owner":{"shape":"HostedZoneOwner"}
+      }
+    },
     "HostedZones":{
       "type":"list",
       "member":{
@@ -2471,6 +2517,47 @@
         "NextDNSName":{"shape":"DNSName"},
         "NextHostedZoneId":{"shape":"ResourceId"},
         "MaxItems":{"shape":"PageMaxItems"}
+      }
+    },
+    "ListHostedZonesByVPCRequest":{
+      "type":"structure",
+      "required":[
+        "VPCId",
+        "VPCRegion"
+      ],
+      "members":{
+        "VPCId":{
+          "shape":"VPCId",
+          "location":"querystring",
+          "locationName":"vpcid"
+        },
+        "VPCRegion":{
+          "shape":"VPCRegion",
+          "location":"querystring",
+          "locationName":"vpcregion"
+        },
+        "MaxItems":{
+          "shape":"PageMaxItems",
+          "location":"querystring",
+          "locationName":"maxitems"
+        },
+        "NextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nexttoken"
+        }
+      }
+    },
+    "ListHostedZonesByVPCResponse":{
+      "type":"structure",
+      "required":[
+        "HostedZoneSummaries",
+        "MaxItems"
+      ],
+      "members":{
+        "HostedZoneSummaries":{"shape":"HostedZoneSummaries"},
+        "MaxItems":{"shape":"PageMaxItems"},
+        "NextToken":{"shape":"PaginationToken"}
       }
     },
     "ListHostedZonesRequest":{
@@ -3012,7 +3099,7 @@
     "PageTruncated":{"type":"boolean"},
     "PaginationToken":{
       "type":"string",
-      "max":256
+      "max":1024
     },
     "Period":{
       "type":"integer",

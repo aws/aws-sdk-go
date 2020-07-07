@@ -31,7 +31,7 @@
   "shapes":{
     "BodyBlob":{
       "type":"blob",
-      "max":5242880,
+      "max":6291456,
       "sensitive":true
     },
     "CustomAttributesHeader":{
@@ -92,6 +92,11 @@
           "shape":"TargetModelHeader",
           "location":"header",
           "locationName":"X-Amzn-SageMaker-Target-Model"
+        },
+        "TargetVariant":{
+          "shape":"TargetVariantHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Target-Variant"
         }
       },
       "payload":"Body"
@@ -151,6 +156,11 @@
       "max":1024,
       "min":1,
       "pattern":"\\A\\S[\\p{Print}]*\\z"
+    },
+    "TargetVariantHeader":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
     "ValidationError":{
       "type":"structure",

@@ -84,6 +84,10 @@ type ECSAPI interface {
 	DeleteAttributesWithContext(aws.Context, *ecs.DeleteAttributesInput, ...request.Option) (*ecs.DeleteAttributesOutput, error)
 	DeleteAttributesRequest(*ecs.DeleteAttributesInput) (*request.Request, *ecs.DeleteAttributesOutput)
 
+	DeleteCapacityProvider(*ecs.DeleteCapacityProviderInput) (*ecs.DeleteCapacityProviderOutput, error)
+	DeleteCapacityProviderWithContext(aws.Context, *ecs.DeleteCapacityProviderInput, ...request.Option) (*ecs.DeleteCapacityProviderOutput, error)
+	DeleteCapacityProviderRequest(*ecs.DeleteCapacityProviderInput) (*request.Request, *ecs.DeleteCapacityProviderOutput)
+
 	DeleteCluster(*ecs.DeleteClusterInput) (*ecs.DeleteClusterOutput, error)
 	DeleteClusterWithContext(aws.Context, *ecs.DeleteClusterInput, ...request.Option) (*ecs.DeleteClusterOutput, error)
 	DeleteClusterRequest(*ecs.DeleteClusterInput) (*request.Request, *ecs.DeleteClusterOutput)

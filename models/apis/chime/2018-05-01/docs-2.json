@@ -16,7 +16,8 @@
     "CreateAccount": "<p>Creates an Amazon Chime account under the administrator's AWS account. Only <code>Team</code> account types are currently supported for this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "CreateAttendee": "<p>Creates a new attendee for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "CreateBot": "<p>Creates a bot for an Amazon Chime Enterprise account.</p>",
-    "CreateMeeting": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "CreateMeeting": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "CreateMeetingWithAttendees": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p>",
     "CreateProxySession": "<p>Creates a proxy session on the specified Amazon Chime Voice Connector for the specified participant phone numbers.</p>",
     "CreateRoom": "<p>Creates a chat room for the specified Amazon Chime Enterprise account.</p>",
@@ -33,11 +34,12 @@
     "DeleteRoom": "<p>Deletes a chat room in an Amazon Chime Enterprise account.</p>",
     "DeleteRoomMembership": "<p>Removes a member from a chat room in an Amazon Chime Enterprise account.</p>",
     "DeleteVoiceConnector": "<p>Deletes the specified Amazon Chime Voice Connector. Any phone numbers associated with the Amazon Chime Voice Connector must be disassociated from it before it can be deleted.</p>",
+    "DeleteVoiceConnectorEmergencyCallingConfiguration": "<p>Deletes the emergency calling configuration details from the specified Amazon Chime Voice Connector.</p>",
     "DeleteVoiceConnectorGroup": "<p>Deletes the specified Amazon Chime Voice Connector group. Any <code>VoiceConnectorItems</code> and phone numbers associated with the group must be removed before it can be deleted.</p>",
-    "DeleteVoiceConnectorOrigination": "<p>Deletes the origination settings for the specified Amazon Chime Voice Connector.</p>",
+    "DeleteVoiceConnectorOrigination": "<p>Deletes the origination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to deleting the origination settings.</p> </note>",
     "DeleteVoiceConnectorProxy": "<p>Deletes the proxy configuration from the specified Amazon Chime Voice Connector.</p>",
     "DeleteVoiceConnectorStreamingConfiguration": "<p>Deletes the streaming configuration for the specified Amazon Chime Voice Connector.</p>",
-    "DeleteVoiceConnectorTermination": "<p>Deletes the termination settings for the specified Amazon Chime Voice Connector.</p>",
+    "DeleteVoiceConnectorTermination": "<p>Deletes the termination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to deleting the termination settings.</p> </note>",
     "DeleteVoiceConnectorTerminationCredentials": "<p>Deletes the specified SIP credentials used by your equipment to authenticate during call termination.</p>",
     "DisassociatePhoneNumberFromUser": "<p>Disassociates the primary provisioned phone number from the specified Amazon Chime user.</p>",
     "DisassociatePhoneNumbersFromVoiceConnector": "<p>Disassociates the specified phone numbers from the specified Amazon Chime Voice Connector.</p>",
@@ -54,10 +56,12 @@
     "GetPhoneNumberOrder": "<p>Retrieves details for the specified phone number order, such as order creation timestamp, phone numbers in E.164 format, product type, and order status.</p>",
     "GetPhoneNumberSettings": "<p>Retrieves the phone number settings for the administrator's AWS account, such as the default outbound calling name.</p>",
     "GetProxySession": "<p>Gets the specified proxy session details for the specified Amazon Chime Voice Connector.</p>",
+    "GetRetentionSettings": "<p>Gets the retention settings for the specified Amazon Chime Enterprise account. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "GetRoom": "<p>Retrieves room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "GetUser": "<p>Retrieves details for the specified user ID, such as primary email address, license type, and personal meeting PIN.</p> <p>To retrieve user details with an email address instead of a user ID, use the <a>ListUsers</a> action, and then filter by email address.</p>",
     "GetUserSettings": "<p>Retrieves settings for the specified user ID, such as any associated phone number settings.</p>",
     "GetVoiceConnector": "<p>Retrieves details for the specified Amazon Chime Voice Connector, such as timestamps, name, outbound host, and encryption requirements.</p>",
+    "GetVoiceConnectorEmergencyCallingConfiguration": "<p>Gets the emergency calling configuration details for the specified Amazon Chime Voice Connector.</p>",
     "GetVoiceConnectorGroup": "<p>Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps, name, and associated <code>VoiceConnectorItems</code>.</p>",
     "GetVoiceConnectorLoggingConfiguration": "<p>Retrieves the logging configuration details for the specified Amazon Chime Voice Connector. Shows whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "GetVoiceConnectorOrigination": "<p>Retrieves origination setting details for the specified Amazon Chime Voice Connector.</p>",
@@ -84,12 +88,16 @@
     "ListVoiceConnectors": "<p>Lists the Amazon Chime Voice Connectors for the administrator's AWS account.</p>",
     "LogoutUser": "<p>Logs out the specified user from all of the devices they are currently logged into.</p>",
     "PutEventsConfiguration": "<p>Creates an events configuration that allows a bot to receive outgoing events sent by Amazon Chime. Choose either an HTTPS endpoint or a Lambda function ARN. For more information, see <a>Bot</a>.</p>",
+    "PutRetentionSettings": "<p>Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html\">Logging Amazon Chime API Calls with AWS CloudTrail</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>To turn off existing retention settings, remove the number of days from the corresponding <b>RetentionDays</b> field in the <b>RetentionSettings</b> object. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+    "PutVoiceConnectorEmergencyCallingConfiguration": "<p>Puts emergency calling configuration details to the specified Amazon Chime Voice Connector, such as emergency phone numbers and calling countries. Origination and termination settings must be enabled for the Amazon Chime Voice Connector before emergency calling can be configured.</p>",
     "PutVoiceConnectorLoggingConfiguration": "<p>Adds a logging configuration for the specified Amazon Chime Voice Connector. The logging configuration specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
-    "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p>",
+    "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to turning off origination settings.</p> </note>",
     "PutVoiceConnectorProxy": "<p>Puts the specified proxy configuration to the specified Amazon Chime Voice Connector.</p>",
     "PutVoiceConnectorStreamingConfiguration": "<p>Adds a streaming configuration for the specified Amazon Chime Voice Connector. The streaming configuration specifies whether media streaming is enabled for sending to Amazon Kinesis. It also sets the retention period, in hours, for the Amazon Kinesis data.</p>",
-    "PutVoiceConnectorTermination": "<p>Adds termination settings for the specified Amazon Chime Voice Connector.</p>",
+    "PutVoiceConnectorTermination": "<p>Adds termination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to turning off termination settings.</p> </note>",
     "PutVoiceConnectorTerminationCredentials": "<p>Adds termination SIP credentials for the specified Amazon Chime Voice Connector.</p>",
+    "RedactConversationMessage": "<p>Redacts the specified message from the specified Amazon Chime conversation.</p>",
+    "RedactRoomMessage": "<p>Redacts the specified message from the specified Amazon Chime chat room.</p>",
     "RegenerateSecurityToken": "<p>Regenerates the security token for a bot.</p>",
     "ResetPersonalPIN": "<p>Resets the personal meeting PIN for the specified user on an Amazon Chime account. Returns the <a>User</a> object with the updated personal meeting PIN.</p>",
     "RestorePhoneNumber": "<p>Moves a phone number from the <b>Deletion queue</b> back into the phone number <b>Inventory</b>.</p>",
@@ -164,6 +172,12 @@
         "User$AlexaForBusinessMetadata": "<p>The Alexa for Business metadata.</p>"
       }
     },
+    "Alpha2CountryCode": {
+      "base": null,
+      "refs": {
+        "DNISEmergencyCallingConfiguration$CallingCountry": "<p>The country from which emergency calls are allowed, in ISO 3166-1 alpha-2 format.</p>"
+      }
+    },
     "AreaCode": {
       "base": null,
       "refs": {
@@ -232,6 +246,7 @@
       "base": null,
       "refs": {
         "BatchCreateAttendeeResponse$Attendees": "<p>The attendee information, including attendees IDs and join tokens.</p>",
+        "CreateMeetingWithAttendeesResponse$Attendees": "<p>The attendee information, including attendees IDs and join tokens.</p>",
         "ListAttendeesResponse$Attendees": "<p>The Amazon Chime SDK attendee information.</p>"
       }
     },
@@ -257,7 +272,8 @@
     "BatchCreateAttendeeErrorList": {
       "base": null,
       "refs": {
-        "BatchCreateAttendeeResponse$Errors": "<p>If the action fails for one or more of the attendees in the request, a list of the attendees is returned, along with error codes and error messages.</p>"
+        "BatchCreateAttendeeResponse$Errors": "<p>If the action fails for one or more of the attendees in the request, a list of the attendees is returned, along with error codes and error messages.</p>",
+        "CreateMeetingWithAttendeesResponse$Errors": "<p>If the action fails for one or more of the attendees in the request, a list of the attendees is returned, along with error codes and error messages.</p>"
       }
     },
     "BatchCreateAttendeeRequest": {
@@ -425,12 +441,19 @@
       "base": null,
       "refs": {
         "CreateMeetingRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different meetings.</p>",
+        "CreateMeetingWithAttendeesRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different meetings.</p>",
         "CreateRoomRequest$ClientRequestToken": "<p>The idempotency token for the request.</p>"
       }
     },
     "ConflictException": {
       "base": "<p>The request could not be processed because of conflict in the current state of the resource.</p>",
       "refs": {
+      }
+    },
+    "ConversationRetentionSettings": {
+      "base": "<p>The retention settings that determine how long to retain chat conversation messages for an Amazon Chime Enterprise account.</p>",
+      "refs": {
+        "RetentionSettings$ConversationRetentionSettings": "<p>The chat conversation retention settings.</p>"
       }
     },
     "Country": {
@@ -476,7 +499,8 @@
     "CreateAttendeeRequestItem": {
       "base": "<p>The Amazon Chime SDK attendee fields to create, used with the BatchCreateAttendee action.</p>",
       "refs": {
-        "CreateAttendeeRequestItemList$member": null
+        "CreateAttendeeRequestItemList$member": null,
+        "CreateMeetingWithAttendeesRequestItemList$member": null
       }
     },
     "CreateAttendeeRequestItemList": {
@@ -506,6 +530,22 @@
       }
     },
     "CreateMeetingResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMeetingWithAttendeesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMeetingWithAttendeesRequestItemList": {
+      "base": null,
+      "refs": {
+        "CreateMeetingWithAttendeesRequest$Attendees": "<p>The request containing the attendees to create.</p>"
+      }
+    },
+    "CreateMeetingWithAttendeesResponse": {
       "base": null,
       "refs": {
       }
@@ -592,6 +632,18 @@
         "PutVoiceConnectorTerminationCredentialsRequest$Credentials": "<p>The termination SIP credentials.</p>"
       }
     },
+    "DNISEmergencyCallingConfiguration": {
+      "base": "<p>The Dialed Number Identification Service (DNIS) emergency calling configuration details associated with an Amazon Chime Voice Connector's emergency calling configuration.</p>",
+      "refs": {
+        "DNISEmergencyCallingConfigurationList$member": null
+      }
+    },
+    "DNISEmergencyCallingConfigurationList": {
+      "base": null,
+      "refs": {
+        "EmergencyCallingConfiguration$DNIS": "<p>The Dialed Number Identification Service (DNIS) emergency calling configuration details.</p>"
+      }
+    },
     "DataRetentionInHours": {
       "base": null,
       "refs": {
@@ -639,6 +691,11 @@
       }
     },
     "DeleteRoomRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorEmergencyCallingConfigurationRequest": {
       "base": null,
       "refs": {
       }
@@ -722,6 +779,8 @@
       "base": null,
       "refs": {
         "AssociatePhoneNumberWithUserRequest$E164PhoneNumber": "<p>The phone number, in E.164 format.</p>",
+        "DNISEmergencyCallingConfiguration$EmergencyPhoneNumber": "<p>The DNIS phone number to route emergency calls to, in E.164 format.</p>",
+        "DNISEmergencyCallingConfiguration$TestPhoneNumber": "<p>The DNIS phone number to route test emergency calls to, in E.164 format.</p>",
         "E164PhoneNumberList$member": null,
         "OrderedPhoneNumber$E164PhoneNumber": "<p>The phone number, in E.164 format.</p>",
         "Participant$PhoneNumber": "<p>The participant's phone number.</p>",
@@ -761,6 +820,14 @@
         "Invite$EmailStatus": "<p>The status of the invite email.</p>"
       }
     },
+    "EmergencyCallingConfiguration": {
+      "base": "<p>The emergency calling configuration details associated with an Amazon Chime Voice Connector.</p>",
+      "refs": {
+        "GetVoiceConnectorEmergencyCallingConfigurationResponse$EmergencyCallingConfiguration": "<p>The emergency calling configuration details.</p>",
+        "PutVoiceConnectorEmergencyCallingConfigurationRequest$EmergencyCallingConfiguration": "<p>The emergency calling configuration details.</p>",
+        "PutVoiceConnectorEmergencyCallingConfigurationResponse$EmergencyCallingConfiguration": "<p>The emergency calling configuration details.</p>"
+      }
+    },
     "ErrorCode": {
       "base": null,
       "refs": {
@@ -791,6 +858,7 @@
       "base": null,
       "refs": {
         "CreateMeetingRequest$ExternalMeetingId": "<p>The external meeting ID.</p>",
+        "CreateMeetingWithAttendeesRequest$ExternalMeetingId": "<p>The external meeting ID.</p>",
         "Meeting$ExternalMeetingId": "<p>The external meeting ID.</p>"
       }
     },
@@ -801,7 +869,8 @@
         "CreateAttendeeError$ExternalUserId": "<p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
         "CreateAttendeeRequest$ExternalUserId": "<p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
         "CreateAttendeeRequestItem$ExternalUserId": "<p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
-        "CreateMeetingRequest$MeetingHostId": "<p>Reserved.</p>"
+        "CreateMeetingRequest$MeetingHostId": "<p>Reserved.</p>",
+        "CreateMeetingWithAttendeesRequest$MeetingHostId": "<p>Reserved.</p>"
       }
     },
     "ForbiddenException": {
@@ -923,6 +992,16 @@
       "refs": {
       }
     },
+    "GetRetentionSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRetentionSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetRoomRequest": {
       "base": null,
       "refs": {
@@ -949,6 +1028,16 @@
       }
     },
     "GetUserSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorEmergencyCallingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorEmergencyCallingConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -1103,6 +1192,7 @@
         "Bot$CreatedTimestamp": "<p>The bot creation timestamp, in ISO 8601 format.</p>",
         "Bot$UpdatedTimestamp": "<p>The updated bot timestamp, in ISO 8601 format.</p>",
         "GetPhoneNumberSettingsResponse$CallingNameUpdatedTimestamp": "<p>The updated outbound calling name timestamp, in ISO 8601 format.</p>",
+        "GetRetentionSettingsResponse$InitiateDeletionTimestamp": "<p>The timestamp representing the time at which the specified items are permanently deleted, in ISO 8601 format.</p>",
         "PhoneNumber$CreatedTimestamp": "<p>The phone number creation timestamp, in ISO 8601 format.</p>",
         "PhoneNumber$UpdatedTimestamp": "<p>The updated phone number timestamp, in ISO 8601 format.</p>",
         "PhoneNumber$DeletionTimestamp": "<p>The deleted phone number timestamp, in ISO 8601 format.</p>",
@@ -1112,6 +1202,7 @@
         "ProxySession$CreatedTimestamp": "<p>The created timestamp, in ISO 8601 format.</p>",
         "ProxySession$UpdatedTimestamp": "<p>The updated timestamp, in ISO 8601 format.</p>",
         "ProxySession$EndedTimestamp": "<p>The ended timestamp, in ISO 8601 format.</p>",
+        "PutRetentionSettingsResponse$InitiateDeletionTimestamp": "<p>The timestamp representing the time at which the specified items are permanently deleted, in ISO 8601 format.</p>",
         "Room$CreatedTimestamp": "<p>The room creation timestamp, in ISO 8601 format.</p>",
         "Room$UpdatedTimestamp": "<p>The room update timestamp, in ISO 8601 format.</p>",
         "RoomMembership$UpdatedTimestamp": "<p>The room membership update timestamp, in ISO 8601 format.</p>",
@@ -1334,6 +1425,7 @@
       "base": "<p>A meeting created using the Amazon Chime SDK.</p>",
       "refs": {
         "CreateMeetingResponse$Meeting": "<p>The meeting information, including the meeting ID and <code>MediaPlacement</code>.</p>",
+        "CreateMeetingWithAttendeesResponse$Meeting": null,
         "GetMeetingResponse$Meeting": "<p>The Amazon Chime SDK meeting information.</p>",
         "MeetingList$member": null
       }
@@ -1345,9 +1437,10 @@
       }
     },
     "MeetingNotificationConfiguration": {
-      "base": "<p>The configuration for resource targets to receive notifications when Amazon Chime SDK meeting and attendee events occur.</p>",
+      "base": "<p>The configuration for resource targets to receive notifications when Amazon Chime SDK meeting and attendee events occur. The Amazon Chime SDK supports resource targets located in the US East (N. Virginia) AWS Region (<code>us-east-1</code>).</p>",
       "refs": {
-        "CreateMeetingRequest$NotificationsConfiguration": "<p>The configuration for resource targets to receive notifications when meeting and attendee events occur.</p>"
+        "CreateMeetingRequest$NotificationsConfiguration": "<p>The configuration for resource targets to receive notifications when meeting and attendee events occur.</p>",
+        "CreateMeetingWithAttendeesRequest$NotificationsConfiguration": null
       }
     },
     "MeetingTagKeyList": {
@@ -1360,6 +1453,7 @@
       "base": null,
       "refs": {
         "CreateMeetingRequest$Tags": "<p>The tag key-value pairs.</p>",
+        "CreateMeetingWithAttendeesRequest$Tags": "<p>The tag key-value pairs.</p>",
         "TagMeetingRequest$Tags": "<p>The tag key-value pairs.</p>"
       }
     },
@@ -1432,6 +1526,7 @@
         "DeleteRoomMembershipRequest$MemberId": "<p>The member ID (user ID or bot ID).</p>",
         "DeleteRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteRoomRequest$RoomId": "<p>The chat room ID.</p>",
+        "DeleteVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "DeleteVoiceConnectorGroupRequest$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
         "DeleteVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "DeleteVoiceConnectorRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -1447,10 +1542,12 @@
         "GetBotRequest$BotId": "<p>The bot ID.</p>",
         "GetEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
+        "GetRetentionSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetRoomRequest$RoomId": "<p>The room ID.</p>",
         "GetUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetUserRequest$UserId": "<p>The user ID.</p>",
+        "GetVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "GetVoiceConnectorGroupRequest$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
         "GetVoiceConnectorLoggingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "GetVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -1474,11 +1571,19 @@
         "PhoneNumberError$PhoneNumberId": "<p>The phone number ID for which the action failed.</p>",
         "PutEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "PutEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
+        "PutRetentionSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "PutVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorLoggingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorStreamingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorTerminationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
+        "RedactConversationMessageRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "RedactConversationMessageRequest$ConversationId": "<p>The conversation ID.</p>",
+        "RedactConversationMessageRequest$MessageId": "<p>The message ID.</p>",
+        "RedactRoomMessageRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "RedactRoomMessageRequest$RoomId": "<p>The room ID.</p>",
+        "RedactRoomMessageRequest$MessageId": "<p>The message ID.</p>",
         "RegenerateSecurityTokenRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "RegenerateSecurityTokenRequest$BotId": "<p>The bot ID.</p>",
         "ResetPersonalPINRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -1540,6 +1645,12 @@
     "NotFoundException": {
       "base": "<p>One or more of the resources in the request does not exist in the system.</p>",
       "refs": {
+      }
+    },
+    "NotificationTarget": {
+      "base": null,
+      "refs": {
+        "StreamingNotificationTarget$NotificationTarget": "<p>The streaming notification target.</p>"
       }
     },
     "NullableBoolean": {
@@ -1811,6 +1922,26 @@
       "refs": {
       }
     },
+    "PutRetentionSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutRetentionSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorEmergencyCallingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorEmergencyCallingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutVoiceConnectorLoggingConfigurationRequest": {
       "base": null,
       "refs": {
@@ -1862,6 +1993,26 @@
       }
     },
     "PutVoiceConnectorTerminationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RedactConversationMessageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RedactConversationMessageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RedactRoomMessageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RedactRoomMessageResponse": {
       "base": null,
       "refs": {
       }
@@ -1922,6 +2073,21 @@
         "ListVoiceConnectorsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>"
       }
     },
+    "RetentionDays": {
+      "base": null,
+      "refs": {
+        "ConversationRetentionSettings$RetentionDays": "<p>The number of days for which to retain chat conversation messages.</p>",
+        "RoomRetentionSettings$RetentionDays": "<p>The number of days for which to retain chat room messages.</p>"
+      }
+    },
+    "RetentionSettings": {
+      "base": "<p>The retention settings for an Amazon Chime Enterprise account that determine how long to retain items such as chat room messages and chat conversation messages.</p>",
+      "refs": {
+        "GetRetentionSettingsResponse$RetentionSettings": "<p>The retention settings.</p>",
+        "PutRetentionSettingsRequest$RetentionSettings": "<p>The retention settings.</p>",
+        "PutRetentionSettingsResponse$RetentionSettings": "<p>The retention settings.</p>"
+      }
+    },
     "Room": {
       "base": "<p>The Amazon Chime chat room details.</p>",
       "refs": {
@@ -1958,6 +2124,12 @@
         "MembershipItem$Role": "<p>The member role.</p>",
         "RoomMembership$Role": "<p>The membership role.</p>",
         "UpdateRoomMembershipRequest$Role": "<p>The role of the member.</p>"
+      }
+    },
+    "RoomRetentionSettings": {
+      "base": "<p>The retention settings that determine how long to retain chat room messages for an Amazon Chime Enterprise account.</p>",
+      "refs": {
+        "RetentionSettings$RoomRetentionSettings": "<p>The chat room retention settings.</p>"
       }
     },
     "SearchAvailablePhoneNumbersRequest": {
@@ -2032,6 +2204,18 @@
         "PutVoiceConnectorStreamingConfigurationResponse$StreamingConfiguration": "<p>The updated streaming configuration details.</p>"
       }
     },
+    "StreamingNotificationTarget": {
+      "base": "<p>The targeted recipient for a streaming configuration notification.</p>",
+      "refs": {
+        "StreamingNotificationTargetList$member": null
+      }
+    },
+    "StreamingNotificationTargetList": {
+      "base": null,
+      "refs": {
+        "StreamingConfiguration$StreamingNotificationTargets": "<p>The streaming notification targets.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -2048,7 +2232,8 @@
         "ConflictException$Message": null,
         "CreateAttendeeError$ErrorCode": "<p>The error code.</p>",
         "CreateAttendeeError$ErrorMessage": "<p>The error message.</p>",
-        "CreateMeetingRequest$MediaRegion": "<p>The Region in which to create the meeting. Available values: <code>ap-northeast-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
+        "CreateMeetingRequest$MediaRegion": "<p>The Region in which to create the meeting. Default: <code>us-east-1</code>.</p> <p>Available values: <code>ap-northeast-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
+        "CreateMeetingWithAttendeesRequest$MediaRegion": "<p>The Region in which to create the meeting. Default: <code>us-east-1</code>.</p> <p>Available values: <code>ap-northeast-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
         "CreateUserRequest$Username": "<p>The user name.</p>",
         "DeletePhoneNumberRequest$PhoneNumberId": "<p>The phone number ID.</p>",
         "DisassociatePhoneNumberFromUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",

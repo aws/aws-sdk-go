@@ -3716,6 +3716,9 @@ const (
 	// VoiceIdKendra is a VoiceId enum value
 	VoiceIdKendra = "Kendra"
 
+	// VoiceIdKevin is a VoiceId enum value
+	VoiceIdKevin = "Kevin"
+
 	// VoiceIdKimberly is a VoiceId enum value
 	VoiceIdKimberly = "Kimberly"
 

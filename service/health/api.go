@@ -1794,6 +1794,8 @@ type DescribeAffectedAccountsForOrganizationOutput struct {
 	// A JSON set of elements of the affected accounts.
 	AffectedAccounts []*string `locationName:"affectedAccounts" type:"list"`
 
+	EventScopeCode *string `locationName:"eventScopeCode" type:"string" enum:"EventScopeCode"`
+
 	// If the results of a search are large, only a portion of the results are returned,
 	// and a nextToken pagination token is returned in the response. To retrieve
 	// the next batch of results, reissue the search request and include the returned
@@ -1815,6 +1817,12 @@ func (s DescribeAffectedAccountsForOrganizationOutput) GoString() string {
 // SetAffectedAccounts sets the AffectedAccounts field's value.
 func (s *DescribeAffectedAccountsForOrganizationOutput) SetAffectedAccounts(v []*string) *DescribeAffectedAccountsForOrganizationOutput {
 	s.AffectedAccounts = v
+	return s
+}
+
+// SetEventScopeCode sets the EventScopeCode field's value.
+func (s *DescribeAffectedAccountsForOrganizationOutput) SetEventScopeCode(v string) *DescribeAffectedAccountsForOrganizationOutput {
+	s.EventScopeCode = &v
 	return s
 }
 
@@ -3035,6 +3043,8 @@ type Event struct {
 	// The date and time that the event ended.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
+	EventScopeCode *string `locationName:"eventScopeCode" type:"string" enum:"EventScopeCode"`
+
 	// The category of the event. Possible values are issue, scheduledChange, and
 	// accountNotification.
 	EventTypeCategory *string `locationName:"eventTypeCategory" min:"3" type:"string" enum:"EventTypeCategory"`
@@ -3088,6 +3098,12 @@ func (s *Event) SetEndTime(v time.Time) *Event {
 	return s
 }
 
+// SetEventScopeCode sets the EventScopeCode field's value.
+func (s *Event) SetEventScopeCode(v string) *Event {
+	s.EventScopeCode = &v
+	return s
+}
+
 // SetEventTypeCategory sets the EventTypeCategory field's value.
 func (s *Event) SetEventTypeCategory(v string) *Event {
 	s.EventTypeCategory = &v
@@ -3136,9 +3152,7 @@ type EventAccountFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The 12-digit AWS account numbers that contains the affected entities.
-	//
-	// AwsAccountId is a required field
-	AwsAccountId *string `locationName:"awsAccountId" type:"string" required:"true"`
+	AwsAccountId *string `locationName:"awsAccountId" type:"string"`
 
 	// The unique identifier for the event. Format: arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
 	// . Example: Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
@@ -3160,9 +3174,6 @@ func (s EventAccountFilter) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *EventAccountFilter) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "EventAccountFilter"}
-	if s.AwsAccountId == nil {
-		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
-	}
 	if s.EventArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventArn"))
 	}
@@ -3738,6 +3749,8 @@ type OrganizationEvent struct {
 	// The date and time that the event ended.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
+	EventScopeCode *string `locationName:"eventScopeCode" type:"string" enum:"EventScopeCode"`
+
 	// The category of the event type.
 	EventTypeCategory *string `locationName:"eventTypeCategory" min:"3" type:"string" enum:"EventTypeCategory"`
 
@@ -3781,6 +3794,12 @@ func (s *OrganizationEvent) SetArn(v string) *OrganizationEvent {
 // SetEndTime sets the EndTime field's value.
 func (s *OrganizationEvent) SetEndTime(v time.Time) *OrganizationEvent {
 	s.EndTime = &v
+	return s
+}
+
+// SetEventScopeCode sets the EventScopeCode field's value.
+func (s *OrganizationEvent) SetEventScopeCode(v string) *OrganizationEvent {
+	s.EventScopeCode = &v
 	return s
 }
 
@@ -4168,6 +4187,17 @@ const (
 const (
 	// EventAggregateFieldEventTypeCategory is a EventAggregateField enum value
 	EventAggregateFieldEventTypeCategory = "eventTypeCategory"
+)
+
+const (
+	// EventScopeCodePublic is a EventScopeCode enum value
+	EventScopeCodePublic = "PUBLIC"
+
+	// EventScopeCodeAccountSpecific is a EventScopeCode enum value
+	EventScopeCodeAccountSpecific = "ACCOUNT_SPECIFIC"
+
+	// EventScopeCodeNone is a EventScopeCode enum value
+	EventScopeCodeNone = "NONE"
 )
 
 const (

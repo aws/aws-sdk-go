@@ -647,7 +647,7 @@
       }
     },
     "InstanceFleetProvisioningSpecifications": {
-      "base": "<p>The launch specification for Spot instances in the fleet, which determines the defined duration and provisioning timeout behavior.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
+      "base": "<p>The launch specification for Spot instances in the fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. On-Demand and Spot instance allocation strategies are available in Amazon EMR version 5.12.1 and later.</p> </note>",
       "refs": {
         "InstanceFleet$LaunchSpecifications": "<p>Describes the launch specification for an instance fleet. </p>",
         "InstanceFleetConfig$LaunchSpecifications": "<p>The launch specification for the instance fleet.</p>"
@@ -915,7 +915,8 @@
         "ClusterSummary$NormalizedInstanceHours": "<p>An approximation of the cost of the cluster, represented in m1.small/hours. This value is incremented one time for every hour an m1.small instance runs. Larger instances are weighted more, so an EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>",
         "ComputeLimits$MinimumCapacityUnits": "<p> The lower boundary of EC2 units. It is measured through VCPU cores or instances for instance groups and measured through units for instance fleets. Managed scaling activities are not allowed beyond this boundary. The limit only applies to the core and task nodes. The master node cannot be scaled after initial configuration. </p>",
         "ComputeLimits$MaximumCapacityUnits": "<p> The upper boundary of EC2 units. It is measured through VCPU cores or instances for instance groups and measured through units for instance fleets. Managed scaling activities are not allowed beyond this boundary. The limit only applies to the core and task nodes. The master node cannot be scaled after initial configuration. </p>",
-        "ComputeLimits$MaximumOnDemandCapacityUnits": "<p> The upper boundary of on-demand EC2 units. It is measured through VCPU cores or instances for instance groups and measured through units for instance fleets. The on-demand units are not allowed to scale beyond this boundary. The limit only applies to the core and task nodes. The master node cannot be scaled after initial configuration. </p>",
+        "ComputeLimits$MaximumOnDemandCapacityUnits": "<p> The upper boundary of On-Demand EC2 units. It is measured through VCPU cores or instances for instance groups and measured through units for instance fleets. The On-Demand units are not allowed to scale beyond this boundary. The parameter is used to split capacity allocation between On-Demand and Spot instances. </p>",
+        "ComputeLimits$MaximumCoreCapacityUnits": "<p> The upper boundary of EC2 units for core node type in a cluster. It is measured through VCPU cores or instances for instance groups and measured through units for instance fleets. The core units are not allowed to scale beyond this boundary. The parameter is used to split capacity allocation between core and task nodes. </p>",
         "EbsBlockDeviceConfig$VolumesPerInstance": "<p>Number of EBS volumes with a specific volume configuration that will be associated with every instance in the instance group</p>",
         "InstanceGroup$RequestedInstanceCount": "<p>The target number of instances for the instance group.</p>",
         "InstanceGroup$RunningInstanceCount": "<p>The number of instances currently running in this instance group.</p>",
@@ -1177,6 +1178,18 @@
         "InstanceTypeSpecification$BidPriceAsPercentageOfOnDemandPrice": "<p>The bid price, as a percentage of On-Demand price, for each EC2 Spot instance as defined by <code>InstanceType</code>. Expressed as a number (for example, 20 specifies 20%).</p>"
       }
     },
+    "OnDemandProvisioningAllocationStrategy": {
+      "base": null,
+      "refs": {
+        "OnDemandProvisioningSpecification$AllocationStrategy": "<p> Specifies the strategy to use in launching On-Demand instance fleets. Currently, the only option is lowest-price (the default), which launches the lowest price first. </p>"
+      }
+    },
+    "OnDemandProvisioningSpecification": {
+      "base": "<p> The launch specification for On-Demand instances in the instance fleet, which determines the allocation strategy. </p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. On-Demand instances allocation strategy is available in Amazon EMR version 5.12.1 and later.</p> </note>",
+      "refs": {
+        "InstanceFleetProvisioningSpecifications$OnDemandSpecification": "<p> The launch specification for On-Demand instances in the instance fleet, which determines the allocation strategy. </p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. On-Demand instances allocation strategy is available in Amazon EMR version 5.12.1 and later.</p> </note>"
+      }
+    },
     "OptionalArnType": {
       "base": null,
       "refs": {
@@ -1382,10 +1395,16 @@
         "ScalingAction$SimpleScalingPolicyConfiguration": "<p>The type of adjustment the automatic scaling activity makes when triggered, and the periodicity of the adjustment.</p>"
       }
     },
-    "SpotProvisioningSpecification": {
-      "base": "<p>The launch specification for Spot instances in the instance fleet, which determines the defined duration and provisioning timeout behavior.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
+    "SpotProvisioningAllocationStrategy": {
+      "base": null,
       "refs": {
-        "InstanceFleetProvisioningSpecifications$SpotSpecification": "<p>The launch specification for Spot instances in the fleet, which determines the defined duration and provisioning timeout behavior.</p>"
+        "SpotProvisioningSpecification$AllocationStrategy": "<p> Specifies the strategy to use in launching Spot instance fleets. Currently, the only option is capacity-optimized (the default), which launches instances from Spot instance pools with optimal capacity for the number of instances that are launching. </p>"
+      }
+    },
+    "SpotProvisioningSpecification": {
+      "base": "<p>The launch specification for Spot instances in the instance fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. Spot instance allocation strategy is available in Amazon EMR version 5.12.1 and later.</p> </note>",
+      "refs": {
+        "InstanceFleetProvisioningSpecifications$SpotSpecification": "<p>The launch specification for Spot instances in the fleet, which determines the defined duration, provisioning timeout behavior, and allocation strategy.</p>"
       }
     },
     "SpotProvisioningTimeoutAction": {
@@ -1527,6 +1546,7 @@
         "CloudWatchAlarmDefinition$Namespace": "<p>The namespace for the CloudWatch metric. The default is <code>AWS/ElasticMapReduce</code>.</p>",
         "Cluster$Name": "<p>The name of the cluster.</p>",
         "Cluster$LogUri": "<p>The path to the Amazon S3 location where logs for this cluster are stored.</p>",
+        "Cluster$LogEncryptionKmsKeyId": "<p> The AWS KMS customer master key (CMK) used for encrypting log files. This attribute is only available with EMR version 5.30.0 and later, excluding EMR 6.0.0. </p>",
         "Cluster$RequestedAmiVersion": "<p>The AMI version requested for this cluster.</p>",
         "Cluster$RunningAmiVersion": "<p>The AMI version running on this cluster.</p>",
         "Cluster$ReleaseLabel": "<p>The Amazon EMR release label, which determines the version of open-source application packages installed on the cluster. Release labels are in the form <code>emr-x.x.x</code>, where x.x.x is an Amazon EMR release version such as <code>emr-5.14.0</code>. For more information about Amazon EMR release versions and included application versions and features, see <a href=\"https://docs.aws.amazon.com/emr/latest/ReleaseGuide/\">https://docs.aws.amazon.com/emr/latest/ReleaseGuide/</a>. The release label applies only to Amazon EMR releases version 4.0 and later. Earlier versions use <code>AmiVersion</code>.</p>",
@@ -1675,6 +1695,7 @@
         "HadoopJarStepConfig$MainClass": "<p>The name of the main class in the specified Java file. If not specified, the JAR file should specify a Main-Class in its manifest file.</p>",
         "InstanceGroupDetail$LastStateChangeReason": "<p>Details regarding the state of the instance group.</p>",
         "JobFlowDetail$LogUri": "<p>The location in Amazon S3 where log files for the job are stored.</p>",
+        "JobFlowDetail$LogEncryptionKmsKeyId": "<p>The AWS KMS customer master key (CMK) used for encrypting log files. This attribute is only available with EMR version 5.30.0 and later, excluding EMR 6.0.0.</p>",
         "JobFlowDetail$JobFlowRole": "<p>The IAM role that was specified when the job flow was launched. The EC2 instances of the job flow assume this role.</p>",
         "JobFlowDetail$ServiceRole": "<p>The IAM role that will be assumed by the Amazon EMR service to access AWS resources on your behalf.</p>",
         "JobFlowDetail$AutoScalingRole": "<p>An IAM role for automatic scaling policies. The default role is <code>EMR_AutoScaling_DefaultRole</code>. The IAM role provides a way for the automatic scaling feature to get the required permissions it needs to launch and terminate EC2 instances in an instance group.</p>",
@@ -1685,6 +1706,7 @@
         "KeyValue$Value": "<p>The value part of the identified key.</p>",
         "PlacementType$AvailabilityZone": "<p>The Amazon EC2 Availability Zone for the cluster. <code>AvailabilityZone</code> is used for uniform instance groups, while <code>AvailabilityZones</code> (plural) is used for instance fleets.</p>",
         "RunJobFlowInput$LogUri": "<p>The location in Amazon S3 to write the log files of the job flow. If a value is not provided, logs are not created.</p>",
+        "RunJobFlowInput$LogEncryptionKmsKeyId": "<p>The AWS KMS customer master key (CMK) used for encrypting log files. If a value is not provided, the logs will remain encrypted by AES-256. This attribute is only available with EMR version 5.30.0 and later, excluding EMR 6.0.0.</p>",
         "RunJobFlowInput$AdditionalInfo": "<p>A JSON string for selecting additional features.</p>",
         "RunJobFlowInput$JobFlowRole": "<p>Also called instance profile and EC2 role. An IAM role for an EMR cluster. The EC2 instances of the cluster assume this role. The default role is <code>EMR_EC2_DefaultRole</code>. In order to use the default role, you must have already created it using the CLI or console.</p>",
         "RunJobFlowInput$ServiceRole": "<p>The IAM role that will be assumed by the Amazon EMR service to access AWS resources on your behalf.</p>",

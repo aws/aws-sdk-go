@@ -1895,6 +1895,7 @@
       },
       "exception":true
     },
+    "ApplyOnlyAtCronInterval":{"type":"boolean"},
     "ApproveAfterDays":{
       "type":"integer",
       "max":100,
@@ -1960,7 +1961,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
-        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"},
+        "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"}
       }
     },
     "AssociationDescriptionList":{
@@ -2215,7 +2217,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
-        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"},
+        "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"}
       }
     },
     "AssociationVersionLimitExceeded":{
@@ -3001,7 +3004,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
-        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"},
+        "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"}
       }
     },
     "CreateAssociationBatchResult":{
@@ -3027,7 +3031,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
-        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"},
+        "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"}
       }
     },
     "CreateAssociationResult":{
@@ -3076,6 +3081,10 @@
         "EndDate":{"shape":"MaintenanceWindowStringDateTime"},
         "Schedule":{"shape":"MaintenanceWindowSchedule"},
         "ScheduleTimezone":{"shape":"MaintenanceWindowTimezone"},
+        "ScheduleOffset":{
+          "shape":"MaintenanceWindowOffset",
+          "box":true
+        },
         "Duration":{"shape":"MaintenanceWindowDurationHours"},
         "Cutoff":{"shape":"MaintenanceWindowCutoff"},
         "AllowUnassociatedTargets":{"shape":"MaintenanceWindowAllowUnassociatedTargets"},
@@ -4671,6 +4680,10 @@
         "EndDate":{"shape":"MaintenanceWindowStringDateTime"},
         "Schedule":{"shape":"MaintenanceWindowSchedule"},
         "ScheduleTimezone":{"shape":"MaintenanceWindowTimezone"},
+        "ScheduleOffset":{
+          "shape":"MaintenanceWindowOffset",
+          "box":true
+        },
         "NextExecutionTime":{"shape":"MaintenanceWindowStringDateTime"},
         "Duration":{"shape":"MaintenanceWindowDurationHours"},
         "Cutoff":{"shape":"MaintenanceWindowCutoff"},
@@ -6298,6 +6311,10 @@
         "Cutoff":{"shape":"MaintenanceWindowCutoff"},
         "Schedule":{"shape":"MaintenanceWindowSchedule"},
         "ScheduleTimezone":{"shape":"MaintenanceWindowTimezone"},
+        "ScheduleOffset":{
+          "shape":"MaintenanceWindowOffset",
+          "box":true
+        },
         "EndDate":{"shape":"MaintenanceWindowStringDateTime"},
         "StartDate":{"shape":"MaintenanceWindowStringDateTime"},
         "NextExecutionTime":{"shape":"MaintenanceWindowStringDateTime"}
@@ -6347,6 +6364,11 @@
       "max":128,
       "min":3,
       "pattern":"^[a-zA-Z0-9_\\-.]{3,128}$"
+    },
+    "MaintenanceWindowOffset":{
+      "type":"integer",
+      "max":6,
+      "min":1
     },
     "MaintenanceWindowResourceType":{
       "type":"string",
@@ -6987,7 +7009,6 @@
     "OpsResultAttributeList":{
       "type":"list",
       "member":{"shape":"OpsResultAttribute"},
-      "max":1,
       "min":1
     },
     "OutputSource":{
@@ -8934,7 +8955,8 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
-        "SyncCompliance":{"shape":"AssociationSyncCompliance"}
+        "SyncCompliance":{"shape":"AssociationSyncCompliance"},
+        "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"}
       }
     },
     "UpdateAssociationResult":{
@@ -9012,6 +9034,10 @@
         "EndDate":{"shape":"MaintenanceWindowStringDateTime"},
         "Schedule":{"shape":"MaintenanceWindowSchedule"},
         "ScheduleTimezone":{"shape":"MaintenanceWindowTimezone"},
+        "ScheduleOffset":{
+          "shape":"MaintenanceWindowOffset",
+          "box":true
+        },
         "Duration":{
           "shape":"MaintenanceWindowDurationHours",
           "box":true
@@ -9044,6 +9070,10 @@
         "EndDate":{"shape":"MaintenanceWindowStringDateTime"},
         "Schedule":{"shape":"MaintenanceWindowSchedule"},
         "ScheduleTimezone":{"shape":"MaintenanceWindowTimezone"},
+        "ScheduleOffset":{
+          "shape":"MaintenanceWindowOffset",
+          "box":true
+        },
         "Duration":{"shape":"MaintenanceWindowDurationHours"},
         "Cutoff":{"shape":"MaintenanceWindowCutoff"},
         "AllowUnassociatedTargets":{"shape":"MaintenanceWindowAllowUnassociatedTargets"},

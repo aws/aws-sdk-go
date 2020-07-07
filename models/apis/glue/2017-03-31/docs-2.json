@@ -30,6 +30,8 @@
     "CreateUserDefinedFunction": "<p>Creates a new function definition in the Data Catalog.</p>",
     "CreateWorkflow": "<p>Creates a new workflow.</p>",
     "DeleteClassifier": "<p>Removes a classifier from the Data Catalog.</p>",
+    "DeleteColumnStatisticsForPartition": "<p>Delete the partition column statistics of a column.</p>",
+    "DeleteColumnStatisticsForTable": "<p>Retrieves table statistics of columns.</p>",
     "DeleteConnection": "<p>Deletes a connection from the Data Catalog.</p>",
     "DeleteCrawler": "<p>Removes a specified crawler from the AWS Glue Data Catalog, unless the crawler state is <code>RUNNING</code>.</p>",
     "DeleteDatabase": "<p>Removes a specified database from a Data Catalog.</p> <note> <p>After completing this operation, you no longer have access to the tables (and all table versions and partitions that might belong to the tables) and the user-defined functions in the deleted database. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>DeleteDatabase</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, <code>DeletePartition</code> or <code>BatchDeletePartition</code>, <code>DeleteUserDefinedFunction</code>, and <code>DeleteTable</code> or <code>BatchDeleteTable</code>, to delete any resources that belong to the database.</p> </note>",
@@ -47,6 +49,8 @@
     "GetCatalogImportStatus": "<p>Retrieves the status of a migration operation.</p>",
     "GetClassifier": "<p>Retrieve a classifier by name.</p>",
     "GetClassifiers": "<p>Lists all classifier objects in the Data Catalog.</p>",
+    "GetColumnStatisticsForPartition": "<p>Retrieves partition statistics of columns.</p>",
+    "GetColumnStatisticsForTable": "<p>Retrieves table statistics of columns.</p>",
     "GetConnection": "<p>Retrieves a connection definition from the Data Catalog.</p>",
     "GetConnections": "<p>Retrieves a list of connection definitions from the Data Catalog.</p>",
     "GetCrawler": "<p>Retrieves metadata for a specified crawler.</p>",
@@ -111,9 +115,12 @@
     "StopCrawler": "<p>If the specified crawler is running, stops the crawl.</p>",
     "StopCrawlerSchedule": "<p>Sets the schedule state of the specified crawler to <code>NOT_SCHEDULED</code>, but does not stop the crawler if it is already running.</p>",
     "StopTrigger": "<p>Stops a specified trigger.</p>",
+    "StopWorkflowRun": "<p>Stops the execution of the specified workflow run.</p>",
     "TagResource": "<p>Adds tags to a resource. A tag is a label you can assign to an AWS resource. In AWS Glue, you can tag only certain resources. For information about what resources you can tag, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a>.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateClassifier": "<p>Modifies an existing classifier (a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field is present).</p>",
+    "UpdateColumnStatisticsForPartition": "<p>Creates or updates partition statistics of columns.</p>",
+    "UpdateColumnStatisticsForTable": "<p>Creates or updates table statistics of columns.</p>",
     "UpdateConnection": "<p>Updates a connection definition in the Data Catalog.</p>",
     "UpdateCrawler": "<p>Updates a crawler. If a crawler is running, you must stop it using <code>StopCrawler</code> before updating it.</p>",
     "UpdateCrawlerSchedule": "<p>Updates the schedule of a crawler using a <code>cron</code> expression. </p>",
@@ -333,6 +340,18 @@
         "BatchStopJobRunResponse$SuccessfulSubmissions": "<p>A list of the JobRuns that were successfully submitted for stopping.</p>"
       }
     },
+    "BinaryColumnStatisticsData": {
+      "base": "<p>Defines a binary column statistics data.</p>",
+      "refs": {
+        "ColumnStatisticsData$BinaryColumnStatisticsData": "<p>Binary Column Statistics Data.</p>"
+      }
+    },
+    "Blob": {
+      "base": null,
+      "refs": {
+        "DecimalNumber$UnscaledValue": "<p>The unscaled numeric value.</p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
@@ -345,6 +364,12 @@
         "StorageDescriptor$Compressed": "<p> <code>True</code> if the data in the table is compressed, or <code>False</code> if not.</p>",
         "StorageDescriptor$StoredAsSubDirectories": "<p> <code>True</code> if the table data is stored in subdirectories, or <code>False</code> if not.</p>",
         "Table$IsRegisteredWithLakeFormation": "<p>Indicates whether the table has been registered with AWS Lake Formation.</p>"
+      }
+    },
+    "BooleanColumnStatisticsData": {
+      "base": "<p>Defines a boolean column statistics.</p>",
+      "refs": {
+        "ColumnStatisticsData$BooleanColumnStatisticsData": "<p>Boolean Column Statistics Data.</p>"
       }
     },
     "BooleanNullable": {
@@ -412,6 +437,8 @@
         "CreatePartitionRequest$CatalogId": "<p>The AWS account ID of the catalog in which the partition is to be created.</p>",
         "CreateTableRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the <code>Table</code>. If none is supplied, the AWS account ID is used by default.</p>",
         "CreateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the function. If none is provided, the AWS account ID is used by default.</p>",
+        "DeleteColumnStatisticsForPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
+        "DeleteColumnStatisticsForTableRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
         "DeleteConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>",
         "DeleteDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the database resides. If none is provided, the AWS account ID is used by default.</p>",
         "DeletePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be deleted resides. If none is provided, the AWS account ID is used by default.</p>",
@@ -419,6 +446,8 @@
         "DeleteTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>",
         "DeleteUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog where the function to be deleted is located. If none is supplied, the AWS account ID is used by default.</p>",
         "GetCatalogImportStatusRequest$CatalogId": "<p>The ID of the catalog to migrate. Currently, this should be the AWS account ID.</p>",
+        "GetColumnStatisticsForPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
+        "GetColumnStatisticsForTableRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
         "GetConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>",
         "GetConnectionsRequest$CatalogId": "<p>The ID of the Data Catalog in which the connections reside. If none is provided, the AWS account ID is used by default.</p>",
         "GetDataCatalogEncryptionSettingsRequest$CatalogId": "<p>The ID of the Data Catalog to retrieve the security configuration for. If none is provided, the AWS account ID is used by default.</p>",
@@ -435,6 +464,8 @@
         "ImportCatalogToGlueRequest$CatalogId": "<p>The ID of the catalog to import. Currently, this should be the AWS account ID.</p>",
         "PutDataCatalogEncryptionSettingsRequest$CatalogId": "<p>The ID of the Data Catalog to set the security configuration for. If none is provided, the AWS account ID is used by default.</p>",
         "SearchTablesRequest$CatalogId": "<p>A unique identifier, consisting of <code> <i>account_id</i>/datalake</code>.</p>",
+        "UpdateColumnStatisticsForPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
+        "UpdateColumnStatisticsForTableRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
         "UpdateConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>",
         "UpdateDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the metadata database resides. If none is provided, the AWS account ID is used by default.</p>",
         "UpdatePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be updated resides. If none is provided, the AWS account ID is used by default.</p>",
@@ -570,6 +601,19 @@
         "ColumnList$member": null
       }
     },
+    "ColumnError": {
+      "base": "<p>Defines a column containing error.</p>",
+      "refs": {
+        "ColumnErrors$member": null
+      }
+    },
+    "ColumnErrors": {
+      "base": null,
+      "refs": {
+        "GetColumnStatisticsForPartitionResponse$Errors": "<p>Error occurred during retrieving column statistics data.</p>",
+        "GetColumnStatisticsForTableResponse$Errors": "<p>List of ColumnStatistics that failed to be retrieved.</p>"
+      }
+    },
     "ColumnList": {
       "base": null,
       "refs": {
@@ -583,6 +627,46 @@
       "refs": {
         "FindMatchesParameters$PrimaryKeyColumnName": "<p>The name of a column that uniquely identifies rows in the source table. Used to help identify matching records.</p>",
         "SchemaColumn$Name": "<p>The name of the column.</p>"
+      }
+    },
+    "ColumnStatistics": {
+      "base": "<p>Defines a column statistics.</p>",
+      "refs": {
+        "ColumnStatisticsError$ColumnStatistics": "<p>The ColumnStatistics of the column.</p>",
+        "ColumnStatisticsList$member": null,
+        "UpdateColumnStatisticsList$member": null
+      }
+    },
+    "ColumnStatisticsData": {
+      "base": "<p>Defines a column statistics data.</p>",
+      "refs": {
+        "ColumnStatistics$StatisticsData": "<p>The statistics of the column.</p>"
+      }
+    },
+    "ColumnStatisticsError": {
+      "base": "<p>Defines a column containing error.</p>",
+      "refs": {
+        "ColumnStatisticsErrors$member": null
+      }
+    },
+    "ColumnStatisticsErrors": {
+      "base": null,
+      "refs": {
+        "UpdateColumnStatisticsForPartitionResponse$Errors": "<p>Error occurred during updating column statistics data.</p>",
+        "UpdateColumnStatisticsForTableResponse$Errors": "<p>List of ColumnStatisticsErrors.</p>"
+      }
+    },
+    "ColumnStatisticsList": {
+      "base": null,
+      "refs": {
+        "GetColumnStatisticsForPartitionResponse$ColumnStatisticsList": "<p>List of ColumnStatistics that failed to be retrieved.</p>",
+        "GetColumnStatisticsForTableResponse$ColumnStatisticsList": "<p>List of ColumnStatistics that failed to be retrieved.</p>"
+      }
+    },
+    "ColumnStatisticsType": {
+      "base": null,
+      "refs": {
+        "ColumnStatisticsData$Type": "<p>The name of the column.</p>"
       }
     },
     "ColumnTypeString": {
@@ -741,9 +825,9 @@
     "CrawlerConfiguration": {
       "base": null,
       "refs": {
-        "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
-        "CreateCrawlerRequest$Configuration": "<p>The crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
-        "UpdateCrawlerRequest$Configuration": "<p>The crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>"
+        "Crawler$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
+        "CreateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>",
+        "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>"
       }
     },
     "CrawlerList": {
@@ -984,10 +1068,10 @@
     "CronExpression": {
       "base": null,
       "refs": {
-        "CreateCrawlerRequest$Schedule": "<p>A <code>cron</code> expression used to specify the schedule. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, specify <code>cron(15 12 * * ? *)</code>.</p>",
-        "Schedule$ScheduleExpression": "<p>A <code>cron</code> expression used to specify the schedule. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, specify <code>cron(15 12 * * ? *)</code>.</p>",
-        "UpdateCrawlerRequest$Schedule": "<p>A <code>cron</code> expression used to specify the schedule. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, specify <code>cron(15 12 * * ? *)</code>.</p>",
-        "UpdateCrawlerScheduleRequest$Schedule": "<p>The updated <code>cron</code> expression used to specify the schedule. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, specify <code>cron(15 12 * * ? *)</code>.</p>"
+        "CreateCrawlerRequest$Schedule": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
+        "Schedule$ScheduleExpression": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
+        "UpdateCrawlerRequest$Schedule": "<p>A <code>cron</code> expression used to specify the schedule (see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>",
+        "UpdateCrawlerScheduleRequest$Schedule": "<p>The updated <code>cron</code> expression used to specify the schedule (see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html\">Time-Based Schedules for Jobs and Crawlers</a>. For example, to run something every day at 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>"
       }
     },
     "CsvClassifier": {
@@ -1032,7 +1116,7 @@
       "base": null,
       "refs": {
         "CreateGrokClassifierRequest$CustomPatterns": "<p>Optional custom grok patterns used by this classifier.</p>",
-        "GrokClassifier$CustomPatterns": "<p>Optional custom grok patterns defined by this classifier. For more information, see custom patterns in <a href=\"http://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html\">Writing Custom Classifiers</a>.</p>",
+        "GrokClassifier$CustomPatterns": "<p>Optional custom grok patterns defined by this classifier. For more information, see custom patterns in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html\">Writing Custom Classifiers</a>.</p>",
         "UpdateGrokClassifierRequest$CustomPatterns": "<p>Optional custom grok patterns used by this classifier.</p>"
       }
     },
@@ -1097,6 +1181,25 @@
         "UpdateCrawlerRequest$DatabaseName": "<p>The AWS Glue database where results are stored, such as: <code>arn:aws:daylight:us-east-1::database/sometable/*</code>.</p>"
       }
     },
+    "DateColumnStatisticsData": {
+      "base": "<p>Defines a date column statistics data.</p>",
+      "refs": {
+        "ColumnStatisticsData$DateColumnStatisticsData": "<p>Date Column Statistics Data.</p>"
+      }
+    },
+    "DecimalColumnStatisticsData": {
+      "base": "<p>Defines a decimal column statistics data.</p>",
+      "refs": {
+        "ColumnStatisticsData$DecimalColumnStatisticsData": "<p>Decimal Column Statistics Data.</p>"
+      }
+    },
+    "DecimalNumber": {
+      "base": "<p>Contains a numeric value in decimal format.</p>",
+      "refs": {
+        "DecimalColumnStatisticsData$MinimumValue": "<p>Minimum value of the column.</p>",
+        "DecimalColumnStatisticsData$MaximumValue": "<p>Maximum value of the column.</p>"
+      }
+    },
     "DeleteBehavior": {
       "base": null,
       "refs": {
@@ -1109,6 +1212,26 @@
       }
     },
     "DeleteClassifierResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteColumnStatisticsForPartitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteColumnStatisticsForPartitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteColumnStatisticsForTableRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteColumnStatisticsForTableResponse": {
       "base": null,
       "refs": {
       }
@@ -1324,6 +1447,19 @@
         "BatchGetDevEndpointsResponse$DevEndpointsNotFound": "<p>A list of <code>DevEndpoints</code> not found.</p>"
       }
     },
+    "Double": {
+      "base": null,
+      "refs": {
+        "DoubleColumnStatisticsData$MinimumValue": "<p>Minimum value of the column.</p>",
+        "DoubleColumnStatisticsData$MaximumValue": "<p>Maximum value of the column.</p>"
+      }
+    },
+    "DoubleColumnStatisticsData": {
+      "base": "<p>Defines a double column statistics data.</p>",
+      "refs": {
+        "ColumnStatisticsData$DoubleColumnStatisticsData": "<p>Double Column Statistics Data.</p>"
+      }
+    },
     "DynamoDBTarget": {
       "base": "<p>Specifies an Amazon DynamoDB table to crawl.</p>",
       "refs": {
@@ -1376,6 +1512,8 @@
       "base": "<p>Contains details about an error.</p>",
       "refs": {
         "BatchStopJobRunError$ErrorDetail": "<p>Specifies details about the error that was encountered.</p>",
+        "ColumnError$Error": "<p>The error message occurred during operation.</p>",
+        "ColumnStatisticsError$Error": "<p>The error message occurred during operation.</p>",
         "ErrorByName$value": null,
         "PartitionError$ErrorDetail": "<p>The details about the partition error.</p>",
         "TableError$ErrorDetail": "<p>The details about the error.</p>",
@@ -1591,6 +1729,33 @@
       }
     },
     "GetClassifiersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetColumnNamesList": {
+      "base": null,
+      "refs": {
+        "GetColumnStatisticsForPartitionRequest$ColumnNames": "<p>A list of the column names.</p>",
+        "GetColumnStatisticsForTableRequest$ColumnNames": "<p>A list of the column names.</p>"
+      }
+    },
+    "GetColumnStatisticsForPartitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetColumnStatisticsForPartitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetColumnStatisticsForTableRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetColumnStatisticsForTableResponse": {
       "base": null,
       "refs": {
       }
@@ -2061,7 +2226,7 @@
       "base": null,
       "refs": {
         "CreateGrokClassifierRequest$GrokPattern": "<p>The grok pattern used by this classifier.</p>",
-        "GrokClassifier$GrokPattern": "<p>The grok pattern applied to a data store by this classifier. For more information, see built-in patterns in <a href=\"http://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html\">Writing Custom Classifiers</a>.</p>",
+        "GrokClassifier$GrokPattern": "<p>The grok pattern applied to a data store by this classifier. For more information, see built-in patterns in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html\">Writing Custom Classifiers</a>.</p>",
         "UpdateGrokClassifierRequest$GrokPattern": "<p>The grok pattern used by this classifier.</p>"
       }
     },
@@ -2120,6 +2285,7 @@
         "StartJobRunRequest$JobRunId": "<p>The ID of a previous <code>JobRun</code> to retry.</p>",
         "StartJobRunResponse$JobRunId": "<p>The ID assigned to this job run.</p>",
         "StartWorkflowRunResponse$RunId": "<p>An Id for the new run.</p>",
+        "StopWorkflowRunRequest$RunId": "<p>The ID of the workflow run to stop.</p>",
         "Trigger$Id": "<p>Reserved for future use.</p>",
         "WorkflowRun$WorkflowRunId": "<p>The ID of this workflow run.</p>",
         "WorkflowRunProperties$key": null
@@ -2127,6 +2293,11 @@
     },
     "IdempotentParameterMismatchException": {
       "base": "<p>The same unique identifier was associated with two different records.</p>",
+      "refs": {
+      }
+    },
+    "IllegalWorkflowStateException": {
+      "base": "<p>The workflow is in an invalid state to perform a requested operation.</p>",
       "refs": {
       }
     },
@@ -2150,6 +2321,7 @@
       "base": null,
       "refs": {
         "CodeGenNode$LineNumber": "<p>The line number of the node.</p>",
+        "DecimalNumber$Scale": "<p>The scale that determines where the decimal point falls in the unscaled value.</p>",
         "StorageDescriptor$NumberOfBuckets": "<p>Must be specified if the table contains any dimension columns.</p>"
       }
     },
@@ -2285,8 +2457,8 @@
     "JobRunState": {
       "base": null,
       "refs": {
-        "Condition$State": "<p>The condition state. Currently, the values supported are <code>SUCCEEDED</code>, <code>STOPPED</code>, <code>TIMEOUT</code>, and <code>FAILED</code>.</p>",
-        "JobRun$JobRunState": "<p>The current state of the job run.</p>"
+        "Condition$State": "<p>The condition state. Currently, the only job states that a trigger can listen for are <code>SUCCEEDED</code>, <code>STOPPED</code>, <code>FAILED</code>, and <code>TIMEOUT</code>. The only crawler states that a trigger can listen for are <code>SUCCEEDED</code>, <code>FAILED</code>, and <code>CANCELLED</code>.</p>",
+        "JobRun$JobRunState": "<p>The current state of the job run. For more information about the statuses of jobs that have terminated abnormally, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/job-run-statuses.html\">AWS Glue Job Run Statuses</a>.</p>"
       }
     },
     "JobUpdate": {
@@ -2304,9 +2476,9 @@
     "JsonPath": {
       "base": null,
       "refs": {
-        "CreateJsonClassifierRequest$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of <code>JsonPath</code>, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>",
-        "JsonClassifier$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of <code>JsonPath</code>, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>",
-        "UpdateJsonClassifierRequest$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of <code>JsonPath</code>, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>"
+        "CreateJsonClassifierRequest$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>",
+        "JsonClassifier$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>",
+        "UpdateJsonClassifierRequest$JsonPath": "<p>A <code>JsonPath</code> string defining the JSON data for the classifier to classify. AWS Glue supports a subset of JsonPath, as described in <a href=\"https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json\">Writing JsonPath Custom Classifiers</a>.</p>"
       }
     },
     "JsonValue": {
@@ -2466,6 +2638,19 @@
         "Condition$LogicalOperator": "<p>A logical operator.</p>"
       }
     },
+    "Long": {
+      "base": null,
+      "refs": {
+        "LongColumnStatisticsData$MinimumValue": "<p>Minimum value of the column.</p>",
+        "LongColumnStatisticsData$MaximumValue": "<p>Maximum value of the column.</p>"
+      }
+    },
+    "LongColumnStatisticsData": {
+      "base": "<p>Defines a long column statistics data.</p>",
+      "refs": {
+        "ColumnStatisticsData$LongColumnStatisticsData": "<p>Long Column Statistics Data.</p>"
+      }
+    },
     "MLTransform": {
       "base": "<p>A structure for a machine learning transform.</p>",
       "refs": {
@@ -2541,6 +2726,7 @@
         "EntityNotFoundException$Message": "<p>A message describing the problem.</p>",
         "GlueEncryptionException$Message": "<p>A message describing the problem.</p>",
         "IdempotentParameterMismatchException$Message": "<p>A message describing the problem.</p>",
+        "IllegalWorkflowStateException$Message": "<p>A message describing the problem.</p>",
         "InternalServiceException$Message": "<p>A message describing the problem.</p>",
         "InvalidInputException$Message": "<p>A message describing the problem.</p>",
         "MLTransformNotReadyException$Message": "<p>A message describing the problem.</p>",
@@ -2586,6 +2772,8 @@
         "CatalogTarget$DatabaseName": "<p>The name of the database to be synchronized.</p>",
         "ClassifierNameList$member": null,
         "Column$Name": "<p>The name of the <code>Column</code>.</p>",
+        "ColumnError$ColumnName": "<p>The name of the column.</p>",
+        "ColumnStatistics$ColumnName": "<p>The name of the column.</p>",
         "Condition$JobName": "<p>The name of the job whose <code>JobRuns</code> this condition applies to, and on which this trigger waits.</p>",
         "Condition$CrawlerName": "<p>The name of the crawler to which this condition applies.</p>",
         "Connection$Name": "<p>The name of the connection definition.</p>",
@@ -2622,6 +2810,12 @@
         "Database$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
         "DatabaseInput$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
         "DeleteClassifierRequest$Name": "<p>Name of the classifier to remove.</p>",
+        "DeleteColumnStatisticsForPartitionRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
+        "DeleteColumnStatisticsForPartitionRequest$TableName": "<p>The name of the partitions' table.</p>",
+        "DeleteColumnStatisticsForPartitionRequest$ColumnName": "<p>Name of the column.</p>",
+        "DeleteColumnStatisticsForTableRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
+        "DeleteColumnStatisticsForTableRequest$TableName": "<p>The name of the partitions' table.</p>",
+        "DeleteColumnStatisticsForTableRequest$ColumnName": "<p>The name of the column.</p>",
         "DeleteConnectionNameList$member": null,
         "DeleteConnectionRequest$ConnectionName": "<p>The name of the connection to delete.</p>",
         "DeleteCrawlerRequest$Name": "<p>The name of the crawler to remove.</p>",
@@ -2650,6 +2844,11 @@
         "ErrorDetail$ErrorCode": "<p>The code associated with this error.</p>",
         "FindMatchesTaskRunProperties$JobName": "<p>The name assigned to the job for the Find Matches task run.</p>",
         "GetClassifierRequest$Name": "<p>Name of the classifier to retrieve.</p>",
+        "GetColumnNamesList$member": null,
+        "GetColumnStatisticsForPartitionRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
+        "GetColumnStatisticsForPartitionRequest$TableName": "<p>The name of the partitions' table.</p>",
+        "GetColumnStatisticsForTableRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
+        "GetColumnStatisticsForTableRequest$TableName": "<p>The name of the partitions' table.</p>",
         "GetConnectionRequest$Name": "<p>The name of the connection definition to retrieve.</p>",
         "GetCrawlerRequest$Name": "<p>The name of the crawler to retrieve metadata for.</p>",
         "GetDatabaseRequest$Name": "<p>The name of the database to retrieve. For Hive compatibility, this should be all lowercase.</p>",
@@ -2673,7 +2872,7 @@
         "GetTriggersRequest$DependentJobName": "<p>The name of the job to retrieve triggers for. The trigger that can start this job is returned, and if there is no such trigger, all triggers are returned.</p>",
         "GetUserDefinedFunctionRequest$DatabaseName": "<p>The name of the catalog database where the function is located.</p>",
         "GetUserDefinedFunctionRequest$FunctionName": "<p>The name of the function.</p>",
-        "GetUserDefinedFunctionsRequest$DatabaseName": "<p>The name of the catalog database where the functions are located.</p>",
+        "GetUserDefinedFunctionsRequest$DatabaseName": "<p>The name of the catalog database where the functions are located. If none is provided, functions from all the databases across the catalog will be returned.</p>",
         "GetUserDefinedFunctionsRequest$Pattern": "<p>An optional function-name pattern string that filters the function definitions returned.</p>",
         "GetWorkflowRequest$Name": "<p>The name of the workflow to retrieve.</p>",
         "GetWorkflowRunPropertiesRequest$Name": "<p>Name of the workflow which was run.</p>",
@@ -2720,6 +2919,7 @@
         "StopCrawlerScheduleRequest$CrawlerName": "<p>Name of the crawler whose schedule state to set.</p>",
         "StopTriggerRequest$Name": "<p>The name of the trigger to stop.</p>",
         "StopTriggerResponse$Name": "<p>The name of the trigger that was stopped.</p>",
+        "StopWorkflowRunRequest$Name": "<p>The name of the workflow to stop.</p>",
         "Table$Name": "<p>The table name. For Hive compatibility, this must be entirely lowercase.</p>",
         "Table$DatabaseName": "<p>The name of the database where the table metadata resides. For Hive compatibility, this must be all lowercase.</p>",
         "Table$Owner": "<p>The owner of the table.</p>",
@@ -2733,6 +2933,10 @@
         "Trigger$WorkflowName": "<p>The name of the workflow associated with the trigger.</p>",
         "TriggerNameList$member": null,
         "TriggerUpdate$Name": "<p>Reserved for future use.</p>",
+        "UpdateColumnStatisticsForPartitionRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
+        "UpdateColumnStatisticsForPartitionRequest$TableName": "<p>The name of the partitions' table.</p>",
+        "UpdateColumnStatisticsForTableRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
+        "UpdateColumnStatisticsForTableRequest$TableName": "<p>The name of the partitions' table.</p>",
         "UpdateConnectionRequest$Name": "<p>The name of the connection definition to update.</p>",
         "UpdateCrawlerRequest$Name": "<p>Name of the new crawler.</p>",
         "UpdateCrawlerScheduleRequest$CrawlerName": "<p>The name of the crawler whose schedule to update.</p>",
@@ -2753,6 +2957,7 @@
         "UpdateWorkflowResponse$Name": "<p>The name of the workflow which was specified in input.</p>",
         "UpdateXMLClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "UserDefinedFunction$FunctionName": "<p>The name of the function.</p>",
+        "UserDefinedFunction$DatabaseName": "<p>The name of the database where the function resides.</p>",
         "UserDefinedFunction$ClassName": "<p>The Java class that contains the function code.</p>",
         "UserDefinedFunction$OwnerName": "<p>The owner of the function.</p>",
         "UserDefinedFunctionInput$FunctionName": "<p>The name of the function.</p>",
@@ -2798,9 +3003,11 @@
     "NonNegativeDouble": {
       "base": null,
       "refs": {
+        "BinaryColumnStatisticsData$AverageLength": "<p>Average length of the column.</p>",
         "CrawlerMetrics$TimeLeftSeconds": "<p>The estimated time left to complete a running crawl.</p>",
         "CrawlerMetrics$LastRuntimeSeconds": "<p>The duration of the crawler's most recent run, in seconds.</p>",
-        "CrawlerMetrics$MedianRuntimeSeconds": "<p>The median duration of this crawler's runs, in seconds.</p>"
+        "CrawlerMetrics$MedianRuntimeSeconds": "<p>The median duration of this crawler's runs, in seconds.</p>",
+        "StringColumnStatisticsData$AverageLength": "<p>Average value of the column.</p>"
       }
     },
     "NonNegativeInteger": {
@@ -2812,6 +3019,27 @@
         "Segment$SegmentNumber": "<p>The zero-based index number of the segment. For example, if the total number of segments is 4, <code>SegmentNumber</code> values range from 0 through 3.</p>",
         "Table$Retention": "<p>The retention time for this table.</p>",
         "TableInput$Retention": "<p>The retention time for this table.</p>"
+      }
+    },
+    "NonNegativeLong": {
+      "base": null,
+      "refs": {
+        "BinaryColumnStatisticsData$MaximumLength": "<p>Maximum length of the column.</p>",
+        "BinaryColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
+        "BooleanColumnStatisticsData$NumberOfTrues": "<p>Number of true value.</p>",
+        "BooleanColumnStatisticsData$NumberOfFalses": "<p>Number of false value.</p>",
+        "BooleanColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
+        "DateColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
+        "DateColumnStatisticsData$NumberOfDistinctValues": "<p>Number of distinct values.</p>",
+        "DecimalColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
+        "DecimalColumnStatisticsData$NumberOfDistinctValues": "<p>Number of distinct values.</p>",
+        "DoubleColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
+        "DoubleColumnStatisticsData$NumberOfDistinctValues": "<p>Number of distinct values.</p>",
+        "LongColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
+        "LongColumnStatisticsData$NumberOfDistinctValues": "<p>Number of distinct values.</p>",
+        "StringColumnStatisticsData$MaximumLength": "<p>Maximum value of the column.</p>",
+        "StringColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
+        "StringColumnStatisticsData$NumberOfDistinctValues": "<p>Number of distinct values.</p>"
       }
     },
     "NotificationProperty": {
@@ -2839,6 +3067,7 @@
         "CreateCsvClassifierRequest$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
         "CsvClassifier$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is <code>true</code>.</p>",
         "CsvClassifier$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
+        "DynamoDBTarget$scanAll": "<p>Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table.</p> <p>A value of <code>true</code> means to scan all records, while a value of <code>false</code> means to sample the records. If no value is specified, the value defaults to <code>true</code>.</p>",
         "FindMatchesParameters$EnforceProvidedLabels": "<p>The value to switch on or off to force the output to match the provided labels from users. If the value is <code>True</code>, the <code>find matches</code> transform forces the output to match the provided labels. The results override the normal conflation results. If the value is <code>False</code>, the <code>find matches</code> transform does not ensure all the labels provided are respected, and the results rely on the trained model.</p> <p>Note that setting this value to true may increase the conflation execution time.</p>",
         "GetWorkflowRequest$IncludeGraph": "<p>Specifies whether to include a graph when returning the workflow resource metadata.</p>",
         "GetWorkflowRunRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
@@ -2852,6 +3081,7 @@
       "refs": {
         "CreateJobRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "CreateMLTransformRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>. </p> <p> <code>MaxCapacity</code> is a mutually exclusive option with <code>NumberOfWorkers</code> and <code>WorkerType</code>.</p> <ul> <li> <p>If either <code>NumberOfWorkers</code> or <code>WorkerType</code> is set, then <code>MaxCapacity</code> cannot be set.</p> </li> <li> <p>If <code>MaxCapacity</code> is set then neither <code>NumberOfWorkers</code> or <code>WorkerType</code> can be set.</p> </li> <li> <p>If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and vice versa).</p> </li> <li> <p> <code>MaxCapacity</code> and <code>NumberOfWorkers</code> must both be at least 1.</p> </li> </ul> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
+        "DynamoDBTarget$scanRate": "<p>The percentage of the configured read capacity units to use by the AWS Glue crawler. Read capacity units is a term defined by DynamoDB, and is a numeric value that acts as rate limiter for the number of reads that can be performed on that table per second.</p> <p>The valid values are null or a value between 0.1 to 1.5. A null value is used when user does not provide a value, and defaults to 0.5 of the configured Read Capacity Unit (for provisioned tables), or 0.25 of the max configured Read Capacity Unit (for tables using on-demand mode).</p>",
         "GetMLTransformResponse$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
         "Job$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "JobRun$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://docs.aws.amazon.com/https:/aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
@@ -3025,8 +3255,8 @@
     "PathList": {
       "base": null,
       "refs": {
-        "JdbcTarget$Exclusions": "<p>A list of glob patterns used to exclude from the crawl. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/add-crawler.html\">Catalog Tables with a Crawler</a>.</p>",
-        "S3Target$Exclusions": "<p>A list of glob patterns used to exclude from the crawl. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/add-crawler.html\">Catalog Tables with a Crawler</a>.</p>"
+        "JdbcTarget$Exclusions": "<p>A list of glob patterns used to exclude from the crawl. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html\">Catalog Tables with a Crawler</a>.</p>",
+        "S3Target$Exclusions": "<p>A list of glob patterns used to exclude from the crawl. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html\">Catalog Tables with a Crawler</a>.</p>"
       }
     },
     "Permission": {
@@ -3544,6 +3774,16 @@
       "refs": {
       }
     },
+    "StopWorkflowRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopWorkflowRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StorageDescriptor": {
       "base": "<p>Describes the physical storage of table data.</p>",
       "refs": {
@@ -3551,6 +3791,12 @@
         "PartitionInput$StorageDescriptor": "<p>Provides information about the physical location where the partition is stored.</p>",
         "Table$StorageDescriptor": "<p>A storage descriptor containing information about the physical storage of this table.</p>",
         "TableInput$StorageDescriptor": "<p>A storage descriptor containing information about the physical storage of this table.</p>"
+      }
+    },
+    "StringColumnStatisticsData": {
+      "base": "<p>Defines a string column statistics data.</p>",
+      "refs": {
+        "ColumnStatisticsData$StringColumnStatisticsData": "<p>String Column Statistics Data.</p>"
       }
     },
     "StringList": {
@@ -3669,7 +3915,7 @@
     "TagsMap": {
       "base": null,
       "refs": {
-        "CreateCrawlerRequest$Tags": "<p>The tags to use with this crawler request. You can use tags to limit access to the crawler. For more information, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a>.</p>",
+        "CreateCrawlerRequest$Tags": "<p>The tags to use with this crawler request. You may use tags to limit access to the crawler. For more information about tags in AWS Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide.</p>",
         "CreateDevEndpointRequest$Tags": "<p>The tags to use with this DevEndpoint. You may use tags to limit access to the DevEndpoint. For more information about tags in AWS Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide.</p>",
         "CreateJobRequest$Tags": "<p>The tags to use with this job. You may use tags to limit access to the job. For more information about tags in AWS Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide.</p>",
         "CreateMLTransformRequest$Tags": "<p>The tags to use with this machine learning transform. You may use tags to limit access to the machine learning transform. For more information about tags in AWS Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide.</p>",
@@ -3756,6 +4002,7 @@
       "base": null,
       "refs": {
         "CatalogImportStatus$ImportTime": "<p>The time that the migration was started.</p>",
+        "ColumnStatistics$AnalyzedTime": "<p>The analyzed time of the column statistics.</p>",
         "Connection$CreationTime": "<p>The time that this connection definition was created.</p>",
         "Connection$LastUpdatedTime": "<p>The last time that this connection definition was updated.</p>",
         "Crawler$CreationTime": "<p>The time that the crawler was created.</p>",
@@ -3763,6 +4010,8 @@
         "CsvClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
         "CsvClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>",
         "Database$CreateTime": "<p>The time at which the metadata database was created in the catalog.</p>",
+        "DateColumnStatisticsData$MinimumValue": "<p>Minimum value of the column.</p>",
+        "DateColumnStatisticsData$MaximumValue": "<p>Maximum value of the column.</p>",
         "GetMLTaskRunResponse$StartedOn": "<p>The date and time when this task run started.</p>",
         "GetMLTaskRunResponse$LastModifiedOn": "<p>The date and time when this task run was last modified.</p>",
         "GetMLTaskRunResponse$CompletedOn": "<p>The date and time when this task run was completed.</p>",
@@ -3970,6 +4219,12 @@
         "UpdateTriggerRequest$TriggerUpdate": "<p>The new values with which to update the trigger.</p>"
       }
     },
+    "TypeString": {
+      "base": null,
+      "refs": {
+        "ColumnStatistics$ColumnType": "<p>The type of the column.</p>"
+      }
+    },
     "URI": {
       "base": null,
       "refs": {
@@ -4002,6 +4257,33 @@
     "UpdateClassifierResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateColumnStatisticsForPartitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateColumnStatisticsForPartitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateColumnStatisticsForTableRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateColumnStatisticsForTableResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateColumnStatisticsList": {
+      "base": null,
+      "refs": {
+        "UpdateColumnStatisticsForPartitionRequest$ColumnStatisticsList": "<p>A list of the column statistics.</p>",
+        "UpdateColumnStatisticsForTableRequest$ColumnStatisticsList": "<p>A list of the column statistics.</p>"
       }
     },
     "UpdateConnectionRequest": {
@@ -4202,12 +4484,15 @@
     "ValueStringList": {
       "base": null,
       "refs": {
+        "DeleteColumnStatisticsForPartitionRequest$PartitionValues": "<p>A list of partition values identifying the partition.</p>",
         "DeletePartitionRequest$PartitionValues": "<p>The values that define the partition.</p>",
+        "GetColumnStatisticsForPartitionRequest$PartitionValues": "<p>A list of partition values identifying the partition.</p>",
         "GetPartitionRequest$PartitionValues": "<p>The values that define the partition.</p>",
         "Partition$Values": "<p>The values of the partition.</p>",
         "PartitionError$PartitionValues": "<p>The values that define the partition.</p>",
         "PartitionInput$Values": "<p>The values of the partition. Although this parameter is not required by the SDK, you must specify this parameter for a valid input.</p> <p>The values for the keys for the new partition must be passed as an array of String objects that must be ordered in the same order as the partition keys appearing in the Amazon S3 prefix. Otherwise AWS Glue will add the values to the wrong keys.</p>",
-        "PartitionValueList$Values": "<p>The list of values.</p>"
+        "PartitionValueList$Values": "<p>The list of values.</p>",
+        "UpdateColumnStatisticsForPartitionRequest$PartitionValues": "<p>A list of partition values identifying the partition.</p>"
       }
     },
     "VersionId": {

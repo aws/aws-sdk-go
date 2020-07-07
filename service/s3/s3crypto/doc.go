@@ -15,29 +15,34 @@ ciphers.
 Creating an S3 cryptography client
 
 	cmkID := "<some key ID>"
-	sess := session.New()
+	sess := session.Must(session.NewSession())
 	// Create the KeyProvider
-	handler := s3crypto.NewKMSKeyGenerator(kms.New(sess), cmkID)
+	handler := s3crypto.NewKMSContextKeyGenerator(kms.New(sess), cmkID)
 
 	// Create an encryption and decryption client
 	// We need to pass the session here so S3 can use it. In addition, any decryption that
 	// occurs will use the KMS client.
-	svc := s3crypto.NewEncryptionClient(sess, s3crypto.AESGCMContentCipherBuilder(handler))
-	svc := s3crypto.NewDecryptionClient(sess)
+	svc := s3crypto.NewEncryptionClientV2(sess, s3crypto.AESGCMContentCipherBuilder(handler))
+	svc := s3crypto.NewDecryptionClientV2(sess)
 
 Configuration of the S3 cryptography client
 
-	cfg := s3crypto.EncryptionConfig{
+	sess := session.Must(session.NewSession())
+	handler := s3crypto.NewKMSContextKeyGenerator(kms.New(sess), cmkID)
+	svc := s3crypto.NewEncryptionClientV2(sess, s3crypto.AESGCMContentCipherBuilder(handler), func (o *s3crypto.EncryptionClientOptions) {
 		// Save instruction files to separate objects
-		SaveStrategy: NewS3SaveStrategy(session.New(), ""),
+		o.SaveStrategy = NewS3SaveStrategy(sess, "")
+
 		// Change instruction file suffix to .example
-		InstructionFileSuffix: ".example",
+		o.InstructionFileSuffix = ".example"
+
 		// Set temp folder path
-		TempFolderPath: "/path/to/tmp/folder/",
+		o.TempFolderPath = "/path/to/tmp/folder/"
+
 		// Any content less than the minimum file size will use memory
 		// instead of writing the contents to a temp file.
-		MinFileSize: int64(1024 * 1024 * 1024),
-	}
+		o.MinFileSize = int64(1024 * 1024 * 1024)
+	})
 
 The default SaveStrategy is to the object's header.
 
@@ -48,19 +53,43 @@ This suffix only affects gets and not puts. Put uses the keyprovider's suffix.
 Registration of new wrap or cek algorithms are also supported by the SDK. Let's say we want to support `AES Wrap`
 and `AES CTR`. Let's assume we have already defined the functionality.
 
-	svc := s3crypto.NewDecryptionClient(sess)
-	svc.WrapRegistry["AESWrap"] = NewAESWrap
-	svc.CEKRegistry["AES/CTR/NoPadding"] = NewAESCTR
+	svc := s3crypto.NewDecryptionClientV2(sess, func(o *s3crypto.DecryptionClientOptions) {
+		o.WrapRegistry["CustomWrap"] = NewCustomWrap
+		o.CEKRegistry["CustomCEK"] = NewCustomCEK
+	})
 
 We have now registered these new algorithms to the decryption client. When the client calls `GetObject` and sees
-the wrap as `AESWrap` then it'll use that wrap algorithm. This is also true for `AES/CTR/NoPadding`.
+the wrap as `CustomWrap` then it'll use that wrap algorithm. This is also true for `CustomCEK`.
 
 For encryption adding a custom content cipher builder and key handler will allow for encryption of custom
 defined ciphers.
 
-	// Our wrap algorithm, AESWrap
-	handler := NewAESWrap(key, iv)
-	// Our content cipher builder, AESCTRContentCipherBuilder
-	svc := s3crypto.NewEncryptionClient(sess, NewAESCTRContentCipherBuilder(handler))
+	// Our wrap algorithm, CustomWrap
+	handler := NewCustomWrap(key, iv)
+	// Our content cipher builder, NewCustomCEKContentBuilder
+	svc := s3crypto.NewEncryptionClientV2(sess, NewCustomCEKContentBuilder(handler))
+
+Deprecations
+
+The EncryptionClient and DecryptionClient types and their associated constructor functions have been deprecated.
+Users of these clients should migrate to EncryptionClientV2 and DecryptionClientV2 types and constructor functions.
+
+EncryptionClientV2 removes encryption support of the following features
+	* AES/CBC/PKCS5Padding (content cipher)
+	* kms (key wrap algorithm)
+
+Attempting to construct an EncryptionClientV2 with deprecated features will result in an error returned back to the
+calling application during construction of the client.
+
+Users of `AES/CBC/PKCS5Padding` will need to migrate usage to `AES/GCM/NoPadding`.
+Users of `kms` key provider will need to migrate `kms+context`.
+
+DecryptionClientV2 client adds support for the `kms+context` key provider and maintains backwards comparability with
+objects encrypted with the deprecated EncryptionClient.
+
+Migrating from V1 to V2 Clients
+
+Examples of how to migrate usage of the V1 clients to the V2 equivalents have been documented as usage examples of
+the NewEncryptionClientV2 and NewDecryptionClientV2 functions.
 */
 package s3crypto

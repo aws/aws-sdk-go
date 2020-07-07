@@ -128,6 +128,10 @@ type CodeDeployAPI interface {
 	DeleteGitHubAccountTokenWithContext(aws.Context, *codedeploy.DeleteGitHubAccountTokenInput, ...request.Option) (*codedeploy.DeleteGitHubAccountTokenOutput, error)
 	DeleteGitHubAccountTokenRequest(*codedeploy.DeleteGitHubAccountTokenInput) (*request.Request, *codedeploy.DeleteGitHubAccountTokenOutput)
 
+	DeleteResourcesByExternalId(*codedeploy.DeleteResourcesByExternalIdInput) (*codedeploy.DeleteResourcesByExternalIdOutput, error)
+	DeleteResourcesByExternalIdWithContext(aws.Context, *codedeploy.DeleteResourcesByExternalIdInput, ...request.Option) (*codedeploy.DeleteResourcesByExternalIdOutput, error)
+	DeleteResourcesByExternalIdRequest(*codedeploy.DeleteResourcesByExternalIdInput) (*request.Request, *codedeploy.DeleteResourcesByExternalIdOutput)
+
 	DeregisterOnPremisesInstance(*codedeploy.DeregisterOnPremisesInstanceInput) (*codedeploy.DeregisterOnPremisesInstanceOutput, error)
 	DeregisterOnPremisesInstanceWithContext(aws.Context, *codedeploy.DeregisterOnPremisesInstanceInput, ...request.Option) (*codedeploy.DeregisterOnPremisesInstanceOutput, error)
 	DeregisterOnPremisesInstanceRequest(*codedeploy.DeregisterOnPremisesInstanceInput) (*request.Request, *codedeploy.DeregisterOnPremisesInstanceOutput)

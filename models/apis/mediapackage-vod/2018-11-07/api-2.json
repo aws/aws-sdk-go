@@ -458,6 +458,40 @@
         "shape": "UntagResourceRequest"
       },
       "name": "UntagResource"
+    },
+    "UpdatePackagingGroup": {
+      "errors": [
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ],
+      "http": {
+        "method": "PUT",
+        "requestUri": "/packaging_groups/{id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdatePackagingGroupRequest"
+      },
+      "name": "UpdatePackagingGroup",
+      "output": {
+        "shape": "UpdatePackagingGroupResponse"
+      }
     }
   },
   "shapes": {
@@ -593,6 +627,23 @@
           "shape": "Tags"
         }
       },
+      "type": "structure"
+    },
+    "Authorization": {
+      "members": {
+        "CdnIdentifierSecret": {
+          "locationName": "cdnIdentifierSecret",
+          "shape": "__string"
+        },
+        "SecretsRoleArn": {
+          "locationName": "secretsRoleArn",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "SecretsRoleArn",
+        "CdnIdentifierSecret"
+      ],
       "type": "structure"
     },
     "CmafEncryption": {
@@ -779,6 +830,10 @@
     },
     "CreatePackagingGroupRequest": {
       "members": {
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
+        },
         "Id": {
           "locationName": "id",
           "shape": "__string"
@@ -798,6 +853,10 @@
         "Arn": {
           "locationName": "arn",
           "shape": "__string"
+        },
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
         },
         "DomainName": {
           "locationName": "domainName",
@@ -1052,6 +1111,10 @@
         "Arn": {
           "locationName": "arn",
           "shape": "__string"
+        },
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
         },
         "DomainName": {
           "locationName": "domainName",
@@ -1466,6 +1529,10 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
+        },
         "DomainName": {
           "locationName": "domainName",
           "shape": "__string"
@@ -1483,6 +1550,10 @@
     },
     "PackagingGroupCreateParameters": {
       "members": {
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
+        },
         "Id": {
           "locationName": "id",
           "shape": "__string"
@@ -1506,6 +1577,15 @@
         "PackagingGroups": {
           "locationName": "packagingGroups",
           "shape": "__listOfPackagingGroup"
+        }
+      },
+      "type": "structure"
+    },
+    "PackagingGroupUpdateParameters": {
+      "members": {
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
         }
       },
       "type": "structure"
@@ -1667,6 +1747,48 @@
         "TagKeys",
         "ResourceArn"
       ],
+      "type": "structure"
+    },
+    "UpdatePackagingGroupRequest": {
+      "members": {
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
+        },
+        "Id": {
+          "location": "uri",
+          "locationName": "id",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "type": "structure"
+    },
+    "UpdatePackagingGroupResponse": {
+      "members": {
+        "Arn": {
+          "locationName": "arn",
+          "shape": "__string"
+        },
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
+        },
+        "DomainName": {
+          "locationName": "domainName",
+          "shape": "__string"
+        },
+        "Id": {
+          "locationName": "id",
+          "shape": "__string"
+        },
+        "Tags": {
+          "locationName": "tags",
+          "shape": "Tags"
+        }
+      },
       "type": "structure"
     },
     "__PeriodTriggersElement": {

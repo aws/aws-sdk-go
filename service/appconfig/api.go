@@ -375,6 +375,102 @@ func (c *AppConfig) CreateEnvironmentWithContext(ctx aws.Context, input *CreateE
 	return out, req.Send()
 }
 
+const opCreateHostedConfigurationVersion = "CreateHostedConfigurationVersion"
+
+// CreateHostedConfigurationVersionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateHostedConfigurationVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateHostedConfigurationVersion for more information on using the CreateHostedConfigurationVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateHostedConfigurationVersionRequest method.
+//    req, resp := client.CreateHostedConfigurationVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateHostedConfigurationVersion
+func (c *AppConfig) CreateHostedConfigurationVersionRequest(input *CreateHostedConfigurationVersionInput) (req *request.Request, output *CreateHostedConfigurationVersionOutput) {
+	op := &request.Operation{
+		Name:       opCreateHostedConfigurationVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions",
+	}
+
+	if input == nil {
+		input = &CreateHostedConfigurationVersionInput{}
+	}
+
+	output = &CreateHostedConfigurationVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateHostedConfigurationVersion API operation for Amazon AppConfig.
+//
+// Create a new configuration in the AppConfig configuration store.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation CreateHostedConfigurationVersion for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ServiceQuotaExceededException
+//   The number of hosted configuration versions exceeds the limit for the AppConfig
+//   configuration store. Delete one or more versions and try again.
+//
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * PayloadTooLargeException
+//   The configuration size is too large.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateHostedConfigurationVersion
+func (c *AppConfig) CreateHostedConfigurationVersion(input *CreateHostedConfigurationVersionInput) (*CreateHostedConfigurationVersionOutput, error) {
+	req, out := c.CreateHostedConfigurationVersionRequest(input)
+	return out, req.Send()
+}
+
+// CreateHostedConfigurationVersionWithContext is the same as CreateHostedConfigurationVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateHostedConfigurationVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) CreateHostedConfigurationVersionWithContext(ctx aws.Context, input *CreateHostedConfigurationVersionInput, opts ...request.Option) (*CreateHostedConfigurationVersionOutput, error) {
+	req, out := c.CreateHostedConfigurationVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteApplication = "DeleteApplication"
 
 // DeleteApplicationRequest generates a "aws/request.Request" representing the
@@ -731,6 +827,92 @@ func (c *AppConfig) DeleteEnvironmentWithContext(ctx aws.Context, input *DeleteE
 	return out, req.Send()
 }
 
+const opDeleteHostedConfigurationVersion = "DeleteHostedConfigurationVersion"
+
+// DeleteHostedConfigurationVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteHostedConfigurationVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteHostedConfigurationVersion for more information on using the DeleteHostedConfigurationVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteHostedConfigurationVersionRequest method.
+//    req, resp := client.DeleteHostedConfigurationVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteHostedConfigurationVersion
+func (c *AppConfig) DeleteHostedConfigurationVersionRequest(input *DeleteHostedConfigurationVersionInput) (req *request.Request, output *DeleteHostedConfigurationVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteHostedConfigurationVersion,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}",
+	}
+
+	if input == nil {
+		input = &DeleteHostedConfigurationVersionInput{}
+	}
+
+	output = &DeleteHostedConfigurationVersionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteHostedConfigurationVersion API operation for Amazon AppConfig.
+//
+// Delete a version of a configuration from the AppConfig configuration store.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation DeleteHostedConfigurationVersion for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteHostedConfigurationVersion
+func (c *AppConfig) DeleteHostedConfigurationVersion(input *DeleteHostedConfigurationVersionInput) (*DeleteHostedConfigurationVersionOutput, error) {
+	req, out := c.DeleteHostedConfigurationVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteHostedConfigurationVersionWithContext is the same as DeleteHostedConfigurationVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteHostedConfigurationVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) DeleteHostedConfigurationVersionWithContext(ctx aws.Context, input *DeleteHostedConfigurationVersionInput, opts ...request.Option) (*DeleteHostedConfigurationVersionOutput, error) {
+	req, out := c.DeleteHostedConfigurationVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetApplication = "GetApplication"
 
 // GetApplicationRequest generates a "aws/request.Request" representing the
@@ -886,9 +1068,6 @@ func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *
 //
 //   * InternalServerException
 //   There was an internal failure in the AppConfig service.
-//
-//   * ResourceNotFoundException
-//   The requested resource could not be found.
 //
 //   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
@@ -1258,6 +1437,91 @@ func (c *AppConfig) GetEnvironment(input *GetEnvironmentInput) (*GetEnvironmentO
 // for more information on using Contexts.
 func (c *AppConfig) GetEnvironmentWithContext(ctx aws.Context, input *GetEnvironmentInput, opts ...request.Option) (*GetEnvironmentOutput, error) {
 	req, out := c.GetEnvironmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetHostedConfigurationVersion = "GetHostedConfigurationVersion"
+
+// GetHostedConfigurationVersionRequest generates a "aws/request.Request" representing the
+// client's request for the GetHostedConfigurationVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetHostedConfigurationVersion for more information on using the GetHostedConfigurationVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetHostedConfigurationVersionRequest method.
+//    req, resp := client.GetHostedConfigurationVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetHostedConfigurationVersion
+func (c *AppConfig) GetHostedConfigurationVersionRequest(input *GetHostedConfigurationVersionInput) (req *request.Request, output *GetHostedConfigurationVersionOutput) {
+	op := &request.Operation{
+		Name:       opGetHostedConfigurationVersion,
+		HTTPMethod: "GET",
+		HTTPPath:   "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}",
+	}
+
+	if input == nil {
+		input = &GetHostedConfigurationVersionInput{}
+	}
+
+	output = &GetHostedConfigurationVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetHostedConfigurationVersion API operation for Amazon AppConfig.
+//
+// Get information about a specific configuration version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation GetHostedConfigurationVersion for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetHostedConfigurationVersion
+func (c *AppConfig) GetHostedConfigurationVersion(input *GetHostedConfigurationVersionInput) (*GetHostedConfigurationVersionOutput, error) {
+	req, out := c.GetHostedConfigurationVersionRequest(input)
+	return out, req.Send()
+}
+
+// GetHostedConfigurationVersionWithContext is the same as GetHostedConfigurationVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetHostedConfigurationVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) GetHostedConfigurationVersionWithContext(ctx aws.Context, input *GetHostedConfigurationVersionInput, opts ...request.Option) (*GetHostedConfigurationVersionOutput, error) {
+	req, out := c.GetHostedConfigurationVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1965,6 +2229,150 @@ func (c *AppConfig) ListEnvironmentsPagesWithContext(ctx aws.Context, input *Lis
 
 	for p.Next() {
 		if !fn(p.Page().(*ListEnvironmentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListHostedConfigurationVersions = "ListHostedConfigurationVersions"
+
+// ListHostedConfigurationVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListHostedConfigurationVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListHostedConfigurationVersions for more information on using the ListHostedConfigurationVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListHostedConfigurationVersionsRequest method.
+//    req, resp := client.ListHostedConfigurationVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListHostedConfigurationVersions
+func (c *AppConfig) ListHostedConfigurationVersionsRequest(input *ListHostedConfigurationVersionsInput) (req *request.Request, output *ListHostedConfigurationVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListHostedConfigurationVersions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListHostedConfigurationVersionsInput{}
+	}
+
+	output = &ListHostedConfigurationVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListHostedConfigurationVersions API operation for Amazon AppConfig.
+//
+// View a list of configurations stored in the AppConfig configuration store
+// by version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppConfig's
+// API operation ListHostedConfigurationVersions for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   The requested resource could not be found.
+//
+//   * InternalServerException
+//   There was an internal failure in the AppConfig service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListHostedConfigurationVersions
+func (c *AppConfig) ListHostedConfigurationVersions(input *ListHostedConfigurationVersionsInput) (*ListHostedConfigurationVersionsOutput, error) {
+	req, out := c.ListHostedConfigurationVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListHostedConfigurationVersionsWithContext is the same as ListHostedConfigurationVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListHostedConfigurationVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) ListHostedConfigurationVersionsWithContext(ctx aws.Context, input *ListHostedConfigurationVersionsInput, opts ...request.Option) (*ListHostedConfigurationVersionsOutput, error) {
+	req, out := c.ListHostedConfigurationVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListHostedConfigurationVersionsPages iterates over the pages of a ListHostedConfigurationVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListHostedConfigurationVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListHostedConfigurationVersions operation.
+//    pageNum := 0
+//    err := client.ListHostedConfigurationVersionsPages(params,
+//        func(page *appconfig.ListHostedConfigurationVersionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AppConfig) ListHostedConfigurationVersionsPages(input *ListHostedConfigurationVersionsInput, fn func(*ListHostedConfigurationVersionsOutput, bool) bool) error {
+	return c.ListHostedConfigurationVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListHostedConfigurationVersionsPagesWithContext same as ListHostedConfigurationVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppConfig) ListHostedConfigurationVersionsPagesWithContext(ctx aws.Context, input *ListHostedConfigurationVersionsInput, fn func(*ListHostedConfigurationVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListHostedConfigurationVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListHostedConfigurationVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListHostedConfigurationVersionsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3177,9 +3585,7 @@ type CreateConfigurationProfileInput struct {
 
 	// The ARN of an IAM role with permission to access the configuration at the
 	// specified LocationUri.
-	//
-	// RetrievalRoleArn is a required field
-	RetrievalRoleArn *string `min:"20" type:"string" required:"true"`
+	RetrievalRoleArn *string `min:"20" type:"string"`
 
 	// Metadata to assign to the configuration profile. Tags help organize and categorize
 	// your AppConfig resources. Each tag consists of a key and an optional value,
@@ -3220,9 +3626,6 @@ func (s *CreateConfigurationProfileInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.RetrievalRoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RetrievalRoleArn"))
 	}
 	if s.RetrievalRoleArn != nil && len(*s.RetrievalRoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RetrievalRoleArn", 20))
@@ -3768,6 +4171,186 @@ func (s *CreateEnvironmentOutput) SetState(v string) *CreateEnvironmentOutput {
 	return s
 }
 
+type CreateHostedConfigurationVersionInput struct {
+	_ struct{} `type:"structure" payload:"Content"`
+
+	// The application ID.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
+
+	// The configuration profile ID.
+	//
+	// ConfigurationProfileId is a required field
+	ConfigurationProfileId *string `location:"uri" locationName:"ConfigurationProfileId" type:"string" required:"true"`
+
+	// The content of the configuration or the configuration data.
+	//
+	// Content is a required field
+	Content []byte `type:"blob" required:"true" sensitive:"true"`
+
+	// A standard MIME type describing the format of the configuration content.
+	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	//
+	// ContentType is a required field
+	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string" required:"true"`
+
+	// A description of the configuration.
+	Description *string `location:"header" locationName:"Description" type:"string"`
+
+	// An optional locking token used to prevent race conditions from overwriting
+	// configuration updates when creating a new version. To ensure your data is
+	// not overwritten when creating multiple hosted configuration versions in rapid
+	// succession, specify the version of the latest hosted configuration version.
+	LatestVersionNumber *int64 `location:"header" locationName:"Latest-Version-Number" type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateHostedConfigurationVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateHostedConfigurationVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateHostedConfigurationVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateHostedConfigurationVersionInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.ConfigurationProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationProfileId"))
+	}
+	if s.ConfigurationProfileId != nil && len(*s.ConfigurationProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationProfileId", 1))
+	}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
+	}
+	if s.ContentType != nil && len(*s.ContentType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *CreateHostedConfigurationVersionInput) SetApplicationId(v string) *CreateHostedConfigurationVersionInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetConfigurationProfileId sets the ConfigurationProfileId field's value.
+func (s *CreateHostedConfigurationVersionInput) SetConfigurationProfileId(v string) *CreateHostedConfigurationVersionInput {
+	s.ConfigurationProfileId = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *CreateHostedConfigurationVersionInput) SetContent(v []byte) *CreateHostedConfigurationVersionInput {
+	s.Content = v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *CreateHostedConfigurationVersionInput) SetContentType(v string) *CreateHostedConfigurationVersionInput {
+	s.ContentType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateHostedConfigurationVersionInput) SetDescription(v string) *CreateHostedConfigurationVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetLatestVersionNumber sets the LatestVersionNumber field's value.
+func (s *CreateHostedConfigurationVersionInput) SetLatestVersionNumber(v int64) *CreateHostedConfigurationVersionInput {
+	s.LatestVersionNumber = &v
+	return s
+}
+
+type CreateHostedConfigurationVersionOutput struct {
+	_ struct{} `type:"structure" payload:"Content"`
+
+	// The application ID.
+	ApplicationId *string `location:"header" locationName:"Application-Id" type:"string"`
+
+	// The configuration profile ID.
+	ConfigurationProfileId *string `location:"header" locationName:"Configuration-Profile-Id" type:"string"`
+
+	// The content of the configuration or the configuration data.
+	Content []byte `type:"blob" sensitive:"true"`
+
+	// A standard MIME type describing the format of the configuration content.
+	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string"`
+
+	// A description of the configuration.
+	Description *string `location:"header" locationName:"Description" type:"string"`
+
+	// The configuration version.
+	VersionNumber *int64 `location:"header" locationName:"Version-Number" type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateHostedConfigurationVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateHostedConfigurationVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *CreateHostedConfigurationVersionOutput) SetApplicationId(v string) *CreateHostedConfigurationVersionOutput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetConfigurationProfileId sets the ConfigurationProfileId field's value.
+func (s *CreateHostedConfigurationVersionOutput) SetConfigurationProfileId(v string) *CreateHostedConfigurationVersionOutput {
+	s.ConfigurationProfileId = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *CreateHostedConfigurationVersionOutput) SetContent(v []byte) *CreateHostedConfigurationVersionOutput {
+	s.Content = v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *CreateHostedConfigurationVersionOutput) SetContentType(v string) *CreateHostedConfigurationVersionOutput {
+	s.ContentType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateHostedConfigurationVersionOutput) SetDescription(v string) *CreateHostedConfigurationVersionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *CreateHostedConfigurationVersionOutput) SetVersionNumber(v int64) *CreateHostedConfigurationVersionOutput {
+	s.VersionNumber = &v
+	return s
+}
+
 type DeleteApplicationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4019,6 +4602,92 @@ func (s DeleteEnvironmentOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteEnvironmentOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteHostedConfigurationVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The application ID.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
+
+	// The configuration profile ID.
+	//
+	// ConfigurationProfileId is a required field
+	ConfigurationProfileId *string `location:"uri" locationName:"ConfigurationProfileId" type:"string" required:"true"`
+
+	// The versions number to delete.
+	//
+	// VersionNumber is a required field
+	VersionNumber *int64 `location:"uri" locationName:"VersionNumber" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteHostedConfigurationVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteHostedConfigurationVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteHostedConfigurationVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteHostedConfigurationVersionInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.ConfigurationProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationProfileId"))
+	}
+	if s.ConfigurationProfileId != nil && len(*s.ConfigurationProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationProfileId", 1))
+	}
+	if s.VersionNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *DeleteHostedConfigurationVersionInput) SetApplicationId(v string) *DeleteHostedConfigurationVersionInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetConfigurationProfileId sets the ConfigurationProfileId field's value.
+func (s *DeleteHostedConfigurationVersionInput) SetConfigurationProfileId(v string) *DeleteHostedConfigurationVersionInput {
+	s.ConfigurationProfileId = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *DeleteHostedConfigurationVersionInput) SetVersionNumber(v int64) *DeleteHostedConfigurationVersionInput {
+	s.VersionNumber = &v
+	return s
+}
+
+type DeleteHostedConfigurationVersionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteHostedConfigurationVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteHostedConfigurationVersionOutput) GoString() string {
 	return s.String()
 }
 
@@ -4565,7 +5234,7 @@ type GetConfigurationOutput struct {
 	ConfigurationVersion *string `location:"header" locationName:"Configuration-Version" min:"1" type:"string"`
 
 	// The content of the configuration or the configuration data.
-	Content []byte `type:"blob"`
+	Content []byte `type:"blob" sensitive:"true"`
 
 	// A standard MIME type describing the format of the configuration content.
 	// For more information, see Content-Type (http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
@@ -5244,6 +5913,208 @@ func (s *GetEnvironmentOutput) SetState(v string) *GetEnvironmentOutput {
 	return s
 }
 
+type GetHostedConfigurationVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The application ID.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
+
+	// The configuration profile ID.
+	//
+	// ConfigurationProfileId is a required field
+	ConfigurationProfileId *string `location:"uri" locationName:"ConfigurationProfileId" type:"string" required:"true"`
+
+	// The version.
+	//
+	// VersionNumber is a required field
+	VersionNumber *int64 `location:"uri" locationName:"VersionNumber" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s GetHostedConfigurationVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetHostedConfigurationVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetHostedConfigurationVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetHostedConfigurationVersionInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.ConfigurationProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationProfileId"))
+	}
+	if s.ConfigurationProfileId != nil && len(*s.ConfigurationProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationProfileId", 1))
+	}
+	if s.VersionNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetHostedConfigurationVersionInput) SetApplicationId(v string) *GetHostedConfigurationVersionInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetConfigurationProfileId sets the ConfigurationProfileId field's value.
+func (s *GetHostedConfigurationVersionInput) SetConfigurationProfileId(v string) *GetHostedConfigurationVersionInput {
+	s.ConfigurationProfileId = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *GetHostedConfigurationVersionInput) SetVersionNumber(v int64) *GetHostedConfigurationVersionInput {
+	s.VersionNumber = &v
+	return s
+}
+
+type GetHostedConfigurationVersionOutput struct {
+	_ struct{} `type:"structure" payload:"Content"`
+
+	// The application ID.
+	ApplicationId *string `location:"header" locationName:"Application-Id" type:"string"`
+
+	// The configuration profile ID.
+	ConfigurationProfileId *string `location:"header" locationName:"Configuration-Profile-Id" type:"string"`
+
+	// The content of the configuration or the configuration data.
+	Content []byte `type:"blob" sensitive:"true"`
+
+	// A standard MIME type describing the format of the configuration content.
+	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string"`
+
+	// A description of the configuration.
+	Description *string `location:"header" locationName:"Description" type:"string"`
+
+	// The configuration version.
+	VersionNumber *int64 `location:"header" locationName:"Version-Number" type:"integer"`
+}
+
+// String returns the string representation
+func (s GetHostedConfigurationVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetHostedConfigurationVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetHostedConfigurationVersionOutput) SetApplicationId(v string) *GetHostedConfigurationVersionOutput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetConfigurationProfileId sets the ConfigurationProfileId field's value.
+func (s *GetHostedConfigurationVersionOutput) SetConfigurationProfileId(v string) *GetHostedConfigurationVersionOutput {
+	s.ConfigurationProfileId = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *GetHostedConfigurationVersionOutput) SetContent(v []byte) *GetHostedConfigurationVersionOutput {
+	s.Content = v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *GetHostedConfigurationVersionOutput) SetContentType(v string) *GetHostedConfigurationVersionOutput {
+	s.ContentType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetHostedConfigurationVersionOutput) SetDescription(v string) *GetHostedConfigurationVersionOutput {
+	s.Description = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *GetHostedConfigurationVersionOutput) SetVersionNumber(v int64) *GetHostedConfigurationVersionOutput {
+	s.VersionNumber = &v
+	return s
+}
+
+// Information about the configuration.
+type HostedConfigurationVersionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The application ID.
+	ApplicationId *string `type:"string"`
+
+	// The configuration profile ID.
+	ConfigurationProfileId *string `type:"string"`
+
+	// A standard MIME type describing the format of the configuration content.
+	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	ContentType *string `min:"1" type:"string"`
+
+	// A description of the configuration.
+	Description *string `type:"string"`
+
+	// The configuration version.
+	VersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s HostedConfigurationVersionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HostedConfigurationVersionSummary) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *HostedConfigurationVersionSummary) SetApplicationId(v string) *HostedConfigurationVersionSummary {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetConfigurationProfileId sets the ConfigurationProfileId field's value.
+func (s *HostedConfigurationVersionSummary) SetConfigurationProfileId(v string) *HostedConfigurationVersionSummary {
+	s.ConfigurationProfileId = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *HostedConfigurationVersionSummary) SetContentType(v string) *HostedConfigurationVersionSummary {
+	s.ContentType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *HostedConfigurationVersionSummary) SetDescription(v string) *HostedConfigurationVersionSummary {
+	s.Description = &v
+	return s
+}
+
+// SetVersionNumber sets the VersionNumber field's value.
+func (s *HostedConfigurationVersionSummary) SetVersionNumber(v int64) *HostedConfigurationVersionSummary {
+	s.VersionNumber = &v
+	return s
+}
+
 // There was an internal failure in the AppConfig service.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -5783,6 +6654,123 @@ func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput 
 	return s
 }
 
+type ListHostedConfigurationVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The application ID.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
+
+	// The configuration profile ID.
+	//
+	// ConfigurationProfileId is a required field
+	ConfigurationProfileId *string `location:"uri" locationName:"ConfigurationProfileId" type:"string" required:"true"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `location:"querystring" locationName:"max_results" min:"1" type:"integer"`
+
+	// A token to start the list. Use this token to get the next set of results.
+	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListHostedConfigurationVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListHostedConfigurationVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListHostedConfigurationVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListHostedConfigurationVersionsInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.ConfigurationProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationProfileId"))
+	}
+	if s.ConfigurationProfileId != nil && len(*s.ConfigurationProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationProfileId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *ListHostedConfigurationVersionsInput) SetApplicationId(v string) *ListHostedConfigurationVersionsInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetConfigurationProfileId sets the ConfigurationProfileId field's value.
+func (s *ListHostedConfigurationVersionsInput) SetConfigurationProfileId(v string) *ListHostedConfigurationVersionsInput {
+	s.ConfigurationProfileId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListHostedConfigurationVersionsInput) SetMaxResults(v int64) *ListHostedConfigurationVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListHostedConfigurationVersionsInput) SetNextToken(v string) *ListHostedConfigurationVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListHostedConfigurationVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The elements from this collection.
+	Items []*HostedConfigurationVersionSummary `type:"list"`
+
+	// The token for the next set of items to return. Use this token to get the
+	// next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListHostedConfigurationVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListHostedConfigurationVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListHostedConfigurationVersionsOutput) SetItems(v []*HostedConfigurationVersionSummary) *ListHostedConfigurationVersionsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListHostedConfigurationVersionsOutput) SetNextToken(v string) *ListHostedConfigurationVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5898,6 +6886,68 @@ func (s *Monitor) SetAlarmRoleArn(v string) *Monitor {
 	return s
 }
 
+// The configuration size is too large.
+type PayloadTooLargeException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Limit *float64 `type:"float"`
+
+	Measure *string `type:"string" enum:"BytesMeasure"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Size *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s PayloadTooLargeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PayloadTooLargeException) GoString() string {
+	return s.String()
+}
+
+func newErrorPayloadTooLargeException(v protocol.ResponseMetadata) error {
+	return &PayloadTooLargeException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *PayloadTooLargeException) Code() string {
+	return "PayloadTooLargeException"
+}
+
+// Message returns the exception's message.
+func (s *PayloadTooLargeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *PayloadTooLargeException) OrigErr() error {
+	return nil
+}
+
+func (s *PayloadTooLargeException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *PayloadTooLargeException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *PayloadTooLargeException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The requested resource could not be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -5953,6 +7003,63 @@ func (s *ResourceNotFoundException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The number of hosted configuration versions exceeds the limit for the AppConfig
+// configuration store. Delete one or more versions and try again.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -7412,7 +8519,7 @@ type Validator struct {
 	// Lambda function.
 	//
 	// Content is a required field
-	Content *string `type:"string" required:"true"`
+	Content *string `type:"string" required:"true" sensitive:"true"`
 
 	// AppConfig supports validators of type JSON_SCHEMA and LAMBDA
 	//
@@ -7457,6 +8564,11 @@ func (s *Validator) SetType(v string) *Validator {
 	s.Type = &v
 	return s
 }
+
+const (
+	// BytesMeasureKilobytes is a BytesMeasure enum value
+	BytesMeasureKilobytes = "KILOBYTES"
+)
 
 const (
 	// DeploymentEventTypePercentageUpdated is a DeploymentEventType enum value

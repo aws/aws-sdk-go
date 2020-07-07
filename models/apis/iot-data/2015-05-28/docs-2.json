@@ -1,11 +1,12 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT-Data enables secure, bi-directional communication between Internet-connected things (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. It implements a broker for applications and things to publish messages over HTTP (Publish) and retrieve, update, and delete thing shadows. A thing shadow is a persistent representation of your things and their state in the AWS cloud.</p>",
+  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT-Data enables secure, bi-directional communication between Internet-connected things (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. It implements a broker for applications and things to publish messages over HTTP (Publish) and retrieve, update, and delete shadows. A shadow is a persistent representation of your things and their state in the AWS cloud.</p> <p>Find the endpoint address for actions in the AWS IoT data plane by running this CLI command:</p> <p> <code>aws iot describe-endpoint --endpoint-type iot:Data-ATS</code> </p> <p>The service name used by <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">AWS Signature Version 4</a> to sign requests is: <i>iotdevicegateway</i>.</p>",
   "operations": {
-    "DeleteThingShadow": "<p>Deletes the thing shadow for the specified thing.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/API_DeleteThingShadow.html\">DeleteThingShadow</a> in the <i>AWS IoT Developer Guide</i>.</p>",
-    "GetThingShadow": "<p>Gets the thing shadow for the specified thing.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html\">GetThingShadow</a> in the <i>AWS IoT Developer Guide</i>.</p>",
-    "Publish": "<p>Publishes state information.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#http\">HTTP Protocol</a> in the <i>AWS IoT Developer Guide</i>.</p>",
-    "UpdateThingShadow": "<p>Updates the thing shadow for the specified thing.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/API_UpdateThingShadow.html\">UpdateThingShadow</a> in the <i>AWS IoT Developer Guide</i>.</p>"
+    "DeleteThingShadow": "<p>Deletes the shadow for the specified thing.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/API_DeleteThingShadow.html\">DeleteThingShadow</a> in the AWS IoT Developer Guide.</p>",
+    "GetThingShadow": "<p>Gets the shadow for the specified thing.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html\">GetThingShadow</a> in the AWS IoT Developer Guide.</p>",
+    "ListNamedShadowsForThing": "<p>Lists the shadows for the specified thing.</p>",
+    "Publish": "<p>Publishes state information.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#http\">HTTP Protocol</a> in the AWS IoT Developer Guide.</p>",
+    "UpdateThingShadow": "<p>Updates the shadow for the specified thing.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/iot/latest/developerguide/API_UpdateThingShadow.html\">UpdateThingShadow</a> in the AWS IoT Developer Guide.</p>"
   },
   "shapes": {
     "ConflictException": {
@@ -21,14 +22,6 @@
     "DeleteThingShadowResponse": {
       "base": "<p>The output from the DeleteThingShadow operation.</p>",
       "refs": {
-      }
-    },
-    "ErrorMessage": {
-      "base": null,
-      "refs": {
-        "ConflictException$message": "<p>The message for the exception.</p>",
-        "MethodNotAllowedException$message": "<p>The message for the exception.</p>",
-        "RequestEntityTooLargeException$message": "<p>The message for the exception.</p>"
       }
     },
     "GetThingShadowRequest": {
@@ -60,9 +53,38 @@
         "UpdateThingShadowResponse$payload": "<p>The state information, in JSON format.</p>"
       }
     },
+    "ListNamedShadowsForThingRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListNamedShadowsForThingResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MethodNotAllowedException": {
       "base": "<p>The specified combination of HTTP verb and URI is not supported.</p>",
       "refs": {
+      }
+    },
+    "NamedShadowList": {
+      "base": null,
+      "refs": {
+        "ListNamedShadowsForThingResponse$results": "<p>The list of shadows for the specified thing.</p>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListNamedShadowsForThingRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
+        "ListNamedShadowsForThingResponse$nextToken": "<p>The token for the next set of results, or null if there are no additional results.</p>"
+      }
+    },
+    "PageSize": {
+      "base": null,
+      "refs": {
+        "ListNamedShadowsForThingRequest$pageSize": "<p>The result page size.</p>"
       }
     },
     "Payload": {
@@ -97,17 +119,33 @@
       "refs": {
       }
     },
+    "ShadowName": {
+      "base": null,
+      "refs": {
+        "DeleteThingShadowRequest$shadowName": "<p>The name of the shadow.</p>",
+        "GetThingShadowRequest$shadowName": "<p>The name of the shadow.</p>",
+        "NamedShadowList$member": null,
+        "UpdateThingShadowRequest$shadowName": "<p>The name of the shadow.</p>"
+      }
+    },
     "ThingName": {
       "base": null,
       "refs": {
         "DeleteThingShadowRequest$thingName": "<p>The name of the thing.</p>",
         "GetThingShadowRequest$thingName": "<p>The name of the thing.</p>",
+        "ListNamedShadowsForThingRequest$thingName": "<p>The name of the thing.</p>",
         "UpdateThingShadowRequest$thingName": "<p>The name of the thing.</p>"
       }
     },
     "ThrottlingException": {
       "base": "<p>The rate exceeds the limit.</p>",
       "refs": {
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "ListNamedShadowsForThingResponse$timestamp": "<p>The Epoch date and time the response was generated by AWS IoT.</p>"
       }
     },
     "Topic": {
@@ -139,8 +177,11 @@
     "errorMessage": {
       "base": null,
       "refs": {
+        "ConflictException$message": "<p>The message for the exception.</p>",
         "InternalFailureException$message": "<p>The message for the exception.</p>",
         "InvalidRequestException$message": "<p>The message for the exception.</p>",
+        "MethodNotAllowedException$message": "<p>The message for the exception.</p>",
+        "RequestEntityTooLargeException$message": "<p>The message for the exception.</p>",
         "ResourceNotFoundException$message": "<p>The message for the exception.</p>",
         "ServiceUnavailableException$message": "<p>The message for the exception.</p>",
         "ThrottlingException$message": "<p>The message for the exception.</p>",

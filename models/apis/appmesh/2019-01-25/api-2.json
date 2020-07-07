@@ -396,6 +396,9 @@
           "shape": "NotFoundException"
         },
         {
+          "shape": "ResourceInUseException"
+        },
+        {
           "shape": "ServiceUnavailableException"
         },
         {
@@ -1738,6 +1741,23 @@
         "senderFault": true
       }
     },
+    "ListenerTimeout": {
+      "type": "structure",
+      "members": {
+        "grpc": {
+          "shape": "GrpcTimeout"
+        },
+        "http": {
+          "shape": "HttpTimeout"
+        },
+        "http2": {
+          "shape": "HttpTimeout"
+        },
+        "tcp": {
+          "shape": "TcpTimeout"
+        }
+      }
+    },
     "MeshList": {
       "type": "list",
       "member": {
@@ -1814,15 +1834,24 @@
       "type": "structure",
       "required": [
         "arn",
+        "createdAt",
+        "lastUpdatedAt",
         "meshName",
         "meshOwner",
         "resourceOwner",
         "routeName",
+        "version",
         "virtualRouterName"
       ],
       "members": {
         "arn": {
           "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
         },
         "meshName": {
           "shape": "ResourceName"
@@ -1835,6 +1864,9 @@
         },
         "routeName": {
           "shape": "ResourceName"
+        },
+        "version": {
+          "shape": "Long"
         },
         "virtualRouterName": {
           "shape": "ResourceName"
@@ -2194,6 +2226,17 @@
       "members": {
         "virtualRouterName": {
           "shape": "ResourceName"
+        }
+      }
+    },
+    "HttpTimeout": {
+      "type": "structure",
+      "members": {
+        "idle": {
+          "shape": "Duration"
+        },
+        "perRequest": {
+          "shape": "Duration"
         }
       }
     },
@@ -2668,14 +2711,23 @@
       "type": "structure",
       "required": [
         "arn",
+        "createdAt",
+        "lastUpdatedAt",
         "meshName",
         "meshOwner",
         "resourceOwner",
+        "version",
         "virtualServiceName"
       ],
       "members": {
         "arn": {
           "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
         },
         "meshName": {
           "shape": "ResourceName"
@@ -2686,8 +2738,22 @@
         "resourceOwner": {
           "shape": "AccountId"
         },
+        "version": {
+          "shape": "Long"
+        },
         "virtualServiceName": {
           "shape": "ServiceName"
+        }
+      }
+    },
+    "GrpcTimeout": {
+      "type": "structure",
+      "members": {
+        "idle": {
+          "shape": "Duration"
+        },
+        "perRequest": {
+          "shape": "Duration"
         }
       }
     },
@@ -2706,14 +2772,23 @@
       "type": "structure",
       "required": [
         "arn",
+        "createdAt",
+        "lastUpdatedAt",
         "meshName",
         "meshOwner",
         "resourceOwner",
+        "version",
         "virtualRouterName"
       ],
       "members": {
         "arn": {
           "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
         },
         "meshName": {
           "shape": "ResourceName"
@@ -2723,6 +2798,9 @@
         },
         "resourceOwner": {
           "shape": "AccountId"
+        },
+        "version": {
+          "shape": "Long"
         },
         "virtualRouterName": {
           "shape": "ResourceName"
@@ -2788,14 +2866,23 @@
       "type": "structure",
       "required": [
         "arn",
+        "createdAt",
+        "lastUpdatedAt",
         "meshName",
         "meshOwner",
         "resourceOwner",
+        "version",
         "virtualNodeName"
       ],
       "members": {
         "arn": {
           "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
         },
         "meshName": {
           "shape": "ResourceName"
@@ -2805,6 +2892,9 @@
         },
         "resourceOwner": {
           "shape": "AccountId"
+        },
+        "version": {
+          "shape": "Long"
         },
         "virtualNodeName": {
           "shape": "ResourceName"
@@ -2989,6 +3079,9 @@
       "members": {
         "action": {
           "shape": "TcpRouteAction"
+        },
+        "timeout": {
+          "shape": "TcpTimeout"
         }
       }
     },
@@ -3208,13 +3301,22 @@
       "type": "structure",
       "required": [
         "arn",
+        "createdAt",
+        "lastUpdatedAt",
         "meshName",
         "meshOwner",
-        "resourceOwner"
+        "resourceOwner",
+        "version"
       ],
       "members": {
         "arn": {
           "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
         },
         "meshName": {
           "shape": "ResourceName"
@@ -3224,6 +3326,9 @@
         },
         "resourceOwner": {
           "shape": "AccountId"
+        },
+        "version": {
+          "shape": "Long"
         }
       }
     },
@@ -3327,6 +3432,9 @@
         "portMapping": {
           "shape": "PortMapping"
         },
+        "timeout": {
+          "shape": "ListenerTimeout"
+        },
         "tls": {
           "shape": "ListenerTls"
         }
@@ -3347,6 +3455,9 @@
         },
         "retryPolicy": {
           "shape": "GrpcRetryPolicy"
+        },
+        "timeout": {
+          "shape": "GrpcTimeout"
         }
       }
     },
@@ -3583,6 +3694,14 @@
     "String": {
       "type": "string"
     },
+    "TcpTimeout": {
+      "type": "structure",
+      "members": {
+        "idle": {
+          "shape": "Duration"
+        }
+      }
+    },
     "HttpScheme": {
       "type": "string",
       "enum": [
@@ -3643,6 +3762,9 @@
         },
         "retryPolicy": {
           "shape": "HttpRetryPolicy"
+        },
+        "timeout": {
+          "shape": "HttpTimeout"
         }
       }
     },

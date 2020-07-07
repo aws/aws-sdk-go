@@ -597,6 +597,34 @@ func TestValues(t *testing.T) {
 		err      exprErrorMode
 	}{
 		{
+			name: "empty lists become null",
+			input: Builder{
+				expressionMap: map[expressionType]treeBuilder{
+					update: Name("groups").Equal(Value([]string{})),
+				},
+			},
+			expected: map[string]*dynamodb.AttributeValue{
+				":0": {
+					NULL: aws.Bool(true),
+				},
+			},
+		},
+		{
+			name: "dynamodb.AttributeValue values are used directly",
+			input: Builder{
+				expressionMap: map[expressionType]treeBuilder{
+					update: Name("key").Equal(Value(dynamodb.AttributeValue{
+						S: aws.String("value"),
+					})),
+				},
+			},
+			expected: map[string]*dynamodb.AttributeValue{
+				":0": {
+					S: aws.String("value"),
+				},
+			},
+		},
+		{
 			name: "condition",
 			input: Builder{
 				expressionMap: map[expressionType]treeBuilder{

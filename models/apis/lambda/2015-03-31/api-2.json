@@ -418,6 +418,10 @@
         {"shape":"EC2UnexpectedException"},
         {"shape":"SubnetIPAddressLimitReachedException"},
         {"shape":"ENILimitReachedException"},
+        {"shape":"EFSMountConnectivityException"},
+        {"shape":"EFSMountFailureException"},
+        {"shape":"EFSMountTimeoutException"},
+        {"shape":"EFSIOException"},
         {"shape":"EC2ThrottledException"},
         {"shape":"EC2AccessDeniedException"},
         {"shape":"InvalidSubnetIDException"},
@@ -1067,7 +1071,8 @@
         "KMSKeyArn":{"shape":"KMSKeyArn"},
         "TracingConfig":{"shape":"TracingConfig"},
         "Tags":{"shape":"Tags"},
-        "Layers":{"shape":"LayerList"}
+        "Layers":{"shape":"LayerList"},
+        "FileSystemConfigs":{"shape":"FileSystemConfigList"}
       }
     },
     "Date":{"type":"timestamp"},
@@ -1234,6 +1239,42 @@
       "error":{"httpStatusCode":502},
       "exception":true
     },
+    "EFSIOException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":410},
+      "exception":true
+    },
+    "EFSMountConnectivityException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":408},
+      "exception":true
+    },
+    "EFSMountFailureException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
+    },
+    "EFSMountTimeoutException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":408},
+      "exception":true
+    },
     "ENILimitReachedException":{
       "type":"structure",
       "members":{
@@ -1316,6 +1357,27 @@
       "min":0,
       "pattern":"[a-zA-Z0-9._\\-]+"
     },
+    "FileSystemArn":{
+      "type":"string",
+      "max":200,
+      "pattern":"arn:aws[a-zA-Z-]*:elasticfilesystem:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:access-point/fsap-[a-f0-9]{17}"
+    },
+    "FileSystemConfig":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "LocalMountPath"
+      ],
+      "members":{
+        "Arn":{"shape":"FileSystemArn"},
+        "LocalMountPath":{"shape":"LocalMountPath"}
+      }
+    },
+    "FileSystemConfigList":{
+      "type":"list",
+      "member":{"shape":"FileSystemConfig"},
+      "max":1
+    },
     "FunctionArn":{
       "type":"string",
       "pattern":"arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
@@ -1364,7 +1426,8 @@
         "StateReasonCode":{"shape":"StateReasonCode"},
         "LastUpdateStatus":{"shape":"LastUpdateStatus"},
         "LastUpdateStatusReason":{"shape":"LastUpdateStatusReason"},
-        "LastUpdateStatusReasonCode":{"shape":"LastUpdateStatusReasonCode"}
+        "LastUpdateStatusReasonCode":{"shape":"LastUpdateStatusReasonCode"},
+        "FileSystemConfigs":{"shape":"FileSystemConfigList"}
       }
     },
     "FunctionEventInvokeConfig":{
@@ -2197,6 +2260,11 @@
         "Versions":{"shape":"FunctionList"}
       }
     },
+    "LocalMountPath":{
+      "type":"string",
+      "max":160,
+      "pattern":"^/mnt/[a-zA-Z0-9-_.]+$"
+    },
     "LogType":{
       "type":"string",
       "enum":[
@@ -2893,7 +2961,8 @@
         "KMSKeyArn":{"shape":"KMSKeyArn"},
         "TracingConfig":{"shape":"TracingConfig"},
         "RevisionId":{"shape":"String"},
-        "Layers":{"shape":"LayerList"}
+        "Layers":{"shape":"LayerList"},
+        "FileSystemConfigs":{"shape":"FileSystemConfigList"}
       }
     },
     "UpdateFunctionEventInvokeConfigRequest":{

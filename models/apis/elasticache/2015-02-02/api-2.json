@@ -1245,7 +1245,8 @@
         "AuthTokenEnabled":{"shape":"BooleanOptional"},
         "AuthTokenLastModifiedDate":{"shape":"TStamp"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
-        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"}
+        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -1401,7 +1402,8 @@
         "CacheParameterGroupName":{"shape":"String"},
         "CacheParameterGroupFamily":{"shape":"String"},
         "Description":{"shape":"String"},
-        "IsGlobal":{"shape":"Boolean"}
+        "IsGlobal":{"shape":"Boolean"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -1480,7 +1482,8 @@
         "OwnerId":{"shape":"String"},
         "CacheSecurityGroupName":{"shape":"String"},
         "Description":{"shape":"String"},
-        "EC2SecurityGroups":{"shape":"EC2SecurityGroupList"}
+        "EC2SecurityGroups":{"shape":"EC2SecurityGroupList"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -1558,7 +1561,8 @@
         "CacheSubnetGroupName":{"shape":"String"},
         "CacheSubnetGroupDescription":{"shape":"String"},
         "VpcId":{"shape":"String"},
-        "Subnets":{"shape":"SubnetList"}
+        "Subnets":{"shape":"SubnetList"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -1821,6 +1825,7 @@
         "GlobalReplicationGroupId":{"shape":"String"},
         "PrimaryClusterId":{"shape":"String"},
         "AutomaticFailoverEnabled":{"shape":"BooleanOptional"},
+        "MultiAZEnabled":{"shape":"BooleanOptional"},
         "NumCacheClusters":{"shape":"IntegerOptional"},
         "PreferredCacheClusterAZs":{"shape":"AvailabilityZonesList"},
         "NumNodeGroups":{"shape":"IntegerOptional"},
@@ -2305,7 +2310,8 @@
         "GlobalNodeGroups":{"shape":"GlobalNodeGroupList"},
         "AuthTokenEnabled":{"shape":"BooleanOptional"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
-        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"}
+        "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2656,6 +2662,7 @@
         "PrimaryClusterId":{"shape":"String"},
         "SnapshottingClusterId":{"shape":"String"},
         "AutomaticFailoverEnabled":{"shape":"BooleanOptional"},
+        "MultiAZEnabled":{"shape":"BooleanOptional"},
         "NodeGroupId":{
           "shape":"String",
           "deprecated":true
@@ -2703,6 +2710,13 @@
       "members":{
         "ReplicationGroup":{"shape":"ReplicationGroup"}
       }
+    },
+    "MultiAZStatus":{
+      "type":"string",
+      "enum":[
+        "enabled",
+        "disabled"
+      ]
     },
     "NoOperationFault":{
       "type":"structure",
@@ -3102,6 +3116,7 @@
         "NodeGroups":{"shape":"NodeGroupList"},
         "SnapshottingClusterId":{"shape":"String"},
         "AutomaticFailover":{"shape":"AutomaticFailoverStatus"},
+        "MultiAZ":{"shape":"MultiAZStatus"},
         "ConfigurationEndpoint":{"shape":"Endpoint"},
         "SnapshotRetentionLimit":{"shape":"IntegerOptional"},
         "SnapshotWindow":{"shape":"String"},
@@ -3111,7 +3126,8 @@
         "AuthTokenLastModifiedDate":{"shape":"TStamp"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
         "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3478,7 +3494,8 @@
         "NumNodeGroups":{"shape":"IntegerOptional"},
         "AutomaticFailover":{"shape":"AutomaticFailoverStatus"},
         "NodeSnapshots":{"shape":"NodeSnapshotList"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "ARN":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -3739,13 +3756,16 @@
         "in-progress",
         "stopping",
         "stopped",
-        "complete"
+        "complete",
+        "scheduling",
+        "scheduled",
+        "not-applicable"
       ]
     },
     "UpdateActionStatusList":{
       "type":"list",
       "member":{"shape":"UpdateActionStatus"},
-      "max":6
+      "max":9
     },
     "UpdateActionsMessage":{
       "type":"structure",

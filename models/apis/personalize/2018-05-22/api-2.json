@@ -110,6 +110,21 @@
       ],
       "idempotent":true
     },
+    "CreateFilter":{
+      "name":"CreateFilter",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateFilterRequest"},
+      "output":{"shape":"CreateFilterResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "CreateSchema":{
       "name":"CreateSchema",
       "http":{
@@ -210,6 +225,18 @@
         {"shape":"ResourceInUseException"}
       ],
       "idempotent":true
+    },
+    "DeleteFilter":{
+      "name":"DeleteFilter",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteFilterRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
     },
     "DeleteSchema":{
       "name":"DeleteSchema",
@@ -345,6 +372,20 @@
       },
       "input":{"shape":"DescribeFeatureTransformationRequest"},
       "output":{"shape":"DescribeFeatureTransformationResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "DescribeFilter":{
+      "name":"DescribeFilter",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFilterRequest"},
+      "output":{"shape":"DescribeFilterResponse"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"}
@@ -504,6 +545,20 @@
       ],
       "idempotent":true
     },
+    "ListFilters":{
+      "name":"ListFilters",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListFiltersRequest"},
+      "output":{"shape":"ListFiltersResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidNextTokenException"}
+      ],
+      "idempotent":true
+    },
     "ListRecipes":{
       "name":"ListRecipes",
       "http":{
@@ -635,6 +690,7 @@
       "members":{
         "jobName":{"shape":"Name"},
         "batchInferenceJobArn":{"shape":"Arn"},
+        "filterArn":{"shape":"Arn"},
         "failureReason":{"shape":"FailureReason"},
         "solutionVersionArn":{"shape":"Arn"},
         "numResults":{"shape":"NumBatchResults"},
@@ -773,6 +829,7 @@
       "members":{
         "jobName":{"shape":"Name"},
         "solutionVersionArn":{"shape":"Arn"},
+        "filterArn":{"shape":"Arn"},
         "numResults":{"shape":"NumBatchResults"},
         "jobInput":{"shape":"BatchInferenceJobInput"},
         "jobOutput":{"shape":"BatchInferenceJobOutput"},
@@ -877,6 +934,25 @@
       "members":{
         "eventTrackerArn":{"shape":"Arn"},
         "trackingId":{"shape":"TrackingId"}
+      }
+    },
+    "CreateFilterRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "datasetGroupArn",
+        "filterExpression"
+      ],
+      "members":{
+        "name":{"shape":"Name"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "filterExpression":{"shape":"FilterExpression"}
+      }
+    },
+    "CreateFilterResponse":{
+      "type":"structure",
+      "members":{
+        "filterArn":{"shape":"Arn"}
       }
     },
     "CreateSchemaRequest":{
@@ -1127,6 +1203,13 @@
         "eventTrackerArn":{"shape":"Arn"}
       }
     },
+    "DeleteFilterRequest":{
+      "type":"structure",
+      "required":["filterArn"],
+      "members":{
+        "filterArn":{"shape":"Arn"}
+      }
+    },
     "DeleteSchemaRequest":{
       "type":"structure",
       "required":["schemaArn"],
@@ -1245,6 +1328,19 @@
         "featureTransformation":{"shape":"FeatureTransformation"}
       }
     },
+    "DescribeFilterRequest":{
+      "type":"structure",
+      "required":["filterArn"],
+      "members":{
+        "filterArn":{"shape":"Arn"}
+      }
+    },
+    "DescribeFilterResponse":{
+      "type":"structure",
+      "members":{
+        "filter":{"shape":"Filter"}
+      }
+    },
     "DescribeRecipeRequest":{
       "type":"structure",
       "required":["recipeArn"],
@@ -1361,6 +1457,42 @@
       "type":"map",
       "key":{"shape":"ParameterName"},
       "value":{"shape":"ParameterValue"},
+      "max":100
+    },
+    "Filter":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"Name"},
+        "filterArn":{"shape":"Arn"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "failureReason":{"shape":"FailureReason"},
+        "filterExpression":{"shape":"FilterExpression"},
+        "status":{"shape":"Status"}
+      }
+    },
+    "FilterExpression":{
+      "type":"string",
+      "max":2500,
+      "min":1,
+      "sensitive":true
+    },
+    "FilterSummary":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"Name"},
+        "filterArn":{"shape":"Arn"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "failureReason":{"shape":"FailureReason"},
+        "status":{"shape":"Status"}
+      }
+    },
+    "Filters":{
+      "type":"list",
+      "member":{"shape":"FilterSummary"},
       "max":100
     },
     "GetSolutionMetricsRequest":{
@@ -1551,6 +1683,21 @@
       "type":"structure",
       "members":{
         "eventTrackers":{"shape":"EventTrackers"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListFiltersRequest":{
+      "type":"structure",
+      "members":{
+        "datasetGroupArn":{"shape":"Arn"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListFiltersResponse":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"Filters"},
         "nextToken":{"shape":"NextToken"}
       }
     },

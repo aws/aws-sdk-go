@@ -74,7 +74,8 @@
         {"shape":"TooManyTargetsException"},
         {"shape":"TooManyActionsException"},
         {"shape":"InvalidLoadBalancerActionException"},
-        {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"}
+        {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"},
+        {"shape":"ALPNPolicyNotSupportedException"}
       ]
     },
     "CreateLoadBalancer":{
@@ -427,7 +428,8 @@
         {"shape":"TooManyTargetsException"},
         {"shape":"TooManyActionsException"},
         {"shape":"InvalidLoadBalancerActionException"},
-        {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"}
+        {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"},
+        {"shape":"ALPNPolicyNotSupportedException"}
       ]
     },
     "ModifyLoadBalancerAttributes":{
@@ -629,6 +631,17 @@
     }
   },
   "shapes":{
+    "ALPNPolicyNotSupportedException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ALPNPolicyNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "Action":{
       "type":"structure",
       "required":["Type"],
@@ -707,6 +720,11 @@
       },
       "exception":true
     },
+    "AlpnPolicyName":{
+      "type":"list",
+      "member":{"shape":"AlpnPolicyValue"}
+    },
+    "AlpnPolicyValue":{"type":"string"},
     "AuthenticateCognitoActionAuthenticationRequestExtraParams":{
       "type":"map",
       "key":{"shape":"AuthenticateCognitoActionAuthenticationRequestParamName"},
@@ -873,7 +891,8 @@
         "Port":{"shape":"Port"},
         "SslPolicy":{"shape":"SslPolicyName"},
         "Certificates":{"shape":"CertificateList"},
-        "DefaultActions":{"shape":"Actions"}
+        "DefaultActions":{"shape":"Actions"},
+        "AlpnPolicy":{"shape":"AlpnPolicyName"}
       }
     },
     "CreateListenerOutput":{
@@ -1412,7 +1431,8 @@
         "Protocol":{"shape":"ProtocolEnum"},
         "Certificates":{"shape":"CertificateList"},
         "SslPolicy":{"shape":"SslPolicyName"},
-        "DefaultActions":{"shape":"Actions"}
+        "DefaultActions":{"shape":"Actions"},
+        "AlpnPolicy":{"shape":"AlpnPolicyName"}
       }
     },
     "ListenerArn":{"type":"string"},
@@ -1558,7 +1578,8 @@
         "Protocol":{"shape":"ProtocolEnum"},
         "SslPolicy":{"shape":"SslPolicyName"},
         "Certificates":{"shape":"CertificateList"},
-        "DefaultActions":{"shape":"Actions"}
+        "DefaultActions":{"shape":"Actions"},
+        "AlpnPolicy":{"shape":"AlpnPolicyName"}
       }
     },
     "ModifyListenerOutput":{

@@ -25,6 +25,8 @@ type CEKEntry func(CipherData) (ContentCipher, error)
 // Supported content ciphers:
 //	* AES/GCM
 //	* AES/CBC
+//
+// deprecated: See DecryptionClientV2
 type DecryptionClient struct {
 	S3Client s3iface.S3API
 	// LoadStrategy is used to load the metadata either from the metadata of the object
@@ -45,6 +47,8 @@ type DecryptionClient struct {
 //	svc := s3crypto.NewDecryptionClient(sess, func(svc *s3crypto.DecryptionClient{
 //		// Custom client options here
 //	}))
+//
+// deprecated: see NewDecryptionClientV2
 func NewDecryptionClient(prov client.ConfigProvider, options ...func(*DecryptionClient)) *DecryptionClient {
 	s3client := s3.New(prov)
 
@@ -82,47 +86,24 @@ func NewDecryptionClient(prov client.ConfigProvider, options ...func(*Decryption
 // decryption will be done. The SDK only supports V2 reads of KMS and GCM.
 //
 // Example:
-//	sess := session.New()
+//  sess := session.Must(session.NewSession())
 //	svc := s3crypto.NewDecryptionClient(sess)
 //	req, out := svc.GetObjectRequest(&s3.GetObjectInput {
 //	  Key: aws.String("testKey"),
 //	  Bucket: aws.String("testBucket"),
 //	})
 //	err := req.Send()
+//
+// deprecated: see DecryptionClientV2.GetObjectRequest
 func (c *DecryptionClient) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
-	req, out := c.S3Client.GetObjectRequest(input)
-	req.Handlers.Unmarshal.PushBack(func(r *request.Request) {
-		env, err := c.LoadStrategy.Load(r)
-		if err != nil {
-			r.Error = err
-			out.Body.Close()
-			return
-		}
-
-		// If KMS should return the correct CEK algorithm with the proper
-		// KMS key provider
-		cipher, err := c.contentCipherFromEnvelope(r.Context(), env)
-		if err != nil {
-			r.Error = err
-			out.Body.Close()
-			return
-		}
-
-		reader, err := cipher.DecryptContents(out.Body)
-		if err != nil {
-			r.Error = err
-			out.Body.Close()
-			return
-		}
-		out.Body = reader
-	})
-	return req, out
+	return getObjectRequest(c.getClientOptions(), input)
 }
 
 // GetObject is a wrapper for GetObjectRequest
+//
+// deprecated: see DecryptionClientV2.GetObject
 func (c *DecryptionClient) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOutput, error) {
-	req, out := c.GetObjectRequest(input)
-	return out, req.Send()
+	return getObject(c.getClientOptions(), input)
 }
 
 // GetObjectWithContext is a wrapper for GetObjectRequest with the additional
@@ -132,9 +113,18 @@ func (c *DecryptionClient) GetObject(input *s3.GetObjectInput) (*s3.GetObjectOut
 // Context input parameters. The Context must not be nil. A nil Context will
 // cause a panic. Use the Context to add deadlining, timeouts, etc. In the future
 // this may create sub-contexts for individual underlying requests.
+//
+// deprecated: see DecryptionClientV2.GetObjectWithContext
 func (c *DecryptionClient) GetObjectWithContext(ctx aws.Context, input *s3.GetObjectInput, opts ...request.Option) (*s3.GetObjectOutput, error) {
-	req, out := c.GetObjectRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
+	return getObjectWithContext(c.getClientOptions(), ctx, input, opts...)
+}
+
+func (c *DecryptionClient) getClientOptions() DecryptionClientOptions {
+	return DecryptionClientOptions{
+		S3Client:       c.S3Client,
+		LoadStrategy:   c.LoadStrategy,
+		WrapRegistry:   c.WrapRegistry,
+		CEKRegistry:    c.CEKRegistry,
+		PadderRegistry: c.PadderRegistry,
+	}
 }

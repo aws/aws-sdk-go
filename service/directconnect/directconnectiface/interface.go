@@ -252,6 +252,18 @@ type DirectConnectAPI interface {
 	DisassociateConnectionFromLagWithContext(aws.Context, *directconnect.DisassociateConnectionFromLagInput, ...request.Option) (*directconnect.Connection, error)
 	DisassociateConnectionFromLagRequest(*directconnect.DisassociateConnectionFromLagInput) (*request.Request, *directconnect.Connection)
 
+	ListVirtualInterfaceTestHistory(*directconnect.ListVirtualInterfaceTestHistoryInput) (*directconnect.ListVirtualInterfaceTestHistoryOutput, error)
+	ListVirtualInterfaceTestHistoryWithContext(aws.Context, *directconnect.ListVirtualInterfaceTestHistoryInput, ...request.Option) (*directconnect.ListVirtualInterfaceTestHistoryOutput, error)
+	ListVirtualInterfaceTestHistoryRequest(*directconnect.ListVirtualInterfaceTestHistoryInput) (*request.Request, *directconnect.ListVirtualInterfaceTestHistoryOutput)
+
+	StartBgpFailoverTest(*directconnect.StartBgpFailoverTestInput) (*directconnect.StartBgpFailoverTestOutput, error)
+	StartBgpFailoverTestWithContext(aws.Context, *directconnect.StartBgpFailoverTestInput, ...request.Option) (*directconnect.StartBgpFailoverTestOutput, error)
+	StartBgpFailoverTestRequest(*directconnect.StartBgpFailoverTestInput) (*request.Request, *directconnect.StartBgpFailoverTestOutput)
+
+	StopBgpFailoverTest(*directconnect.StopBgpFailoverTestInput) (*directconnect.StopBgpFailoverTestOutput, error)
+	StopBgpFailoverTestWithContext(aws.Context, *directconnect.StopBgpFailoverTestInput, ...request.Option) (*directconnect.StopBgpFailoverTestOutput, error)
+	StopBgpFailoverTestRequest(*directconnect.StopBgpFailoverTestInput) (*request.Request, *directconnect.StopBgpFailoverTestOutput)
+
 	TagResource(*directconnect.TagResourceInput) (*directconnect.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *directconnect.TagResourceInput, ...request.Option) (*directconnect.TagResourceOutput, error)
 	TagResourceRequest(*directconnect.TagResourceInput) (*request.Request, *directconnect.TagResourceOutput)

@@ -64,13 +64,25 @@ type CodeStarConnectionsAPI interface {
 	CreateConnectionWithContext(aws.Context, *codestarconnections.CreateConnectionInput, ...request.Option) (*codestarconnections.CreateConnectionOutput, error)
 	CreateConnectionRequest(*codestarconnections.CreateConnectionInput) (*request.Request, *codestarconnections.CreateConnectionOutput)
 
+	CreateHost(*codestarconnections.CreateHostInput) (*codestarconnections.CreateHostOutput, error)
+	CreateHostWithContext(aws.Context, *codestarconnections.CreateHostInput, ...request.Option) (*codestarconnections.CreateHostOutput, error)
+	CreateHostRequest(*codestarconnections.CreateHostInput) (*request.Request, *codestarconnections.CreateHostOutput)
+
 	DeleteConnection(*codestarconnections.DeleteConnectionInput) (*codestarconnections.DeleteConnectionOutput, error)
 	DeleteConnectionWithContext(aws.Context, *codestarconnections.DeleteConnectionInput, ...request.Option) (*codestarconnections.DeleteConnectionOutput, error)
 	DeleteConnectionRequest(*codestarconnections.DeleteConnectionInput) (*request.Request, *codestarconnections.DeleteConnectionOutput)
 
+	DeleteHost(*codestarconnections.DeleteHostInput) (*codestarconnections.DeleteHostOutput, error)
+	DeleteHostWithContext(aws.Context, *codestarconnections.DeleteHostInput, ...request.Option) (*codestarconnections.DeleteHostOutput, error)
+	DeleteHostRequest(*codestarconnections.DeleteHostInput) (*request.Request, *codestarconnections.DeleteHostOutput)
+
 	GetConnection(*codestarconnections.GetConnectionInput) (*codestarconnections.GetConnectionOutput, error)
 	GetConnectionWithContext(aws.Context, *codestarconnections.GetConnectionInput, ...request.Option) (*codestarconnections.GetConnectionOutput, error)
 	GetConnectionRequest(*codestarconnections.GetConnectionInput) (*request.Request, *codestarconnections.GetConnectionOutput)
+
+	GetHost(*codestarconnections.GetHostInput) (*codestarconnections.GetHostOutput, error)
+	GetHostWithContext(aws.Context, *codestarconnections.GetHostInput, ...request.Option) (*codestarconnections.GetHostOutput, error)
+	GetHostRequest(*codestarconnections.GetHostInput) (*request.Request, *codestarconnections.GetHostOutput)
 
 	ListConnections(*codestarconnections.ListConnectionsInput) (*codestarconnections.ListConnectionsOutput, error)
 	ListConnectionsWithContext(aws.Context, *codestarconnections.ListConnectionsInput, ...request.Option) (*codestarconnections.ListConnectionsOutput, error)
@@ -78,6 +90,13 @@ type CodeStarConnectionsAPI interface {
 
 	ListConnectionsPages(*codestarconnections.ListConnectionsInput, func(*codestarconnections.ListConnectionsOutput, bool) bool) error
 	ListConnectionsPagesWithContext(aws.Context, *codestarconnections.ListConnectionsInput, func(*codestarconnections.ListConnectionsOutput, bool) bool, ...request.Option) error
+
+	ListHosts(*codestarconnections.ListHostsInput) (*codestarconnections.ListHostsOutput, error)
+	ListHostsWithContext(aws.Context, *codestarconnections.ListHostsInput, ...request.Option) (*codestarconnections.ListHostsOutput, error)
+	ListHostsRequest(*codestarconnections.ListHostsInput) (*request.Request, *codestarconnections.ListHostsOutput)
+
+	ListHostsPages(*codestarconnections.ListHostsInput, func(*codestarconnections.ListHostsOutput, bool) bool) error
+	ListHostsPagesWithContext(aws.Context, *codestarconnections.ListHostsInput, func(*codestarconnections.ListHostsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*codestarconnections.ListTagsForResourceInput) (*codestarconnections.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *codestarconnections.ListTagsForResourceInput, ...request.Option) (*codestarconnections.ListTagsForResourceOutput, error)

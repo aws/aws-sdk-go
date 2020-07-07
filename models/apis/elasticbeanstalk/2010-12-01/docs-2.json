@@ -1,9 +1,10 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS Elastic Beanstalk</fullname> <p>AWS Elastic Beanstalk makes it easy for you to create, deploy, and manage scalable, fault-tolerant applications running on the Amazon Web Services cloud.</p> <p>For more information about this product, go to the <a href=\"http://aws.amazon.com/elasticbeanstalk/\">AWS Elastic Beanstalk</a> details page. The location of the latest AWS Elastic Beanstalk WSDL is <a href=\"http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl\">http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl</a>. To install the Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and command line tools that enable you to access the API, go to <a href=\"http://aws.amazon.com/tools/\">Tools for Amazon Web Services</a>.</p> <p> <b>Endpoints</b> </p> <p>For a list of region-specific endpoints that AWS Elastic Beanstalk supports, go to <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region\">Regions and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p>",
+  "service": "<fullname>AWS Elastic Beanstalk</fullname> <p>AWS Elastic Beanstalk makes it easy for you to create, deploy, and manage scalable, fault-tolerant applications running on the Amazon Web Services cloud.</p> <p>For more information about this product, go to the <a href=\"http://aws.amazon.com/elasticbeanstalk/\">AWS Elastic Beanstalk</a> details page. The location of the latest AWS Elastic Beanstalk WSDL is <a href=\"https://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl\">https://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl</a>. To install the Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and command line tools that enable you to access the API, go to <a href=\"http://aws.amazon.com/tools/\">Tools for Amazon Web Services</a>.</p> <p> <b>Endpoints</b> </p> <p>For a list of region-specific endpoints that AWS Elastic Beanstalk supports, go to <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region\">Regions and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p>",
   "operations": {
     "AbortEnvironmentUpdate": "<p>Cancels in-progress environment configuration update or application version deployment.</p>",
     "ApplyEnvironmentManagedAction": "<p>Applies a scheduled managed action immediately. A managed action can be applied only if its status is <code>Scheduled</code>. Get the status and action ID of a managed action with <a>DescribeEnvironmentManagedActions</a>.</p>",
+    "AssociateEnvironmentOperationsRole": "<p>Add or change the operations role used by an environment. After this call is made, Elastic Beanstalk uses the associated operations role for permissions to downstream services during subsequent calls acting on this environment. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html\">Operations roles</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p>",
     "CheckDNSAvailability": "<p>Checks if the specified CNAME is available.</p>",
     "ComposeEnvironments": "<p>Create or update a group of environments that each run a separate component of a single application. Takes a list of version labels that specify application source bundles for each of the environments to create or update. The name of each environment and other required information must be included in the source bundles in an environment manifest named <code>env.yaml</code>. See <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html\">Compose Environments</a> for details.</p>",
     "CreateApplication": "<p>Creates an application that has one configuration template named <code>default</code> and no application versions.</p>",
@@ -30,6 +31,7 @@
     "DescribeEvents": "<p>Returns list of event descriptions matching criteria up to the last 6 weeks.</p> <note> <p>This action returns the most recent 1,000 events from the specified <code>NextToken</code>.</p> </note>",
     "DescribeInstancesHealth": "<p>Retrieves detailed information about the health of instances in your AWS Elastic Beanstalk. This operation requires <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced.html\">enhanced health reporting</a>.</p>",
     "DescribePlatformVersion": "<p>Describes a platform version. Provides full details. Compare to <a>ListPlatformVersions</a>, which provides summary information about a list of platform versions.</p> <p>For definitions of platform version and other platform-related terms, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-glossary.html\">AWS Elastic Beanstalk Platforms Glossary</a>.</p>",
+    "DisassociateEnvironmentOperationsRole": "<p>Disassociate the operations role from an environment. After this call is made, Elastic Beanstalk uses the caller's permissions for permissions to downstream services during subsequent calls acting on this environment. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html\">Operations roles</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p>",
     "ListAvailableSolutionStacks": "<p>Returns a list of the available solution stack names, with the public version first and then in reverse chronological order.</p>",
     "ListPlatformBranches": "<p>Lists the platform branches available for your account in an AWS Region. Provides summary information about each platform branch.</p> <p>For definitions of platform branch and other platform-related terms, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-glossary.html\">AWS Elastic Beanstalk Platforms Glossary</a>.</p>",
     "ListPlatformVersions": "<p>Lists the platform versions available for your account in an AWS Region. Provides summary information about each platform version. Compare to <a>DescribePlatformVersion</a>, which provides full details about a single platform version.</p> <p>For definitions of platform version and other platform-related terms, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/platforms-glossary.html\">AWS Elastic Beanstalk Platforms Glossary</a>.</p>",
@@ -230,6 +232,11 @@
     },
     "ApplyEnvironmentManagedActionResult": {
       "base": "<p>The result message containing information about the managed action.</p>",
+      "refs": {
+      }
+    },
+    "AssociateEnvironmentOperationsRoleMessage": {
+      "base": "<p>Request to add or change the operations role used by an environment.</p>",
       "refs": {
       }
     },
@@ -718,6 +725,11 @@
         "UpdateEnvironmentMessage$Description": "<p>If this parameter is specified, AWS Elastic Beanstalk updates the description of this environment.</p>"
       }
     },
+    "DisassociateEnvironmentOperationsRoleMessage": {
+      "base": "<p>Request to disassociate the operations role from an environment.</p>",
+      "refs": {
+      }
+    },
     "Ec2InstanceId": {
       "base": null,
       "refs": {
@@ -847,6 +859,7 @@
       "base": null,
       "refs": {
         "AbortEnvironmentUpdateMessage$EnvironmentName": "<p>This specifies the name of the environment with the in-progress update that you want to cancel.</p>",
+        "AssociateEnvironmentOperationsRoleMessage$EnvironmentName": "<p>The name of the environment to which to set the operations role.</p>",
         "ConfigurationSettingsDescription$EnvironmentName": "<p> If not <code>null</code>, the name of the environment for this configuration set. </p>",
         "CreateEnvironmentMessage$EnvironmentName": "<p>A unique name for the environment.</p> <p>Constraint: Must be from 4 to 40 characters in length. The name can contain only letters, numbers, and hyphens. It can't start or end with a hyphen. This name must be unique within a region in your account. If the specified name already exists in the region, Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p> <p>If you don't specify the <code>CNAMEPrefix</code> parameter, the environment name becomes part of the CNAME, and therefore part of the visible URL for your application.</p>",
         "CreatePlatformVersionRequest$EnvironmentName": "<p>The name of the builder environment.</p>",
@@ -859,6 +872,7 @@
         "DescribeEnvironmentResourcesMessage$EnvironmentName": "<p>The name of the environment to retrieve AWS resource usage data.</p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "DescribeEventsMessage$EnvironmentName": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.</p>",
         "DescribeInstancesHealthRequest$EnvironmentName": "<p>Specify the AWS Elastic Beanstalk environment by name.</p>",
+        "DisassociateEnvironmentOperationsRoleMessage$EnvironmentName": "<p>The name of the environment from which to disassociate the operations role.</p>",
         "EnvironmentDescription$EnvironmentName": "<p>The name of this environment.</p>",
         "EnvironmentNamesList$member": null,
         "EnvironmentResourceDescription$EnvironmentName": "<p>The name of the environment.</p>",
@@ -1303,6 +1317,14 @@
       "refs": {
       }
     },
+    "OperationsRole": {
+      "base": null,
+      "refs": {
+        "AssociateEnvironmentOperationsRoleMessage$OperationsRole": "<p>The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role.</p>",
+        "CreateEnvironmentMessage$OperationsRole": "<p>The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role. If specified, Elastic Beanstalk uses the operations role for permissions to downstream services during this call and during subsequent calls acting on this environment. To specify an operations role, you must have the <code>iam:PassRole</code> permission for the role. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html\">Operations roles</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p>",
+        "EnvironmentDescription$OperationsRole": "<p>The Amazon Resource Name (ARN) of the environment's operations role. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-operationsrole.html\">Operations roles</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p>"
+      }
+    },
     "OptionNamespace": {
       "base": null,
       "refs": {
@@ -1357,7 +1379,7 @@
         "ConfigurationOptionsDescription$PlatformArn": "<p>The ARN of the platform version.</p>",
         "ConfigurationSettingsDescription$PlatformArn": "<p>The ARN of the platform version.</p>",
         "CreateConfigurationTemplateMessage$PlatformArn": "<p>The Amazon Resource Name (ARN) of the custom platform. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html\"> Custom Platforms</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p> <note> <p>If you specify <code>PlatformArn</code>, then don't specify <code>SolutionStackName</code>.</p> </note>",
-        "CreateEnvironmentMessage$PlatformArn": "<p>The Amazon Resource Name (ARN) of the custom platform to use with the environment. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html\"> Custom Platforms</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p> <note> <p>If you specify <code>PlatformArn</code>, don't specify <code>SolutionStackName</code>.</p> </note>",
+        "CreateEnvironmentMessage$PlatformArn": "<p>The Amazon Resource Name (ARN) of the custom platform to use with the environment. For more information, see <a href=\"https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/custom-platforms.html\">Custom Platforms</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>.</p> <note> <p>If you specify <code>PlatformArn</code>, don't specify <code>SolutionStackName</code>.</p> </note>",
         "DeletePlatformVersionRequest$PlatformArn": "<p>The ARN of the version of the custom platform.</p>",
         "DescribeConfigurationOptionsMessage$PlatformArn": "<p>The ARN of the custom platform.</p>",
         "DescribeEventsMessage$PlatformArn": "<p>The ARN of a custom platform version. If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this custom platform version.</p>",
@@ -1904,14 +1926,14 @@
     "TagKeyList": {
       "base": null,
       "refs": {
-        "UpdateTagsForResourceMessage$TagsToRemove": "<p>A list of tag keys to remove.</p> <p>If a tag key doesn't exist, it is silently ignored.</p>"
+        "UpdateTagsForResourceMessage$TagsToRemove": "<p>A list of tag keys to remove. If a tag key doesn't exist, it is silently ignored.</p> <p>Specify at least one of these parameters: <code>TagsToAdd</code>, <code>TagsToRemove</code>.</p>"
       }
     },
     "TagList": {
       "base": null,
       "refs": {
         "ResourceTagsDescriptionMessage$ResourceTags": "<p>A list of tag key-value pairs.</p>",
-        "UpdateTagsForResourceMessage$TagsToAdd": "<p>A list of tags to add or update.</p> <p>If a key of an existing tag is added, the tag's value is updated.</p>"
+        "UpdateTagsForResourceMessage$TagsToAdd": "<p>A list of tags to add or update. If a key of an existing tag is added, the tag's value is updated.</p> <p>Specify at least one of these parameters: <code>TagsToAdd</code>, <code>TagsToRemove</code>.</p>"
       }
     },
     "TagValue": {

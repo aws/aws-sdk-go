@@ -682,6 +682,7 @@
         "Ec2InstanceAttributes":{"shape":"Ec2InstanceAttributes"},
         "InstanceCollectionType":{"shape":"InstanceCollectionType"},
         "LogUri":{"shape":"String"},
+        "LogEncryptionKmsKeyId":{"shape":"String"},
         "RequestedAmiVersion":{"shape":"String"},
         "RunningAmiVersion":{"shape":"String"},
         "ReleaseLabel":{"shape":"String"},
@@ -806,7 +807,8 @@
         "UnitType":{"shape":"ComputeLimitsUnitType"},
         "MinimumCapacityUnits":{"shape":"Integer"},
         "MaximumCapacityUnits":{"shape":"Integer"},
-        "MaximumOnDemandCapacityUnits":{"shape":"Integer"}
+        "MaximumOnDemandCapacityUnits":{"shape":"Integer"},
+        "MaximumCoreCapacityUnits":{"shape":"Integer"}
       }
     },
     "ComputeLimitsUnitType":{
@@ -1122,9 +1124,9 @@
     },
     "InstanceFleetProvisioningSpecifications":{
       "type":"structure",
-      "required":["SpotSpecification"],
       "members":{
-        "SpotSpecification":{"shape":"SpotProvisioningSpecification"}
+        "SpotSpecification":{"shape":"SpotProvisioningSpecification"},
+        "OnDemandSpecification":{"shape":"OnDemandProvisioningSpecification"}
       }
     },
     "InstanceFleetState":{
@@ -1481,6 +1483,7 @@
         "JobFlowId":{"shape":"XmlStringMaxLen256"},
         "Name":{"shape":"XmlStringMaxLen256"},
         "LogUri":{"shape":"XmlString"},
+        "LogEncryptionKmsKeyId":{"shape":"XmlString"},
         "AmiVersion":{"shape":"XmlStringMaxLen256"},
         "ExecutionStatusDetail":{"shape":"JobFlowExecutionStatusDetail"},
         "Instances":{"shape":"JobFlowInstancesDetail"},
@@ -1777,6 +1780,17 @@
       "type":"double",
       "min":0.0
     },
+    "OnDemandProvisioningAllocationStrategy":{
+      "type":"string",
+      "enum":["lowest-price"]
+    },
+    "OnDemandProvisioningSpecification":{
+      "type":"structure",
+      "required":["AllocationStrategy"],
+      "members":{
+        "AllocationStrategy":{"shape":"OnDemandProvisioningAllocationStrategy"}
+      }
+    },
     "OptionalArnType":{
       "type":"string",
       "max":2048,
@@ -1917,6 +1931,7 @@
       "members":{
         "Name":{"shape":"XmlStringMaxLen256"},
         "LogUri":{"shape":"XmlString"},
+        "LogEncryptionKmsKeyId":{"shape":"XmlString"},
         "AdditionalInfo":{"shape":"XmlString"},
         "AmiVersion":{"shape":"XmlStringMaxLen256"},
         "ReleaseLabel":{"shape":"XmlStringMaxLen256"},
@@ -2061,6 +2076,10 @@
         "CoolDown":{"shape":"Integer"}
       }
     },
+    "SpotProvisioningAllocationStrategy":{
+      "type":"string",
+      "enum":["capacity-optimized"]
+    },
     "SpotProvisioningSpecification":{
       "type":"structure",
       "required":[
@@ -2070,7 +2089,8 @@
       "members":{
         "TimeoutDurationMinutes":{"shape":"WholeNumber"},
         "TimeoutAction":{"shape":"SpotProvisioningTimeoutAction"},
-        "BlockDurationMinutes":{"shape":"WholeNumber"}
+        "BlockDurationMinutes":{"shape":"WholeNumber"},
+        "AllocationStrategy":{"shape":"SpotProvisioningAllocationStrategy"}
       }
     },
     "SpotProvisioningTimeoutAction":{

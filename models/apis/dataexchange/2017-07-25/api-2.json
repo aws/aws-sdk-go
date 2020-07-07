@@ -1153,8 +1153,7 @@
         }
       },
       "required": [
-        "Type",
-        "KmsKeyArn"
+        "Type"
       ]
     },
     "GetAssetRequest": {

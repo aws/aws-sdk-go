@@ -16,6 +16,11 @@ func TestFormatTime(t *testing.T) {
 		"UnixTest1": {
 			formatName:     UnixTimeFormatName,
 			expectedOutput: "946845296",
+			input:          time.Date(2000, time.January, 2, 20, 34, 56, 0, time.UTC),
+		},
+		"UnixTest2": {
+			formatName:     UnixTimeFormatName,
+			expectedOutput: "946845296.123",
 			input:          time.Date(2000, time.January, 2, 20, 34, 56, .123e9, time.UTC),
 		},
 		"ISO8601Test1": {
@@ -32,8 +37,8 @@ func TestFormatTime(t *testing.T) {
 
 	for name, c := range cases {
 		t.Run(name, func(t *testing.T) {
-			if FormatTime(c.formatName, c.input) != c.expectedOutput {
-				t.Errorf("input and output time don't match for %s format ", c.formatName)
+			if e, a := c.expectedOutput, FormatTime(c.formatName, c.input); e != a {
+				t.Errorf("expected %s, got %s for %s format ", e, a, c.formatName)
 			}
 		})
 	}

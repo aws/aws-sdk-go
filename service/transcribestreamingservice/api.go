@@ -773,6 +773,11 @@ type Item struct {
 	// was recognized in the input audio. PUNCTUATION indicates that the item was
 	// interpreted as a pause in the input audio.
 	Type *string `type:"string" enum:"ItemType"`
+
+	// Indicates whether a word in the item matches a word in the vocabulary filter
+	// you've chosen for your real-time stream. If true then a word in the item
+	// matches your vocabulary filter.
+	VocabularyFilterMatch *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -806,6 +811,12 @@ func (s *Item) SetStartTime(v float64) *Item {
 // SetType sets the Type field's value.
 func (s *Item) SetType(v string) *Item {
 	s.Type = &v
+	return s
+}
+
+// SetVocabularyFilterMatch sets the VocabularyFilterMatch field's value.
+func (s *Item) SetVocabularyFilterMatch(v bool) *Item {
+	s.VocabularyFilterMatch = &v
 	return s
 }
 
@@ -1070,6 +1081,17 @@ type StartStreamTranscriptionInput struct {
 	// will generate one for you and return it in the response.
 	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" type:"string"`
 
+	// The manner in which you use your vocabulary filter to filter words in your
+	// transcript. Remove removes filtered words from your transcription results.
+	// Mask masks those words with a *** in your transcription results. Tag keeps
+	// the filtered words in your transcription results and tags them. The tag appears
+	// as VocabularyFilterMatch equal to True
+	VocabularyFilterMethod *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-method" type:"string" enum:"VocabularyFilterMethod"`
+
+	// The name of the vocabulary filter you've created that is unique to your AWS
+	// accountf. Provide the name in this field to successfully use it in a stream.
+	VocabularyFilterName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-name" min:"1" type:"string"`
+
 	// The name of the vocabulary to use when processing the transcription job.
 	VocabularyName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-name" min:"1" type:"string"`
 }
@@ -1098,6 +1120,9 @@ func (s *StartStreamTranscriptionInput) Validate() error {
 	}
 	if s.MediaSampleRateHertz != nil && *s.MediaSampleRateHertz < 8000 {
 		invalidParams.Add(request.NewErrParamMinValue("MediaSampleRateHertz", 8000))
+	}
+	if s.VocabularyFilterName != nil && len(*s.VocabularyFilterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyFilterName", 1))
 	}
 	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
@@ -1133,6 +1158,18 @@ func (s *StartStreamTranscriptionInput) SetSessionId(v string) *StartStreamTrans
 	return s
 }
 
+// SetVocabularyFilterMethod sets the VocabularyFilterMethod field's value.
+func (s *StartStreamTranscriptionInput) SetVocabularyFilterMethod(v string) *StartStreamTranscriptionInput {
+	s.VocabularyFilterMethod = &v
+	return s
+}
+
+// SetVocabularyFilterName sets the VocabularyFilterName field's value.
+func (s *StartStreamTranscriptionInput) SetVocabularyFilterName(v string) *StartStreamTranscriptionInput {
+	s.VocabularyFilterName = &v
+	return s
+}
+
 // SetVocabularyName sets the VocabularyName field's value.
 func (s *StartStreamTranscriptionInput) SetVocabularyName(v string) *StartStreamTranscriptionInput {
 	s.VocabularyName = &v
@@ -1160,7 +1197,13 @@ type StartStreamTranscriptionOutput struct {
 	// An identifier for a specific transcription session.
 	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" type:"string"`
 
-	// The name of the vocabulary used when processing the job.
+	// The vocabulary filtering method used in the real-time stream.
+	VocabularyFilterMethod *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-method" type:"string" enum:"VocabularyFilterMethod"`
+
+	// The name of the vocabulary filter used in your real-time stream.
+	VocabularyFilterName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-name" min:"1" type:"string"`
+
+	// The name of the vocabulary used when processing the stream.
 	VocabularyName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-name" min:"1" type:"string"`
 }
 
@@ -1201,6 +1244,18 @@ func (s *StartStreamTranscriptionOutput) SetRequestId(v string) *StartStreamTran
 // SetSessionId sets the SessionId field's value.
 func (s *StartStreamTranscriptionOutput) SetSessionId(v string) *StartStreamTranscriptionOutput {
 	s.SessionId = &v
+	return s
+}
+
+// SetVocabularyFilterMethod sets the VocabularyFilterMethod field's value.
+func (s *StartStreamTranscriptionOutput) SetVocabularyFilterMethod(v string) *StartStreamTranscriptionOutput {
+	s.VocabularyFilterMethod = &v
+	return s
+}
+
+// SetVocabularyFilterName sets the VocabularyFilterName field's value.
+func (s *StartStreamTranscriptionOutput) SetVocabularyFilterName(v string) *StartStreamTranscriptionOutput {
+	s.VocabularyFilterName = &v
 	return s
 }
 
@@ -1457,4 +1512,15 @@ const (
 const (
 	// MediaEncodingPcm is a MediaEncoding enum value
 	MediaEncodingPcm = "pcm"
+)
+
+const (
+	// VocabularyFilterMethodRemove is a VocabularyFilterMethod enum value
+	VocabularyFilterMethodRemove = "remove"
+
+	// VocabularyFilterMethodMask is a VocabularyFilterMethod enum value
+	VocabularyFilterMethodMask = "mask"
+
+	// VocabularyFilterMethodTag is a VocabularyFilterMethod enum value
+	VocabularyFilterMethodTag = "tag"
 )
