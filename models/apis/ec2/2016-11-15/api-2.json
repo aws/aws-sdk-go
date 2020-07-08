@@ -23912,6 +23912,10 @@
           "shape":"DateTime",
           "locationName":"validUntil"
         },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "InstanceInterruptionBehavior":{"shape":"InstanceInterruptionBehavior"}
       }
     },

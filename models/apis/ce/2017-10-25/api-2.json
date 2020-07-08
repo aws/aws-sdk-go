@@ -465,6 +465,7 @@
       "type":"structure",
       "members":{
         "ResourceId":{"shape":"GenericString"},
+        "InstanceName":{"shape":"GenericString"},
         "Tags":{"shape":"TagValuesList"},
         "ResourceDetails":{"shape":"ResourceDetails"},
         "ResourceUtilization":{"shape":"ResourceUtilization"},

@@ -7322,6 +7322,12 @@ var awsusgovPartition = partition{
 		"comprehendmedical": service{
 
 			Endpoints: endpoints{
+				"fips-us-gov-west-1": endpoint{
+					Hostname: "comprehendmedical-fips.us-gov-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-west-1",
+					},
+				},
 				"us-gov-west-1": endpoint{},
 			},
 		},
