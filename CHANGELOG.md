@@ -1,3 +1,14 @@
+Release v1.33.4 (2020-07-08)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * EC2 Spot now enables customers to tag their Spot Instances Requests on creation.
+* `service/forecast`: Updates service API and documentation
+* `service/organizations`: Updates service API and documentation
+  * AI services opt out policies enable you to control what AI service data is collected and stored for the accounts in your organization. By default, AWS artificial intelligence (AI) services collect and store data as part of operating and supporting the continuous improvement life cycle for each service. You can use these policies to opt out of this process for all of your AWS accounts to ensure that your data is not persisted within AWS AI service data stores or used for service improvements.
+
 Release v1.33.3 (2020-07-07)
 ===
 

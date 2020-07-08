@@ -994,12 +994,13 @@ func (c *CostExplorer) GetRightsizingRecommendationRequest(input *GetRightsizing
 
 // GetRightsizingRecommendation API operation for AWS Cost Explorer Service.
 //
-// Creates recommendations that helps you save cost by identifying idle and
-// underutilized Amazon EC2 instances.
+// Creates recommendations that help you save cost by identifying idle and underutilized
+// Amazon EC2 instances.
 //
 // Recommendations are generated to either downsize or terminate instances,
 // along with providing savings detail and metrics. For details on calculation
-// and function, see Optimizing Your Cost with Rightsizing Recommendations (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-what-is.html).
+// and function, see Optimizing Your Cost with Rightsizing Recommendations (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-rightsizing.html)
+// in the AWS Billing and Cost Management User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2595,6 +2596,10 @@ type CurrentInstance struct {
 	// this instance.
 	CurrencyCode *string `type:"string"`
 
+	// The name you've given an instance. This field will show as blank if you haven't
+	// given the instance a name.
+	InstanceName *string `type:"string"`
+
 	// Current On Demand cost of operating this instance on a monthly basis.
 	MonthlyCost *string `type:"string"`
 
@@ -2636,6 +2641,12 @@ func (s CurrentInstance) GoString() string {
 // SetCurrencyCode sets the CurrencyCode field's value.
 func (s *CurrentInstance) SetCurrencyCode(v string) *CurrentInstance {
 	s.CurrencyCode = &v
+	return s
+}
+
+// SetInstanceName sets the InstanceName field's value.
+func (s *CurrentInstance) SetInstanceName(v string) *CurrentInstance {
+	s.InstanceName = &v
 	return s
 }
 
@@ -4962,7 +4973,7 @@ type GetRightsizingRecommendationInput struct {
 	// to view recommendations for instances within the same instance families or
 	// across different instance families. You can also choose to view your estimated
 	// savings associated with recommendations with consideration of existing Savings
-	// Plans or RI benefits, or niether.
+	// Plans or RI benefits, or neither.
 	Configuration *RightsizingRecommendationConfiguration `type:"structure"`
 
 	// Use Expression to filter by cost or by usage. There are two patterns:
@@ -5080,7 +5091,7 @@ type GetRightsizingRecommendationOutput struct {
 	// to view recommendations for instances within the same instance families or
 	// across different instance families. You can also choose to view your estimated
 	// savings associated with recommendations with consideration of existing Savings
-	// Plans or RI benefits, or niether.
+	// Plans or RI benefits, or neither.
 	Configuration *RightsizingRecommendationConfiguration `type:"structure"`
 
 	// Information regarding this specific recommendation set.
@@ -5346,7 +5357,7 @@ type GetSavingsPlansPurchaseRecommendationInput struct {
 	// SavingsPlansType is a required field
 	SavingsPlansType *string `type:"string" required:"true" enum:"SupportedSavingsPlansType"`
 
-	// The savings plan recommendation term used to generated these recommendations.
+	// The savings plan recommendation term used to generate these recommendations.
 	//
 	// TermInYears is a required field
 	TermInYears *string `type:"string" required:"true" enum:"TermInYears"`
@@ -7459,7 +7470,7 @@ func (s *RightsizingRecommendation) SetTerminateRecommendationDetail(v *Terminat
 // to view recommendations for instances within the same instance families or
 // across different instance families. You can also choose to view your estimated
 // savings associated with recommendations with consideration of existing Savings
-// Plans or RI benefits, or niether.
+// Plans or RI benefits, or neither.
 type RightsizingRecommendationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7518,7 +7529,7 @@ func (s *RightsizingRecommendationConfiguration) SetRecommendationTarget(v strin
 type RightsizingRecommendationMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The time stamp for when Amazon Web Services made this recommendation.
+	// The timestamp for when Amazon Web Services made this recommendation.
 	GenerationTimestamp *string `type:"string"`
 
 	// How many days of previous usage that Amazon Web Services considers when making
@@ -7568,7 +7579,7 @@ type RightsizingRecommendationSummary struct {
 	SavingsCurrencyCode *string `type:"string"`
 
 	// Savings percentage based on the recommended modifications, relative to the
-	// total On Demand costs associated with these instances.
+	// total On-Demand costs associated with these instances.
 	SavingsPercentage *string `type:"string"`
 
 	// Total number of instance recommendations.

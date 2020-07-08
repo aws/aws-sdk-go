@@ -178,6 +178,18 @@ type ForecastServiceAPI interface {
 	ListPredictorsPages(*forecastservice.ListPredictorsInput, func(*forecastservice.ListPredictorsOutput, bool) bool) error
 	ListPredictorsPagesWithContext(aws.Context, *forecastservice.ListPredictorsInput, func(*forecastservice.ListPredictorsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*forecastservice.ListTagsForResourceInput) (*forecastservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *forecastservice.ListTagsForResourceInput, ...request.Option) (*forecastservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*forecastservice.ListTagsForResourceInput) (*request.Request, *forecastservice.ListTagsForResourceOutput)
+
+	TagResource(*forecastservice.TagResourceInput) (*forecastservice.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *forecastservice.TagResourceInput, ...request.Option) (*forecastservice.TagResourceOutput, error)
+	TagResourceRequest(*forecastservice.TagResourceInput) (*request.Request, *forecastservice.TagResourceOutput)
+
+	UntagResource(*forecastservice.UntagResourceInput) (*forecastservice.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *forecastservice.UntagResourceInput, ...request.Option) (*forecastservice.UntagResourceOutput, error)
+	UntagResourceRequest(*forecastservice.UntagResourceInput) (*request.Request, *forecastservice.UntagResourceOutput)
+
 	UpdateDatasetGroup(*forecastservice.UpdateDatasetGroupInput) (*forecastservice.UpdateDatasetGroupOutput, error)
 	UpdateDatasetGroupWithContext(aws.Context, *forecastservice.UpdateDatasetGroupInput, ...request.Option) (*forecastservice.UpdateDatasetGroupOutput, error)
 	UpdateDatasetGroupRequest(*forecastservice.UpdateDatasetGroupInput) (*request.Request, *forecastservice.UpdateDatasetGroupOutput)
