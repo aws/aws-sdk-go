@@ -566,6 +566,29 @@
         "id": "to-move-a-staging-label-from-one-version-of-a-secret-to-another-1524004963841",
         "title": "To move a staging label from one version of a secret to another"
       }
+    ],
+    "ValidateResourcePolicy": [
+      {
+        "input": {
+          "ResourcePolicy": "{\n\"Version\":\"2012-10-17\",\n\"Statement\":[{\n\"Effect\":\"Allow\",\n\"Principal\":{\n\"AWS\":\"arn:aws:iam::123456789012:root\"\n},\n\"Action\":\"secretsmanager:GetSecretValue\",\n\"Resource\":\"*\"\n}]\n}",
+          "SecretId": "MyTestDatabaseSecret"
+        },
+        "output": {
+          "PolicyValidationPassed": true,
+          "ValidationErrors": [
+
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example shows how to validate a resource-based policy to a secret.",
+        "id": "to-validate-the-resource-policy-of-a-secret-1524000138629",
+        "title": "To validate a resource-based policy to a secret"
+      }
     ]
   }
 }

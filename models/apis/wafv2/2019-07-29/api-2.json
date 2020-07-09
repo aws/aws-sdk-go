@@ -547,7 +547,8 @@
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFServiceLinkedRoleErrorException"},
         {"shape":"WAFInvalidParameterException"},
-        {"shape":"WAFInvalidOperationException"}
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFLimitsExceededException"}
       ]
     },
     "PutPermissionPolicy":{
@@ -1323,6 +1324,13 @@
       "type":"list",
       "member":{"shape":"ExcludedRule"}
     },
+    "FallbackBehavior":{
+      "type":"string",
+      "enum":[
+        "MATCH",
+        "NO_MATCH"
+      ]
+    },
     "FieldToMatch":{
       "type":"structure",
       "members":{
@@ -1369,10 +1377,36 @@
         "RuleGroupReferenceStatement":{"shape":"RuleGroupReferenceStatement"}
       }
     },
+    "ForwardedIPConfig":{
+      "type":"structure",
+      "required":[
+        "HeaderName",
+        "FallbackBehavior"
+      ],
+      "members":{
+        "HeaderName":{"shape":"ForwardedIPHeaderName"},
+        "FallbackBehavior":{"shape":"FallbackBehavior"}
+      }
+    },
+    "ForwardedIPHeaderName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-]+$"
+    },
+    "ForwardedIPPosition":{
+      "type":"string",
+      "enum":[
+        "FIRST",
+        "LAST",
+        "ANY"
+      ]
+    },
     "GeoMatchStatement":{
       "type":"structure",
       "members":{
-        "CountryCodes":{"shape":"CountryCodes"}
+        "CountryCodes":{"shape":"CountryCodes"},
+        "ForwardedIPConfig":{"shape":"ForwardedIPConfig"}
       }
     },
     "GetIPSetRequest":{
@@ -1602,11 +1636,25 @@
         "Addresses":{"shape":"IPAddresses"}
       }
     },
+    "IPSetForwardedIPConfig":{
+      "type":"structure",
+      "required":[
+        "HeaderName",
+        "FallbackBehavior",
+        "Position"
+      ],
+      "members":{
+        "HeaderName":{"shape":"ForwardedIPHeaderName"},
+        "FallbackBehavior":{"shape":"FallbackBehavior"},
+        "Position":{"shape":"ForwardedIPPosition"}
+      }
+    },
     "IPSetReferenceStatement":{
       "type":"structure",
       "required":["ARN"],
       "members":{
-        "ARN":{"shape":"ResourceArn"}
+        "ARN":{"shape":"ResourceArn"},
+        "IPSetForwardedIPConfig":{"shape":"IPSetForwardedIPConfig"}
       }
     },
     "IPSetSummaries":{
@@ -1894,7 +1942,12 @@
         "TAGS",
         "TAG_KEYS",
         "METRIC_NAME",
-        "FIREWALL_MANAGER_STATEMENT"
+        "FIREWALL_MANAGER_STATEMENT",
+        "FALLBACK_BEHAVIOR",
+        "POSITION",
+        "FORWARDED_IP_CONFIG",
+        "IP_SET_FORWARDED_IP_CONFIG",
+        "HEADER_NAME"
       ]
     },
     "ParameterExceptionParameter":{
@@ -1959,12 +2012,16 @@
       "members":{
         "Limit":{"shape":"RateLimit"},
         "AggregateKeyType":{"shape":"RateBasedStatementAggregateKeyType"},
-        "ScopeDownStatement":{"shape":"Statement"}
+        "ScopeDownStatement":{"shape":"Statement"},
+        "ForwardedIPConfig":{"shape":"ForwardedIPConfig"}
       }
     },
     "RateBasedStatementAggregateKeyType":{
       "type":"string",
-      "enum":["IP"]
+      "enum":[
+        "IP",
+        "FORWARDED_IP"
+      ]
     },
     "RateBasedStatementManagedKeysIPSet":{
       "type":"structure",

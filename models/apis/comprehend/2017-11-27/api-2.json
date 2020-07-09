@@ -373,6 +373,7 @@
       "output":{"shape":"DetectEntitiesResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
+        {"shape":"ResourceUnavailableException"},
         {"shape":"TextSizeLimitExceededException"},
         {"shape":"UnsupportedLanguageException"},
         {"shape":"InternalServerException"}
@@ -815,7 +816,7 @@
       "type":"structure",
       "required":["TextList"],
       "members":{
-        "TextList":{"shape":"StringList"}
+        "TextList":{"shape":"CustomerInputStringList"}
       }
     },
     "BatchDetectDominantLanguageResponse":{
@@ -827,7 +828,8 @@
       "members":{
         "ResultList":{"shape":"ListOfDetectDominantLanguageResult"},
         "ErrorList":{"shape":"BatchItemErrorList"}
-      }
+      },
+      "sensitive":true
     },
     "BatchDetectEntitiesItemResult":{
       "type":"structure",
@@ -843,7 +845,7 @@
         "LanguageCode"
       ],
       "members":{
-        "TextList":{"shape":"StringList"},
+        "TextList":{"shape":"CustomerInputStringList"},
         "LanguageCode":{"shape":"LanguageCode"}
       }
     },
@@ -856,7 +858,8 @@
       "members":{
         "ResultList":{"shape":"ListOfDetectEntitiesResult"},
         "ErrorList":{"shape":"BatchItemErrorList"}
-      }
+      },
+      "sensitive":true
     },
     "BatchDetectKeyPhrasesItemResult":{
       "type":"structure",
@@ -872,7 +875,7 @@
         "LanguageCode"
       ],
       "members":{
-        "TextList":{"shape":"StringList"},
+        "TextList":{"shape":"CustomerInputStringList"},
         "LanguageCode":{"shape":"LanguageCode"}
       }
     },
@@ -885,7 +888,8 @@
       "members":{
         "ResultList":{"shape":"ListOfDetectKeyPhrasesResult"},
         "ErrorList":{"shape":"BatchItemErrorList"}
-      }
+      },
+      "sensitive":true
     },
     "BatchDetectSentimentItemResult":{
       "type":"structure",
@@ -902,7 +906,7 @@
         "LanguageCode"
       ],
       "members":{
-        "TextList":{"shape":"StringList"},
+        "TextList":{"shape":"CustomerInputStringList"},
         "LanguageCode":{"shape":"LanguageCode"}
       }
     },
@@ -915,7 +919,8 @@
       "members":{
         "ResultList":{"shape":"ListOfDetectSentimentResult"},
         "ErrorList":{"shape":"BatchItemErrorList"}
-      }
+      },
+      "sensitive":true
     },
     "BatchDetectSyntaxItemResult":{
       "type":"structure",
@@ -931,7 +936,7 @@
         "LanguageCode"
       ],
       "members":{
-        "TextList":{"shape":"StringList"},
+        "TextList":{"shape":"CustomerInputStringList"},
         "LanguageCode":{"shape":"SyntaxLanguageCode"}
       }
     },
@@ -944,7 +949,8 @@
       "members":{
         "ResultList":{"shape":"ListOfDetectSyntaxResult"},
         "ErrorList":{"shape":"BatchItemErrorList"}
-      }
+      },
+      "sensitive":true
     },
     "BatchItemError":{
       "type":"structure",
@@ -985,7 +991,8 @@
         "NumberOfTrainedDocuments":{"shape":"Integer"},
         "NumberOfTestDocuments":{"shape":"Integer"},
         "EvaluationMetrics":{"shape":"ClassifierEvaluationMetrics"}
-      }
+      },
+      "sensitive":true
     },
     "ClassifyDocumentRequest":{
       "type":"structure",
@@ -994,7 +1001,7 @@
         "EndpointArn"
       ],
       "members":{
-        "Text":{"shape":"String"},
+        "Text":{"shape":"CustomerInputString"},
         "EndpointArn":{"shape":"DocumentClassifierEndpointArn"}
       }
     },
@@ -1003,7 +1010,8 @@
       "members":{
         "Classes":{"shape":"ListOfClasses"},
         "Labels":{"shape":"ListOfLabels"}
-      }
+      },
+      "sensitive":true
     },
     "ClientRequestTokenString":{
       "type":"string",
@@ -1024,7 +1032,7 @@
     "ComprehendEndpointArn":{
       "type":"string",
       "max":256,
-      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document-classifier-endpoint|entity-recognizer-endpoint)/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
     "ComprehendEndpointName":{
       "type":"string",
@@ -1034,7 +1042,7 @@
     "ComprehendModelArn":{
       "type":"string",
       "max":256,
-      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document-classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
     "ConcurrentModificationException":{
       "type":"structure",
@@ -1124,6 +1132,16 @@
       "members":{
         "EntityRecognizerArn":{"shape":"EntityRecognizerArn"}
       }
+    },
+    "CustomerInputString":{
+      "type":"string",
+      "min":1,
+      "sensitive":true
+    },
+    "CustomerInputStringList":{
+      "type":"list",
+      "member":{"shape":"CustomerInputString"},
+      "sensitive":true
     },
     "DeleteDocumentClassifierRequest":{
       "type":"structure",
@@ -1282,31 +1300,31 @@
       "type":"structure",
       "required":["Text"],
       "members":{
-        "Text":{"shape":"String"}
+        "Text":{"shape":"CustomerInputString"}
       }
     },
     "DetectDominantLanguageResponse":{
       "type":"structure",
       "members":{
         "Languages":{"shape":"ListOfDominantLanguages"}
-      }
+      },
+      "sensitive":true
     },
     "DetectEntitiesRequest":{
       "type":"structure",
-      "required":[
-        "Text",
-        "LanguageCode"
-      ],
+      "required":["Text"],
       "members":{
-        "Text":{"shape":"String"},
-        "LanguageCode":{"shape":"LanguageCode"}
+        "Text":{"shape":"CustomerInputString"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "EndpointArn":{"shape":"EntityRecognizerEndpointArn"}
       }
     },
     "DetectEntitiesResponse":{
       "type":"structure",
       "members":{
         "Entities":{"shape":"ListOfEntities"}
-      }
+      },
+      "sensitive":true
     },
     "DetectKeyPhrasesRequest":{
       "type":"structure",
@@ -1315,7 +1333,7 @@
         "LanguageCode"
       ],
       "members":{
-        "Text":{"shape":"String"},
+        "Text":{"shape":"CustomerInputString"},
         "LanguageCode":{"shape":"LanguageCode"}
       }
     },
@@ -1323,7 +1341,8 @@
       "type":"structure",
       "members":{
         "KeyPhrases":{"shape":"ListOfKeyPhrases"}
-      }
+      },
+      "sensitive":true
     },
     "DetectSentimentRequest":{
       "type":"structure",
@@ -1332,7 +1351,7 @@
         "LanguageCode"
       ],
       "members":{
-        "Text":{"shape":"String"},
+        "Text":{"shape":"CustomerInputString"},
         "LanguageCode":{"shape":"LanguageCode"}
       }
     },
@@ -1341,7 +1360,8 @@
       "members":{
         "Sentiment":{"shape":"SentimentType"},
         "SentimentScore":{"shape":"SentimentScore"}
-      }
+      },
+      "sensitive":true
     },
     "DetectSyntaxRequest":{
       "type":"structure",
@@ -1350,7 +1370,7 @@
         "LanguageCode"
       ],
       "members":{
-        "Text":{"shape":"String"},
+        "Text":{"shape":"CustomerInputString"},
         "LanguageCode":{"shape":"SyntaxLanguageCode"}
       }
     },
@@ -1358,7 +1378,8 @@
       "type":"structure",
       "members":{
         "SyntaxTokens":{"shape":"ListOfSyntaxTokens"}
-      }
+      },
+      "sensitive":true
     },
     "DocumentClass":{
       "type":"structure",
@@ -1601,6 +1622,11 @@
         "S3Uri":{"shape":"S3Uri"}
       }
     },
+    "EntityRecognizerEndpointArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
     "EntityRecognizerEntityList":{
       "type":"structure",
       "required":["S3Uri"],
@@ -1644,7 +1670,8 @@
         "NumberOfTestDocuments":{"shape":"Integer"},
         "EvaluationMetrics":{"shape":"EntityRecognizerEvaluationMetrics"},
         "EntityTypes":{"shape":"EntityRecognizerMetadataEntityTypesList"}
-      }
+      },
+      "sensitive":true
     },
     "EntityRecognizerMetadataEntityTypesList":{
       "type":"list",
@@ -2471,10 +2498,6 @@
     "String":{
       "type":"string",
       "min":1
-    },
-    "StringList":{
-      "type":"list",
-      "member":{"shape":"String"}
     },
     "SubnetId":{
       "type":"string",

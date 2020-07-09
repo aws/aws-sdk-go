@@ -446,6 +446,18 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "DeleteHumanTaskUi":{
+      "name":"DeleteHumanTaskUi",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteHumanTaskUiRequest"},
+      "output":{"shape":"DeleteHumanTaskUiResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "DeleteModel":{
       "name":"DeleteModel",
       "http":{
@@ -3290,6 +3302,18 @@
       "members":{
       }
     },
+    "DeleteHumanTaskUiRequest":{
+      "type":"structure",
+      "required":["HumanTaskUiName"],
+      "members":{
+        "HumanTaskUiName":{"shape":"HumanTaskUiName"}
+      }
+    },
+    "DeleteHumanTaskUiResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteModelInput":{
       "type":"structure",
       "required":["ModelName"],
@@ -3718,6 +3742,7 @@
       "members":{
         "HumanTaskUiArn":{"shape":"HumanTaskUiArn"},
         "HumanTaskUiName":{"shape":"HumanTaskUiName"},
+        "HumanTaskUiStatus":{"shape":"HumanTaskUiStatus"},
         "CreationTime":{"shape":"Timestamp"},
         "UiTemplate":{"shape":"UiTemplateInfo"}
       }
@@ -4851,6 +4876,13 @@
       "max":63,
       "min":1,
       "pattern":"^[a-z0-9](-*[a-z0-9])*"
+    },
+    "HumanTaskUiStatus":{
+      "type":"string",
+      "enum":[
+        "Active",
+        "Deleting"
+      ]
     },
     "HumanTaskUiSummaries":{
       "type":"list",

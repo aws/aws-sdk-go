@@ -417,6 +417,8 @@ func ExampleSecretsManager_PutResourcePolicy_shared00() {
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
 			case secretsmanager.ErrCodeInvalidRequestException:
 				fmt.Println(secretsmanager.ErrCodeInvalidRequestException, aerr.Error())
+			case secretsmanager.ErrCodePublicPolicyException:
+				fmt.Println(secretsmanager.ErrCodePublicPolicyException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -930,6 +932,44 @@ func ExampleSecretsManager_UpdateSecretVersionStage_shared02() {
 				fmt.Println(secretsmanager.ErrCodeLimitExceededException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To validate a resource-based policy to a secret
+//
+// The following example shows how to validate a resource-based policy to a secret.
+func ExampleSecretsManager_ValidateResourcePolicy_shared00() {
+	svc := secretsmanager.New(session.New())
+	input := &secretsmanager.ValidateResourcePolicyInput{
+		ResourcePolicy: aws.String("{\n\"Version\":\"2012-10-17\",\n\"Statement\":[{\n\"Effect\":\"Allow\",\n\"Principal\":{\n\"AWS\":\"arn:aws:iam::123456789012:root\"\n},\n\"Action\":\"secretsmanager:GetSecretValue\",\n\"Resource\":\"*\"\n}]\n}"),
+		SecretId:       aws.String("MyTestDatabaseSecret"),
+	}
+
+	result, err := svc.ValidateResourcePolicy(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case secretsmanager.ErrCodeMalformedPolicyDocumentException:
+				fmt.Println(secretsmanager.ErrCodeMalformedPolicyDocumentException, aerr.Error())
+			case secretsmanager.ErrCodeResourceNotFoundException:
+				fmt.Println(secretsmanager.ErrCodeResourceNotFoundException, aerr.Error())
+			case secretsmanager.ErrCodeInvalidParameterException:
+				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
+			case secretsmanager.ErrCodeInternalServiceError:
+				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			case secretsmanager.ErrCodeInvalidRequestException:
+				fmt.Println(secretsmanager.ErrCodeInvalidRequestException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

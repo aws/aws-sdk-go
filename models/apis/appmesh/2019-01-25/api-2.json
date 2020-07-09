@@ -12,6 +12,47 @@
     "uid": "appmesh-2019-01-25"
   },
   "operations": {
+    "CreateGatewayRoute": {
+      "name": "CreateGatewayRoute",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateGatewayRouteInput"
+      },
+      "output": {
+        "shape": "CreateGatewayRouteOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "LimitExceededException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ],
+      "idempotent": true
+    },
     "CreateMesh": {
       "name": "CreateMesh",
       "http": {
@@ -65,6 +106,47 @@
       },
       "output": {
         "shape": "CreateRouteOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "LimitExceededException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ],
+      "idempotent": true
+    },
+    "CreateVirtualGateway": {
+      "name": "CreateVirtualGateway",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v20190125/meshes/{meshName}/virtualGateways",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateVirtualGatewayInput"
+      },
+      "output": {
+        "shape": "CreateVirtualGatewayOutput"
       },
       "errors": [
         {
@@ -217,6 +299,44 @@
       ],
       "idempotent": true
     },
+    "DeleteGatewayRoute": {
+      "name": "DeleteGatewayRoute",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteGatewayRouteInput"
+      },
+      "output": {
+        "shape": "DeleteGatewayRouteOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ResourceInUseException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ],
+      "idempotent": true
+    },
     "DeleteMesh": {
       "name": "DeleteMesh",
       "http": {
@@ -267,6 +387,44 @@
       },
       "output": {
         "shape": "DeleteRouteOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ResourceInUseException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ],
+      "idempotent": true
+    },
+    "DeleteVirtualGateway": {
+      "name": "DeleteVirtualGateway",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteVirtualGatewayInput"
+      },
+      "output": {
+        "shape": "DeleteVirtualGatewayOutput"
       },
       "errors": [
         {
@@ -407,6 +565,40 @@
       ],
       "idempotent": true
     },
+    "DescribeGatewayRoute": {
+      "name": "DescribeGatewayRoute",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeGatewayRouteInput"
+      },
+      "output": {
+        "shape": "DescribeGatewayRouteOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "DescribeMesh": {
       "name": "DescribeMesh",
       "http": {
@@ -453,6 +645,40 @@
       },
       "output": {
         "shape": "DescribeRouteOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "DescribeVirtualGateway": {
+      "name": "DescribeVirtualGateway",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeVirtualGatewayInput"
+      },
+      "output": {
+        "shape": "DescribeVirtualGatewayOutput"
       },
       "errors": [
         {
@@ -577,6 +803,40 @@
         }
       ]
     },
+    "ListGatewayRoutes": {
+      "name": "ListGatewayRoutes",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListGatewayRoutesInput"
+      },
+      "output": {
+        "shape": "ListGatewayRoutesOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "ListMeshes": {
       "name": "ListMeshes",
       "http": {
@@ -657,6 +917,40 @@
       },
       "output": {
         "shape": "ListTagsForResourceOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "ListVirtualGateways": {
+      "name": "ListVirtualGateways",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v20190125/meshes/{meshName}/virtualGateways",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListVirtualGatewaysInput"
+      },
+      "output": {
+        "shape": "ListVirtualGatewaysOutput"
       },
       "errors": [
         {
@@ -854,6 +1148,47 @@
       ],
       "idempotent": true
     },
+    "UpdateGatewayRoute": {
+      "name": "UpdateGatewayRoute",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateGatewayRouteInput"
+      },
+      "output": {
+        "shape": "UpdateGatewayRouteOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "LimitExceededException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ],
+      "idempotent": true
+    },
     "UpdateMesh": {
       "name": "UpdateMesh",
       "http": {
@@ -904,6 +1239,47 @@
       },
       "output": {
         "shape": "UpdateRouteOutput"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "LimitExceededException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ],
+      "idempotent": true
+    },
+    "UpdateVirtualGateway": {
+      "name": "UpdateVirtualGateway",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateVirtualGatewayInput"
+      },
+      "output": {
+        "shape": "UpdateVirtualGatewayOutput"
       },
       "errors": [
         {
@@ -1159,6 +1535,71 @@
         }
       }
     },
+    "CreateVirtualGatewayInput": {
+      "type": "structure",
+      "required": [
+        "meshName",
+        "spec",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "clientToken": {
+          "shape": "String",
+          "idempotencyToken": true
+        },
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "meshOwner": {
+          "shape": "AccountId",
+          "location": "querystring",
+          "locationName": "meshOwner"
+        },
+        "spec": {
+          "shape": "VirtualGatewaySpec"
+        },
+        "tags": {
+          "shape": "TagList"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName"
+        }
+      }
+    },
+    "UpdateVirtualGatewayInput": {
+      "type": "structure",
+      "required": [
+        "meshName",
+        "spec",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "clientToken": {
+          "shape": "String",
+          "idempotencyToken": true
+        },
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "meshOwner": {
+          "shape": "AccountId",
+          "location": "querystring",
+          "locationName": "meshOwner"
+        },
+        "spec": {
+          "shape": "VirtualGatewaySpec"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "virtualGatewayName"
+        }
+      }
+    },
     "ResourceMetadata": {
       "type": "structure",
       "required": [
@@ -1262,6 +1703,17 @@
         "senderFault": true
       }
     },
+    "HttpGatewayRouteMatch": {
+      "type": "structure",
+      "required": [
+        "prefix"
+      ],
+      "members": {
+        "prefix": {
+          "shape": "String"
+        }
+      }
+    },
     "GrpcRouteMetadataList": {
       "type": "list",
       "member": {
@@ -1311,6 +1763,12 @@
         }
       }
     },
+    "VirtualGatewayHealthCheckTimeoutMillis": {
+      "type": "long",
+      "box": true,
+      "min": 2000,
+      "max": 60000
+    },
     "EgressFilter": {
       "type": "structure",
       "required": [
@@ -1336,14 +1794,48 @@
         }
       }
     },
+    "VirtualGatewayHealthCheckIntervalMillis": {
+      "type": "long",
+      "box": true,
+      "min": 5000,
+      "max": 300000
+    },
     "Boolean": {
       "type": "boolean",
       "box": true
+    },
+    "VirtualGatewaySpec": {
+      "type": "structure",
+      "required": [
+        "listeners"
+      ],
+      "members": {
+        "backendDefaults": {
+          "shape": "VirtualGatewayBackendDefaults"
+        },
+        "listeners": {
+          "shape": "VirtualGatewayListeners"
+        },
+        "logging": {
+          "shape": "VirtualGatewayLogging"
+        }
+      }
     },
     "HttpRetryPolicyEvent": {
       "type": "string",
       "min": 1,
       "max": 25
+    },
+    "VirtualGatewayFileAccessLog": {
+      "type": "structure",
+      "required": [
+        "path"
+      ],
+      "members": {
+        "path": {
+          "shape": "FilePath"
+        }
+      }
     },
     "DescribeVirtualServiceOutput": {
       "type": "structure",
@@ -1356,6 +1848,45 @@
         }
       },
       "payload": "virtualService"
+    },
+    "CreateGatewayRouteInput": {
+      "type": "structure",
+      "required": [
+        "gatewayRouteName",
+        "meshName",
+        "spec",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "clientToken": {
+          "shape": "String",
+          "idempotencyToken": true
+        },
+        "gatewayRouteName": {
+          "shape": "ResourceName"
+        },
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "meshOwner": {
+          "shape": "AccountId",
+          "location": "querystring",
+          "locationName": "meshOwner"
+        },
+        "spec": {
+          "shape": "GatewayRouteSpec"
+        },
+        "tags": {
+          "shape": "TagList"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "virtualGatewayName"
+        }
+      }
     },
     "CertificateAuthorityArns": {
       "type": "list",
@@ -1383,6 +1914,33 @@
       "max": 1024,
       "pattern": "((?=^.{1,127}$)^([a-zA-Z0-9_][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9_]|[a-zA-Z0-9])(.([a-zA-Z0-9_][a-zA-Z0-9-_]{0,61}[a-zA-Z0-9_]|[a-zA-Z0-9]))*$)|(^.$)"
     },
+    "VirtualGatewayData": {
+      "type": "structure",
+      "required": [
+        "meshName",
+        "metadata",
+        "spec",
+        "status",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "meshName": {
+          "shape": "ResourceName"
+        },
+        "metadata": {
+          "shape": "ResourceMetadata"
+        },
+        "spec": {
+          "shape": "VirtualGatewaySpec"
+        },
+        "status": {
+          "shape": "VirtualGatewayStatus"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName"
+        }
+      }
+    },
     "CreateRouteOutput": {
       "type": "structure",
       "required": [
@@ -1395,6 +1953,23 @@
       },
       "payload": "route"
     },
+    "VirtualGatewayListener": {
+      "type": "structure",
+      "required": [
+        "portMapping"
+      ],
+      "members": {
+        "healthCheck": {
+          "shape": "VirtualGatewayHealthCheckPolicy"
+        },
+        "portMapping": {
+          "shape": "VirtualGatewayPortMapping"
+        },
+        "tls": {
+          "shape": "VirtualGatewayListenerTls"
+        }
+      }
+    },
     "DnsServiceDiscovery": {
       "type": "structure",
       "required": [
@@ -1405,6 +1980,33 @@
           "shape": "Hostname"
         }
       }
+    },
+    "VirtualGatewayPortMapping": {
+      "type": "structure",
+      "required": [
+        "port",
+        "protocol"
+      ],
+      "members": {
+        "port": {
+          "shape": "PortNumber"
+        },
+        "protocol": {
+          "shape": "VirtualGatewayPortProtocol"
+        }
+      }
+    },
+    "DeleteVirtualGatewayOutput": {
+      "type": "structure",
+      "required": [
+        "virtualGateway"
+      ],
+      "members": {
+        "virtualGateway": {
+          "shape": "VirtualGatewayData"
+        }
+      },
+      "payload": "virtualGateway"
     },
     "DeleteRouteInput": {
       "type": "structure",
@@ -1467,11 +2069,32 @@
       "type": "structure",
       "members": { }
     },
+    "ListGatewayRoutesLimit": {
+      "type": "integer",
+      "box": true,
+      "min": 1,
+      "max": 100
+    },
     "TcpRetryPolicyEvent": {
       "type": "string",
       "enum": [
         "connection-error"
       ]
+    },
+    "VirtualGatewayListenerTls": {
+      "type": "structure",
+      "required": [
+        "certificate",
+        "mode"
+      ],
+      "members": {
+        "certificate": {
+          "shape": "VirtualGatewayListenerTlsCertificate"
+        },
+        "mode": {
+          "shape": "VirtualGatewayListenerTlsMode"
+        }
+      }
     },
     "Backend": {
       "type": "structure",
@@ -1493,6 +2116,55 @@
           "shape": "String",
           "location": "querystring",
           "locationName": "nextToken"
+        }
+      }
+    },
+    "VirtualGatewayListenerTlsFileCertificate": {
+      "type": "structure",
+      "required": [
+        "certificateChain",
+        "privateKey"
+      ],
+      "members": {
+        "certificateChain": {
+          "shape": "FilePath"
+        },
+        "privateKey": {
+          "shape": "FilePath"
+        }
+      }
+    },
+    "ListGatewayRoutesInput": {
+      "type": "structure",
+      "required": [
+        "meshName",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "limit": {
+          "shape": "ListGatewayRoutesLimit",
+          "location": "querystring",
+          "locationName": "limit"
+        },
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "meshOwner": {
+          "shape": "AccountId",
+          "location": "querystring",
+          "locationName": "meshOwner"
+        },
+        "nextToken": {
+          "shape": "String",
+          "location": "querystring",
+          "locationName": "nextToken"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "virtualGatewayName"
         }
       }
     },
@@ -1540,6 +2212,39 @@
         },
         "spec": {
           "shape": "MeshSpec"
+        }
+      }
+    },
+    "VirtualGatewayHealthCheckPolicy": {
+      "type": "structure",
+      "required": [
+        "healthyThreshold",
+        "intervalMillis",
+        "protocol",
+        "timeoutMillis",
+        "unhealthyThreshold"
+      ],
+      "members": {
+        "healthyThreshold": {
+          "shape": "VirtualGatewayHealthCheckThreshold"
+        },
+        "intervalMillis": {
+          "shape": "VirtualGatewayHealthCheckIntervalMillis"
+        },
+        "path": {
+          "shape": "String"
+        },
+        "port": {
+          "shape": "PortNumber"
+        },
+        "protocol": {
+          "shape": "VirtualGatewayPortProtocol"
+        },
+        "timeoutMillis": {
+          "shape": "VirtualGatewayHealthCheckTimeoutMillis"
+        },
+        "unhealthyThreshold": {
+          "shape": "VirtualGatewayHealthCheckThreshold"
         }
       }
     },
@@ -1634,6 +2339,17 @@
       "min": 1,
       "max": 25
     },
+    "VirtualGatewayListenerTlsCertificate": {
+      "type": "structure",
+      "members": {
+        "acm": {
+          "shape": "VirtualGatewayListenerTlsAcmCertificate"
+        },
+        "file": {
+          "shape": "VirtualGatewayListenerTlsFileCertificate"
+        }
+      }
+    },
     "ListenerTlsCertificate": {
       "type": "structure",
       "members": {
@@ -1662,6 +2378,17 @@
       "members": {
         "listeners": {
           "shape": "VirtualRouterListeners"
+        }
+      }
+    },
+    "GatewayRouteVirtualService": {
+      "type": "structure",
+      "required": [
+        "virtualServiceName"
+      ],
+      "members": {
+        "virtualServiceName": {
+          "shape": "ResourceName"
         }
       }
     },
@@ -1707,6 +2434,20 @@
       "min": 1,
       "max": 1
     },
+    "GatewayRouteSpec": {
+      "type": "structure",
+      "members": {
+        "grpcRoute": {
+          "shape": "GrpcGatewayRoute"
+        },
+        "http2Route": {
+          "shape": "HttpGatewayRoute"
+        },
+        "httpRoute": {
+          "shape": "HttpGatewayRoute"
+        }
+      }
+    },
     "PortSet": {
       "type": "list",
       "member": {
@@ -1741,6 +2482,14 @@
         "senderFault": true
       }
     },
+    "VirtualGatewayBackendDefaults": {
+      "type": "structure",
+      "members": {
+        "clientPolicy": {
+          "shape": "VirtualGatewayClientPolicy"
+        }
+      }
+    },
     "ListenerTimeout": {
       "type": "structure",
       "members": {
@@ -1769,6 +2518,36 @@
       "box": true,
       "min": 0
     },
+    "DescribeGatewayRouteInput": {
+      "type": "structure",
+      "required": [
+        "gatewayRouteName",
+        "meshName",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "gatewayRouteName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "gatewayRouteName"
+        },
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "meshOwner": {
+          "shape": "AccountId",
+          "location": "querystring",
+          "locationName": "meshOwner"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "virtualGatewayName"
+        }
+      }
+    },
     "TlsValidationContextTrust": {
       "type": "structure",
       "members": {
@@ -1794,6 +2573,11 @@
           "shape": "PortProtocol"
         }
       }
+    },
+    "VirtualGatewayHealthCheckThreshold": {
+      "type": "integer",
+      "min": 2,
+      "max": 10
     },
     "ListVirtualServicesOutput": {
       "type": "structure",
@@ -1827,6 +2611,52 @@
         },
         "weight": {
           "shape": "PercentInt"
+        }
+      }
+    },
+    "GrpcGatewayRoute": {
+      "type": "structure",
+      "required": [
+        "action",
+        "match"
+      ],
+      "members": {
+        "action": {
+          "shape": "GrpcGatewayRouteAction"
+        },
+        "match": {
+          "shape": "GrpcGatewayRouteMatch"
+        }
+      }
+    },
+    "GatewayRouteData": {
+      "type": "structure",
+      "required": [
+        "gatewayRouteName",
+        "meshName",
+        "metadata",
+        "spec",
+        "status",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "gatewayRouteName": {
+          "shape": "ResourceName"
+        },
+        "meshName": {
+          "shape": "ResourceName"
+        },
+        "metadata": {
+          "shape": "ResourceMetadata"
+        },
+        "spec": {
+          "shape": "GatewayRouteSpec"
+        },
+        "status": {
+          "shape": "GatewayRouteStatus"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName"
         }
       }
     },
@@ -2030,6 +2860,24 @@
       },
       "payload": "mesh"
     },
+    "VirtualGatewayClientPolicyTls": {
+      "type": "structure",
+      "required": [
+        "validation"
+      ],
+      "members": {
+        "enforce": {
+          "shape": "Boolean",
+          "box": true
+        },
+        "ports": {
+          "shape": "PortSet"
+        },
+        "validation": {
+          "shape": "VirtualGatewayTlsValidationContext"
+        }
+      }
+    },
     "EgressFilterType": {
       "type": "string",
       "enum": [
@@ -2045,6 +2893,36 @@
     "Hostname": {
       "type": "string"
     },
+    "VirtualGatewayStatus": {
+      "type": "structure",
+      "required": [
+        "status"
+      ],
+      "members": {
+        "status": {
+          "shape": "VirtualGatewayStatusCode"
+        }
+      }
+    },
+    "GatewayRouteStatus": {
+      "type": "structure",
+      "required": [
+        "status"
+      ],
+      "members": {
+        "status": {
+          "shape": "GatewayRouteStatusCode"
+        }
+      }
+    },
+    "VirtualGatewayListeners": {
+      "type": "list",
+      "member": {
+        "shape": "VirtualGatewayListener"
+      },
+      "min": 0,
+      "max": 1
+    },
     "TagResourceInput": {
       "type": "structure",
       "required": [
@@ -2059,6 +2937,43 @@
         },
         "tags": {
           "shape": "TagList"
+        }
+      }
+    },
+    "CreateVirtualGatewayOutput": {
+      "type": "structure",
+      "required": [
+        "virtualGateway"
+      ],
+      "members": {
+        "virtualGateway": {
+          "shape": "VirtualGatewayData"
+        }
+      },
+      "payload": "virtualGateway"
+    },
+    "ListVirtualGatewaysOutput": {
+      "type": "structure",
+      "required": [
+        "virtualGateways"
+      ],
+      "members": {
+        "nextToken": {
+          "shape": "String"
+        },
+        "virtualGateways": {
+          "shape": "VirtualGatewayList"
+        }
+      }
+    },
+    "VirtualGatewayTlsValidationContext": {
+      "type": "structure",
+      "required": [
+        "trust"
+      ],
+      "members": {
+        "trust": {
+          "shape": "VirtualGatewayTlsValidationContextTrust"
         }
       }
     },
@@ -2195,6 +3110,74 @@
         }
       }
     },
+    "GatewayRouteRef": {
+      "type": "structure",
+      "required": [
+        "arn",
+        "createdAt",
+        "gatewayRouteName",
+        "lastUpdatedAt",
+        "meshName",
+        "meshOwner",
+        "resourceOwner",
+        "version",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "arn": {
+          "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "gatewayRouteName": {
+          "shape": "ResourceName"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
+        },
+        "meshName": {
+          "shape": "ResourceName"
+        },
+        "meshOwner": {
+          "shape": "AccountId"
+        },
+        "resourceOwner": {
+          "shape": "AccountId"
+        },
+        "version": {
+          "shape": "Long"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName"
+        }
+      }
+    },
+    "VirtualGatewayListenerTlsAcmCertificate": {
+      "type": "structure",
+      "required": [
+        "certificateArn"
+      ],
+      "members": {
+        "certificateArn": {
+          "shape": "Arn"
+        }
+      }
+    },
+    "ListGatewayRoutesOutput": {
+      "type": "structure",
+      "required": [
+        "gatewayRoutes"
+      ],
+      "members": {
+        "gatewayRoutes": {
+          "shape": "GatewayRouteList"
+        },
+        "nextToken": {
+          "shape": "String"
+        }
+      }
+    },
     "CreateVirtualServiceOutput": {
       "type": "structure",
       "required": [
@@ -2275,6 +3258,14 @@
         }
       }
     },
+    "GatewayRouteStatusCode": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DELETED",
+        "INACTIVE"
+      ]
+    },
     "DeleteVirtualRouterOutput": {
       "type": "structure",
       "required": [
@@ -2287,11 +3278,46 @@
       },
       "payload": "virtualRouter"
     },
+    "DescribeVirtualGatewayInput": {
+      "type": "structure",
+      "required": [
+        "meshName",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "meshOwner": {
+          "shape": "AccountId",
+          "location": "querystring",
+          "locationName": "meshOwner"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "virtualGatewayName"
+        }
+      }
+    },
     "TagsLimit": {
       "type": "integer",
       "box": true,
       "min": 1,
       "max": 50
+    },
+    "GrpcGatewayRouteAction": {
+      "type": "structure",
+      "required": [
+        "target"
+      ],
+      "members": {
+        "target": {
+          "shape": "GatewayRouteTarget"
+        }
+      }
     },
     "DeleteVirtualNodeOutput": {
       "type": "structure",
@@ -2441,6 +3467,25 @@
         }
       }
     },
+    "HttpGatewayRouteAction": {
+      "type": "structure",
+      "required": [
+        "target"
+      ],
+      "members": {
+        "target": {
+          "shape": "GatewayRouteTarget"
+        }
+      }
+    },
+    "GrpcGatewayRouteMatch": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "shape": "ServiceName"
+        }
+      }
+    },
     "ListTagsForResourceInput": {
       "type": "structure",
       "required": [
@@ -2471,6 +3516,14 @@
       },
       "min": 1,
       "max": 5
+    },
+    "VirtualGatewayStatusCode": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DELETED",
+        "INACTIVE"
+      ]
     },
     "ServiceUnavailableException": {
       "type": "structure",
@@ -2521,6 +3574,18 @@
           "locationName": "virtualRouterName"
         }
       }
+    },
+    "UpdateGatewayRouteOutput": {
+      "type": "structure",
+      "required": [
+        "gatewayRoute"
+      ],
+      "members": {
+        "gatewayRoute": {
+          "shape": "GatewayRouteData"
+        }
+      },
+      "payload": "gatewayRoute"
     },
     "DescribeRouteInput": {
       "type": "structure",
@@ -2586,6 +3651,24 @@
         "http2",
         "tcp"
       ]
+    },
+    "DeleteGatewayRouteOutput": {
+      "type": "structure",
+      "required": [
+        "gatewayRoute"
+      ],
+      "members": {
+        "gatewayRoute": {
+          "shape": "GatewayRouteData"
+        }
+      },
+      "payload": "gatewayRoute"
+    },
+    "VirtualGatewayList": {
+      "type": "list",
+      "member": {
+        "shape": "VirtualGatewayRef"
+      }
     },
     "VirtualNodeStatusCode": {
       "type": "string",
@@ -2936,6 +4019,17 @@
         }
       }
     },
+    "VirtualGatewayTlsValidationContextFileTrust": {
+      "type": "structure",
+      "required": [
+        "certificateChain"
+      ],
+      "members": {
+        "certificateChain": {
+          "shape": "FilePath"
+        }
+      }
+    },
     "LimitExceededException": {
       "type": "structure",
       "members": {
@@ -3027,11 +4121,38 @@
         }
       }
     },
+    "VirtualGatewayListenerTlsMode": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "PERMISSIVE",
+        "STRICT"
+      ]
+    },
     "VirtualServiceSpec": {
       "type": "structure",
       "members": {
         "provider": {
           "shape": "VirtualServiceProvider"
+        }
+      }
+    },
+    "VirtualGatewayTlsValidationContextAcmTrust": {
+      "type": "structure",
+      "required": [
+        "certificateAuthorityArns"
+      ],
+      "members": {
+        "certificateAuthorityArns": {
+          "shape": "VirtualGatewayCertificateAuthorityArns"
+        }
+      }
+    },
+    "VirtualGatewayAccessLog": {
+      "type": "structure",
+      "members": {
+        "file": {
+          "shape": "VirtualGatewayFileAccessLog"
         }
       }
     },
@@ -3090,6 +4211,18 @@
       "member": {
         "shape": "VirtualNodeRef"
       }
+    },
+    "UpdateVirtualGatewayOutput": {
+      "type": "structure",
+      "required": [
+        "virtualGateway"
+      ],
+      "members": {
+        "virtualGateway": {
+          "shape": "VirtualGatewayData"
+        }
+      },
+      "payload": "virtualGateway"
     },
     "ListVirtualRoutersInput": {
       "type": "structure",
@@ -3196,6 +4329,14 @@
         }
       }
     },
+    "VirtualGatewayClientPolicy": {
+      "type": "structure",
+      "members": {
+        "tls": {
+          "shape": "VirtualGatewayClientPolicyTls"
+        }
+      }
+    },
     "ListVirtualNodesLimit": {
       "type": "integer",
       "box": true,
@@ -3230,6 +4371,14 @@
     "Timestamp": {
       "type": "timestamp"
     },
+    "VirtualGatewayLogging": {
+      "type": "structure",
+      "members": {
+        "accessLog": {
+          "shape": "VirtualGatewayAccessLog"
+        }
+      }
+    },
     "HeaderMatch": {
       "type": "string",
       "min": 1,
@@ -3239,6 +4388,17 @@
       "type": "string",
       "min": 12,
       "max": 12
+    },
+    "GatewayRouteTarget": {
+      "type": "structure",
+      "required": [
+        "virtualService"
+      ],
+      "members": {
+        "virtualService": {
+          "shape": "GatewayRouteVirtualService"
+        }
+      }
     },
     "Duration": {
       "type": "structure",
@@ -3332,6 +4492,12 @@
         }
       }
     },
+    "ListVirtualGatewaysLimit": {
+      "type": "integer",
+      "box": true,
+      "min": 1,
+      "max": 100
+    },
     "MeshStatusCode": {
       "type": "string",
       "enum": [
@@ -3363,6 +4529,24 @@
         }
       }
     },
+    "CreateGatewayRouteOutput": {
+      "type": "structure",
+      "required": [
+        "gatewayRoute"
+      ],
+      "members": {
+        "gatewayRoute": {
+          "shape": "GatewayRouteData"
+        }
+      },
+      "payload": "gatewayRoute"
+    },
+    "GatewayRouteList": {
+      "type": "list",
+      "member": {
+        "shape": "GatewayRouteRef"
+      }
+    },
     "VirtualRouterStatus": {
       "type": "structure",
       "required": [
@@ -3382,6 +4566,30 @@
       "members": {
         "weightedTargets": {
           "shape": "WeightedTargets"
+        }
+      }
+    },
+    "DeleteVirtualGatewayInput": {
+      "type": "structure",
+      "required": [
+        "meshName",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "meshOwner": {
+          "shape": "AccountId",
+          "location": "querystring",
+          "locationName": "meshOwner"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "virtualGatewayName"
         }
       }
     },
@@ -3485,6 +4693,17 @@
         }
       }
     },
+    "VirtualGatewayTlsValidationContextTrust": {
+      "type": "structure",
+      "members": {
+        "acm": {
+          "shape": "VirtualGatewayTlsValidationContextAcmTrust"
+        },
+        "file": {
+          "shape": "VirtualGatewayTlsValidationContextFileTrust"
+        }
+      }
+    },
     "DeleteVirtualServiceOutput": {
       "type": "structure",
       "required": [
@@ -3497,6 +4716,14 @@
       },
       "payload": "virtualService"
     },
+    "VirtualGatewayPortProtocol": {
+      "type": "string",
+      "enum": [
+        "grpc",
+        "http",
+        "http2"
+      ]
+    },
     "VirtualNodeServiceProvider": {
       "type": "structure",
       "required": [
@@ -3505,6 +4732,21 @@
       "members": {
         "virtualNodeName": {
           "shape": "ResourceName"
+        }
+      }
+    },
+    "HttpGatewayRoute": {
+      "type": "structure",
+      "required": [
+        "action",
+        "match"
+      ],
+      "members": {
+        "action": {
+          "shape": "HttpGatewayRouteAction"
+        },
+        "match": {
+          "shape": "HttpGatewayRouteMatch"
         }
       }
     },
@@ -3600,6 +4842,72 @@
         "senderFault": true
       }
     },
+    "UpdateGatewayRouteInput": {
+      "type": "structure",
+      "required": [
+        "gatewayRouteName",
+        "meshName",
+        "spec",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "clientToken": {
+          "shape": "String",
+          "idempotencyToken": true
+        },
+        "gatewayRouteName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "gatewayRouteName"
+        },
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "meshOwner": {
+          "shape": "AccountId",
+          "location": "querystring",
+          "locationName": "meshOwner"
+        },
+        "spec": {
+          "shape": "GatewayRouteSpec"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "virtualGatewayName"
+        }
+      }
+    },
+    "ListVirtualGatewaysInput": {
+      "type": "structure",
+      "required": [
+        "meshName"
+      ],
+      "members": {
+        "limit": {
+          "shape": "ListVirtualGatewaysLimit",
+          "location": "querystring",
+          "locationName": "limit"
+        },
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "meshOwner": {
+          "shape": "AccountId",
+          "location": "querystring",
+          "locationName": "meshOwner"
+        },
+        "nextToken": {
+          "shape": "String",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
     "PortNumber": {
       "type": "integer",
       "min": 1,
@@ -3675,6 +4983,14 @@
         }
       }
     },
+    "VirtualGatewayCertificateAuthorityArns": {
+      "type": "list",
+      "member": {
+        "shape": "Arn"
+      },
+      "min": 1,
+      "max": 3
+    },
     "WeightedTargets": {
       "type": "list",
       "member": {
@@ -3708,6 +5024,36 @@
         "http",
         "https"
       ]
+    },
+    "DeleteGatewayRouteInput": {
+      "type": "structure",
+      "required": [
+        "gatewayRouteName",
+        "meshName",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "gatewayRouteName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "gatewayRouteName"
+        },
+        "meshName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "meshName"
+        },
+        "meshOwner": {
+          "shape": "AccountId",
+          "location": "querystring",
+          "locationName": "meshOwner"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName",
+          "location": "uri",
+          "locationName": "virtualGatewayName"
+        }
+      }
     },
     "UpdateRouteInput": {
       "type": "structure",
@@ -3786,6 +5132,45 @@
         }
       }
     },
+    "VirtualGatewayRef": {
+      "type": "structure",
+      "required": [
+        "arn",
+        "createdAt",
+        "lastUpdatedAt",
+        "meshName",
+        "meshOwner",
+        "resourceOwner",
+        "version",
+        "virtualGatewayName"
+      ],
+      "members": {
+        "arn": {
+          "shape": "Arn"
+        },
+        "createdAt": {
+          "shape": "Timestamp"
+        },
+        "lastUpdatedAt": {
+          "shape": "Timestamp"
+        },
+        "meshName": {
+          "shape": "ResourceName"
+        },
+        "meshOwner": {
+          "shape": "AccountId"
+        },
+        "resourceOwner": {
+          "shape": "AccountId"
+        },
+        "version": {
+          "shape": "Long"
+        },
+        "virtualGatewayName": {
+          "shape": "ResourceName"
+        }
+      }
+    },
     "MeshSpec": {
       "type": "structure",
       "members": {
@@ -3793,6 +5178,30 @@
           "shape": "EgressFilter"
         }
       }
+    },
+    "DescribeVirtualGatewayOutput": {
+      "type": "structure",
+      "required": [
+        "virtualGateway"
+      ],
+      "members": {
+        "virtualGateway": {
+          "shape": "VirtualGatewayData"
+        }
+      },
+      "payload": "virtualGateway"
+    },
+    "DescribeGatewayRouteOutput": {
+      "type": "structure",
+      "required": [
+        "gatewayRoute"
+      ],
+      "members": {
+        "gatewayRoute": {
+          "shape": "GatewayRouteData"
+        }
+      },
+      "payload": "gatewayRoute"
     },
     "ListTagsForResourceOutput": {
       "type": "structure",

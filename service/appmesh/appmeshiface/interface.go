@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS App Mesh.
 //    func myFunc(svc appmeshiface.AppMeshAPI) bool {
-//        // Make svc.CreateMesh request
+//        // Make svc.CreateGatewayRoute request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockAppMeshClient struct {
 //        appmeshiface.AppMeshAPI
 //    }
-//    func (m *mockAppMeshClient) CreateMesh(input *appmesh.CreateMeshInput) (*appmesh.CreateMeshOutput, error) {
+//    func (m *mockAppMeshClient) CreateGatewayRoute(input *appmesh.CreateGatewayRouteInput) (*appmesh.CreateGatewayRouteOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type AppMeshAPI interface {
+	CreateGatewayRoute(*appmesh.CreateGatewayRouteInput) (*appmesh.CreateGatewayRouteOutput, error)
+	CreateGatewayRouteWithContext(aws.Context, *appmesh.CreateGatewayRouteInput, ...request.Option) (*appmesh.CreateGatewayRouteOutput, error)
+	CreateGatewayRouteRequest(*appmesh.CreateGatewayRouteInput) (*request.Request, *appmesh.CreateGatewayRouteOutput)
+
 	CreateMesh(*appmesh.CreateMeshInput) (*appmesh.CreateMeshOutput, error)
 	CreateMeshWithContext(aws.Context, *appmesh.CreateMeshInput, ...request.Option) (*appmesh.CreateMeshOutput, error)
 	CreateMeshRequest(*appmesh.CreateMeshInput) (*request.Request, *appmesh.CreateMeshOutput)
@@ -67,6 +71,10 @@ type AppMeshAPI interface {
 	CreateRoute(*appmesh.CreateRouteInput) (*appmesh.CreateRouteOutput, error)
 	CreateRouteWithContext(aws.Context, *appmesh.CreateRouteInput, ...request.Option) (*appmesh.CreateRouteOutput, error)
 	CreateRouteRequest(*appmesh.CreateRouteInput) (*request.Request, *appmesh.CreateRouteOutput)
+
+	CreateVirtualGateway(*appmesh.CreateVirtualGatewayInput) (*appmesh.CreateVirtualGatewayOutput, error)
+	CreateVirtualGatewayWithContext(aws.Context, *appmesh.CreateVirtualGatewayInput, ...request.Option) (*appmesh.CreateVirtualGatewayOutput, error)
+	CreateVirtualGatewayRequest(*appmesh.CreateVirtualGatewayInput) (*request.Request, *appmesh.CreateVirtualGatewayOutput)
 
 	CreateVirtualNode(*appmesh.CreateVirtualNodeInput) (*appmesh.CreateVirtualNodeOutput, error)
 	CreateVirtualNodeWithContext(aws.Context, *appmesh.CreateVirtualNodeInput, ...request.Option) (*appmesh.CreateVirtualNodeOutput, error)
@@ -80,6 +88,10 @@ type AppMeshAPI interface {
 	CreateVirtualServiceWithContext(aws.Context, *appmesh.CreateVirtualServiceInput, ...request.Option) (*appmesh.CreateVirtualServiceOutput, error)
 	CreateVirtualServiceRequest(*appmesh.CreateVirtualServiceInput) (*request.Request, *appmesh.CreateVirtualServiceOutput)
 
+	DeleteGatewayRoute(*appmesh.DeleteGatewayRouteInput) (*appmesh.DeleteGatewayRouteOutput, error)
+	DeleteGatewayRouteWithContext(aws.Context, *appmesh.DeleteGatewayRouteInput, ...request.Option) (*appmesh.DeleteGatewayRouteOutput, error)
+	DeleteGatewayRouteRequest(*appmesh.DeleteGatewayRouteInput) (*request.Request, *appmesh.DeleteGatewayRouteOutput)
+
 	DeleteMesh(*appmesh.DeleteMeshInput) (*appmesh.DeleteMeshOutput, error)
 	DeleteMeshWithContext(aws.Context, *appmesh.DeleteMeshInput, ...request.Option) (*appmesh.DeleteMeshOutput, error)
 	DeleteMeshRequest(*appmesh.DeleteMeshInput) (*request.Request, *appmesh.DeleteMeshOutput)
@@ -87,6 +99,10 @@ type AppMeshAPI interface {
 	DeleteRoute(*appmesh.DeleteRouteInput) (*appmesh.DeleteRouteOutput, error)
 	DeleteRouteWithContext(aws.Context, *appmesh.DeleteRouteInput, ...request.Option) (*appmesh.DeleteRouteOutput, error)
 	DeleteRouteRequest(*appmesh.DeleteRouteInput) (*request.Request, *appmesh.DeleteRouteOutput)
+
+	DeleteVirtualGateway(*appmesh.DeleteVirtualGatewayInput) (*appmesh.DeleteVirtualGatewayOutput, error)
+	DeleteVirtualGatewayWithContext(aws.Context, *appmesh.DeleteVirtualGatewayInput, ...request.Option) (*appmesh.DeleteVirtualGatewayOutput, error)
+	DeleteVirtualGatewayRequest(*appmesh.DeleteVirtualGatewayInput) (*request.Request, *appmesh.DeleteVirtualGatewayOutput)
 
 	DeleteVirtualNode(*appmesh.DeleteVirtualNodeInput) (*appmesh.DeleteVirtualNodeOutput, error)
 	DeleteVirtualNodeWithContext(aws.Context, *appmesh.DeleteVirtualNodeInput, ...request.Option) (*appmesh.DeleteVirtualNodeOutput, error)
@@ -100,6 +116,10 @@ type AppMeshAPI interface {
 	DeleteVirtualServiceWithContext(aws.Context, *appmesh.DeleteVirtualServiceInput, ...request.Option) (*appmesh.DeleteVirtualServiceOutput, error)
 	DeleteVirtualServiceRequest(*appmesh.DeleteVirtualServiceInput) (*request.Request, *appmesh.DeleteVirtualServiceOutput)
 
+	DescribeGatewayRoute(*appmesh.DescribeGatewayRouteInput) (*appmesh.DescribeGatewayRouteOutput, error)
+	DescribeGatewayRouteWithContext(aws.Context, *appmesh.DescribeGatewayRouteInput, ...request.Option) (*appmesh.DescribeGatewayRouteOutput, error)
+	DescribeGatewayRouteRequest(*appmesh.DescribeGatewayRouteInput) (*request.Request, *appmesh.DescribeGatewayRouteOutput)
+
 	DescribeMesh(*appmesh.DescribeMeshInput) (*appmesh.DescribeMeshOutput, error)
 	DescribeMeshWithContext(aws.Context, *appmesh.DescribeMeshInput, ...request.Option) (*appmesh.DescribeMeshOutput, error)
 	DescribeMeshRequest(*appmesh.DescribeMeshInput) (*request.Request, *appmesh.DescribeMeshOutput)
@@ -107,6 +127,10 @@ type AppMeshAPI interface {
 	DescribeRoute(*appmesh.DescribeRouteInput) (*appmesh.DescribeRouteOutput, error)
 	DescribeRouteWithContext(aws.Context, *appmesh.DescribeRouteInput, ...request.Option) (*appmesh.DescribeRouteOutput, error)
 	DescribeRouteRequest(*appmesh.DescribeRouteInput) (*request.Request, *appmesh.DescribeRouteOutput)
+
+	DescribeVirtualGateway(*appmesh.DescribeVirtualGatewayInput) (*appmesh.DescribeVirtualGatewayOutput, error)
+	DescribeVirtualGatewayWithContext(aws.Context, *appmesh.DescribeVirtualGatewayInput, ...request.Option) (*appmesh.DescribeVirtualGatewayOutput, error)
+	DescribeVirtualGatewayRequest(*appmesh.DescribeVirtualGatewayInput) (*request.Request, *appmesh.DescribeVirtualGatewayOutput)
 
 	DescribeVirtualNode(*appmesh.DescribeVirtualNodeInput) (*appmesh.DescribeVirtualNodeOutput, error)
 	DescribeVirtualNodeWithContext(aws.Context, *appmesh.DescribeVirtualNodeInput, ...request.Option) (*appmesh.DescribeVirtualNodeOutput, error)
@@ -119,6 +143,13 @@ type AppMeshAPI interface {
 	DescribeVirtualService(*appmesh.DescribeVirtualServiceInput) (*appmesh.DescribeVirtualServiceOutput, error)
 	DescribeVirtualServiceWithContext(aws.Context, *appmesh.DescribeVirtualServiceInput, ...request.Option) (*appmesh.DescribeVirtualServiceOutput, error)
 	DescribeVirtualServiceRequest(*appmesh.DescribeVirtualServiceInput) (*request.Request, *appmesh.DescribeVirtualServiceOutput)
+
+	ListGatewayRoutes(*appmesh.ListGatewayRoutesInput) (*appmesh.ListGatewayRoutesOutput, error)
+	ListGatewayRoutesWithContext(aws.Context, *appmesh.ListGatewayRoutesInput, ...request.Option) (*appmesh.ListGatewayRoutesOutput, error)
+	ListGatewayRoutesRequest(*appmesh.ListGatewayRoutesInput) (*request.Request, *appmesh.ListGatewayRoutesOutput)
+
+	ListGatewayRoutesPages(*appmesh.ListGatewayRoutesInput, func(*appmesh.ListGatewayRoutesOutput, bool) bool) error
+	ListGatewayRoutesPagesWithContext(aws.Context, *appmesh.ListGatewayRoutesInput, func(*appmesh.ListGatewayRoutesOutput, bool) bool, ...request.Option) error
 
 	ListMeshes(*appmesh.ListMeshesInput) (*appmesh.ListMeshesOutput, error)
 	ListMeshesWithContext(aws.Context, *appmesh.ListMeshesInput, ...request.Option) (*appmesh.ListMeshesOutput, error)
@@ -140,6 +171,13 @@ type AppMeshAPI interface {
 
 	ListTagsForResourcePages(*appmesh.ListTagsForResourceInput, func(*appmesh.ListTagsForResourceOutput, bool) bool) error
 	ListTagsForResourcePagesWithContext(aws.Context, *appmesh.ListTagsForResourceInput, func(*appmesh.ListTagsForResourceOutput, bool) bool, ...request.Option) error
+
+	ListVirtualGateways(*appmesh.ListVirtualGatewaysInput) (*appmesh.ListVirtualGatewaysOutput, error)
+	ListVirtualGatewaysWithContext(aws.Context, *appmesh.ListVirtualGatewaysInput, ...request.Option) (*appmesh.ListVirtualGatewaysOutput, error)
+	ListVirtualGatewaysRequest(*appmesh.ListVirtualGatewaysInput) (*request.Request, *appmesh.ListVirtualGatewaysOutput)
+
+	ListVirtualGatewaysPages(*appmesh.ListVirtualGatewaysInput, func(*appmesh.ListVirtualGatewaysOutput, bool) bool) error
+	ListVirtualGatewaysPagesWithContext(aws.Context, *appmesh.ListVirtualGatewaysInput, func(*appmesh.ListVirtualGatewaysOutput, bool) bool, ...request.Option) error
 
 	ListVirtualNodes(*appmesh.ListVirtualNodesInput) (*appmesh.ListVirtualNodesOutput, error)
 	ListVirtualNodesWithContext(aws.Context, *appmesh.ListVirtualNodesInput, ...request.Option) (*appmesh.ListVirtualNodesOutput, error)
@@ -170,6 +208,10 @@ type AppMeshAPI interface {
 	UntagResourceWithContext(aws.Context, *appmesh.UntagResourceInput, ...request.Option) (*appmesh.UntagResourceOutput, error)
 	UntagResourceRequest(*appmesh.UntagResourceInput) (*request.Request, *appmesh.UntagResourceOutput)
 
+	UpdateGatewayRoute(*appmesh.UpdateGatewayRouteInput) (*appmesh.UpdateGatewayRouteOutput, error)
+	UpdateGatewayRouteWithContext(aws.Context, *appmesh.UpdateGatewayRouteInput, ...request.Option) (*appmesh.UpdateGatewayRouteOutput, error)
+	UpdateGatewayRouteRequest(*appmesh.UpdateGatewayRouteInput) (*request.Request, *appmesh.UpdateGatewayRouteOutput)
+
 	UpdateMesh(*appmesh.UpdateMeshInput) (*appmesh.UpdateMeshOutput, error)
 	UpdateMeshWithContext(aws.Context, *appmesh.UpdateMeshInput, ...request.Option) (*appmesh.UpdateMeshOutput, error)
 	UpdateMeshRequest(*appmesh.UpdateMeshInput) (*request.Request, *appmesh.UpdateMeshOutput)
@@ -177,6 +219,10 @@ type AppMeshAPI interface {
 	UpdateRoute(*appmesh.UpdateRouteInput) (*appmesh.UpdateRouteOutput, error)
 	UpdateRouteWithContext(aws.Context, *appmesh.UpdateRouteInput, ...request.Option) (*appmesh.UpdateRouteOutput, error)
 	UpdateRouteRequest(*appmesh.UpdateRouteInput) (*request.Request, *appmesh.UpdateRouteOutput)
+
+	UpdateVirtualGateway(*appmesh.UpdateVirtualGatewayInput) (*appmesh.UpdateVirtualGatewayOutput, error)
+	UpdateVirtualGatewayWithContext(aws.Context, *appmesh.UpdateVirtualGatewayInput, ...request.Option) (*appmesh.UpdateVirtualGatewayOutput, error)
+	UpdateVirtualGatewayRequest(*appmesh.UpdateVirtualGatewayInput) (*request.Request, *appmesh.UpdateVirtualGatewayOutput)
 
 	UpdateVirtualNode(*appmesh.UpdateVirtualNodeInput) (*appmesh.UpdateVirtualNodeOutput, error)
 	UpdateVirtualNodeWithContext(aws.Context, *appmesh.UpdateVirtualNodeInput, ...request.Option) (*appmesh.UpdateVirtualNodeOutput, error)

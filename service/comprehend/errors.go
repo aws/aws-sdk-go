@@ -56,15 +56,15 @@ const (
 	// ErrCodeResourceInUseException for service response error code
 	// "ResourceInUseException".
 	//
-	// The specified name is already in use. Use a different name and try your request
-	// again.
+	// The specified resource name is already in use. Use a different name and try
+	// your request again.
 	ErrCodeResourceInUseException = "ResourceInUseException"
 
 	// ErrCodeResourceLimitExceededException for service response error code
 	// "ResourceLimitExceededException".
 	//
-	// The maximum number of recognizers per account has been exceeded. Review the
-	// recognizers, perform cleanup, and then try your request again.
+	// The maximum number of resources per account has been exceeded. Review the
+	// resources, and then try your request again.
 	ErrCodeResourceLimitExceededException = "ResourceLimitExceededException"
 
 	// ErrCodeResourceNotFoundException for service response error code
@@ -77,8 +77,8 @@ const (
 	// ErrCodeResourceUnavailableException for service response error code
 	// "ResourceUnavailableException".
 	//
-	// The specified resource is not available. Check to see if the resource is
-	// in the TRAINED state and try your request again.
+	// The specified resource is not available. Check the resource and try your
+	// request again.
 	ErrCodeResourceUnavailableException = "ResourceUnavailableException"
 
 	// ErrCodeTextSizeLimitExceededException for service response error code

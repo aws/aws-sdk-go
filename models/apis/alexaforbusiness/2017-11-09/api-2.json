@@ -810,6 +810,7 @@
       "errors":[
         {"shape":"LimitExceededException"},
         {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
         {"shape":"InvalidDeviceException"}
       ]
     },
@@ -3166,7 +3167,6 @@
         "ClientId",
         "UserCode",
         "ProductId",
-        "DeviceSerialNumber",
         "AmazonId"
       ],
       "members":{
@@ -3174,7 +3174,8 @@
         "UserCode":{"shape":"UserCode"},
         "ProductId":{"shape":"ProductId"},
         "DeviceSerialNumber":{"shape":"DeviceSerialNumberForAVS"},
-        "AmazonId":{"shape":"AmazonId"}
+        "AmazonId":{"shape":"AmazonId"},
+        "RoomArn":{"shape":"Arn"}
       }
     },
     "RegisterAVSDeviceResponse":{

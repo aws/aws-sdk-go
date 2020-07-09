@@ -23,7 +23,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidStateException"},
-        {"shape":"InternalException"}
+        {"shape":"InternalException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "CreateEventBus":{
@@ -40,7 +41,8 @@
         {"shape":"InvalidStateException"},
         {"shape":"InternalException"},
         {"shape":"ConcurrentModificationException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "CreatePartnerEventSource":{
@@ -55,7 +57,8 @@
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"InternalException"},
         {"shape":"ConcurrentModificationException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "DeactivateEventSource":{
@@ -69,7 +72,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidStateException"},
-        {"shape":"InternalException"}
+        {"shape":"InternalException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "DeleteEventBus":{
@@ -93,7 +97,8 @@
       "input":{"shape":"DeletePartnerEventSourceRequest"},
       "errors":[
         {"shape":"InternalException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "DeleteRule":{
@@ -133,7 +138,8 @@
       "output":{"shape":"DescribeEventSourceResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalException"}
+        {"shape":"InternalException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "DescribePartnerEventSource":{
@@ -146,7 +152,8 @@
       "output":{"shape":"DescribePartnerEventSourceResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalException"}
+        {"shape":"InternalException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "DescribeRule":{
@@ -211,7 +218,8 @@
       "input":{"shape":"ListEventSourcesRequest"},
       "output":{"shape":"ListEventSourcesResponse"},
       "errors":[
-        {"shape":"InternalException"}
+        {"shape":"InternalException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "ListPartnerEventSourceAccounts":{
@@ -224,7 +232,8 @@
       "output":{"shape":"ListPartnerEventSourceAccountsResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalException"}
+        {"shape":"InternalException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "ListPartnerEventSources":{
@@ -236,7 +245,8 @@
       "input":{"shape":"ListPartnerEventSourcesRequest"},
       "output":{"shape":"ListPartnerEventSourcesResponse"},
       "errors":[
-        {"shape":"InternalException"}
+        {"shape":"InternalException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "ListRuleNamesByTarget":{
@@ -312,7 +322,8 @@
       "input":{"shape":"PutPartnerEventsRequest"},
       "output":{"shape":"PutPartnerEventsResponse"},
       "errors":[
-        {"shape":"InternalException"}
+        {"shape":"InternalException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "PutPermission":{
@@ -745,6 +756,29 @@
       ]
     },
     "EventTime":{"type":"timestamp"},
+    "HeaderKey":{
+      "type":"string",
+      "max":512,
+      "pattern":"^[!#$%&'*+-.^_`|~0-9a-zA-Z]+$"
+    },
+    "HeaderParametersMap":{
+      "type":"map",
+      "key":{"shape":"HeaderKey"},
+      "value":{"shape":"HeaderValue"}
+    },
+    "HeaderValue":{
+      "type":"string",
+      "max":512,
+      "pattern":"^[ \\t]*[\\x20-\\x7E]+([ \\t]+[\\x20-\\x7E]+)*[ \\t]*$"
+    },
+    "HttpParameters":{
+      "type":"structure",
+      "members":{
+        "PathParameterValues":{"shape":"PathParameterList"},
+        "HeaderParameters":{"shape":"HeaderParametersMap"},
+        "QueryStringParameters":{"shape":"QueryStringParametersMap"}
+      }
+    },
     "InputTransformer":{
       "type":"structure",
       "required":["InputTemplate"],
@@ -962,6 +996,12 @@
       "min":1,
       "pattern":"[\\.\\-_A-Za-z0-9]+"
     },
+    "OperationDisabledException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "PartnerEventSource":{
       "type":"structure",
       "members":{
@@ -991,6 +1031,14 @@
       "max":256,
       "min":1,
       "pattern":"aws\\.partner/[\\.\\-_A-Za-z0-9]+/[/\\.\\-_A-Za-z0-9]*"
+    },
+    "PathParameter":{
+      "type":"string",
+      "pattern":"^(?!\\s*$).+"
+    },
+    "PathParameterList":{
+      "type":"list",
+      "member":{"shape":"PathParameter"}
     },
     "PolicyLengthExceededException":{
       "type":"structure",
@@ -1154,6 +1202,21 @@
     "PutTargetsResultEntryList":{
       "type":"list",
       "member":{"shape":"PutTargetsResultEntry"}
+    },
+    "QueryStringKey":{
+      "type":"string",
+      "max":512,
+      "pattern":"[^\\x00-\\x1F\\x7F]+"
+    },
+    "QueryStringParametersMap":{
+      "type":"map",
+      "key":{"shape":"QueryStringKey"},
+      "value":{"shape":"QueryStringValue"}
+    },
+    "QueryStringValue":{
+      "type":"string",
+      "max":512,
+      "pattern":"[^\\x00-\\x09\\x0B\\x0C\\x0E-\\x1F\\x7F]+"
     },
     "RemovePermissionRequest":{
       "type":"structure",
@@ -1380,7 +1443,8 @@
         "RunCommandParameters":{"shape":"RunCommandParameters"},
         "EcsParameters":{"shape":"EcsParameters"},
         "BatchParameters":{"shape":"BatchParameters"},
-        "SqsParameters":{"shape":"SqsParameters"}
+        "SqsParameters":{"shape":"SqsParameters"},
+        "HttpParameters":{"shape":"HttpParameters"}
       }
     },
     "TargetArn":{
