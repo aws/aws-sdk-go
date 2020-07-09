@@ -81,6 +81,9 @@ func (c *EventBridge) ActivateEventSourceRequest(input *ActivateEventSourceInput
 //   * InternalException
 //   This exception occurs due to unexpected causes.
 //
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/ActivateEventSource
 func (c *EventBridge) ActivateEventSource(input *ActivateEventSourceInput) (*ActivateEventSourceOutput, error) {
 	req, out := c.ActivateEventSourceRequest(input)
@@ -177,6 +180,9 @@ func (c *EventBridge) CreateEventBusRequest(input *CreateEventBusInput) (req *re
 //
 //   * LimitExceededException
 //   You tried to create more rules or add more targets to a rule than is allowed.
+//
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/CreateEventBus
 func (c *EventBridge) CreateEventBus(input *CreateEventBusInput) (*CreateEventBusOutput, error) {
@@ -290,6 +296,9 @@ func (c *EventBridge) CreatePartnerEventSourceRequest(input *CreatePartnerEventS
 //   * LimitExceededException
 //   You tried to create more rules or add more targets to a rule than is allowed.
 //
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/CreatePartnerEventSource
 func (c *EventBridge) CreatePartnerEventSource(input *CreatePartnerEventSourceInput) (*CreatePartnerEventSourceOutput, error) {
 	req, out := c.CreatePartnerEventSourceRequest(input)
@@ -384,6 +393,9 @@ func (c *EventBridge) DeactivateEventSourceRequest(input *DeactivateEventSourceI
 //
 //   * InternalException
 //   This exception occurs due to unexpected causes.
+//
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/DeactivateEventSource
 func (c *EventBridge) DeactivateEventSource(input *DeactivateEventSourceInput) (*DeactivateEventSourceOutput, error) {
@@ -556,6 +568,9 @@ func (c *EventBridge) DeletePartnerEventSourceRequest(input *DeletePartnerEventS
 //
 //   * ConcurrentModificationException
 //   There is concurrent modification on a rule or target.
+//
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/DeletePartnerEventSource
 func (c *EventBridge) DeletePartnerEventSource(input *DeletePartnerEventSourceInput) (*DeletePartnerEventSourceOutput, error) {
@@ -835,6 +850,9 @@ func (c *EventBridge) DescribeEventSourceRequest(input *DescribeEventSourceInput
 //   * InternalException
 //   This exception occurs due to unexpected causes.
 //
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/DescribeEventSource
 func (c *EventBridge) DescribeEventSource(input *DescribeEventSourceInput) (*DescribeEventSourceOutput, error) {
 	req, out := c.DescribeEventSourceRequest(input)
@@ -919,6 +937,9 @@ func (c *EventBridge) DescribePartnerEventSourceRequest(input *DescribePartnerEv
 //
 //   * InternalException
 //   This exception occurs due to unexpected causes.
+//
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/DescribePartnerEventSource
 func (c *EventBridge) DescribePartnerEventSource(input *DescribePartnerEventSourceInput) (*DescribePartnerEventSourceOutput, error) {
@@ -1362,6 +1383,9 @@ func (c *EventBridge) ListEventSourcesRequest(input *ListEventSourcesInput) (req
 //   * InternalException
 //   This exception occurs due to unexpected causes.
 //
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/ListEventSources
 func (c *EventBridge) ListEventSources(input *ListEventSourcesInput) (*ListEventSourcesOutput, error) {
 	req, out := c.ListEventSourcesRequest(input)
@@ -1446,6 +1470,9 @@ func (c *EventBridge) ListPartnerEventSourceAccountsRequest(input *ListPartnerEv
 //   * InternalException
 //   This exception occurs due to unexpected causes.
 //
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/ListPartnerEventSourceAccounts
 func (c *EventBridge) ListPartnerEventSourceAccounts(input *ListPartnerEventSourceAccountsInput) (*ListPartnerEventSourceAccountsOutput, error) {
 	req, out := c.ListPartnerEventSourceAccountsRequest(input)
@@ -1525,6 +1552,9 @@ func (c *EventBridge) ListPartnerEventSourcesRequest(input *ListPartnerEventSour
 // Returned Error Types:
 //   * InternalException
 //   This exception occurs due to unexpected causes.
+//
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/ListPartnerEventSources
 func (c *EventBridge) ListPartnerEventSources(input *ListPartnerEventSourcesInput) (*ListPartnerEventSourcesOutput, error) {
@@ -2020,6 +2050,9 @@ func (c *EventBridge) PutPartnerEventsRequest(input *PutPartnerEventsInput) (req
 //   * InternalException
 //   This exception occurs due to unexpected causes.
 //
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/PutPartnerEvents
 func (c *EventBridge) PutPartnerEvents(input *PutPartnerEventsInput) (*PutPartnerEventsOutput, error) {
 	req, out := c.PutPartnerEventsRequest(input)
@@ -2088,8 +2121,9 @@ func (c *EventBridge) PutPermissionRequest(input *PutPermissionInput) (req *requ
 // PutPermission API operation for Amazon EventBridge.
 //
 // Running PutPermission permits the specified AWS account or AWS organization
-// to put events to the specified event bus. CloudWatch Events rules in your
-// account are triggered by these events arriving to an event bus in your account.
+// to put events to the specified event bus. Amazon EventBridge (CloudWatch
+// Events) rules in your account are triggered by these events arriving to an
+// event bus in your account.
 //
 // For another account to send events to your account, that external account
 // must have an EventBridge rule with your account's event bus as a target.
@@ -2383,6 +2417,8 @@ func (c *EventBridge) PutTargetsRequest(input *PutTargetsInput) (req *request.Re
 //
 //    * The default event bus of another AWS account
 //
+//    * Amazon API Gateway REST APIs
+//
 // Creating rules with built-in targets is supported only in the AWS Management
 // Console. The built-in targets are EC2 CreateSnapshot API call, EC2 RebootInstances
 // API call, EC2 StopInstances API call, and EC2 TerminateInstances API call.
@@ -2393,12 +2429,13 @@ func (c *EventBridge) PutTargetsRequest(input *PutTargetsInput) (req *request.Re
 // on multiple EC2 instances with one rule, you can use the RunCommandParameters
 // field.
 //
-// To be able to make API calls against the resources that you own, Amazon CloudWatch
-// Events needs the appropriate permissions. For AWS Lambda and Amazon SNS resources,
-// EventBridge relies on resource-based policies. For EC2 instances, Kinesis
-// data streams, and AWS Step Functions state machines, EventBridge relies on
-// IAM roles that you specify in the RoleARN argument in PutTargets. For more
-// information, see Authentication and Access Control (https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html)
+// To be able to make API calls against the resources that you own, Amazon EventBridge
+// (CloudWatch Events) needs the appropriate permissions. For AWS Lambda and
+// Amazon SNS resources, EventBridge relies on resource-based policies. For
+// EC2 instances, Kinesis data streams, AWS Step Functions state machines and
+// API Gateway REST APIs, EventBridge relies on IAM roles that you specify in
+// the RoleARN argument in PutTargets. For more information, see Authentication
+// and Access Control (https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html)
 // in the Amazon EventBridge User Guide.
 //
 // If another AWS account is in the same region and has granted you permission
@@ -2408,7 +2445,8 @@ func (c *EventBridge) PutTargetsRequest(input *PutTargetsInput) (req *request.Re
 // you run PutTargets. If your account sends events to another account, your
 // account is charged for each sent event. Each event sent to another account
 // is charged as a custom event. The account receiving the event is not charged.
-// For more information, see Amazon CloudWatch Pricing (https://aws.amazon.com/cloudwatch/pricing/).
+// For more information, see Amazon EventBridge (CloudWatch Events) Pricing
+// (https://aws.amazon.com/eventbridge/pricing/).
 //
 // Input, InputPath, and InputTransformer are not available with PutTarget if
 // the target is an event bus of a different AWS account.
@@ -2936,8 +2974,8 @@ func (c *EventBridge) UntagResourceRequest(input *UntagResourceInput) (req *requ
 
 // UntagResource API operation for Amazon EventBridge.
 //
-// Removes one or more tags from the specified EventBridge resource. In CloudWatch
-// Events, rules and event buses can be tagged.
+// Removes one or more tags from the specified EventBridge resource. In Amazon
+// EventBridge (CloudWatch Events, rules and event buses can be tagged.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4611,6 +4649,52 @@ func (s *EventSource) SetState(v string) *EventSource {
 	return s
 }
 
+// These are custom parameter to be used when the target is an API Gateway REST
+// APIs.
+type HttpParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The headers that need to be sent as part of request invoking the API Gateway
+	// REST API.
+	HeaderParameters map[string]*string `type:"map"`
+
+	// The path parameter values to be used to populate API Gateway REST API path
+	// wildcards ("*").
+	PathParameterValues []*string `type:"list"`
+
+	// The query string keys/values that need to be sent as part of request invoking
+	// the API Gateway REST API.
+	QueryStringParameters map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s HttpParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HttpParameters) GoString() string {
+	return s.String()
+}
+
+// SetHeaderParameters sets the HeaderParameters field's value.
+func (s *HttpParameters) SetHeaderParameters(v map[string]*string) *HttpParameters {
+	s.HeaderParameters = v
+	return s
+}
+
+// SetPathParameterValues sets the PathParameterValues field's value.
+func (s *HttpParameters) SetPathParameterValues(v []*string) *HttpParameters {
+	s.PathParameterValues = v
+	return s
+}
+
+// SetQueryStringParameters sets the QueryStringParameters field's value.
+func (s *HttpParameters) SetQueryStringParameters(v map[string]*string) *HttpParameters {
+	s.QueryStringParameters = v
+	return s
+}
+
 // Contains the parameters needed for you to provide custom input to a target
 // based on one or more pieces of data extracted from the event.
 type InputTransformer struct {
@@ -5861,6 +5945,62 @@ func (s *NetworkConfiguration) Validate() error {
 func (s *NetworkConfiguration) SetAwsvpcConfiguration(v *AwsVpcConfiguration) *NetworkConfiguration {
 	s.AwsvpcConfiguration = v
 	return s
+}
+
+// The operation you are attempting is not available in this region.
+type OperationDisabledException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s OperationDisabledException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OperationDisabledException) GoString() string {
+	return s.String()
+}
+
+func newErrorOperationDisabledException(v protocol.ResponseMetadata) error {
+	return &OperationDisabledException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *OperationDisabledException) Code() string {
+	return "OperationDisabledException"
+}
+
+// Message returns the exception's message.
+func (s *OperationDisabledException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *OperationDisabledException) OrigErr() error {
+	return nil
+}
+
+func (s *OperationDisabledException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *OperationDisabledException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *OperationDisabledException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // A partner event source is created by an SaaS partner. If a customer creates
@@ -7611,6 +7751,14 @@ type Target struct {
 	// in the Amazon EC2 Container Service Developer Guide.
 	EcsParameters *EcsParameters `type:"structure"`
 
+	// Contains the HTTP parameters to use when the target is a API Gateway REST
+	// endpoint.
+	//
+	// If you specify an API Gateway REST API as a target, you can use this parameter
+	// to specify headers, path parameter, query string keys/values as part of your
+	// target invoking request.
+	HttpParameters *HttpParameters `type:"structure"`
+
 	// The ID of the target.
 	//
 	// Id is a required field
@@ -7726,6 +7874,12 @@ func (s *Target) SetBatchParameters(v *BatchParameters) *Target {
 // SetEcsParameters sets the EcsParameters field's value.
 func (s *Target) SetEcsParameters(v *EcsParameters) *Target {
 	s.EcsParameters = v
+	return s
+}
+
+// SetHttpParameters sets the HttpParameters field's value.
+func (s *Target) SetHttpParameters(v *HttpParameters) *Target {
+	s.HttpParameters = v
 	return s
 }
 

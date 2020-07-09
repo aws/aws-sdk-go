@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p> Welcome to the AWS Amplify API documentation. This reference provides descriptions of the actions and data types for the Amplify API.</p> <p>Amplify enables developers to develop and deploy cloud-powered mobile and web apps. The Amplify Console provides a continuous delivery and hosting service for web applications. For more information, see the <a href=\"https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html\">Amplify Console User Guide</a>. The Amplify Framework is a comprehensive set of SDKs, libraries, tools, and documentation for client app development. For more information, see the <a href=\"https://aws-amplify.github.io/docs/\">Amplify Framework.</a> </p>",
+  "service": "<p>Amplify enables developers to develop and deploy cloud-powered mobile and web apps. The Amplify Console provides a continuous delivery and hosting service for web applications. For more information, see the <a href=\"https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html\">Amplify Console User Guide</a>. The Amplify Framework is a comprehensive set of SDKs, libraries, tools, and documentation for client app development. For more information, see the <a href=\"https://docs.amplify.aws/\">Amplify Framework.</a> </p>",
   "operations": {
     "CreateApp": "<p> Creates a new Amplify app. </p>",
     "CreateBackendEnvironment": "<p> Creates a new backend environment for an Amplify app. </p>",
@@ -643,7 +643,7 @@
     "EnableBranchAutoDeletion": {
       "base": null,
       "refs": {
-        "App$enableBranchAutoDeletion": "<p> Automatically disconnects a branch in the Amplify Console when you delete a branch from your Git repository. </p>",
+        "App$enableBranchAutoDeletion": "<p> Automatically disconnect a branch in the Amplify Console when you delete a branch from your Git repository. </p>",
         "CreateAppRequest$enableBranchAutoDeletion": "<p> Automatically disconnects a branch in the Amplify Console when you delete a branch from your Git repository. </p>",
         "UpdateAppRequest$enableBranchAutoDeletion": "<p> Automatically disconnects a branch in the Amplify Console when you delete a branch from your Git repository. </p>"
       }

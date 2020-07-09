@@ -1,3 +1,25 @@
+Release v1.33.5 (2020-07-09)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/amplify`: Updates service documentation
+* `service/appmesh`: Updates service API, documentation, and paginators
+* `service/cloudhsmv2`: Updates service documentation
+  * Documentation updates for cloudhsmv2
+* `service/comprehend`: Updates service API and documentation
+* `service/ebs`: Updates service API and documentation
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Amazon CloudWatch Events/EventBridge adds support for API Gateway as a target.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds the DeleteHumanTaskUi API to Amazon Augmented AI
+* `service/secretsmanager`: Updates service API, documentation, and examples
+  * Adds support for filters on the ListSecrets API to allow filtering results by name, tag key, tag value, or description.  Adds support for the BlockPublicPolicy option on the PutResourcePolicy API to block resource policies which grant a wide range of IAM principals access to secrets. Adds support for the ValidateResourcePolicy API to validate resource policies for syntax and prevent lockout error scenarios and wide access to secrets.
+* `service/sns`: Updates service documentation
+  * This release adds support for SMS origination number as an attribute in the MessageAttributes parameter for the SNS Publish API.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.33.4 (2020-07-08)
 ===
 

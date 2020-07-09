@@ -208,6 +208,10 @@ type SageMakerAPI interface {
 	DeleteFlowDefinitionWithContext(aws.Context, *sagemaker.DeleteFlowDefinitionInput, ...request.Option) (*sagemaker.DeleteFlowDefinitionOutput, error)
 	DeleteFlowDefinitionRequest(*sagemaker.DeleteFlowDefinitionInput) (*request.Request, *sagemaker.DeleteFlowDefinitionOutput)
 
+	DeleteHumanTaskUi(*sagemaker.DeleteHumanTaskUiInput) (*sagemaker.DeleteHumanTaskUiOutput, error)
+	DeleteHumanTaskUiWithContext(aws.Context, *sagemaker.DeleteHumanTaskUiInput, ...request.Option) (*sagemaker.DeleteHumanTaskUiOutput, error)
+	DeleteHumanTaskUiRequest(*sagemaker.DeleteHumanTaskUiInput) (*request.Request, *sagemaker.DeleteHumanTaskUiOutput)
+
 	DeleteModel(*sagemaker.DeleteModelInput) (*sagemaker.DeleteModelOutput, error)
 	DeleteModelWithContext(aws.Context, *sagemaker.DeleteModelInput, ...request.Option) (*sagemaker.DeleteModelOutput, error)
 	DeleteModelRequest(*sagemaker.DeleteModelInput) (*request.Request, *sagemaker.DeleteModelOutput)

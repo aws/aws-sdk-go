@@ -175,7 +175,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServiceError"},
-        {"shape":"InvalidRequestException"}
+        {"shape":"InvalidRequestException"},
+        {"shape":"PublicPolicyException"}
       ]
     },
     "PutSecretValue":{
@@ -288,6 +289,22 @@
         {"shape":"InvalidRequestException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalServiceError"}
+      ]
+    },
+    "ValidateResourcePolicy":{
+      "name":"ValidateResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ValidateResourcePolicyRequest"},
+      "output":{"shape":"ValidateResourcePolicyResponse"},
+      "errors":[
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"}
       ]
     }
   },
@@ -430,7 +447,11 @@
         },
         "Tags":{"shape":"TagListType"},
         "VersionIdsToStages":{"shape":"SecretVersionsToStagesMapType"},
-        "OwningService":{"shape":"OwningServiceType"}
+        "OwningService":{"shape":"OwningServiceType"},
+        "CreatedDate":{
+          "shape":"TimestampType",
+          "box":true
+        }
       }
     },
     "DescriptionType":{
@@ -454,6 +475,40 @@
     "ExcludeNumbersType":{"type":"boolean"},
     "ExcludePunctuationType":{"type":"boolean"},
     "ExcludeUppercaseType":{"type":"boolean"},
+    "Filter":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"FilterNameStringType"},
+        "Values":{"shape":"FilterValuesStringList"}
+      }
+    },
+    "FilterNameStringType":{
+      "type":"string",
+      "enum":[
+        "description",
+        "name",
+        "tag-key",
+        "tag-value",
+        "all"
+      ]
+    },
+    "FilterValueStringType":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[a-zA-Z0-9 :_@\\/\\+\\=\\.\\-]+"
+    },
+    "FilterValuesStringList":{
+      "type":"list",
+      "member":{"shape":"FilterValueStringType"},
+      "max":10,
+      "min":1
+    },
+    "FiltersListType":{
+      "type":"list",
+      "member":{"shape":"Filter"},
+      "max":10
+    },
     "GetRandomPasswordRequest":{
       "type":"structure",
       "members":{
@@ -610,7 +665,9 @@
           "shape":"MaxResultsType",
           "box":true
         },
-        "NextToken":{"shape":"NextTokenType"}
+        "NextToken":{"shape":"NextTokenType"},
+        "Filters":{"shape":"FiltersListType"},
+        "SortOrder":{"shape":"SortOrderType"}
       }
     },
     "ListSecretsResponse":{
@@ -664,6 +721,13 @@
       },
       "exception":true
     },
+    "PublicPolicyException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "PutResourcePolicyRequest":{
       "type":"structure",
       "required":[
@@ -672,7 +736,11 @@
       ],
       "members":{
         "SecretId":{"shape":"SecretIdType"},
-        "ResourcePolicy":{"shape":"NonEmptyResourcePolicyType"}
+        "ResourcePolicy":{"shape":"NonEmptyResourcePolicyType"},
+        "BlockPublicPolicy":{
+          "shape":"BooleanType",
+          "box":true
+        }
       }
     },
     "PutResourcePolicyResponse":{
@@ -824,7 +892,11 @@
         "DeletedDate":{"shape":"DeletedDateType"},
         "Tags":{"shape":"TagListType"},
         "SecretVersionsToStages":{"shape":"SecretVersionsToStagesMapType"},
-        "OwningService":{"shape":"OwningServiceType"}
+        "OwningService":{"shape":"OwningServiceType"},
+        "CreatedDate":{
+          "shape":"TimestampType",
+          "box":true
+        }
       }
     },
     "SecretListType":{
@@ -882,6 +954,13 @@
       "key":{"shape":"SecretVersionIdType"},
       "value":{"shape":"SecretVersionStagesType"}
     },
+    "SortOrderType":{
+      "type":"string",
+      "enum":[
+        "asc",
+        "desc"
+      ]
+    },
     "Tag":{
       "type":"structure",
       "members":{
@@ -918,6 +997,7 @@
       "max":256,
       "min":0
     },
+    "TimestampType":{"type":"timestamp"},
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -977,6 +1057,32 @@
         "ARN":{"shape":"SecretARNType"},
         "Name":{"shape":"SecretNameType"}
       }
+    },
+    "ValidateResourcePolicyRequest":{
+      "type":"structure",
+      "required":["ResourcePolicy"],
+      "members":{
+        "SecretId":{"shape":"SecretIdType"},
+        "ResourcePolicy":{"shape":"NonEmptyResourcePolicyType"}
+      }
+    },
+    "ValidateResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "PolicyValidationPassed":{"shape":"BooleanType"},
+        "ValidationErrors":{"shape":"ValidationErrorsType"}
+      }
+    },
+    "ValidationErrorsEntry":{
+      "type":"structure",
+      "members":{
+        "CheckName":{"shape":"NameType"},
+        "ErrorMessage":{"shape":"ErrorMessage"}
+      }
+    },
+    "ValidationErrorsType":{
+      "type":"list",
+      "member":{"shape":"ValidationErrorsEntry"}
     }
   }
 }

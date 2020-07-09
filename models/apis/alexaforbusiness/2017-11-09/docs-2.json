@@ -271,6 +271,7 @@
         "ProfileData$ProfileArn": "<p>The ARN of a room profile.</p>",
         "PutRoomSkillParameterRequest$RoomArn": "<p>The ARN of the room associated with the room skill parameter. Required.</p>",
         "PutSkillAuthorizationRequest$RoomArn": "<p>The room that the skill is authorized for.</p>",
+        "RegisterAVSDeviceRequest$RoomArn": "<p>The ARN of the room with which to associate your AVS device.</p>",
         "RegisterAVSDeviceResponse$DeviceArn": "<p>The ARN of the device.</p>",
         "ResolveRoomResponse$RoomArn": "<p>The ARN of the room from which the skill request was invoked.</p>",
         "RevokeInvitationRequest$UserArn": "<p>The ARN of the user for whom to revoke an enrollment invitation. Required.</p>",

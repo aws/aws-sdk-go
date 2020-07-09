@@ -10,8 +10,106 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
+
+const opCompleteSnapshot = "CompleteSnapshot"
+
+// CompleteSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CompleteSnapshot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CompleteSnapshot for more information on using the CompleteSnapshot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CompleteSnapshotRequest method.
+//    req, resp := client.CompleteSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/CompleteSnapshot
+func (c *EBS) CompleteSnapshotRequest(input *CompleteSnapshotInput) (req *request.Request, output *CompleteSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opCompleteSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/snapshots/completion/{snapshotId}",
+	}
+
+	if input == nil {
+		input = &CompleteSnapshotInput{}
+	}
+
+	output = &CompleteSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CompleteSnapshot API operation for Amazon Elastic Block Store.
+//
+// Seals and completes the snapshot after all of the required blocks of data
+// have been written to it. Completing the snapshot changes the status to completed.
+// You cannot write new blocks to a snapshot after it has been completed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Block Store's
+// API operation CompleteSnapshot for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints of the EBS direct APIs.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * RequestThrottledException
+//   The number of API requests has exceed the maximum allowed API request throttling
+//   limit.
+//
+//   * ServiceQuotaExceededException
+//   Your current service quotas do not allow you to perform this action.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/CompleteSnapshot
+func (c *EBS) CompleteSnapshot(input *CompleteSnapshotInput) (*CompleteSnapshotOutput, error) {
+	req, out := c.CompleteSnapshotRequest(input)
+	return out, req.Send()
+}
+
+// CompleteSnapshotWithContext is the same as CompleteSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CompleteSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EBS) CompleteSnapshotWithContext(ctx aws.Context, input *CompleteSnapshotInput, opts ...request.Option) (*CompleteSnapshotOutput, error) {
+	req, out := c.CompleteSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
 
 const opGetSnapshotBlock = "GetSnapshotBlock"
 
@@ -67,11 +165,24 @@ func (c *EBS) GetSnapshotBlockRequest(input *GetSnapshotBlockInput) (req *reques
 // API operation GetSnapshotBlock for usage and error information.
 //
 // Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
 //   * ValidationException
 //   The input fails to satisfy the constraints of the EBS direct APIs.
 //
 //   * ResourceNotFoundException
 //   The specified resource does not exist.
+//
+//   * RequestThrottledException
+//   The number of API requests has exceed the maximum allowed API request throttling
+//   limit.
+//
+//   * ServiceQuotaExceededException
+//   Your current service quotas do not allow you to perform this action.
+//
+//   * InternalServerException
+//   An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/GetSnapshotBlock
 func (c *EBS) GetSnapshotBlock(input *GetSnapshotBlockInput) (*GetSnapshotBlockOutput, error) {
@@ -157,11 +268,24 @@ func (c *EBS) ListChangedBlocksRequest(input *ListChangedBlocksInput) (req *requ
 // API operation ListChangedBlocks for usage and error information.
 //
 // Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
 //   * ValidationException
 //   The input fails to satisfy the constraints of the EBS direct APIs.
 //
 //   * ResourceNotFoundException
 //   The specified resource does not exist.
+//
+//   * RequestThrottledException
+//   The number of API requests has exceed the maximum allowed API request throttling
+//   limit.
+//
+//   * ServiceQuotaExceededException
+//   Your current service quotas do not allow you to perform this action.
+//
+//   * InternalServerException
+//   An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/ListChangedBlocks
 func (c *EBS) ListChangedBlocks(input *ListChangedBlocksInput) (*ListChangedBlocksOutput, error) {
@@ -298,11 +422,24 @@ func (c *EBS) ListSnapshotBlocksRequest(input *ListSnapshotBlocksInput) (req *re
 // API operation ListSnapshotBlocks for usage and error information.
 //
 // Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
 //   * ValidationException
 //   The input fails to satisfy the constraints of the EBS direct APIs.
 //
 //   * ResourceNotFoundException
 //   The specified resource does not exist.
+//
+//   * RequestThrottledException
+//   The number of API requests has exceed the maximum allowed API request throttling
+//   limit.
+//
+//   * ServiceQuotaExceededException
+//   Your current service quotas do not allow you to perform this action.
+//
+//   * InternalServerException
+//   An internal error has occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/ListSnapshotBlocks
 func (c *EBS) ListSnapshotBlocks(input *ListSnapshotBlocksInput) (*ListSnapshotBlocksOutput, error) {
@@ -376,6 +513,276 @@ func (c *EBS) ListSnapshotBlocksPagesWithContext(ctx aws.Context, input *ListSna
 	}
 
 	return p.Err()
+}
+
+const opPutSnapshotBlock = "PutSnapshotBlock"
+
+// PutSnapshotBlockRequest generates a "aws/request.Request" representing the
+// client's request for the PutSnapshotBlock operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutSnapshotBlock for more information on using the PutSnapshotBlock
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutSnapshotBlockRequest method.
+//    req, resp := client.PutSnapshotBlockRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/PutSnapshotBlock
+func (c *EBS) PutSnapshotBlockRequest(input *PutSnapshotBlockInput) (req *request.Request, output *PutSnapshotBlockOutput) {
+	op := &request.Operation{
+		Name:       opPutSnapshotBlock,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/snapshots/{snapshotId}/blocks/{blockIndex}",
+	}
+
+	if input == nil {
+		input = &PutSnapshotBlockInput{}
+	}
+
+	output = &PutSnapshotBlockOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Sign.Remove(v4.SignRequestHandler)
+	handler := v4.BuildNamedHandler("v4.CustomSignerHandler", v4.WithUnsignedPayload)
+	req.Handlers.Sign.PushFrontNamed(handler)
+	return
+}
+
+// PutSnapshotBlock API operation for Amazon Elastic Block Store.
+//
+// Writes a block of data to a block in the snapshot. If the specified block
+// contains data, the existing data is overwritten. The target snapshot must
+// be in the pending state.
+//
+// Data written to a snapshot must be aligned with 512-byte sectors.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Block Store's
+// API operation PutSnapshotBlock for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints of the EBS direct APIs.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * RequestThrottledException
+//   The number of API requests has exceed the maximum allowed API request throttling
+//   limit.
+//
+//   * ServiceQuotaExceededException
+//   Your current service quotas do not allow you to perform this action.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/PutSnapshotBlock
+func (c *EBS) PutSnapshotBlock(input *PutSnapshotBlockInput) (*PutSnapshotBlockOutput, error) {
+	req, out := c.PutSnapshotBlockRequest(input)
+	return out, req.Send()
+}
+
+// PutSnapshotBlockWithContext is the same as PutSnapshotBlock with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutSnapshotBlock for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EBS) PutSnapshotBlockWithContext(ctx aws.Context, input *PutSnapshotBlockInput, opts ...request.Option) (*PutSnapshotBlockOutput, error) {
+	req, out := c.PutSnapshotBlockRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartSnapshot = "StartSnapshot"
+
+// StartSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the StartSnapshot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSnapshot for more information on using the StartSnapshot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartSnapshotRequest method.
+//    req, resp := client.StartSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/StartSnapshot
+func (c *EBS) StartSnapshotRequest(input *StartSnapshotInput) (req *request.Request, output *StartSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opStartSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/snapshots",
+	}
+
+	if input == nil {
+		input = &StartSnapshotInput{}
+	}
+
+	output = &StartSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSnapshot API operation for Amazon Elastic Block Store.
+//
+// Creates a new Amazon EBS snapshot. The new snapshot enters the pending state
+// after the request completes.
+//
+// After creating the snapshot, use PutSnapshotBlock (https://docs.aws.amazon.com/ebs/latest/APIReference/API_PutSnapshotBlock.html)
+// to write blocks of data to the snapshot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Block Store's
+// API operation StartSnapshot for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints of the EBS direct APIs.
+//
+//   * RequestThrottledException
+//   The number of API requests has exceed the maximum allowed API request throttling
+//   limit.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ServiceQuotaExceededException
+//   Your current service quotas do not allow you to perform this action.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+//   * ConcurrentLimitExceededException
+//   You have reached the limit for concurrent API requests. For more information,
+//   see Optimizing performance of the EBS direct APIs (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-accessing-snapshot.html#ebsapi-performance)
+//   in the Amazon Elastic Compute Cloud User Guide.
+//
+//   * ConflictException
+//   The request uses the same client token as a previous, but non-identical request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ebs-2019-11-02/StartSnapshot
+func (c *EBS) StartSnapshot(input *StartSnapshotInput) (*StartSnapshotOutput, error) {
+	req, out := c.StartSnapshotRequest(input)
+	return out, req.Send()
+}
+
+// StartSnapshotWithContext is the same as StartSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EBS) StartSnapshotWithContext(ctx aws.Context, input *StartSnapshotInput, opts ...request.Option) (*StartSnapshotOutput, error) {
+	req, out := c.StartSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// You do not have sufficient access to perform this action.
+type AccessDeniedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The reason for the exception.
+	//
+	// Reason is a required field
+	Reason *string `type:"string" required:"true" enum:"AccessDeniedExceptionReason"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s *AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s *AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccessDeniedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccessDeniedException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // A block of data in an Amazon Elastic Block Store snapshot.
@@ -455,6 +862,233 @@ func (s *ChangedBlock) SetFirstBlockToken(v string) *ChangedBlock {
 func (s *ChangedBlock) SetSecondBlockToken(v string) *ChangedBlock {
 	s.SecondBlockToken = &v
 	return s
+}
+
+type CompleteSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of blocks that were written to the snapshot.
+	//
+	// ChangedBlocksCount is a required field
+	ChangedBlocksCount *int64 `location:"header" locationName:"x-amz-ChangedBlocksCount" type:"integer" required:"true"`
+
+	// An aggregated Base-64 SHA256 checksum based on the checksums of each written
+	// block.
+	//
+	// To generate the aggregated checksum using the linear aggregation method,
+	// arrange the checksums for each written block in ascending order of their
+	// block index, concatenate them to form a single string, and then generate
+	// the checksum on the entire string using the SHA256 algorithm.
+	Checksum *string `location:"header" locationName:"x-amz-Checksum" type:"string"`
+
+	// The aggregation method used to generate the checksum. Currently, the only
+	// supported aggregation method is LINEAR.
+	ChecksumAggregationMethod *string `location:"header" locationName:"x-amz-Checksum-Aggregation-Method" type:"string" enum:"ChecksumAggregationMethod"`
+
+	// The algorithm used to generate the checksum. Currently, the only supported
+	// algorithm is SHA256.
+	ChecksumAlgorithm *string `location:"header" locationName:"x-amz-Checksum-Algorithm" type:"string" enum:"ChecksumAlgorithm"`
+
+	// The ID of the snapshot.
+	//
+	// SnapshotId is a required field
+	SnapshotId *string `location:"uri" locationName:"snapshotId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CompleteSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CompleteSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CompleteSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CompleteSnapshotInput"}
+	if s.ChangedBlocksCount == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangedBlocksCount"))
+	}
+	if s.SnapshotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotId"))
+	}
+	if s.SnapshotId != nil && len(*s.SnapshotId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChangedBlocksCount sets the ChangedBlocksCount field's value.
+func (s *CompleteSnapshotInput) SetChangedBlocksCount(v int64) *CompleteSnapshotInput {
+	s.ChangedBlocksCount = &v
+	return s
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *CompleteSnapshotInput) SetChecksum(v string) *CompleteSnapshotInput {
+	s.Checksum = &v
+	return s
+}
+
+// SetChecksumAggregationMethod sets the ChecksumAggregationMethod field's value.
+func (s *CompleteSnapshotInput) SetChecksumAggregationMethod(v string) *CompleteSnapshotInput {
+	s.ChecksumAggregationMethod = &v
+	return s
+}
+
+// SetChecksumAlgorithm sets the ChecksumAlgorithm field's value.
+func (s *CompleteSnapshotInput) SetChecksumAlgorithm(v string) *CompleteSnapshotInput {
+	s.ChecksumAlgorithm = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *CompleteSnapshotInput) SetSnapshotId(v string) *CompleteSnapshotInput {
+	s.SnapshotId = &v
+	return s
+}
+
+type CompleteSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the snapshot.
+	Status *string `type:"string" enum:"Status"`
+}
+
+// String returns the string representation
+func (s CompleteSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CompleteSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *CompleteSnapshotOutput) SetStatus(v string) *CompleteSnapshotOutput {
+	s.Status = &v
+	return s
+}
+
+// You have reached the limit for concurrent API requests. For more information,
+// see Optimizing performance of the EBS direct APIs (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-accessing-snapshot.html#ebsapi-performance)
+// in the Amazon Elastic Compute Cloud User Guide.
+type ConcurrentLimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConcurrentLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConcurrentLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorConcurrentLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ConcurrentLimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConcurrentLimitExceededException) Code() string {
+	return "ConcurrentLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ConcurrentLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConcurrentLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ConcurrentLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConcurrentLimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConcurrentLimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The request uses the same client token as a previous, but non-identical request.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type GetSnapshotBlockInput struct {
@@ -582,6 +1216,62 @@ func (s *GetSnapshotBlockOutput) SetDataLength(v int64) *GetSnapshotBlockOutput 
 	return s
 }
 
+// An internal error has occurred.
+type InternalServerException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s *InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s *InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalServerException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalServerException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type ListChangedBlocksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -691,7 +1381,7 @@ type ListChangedBlocksOutput struct {
 	NextToken *string `type:"string"`
 
 	// The size of the volume in GB.
-	VolumeSize *int64 `type:"long"`
+	VolumeSize *int64 `min:"1" type:"long"`
 }
 
 // String returns the string representation
@@ -823,7 +1513,7 @@ type ListSnapshotBlocksOutput struct {
 	NextToken *string `type:"string"`
 
 	// The size of the volume in GB.
-	VolumeSize *int64 `type:"long"`
+	VolumeSize *int64 `min:"1" type:"long"`
 }
 
 // String returns the string representation
@@ -866,12 +1556,250 @@ func (s *ListSnapshotBlocksOutput) SetVolumeSize(v int64) *ListSnapshotBlocksOut
 	return s
 }
 
+type PutSnapshotBlockInput struct {
+	_ struct{} `type:"structure" payload:"BlockData"`
+
+	// The data to write to the block.
+	//
+	// The block data is not signed as part of the Signature Version 4 signing process.
+	// As a result, you must generate and provide a Base64-encoded SHA256 checksum
+	// for the block data using the x-amz-Checksum header. Also, you must specify
+	// the checksum algorithm using the x-amz-Checksum-Algorithm header. The checksum
+	// that you provide is part of the Signature Version 4 signing process. It is
+	// validated against a checksum generated by Amazon EBS to ensure the validity
+	// and authenticity of the data. If the checksums do not correspond, the request
+	// fails. For more information, see Using checksums with the EBS direct APIs
+	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-accessing-snapshot.html#ebsapis-using-checksums)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	//
+	// To use an non-seekable io.Reader for this request wrap the io.Reader with
+	// "aws.ReadSeekCloser". The SDK will not retry request errors for non-seekable
+	// readers. This will allow the SDK to send the reader's payload as chunked
+	// transfer encoding.
+	//
+	// BlockData is a required field
+	BlockData io.ReadSeeker `type:"blob" required:"true" sensitive:"true"`
+
+	// The block index of the block in which to write the data. A block index is
+	// the offset position of a block within a snapshot, and it is used to identify
+	// the block. To identify the logical offset of the data in the logical volume,
+	// multiply the block index with the block size (Block index * 512 bytes).
+	//
+	// BlockIndex is a required field
+	BlockIndex *int64 `location:"uri" locationName:"blockIndex" type:"integer" required:"true"`
+
+	// A Base64-encoded SHA256 checksum of the data. Only SHA256 checksums are supported.
+	//
+	// Checksum is a required field
+	Checksum *string `location:"header" locationName:"x-amz-Checksum" type:"string" required:"true"`
+
+	// The algorithm used to generate the checksum. Currently, the only supported
+	// algorithm is SHA256.
+	//
+	// ChecksumAlgorithm is a required field
+	ChecksumAlgorithm *string `location:"header" locationName:"x-amz-Checksum-Algorithm" type:"string" required:"true" enum:"ChecksumAlgorithm"`
+
+	// The size of the data to write to the block, in bytes. Currently, the only
+	// supported size is 524288.
+	//
+	// Valid values: 524288
+	//
+	// DataLength is a required field
+	DataLength *int64 `location:"header" locationName:"x-amz-Data-Length" type:"integer" required:"true"`
+
+	// The progress of the write process, as a percentage.
+	Progress *int64 `location:"header" locationName:"x-amz-Progress" type:"integer"`
+
+	// The ID of the snapshot.
+	//
+	// SnapshotId is a required field
+	SnapshotId *string `location:"uri" locationName:"snapshotId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutSnapshotBlockInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutSnapshotBlockInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutSnapshotBlockInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutSnapshotBlockInput"}
+	if s.BlockData == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlockData"))
+	}
+	if s.BlockIndex == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlockIndex"))
+	}
+	if s.Checksum == nil {
+		invalidParams.Add(request.NewErrParamRequired("Checksum"))
+	}
+	if s.ChecksumAlgorithm == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChecksumAlgorithm"))
+	}
+	if s.DataLength == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataLength"))
+	}
+	if s.SnapshotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotId"))
+	}
+	if s.SnapshotId != nil && len(*s.SnapshotId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlockData sets the BlockData field's value.
+func (s *PutSnapshotBlockInput) SetBlockData(v io.ReadSeeker) *PutSnapshotBlockInput {
+	s.BlockData = v
+	return s
+}
+
+// SetBlockIndex sets the BlockIndex field's value.
+func (s *PutSnapshotBlockInput) SetBlockIndex(v int64) *PutSnapshotBlockInput {
+	s.BlockIndex = &v
+	return s
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *PutSnapshotBlockInput) SetChecksum(v string) *PutSnapshotBlockInput {
+	s.Checksum = &v
+	return s
+}
+
+// SetChecksumAlgorithm sets the ChecksumAlgorithm field's value.
+func (s *PutSnapshotBlockInput) SetChecksumAlgorithm(v string) *PutSnapshotBlockInput {
+	s.ChecksumAlgorithm = &v
+	return s
+}
+
+// SetDataLength sets the DataLength field's value.
+func (s *PutSnapshotBlockInput) SetDataLength(v int64) *PutSnapshotBlockInput {
+	s.DataLength = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *PutSnapshotBlockInput) SetProgress(v int64) *PutSnapshotBlockInput {
+	s.Progress = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *PutSnapshotBlockInput) SetSnapshotId(v string) *PutSnapshotBlockInput {
+	s.SnapshotId = &v
+	return s
+}
+
+type PutSnapshotBlockOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The SHA256 checksum generated for the block data by Amazon EBS.
+	Checksum *string `location:"header" locationName:"x-amz-Checksum" type:"string"`
+
+	// The algorithm used by Amazon EBS to generate the checksum.
+	ChecksumAlgorithm *string `location:"header" locationName:"x-amz-Checksum-Algorithm" type:"string" enum:"ChecksumAlgorithm"`
+}
+
+// String returns the string representation
+func (s PutSnapshotBlockOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutSnapshotBlockOutput) GoString() string {
+	return s.String()
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *PutSnapshotBlockOutput) SetChecksum(v string) *PutSnapshotBlockOutput {
+	s.Checksum = &v
+	return s
+}
+
+// SetChecksumAlgorithm sets the ChecksumAlgorithm field's value.
+func (s *PutSnapshotBlockOutput) SetChecksumAlgorithm(v string) *PutSnapshotBlockOutput {
+	s.ChecksumAlgorithm = &v
+	return s
+}
+
+// The number of API requests has exceed the maximum allowed API request throttling
+// limit.
+type RequestThrottledException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The reason for the exception.
+	Reason *string `type:"string" enum:"RequestThrottledExceptionReason"`
+}
+
+// String returns the string representation
+func (s RequestThrottledException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RequestThrottledException) GoString() string {
+	return s.String()
+}
+
+func newErrorRequestThrottledException(v protocol.ResponseMetadata) error {
+	return &RequestThrottledException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *RequestThrottledException) Code() string {
+	return "RequestThrottledException"
+}
+
+// Message returns the exception's message.
+func (s *RequestThrottledException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *RequestThrottledException) OrigErr() error {
+	return nil
+}
+
+func (s *RequestThrottledException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *RequestThrottledException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *RequestThrottledException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The specified resource does not exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
+
+	// The reason for the exception.
+	Reason *string `type:"string" enum:"ResourceNotFoundExceptionReason"`
 }
 
 // String returns the string representation
@@ -909,7 +1837,7 @@ func (s *ResourceNotFoundException) OrigErr() error {
 }
 
 func (s *ResourceNotFoundException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -920,6 +1848,362 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Your current service quotas do not allow you to perform this action.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The reason for the exception.
+	Reason *string `type:"string" enum:"ServiceQuotaExceededExceptionReason"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type StartSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. Idempotency ensures that an API request completes only once.
+	// With an idempotent request, if the original request completes successfully.
+	// The subsequent retries with the same client token return the result from
+	// the original successful request and they have no additional effect.
+	//
+	// If you do not specify a client token, one is automatically generated by the
+	// AWS SDK.
+	//
+	// For more information, see Idempotency for StartSnapshot API (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-direct-api-idempotency.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// A description for the snapshot.
+	Description *string `type:"string"`
+
+	// Indicates whether to encrypt the snapshot. To create an encrypted snapshot,
+	// specify true. To create an unencrypted snapshot, omit this parameter.
+	//
+	// If you specify a value for ParentSnapshotId, omit this parameter.
+	//
+	// If you specify true, the snapshot is encrypted using the CMK specified using
+	// the KmsKeyArn parameter. If no value is specified for KmsKeyArn, the default
+	// CMK for your account is used. If no default CMK has been specified for your
+	// account, the AWS managed CMK is used. To set a default CMK for your account,
+	// use ModifyEbsDefaultKmsKeyId (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyEbsDefaultKmsKeyId.html).
+	//
+	// If your account is enabled for encryption by default, you cannot set this
+	// parameter to false. In this case, you can omit this parameter.
+	//
+	// For more information, see Using encryption (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-accessing-snapshot.html#ebsapis-using-encryption)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	Encrypted *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS)
+	// customer master key (CMK) to be used to encrypt the snapshot. If you do not
+	// specify a CMK, the default AWS managed CMK is used.
+	//
+	// If you specify a ParentSnapshotId, omit this parameter; the snapshot will
+	// be encrypted using the same CMK that was used to encrypt the parent snapshot.
+	//
+	// If Encrypted is set to true, you must specify a CMK ARN.
+	KmsKeyArn *string `min:"1" type:"string" sensitive:"true"`
+
+	// The ID of the parent snapshot. If there is no parent snapshot, or if you
+	// are creating the first snapshot for an on-premises volume, omit this parameter.
+	//
+	// If your account is enabled for encryption by default, you cannot use an unencrypted
+	// snapshot as a parent snapshot. You must first create an encrypted copy of
+	// the parent snapshot using CopySnapshot (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CopySnapshot.html).
+	ParentSnapshotId *string `min:"1" type:"string"`
+
+	// The tags to apply to the snapshot.
+	Tags []*Tag `type:"list"`
+
+	// The amount of time (in minutes) after which the snapshot is automatically
+	// cancelled if:
+	//
+	//    * No blocks are written to the snapshot.
+	//
+	//    * The snapshot is not completed after writing the last block of data.
+	//
+	// If no value is specified, the timeout defaults to 60 minutes.
+	Timeout *int64 `min:"10" type:"integer"`
+
+	// The size of the volume, in GiB. The maximum size is 16384 GiB (16 TiB).
+	//
+	// VolumeSize is a required field
+	VolumeSize *int64 `min:"1" type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s StartSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSnapshotInput"}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 1))
+	}
+	if s.ParentSnapshotId != nil && len(*s.ParentSnapshotId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ParentSnapshotId", 1))
+	}
+	if s.Timeout != nil && *s.Timeout < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("Timeout", 10))
+	}
+	if s.VolumeSize == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeSize"))
+	}
+	if s.VolumeSize != nil && *s.VolumeSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("VolumeSize", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartSnapshotInput) SetClientToken(v string) *StartSnapshotInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartSnapshotInput) SetDescription(v string) *StartSnapshotInput {
+	s.Description = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *StartSnapshotInput) SetEncrypted(v bool) *StartSnapshotInput {
+	s.Encrypted = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *StartSnapshotInput) SetKmsKeyArn(v string) *StartSnapshotInput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetParentSnapshotId sets the ParentSnapshotId field's value.
+func (s *StartSnapshotInput) SetParentSnapshotId(v string) *StartSnapshotInput {
+	s.ParentSnapshotId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartSnapshotInput) SetTags(v []*Tag) *StartSnapshotInput {
+	s.Tags = v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *StartSnapshotInput) SetTimeout(v int64) *StartSnapshotInput {
+	s.Timeout = &v
+	return s
+}
+
+// SetVolumeSize sets the VolumeSize field's value.
+func (s *StartSnapshotInput) SetVolumeSize(v int64) *StartSnapshotInput {
+	s.VolumeSize = &v
+	return s
+}
+
+type StartSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The size of the blocks in the snapshot, in bytes.
+	BlockSize *int64 `type:"integer"`
+
+	// The description of the snapshot.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS)
+	// customer master key (CMK) used to encrypt the snapshot.
+	KmsKeyArn *string `min:"1" type:"string" sensitive:"true"`
+
+	// The AWS account ID of the snapshot owner.
+	OwnerId *string `min:"1" type:"string"`
+
+	// The ID of the parent snapshot.
+	ParentSnapshotId *string `min:"1" type:"string"`
+
+	// The ID of the snapshot.
+	SnapshotId *string `min:"1" type:"string"`
+
+	// The timestamp when the snapshot was created.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The status of the snapshot.
+	Status *string `type:"string" enum:"Status"`
+
+	// The tags applied to the snapshot. You can specify up to 50 tags per snapshot.
+	// For more information, see Tagging your Amazon EC2 resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	Tags []*Tag `type:"list"`
+
+	// The size of the volume, in GiB.
+	VolumeSize *int64 `min:"1" type:"long"`
+}
+
+// String returns the string representation
+func (s StartSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlockSize sets the BlockSize field's value.
+func (s *StartSnapshotOutput) SetBlockSize(v int64) *StartSnapshotOutput {
+	s.BlockSize = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartSnapshotOutput) SetDescription(v string) *StartSnapshotOutput {
+	s.Description = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *StartSnapshotOutput) SetKmsKeyArn(v string) *StartSnapshotOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *StartSnapshotOutput) SetOwnerId(v string) *StartSnapshotOutput {
+	s.OwnerId = &v
+	return s
+}
+
+// SetParentSnapshotId sets the ParentSnapshotId field's value.
+func (s *StartSnapshotOutput) SetParentSnapshotId(v string) *StartSnapshotOutput {
+	s.ParentSnapshotId = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *StartSnapshotOutput) SetSnapshotId(v string) *StartSnapshotOutput {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *StartSnapshotOutput) SetStartTime(v time.Time) *StartSnapshotOutput {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartSnapshotOutput) SetStatus(v string) *StartSnapshotOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartSnapshotOutput) SetTags(v []*Tag) *StartSnapshotOutput {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeSize sets the VolumeSize field's value.
+func (s *StartSnapshotOutput) SetVolumeSize(v int64) *StartSnapshotOutput {
+	s.VolumeSize = &v
+	return s
+}
+
+// Describes a tag.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The key of the tag.
+	Key *string `type:"string"`
+
+	// The value of the tag.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 // The input fails to satisfy the constraints of the EBS direct APIs.
@@ -982,8 +2266,53 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AccessDeniedExceptionReasonUnauthorizedAccount is a AccessDeniedExceptionReason enum value
+	AccessDeniedExceptionReasonUnauthorizedAccount = "UNAUTHORIZED_ACCOUNT"
+
+	// AccessDeniedExceptionReasonDependencyAccessDenied is a AccessDeniedExceptionReason enum value
+	AccessDeniedExceptionReasonDependencyAccessDenied = "DEPENDENCY_ACCESS_DENIED"
+)
+
+const (
+	// ChecksumAggregationMethodLinear is a ChecksumAggregationMethod enum value
+	ChecksumAggregationMethodLinear = "LINEAR"
+)
+
+const (
 	// ChecksumAlgorithmSha256 is a ChecksumAlgorithm enum value
 	ChecksumAlgorithmSha256 = "SHA256"
+)
+
+const (
+	// RequestThrottledExceptionReasonAccountThrottled is a RequestThrottledExceptionReason enum value
+	RequestThrottledExceptionReasonAccountThrottled = "ACCOUNT_THROTTLED"
+
+	// RequestThrottledExceptionReasonDependencyRequestThrottled is a RequestThrottledExceptionReason enum value
+	RequestThrottledExceptionReasonDependencyRequestThrottled = "DEPENDENCY_REQUEST_THROTTLED"
+)
+
+const (
+	// ResourceNotFoundExceptionReasonSnapshotNotFound is a ResourceNotFoundExceptionReason enum value
+	ResourceNotFoundExceptionReasonSnapshotNotFound = "SNAPSHOT_NOT_FOUND"
+
+	// ResourceNotFoundExceptionReasonDependencyResourceNotFound is a ResourceNotFoundExceptionReason enum value
+	ResourceNotFoundExceptionReasonDependencyResourceNotFound = "DEPENDENCY_RESOURCE_NOT_FOUND"
+)
+
+const (
+	// ServiceQuotaExceededExceptionReasonDependencyServiceQuotaExceeded is a ServiceQuotaExceededExceptionReason enum value
+	ServiceQuotaExceededExceptionReasonDependencyServiceQuotaExceeded = "DEPENDENCY_SERVICE_QUOTA_EXCEEDED"
+)
+
+const (
+	// StatusCompleted is a Status enum value
+	StatusCompleted = "completed"
+
+	// StatusPending is a Status enum value
+	StatusPending = "pending"
+
+	// StatusError is a Status enum value
+	StatusError = "error"
 )
 
 const (
@@ -1001,4 +2330,22 @@ const (
 
 	// ValidationExceptionReasonUnrelatedSnapshots is a ValidationExceptionReason enum value
 	ValidationExceptionReasonUnrelatedSnapshots = "UNRELATED_SNAPSHOTS"
+
+	// ValidationExceptionReasonInvalidBlock is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidBlock = "INVALID_BLOCK"
+
+	// ValidationExceptionReasonInvalidContentEncoding is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidContentEncoding = "INVALID_CONTENT_ENCODING"
+
+	// ValidationExceptionReasonInvalidTag is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidTag = "INVALID_TAG"
+
+	// ValidationExceptionReasonInvalidDependencyRequest is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidDependencyRequest = "INVALID_DEPENDENCY_REQUEST"
+
+	// ValidationExceptionReasonInvalidParameterValue is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidParameterValue = "INVALID_PARAMETER_VALUE"
+
+	// ValidationExceptionReasonInvalidVolumeSize is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidVolumeSize = "INVALID_VOLUME_SIZE"
 )

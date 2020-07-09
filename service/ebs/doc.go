@@ -7,7 +7,7 @@
 // read the data on your EBS snapshots, and identify the difference between
 // two snapshots. You can view the details of blocks in an EBS snapshot, compare
 // the block difference between two snapshots, and directly access the data
-// in a snapshot. If you’re an independent software vendor (ISV) who offers
+// in a snapshot. If you're an independent software vendor (ISV) who offers
 // backup services for EBS, the EBS direct APIs make it easier and more cost-effective
 // to track incremental changes on your EBS volumes via EBS snapshots. This
 // can be done without having to create new volumes from EBS snapshots.

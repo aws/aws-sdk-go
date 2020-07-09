@@ -106,7 +106,7 @@
       }
     },
     "CloudHsmTagException": {
-      "base": null,
+      "base": "<p>The request was rejected because of a tagging failure. Verify the tag conditions in all applicable policies, and then retry the request.</p>",
       "refs": {
       }
     },
@@ -122,7 +122,7 @@
       "base": null,
       "refs": {
         "Backup$ClusterId": "<p>The identifier (ID) of the cluster that was backed up.</p>",
-        "Backup$SourceCluster": "<p>The identifier (ID) of the cluster containing the source backup from which the new backup was copied. .</p>",
+        "Backup$SourceCluster": "<p>The identifier (ID) of the cluster containing the source backup from which the new backup was copied.</p>",
         "Cluster$ClusterId": "<p>The cluster's identifier (ID).</p>",
         "CreateHsmRequest$ClusterId": "<p>The identifier (ID) of the HSM's cluster. To find the cluster ID, use <a>DescribeClusters</a>.</p>",
         "DeleteClusterRequest$ClusterId": "<p>The identifier (ID) of the cluster that you are deleting. To find the cluster ID, use <a>DescribeClusters</a>.</p>",
@@ -355,7 +355,7 @@
     "Region": {
       "base": null,
       "refs": {
-        "Backup$SourceRegion": "<p>The AWS region that contains the source backup from which the new backup was copied.</p>",
+        "Backup$SourceRegion": "<p>The AWS Region that contains the source backup from which the new backup was copied.</p>",
         "CopyBackupToRegionRequest$DestinationRegion": "<p>The AWS region that will contain your copied CloudHSM cluster backup.</p>",
         "DestinationBackup$SourceRegion": "<p>The AWS region that contains the source backup from which the new backup was copied.</p>"
       }
@@ -440,10 +440,10 @@
     "TagList": {
       "base": null,
       "refs": {
-        "Backup$TagList": null,
-        "Cluster$TagList": null,
-        "CopyBackupToRegionRequest$TagList": null,
-        "CreateClusterRequest$TagList": null,
+        "Backup$TagList": "<p>The list of tags for the backup.</p>",
+        "Cluster$TagList": "<p>The list of tags for the cluster.</p>",
+        "CopyBackupToRegionRequest$TagList": "<p>Tags to apply to the destination backup during creation. If you specify tags, only these tags will be applied to the destination backup. If you do not specify tags, the service copies tags from the source backup to the destination backup.</p>",
+        "CreateClusterRequest$TagList": "<p>Tags to apply to the CloudHSM cluster during creation.</p>",
         "ListTagsResponse$TagList": "<p>A list of tags.</p>",
         "TagResourceRequest$TagList": "<p>A list of one or more tags.</p>"
       }

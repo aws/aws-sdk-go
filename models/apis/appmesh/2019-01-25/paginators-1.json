@@ -1,5 +1,11 @@
 {
   "pagination": {
+    "ListGatewayRoutes": {
+      "input_token": "nextToken",
+      "limit_key": "limit",
+      "output_token": "nextToken",
+      "result_key": "gatewayRoutes"
+    },
     "ListMeshes": {
       "input_token": "nextToken",
       "limit_key": "limit",
@@ -17,6 +23,12 @@
       "limit_key": "limit",
       "output_token": "nextToken",
       "result_key": "tags"
+    },
+    "ListVirtualGateways": {
+      "input_token": "nextToken",
+      "limit_key": "limit",
+      "output_token": "nextToken",
+      "result_key": "virtualGateways"
     },
     "ListVirtualNodes": {
       "input_token": "nextToken",

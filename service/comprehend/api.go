@@ -552,8 +552,8 @@ func (c *Comprehend) ClassifyDocumentRequest(input *ClassifyDocumentInput) (req 
 //   The request is invalid.
 //
 //   * ResourceUnavailableException
-//   The specified resource is not available. Check to see if the resource is
-//   in the TRAINED state and try your request again.
+//   The specified resource is not available. Check the resource and try your
+//   request again.
 //
 //   * TextSizeLimitExceededException
 //   The size of the input text exceeds the limit. Use a smaller document.
@@ -628,7 +628,7 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 // CreateDocumentClassifier API operation for Amazon Comprehend.
 //
 // Creates a new document classifier that you can use to categorize documents.
-// To create a classifier you provide a set of training documents that labeled
+// To create a classifier, you provide a set of training documents that labeled
 // with the categories that you want to use. After the classifier is trained
 // you can use it to categorize a set of labeled documents into the categories.
 // For more information, see how-document-classification.
@@ -645,8 +645,8 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 //   The request is invalid.
 //
 //   * ResourceInUseException
-//   The specified name is already in use. Use a different name and try your request
-//   again.
+//   The specified resource name is already in use. Use a different name and try
+//   your request again.
 //
 //   * TooManyTagsException
 //   The request contains more tags than can be associated with a resource (50
@@ -657,8 +657,8 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ResourceLimitExceededException
-//   The maximum number of recognizers per account has been exceeded. Review the
-//   recognizers, perform cleanup, and then try your request again.
+//   The maximum number of resources per account has been exceeded. Review the
+//   resources, and then try your request again.
 //
 //   * UnsupportedLanguageException
 //   Amazon Comprehend can't process the language of the input text. For all custom
@@ -755,20 +755,20 @@ func (c *Comprehend) CreateEndpointRequest(input *CreateEndpointInput) (req *req
 //   The request is invalid.
 //
 //   * ResourceInUseException
-//   The specified name is already in use. Use a different name and try your request
-//   again.
+//   The specified resource name is already in use. Use a different name and try
+//   your request again.
 //
 //   * ResourceLimitExceededException
-//   The maximum number of recognizers per account has been exceeded. Review the
-//   recognizers, perform cleanup, and then try your request again.
+//   The maximum number of resources per account has been exceeded. Review the
+//   resources, and then try your request again.
 //
 //   * ResourceNotFoundException
 //   The specified resource ARN was not found. Check the ARN and try your request
 //   again.
 //
 //   * ResourceUnavailableException
-//   The specified resource is not available. Check to see if the resource is
-//   in the TRAINED state and try your request again.
+//   The specified resource is not available. Check the resource and try your
+//   request again.
 //
 //   * TooManyRequestsException
 //   The number of requests exceeds the limit. Resubmit your request later.
@@ -862,8 +862,8 @@ func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizer
 //   The request is invalid.
 //
 //   * ResourceInUseException
-//   The specified name is already in use. Use a different name and try your request
-//   again.
+//   The specified resource name is already in use. Use a different name and try
+//   your request again.
 //
 //   * TooManyTagsException
 //   The request contains more tags than can be associated with a resource (50
@@ -874,8 +874,8 @@ func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizer
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ResourceLimitExceededException
-//   The maximum number of recognizers per account has been exceeded. Review the
-//   recognizers, perform cleanup, and then try your request again.
+//   The maximum number of resources per account has been exceeded. Review the
+//   resources, and then try your request again.
 //
 //   * UnsupportedLanguageException
 //   Amazon Comprehend can't process the language of the input text. For all custom
@@ -987,12 +987,12 @@ func (c *Comprehend) DeleteDocumentClassifierRequest(input *DeleteDocumentClassi
 //   again.
 //
 //   * ResourceUnavailableException
-//   The specified resource is not available. Check to see if the resource is
-//   in the TRAINED state and try your request again.
+//   The specified resource is not available. Check the resource and try your
+//   request again.
 //
 //   * ResourceInUseException
-//   The specified name is already in use. Use a different name and try your request
-//   again.
+//   The specified resource name is already in use. Use a different name and try
+//   your request again.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -1079,8 +1079,8 @@ func (c *Comprehend) DeleteEndpointRequest(input *DeleteEndpointInput) (req *req
 //   The request is invalid.
 //
 //   * ResourceInUseException
-//   The specified name is already in use. Use a different name and try your request
-//   again.
+//   The specified resource name is already in use. Use a different name and try
+//   your request again.
 //
 //   * ResourceNotFoundException
 //   The specified resource ARN was not found. Check the ARN and try your request
@@ -1188,12 +1188,12 @@ func (c *Comprehend) DeleteEntityRecognizerRequest(input *DeleteEntityRecognizer
 //   again.
 //
 //   * ResourceUnavailableException
-//   The specified resource is not available. Check to see if the resource is
-//   in the TRAINED state and try your request again.
+//   The specified resource is not available. Check the resource and try your
+//   request again.
 //
 //   * ResourceInUseException
-//   The specified name is already in use. Use a different name and try your request
-//   again.
+//   The specified resource name is already in use. Use a different name and try
+//   your request again.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -2167,6 +2167,10 @@ func (c *Comprehend) DetectEntitiesRequest(input *DetectEntitiesInput) (req *req
 // Returned Error Types:
 //   * InvalidRequestException
 //   The request is invalid.
+//
+//   * ResourceUnavailableException
+//   The specified resource is not available. Check the resource and try your
+//   request again.
 //
 //   * TextSizeLimitExceededException
 //   The size of the input text exceeds the limit. Use a smaller document.
@@ -3893,8 +3897,8 @@ func (c *Comprehend) StartDocumentClassificationJobRequest(input *StartDocumentC
 //   again.
 //
 //   * ResourceUnavailableException
-//   The specified resource is not available. Check to see if the resource is
-//   in the TRAINED state and try your request again.
+//   The specified resource is not available. Check the resource and try your
+//   request again.
 //
 //   * KmsKeyValidationException
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
@@ -4086,8 +4090,8 @@ func (c *Comprehend) StartEntitiesDetectionJobRequest(input *StartEntitiesDetect
 //   again.
 //
 //   * ResourceUnavailableException
-//   The specified resource is not available. Check to see if the resource is
-//   in the TRAINED state and try your request again.
+//   The specified resource is not available. Check the resource and try your
+//   request again.
 //
 //   * KmsKeyValidationException
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
@@ -5220,20 +5224,20 @@ func (c *Comprehend) UpdateEndpointRequest(input *UpdateEndpointInput) (req *req
 //   The number of requests exceeds the limit. Resubmit your request later.
 //
 //   * ResourceInUseException
-//   The specified name is already in use. Use a different name and try your request
-//   again.
+//   The specified resource name is already in use. Use a different name and try
+//   your request again.
 //
 //   * ResourceLimitExceededException
-//   The maximum number of recognizers per account has been exceeded. Review the
-//   recognizers, perform cleanup, and then try your request again.
+//   The maximum number of resources per account has been exceeded. Review the
+//   resources, and then try your request again.
 //
 //   * ResourceNotFoundException
 //   The specified resource ARN was not found. Check the ARN and try your request
 //   again.
 //
 //   * ResourceUnavailableException
-//   The specified resource is not available. Check to see if the resource is
-//   in the TRAINED state and try your request again.
+//   The specified resource is not available. Check the resource and try your
+//   request again.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -5268,7 +5272,7 @@ type BatchDetectDominantLanguageInput struct {
 	// and must contain fewer than 5,000 bytes of UTF-8 encoded characters.
 	//
 	// TextList is a required field
-	TextList []*string `type:"list" required:"true"`
+	TextList []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -5336,7 +5340,7 @@ func (s *BatchDetectDominantLanguageItemResult) SetLanguages(v []*DominantLangua
 }
 
 type BatchDetectDominantLanguageOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// A list containing one object for each document that contained an error. The
 	// results are sorted in ascending order by the Index field and match the order
@@ -5391,7 +5395,7 @@ type BatchDetectEntitiesInput struct {
 	// of UTF-8 encoded characters.
 	//
 	// TextList is a required field
-	TextList []*string `type:"list" required:"true"`
+	TextList []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -5467,7 +5471,7 @@ func (s *BatchDetectEntitiesItemResult) SetIndex(v int64) *BatchDetectEntitiesIt
 }
 
 type BatchDetectEntitiesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// A list containing one object for each document that contained an error. The
 	// results are sorted in ascending order by the Index field and match the order
@@ -5522,7 +5526,7 @@ type BatchDetectKeyPhrasesInput struct {
 	// of UTF-8 encoded characters.
 	//
 	// TextList is a required field
-	TextList []*string `type:"list" required:"true"`
+	TextList []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -5598,7 +5602,7 @@ func (s *BatchDetectKeyPhrasesItemResult) SetKeyPhrases(v []*KeyPhrase) *BatchDe
 }
 
 type BatchDetectKeyPhrasesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// A list containing one object for each document that contained an error. The
 	// results are sorted in ascending order by the Index field and match the order
@@ -5653,7 +5657,7 @@ type BatchDetectSentimentInput struct {
 	// of UTF-8 encoded characters.
 	//
 	// TextList is a required field
-	TextList []*string `type:"list" required:"true"`
+	TextList []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -5739,7 +5743,7 @@ func (s *BatchDetectSentimentItemResult) SetSentimentScore(v *SentimentScore) *B
 }
 
 type BatchDetectSentimentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// A list containing one object for each document that contained an error. The
 	// results are sorted in ascending order by the Index field and match the order
@@ -5796,7 +5800,7 @@ type BatchDetectSyntaxInput struct {
 	// of UTF-8 encoded characters.
 	//
 	// TextList is a required field
-	TextList []*string `type:"list" required:"true"`
+	TextList []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -5872,7 +5876,7 @@ func (s *BatchDetectSyntaxItemResult) SetSyntaxTokens(v []*SyntaxToken) *BatchDe
 }
 
 type BatchDetectSyntaxOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// A list containing one object for each document that contained an error. The
 	// results are sorted in ascending order by the Index field and match the order
@@ -6126,7 +6130,7 @@ func (s *ClassifierEvaluationMetrics) SetRecall(v float64) *ClassifierEvaluation
 
 // Provides information about a document classifier.
 type ClassifierMetadata struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// Describes the result metrics for the test data associated with an documentation
 	// classifier.
@@ -6136,7 +6140,7 @@ type ClassifierMetadata struct {
 	NumberOfLabels *int64 `type:"integer"`
 
 	// The number of documents in the input data that were used to test the classifier.
-	// Typically this is 10 to 20 percent of the input documents.
+	// Typically this is 10 to 20 percent of the input documents, up to 10,000 documents.
 	NumberOfTestDocuments *int64 `type:"integer"`
 
 	// The number of documents in the input data that were used to train the classifier.
@@ -6189,7 +6193,7 @@ type ClassifyDocumentInput struct {
 	// The document text to be analyzed.
 	//
 	// Text is a required field
-	Text *string `min:"1" type:"string" required:"true"`
+	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -6234,7 +6238,7 @@ func (s *ClassifyDocumentInput) SetText(v string) *ClassifyDocumentInput {
 }
 
 type ClassifyDocumentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The classes used by the document being analyzed. These are used for multi-class
 	// trained models. Individual classes are mutually exclusive and each document
@@ -7590,7 +7594,7 @@ type DetectDominantLanguageInput struct {
 	// must contain fewer that 5,000 bytes of UTF-8 encoded characters.
 	//
 	// Text is a required field
-	Text *string `min:"1" type:"string" required:"true"`
+	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -7626,7 +7630,7 @@ func (s *DetectDominantLanguageInput) SetText(v string) *DetectDominantLanguageI
 }
 
 type DetectDominantLanguageOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The languages that Amazon Comprehend detected in the input text. For each
 	// language, the response returns the RFC 5646 language code and the level of
@@ -7655,17 +7659,28 @@ func (s *DetectDominantLanguageOutput) SetLanguages(v []*DominantLanguage) *Dete
 type DetectEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name of an endpoint that is associated with a custom
+	// entity recognition model. Provide an endpoint if you want to detect entities
+	// by using your own custom model instead of the default model that is used
+	// by Amazon Comprehend.
+	//
+	// If you specify an endpoint, Amazon Comprehend uses the language of your custom
+	// model, and it ignores any language code that you provide in your request.
+	EndpointArn *string `type:"string"`
+
 	// The language of the input documents. You can specify any of the primary languages
 	// supported by Amazon Comprehend. All documents must be in the same language.
 	//
-	// LanguageCode is a required field
-	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+	// If your request includes the endpoint for a custom entity recognition model,
+	// Amazon Comprehend uses the language of your custom model, and it ignores
+	// any language code that you specify here.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8
 	// encoded characters.
 	//
 	// Text is a required field
-	Text *string `min:"1" type:"string" required:"true"`
+	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -7681,9 +7696,6 @@ func (s DetectEntitiesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DetectEntitiesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DetectEntitiesInput"}
-	if s.LanguageCode == nil {
-		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
-	}
 	if s.Text == nil {
 		invalidParams.Add(request.NewErrParamRequired("Text"))
 	}
@@ -7695,6 +7707,12 @@ func (s *DetectEntitiesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *DetectEntitiesInput) SetEndpointArn(v string) *DetectEntitiesInput {
+	s.EndpointArn = &v
+	return s
 }
 
 // SetLanguageCode sets the LanguageCode field's value.
@@ -7710,12 +7728,16 @@ func (s *DetectEntitiesInput) SetText(v string) *DetectEntitiesInput {
 }
 
 type DetectEntitiesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// A collection of entities identified in the input text. For each entity, the
 	// response provides the entity text, entity type, where the entity text begins
 	// and ends, and the level of confidence that Amazon Comprehend has in the detection.
-	// For a list of entity types, see how-entities.
+	//
+	// If your request uses a custom entity recognition model, Amazon Comprehend
+	// detects the entities that the model is trained to recognize. Otherwise, it
+	// detects the default entity types. For a list of default entity types, see
+	// how-entities.
 	Entities []*Entity `type:"list"`
 }
 
@@ -7748,7 +7770,7 @@ type DetectKeyPhrasesInput struct {
 	// encoded characters.
 	//
 	// Text is a required field
-	Text *string `min:"1" type:"string" required:"true"`
+	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -7793,7 +7815,7 @@ func (s *DetectKeyPhrasesInput) SetText(v string) *DetectKeyPhrasesInput {
 }
 
 type DetectKeyPhrasesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// A collection of key phrases that Amazon Comprehend identified in the input
 	// text. For each key phrase, the response provides the text of the key phrase,
@@ -7831,7 +7853,7 @@ type DetectSentimentInput struct {
 	// encoded characters.
 	//
 	// Text is a required field
-	Text *string `min:"1" type:"string" required:"true"`
+	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -7876,7 +7898,7 @@ func (s *DetectSentimentInput) SetText(v string) *DetectSentimentInput {
 }
 
 type DetectSentimentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The inferred sentiment that Amazon Comprehend has the highest level of confidence
 	// in.
@@ -7922,7 +7944,7 @@ type DetectSyntaxInput struct {
 	// characters.
 	//
 	// Text is a required field
-	Text *string `min:"1" type:"string" required:"true"`
+	Text *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -7967,7 +7989,7 @@ func (s *DetectSyntaxInput) SetText(v string) *DetectSyntaxInput {
 }
 
 type DetectSyntaxOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// A collection of syntax tokens describing the text. For each token, the response
 	// provides the text, the token type, where the text begins and ends, and the
@@ -8039,12 +8061,12 @@ type DocumentClassificationJobFilter struct {
 	JobStatus *string `type:"string" enum:"JobStatus"`
 
 	// Filters the list of jobs based on the time that the job was submitted for
-	// processing. Returns only jobs submitted before the specified time. Jobs are
+	// processing. Returns only jobs submitted after the specified time. Jobs are
 	// returned in descending order, newest to oldest.
 	SubmitTimeAfter *time.Time `type:"timestamp"`
 
 	// Filters the list of jobs based on the time that the job was submitted for
-	// processing. Returns only jobs submitted after the specified time. Jobs are
+	// processing. Returns only jobs submitted before the specified time. Jobs are
 	// returned in ascending order, oldest to newest.
 	SubmitTimeBefore *time.Time `type:"timestamp"`
 }
@@ -8403,7 +8425,7 @@ type DocumentClassifierProperties struct {
 	// Information about the document classifier, including the number of documents
 	// used for training the classifier, the number of documents used for test the
 	// classifier, and an accuracy rating.
-	ClassifierMetadata *ClassifierMetadata `type:"structure"`
+	ClassifierMetadata *ClassifierMetadata `type:"structure" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role
 	// that grants Amazon Comprehend read access to your input data.
@@ -9580,7 +9602,7 @@ func (s *EntityRecognizerInputDataConfig) SetEntityTypes(v []*EntityTypesListIte
 
 // Detailed information about an entity recognizer.
 type EntityRecognizerMetadata struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// Entity types from the metadata of an entity recognizer.
 	EntityTypes []*EntityRecognizerMetadataEntityTypesListItem `type:"list"`
@@ -9702,7 +9724,7 @@ type EntityRecognizerProperties struct {
 	Message *string `type:"string"`
 
 	// Provides information about an entity recognizer.
-	RecognizerMetadata *EntityRecognizerMetadata `type:"structure"`
+	RecognizerMetadata *EntityRecognizerMetadata `type:"structure" sensitive:"true"`
 
 	// Provides the status of the entity recognizer.
 	Status *string `type:"string" enum:"ModelStatus"`
@@ -11545,8 +11567,8 @@ func (s *PartOfSpeechTag) SetTag(v string) *PartOfSpeechTag {
 	return s
 }
 
-// The specified name is already in use. Use a different name and try your request
-// again.
+// The specified resource name is already in use. Use a different name and try
+// your request again.
 type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11602,8 +11624,8 @@ func (s *ResourceInUseException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The maximum number of recognizers per account has been exceeded. Review the
-// recognizers, perform cleanup, and then try your request again.
+// The maximum number of resources per account has been exceeded. Review the
+// resources, and then try your request again.
 type ResourceLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11716,8 +11738,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified resource is not available. Check to see if the resource is
-// in the TRAINED state and try your request again.
+// The specified resource is not available. Check the resource and try your
+// request again.
 type ResourceUnavailableException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
