@@ -7,7 +7,7 @@ Release v1.33.4 (2020-07-08)
   * EC2 Spot now enables customers to tag their Spot Instances Requests on creation.
 * `service/forecast`: Updates service API and documentation
 * `service/organizations`: Updates service API and documentation
-  * AI services opt out policies enable you to control what AI service data is collected and stored for the accounts in your organization. By default, AWS artificial intelligence (AI) services collect and store data as part of operating and supporting the continuous improvement life cycle for each service. You can use these policies to opt out of this process for all of your AWS accounts to ensure that your data is not persisted within AWS AI service data stores or used for service improvements.
+  * We have launched a self-service option to make it easier for customers to manage the use of their content by AI services. Certain AI services (Amazon CodeGuru Profiler, Amazon Comprehend, Amazon Lex, Amazon Polly, Amazon Rekognition, Amazon Textract, Amazon Transcribe, and Amazon Translate) may use content to improve the service. Customers have been able to opt out of this use by contacting AWS Support, and now they can opt out on a self-service basis by setting an Organizations policy for all or an individual AI service listed above. Please refer to the technical documentation in the online AWS Organizations User Guide for more details.
 
 Release v1.33.3 (2020-07-07)
 ===
