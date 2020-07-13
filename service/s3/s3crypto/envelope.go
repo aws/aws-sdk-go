@@ -1,5 +1,7 @@
 package s3crypto
 
+import "encoding/json"
+
 // DefaultInstructionKeySuffix is appended to the end of the instruction file key when
 // grabbing or saving to S3
 const DefaultInstructionKeySuffix = ".instruction"
@@ -34,4 +36,23 @@ type Envelope struct {
 	TagLen                string `json:"x-amz-tag-len"`
 	UnencryptedMD5        string `json:"-"`
 	UnencryptedContentLen string `json:"x-amz-unencrypted-content-length"`
+}
+
+func (e *Envelope) UnmarshalJSON(bytes []byte) error {
+	type StrictEnvelope Envelope
+	type LaxEnvelope struct {
+		StrictEnvelope
+		TagLen json.Number `json:"x-amz-tag-len"`
+	}
+
+	inner := LaxEnvelope{}
+	err := json.Unmarshal(bytes, &inner)
+	if err != nil {
+		return err
+	}
+
+	*e = Envelope(inner.StrictEnvelope)
+	e.TagLen = inner.TagLen.String()
+
+	return nil
 }
