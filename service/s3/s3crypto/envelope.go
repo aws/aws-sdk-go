@@ -38,6 +38,7 @@ type Envelope struct {
 	UnencryptedContentLen string `json:"x-amz-unencrypted-content-length"`
 }
 
+// UnmarshalJSON unmarshalls the given JSON bytes into Envelope
 func (e *Envelope) UnmarshalJSON(bytes []byte) error {
 	type StrictEnvelope Envelope
 	type LaxEnvelope struct {
