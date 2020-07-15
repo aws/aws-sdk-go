@@ -1,3 +1,12 @@
+Release v1.33.6 (2020-07-15)
+===
+
+### Service Client Updates
+* `service/ivs`: Adds new service
+
+### SDK Enhancements
+* `service/s3/s3crypto`: Allow envelope unmarshal to accept JSON numbers for tag length [(#3422)](https://github.com/aws/aws-sdk-go/pull/3422)
+
 Release v1.33.5 (2020-07-09)
 ===
 
