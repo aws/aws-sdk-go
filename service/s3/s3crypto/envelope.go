@@ -47,7 +47,8 @@ func (e *Envelope) UnmarshalJSON(value []byte) error {
 	type StrictEnvelope Envelope
 	type LaxEnvelope struct {
 		StrictEnvelope
-		TagLen json.RawMessage `json:"x-amz-tag-len"`
+		TagLen                json.RawMessage `json:"x-amz-tag-len"`
+		UnencryptedContentLen json.RawMessage `json:"x-amz-unencrypted-content-length"`
 	}
 
 	inner := LaxEnvelope{}
@@ -60,6 +61,11 @@ func (e *Envelope) UnmarshalJSON(value []byte) error {
 	e.TagLen, err = getJSONNumberAsString(inner.TagLen)
 	if err != nil {
 		return fmt.Errorf("failed to parse tag length: %v", err)
+	}
+
+	e.UnencryptedContentLen, err = getJSONNumberAsString(inner.UnencryptedContentLen)
+	if err != nil {
+		return fmt.Errorf("failed to parse unencrypted content length: %v", err)
 	}
 
 	return nil
