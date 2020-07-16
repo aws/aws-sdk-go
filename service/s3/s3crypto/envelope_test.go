@@ -14,7 +14,7 @@ func TestEnvelope_UnmarshalJSON(t *testing.T) {
 		expected Envelope
 		actual   Envelope
 	}{
-		"standard": {
+		"string json numbers": {
 			content: []byte(`{
   "x-amz-iv": "iv",
   "x-amz-key-v2": "key",
@@ -35,7 +35,7 @@ func TestEnvelope_UnmarshalJSON(t *testing.T) {
 				UnencryptedContentLen: "1024",
 			},
 		},
-		"tag length as number": {
+		"integer json numbers": {
 			content: []byte(`{
   "x-amz-iv": "iv",
   "x-amz-key-v2": "key",
@@ -43,7 +43,7 @@ func TestEnvelope_UnmarshalJSON(t *testing.T) {
   "x-amz-wrap-alg": "kms+context",
   "x-amz-cek-alg": "AES/GCM/NoPadding",
   "x-amz-tag-len": 128,
-  "x-amz-unencrypted-content-length": "1024"
+  "x-amz-unencrypted-content-length": 1024
 }
 `),
 			expected: Envelope{
@@ -56,7 +56,7 @@ func TestEnvelope_UnmarshalJSON(t *testing.T) {
 				UnencryptedContentLen: "1024",
 			},
 		},
-		"null tag length": {
+		"null json numbers": {
 			content: []byte(`{
   "x-amz-iv": "iv",
   "x-amz-key-v2": "key",
@@ -64,35 +64,32 @@ func TestEnvelope_UnmarshalJSON(t *testing.T) {
   "x-amz-wrap-alg": "kms+context",
   "x-amz-cek-alg": "AES/GCM/NoPadding",
   "x-amz-tag-len": null,
-  "x-amz-unencrypted-content-length": "1024"
+  "x-amz-unencrypted-content-length": null
 }
 `),
 			expected: Envelope{
-				IV:                    "iv",
-				CipherKey:             "key",
-				MatDesc:               `{"aws:x-amz-cek-alg":"AES/GCM/NoPadding"}`,
-				WrapAlg:               "kms+context",
-				CEKAlg:                "AES/GCM/NoPadding",
-				UnencryptedContentLen: "1024",
+				IV:        "iv",
+				CipherKey: "key",
+				MatDesc:   `{"aws:x-amz-cek-alg":"AES/GCM/NoPadding"}`,
+				WrapAlg:   "kms+context",
+				CEKAlg:    "AES/GCM/NoPadding",
 			},
 		},
-		"no tag length": {
+		"no json numbers": {
 			content: []byte(`{
   "x-amz-iv": "iv",
   "x-amz-key-v2": "key",
   "x-amz-matdesc": "{\"aws:x-amz-cek-alg\":\"AES/GCM/NoPadding\"}",
   "x-amz-wrap-alg": "kms+context",
-  "x-amz-cek-alg": "AES/GCM/NoPadding",
-  "x-amz-unencrypted-content-length": "1024"
+  "x-amz-cek-alg": "AES/GCM/NoPadding"
 }
 `),
 			expected: Envelope{
-				IV:                    "iv",
-				CipherKey:             "key",
-				MatDesc:               `{"aws:x-amz-cek-alg":"AES/GCM/NoPadding"}`,
-				WrapAlg:               "kms+context",
-				CEKAlg:                "AES/GCM/NoPadding",
-				UnencryptedContentLen: "1024",
+				IV:        "iv",
+				CipherKey: "key",
+				MatDesc:   `{"aws:x-amz-cek-alg":"AES/GCM/NoPadding"}`,
+				WrapAlg:   "kms+context",
+				CEKAlg:    "AES/GCM/NoPadding",
 			},
 		},
 	}
