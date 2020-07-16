@@ -43,7 +43,7 @@ type Config struct {
 
 	// An optional endpoint URL (hostname only or fully qualified URI)
 	// that overrides the default generated endpoint for a client. Set this
-	// to `nil` to use the default generated endpoint.
+	// to `nil` or the value to `""` to use the default generated endpoint.
 	//
 	// Note: You must still provide a `Region` value when specifying an
 	// endpoint for a client.
