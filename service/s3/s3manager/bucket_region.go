@@ -149,8 +149,11 @@ func GetBucketRegionWithClient(ctx aws.Context, svc s3iface.S3API, bucket string
 }
 
 func validateEndpointWithoutRegion(r *request.Request) {
+	// Check if the caller provided an explicit URL instead of one derived by
+	// the SDK's endpoint resolver. For GetBucketRegion, with an explicit
+	// endpoint URL, a region is not needed. If no endpoint URL is provided,
+	// fallback the SDK's standard endpoint validation handler.
 	if len(aws.StringValue(r.Config.Endpoint)) == 0 {
 		corehandlers.ValidateEndpointHandler.Fn(r)
 	}
-
 }
