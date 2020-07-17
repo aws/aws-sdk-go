@@ -11,7 +11,7 @@
     "CreateMember" : " <p>Associates an account with an Amazon Macie master account.</p>",
     "CreateSampleFindings" : " <p>Creates sample findings.</p>",
     "DeclineInvitations" : "<p>Declines Amazon Macie membership invitations that were received from specific accounts.</p>",
-    "DeleteCustomDataIdentifier" : "<p>Deletes a custom data identifier.</p>",
+    "DeleteCustomDataIdentifier" : "<p>Soft deletes a custom data identifier.</p>",
     "DeleteFindingsFilter" : "<p>Deletes a findings filter.</p>",
     "DeleteInvitations" : "<p>Deletes Amazon Macie membership invitations that were received from specific accounts.</p>",
     "DeleteMember" : "<p>Deletes the association between an Amazon Macie master account and an account.</p>",
@@ -36,7 +36,7 @@
     "GetMember" : "<p>Retrieves information about a member account that's associated with an Amazon Macie master account.</p>",
     "GetUsageStatistics" : "<p>Retrieves (queries) quotas and aggregated usage data for one or more accounts.</p>",
     "GetUsageTotals" : "<p>Retrieves (queries) aggregated usage data for an account.</p>",
-    "ListClassificationJobs" : "<p>Retrieves information about the status and settings for one or more classification jobs.</p>",
+    "ListClassificationJobs" : "<p>Retrieves a subset of information about one or more classification jobs.</p>",
     "ListCustomDataIdentifiers" : "<p>Retrieves a subset of information about all the custom data identifiers for an account.</p>",
     "ListFindings" : " <p>Retrieves a subset of information about one or more findings.</p>",
     "ListFindingsFilters" : "<p>Retrieves a subset of information about all the findings filters for an account.</p>",
@@ -94,27 +94,27 @@
       }
     },
     "ApiCallDetails" : {
-      "base" : "<p>For the affected resource:</p> <ul><li><p>The name of the operation that was invoked most recently and produced the finding (api).</p></li> <li><p>The first date and time when any operation was invoked and produced the finding (firstSeen).</p></li> <li><p>The most recent date and time when the specified operation was invoked and produced the finding (lastSeen).</p></li></ul> <p>All date and time values are in UTC and extended ISO 8601 format.</p>",
+      "base" : "<p>Provides information about an API operation that an entity invoked for an affected resource.</p>",
       "refs" : {
-        "FindingAction$ApiCallDetails" : "<p>For the affected resource:</p> <ul><li><p>The name of the operation that was invoked most recently and produced the finding (api).</p></li> <li><p>The first date and time when any operation was invoked and produced the finding (firstSeen).</p></li> <li><p>The most recent date and time when the specified operation was invoked and produced the finding (lastSeen).</p></li></ul> <p>All date and time values are in UTC and extended ISO 8601 format.</p>"
+        "FindingAction$ApiCallDetails" : "<p>The invocation details of the API operation that an entity invoked for the affected resource, if the value for the actionType property is AWS_API_CALL.</p>"
       }
     },
     "AssumedRole" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about an identity that performed an action on an affected resource by using temporary security credentials. The credentials were obtained using the AssumeRole operation of the AWS Security Token Service (AWS STS) API.</p>",
       "refs" : {
-        "UserIdentity$AssumedRole" : null
+        "UserIdentity$AssumedRole" : "<p>If the action was performed with temporary security credentials that were obtained using the AssumeRole operation of the AWS Security Token Service (AWS STS) API, the identifiers, session context, and other details about the identity.</p>"
       }
     },
     "AwsAccount" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about an AWS account and entity that performed an action on an affected resource. The action was performed using the credentials for an AWS account other than your own account.</p>",
       "refs" : {
-        "UserIdentity$AwsAccount" : null
+        "UserIdentity$AwsAccount" : "<p>If the action was performed using the credentials for another AWS account, the details of that account.</p>"
       }
     },
     "AwsService" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about an AWS service that performed an action on an affected resource.</p>",
       "refs" : {
-        "UserIdentity$AwsService" : null
+        "UserIdentity$AwsService" : "<p>If the action was performed by an AWS account that belongs to an AWS service, the name of the service.</p>"
       }
     },
     "BatchGetCustomDataIdentifierSummary" : {
@@ -139,21 +139,21 @@
       }
     },
     "BucketCountByEffectivePermission" : {
-      "base" : "<p>The total number of buckets that are publicly accessible, based on a combination of permissions settings for each bucket.</p>",
+      "base" : "<p>Provides information about the number of S3 buckets that are publicly accessible based on a combination of permissions settings for each bucket.</p>",
       "refs" : {
-        "GetBucketStatisticsResponse$BucketCountByEffectivePermission" : "<p>The total number of buckets that are publicly accessible, based on a combination of permissions settings for each bucket.</p>"
+        "GetBucketStatisticsResponse$BucketCountByEffectivePermission" : "<p>The total number of buckets that are publicly accessible based on a combination of permissions settings for each bucket.</p>"
       }
     },
     "BucketCountByEncryptionType" : {
-      "base" : "<p>The total number of buckets, grouped by server-side encryption type. This object also reports the total number of buckets that aren't encrypted.</p>",
+      "base" : "<p>Provides information about the number of S3 buckets that use certain types of server-side encryption or don't encrypt objects by default.</p>",
       "refs" : {
         "GetBucketStatisticsResponse$BucketCountByEncryptionType" : "<p>The total number of buckets, grouped by server-side encryption type. This object also reports the total number of buckets that aren't encrypted.</p>"
       }
     },
     "BucketCountBySharedAccessType" : {
-      "base" : "<p>The total number of buckets that are shared with another AWS account or configured to support cross-origin resource sharing (CORS).</p>",
+      "base" : "<p>Provides information about the number of S3 buckets that are shared with other AWS accounts.</p>",
       "refs" : {
-        "GetBucketStatisticsResponse$BucketCountBySharedAccessType" : "<p>The total number of buckets that are shared with another AWS account or configured to support cross-origin resource sharing (CORS).</p>"
+        "GetBucketStatisticsResponse$BucketCountBySharedAccessType" : "<p>The total number of buckets that are shared with another AWS account.</p>"
       }
     },
     "BucketCriteria" : {
@@ -181,7 +181,7 @@
       }
     },
     "BucketPermissionConfiguration" : {
-      "base" : "<p>The account-level and bucket-level permissions settings for an S3 bucket, or the bucket that contains an object.</p>",
+      "base" : "<p>The account-level and bucket-level permissions settings for an S3 bucket.</p>",
       "refs" : {
         "BucketPublicAccess$PermissionConfiguration" : "<p>The account-level and bucket-level permissions for the bucket.</p>"
       }
@@ -220,7 +220,7 @@
       }
     },
     "ClassificationResult" : {
-      "base" : "<p>Provides detailed information about a sensitive data finding, including the types and number of occurrences of the data that was found.</p>",
+      "base" : "<p>Provides detailed information about a sensitive data finding, including the types and number of occurrences of the sensitive data that was found.</p>",
       "refs" : {
         "ClassificationDetails$Result" : "<p>The status and detailed results of the finding.</p>"
       }
@@ -236,7 +236,7 @@
       "refs" : { }
     },
     "CreateClassificationJobRequest" : {
-      "base" : "<p>Specifies the scope, schedule, and other settings for a classification job.</p>",
+      "base" : "<p>Specifies the scope, schedule, and other settings for a classification job. You can't delete or change the settings for a classification job after you create it. In Amazon Macie, classification jobs are immutable. This ensures accurate data classification results for audits or investigations.</p>",
       "refs" : { }
     },
     "CreateClassificationJobResponse" : {
@@ -244,7 +244,7 @@
       "refs" : { }
     },
     "CreateCustomDataIdentifierRequest" : {
-      "base" : " <p>Specifies the criteria and other settings for a new custom data identifier.</p>",
+      "base" : " <p>Specifies the criteria and other settings for a new custom data identifier. You can't change a custom data identifier after you create it. In Amazon Macie, custom data identifiers are immutable. This ensures accurate data classification results for audits or investigations.</p>",
       "refs" : { }
     },
     "CreateCustomDataIdentifierResponse" : {
@@ -317,21 +317,21 @@
       }
     },
     "CustomDetections" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about custom data identifiers that produced a sensitive data finding, and the number of occurrences of the data that each identifier detected.</p>",
       "refs" : {
-        "CustomDataIdentifiers$Detections" : "<p>The names of the custom data identifiers that detected the data, and the number of occurrences of the data that each identifier detected.</p>"
+        "CustomDataIdentifiers$Detections" : "<p>The custom data identifiers that detected the data, and the number of occurrences of the data that each identifier detected.</p>"
       }
     },
     "DailySchedule" : {
-      "base" : null,
+      "base" : "<p>Specifies that a classification job runs once a day, every day. This is an empty object.</p>",
       "refs" : {
-        "JobScheduleFrequency$DailySchedule" : "<p>Run the job once a day, every day. If specified, this is an empty object.</p>"
+        "JobScheduleFrequency$DailySchedule" : "<p>Specifies a daily recurrence pattern for running the job.</p>"
       }
     },
     "DayOfWeek" : {
       "base" : null,
       "refs" : {
-        "WeeklySchedule$DayOfWeek" : "<p>Run the job once a week, on a specific day of the week. Valid values are: MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, and SUNDAY.</p>"
+        "WeeklySchedule$DayOfWeek" : "<p>The day of the week when Amazon Macie runs the job.</p>"
       }
     },
     "DeclineInvitationsRequest" : {
@@ -343,13 +343,13 @@
       "refs" : { }
     },
     "DefaultDetection" : {
-      "base" : "<p>Provides information about sensitive data that was detected by managed data identifiers and produced a finding.</p>",
+      "base" : "<p>Provides information about sensitive data that was detected by managed data identifiers and produced a sensitive data finding.</p>",
       "refs" : {
         "DefaultDetections$member" : null
       }
     },
     "DefaultDetections" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about sensitive data that was detected by managed data identifiers and produced a sensitive data finding, and the number of occurrences of each type of sensitive data that was detected.</p>",
       "refs" : {
         "SensitiveDataItem$Detections" : "<p>An array of objects, one for each type of sensitive data that was detected. Each object reports the number of occurrences of a specific type of sensitive data that was detected.</p>"
       }
@@ -379,9 +379,9 @@
       "refs" : { }
     },
     "DomainDetails" : {
-      "base" : null,
+      "base" : "<p>Provides information about the domain name of the device that an entity used to perform an action on an affected resource.</p>",
       "refs" : {
-        "FindingActor$DomainDetails" : "<p>The DNS name of the entity that performed the action on the affected resource.</p>"
+        "FindingActor$DomainDetails" : "<p>The domain name of the device that the entity used to perform the action on the affected resource.</p>"
       }
     },
     "EffectivePermission" : {
@@ -403,7 +403,7 @@
       "refs" : { }
     },
     "EncryptionType" : {
-      "base" : "<p>The server-side encryption algorithm that's used when storing the S3 bucket or object. Valid values are:</p>",
+      "base" : "<p>The type of server-side encryption that's used to encrypt objects in the S3 bucket. Valid values are:</p>",
       "refs" : {
         "ServerSideEncryption$EncryptionType" : "<p>The server-side encryption algorithm that's used when storing data in the bucket or object. If encryption is disabled for the bucket or object, this value is NONE.</p>"
       }
@@ -415,9 +415,9 @@
       }
     },
     "FederatedUser" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about an identity that performed an action on an affected resource by using temporary security credentials. The credentials were obtained using the GetFederationToken operation of the AWS Security Token Service (AWS STS) API.</p>",
       "refs" : {
-        "UserIdentity$FederatedUser" : null
+        "UserIdentity$FederatedUser" : "<p>If the action was performed with temporary security credentials that were obtained using the GetFederationToken operation of the AWS Security Token Service (AWS STS) API, the identifiers, session context, and other details about the identity.</p>"
       }
     },
     "Finding" : {
@@ -429,11 +429,11 @@
     "FindingAction" : {
       "base" : "<p>Provides information about an action that occurred for a resource and produced a policy finding.</p>",
       "refs" : {
-        "PolicyDetails$Action" : "<p>The action that occurred and produced the finding.</p>"
+        "PolicyDetails$Action" : "<p>The action that produced the finding.</p>"
       }
     },
     "FindingActionType" : {
-      "base" : "<p>The type of action that occurred for the resource and produced the policy finding.</p>",
+      "base" : "<p>The type of action that occurred for the resource and produced the policy finding:</p>",
       "refs" : {
         "FindingAction$ActionType" : "<p>The type of action that occurred for the affected resource. This value is typically AWS_API_CALL, which indicates that an entity invoked an API operation for the resource.</p>"
       }
@@ -475,7 +475,7 @@
       }
     },
     "FindingStatisticsSortCriteria" : {
-      "base" : "<p>Specifies criteria for sorting the results of a query for information about findings.</p>",
+      "base" : "<p>Specifies criteria for sorting the results of a query that retrieves aggregated statistical data about findings.</p>",
       "refs" : {
         "GetFindingStatisticsRequest$SortCriteria" : "<p>The criteria to use to sort the query results.</p>"
       }
@@ -491,6 +491,7 @@
       "base" : "<p>The action to perform on findings that meet the filter criteria. To suppress (automatically archive) findings that meet the criteria, set this value to ARCHIVE. Valid values are:</p>",
       "refs" : {
         "CreateFindingsFilterRequest$Action" : "<p>The action to perform on findings that meet the filter criteria (findingCriteria). Valid values are: ARCHIVE, suppress (automatically archive) the findings; and, NOOP, don't perform any action on the findings.</p>",
+        "FindingsFilterListItem$Action" : "<p>The action that's performed on findings that meet the filter criteria. Possible values are: ARCHIVE, suppress (automatically archive) the findings; and, NOOP, don't perform any action on the findings.</p>",
         "GetFindingsFilterResponse$Action" : "<p>The action that's performed on findings that meet the filter criteria (findingCriteria). Possible values are: ARCHIVE, suppress (automatically archive) the findings; and, NOOP, don't perform any action on the findings.</p>",
         "UpdateFindingsFilterRequest$Action" : "<p>The action to perform on findings that meet the filter criteria (findingCriteria). Valid values are: ARCHIVE, suppress (automatically archive) the findings; and, NOOP, don't perform any action on the findings.</p>"
       }
@@ -502,7 +503,7 @@
       }
     },
     "GetBucketStatisticsRequest" : {
-      "base" : "<p>Specifies an account that's associated with S3 buckets to retrieve aggregated statistical data for.</p>",
+      "base" : "<p>Specifies an account that's associated with the S3 buckets to retrieve aggregated statistical data for.</p>",
       "refs" : { }
     },
     "GetBucketStatisticsResponse" : {
@@ -518,7 +519,7 @@
       "refs" : { }
     },
     "GetFindingStatisticsRequest" : {
-      "base" : "<p>Specifies criteria for filtering, grouping, sorting, and paginating the results of a query for information about findings.</p>",
+      "base" : "<p>Specifies criteria for filtering, grouping, sorting, and paginating the results of a query that retrieves aggregated statistical data about findings.</p>",
       "refs" : { }
     },
     "GetFindingStatisticsResponse" : {
@@ -526,7 +527,7 @@
       "refs" : { }
     },
     "GetFindingsFilterResponse" : {
-      "base" : "<p>Provides information about a findings filter.</p>",
+      "base" : "<p>Provides information about the criteria and other settings for a findings filter.</p>",
       "refs" : { }
     },
     "GetFindingsRequest" : {
@@ -572,15 +573,15 @@
       }
     },
     "GroupCount" : {
-      "base" : "<p>Provides a group of results for a query that retrieved information about findings.</p>",
+      "base" : "<p>Provides a group of results for a query that retrieved aggregated statistical data about findings.</p>",
       "refs" : {
         "__listOfGroupCount$member" : null
       }
     },
     "IamUser" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about an AWS Identity and Access Management (IAM) user who performed an action on an affected resource.</p>",
       "refs" : {
-        "UserIdentity$IamUser" : null
+        "UserIdentity$IamUser" : "<p>If the action was performed using the credentials for an AWS Identity and Access Management (IAM) user, the name and other details about the user.</p>"
       }
     },
     "InternalServerException" : {
@@ -595,33 +596,33 @@
       }
     },
     "IpAddressDetails" : {
-      "base" : null,
+      "base" : "<p>Provides information about the IP address of the device that an entity used to perform an action on an affected resource.</p>",
       "refs" : {
-        "FindingActor$IpAddressDetails" : "<p>The IP address of the device that the entity used to perform the action on the affected resource. This object also provides information such as the owner and geographical location for the IP address.</p>"
+        "FindingActor$IpAddressDetails" : "<p>The IP address of the device that the entity used to perform the action on the affected resource. This object also provides information such as the owner and geographic location for the IP address.</p>"
       }
     },
     "IpCity" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about the city that an IP address originated from.</p>",
       "refs" : {
-        "IpAddressDetails$IpCity" : null
+        "IpAddressDetails$IpCity" : "<p>The city that the IP address originated from.</p>"
       }
     },
     "IpCountry" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about the country that an IP address originated from.</p>",
       "refs" : {
-        "IpAddressDetails$IpCountry" : null
+        "IpAddressDetails$IpCountry" : "<p>The country that the IP address originated from.</p>"
       }
     },
     "IpGeoLocation" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides geographic coordinates that indicate where a specified IP address originated from.</p>",
       "refs" : {
-        "IpAddressDetails$IpGeoLocation" : null
+        "IpAddressDetails$IpGeoLocation" : "<p>The geographic coordinates of the location that the IP address originated from.</p>"
       }
     },
     "IpOwner" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about the registered owner of an IP address.</p>",
       "refs" : {
-        "IpAddressDetails$IpOwner" : null
+        "IpAddressDetails$IpOwner" : "<p>The registered owner of the IP address.</p>"
       }
     },
     "JobComparator" : {
@@ -636,27 +637,27 @@
       "base" : "<p>Specifies the recurrence pattern for running a classification job.</p>",
       "refs" : {
         "CreateClassificationJobRequest$ScheduleFrequency" : "<p>The recurrence pattern for running the job. To run the job only once, don't specify a value for this property and set the value of the jobType property to ONE_TIME.</p>",
-        "DescribeClassificationJobResponse$ScheduleFrequency" : "<p>The recurrence pattern for running the job. If the job is configured to run every day, this value is an empty dailySchedule object. If the job is configured to run only once, this value is null.</p>"
+        "DescribeClassificationJobResponse$ScheduleFrequency" : "<p>The recurrence pattern for running the job. If the job is configured to run only once, this value is null.</p>"
       }
     },
     "JobScopeTerm" : {
-      "base" : "<p>Specifies one or more conditions that determine which objects a classification job analyzes.</p>",
+      "base" : "<p>Specifies a property- or tag-based condition that defines criteria for including or excluding objects from a classification job.</p>",
       "refs" : {
         "__listOfJobScopeTerm$member" : null
       }
     },
     "JobScopingBlock" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Specifies one or more property- and tag-based conditions that define criteria for including or excluding objects from a classification job.</p>",
       "refs" : {
-        "Scoping$Excludes" : null,
-        "Scoping$Includes" : null
+        "Scoping$Excludes" : "<p>The property- or tag-based conditions that determine which objects to exclude from the analysis.</p>",
+        "Scoping$Includes" : "<p>The property- or tag-based conditions that determine which objects to include in the analysis.</p>"
       }
     },
     "JobStatus" : {
-      "base" : "<p>The current status of a classification job. Valid values are:</p>",
+      "base" : "<p>The current status of a classification job. Possible values are:</p>",
       "refs" : {
-        "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible value are:</p> <ul><li><p>CANCELLED - The job was cancelled by you or a user of the master account for your organization. A job might also be cancelled if ownership of an S3 bucket changed while the job was running, and that change affected the job's access to the bucket.</p></li> <li><p>COMPLETE - Amazon Macie finished processing all the data specified for the job.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to jobs that occur only once.</p></li> <li><p>PAUSED - Amazon Macie started the job, but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - The job is in progress.</p></li></ul>",
-        "JobSummary$JobStatus" : "<p>The current status of the job. Possible value are:</p> <ul><li><p>CANCELLED - The job was cancelled by you or a user of the master account for your organization. A job might also be cancelled if ownership of an S3 bucket changed while the job was running, and that change affected the job's access to the bucket.</p></li> <li><p>COMPLETE - Amazon Macie finished processing all the data specified for the job.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to jobs that occur only once.</p></li> <li><p>PAUSED - Amazon Macie started the job, but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - The job is in progress.</p></li></ul>",
+        "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - The job was cancelled by you or a user of the master account for your organization. A job might also be cancelled if ownership of an S3 bucket changed while the job was running, and that change affected the job's access to the bucket.</p></li> <li><p>COMPLETE - Amazon Macie finished processing all the data specified for the job.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to jobs that occur only once.</p></li> <li><p>PAUSED - Amazon Macie started the job, but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - The job is in progress.</p></li></ul>",
+        "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - The job was cancelled by you or a user of the master account for your organization. A job might also be cancelled if ownership of an S3 bucket changed while the job was running, and that change affected the job's access to the bucket.</p></li> <li><p>COMPLETE - Amazon Macie finished processing all the data specified for the job.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to jobs that occur only once.</p></li> <li><p>PAUSED - Amazon Macie started the job, but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - The job is in progress.</p></li></ul>",
         "UpdateClassificationJobRequest$JobStatus" : "<p>The status to change the job's status to. The only supported value is CANCELLED, which cancels the job completely.</p>"
       }
     },
@@ -670,8 +671,8 @@
       "base" : "<p>The schedule for running a classification job. Valid values are:</p>",
       "refs" : {
         "CreateClassificationJobRequest$JobType" : "<p>The schedule for running the job. Valid values are:</p> <ul><li><p>ONE_TIME - Run the job only once. If you specify this value, don't specify a value for the scheduleFrequency property.</p></li> <li><p>SCHEDULED - Run the job on a daily, weekly, or monthly basis. If you specify this value, use the scheduleFrequency property to define the recurrence pattern for the job.</p></li></ul>",
-        "DescribeClassificationJobResponse$JobType" : "<p>The schedule for running the job. Possible value are:</p> <ul><li><p>ONE_TIME - The job ran or will run only once.</p></li> <li><p>SCHEDULED - The job runs on a daily, weekly, or monthly basis. The scheduleFrequency property indicates the recurrence pattern for the job.</p></li></ul>",
-        "JobSummary$JobType" : "<p>The schedule for running the job. Possible value are:</p> <ul><li><p>ONE_TIME - The job ran or will run only once.</p></li> <li><p>SCHEDULED - The job runs on a daily, weekly, or monthly basis.</p></li></ul>"
+        "DescribeClassificationJobResponse$JobType" : "<p>The schedule for running the job. Possible values are:</p> <ul><li><p>ONE_TIME - The job ran or will run only once.</p></li> <li><p>SCHEDULED - The job runs on a daily, weekly, or monthly basis. The scheduleFrequency property indicates the recurrence pattern for the job.</p></li></ul>",
+        "JobSummary$JobType" : "<p>The schedule for running the job. Possible values are:</p> <ul><li><p>ONE_TIME - The job ran or will run only once.</p></li> <li><p>SCHEDULED - The job runs on a daily, weekly, or monthly basis.</p></li></ul>"
       }
     },
     "KeyValuePair" : {
@@ -682,7 +683,7 @@
       }
     },
     "KeyValuePairList" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about the tags that are associated with an S3 bucket or object. Each tag consists of a required tag key and an associated tag value.</p>",
       "refs" : {
         "S3Bucket$Tags" : "<p>The tags that are associated with the bucket.</p>",
         "S3Object$Tags" : "<p>The tags that are associated with the object.</p>"
@@ -778,13 +779,13 @@
       }
     },
     "MonthlySchedule" : {
-      "base" : "<p>Run the job once a month, on a specific day of the month. This value can be an integer from 1 through 30.</p>",
+      "base" : "<p>Specifies a monthly recurrence pattern for running a classification job.</p>",
       "refs" : {
-        "JobScheduleFrequency$MonthlySchedule" : "<p>Run the job once a month, on a specific day of the month. This value can be an integer from 1 through 30.</p>"
+        "JobScheduleFrequency$MonthlySchedule" : "<p>Specifies a monthly recurrence pattern for running the job.</p>"
       }
     },
     "ObjectCountByEncryptionType" : {
-      "base" : null,
+      "base" : "<p>The total number of objects that are in the bucket, grouped by server-side encryption type. This includes a grouping that reports the total number of objects that aren't encrypted.</p>",
       "refs" : {
         "BucketMetadata$ObjectCountByEncryptionType" : "<p>The total number of objects that are in the bucket, grouped by server-side encryption type. This includes a grouping that reports the total number of objects that aren't encrypted.</p>"
       }
@@ -800,7 +801,7 @@
       }
     },
     "PolicyDetails" : {
-      "base" : "<p>Provides detailed information about a policy finding.</p>",
+      "base" : "<p>Provides the details of a policy finding.</p>",
       "refs" : {
         "Finding$PolicyDetails" : "<p>The details of a policy finding. This value is null for a sensitive data finding.</p>"
       }
@@ -881,9 +882,9 @@
       }
     },
     "Scoping" : {
-      "base" : null,
+      "base" : "<p>Specifies one or more property- and tag-based conditions that refine the scope of a classification job. These conditions define criteria that determine which objects a job analyzes.</p>",
       "refs" : {
-        "S3JobDefinition$Scoping" : "<p>A JobScopeTerm object that specifies conditions for including or excluding objects from the job.</p>"
+        "S3JobDefinition$Scoping" : "<p>The property- and tag-based conditions that determine which objects to include or exclude from the analysis.</p>"
       }
     },
     "SensitiveData" : {
@@ -899,7 +900,7 @@
       }
     },
     "SensitiveDataItemCategory" : {
-      "base" : "<p>The category of sensitive data that was detected and produced the finding.</p>",
+      "base" : "<p>The category of sensitive data that was detected and produced the finding. Possible values are:</p>",
       "refs" : {
         "SensitiveDataItem$Category" : "<p>The category of sensitive data that was detected. For example: FINANCIAL_INFORMATION, for financial information such as credit card numbers; PERSONAL_INFORMATION, for personally identifiable information such as full names and mailing addresses; or, CUSTOM_IDENTIFIER, for data that was detected by a custom data identifier.</p>"
       }
@@ -924,8 +925,8 @@
     "SessionContext" : {
       "base" : "<p>Provides information about a session that was created for an entity that performed an action by using temporary security credentials.</p>",
       "refs" : {
-        "AssumedRole$SessionContext" : "<p>Reserved for future use.</p>",
-        "FederatedUser$SessionContext" : "<p>Reserved for future use.</p>"
+        "AssumedRole$SessionContext" : "<p>The details of the session that was created for the credentials, including the entity that issued the session.</p>",
+        "FederatedUser$SessionContext" : "<p>The details of the session that was created for the credentials, including the entity that issued the session.</p>"
       }
     },
     "SessionContextAttributes" : {
@@ -937,7 +938,7 @@
     "SessionIssuer" : {
       "base" : "<p>Provides information about the source and type of temporary security credentials that were issued to an entity.</p>",
       "refs" : {
-        "SessionContext$SessionIssuer" : "<p>The source and type of credentials that the entity obtained.</p>"
+        "SessionContext$SessionIssuer" : "<p>The source and type of credentials that were issued to the entity.</p>"
       }
     },
     "Severity" : {
@@ -947,7 +948,7 @@
       }
     },
     "SeverityDescription" : {
-      "base" : "<p>The textual representation of the finding's severity. Valid values are:</p>",
+      "base" : "<p>The textual representation of the finding's severity. Possible values are:</p>",
       "refs" : {
         "Severity$Description" : "<p>The textual representation of the severity value, such as Low or High.</p>"
       }
@@ -955,13 +956,13 @@
     "SharedAccess" : {
       "base" : null,
       "refs" : {
-        "BucketMetadata$SharedAccess" : "<p>Specifies whether the bucket is shared with another AWS account or configured to support cross-origin resource sharing (CORS). Valid values are:</p> <ul><li><p>EXTERNAL - The bucket is shared with an AWS account that isn’t part of the Amazon Macie organization.</p></li> <li><p>INTERNAL - The bucket is shared with an AWS account that's part of the Amazon Macie organization.</p></li> <li><p>NOT_SHARED - The bucket isn't shared with other AWS accounts.</p></li></ul>"
+        "BucketMetadata$SharedAccess" : "<p>Specifies whether the bucket is shared with another AWS account. Valid values are:</p> <ul><li><p>EXTERNAL - The bucket is shared with an AWS account that isn’t part of the same Amazon Macie organization.</p></li> <li><p>INTERNAL - The bucket is shared with an AWS account that's part of the same Amazon Macie organization.</p></li> <li><p>NOT_SHARED - The bucket isn't shared with other AWS accounts.</p></li></ul>"
       }
     },
     "SimpleScopeTerm" : {
       "base" : "<p>Specifies a property-based condition that determines whether an object is included or excluded from a classification job.</p>",
       "refs" : {
-        "JobScopeTerm$SimpleScopeTerm" : "<p>A property-based condition that defines a property, operator, and one or more values for including or excluding an object from a job.</p>"
+        "JobScopeTerm$SimpleScopeTerm" : "<p>A property-based condition that defines a property, operator, and one or more values for including or excluding an object from the job.</p>"
       }
     },
     "SortCriteria" : {
@@ -978,7 +979,7 @@
       }
     },
     "StorageClass" : {
-      "base" : "<p>The storage class of the S3 bucket or object. Valid values are:</p>",
+      "base" : "<p>The storage class of the S3 bucket or object. Possible values are:</p>",
       "refs" : {
         "S3Object$StorageClass" : "<p>The storage class of the object.</p>"
       }
@@ -1011,7 +1012,7 @@
     "TagScopeTerm" : {
       "base" : "<p>Specifies a tag-based condition that determines whether an object is included or excluded from a classification job.</p>",
       "refs" : {
-        "JobScopeTerm$TagScopeTerm" : "<p>A tag-based condition that defines a property, operator, and one or more values for including or excluding an object from a job.</p>"
+        "JobScopeTerm$TagScopeTerm" : "<p>A tag-based condition that defines the operator and a tag key or tag keys and values for including or excluding an object from the job.</p>"
       }
     },
     "TagTarget" : {
@@ -1097,7 +1098,7 @@
       }
     },
     "UsageStatisticsFilterKey" : {
-      "base" : "<p>The field to use to filter the results of a query for account quotas and usage data.</p>",
+      "base" : "<p>The field to use to filter the results of a query for account quotas and usage data:</p>",
       "refs" : {
         "UsageStatisticsFilter$Key" : "<p>The field to use to filter the results. The only supported value is accountId.</p>"
       }
@@ -1109,7 +1110,7 @@
       }
     },
     "UsageStatisticsSortKey" : {
-      "base" : "<p>The field to use to sort the results of a query for account quotas and usage data.</p>",
+      "base" : "<p>The field to use to sort the results of a query for account quotas and usage data. Valid values are:</p>",
       "refs" : {
         "UsageStatisticsSortBy$Key" : "<p>The field to sort the results by.</p>"
       }
@@ -1128,21 +1129,21 @@
       }
     },
     "UserIdentity" : {
-      "base" : null,
+      "base" : "<p>Provides information about the type and other characteristics of an entity that performed an action on an affected resource.</p>",
       "refs" : {
-        "FindingActor$UserIdentity" : "<p>The name and type of entity that performed the action on the affected resource.</p>"
+        "FindingActor$UserIdentity" : "<p>The type and other characteristics of the entity that performed the action on the affected resource.</p>"
       }
     },
     "UserIdentityRoot" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>Provides information about an AWS account and entity that performed an action on an affected resource. The action was performed using the credentials for your AWS account.</p>",
       "refs" : {
-        "UserIdentity$Root" : null
+        "UserIdentity$Root" : "<p>If the action was performed using the credentials for your AWS account, the details of your account.</p>"
       }
     },
     "UserIdentityType" : {
-      "base" : "<p>Reserved for future use.</p>",
+      "base" : "<p>The type of entity that performed the action on the affected resource. Possible values are:</p>",
       "refs" : {
-        "UserIdentity$Type" : null
+        "UserIdentity$Type" : "<p>The type of entity that performed the action.</p>"
       }
     },
     "ValidationException" : {
@@ -1150,9 +1151,9 @@
       "refs" : { }
     },
     "WeeklySchedule" : {
-      "base" : null,
+      "base" : "<p>Specifies a weekly recurrence pattern for running a classification job.</p>",
       "refs" : {
-        "JobScheduleFrequency$WeeklySchedule" : "<p>Run the job once a week, on a specific day of the week. Valid values are: MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, and SUNDAY.</p>"
+        "JobScheduleFrequency$WeeklySchedule" : "<p>Specifies a weekly recurrence pattern for running the job.</p>"
       }
     },
     "__boolean" : {
@@ -1187,8 +1188,8 @@
     "__double" : {
       "base" : null,
       "refs" : {
-        "IpGeoLocation$Lat" : "<p>Reserved for future use.</p>",
-        "IpGeoLocation$Lon" : "<p>Reserved for future use.</p>",
+        "IpGeoLocation$Lat" : "<p>The latitude coordinate of the location, rounded to four decimal places.</p>",
+        "IpGeoLocation$Lon" : "<p>The longitude coordinate of the location, rounded to four decimal places.</p>",
         "Statistics$ApproximateNumberOfObjectsToProcess" : "<p>The approximate number of objects that the job has yet to process during its current run.</p>",
         "Statistics$NumberOfRuns" : "<p>The number of times that the job has run.</p>"
       }
@@ -1208,7 +1209,7 @@
         "ListClassificationJobsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "ListCustomDataIdentifiersRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "ListFindingsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
-        "MonthlySchedule$DayOfMonth" : null,
+        "MonthlySchedule$DayOfMonth" : "<p>The numeric day of the month when Amazon Macie runs the job. This value can be an integer from 1 through 30.</p>",
         "TestCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 50.</p>",
         "TestCustomDataIdentifierResponse$MatchCount" : "<p>The number of instances of sample text that matched the detection criteria specified in the custom data identifier.</p>",
         "UpdateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>"
@@ -1271,7 +1272,7 @@
     "__listOfJobScopeTerm" : {
       "base" : null,
       "refs" : {
-        "JobScopingBlock$And" : "<p>Reserved for future use.</p>"
+        "JobScopingBlock$And" : "<p>An array of conditions, one for each condition that determines which objects to include or exclude from the job.</p>"
       }
     },
     "__listOfJobSummary" : {
@@ -1376,20 +1377,20 @@
     "__long" : {
       "base" : null,
       "refs" : {
-        "BucketCountByEffectivePermission$PubliclyAccessible" : "<p>Reserved for future use.</p>",
-        "BucketCountByEffectivePermission$PubliclyReadable" : "<p>Reserved for future use.</p>",
-        "BucketCountByEffectivePermission$PubliclyWritable" : "<p>Reserved for future use.</p>",
-        "BucketCountByEncryptionType$KmsManaged" : "<p>Reserved for future use.</p>",
-        "BucketCountByEncryptionType$S3Managed" : "<p>Reserved for future use.</p>",
-        "BucketCountByEncryptionType$Unencrypted" : "<p>Reserved for future use.</p>",
-        "BucketCountBySharedAccessType$External" : "<p>Reserved for future use.</p>",
-        "BucketCountBySharedAccessType$Internal" : "<p>Reserved for future use.</p>",
-        "BucketCountBySharedAccessType$NotShared" : "<p>Reserved for future use.</p>",
+        "BucketCountByEffectivePermission$PubliclyAccessible" : "<p>The total number of buckets that allow the general public to have read or write access to the bucket.</p>",
+        "BucketCountByEffectivePermission$PubliclyReadable" : "<p>The total number of buckets that allow the general public to have read access to the bucket.</p>",
+        "BucketCountByEffectivePermission$PubliclyWritable" : "<p>The total number of buckets that allow the general public to have write access to the bucket.</p>",
+        "BucketCountByEncryptionType$KmsManaged" : " <p>The total number of buckets that use an AWS Key Management Service (AWS KMS) customer master key (CMK) to encrypt objects. These buckets use AWS KMS AWS-managed (AWS-KMS) encryption or AWS KMS customer-managed (SSE-KMS) encryption.</p>",
+        "BucketCountByEncryptionType$S3Managed" : "<p>The total number of buckets that use an Amazon S3-managed key to encrypt objects. These buckets use Amazon S3-managed (SSE-S3) encryption.</p>",
+        "BucketCountByEncryptionType$Unencrypted" : "<p>The total number of buckets that don't encrypt objects by default. Default encryption is disabled for these buckets.</p>",
+        "BucketCountBySharedAccessType$External" : "<p>The total number of buckets that are shared with an AWS account that isn't part of the same Amazon Macie organization.</p>",
+        "BucketCountBySharedAccessType$Internal" : "<p>The total number of buckets that are shared with an AWS account that's part of the same Amazon Macie organization.</p>",
+        "BucketCountBySharedAccessType$NotShared" : "<p>The total number of buckets that aren't shared with any other AWS accounts.</p>",
         "BucketCriteriaAdditionalProperties$Gt" : "<p>A greater than condition to apply to a specified attribute value for buckets.</p>",
         "BucketCriteriaAdditionalProperties$Gte" : "<p>A greater than or equal to condition to apply to a specified attribute value for buckets.</p>",
         "BucketCriteriaAdditionalProperties$Lt" : "<p>A less than condition to apply to a specified attribute value for buckets.</p>",
         "BucketCriteriaAdditionalProperties$Lte" : "<p>A less than or equal to condition to apply to a specified attribute value for buckets.</p>",
-        "BucketMetadata$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can monitor and analyze in the bucket. These objects use a file format, file extension, or content type that Amazon Macie supports.</p>",
+        "BucketMetadata$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the bucket. These objects use a file format, file extension, or content type that Amazon Macie supports.</p>",
         "BucketMetadata$ObjectCount" : "<p>The total number of objects in the bucket.</p>",
         "BucketMetadata$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p>",
         "BucketMetadata$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the bucket.</p>",
@@ -1403,16 +1404,16 @@
         "DefaultDetection$Count" : "<p>The total number of occurrences of the type of data that was detected.</p>",
         "Finding$Count" : "<p>The total number of occurrences of this finding.</p>",
         "GetBucketStatisticsResponse$BucketCount" : "<p>The total number of buckets.</p>",
-        "GetBucketStatisticsResponse$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can monitor and analyze in all the buckets. These objects use a file format, file extension, or content type that Amazon Macie supports.</p>",
+        "GetBucketStatisticsResponse$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in all the buckets. These objects use a file format, file extension, or content type that Amazon Macie supports.</p>",
         "GetBucketStatisticsResponse$ObjectCount" : "<p>The total number of objects in all the buckets.</p>",
         "GetBucketStatisticsResponse$SizeInBytes" : "<p>The total storage size, in bytes, of all the buckets.</p>",
         "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of all the buckets.</p>",
         "GetInvitationsCountResponse$InvitationsCount" : "<p>The total number of invitations that were received by the account, not including the currently accepted invitation.</p>",
         "GroupCount$Count" : "<p>The total number of findings in the group of query results.</p>",
-        "ObjectCountByEncryptionType$CustomerManaged" : null,
-        "ObjectCountByEncryptionType$KmsManaged" : null,
-        "ObjectCountByEncryptionType$S3Managed" : null,
-        "ObjectCountByEncryptionType$Unencrypted" : null,
+        "ObjectCountByEncryptionType$CustomerManaged" : "<p>Reserved for future use.</p>",
+        "ObjectCountByEncryptionType$KmsManaged" : "<p>Reserved for future use.</p>",
+        "ObjectCountByEncryptionType$S3Managed" : "<p>Reserved for future use.</p>",
+        "ObjectCountByEncryptionType$Unencrypted" : "<p>Reserved for future use.</p>",
         "S3Object$Size" : "<p>The total storage size, in bytes, of the object.</p>",
         "SensitiveDataItem$TotalCount" : "<p>The total number of occurrences of the sensitive data that was detected.</p>",
         "ServiceLimit$Value" : "<p>The value for the metric specified by the UsageByAccount.type field in the response.</p>",
@@ -1428,15 +1429,15 @@
         "AccountDetail$AccountId" : "<p>The AWS account ID for the account.</p>",
         "AccountDetail$Email" : "<p>The email address for the account.</p>",
         "AdminAccount$AccountId" : "<p>The AWS account ID for the account.</p>",
-        "ApiCallDetails$Api" : "<p>For the affected resource:</p> <ul><li><p>The name of the operation that was invoked most recently and produced the finding (api).</p></li> <li><p>The first date and time when any operation was invoked and produced the finding (firstSeen).</p></li> <li><p>The most recent date and time when the specified operation was invoked and produced the finding (lastSeen).</p></li></ul> <p>All date and time values are in UTC and extended ISO 8601 format.</p>",
-        "ApiCallDetails$ApiServiceName" : "<p>Reserved for future use.</p>",
-        "AssumedRole$AccessKeyId" : "<p>Reserved for future use.</p>",
-        "AssumedRole$AccountId" : "<p>Reserved for future use.</p>",
-        "AssumedRole$Arn" : "<p>Reserved for future use.</p>",
-        "AssumedRole$PrincipalId" : "<p>Reserved for future use.</p>",
-        "AwsAccount$AccountId" : "<p>Reserved for future use.</p>",
-        "AwsAccount$PrincipalId" : "<p>Reserved for future use.</p>",
-        "AwsService$InvokedBy" : "<p>Reserved for future use.</p>",
+        "ApiCallDetails$Api" : "<p>The name of the operation that was invoked most recently and produced the finding.</p>",
+        "ApiCallDetails$ApiServiceName" : "<p>The URL of the AWS service that provides the operation, for example: s3.amazonaws.com.</p>",
+        "AssumedRole$AccessKeyId" : "<p>The AWS access key ID that identifies the credentials.</p>",
+        "AssumedRole$AccountId" : "<p>The unique identifier for the AWS account that owns the entity that was used to get the credentials.</p>",
+        "AssumedRole$Arn" : "<p>The Amazon Resource Name (ARN) of the entity that was used to get the credentials.</p>",
+        "AssumedRole$PrincipalId" : "<p>The unique identifier for the entity that was used to get the credentials.</p>",
+        "AwsAccount$AccountId" : "<p>The unique identifier for the AWS account.</p>",
+        "AwsAccount$PrincipalId" : "<p>The unique identifier for the entity that performed the action.</p>",
+        "AwsService$InvokedBy" : "<p>The name of the AWS service that performed the action.</p>",
         "BatchGetCustomDataIdentifierSummary$Arn" : "<p>The Amazon Resource Name (ARN) of the custom data identifier.</p>",
         "BatchGetCustomDataIdentifierSummary$Description" : "<p>The custom description of the custom data identifier.</p>",
         "BatchGetCustomDataIdentifierSummary$Id" : "<p>The unique identifier for the custom data identifier.</p>",
@@ -1455,14 +1456,14 @@
         "ClassificationResultStatus$Reason" : "<p>A brief description of the status of the finding. Amazon Macie uses this value to notify you of any errors, warnings, or considerations that might impact your analysis of the finding.</p>",
         "ConflictException$Message" : "<p>The explanation of the error that occurred.</p>",
         "CreateClassificationJobRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
-        "CreateClassificationJobRequest$Description" : "<p>A custom description of the job. The description can contain as many as 512 characters.</p>",
-        "CreateClassificationJobRequest$Name" : "<p>A custom name for the job. The name must contain at least 3 characters and can contain as many as 64 characters.</p>",
+        "CreateClassificationJobRequest$Description" : "<p>A custom description of the job. The description can contain as many as 200 characters.</p>",
+        "CreateClassificationJobRequest$Name" : "<p>A custom name for the job. The name can contain as many as 500 characters.</p>",
         "CreateClassificationJobResponse$JobArn" : "<p>The Amazon Resource Name (ARN) of the job.</p>",
         "CreateClassificationJobResponse$JobId" : "<p>The unique identifier for the job.</p>",
         "CreateCustomDataIdentifierRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
-        "CreateCustomDataIdentifierRequest$Description" : "<p>A custom description of the custom data identifier. The description can contain up to 120 characters.</p> <p>We strongly recommend that you avoid including any sensitive data in the description of a custom data identifier. Other users of your account might be able to see the identifier's description, depending on the actions that they're allowed to perform in Amazon Macie.</p>",
-        "CreateCustomDataIdentifierRequest$Name" : "<p>A custom name for the custom data identifier. The name can contain as many as 120 characters.</p> <p>We strongly recommend that you avoid including any sensitive data in the name of a custom data identifier. Other users of your account might be able to see the identifier's name, depending on the actions that they're allowed to perform in Amazon Macie.</p>",
-        "CreateCustomDataIdentifierRequest$Regex" : "<p>The regular expression (regex) that defines the pattern to match. The expression can contain as many as 500 characters.</p>",
+        "CreateCustomDataIdentifierRequest$Description" : "<p>A custom description of the custom data identifier. The description can contain as many as 512 characters.</p> <p>We strongly recommend that you avoid including any sensitive data in the description of a custom data identifier. Other users of your account might be able to see the identifier's description, depending on the actions that they're allowed to perform in Amazon Macie.</p>",
+        "CreateCustomDataIdentifierRequest$Name" : "<p>A custom name for the custom data identifier. The name can contain as many as 128 characters.</p> <p>We strongly recommend that you avoid including any sensitive data in the name of a custom data identifier. Other users of your account might be able to see the identifier's name, depending on the actions that they're allowed to perform in Amazon Macie.</p>",
+        "CreateCustomDataIdentifierRequest$Regex" : "<p>The regular expression (<i>regex</i>) that defines the pattern to match. The expression can contain as many as 512 characters.</p>",
         "CreateCustomDataIdentifierResponse$CustomDataIdentifierId" : "<p>The unique identifier for the custom data identifier that was created.</p>",
         "CreateFindingsFilterRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
         "CreateFindingsFilterRequest$Description" : "<p>A custom description of the filter. The description can contain as many as 512 characters.</p> <p>We strongly recommend that you avoid including any sensitive data in the description of a filter. Other users of your account might be able to see the filter's description, depending on the actions that they're allowed to perform in Amazon Macie.</p>",
@@ -1485,15 +1486,15 @@
         "DescribeClassificationJobResponse$JobArn" : "<p>The Amazon Resource Name (ARN) of the job.</p>",
         "DescribeClassificationJobResponse$JobId" : "<p>The unique identifier for the job.</p>",
         "DescribeClassificationJobResponse$Name" : "<p>The custom name of the job.</p>",
-        "DomainDetails$DomainName" : null,
+        "DomainDetails$DomainName" : "<p>The name of the domain.</p>",
         "EnableMacieRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
         "EnableOrganizationAdminAccountRequest$AdminAccountId" : "<p>The AWS account ID for the account.</p>",
         "EnableOrganizationAdminAccountRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
-        "FederatedUser$AccessKeyId" : "<p>Reserved for future use.</p>",
-        "FederatedUser$AccountId" : "<p>Reserved for future use.</p>",
-        "FederatedUser$Arn" : "<p>Reserved for future use.</p>",
-        "FederatedUser$PrincipalId" : "<p>Reserved for future use.</p>",
-        "Finding$AccountId" : "<p>The identifier for the AWS account that the finding applies to. This is typically the account that owns the affected resource.</p>",
+        "FederatedUser$AccessKeyId" : "<p>The AWS access key ID that identifies the credentials.</p>",
+        "FederatedUser$AccountId" : "<p>The unique identifier for the AWS account that owns the entity that was used to get the credentials.</p>",
+        "FederatedUser$Arn" : "<p>The Amazon Resource Name (ARN) of the entity that was used to get the credentials.</p>",
+        "FederatedUser$PrincipalId" : "<p>The unique identifier for the entity that was used to get the credentials.</p>",
+        "Finding$AccountId" : "<p>The unique identifier for the AWS account that the finding applies to. This is typically the account that owns the affected resource.</p>",
         "Finding$Description" : "<p>The description of the finding.</p>",
         "Finding$Id" : "<p>The unique identifier for the finding. This is a random string that Amazon Macie generates and assigns to a finding when it creates the finding.</p>",
         "Finding$Partition" : "<p>The AWS partition that Amazon Macie created the finding in.</p>",
@@ -1508,12 +1509,12 @@
         "GetCustomDataIdentifierResponse$Description" : "<p>The custom description of the custom data identifier.</p>",
         "GetCustomDataIdentifierResponse$Id" : "<p>The unique identifier for the custom data identifier.</p>",
         "GetCustomDataIdentifierResponse$Name" : "<p>The custom name of the custom data identifier.</p>",
-        "GetCustomDataIdentifierResponse$Regex" : "<p>The regular expression (regex) that defines the pattern to match.</p>",
+        "GetCustomDataIdentifierResponse$Regex" : "<p>The regular expression (<i>regex</i>) that defines the pattern to match.</p>",
         "GetFindingsFilterResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the filter.</p>",
         "GetFindingsFilterResponse$Description" : "<p>The custom description of the filter.</p>",
         "GetFindingsFilterResponse$Id" : "<p>The unique identifier for the filter.</p>",
         "GetFindingsFilterResponse$Name" : "<p>The custom name of the filter.</p>",
-        "GetMacieSessionResponse$ServiceRole" : "<p>The Amazon Resource Name (ARN) of the service-level role that allows Amazon Macie to monitor and analyze data in AWS resources for the account.</p>",
+        "GetMacieSessionResponse$ServiceRole" : "<p>The Amazon Resource Name (ARN) of the service-linked role that allows Amazon Macie to monitor and analyze data in AWS resources for the account.</p>",
         "GetMemberResponse$AccountId" : "<p>The AWS account ID for the account.</p>",
         "GetMemberResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the account.</p>",
         "GetMemberResponse$Email" : "<p>The email address for the account.</p>",
@@ -1521,21 +1522,21 @@
         "GetUsageStatisticsRequest$NextToken" : "<p>The nextToken string that specifies which page of results to return in a paginated response.</p>",
         "GetUsageStatisticsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "GroupCount$GroupKey" : "<p>The name of the property that defines the group in the query results, as specified by the groupBy property in the query request.</p>",
-        "IamUser$AccountId" : "<p>Reserved for future use.</p>",
-        "IamUser$Arn" : "<p>Reserved for future use.</p>",
-        "IamUser$PrincipalId" : "<p>Reserved for future use.</p>",
-        "IamUser$UserName" : "<p>Reserved for future use.</p>",
+        "IamUser$AccountId" : "<p>The unique identifier for the AWS account that's associated with the IAM user who performed the action.</p>",
+        "IamUser$Arn" : "<p>The Amazon Resource Name (ARN) of the principal that performed the action. The last section of the ARN contains the name of the user who performed the action.</p>",
+        "IamUser$PrincipalId" : "<p>The unique identifier for the IAM user who performed the action.</p>",
+        "IamUser$UserName" : "<p>The user name of the IAM user who performed the action.</p>",
         "InternalServerException$Message" : "<p>The explanation of the error that occurred.</p>",
         "Invitation$AccountId" : "<p>The AWS account ID for the account that sent the invitation.</p>",
         "Invitation$InvitationId" : "<p>The unique identifier for the invitation. Amazon Macie uses this identifier to validate the inviter account with the invitee account.</p>",
-        "IpAddressDetails$IpAddressV4" : null,
-        "IpCity$Name" : "<p>Reserved for future use.</p>",
-        "IpCountry$Code" : "<p>Reserved for future use.</p>",
-        "IpCountry$Name" : "<p>Reserved for future use.</p>",
-        "IpOwner$Asn" : "<p>Reserved for future use.</p>",
-        "IpOwner$AsnOrg" : "<p>Reserved for future use.</p>",
-        "IpOwner$Isp" : "<p>Reserved for future use.</p>",
-        "IpOwner$Org" : "<p>Reserved for future use.</p>",
+        "IpAddressDetails$IpAddressV4" : "<p>The Internet Protocol version 4 (IPv4) address of the device.</p>",
+        "IpCity$Name" : "<p>The name of the city.</p>",
+        "IpCountry$Code" : "<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country that the IP address originated from. For example, US for the United States.</p>",
+        "IpCountry$Name" : "<p>The name of the country that the IP address originated from.</p>",
+        "IpOwner$Asn" : "<p>The autonomous system number (ASN) for the autonomous system that included the IP address.</p>",
+        "IpOwner$AsnOrg" : "<p>The organization identifier that's associated with the autonomous system number (ASN) for the autonomous system that included the IP address.</p>",
+        "IpOwner$Isp" : "<p>The name of the internet service provider (ISP) that owned the IP address.</p>",
+        "IpOwner$Org" : "<p>The name of the organization that owned the IP address.</p>",
         "JobSummary$JobId" : "<p>The unique identifier for the job.</p>",
         "JobSummary$Name" : "<p>The custom name of the job.</p>",
         "KeyValuePair$Key" : "<p>One part of a key-value pair that comprises a tag. A tag key is a general label that acts as a category for more specific tag values.</p>",
@@ -1562,7 +1563,7 @@
         "S3BucketOwner$Id" : "<p>The AWS account ID for the user who owns the bucket.</p>",
         "S3Destination$BucketName" : "<p>The name of the bucket.</p>",
         "S3Destination$KeyPrefix" : "<p>The path prefix to use in the path to the location in the bucket. This prefix specifies where to store classification results in the bucket.</p>",
-        "S3Destination$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the AWS Key Management Service customer master key (CMK) to use for encryption of the results. This must be the ARN of an existing CMK that's in the same AWS Region as the bucket.</p>",
+        "S3Destination$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for encryption of the results. This must be the ARN of an existing CMK that's in the same AWS Region as the bucket.</p>",
         "S3Object$BucketArn" : "<p>The Amazon Resource Name (ARN) of the bucket that contains the object.</p>",
         "S3Object$ETag" : "<p>The entity tag (ETag) that identifies the affected version of the object. If the object was overwritten or changed after Amazon Macie produced the finding, this value might be different from the current ETag for the object.</p>",
         "S3Object$Extension" : "<p>The file extension of the object. If the object doesn't have a file extension, this value is \"\".</p>",
@@ -1571,9 +1572,9 @@
         "S3Object$VersionId" : "<p>The identifier for the affected version of the object.</p>",
         "ServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) master key that's used to encrypt the bucket or object. This value is null if KMS isn't used to encrypt the bucket or object.</p>",
         "ServiceQuotaExceededException$Message" : "<p>The explanation of the error that occurred.</p>",
-        "SessionIssuer$AccountId" : "<p>The account that owns the entity that was used to get the credentials.</p>",
+        "SessionIssuer$AccountId" : "<p>The unique identifier for the AWS account that owns the entity that was used to get the credentials.</p>",
         "SessionIssuer$Arn" : "<p>The Amazon Resource Name (ARN) of the source account, IAM user, or role that was used to get the credentials.</p>",
-        "SessionIssuer$PrincipalId" : "<p>The internal identifier for the entity that was used to get the credentials.</p>",
+        "SessionIssuer$PrincipalId" : "<p>The unique identifier for the entity that was used to get the credentials.</p>",
         "SessionIssuer$Type" : "<p>The source of the temporary security credentials, such as Root, IAMUser, or Role.</p>",
         "SessionIssuer$UserName" : "<p>The name or alias of the user or role that issued the session. This value is null if the credentials were obtained from a root account that doesn't have an alias.</p>",
         "SortCriteria$AttributeName" : "<p>The name of the property to sort the results by. This value can be the name of any property that Amazon Macie defines for a finding.</p>",
@@ -1581,7 +1582,7 @@
         "TagScopeTerm$Key" : "<p>The tag key to use in the condition.</p>",
         "TagValuePair$Key" : "<p>The value for the tag key to use in the condition.</p>",
         "TagValuePair$Value" : "<p>The tag value, associated with the specified tag key, to use in the condition.</p>",
-        "TestCustomDataIdentifierRequest$Regex" : "<p>The regular expression (regex) that defines the pattern to match. The expression can contain as many as 500 characters.</p>",
+        "TestCustomDataIdentifierRequest$Regex" : "<p>The regular expression (<i>regex</i>) that defines the pattern to match. The expression can contain as many as 512 characters.</p>",
         "TestCustomDataIdentifierRequest$SampleText" : "<p>The sample text to inspect by using the custom data identifier. The text can contain as many as 1,000 characters.</p>",
         "ThrottlingException$Message" : "<p>The explanation of the error that occurred.</p>",
         "UnprocessedAccount$AccountId" : "<p>The AWS account ID for the account that the request applies to.</p>",
@@ -1591,11 +1592,11 @@
         "UpdateFindingsFilterResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the filter that was updated.</p>",
         "UpdateFindingsFilterResponse$Id" : "<p>The unique identifier for the filter that was updated.</p>",
         "UsageByAccount$EstimatedCost" : "<p>The estimated value for the metric.</p>",
-        "UsageRecord$AccountId" : "<p>The AWS account ID for the account that the data applies to.</p>",
+        "UsageRecord$AccountId" : "<p>The unique identifier for the AWS account that the data applies to.</p>",
         "UsageTotal$EstimatedCost" : "<p>The estimated value for the metric.</p>",
-        "UserIdentityRoot$AccountId" : "<p>Reserved for future use.</p>",
-        "UserIdentityRoot$Arn" : "<p>Reserved for future use.</p>",
-        "UserIdentityRoot$PrincipalId" : "<p>Reserved for future use.</p>",
+        "UserIdentityRoot$AccountId" : "<p>The unique identifier for the AWS account.</p>",
+        "UserIdentityRoot$Arn" : "<p>The Amazon Resource Name (ARN) of the principal that performed the action. The last section of the ARN contains the name of the user or role that performed the action.</p>",
+        "UserIdentityRoot$PrincipalId" : "<p>The unique identifier for the entity that performed the action.</p>",
         "ValidationException$Message" : "<p>The explanation of the error that occurred.</p>",
         "__listOf__string$member" : null
       }
@@ -1603,8 +1604,8 @@
     "__timestampIso8601" : {
       "base" : null,
       "refs" : {
-        "ApiCallDetails$FirstSeen" : "<p>Reserved for future use.</p>",
-        "ApiCallDetails$LastSeen" : "<p>Reserved for future use.</p>",
+        "ApiCallDetails$FirstSeen" : "<p>The first date and time, in UTC and extended ISO 8601 format, when any operation was invoked and produced the finding.</p>",
+        "ApiCallDetails$LastSeen" : "<p>The most recent date and time, in UTC and extended ISO 8601 format, when the specified operation (api) was invoked and produced the finding.</p>",
         "BatchGetCustomDataIdentifierSummary$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "BucketMetadata$BucketCreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the bucket was created.</p>",
         "BucketMetadata$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie last analyzed the bucket.</p>",
@@ -1625,7 +1626,7 @@
         "Member$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the relationship between the account and the master account.</p>",
         "S3Bucket$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the bucket was created.</p>",
         "S3Object$LastModified" : "<p>The date and time, in UTC and extended ISO 8601 format, when the object was last modified.</p>",
-        "SessionContextAttributes$CreationDate" : "<p>The date and time, in ISO 8601 format, when the credentials were issued.</p>",
+        "SessionContextAttributes$CreationDate" : "<p>The date and time, in UTC and ISO 8601 format, when the credentials were issued.</p>",
         "UsageRecord$FreeTrialStartDate" : "<p>The date and time, in UTC and extended ISO 8601 format, when the free trial period started for the account. This value is null if the account didn't participate in the free trial.</p>"
       }
     }

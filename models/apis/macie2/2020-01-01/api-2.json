@@ -3313,6 +3313,10 @@
     "FindingsFilterListItem": {
       "type": "structure",
       "members": {
+        "action": {
+          "shape": "FindingsFilterAction",
+          "locationName": "action"
+        },
         "arn": {
           "shape": "__string",
           "locationName": "arn"
@@ -4414,7 +4418,9 @@
         "Removed",
         "Resigned",
         "EmailVerificationInProgress",
-        "EmailVerificationFailed"
+        "EmailVerificationFailed",
+        "RegionDisabled",
+        "AccountSuspended"
       ]
     },
     "ReplicationDetails": {

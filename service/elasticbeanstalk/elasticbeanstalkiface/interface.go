@@ -152,6 +152,9 @@ type ElasticBeanstalkAPI interface {
 	DescribeEnvironmentManagedActionHistoryWithContext(aws.Context, *elasticbeanstalk.DescribeEnvironmentManagedActionHistoryInput, ...request.Option) (*elasticbeanstalk.DescribeEnvironmentManagedActionHistoryOutput, error)
 	DescribeEnvironmentManagedActionHistoryRequest(*elasticbeanstalk.DescribeEnvironmentManagedActionHistoryInput) (*request.Request, *elasticbeanstalk.DescribeEnvironmentManagedActionHistoryOutput)
 
+	DescribeEnvironmentManagedActionHistoryPages(*elasticbeanstalk.DescribeEnvironmentManagedActionHistoryInput, func(*elasticbeanstalk.DescribeEnvironmentManagedActionHistoryOutput, bool) bool) error
+	DescribeEnvironmentManagedActionHistoryPagesWithContext(aws.Context, *elasticbeanstalk.DescribeEnvironmentManagedActionHistoryInput, func(*elasticbeanstalk.DescribeEnvironmentManagedActionHistoryOutput, bool) bool, ...request.Option) error
+
 	DescribeEnvironmentManagedActions(*elasticbeanstalk.DescribeEnvironmentManagedActionsInput) (*elasticbeanstalk.DescribeEnvironmentManagedActionsOutput, error)
 	DescribeEnvironmentManagedActionsWithContext(aws.Context, *elasticbeanstalk.DescribeEnvironmentManagedActionsInput, ...request.Option) (*elasticbeanstalk.DescribeEnvironmentManagedActionsOutput, error)
 	DescribeEnvironmentManagedActionsRequest(*elasticbeanstalk.DescribeEnvironmentManagedActionsInput) (*request.Request, *elasticbeanstalk.DescribeEnvironmentManagedActionsOutput)
@@ -197,6 +200,9 @@ type ElasticBeanstalkAPI interface {
 	ListPlatformVersions(*elasticbeanstalk.ListPlatformVersionsInput) (*elasticbeanstalk.ListPlatformVersionsOutput, error)
 	ListPlatformVersionsWithContext(aws.Context, *elasticbeanstalk.ListPlatformVersionsInput, ...request.Option) (*elasticbeanstalk.ListPlatformVersionsOutput, error)
 	ListPlatformVersionsRequest(*elasticbeanstalk.ListPlatformVersionsInput) (*request.Request, *elasticbeanstalk.ListPlatformVersionsOutput)
+
+	ListPlatformVersionsPages(*elasticbeanstalk.ListPlatformVersionsInput, func(*elasticbeanstalk.ListPlatformVersionsOutput, bool) bool) error
+	ListPlatformVersionsPagesWithContext(aws.Context, *elasticbeanstalk.ListPlatformVersionsInput, func(*elasticbeanstalk.ListPlatformVersionsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*elasticbeanstalk.ListTagsForResourceInput) (*elasticbeanstalk.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *elasticbeanstalk.ListTagsForResourceInput, ...request.Option) (*elasticbeanstalk.ListTagsForResourceOutput, error)
@@ -253,6 +259,15 @@ type ElasticBeanstalkAPI interface {
 	ValidateConfigurationSettings(*elasticbeanstalk.ValidateConfigurationSettingsInput) (*elasticbeanstalk.ValidateConfigurationSettingsOutput, error)
 	ValidateConfigurationSettingsWithContext(aws.Context, *elasticbeanstalk.ValidateConfigurationSettingsInput, ...request.Option) (*elasticbeanstalk.ValidateConfigurationSettingsOutput, error)
 	ValidateConfigurationSettingsRequest(*elasticbeanstalk.ValidateConfigurationSettingsInput) (*request.Request, *elasticbeanstalk.ValidateConfigurationSettingsOutput)
+
+	WaitUntilEnvironmentExists(*elasticbeanstalk.DescribeEnvironmentsInput) error
+	WaitUntilEnvironmentExistsWithContext(aws.Context, *elasticbeanstalk.DescribeEnvironmentsInput, ...request.WaiterOption) error
+
+	WaitUntilEnvironmentTerminated(*elasticbeanstalk.DescribeEnvironmentsInput) error
+	WaitUntilEnvironmentTerminatedWithContext(aws.Context, *elasticbeanstalk.DescribeEnvironmentsInput, ...request.WaiterOption) error
+
+	WaitUntilEnvironmentUpdated(*elasticbeanstalk.DescribeEnvironmentsInput) error
+	WaitUntilEnvironmentUpdatedWithContext(aws.Context, *elasticbeanstalk.DescribeEnvironmentsInput, ...request.WaiterOption) error
 }
 
 var _ ElasticBeanstalkAPI = (*elasticbeanstalk.ElasticBeanstalk)(nil)

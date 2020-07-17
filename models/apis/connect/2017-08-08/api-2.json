@@ -301,6 +301,20 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "ResumeContactRecording":{
+      "name":"ResumeContactRecording",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/resume-recording"
+      },
+      "input":{"shape":"ResumeContactRecordingRequest"},
+      "output":{"shape":"ResumeContactRecordingResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "StartChatContact":{
       "name":"StartChatContact",
       "http":{
@@ -315,6 +329,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"},
         {"shape":"LimitExceededException"}
+      ]
+    },
+    "StartContactRecording":{
+      "name":"StartContactRecording",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/start-recording"
+      },
+      "input":{"shape":"StartContactRecordingRequest"},
+      "output":{"shape":"StartContactRecordingResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "StartOutboundVoiceContact":{
@@ -347,6 +376,34 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ContactNotFoundException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "StopContactRecording":{
+      "name":"StopContactRecording",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/stop-recording"
+      },
+      "input":{"shape":"StopContactRecordingRequest"},
+      "output":{"shape":"StopContactRecordingResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "SuspendContactRecording":{
+      "name":"SuspendContactRecording",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/suspend-recording"
+      },
+      "input":{"shape":"SuspendContactRecordingRequest"},
+      "output":{"shape":"SuspendContactRecordingResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"}
       ]
@@ -1754,6 +1811,24 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "ResumeContactRecordingRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "InitialContactId"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactId":{"shape":"ContactId"},
+        "InitialContactId":{"shape":"ContactId"}
+      }
+    },
+    "ResumeContactRecordingResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "RoutingProfileId":{"type":"string"},
     "RoutingProfileName":{
       "type":"string",
@@ -1823,6 +1898,26 @@
         "ParticipantToken":{"shape":"ParticipantToken"}
       }
     },
+    "StartContactRecordingRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "InitialContactId",
+        "VoiceRecordingConfiguration"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactId":{"shape":"ContactId"},
+        "InitialContactId":{"shape":"ContactId"},
+        "VoiceRecordingConfiguration":{"shape":"VoiceRecordingConfiguration"}
+      }
+    },
+    "StartContactRecordingResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "StartOutboundVoiceContactRequest":{
       "type":"structure",
       "required":[
@@ -1857,6 +1952,24 @@
         "AVG"
       ]
     },
+    "StopContactRecordingRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "InitialContactId"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactId":{"shape":"ContactId"},
+        "InitialContactId":{"shape":"ContactId"}
+      }
+    },
+    "StopContactRecordingResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "StopContactRequest":{
       "type":"structure",
       "required":[
@@ -1869,6 +1982,24 @@
       }
     },
     "StopContactResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "SuspendContactRecordingRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "InitialContactId"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactId":{"shape":"ContactId"},
+        "InitialContactId":{"shape":"ContactId"}
+      }
+    },
+    "SuspendContactRecordingResponse":{
       "type":"structure",
       "members":{
       }
@@ -2134,6 +2265,20 @@
       "member":{"shape":"UserSummary"}
     },
     "Value":{"type":"double"},
+    "VoiceRecordingConfiguration":{
+      "type":"structure",
+      "members":{
+        "VoiceRecordingTrack":{"shape":"VoiceRecordingTrack"}
+      }
+    },
+    "VoiceRecordingTrack":{
+      "type":"string",
+      "enum":[
+        "FROM_AGENT",
+        "TO_AGENT",
+        "ALL"
+      ]
+    },
     "timestamp":{"type":"timestamp"}
   }
 }

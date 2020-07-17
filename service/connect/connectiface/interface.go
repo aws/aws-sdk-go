@@ -162,9 +162,17 @@ type ConnectAPI interface {
 	ListUsersPages(*connect.ListUsersInput, func(*connect.ListUsersOutput, bool) bool) error
 	ListUsersPagesWithContext(aws.Context, *connect.ListUsersInput, func(*connect.ListUsersOutput, bool) bool, ...request.Option) error
 
+	ResumeContactRecording(*connect.ResumeContactRecordingInput) (*connect.ResumeContactRecordingOutput, error)
+	ResumeContactRecordingWithContext(aws.Context, *connect.ResumeContactRecordingInput, ...request.Option) (*connect.ResumeContactRecordingOutput, error)
+	ResumeContactRecordingRequest(*connect.ResumeContactRecordingInput) (*request.Request, *connect.ResumeContactRecordingOutput)
+
 	StartChatContact(*connect.StartChatContactInput) (*connect.StartChatContactOutput, error)
 	StartChatContactWithContext(aws.Context, *connect.StartChatContactInput, ...request.Option) (*connect.StartChatContactOutput, error)
 	StartChatContactRequest(*connect.StartChatContactInput) (*request.Request, *connect.StartChatContactOutput)
+
+	StartContactRecording(*connect.StartContactRecordingInput) (*connect.StartContactRecordingOutput, error)
+	StartContactRecordingWithContext(aws.Context, *connect.StartContactRecordingInput, ...request.Option) (*connect.StartContactRecordingOutput, error)
+	StartContactRecordingRequest(*connect.StartContactRecordingInput) (*request.Request, *connect.StartContactRecordingOutput)
 
 	StartOutboundVoiceContact(*connect.StartOutboundVoiceContactInput) (*connect.StartOutboundVoiceContactOutput, error)
 	StartOutboundVoiceContactWithContext(aws.Context, *connect.StartOutboundVoiceContactInput, ...request.Option) (*connect.StartOutboundVoiceContactOutput, error)
@@ -173,6 +181,14 @@ type ConnectAPI interface {
 	StopContact(*connect.StopContactInput) (*connect.StopContactOutput, error)
 	StopContactWithContext(aws.Context, *connect.StopContactInput, ...request.Option) (*connect.StopContactOutput, error)
 	StopContactRequest(*connect.StopContactInput) (*request.Request, *connect.StopContactOutput)
+
+	StopContactRecording(*connect.StopContactRecordingInput) (*connect.StopContactRecordingOutput, error)
+	StopContactRecordingWithContext(aws.Context, *connect.StopContactRecordingInput, ...request.Option) (*connect.StopContactRecordingOutput, error)
+	StopContactRecordingRequest(*connect.StopContactRecordingInput) (*request.Request, *connect.StopContactRecordingOutput)
+
+	SuspendContactRecording(*connect.SuspendContactRecordingInput) (*connect.SuspendContactRecordingOutput, error)
+	SuspendContactRecordingWithContext(aws.Context, *connect.SuspendContactRecordingInput, ...request.Option) (*connect.SuspendContactRecordingOutput, error)
+	SuspendContactRecordingRequest(*connect.SuspendContactRecordingInput) (*request.Request, *connect.SuspendContactRecordingOutput)
 
 	TagResource(*connect.TagResourceInput) (*connect.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *connect.TagResourceInput, ...request.Option) (*connect.TagResourceOutput, error)

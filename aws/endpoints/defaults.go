@@ -3069,6 +3069,7 @@ var awsPartition = partition{
 
 			Endpoints: endpoints{
 				"ap-northeast-1": endpoint{},
+				"ap-southeast-2": endpoint{},
 				"eu-central-1":   endpoint{},
 				"eu-west-1":      endpoint{},
 				"us-east-1":      endpoint{},
@@ -6492,6 +6493,12 @@ var awscnPartition = partition{
 				"cn-northwest-1": endpoint{},
 			},
 		},
+		"cur": service{
+
+			Endpoints: endpoints{
+				"cn-northwest-1": endpoint{},
+			},
+		},
 		"dax": service{
 
 			Endpoints: endpoints{
@@ -8969,6 +8976,12 @@ var awsisoPartition = partition{
 			},
 		},
 		"swf": service{
+
+			Endpoints: endpoints{
+				"us-iso-east-1": endpoint{},
+			},
+		},
+		"transcribestreaming": service{
 
 			Endpoints: endpoints{
 				"us-iso-east-1": endpoint{},

@@ -998,7 +998,7 @@ func (c *Macie2) DeleteCustomDataIdentifierRequest(input *DeleteCustomDataIdenti
 
 // DeleteCustomDataIdentifier API operation for Amazon Macie 2.
 //
-// Deletes a custom data identifier.
+// Soft deletes a custom data identifier.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1404,6 +1404,12 @@ func (c *Macie2) DescribeBucketsRequest(input *DescribeBucketsInput) (req *reque
 		Name:       opDescribeBuckets,
 		HTTPMethod: "POST",
 		HTTPPath:   "/datasources/s3",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1476,6 +1482,58 @@ func (c *Macie2) DescribeBucketsWithContext(ctx aws.Context, input *DescribeBuck
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeBucketsPages iterates over the pages of a DescribeBuckets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeBuckets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeBuckets operation.
+//    pageNum := 0
+//    err := client.DescribeBucketsPages(params,
+//        func(page *macie2.DescribeBucketsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Macie2) DescribeBucketsPages(input *DescribeBucketsInput, fn func(*DescribeBucketsOutput, bool) bool) error {
+	return c.DescribeBucketsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeBucketsPagesWithContext same as DescribeBucketsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) DescribeBucketsPagesWithContext(ctx aws.Context, input *DescribeBucketsInput, fn func(*DescribeBucketsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeBucketsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeBucketsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeBucketsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeClassificationJob = "DescribeClassificationJob"
@@ -3398,6 +3456,12 @@ func (c *Macie2) GetUsageStatisticsRequest(input *GetUsageStatisticsInput) (req 
 		Name:       opGetUsageStatistics,
 		HTTPMethod: "POST",
 		HTTPPath:   "/usage/statistics",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3469,6 +3533,58 @@ func (c *Macie2) GetUsageStatisticsWithContext(ctx aws.Context, input *GetUsageS
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetUsageStatisticsPages iterates over the pages of a GetUsageStatistics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetUsageStatistics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetUsageStatistics operation.
+//    pageNum := 0
+//    err := client.GetUsageStatisticsPages(params,
+//        func(page *macie2.GetUsageStatisticsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Macie2) GetUsageStatisticsPages(input *GetUsageStatisticsInput, fn func(*GetUsageStatisticsOutput, bool) bool) error {
+	return c.GetUsageStatisticsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetUsageStatisticsPagesWithContext same as GetUsageStatisticsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) GetUsageStatisticsPagesWithContext(ctx aws.Context, input *GetUsageStatisticsInput, fn func(*GetUsageStatisticsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetUsageStatisticsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetUsageStatisticsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetUsageStatisticsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetUsageTotals = "GetUsageTotals"
@@ -3606,6 +3722,12 @@ func (c *Macie2) ListClassificationJobsRequest(input *ListClassificationJobsInpu
 		Name:       opListClassificationJobs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/jobs/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3619,8 +3741,7 @@ func (c *Macie2) ListClassificationJobsRequest(input *ListClassificationJobsInpu
 
 // ListClassificationJobs API operation for Amazon Macie 2.
 //
-// Retrieves information about the status and settings for one or more classification
-// jobs.
+// Retrieves a subset of information about one or more classification jobs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3680,6 +3801,58 @@ func (c *Macie2) ListClassificationJobsWithContext(ctx aws.Context, input *ListC
 	return out, req.Send()
 }
 
+// ListClassificationJobsPages iterates over the pages of a ListClassificationJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListClassificationJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListClassificationJobs operation.
+//    pageNum := 0
+//    err := client.ListClassificationJobsPages(params,
+//        func(page *macie2.ListClassificationJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Macie2) ListClassificationJobsPages(input *ListClassificationJobsInput, fn func(*ListClassificationJobsOutput, bool) bool) error {
+	return c.ListClassificationJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListClassificationJobsPagesWithContext same as ListClassificationJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListClassificationJobsPagesWithContext(ctx aws.Context, input *ListClassificationJobsInput, fn func(*ListClassificationJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListClassificationJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListClassificationJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListClassificationJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListCustomDataIdentifiers = "ListCustomDataIdentifiers"
 
 // ListCustomDataIdentifiersRequest generates a "aws/request.Request" representing the
@@ -3711,6 +3884,12 @@ func (c *Macie2) ListCustomDataIdentifiersRequest(input *ListCustomDataIdentifie
 		Name:       opListCustomDataIdentifiers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/custom-data-identifiers/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3785,6 +3964,58 @@ func (c *Macie2) ListCustomDataIdentifiersWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
+// ListCustomDataIdentifiersPages iterates over the pages of a ListCustomDataIdentifiers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCustomDataIdentifiers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCustomDataIdentifiers operation.
+//    pageNum := 0
+//    err := client.ListCustomDataIdentifiersPages(params,
+//        func(page *macie2.ListCustomDataIdentifiersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Macie2) ListCustomDataIdentifiersPages(input *ListCustomDataIdentifiersInput, fn func(*ListCustomDataIdentifiersOutput, bool) bool) error {
+	return c.ListCustomDataIdentifiersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCustomDataIdentifiersPagesWithContext same as ListCustomDataIdentifiersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListCustomDataIdentifiersPagesWithContext(ctx aws.Context, input *ListCustomDataIdentifiersInput, fn func(*ListCustomDataIdentifiersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCustomDataIdentifiersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCustomDataIdentifiersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCustomDataIdentifiersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListFindings = "ListFindings"
 
 // ListFindingsRequest generates a "aws/request.Request" representing the
@@ -3816,6 +4047,12 @@ func (c *Macie2) ListFindingsRequest(input *ListFindingsInput) (req *request.Req
 		Name:       opListFindings,
 		HTTPMethod: "POST",
 		HTTPPath:   "/findings",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3889,6 +4126,58 @@ func (c *Macie2) ListFindingsWithContext(ctx aws.Context, input *ListFindingsInp
 	return out, req.Send()
 }
 
+// ListFindingsPages iterates over the pages of a ListFindings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFindings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFindings operation.
+//    pageNum := 0
+//    err := client.ListFindingsPages(params,
+//        func(page *macie2.ListFindingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Macie2) ListFindingsPages(input *ListFindingsInput, fn func(*ListFindingsOutput, bool) bool) error {
+	return c.ListFindingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFindingsPagesWithContext same as ListFindingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListFindingsPagesWithContext(ctx aws.Context, input *ListFindingsInput, fn func(*ListFindingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFindingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFindingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFindingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListFindingsFilters = "ListFindingsFilters"
 
 // ListFindingsFiltersRequest generates a "aws/request.Request" representing the
@@ -3920,6 +4209,12 @@ func (c *Macie2) ListFindingsFiltersRequest(input *ListFindingsFiltersInput) (re
 		Name:       opListFindingsFilters,
 		HTTPMethod: "GET",
 		HTTPPath:   "/findingsfilters",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3993,6 +4288,58 @@ func (c *Macie2) ListFindingsFiltersWithContext(ctx aws.Context, input *ListFind
 	return out, req.Send()
 }
 
+// ListFindingsFiltersPages iterates over the pages of a ListFindingsFilters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFindingsFilters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFindingsFilters operation.
+//    pageNum := 0
+//    err := client.ListFindingsFiltersPages(params,
+//        func(page *macie2.ListFindingsFiltersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Macie2) ListFindingsFiltersPages(input *ListFindingsFiltersInput, fn func(*ListFindingsFiltersOutput, bool) bool) error {
+	return c.ListFindingsFiltersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFindingsFiltersPagesWithContext same as ListFindingsFiltersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListFindingsFiltersPagesWithContext(ctx aws.Context, input *ListFindingsFiltersInput, fn func(*ListFindingsFiltersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFindingsFiltersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFindingsFiltersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFindingsFiltersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListInvitations = "ListInvitations"
 
 // ListInvitationsRequest generates a "aws/request.Request" representing the
@@ -4024,6 +4371,12 @@ func (c *Macie2) ListInvitationsRequest(input *ListInvitationsInput) (req *reque
 		Name:       opListInvitations,
 		HTTPMethod: "GET",
 		HTTPPath:   "/invitations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4098,6 +4451,58 @@ func (c *Macie2) ListInvitationsWithContext(ctx aws.Context, input *ListInvitati
 	return out, req.Send()
 }
 
+// ListInvitationsPages iterates over the pages of a ListInvitations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInvitations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListInvitations operation.
+//    pageNum := 0
+//    err := client.ListInvitationsPages(params,
+//        func(page *macie2.ListInvitationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Macie2) ListInvitationsPages(input *ListInvitationsInput, fn func(*ListInvitationsOutput, bool) bool) error {
+	return c.ListInvitationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInvitationsPagesWithContext same as ListInvitationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListInvitationsPagesWithContext(ctx aws.Context, input *ListInvitationsInput, fn func(*ListInvitationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInvitationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInvitationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInvitationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListMembers = "ListMembers"
 
 // ListMembersRequest generates a "aws/request.Request" representing the
@@ -4129,6 +4534,12 @@ func (c *Macie2) ListMembersRequest(input *ListMembersInput) (req *request.Reque
 		Name:       opListMembers,
 		HTTPMethod: "GET",
 		HTTPPath:   "/members",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4203,6 +4614,58 @@ func (c *Macie2) ListMembersWithContext(ctx aws.Context, input *ListMembersInput
 	return out, req.Send()
 }
 
+// ListMembersPages iterates over the pages of a ListMembers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMembers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMembers operation.
+//    pageNum := 0
+//    err := client.ListMembersPages(params,
+//        func(page *macie2.ListMembersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Macie2) ListMembersPages(input *ListMembersInput, fn func(*ListMembersOutput, bool) bool) error {
+	return c.ListMembersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMembersPagesWithContext same as ListMembersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListMembersPagesWithContext(ctx aws.Context, input *ListMembersInput, fn func(*ListMembersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMembersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMembersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMembersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListOrganizationAdminAccounts = "ListOrganizationAdminAccounts"
 
 // ListOrganizationAdminAccountsRequest generates a "aws/request.Request" representing the
@@ -4234,6 +4697,12 @@ func (c *Macie2) ListOrganizationAdminAccountsRequest(input *ListOrganizationAdm
 		Name:       opListOrganizationAdminAccounts,
 		HTTPMethod: "GET",
 		HTTPPath:   "/admin",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4306,6 +4775,58 @@ func (c *Macie2) ListOrganizationAdminAccountsWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListOrganizationAdminAccountsPages iterates over the pages of a ListOrganizationAdminAccounts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOrganizationAdminAccounts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListOrganizationAdminAccounts operation.
+//    pageNum := 0
+//    err := client.ListOrganizationAdminAccountsPages(params,
+//        func(page *macie2.ListOrganizationAdminAccountsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Macie2) ListOrganizationAdminAccountsPages(input *ListOrganizationAdminAccountsInput, fn func(*ListOrganizationAdminAccountsOutput, bool) bool) error {
+	return c.ListOrganizationAdminAccountsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOrganizationAdminAccountsPagesWithContext same as ListOrganizationAdminAccountsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListOrganizationAdminAccountsPagesWithContext(ctx aws.Context, input *ListOrganizationAdminAccountsInput, fn func(*ListOrganizationAdminAccountsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOrganizationAdminAccountsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOrganizationAdminAccountsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOrganizationAdminAccountsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -5535,18 +6056,8 @@ func (s *AdminAccount) SetStatus(v string) *AdminAccount {
 	return s
 }
 
-// For the affected resource:
-//
-//    * The name of the operation that was invoked most recently and produced
-//    the finding (api).
-//
-//    * The first date and time when any operation was invoked and produced
-//    the finding (firstSeen).
-//
-//    * The most recent date and time when the specified operation was invoked
-//    and produced the finding (lastSeen).
-//
-// All date and time values are in UTC and extended ISO 8601 format.
+// Provides information about an API operation that an entity invoked for an
+// affected resource.
 type ApiCallDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -5593,7 +6104,10 @@ func (s *ApiCallDetails) SetLastSeen(v time.Time) *ApiCallDetails {
 	return s
 }
 
-// Reserved for future use.
+// Provides information about an identity that performed an action on an affected
+// resource by using temporary security credentials. The credentials were obtained
+// using the AssumeRole operation of the AWS Security Token Service (AWS STS)
+// API.
 type AssumedRole struct {
 	_ struct{} `type:"structure"`
 
@@ -5650,7 +6164,9 @@ func (s *AssumedRole) SetSessionContext(v *SessionContext) *AssumedRole {
 	return s
 }
 
-// Reserved for future use.
+// Provides information about an AWS account and entity that performed an action
+// on an affected resource. The action was performed using the credentials for
+// an AWS account other than your own account.
 type AwsAccount struct {
 	_ struct{} `type:"structure"`
 
@@ -5681,7 +6197,8 @@ func (s *AwsAccount) SetPrincipalId(v string) *AwsAccount {
 	return s
 }
 
-// Reserved for future use.
+// Provides information about an AWS service that performed an action on an
+// affected resource.
 type AwsService struct {
 	_ struct{} `type:"structure"`
 
@@ -5872,8 +6389,8 @@ func (s *BlockPublicAccess) SetRestrictPublicBuckets(v bool) *BlockPublicAccess 
 	return s
 }
 
-// The total number of buckets that are publicly accessible, based on a combination
-// of permissions settings for each bucket.
+// Provides information about the number of S3 buckets that are publicly accessible
+// based on a combination of permissions settings for each bucket.
 type BucketCountByEffectivePermission struct {
 	_ struct{} `type:"structure"`
 
@@ -5912,8 +6429,8 @@ func (s *BucketCountByEffectivePermission) SetPubliclyWritable(v int64) *BucketC
 	return s
 }
 
-// The total number of buckets, grouped by server-side encryption type. This
-// object also reports the total number of buckets that aren't encrypted.
+// Provides information about the number of S3 buckets that use certain types
+// of server-side encryption or don't encrypt objects by default.
 type BucketCountByEncryptionType struct {
 	_ struct{} `type:"structure"`
 
@@ -5952,8 +6469,8 @@ func (s *BucketCountByEncryptionType) SetUnencrypted(v int64) *BucketCountByEncr
 	return s
 }
 
-// The total number of buckets that are shared with another AWS account or configured
-// to support cross-origin resource sharing (CORS).
+// Provides information about the number of S3 buckets that are shared with
+// other AWS accounts.
 type BucketCountBySharedAccessType struct {
 	_ struct{} `type:"structure"`
 
@@ -6130,6 +6647,9 @@ type BucketMetadata struct {
 
 	ObjectCount *int64 `locationName:"objectCount" type:"long"`
 
+	// The total number of objects that are in the bucket, grouped by server-side
+	// encryption type. This includes a grouping that reports the total number of
+	// objects that aren't encrypted.
 	ObjectCountByEncryptionType *ObjectCountByEncryptionType `locationName:"objectCountByEncryptionType" type:"structure"`
 
 	// Provides information about permissions settings that determine whether an
@@ -6260,8 +6780,7 @@ func (s *BucketMetadata) SetVersioning(v bool) *BucketMetadata {
 	return s
 }
 
-// The account-level and bucket-level permissions settings for an S3 bucket,
-// or the bucket that contains an object.
+// The account-level and bucket-level permissions settings for an S3 bucket.
 type BucketPermissionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6334,8 +6853,7 @@ type BucketPublicAccess struct {
 
 	EffectivePermission *string `locationName:"effectivePermission" type:"string" enum:"EffectivePermission"`
 
-	// The account-level and bucket-level permissions settings for an S3 bucket,
-	// or the bucket that contains an object.
+	// The account-level and bucket-level permissions settings for an S3 bucket.
 	PermissionConfiguration *BucketPermissionConfiguration `locationName:"permissionConfiguration" type:"structure"`
 }
 
@@ -6405,7 +6923,7 @@ type ClassificationDetails struct {
 	JobId *string `locationName:"jobId" type:"string"`
 
 	// Provides detailed information about a sensitive data finding, including the
-	// types and number of occurrences of the data that was found.
+	// types and number of occurrences of the sensitive data that was found.
 	Result *ClassificationResult `locationName:"result" type:"structure"`
 }
 
@@ -6486,7 +7004,7 @@ func (s *ClassificationExportConfiguration) SetS3Destination(v *S3Destination) *
 }
 
 // Provides detailed information about a sensitive data finding, including the
-// types and number of occurrences of the data that was found.
+// types and number of occurrences of the sensitive data that was found.
 type ClassificationResult struct {
 	_ struct{} `type:"structure"`
 
@@ -6636,6 +7154,9 @@ func (s *ConflictException) RequestID() string {
 }
 
 // Specifies the scope, schedule, and other settings for a classification job.
+// You can't delete or change the settings for a classification job after you
+// create it. In Amazon Macie, classification jobs are immutable. This ensures
+// accurate data classification results for audits or investigations.
 type CreateClassificationJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6794,6 +7315,9 @@ func (s *CreateClassificationJobOutput) SetJobId(v string) *CreateClassification
 }
 
 // Specifies the criteria and other settings for a new custom data identifier.
+// You can't change a custom data identifier after you create it. In Amazon
+// Macie, custom data identifiers are immutable. This ensures accurate data
+// classification results for audits or investigations.
 type CreateCustomDataIdentifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7354,7 +7878,9 @@ func (s *CustomDataIdentifierSummary) SetName(v string) *CustomDataIdentifierSum
 type CustomDataIdentifiers struct {
 	_ struct{} `type:"structure"`
 
-	// Reserved for future use.
+	// Provides information about custom data identifiers that produced a sensitive
+	// data finding, and the number of occurrences of the data that each identifier
+	// detected.
 	Detections []*CustomDetection `locationName:"detections" type:"list"`
 
 	TotalCount *int64 `locationName:"totalCount" type:"long"`
@@ -7423,6 +7949,8 @@ func (s *CustomDetection) SetName(v string) *CustomDetection {
 	return s
 }
 
+// Specifies that a classification job runs once a day, every day. This is an
+// empty object.
 type DailySchedule struct {
 	_ struct{} `type:"structure"`
 }
@@ -7500,7 +8028,7 @@ func (s *DeclineInvitationsOutput) SetUnprocessedAccounts(v []*UnprocessedAccoun
 }
 
 // Provides information about sensitive data that was detected by managed data
-// identifiers and produced a finding.
+// identifiers and produced a sensitive data finding.
 type DefaultDetection struct {
 	_ struct{} `type:"structure"`
 
@@ -7894,7 +8422,7 @@ type DescribeClassificationJobOutput struct {
 
 	JobId *string `locationName:"jobId" type:"string"`
 
-	// The current status of a classification job. Valid values are:
+	// The current status of a classification job. Possible values are:
 	JobStatus *string `locationName:"jobStatus" type:"string" enum:"JobStatus"`
 
 	// The schedule for running a classification job. Valid values are:
@@ -8233,6 +8761,8 @@ func (s DisassociateMemberOutput) GoString() string {
 	return s.String()
 }
 
+// Provides information about the domain name of the device that an entity used
+// to perform an action on an affected resource.
 type DomainDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -8375,7 +8905,10 @@ func (s EnableOrganizationAdminAccountOutput) GoString() string {
 	return s.String()
 }
 
-// Reserved for future use.
+// Provides information about an identity that performed an action on an affected
+// resource by using temporary security credentials. The credentials were obtained
+// using the GetFederationToken operation of the AWS Security Token Service
+// (AWS STS) API.
 type FederatedUser struct {
 	_ struct{} `type:"structure"`
 
@@ -8457,7 +8990,7 @@ type Finding struct {
 
 	Partition *string `locationName:"partition" type:"string"`
 
-	// Provides detailed information about a policy finding.
+	// Provides the details of a policy finding.
 	PolicyDetails *PolicyDetails `locationName:"policyDetails" type:"structure"`
 
 	Region *string `locationName:"region" type:"string"`
@@ -8604,21 +9137,11 @@ type FindingAction struct {
 	_ struct{} `type:"structure"`
 
 	// The type of action that occurred for the resource and produced the policy
-	// finding.
+	// finding:
 	ActionType *string `locationName:"actionType" type:"string" enum:"FindingActionType"`
 
-	// For the affected resource:
-	//
-	//    * The name of the operation that was invoked most recently and produced
-	//    the finding (api).
-	//
-	//    * The first date and time when any operation was invoked and produced
-	//    the finding (firstSeen).
-	//
-	//    * The most recent date and time when the specified operation was invoked
-	//    and produced the finding (lastSeen).
-	//
-	// All date and time values are in UTC and extended ISO 8601 format.
+	// Provides information about an API operation that an entity invoked for an
+	// affected resource.
 	ApiCallDetails *ApiCallDetails `locationName:"apiCallDetails" type:"structure"`
 }
 
@@ -8649,10 +9172,16 @@ func (s *FindingAction) SetApiCallDetails(v *ApiCallDetails) *FindingAction {
 type FindingActor struct {
 	_ struct{} `type:"structure"`
 
+	// Provides information about the domain name of the device that an entity used
+	// to perform an action on an affected resource.
 	DomainDetails *DomainDetails `locationName:"domainDetails" type:"structure"`
 
+	// Provides information about the IP address of the device that an entity used
+	// to perform an action on an affected resource.
 	IpAddressDetails *IpAddressDetails `locationName:"ipAddressDetails" type:"structure"`
 
+	// Provides information about the type and other characteristics of an entity
+	// that performed an action on an affected resource.
 	UserIdentity *UserIdentity `locationName:"userIdentity" type:"structure"`
 }
 
@@ -8710,8 +9239,8 @@ func (s *FindingCriteria) SetCriterion(v map[string]*CriterionAdditionalProperti
 	return s
 }
 
-// Specifies criteria for sorting the results of a query for information about
-// findings.
+// Specifies criteria for sorting the results of a query that retrieves aggregated
+// statistical data about findings.
 type FindingStatisticsSortCriteria struct {
 	_ struct{} `type:"structure"`
 
@@ -8747,6 +9276,11 @@ func (s *FindingStatisticsSortCriteria) SetOrderBy(v string) *FindingStatisticsS
 type FindingsFilterListItem struct {
 	_ struct{} `type:"structure"`
 
+	// The action to perform on findings that meet the filter criteria. To suppress
+	// (automatically archive) findings that meet the criteria, set this value to
+	// ARCHIVE. Valid values are:
+	Action *string `locationName:"action" type:"string" enum:"FindingsFilterAction"`
+
 	Arn *string `locationName:"arn" type:"string"`
 
 	Id *string `locationName:"id" type:"string"`
@@ -8767,6 +9301,12 @@ func (s FindingsFilterListItem) String() string {
 // GoString returns the string representation
 func (s FindingsFilterListItem) GoString() string {
 	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *FindingsFilterListItem) SetAction(v string) *FindingsFilterListItem {
+	s.Action = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -8793,7 +9333,7 @@ func (s *FindingsFilterListItem) SetTags(v map[string]*string) *FindingsFilterLi
 	return s
 }
 
-// Specifies an account that's associated with S3 buckets to retrieve aggregated
+// Specifies an account that's associated with the S3 buckets to retrieve aggregated
 // statistical data for.
 type GetBucketStatisticsInput struct {
 	_ struct{} `type:"structure"`
@@ -8824,16 +9364,16 @@ type GetBucketStatisticsOutput struct {
 
 	BucketCount *int64 `locationName:"bucketCount" type:"long"`
 
-	// The total number of buckets that are publicly accessible, based on a combination
-	// of permissions settings for each bucket.
+	// Provides information about the number of S3 buckets that are publicly accessible
+	// based on a combination of permissions settings for each bucket.
 	BucketCountByEffectivePermission *BucketCountByEffectivePermission `locationName:"bucketCountByEffectivePermission" type:"structure"`
 
-	// The total number of buckets, grouped by server-side encryption type. This
-	// object also reports the total number of buckets that aren't encrypted.
+	// Provides information about the number of S3 buckets that use certain types
+	// of server-side encryption or don't encrypt objects by default.
 	BucketCountByEncryptionType *BucketCountByEncryptionType `locationName:"bucketCountByEncryptionType" type:"structure"`
 
-	// The total number of buckets that are shared with another AWS account or configured
-	// to support cross-origin resource sharing (CORS).
+	// Provides information about the number of S3 buckets that are shared with
+	// other AWS accounts.
 	BucketCountBySharedAccessType *BucketCountBySharedAccessType `locationName:"bucketCountBySharedAccessType" type:"structure"`
 
 	ClassifiableObjectCount *int64 `locationName:"classifiableObjectCount" type:"long"`
@@ -9099,7 +9639,7 @@ func (s *GetCustomDataIdentifierOutput) SetTags(v map[string]*string) *GetCustom
 }
 
 // Specifies criteria for filtering, grouping, sorting, and paginating the results
-// of a query for information about findings.
+// of a query that retrieves aggregated statistical data about findings.
 type GetFindingStatisticsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9112,8 +9652,8 @@ type GetFindingStatisticsInput struct {
 
 	Size *int64 `locationName:"size" type:"integer"`
 
-	// Specifies criteria for sorting the results of a query for information about
-	// findings.
+	// Specifies criteria for sorting the results of a query that retrieves aggregated
+	// statistical data about findings.
 	SortCriteria *FindingStatisticsSortCriteria `locationName:"sortCriteria" type:"structure"`
 }
 
@@ -9227,7 +9767,8 @@ func (s *GetFindingsFilterInput) SetId(v string) *GetFindingsFilterInput {
 	return s
 }
 
-// Provides information about a findings filter.
+// Provides information about the criteria and other settings for a findings
+// filter.
 type GetFindingsFilterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9782,8 +10323,8 @@ func (s *GetUsageTotalsOutput) SetUsageTotals(v []*UsageTotal) *GetUsageTotalsOu
 	return s
 }
 
-// Provides a group of results for a query that retrieved information about
-// findings.
+// Provides a group of results for a query that retrieved aggregated statistical
+// data about findings.
 type GroupCount struct {
 	_ struct{} `type:"structure"`
 
@@ -9814,7 +10355,8 @@ func (s *GroupCount) SetGroupKey(v string) *GroupCount {
 	return s
 }
 
-// Reserved for future use.
+// Provides information about an AWS Identity and Access Management (IAM) user
+// who performed an action on an affected resource.
 type IamUser struct {
 	_ struct{} `type:"structure"`
 
@@ -9968,21 +10510,24 @@ func (s *Invitation) SetRelationshipStatus(v string) *Invitation {
 	return s
 }
 
+// Provides information about the IP address of the device that an entity used
+// to perform an action on an affected resource.
 type IpAddressDetails struct {
 	_ struct{} `type:"structure"`
 
 	IpAddressV4 *string `locationName:"ipAddressV4" type:"string"`
 
-	// Reserved for future use.
+	// Provides information about the city that an IP address originated from.
 	IpCity *IpCity `locationName:"ipCity" type:"structure"`
 
-	// Reserved for future use.
+	// Provides information about the country that an IP address originated from.
 	IpCountry *IpCountry `locationName:"ipCountry" type:"structure"`
 
-	// Reserved for future use.
+	// Provides geographic coordinates that indicate where a specified IP address
+	// originated from.
 	IpGeoLocation *IpGeoLocation `locationName:"ipGeoLocation" type:"structure"`
 
-	// Reserved for future use.
+	// Provides information about the registered owner of an IP address.
 	IpOwner *IpOwner `locationName:"ipOwner" type:"structure"`
 }
 
@@ -10026,7 +10571,7 @@ func (s *IpAddressDetails) SetIpOwner(v *IpOwner) *IpAddressDetails {
 	return s
 }
 
-// Reserved for future use.
+// Provides information about the city that an IP address originated from.
 type IpCity struct {
 	_ struct{} `type:"structure"`
 
@@ -10049,7 +10594,7 @@ func (s *IpCity) SetName(v string) *IpCity {
 	return s
 }
 
-// Reserved for future use.
+// Provides information about the country that an IP address originated from.
 type IpCountry struct {
 	_ struct{} `type:"structure"`
 
@@ -10080,7 +10625,8 @@ func (s *IpCountry) SetName(v string) *IpCountry {
 	return s
 }
 
-// Reserved for future use.
+// Provides geographic coordinates that indicate where a specified IP address
+// originated from.
 type IpGeoLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -10111,7 +10657,7 @@ func (s *IpGeoLocation) SetLon(v float64) *IpGeoLocation {
 	return s
 }
 
-// Reserved for future use.
+// Provides information about the registered owner of an IP address.
 type IpOwner struct {
 	_ struct{} `type:"structure"`
 
@@ -10162,12 +10708,14 @@ func (s *IpOwner) SetOrg(v string) *IpOwner {
 type JobScheduleFrequency struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies that a classification job runs once a day, every day. This is an
+	// empty object.
 	DailySchedule *DailySchedule `locationName:"dailySchedule" type:"structure"`
 
-	// Run the job once a month, on a specific day of the month. This value can
-	// be an integer from 1 through 30.
+	// Specifies a monthly recurrence pattern for running a classification job.
 	MonthlySchedule *MonthlySchedule `locationName:"monthlySchedule" type:"structure"`
 
+	// Specifies a weekly recurrence pattern for running a classification job.
 	WeeklySchedule *WeeklySchedule `locationName:"weeklySchedule" type:"structure"`
 }
 
@@ -10199,8 +10747,8 @@ func (s *JobScheduleFrequency) SetWeeklySchedule(v *WeeklySchedule) *JobSchedule
 	return s
 }
 
-// Specifies one or more conditions that determine which objects a classification
-// job analyzes.
+// Specifies a property- or tag-based condition that defines criteria for including
+// or excluding objects from a classification job.
 type JobScopeTerm struct {
 	_ struct{} `type:"structure"`
 
@@ -10235,7 +10783,8 @@ func (s *JobScopeTerm) SetTagScopeTerm(v *TagScopeTerm) *JobScopeTerm {
 	return s
 }
 
-// Reserved for future use.
+// Specifies one or more property- and tag-based conditions that define criteria
+// for including or excluding objects from a classification job.
 type JobScopingBlock struct {
 	_ struct{} `type:"structure"`
 
@@ -10269,7 +10818,7 @@ type JobSummary struct {
 
 	JobId *string `locationName:"jobId" type:"string"`
 
-	// The current status of a classification job. Valid values are:
+	// The current status of a classification job. Possible values are:
 	JobStatus *string `locationName:"jobStatus" type:"string" enum:"JobStatus"`
 
 	// The schedule for running a classification job. Valid values are:
@@ -11154,8 +11703,7 @@ func (s *Member) SetUpdatedAt(v time.Time) *Member {
 	return s
 }
 
-// Run the job once a month, on a specific day of the month. This value can
-// be an integer from 1 through 30.
+// Specifies a monthly recurrence pattern for running a classification job.
 type MonthlySchedule struct {
 	_ struct{} `type:"structure"`
 
@@ -11178,6 +11726,9 @@ func (s *MonthlySchedule) SetDayOfMonth(v int64) *MonthlySchedule {
 	return s
 }
 
+// The total number of objects that are in the bucket, grouped by server-side
+// encryption type. This includes a grouping that reports the total number of
+// objects that aren't encrypted.
 type ObjectCountByEncryptionType struct {
 	_ struct{} `type:"structure"`
 
@@ -11224,7 +11775,7 @@ func (s *ObjectCountByEncryptionType) SetUnencrypted(v int64) *ObjectCountByEncr
 	return s
 }
 
-// Provides detailed information about a policy finding.
+// Provides the details of a policy finding.
 type PolicyDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -11486,7 +12037,9 @@ type S3Bucket struct {
 	// S3 bucket is publicly accessible.
 	PublicAccess *BucketPublicAccess `locationName:"publicAccess" type:"structure"`
 
-	// Reserved for future use.
+	// Provides information about the tags that are associated with an S3 bucket
+	// or object. Each tag consists of a required tag key and an associated tag
+	// value.
 	Tags []*KeyValuePair `locationName:"tags" type:"list"`
 }
 
@@ -11670,6 +12223,9 @@ type S3JobDefinition struct {
 
 	BucketDefinitions []*S3BucketDefinitionForJob `locationName:"bucketDefinitions" type:"list"`
 
+	// Specifies one or more property- and tag-based conditions that refine the
+	// scope of a classification job. These conditions define criteria that determine
+	// which objects a job analyzes.
 	Scoping *Scoping `locationName:"scoping" type:"structure"`
 }
 
@@ -11719,10 +12275,12 @@ type S3Object struct {
 
 	Size *int64 `locationName:"size" type:"long"`
 
-	// The storage class of the S3 bucket or object. Valid values are:
+	// The storage class of the S3 bucket or object. Possible values are:
 	StorageClass *string `locationName:"storageClass" type:"string" enum:"StorageClass"`
 
-	// Reserved for future use.
+	// Provides information about the tags that are associated with an S3 bucket
+	// or object. Each tag consists of a required tag key and an associated tag
+	// value.
 	Tags []*KeyValuePair `locationName:"tags" type:"list"`
 
 	VersionId *string `locationName:"versionId" type:"string"`
@@ -11810,13 +12368,18 @@ func (s *S3Object) SetVersionId(v string) *S3Object {
 	return s
 }
 
+// Specifies one or more property- and tag-based conditions that refine the
+// scope of a classification job. These conditions define criteria that determine
+// which objects a job analyzes.
 type Scoping struct {
 	_ struct{} `type:"structure"`
 
-	// Reserved for future use.
+	// Specifies one or more property- and tag-based conditions that define criteria
+	// for including or excluding objects from a classification job.
 	Excludes *JobScopingBlock `locationName:"excludes" type:"structure"`
 
-	// Reserved for future use.
+	// Specifies one or more property- and tag-based conditions that define criteria
+	// for including or excluding objects from a classification job.
 	Includes *JobScopingBlock `locationName:"includes" type:"structure"`
 }
 
@@ -11848,9 +12411,12 @@ type SensitiveDataItem struct {
 	_ struct{} `type:"structure"`
 
 	// The category of sensitive data that was detected and produced the finding.
+	// Possible values are:
 	Category *string `locationName:"category" type:"string" enum:"SensitiveDataItemCategory"`
 
-	// Reserved for future use.
+	// Provides information about sensitive data that was detected by managed data
+	// identifiers and produced a sensitive data finding, and the number of occurrences
+	// of each type of sensitive data that was detected.
 	Detections []*DefaultDetection `locationName:"detections" type:"list"`
 
 	TotalCount *int64 `locationName:"totalCount" type:"long"`
@@ -11889,8 +12455,8 @@ func (s *SensitiveDataItem) SetTotalCount(v int64) *SensitiveDataItem {
 type ServerSideEncryption struct {
 	_ struct{} `type:"structure"`
 
-	// The server-side encryption algorithm that's used when storing the S3 bucket
-	// or object. Valid values are:
+	// The type of server-side encryption that's used to encrypt objects in the
+	// S3 bucket. Valid values are:
 	EncryptionType *string `locationName:"encryptionType" type:"string" enum:"EncryptionType"`
 
 	KmsMasterKeyId *string `locationName:"kmsMasterKeyId" type:"string"`
@@ -12142,7 +12708,7 @@ func (s *SessionIssuer) SetUserName(v string) *SessionIssuer {
 type Severity struct {
 	_ struct{} `type:"structure"`
 
-	// The textual representation of the finding's severity. Valid values are:
+	// The textual representation of the finding's severity. Possible values are:
 	Description *string `locationName:"description" type:"string" enum:"SeverityDescription"`
 
 	Score *int64 `locationName:"score" type:"long"`
@@ -12696,7 +13262,7 @@ type UpdateClassificationJobInput struct {
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
 
-	// The current status of a classification job. Valid values are:
+	// The current status of a classification job. Possible values are:
 	//
 	// JobStatus is a required field
 	JobStatus *string `locationName:"jobStatus" type:"string" required:"true" enum:"JobStatus"`
@@ -13142,7 +13708,7 @@ type UsageStatisticsFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The field to use to filter the results of a query for account quotas and
-	// usage data.
+	// usage data:
 	Key *string `locationName:"key" type:"string" enum:"UsageStatisticsFilterKey"`
 
 	Values []*string `locationName:"values" type:"list"`
@@ -13176,7 +13742,7 @@ type UsageStatisticsSortBy struct {
 	_ struct{} `type:"structure"`
 
 	// The field to use to sort the results of a query for account quotas and usage
-	// data.
+	// data. Valid values are:
 	Key *string `locationName:"key" type:"string" enum:"UsageStatisticsSortKey"`
 
 	OrderBy *string `locationName:"orderBy" type:"string" enum:"OrderBy"`
@@ -13247,28 +13813,43 @@ func (s *UsageTotal) SetType(v string) *UsageTotal {
 	return s
 }
 
+// Provides information about the type and other characteristics of an entity
+// that performed an action on an affected resource.
 type UserIdentity struct {
 	_ struct{} `type:"structure"`
 
-	// Reserved for future use.
+	// Provides information about an identity that performed an action on an affected
+	// resource by using temporary security credentials. The credentials were obtained
+	// using the AssumeRole operation of the AWS Security Token Service (AWS STS)
+	// API.
 	AssumedRole *AssumedRole `locationName:"assumedRole" type:"structure"`
 
-	// Reserved for future use.
+	// Provides information about an AWS account and entity that performed an action
+	// on an affected resource. The action was performed using the credentials for
+	// an AWS account other than your own account.
 	AwsAccount *AwsAccount `locationName:"awsAccount" type:"structure"`
 
-	// Reserved for future use.
+	// Provides information about an AWS service that performed an action on an
+	// affected resource.
 	AwsService *AwsService `locationName:"awsService" type:"structure"`
 
-	// Reserved for future use.
+	// Provides information about an identity that performed an action on an affected
+	// resource by using temporary security credentials. The credentials were obtained
+	// using the GetFederationToken operation of the AWS Security Token Service
+	// (AWS STS) API.
 	FederatedUser *FederatedUser `locationName:"federatedUser" type:"structure"`
 
-	// Reserved for future use.
+	// Provides information about an AWS Identity and Access Management (IAM) user
+	// who performed an action on an affected resource.
 	IamUser *IamUser `locationName:"iamUser" type:"structure"`
 
-	// Reserved for future use.
+	// Provides information about an AWS account and entity that performed an action
+	// on an affected resource. The action was performed using the credentials for
+	// your AWS account.
 	Root *UserIdentityRoot `locationName:"root" type:"structure"`
 
-	// Reserved for future use.
+	// The type of entity that performed the action on the affected resource. Possible
+	// values are:
 	Type *string `locationName:"type" type:"string" enum:"UserIdentityType"`
 }
 
@@ -13324,7 +13905,9 @@ func (s *UserIdentity) SetType(v string) *UserIdentity {
 	return s
 }
 
-// Reserved for future use.
+// Provides information about an AWS account and entity that performed an action
+// on an affected resource. The action was performed using the credentials for
+// your AWS account.
 type UserIdentityRoot struct {
 	_ struct{} `type:"structure"`
 
@@ -13420,6 +14003,7 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Specifies a weekly recurrence pattern for running a classification job.
 type WeeklySchedule struct {
 	_ struct{} `type:"structure"`
 
@@ -13490,8 +14074,8 @@ const (
 	EffectivePermissionNotPublic = "NOT_PUBLIC"
 )
 
-// The server-side encryption algorithm that's used when storing the S3 bucket
-// or object. Valid values are:
+// The type of server-side encryption that's used to encrypt objects in the
+// S3 bucket. Valid values are:
 const (
 	// EncryptionTypeNone is a EncryptionType enum value
 	EncryptionTypeNone = "NONE"
@@ -13516,7 +14100,7 @@ const (
 )
 
 // The type of action that occurred for the resource and produced the policy
-// finding.
+// finding:
 const (
 	// FindingActionTypeAwsApiCall is a FindingActionType enum value
 	FindingActionTypeAwsApiCall = "AWS_API_CALL"
@@ -13637,7 +14221,7 @@ const (
 	JobComparatorContains = "CONTAINS"
 )
 
-// The current status of a classification job. Valid values are:
+// The current status of a classification job. Possible values are:
 const (
 	// JobStatusRunning is a JobStatus enum value
 	JobStatusRunning = "RUNNING"
@@ -13737,6 +14321,12 @@ const (
 
 	// RelationshipStatusEmailVerificationFailed is a RelationshipStatus enum value
 	RelationshipStatusEmailVerificationFailed = "EmailVerificationFailed"
+
+	// RelationshipStatusRegionDisabled is a RelationshipStatus enum value
+	RelationshipStatusRegionDisabled = "RegionDisabled"
+
+	// RelationshipStatusAccountSuspended is a RelationshipStatus enum value
+	RelationshipStatusAccountSuspended = "AccountSuspended"
 )
 
 // The property to use in a condition that determines which objects are analyzed
@@ -13759,6 +14349,7 @@ const (
 )
 
 // The category of sensitive data that was detected and produced the finding.
+// Possible values are:
 const (
 	// SensitiveDataItemCategoryFinancialInformation is a SensitiveDataItemCategory enum value
 	SensitiveDataItemCategoryFinancialInformation = "FINANCIAL_INFORMATION"
@@ -13773,7 +14364,7 @@ const (
 	SensitiveDataItemCategoryCustomIdentifier = "CUSTOM_IDENTIFIER"
 )
 
-// The textual representation of the finding's severity. Valid values are:
+// The textual representation of the finding's severity. Possible values are:
 const (
 	// SeverityDescriptionLow is a SeverityDescription enum value
 	SeverityDescriptionLow = "Low"
@@ -13796,7 +14387,7 @@ const (
 	SharedAccessNotShared = "NOT_SHARED"
 )
 
-// The storage class of the S3 bucket or object. Valid values are:
+// The storage class of the S3 bucket or object. Possible values are:
 const (
 	// StorageClassStandard is a StorageClass enum value
 	StorageClassStandard = "STANDARD"
@@ -13832,14 +14423,14 @@ const (
 )
 
 // The field to use to filter the results of a query for account quotas and
-// usage data.
+// usage data:
 const (
 	// UsageStatisticsFilterKeyAccountId is a UsageStatisticsFilterKey enum value
 	UsageStatisticsFilterKeyAccountId = "accountId"
 )
 
 // The field to use to sort the results of a query for account quotas and usage
-// data.
+// data. Valid values are:
 const (
 	// UsageStatisticsSortKeyAccountId is a UsageStatisticsSortKey enum value
 	UsageStatisticsSortKeyAccountId = "accountId"
@@ -13857,7 +14448,8 @@ const (
 	UsageTypeSensitiveDataDiscovery = "SENSITIVE_DATA_DISCOVERY"
 )
 
-// Reserved for future use.
+// The type of entity that performed the action on the affected resource. Possible
+// values are:
 const (
 	// UserIdentityTypeAssumedRole is a UserIdentityType enum value
 	UserIdentityTypeAssumedRole = "AssumedRole"

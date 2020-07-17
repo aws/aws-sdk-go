@@ -116,6 +116,9 @@ type Macie2API interface {
 	DescribeBucketsWithContext(aws.Context, *macie2.DescribeBucketsInput, ...request.Option) (*macie2.DescribeBucketsOutput, error)
 	DescribeBucketsRequest(*macie2.DescribeBucketsInput) (*request.Request, *macie2.DescribeBucketsOutput)
 
+	DescribeBucketsPages(*macie2.DescribeBucketsInput, func(*macie2.DescribeBucketsOutput, bool) bool) error
+	DescribeBucketsPagesWithContext(aws.Context, *macie2.DescribeBucketsInput, func(*macie2.DescribeBucketsOutput, bool) bool, ...request.Option) error
+
 	DescribeClassificationJob(*macie2.DescribeClassificationJobInput) (*macie2.DescribeClassificationJobOutput, error)
 	DescribeClassificationJobWithContext(aws.Context, *macie2.DescribeClassificationJobInput, ...request.Option) (*macie2.DescribeClassificationJobOutput, error)
 	DescribeClassificationJobRequest(*macie2.DescribeClassificationJobInput) (*request.Request, *macie2.DescribeClassificationJobOutput)
@@ -192,6 +195,9 @@ type Macie2API interface {
 	GetUsageStatisticsWithContext(aws.Context, *macie2.GetUsageStatisticsInput, ...request.Option) (*macie2.GetUsageStatisticsOutput, error)
 	GetUsageStatisticsRequest(*macie2.GetUsageStatisticsInput) (*request.Request, *macie2.GetUsageStatisticsOutput)
 
+	GetUsageStatisticsPages(*macie2.GetUsageStatisticsInput, func(*macie2.GetUsageStatisticsOutput, bool) bool) error
+	GetUsageStatisticsPagesWithContext(aws.Context, *macie2.GetUsageStatisticsInput, func(*macie2.GetUsageStatisticsOutput, bool) bool, ...request.Option) error
+
 	GetUsageTotals(*macie2.GetUsageTotalsInput) (*macie2.GetUsageTotalsOutput, error)
 	GetUsageTotalsWithContext(aws.Context, *macie2.GetUsageTotalsInput, ...request.Option) (*macie2.GetUsageTotalsOutput, error)
 	GetUsageTotalsRequest(*macie2.GetUsageTotalsInput) (*request.Request, *macie2.GetUsageTotalsOutput)
@@ -200,29 +206,50 @@ type Macie2API interface {
 	ListClassificationJobsWithContext(aws.Context, *macie2.ListClassificationJobsInput, ...request.Option) (*macie2.ListClassificationJobsOutput, error)
 	ListClassificationJobsRequest(*macie2.ListClassificationJobsInput) (*request.Request, *macie2.ListClassificationJobsOutput)
 
+	ListClassificationJobsPages(*macie2.ListClassificationJobsInput, func(*macie2.ListClassificationJobsOutput, bool) bool) error
+	ListClassificationJobsPagesWithContext(aws.Context, *macie2.ListClassificationJobsInput, func(*macie2.ListClassificationJobsOutput, bool) bool, ...request.Option) error
+
 	ListCustomDataIdentifiers(*macie2.ListCustomDataIdentifiersInput) (*macie2.ListCustomDataIdentifiersOutput, error)
 	ListCustomDataIdentifiersWithContext(aws.Context, *macie2.ListCustomDataIdentifiersInput, ...request.Option) (*macie2.ListCustomDataIdentifiersOutput, error)
 	ListCustomDataIdentifiersRequest(*macie2.ListCustomDataIdentifiersInput) (*request.Request, *macie2.ListCustomDataIdentifiersOutput)
+
+	ListCustomDataIdentifiersPages(*macie2.ListCustomDataIdentifiersInput, func(*macie2.ListCustomDataIdentifiersOutput, bool) bool) error
+	ListCustomDataIdentifiersPagesWithContext(aws.Context, *macie2.ListCustomDataIdentifiersInput, func(*macie2.ListCustomDataIdentifiersOutput, bool) bool, ...request.Option) error
 
 	ListFindings(*macie2.ListFindingsInput) (*macie2.ListFindingsOutput, error)
 	ListFindingsWithContext(aws.Context, *macie2.ListFindingsInput, ...request.Option) (*macie2.ListFindingsOutput, error)
 	ListFindingsRequest(*macie2.ListFindingsInput) (*request.Request, *macie2.ListFindingsOutput)
 
+	ListFindingsPages(*macie2.ListFindingsInput, func(*macie2.ListFindingsOutput, bool) bool) error
+	ListFindingsPagesWithContext(aws.Context, *macie2.ListFindingsInput, func(*macie2.ListFindingsOutput, bool) bool, ...request.Option) error
+
 	ListFindingsFilters(*macie2.ListFindingsFiltersInput) (*macie2.ListFindingsFiltersOutput, error)
 	ListFindingsFiltersWithContext(aws.Context, *macie2.ListFindingsFiltersInput, ...request.Option) (*macie2.ListFindingsFiltersOutput, error)
 	ListFindingsFiltersRequest(*macie2.ListFindingsFiltersInput) (*request.Request, *macie2.ListFindingsFiltersOutput)
+
+	ListFindingsFiltersPages(*macie2.ListFindingsFiltersInput, func(*macie2.ListFindingsFiltersOutput, bool) bool) error
+	ListFindingsFiltersPagesWithContext(aws.Context, *macie2.ListFindingsFiltersInput, func(*macie2.ListFindingsFiltersOutput, bool) bool, ...request.Option) error
 
 	ListInvitations(*macie2.ListInvitationsInput) (*macie2.ListInvitationsOutput, error)
 	ListInvitationsWithContext(aws.Context, *macie2.ListInvitationsInput, ...request.Option) (*macie2.ListInvitationsOutput, error)
 	ListInvitationsRequest(*macie2.ListInvitationsInput) (*request.Request, *macie2.ListInvitationsOutput)
 
+	ListInvitationsPages(*macie2.ListInvitationsInput, func(*macie2.ListInvitationsOutput, bool) bool) error
+	ListInvitationsPagesWithContext(aws.Context, *macie2.ListInvitationsInput, func(*macie2.ListInvitationsOutput, bool) bool, ...request.Option) error
+
 	ListMembers(*macie2.ListMembersInput) (*macie2.ListMembersOutput, error)
 	ListMembersWithContext(aws.Context, *macie2.ListMembersInput, ...request.Option) (*macie2.ListMembersOutput, error)
 	ListMembersRequest(*macie2.ListMembersInput) (*request.Request, *macie2.ListMembersOutput)
 
+	ListMembersPages(*macie2.ListMembersInput, func(*macie2.ListMembersOutput, bool) bool) error
+	ListMembersPagesWithContext(aws.Context, *macie2.ListMembersInput, func(*macie2.ListMembersOutput, bool) bool, ...request.Option) error
+
 	ListOrganizationAdminAccounts(*macie2.ListOrganizationAdminAccountsInput) (*macie2.ListOrganizationAdminAccountsOutput, error)
 	ListOrganizationAdminAccountsWithContext(aws.Context, *macie2.ListOrganizationAdminAccountsInput, ...request.Option) (*macie2.ListOrganizationAdminAccountsOutput, error)
 	ListOrganizationAdminAccountsRequest(*macie2.ListOrganizationAdminAccountsInput) (*request.Request, *macie2.ListOrganizationAdminAccountsOutput)
+
+	ListOrganizationAdminAccountsPages(*macie2.ListOrganizationAdminAccountsInput, func(*macie2.ListOrganizationAdminAccountsOutput, bool) bool) error
+	ListOrganizationAdminAccountsPagesWithContext(aws.Context, *macie2.ListOrganizationAdminAccountsInput, func(*macie2.ListOrganizationAdminAccountsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*macie2.ListTagsForResourceInput) (*macie2.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *macie2.ListTagsForResourceInput, ...request.Option) (*macie2.ListTagsForResourceOutput, error)
