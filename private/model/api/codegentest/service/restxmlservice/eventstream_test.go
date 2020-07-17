@@ -98,6 +98,68 @@ func TestEmptyStream_ReadClose(t *testing.T) {
 	}
 }
 
+func TestEmptyStream_ReadUnknownEvent(t *testing.T) {
+	expectEvents, eventMsgs := mockEmptyStreamReadEvents()
+	var eventOffset int
+
+	unknownEvent := eventstream.Message{
+		Headers: eventstream.Headers{
+			eventstreamtest.EventMessageTypeHeader,
+			{
+				Name:  eventstreamapi.EventTypeHeader,
+				Value: eventstream.StringValue("UnknownEventName"),
+			},
+		},
+		Payload: []byte("some unknown event"),
+	}
+
+	eventMsgs = append(eventMsgs[:eventOffset],
+		append([]eventstream.Message{unknownEvent}, eventMsgs[eventOffset:]...)...)
+
+	expectEvents = append(expectEvents[:eventOffset],
+		append([]EmptyEventStreamEvent{
+			&EmptyEventStreamUnknownEvent{
+				Type:    "UnknownEventName",
+				Message: unknownEvent,
+			},
+		},
+			expectEvents[eventOffset:]...)...)
+
+	sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+		eventstreamtest.ServeEventStream{
+			T:      t,
+			Events: eventMsgs,
+		},
+		true,
+	)
+	if err != nil {
+		t.Fatalf("expect no error, %v", err)
+	}
+	defer cleanupFn()
+
+	svc := New(sess)
+	resp, err := svc.EmptyStream(nil)
+	if err != nil {
+		t.Fatalf("expect no error got, %v", err)
+	}
+	defer resp.GetStream().Close()
+
+	var i int
+	for event := range resp.GetStream().Events() {
+		if event == nil {
+			t.Errorf("%d, expect event, got nil", i)
+		}
+		if e, a := expectEvents[i], event; !reflect.DeepEqual(e, a) {
+			t.Errorf("%d, expect %T %v, got %T %v", i, e, e, a, a)
+		}
+		i++
+	}
+
+	if err := resp.GetStream().Err(); err != nil {
+		t.Errorf("expect no error, %v", err)
+	}
+}
+
 func BenchmarkEmptyStream_Read(b *testing.B) {
 	_, eventMsgs := mockEmptyStreamReadEvents()
 	var buf bytes.Buffer
@@ -232,6 +294,68 @@ func TestGetEventStream_ReadClose(t *testing.T) {
 
 	resp.GetStream().Close()
 	<-resp.GetStream().Events()
+
+	if err := resp.GetStream().Err(); err != nil {
+		t.Errorf("expect no error, %v", err)
+	}
+}
+
+func TestGetEventStream_ReadUnknownEvent(t *testing.T) {
+	expectEvents, eventMsgs := mockGetEventStreamReadEvents()
+	var eventOffset int
+
+	unknownEvent := eventstream.Message{
+		Headers: eventstream.Headers{
+			eventstreamtest.EventMessageTypeHeader,
+			{
+				Name:  eventstreamapi.EventTypeHeader,
+				Value: eventstream.StringValue("UnknownEventName"),
+			},
+		},
+		Payload: []byte("some unknown event"),
+	}
+
+	eventMsgs = append(eventMsgs[:eventOffset],
+		append([]eventstream.Message{unknownEvent}, eventMsgs[eventOffset:]...)...)
+
+	expectEvents = append(expectEvents[:eventOffset],
+		append([]EventStreamEvent{
+			&EventStreamUnknownEvent{
+				Type:    "UnknownEventName",
+				Message: unknownEvent,
+			},
+		},
+			expectEvents[eventOffset:]...)...)
+
+	sess, cleanupFn, err := eventstreamtest.SetupEventStreamSession(t,
+		eventstreamtest.ServeEventStream{
+			T:      t,
+			Events: eventMsgs,
+		},
+		true,
+	)
+	if err != nil {
+		t.Fatalf("expect no error, %v", err)
+	}
+	defer cleanupFn()
+
+	svc := New(sess)
+	resp, err := svc.GetEventStream(nil)
+	if err != nil {
+		t.Fatalf("expect no error got, %v", err)
+	}
+	defer resp.GetStream().Close()
+
+	var i int
+	for event := range resp.GetStream().Events() {
+		if event == nil {
+			t.Errorf("%d, expect event, got nil", i)
+		}
+		if e, a := expectEvents[i], event; !reflect.DeepEqual(e, a) {
+			t.Errorf("%d, expect %T %v, got %T %v", i, e, e, a, a)
+		}
+		i++
+	}
 
 	if err := resp.GetStream().Err(); err != nil {
 		t.Errorf("expect no error, %v", err)

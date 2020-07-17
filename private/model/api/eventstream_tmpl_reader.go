@@ -18,6 +18,7 @@ var eventStreamShapeReaderTmpl = template.Must(template.New("eventStreamShapeRea
 // {{ range $_, $event := $es.Events }}
 //     * {{ $event.Shape.ShapeName }}
 {{- end }}
+//     * {{ $es.StreamUnknownEventName }}
 type {{ $es.StreamReaderAPIName }} interface {
 	// Returns a channel of events as they are read from the event stream.
 	Events() <-chan {{ $es.EventGroupName }}
@@ -92,6 +93,9 @@ func (r *{{ $es.StreamReaderImplName }}) readEventStream() {
 				return
 			default:
 			}
+			if _, ok := err.(*eventstreamapi.UnknownMessageTypeError); ok {
+				continue
+			}
 			r.err.SetError(err)
 			return
 		}
@@ -119,11 +123,36 @@ func (u {{ $es.StreamUnmarshalerForEventName }}) UnmarshalerForEventName(eventTy
 				return newError{{ $event.Shape.ShapeName }}(u.metadata).(eventstreamapi.Unmarshaler), nil
 		{{- end }}
 	default:
-		return nil, awserr.New(
-			request.ErrCodeSerialization,
-			fmt.Sprintf("unknown event type name, %s, for {{ $es.Name }}", eventType),
-			nil,
-		)
+		return &{{ $es.StreamUnknownEventName }}{Type: eventType}, nil
 	}
+}
+
+// {{ $es.StreamUnknownEventName }} provides a failsafe event for the 
+// {{ $es.Name }} group of events when an unknown event is received.
+type {{ $es.StreamUnknownEventName }} struct {
+	Type string
+	Message eventstream.Message
+}
+
+// The {{ $es.StreamUnknownEventName }} is and event in the {{ $es.Name }}
+// group of events.
+func (s *{{ $es.StreamUnknownEventName }}) event{{ $es.Name }}() {}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (e *{{ $es.StreamUnknownEventName }}) MarshalEvent(pm protocol.PayloadMarshaler) (
+	msg eventstream.Message, err error,
+) {
+	return e.Message.Clone(), nil
+}
+
+// UnmarshalEvent unmarshals the EventStream Message into the {{ $.ShapeName }} value.
+// This method is only used internally within the SDK's EventStream handling.
+func (e *{{ $es.StreamUnknownEventName }}) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	e.Message = msg.Clone()
+	return nil
 }
 `))

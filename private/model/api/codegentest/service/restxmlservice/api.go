@@ -101,6 +101,8 @@ func (c *RESTXMLService) EmptyStreamWithContext(ctx aws.Context, input *EmptyStr
 	return out, req.Send()
 }
 
+var _ awserr.Error
+
 // EmptyStreamEventStream provides the event stream handling for the EmptyStream.
 type EmptyStreamEventStream struct {
 
@@ -161,6 +163,7 @@ func (es *EmptyStreamEventStream) waitStreamPartClose() {
 //
 // These events are:
 //
+//     * EmptyEventStreamUnknownEvent
 func (es *EmptyStreamEventStream) Events() <-chan EmptyEventStreamEvent {
 	return es.Reader.Events()
 }
@@ -306,6 +309,8 @@ func (c *RESTXMLService) GetEventStreamWithContext(ctx aws.Context, input *GetEv
 	return out, req.Send()
 }
 
+var _ awserr.Error
+
 // GetEventStreamEventStream provides the event stream handling for the GetEventStream.
 type GetEventStreamEventStream struct {
 
@@ -373,6 +378,7 @@ func (es *GetEventStreamEventStream) waitStreamPartClose() {
 //     * PayloadOnlyEvent
 //     * PayloadOnlyBlobEvent
 //     * PayloadOnlyStringEvent
+//     * EventStreamUnknownEvent
 func (es *GetEventStreamEventStream) Events() <-chan EventStreamEvent {
 	return es.Reader.Events()
 }
@@ -541,6 +547,8 @@ func (s *EmptyEvent) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *EmptyEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	return msg, err
@@ -564,6 +572,7 @@ type EmptyEventStreamEvent interface {
 //
 // These events are:
 //
+//     * EmptyEventStreamUnknownEvent
 type EmptyEventStreamReader interface {
 	// Returns a channel of events as they are read from the event stream.
 	Events() <-chan EmptyEventStreamEvent
@@ -638,6 +647,9 @@ func (r *readEmptyEventStream) readEventStream() {
 				return
 			default:
 			}
+			if _, ok := err.(*eventstreamapi.UnknownMessageTypeError); ok {
+				continue
+			}
 			r.err.SetError(err)
 			return
 		}
@@ -657,12 +669,37 @@ type unmarshalerForEmptyEventStreamEvent struct {
 func (u unmarshalerForEmptyEventStreamEvent) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 	default:
-		return nil, awserr.New(
-			request.ErrCodeSerialization,
-			fmt.Sprintf("unknown event type name, %s, for EmptyEventStream", eventType),
-			nil,
-		)
+		return &EmptyEventStreamUnknownEvent{Type: eventType}, nil
 	}
+}
+
+// EmptyEventStreamUnknownEvent provides a failsafe event for the
+// EmptyEventStream group of events when an unknown event is received.
+type EmptyEventStreamUnknownEvent struct {
+	Type    string
+	Message eventstream.Message
+}
+
+// The EmptyEventStreamUnknownEvent is and event in the EmptyEventStream
+// group of events.
+func (s *EmptyEventStreamUnknownEvent) eventEmptyEventStream() {}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (e *EmptyEventStreamUnknownEvent) MarshalEvent(pm protocol.PayloadMarshaler) (
+	msg eventstream.Message, err error,
+) {
+	return e.Message.Clone(), nil
+}
+
+// UnmarshalEvent unmarshals the EventStream Message into the EmptyEventStream value.
+// This method is only used internally within the SDK's EventStream handling.
+func (e *EmptyEventStreamUnknownEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	e.Message = msg.Clone()
+	return nil
 }
 
 type EmptyStreamInput struct {
@@ -732,6 +769,7 @@ type EventStreamEvent interface {
 //     * PayloadOnlyEvent
 //     * PayloadOnlyBlobEvent
 //     * PayloadOnlyStringEvent
+//     * EventStreamUnknownEvent
 type EventStreamReader interface {
 	// Returns a channel of events as they are read from the event stream.
 	Events() <-chan EventStreamEvent
@@ -806,6 +844,9 @@ func (r *readEventStream) readEventStream() {
 				return
 			default:
 			}
+			if _, ok := err.(*eventstreamapi.UnknownMessageTypeError); ok {
+				continue
+			}
 			r.err.SetError(err)
 			return
 		}
@@ -843,12 +884,37 @@ func (u unmarshalerForEventStreamEvent) UnmarshalerForEventName(eventType string
 	case "Exception2":
 		return newErrorExceptionEvent2(u.metadata).(eventstreamapi.Unmarshaler), nil
 	default:
-		return nil, awserr.New(
-			request.ErrCodeSerialization,
-			fmt.Sprintf("unknown event type name, %s, for EventStream", eventType),
-			nil,
-		)
+		return &EventStreamUnknownEvent{Type: eventType}, nil
 	}
+}
+
+// EventStreamUnknownEvent provides a failsafe event for the
+// EventStream group of events when an unknown event is received.
+type EventStreamUnknownEvent struct {
+	Type    string
+	Message eventstream.Message
+}
+
+// The EventStreamUnknownEvent is and event in the EventStream
+// group of events.
+func (s *EventStreamUnknownEvent) eventEventStream() {}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (e *EventStreamUnknownEvent) MarshalEvent(pm protocol.PayloadMarshaler) (
+	msg eventstream.Message, err error,
+) {
+	return e.Message.Clone(), nil
+}
+
+// UnmarshalEvent unmarshals the EventStream Message into the EventStream value.
+// This method is only used internally within the SDK's EventStream handling.
+func (e *EventStreamUnknownEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	e.Message = msg.Clone()
+	return nil
 }
 
 type ExceptionEvent struct {
@@ -887,6 +953,8 @@ func (s *ExceptionEvent) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *ExceptionEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
@@ -969,6 +1037,8 @@ func (s *ExceptionEvent2) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *ExceptionEvent2) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
@@ -1080,6 +1150,8 @@ func (s *ExplicitPayloadEvent) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *ExplicitPayloadEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	msg.Headers.Set("LongVal", eventstream.Int64Value(*s.LongVal))
@@ -1277,6 +1349,8 @@ func (s *HeaderOnlyEvent) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *HeaderOnlyEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	msg.Headers.Set("BlobVal", eventstream.BytesValue(s.BlobVal))
@@ -1350,6 +1424,8 @@ func (s *ImplicitPayloadEvent) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *ImplicitPayloadEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	msg.Headers.Set("ByteVal", eventstream.Int8Value(int8(*s.ByteVal)))
@@ -1456,6 +1532,8 @@ func (s *PayloadOnlyBlobEvent) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *PayloadOnlyBlobEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	msg.Headers.Set(":content-type", eventstream.StringValue("application/octet-stream"))
@@ -1502,6 +1580,8 @@ func (s *PayloadOnlyEvent) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *PayloadOnlyEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	var buf bytes.Buffer
@@ -1547,6 +1627,8 @@ func (s *PayloadOnlyStringEvent) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *PayloadOnlyStringEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	msg.Payload = []byte(aws.StringValue(s.StringPayload))

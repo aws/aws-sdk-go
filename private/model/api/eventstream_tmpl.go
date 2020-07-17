@@ -21,6 +21,10 @@ func renderEventStreamAPI(w io.Writer, op *Operation) error {
 	op.API.AddSDKImport("private/protocol/eventstream")
 	op.API.AddSDKImport("private/protocol/eventstream/eventstreamapi")
 
+	w.Write([]byte(`
+var _ awserr.Error
+`))
+
 	return eventStreamAPITmpl.Execute(w, op)
 }
 
@@ -254,6 +258,7 @@ func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 	// {{ range $_, $event := $outputStream.Events }}
 	//     * {{ $event.Shape.ShapeName }}
 	{{- end }}
+    //     * {{ $outputStream.StreamUnknownEventName }}
 	func (es *{{ $esapi.Name }}) Events() <-chan {{ $outputStream.EventGroupName }} {
 		return es.Reader.Events()
 	}
@@ -584,6 +589,8 @@ func (s *{{ $.ShapeName }}) UnmarshalEvent(
 	return nil
 }
 
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
 func (s *{{ $.ShapeName}}) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue({{ ShapeMessageType $ }}))
 

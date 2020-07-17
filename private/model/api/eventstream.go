@@ -71,6 +71,10 @@ func (es *EventStream) StreamUnmarshalerForEventName() string {
 	return "unmarshalerFor" + es.Name + "Event"
 }
 
+func (es *EventStream) StreamUnknownEventName() string {
+	return es.Name + "UnknownEvent"
+}
+
 // Event is a single EventStream event that can be sent or received in an
 // EventStream.
 type Event struct {
