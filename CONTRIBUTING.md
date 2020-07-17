@@ -1,14 +1,43 @@
-Contributing to the AWS SDK for Go
+# Contributing to the AWS SDK for Go
 
+Thank you for your interest in contributing to the AWS SDK for Go!
 We work hard to provide a high-quality and useful SDK, and we greatly value
 feedback and contributions from our community. Whether it's a bug report,
 new feature, correction, or additional documentation, we welcome your issues
 and pull requests. Please read through this document before submitting any
-issues or pull requests to ensure we have all the necessary information to
+[issues][] or [pull requests][pr] to ensure we have all the necessary information to
 effectively respond to your bug report or contribution.
 
+Jump To:
 
-## Filing Bug Reports
+* [Bug Reports](_#Bug-Reports_)
+* [Feature Requests](_#Feature-Requests_)
+* [Code Contributions](_#Code-Contributions_)
+
+## How to contribute
+
+*Before you send us a pull request, please be sure that:*
+
+1. You're working from the latest source on the master branch.
+2. You check existing open, and recently closed, pull requests to be sure 
+   that someone else hasn't already addressed the problem.
+3. You create an issue before working on a contribution that will take a 
+   significant amount of your time.
+
+*Creating a Pull Request*
+
+1. Fork the repository.
+2. In your fork, make your change in a branch that's based on this repo's master branch.
+3. Commit the change to your fork, using a clear and descriptive commit message.
+4. Create a pull request, answering any questions in the pull request form.
+
+For contributions that will take a significant amount of time, open a new 
+issue to pitch your idea before you get started. Explain the problem and 
+describe the content you want to see added to the documentation. Let us know 
+if you'll write it yourself or if you'd like us to help. We'll discuss your 
+proposal with you and let you know whether we're likely to accept it.   
+
+## Bug Reports
 
 You can file bug reports against the SDK on the [GitHub issues][issues] page.
 
@@ -40,11 +69,23 @@ guidelines prior to filing a bug report.
    as well, like whether this is a persistent issue, or if it only occurs
    some of the time.
 
+## Feature Requests
 
-## Submitting Pull Requests
+Open an [issue][issues] with the following:
 
-We are always happy to receive code and documentation contributions to the SDK.
-Please be aware of the following notes prior to opening a pull request:
+* A short, descriptive title. Ideally, other community members should be able 
+   to get a good idea of the feature just from reading the title.
+* A detailed description of the the proposed feature. 
+    * Why it should be added to the SDK.
+    *  If possible, example code to illustrate how it should work.
+* Use Markdown to make the request easier to read;
+* If you intend to implement this feature, indicate that you'd like to the issue to be assigned to you.
+
+## Code Contributions
+
+We are always happy to receive code and documentation contributions to the SDK. 
+Code contributions to the SDK are done through [Pull Requests][pr]. The list below are guidelines to use when submitting pull requests. These are the 
+same set of guidelines that the core contributors use when submitting changes, and we ask the same of all community contributions as well:
 
 1. The SDK is released under the [Apache license][license]. Any code you submit
    will be released under that license. For substantial contributions, we may
@@ -113,11 +154,21 @@ so you can run command within the Docker container and context of the SDK.
 make sandbox-go18
 ```
 
-### Changelog
+### Changelog Documents
 
 You can see all release changes in the `CHANGELOG.md` file at the root of the
 repository. The release notes added to this file will contain service client
-updates, and major SDK changes.
+updates, and major SDK changes. When submitting a pull request please include an entry in `CHANGELOG_PENDING.md` under the appropriate changelog type so your changelog entry is included on the following release.
+
+#### Changelog Types
+
+* `SDK Features` - For major additive features, internal changes that have
+outward impact, or updates to the SDK foundations. This will result in a minor
+version change.
+* `SDK Enhancements` - For minor additive features or incremental sized changes.
+This will result in a patch version change.
+* `SDK Bugs` - For minor changes that resolve an issue. This will result in a
+patch version change.
 
 [issues]: https://github.com/aws/aws-sdk-go/issues
 [pr]: https://github.com/aws/aws-sdk-go/pulls
