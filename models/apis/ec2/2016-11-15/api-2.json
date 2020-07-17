@@ -3941,7 +3941,7 @@
       "type":"structure",
       "members":{
         "Domain":{"shape":"DomainType"},
-        "Address":{"shape":"String"},
+        "Address":{"shape":"PublicIpAddress"},
         "PublicIpv4Pool":{"shape":"String"},
         "NetworkBorderGroup":{"shape":"String"},
         "CustomerOwnedIpv4Pool":{"shape":"String"},
@@ -6203,6 +6203,13 @@
       }
     },
     "ConnectionNotificationId":{"type":"string"},
+    "ConnectionNotificationIdsList":{
+      "type":"list",
+      "member":{
+        "shape":"ConnectionNotificationId",
+        "locationName":"item"
+      }
+    },
     "ConnectionNotificationSet":{
       "type":"list",
       "member":{
@@ -6283,7 +6290,7 @@
       ],
       "members":{
         "DryRun":{"shape":"Boolean"},
-        "SourceFpgaImageId":{"shape":"FpgaImageId"},
+        "SourceFpgaImageId":{"shape":"String"},
         "Description":{"shape":"String"},
         "Name":{"shape":"String"},
         "SourceRegion":{"shape":"String"},
@@ -9083,7 +9090,7 @@
       "members":{
         "DryRun":{"shape":"Boolean"},
         "ConnectionNotificationIds":{
-          "shape":"ValueStringList",
+          "shape":"ConnectionNotificationIdsList",
           "locationName":"ConnectionNotificationId"
         }
       }
@@ -17573,7 +17580,7 @@
     "InstanceIdSet":{
       "type":"list",
       "member":{
-        "shape":"String",
+        "shape":"InstanceId",
         "locationName":"item"
       }
     },
@@ -22913,6 +22920,7 @@
         }
       }
     },
+    "PublicIpAddress":{"type":"string"},
     "PublicIpStringList":{
       "type":"list",
       "member":{

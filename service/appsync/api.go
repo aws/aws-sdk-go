@@ -3990,29 +3990,7 @@ type ApiCache struct {
 	// Valid values are between 1 and 3600 seconds.
 	Ttl *int64 `locationName:"ttl" type:"long"`
 
-	// The cache instance type. Valid values are
-	//
-	//    * SMALL
-	//
-	//    * MEDIUM
-	//
-	//    * LARGE
-	//
-	//    * XLARGE
-	//
-	//    * LARGE_2X
-	//
-	//    * LARGE_4X
-	//
-	//    * LARGE_8X (not available in all regions)
-	//
-	//    * LARGE_12X
-	//
-	// Historically, instance types were identified by an EC2-style value. As of
-	// July 2020, this is deprecated, and the generic identifiers above should be
-	// used.
-	//
-	// The following legacy instance types are avaible, but their use is discouraged:
+	// The cache instance type.
 	//
 	//    * T2_SMALL: A t2.small instance type.
 	//
@@ -4471,8 +4449,8 @@ type CachingConfig struct {
 
 	// The caching keys for a resolver that has caching enabled.
 	//
-	// Valid values are entries from the $context.identity and $context.arguments
-	// maps.
+	// Valid values are entries from the $context.arguments, $context.source, and
+	// $context.identity maps.
 	CachingKeys []*string `locationName:"cachingKeys" type:"list"`
 
 	// The TTL in seconds for a resolver that has caching enabled.
@@ -4655,29 +4633,7 @@ type CreateApiCacheInput struct {
 	// Ttl is a required field
 	Ttl *int64 `locationName:"ttl" type:"long" required:"true"`
 
-	// The cache instance type. Valid values are
-	//
-	//    * SMALL
-	//
-	//    * MEDIUM
-	//
-	//    * LARGE
-	//
-	//    * XLARGE
-	//
-	//    * LARGE_2X
-	//
-	//    * LARGE_4X
-	//
-	//    * LARGE_8X (not available in all regions)
-	//
-	//    * LARGE_12X
-	//
-	// Historically, instance types were identified by an EC2-style value. As of
-	// July 2020, this is deprecated, and the generic identifiers above should be
-	// used.
-	//
-	// The following legacy instance types are avaible, but their use is discouraged:
+	// The cache instance type.
 	//
 	//    * T2_SMALL: A t2.small instance type.
 	//
@@ -9248,29 +9204,7 @@ type UpdateApiCacheInput struct {
 	// Ttl is a required field
 	Ttl *int64 `locationName:"ttl" type:"long" required:"true"`
 
-	// The cache instance type. Valid values are
-	//
-	//    * SMALL
-	//
-	//    * MEDIUM
-	//
-	//    * LARGE
-	//
-	//    * XLARGE
-	//
-	//    * LARGE_2X
-	//
-	//    * LARGE_4X
-	//
-	//    * LARGE_8X (not available in all regions)
-	//
-	//    * LARGE_12X
-	//
-	// Historically, instance types were identified by an EC2-style value. As of
-	// July 2020, this is deprecated, and the generic identifiers above should be
-	// used.
-	//
-	// The following legacy instance types are avaible, but their use is discouraged:
+	// The cache instance type.
 	//
 	//    * T2_SMALL: A t2.small instance type.
 	//

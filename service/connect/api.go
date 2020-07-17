@@ -59,10 +59,6 @@ func (c *Connect) CreateUserRequest(input *CreateUserInput) (req *request.Reques
 //
 // Creates a user account for the specified Amazon Connect instance.
 //
-// For information about how to create user accounts using the Amazon Connect
-// console, see Add Users (https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html)
-// in the Amazon Connect Administrator Guide.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -160,10 +156,6 @@ func (c *Connect) DeleteUserRequest(input *DeleteUserInput) (req *request.Reques
 // DeleteUser API operation for Amazon Connect Service.
 //
 // Deletes a user account from the specified Amazon Connect instance.
-//
-// For information about what happens to a user's data when their account is
-// deleted, see Delete Users from Your Amazon Connect Instance (https://docs.aws.amazon.com/connect/latest/adminguide/delete-users.html)
-// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -622,7 +614,7 @@ func (c *Connect) GetCurrentMetricDataRequest(input *GetCurrentMetricDataInput) 
 //
 // Gets the real-time metric data from the specified Amazon Connect instance.
 //
-// For a description of each metric, see Real-time Metrics Definitions (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html)
+// For more information, see Real-time Metrics Reports (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-reports.html)
 // in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -868,8 +860,7 @@ func (c *Connect) GetMetricDataRequest(input *GetMetricDataInput) (req *request.
 //
 // Gets historical metric data from the specified Amazon Connect instance.
 //
-// For a description of each historical metric, see Historical Metrics Definitions
-// (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
+// For more information, see Historical Metrics Reports (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics.html)
 // in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1022,9 +1013,6 @@ func (c *Connect) ListContactFlowsRequest(input *ListContactFlowsInput) (req *re
 // Provides information about the contact flows for the specified Amazon Connect
 // instance.
 //
-// For more information about contact flows, see Contact Flows (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html)
-// in the Amazon Connect Administrator Guide.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1174,10 +1162,6 @@ func (c *Connect) ListHoursOfOperationsRequest(input *ListHoursOfOperationsInput
 //
 // Provides information about the hours of operation for the specified Amazon
 // Connect instance.
-//
-// For more information about hours of operation, see Set the Hours of Operation
-// for a Queue (https://docs.aws.amazon.com/connect/latest/adminguide/set-hours-operation.html)
-// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1329,10 +1313,6 @@ func (c *Connect) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (req *re
 // Provides information about the phone numbers for the specified Amazon Connect
 // instance.
 //
-// For more information about phone numbers, see Set Up Phone Numbers for Your
-// Contact Center (https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html)
-// in the Amazon Connect Administrator Guide.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1481,9 +1461,6 @@ func (c *Connect) ListQueuesRequest(input *ListQueuesInput) (req *request.Reques
 // ListQueues API operation for Amazon Connect Service.
 //
 // Provides information about the queues for the specified Amazon Connect instance.
-//
-// For more information about queues, see Queues: Standard and Agent (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html)
-// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1635,10 +1612,6 @@ func (c *Connect) ListRoutingProfilesRequest(input *ListRoutingProfilesInput) (r
 // Provides summary information about the routing profiles for the specified
 // Amazon Connect instance.
 //
-// For more information about routing profiles, see Routing Profiles (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing.html)
-// and Create a Routing Profile (https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html)
-// in the Amazon Connect Administrator Guide.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1789,9 +1762,6 @@ func (c *Connect) ListSecurityProfilesRequest(input *ListSecurityProfilesInput) 
 // Provides summary information about the security profiles for the specified
 // Amazon Connect instance.
 //
-// For more information about security profiles, see Security Profiles (https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html)
-// in the Amazon Connect Administrator Guide.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1935,10 +1905,6 @@ func (c *Connect) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 //
 // Lists the tags for the specified resource.
 //
-// For sample policies that use tags, see Amazon Connect Identity-Based Policy
-// Examples (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html)
-// in the Amazon Connect Administrator Guide.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2036,10 +2002,6 @@ func (c *Connect) ListUserHierarchyGroupsRequest(input *ListUserHierarchyGroupsI
 //
 // Provides summary information about the hierarchy groups for the specified
 // Amazon Connect instance.
-//
-// For more information about agent hierarchies, see Set Up Agent Hierarchies
-// (https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html)
-// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2288,6 +2250,95 @@ func (c *Connect) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInp
 	return p.Err()
 }
 
+const opResumeContactRecording = "ResumeContactRecording"
+
+// ResumeContactRecordingRequest generates a "aws/request.Request" representing the
+// client's request for the ResumeContactRecording operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ResumeContactRecording for more information on using the ResumeContactRecording
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ResumeContactRecordingRequest method.
+//    req, resp := client.ResumeContactRecordingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ResumeContactRecording
+func (c *Connect) ResumeContactRecordingRequest(input *ResumeContactRecordingInput) (req *request.Request, output *ResumeContactRecordingOutput) {
+	op := &request.Operation{
+		Name:       opResumeContactRecording,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/resume-recording",
+	}
+
+	if input == nil {
+		input = &ResumeContactRecordingInput{}
+	}
+
+	output = &ResumeContactRecordingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ResumeContactRecording API operation for Amazon Connect Service.
+//
+// When a contact is being recorded, and the recording has been suspended using
+// SuspendContactRecording, this API resumes recording the call.
+//
+// Only voice recordings are supported at this time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ResumeContactRecording for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ResumeContactRecording
+func (c *Connect) ResumeContactRecording(input *ResumeContactRecordingInput) (*ResumeContactRecordingOutput, error) {
+	req, out := c.ResumeContactRecordingRequest(input)
+	return out, req.Send()
+}
+
+// ResumeContactRecordingWithContext is the same as ResumeContactRecording with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResumeContactRecording for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ResumeContactRecordingWithContext(ctx aws.Context, input *ResumeContactRecordingInput, opts ...request.Option) (*ResumeContactRecordingOutput, error) {
+	req, out := c.ResumeContactRecordingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartChatContact = "StartChatContact"
 
 // StartChatContactRequest generates a "aws/request.Request" representing the
@@ -2342,17 +2393,6 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 // This is achieved by invoking CreateParticipantConnection (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
 // with WEBSOCKET and CONNECTION_CREDENTIALS.
 //
-// A 429 error occurs in two situations:
-//
-//    * API rate limit is exceeded. API TPS throttling returns a TooManyRequests
-//    exception from the API Gateway.
-//
-//    * The quota for concurrent active chats (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
-//    is exceeded. Active chat throttling returns a LimitExceededException.
-//
-// For more information about how chat works, see Chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat.html)
-// in the Amazon Connect Administrator Guide.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2393,6 +2433,106 @@ func (c *Connect) StartChatContact(input *StartChatContactInput) (*StartChatCont
 // for more information on using Contexts.
 func (c *Connect) StartChatContactWithContext(ctx aws.Context, input *StartChatContactInput, opts ...request.Option) (*StartChatContactOutput, error) {
 	req, out := c.StartChatContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartContactRecording = "StartContactRecording"
+
+// StartContactRecordingRequest generates a "aws/request.Request" representing the
+// client's request for the StartContactRecording operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartContactRecording for more information on using the StartContactRecording
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartContactRecordingRequest method.
+//    req, resp := client.StartContactRecordingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactRecording
+func (c *Connect) StartContactRecordingRequest(input *StartContactRecordingInput) (req *request.Request, output *StartContactRecordingOutput) {
+	op := &request.Operation{
+		Name:       opStartContactRecording,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/start-recording",
+	}
+
+	if input == nil {
+		input = &StartContactRecordingInput{}
+	}
+
+	output = &StartContactRecordingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartContactRecording API operation for Amazon Connect Service.
+//
+// This API starts recording the contact when the agent joins the call. StartContactRecording
+// is a one-time action. For example, if you use StopContactRecording to stop
+// recording an ongoing call, you can't use StartContactRecording to restart
+// it. For scenarios where the recording has started and you want to suspend
+// and resume it, such as when collecting sensitive information (for example,
+// a credit card number), use SuspendContactRecording and ResumeContactRecording.
+//
+// You can use this API to override the recording behavior configured in the
+// Set recording behavior (https://docs.aws.amazon.com/connect/latest/adminguide/set-recording-behavior.html)
+// block.
+//
+// Only voice recordings are supported at this time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation StartContactRecording for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactRecording
+func (c *Connect) StartContactRecording(input *StartContactRecordingInput) (*StartContactRecordingOutput, error) {
+	req, out := c.StartContactRecordingRequest(input)
+	return out, req.Send()
+}
+
+// StartContactRecordingWithContext is the same as StartContactRecording with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartContactRecording for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) StartContactRecordingWithContext(ctx aws.Context, input *StartContactRecordingInput, opts ...request.Option) (*StartContactRecordingOutput, error) {
+	req, out := c.StartContactRecordingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2452,11 +2592,6 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 //
 // There is a 60 second dialing timeout for this operation. If the call is not
 // connected after 60 seconds, it fails.
-//
-// UK numbers with a 447 prefix are not allowed by default. Before you can dial
-// these UK mobile numbers, you must submit a service quota increase request.
-// For more information, see Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
-// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2601,6 +2736,193 @@ func (c *Connect) StopContactWithContext(ctx aws.Context, input *StopContactInpu
 	return out, req.Send()
 }
 
+const opStopContactRecording = "StopContactRecording"
+
+// StopContactRecordingRequest generates a "aws/request.Request" representing the
+// client's request for the StopContactRecording operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopContactRecording for more information on using the StopContactRecording
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopContactRecordingRequest method.
+//    req, resp := client.StopContactRecordingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactRecording
+func (c *Connect) StopContactRecordingRequest(input *StopContactRecordingInput) (req *request.Request, output *StopContactRecordingOutput) {
+	op := &request.Operation{
+		Name:       opStopContactRecording,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/stop-recording",
+	}
+
+	if input == nil {
+		input = &StopContactRecordingInput{}
+	}
+
+	output = &StopContactRecordingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopContactRecording API operation for Amazon Connect Service.
+//
+// When a contact is being recorded, this API stops recording the call. StopContactRecording
+// is a one-time action. If you use StopContactRecording to stop recording an
+// ongoing call, you can't use StartContactRecording to restart it. For scenarios
+// where the recording has started and you want to suspend it for sensitive
+// information (for example, to collect a credit card number), and then restart
+// it, use SuspendContactRecording and ResumeContactRecording.
+//
+// Only voice recordings are supported at this time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation StopContactRecording for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactRecording
+func (c *Connect) StopContactRecording(input *StopContactRecordingInput) (*StopContactRecordingOutput, error) {
+	req, out := c.StopContactRecordingRequest(input)
+	return out, req.Send()
+}
+
+// StopContactRecordingWithContext is the same as StopContactRecording with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopContactRecording for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) StopContactRecordingWithContext(ctx aws.Context, input *StopContactRecordingInput, opts ...request.Option) (*StopContactRecordingOutput, error) {
+	req, out := c.StopContactRecordingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSuspendContactRecording = "SuspendContactRecording"
+
+// SuspendContactRecordingRequest generates a "aws/request.Request" representing the
+// client's request for the SuspendContactRecording operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SuspendContactRecording for more information on using the SuspendContactRecording
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SuspendContactRecordingRequest method.
+//    req, resp := client.SuspendContactRecordingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SuspendContactRecording
+func (c *Connect) SuspendContactRecordingRequest(input *SuspendContactRecordingInput) (req *request.Request, output *SuspendContactRecordingOutput) {
+	op := &request.Operation{
+		Name:       opSuspendContactRecording,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/suspend-recording",
+	}
+
+	if input == nil {
+		input = &SuspendContactRecordingInput{}
+	}
+
+	output = &SuspendContactRecordingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// SuspendContactRecording API operation for Amazon Connect Service.
+//
+// When a contact is being recorded, this API suspends recording the call. For
+// example, you might suspend the call recording while collecting sensitive
+// information, such as a credit card number. Then use ResumeContactRecording
+// to restart recording.
+//
+// The period of time that the recording is suspended is filled with silence
+// in the final recording.
+//
+// Only voice recordings are supported at this time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SuspendContactRecording for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SuspendContactRecording
+func (c *Connect) SuspendContactRecording(input *SuspendContactRecordingInput) (*SuspendContactRecordingOutput, error) {
+	req, out := c.SuspendContactRecordingRequest(input)
+	return out, req.Send()
+}
+
+// SuspendContactRecordingWithContext is the same as SuspendContactRecording with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SuspendContactRecording for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SuspendContactRecordingWithContext(ctx aws.Context, input *SuspendContactRecordingInput, opts ...request.Option) (*SuspendContactRecordingOutput, error) {
+	req, out := c.SuspendContactRecordingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -2649,10 +2971,6 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // Adds the specified tags to the specified resource.
 //
 // The supported resource type is users.
-//
-// For sample policies that use tags, see Amazon Connect Identity-Based Policy
-// Examples (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html)
-// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3038,14 +3356,6 @@ func (c *Connect) UpdateUserIdentityInfoRequest(input *UpdateUserIdentityInfoInp
 // UpdateUserIdentityInfo API operation for Amazon Connect Service.
 //
 // Updates the identity information for the specified user.
-//
-// Someone with the ability to invoke UpdateUserIndentityInfo can change the
-// login credentials of other users by changing their email address. This poses
-// a security risk to your organization. They can change the email address of
-// a user to the attacker's email address, and then reset the password through
-// email. We strongly recommend limiting who has the ability to invoke UpdateUserIndentityInfo.
-// For more information, see Best Practices for Security Profiles (https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html)
-// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4471,95 +4781,61 @@ type GetCurrentMetricDataInput struct {
 	_ struct{} `type:"structure"`
 
 	// The metrics to retrieve. Specify the name and unit for each metric. The following
-	// metrics are available. For a description of all the metrics, see Real-time
-	// Metrics Definitions (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html)
+	// metrics are available. For a description of each metric, see Real-time Metrics
+	// Definitions (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html)
 	// in the Amazon Connect Administrator Guide.
 	//
 	// AGENTS_AFTER_CONTACT_WORK
 	//
 	// Unit: COUNT
 	//
-	// Name in real-time metrics report: ACW (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time)
-	//
 	// AGENTS_AVAILABLE
 	//
 	// Unit: COUNT
-	//
-	// Name in real-time metrics report: Available (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time)
 	//
 	// AGENTS_ERROR
 	//
 	// Unit: COUNT
 	//
-	// Name in real-time metrics report: Error (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time)
-	//
 	// AGENTS_NON_PRODUCTIVE
 	//
 	// Unit: COUNT
-	//
-	// Name in real-time metrics report: NPT (Non-Productive Time) (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time)
 	//
 	// AGENTS_ON_CALL
 	//
 	// Unit: COUNT
 	//
-	// Name in real-time metrics report: On contact (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time)
-	//
 	// AGENTS_ON_CONTACT
 	//
 	// Unit: COUNT
-	//
-	// Name in real-time metrics report: On contact (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time)
 	//
 	// AGENTS_ONLINE
 	//
 	// Unit: COUNT
 	//
-	// Name in real-time metrics report: Online (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time)
-	//
 	// AGENTS_STAFFED
 	//
 	// Unit: COUNT
-	//
-	// Name in real-time metrics report: Staffed (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time)
 	//
 	// CONTACTS_IN_QUEUE
 	//
 	// Unit: COUNT
 	//
-	// Name in real-time metrics report: In queue (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time)
-	//
 	// CONTACTS_SCHEDULED
 	//
 	// Unit: COUNT
-	//
-	// Name in real-time metrics report: Scheduled (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time)
 	//
 	// OLDEST_CONTACT_AGE
 	//
 	// Unit: SECONDS
 	//
-	// When you use groupings, Unit says SECONDS but the Value is returned in MILLISECONDS.
-	// For example, if you get a response like this:
-	//
-	// { "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value":
-	// 24113.0 }
-	//
-	// The actual OLDEST_CONTACT_AGE is 24 seconds.
-	//
-	// Name in real-time metrics report: Oldest (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time)
-	//
 	// SLOTS_ACTIVE
 	//
 	// Unit: COUNT
 	//
-	// Name in real-time metrics report: Active (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time)
-	//
 	// SLOTS_AVAILABLE
 	//
 	// Unit: COUNT
-	//
-	// Name in real-time metrics report: Availability (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time)
 	//
 	// CurrentMetrics is a required field
 	CurrentMetrics []*CurrentMetric `type:"list" required:"true"`
@@ -6942,6 +7218,96 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ResumeContactRecordingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the contact. This is the identifier of the contact associated
+	// with the first interaction with the contact center.
+	//
+	// InitialContactId is a required field
+	InitialContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ResumeContactRecordingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResumeContactRecordingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResumeContactRecordingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResumeContactRecordingInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InitialContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialContactId"))
+	}
+	if s.InitialContactId != nil && len(*s.InitialContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *ResumeContactRecordingInput) SetContactId(v string) *ResumeContactRecordingInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInitialContactId sets the InitialContactId field's value.
+func (s *ResumeContactRecordingInput) SetInitialContactId(v string) *ResumeContactRecordingInput {
+	s.InitialContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ResumeContactRecordingInput) SetInstanceId(v string) *ResumeContactRecordingInput {
+	s.InstanceId = &v
+	return s
+}
+
+type ResumeContactRecordingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResumeContactRecordingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResumeContactRecordingOutput) GoString() string {
+	return s.String()
+}
+
 // Contains summary information about a routing profile.
 type RoutingProfileSummary struct {
 	_ struct{} `type:"structure"`
@@ -7041,13 +7407,7 @@ type StartChatContactInput struct {
 	// of the request.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The identifier of the contact flow for the outbound call. To see the ContactFlowId
-	// in the Amazon Connect console user interface, on the navigation menu go to
-	// Routing, Contact Flows. Choose the contact flow. On the contact flow page,
-	// under the name of the contact flow, choose Show additional flow information.
-	// The ContactFlowId is the last part of the ARN, shown here in bold:
-	//
-	// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
+	// The identifier of the contact flow for the chat.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
@@ -7188,6 +7548,110 @@ func (s *StartChatContactOutput) SetParticipantToken(v string) *StartChatContact
 	return s
 }
 
+type StartContactRecordingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the contact. This is the identifier of the contact associated
+	// with the first interaction with the contact center.
+	//
+	// InitialContactId is a required field
+	InitialContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// Who is being recorded.
+	//
+	// VoiceRecordingConfiguration is a required field
+	VoiceRecordingConfiguration *VoiceRecordingConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StartContactRecordingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartContactRecordingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartContactRecordingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartContactRecordingInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InitialContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialContactId"))
+	}
+	if s.InitialContactId != nil && len(*s.InitialContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.VoiceRecordingConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoiceRecordingConfiguration"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *StartContactRecordingInput) SetContactId(v string) *StartContactRecordingInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInitialContactId sets the InitialContactId field's value.
+func (s *StartContactRecordingInput) SetInitialContactId(v string) *StartContactRecordingInput {
+	s.InitialContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *StartContactRecordingInput) SetInstanceId(v string) *StartContactRecordingInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetVoiceRecordingConfiguration sets the VoiceRecordingConfiguration field's value.
+func (s *StartContactRecordingInput) SetVoiceRecordingConfiguration(v *VoiceRecordingConfiguration) *StartContactRecordingInput {
+	s.VoiceRecordingConfiguration = v
+	return s
+}
+
+type StartContactRecordingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartContactRecordingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartContactRecordingOutput) GoString() string {
+	return s.String()
+}
+
 type StartOutboundVoiceContactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7205,13 +7669,7 @@ type StartOutboundVoiceContactInput struct {
 	// a new contact is started.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The identifier of the contact flow for the outbound call. To see the ContactFlowId
-	// in the Amazon Connect console user interface, on the navigation menu go to
-	// Routing, Contact Flows. Choose the contact flow. On the contact flow page,
-	// under the name of the contact flow, choose Show additional flow information.
-	// The ContactFlowId is the last part of the ARN, shown here in bold:
-	//
-	// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
+	// The identifier of the contact flow for the outbound call.
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
@@ -7403,6 +7861,186 @@ func (s StopContactOutput) String() string {
 
 // GoString returns the string representation
 func (s StopContactOutput) GoString() string {
+	return s.String()
+}
+
+type StopContactRecordingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the contact. This is the identifier of the contact associated
+	// with the first interaction with the contact center.
+	//
+	// InitialContactId is a required field
+	InitialContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopContactRecordingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopContactRecordingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopContactRecordingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopContactRecordingInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InitialContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialContactId"))
+	}
+	if s.InitialContactId != nil && len(*s.InitialContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *StopContactRecordingInput) SetContactId(v string) *StopContactRecordingInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInitialContactId sets the InitialContactId field's value.
+func (s *StopContactRecordingInput) SetInitialContactId(v string) *StopContactRecordingInput {
+	s.InitialContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *StopContactRecordingInput) SetInstanceId(v string) *StopContactRecordingInput {
+	s.InstanceId = &v
+	return s
+}
+
+type StopContactRecordingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopContactRecordingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopContactRecordingOutput) GoString() string {
+	return s.String()
+}
+
+type SuspendContactRecordingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the contact. This is the identifier of the contact associated
+	// with the first interaction with the contact center.
+	//
+	// InitialContactId is a required field
+	InitialContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s SuspendContactRecordingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuspendContactRecordingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SuspendContactRecordingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SuspendContactRecordingInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InitialContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialContactId"))
+	}
+	if s.InitialContactId != nil && len(*s.InitialContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *SuspendContactRecordingInput) SetContactId(v string) *SuspendContactRecordingInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInitialContactId sets the InitialContactId field's value.
+func (s *SuspendContactRecordingInput) SetInitialContactId(v string) *SuspendContactRecordingInput {
+	s.InitialContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SuspendContactRecordingInput) SetInstanceId(v string) *SuspendContactRecordingInput {
+	s.InstanceId = &v
+	return s
+}
+
+type SuspendContactRecordingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s SuspendContactRecordingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuspendContactRecordingOutput) GoString() string {
 	return s.String()
 }
 
@@ -8499,6 +9137,30 @@ func (s *UserSummary) SetUsername(v string) *UserSummary {
 	return s
 }
 
+// Contains information about the recording configuration settings.
+type VoiceRecordingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies which track is being recorded.
+	VoiceRecordingTrack *string `type:"string" enum:"VoiceRecordingTrack"`
+}
+
+// String returns the string representation
+func (s VoiceRecordingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VoiceRecordingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetVoiceRecordingTrack sets the VoiceRecordingTrack field's value.
+func (s *VoiceRecordingConfiguration) SetVoiceRecordingTrack(v string) *VoiceRecordingConfiguration {
+	s.VoiceRecordingTrack = &v
+	return s
+}
+
 const (
 	// ChannelVoice is a Channel enum value
 	ChannelVoice = "VOICE"
@@ -9426,4 +10088,15 @@ const (
 
 	// UnitPercent is a Unit enum value
 	UnitPercent = "PERCENT"
+)
+
+const (
+	// VoiceRecordingTrackFromAgent is a VoiceRecordingTrack enum value
+	VoiceRecordingTrackFromAgent = "FROM_AGENT"
+
+	// VoiceRecordingTrackToAgent is a VoiceRecordingTrack enum value
+	VoiceRecordingTrackToAgent = "TO_AGENT"
+
+	// VoiceRecordingTrackAll is a VoiceRecordingTrack enum value
+	VoiceRecordingTrackAll = "ALL"
 )
