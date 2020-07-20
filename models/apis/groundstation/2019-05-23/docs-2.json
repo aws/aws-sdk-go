@@ -35,6 +35,12 @@
         "Elevation$unit": "<p>Elevation angle units.</p>"
       }
     },
+    "AntennaDemodDecodeDetails": {
+      "base": "<p>Details about an antenna demod decode <code>Config</code> used in a contact.</p>",
+      "refs": {
+        "ConfigDetails$antennaDemodDecodeDetails": "<p>Details for antenna demod decode <code>Config</code> in a contact.</p>"
+      }
+    },
     "AntennaDownlinkConfig": {
       "base": "<p>Information about how AWS Ground Station should configure an antenna for downlink during a contact.</p>",
       "refs": {
@@ -62,6 +68,7 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "AntennaUplinkConfig$transmitDisabled": "<p>Whether or not uplink transmit is disabled.</p>",
         "GetMinuteUsageResponse$isReservedMinutesCustomer": "<p>Returns whether or not an account has signed up for the reserved minutes pricing plan, specific to the month being requested.</p>",
         "UplinkEchoConfig$enabled": "<p>Whether or not an uplink <code>Config</code> is enabled.</p>"
       }
@@ -90,9 +97,18 @@
         "ConfigIdResponse$configType": "<p>Type of a <code>Config</code>.</p>",
         "ConfigListItem$configType": "<p>Type of a <code>Config</code>.</p>",
         "DeleteConfigRequest$configType": "<p>Type of a <code>Config</code>.</p>",
+        "Destination$configType": "<p>Type of a <code>Config</code>.</p>",
         "GetConfigRequest$configType": "<p>Type of a <code>Config</code>.</p>",
         "GetConfigResponse$configType": "<p>Type of a <code>Config</code>.</p>",
+        "Source$configType": "<p>Type of a <code>Config</code>.</p>",
         "UpdateConfigRequest$configType": "<p>Type of a <code>Config</code>.</p>"
+      }
+    },
+    "ConfigDetails": {
+      "base": "<p>Details for certain <code>Config</code> object types in a contact.</p>",
+      "refs": {
+        "Destination$configDetails": "<p>Additional details for a <code>Config</code>, if type is dataflow endpoint or antenna demod decode.</p>",
+        "Source$configDetails": "<p>Additional details for a <code>Config</code>, if type is dataflow endpoint or antenna demod decode.</p>"
       }
     },
     "ConfigIdResponse": {
@@ -166,6 +182,12 @@
         "TrackingConfig$autotrack": "<p>Current setting for autotrack.</p>"
       }
     },
+    "DataflowDetail": {
+      "base": "<p>Information about a dataflow edge used in a contact.</p>",
+      "refs": {
+        "DataflowList$member": null
+      }
+    },
     "DataflowEdge": {
       "base": null,
       "refs": {
@@ -216,6 +238,18 @@
         "DataflowEndpointGroupList$member": null
       }
     },
+    "DataflowEndpointmtuInteger": {
+      "base": null,
+      "refs": {
+        "DataflowEndpoint$mtu": "<p>Maximum transmission unit (MTU) size in bytes of a dataflow endpoint.</p>"
+      }
+    },
+    "DataflowList": {
+      "base": null,
+      "refs": {
+        "DescribeContactResponse$dataflowList": "<p>List describing source and destination details for each dataflow edge.</p>"
+      }
+    },
     "DecodeConfig": {
       "base": "<p>Information about the decode <code>Config</code>.</p>",
       "refs": {
@@ -258,13 +292,19 @@
       "refs": {
       }
     },
+    "Destination": {
+      "base": "<p>Dataflow details for the destination side.</p>",
+      "refs": {
+        "DataflowDetail$destination": null
+      }
+    },
     "Double": {
       "base": null,
       "refs": {
-        "Eirp$value": "<p>Value of an EIRP.</p>",
+        "Eirp$value": "<p>Value of an EIRP. Valid values are between 20.0 to 50.0 dBW.</p>",
         "Elevation$value": "<p>Elevation angle value.</p>",
-        "Frequency$value": "<p>Frequency value.</p>",
-        "FrequencyBandwidth$value": "<p>Frequency bandwidth value.</p>"
+        "Frequency$value": "<p>Frequency value. Valid values are between 2200 to 2300 MHz and 7750 to 8400 MHz for downlink and 2025 to 2120 MHz for uplink.</p>",
+        "FrequencyBandwidth$value": "<p>Frequency bandwidth value. AWS Ground Station currently has the following bandwidth limitations:</p> <ul> <li> <p>For <code>AntennaDownlinkDemodDecodeconfig</code>, valid values are between 125 kHz to 650 MHz.</p> </li> <li> <p>For <code>AntennaDownlinkconfig</code>, valid values are between 10 kHz to 54 MHz.</p> </li> <li> <p>For <code>AntennaUplinkConfig</code>, valid values are between 10 kHz to 54 MHz.</p> </li> </ul>"
       }
     },
     "DurationInSeconds": {
@@ -303,6 +343,7 @@
     "EndpointDetails": {
       "base": "<p>Information about the endpoint details.</p>",
       "refs": {
+        "ConfigDetails$endpointDetails": null,
         "EndpointDetailsList$member": null
       }
     },
@@ -322,14 +363,14 @@
     "Frequency": {
       "base": "<p>Object that describes the frequency.</p>",
       "refs": {
-        "SpectrumConfig$centerFrequency": "<p>Center frequency of a spectral <code>Config</code>.</p>",
-        "UplinkSpectrumConfig$centerFrequency": "<p>Center frequency of an uplink spectral <code>Config</code>.</p>"
+        "SpectrumConfig$centerFrequency": "<p>Center frequency of a spectral <code>Config</code>. Valid values are between 2200 to 2300 MHz and 7750 to 8400 MHz for downlink and 2025 to 2120 MHz for uplink.</p>",
+        "UplinkSpectrumConfig$centerFrequency": "<p>Center frequency of an uplink spectral <code>Config</code>. Valid values are between 2025 to 2120 MHz.</p>"
       }
     },
     "FrequencyBandwidth": {
-      "base": "<p>Object that describes the frequency bandwidth.</p>",
+      "base": "<p>Object that describes the frequency bandwidth. </p>",
       "refs": {
-        "SpectrumConfig$bandwidth": "<p>Bandwidth of a spectral <code>Config</code>.</p>"
+        "SpectrumConfig$bandwidth": "<p>Bandwidth of a spectral <code>Config</code>. AWS Ground Station currently has the following bandwidth limitations:</p> <ul> <li> <p>For <code>AntennaDownlinkDemodDecodeconfig</code>, valid values are between 125 kHz to 650 MHz.</p> </li> <li> <p>For <code>AntennaDownlinkconfig</code> valid values are between 10 kHz to 54 MHz.</p> </li> <li> <p>For <code>AntennaUplinkConfig</code>, valid values are between 10 kHz to 54 MHz.</p> </li> </ul>"
       }
     },
     "FrequencyUnits": {
@@ -538,8 +579,8 @@
     "Polarization": {
       "base": null,
       "refs": {
-        "SpectrumConfig$polarization": "<p>Polarization of a spectral <code>Config</code>.</p>",
-        "UplinkSpectrumConfig$polarization": "<p>Polarization of an uplink spectral <code>Config</code>.</p>"
+        "SpectrumConfig$polarization": "<p>Polarization of a spectral <code>Config</code>. Capturing both <code>\"RIGHT_HAND\"</code> and <code>\"LEFT_HAND\"</code> polarization requires two separate configs.</p>",
+        "UplinkSpectrumConfig$polarization": "<p>Polarization of an uplink spectral <code>Config</code>. Capturing both <code>\"RIGHT_HAND\"</code> and <code>\"LEFT_HAND\"</code> polarization requires two separate configs.</p>"
       }
     },
     "ReserveContactRequest": {
@@ -603,6 +644,12 @@
         "DataflowEndpoint$address": "<p>Socket address of a dataflow endpoint.</p>"
       }
     },
+    "Source": {
+      "base": "<p>Dataflow details for the source side.</p>",
+      "refs": {
+        "DataflowDetail$source": null
+      }
+    },
     "SpectrumConfig": {
       "base": "<p>Object that describes a spectral <code>Config</code>.</p>",
       "refs": {
@@ -619,6 +666,7 @@
     "String": {
       "base": null,
       "refs": {
+        "AntennaDemodDecodeDetails$outputNode": "<p>Name of an antenna demod decode output node used in a contact.</p>",
         "CancelContactRequest$contactId": "<p>UUID of a contact.</p>",
         "ConfigIdResponse$configId": "<p>UUID of a <code>Config</code>.</p>",
         "ConfigListItem$configId": "<p>UUID of a <code>Config</code>.</p>",
@@ -642,6 +690,8 @@
         "DescribeContactResponse$errorMessage": "<p>Error message for a contact.</p>",
         "DescribeContactResponse$groundStation": "<p>Ground station for a contact.</p>",
         "DescribeContactResponse$region": "<p>Region of a contact.</p>",
+        "Destination$configId": "<p>UUID of a <code>Config</code>.</p>",
+        "Destination$dataflowDestinationRegion": "<p>Region of a dataflow destination.</p>",
         "GetConfigRequest$configId": "<p>UUID of a <code>Config</code>.</p>",
         "GetConfigResponse$configId": "<p>UUID of a <code>Config</code>.</p>",
         "GetConfigResponse$name": "<p>Name of a <code>Config</code>.</p>",
@@ -683,6 +733,8 @@
         "ResourceNotFoundException$message": null,
         "SecurityGroupIdList$member": null,
         "SocketAddress$name": "<p>Name of a socket address.</p>",
+        "Source$configId": "<p>UUID of a <code>Config</code>.</p>",
+        "Source$dataflowSourceRegion": "<p>Region of a dataflow source.</p>",
         "SubnetList$member": null,
         "TagKeys$member": null,
         "TagResourceRequest$resourceArn": "<p>ARN of a resource tag.</p>",

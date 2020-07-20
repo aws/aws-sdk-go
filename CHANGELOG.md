@@ -1,3 +1,19 @@
+Release v1.33.8 (2020-07-20)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Adds new service
+  * CloudFront adds support for cache policies and origin request policies. With these new policies, you can now more granularly control the query string, header, and cookie values that are included in the cache key and in requests that CloudFront sends to your origin.
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild adds support for Session Manager and Windows 2019 Environment type
+* `service/ec2`: Updates service API and documentation
+  * Added support for tag-on-create for CreateVpcPeeringConnection and CreateRouteTable. You can now specify tags when creating any of these resources. For more information about tagging, see AWS Tagging Strategies. Add poolArn to the response of DescribeCoipPools.
+* `service/fms`: Updates service API and documentation
+* `service/frauddetector`: Updates service API, documentation, and paginators
+* `service/groundstation`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Add a new SupportsParallelQuery output field to DescribeDBEngineVersions. This field shows whether the engine version supports parallelquery. Add a new SupportsGlobalDatabases output field to DescribeDBEngineVersions and DescribeOrderableDBInstanceOptions. This field shows whether global database is supported by engine version or the combination of engine version and instance class.
+
 Release v1.33.7 (2020-07-17)
 ===
 

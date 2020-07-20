@@ -269,6 +269,12 @@
         "RegistryCredential$credentialProvider": "<p> The service that created the credentials to access a private Docker registry. The valid value, SECRETS_MANAGER, is for AWS Secrets Manager. </p>"
       }
     },
+    "DebugSession": {
+      "base": "<p>Contains information about the debug session for a build. For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html\">Viewing a running build in Session Manager</a>.</p>",
+      "refs": {
+        "Build$debugSession": "<p>Contains information about the debug session for this build.</p>"
+      }
+    },
     "DeleteProjectInput": {
       "base": null,
       "refs": {
@@ -649,6 +655,7 @@
         "BuildNotDeleted$id": "<p>The ID of the build that could not be successfully deleted.</p>",
         "CreateProjectInput$serviceRole": "<p>The ARN of the AWS Identity and Access Management (IAM) role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.</p>",
         "CreateProjectInput$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) to be used for encrypting the build output artifacts.</p> <note> <p> You can use a cross-account KMS key to encrypt the build output artifacts if your service role has permission to that key. </p> </note> <p>You can specify either the Amazon Resource Name (ARN) of the CMK or, if available, the CMK's alias (using the format <code>alias/<i>alias-name</i> </code>).</p>",
+        "DebugSession$sessionTarget": "<p>Contains the identifier of the Session Manager session used for the build. To work with the paused build, you open this session to examine, control, and resume the build.</p>",
         "DeleteProjectInput$name": "<p>The name of the build project.</p>",
         "DeleteReportGroupInput$arn": "<p> The ARN of the report group to delete. </p>",
         "DeleteReportInput$arn": "<p> The ARN of the report to delete. </p>",
@@ -917,7 +924,7 @@
       "refs": {
         "BatchGetReportsInput$reportArns": "<p> An array of ARNs that identify the <code>Report</code> objects to return. </p>",
         "BatchGetReportsOutput$reportsNotFound": "<p> An array of ARNs passed to <code>BatchGetReportGroups</code> that are not associated with a <code>Report</code>. </p>",
-        "ListReportsForReportGroupOutput$reports": "<p> The list of returned report group ARNs. </p>",
+        "ListReportsForReportGroupOutput$reports": "<p> The list of report ARNs. </p>",
         "ListReportsOutput$reports": "<p> The list of returned ARNs for the reports in the current AWS account. </p>"
       }
     },
@@ -1370,6 +1377,7 @@
         "BuildArtifacts$overrideArtifactName": "<p> If this flag is set, a name specified in the buildspec file overrides the artifact name. The name specified in a buildspec file is calculated at build time and uses the Shell Command Language. For example, you can append a date and time to your artifact name so that it is always unique. </p>",
         "BuildArtifacts$encryptionDisabled": "<p> Information that tells you if encryption for build artifacts is disabled. </p>",
         "CreateProjectInput$badgeEnabled": "<p>Set this to true to generate a publicly accessible URL for your project's build badge.</p>",
+        "DebugSession$sessionEnabled": "<p>Specifies if session debugging is enabled for this build.</p>",
         "GitSubmodulesConfig$fetchSubmodules": "<p> Set to true to fetch Git submodules for your AWS CodeBuild build project. </p>",
         "ImportSourceCredentialsInput$shouldOverwrite": "<p> Set to <code>false</code> to prevent overwriting the repository source credentials. Set to <code>true</code> to overwrite the repository source credentials. The default value is <code>true</code>. </p>",
         "ProjectArtifacts$overrideArtifactName": "<p> If this flag is set, a name specified in the buildspec file overrides the artifact name. The name specified in a buildspec file is calculated at build time and uses the Shell Command Language. For example, you can append a date and time to your artifact name so that it is always unique. </p>",
@@ -1383,6 +1391,7 @@
         "StartBuildInput$insecureSslOverride": "<p>Enable this flag to override the insecure SSL setting that is specified in the build project. The insecure SSL setting determines whether to ignore SSL warnings while connecting to the project source code. This override applies only if the build's source is GitHub Enterprise.</p>",
         "StartBuildInput$reportBuildStatusOverride": "<p> Set to true to report to your source provider the status of a build's start and completion. If you use this option with a source provider other than GitHub, GitHub Enterprise, or Bitbucket, an invalidInputException is thrown. </p> <note> <p> The status of a build triggered by a webhook is always reported to your source provider. </p> </note>",
         "StartBuildInput$privilegedModeOverride": "<p>Enable this flag to override privileged mode in the build project.</p>",
+        "StartBuildInput$debugSessionEnabled": "<p>Specifies if session debugging is enabled for this build. For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html\">Viewing a running build in Session Manager</a>.</p>",
         "UpdateProjectInput$badgeEnabled": "<p>Set this to true to generate a publicly accessible URL for your project's build badge.</p>",
         "WebhookFilter$excludeMatchedPattern": "<p> Used to indicate that the <code>pattern</code> determines which webhook events do not trigger a build. If true, then a webhook event that does not match the <code>pattern</code> triggers a build. If false, then a webhook event that matches the <code>pattern</code> triggers a build. </p>"
       }

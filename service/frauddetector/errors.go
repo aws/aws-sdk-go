@@ -8,6 +8,14 @@ import (
 
 const (
 
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// An exception indicating Amazon Fraud Detector does not have the needed permissions.
+	// This can occur if you submit a request, such as PutExternalModel, that specifies
+	// a role that is not in your account.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
+
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
@@ -21,8 +29,8 @@ const (
 	//    * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
 	//    status is ACTIVE.
 	//
-	//    * DeleteRuleVersion: A conflict exception will occur if the RuleVersion
-	//    is in use by an associated ACTIVE or INACTIVE DetectorVersion.
+	//    * DeleteRule: A conflict exception will occur if the RuleVersion is in
+	//    use by an associated ACTIVE or INACTIVE DetectorVersion.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
@@ -51,6 +59,7 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":     newErrorAccessDeniedException,
 	"ConflictException":         newErrorConflictException,
 	"InternalServerException":   newErrorInternalServerException,
 	"ResourceNotFoundException": newErrorResourceNotFoundException,

@@ -2514,6 +2514,30 @@ func (c *GroundStation) UpdateMissionProfileWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// Details about an antenna demod decode Config used in a contact.
+type AntennaDemodDecodeDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Name of an antenna demod decode output node used in a contact.
+	OutputNode *string `locationName:"outputNode" type:"string"`
+}
+
+// String returns the string representation
+func (s AntennaDemodDecodeDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AntennaDemodDecodeDetails) GoString() string {
+	return s.String()
+}
+
+// SetOutputNode sets the OutputNode field's value.
+func (s *AntennaDemodDecodeDetails) SetOutputNode(v string) *AntennaDemodDecodeDetails {
+	s.OutputNode = &v
+	return s
+}
+
 // Information about how AWS Ground Station should configure an antenna for
 // downlink during a contact.
 type AntennaDownlinkConfig struct {
@@ -2655,6 +2679,9 @@ type AntennaUplinkConfig struct {
 	//
 	// TargetEirp is a required field
 	TargetEirp *Eirp `locationName:"targetEirp" type:"structure" required:"true"`
+
+	// Whether or not uplink transmit is disabled.
+	TransmitDisabled *bool `locationName:"transmitDisabled" type:"boolean"`
 }
 
 // String returns the string representation
@@ -2702,6 +2729,12 @@ func (s *AntennaUplinkConfig) SetSpectrumConfig(v *UplinkSpectrumConfig) *Antenn
 // SetTargetEirp sets the TargetEirp field's value.
 func (s *AntennaUplinkConfig) SetTargetEirp(v *Eirp) *AntennaUplinkConfig {
 	s.TargetEirp = v
+	return s
+}
+
+// SetTransmitDisabled sets the TransmitDisabled field's value.
+func (s *AntennaUplinkConfig) SetTransmitDisabled(v bool) *AntennaUplinkConfig {
+	s.TransmitDisabled = &v
 	return s
 }
 
@@ -2766,6 +2799,39 @@ func (s CancelContactOutput) GoString() string {
 // SetContactId sets the ContactId field's value.
 func (s *CancelContactOutput) SetContactId(v string) *CancelContactOutput {
 	s.ContactId = &v
+	return s
+}
+
+// Details for certain Config object types in a contact.
+type ConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Details for antenna demod decode Config in a contact.
+	AntennaDemodDecodeDetails *AntennaDemodDecodeDetails `locationName:"antennaDemodDecodeDetails" type:"structure"`
+
+	// Information about the endpoint details.
+	EndpointDetails *EndpointDetails `locationName:"endpointDetails" type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetAntennaDemodDecodeDetails sets the AntennaDemodDecodeDetails field's value.
+func (s *ConfigDetails) SetAntennaDemodDecodeDetails(v *AntennaDemodDecodeDetails) *ConfigDetails {
+	s.AntennaDemodDecodeDetails = v
+	return s
+}
+
+// SetEndpointDetails sets the EndpointDetails field's value.
+func (s *ConfigDetails) SetEndpointDetails(v *EndpointDetails) *ConfigDetails {
+	s.EndpointDetails = v
 	return s
 }
 
@@ -3451,12 +3517,48 @@ func (s *Data) SetRegion(v string) *Data {
 	return s
 }
 
+// Information about a dataflow edge used in a contact.
+type DataflowDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Dataflow details for the destination side.
+	Destination *Destination `locationName:"destination" type:"structure"`
+
+	// Dataflow details for the source side.
+	Source *Source `locationName:"source" type:"structure"`
+}
+
+// String returns the string representation
+func (s DataflowDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataflowDetail) GoString() string {
+	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *DataflowDetail) SetDestination(v *Destination) *DataflowDetail {
+	s.Destination = v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *DataflowDetail) SetSource(v *Source) *DataflowDetail {
+	s.Source = v
+	return s
+}
+
 // Information about a dataflow endpoint.
 type DataflowEndpoint struct {
 	_ struct{} `type:"structure"`
 
 	// Socket address of a dataflow endpoint.
 	Address *SocketAddress `locationName:"address" type:"structure"`
+
+	// Maximum transmission unit (MTU) size in bytes of a dataflow endpoint.
+	Mtu *int64 `locationName:"mtu" min:"1400" type:"integer"`
 
 	// Name of a dataflow endpoint.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -3478,6 +3580,9 @@ func (s DataflowEndpoint) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataflowEndpoint) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataflowEndpoint"}
+	if s.Mtu != nil && *s.Mtu < 1400 {
+		invalidParams.Add(request.NewErrParamMinValue("Mtu", 1400))
+	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
@@ -3496,6 +3601,12 @@ func (s *DataflowEndpoint) Validate() error {
 // SetAddress sets the Address field's value.
 func (s *DataflowEndpoint) SetAddress(v *SocketAddress) *DataflowEndpoint {
 	s.Address = v
+	return s
+}
+
+// SetMtu sets the Mtu field's value.
+func (s *DataflowEndpoint) SetMtu(v int64) *DataflowEndpoint {
+	s.Mtu = &v
 	return s
 }
 
@@ -4011,6 +4122,9 @@ type DescribeContactOutput struct {
 	// Status of a contact.
 	ContactStatus *string `locationName:"contactStatus" type:"string" enum:"ContactStatus"`
 
+	// List describing source and destination details for each dataflow edge.
+	DataflowList []*DataflowDetail `locationName:"dataflowList" type:"list"`
+
 	// End time of a contact.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
@@ -4066,6 +4180,12 @@ func (s *DescribeContactOutput) SetContactId(v string) *DescribeContactOutput {
 // SetContactStatus sets the ContactStatus field's value.
 func (s *DescribeContactOutput) SetContactStatus(v string) *DescribeContactOutput {
 	s.ContactStatus = &v
+	return s
+}
+
+// SetDataflowList sets the DataflowList field's value.
+func (s *DescribeContactOutput) SetDataflowList(v []*DataflowDetail) *DescribeContactOutput {
+	s.DataflowList = v
 	return s
 }
 
@@ -4135,6 +4255,58 @@ func (s *DescribeContactOutput) SetTags(v map[string]*string) *DescribeContactOu
 	return s
 }
 
+// Dataflow details for the destination side.
+type Destination struct {
+	_ struct{} `type:"structure"`
+
+	// Additional details for a Config, if type is dataflow endpoint or antenna
+	// demod decode.
+	ConfigDetails *ConfigDetails `locationName:"configDetails" type:"structure"`
+
+	// UUID of a Config.
+	ConfigId *string `locationName:"configId" type:"string"`
+
+	// Type of a Config.
+	ConfigType *string `locationName:"configType" type:"string" enum:"ConfigCapabilityType"`
+
+	// Region of a dataflow destination.
+	DataflowDestinationRegion *string `locationName:"dataflowDestinationRegion" type:"string"`
+}
+
+// String returns the string representation
+func (s Destination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Destination) GoString() string {
+	return s.String()
+}
+
+// SetConfigDetails sets the ConfigDetails field's value.
+func (s *Destination) SetConfigDetails(v *ConfigDetails) *Destination {
+	s.ConfigDetails = v
+	return s
+}
+
+// SetConfigId sets the ConfigId field's value.
+func (s *Destination) SetConfigId(v string) *Destination {
+	s.ConfigId = &v
+	return s
+}
+
+// SetConfigType sets the ConfigType field's value.
+func (s *Destination) SetConfigType(v string) *Destination {
+	s.ConfigType = &v
+	return s
+}
+
+// SetDataflowDestinationRegion sets the DataflowDestinationRegion field's value.
+func (s *Destination) SetDataflowDestinationRegion(v string) *Destination {
+	s.DataflowDestinationRegion = &v
+	return s
+}
+
 // Object that represents EIRP.
 type Eirp struct {
 	_ struct{} `type:"structure"`
@@ -4144,7 +4316,7 @@ type Eirp struct {
 	// Units is a required field
 	Units *string `locationName:"units" type:"string" required:"true" enum:"EirpUnits"`
 
-	// Value of an EIRP.
+	// Value of an EIRP. Valid values are between 20.0 to 50.0 dBW.
 	//
 	// Value is a required field
 	Value *float64 `locationName:"value" type:"double" required:"true"`
@@ -4287,7 +4459,8 @@ type Frequency struct {
 	// Units is a required field
 	Units *string `locationName:"units" type:"string" required:"true" enum:"FrequencyUnits"`
 
-	// Frequency value.
+	// Frequency value. Valid values are between 2200 to 2300 MHz and 7750 to 8400
+	// MHz for downlink and 2025 to 2120 MHz for uplink.
 	//
 	// Value is a required field
 	Value *float64 `locationName:"value" type:"double" required:"true"`
@@ -4340,7 +4513,15 @@ type FrequencyBandwidth struct {
 	// Units is a required field
 	Units *string `locationName:"units" type:"string" required:"true" enum:"BandwidthUnits"`
 
-	// Frequency bandwidth value.
+	// Frequency bandwidth value. AWS Ground Station currently has the following
+	// bandwidth limitations:
+	//
+	//    * For AntennaDownlinkDemodDecodeconfig, valid values are between 125 kHz
+	//    to 650 MHz.
+	//
+	//    * For AntennaDownlinkconfig, valid values are between 10 kHz to 54 MHz.
+	//
+	//    * For AntennaUplinkConfig, valid values are between 10 kHz to 54 MHz.
 	//
 	// Value is a required field
 	Value *float64 `locationName:"value" type:"double" required:"true"`
@@ -6032,21 +6213,83 @@ func (s *SocketAddress) SetPort(v int64) *SocketAddress {
 	return s
 }
 
+// Dataflow details for the source side.
+type Source struct {
+	_ struct{} `type:"structure"`
+
+	// Additional details for a Config, if type is dataflow endpoint or antenna
+	// demod decode.
+	ConfigDetails *ConfigDetails `locationName:"configDetails" type:"structure"`
+
+	// UUID of a Config.
+	ConfigId *string `locationName:"configId" type:"string"`
+
+	// Type of a Config.
+	ConfigType *string `locationName:"configType" type:"string" enum:"ConfigCapabilityType"`
+
+	// Region of a dataflow source.
+	DataflowSourceRegion *string `locationName:"dataflowSourceRegion" type:"string"`
+}
+
+// String returns the string representation
+func (s Source) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Source) GoString() string {
+	return s.String()
+}
+
+// SetConfigDetails sets the ConfigDetails field's value.
+func (s *Source) SetConfigDetails(v *ConfigDetails) *Source {
+	s.ConfigDetails = v
+	return s
+}
+
+// SetConfigId sets the ConfigId field's value.
+func (s *Source) SetConfigId(v string) *Source {
+	s.ConfigId = &v
+	return s
+}
+
+// SetConfigType sets the ConfigType field's value.
+func (s *Source) SetConfigType(v string) *Source {
+	s.ConfigType = &v
+	return s
+}
+
+// SetDataflowSourceRegion sets the DataflowSourceRegion field's value.
+func (s *Source) SetDataflowSourceRegion(v string) *Source {
+	s.DataflowSourceRegion = &v
+	return s
+}
+
 // Object that describes a spectral Config.
 type SpectrumConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Bandwidth of a spectral Config.
+	// Bandwidth of a spectral Config. AWS Ground Station currently has the following
+	// bandwidth limitations:
+	//
+	//    * For AntennaDownlinkDemodDecodeconfig, valid values are between 125 kHz
+	//    to 650 MHz.
+	//
+	//    * For AntennaDownlinkconfig valid values are between 10 kHz to 54 MHz.
+	//
+	//    * For AntennaUplinkConfig, valid values are between 10 kHz to 54 MHz.
 	//
 	// Bandwidth is a required field
 	Bandwidth *FrequencyBandwidth `locationName:"bandwidth" type:"structure" required:"true"`
 
-	// Center frequency of a spectral Config.
+	// Center frequency of a spectral Config. Valid values are between 2200 to 2300
+	// MHz and 7750 to 8400 MHz for downlink and 2025 to 2120 MHz for uplink.
 	//
 	// CenterFrequency is a required field
 	CenterFrequency *Frequency `locationName:"centerFrequency" type:"structure" required:"true"`
 
-	// Polarization of a spectral Config.
+	// Polarization of a spectral Config. Capturing both "RIGHT_HAND" and "LEFT_HAND"
+	// polarization requires two separate configs.
 	Polarization *string `locationName:"polarization" type:"string" enum:"Polarization"`
 }
 
@@ -6612,12 +6855,14 @@ func (s *UplinkEchoConfig) SetEnabled(v bool) *UplinkEchoConfig {
 type UplinkSpectrumConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Center frequency of an uplink spectral Config.
+	// Center frequency of an uplink spectral Config. Valid values are between 2025
+	// to 2120 MHz.
 	//
 	// CenterFrequency is a required field
 	CenterFrequency *Frequency `locationName:"centerFrequency" type:"structure" required:"true"`
 
-	// Polarization of an uplink spectral Config.
+	// Polarization of an uplink spectral Config. Capturing both "RIGHT_HAND" and
+	// "LEFT_HAND" polarization requires two separate configs.
 	Polarization *string `locationName:"polarization" type:"string" enum:"Polarization"`
 }
 

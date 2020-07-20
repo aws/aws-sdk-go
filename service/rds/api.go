@@ -21718,9 +21718,17 @@ type DBEngineVersion struct {
 	// of the CreateDBInstance action.
 	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
 
+	// A value that indicates whether you can use Aurora global databases with a
+	// specific DB engine version.
+	SupportsGlobalDatabases *bool `type:"boolean"`
+
 	// A value that indicates whether the engine version supports exporting the
 	// log types specified by ExportableLogTypes to CloudWatch Logs.
 	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
+
+	// A value that indicates whether you can use Aurora parallel query with a specific
+	// DB engine version.
+	SupportsParallelQuery *bool `type:"boolean"`
 
 	// Indicates whether the database engine version supports read replicas.
 	SupportsReadReplica *bool `type:"boolean"`
@@ -21812,9 +21820,21 @@ func (s *DBEngineVersion) SetSupportedTimezones(v []*Timezone) *DBEngineVersion 
 	return s
 }
 
+// SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
+func (s *DBEngineVersion) SetSupportsGlobalDatabases(v bool) *DBEngineVersion {
+	s.SupportsGlobalDatabases = &v
+	return s
+}
+
 // SetSupportsLogExportsToCloudwatchLogs sets the SupportsLogExportsToCloudwatchLogs field's value.
 func (s *DBEngineVersion) SetSupportsLogExportsToCloudwatchLogs(v bool) *DBEngineVersion {
 	s.SupportsLogExportsToCloudwatchLogs = &v
+	return s
+}
+
+// SetSupportsParallelQuery sets the SupportsParallelQuery field's value.
+func (s *DBEngineVersion) SetSupportsParallelQuery(v bool) *DBEngineVersion {
+	s.SupportsParallelQuery = &v
 	return s
 }
 
@@ -35386,6 +35406,10 @@ type OrderableDBInstanceOption struct {
 	// from 1 to 60 seconds.
 	SupportsEnhancedMonitoring *bool `type:"boolean"`
 
+	// A value that indicates whether you can use Aurora global databases with a
+	// specific combination of other DB engine attributes.
+	SupportsGlobalDatabases *bool `type:"boolean"`
+
 	// Indicates whether a DB instance supports IAM database authentication.
 	SupportsIAMDatabaseAuthentication *bool `type:"boolean"`
 
@@ -35530,6 +35554,12 @@ func (s *OrderableDBInstanceOption) SetSupportedEngineModes(v []*string) *Ordera
 // SetSupportsEnhancedMonitoring sets the SupportsEnhancedMonitoring field's value.
 func (s *OrderableDBInstanceOption) SetSupportsEnhancedMonitoring(v bool) *OrderableDBInstanceOption {
 	s.SupportsEnhancedMonitoring = &v
+	return s
+}
+
+// SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
+func (s *OrderableDBInstanceOption) SetSupportsGlobalDatabases(v bool) *OrderableDBInstanceOption {
+	s.SupportsGlobalDatabases = &v
 	return s
 }
 

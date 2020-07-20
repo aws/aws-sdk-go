@@ -3593,7 +3593,9 @@
         "SupportsReadReplica":{"shape":"Boolean"},
         "SupportedEngineModes":{"shape":"EngineModeList"},
         "SupportedFeatureNames":{"shape":"FeatureNameList"},
-        "Status":{"shape":"String"}
+        "Status":{"shape":"String"},
+        "SupportsParallelQuery":{"shape":"Boolean"},
+        "SupportsGlobalDatabases":{"shape":"Boolean"}
       }
     },
     "DBEngineVersionList":{
@@ -6413,7 +6415,8 @@
         "SupportedEngineModes":{"shape":"EngineModeList"},
         "SupportsStorageAutoscaling":{"shape":"BooleanOptional"},
         "SupportsKerberosAuthentication":{"shape":"BooleanOptional"},
-        "OutpostCapable":{"shape":"Boolean"}
+        "OutpostCapable":{"shape":"Boolean"},
+        "SupportsGlobalDatabases":{"shape":"Boolean"}
       },
       "wrapper":true
     },
