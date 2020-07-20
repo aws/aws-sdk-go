@@ -121,8 +121,8 @@ func TestGetWriterStore_TempFile(t *testing.T) {
 
 func TestGetWriterStore_TempFileWithRetry(t *testing.T) {
 	responses := []*http.Response{
-		&http.Response{StatusCode: 500, Header: http.Header{}, Body: ioutil.NopCloser(&bytes.Buffer{})},
-		&http.Response{StatusCode: 200, Header: http.Header{}, Body: ioutil.NopCloser(&bytes.Buffer{})},
+		{StatusCode: 500, Header: http.Header{}, Body: ioutil.NopCloser(&bytes.Buffer{})},
+		{StatusCode: 200, Header: http.Header{}, Body: ioutil.NopCloser(&bytes.Buffer{})},
 	}
 	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
 	s.Handlers.Validate.Clear()
