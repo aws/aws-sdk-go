@@ -11235,6 +11235,7 @@
     "ResourceArn": {
       "base": null,
       "refs": {
+        "CoipPool$PoolArn": "<p>The ARN of the address pool.</p>",
         "ManagedPrefixList$PrefixListArn": "<p>The Amazon Resource Name (ARN) for the prefix list.</p>"
       }
     },
@@ -13899,6 +13900,7 @@
         "CreateNetworkAclRequest$TagSpecifications": "<p>The tags to assign to the network ACL.</p>",
         "CreateNetworkInterfaceRequest$TagSpecifications": "<p>The tags to apply to the new network interface.</p>",
         "CreatePlacementGroupRequest$TagSpecifications": "<p>The tags to apply to the new placement group.</p>",
+        "CreateRouteTableRequest$TagSpecifications": "<p>The tags to assign to the route table.</p>",
         "CreateSecurityGroupRequest$TagSpecifications": "<p>The tags to assign to the security group.</p>",
         "CreateSnapshotRequest$TagSpecifications": "<p>The tags to apply to the snapshot during creation.</p>",
         "CreateSnapshotsRequest$TagSpecifications": "<p>Tags to apply to every snapshot specified by the instance.</p>",
@@ -13914,6 +13916,7 @@
         "CreateVolumeRequest$TagSpecifications": "<p>The tags to apply to the volume during creation.</p>",
         "CreateVpcEndpointRequest$TagSpecifications": "<p>The tags to associate with the endpoint.</p>",
         "CreateVpcEndpointServiceConfigurationRequest$TagSpecifications": "<p>The tags to associate with the service.</p>",
+        "CreateVpcPeeringConnectionRequest$TagSpecifications": "<p>The tags to assign to the peering connection.</p>",
         "CreateVpcRequest$TagSpecifications": "<p>The tags to assign to the VPC.</p>",
         "ExportImageRequest$TagSpecifications": "<p>The tags to apply to the image being exported.</p>",
         "ImportImageRequest$TagSpecifications": "<p>The tags to apply to the image being imported.</p>",

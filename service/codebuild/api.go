@@ -3782,6 +3782,9 @@ type Build struct {
 	// The current build phase.
 	CurrentPhase *string `locationName:"currentPhase" type:"string"`
 
+	// Contains information about the debug session for this build.
+	DebugSession *DebugSession `locationName:"debugSession" type:"structure"`
+
 	// The AWS Key Management Service (AWS KMS) customer master key (CMK) to be
 	// used for encrypting the build output artifacts.
 	//
@@ -3954,6 +3957,12 @@ func (s *Build) SetCache(v *ProjectCache) *Build {
 // SetCurrentPhase sets the CurrentPhase field's value.
 func (s *Build) SetCurrentPhase(v string) *Build {
 	s.CurrentPhase = &v
+	return s
+}
+
+// SetDebugSession sets the DebugSession field's value.
+func (s *Build) SetDebugSession(v *DebugSession) *Build {
+	s.DebugSession = v
 	return s
 }
 
@@ -5029,6 +5038,42 @@ func (s CreateWebhookOutput) GoString() string {
 // SetWebhook sets the Webhook field's value.
 func (s *CreateWebhookOutput) SetWebhook(v *Webhook) *CreateWebhookOutput {
 	s.Webhook = v
+	return s
+}
+
+// Contains information about the debug session for a build. For more information,
+// see Viewing a running build in Session Manager (https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html).
+type DebugSession struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies if session debugging is enabled for this build.
+	SessionEnabled *bool `locationName:"sessionEnabled" type:"boolean"`
+
+	// Contains the identifier of the Session Manager session used for the build.
+	// To work with the paused build, you open this session to examine, control,
+	// and resume the build.
+	SessionTarget *string `locationName:"sessionTarget" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DebugSession) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DebugSession) GoString() string {
+	return s.String()
+}
+
+// SetSessionEnabled sets the SessionEnabled field's value.
+func (s *DebugSession) SetSessionEnabled(v bool) *DebugSession {
+	s.SessionEnabled = &v
+	return s
+}
+
+// SetSessionTarget sets the SessionTarget field's value.
+func (s *DebugSession) SetSessionTarget(v string) *DebugSession {
+	s.SessionTarget = &v
 	return s
 }
 
@@ -6592,7 +6637,7 @@ type ListReportsForReportGroupOutput struct {
 	// returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The list of returned report group ARNs.
+	// The list of report ARNs.
 	Reports []*string `locationName:"reports" min:"1" type:"list"`
 }
 
@@ -9291,6 +9336,10 @@ type StartBuildInput struct {
 	// in the build project.
 	ComputeTypeOverride *string `locationName:"computeTypeOverride" type:"string" enum:"ComputeType"`
 
+	// Specifies if session debugging is enabled for this build. For more information,
+	// see Viewing a running build in Session Manager (https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html).
+	DebugSessionEnabled *bool `locationName:"debugSessionEnabled" type:"boolean"`
+
 	// The AWS Key Management Service (AWS KMS) customer master key (CMK) that overrides
 	// the one specified in the build project. The CMK key encrypts the build output
 	// artifacts.
@@ -9579,6 +9628,12 @@ func (s *StartBuildInput) SetCertificateOverride(v string) *StartBuildInput {
 // SetComputeTypeOverride sets the ComputeTypeOverride field's value.
 func (s *StartBuildInput) SetComputeTypeOverride(v string) *StartBuildInput {
 	s.ComputeTypeOverride = &v
+	return s
+}
+
+// SetDebugSessionEnabled sets the DebugSessionEnabled field's value.
+func (s *StartBuildInput) SetDebugSessionEnabled(v bool) *StartBuildInput {
+	s.DebugSessionEnabled = &v
 	return s
 }
 
@@ -10959,6 +11014,9 @@ const (
 
 	// EnvironmentTypeArmContainer is a EnvironmentType enum value
 	EnvironmentTypeArmContainer = "ARM_CONTAINER"
+
+	// EnvironmentTypeWindowsServer2019Container is a EnvironmentType enum value
+	EnvironmentTypeWindowsServer2019Container = "WINDOWS_SERVER_2019_CONTAINER"
 )
 
 const (

@@ -10,7 +10,22 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "GetEntityTypes": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "GetEventTypes": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "GetExternalModels": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "GetLabels": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"
@@ -31,6 +46,11 @@
       "limit_key": "maxResults"
     },
     "GetVariables": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListTagsForResource": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"

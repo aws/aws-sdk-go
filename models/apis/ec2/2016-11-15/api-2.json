@@ -6102,6 +6102,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "PoolArn":{
+          "shape":"ResourceArn",
+          "locationName":"poolArn"
         }
       }
     },
@@ -7410,6 +7414,10 @@
         "VpcId":{
           "shape":"VpcId",
           "locationName":"vpcId"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },
@@ -8036,7 +8044,11 @@
           "shape":"VpcId",
           "locationName":"vpcId"
         },
-        "PeerRegion":{"shape":"String"}
+        "PeerRegion":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CreateVpcPeeringConnectionResult":{

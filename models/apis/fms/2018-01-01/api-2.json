@@ -27,6 +27,19 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "DeleteAppsList":{
+      "name":"DeleteAppsList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAppsListRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "DeleteNotificationChannel":{
       "name":"DeleteNotificationChannel",
       "http":{
@@ -47,6 +60,19 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeletePolicyRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
+    "DeleteProtocolsList":{
+      "name":"DeleteProtocolsList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteProtocolsListRequest"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidOperationException"},
@@ -80,6 +106,20 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "GetAppsList":{
+      "name":"GetAppsList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAppsListRequest"},
+      "output":{"shape":"GetAppsListResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "GetComplianceDetail":{
       "name":"GetComplianceDetail",
       "http":{
@@ -90,7 +130,9 @@
       "output":{"shape":"GetComplianceDetailResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidOperationException"}
       ]
     },
     "GetNotificationChannel":{
@@ -136,6 +178,49 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "GetProtocolsList":{
+      "name":"GetProtocolsList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetProtocolsListRequest"},
+      "output":{"shape":"GetProtocolsListResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
+    "GetViolationDetails":{
+      "name":"GetViolationDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetViolationDetailsRequest"},
+      "output":{"shape":"GetViolationDetailsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
+    "ListAppsLists":{
+      "name":"ListAppsLists",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAppsListsRequest"},
+      "output":{"shape":"ListAppsListsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "ListComplianceStatus":{
       "name":"ListComplianceStatus",
       "http":{
@@ -177,6 +262,20 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "ListProtocolsLists":{
+      "name":"ListProtocolsLists",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListProtocolsListsRequest"},
+      "output":{"shape":"ListProtocolsListsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -190,6 +289,22 @@
         {"shape":"InvalidOperationException"},
         {"shape":"InternalErrorException"},
         {"shape":"InvalidInputException"}
+      ]
+    },
+    "PutAppsList":{
+      "name":"PutAppsList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutAppsListRequest"},
+      "output":{"shape":"PutAppsListResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "PutNotificationChannel":{
@@ -220,6 +335,22 @@
         {"shape":"LimitExceededException"},
         {"shape":"InternalErrorException"},
         {"shape":"InvalidTypeException"}
+      ]
+    },
+    "PutProtocolsList":{
+      "name":"PutProtocolsList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutProtocolsListRequest"},
+      "output":{"shape":"PutProtocolsListResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "TagResource":{
@@ -271,6 +402,52 @@
         "DELETED"
       ]
     },
+    "App":{
+      "type":"structure",
+      "required":[
+        "AppName",
+        "Protocol",
+        "Port"
+      ],
+      "members":{
+        "AppName":{"shape":"ResourceName"},
+        "Protocol":{"shape":"Protocol"},
+        "Port":{"shape":"IPPortNumber"}
+      }
+    },
+    "AppsList":{
+      "type":"list",
+      "member":{"shape":"App"}
+    },
+    "AppsListData":{
+      "type":"structure",
+      "required":[
+        "ListName",
+        "AppsList"
+      ],
+      "members":{
+        "ListId":{"shape":"ListId"},
+        "ListName":{"shape":"ResourceName"},
+        "ListUpdateToken":{"shape":"UpdateToken"},
+        "CreateTime":{"shape":"TimeStamp"},
+        "LastUpdateTime":{"shape":"TimeStamp"},
+        "AppsList":{"shape":"AppsList"},
+        "PreviousAppsList":{"shape":"PreviousAppsList"}
+      }
+    },
+    "AppsListDataSummary":{
+      "type":"structure",
+      "members":{
+        "ListArn":{"shape":"ResourceArn"},
+        "ListId":{"shape":"ListId"},
+        "ListName":{"shape":"ResourceName"},
+        "AppsList":{"shape":"AppsList"}
+      }
+    },
+    "AppsListsData":{
+      "type":"list",
+      "member":{"shape":"AppsListDataSummary"}
+    },
     "AssociateAdminAccountRequest":{
       "type":"structure",
       "required":["AdminAccount"],
@@ -278,7 +455,40 @@
         "AdminAccount":{"shape":"AWSAccountId"}
       }
     },
+    "AwsEc2InstanceViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "AwsEc2NetworkInterfaceViolations":{"shape":"AwsEc2NetworkInterfaceViolations"}
+      }
+    },
+    "AwsEc2NetworkInterfaceViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "ViolatingSecurityGroups":{"shape":"ResourceIdList"}
+      }
+    },
+    "AwsEc2NetworkInterfaceViolations":{
+      "type":"list",
+      "member":{"shape":"AwsEc2NetworkInterfaceViolation"}
+    },
+    "AwsVPCSecurityGroupViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "ViolationTargetDescription":{"shape":"LengthBoundedString"},
+        "PartialMatches":{"shape":"PartialMatches"},
+        "PossibleSecurityGroupRemediationActions":{"shape":"SecurityGroupRemediationActions"}
+      }
+    },
     "Boolean":{"type":"boolean"},
+    "CIDR":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"[a-f0-9:./]+"
+    },
     "ComplianceViolator":{
       "type":"structure",
       "members":{
@@ -313,6 +523,13 @@
       "key":{"shape":"CustomerPolicyScopeIdType"},
       "value":{"shape":"CustomerPolicyScopeIdList"}
     },
+    "DeleteAppsListRequest":{
+      "type":"structure",
+      "required":["ListId"],
+      "members":{
+        "ListId":{"shape":"ListId"}
+      }
+    },
     "DeleteNotificationChannelRequest":{
       "type":"structure",
       "members":{
@@ -324,6 +541,13 @@
       "members":{
         "PolicyId":{"shape":"PolicyId"},
         "DeleteAllPolicyResources":{"shape":"Boolean"}
+      }
+    },
+    "DeleteProtocolsListRequest":{
+      "type":"structure",
+      "required":["ListId"],
+      "members":{
+        "ListId":{"shape":"ListId"}
       }
     },
     "DependentServiceName":{
@@ -369,6 +593,21 @@
       "members":{
         "AdminAccount":{"shape":"AWSAccountId"},
         "RoleStatus":{"shape":"AccountRoleStatus"}
+      }
+    },
+    "GetAppsListRequest":{
+      "type":"structure",
+      "required":["ListId"],
+      "members":{
+        "ListId":{"shape":"ListId"},
+        "DefaultList":{"shape":"Boolean"}
+      }
+    },
+    "GetAppsListResponse":{
+      "type":"structure",
+      "members":{
+        "AppsList":{"shape":"AppsListData"},
+        "AppsListArn":{"shape":"ResourceArn"}
       }
     },
     "GetComplianceDetailRequest":{
@@ -435,6 +674,47 @@
         "NextToken":{"shape":"PaginationToken"}
       }
     },
+    "GetProtocolsListRequest":{
+      "type":"structure",
+      "required":["ListId"],
+      "members":{
+        "ListId":{"shape":"ListId"},
+        "DefaultList":{"shape":"Boolean"}
+      }
+    },
+    "GetProtocolsListResponse":{
+      "type":"structure",
+      "members":{
+        "ProtocolsList":{"shape":"ProtocolsListData"},
+        "ProtocolsListArn":{"shape":"ResourceArn"}
+      }
+    },
+    "GetViolationDetailsRequest":{
+      "type":"structure",
+      "required":[
+        "PolicyId",
+        "MemberAccount",
+        "ResourceId",
+        "ResourceType"
+      ],
+      "members":{
+        "PolicyId":{"shape":"PolicyId"},
+        "MemberAccount":{"shape":"AWSAccountId"},
+        "ResourceId":{"shape":"ResourceId"},
+        "ResourceType":{"shape":"ResourceType"}
+      }
+    },
+    "GetViolationDetailsResponse":{
+      "type":"structure",
+      "members":{
+        "ViolationDetail":{"shape":"ViolationDetail"}
+      }
+    },
+    "IPPortNumber":{
+      "type":"long",
+      "max":65535,
+      "min":0
+    },
     "InternalErrorException":{
       "type":"structure",
       "members":{
@@ -468,12 +748,33 @@
       "key":{"shape":"DependentServiceName"},
       "value":{"shape":"DetailedInfo"}
     },
+    "LengthBoundedString":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ListAppsListsRequest":{
+      "type":"structure",
+      "required":["MaxResults"],
+      "members":{
+        "DefaultLists":{"shape":"Boolean"},
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"PaginationMaxResults"}
+      }
+    },
+    "ListAppsListsResponse":{
+      "type":"structure",
+      "members":{
+        "AppsLists":{"shape":"AppsListsData"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
     },
     "ListComplianceStatusRequest":{
       "type":"structure",
@@ -490,6 +791,12 @@
         "PolicyComplianceStatusList":{"shape":"PolicyComplianceStatusList"},
         "NextToken":{"shape":"PaginationToken"}
       }
+    },
+    "ListId":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"^[a-z0-9A-Z-]{36}$"
     },
     "ListMemberAccountsRequest":{
       "type":"structure",
@@ -516,6 +823,22 @@
       "type":"structure",
       "members":{
         "PolicyList":{"shape":"PolicySummaryList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListProtocolsListsRequest":{
+      "type":"structure",
+      "required":["MaxResults"],
+      "members":{
+        "DefaultLists":{"shape":"Boolean"},
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"PaginationMaxResults"}
+      }
+    },
+    "ListProtocolsListsResponse":{
+      "type":"structure",
+      "members":{
+        "ProtocolsLists":{"shape":"ProtocolsListsData"},
         "NextToken":{"shape":"PaginationToken"}
       }
     },
@@ -552,6 +875,17 @@
       "max":4096,
       "min":1,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "PartialMatch":{
+      "type":"structure",
+      "members":{
+        "Reference":{"shape":"ReferenceRule"},
+        "TargetViolationReasons":{"shape":"TargetViolationReasons"}
+      }
+    },
+    "PartialMatches":{
+      "type":"list",
+      "member":{"shape":"PartialMatch"}
     },
     "Policy":{
       "type":"structure",
@@ -638,7 +972,77 @@
       "min":1,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
+    "PreviousAppsList":{
+      "type":"map",
+      "key":{"shape":"PreviousListVersion"},
+      "value":{"shape":"AppsList"}
+    },
+    "PreviousListVersion":{
+      "type":"string",
+      "max":2,
+      "min":1,
+      "pattern":"^\\d{1,2}$"
+    },
+    "PreviousProtocolsList":{
+      "type":"map",
+      "key":{"shape":"PreviousListVersion"},
+      "value":{"shape":"ProtocolsList"}
+    },
     "ProtectionData":{"type":"string"},
+    "Protocol":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "ProtocolsList":{
+      "type":"list",
+      "member":{"shape":"Protocol"}
+    },
+    "ProtocolsListData":{
+      "type":"structure",
+      "required":[
+        "ListName",
+        "ProtocolsList"
+      ],
+      "members":{
+        "ListId":{"shape":"ListId"},
+        "ListName":{"shape":"ResourceName"},
+        "ListUpdateToken":{"shape":"UpdateToken"},
+        "CreateTime":{"shape":"TimeStamp"},
+        "LastUpdateTime":{"shape":"TimeStamp"},
+        "ProtocolsList":{"shape":"ProtocolsList"},
+        "PreviousProtocolsList":{"shape":"PreviousProtocolsList"}
+      }
+    },
+    "ProtocolsListDataSummary":{
+      "type":"structure",
+      "members":{
+        "ListArn":{"shape":"ResourceArn"},
+        "ListId":{"shape":"ListId"},
+        "ListName":{"shape":"ResourceName"},
+        "ProtocolsList":{"shape":"ProtocolsList"}
+      }
+    },
+    "ProtocolsListsData":{
+      "type":"list",
+      "member":{"shape":"ProtocolsListDataSummary"}
+    },
+    "PutAppsListRequest":{
+      "type":"structure",
+      "required":["AppsList"],
+      "members":{
+        "AppsList":{"shape":"AppsListData"},
+        "TagList":{"shape":"TagList"}
+      }
+    },
+    "PutAppsListResponse":{
+      "type":"structure",
+      "members":{
+        "AppsList":{"shape":"AppsListData"},
+        "AppsListArn":{"shape":"ResourceArn"}
+      }
+    },
     "PutNotificationChannelRequest":{
       "type":"structure",
       "required":[
@@ -665,6 +1069,35 @@
         "PolicyArn":{"shape":"ResourceArn"}
       }
     },
+    "PutProtocolsListRequest":{
+      "type":"structure",
+      "required":["ProtocolsList"],
+      "members":{
+        "ProtocolsList":{"shape":"ProtocolsListData"},
+        "TagList":{"shape":"TagList"}
+      }
+    },
+    "PutProtocolsListResponse":{
+      "type":"structure",
+      "members":{
+        "ProtocolsList":{"shape":"ProtocolsListData"},
+        "ProtocolsListArn":{"shape":"ResourceArn"}
+      }
+    },
+    "ReferenceRule":{"type":"string"},
+    "RemediationActionDescription":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*"
+    },
+    "RemediationActionType":{
+      "type":"string",
+      "enum":[
+        "REMOVE",
+        "MODIFY"
+      ]
+    },
     "ResourceArn":{
       "type":"string",
       "max":1024,
@@ -680,6 +1113,10 @@
       "max":1024,
       "min":1,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "ResourceIdList":{
+      "type":"list",
+      "member":{"shape":"ResourceId"}
     },
     "ResourceName":{
       "type":"string",
@@ -728,6 +1165,42 @@
     "ResourceTypeList":{
       "type":"list",
       "member":{"shape":"ResourceType"}
+    },
+    "ResourceViolation":{
+      "type":"structure",
+      "members":{
+        "AwsVPCSecurityGroupViolation":{"shape":"AwsVPCSecurityGroupViolation"},
+        "AwsEc2NetworkInterfaceViolation":{"shape":"AwsEc2NetworkInterfaceViolation"},
+        "AwsEc2InstanceViolation":{"shape":"AwsEc2InstanceViolation"}
+      }
+    },
+    "ResourceViolations":{
+      "type":"list",
+      "member":{"shape":"ResourceViolation"}
+    },
+    "SecurityGroupRemediationAction":{
+      "type":"structure",
+      "members":{
+        "RemediationActionType":{"shape":"RemediationActionType"},
+        "Description":{"shape":"RemediationActionDescription"},
+        "RemediationResult":{"shape":"SecurityGroupRuleDescription"},
+        "IsDefaultAction":{"shape":"Boolean"}
+      }
+    },
+    "SecurityGroupRemediationActions":{
+      "type":"list",
+      "member":{"shape":"SecurityGroupRemediationAction"}
+    },
+    "SecurityGroupRuleDescription":{
+      "type":"structure",
+      "members":{
+        "IPV4Range":{"shape":"CIDR"},
+        "IPV6Range":{"shape":"CIDR"},
+        "PrefixListId":{"shape":"ResourceId"},
+        "Protocol":{"shape":"LengthBoundedString"},
+        "FromPort":{"shape":"IPPortNumber"},
+        "ToPort":{"shape":"IPPortNumber"}
+      }
     },
     "SecurityServicePolicyData":{
       "type":"structure",
@@ -799,6 +1272,16 @@
       "min":0,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
+    "TargetViolationReason":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"\\w+"
+    },
+    "TargetViolationReasons":{
+      "type":"list",
+      "member":{"shape":"TargetViolationReason"}
+    },
     "TimeStamp":{"type":"timestamp"},
     "UntagResourceRequest":{
       "type":"structure",
@@ -816,6 +1299,31 @@
       "members":{
       }
     },
+    "UpdateToken":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "ViolationDetail":{
+      "type":"structure",
+      "required":[
+        "PolicyId",
+        "MemberAccount",
+        "ResourceId",
+        "ResourceType",
+        "ResourceViolations"
+      ],
+      "members":{
+        "PolicyId":{"shape":"PolicyId"},
+        "MemberAccount":{"shape":"AWSAccountId"},
+        "ResourceId":{"shape":"ResourceId"},
+        "ResourceType":{"shape":"ResourceType"},
+        "ResourceViolations":{"shape":"ResourceViolations"},
+        "ResourceTags":{"shape":"TagList"},
+        "ResourceDescription":{"shape":"LengthBoundedString"}
+      }
+    },
     "ViolationReason":{
       "type":"string",
       "enum":[
@@ -829,6 +1337,12 @@
         "SECURITY_GROUP_UNUSED",
         "SECURITY_GROUP_REDUNDANT"
       ]
+    },
+    "ViolationTarget":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*"
     }
   }
 }

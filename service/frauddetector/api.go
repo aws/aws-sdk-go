@@ -75,6 +75,11 @@ func (c *FraudDetector) BatchCreateVariableRequest(input *BatchCreateVariableInp
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/BatchCreateVariable
 func (c *FraudDetector) BatchCreateVariable(input *BatchCreateVariableInput) (*BatchCreateVariableOutput, error) {
 	req, out := c.BatchCreateVariableRequest(input)
@@ -159,6 +164,11 @@ func (c *FraudDetector) BatchGetVariableRequest(input *BatchGetVariableInput) (r
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/BatchGetVariable
 func (c *FraudDetector) BatchGetVariable(input *BatchGetVariableInput) (*BatchGetVariableOutput, error) {
@@ -248,6 +258,11 @@ func (c *FraudDetector) CreateDetectorVersionRequest(input *CreateDetectorVersio
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateDetectorVersion
 func (c *FraudDetector) CreateDetectorVersion(input *CreateDetectorVersionInput) (*CreateDetectorVersionOutput, error) {
 	req, out := c.CreateDetectorVersionRequest(input)
@@ -265,6 +280,94 @@ func (c *FraudDetector) CreateDetectorVersion(input *CreateDetectorVersionInput)
 // for more information on using Contexts.
 func (c *FraudDetector) CreateDetectorVersionWithContext(ctx aws.Context, input *CreateDetectorVersionInput, opts ...request.Option) (*CreateDetectorVersionOutput, error) {
 	req, out := c.CreateDetectorVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateModel = "CreateModel"
+
+// CreateModelRequest generates a "aws/request.Request" representing the
+// client's request for the CreateModel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateModel for more information on using the CreateModel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateModelRequest method.
+//    req, resp := client.CreateModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateModel
+func (c *FraudDetector) CreateModelRequest(input *CreateModelInput) (req *request.Request, output *CreateModelOutput) {
+	op := &request.Operation{
+		Name:       opCreateModel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateModelInput{}
+	}
+
+	output = &CreateModelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateModel API operation for Amazon Fraud Detector.
+//
+// Creates a model using the specified model type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation CreateModel for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateModel
+func (c *FraudDetector) CreateModel(input *CreateModelInput) (*CreateModelOutput, error) {
+	req, out := c.CreateModelRequest(input)
+	return out, req.Send()
+}
+
+// CreateModelWithContext is the same as CreateModel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateModel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) CreateModelWithContext(ctx aws.Context, input *CreateModelInput, opts ...request.Option) (*CreateModelOutput, error) {
+	req, out := c.CreateModelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -314,7 +417,7 @@ func (c *FraudDetector) CreateModelVersionRequest(input *CreateModelVersionInput
 
 // CreateModelVersion API operation for Amazon Fraud Detector.
 //
-// Creates a version of the model using the specified model type.
+// Creates a version of the model using the specified model type and model id.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -330,11 +433,13 @@ func (c *FraudDetector) CreateModelVersionRequest(input *CreateModelVersionInput
 //   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 //   * InternalServerException
 //   An exception indicating an internal server error.
-//
-//   * ThrottlingException
-//   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateModelVersion
 func (c *FraudDetector) CreateModelVersion(input *CreateModelVersionInput) (*CreateModelVersionOutput, error) {
@@ -421,6 +526,11 @@ func (c *FraudDetector) CreateRuleRequest(input *CreateRuleInput) (req *request.
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateRule
 func (c *FraudDetector) CreateRule(input *CreateRuleInput) (*CreateRuleOutput, error) {
 	req, out := c.CreateRuleRequest(input)
@@ -506,6 +616,11 @@ func (c *FraudDetector) CreateVariableRequest(input *CreateVariableInput) (req *
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateVariable
 func (c *FraudDetector) CreateVariable(input *CreateVariableInput) (*CreateVariableOutput, error) {
@@ -596,8 +711,8 @@ func (c *FraudDetector) DeleteDetectorRequest(input *DeleteDetectorInput) (req *
 //      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
 //      status is ACTIVE.
 //
-//      * DeleteRuleVersion: A conflict exception will occur if the RuleVersion
-//      is in use by an associated ACTIVE or INACTIVE DetectorVersion.
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 //   * ValidationException
 //   An exception indicating a specified value is not allowed.
@@ -607,6 +722,11 @@ func (c *FraudDetector) DeleteDetectorRequest(input *DeleteDetectorInput) (req *
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteDetector
 func (c *FraudDetector) DeleteDetector(input *DeleteDetectorInput) (*DeleteDetectorOutput, error) {
@@ -709,8 +829,13 @@ func (c *FraudDetector) DeleteDetectorVersionRequest(input *DeleteDetectorVersio
 //      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
 //      status is ACTIVE.
 //
-//      * DeleteRuleVersion: A conflict exception will occur if the RuleVersion
-//      is in use by an associated ACTIVE or INACTIVE DetectorVersion.
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteDetectorVersion
 func (c *FraudDetector) DeleteDetectorVersion(input *DeleteDetectorVersionInput) (*DeleteDetectorVersionOutput, error) {
@@ -795,6 +920,11 @@ func (c *FraudDetector) DeleteEventRequest(input *DeleteEventInput) (req *reques
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEvent
 func (c *FraudDetector) DeleteEvent(input *DeleteEventInput) (*DeleteEventOutput, error) {
 	req, out := c.DeleteEventRequest(input)
@@ -817,60 +947,60 @@ func (c *FraudDetector) DeleteEventWithContext(ctx aws.Context, input *DeleteEve
 	return out, req.Send()
 }
 
-const opDeleteRuleVersion = "DeleteRuleVersion"
+const opDeleteRule = "DeleteRule"
 
-// DeleteRuleVersionRequest generates a "aws/request.Request" representing the
-// client's request for the DeleteRuleVersion operation. The "output" return
+// DeleteRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRule operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See DeleteRuleVersion for more information on using the DeleteRuleVersion
+// See DeleteRule for more information on using the DeleteRule
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
 //
-//    // Example sending a request using the DeleteRuleVersionRequest method.
-//    req, resp := client.DeleteRuleVersionRequest(params)
+//    // Example sending a request using the DeleteRuleRequest method.
+//    req, resp := client.DeleteRuleRequest(params)
 //
 //    err := req.Send()
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteRuleVersion
-func (c *FraudDetector) DeleteRuleVersionRequest(input *DeleteRuleVersionInput) (req *request.Request, output *DeleteRuleVersionOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteRule
+func (c *FraudDetector) DeleteRuleRequest(input *DeleteRuleInput) (req *request.Request, output *DeleteRuleOutput) {
 	op := &request.Operation{
-		Name:       opDeleteRuleVersion,
+		Name:       opDeleteRule,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &DeleteRuleVersionInput{}
+		input = &DeleteRuleInput{}
 	}
 
-	output = &DeleteRuleVersionOutput{}
+	output = &DeleteRuleOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// DeleteRuleVersion API operation for Amazon Fraud Detector.
+// DeleteRule API operation for Amazon Fraud Detector.
 //
-// Deletes the rule version. You cannot delete a rule version if it is used
-// by an ACTIVE or INACTIVE detector version.
+// Deletes the rule. You cannot delete a rule if it is used by an ACTIVE or
+// INACTIVE detector version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
 // See the AWS API reference guide for Amazon Fraud Detector's
-// API operation DeleteRuleVersion for usage and error information.
+// API operation DeleteRule for usage and error information.
 //
 // Returned Error Types:
 //   * ConflictException
@@ -884,8 +1014,8 @@ func (c *FraudDetector) DeleteRuleVersionRequest(input *DeleteRuleVersionInput) 
 //      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
 //      status is ACTIVE.
 //
-//      * DeleteRuleVersion: A conflict exception will occur if the RuleVersion
-//      is in use by an associated ACTIVE or INACTIVE DetectorVersion.
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 //   * ValidationException
 //   An exception indicating a specified value is not allowed.
@@ -896,23 +1026,28 @@ func (c *FraudDetector) DeleteRuleVersionRequest(input *DeleteRuleVersionInput) 
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteRuleVersion
-func (c *FraudDetector) DeleteRuleVersion(input *DeleteRuleVersionInput) (*DeleteRuleVersionOutput, error) {
-	req, out := c.DeleteRuleVersionRequest(input)
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteRule
+func (c *FraudDetector) DeleteRule(input *DeleteRuleInput) (*DeleteRuleOutput, error) {
+	req, out := c.DeleteRuleRequest(input)
 	return out, req.Send()
 }
 
-// DeleteRuleVersionWithContext is the same as DeleteRuleVersion with the addition of
+// DeleteRuleWithContext is the same as DeleteRule with the addition of
 // the ability to pass a context and additional request options.
 //
-// See DeleteRuleVersion for details on how to use this API operation.
+// See DeleteRule for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *FraudDetector) DeleteRuleVersionWithContext(ctx aws.Context, input *DeleteRuleVersionInput, opts ...request.Option) (*DeleteRuleVersionOutput, error) {
-	req, out := c.DeleteRuleVersionRequest(input)
+func (c *FraudDetector) DeleteRuleWithContext(ctx aws.Context, input *DeleteRuleInput, opts ...request.Option) (*DeleteRuleOutput, error) {
+	req, out := c.DeleteRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -983,6 +1118,11 @@ func (c *FraudDetector) DescribeDetectorRequest(input *DescribeDetectorInput) (r
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DescribeDetector
 func (c *FraudDetector) DescribeDetector(input *DescribeDetectorInput) (*DescribeDetectorOutput, error) {
@@ -1077,8 +1217,10 @@ func (c *FraudDetector) DescribeModelVersionsRequest(input *DescribeModelVersion
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DescribeModelVersions
 func (c *FraudDetector) DescribeModelVersions(input *DescribeModelVersionsInput) (*DescribeModelVersionsOutput, error) {
@@ -1220,6 +1362,11 @@ func (c *FraudDetector) GetDetectorVersionRequest(input *GetDetectorVersionInput
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDetectorVersion
 func (c *FraudDetector) GetDetectorVersion(input *GetDetectorVersionInput) (*GetDetectorVersionOutput, error) {
 	req, out := c.GetDetectorVersionRequest(input)
@@ -1292,11 +1439,12 @@ func (c *FraudDetector) GetDetectorsRequest(input *GetDetectorsInput) (req *requ
 
 // GetDetectors API operation for Amazon Fraud Detector.
 //
-// Gets all of detectors. This is a paginated API. If you provide a null maxSizePerPage,
-// this actions retrieves a maximum of 10 records per page. If you provide a
-// maxSizePerPage, the value must be between 5 and 10. To get the next page
-// results, provide the pagination token from the GetEventTypesResponse as part
-// of your request. A null pagination token fetches the records from the beginning.
+// Gets all detectors or a single detector if a detectorId is specified. This
+// is a paginated API. If you provide a null maxResults, this action retrieves
+// a maximum of 10 records per page. If you provide a maxResults, the value
+// must be between 5 and 10. To get the next page results, provide the pagination
+// token from the GetDetectorsResponse as part of your request. A null pagination
+// token fetches the records from the beginning.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1317,6 +1465,11 @@ func (c *FraudDetector) GetDetectorsRequest(input *GetDetectorsInput) (req *requ
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDetectors
 func (c *FraudDetector) GetDetectors(input *GetDetectorsInput) (*GetDetectorsOutput, error) {
@@ -1392,6 +1545,406 @@ func (c *FraudDetector) GetDetectorsPagesWithContext(ctx aws.Context, input *Get
 	return p.Err()
 }
 
+const opGetEntityTypes = "GetEntityTypes"
+
+// GetEntityTypesRequest generates a "aws/request.Request" representing the
+// client's request for the GetEntityTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEntityTypes for more information on using the GetEntityTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetEntityTypesRequest method.
+//    req, resp := client.GetEntityTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEntityTypes
+func (c *FraudDetector) GetEntityTypesRequest(input *GetEntityTypesInput) (req *request.Request, output *GetEntityTypesOutput) {
+	op := &request.Operation{
+		Name:       opGetEntityTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetEntityTypesInput{}
+	}
+
+	output = &GetEntityTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEntityTypes API operation for Amazon Fraud Detector.
+//
+// Gets all entity types or a specific entity type if a name is specified. This
+// is a paginated API. If you provide a null maxResults, this action retrieves
+// a maximum of 10 records per page. If you provide a maxResults, the value
+// must be between 5 and 10. To get the next page results, provide the pagination
+// token from the GetEntityTypesResponse as part of your request. A null pagination
+// token fetches the records from the beginning.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation GetEntityTypes for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEntityTypes
+func (c *FraudDetector) GetEntityTypes(input *GetEntityTypesInput) (*GetEntityTypesOutput, error) {
+	req, out := c.GetEntityTypesRequest(input)
+	return out, req.Send()
+}
+
+// GetEntityTypesWithContext is the same as GetEntityTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEntityTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetEntityTypesWithContext(ctx aws.Context, input *GetEntityTypesInput, opts ...request.Option) (*GetEntityTypesOutput, error) {
+	req, out := c.GetEntityTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetEntityTypesPages iterates over the pages of a GetEntityTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetEntityTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetEntityTypes operation.
+//    pageNum := 0
+//    err := client.GetEntityTypesPages(params,
+//        func(page *frauddetector.GetEntityTypesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FraudDetector) GetEntityTypesPages(input *GetEntityTypesInput, fn func(*GetEntityTypesOutput, bool) bool) error {
+	return c.GetEntityTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetEntityTypesPagesWithContext same as GetEntityTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetEntityTypesPagesWithContext(ctx aws.Context, input *GetEntityTypesInput, fn func(*GetEntityTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetEntityTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetEntityTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetEntityTypesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetEventPrediction = "GetEventPrediction"
+
+// GetEventPredictionRequest generates a "aws/request.Request" representing the
+// client's request for the GetEventPrediction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEventPrediction for more information on using the GetEventPrediction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetEventPredictionRequest method.
+//    req, resp := client.GetEventPredictionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventPrediction
+func (c *FraudDetector) GetEventPredictionRequest(input *GetEventPredictionInput) (req *request.Request, output *GetEventPredictionOutput) {
+	op := &request.Operation{
+		Name:       opGetEventPrediction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetEventPredictionInput{}
+	}
+
+	output = &GetEventPredictionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEventPrediction API operation for Amazon Fraud Detector.
+//
+// Evaluates an event against a detector version. If a version ID is not provided,
+// the detector’s (ACTIVE) version is used.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation GetEventPrediction for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventPrediction
+func (c *FraudDetector) GetEventPrediction(input *GetEventPredictionInput) (*GetEventPredictionOutput, error) {
+	req, out := c.GetEventPredictionRequest(input)
+	return out, req.Send()
+}
+
+// GetEventPredictionWithContext is the same as GetEventPrediction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEventPrediction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetEventPredictionWithContext(ctx aws.Context, input *GetEventPredictionInput, opts ...request.Option) (*GetEventPredictionOutput, error) {
+	req, out := c.GetEventPredictionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEventTypes = "GetEventTypes"
+
+// GetEventTypesRequest generates a "aws/request.Request" representing the
+// client's request for the GetEventTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEventTypes for more information on using the GetEventTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetEventTypesRequest method.
+//    req, resp := client.GetEventTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventTypes
+func (c *FraudDetector) GetEventTypesRequest(input *GetEventTypesInput) (req *request.Request, output *GetEventTypesOutput) {
+	op := &request.Operation{
+		Name:       opGetEventTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetEventTypesInput{}
+	}
+
+	output = &GetEventTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEventTypes API operation for Amazon Fraud Detector.
+//
+// Gets all event types or a specific event type if name is provided. This is
+// a paginated API. If you provide a null maxResults, this action retrieves
+// a maximum of 10 records per page. If you provide a maxResults, the value
+// must be between 5 and 10. To get the next page results, provide the pagination
+// token from the GetEventTypesResponse as part of your request. A null pagination
+// token fetches the records from the beginning.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation GetEventTypes for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventTypes
+func (c *FraudDetector) GetEventTypes(input *GetEventTypesInput) (*GetEventTypesOutput, error) {
+	req, out := c.GetEventTypesRequest(input)
+	return out, req.Send()
+}
+
+// GetEventTypesWithContext is the same as GetEventTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEventTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetEventTypesWithContext(ctx aws.Context, input *GetEventTypesInput, opts ...request.Option) (*GetEventTypesOutput, error) {
+	req, out := c.GetEventTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetEventTypesPages iterates over the pages of a GetEventTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetEventTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetEventTypes operation.
+//    pageNum := 0
+//    err := client.GetEventTypesPages(params,
+//        func(page *frauddetector.GetEventTypesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FraudDetector) GetEventTypesPages(input *GetEventTypesInput, fn func(*GetEventTypesOutput, bool) bool) error {
+	return c.GetEventTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetEventTypesPagesWithContext same as GetEventTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetEventTypesPagesWithContext(ctx aws.Context, input *GetEventTypesInput, fn func(*GetEventTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetEventTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetEventTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetEventTypesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetExternalModels = "GetExternalModels"
 
 // GetExternalModelsRequest generates a "aws/request.Request" representing the
@@ -1443,12 +1996,11 @@ func (c *FraudDetector) GetExternalModelsRequest(input *GetExternalModelsInput) 
 // GetExternalModels API operation for Amazon Fraud Detector.
 //
 // Gets the details for one or more Amazon SageMaker models that have been imported
-// into the service. This is a paginated API. If you provide a null maxSizePerPage,
+// into the service. This is a paginated API. If you provide a null maxResults,
 // this actions retrieves a maximum of 10 records per page. If you provide a
-// maxSizePerPage, the value must be between 5 and 10. To get the next page
-// results, provide the pagination token from the GetExternalModelsResult as
-// part of your request. A null pagination token fetches the records from the
-// beginning.
+// maxResults, the value must be between 5 and 10. To get the next page results,
+// provide the pagination token from the GetExternalModelsResult as part of
+// your request. A null pagination token fetches the records from the beginning.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1469,6 +2021,11 @@ func (c *FraudDetector) GetExternalModelsRequest(input *GetExternalModelsInput) 
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetExternalModels
 func (c *FraudDetector) GetExternalModels(input *GetExternalModelsInput) (*GetExternalModelsOutput, error) {
@@ -1544,6 +2101,248 @@ func (c *FraudDetector) GetExternalModelsPagesWithContext(ctx aws.Context, input
 	return p.Err()
 }
 
+const opGetKMSEncryptionKey = "GetKMSEncryptionKey"
+
+// GetKMSEncryptionKeyRequest generates a "aws/request.Request" representing the
+// client's request for the GetKMSEncryptionKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetKMSEncryptionKey for more information on using the GetKMSEncryptionKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetKMSEncryptionKeyRequest method.
+//    req, resp := client.GetKMSEncryptionKeyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetKMSEncryptionKey
+func (c *FraudDetector) GetKMSEncryptionKeyRequest(input *GetKMSEncryptionKeyInput) (req *request.Request, output *GetKMSEncryptionKeyOutput) {
+	op := &request.Operation{
+		Name:       opGetKMSEncryptionKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetKMSEncryptionKeyInput{}
+	}
+
+	output = &GetKMSEncryptionKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetKMSEncryptionKey API operation for Amazon Fraud Detector.
+//
+// Gets the encryption key if a Key Management Service (KMS) customer master
+// key (CMK) has been specified to be used to encrypt content in Amazon Fraud
+// Detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation GetKMSEncryptionKey for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetKMSEncryptionKey
+func (c *FraudDetector) GetKMSEncryptionKey(input *GetKMSEncryptionKeyInput) (*GetKMSEncryptionKeyOutput, error) {
+	req, out := c.GetKMSEncryptionKeyRequest(input)
+	return out, req.Send()
+}
+
+// GetKMSEncryptionKeyWithContext is the same as GetKMSEncryptionKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetKMSEncryptionKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetKMSEncryptionKeyWithContext(ctx aws.Context, input *GetKMSEncryptionKeyInput, opts ...request.Option) (*GetKMSEncryptionKeyOutput, error) {
+	req, out := c.GetKMSEncryptionKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetLabels = "GetLabels"
+
+// GetLabelsRequest generates a "aws/request.Request" representing the
+// client's request for the GetLabels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLabels for more information on using the GetLabels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetLabelsRequest method.
+//    req, resp := client.GetLabelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetLabels
+func (c *FraudDetector) GetLabelsRequest(input *GetLabelsInput) (req *request.Request, output *GetLabelsOutput) {
+	op := &request.Operation{
+		Name:       opGetLabels,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetLabelsInput{}
+	}
+
+	output = &GetLabelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLabels API operation for Amazon Fraud Detector.
+//
+// Gets all labels or a specific label if name is provided. This is a paginated
+// API. If you provide a null maxResults, this action retrieves a maximum of
+// 50 records per page. If you provide a maxResults, the value must be between
+// 10 and 50. To get the next page results, provide the pagination token from
+// the GetGetLabelsResponse as part of your request. A null pagination token
+// fetches the records from the beginning.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation GetLabels for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetLabels
+func (c *FraudDetector) GetLabels(input *GetLabelsInput) (*GetLabelsOutput, error) {
+	req, out := c.GetLabelsRequest(input)
+	return out, req.Send()
+}
+
+// GetLabelsWithContext is the same as GetLabels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLabels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetLabelsWithContext(ctx aws.Context, input *GetLabelsInput, opts ...request.Option) (*GetLabelsOutput, error) {
+	req, out := c.GetLabelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetLabelsPages iterates over the pages of a GetLabels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetLabels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetLabels operation.
+//    pageNum := 0
+//    err := client.GetLabelsPages(params,
+//        func(page *frauddetector.GetLabelsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FraudDetector) GetLabelsPages(input *GetLabelsInput, fn func(*GetLabelsOutput, bool) bool) error {
+	return c.GetLabelsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetLabelsPagesWithContext same as GetLabelsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetLabelsPagesWithContext(ctx aws.Context, input *GetLabelsInput, fn func(*GetLabelsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetLabelsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetLabelsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetLabelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetModelVersion = "GetModelVersion"
 
 // GetModelVersionRequest generates a "aws/request.Request" representing the
@@ -1588,7 +2387,7 @@ func (c *FraudDetector) GetModelVersionRequest(input *GetModelVersionInput) (req
 
 // GetModelVersion API operation for Amazon Fraud Detector.
 //
-// Gets a model version.
+// Gets the details of the specified model version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1607,8 +2406,10 @@ func (c *FraudDetector) GetModelVersionRequest(input *GetModelVersionInput) (req
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetModelVersion
 func (c *FraudDetector) GetModelVersion(input *GetModelVersionInput) (*GetModelVersionOutput, error) {
@@ -1682,8 +2483,16 @@ func (c *FraudDetector) GetModelsRequest(input *GetModelsInput) (req *request.Re
 
 // GetModels API operation for Amazon Fraud Detector.
 //
-// Gets all of the models for the AWS account, or the specified model type,
-// or gets a single model for the specified model type, model ID combination.
+// Gets one or more models. Gets all models for the AWS account if no model
+// type and no model id provided. Gets all models for the AWS account and model
+// type, if the model type is specified but model id is not provided. Gets a
+// specific model if (model type, model id) tuple is specified.
+//
+// This is a paginated API. If you provide a null maxResults, this action retrieves
+// a maximum of 10 records per page. If you provide a maxResults, the value
+// must be between 1 and 10. To get the next page results, provide the pagination
+// token from the response as part of your request. A null pagination token
+// fetches the records from the beginning.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1702,8 +2511,10 @@ func (c *FraudDetector) GetModelsRequest(input *GetModelsInput) (req *request.Re
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetModels
 func (c *FraudDetector) GetModels(input *GetModelsInput) (*GetModelsOutput, error) {
@@ -1830,9 +2641,9 @@ func (c *FraudDetector) GetOutcomesRequest(input *GetOutcomesInput) (req *reques
 // GetOutcomes API operation for Amazon Fraud Detector.
 //
 // Gets one or more outcomes. This is a paginated API. If you provide a null
-// maxSizePerPage, this actions retrieves a maximum of 10 records per page.
-// If you provide a maxSizePerPage, the value must be between 50 and 100. To
-// get the next page results, provide the pagination token from the GetOutcomesResult
+// maxResults, this actions retrieves a maximum of 100 records per page. If
+// you provide a maxResults, the value must be between 50 and 100. To get the
+// next page results, provide the pagination token from the GetOutcomesResult
 // as part of your request. A null pagination token fetches the records from
 // the beginning.
 //
@@ -1855,6 +2666,11 @@ func (c *FraudDetector) GetOutcomesRequest(input *GetOutcomesInput) (req *reques
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetOutcomes
 func (c *FraudDetector) GetOutcomes(input *GetOutcomesInput) (*GetOutcomesOutput, error) {
@@ -1997,6 +2813,11 @@ func (c *FraudDetector) GetPredictionRequest(input *GetPredictionInput) (req *re
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetPrediction
 func (c *FraudDetector) GetPrediction(input *GetPredictionInput) (*GetPredictionOutput, error) {
 	req, out := c.GetPredictionRequest(input)
@@ -2069,7 +2890,15 @@ func (c *FraudDetector) GetRulesRequest(input *GetRulesInput) (req *request.Requ
 
 // GetRules API operation for Amazon Fraud Detector.
 //
-// Gets all rules available for the specified detector.
+// Get all rules for a detector (paginated) if ruleId and ruleVersion are not
+// specified. Gets all rules for the detector and the ruleId if present (paginated).
+// Gets a specific rule if both the ruleId and the ruleVersion are specified.
+//
+// This is a paginated API. Providing null maxResults results in retrieving
+// maximum of 100 records per page. If you provide maxResults the value must
+// be between 50 and 100. To get the next page result, a provide a pagination
+// token from GetRulesResult as part of your request. Null pagination token
+// fetches the records from the beginning.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2090,6 +2919,11 @@ func (c *FraudDetector) GetRulesRequest(input *GetRulesInput) (req *request.Requ
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetRules
 func (c *FraudDetector) GetRules(input *GetRulesInput) (*GetRulesOutput, error) {
@@ -2242,6 +3076,11 @@ func (c *FraudDetector) GetVariablesRequest(input *GetVariablesInput) (req *requ
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetVariables
 func (c *FraudDetector) GetVariables(input *GetVariablesInput) (*GetVariablesOutput, error) {
 	req, out := c.GetVariablesRequest(input)
@@ -2316,6 +3155,154 @@ func (c *FraudDetector) GetVariablesPagesWithContext(ctx aws.Context, input *Get
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/ListTagsForResource
+func (c *FraudDetector) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Fraud Detector.
+//
+// Lists all tags associated with the resource. This is a paginated API. To
+// get the next page results, provide the pagination token from the response
+// as part of your request. A null pagination token fetches the records from
+// the beginning.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/ListTagsForResource
+func (c *FraudDetector) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTagsForResourcePages iterates over the pages of a ListTagsForResource operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTagsForResource method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
+//    pageNum := 0
+//    err := client.ListTagsForResourcePages(params,
+//        func(page *frauddetector.ListTagsForResourceOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FraudDetector) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
+	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTagsForResourcePagesWithContext same as ListTagsForResourcePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) ListTagsForResourcePagesWithContext(ctx aws.Context, input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTagsForResourceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTagsForResourceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opPutDetector = "PutDetector"
 
 // PutDetectorRequest generates a "aws/request.Request" representing the
@@ -2380,6 +3367,11 @@ func (c *FraudDetector) PutDetectorRequest(input *PutDetectorInput) (req *reques
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutDetector
 func (c *FraudDetector) PutDetector(input *PutDetectorInput) (*PutDetectorOutput, error) {
 	req, out := c.PutDetectorRequest(input)
@@ -2397,6 +3389,191 @@ func (c *FraudDetector) PutDetector(input *PutDetectorInput) (*PutDetectorOutput
 // for more information on using Contexts.
 func (c *FraudDetector) PutDetectorWithContext(ctx aws.Context, input *PutDetectorInput, opts ...request.Option) (*PutDetectorOutput, error) {
 	req, out := c.PutDetectorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutEntityType = "PutEntityType"
+
+// PutEntityTypeRequest generates a "aws/request.Request" representing the
+// client's request for the PutEntityType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutEntityType for more information on using the PutEntityType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutEntityTypeRequest method.
+//    req, resp := client.PutEntityTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEntityType
+func (c *FraudDetector) PutEntityTypeRequest(input *PutEntityTypeInput) (req *request.Request, output *PutEntityTypeOutput) {
+	op := &request.Operation{
+		Name:       opPutEntityType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutEntityTypeInput{}
+	}
+
+	output = &PutEntityTypeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutEntityType API operation for Amazon Fraud Detector.
+//
+// Creates or updates an entity type. An entity represents who is performing
+// the event. As part of a fraud prediction, you pass the entity ID to indicate
+// the specific entity who performed the event. An entity type classifies the
+// entity. Example classifications include customer, merchant, or account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation PutEntityType for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEntityType
+func (c *FraudDetector) PutEntityType(input *PutEntityTypeInput) (*PutEntityTypeOutput, error) {
+	req, out := c.PutEntityTypeRequest(input)
+	return out, req.Send()
+}
+
+// PutEntityTypeWithContext is the same as PutEntityType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutEntityType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) PutEntityTypeWithContext(ctx aws.Context, input *PutEntityTypeInput, opts ...request.Option) (*PutEntityTypeOutput, error) {
+	req, out := c.PutEntityTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutEventType = "PutEventType"
+
+// PutEventTypeRequest generates a "aws/request.Request" representing the
+// client's request for the PutEventType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutEventType for more information on using the PutEventType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutEventTypeRequest method.
+//    req, resp := client.PutEventTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEventType
+func (c *FraudDetector) PutEventTypeRequest(input *PutEventTypeInput) (req *request.Request, output *PutEventTypeOutput) {
+	op := &request.Operation{
+		Name:       opPutEventType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutEventTypeInput{}
+	}
+
+	output = &PutEventTypeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutEventType API operation for Amazon Fraud Detector.
+//
+// Creates or updates an event type. An event is a business activity that is
+// evaluated for fraud risk. With Amazon Fraud Detector, you generate fraud
+// predictions for events. An event type defines the structure for an event
+// sent to Amazon Fraud Detector. This includes the variables sent as part of
+// the event, the entity performing the event (such as a customer), and the
+// labels that classify the event. Example event types include online payment
+// transactions, account registrations, and authentications.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation PutEventType for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEventType
+func (c *FraudDetector) PutEventType(input *PutEventTypeInput) (*PutEventTypeOutput, error) {
+	req, out := c.PutEventTypeRequest(input)
+	return out, req.Send()
+}
+
+// PutEventTypeWithContext is the same as PutEventType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutEventType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) PutEventTypeWithContext(ctx aws.Context, input *PutEventTypeInput, opts ...request.Option) (*PutEventTypeOutput, error) {
+	req, out := c.PutEventTypeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2468,6 +3645,11 @@ func (c *FraudDetector) PutExternalModelRequest(input *PutExternalModelInput) (r
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutExternalModel
 func (c *FraudDetector) PutExternalModel(input *PutExternalModelInput) (*PutExternalModelOutput, error) {
 	req, out := c.PutExternalModelRequest(input)
@@ -2490,59 +3672,153 @@ func (c *FraudDetector) PutExternalModelWithContext(ctx aws.Context, input *PutE
 	return out, req.Send()
 }
 
-const opPutModel = "PutModel"
+const opPutKMSEncryptionKey = "PutKMSEncryptionKey"
 
-// PutModelRequest generates a "aws/request.Request" representing the
-// client's request for the PutModel operation. The "output" return
+// PutKMSEncryptionKeyRequest generates a "aws/request.Request" representing the
+// client's request for the PutKMSEncryptionKey operation. The "output" return
 // value will be populated with the request's response once the request completes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
 //
-// See PutModel for more information on using the PutModel
+// See PutKMSEncryptionKey for more information on using the PutKMSEncryptionKey
 // API call, and error handling.
 //
 // This method is useful when you want to inject custom logic or configuration
 // into the SDK's request lifecycle. Such as custom headers, or retry logic.
 //
 //
-//    // Example sending a request using the PutModelRequest method.
-//    req, resp := client.PutModelRequest(params)
+//    // Example sending a request using the PutKMSEncryptionKeyRequest method.
+//    req, resp := client.PutKMSEncryptionKeyRequest(params)
 //
 //    err := req.Send()
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutModel
-func (c *FraudDetector) PutModelRequest(input *PutModelInput) (req *request.Request, output *PutModelOutput) {
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutKMSEncryptionKey
+func (c *FraudDetector) PutKMSEncryptionKeyRequest(input *PutKMSEncryptionKeyInput) (req *request.Request, output *PutKMSEncryptionKeyOutput) {
 	op := &request.Operation{
-		Name:       opPutModel,
+		Name:       opPutKMSEncryptionKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &PutModelInput{}
+		input = &PutKMSEncryptionKeyInput{}
 	}
 
-	output = &PutModelOutput{}
+	output = &PutKMSEncryptionKeyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// PutModel API operation for Amazon Fraud Detector.
+// PutKMSEncryptionKey API operation for Amazon Fraud Detector.
 //
-// Creates or updates a model.
+// Specifies the Key Management Service (KMS) customer master key (CMK) to be
+// used to encrypt content in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
 // See the AWS API reference guide for Amazon Fraud Detector's
-// API operation PutModel for usage and error information.
+// API operation PutKMSEncryptionKey for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutKMSEncryptionKey
+func (c *FraudDetector) PutKMSEncryptionKey(input *PutKMSEncryptionKeyInput) (*PutKMSEncryptionKeyOutput, error) {
+	req, out := c.PutKMSEncryptionKeyRequest(input)
+	return out, req.Send()
+}
+
+// PutKMSEncryptionKeyWithContext is the same as PutKMSEncryptionKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutKMSEncryptionKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) PutKMSEncryptionKeyWithContext(ctx aws.Context, input *PutKMSEncryptionKeyInput, opts ...request.Option) (*PutKMSEncryptionKeyOutput, error) {
+	req, out := c.PutKMSEncryptionKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutLabel = "PutLabel"
+
+// PutLabelRequest generates a "aws/request.Request" representing the
+// client's request for the PutLabel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutLabel for more information on using the PutLabel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutLabelRequest method.
+//    req, resp := client.PutLabelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutLabel
+func (c *FraudDetector) PutLabelRequest(input *PutLabelInput) (req *request.Request, output *PutLabelOutput) {
+	op := &request.Operation{
+		Name:       opPutLabel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutLabelInput{}
+	}
+
+	output = &PutLabelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutLabel API operation for Amazon Fraud Detector.
+//
+// Creates or updates label. A label classifies an event as fraudulent or legitimate.
+// Labels are associated with event types and used to train supervised machine
+// learning models in Amazon Fraud Detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation PutLabel for usage and error information.
 //
 // Returned Error Types:
 //   * ValidationException
@@ -2551,26 +3827,28 @@ func (c *FraudDetector) PutModelRequest(input *PutModelInput) (req *request.Requ
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ThrottlingException
-//   An exception indicating a throttling error.
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutModel
-func (c *FraudDetector) PutModel(input *PutModelInput) (*PutModelOutput, error) {
-	req, out := c.PutModelRequest(input)
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutLabel
+func (c *FraudDetector) PutLabel(input *PutLabelInput) (*PutLabelOutput, error) {
+	req, out := c.PutLabelRequest(input)
 	return out, req.Send()
 }
 
-// PutModelWithContext is the same as PutModel with the addition of
+// PutLabelWithContext is the same as PutLabel with the addition of
 // the ability to pass a context and additional request options.
 //
-// See PutModel for details on how to use this API operation.
+// See PutLabel for details on how to use this API operation.
 //
 // The context must be non-nil and will be used for request cancellation. If
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
-func (c *FraudDetector) PutModelWithContext(ctx aws.Context, input *PutModelInput, opts ...request.Option) (*PutModelOutput, error) {
-	req, out := c.PutModelRequest(input)
+func (c *FraudDetector) PutLabelWithContext(ctx aws.Context, input *PutLabelInput, opts ...request.Option) (*PutLabelOutput, error) {
+	req, out := c.PutLabelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2640,6 +3918,11 @@ func (c *FraudDetector) PutOutcomeRequest(input *PutOutcomeInput) (req *request.
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutOutcome
 func (c *FraudDetector) PutOutcome(input *PutOutcomeInput) (*PutOutcomeOutput, error) {
 	req, out := c.PutOutcomeRequest(input)
@@ -2657,6 +3940,182 @@ func (c *FraudDetector) PutOutcome(input *PutOutcomeInput) (*PutOutcomeOutput, e
 // for more information on using Contexts.
 func (c *FraudDetector) PutOutcomeWithContext(ctx aws.Context, input *PutOutcomeInput, opts ...request.Option) (*PutOutcomeOutput, error) {
 	req, out := c.PutOutcomeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/TagResource
+func (c *FraudDetector) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Fraud Detector.
+//
+// Assigns tags to a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/TagResource
+func (c *FraudDetector) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UntagResource
+func (c *FraudDetector) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Fraud Detector.
+//
+// Removes tags from a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UntagResource
+func (c *FraudDetector) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2708,8 +4167,8 @@ func (c *FraudDetector) UpdateDetectorVersionRequest(input *UpdateDetectorVersio
 // UpdateDetectorVersion API operation for Amazon Fraud Detector.
 //
 // Updates a detector version. The detector version attributes that you can
-// update include models, external model endpoints, rules, and description.
-// You can only update a DRAFT detector version.
+// update include models, external model endpoints, rules, rule execution mode,
+// and description. You can only update a DRAFT detector version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2730,6 +4189,11 @@ func (c *FraudDetector) UpdateDetectorVersionRequest(input *UpdateDetectorVersio
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersion
 func (c *FraudDetector) UpdateDetectorVersion(input *UpdateDetectorVersionInput) (*UpdateDetectorVersionOutput, error) {
@@ -2817,6 +4281,11 @@ func (c *FraudDetector) UpdateDetectorVersionMetadataRequest(input *UpdateDetect
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionMetadata
 func (c *FraudDetector) UpdateDetectorVersionMetadata(input *UpdateDetectorVersionMetadataInput) (*UpdateDetectorVersionMetadataOutput, error) {
@@ -2909,6 +4378,11 @@ func (c *FraudDetector) UpdateDetectorVersionStatusRequest(input *UpdateDetector
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionStatus
 func (c *FraudDetector) UpdateDetectorVersionStatus(input *UpdateDetectorVersionStatusInput) (*UpdateDetectorVersionStatusOutput, error) {
 	req, out := c.UpdateDetectorVersionStatusRequest(input)
@@ -2926,6 +4400,97 @@ func (c *FraudDetector) UpdateDetectorVersionStatus(input *UpdateDetectorVersion
 // for more information on using Contexts.
 func (c *FraudDetector) UpdateDetectorVersionStatusWithContext(ctx aws.Context, input *UpdateDetectorVersionStatusInput, opts ...request.Option) (*UpdateDetectorVersionStatusOutput, error) {
 	req, out := c.UpdateDetectorVersionStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateModel = "UpdateModel"
+
+// UpdateModelRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateModel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateModel for more information on using the UpdateModel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateModelRequest method.
+//    req, resp := client.UpdateModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModel
+func (c *FraudDetector) UpdateModelRequest(input *UpdateModelInput) (req *request.Request, output *UpdateModelOutput) {
+	op := &request.Operation{
+		Name:       opUpdateModel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateModelInput{}
+	}
+
+	output = &UpdateModelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateModel API operation for Amazon Fraud Detector.
+//
+// Updates a model. You can update the description attribute using this action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation UpdateModel for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModel
+func (c *FraudDetector) UpdateModel(input *UpdateModelInput) (*UpdateModelOutput, error) {
+	req, out := c.UpdateModelRequest(input)
+	return out, req.Send()
+}
+
+// UpdateModelWithContext is the same as UpdateModel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateModel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) UpdateModelWithContext(ctx aws.Context, input *UpdateModelInput, opts ...request.Option) (*UpdateModelOutput, error) {
+	req, out := c.UpdateModelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2970,18 +4535,16 @@ func (c *FraudDetector) UpdateModelVersionRequest(input *UpdateModelVersionInput
 
 	output = &UpdateModelVersionOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
 // UpdateModelVersion API operation for Amazon Fraud Detector.
 //
-// Updates a model version. You can update the description and status attributes
-// using this action. You can perform the following status updates:
-//
-// Change the TRAINING_COMPLETE status to ACTIVE
-//
-// Change ACTIVE back to TRAINING_COMPLETE
+// Updates a model version. Updating a model version retrains an existing model
+// version using updated training data and produces a new minor version of the
+// model. You can update the training data set location and data access role
+// attributes using this action. This action creates and trains a new minor
+// version of the model, for example version 1.01, 1.02, 1.03.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2997,11 +4560,13 @@ func (c *FraudDetector) UpdateModelVersionRequest(input *UpdateModelVersionInput
 //   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 //   * InternalServerException
 //   An exception indicating an internal server error.
-//
-//   * ThrottlingException
-//   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersion
 func (c *FraudDetector) UpdateModelVersion(input *UpdateModelVersionInput) (*UpdateModelVersionOutput, error) {
@@ -3020,6 +4585,103 @@ func (c *FraudDetector) UpdateModelVersion(input *UpdateModelVersionInput) (*Upd
 // for more information on using Contexts.
 func (c *FraudDetector) UpdateModelVersionWithContext(ctx aws.Context, input *UpdateModelVersionInput, opts ...request.Option) (*UpdateModelVersionOutput, error) {
 	req, out := c.UpdateModelVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateModelVersionStatus = "UpdateModelVersionStatus"
+
+// UpdateModelVersionStatusRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateModelVersionStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateModelVersionStatus for more information on using the UpdateModelVersionStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateModelVersionStatusRequest method.
+//    req, resp := client.UpdateModelVersionStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersionStatus
+func (c *FraudDetector) UpdateModelVersionStatusRequest(input *UpdateModelVersionStatusInput) (req *request.Request, output *UpdateModelVersionStatusOutput) {
+	op := &request.Operation{
+		Name:       opUpdateModelVersionStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateModelVersionStatusInput{}
+	}
+
+	output = &UpdateModelVersionStatusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateModelVersionStatus API operation for Amazon Fraud Detector.
+//
+// Updates the status of a model version.
+//
+// You can perform the following status updates:
+//
+// Change the TRAINING_COMPLETE status to ACTIVE.
+//
+// Change ACTIVEto INACTIVE.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation UpdateModelVersionStatus for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersionStatus
+func (c *FraudDetector) UpdateModelVersionStatus(input *UpdateModelVersionStatusInput) (*UpdateModelVersionStatusOutput, error) {
+	req, out := c.UpdateModelVersionStatusRequest(input)
+	return out, req.Send()
+}
+
+// UpdateModelVersionStatusWithContext is the same as UpdateModelVersionStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateModelVersionStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) UpdateModelVersionStatusWithContext(ctx aws.Context, input *UpdateModelVersionStatusInput, opts ...request.Option) (*UpdateModelVersionStatusOutput, error) {
+	req, out := c.UpdateModelVersionStatusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3070,7 +4732,7 @@ func (c *FraudDetector) UpdateRuleMetadataRequest(input *UpdateRuleMetadataInput
 
 // UpdateRuleMetadata API operation for Amazon Fraud Detector.
 //
-// Updates a rule's metadata.
+// Updates a rule's metadata. The description attribute can be updated.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3091,6 +4753,11 @@ func (c *FraudDetector) UpdateRuleMetadataRequest(input *UpdateRuleMetadataInput
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleMetadata
 func (c *FraudDetector) UpdateRuleMetadata(input *UpdateRuleMetadataInput) (*UpdateRuleMetadataOutput, error) {
@@ -3158,7 +4825,8 @@ func (c *FraudDetector) UpdateRuleVersionRequest(input *UpdateRuleVersionInput) 
 
 // UpdateRuleVersion API operation for Amazon Fraud Detector.
 //
-// Updates a rule version resulting in a new rule version.
+// Updates a rule version resulting in a new rule version. Updates a rule version
+// resulting in a new rule version (version 1, 2, 3 ...).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3179,6 +4847,11 @@ func (c *FraudDetector) UpdateRuleVersionRequest(input *UpdateRuleVersionInput) 
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleVersion
 func (c *FraudDetector) UpdateRuleVersion(input *UpdateRuleVersionInput) (*UpdateRuleVersionOutput, error) {
@@ -3269,6 +4942,11 @@ func (c *FraudDetector) UpdateVariableRequest(input *UpdateVariableInput) (req *
 //   * ThrottlingException
 //   An exception indicating a throttling error.
 //
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateVariable
 func (c *FraudDetector) UpdateVariable(input *UpdateVariableInput) (*UpdateVariableOutput, error) {
 	req, out := c.UpdateVariableRequest(input)
@@ -3289,6 +4967,64 @@ func (c *FraudDetector) UpdateVariableWithContext(ctx aws.Context, input *Update
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// An exception indicating Amazon Fraud Detector does not have the needed permissions.
+// This can occur if you submit a request, such as PutExternalModel, that specifies
+// a role that is not in your account.
+type AccessDeniedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s *AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s *AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccessDeniedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccessDeniedException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Provides the error of the batch create variable API.
@@ -3336,6 +5072,9 @@ func (s *BatchCreateVariableError) SetName(v string) *BatchCreateVariableError {
 type BatchCreateVariableInput struct {
 	_ struct{} `type:"structure"`
 
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
 	// The list of variables for the batch create variable request.
 	//
 	// VariableEntries is a required field
@@ -3361,11 +5100,27 @@ func (s *BatchCreateVariableInput) Validate() error {
 	if s.VariableEntries != nil && len(s.VariableEntries) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VariableEntries", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetTags sets the Tags field's value.
+func (s *BatchCreateVariableInput) SetTags(v []*Tag) *BatchCreateVariableInput {
+	s.Tags = v
+	return s
 }
 
 // SetVariableEntries sets the VariableEntries field's value.
@@ -3522,8 +5277,8 @@ func (s *BatchGetVariableOutput) SetVariables(v []*Variable) *BatchGetVariableOu
 //    * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
 //    status is ACTIVE.
 //
-//    * DeleteRuleVersion: A conflict exception will occur if the RuleVersion
-//    is in use by an associated ACTIVE or INACTIVE DetectorVersion.
+//    * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//    use by an associated ACTIVE or INACTIVE DetectorVersion.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3615,6 +5370,9 @@ type CreateDetectorVersionInput struct {
 	//
 	// Rules is a required field
 	Rules []*Rule `locationName:"rules" type:"list" required:"true"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation
@@ -3662,6 +5420,16 @@ func (s *CreateDetectorVersionInput) Validate() error {
 			}
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3702,6 +5470,12 @@ func (s *CreateDetectorVersionInput) SetRuleExecutionMode(v string) *CreateDetec
 // SetRules sets the Rules field's value.
 func (s *CreateDetectorVersionInput) SetRules(v []*Rule) *CreateDetectorVersionInput {
 	s.Rules = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDetectorVersionInput) SetTags(v []*Tag) *CreateDetectorVersionInput {
+	s.Tags = v
 	return s
 }
 
@@ -3746,11 +5520,16 @@ func (s *CreateDetectorVersionOutput) SetStatus(v string) *CreateDetectorVersion
 	return s
 }
 
-type CreateModelVersionInput struct {
+type CreateModelInput struct {
 	_ struct{} `type:"structure"`
 
-	// The model version description.
+	// The model description.
 	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The name of the event type.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" type:"string" required:"true"`
 
 	// The model ID.
 	//
@@ -3761,6 +5540,129 @@ type CreateModelVersionInput struct {
 	//
 	// ModelType is a required field
 	ModelType *string `locationName:"modelType" type:"string" required:"true" enum:"ModelTypeEnum"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateModelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateModelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateModelInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+	if s.ModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelId"))
+	}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.ModelType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelType"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateModelInput) SetDescription(v string) *CreateModelInput {
+	s.Description = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *CreateModelInput) SetEventTypeName(v string) *CreateModelInput {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *CreateModelInput) SetModelId(v string) *CreateModelInput {
+	s.ModelId = &v
+	return s
+}
+
+// SetModelType sets the ModelType field's value.
+func (s *CreateModelInput) SetModelType(v string) *CreateModelInput {
+	s.ModelType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateModelInput) SetTags(v []*Tag) *CreateModelInput {
+	s.Tags = v
+	return s
+}
+
+type CreateModelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateModelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateModelOutput) GoString() string {
+	return s.String()
+}
+
+type CreateModelVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Details for the external events data used for model version training. Required
+	// if trainingDataSource is EXTERNAL_EVENTS.
+	ExternalEventsDetail *ExternalEventsDetail `locationName:"externalEventsDetail" type:"structure"`
+
+	// The model ID.
+	//
+	// ModelId is a required field
+	ModelId *string `locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// The model type.
+	//
+	// ModelType is a required field
+	ModelType *string `locationName:"modelType" type:"string" required:"true" enum:"ModelTypeEnum"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// The training data schema.
+	//
+	// TrainingDataSchema is a required field
+	TrainingDataSchema *TrainingDataSchema `locationName:"trainingDataSchema" type:"structure" required:"true"`
+
+	// The training data source location in Amazon S3.
+	//
+	// TrainingDataSource is a required field
+	TrainingDataSource *string `locationName:"trainingDataSource" type:"string" required:"true" enum:"TrainingDataSourceEnum"`
 }
 
 // String returns the string representation
@@ -3776,9 +5678,6 @@ func (s CreateModelVersionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateModelVersionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateModelVersionInput"}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
-	}
 	if s.ModelId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelId"))
 	}
@@ -3788,6 +5687,32 @@ func (s *CreateModelVersionInput) Validate() error {
 	if s.ModelType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelType"))
 	}
+	if s.TrainingDataSchema == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrainingDataSchema"))
+	}
+	if s.TrainingDataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrainingDataSource"))
+	}
+	if s.ExternalEventsDetail != nil {
+		if err := s.ExternalEventsDetail.Validate(); err != nil {
+			invalidParams.AddNested("ExternalEventsDetail", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TrainingDataSchema != nil {
+		if err := s.TrainingDataSchema.Validate(); err != nil {
+			invalidParams.AddNested("TrainingDataSchema", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3795,9 +5720,9 @@ func (s *CreateModelVersionInput) Validate() error {
 	return nil
 }
 
-// SetDescription sets the Description field's value.
-func (s *CreateModelVersionInput) SetDescription(v string) *CreateModelVersionInput {
-	s.Description = &v
+// SetExternalEventsDetail sets the ExternalEventsDetail field's value.
+func (s *CreateModelVersionInput) SetExternalEventsDetail(v *ExternalEventsDetail) *CreateModelVersionInput {
+	s.ExternalEventsDetail = v
 	return s
 }
 
@@ -3813,6 +5738,24 @@ func (s *CreateModelVersionInput) SetModelType(v string) *CreateModelVersionInpu
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateModelVersionInput) SetTags(v []*Tag) *CreateModelVersionInput {
+	s.Tags = v
+	return s
+}
+
+// SetTrainingDataSchema sets the TrainingDataSchema field's value.
+func (s *CreateModelVersionInput) SetTrainingDataSchema(v *TrainingDataSchema) *CreateModelVersionInput {
+	s.TrainingDataSchema = v
+	return s
+}
+
+// SetTrainingDataSource sets the TrainingDataSource field's value.
+func (s *CreateModelVersionInput) SetTrainingDataSource(v string) *CreateModelVersionInput {
+	s.TrainingDataSource = &v
+	return s
+}
+
 type CreateModelVersionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3822,7 +5765,7 @@ type CreateModelVersionOutput struct {
 	// The model type.
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
 
-	// The version of the model.
+	// The model version number of the model version created.
 	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"1" type:"string"`
 
 	// The model version status.
@@ -3877,7 +5820,7 @@ type CreateRuleInput struct {
 	// The rule expression.
 	//
 	// Expression is a required field
-	Expression *string `locationName:"expression" min:"1" type:"string" required:"true"`
+	Expression *string `locationName:"expression" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The language of the rule.
 	//
@@ -3893,6 +5836,9 @@ type CreateRuleInput struct {
 	//
 	// RuleId is a required field
 	RuleId *string `locationName:"ruleId" min:"1" type:"string" required:"true"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation
@@ -3938,6 +5884,16 @@ func (s *CreateRuleInput) Validate() error {
 	if s.RuleId != nil && len(*s.RuleId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3978,6 +5934,12 @@ func (s *CreateRuleInput) SetOutcomes(v []*string) *CreateRuleInput {
 // SetRuleId sets the RuleId field's value.
 func (s *CreateRuleInput) SetRuleId(v string) *CreateRuleInput {
 	s.RuleId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRuleInput) SetTags(v []*Tag) *CreateRuleInput {
+	s.Tags = v
 	return s
 }
 
@@ -4030,7 +5992,19 @@ type CreateVariableInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
 	// The variable type.
+	//
+	// Valid Values: AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 |
+	// BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE
+	// | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS |
+	// FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID
+	// | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1
+	// | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME
+	// | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT | SHIPPING_ZIP
+	// | USERAGENT
 	VariableType *string `locationName:"variableType" type:"string"`
 }
 
@@ -4058,6 +6032,16 @@ func (s *CreateVariableInput) Validate() error {
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4096,6 +6080,12 @@ func (s *CreateVariableInput) SetName(v string) *CreateVariableInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateVariableInput) SetTags(v []*Tag) *CreateVariableInput {
+	s.Tags = v
+	return s
+}
+
 // SetVariableType sets the VariableType field's value.
 func (s *CreateVariableInput) SetVariableType(v string) *CreateVariableInput {
 	s.VariableType = &v
@@ -4114,6 +6104,39 @@ func (s CreateVariableOutput) String() string {
 // GoString returns the string representation
 func (s CreateVariableOutput) GoString() string {
 	return s.String()
+}
+
+// The model training validation messages.
+type DataValidationMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The field-specific model training validation messages.
+	FieldLevelMessages []*FieldValidationMessage `locationName:"fieldLevelMessages" type:"list"`
+
+	// The file-specific model training validation messages.
+	FileLevelMessages []*FileValidationMessage `locationName:"fileLevelMessages" type:"list"`
+}
+
+// String returns the string representation
+func (s DataValidationMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataValidationMetrics) GoString() string {
+	return s.String()
+}
+
+// SetFieldLevelMessages sets the FieldLevelMessages field's value.
+func (s *DataValidationMetrics) SetFieldLevelMessages(v []*FieldValidationMessage) *DataValidationMetrics {
+	s.FieldLevelMessages = v
+	return s
+}
+
+// SetFileLevelMessages sets the FileLevelMessages field's value.
+func (s *DataValidationMetrics) SetFileLevelMessages(v []*FileValidationMessage) *DataValidationMetrics {
+	s.FileLevelMessages = v
+	return s
 }
 
 type DeleteDetectorInput struct {
@@ -4182,7 +6205,7 @@ type DeleteDetectorVersionInput struct {
 	// The ID of the detector version to delete.
 	//
 	// DetectorVersionId is a required field
-	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
+	DetectorVersionId *string `locationName:"detectorVersionId" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -4206,9 +6229,6 @@ func (s *DeleteDetectorVersionInput) Validate() error {
 	}
 	if s.DetectorVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorVersionId"))
-	}
-	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4250,6 +6270,11 @@ type DeleteEventInput struct {
 	//
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
+
+	// The name of the event type.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -4268,6 +6293,9 @@ func (s *DeleteEventInput) Validate() error {
 	if s.EventId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventId"))
 	}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4278,6 +6306,12 @@ func (s *DeleteEventInput) Validate() error {
 // SetEventId sets the EventId field's value.
 func (s *DeleteEventInput) SetEventId(v string) *DeleteEventInput {
 	s.EventId = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *DeleteEventInput) SetEventTypeName(v string) *DeleteEventInput {
+	s.EventTypeName = &v
 	return s
 }
 
@@ -4295,55 +6329,35 @@ func (s DeleteEventOutput) GoString() string {
 	return s.String()
 }
 
-type DeleteRuleVersionInput struct {
+type DeleteRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the detector that includes the rule version to delete.
+	// A rule.
 	//
-	// DetectorId is a required field
-	DetectorId *string `locationName:"detectorId" min:"1" type:"string" required:"true"`
-
-	// The rule ID of the rule version to delete.
-	//
-	// RuleId is a required field
-	RuleId *string `locationName:"ruleId" min:"1" type:"string" required:"true"`
-
-	// The rule version to delete.
-	//
-	// RuleVersion is a required field
-	RuleVersion *string `locationName:"ruleVersion" min:"1" type:"string" required:"true"`
+	// Rule is a required field
+	Rule *Rule `locationName:"rule" type:"structure" required:"true"`
 }
 
 // String returns the string representation
-func (s DeleteRuleVersionInput) String() string {
+func (s DeleteRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s DeleteRuleVersionInput) GoString() string {
+func (s DeleteRuleInput) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *DeleteRuleVersionInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "DeleteRuleVersionInput"}
-	if s.DetectorId == nil {
-		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+func (s *DeleteRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRuleInput"}
+	if s.Rule == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rule"))
 	}
-	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
-	}
-	if s.RuleId == nil {
-		invalidParams.Add(request.NewErrParamRequired("RuleId"))
-	}
-	if s.RuleId != nil && len(*s.RuleId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
-	}
-	if s.RuleVersion == nil {
-		invalidParams.Add(request.NewErrParamRequired("RuleVersion"))
-	}
-	if s.RuleVersion != nil && len(*s.RuleVersion) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RuleVersion", 1))
+	if s.Rule != nil {
+		if err := s.Rule.Validate(); err != nil {
+			invalidParams.AddNested("Rule", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4352,35 +6366,23 @@ func (s *DeleteRuleVersionInput) Validate() error {
 	return nil
 }
 
-// SetDetectorId sets the DetectorId field's value.
-func (s *DeleteRuleVersionInput) SetDetectorId(v string) *DeleteRuleVersionInput {
-	s.DetectorId = &v
+// SetRule sets the Rule field's value.
+func (s *DeleteRuleInput) SetRule(v *Rule) *DeleteRuleInput {
+	s.Rule = v
 	return s
 }
 
-// SetRuleId sets the RuleId field's value.
-func (s *DeleteRuleVersionInput) SetRuleId(v string) *DeleteRuleVersionInput {
-	s.RuleId = &v
-	return s
-}
-
-// SetRuleVersion sets the RuleVersion field's value.
-func (s *DeleteRuleVersionInput) SetRuleVersion(v string) *DeleteRuleVersionInput {
-	s.RuleVersion = &v
-	return s
-}
-
-type DeleteRuleVersionOutput struct {
+type DeleteRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
-func (s DeleteRuleVersionOutput) String() string {
+func (s DeleteRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s DeleteRuleVersionOutput) GoString() string {
+func (s DeleteRuleOutput) GoString() string {
 	return s.String()
 }
 
@@ -4449,6 +6451,9 @@ func (s *DescribeDetectorInput) SetNextToken(v string) *DescribeDetectorInput {
 type DescribeDetectorOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The detector ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
 	// The detector ID.
 	DetectorId *string `locationName:"detectorId" min:"1" type:"string"`
 
@@ -4467,6 +6472,12 @@ func (s DescribeDetectorOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDetectorOutput) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeDetectorOutput) SetArn(v string) *DescribeDetectorOutput {
+	s.Arn = &v
+	return s
 }
 
 // SetDetectorId sets the DetectorId field's value.
@@ -4499,8 +6510,8 @@ type DescribeModelVersionsInput struct {
 	// The model type.
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
 
-	// The model version.
-	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"1" type:"string"`
+	// The model version number.
+	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string"`
 
 	// The next token from the previous results.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -4524,9 +6535,6 @@ func (s *DescribeModelVersionsInput) Validate() error {
 	}
 	if s.ModelId != nil && len(*s.ModelId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
-	}
-	if s.ModelVersionNumber != nil && len(*s.ModelVersionNumber) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ModelVersionNumber", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4601,6 +6609,9 @@ func (s *DescribeModelVersionsOutput) SetNextToken(v string) *DescribeModelVersi
 type Detector struct {
 	_ struct{} `type:"structure"`
 
+	// The detector ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
 	// Timestamp of when the detector was created.
 	CreatedTime *string `locationName:"createdTime" type:"string"`
 
@@ -4609,6 +6620,9 @@ type Detector struct {
 
 	// The detector ID.
 	DetectorId *string `locationName:"detectorId" min:"1" type:"string"`
+
+	// The name of the event type.
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
 
 	// Timestamp of when the detector was last updated.
 	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
@@ -4622,6 +6636,12 @@ func (s Detector) String() string {
 // GoString returns the string representation
 func (s Detector) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Detector) SetArn(v string) *Detector {
+	s.Arn = &v
+	return s
 }
 
 // SetCreatedTime sets the CreatedTime field's value.
@@ -4639,6 +6659,12 @@ func (s *Detector) SetDescription(v string) *Detector {
 // SetDetectorId sets the DetectorId field's value.
 func (s *Detector) SetDetectorId(v string) *Detector {
 	s.DetectorId = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *Detector) SetEventTypeName(v string) *Detector {
+	s.EventTypeName = &v
 	return s
 }
 
@@ -4699,12 +6725,272 @@ func (s *DetectorVersionSummary) SetStatus(v string) *DetectorVersionSummary {
 	return s
 }
 
+// The entity details.
+type Entity struct {
+	_ struct{} `type:"structure"`
+
+	// The entity ID. If you do not know the entityId, you can pass unknown, which
+	// is areserved string literal.
+	EntityId *string `locationName:"entityId" min:"1" type:"string"`
+
+	// The entity type.
+	EntityType *string `locationName:"entityType" type:"string"`
+}
+
+// String returns the string representation
+func (s Entity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Entity) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Entity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Entity"}
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *Entity) SetEntityId(v string) *Entity {
+	s.EntityId = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *Entity) SetEntityType(v string) *Entity {
+	s.EntityType = &v
+	return s
+}
+
+// The entity type details.
+type EntityType struct {
+	_ struct{} `type:"structure"`
+
+	// The entity type ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// Timestamp of when the entity type was created.
+	CreatedTime *string `locationName:"createdTime" type:"string"`
+
+	// The entity type description.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// Timestamp of when the entity type was last updated.
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+
+	// The entity type name.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation
+func (s EntityType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityType) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *EntityType) SetArn(v string) *EntityType {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *EntityType) SetCreatedTime(v string) *EntityType {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *EntityType) SetDescription(v string) *EntityType {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *EntityType) SetLastUpdatedTime(v string) *EntityType {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EntityType) SetName(v string) *EntityType {
+	s.Name = &v
+	return s
+}
+
+// The event type details.
+type EventType struct {
+	_ struct{} `type:"structure"`
+
+	// The entity type ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// Timestamp of when the event type was created.
+	CreatedTime *string `locationName:"createdTime" type:"string"`
+
+	// The event type description.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The event type entity types.
+	EntityTypes []*string `locationName:"entityTypes" min:"1" type:"list"`
+
+	// The event type event variables.
+	EventVariables []*string `locationName:"eventVariables" type:"list"`
+
+	// The event type labels.
+	Labels []*string `locationName:"labels" type:"list"`
+
+	// Timestamp of when the event type was last updated.
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+
+	// The event type name.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation
+func (s EventType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EventType) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *EventType) SetArn(v string) *EventType {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *EventType) SetCreatedTime(v string) *EventType {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *EventType) SetDescription(v string) *EventType {
+	s.Description = &v
+	return s
+}
+
+// SetEntityTypes sets the EntityTypes field's value.
+func (s *EventType) SetEntityTypes(v []*string) *EventType {
+	s.EntityTypes = v
+	return s
+}
+
+// SetEventVariables sets the EventVariables field's value.
+func (s *EventType) SetEventVariables(v []*string) *EventType {
+	s.EventVariables = v
+	return s
+}
+
+// SetLabels sets the Labels field's value.
+func (s *EventType) SetLabels(v []*string) *EventType {
+	s.Labels = v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *EventType) SetLastUpdatedTime(v string) *EventType {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EventType) SetName(v string) *EventType {
+	s.Name = &v
+	return s
+}
+
+// Details for the external events data used for model version training.
+type ExternalEventsDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the role that provides Amazon Fraud Detector access to the data
+	// location.
+	//
+	// DataAccessRoleArn is a required field
+	DataAccessRoleArn *string `locationName:"dataAccessRoleArn" min:"1" type:"string" required:"true"`
+
+	// The Amazon S3 bucket location for the data.
+	//
+	// DataLocation is a required field
+	DataLocation *string `locationName:"dataLocation" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ExternalEventsDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExternalEventsDetail) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExternalEventsDetail) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExternalEventsDetail"}
+	if s.DataAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 1))
+	}
+	if s.DataLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataLocation"))
+	}
+	if s.DataLocation != nil && len(*s.DataLocation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataLocation", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *ExternalEventsDetail) SetDataAccessRoleArn(v string) *ExternalEventsDetail {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetDataLocation sets the DataLocation field's value.
+func (s *ExternalEventsDetail) SetDataLocation(v string) *ExternalEventsDetail {
+	s.DataLocation = &v
+	return s
+}
+
 // The Amazon SageMaker model.
 type ExternalModel struct {
 	_ struct{} `type:"structure"`
 
+	// The model ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
 	// Timestamp of when the model was last created.
 	CreatedTime *string `locationName:"createdTime" type:"string"`
+
+	// The event type names.
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
 
 	// The input configuration.
 	InputConfiguration *ModelInputConfiguration `locationName:"inputConfiguration" type:"structure"`
@@ -4738,9 +7024,21 @@ func (s ExternalModel) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *ExternalModel) SetArn(v string) *ExternalModel {
+	s.Arn = &v
+	return s
+}
+
 // SetCreatedTime sets the CreatedTime field's value.
 func (s *ExternalModel) SetCreatedTime(v string) *ExternalModel {
 	s.CreatedTime = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *ExternalModel) SetEventTypeName(v string) *ExternalModel {
+	s.EventTypeName = &v
 	return s
 }
 
@@ -4786,6 +7084,108 @@ func (s *ExternalModel) SetRole(v *Role) *ExternalModel {
 	return s
 }
 
+// The message details.
+type FieldValidationMessage struct {
+	_ struct{} `type:"structure"`
+
+	// The message content.
+	Content *string `locationName:"content" type:"string"`
+
+	// The field name.
+	FieldName *string `locationName:"fieldName" type:"string"`
+
+	// The message ID.
+	Identifier *string `locationName:"identifier" type:"string"`
+
+	// The message title.
+	Title *string `locationName:"title" type:"string"`
+
+	// The message type.
+	Type *string `locationName:"type" type:"string"`
+}
+
+// String returns the string representation
+func (s FieldValidationMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FieldValidationMessage) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *FieldValidationMessage) SetContent(v string) *FieldValidationMessage {
+	s.Content = &v
+	return s
+}
+
+// SetFieldName sets the FieldName field's value.
+func (s *FieldValidationMessage) SetFieldName(v string) *FieldValidationMessage {
+	s.FieldName = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *FieldValidationMessage) SetIdentifier(v string) *FieldValidationMessage {
+	s.Identifier = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *FieldValidationMessage) SetTitle(v string) *FieldValidationMessage {
+	s.Title = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *FieldValidationMessage) SetType(v string) *FieldValidationMessage {
+	s.Type = &v
+	return s
+}
+
+// The message details.
+type FileValidationMessage struct {
+	_ struct{} `type:"structure"`
+
+	// The message content.
+	Content *string `locationName:"content" type:"string"`
+
+	// The message title.
+	Title *string `locationName:"title" type:"string"`
+
+	// The message type.
+	Type *string `locationName:"type" type:"string"`
+}
+
+// String returns the string representation
+func (s FileValidationMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileValidationMessage) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *FileValidationMessage) SetContent(v string) *FileValidationMessage {
+	s.Content = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *FileValidationMessage) SetTitle(v string) *FileValidationMessage {
+	s.Title = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *FileValidationMessage) SetType(v string) *FileValidationMessage {
+	s.Type = &v
+	return s
+}
+
 type GetDetectorVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4797,7 +7197,7 @@ type GetDetectorVersionInput struct {
 	// The detector version ID.
 	//
 	// DetectorVersionId is a required field
-	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
+	DetectorVersionId *string `locationName:"detectorVersionId" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -4822,9 +7222,6 @@ func (s *GetDetectorVersionInput) Validate() error {
 	if s.DetectorVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorVersionId"))
 	}
-	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4847,6 +7244,9 @@ func (s *GetDetectorVersionInput) SetDetectorVersionId(v string) *GetDetectorVer
 type GetDetectorVersionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The detector version ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
 	// The timestamp when the detector version was created.
 	CreatedTime *string `locationName:"createdTime" type:"string"`
 
@@ -4857,7 +7257,7 @@ type GetDetectorVersionOutput struct {
 	DetectorId *string `locationName:"detectorId" min:"1" type:"string"`
 
 	// The detector version ID.
-	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string"`
+	DetectorVersionId *string `locationName:"detectorVersionId" type:"string"`
 
 	// The Amazon SageMaker model endpoints included in the detector version.
 	ExternalModelEndpoints []*string `locationName:"externalModelEndpoints" type:"list"`
@@ -4894,6 +7294,12 @@ func (s GetDetectorVersionOutput) String() string {
 // GoString returns the string representation
 func (s GetDetectorVersionOutput) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetDetectorVersionOutput) SetArn(v string) *GetDetectorVersionOutput {
+	s.Arn = &v
+	return s
 }
 
 // SetCreatedTime sets the CreatedTime field's value.
@@ -5045,6 +7451,373 @@ func (s *GetDetectorsOutput) SetNextToken(v string) *GetDetectorsOutput {
 	return s
 }
 
+type GetEntityTypesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects to return for the request.
+	MaxResults *int64 `locationName:"maxResults" min:"5" type:"integer"`
+
+	// The name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The next token for the subsequent request.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetEntityTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEntityTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEntityTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEntityTypesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 5))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetEntityTypesInput) SetMaxResults(v int64) *GetEntityTypesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetEntityTypesInput) SetName(v string) *GetEntityTypesInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetEntityTypesInput) SetNextToken(v string) *GetEntityTypesInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetEntityTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of entity types.
+	EntityTypes []*EntityType `locationName:"entityTypes" type:"list"`
+
+	// The next page token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetEntityTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEntityTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntityTypes sets the EntityTypes field's value.
+func (s *GetEntityTypesOutput) SetEntityTypes(v []*EntityType) *GetEntityTypesOutput {
+	s.EntityTypes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetEntityTypesOutput) SetNextToken(v string) *GetEntityTypesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type GetEventPredictionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The detector ID.
+	//
+	// DetectorId is a required field
+	DetectorId *string `locationName:"detectorId" type:"string" required:"true"`
+
+	// The detector version ID.
+	DetectorVersionId *string `locationName:"detectorVersionId" type:"string"`
+
+	// The entity type (associated with the detector's event type) and specific
+	// entity ID representing who performed the event. If an entity id is not available,
+	// use "UNKNOWN."
+	//
+	// Entities is a required field
+	Entities []*Entity `locationName:"entities" type:"list" required:"true"`
+
+	// The unique ID used to identify the event.
+	//
+	// EventId is a required field
+	EventId *string `locationName:"eventId" type:"string" required:"true"`
+
+	// Timestamp that defines when the event under evaluation occurred.
+	//
+	// EventTimestamp is a required field
+	EventTimestamp *string `locationName:"eventTimestamp" type:"string" required:"true"`
+
+	// The event type associated with the detector specified for the prediction.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" type:"string" required:"true"`
+
+	// Names of the event type's variables you defined in Amazon Fraud Detector
+	// to represent data elements and their corresponding values for the event you
+	// are sending for evaluation.
+	//
+	// EventVariables is a required field
+	EventVariables map[string]*string `locationName:"eventVariables" min:"1" type:"map" required:"true"`
+
+	// The Amazon SageMaker model endpoint input data blobs.
+	ExternalModelEndpointDataBlobs map[string]*ModelEndpointDataBlob `locationName:"externalModelEndpointDataBlobs" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s GetEventPredictionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEventPredictionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEventPredictionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEventPredictionInput"}
+	if s.DetectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+	}
+	if s.Entities == nil {
+		invalidParams.Add(request.NewErrParamRequired("Entities"))
+	}
+	if s.EventId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventId"))
+	}
+	if s.EventTimestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTimestamp"))
+	}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+	if s.EventVariables == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventVariables"))
+	}
+	if s.EventVariables != nil && len(s.EventVariables) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventVariables", 1))
+	}
+	if s.Entities != nil {
+		for i, v := range s.Entities {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Entities", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ExternalModelEndpointDataBlobs != nil {
+		for i, v := range s.ExternalModelEndpointDataBlobs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExternalModelEndpointDataBlobs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetectorId sets the DetectorId field's value.
+func (s *GetEventPredictionInput) SetDetectorId(v string) *GetEventPredictionInput {
+	s.DetectorId = &v
+	return s
+}
+
+// SetDetectorVersionId sets the DetectorVersionId field's value.
+func (s *GetEventPredictionInput) SetDetectorVersionId(v string) *GetEventPredictionInput {
+	s.DetectorVersionId = &v
+	return s
+}
+
+// SetEntities sets the Entities field's value.
+func (s *GetEventPredictionInput) SetEntities(v []*Entity) *GetEventPredictionInput {
+	s.Entities = v
+	return s
+}
+
+// SetEventId sets the EventId field's value.
+func (s *GetEventPredictionInput) SetEventId(v string) *GetEventPredictionInput {
+	s.EventId = &v
+	return s
+}
+
+// SetEventTimestamp sets the EventTimestamp field's value.
+func (s *GetEventPredictionInput) SetEventTimestamp(v string) *GetEventPredictionInput {
+	s.EventTimestamp = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *GetEventPredictionInput) SetEventTypeName(v string) *GetEventPredictionInput {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetEventVariables sets the EventVariables field's value.
+func (s *GetEventPredictionInput) SetEventVariables(v map[string]*string) *GetEventPredictionInput {
+	s.EventVariables = v
+	return s
+}
+
+// SetExternalModelEndpointDataBlobs sets the ExternalModelEndpointDataBlobs field's value.
+func (s *GetEventPredictionInput) SetExternalModelEndpointDataBlobs(v map[string]*ModelEndpointDataBlob) *GetEventPredictionInput {
+	s.ExternalModelEndpointDataBlobs = v
+	return s
+}
+
+type GetEventPredictionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The model scores. Amazon Fraud Detector generates model scores between 0
+	// and 1000, where 0 is low fraud risk and 1000 is high fraud risk. Model scores
+	// are directly related to the false positive rate (FPR). For example, a score
+	// of 600 corresponds to an estimated 10% false positive rate whereas a score
+	// of 900 corresponds to an estimated 2% false positive rate.
+	ModelScores []*ModelScores `locationName:"modelScores" type:"list"`
+
+	// The results.
+	RuleResults []*RuleResult `locationName:"ruleResults" type:"list"`
+}
+
+// String returns the string representation
+func (s GetEventPredictionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEventPredictionOutput) GoString() string {
+	return s.String()
+}
+
+// SetModelScores sets the ModelScores field's value.
+func (s *GetEventPredictionOutput) SetModelScores(v []*ModelScores) *GetEventPredictionOutput {
+	s.ModelScores = v
+	return s
+}
+
+// SetRuleResults sets the RuleResults field's value.
+func (s *GetEventPredictionOutput) SetRuleResults(v []*RuleResult) *GetEventPredictionOutput {
+	s.RuleResults = v
+	return s
+}
+
+type GetEventTypesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects to return for the request.
+	MaxResults *int64 `locationName:"maxResults" min:"5" type:"integer"`
+
+	// The name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The next token for the subsequent request.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetEventTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEventTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEventTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEventTypesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 5))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetEventTypesInput) SetMaxResults(v int64) *GetEventTypesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetEventTypesInput) SetName(v string) *GetEventTypesInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetEventTypesInput) SetNextToken(v string) *GetEventTypesInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetEventTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of event types.
+	EventTypes []*EventType `locationName:"eventTypes" type:"list"`
+
+	// The next page token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetEventTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEventTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventTypes sets the EventTypes field's value.
+func (s *GetEventTypesOutput) SetEventTypes(v []*EventType) *GetEventTypesOutput {
+	s.EventTypes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetEventTypesOutput) SetNextToken(v string) *GetEventTypesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetExternalModelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5131,6 +7904,132 @@ func (s *GetExternalModelsOutput) SetNextToken(v string) *GetExternalModelsOutpu
 	return s
 }
 
+type GetKMSEncryptionKeyInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetKMSEncryptionKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetKMSEncryptionKeyInput) GoString() string {
+	return s.String()
+}
+
+type GetKMSEncryptionKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The KMS encryption key.
+	KmsKey *KMSKey `locationName:"kmsKey" type:"structure"`
+}
+
+// String returns the string representation
+func (s GetKMSEncryptionKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetKMSEncryptionKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetKmsKey sets the KmsKey field's value.
+func (s *GetKMSEncryptionKeyOutput) SetKmsKey(v *KMSKey) *GetKMSEncryptionKeyOutput {
+	s.KmsKey = v
+	return s
+}
+
+type GetLabelsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects to return for the request.
+	MaxResults *int64 `locationName:"maxResults" min:"10" type:"integer"`
+
+	// The name of the label or labels to get.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The next token for the subsequent request.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetLabelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetLabelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLabelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLabelsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 10))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetLabelsInput) SetMaxResults(v int64) *GetLabelsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetLabelsInput) SetName(v string) *GetLabelsInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetLabelsInput) SetNextToken(v string) *GetLabelsInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetLabelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of labels.
+	Labels []*Label `locationName:"labels" type:"list"`
+
+	// The next page token.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetLabelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetLabelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLabels sets the Labels field's value.
+func (s *GetLabelsOutput) SetLabels(v []*Label) *GetLabelsOutput {
+	s.Labels = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetLabelsOutput) SetNextToken(v string) *GetLabelsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetModelVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5144,10 +8043,10 @@ type GetModelVersionInput struct {
 	// ModelType is a required field
 	ModelType *string `locationName:"modelType" type:"string" required:"true" enum:"ModelTypeEnum"`
 
-	// The model version.
+	// The model version number.
 	//
 	// ModelVersionNumber is a required field
-	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"1" type:"string" required:"true"`
+	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -5174,9 +8073,6 @@ func (s *GetModelVersionInput) Validate() error {
 	}
 	if s.ModelVersionNumber == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelVersionNumber"))
-	}
-	if s.ModelVersionNumber != nil && len(*s.ModelVersionNumber) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ModelVersionNumber", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5206,8 +8102,11 @@ func (s *GetModelVersionInput) SetModelVersionNumber(v string) *GetModelVersionI
 type GetModelVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The model version description.
-	Description *string `locationName:"description" min:"1" type:"string"`
+	// The model version ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The event details.
+	ExternalEventsDetail *ExternalEventsDetail `locationName:"externalEventsDetail" type:"structure"`
 
 	// The model ID.
 	ModelId *string `locationName:"modelId" min:"1" type:"string"`
@@ -5215,11 +8114,17 @@ type GetModelVersionOutput struct {
 	// The model type.
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
 
-	// The model version.
-	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"1" type:"string"`
+	// The model version number.
+	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string"`
 
 	// The model version status.
 	Status *string `locationName:"status" type:"string"`
+
+	// The training data schema.
+	TrainingDataSchema *TrainingDataSchema `locationName:"trainingDataSchema" type:"structure"`
+
+	// The training data source.
+	TrainingDataSource *string `locationName:"trainingDataSource" type:"string" enum:"TrainingDataSourceEnum"`
 }
 
 // String returns the string representation
@@ -5232,9 +8137,15 @@ func (s GetModelVersionOutput) GoString() string {
 	return s.String()
 }
 
-// SetDescription sets the Description field's value.
-func (s *GetModelVersionOutput) SetDescription(v string) *GetModelVersionOutput {
-	s.Description = &v
+// SetArn sets the Arn field's value.
+func (s *GetModelVersionOutput) SetArn(v string) *GetModelVersionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetExternalEventsDetail sets the ExternalEventsDetail field's value.
+func (s *GetModelVersionOutput) SetExternalEventsDetail(v *ExternalEventsDetail) *GetModelVersionOutput {
+	s.ExternalEventsDetail = v
 	return s
 }
 
@@ -5262,10 +8173,22 @@ func (s *GetModelVersionOutput) SetStatus(v string) *GetModelVersionOutput {
 	return s
 }
 
+// SetTrainingDataSchema sets the TrainingDataSchema field's value.
+func (s *GetModelVersionOutput) SetTrainingDataSchema(v *TrainingDataSchema) *GetModelVersionOutput {
+	s.TrainingDataSchema = v
+	return s
+}
+
+// SetTrainingDataSource sets the TrainingDataSource field's value.
+func (s *GetModelVersionOutput) SetTrainingDataSource(v string) *GetModelVersionOutput {
+	s.TrainingDataSource = &v
+	return s
+}
+
 type GetModelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum results to return for the request.
+	// The maximum number of objects to return for the request.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The model ID.
@@ -5274,7 +8197,7 @@ type GetModelsInput struct {
 	// The model type.
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
 
-	// The next token for the request.
+	// The next token for the subsequent request.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5331,10 +8254,10 @@ func (s *GetModelsInput) SetNextToken(v string) *GetModelsInput {
 type GetModelsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The returned models.
+	// The array of models.
 	Models []*Model `locationName:"models" type:"list"`
 
-	// The next token for subsequent requests.
+	// The next page token to be used in subsequent requests.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5599,7 +8522,7 @@ type GetRulesInput struct {
 	RuleId *string `locationName:"ruleId" min:"1" type:"string"`
 
 	// The rule version.
-	RuleVersion *string `locationName:"ruleVersion" min:"1" type:"string"`
+	RuleVersion *string `locationName:"ruleVersion" type:"string"`
 }
 
 // String returns the string representation
@@ -5626,9 +8549,6 @@ func (s *GetRulesInput) Validate() error {
 	}
 	if s.RuleId != nil && len(*s.RuleId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
-	}
-	if s.RuleVersion != nil && len(*s.RuleVersion) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RuleVersion", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5841,21 +8761,101 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The KMS key details.
+type KMSKey struct {
+	_ struct{} `type:"structure"`
+
+	// The encryption key ARN.
+	KmsEncryptionKeyArn *string `locationName:"kmsEncryptionKeyArn" min:"7" type:"string"`
+}
+
+// String returns the string representation
+func (s KMSKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KMSKey) GoString() string {
+	return s.String()
+}
+
+// SetKmsEncryptionKeyArn sets the KmsEncryptionKeyArn field's value.
+func (s *KMSKey) SetKmsEncryptionKeyArn(v string) *KMSKey {
+	s.KmsEncryptionKeyArn = &v
+	return s
+}
+
+// The label details.
+type Label struct {
+	_ struct{} `type:"structure"`
+
+	// The label ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// Timestamp of when the event type was created.
+	CreatedTime *string `locationName:"createdTime" type:"string"`
+
+	// The label description.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// Timestamp of when the label was last updated.
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+
+	// The label name.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation
+func (s Label) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Label) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Label) SetArn(v string) *Label {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Label) SetCreatedTime(v string) *Label {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Label) SetDescription(v string) *Label {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *Label) SetLastUpdatedTime(v string) *Label {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Label) SetName(v string) *Label {
+	s.Name = &v
+	return s
+}
+
 // The label schema.
 type LabelSchema struct {
 	_ struct{} `type:"structure"`
 
-	// The label key.
-	//
-	// LabelKey is a required field
-	LabelKey *string `locationName:"labelKey" type:"string" required:"true"`
-
-	// The label mapper maps the Amazon Fraud Detector supported label to the appropriate
-	// source labels. For example, if "FRAUD" and "LEGIT" are Amazon Fraud Detector
-	// supported labels, this mapper could be: {"FRAUD" => ["0"], "LEGIT" => ["1"]}
-	// or {"FRAUD" => ["false"], "LEGIT" => ["true"]} or {"FRAUD" => ["fraud", "abuse"],
-	// "LEGIT" => ["legit", "safe"]}. The value part of the mapper is a list, because
-	// you may have multiple variants for a single Amazon Fraud Detector label.
+	// The label mapper maps the Amazon Fraud Detector supported model classification
+	// labels (FRAUD, LEGIT) to the appropriate event type labels. For example,
+	// if "FRAUD" and "LEGIT" are Amazon Fraud Detector supported labels, this mapper
+	// could be: {"FRAUD" => ["0"], "LEGIT" => ["1"]} or {"FRAUD" => ["false"],
+	// "LEGIT" => ["true"]} or {"FRAUD" => ["fraud", "abuse"], "LEGIT" => ["legit",
+	// "safe"]}. The value part of the mapper is a list, because you may have multiple
+	// label variants from your event type for a single Amazon Fraud Detector label.
 	//
 	// LabelMapper is a required field
 	LabelMapper map[string][]*string `locationName:"labelMapper" type:"map" required:"true"`
@@ -5874,9 +8874,6 @@ func (s LabelSchema) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *LabelSchema) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "LabelSchema"}
-	if s.LabelKey == nil {
-		invalidParams.Add(request.NewErrParamRequired("LabelKey"))
-	}
 	if s.LabelMapper == nil {
 		invalidParams.Add(request.NewErrParamRequired("LabelMapper"))
 	}
@@ -5887,15 +8884,159 @@ func (s *LabelSchema) Validate() error {
 	return nil
 }
 
-// SetLabelKey sets the LabelKey field's value.
-func (s *LabelSchema) SetLabelKey(v string) *LabelSchema {
-	s.LabelKey = &v
-	return s
-}
-
 // SetLabelMapper sets the LabelMapper field's value.
 func (s *LabelSchema) SetLabelMapper(v map[string][]*string) *LabelSchema {
 	s.LabelMapper = v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects to return for the request.
+	MaxResults *int64 `locationName:"maxResults" min:"50" type:"integer"`
+
+	// The next token from the previous results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The ARN that specifies the resource whose tags you want to list.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `locationName:"resourceARN" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.MaxResults != nil && *s.MaxResults < 50 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 50))
+	}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTagsForResourceInput) SetMaxResults(v int64) *ListTagsForResourceInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTagsForResourceInput) SetNextToken(v string) *ListTagsForResourceInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The next token for subsequent requests.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTagsForResourceOutput) SetNextToken(v string) *ListTagsForResourceOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
+// Model performance metrics data points.
+type MetricDataPoint struct {
+	_ struct{} `type:"structure"`
+
+	// The false positive rate. This is the percentage of total legitimate events
+	// that are incorrectly predicted as fraud.
+	Fpr *float64 `locationName:"fpr" type:"float"`
+
+	// The percentage of fraud events correctly predicted as fraudulent as compared
+	// to all events predicted as fraudulent.
+	Precision *float64 `locationName:"precision" type:"float"`
+
+	// The model threshold that specifies an acceptable fraud capture rate. For
+	// example, a threshold of 500 means any model score 500 or above is labeled
+	// as fraud.
+	Threshold *float64 `locationName:"threshold" type:"float"`
+
+	// The true positive rate. This is the percentage of total fraud the model detects.
+	// Also known as capture rate.
+	Tpr *float64 `locationName:"tpr" type:"float"`
+}
+
+// String returns the string representation
+func (s MetricDataPoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MetricDataPoint) GoString() string {
+	return s.String()
+}
+
+// SetFpr sets the Fpr field's value.
+func (s *MetricDataPoint) SetFpr(v float64) *MetricDataPoint {
+	s.Fpr = &v
+	return s
+}
+
+// SetPrecision sets the Precision field's value.
+func (s *MetricDataPoint) SetPrecision(v float64) *MetricDataPoint {
+	s.Precision = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *MetricDataPoint) SetThreshold(v float64) *MetricDataPoint {
+	s.Threshold = &v
+	return s
+}
+
+// SetTpr sets the Tpr field's value.
+func (s *MetricDataPoint) SetTpr(v float64) *MetricDataPoint {
+	s.Tpr = &v
 	return s
 }
 
@@ -5903,14 +9044,17 @@ func (s *LabelSchema) SetLabelMapper(v map[string][]*string) *LabelSchema {
 type Model struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the model.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
 	// Timestamp of when the model was created.
 	CreatedTime *string `locationName:"createdTime" type:"string"`
 
 	// The model description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The model label schema.
-	LabelSchema *LabelSchema `locationName:"labelSchema" type:"structure"`
+	// The name of the event type.
+	EventTypeName *string `locationName:"eventTypeName" type:"string"`
 
 	// Timestamp of last time the model was updated.
 	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
@@ -5920,12 +9064,6 @@ type Model struct {
 
 	// The model type.
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
-
-	// The model input variables.
-	ModelVariables []*ModelVariable `locationName:"modelVariables" type:"list"`
-
-	// The model training data source in Amazon S3.
-	TrainingDataSource *TrainingDataSource `locationName:"trainingDataSource" type:"structure"`
 }
 
 // String returns the string representation
@@ -5936,6 +9074,12 @@ func (s Model) String() string {
 // GoString returns the string representation
 func (s Model) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Model) SetArn(v string) *Model {
+	s.Arn = &v
+	return s
 }
 
 // SetCreatedTime sets the CreatedTime field's value.
@@ -5950,9 +9094,9 @@ func (s *Model) SetDescription(v string) *Model {
 	return s
 }
 
-// SetLabelSchema sets the LabelSchema field's value.
-func (s *Model) SetLabelSchema(v *LabelSchema) *Model {
-	s.LabelSchema = v
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *Model) SetEventTypeName(v string) *Model {
+	s.EventTypeName = &v
 	return s
 }
 
@@ -5971,18 +9115,6 @@ func (s *Model) SetModelId(v string) *Model {
 // SetModelType sets the ModelType field's value.
 func (s *Model) SetModelType(v string) *Model {
 	s.ModelType = &v
-	return s
-}
-
-// SetModelVariables sets the ModelVariables field's value.
-func (s *Model) SetModelVariables(v []*ModelVariable) *Model {
-	s.ModelVariables = v
-	return s
-}
-
-// SetTrainingDataSource sets the TrainingDataSource field's value.
-func (s *Model) SetTrainingDataSource(v *TrainingDataSource) *Model {
-	s.TrainingDataSource = v
 	return s
 }
 
@@ -6036,7 +9168,7 @@ func (s *ModelEndpointDataBlob) SetContentType(v string) *ModelEndpointDataBlob 
 	return s
 }
 
-// The model input configuration.
+// The Amazon SageMaker model input configuration.
 type ModelInputConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6049,18 +9181,15 @@ type ModelInputConfiguration struct {
 	// on if it is passed through to SageMaker or constructed by Amazon Fraud Detector.
 	Format *string `locationName:"format" type:"string" enum:"ModelInputDataFormat"`
 
-	// For an opaque-model, the input to the model will be a ByteBuffer blob provided
-	// in the getPrediction request, and will be passed to SageMaker as-is. For
-	// non-opaque models, the input will be constructed by Amazon Fraud Detector
-	// based on the model-configuration.
-	//
-	// IsOpaque is a required field
-	IsOpaque *bool `locationName:"isOpaque" type:"boolean" required:"true"`
-
 	// Template for constructing the JSON input-data sent to SageMaker. At event-evaluation,
 	// the placeholders for variable names in the template will be replaced with
 	// the variable values before being sent to SageMaker.
 	JsonInputTemplate *string `locationName:"jsonInputTemplate" type:"string"`
+
+	// The event variables.
+	//
+	// UseEventVariables is a required field
+	UseEventVariables *bool `locationName:"useEventVariables" type:"boolean" required:"true"`
 }
 
 // String returns the string representation
@@ -6076,8 +9205,8 @@ func (s ModelInputConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelInputConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelInputConfiguration"}
-	if s.IsOpaque == nil {
-		invalidParams.Add(request.NewErrParamRequired("IsOpaque"))
+	if s.UseEventVariables == nil {
+		invalidParams.Add(request.NewErrParamRequired("UseEventVariables"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6098,19 +9227,19 @@ func (s *ModelInputConfiguration) SetFormat(v string) *ModelInputConfiguration {
 	return s
 }
 
-// SetIsOpaque sets the IsOpaque field's value.
-func (s *ModelInputConfiguration) SetIsOpaque(v bool) *ModelInputConfiguration {
-	s.IsOpaque = &v
-	return s
-}
-
 // SetJsonInputTemplate sets the JsonInputTemplate field's value.
 func (s *ModelInputConfiguration) SetJsonInputTemplate(v string) *ModelInputConfiguration {
 	s.JsonInputTemplate = &v
 	return s
 }
 
-// Provides the model output configuration.
+// SetUseEventVariables sets the UseEventVariables field's value.
+func (s *ModelInputConfiguration) SetUseEventVariables(v bool) *ModelInputConfiguration {
+	s.UseEventVariables = &v
+	return s
+}
+
+// Provides the Amazon Sagemaker model output configuration.
 type ModelOutputConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6202,59 +9331,14 @@ func (s *ModelScores) SetScores(v map[string]*float64) *ModelScores {
 	return s
 }
 
-// The model variable.>
-type ModelVariable struct {
-	_ struct{} `type:"structure"`
-
-	// The model variable's index.>
-	Index *int64 `locationName:"index" type:"integer"`
-
-	// The model variable's name.>
-	//
-	// Name is a required field
-	Name *string `locationName:"name" type:"string" required:"true"`
-}
-
-// String returns the string representation
-func (s ModelVariable) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s ModelVariable) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ModelVariable) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ModelVariable"}
-	if s.Name == nil {
-		invalidParams.Add(request.NewErrParamRequired("Name"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetIndex sets the Index field's value.
-func (s *ModelVariable) SetIndex(v int64) *ModelVariable {
-	s.Index = &v
-	return s
-}
-
-// SetName sets the Name field's value.
-func (s *ModelVariable) SetName(v string) *ModelVariable {
-	s.Name = &v
-	return s
-}
-
 // The model version.
 type ModelVersion struct {
 	_ struct{} `type:"structure"`
 
-	// The parent model ID.
+	// The model version ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The model ID.
 	//
 	// ModelId is a required field
 	ModelId *string `locationName:"modelId" min:"1" type:"string" required:"true"`
@@ -6264,7 +9348,7 @@ type ModelVersion struct {
 	// ModelType is a required field
 	ModelType *string `locationName:"modelType" type:"string" required:"true" enum:"ModelTypeEnum"`
 
-	// The model version.
+	// The model version number.
 	//
 	// ModelVersionNumber is a required field
 	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"1" type:"string" required:"true"`
@@ -6283,6 +9367,9 @@ func (s ModelVersion) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelVersion) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelVersion"}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
 	if s.ModelId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelId"))
 	}
@@ -6305,6 +9392,12 @@ func (s *ModelVersion) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ModelVersion) SetArn(v string) *ModelVersion {
+	s.Arn = &v
+	return s
+}
+
 // SetModelId sets the ModelId field's value.
 func (s *ModelVersion) SetModelId(v string) *ModelVersion {
 	s.ModelId = &v
@@ -6323,18 +9416,18 @@ func (s *ModelVersion) SetModelVersionNumber(v string) *ModelVersion {
 	return s
 }
 
-// Provides the model version details.
+// The details of the model version.
 type ModelVersionDetail struct {
 	_ struct{} `type:"structure"`
+
+	// The model version ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// The timestamp when the model was created.
 	CreatedTime *string `locationName:"createdTime" type:"string"`
 
-	// The model description.
-	Description *string `locationName:"description" min:"1" type:"string"`
-
-	// The model label schema.
-	LabelSchema *LabelSchema `locationName:"labelSchema" type:"structure"`
+	// The event details.
+	ExternalEventsDetail *ExternalEventsDetail `locationName:"externalEventsDetail" type:"structure"`
 
 	// The timestamp when the model was last updated.
 	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
@@ -6345,23 +9438,20 @@ type ModelVersionDetail struct {
 	// The model type.
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
 
-	// The model variables.
-	ModelVariables []*ModelVariable `locationName:"modelVariables" type:"list"`
+	// The model version number.
+	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string"`
 
-	// The model version.
-	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"1" type:"string"`
-
-	// The model status.
+	// The status of the model version.
 	Status *string `locationName:"status" type:"string"`
 
-	// The model training data source.
-	TrainingDataSource *TrainingDataSource `locationName:"trainingDataSource" type:"structure"`
+	// The training data schema.
+	TrainingDataSchema *TrainingDataSchema `locationName:"trainingDataSchema" type:"structure"`
 
-	// The model training metrics.
-	TrainingMetrics map[string]*string `locationName:"trainingMetrics" type:"map"`
+	// The model version training data source.
+	TrainingDataSource *string `locationName:"trainingDataSource" type:"string" enum:"TrainingDataSourceEnum"`
 
-	// The model validation metrics.
-	ValidationMetrics map[string]*string `locationName:"validationMetrics" type:"map"`
+	// The training results.
+	TrainingResult *TrainingResult `locationName:"trainingResult" type:"structure"`
 }
 
 // String returns the string representation
@@ -6374,21 +9464,21 @@ func (s ModelVersionDetail) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *ModelVersionDetail) SetArn(v string) *ModelVersionDetail {
+	s.Arn = &v
+	return s
+}
+
 // SetCreatedTime sets the CreatedTime field's value.
 func (s *ModelVersionDetail) SetCreatedTime(v string) *ModelVersionDetail {
 	s.CreatedTime = &v
 	return s
 }
 
-// SetDescription sets the Description field's value.
-func (s *ModelVersionDetail) SetDescription(v string) *ModelVersionDetail {
-	s.Description = &v
-	return s
-}
-
-// SetLabelSchema sets the LabelSchema field's value.
-func (s *ModelVersionDetail) SetLabelSchema(v *LabelSchema) *ModelVersionDetail {
-	s.LabelSchema = v
+// SetExternalEventsDetail sets the ExternalEventsDetail field's value.
+func (s *ModelVersionDetail) SetExternalEventsDetail(v *ExternalEventsDetail) *ModelVersionDetail {
+	s.ExternalEventsDetail = v
 	return s
 }
 
@@ -6410,12 +9500,6 @@ func (s *ModelVersionDetail) SetModelType(v string) *ModelVersionDetail {
 	return s
 }
 
-// SetModelVariables sets the ModelVariables field's value.
-func (s *ModelVersionDetail) SetModelVariables(v []*ModelVariable) *ModelVersionDetail {
-	s.ModelVariables = v
-	return s
-}
-
 // SetModelVersionNumber sets the ModelVersionNumber field's value.
 func (s *ModelVersionDetail) SetModelVersionNumber(v string) *ModelVersionDetail {
 	s.ModelVersionNumber = &v
@@ -6428,27 +9512,30 @@ func (s *ModelVersionDetail) SetStatus(v string) *ModelVersionDetail {
 	return s
 }
 
+// SetTrainingDataSchema sets the TrainingDataSchema field's value.
+func (s *ModelVersionDetail) SetTrainingDataSchema(v *TrainingDataSchema) *ModelVersionDetail {
+	s.TrainingDataSchema = v
+	return s
+}
+
 // SetTrainingDataSource sets the TrainingDataSource field's value.
-func (s *ModelVersionDetail) SetTrainingDataSource(v *TrainingDataSource) *ModelVersionDetail {
-	s.TrainingDataSource = v
+func (s *ModelVersionDetail) SetTrainingDataSource(v string) *ModelVersionDetail {
+	s.TrainingDataSource = &v
 	return s
 }
 
-// SetTrainingMetrics sets the TrainingMetrics field's value.
-func (s *ModelVersionDetail) SetTrainingMetrics(v map[string]*string) *ModelVersionDetail {
-	s.TrainingMetrics = v
-	return s
-}
-
-// SetValidationMetrics sets the ValidationMetrics field's value.
-func (s *ModelVersionDetail) SetValidationMetrics(v map[string]*string) *ModelVersionDetail {
-	s.ValidationMetrics = v
+// SetTrainingResult sets the TrainingResult field's value.
+func (s *ModelVersionDetail) SetTrainingResult(v *TrainingResult) *ModelVersionDetail {
+	s.TrainingResult = v
 	return s
 }
 
 // The outcome.
 type Outcome struct {
 	_ struct{} `type:"structure"`
+
+	// The outcome ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// The timestamp when the outcome was created.
 	CreatedTime *string `locationName:"createdTime" type:"string"`
@@ -6471,6 +9558,12 @@ func (s Outcome) String() string {
 // GoString returns the string representation
 func (s Outcome) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Outcome) SetArn(v string) *Outcome {
+	s.Arn = &v
+	return s
 }
 
 // SetCreatedTime sets the CreatedTime field's value.
@@ -6507,6 +9600,14 @@ type PutDetectorInput struct {
 	//
 	// DetectorId is a required field
 	DetectorId *string `locationName:"detectorId" min:"1" type:"string" required:"true"`
+
+	// The name of the event type.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation
@@ -6531,6 +9632,22 @@ func (s *PutDetectorInput) Validate() error {
 	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
 	}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6550,6 +9667,18 @@ func (s *PutDetectorInput) SetDetectorId(v string) *PutDetectorInput {
 	return s
 }
 
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *PutDetectorInput) SetEventTypeName(v string) *PutDetectorInput {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PutDetectorInput) SetTags(v []*Tag) *PutDetectorInput {
+	s.Tags = v
+	return s
+}
+
 type PutDetectorOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6564,8 +9693,227 @@ func (s PutDetectorOutput) GoString() string {
 	return s.String()
 }
 
+type PutEntityTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The name of the entity type.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation
+func (s PutEntityTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEntityTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutEntityTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutEntityTypeInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *PutEntityTypeInput) SetDescription(v string) *PutEntityTypeInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutEntityTypeInput) SetName(v string) *PutEntityTypeInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PutEntityTypeInput) SetTags(v []*Tag) *PutEntityTypeInput {
+	s.Tags = v
+	return s
+}
+
+type PutEntityTypeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutEntityTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEntityTypeOutput) GoString() string {
+	return s.String()
+}
+
+type PutEventTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the event type.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The entity type for the event type. Example entity types: customer, merchant,
+	// account.
+	//
+	// EntityTypes is a required field
+	EntityTypes []*string `locationName:"entityTypes" min:"1" type:"list" required:"true"`
+
+	// The event type variables.
+	//
+	// EventVariables is a required field
+	EventVariables []*string `locationName:"eventVariables" min:"1" type:"list" required:"true"`
+
+	// The event type labels.
+	Labels []*string `locationName:"labels" type:"list"`
+
+	// The name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation
+func (s PutEventTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEventTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutEventTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutEventTypeInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.EntityTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityTypes"))
+	}
+	if s.EntityTypes != nil && len(s.EntityTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityTypes", 1))
+	}
+	if s.EventVariables == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventVariables"))
+	}
+	if s.EventVariables != nil && len(s.EventVariables) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventVariables", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *PutEventTypeInput) SetDescription(v string) *PutEventTypeInput {
+	s.Description = &v
+	return s
+}
+
+// SetEntityTypes sets the EntityTypes field's value.
+func (s *PutEventTypeInput) SetEntityTypes(v []*string) *PutEventTypeInput {
+	s.EntityTypes = v
+	return s
+}
+
+// SetEventVariables sets the EventVariables field's value.
+func (s *PutEventTypeInput) SetEventVariables(v []*string) *PutEventTypeInput {
+	s.EventVariables = v
+	return s
+}
+
+// SetLabels sets the Labels field's value.
+func (s *PutEventTypeInput) SetLabels(v []*string) *PutEventTypeInput {
+	s.Labels = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutEventTypeInput) SetName(v string) *PutEventTypeInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PutEventTypeInput) SetTags(v []*Tag) *PutEventTypeInput {
+	s.Tags = v
+	return s
+}
+
+type PutEventTypeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutEventTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEventTypeOutput) GoString() string {
+	return s.String()
+}
+
 type PutExternalModelInput struct {
 	_ struct{} `type:"structure"`
+
+	// The event type name.
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
 
 	// The model endpoint input configuration.
 	//
@@ -6575,7 +9923,7 @@ type PutExternalModelInput struct {
 	// The model endpoints name.
 	//
 	// ModelEndpoint is a required field
-	ModelEndpoint *string `locationName:"modelEndpoint" type:"string" required:"true"`
+	ModelEndpoint *string `locationName:"modelEndpoint" min:"1" type:"string" required:"true"`
 
 	// The model endpoint’s status in Amazon Fraud Detector.
 	//
@@ -6596,6 +9944,9 @@ type PutExternalModelInput struct {
 	//
 	// Role is a required field
 	Role *Role `locationName:"role" type:"structure" required:"true"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation
@@ -6611,11 +9962,17 @@ func (s PutExternalModelInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PutExternalModelInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutExternalModelInput"}
+	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
+	}
 	if s.InputConfiguration == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputConfiguration"))
 	}
 	if s.ModelEndpoint == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelEndpoint"))
+	}
+	if s.ModelEndpoint != nil && len(*s.ModelEndpoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelEndpoint", 1))
 	}
 	if s.ModelEndpointStatus == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelEndpointStatus"))
@@ -6644,11 +10001,27 @@ func (s *PutExternalModelInput) Validate() error {
 			invalidParams.AddNested("Role", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *PutExternalModelInput) SetEventTypeName(v string) *PutExternalModelInput {
+	s.EventTypeName = &v
+	return s
 }
 
 // SetInputConfiguration sets the InputConfiguration field's value.
@@ -6687,6 +10060,12 @@ func (s *PutExternalModelInput) SetRole(v *Role) *PutExternalModelInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *PutExternalModelInput) SetTags(v []*Tag) *PutExternalModelInput {
+	s.Tags = v
+	return s
+}
+
 type PutExternalModelOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6701,90 +10080,105 @@ func (s PutExternalModelOutput) GoString() string {
 	return s.String()
 }
 
-type PutModelInput struct {
+type PutKMSEncryptionKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The model description.
-	Description *string `locationName:"description" min:"1" type:"string"`
-
-	// The label schema.
+	// The KMS encryption key ARN.
 	//
-	// LabelSchema is a required field
-	LabelSchema *LabelSchema `locationName:"labelSchema" type:"structure" required:"true"`
-
-	// The model ID.
-	//
-	// ModelId is a required field
-	ModelId *string `locationName:"modelId" min:"1" type:"string" required:"true"`
-
-	// The model type.
-	//
-	// ModelType is a required field
-	ModelType *string `locationName:"modelType" type:"string" required:"true" enum:"ModelTypeEnum"`
-
-	// The model input variables.
-	//
-	// ModelVariables is a required field
-	ModelVariables []*ModelVariable `locationName:"modelVariables" type:"list" required:"true"`
-
-	// The training data source location in Amazon S3.
-	//
-	// TrainingDataSource is a required field
-	TrainingDataSource *TrainingDataSource `locationName:"trainingDataSource" type:"structure" required:"true"`
+	// KmsEncryptionKeyArn is a required field
+	KmsEncryptionKeyArn *string `locationName:"kmsEncryptionKeyArn" min:"7" type:"string" required:"true"`
 }
 
 // String returns the string representation
-func (s PutModelInput) String() string {
+func (s PutKMSEncryptionKeyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s PutModelInput) GoString() string {
+func (s PutKMSEncryptionKeyInput) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *PutModelInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "PutModelInput"}
+func (s *PutKMSEncryptionKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutKMSEncryptionKeyInput"}
+	if s.KmsEncryptionKeyArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsEncryptionKeyArn"))
+	}
+	if s.KmsEncryptionKeyArn != nil && len(*s.KmsEncryptionKeyArn) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsEncryptionKeyArn", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsEncryptionKeyArn sets the KmsEncryptionKeyArn field's value.
+func (s *PutKMSEncryptionKeyInput) SetKmsEncryptionKeyArn(v string) *PutKMSEncryptionKeyInput {
+	s.KmsEncryptionKeyArn = &v
+	return s
+}
+
+type PutKMSEncryptionKeyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutKMSEncryptionKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutKMSEncryptionKeyOutput) GoString() string {
+	return s.String()
+}
+
+type PutLabelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The label description.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The label name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation
+func (s PutLabelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutLabelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutLabelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutLabelInput"}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
-	if s.LabelSchema == nil {
-		invalidParams.Add(request.NewErrParamRequired("LabelSchema"))
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
-	if s.ModelId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ModelId"))
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
-	if s.ModelId != nil && len(*s.ModelId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
-	}
-	if s.ModelType == nil {
-		invalidParams.Add(request.NewErrParamRequired("ModelType"))
-	}
-	if s.ModelVariables == nil {
-		invalidParams.Add(request.NewErrParamRequired("ModelVariables"))
-	}
-	if s.TrainingDataSource == nil {
-		invalidParams.Add(request.NewErrParamRequired("TrainingDataSource"))
-	}
-	if s.LabelSchema != nil {
-		if err := s.LabelSchema.Validate(); err != nil {
-			invalidParams.AddNested("LabelSchema", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.ModelVariables != nil {
-		for i, v := range s.ModelVariables {
+	if s.Tags != nil {
+		for i, v := range s.Tags {
 			if v == nil {
 				continue
 			}
 			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ModelVariables", i), err.(request.ErrInvalidParams))
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
-		}
-	}
-	if s.TrainingDataSource != nil {
-		if err := s.TrainingDataSource.Validate(); err != nil {
-			invalidParams.AddNested("TrainingDataSource", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -6795,52 +10189,34 @@ func (s *PutModelInput) Validate() error {
 }
 
 // SetDescription sets the Description field's value.
-func (s *PutModelInput) SetDescription(v string) *PutModelInput {
+func (s *PutLabelInput) SetDescription(v string) *PutLabelInput {
 	s.Description = &v
 	return s
 }
 
-// SetLabelSchema sets the LabelSchema field's value.
-func (s *PutModelInput) SetLabelSchema(v *LabelSchema) *PutModelInput {
-	s.LabelSchema = v
+// SetName sets the Name field's value.
+func (s *PutLabelInput) SetName(v string) *PutLabelInput {
+	s.Name = &v
 	return s
 }
 
-// SetModelId sets the ModelId field's value.
-func (s *PutModelInput) SetModelId(v string) *PutModelInput {
-	s.ModelId = &v
+// SetTags sets the Tags field's value.
+func (s *PutLabelInput) SetTags(v []*Tag) *PutLabelInput {
+	s.Tags = v
 	return s
 }
 
-// SetModelType sets the ModelType field's value.
-func (s *PutModelInput) SetModelType(v string) *PutModelInput {
-	s.ModelType = &v
-	return s
-}
-
-// SetModelVariables sets the ModelVariables field's value.
-func (s *PutModelInput) SetModelVariables(v []*ModelVariable) *PutModelInput {
-	s.ModelVariables = v
-	return s
-}
-
-// SetTrainingDataSource sets the TrainingDataSource field's value.
-func (s *PutModelInput) SetTrainingDataSource(v *TrainingDataSource) *PutModelInput {
-	s.TrainingDataSource = v
-	return s
-}
-
-type PutModelOutput struct {
+type PutLabelOutput struct {
 	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation
-func (s PutModelOutput) String() string {
+func (s PutLabelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s PutModelOutput) GoString() string {
+func (s PutLabelOutput) GoString() string {
 	return s.String()
 }
 
@@ -6854,6 +10230,9 @@ type PutOutcomeInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation
@@ -6878,6 +10257,16 @@ func (s *PutOutcomeInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6894,6 +10283,12 @@ func (s *PutOutcomeInput) SetDescription(v string) *PutOutcomeInput {
 // SetName sets the Name field's value.
 func (s *PutOutcomeInput) SetName(v string) *PutOutcomeInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PutOutcomeInput) SetTags(v []*Tag) *PutOutcomeInput {
+	s.Tags = v
 	return s
 }
 
@@ -7037,7 +10432,7 @@ type Rule struct {
 	// The rule version.
 	//
 	// RuleVersion is a required field
-	RuleVersion *string `locationName:"ruleVersion" min:"1" type:"string" required:"true"`
+	RuleVersion *string `locationName:"ruleVersion" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -7068,9 +10463,6 @@ func (s *Rule) Validate() error {
 	if s.RuleVersion == nil {
 		invalidParams.Add(request.NewErrParamRequired("RuleVersion"))
 	}
-	if s.RuleVersion != nil && len(*s.RuleVersion) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RuleVersion", 1))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7100,6 +10492,9 @@ func (s *Rule) SetRuleVersion(v string) *Rule {
 type RuleDetail struct {
 	_ struct{} `type:"structure"`
 
+	// The rule ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
 	// The timestamp of when the rule was created.
 	CreatedTime *string `locationName:"createdTime" type:"string"`
 
@@ -7110,7 +10505,7 @@ type RuleDetail struct {
 	DetectorId *string `locationName:"detectorId" min:"1" type:"string"`
 
 	// The rule expression.
-	Expression *string `locationName:"expression" min:"1" type:"string"`
+	Expression *string `locationName:"expression" min:"1" type:"string" sensitive:"true"`
 
 	// The rule language.
 	Language *string `locationName:"language" type:"string" enum:"Language"`
@@ -7125,7 +10520,7 @@ type RuleDetail struct {
 	RuleId *string `locationName:"ruleId" min:"1" type:"string"`
 
 	// The rule version.
-	RuleVersion *string `locationName:"ruleVersion" min:"1" type:"string"`
+	RuleVersion *string `locationName:"ruleVersion" type:"string"`
 }
 
 // String returns the string representation
@@ -7136,6 +10531,12 @@ func (s RuleDetail) String() string {
 // GoString returns the string representation
 func (s RuleDetail) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RuleDetail) SetArn(v string) *RuleDetail {
+	s.Arn = &v
+	return s
 }
 
 // SetCreatedTime sets the CreatedTime field's value.
@@ -7225,6 +10626,141 @@ func (s *RuleResult) SetRuleId(v string) *RuleResult {
 	return s
 }
 
+// A key and value pair.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// A tag key.
+	//
+	// Key is a required field
+	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
+
+	// A value assigned to a tag key.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ARN.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `locationName:"resourceARN" min:"1" type:"string" required:"true"`
+
+	// The tags to assign to the resource.
+	//
+	// Tags is a required field
+	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // An exception indicating a throttling error.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -7281,45 +10817,44 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The training data source.
-type TrainingDataSource struct {
+// The training data schema.
+type TrainingDataSchema struct {
 	_ struct{} `type:"structure"`
 
-	// The data access role ARN for the training data source.
+	// The label schema.
 	//
-	// DataAccessRoleArn is a required field
-	DataAccessRoleArn *string `locationName:"dataAccessRoleArn" min:"1" type:"string" required:"true"`
+	// LabelSchema is a required field
+	LabelSchema *LabelSchema `locationName:"labelSchema" type:"structure" required:"true"`
 
-	// The data location of the training data source.
+	// The training data schema variables.
 	//
-	// DataLocation is a required field
-	DataLocation *string `locationName:"dataLocation" min:"1" type:"string" required:"true"`
+	// ModelVariables is a required field
+	ModelVariables []*string `locationName:"modelVariables" type:"list" required:"true"`
 }
 
 // String returns the string representation
-func (s TrainingDataSource) String() string {
+func (s TrainingDataSchema) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s TrainingDataSource) GoString() string {
+func (s TrainingDataSchema) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *TrainingDataSource) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "TrainingDataSource"}
-	if s.DataAccessRoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+func (s *TrainingDataSchema) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TrainingDataSchema"}
+	if s.LabelSchema == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelSchema"))
 	}
-	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 1))
+	if s.ModelVariables == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelVariables"))
 	}
-	if s.DataLocation == nil {
-		invalidParams.Add(request.NewErrParamRequired("DataLocation"))
-	}
-	if s.DataLocation != nil && len(*s.DataLocation) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DataLocation", 1))
+	if s.LabelSchema != nil {
+		if err := s.LabelSchema.Validate(); err != nil {
+			invalidParams.AddNested("LabelSchema", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7328,16 +10863,154 @@ func (s *TrainingDataSource) Validate() error {
 	return nil
 }
 
-// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
-func (s *TrainingDataSource) SetDataAccessRoleArn(v string) *TrainingDataSource {
-	s.DataAccessRoleArn = &v
+// SetLabelSchema sets the LabelSchema field's value.
+func (s *TrainingDataSchema) SetLabelSchema(v *LabelSchema) *TrainingDataSchema {
+	s.LabelSchema = v
 	return s
 }
 
-// SetDataLocation sets the DataLocation field's value.
-func (s *TrainingDataSource) SetDataLocation(v string) *TrainingDataSource {
-	s.DataLocation = &v
+// SetModelVariables sets the ModelVariables field's value.
+func (s *TrainingDataSchema) SetModelVariables(v []*string) *TrainingDataSchema {
+	s.ModelVariables = v
 	return s
+}
+
+// The training metric details.
+type TrainingMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// The area under the curve. This summarizes true positive rate (TPR) and false
+	// positive rate (FPR) across all possible model score thresholds. A model with
+	// no predictive power has an AUC of 0.5, whereas a perfect model has a score
+	// of 1.0.
+	Auc *float64 `locationName:"auc" type:"float"`
+
+	// The data points details.
+	MetricDataPoints []*MetricDataPoint `locationName:"metricDataPoints" type:"list"`
+}
+
+// String returns the string representation
+func (s TrainingMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TrainingMetrics) GoString() string {
+	return s.String()
+}
+
+// SetAuc sets the Auc field's value.
+func (s *TrainingMetrics) SetAuc(v float64) *TrainingMetrics {
+	s.Auc = &v
+	return s
+}
+
+// SetMetricDataPoints sets the MetricDataPoints field's value.
+func (s *TrainingMetrics) SetMetricDataPoints(v []*MetricDataPoint) *TrainingMetrics {
+	s.MetricDataPoints = v
+	return s
+}
+
+// The training result details.
+type TrainingResult struct {
+	_ struct{} `type:"structure"`
+
+	// The validation metrics.
+	DataValidationMetrics *DataValidationMetrics `locationName:"dataValidationMetrics" type:"structure"`
+
+	// The training metric details.
+	TrainingMetrics *TrainingMetrics `locationName:"trainingMetrics" type:"structure"`
+}
+
+// String returns the string representation
+func (s TrainingResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TrainingResult) GoString() string {
+	return s.String()
+}
+
+// SetDataValidationMetrics sets the DataValidationMetrics field's value.
+func (s *TrainingResult) SetDataValidationMetrics(v *DataValidationMetrics) *TrainingResult {
+	s.DataValidationMetrics = v
+	return s
+}
+
+// SetTrainingMetrics sets the TrainingMetrics field's value.
+func (s *TrainingResult) SetTrainingMetrics(v *TrainingMetrics) *TrainingResult {
+	s.TrainingMetrics = v
+	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource from which to remove the tag.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `locationName:"resourceARN" min:"1" type:"string" required:"true"`
+
+	// The resource ARN.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateDetectorVersionInput struct {
@@ -7354,7 +11027,7 @@ type UpdateDetectorVersionInput struct {
 	// The detector version ID.
 	//
 	// DetectorVersionId is a required field
-	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
+	DetectorVersionId *string `locationName:"detectorVersionId" type:"string" required:"true"`
 
 	// The Amazon SageMaker model endpoints to include in the detector version.
 	//
@@ -7407,9 +11080,6 @@ func (s *UpdateDetectorVersionInput) Validate() error {
 	}
 	if s.DetectorVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorVersionId"))
-	}
-	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
 	}
 	if s.ExternalModelEndpoints == nil {
 		invalidParams.Add(request.NewErrParamRequired("ExternalModelEndpoints"))
@@ -7502,7 +11172,7 @@ type UpdateDetectorVersionMetadataInput struct {
 	// The detector version ID.
 	//
 	// DetectorVersionId is a required field
-	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
+	DetectorVersionId *string `locationName:"detectorVersionId" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -7532,9 +11202,6 @@ func (s *UpdateDetectorVersionMetadataInput) Validate() error {
 	}
 	if s.DetectorVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorVersionId"))
-	}
-	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7600,7 +11267,7 @@ type UpdateDetectorVersionStatusInput struct {
 	// The detector version ID.
 	//
 	// DetectorVersionId is a required field
-	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
+	DetectorVersionId *string `locationName:"detectorVersionId" type:"string" required:"true"`
 
 	// The new status.
 	//
@@ -7629,9 +11296,6 @@ func (s *UpdateDetectorVersionStatusInput) Validate() error {
 	}
 	if s.DetectorVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorVersionId"))
-	}
-	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
 	}
 	if s.Status == nil {
 		invalidParams.Add(request.NewErrParamRequired("Status"))
@@ -7675,13 +11339,97 @@ func (s UpdateDetectorVersionStatusOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateModelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The new model description.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The model ID.
+	//
+	// ModelId is a required field
+	ModelId *string `locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// The model type.
+	//
+	// ModelType is a required field
+	ModelType *string `locationName:"modelType" type:"string" required:"true" enum:"ModelTypeEnum"`
+}
+
+// String returns the string representation
+func (s UpdateModelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateModelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateModelInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.ModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelId"))
+	}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.ModelType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateModelInput) SetDescription(v string) *UpdateModelInput {
+	s.Description = &v
+	return s
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *UpdateModelInput) SetModelId(v string) *UpdateModelInput {
+	s.ModelId = &v
+	return s
+}
+
+// SetModelType sets the ModelType field's value.
+func (s *UpdateModelInput) SetModelType(v string) *UpdateModelInput {
+	s.ModelType = &v
+	return s
+}
+
+type UpdateModelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateModelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateModelOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateModelVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The model description.
+	// The event details.
+	ExternalEventsDetail *ExternalEventsDetail `locationName:"externalEventsDetail" type:"structure"`
+
+	// The major version number.
 	//
-	// Description is a required field
-	Description *string `locationName:"description" min:"1" type:"string" required:"true"`
+	// MajorVersionNumber is a required field
+	MajorVersionNumber *string `locationName:"majorVersionNumber" type:"string" required:"true"`
 
 	// The model ID.
 	//
@@ -7693,15 +11441,8 @@ type UpdateModelVersionInput struct {
 	// ModelType is a required field
 	ModelType *string `locationName:"modelType" type:"string" required:"true" enum:"ModelTypeEnum"`
 
-	// The model version.
-	//
-	// ModelVersionNumber is a required field
-	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"1" type:"string" required:"true"`
-
-	// The new model status.
-	//
-	// Status is a required field
-	Status *string `locationName:"status" type:"string" required:"true" enum:"ModelVersionStatus"`
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation
@@ -7717,11 +11458,8 @@ func (s UpdateModelVersionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateModelVersionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateModelVersionInput"}
-	if s.Description == nil {
-		invalidParams.Add(request.NewErrParamRequired("Description"))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	if s.MajorVersionNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("MajorVersionNumber"))
 	}
 	if s.ModelId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelId"))
@@ -7732,14 +11470,20 @@ func (s *UpdateModelVersionInput) Validate() error {
 	if s.ModelType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelType"))
 	}
-	if s.ModelVersionNumber == nil {
-		invalidParams.Add(request.NewErrParamRequired("ModelVersionNumber"))
+	if s.ExternalEventsDetail != nil {
+		if err := s.ExternalEventsDetail.Validate(); err != nil {
+			invalidParams.AddNested("ExternalEventsDetail", err.(request.ErrInvalidParams))
+		}
 	}
-	if s.ModelVersionNumber != nil && len(*s.ModelVersionNumber) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ModelVersionNumber", 1))
-	}
-	if s.Status == nil {
-		invalidParams.Add(request.NewErrParamRequired("Status"))
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7748,9 +11492,15 @@ func (s *UpdateModelVersionInput) Validate() error {
 	return nil
 }
 
-// SetDescription sets the Description field's value.
-func (s *UpdateModelVersionInput) SetDescription(v string) *UpdateModelVersionInput {
-	s.Description = &v
+// SetExternalEventsDetail sets the ExternalEventsDetail field's value.
+func (s *UpdateModelVersionInput) SetExternalEventsDetail(v *ExternalEventsDetail) *UpdateModelVersionInput {
+	s.ExternalEventsDetail = v
+	return s
+}
+
+// SetMajorVersionNumber sets the MajorVersionNumber field's value.
+func (s *UpdateModelVersionInput) SetMajorVersionNumber(v string) *UpdateModelVersionInput {
+	s.MajorVersionNumber = &v
 	return s
 }
 
@@ -7766,20 +11516,26 @@ func (s *UpdateModelVersionInput) SetModelType(v string) *UpdateModelVersionInpu
 	return s
 }
 
-// SetModelVersionNumber sets the ModelVersionNumber field's value.
-func (s *UpdateModelVersionInput) SetModelVersionNumber(v string) *UpdateModelVersionInput {
-	s.ModelVersionNumber = &v
-	return s
-}
-
-// SetStatus sets the Status field's value.
-func (s *UpdateModelVersionInput) SetStatus(v string) *UpdateModelVersionInput {
-	s.Status = &v
+// SetTags sets the Tags field's value.
+func (s *UpdateModelVersionInput) SetTags(v []*Tag) *UpdateModelVersionInput {
+	s.Tags = v
 	return s
 }
 
 type UpdateModelVersionOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The model ID.
+	ModelId *string `locationName:"modelId" min:"1" type:"string"`
+
+	// The model type.
+	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
+
+	// The model version number of the model version updated.
+	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string"`
+
+	// The status of the updated model version.
+	Status *string `locationName:"status" type:"string"`
 }
 
 // String returns the string representation
@@ -7789,6 +11545,127 @@ func (s UpdateModelVersionOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateModelVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *UpdateModelVersionOutput) SetModelId(v string) *UpdateModelVersionOutput {
+	s.ModelId = &v
+	return s
+}
+
+// SetModelType sets the ModelType field's value.
+func (s *UpdateModelVersionOutput) SetModelType(v string) *UpdateModelVersionOutput {
+	s.ModelType = &v
+	return s
+}
+
+// SetModelVersionNumber sets the ModelVersionNumber field's value.
+func (s *UpdateModelVersionOutput) SetModelVersionNumber(v string) *UpdateModelVersionOutput {
+	s.ModelVersionNumber = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateModelVersionOutput) SetStatus(v string) *UpdateModelVersionOutput {
+	s.Status = &v
+	return s
+}
+
+type UpdateModelVersionStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The model ID of the model version to update.
+	//
+	// ModelId is a required field
+	ModelId *string `locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// The model type.
+	//
+	// ModelType is a required field
+	ModelType *string `locationName:"modelType" type:"string" required:"true" enum:"ModelTypeEnum"`
+
+	// The model version number.
+	//
+	// ModelVersionNumber is a required field
+	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string" required:"true"`
+
+	// The model version status.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"ModelVersionStatus"`
+}
+
+// String returns the string representation
+func (s UpdateModelVersionStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateModelVersionStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateModelVersionStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateModelVersionStatusInput"}
+	if s.ModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelId"))
+	}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.ModelType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelType"))
+	}
+	if s.ModelVersionNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelVersionNumber"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *UpdateModelVersionStatusInput) SetModelId(v string) *UpdateModelVersionStatusInput {
+	s.ModelId = &v
+	return s
+}
+
+// SetModelType sets the ModelType field's value.
+func (s *UpdateModelVersionStatusInput) SetModelType(v string) *UpdateModelVersionStatusInput {
+	s.ModelType = &v
+	return s
+}
+
+// SetModelVersionNumber sets the ModelVersionNumber field's value.
+func (s *UpdateModelVersionStatusInput) SetModelVersionNumber(v string) *UpdateModelVersionStatusInput {
+	s.ModelVersionNumber = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateModelVersionStatusInput) SetStatus(v string) *UpdateModelVersionStatusInput {
+	s.Status = &v
+	return s
+}
+
+type UpdateModelVersionStatusOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateModelVersionStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateModelVersionStatusOutput) GoString() string {
 	return s.String()
 }
 
@@ -7875,7 +11752,7 @@ type UpdateRuleVersionInput struct {
 	// The rule expression.
 	//
 	// Expression is a required field
-	Expression *string `locationName:"expression" min:"1" type:"string" required:"true"`
+	Expression *string `locationName:"expression" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The language.
 	//
@@ -7891,6 +11768,9 @@ type UpdateRuleVersionInput struct {
 	//
 	// Rule is a required field
 	Rule *Rule `locationName:"rule" type:"structure" required:"true"`
+
+	// The tags to assign to the rule version.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation
@@ -7932,6 +11812,16 @@ func (s *UpdateRuleVersionInput) Validate() error {
 			invalidParams.AddNested("Rule", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7966,6 +11856,12 @@ func (s *UpdateRuleVersionInput) SetOutcomes(v []*string) *UpdateRuleVersionInpu
 // SetRule sets the Rule field's value.
 func (s *UpdateRuleVersionInput) SetRule(v *Rule) *UpdateRuleVersionInput {
 	s.Rule = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateRuleVersionInput) SetTags(v []*Tag) *UpdateRuleVersionInput {
+	s.Tags = v
 	return s
 }
 
@@ -8131,6 +12027,9 @@ func (s *ValidationException) RequestID() string {
 type Variable struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the variable.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
 	// The time when the variable was created.
 	CreatedTime *string `locationName:"createdTime" type:"string"`
 
@@ -8153,6 +12052,15 @@ type Variable struct {
 	Name *string `locationName:"name" type:"string"`
 
 	// The variable type of the variable.
+	//
+	// Valid Values: AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 |
+	// BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE
+	// | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS |
+	// FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID
+	// | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1
+	// | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME
+	// | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT | SHIPPING_ZIP
+	// | USERAGENT
 	VariableType *string `locationName:"variableType" type:"string"`
 }
 
@@ -8164,6 +12072,12 @@ func (s Variable) String() string {
 // GoString returns the string representation
 func (s Variable) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Variable) SetArn(v string) *Variable {
+	s.Arn = &v
+	return s
 }
 
 // SetCreatedTime sets the CreatedTime field's value.
@@ -8214,26 +12128,35 @@ func (s *Variable) SetVariableType(v string) *Variable {
 	return s
 }
 
-// The variable entry in a list.
+// A variable in the list of variables for the batch create variable request.
 type VariableEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The data source of the variable entry.
+	// The data source of the variable.
 	DataSource *string `locationName:"dataSource" type:"string"`
 
-	// The data type of the variable entry.
+	// The data type of the variable.
 	DataType *string `locationName:"dataType" type:"string"`
 
-	// The default value of the variable entry.
+	// The default value of the variable.
 	DefaultValue *string `locationName:"defaultValue" type:"string"`
 
-	// The description of the variable entry.
+	// The description of the variable.
 	Description *string `locationName:"description" type:"string"`
 
-	// The name of the variable entry.
+	// The name of the variable.
 	Name *string `locationName:"name" type:"string"`
 
-	// The type of the variable entry.
+	// The type of the variable.
+	//
+	// Valid Values: AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 |
+	// BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE
+	// | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS |
+	// FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID
+	// | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1
+	// | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME
+	// | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT | SHIPPING_ZIP
+	// | USERAGENT
 	VariableType *string `locationName:"variableType" type:"string"`
 }
 
@@ -8380,6 +12303,12 @@ const (
 	// ModelVersionStatusInactive is a ModelVersionStatus enum value
 	ModelVersionStatusInactive = "INACTIVE"
 
+	// ModelVersionStatusDeleteRequested is a ModelVersionStatus enum value
+	ModelVersionStatusDeleteRequested = "DELETE_REQUESTED"
+
+	// ModelVersionStatusDeleteInProgress is a ModelVersionStatus enum value
+	ModelVersionStatusDeleteInProgress = "DELETE_IN_PROGRESS"
+
 	// ModelVersionStatusError is a ModelVersionStatus enum value
 	ModelVersionStatusError = "ERROR"
 )
@@ -8390,4 +12319,9 @@ const (
 
 	// RuleExecutionModeFirstMatched is a RuleExecutionMode enum value
 	RuleExecutionModeFirstMatched = "FIRST_MATCHED"
+)
+
+const (
+	// TrainingDataSourceEnumExternalEvents is a TrainingDataSourceEnum enum value
+	TrainingDataSourceEnumExternalEvents = "EXTERNAL_EVENTS"
 )

@@ -23,7 +23,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "BatchGetVariable":{
@@ -37,7 +38,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "CreateDetectorVersion":{
@@ -52,7 +54,22 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "CreateModel":{
+      "name":"CreateModel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateModelRequest"},
+      "output":{"shape":"CreateModelResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "CreateModelVersion":{
@@ -66,8 +83,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "CreateRule":{
@@ -81,7 +98,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "CreateVariable":{
@@ -95,7 +113,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeleteDetector":{
@@ -110,7 +129,8 @@
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeleteDetectorVersion":{
@@ -126,7 +146,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeleteEvent":{
@@ -139,22 +160,24 @@
       "output":{"shape":"DeleteEventResult"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
-    "DeleteRuleVersion":{
-      "name":"DeleteRuleVersion",
+    "DeleteRule":{
+      "name":"DeleteRule",
       "http":{
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"DeleteRuleVersionRequest"},
-      "output":{"shape":"DeleteRuleVersionResult"},
+      "input":{"shape":"DeleteRuleRequest"},
+      "output":{"shape":"DeleteRuleResult"},
       "errors":[
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DescribeDetector":{
@@ -169,7 +192,8 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DescribeModelVersions":{
@@ -184,7 +208,7 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetDetectorVersion":{
@@ -199,7 +223,8 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetDetectors":{
@@ -214,7 +239,54 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetEntityTypes":{
+      "name":"GetEntityTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetEntityTypesRequest"},
+      "output":{"shape":"GetEntityTypesResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetEventPrediction":{
+      "name":"GetEventPrediction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetEventPredictionRequest"},
+      "output":{"shape":"GetEventPredictionResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetEventTypes":{
+      "name":"GetEventTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetEventTypesRequest"},
+      "output":{"shape":"GetEventTypesResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetExternalModels":{
@@ -229,7 +301,36 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetKMSEncryptionKey":{
+      "name":"GetKMSEncryptionKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "output":{"shape":"GetKMSEncryptionKeyResult"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetLabels":{
+      "name":"GetLabels",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetLabelsRequest"},
+      "output":{"shape":"GetLabelsResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetModelVersion":{
@@ -244,7 +345,7 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetModels":{
@@ -259,7 +360,7 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetOutcomes":{
@@ -274,7 +375,8 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetPrediction":{
@@ -289,7 +391,8 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetRules":{
@@ -304,7 +407,8 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetVariables":{
@@ -319,7 +423,22 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "PutDetector":{
@@ -333,7 +452,36 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "PutEntityType":{
+      "name":"PutEntityType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutEntityTypeRequest"},
+      "output":{"shape":"PutEntityTypeResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "PutEventType":{
+      "name":"PutEventType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutEventTypeRequest"},
+      "output":{"shape":"PutEventTypeResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "PutExternalModel":{
@@ -347,21 +495,37 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
-    "PutModel":{
-      "name":"PutModel",
+    "PutKMSEncryptionKey":{
+      "name":"PutKMSEncryptionKey",
       "http":{
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"PutModelRequest"},
-      "output":{"shape":"PutModelResult"},
+      "input":{"shape":"PutKMSEncryptionKeyRequest"},
+      "output":{"shape":"PutKMSEncryptionKeyResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "PutLabel":{
+      "name":"PutLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutLabelRequest"},
+      "output":{"shape":"PutLabelResult"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"AccessDeniedException"}
       ]
     },
     "PutOutcome":{
@@ -375,7 +539,36 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateDetectorVersion":{
@@ -390,7 +583,8 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateDetectorVersionMetadata":{
@@ -404,7 +598,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateDetectorVersionStatus":{
@@ -419,7 +614,23 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UpdateModel":{
+      "name":"UpdateModel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateModelRequest"},
+      "output":{"shape":"UpdateModelResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateModelVersion":{
@@ -433,8 +644,23 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateModelVersionStatus":{
+      "name":"UpdateModelVersionStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateModelVersionStatusRequest"},
+      "output":{"shape":"UpdateModelVersionStatusResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateRuleMetadata":{
@@ -449,7 +675,8 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateRuleVersion":{
@@ -464,7 +691,8 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateVariable":{
@@ -479,11 +707,20 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "exception":true
+    },
     "BatchCreateVariableError":{
       "type":"structure",
       "members":{
@@ -500,7 +737,8 @@
       "type":"structure",
       "required":["variableEntries"],
       "members":{
-        "variableEntries":{"shape":"VariableEntryList"}
+        "variableEntries":{"shape":"VariableEntryList"},
+        "tags":{"shape":"tagList"}
       }
     },
     "BatchCreateVariableResult":{
@@ -555,7 +793,8 @@
         "externalModelEndpoints":{"shape":"ListOfStrings"},
         "rules":{"shape":"RuleList"},
         "modelVersions":{"shape":"ListOfModelVersions"},
-        "ruleExecutionMode":{"shape":"RuleExecutionMode"}
+        "ruleExecutionMode":{"shape":"RuleExecutionMode"},
+        "tags":{"shape":"tagList"}
       }
     },
     "CreateDetectorVersionResult":{
@@ -566,16 +805,41 @@
         "status":{"shape":"DetectorVersionStatus"}
       }
     },
-    "CreateModelVersionRequest":{
+    "CreateModelRequest":{
       "type":"structure",
       "required":[
         "modelId",
-        "modelType"
+        "modelType",
+        "eventTypeName"
       ],
       "members":{
         "modelId":{"shape":"identifier"},
         "modelType":{"shape":"ModelTypeEnum"},
-        "description":{"shape":"description"}
+        "description":{"shape":"description"},
+        "eventTypeName":{"shape":"string"},
+        "tags":{"shape":"tagList"}
+      }
+    },
+    "CreateModelResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CreateModelVersionRequest":{
+      "type":"structure",
+      "required":[
+        "modelId",
+        "modelType",
+        "trainingDataSource",
+        "trainingDataSchema"
+      ],
+      "members":{
+        "modelId":{"shape":"identifier"},
+        "modelType":{"shape":"ModelTypeEnum"},
+        "trainingDataSource":{"shape":"TrainingDataSourceEnum"},
+        "trainingDataSchema":{"shape":"TrainingDataSchema"},
+        "externalEventsDetail":{"shape":"ExternalEventsDetail"},
+        "tags":{"shape":"tagList"}
       }
     },
     "CreateModelVersionResult":{
@@ -602,7 +866,8 @@
         "description":{"shape":"description"},
         "expression":{"shape":"ruleExpression"},
         "language":{"shape":"Language"},
-        "outcomes":{"shape":"NonEmptyListOfStrings"}
+        "outcomes":{"shape":"NonEmptyListOfStrings"},
+        "tags":{"shape":"tagList"}
       }
     },
     "CreateRuleResult":{
@@ -625,7 +890,8 @@
         "dataSource":{"shape":"DataSource"},
         "defaultValue":{"shape":"string"},
         "description":{"shape":"string"},
-        "variableType":{"shape":"string"}
+        "variableType":{"shape":"string"},
+        "tags":{"shape":"tagList"}
       }
     },
     "CreateVariableResult":{
@@ -655,6 +921,13 @@
         "BOOLEAN"
       ]
     },
+    "DataValidationMetrics":{
+      "type":"structure",
+      "members":{
+        "fileLevelMessages":{"shape":"fileValidationMessageList"},
+        "fieldLevelMessages":{"shape":"fieldValidationMessageList"}
+      }
+    },
     "DeleteDetectorRequest":{
       "type":"structure",
       "required":["detectorId"],
@@ -675,7 +948,7 @@
       ],
       "members":{
         "detectorId":{"shape":"identifier"},
-        "detectorVersionId":{"shape":"nonEmptyString"}
+        "detectorVersionId":{"shape":"wholeNumberVersionString"}
       }
     },
     "DeleteDetectorVersionResult":{
@@ -685,9 +958,13 @@
     },
     "DeleteEventRequest":{
       "type":"structure",
-      "required":["eventId"],
+      "required":[
+        "eventId",
+        "eventTypeName"
+      ],
       "members":{
-        "eventId":{"shape":"string"}
+        "eventId":{"shape":"string"},
+        "eventTypeName":{"shape":"string"}
       }
     },
     "DeleteEventResult":{
@@ -695,20 +972,14 @@
       "members":{
       }
     },
-    "DeleteRuleVersionRequest":{
+    "DeleteRuleRequest":{
       "type":"structure",
-      "required":[
-        "detectorId",
-        "ruleId",
-        "ruleVersion"
-      ],
+      "required":["rule"],
       "members":{
-        "detectorId":{"shape":"identifier"},
-        "ruleId":{"shape":"identifier"},
-        "ruleVersion":{"shape":"nonEmptyString"}
+        "rule":{"shape":"Rule"}
       }
     },
-    "DeleteRuleVersionResult":{
+    "DeleteRuleResult":{
       "type":"structure",
       "members":{
       }
@@ -727,23 +998,24 @@
       "members":{
         "detectorId":{"shape":"identifier"},
         "detectorVersionSummaries":{"shape":"DetectorVersionSummaryList"},
-        "nextToken":{"shape":"string"}
+        "nextToken":{"shape":"string"},
+        "arn":{"shape":"fraudDetectorArn"}
       }
     },
     "DescribeModelVersionsRequest":{
       "type":"structure",
       "members":{
         "modelId":{"shape":"identifier"},
-        "modelVersionNumber":{"shape":"nonEmptyString"},
+        "modelVersionNumber":{"shape":"floatVersionString"},
         "modelType":{"shape":"ModelTypeEnum"},
         "nextToken":{"shape":"string"},
-        "maxResults":{"shape":"MaxResults"}
+        "maxResults":{"shape":"modelsMaxPageSize"}
       }
     },
     "DescribeModelVersionsResult":{
       "type":"structure",
       "members":{
-        "modelVersionDetails":{"shape":"ModelVersionDetailList"},
+        "modelVersionDetails":{"shape":"modelVersionDetailList"},
         "nextToken":{"shape":"string"}
       }
     },
@@ -752,8 +1024,10 @@
       "members":{
         "detectorId":{"shape":"identifier"},
         "description":{"shape":"description"},
+        "eventTypeName":{"shape":"identifier"},
         "lastUpdatedTime":{"shape":"time"},
-        "createdTime":{"shape":"time"}
+        "createdTime":{"shape":"time"},
+        "arn":{"shape":"fraudDetectorArn"}
       }
     },
     "DetectorList":{
@@ -793,22 +1067,71 @@
       "max":10,
       "min":5
     },
+    "Entity":{
+      "type":"structure",
+      "members":{
+        "entityType":{"shape":"string"},
+        "entityId":{"shape":"identifier"}
+      }
+    },
+    "EntityType":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"string"},
+        "description":{"shape":"description"},
+        "lastUpdatedTime":{"shape":"time"},
+        "createdTime":{"shape":"time"},
+        "arn":{"shape":"fraudDetectorArn"}
+      }
+    },
     "EventAttributeMap":{
       "type":"map",
       "key":{"shape":"attributeKey"},
       "value":{"shape":"attributeValue"}
     },
+    "EventType":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"string"},
+        "description":{"shape":"description"},
+        "eventVariables":{"shape":"ListOfStrings"},
+        "labels":{"shape":"ListOfStrings"},
+        "entityTypes":{"shape":"NonEmptyListOfStrings"},
+        "lastUpdatedTime":{"shape":"time"},
+        "createdTime":{"shape":"time"},
+        "arn":{"shape":"fraudDetectorArn"}
+      }
+    },
+    "EventVariableMap":{
+      "type":"map",
+      "key":{"shape":"variableName"},
+      "value":{"shape":"variableValue"},
+      "min":1
+    },
+    "ExternalEventsDetail":{
+      "type":"structure",
+      "required":[
+        "dataLocation",
+        "dataAccessRoleArn"
+      ],
+      "members":{
+        "dataLocation":{"shape":"s3BucketLocation"},
+        "dataAccessRoleArn":{"shape":"iamRoleArn"}
+      }
+    },
     "ExternalModel":{
       "type":"structure",
       "members":{
         "modelEndpoint":{"shape":"string"},
+        "eventTypeName":{"shape":"identifier"},
         "modelSource":{"shape":"ModelSource"},
         "role":{"shape":"Role"},
         "inputConfiguration":{"shape":"ModelInputConfiguration"},
         "outputConfiguration":{"shape":"ModelOutputConfiguration"},
         "modelEndpointStatus":{"shape":"ModelEndpointStatus"},
         "lastUpdatedTime":{"shape":"time"},
-        "createdTime":{"shape":"time"}
+        "createdTime":{"shape":"time"},
+        "arn":{"shape":"fraudDetectorArn"}
       }
     },
     "ExternalModelEndpointDataBlobMap":{
@@ -827,6 +1150,24 @@
       "max":10,
       "min":5
     },
+    "FieldValidationMessage":{
+      "type":"structure",
+      "members":{
+        "fieldName":{"shape":"string"},
+        "identifier":{"shape":"string"},
+        "title":{"shape":"string"},
+        "content":{"shape":"string"},
+        "type":{"shape":"string"}
+      }
+    },
+    "FileValidationMessage":{
+      "type":"structure",
+      "members":{
+        "title":{"shape":"string"},
+        "content":{"shape":"string"},
+        "type":{"shape":"string"}
+      }
+    },
     "GetDetectorVersionRequest":{
       "type":"structure",
       "required":[
@@ -835,14 +1176,14 @@
       ],
       "members":{
         "detectorId":{"shape":"identifier"},
-        "detectorVersionId":{"shape":"nonEmptyString"}
+        "detectorVersionId":{"shape":"wholeNumberVersionString"}
       }
     },
     "GetDetectorVersionResult":{
       "type":"structure",
       "members":{
         "detectorId":{"shape":"identifier"},
-        "detectorVersionId":{"shape":"nonEmptyString"},
+        "detectorVersionId":{"shape":"wholeNumberVersionString"},
         "description":{"shape":"description"},
         "externalModelEndpoints":{"shape":"ListOfStrings"},
         "modelVersions":{"shape":"ListOfModelVersions"},
@@ -850,7 +1191,8 @@
         "status":{"shape":"DetectorVersionStatus"},
         "lastUpdatedTime":{"shape":"time"},
         "createdTime":{"shape":"time"},
-        "ruleExecutionMode":{"shape":"RuleExecutionMode"}
+        "ruleExecutionMode":{"shape":"RuleExecutionMode"},
+        "arn":{"shape":"fraudDetectorArn"}
       }
     },
     "GetDetectorsRequest":{
@@ -865,6 +1207,64 @@
       "type":"structure",
       "members":{
         "detectors":{"shape":"DetectorList"},
+        "nextToken":{"shape":"string"}
+      }
+    },
+    "GetEntityTypesRequest":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"identifier"},
+        "nextToken":{"shape":"string"},
+        "maxResults":{"shape":"entityTypesMaxResults"}
+      }
+    },
+    "GetEntityTypesResult":{
+      "type":"structure",
+      "members":{
+        "entityTypes":{"shape":"entityTypeList"},
+        "nextToken":{"shape":"string"}
+      }
+    },
+    "GetEventPredictionRequest":{
+      "type":"structure",
+      "required":[
+        "detectorId",
+        "eventId",
+        "eventTypeName",
+        "entities",
+        "eventTimestamp",
+        "eventVariables"
+      ],
+      "members":{
+        "detectorId":{"shape":"string"},
+        "detectorVersionId":{"shape":"string"},
+        "eventId":{"shape":"string"},
+        "eventTypeName":{"shape":"string"},
+        "entities":{"shape":"listOfEntities"},
+        "eventTimestamp":{"shape":"string"},
+        "eventVariables":{"shape":"EventVariableMap"},
+        "externalModelEndpointDataBlobs":{"shape":"ExternalModelEndpointDataBlobMap"}
+      }
+    },
+    "GetEventPredictionResult":{
+      "type":"structure",
+      "members":{
+        "modelScores":{"shape":"ListOfModelScores"},
+        "ruleResults":{"shape":"ListOfRuleResults"}
+      }
+    },
+    "GetEventTypesRequest":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"identifier"},
+        "nextToken":{"shape":"string"},
+        "maxResults":{"shape":"eventTypesMaxResults"}
+      }
+    },
+    "GetEventTypesResult":{
+      "type":"structure",
+      "members":{
+        "eventTypes":{"shape":"eventTypeList"},
         "nextToken":{"shape":"string"}
       }
     },
@@ -883,6 +1283,27 @@
         "nextToken":{"shape":"string"}
       }
     },
+    "GetKMSEncryptionKeyResult":{
+      "type":"structure",
+      "members":{
+        "kmsKey":{"shape":"KMSKey"}
+      }
+    },
+    "GetLabelsRequest":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"identifier"},
+        "nextToken":{"shape":"string"},
+        "maxResults":{"shape":"labelsMaxResults"}
+      }
+    },
+    "GetLabelsResult":{
+      "type":"structure",
+      "members":{
+        "labels":{"shape":"labelList"},
+        "nextToken":{"shape":"string"}
+      }
+    },
     "GetModelVersionRequest":{
       "type":"structure",
       "required":[
@@ -893,7 +1314,7 @@
       "members":{
         "modelId":{"shape":"identifier"},
         "modelType":{"shape":"ModelTypeEnum"},
-        "modelVersionNumber":{"shape":"nonEmptyString"}
+        "modelVersionNumber":{"shape":"floatVersionString"}
       }
     },
     "GetModelVersionResult":{
@@ -901,25 +1322,28 @@
       "members":{
         "modelId":{"shape":"identifier"},
         "modelType":{"shape":"ModelTypeEnum"},
-        "modelVersionNumber":{"shape":"nonEmptyString"},
-        "description":{"shape":"description"},
-        "status":{"shape":"string"}
+        "modelVersionNumber":{"shape":"floatVersionString"},
+        "trainingDataSource":{"shape":"TrainingDataSourceEnum"},
+        "trainingDataSchema":{"shape":"TrainingDataSchema"},
+        "externalEventsDetail":{"shape":"ExternalEventsDetail"},
+        "status":{"shape":"string"},
+        "arn":{"shape":"fraudDetectorArn"}
       }
     },
     "GetModelsRequest":{
       "type":"structure",
       "members":{
-        "modelType":{"shape":"ModelTypeEnum"},
         "modelId":{"shape":"identifier"},
+        "modelType":{"shape":"ModelTypeEnum"},
         "nextToken":{"shape":"string"},
-        "maxResults":{"shape":"MaxResults"}
+        "maxResults":{"shape":"modelsMaxPageSize"}
       }
     },
     "GetModelsResult":{
       "type":"structure",
       "members":{
         "nextToken":{"shape":"string"},
-        "models":{"shape":"ModelList"}
+        "models":{"shape":"modelList"}
       }
     },
     "GetOutcomesRequest":{
@@ -965,7 +1389,7 @@
       "members":{
         "ruleId":{"shape":"identifier"},
         "detectorId":{"shape":"identifier"},
-        "ruleVersion":{"shape":"nonEmptyString"},
+        "ruleVersion":{"shape":"wholeNumberVersionString"},
         "nextToken":{"shape":"string"},
         "maxResults":{"shape":"RulesMaxResults"}
       }
@@ -1001,26 +1425,38 @@
       "exception":true,
       "fault":true
     },
-    "IsOpaque":{"type":"boolean"},
     "JsonKeyToVariableMap":{
       "type":"map",
       "key":{"shape":"string"},
       "value":{"shape":"string"}
     },
-    "LabelMapper":{
-      "type":"map",
-      "key":{"shape":"string"},
-      "value":{"shape":"ListOfStrings"}
+    "KMSKey":{
+      "type":"structure",
+      "members":{
+        "kmsEncryptionKeyArn":{"shape":"KmsEncryptionKeyArn"}
+      }
+    },
+    "KmsEncryptionKeyArn":{
+      "type":"string",
+      "max":80,
+      "min":7,
+      "pattern":"^\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}$|DEFAULT|arn:[a-zA-Z0-9-]+:kms:[a-zA-Z0-9-]+:\\d{12}:key:[a-zA-Z0-9-_]+|[a-zA-Z0-9-_]\\S+"
+    },
+    "Label":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"string"},
+        "description":{"shape":"description"},
+        "lastUpdatedTime":{"shape":"time"},
+        "createdTime":{"shape":"time"},
+        "arn":{"shape":"fraudDetectorArn"}
+      }
     },
     "LabelSchema":{
       "type":"structure",
-      "required":[
-        "labelKey",
-        "labelMapper"
-      ],
+      "required":["labelMapper"],
       "members":{
-        "labelKey":{"shape":"string"},
-        "labelMapper":{"shape":"LabelMapper"}
+        "labelMapper":{"shape":"labelMapper"}
       }
     },
     "Language":{
@@ -1043,16 +1479,30 @@
       "type":"list",
       "member":{"shape":"string"}
     },
-    "MaxResults":{
-      "type":"integer",
-      "box":true,
-      "max":10,
-      "min":1
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceARN"],
+      "members":{
+        "resourceARN":{"shape":"fraudDetectorArn"},
+        "nextToken":{"shape":"string"},
+        "maxResults":{"shape":"TagsMaxResults"}
+      }
     },
-    "MetricsMap":{
-      "type":"map",
-      "key":{"shape":"string"},
-      "value":{"shape":"string"}
+    "ListTagsForResourceResult":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"tagList"},
+        "nextToken":{"shape":"string"}
+      }
+    },
+    "MetricDataPoint":{
+      "type":"structure",
+      "members":{
+        "fpr":{"shape":"float"},
+        "precision":{"shape":"float"},
+        "tpr":{"shape":"float"},
+        "threshold":{"shape":"float"}
+      }
     },
     "Model":{
       "type":"structure",
@@ -1060,11 +1510,10 @@
         "modelId":{"shape":"identifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "description":{"shape":"description"},
-        "trainingDataSource":{"shape":"TrainingDataSource"},
-        "modelVariables":{"shape":"ModelVariablesList"},
-        "labelSchema":{"shape":"LabelSchema"},
+        "eventTypeName":{"shape":"string"},
+        "createdTime":{"shape":"time"},
         "lastUpdatedTime":{"shape":"time"},
-        "createdTime":{"shape":"time"}
+        "arn":{"shape":"fraudDetectorArn"}
       }
     },
     "ModelEndpointDataBlob":{
@@ -1083,10 +1532,10 @@
     },
     "ModelInputConfiguration":{
       "type":"structure",
-      "required":["isOpaque"],
+      "required":["useEventVariables"],
       "members":{
         "format":{"shape":"ModelInputDataFormat"},
-        "isOpaque":{"shape":"IsOpaque"},
+        "useEventVariables":{"shape":"UseEventVariables"},
         "jsonInputTemplate":{"shape":"string"},
         "csvInputTemplate":{"shape":"string"}
       }
@@ -1097,10 +1546,6 @@
         "TEXT_CSV",
         "APPLICATION_JSON"
       ]
-    },
-    "ModelList":{
-      "type":"list",
-      "member":{"shape":"Model"}
     },
     "ModelOutputConfiguration":{
       "type":"structure",
@@ -1138,19 +1583,6 @@
       "type":"string",
       "enum":["ONLINE_FRAUD_INSIGHTS"]
     },
-    "ModelVariable":{
-      "type":"structure",
-      "required":["name"],
-      "members":{
-        "name":{"shape":"string"},
-        "index":{"shape":"ModelVariableIndex"}
-      }
-    },
-    "ModelVariableIndex":{"type":"integer"},
-    "ModelVariablesList":{
-      "type":"list",
-      "member":{"shape":"ModelVariable"}
-    },
     "ModelVersion":{
       "type":"structure",
       "required":[
@@ -1161,7 +1593,8 @@
       "members":{
         "modelId":{"shape":"identifier"},
         "modelType":{"shape":"ModelTypeEnum"},
-        "modelVersionNumber":{"shape":"nonEmptyString"}
+        "modelVersionNumber":{"shape":"nonEmptyString"},
+        "arn":{"shape":"fraudDetectorArn"}
       }
     },
     "ModelVersionDetail":{
@@ -1169,21 +1602,16 @@
       "members":{
         "modelId":{"shape":"identifier"},
         "modelType":{"shape":"ModelTypeEnum"},
-        "modelVersionNumber":{"shape":"nonEmptyString"},
-        "description":{"shape":"description"},
+        "modelVersionNumber":{"shape":"floatVersionString"},
         "status":{"shape":"string"},
-        "trainingDataSource":{"shape":"TrainingDataSource"},
-        "modelVariables":{"shape":"ModelVariablesList"},
-        "labelSchema":{"shape":"LabelSchema"},
-        "validationMetrics":{"shape":"MetricsMap"},
-        "trainingMetrics":{"shape":"MetricsMap"},
+        "trainingDataSource":{"shape":"TrainingDataSourceEnum"},
+        "trainingDataSchema":{"shape":"TrainingDataSchema"},
+        "externalEventsDetail":{"shape":"ExternalEventsDetail"},
+        "trainingResult":{"shape":"TrainingResult"},
         "lastUpdatedTime":{"shape":"time"},
-        "createdTime":{"shape":"time"}
+        "createdTime":{"shape":"time"},
+        "arn":{"shape":"fraudDetectorArn"}
       }
-    },
-    "ModelVersionDetailList":{
-      "type":"list",
-      "member":{"shape":"ModelVersionDetail"}
     },
     "ModelVersionStatus":{
       "type":"string",
@@ -1195,6 +1623,8 @@
         "ACTIVE",
         "INACTIVATE_IN_PROGRESS",
         "INACTIVE",
+        "DELETE_REQUESTED",
+        "DELETE_IN_PROGRESS",
         "ERROR"
       ]
     },
@@ -1215,7 +1645,8 @@
         "name":{"shape":"identifier"},
         "description":{"shape":"description"},
         "lastUpdatedTime":{"shape":"time"},
-        "createdTime":{"shape":"time"}
+        "createdTime":{"shape":"time"},
+        "arn":{"shape":"fraudDetectorArn"}
       }
     },
     "OutcomeList":{
@@ -1230,13 +1661,53 @@
     },
     "PutDetectorRequest":{
       "type":"structure",
-      "required":["detectorId"],
+      "required":[
+        "detectorId",
+        "eventTypeName"
+      ],
       "members":{
         "detectorId":{"shape":"identifier"},
-        "description":{"shape":"description"}
+        "description":{"shape":"description"},
+        "eventTypeName":{"shape":"identifier"},
+        "tags":{"shape":"tagList"}
       }
     },
     "PutDetectorResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutEntityTypeRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"identifier"},
+        "description":{"shape":"description"},
+        "tags":{"shape":"tagList"}
+      }
+    },
+    "PutEntityTypeResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutEventTypeRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "eventVariables",
+        "entityTypes"
+      ],
+      "members":{
+        "name":{"shape":"identifier"},
+        "description":{"shape":"description"},
+        "eventVariables":{"shape":"NonEmptyListOfStrings"},
+        "labels":{"shape":"ListOfStrings"},
+        "entityTypes":{"shape":"NonEmptyListOfStrings"},
+        "tags":{"shape":"tagList"}
+      }
+    },
+    "PutEventTypeResult":{
       "type":"structure",
       "members":{
       }
@@ -1252,12 +1723,14 @@
         "modelEndpointStatus"
       ],
       "members":{
-        "modelEndpoint":{"shape":"string"},
+        "modelEndpoint":{"shape":"sageMakerEndpointIdentifier"},
+        "eventTypeName":{"shape":"identifier"},
         "modelSource":{"shape":"ModelSource"},
         "role":{"shape":"Role"},
         "inputConfiguration":{"shape":"ModelInputConfiguration"},
         "outputConfiguration":{"shape":"ModelOutputConfiguration"},
-        "modelEndpointStatus":{"shape":"ModelEndpointStatus"}
+        "modelEndpointStatus":{"shape":"ModelEndpointStatus"},
+        "tags":{"shape":"tagList"}
       }
     },
     "PutExternalModelResult":{
@@ -1265,25 +1738,28 @@
       "members":{
       }
     },
-    "PutModelRequest":{
+    "PutKMSEncryptionKeyRequest":{
       "type":"structure",
-      "required":[
-        "modelId",
-        "modelType",
-        "trainingDataSource",
-        "modelVariables",
-        "labelSchema"
-      ],
+      "required":["kmsEncryptionKeyArn"],
       "members":{
-        "modelId":{"shape":"identifier"},
-        "modelType":{"shape":"ModelTypeEnum"},
-        "description":{"shape":"description"},
-        "trainingDataSource":{"shape":"TrainingDataSource"},
-        "modelVariables":{"shape":"ModelVariablesList"},
-        "labelSchema":{"shape":"LabelSchema"}
+        "kmsEncryptionKeyArn":{"shape":"KmsEncryptionKeyArn"}
       }
     },
-    "PutModelResult":{
+    "PutKMSEncryptionKeyResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutLabelRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"identifier"},
+        "description":{"shape":"description"},
+        "tags":{"shape":"tagList"}
+      }
+    },
+    "PutLabelResult":{
       "type":"structure",
       "members":{
       }
@@ -1293,7 +1769,8 @@
       "required":["name"],
       "members":{
         "name":{"shape":"identifier"},
-        "description":{"shape":"description"}
+        "description":{"shape":"description"},
+        "tags":{"shape":"tagList"}
       }
     },
     "PutOutcomeResult":{
@@ -1330,7 +1807,7 @@
       "members":{
         "detectorId":{"shape":"identifier"},
         "ruleId":{"shape":"identifier"},
-        "ruleVersion":{"shape":"nonEmptyString"}
+        "ruleVersion":{"shape":"wholeNumberVersionString"}
       }
     },
     "RuleDetail":{
@@ -1339,12 +1816,13 @@
         "ruleId":{"shape":"identifier"},
         "description":{"shape":"description"},
         "detectorId":{"shape":"identifier"},
-        "ruleVersion":{"shape":"nonEmptyString"},
+        "ruleVersion":{"shape":"wholeNumberVersionString"},
         "expression":{"shape":"ruleExpression"},
         "language":{"shape":"Language"},
         "outcomes":{"shape":"NonEmptyListOfStrings"},
         "lastUpdatedTime":{"shape":"time"},
-        "createdTime":{"shape":"time"}
+        "createdTime":{"shape":"time"},
+        "arn":{"shape":"fraudDetectorArn"}
       }
     },
     "RuleDetailList":{
@@ -1375,6 +1853,39 @@
       "max":100,
       "min":50
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{"shape":"tagKey"},
+        "value":{"shape":"tagValue"}
+      }
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceARN",
+        "tags"
+      ],
+      "members":{
+        "resourceARN":{"shape":"fraudDetectorArn"},
+        "tags":{"shape":"tagList"}
+      }
+    },
+    "TagResourceResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagsMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":50
+    },
     "ThrottlingException":{
       "type":"structure",
       "required":["message"],
@@ -1383,15 +1894,49 @@
       },
       "exception":true
     },
-    "TrainingDataSource":{
+    "TrainingDataSchema":{
       "type":"structure",
       "required":[
-        "dataLocation",
-        "dataAccessRoleArn"
+        "modelVariables",
+        "labelSchema"
       ],
       "members":{
-        "dataLocation":{"shape":"s3BucketLocation"},
-        "dataAccessRoleArn":{"shape":"iamRoleArn"}
+        "modelVariables":{"shape":"ListOfStrings"},
+        "labelSchema":{"shape":"LabelSchema"}
+      }
+    },
+    "TrainingDataSourceEnum":{
+      "type":"string",
+      "enum":["EXTERNAL_EVENTS"]
+    },
+    "TrainingMetrics":{
+      "type":"structure",
+      "members":{
+        "auc":{"shape":"float"},
+        "metricDataPoints":{"shape":"metricDataPointsList"}
+      }
+    },
+    "TrainingResult":{
+      "type":"structure",
+      "members":{
+        "dataValidationMetrics":{"shape":"DataValidationMetrics"},
+        "trainingMetrics":{"shape":"TrainingMetrics"}
+      }
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceARN",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceARN":{"shape":"fraudDetectorArn"},
+        "tagKeys":{"shape":"tagKeyList"}
+      }
+    },
+    "UntagResourceResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "UpdateDetectorVersionMetadataRequest":{
@@ -1403,7 +1948,7 @@
       ],
       "members":{
         "detectorId":{"shape":"identifier"},
-        "detectorVersionId":{"shape":"nonEmptyString"},
+        "detectorVersionId":{"shape":"wholeNumberVersionString"},
         "description":{"shape":"description"}
       }
     },
@@ -1422,7 +1967,7 @@
       ],
       "members":{
         "detectorId":{"shape":"identifier"},
-        "detectorVersionId":{"shape":"nonEmptyString"},
+        "detectorVersionId":{"shape":"wholeNumberVersionString"},
         "externalModelEndpoints":{"shape":"ListOfStrings"},
         "rules":{"shape":"RuleList"},
         "description":{"shape":"description"},
@@ -1444,11 +1989,28 @@
       ],
       "members":{
         "detectorId":{"shape":"identifier"},
-        "detectorVersionId":{"shape":"nonEmptyString"},
+        "detectorVersionId":{"shape":"wholeNumberVersionString"},
         "status":{"shape":"DetectorVersionStatus"}
       }
     },
     "UpdateDetectorVersionStatusResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateModelRequest":{
+      "type":"structure",
+      "required":[
+        "modelId",
+        "modelType"
+      ],
+      "members":{
+        "modelId":{"shape":"identifier"},
+        "modelType":{"shape":"ModelTypeEnum"},
+        "description":{"shape":"description"}
+      }
+    },
+    "UpdateModelResult":{
       "type":"structure",
       "members":{
       }
@@ -1458,19 +2020,41 @@
       "required":[
         "modelId",
         "modelType",
+        "majorVersionNumber"
+      ],
+      "members":{
+        "modelId":{"shape":"identifier"},
+        "modelType":{"shape":"ModelTypeEnum"},
+        "majorVersionNumber":{"shape":"wholeNumberVersionString"},
+        "externalEventsDetail":{"shape":"ExternalEventsDetail"},
+        "tags":{"shape":"tagList"}
+      }
+    },
+    "UpdateModelVersionResult":{
+      "type":"structure",
+      "members":{
+        "modelId":{"shape":"identifier"},
+        "modelType":{"shape":"ModelTypeEnum"},
+        "modelVersionNumber":{"shape":"floatVersionString"},
+        "status":{"shape":"string"}
+      }
+    },
+    "UpdateModelVersionStatusRequest":{
+      "type":"structure",
+      "required":[
+        "modelId",
+        "modelType",
         "modelVersionNumber",
-        "description",
         "status"
       ],
       "members":{
         "modelId":{"shape":"identifier"},
         "modelType":{"shape":"ModelTypeEnum"},
-        "modelVersionNumber":{"shape":"nonEmptyString"},
-        "description":{"shape":"description"},
+        "modelVersionNumber":{"shape":"floatVersionString"},
         "status":{"shape":"ModelVersionStatus"}
       }
     },
-    "UpdateModelVersionResult":{
+    "UpdateModelVersionStatusResult":{
       "type":"structure",
       "members":{
       }
@@ -1504,7 +2088,8 @@
         "description":{"shape":"description"},
         "expression":{"shape":"ruleExpression"},
         "language":{"shape":"Language"},
-        "outcomes":{"shape":"NonEmptyListOfStrings"}
+        "outcomes":{"shape":"NonEmptyListOfStrings"},
+        "tags":{"shape":"tagList"}
       }
     },
     "UpdateRuleVersionResult":{
@@ -1528,6 +2113,7 @@
       "members":{
       }
     },
+    "UseEventVariables":{"type":"boolean"},
     "ValidationException":{
       "type":"structure",
       "required":["message"],
@@ -1546,7 +2132,8 @@
         "description":{"shape":"string"},
         "variableType":{"shape":"string"},
         "lastUpdatedTime":{"shape":"time"},
-        "createdTime":{"shape":"time"}
+        "createdTime":{"shape":"time"},
+        "arn":{"shape":"fraudDetectorArn"}
       }
     },
     "VariableEntry":{
@@ -1598,12 +2185,50 @@
       "max":128,
       "min":1
     },
+    "entityTypeList":{
+      "type":"list",
+      "member":{"shape":"EntityType"}
+    },
+    "entityTypesMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":10,
+      "min":5
+    },
+    "eventTypeList":{
+      "type":"list",
+      "member":{"shape":"EventType"}
+    },
+    "eventTypesMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":10,
+      "min":5
+    },
+    "fieldValidationMessageList":{
+      "type":"list",
+      "member":{"shape":"FieldValidationMessage"}
+    },
+    "fileValidationMessageList":{
+      "type":"list",
+      "member":{"shape":"FileValidationMessage"}
+    },
     "float":{"type":"float"},
+    "floatVersionString":{
+      "type":"string",
+      "pattern":"^[1-9][0-9]{0,3}\\.[0-9]{1,2}$"
+    },
+    "fraudDetectorArn":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^arn\\:aws[a-z-]{0,15}\\:frauddetector\\:[a-z0-9-]{3,20}\\:[0-9]{12}\\:[^\\s]{2,128}$"
+    },
     "iamRoleArn":{
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"^arn\\:aws\\:iam\\:\\:[0-9]{12}\\:role\\/[^\\s]{2,64}$"
+      "pattern":"^arn\\:aws[a-z-]{0,15}\\:iam\\:\\:[0-9]{12}\\:role\\/[^\\s]{2,64}$"
     },
     "identifier":{
       "type":"string",
@@ -1612,6 +2237,43 @@
       "pattern":"^[0-9a-z_-]+$"
     },
     "integer":{"type":"integer"},
+    "labelList":{
+      "type":"list",
+      "member":{"shape":"Label"}
+    },
+    "labelMapper":{
+      "type":"map",
+      "key":{"shape":"string"},
+      "value":{"shape":"ListOfStrings"}
+    },
+    "labelsMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":10
+    },
+    "listOfEntities":{
+      "type":"list",
+      "member":{"shape":"Entity"}
+    },
+    "metricDataPointsList":{
+      "type":"list",
+      "member":{"shape":"MetricDataPoint"}
+    },
+    "modelList":{
+      "type":"list",
+      "member":{"shape":"Model"}
+    },
+    "modelVersionDetailList":{
+      "type":"list",
+      "member":{"shape":"ModelVersionDetail"}
+    },
+    "modelsMaxPageSize":{
+      "type":"integer",
+      "box":true,
+      "max":10,
+      "min":1
+    },
     "nonEmptyString":{
       "type":"string",
       "min":1
@@ -1619,7 +2281,8 @@
     "ruleExpression":{
       "type":"string",
       "max":4096,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "s3BucketLocation":{
       "type":"string",
@@ -1627,7 +2290,51 @@
       "min":1,
       "pattern":"^s3:\\/\\/(.+)$"
     },
+    "sageMakerEndpointIdentifier":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[0-9A-Za-z_-]+$"
+    },
     "string":{"type":"string"},
-    "time":{"type":"string"}
+    "tagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "tagKeyList":{
+      "type":"list",
+      "member":{"shape":"tagKey"},
+      "max":50,
+      "min":0
+    },
+    "tagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "tagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "time":{"type":"string"},
+    "variableName":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "variableValue":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "sensitive":true
+    },
+    "wholeNumberVersionString":{
+      "type":"string",
+      "pattern":"^([1-9][0-9]*)$"
+    }
   }
 }

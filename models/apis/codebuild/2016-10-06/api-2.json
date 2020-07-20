@@ -580,7 +580,8 @@
         "encryptionKey":{"shape":"NonEmptyString"},
         "exportedEnvironmentVariables":{"shape":"ExportedEnvironmentVariables"},
         "reportArns":{"shape":"BuildReportArns"},
-        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"},
+        "debugSession":{"shape":"DebugSession"}
       }
     },
     "BuildArtifacts":{
@@ -773,6 +774,13 @@
       "type":"string",
       "enum":["SECRETS_MANAGER"]
     },
+    "DebugSession":{
+      "type":"structure",
+      "members":{
+        "sessionEnabled":{"shape":"WrapperBoolean"},
+        "sessionTarget":{"shape":"NonEmptyString"}
+      }
+    },
     "DeleteProjectInput":{
       "type":"structure",
       "required":["name"],
@@ -903,7 +911,8 @@
         "WINDOWS_CONTAINER",
         "LINUX_CONTAINER",
         "LINUX_GPU_CONTAINER",
-        "ARM_CONTAINER"
+        "ARM_CONTAINER",
+        "WINDOWS_SERVER_2019_CONTAINER"
       ]
     },
     "EnvironmentVariable":{
@@ -1712,7 +1721,8 @@
         "idempotencyToken":{"shape":"String"},
         "logsConfigOverride":{"shape":"LogsConfig"},
         "registryCredentialOverride":{"shape":"RegistryCredential"},
-        "imagePullCredentialsTypeOverride":{"shape":"ImagePullCredentialsType"}
+        "imagePullCredentialsTypeOverride":{"shape":"ImagePullCredentialsType"},
+        "debugSessionEnabled":{"shape":"WrapperBoolean"}
       }
     },
     "StartBuildOutput":{

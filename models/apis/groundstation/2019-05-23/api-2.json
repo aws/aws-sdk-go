@@ -404,6 +404,12 @@
         "RADIAN"
       ]
     },
+    "AntennaDemodDecodeDetails":{
+      "type":"structure",
+      "members":{
+        "outputNode":{"shape":"String"}
+      }
+    },
     "AntennaDownlinkConfig":{
       "type":"structure",
       "required":["spectrumConfig"],
@@ -432,7 +438,8 @@
       ],
       "members":{
         "spectrumConfig":{"shape":"UplinkSpectrumConfig"},
-        "targetEirp":{"shape":"Eirp"}
+        "targetEirp":{"shape":"Eirp"},
+        "transmitDisabled":{"shape":"Boolean"}
       }
     },
     "BandwidthUnits":{
@@ -469,6 +476,13 @@
         "tracking",
         "uplink-echo"
       ]
+    },
+    "ConfigDetails":{
+      "type":"structure",
+      "members":{
+        "antennaDemodDecodeDetails":{"shape":"AntennaDemodDecodeDetails"},
+        "endpointDetails":{"shape":"EndpointDetails"}
+      }
     },
     "ConfigIdResponse":{
       "type":"structure",
@@ -593,6 +607,13 @@
         "REQUIRED"
       ]
     },
+    "DataflowDetail":{
+      "type":"structure",
+      "members":{
+        "destination":{"shape":"Destination"},
+        "source":{"shape":"Source"}
+      }
+    },
     "DataflowEdge":{
       "type":"list",
       "member":{"shape":"ConfigArn"},
@@ -607,6 +628,7 @@
       "type":"structure",
       "members":{
         "address":{"shape":"SocketAddress"},
+        "mtu":{"shape":"DataflowEndpointmtuInteger"},
         "name":{"shape":"SafeName"},
         "status":{"shape":"EndpointStatus"}
       }
@@ -636,6 +658,16 @@
         "dataflowEndpointGroupArn":{"shape":"DataflowEndpointGroupArn"},
         "dataflowEndpointGroupId":{"shape":"String"}
       }
+    },
+    "DataflowEndpointmtuInteger":{
+      "type":"integer",
+      "box":true,
+      "max":1500,
+      "min":1400
+    },
+    "DataflowList":{
+      "type":"list",
+      "member":{"shape":"DataflowDetail"}
     },
     "DecodeConfig":{
       "type":"structure",
@@ -718,6 +750,7 @@
       "members":{
         "contactId":{"shape":"String"},
         "contactStatus":{"shape":"ContactStatus"},
+        "dataflowList":{"shape":"DataflowList"},
         "endTime":{"shape":"Timestamp"},
         "errorMessage":{"shape":"String"},
         "groundStation":{"shape":"String"},
@@ -731,12 +764,22 @@
         "tags":{"shape":"TagsMap"}
       }
     },
+    "Destination":{
+      "type":"structure",
+      "members":{
+        "configDetails":{"shape":"ConfigDetails"},
+        "configId":{"shape":"String"},
+        "configType":{"shape":"ConfigCapabilityType"},
+        "dataflowDestinationRegion":{"shape":"String"}
+      }
+    },
     "Double":{
       "type":"double",
       "box":true
     },
     "DurationInSeconds":{
       "type":"integer",
+      "box":true,
       "max":21600,
       "min":1
     },
@@ -1250,6 +1293,15 @@
       "members":{
         "name":{"shape":"String"},
         "port":{"shape":"Integer"}
+      }
+    },
+    "Source":{
+      "type":"structure",
+      "members":{
+        "configDetails":{"shape":"ConfigDetails"},
+        "configId":{"shape":"String"},
+        "configType":{"shape":"ConfigCapabilityType"},
+        "dataflowSourceRegion":{"shape":"String"}
       }
     },
     "SpectrumConfig":{
