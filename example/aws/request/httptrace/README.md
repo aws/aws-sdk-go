@@ -35,7 +35,8 @@ The example will output the http trace timing information for how long the reque
 ```
 2020/07/21 15:39:07 Latency: 278.508656ms, Validate: 19.515µs, Build: 190.755µs, Attempts: 1,
 	Attempt: 0, Latency: 278.240054ms, Sign: 453.163µs, Send: 277.580235ms, Unmarshal: 202.311µs, WillRetry: false,
-		HTTP: Latency: 277.580856ms, ConnReused: false, GetConn: 225.662398ms, DNS: 20.385136ms, Connect: 14.947772ms, TLS: 189.910822ms, WriteRequest: 325.956µs, WaitResponseFirstByte: 277.509316ms, ReadResponseHeader: 71.234µs,
+		HTTP: Latency: 277.580856ms, ConnReused: false, GetConn: 225.662398ms, WriteRequest: 325.956µs, WaitResponseFirstByte: 277.509316ms, ReadResponseHeader: 71.234µs,
+			Conn: DNS: 20.385136ms, Connect: 14.947772ms, TLS: 189.910822ms,
 
 Message: second
 2020/07/21 15:39:09 Latency: 101.936094ms, Validate: 2.644µs, Build: 67.157µs, Attempts: 1,

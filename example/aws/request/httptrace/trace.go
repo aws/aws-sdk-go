@@ -235,9 +235,6 @@ func (t *HTTPTrace) String() string {
 
 	if !t.Reused {
 		writeDurField(&w, "GetConn", t.GetConnStart, t.GetConnDone)
-		writeDurField(&w, "DNS", t.DNSStart, t.DNSDone)
-		writeDurField(&w, "Connect", t.ConnectStart, t.ConnectDone)
-		writeDurField(&w, "TLS", t.TLSHandshakeStart, t.TLSHandshakeDone)
 	} else {
 		writeDurField(&w, "GetConn", t.Start, t.GetConnDone)
 	}
@@ -246,6 +243,13 @@ func (t *HTTPTrace) String() string {
 	writeDurField(&w, "WaitResponseFirstByte", t.Start, t.FirstResponseByte)
 	writeDurField(&w, "ReadResponseHeader", t.ReadHeaderStart, t.ReadHeaderDone)
 	writeDurField(&w, "ReadResponseBody", t.ReadBodyStart, t.ReadBodyDone)
+
+	if !t.Reused {
+		fmt.Fprintf(&w, "\n\t\t\tConn: ")
+		writeDurField(&w, "DNS", t.DNSStart, t.DNSDone)
+		writeDurField(&w, "Connect", t.ConnectStart, t.ConnectDone)
+		writeDurField(&w, "TLS", t.TLSHandshakeStart, t.TLSHandshakeDone)
+	}
 
 	return w.String()
 }
