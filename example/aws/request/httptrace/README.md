@@ -33,24 +33,23 @@ Message: My Really cool Message
 The example will output the http trace timing information for how long the request took.
 
 ```
-Message: first message
-2020/07/21 14:21:23 Latency: 292.687003ms, Validate: 23.261µs, Build: 92.249µs, Attempts: 1,
-	Attempt: 0, Latency: 292.541266ms, Sign: 159.755µs, Send: 292.173529ms, Unmarshal: 203.204µs, WillRetry: false,
-		HTTP: Latency: 292.174168ms, ConnReused: false, GetConn: 238.080409ms, DNS: 22.774015ms, Connect: 22.774015ms, TLS: 200.809752ms, WriteRequest: 424.376µs, WaitResponseFirstByte: 292.058664ms, ReadResponseHeader: 115.196µs,
+2020/07/21 15:28:13 Latency: 290.859243ms, Validate: 20.607µs, Build: 114.17µs, Attempts: 1,
+	Attempt: 0, Latency: 290.691814ms, Sign: 174.017µs, Send: 290.303676ms, Unmarshal: 196.662µs, WillRetry: false,
+		HTTP: Latency: 290.304018ms, ConnReused: false, GetConn: 239.350422ms, DNS: 40.48639ms, Connect: 40.48639ms, TLS: 184.738452ms, WriteRequest: 310.311µs, WaitResponseFirstByte: 290.25327ms, ReadResponseHeader: 50.392µs,
 
-Message: second message
-2020/07/21 14:21:29 Latency: 47.824618ms, Validate: 2.91µs, Build: 110.86µs, Attempts: 1,
-	Attempt: 0, Latency: 47.68784ms, Sign: 237.076µs, Send: 47.29333ms, Unmarshal: 151.831µs, WillRetry: false,
-		HTTP: Latency: 47.29391ms, ConnReused: true, WriteRequest: 285.042µs, WaitResponseFirstByte: 47.233202ms, ReadResponseHeader: 60.252µs,
+Message: second
+2020/07/21 15:28:15 Latency: 34.778924ms, Validate: 3.231µs, Build: 66.932µs, Attempts: 1,
+	Attempt: 0, Latency: 34.685914ms, Sign: 92.238µs, Send: 33.879391ms, Unmarshal: 698.703µs, WillRetry: false,
+		HTTP: Latency: 33.880956ms, ConnReused: true, GetConn: 29.447µs, WriteRequest: 151.002µs, WaitResponseFirstByte: 33.307018ms, ReadResponseHeader: 572.807µs,
 
-Message: third message
-2020/07/21 14:21:33 Latency: 31.435353ms, Validate: 1.603µs, Build: 29.356µs, Attempts: 1,
-	Attempt: 0, Latency: 31.39293ms, Sign: 63.152µs, Send: 31.245591ms, Unmarshal: 81.123µs, WillRetry: false,
-		HTTP: Latency: 31.24588ms, ConnReused: true, WriteRequest: 151.738µs, WaitResponseFirstByte: 31.208877ms, ReadResponseHeader: 36.731µs,
+Message: thrid
+2020/07/21 15:28:16 Latency: 35.49632ms, Validate: 1.391µs, Build: 30.989µs, Attempts: 1,
+	Attempt: 0, Latency: 35.446929ms, Sign: 59.237µs, Send: 35.218487ms, Unmarshal: 164.304µs, WillRetry: false,
+		HTTP: Latency: 35.219014ms, ConnReused: true, GetConn: 36.817µs, WriteRequest: 160.361µs, WaitResponseFirstByte: 35.170978ms, ReadResponseHeader: 47.592µs,
 
-Message: last message
-2020/07/21 14:21:37 Latency: 42.643276ms, Validate: 1.903µs, Build: 33.829µs, Attempts: 1,
-	Attempt: 0, Latency: 42.582587ms, Sign: 57.561µs, Send: 42.264062ms, Unmarshal: 246.32µs, WillRetry: false,
-		HTTP: Latency: 42.265295ms, ConnReused: true, WriteRequest: 178.259µs, WaitResponseFirstByte: 42.142391ms, ReadResponseHeader: 122.393µs,
+Message: fourth
+2020/07/21 15:28:21 Latency: 39.099871ms, Validate: 1.613µs, Build: 33.838µs, Attempts: 1,
+	Attempt: 0, Latency: 39.037477ms, Sign: 59.805µs, Send: 38.84714ms, Unmarshal: 125.874µs, WillRetry: false,
+		HTTP: Latency: 38.847806ms, ConnReused: true, GetConn: 47.417µs, WriteRequest: 224.433µs, WaitResponseFirstByte: 38.803854ms, ReadResponseHeader: 43.478µs,
 ```
 

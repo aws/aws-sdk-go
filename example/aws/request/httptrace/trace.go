@@ -244,6 +244,8 @@ func (t *HTTPTrace) String() string {
 
 		//writeDurField(&w, "TLSHandshakeStart", t.Start, t.TLSHandshakeStart)
 		writeDurField(&w, "TLS", t.TLSHandshakeStart, t.TLSHandshakeDone)
+	} else {
+		writeDurField(&w, "GetConn", t.Start, t.GetConnDone)
 	}
 
 	writeDurField(&w, "WriteRequest", t.GetConnDone, t.WriteRequestDone)
