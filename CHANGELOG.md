@@ -1,3 +1,9 @@
+Release v1.33.9 (2020-07-21)
+===
+
+### Service Client Updates
+* `service/codeguruprofiler`: Updates service API and documentation
+
 Release v1.33.8 (2020-07-20)
 ===
 
