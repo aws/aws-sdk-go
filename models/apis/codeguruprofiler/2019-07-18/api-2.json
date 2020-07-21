@@ -237,6 +237,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "PostAgentProfile":{
       "name":"PostAgentProfile",
       "http":{
@@ -320,6 +335,37 @@
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
     },
     "UpdateProfilingGroup":{
       "name":"UpdateProfilingGroup",
@@ -594,7 +640,8 @@
           "locationName":"clientToken"
         },
         "computePlatform":{"shape":"ComputePlatform"},
-        "profilingGroupName":{"shape":"ProfilingGroupName"}
+        "profilingGroupName":{"shape":"ProfilingGroupName"},
+        "tags":{"shape":"TagsMap"}
       }
     },
     "CreateProfilingGroupResponse":{
@@ -682,8 +729,7 @@
     "FleetInstanceId":{
       "type":"string",
       "max":255,
-      "min":1,
-      "pattern":"^[\\w-.:/]+$"
+      "min":1
     },
     "FrameMetric":{
       "type":"structure",
@@ -1042,6 +1088,23 @@
         "profilingGroups":{"shape":"ProfilingGroupDescriptions"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"ProfilingGroupArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagsMap"}
+      }
+    },
     "Locale":{"type":"string"},
     "Match":{
       "type":"structure",
@@ -1204,6 +1267,7 @@
         "createdAt":{"shape":"Timestamp"},
         "name":{"shape":"ProfilingGroupName"},
         "profilingStatus":{"shape":"ProfilingStatus"},
+        "tags":{"shape":"TagsMap"},
         "updatedAt":{"shape":"Timestamp"}
       }
     },
@@ -1406,6 +1470,35 @@
       "members":{
       }
     },
+    "TagKeys":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"ProfilingGroupArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagsMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
     "TargetFrame":{
       "type":"list",
       "member":{"shape":"String"}
@@ -1445,6 +1538,30 @@
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"ListOfTimestamps"}
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"ProfilingGroupArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeys",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateProfilingGroupRequest":{
       "type":"structure",

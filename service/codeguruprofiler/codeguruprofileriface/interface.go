@@ -128,6 +128,10 @@ type CodeGuruProfilerAPI interface {
 	ListProfilingGroupsPages(*codeguruprofiler.ListProfilingGroupsInput, func(*codeguruprofiler.ListProfilingGroupsOutput, bool) bool) error
 	ListProfilingGroupsPagesWithContext(aws.Context, *codeguruprofiler.ListProfilingGroupsInput, func(*codeguruprofiler.ListProfilingGroupsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*codeguruprofiler.ListTagsForResourceInput) (*codeguruprofiler.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *codeguruprofiler.ListTagsForResourceInput, ...request.Option) (*codeguruprofiler.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*codeguruprofiler.ListTagsForResourceInput) (*request.Request, *codeguruprofiler.ListTagsForResourceOutput)
+
 	PostAgentProfile(*codeguruprofiler.PostAgentProfileInput) (*codeguruprofiler.PostAgentProfileOutput, error)
 	PostAgentProfileWithContext(aws.Context, *codeguruprofiler.PostAgentProfileInput, ...request.Option) (*codeguruprofiler.PostAgentProfileOutput, error)
 	PostAgentProfileRequest(*codeguruprofiler.PostAgentProfileInput) (*request.Request, *codeguruprofiler.PostAgentProfileOutput)
@@ -147,6 +151,14 @@ type CodeGuruProfilerAPI interface {
 	SubmitFeedback(*codeguruprofiler.SubmitFeedbackInput) (*codeguruprofiler.SubmitFeedbackOutput, error)
 	SubmitFeedbackWithContext(aws.Context, *codeguruprofiler.SubmitFeedbackInput, ...request.Option) (*codeguruprofiler.SubmitFeedbackOutput, error)
 	SubmitFeedbackRequest(*codeguruprofiler.SubmitFeedbackInput) (*request.Request, *codeguruprofiler.SubmitFeedbackOutput)
+
+	TagResource(*codeguruprofiler.TagResourceInput) (*codeguruprofiler.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *codeguruprofiler.TagResourceInput, ...request.Option) (*codeguruprofiler.TagResourceOutput, error)
+	TagResourceRequest(*codeguruprofiler.TagResourceInput) (*request.Request, *codeguruprofiler.TagResourceOutput)
+
+	UntagResource(*codeguruprofiler.UntagResourceInput) (*codeguruprofiler.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *codeguruprofiler.UntagResourceInput, ...request.Option) (*codeguruprofiler.UntagResourceOutput, error)
+	UntagResourceRequest(*codeguruprofiler.UntagResourceInput) (*request.Request, *codeguruprofiler.UntagResourceOutput)
 
 	UpdateProfilingGroup(*codeguruprofiler.UpdateProfilingGroupInput) (*codeguruprofiler.UpdateProfilingGroupOutput, error)
 	UpdateProfilingGroupWithContext(aws.Context, *codeguruprofiler.UpdateProfilingGroupInput, ...request.Option) (*codeguruprofiler.UpdateProfilingGroupOutput, error)

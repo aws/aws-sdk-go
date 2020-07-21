@@ -16,11 +16,14 @@
     "ListFindingsReports": "<p>List the available reports for a given profiling group and time range.</p>",
     "ListProfileTimes": "<p>Lists the start times of the available aggregated profiles of a profiling group for an aggregation period within the specified time range.</p>",
     "ListProfilingGroups": "<p> Returns a list of profiling groups. The profiling groups are returned as <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html\"> <code>ProfilingGroupDescription</code> </a> objects. </p>",
+    "ListTagsForResource": "<p> Returns a list of the tags that are assigned to a specified resource. </p>",
     "PostAgentProfile": "<p> Submits profiling data to an aggregated profile of a profiling group. To get an aggregated profile that is created with this profiling data, use <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_GetProfile.html\"> <code>GetProfile</code> </a>. </p>",
     "PutPermission": "<p> Adds permissions to a profiling group's resource-based policy that are provided using an action group. If a profiling group doesn't have a resource-based policy, one is created for it using the permissions in the action group and the roles and users in the <code>principals</code> parameter. </p> <pre><code> &lt;p&gt; The one supported action group that can be added is &lt;code&gt;agentPermission&lt;/code&gt; which grants &lt;code&gt;ConfigureAgent&lt;/code&gt; and &lt;code&gt;PostAgent&lt;/code&gt; permissions. For more information, see &lt;a href=&quot;https://docs.aws.amazon.com/codeguru/latest/profiler-ug/resource-based-policies.html&quot;&gt;Resource-based policies in CodeGuru Profiler&lt;/a&gt; in the &lt;i&gt;Amazon CodeGuru Profiler User Guide&lt;/i&gt;, &lt;a href=&quot;https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html&quot;&gt; &lt;code&gt;ConfigureAgent&lt;/code&gt; &lt;/a&gt;, and &lt;a href=&quot;https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_PostAgentProfile.html&quot;&gt; &lt;code&gt;PostAgentProfile&lt;/code&gt; &lt;/a&gt;. &lt;/p&gt; &lt;p&gt; The first time you call &lt;code&gt;PutPermission&lt;/code&gt; on a profiling group, do not specify a &lt;code&gt;revisionId&lt;/code&gt; because it doesn't have a resource-based policy. Subsequent calls must provide a &lt;code&gt;revisionId&lt;/code&gt; to specify which revision of the resource-based policy to add the permissions to. &lt;/p&gt; &lt;p&gt; The response contains the profiling group's JSON-formatted resource policy. &lt;/p&gt; </code></pre>",
     "RemoveNotificationChannel": "<p>Remove one anomaly notifications channel for a profiling group.</p>",
     "RemovePermission": "<p> Removes permissions from a profiling group's resource-based policy that are provided using an action group. The one supported action group that can be removed is <code>agentPermission</code> which grants <code>ConfigureAgent</code> and <code>PostAgent</code> permissions. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-ug/resource-based-policies.html\">Resource-based policies in CodeGuru Profiler</a> in the <i>Amazon CodeGuru Profiler User Guide</i>, <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html\"> <code>ConfigureAgent</code> </a>, and <a href=\"https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_PostAgentProfile.html\"> <code>PostAgentProfile</code> </a>. </p>",
     "SubmitFeedback": "<p>Sends feedback to CodeGuru Profiler about whether the anomaly detected by the analysis is useful or not.</p>",
+    "TagResource": "<p> Use to assign one or more tags to a resource. </p>",
+    "UntagResource": "<p> Use to remove one or more tags from a resource. </p>",
     "UpdateProfilingGroup": "<p>Updates a profiling group.</p>"
   },
   "shapes": {
@@ -413,6 +416,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Locale": {
       "base": "<p>BCP47 language code. Supported locales: de-DE, en-GB, en-US, es-ES, fr-FR, it-IT, ja-JP, ko-KR, pt-BR, zh-CN, zh-TW</p>",
       "refs": {
@@ -554,7 +567,10 @@
     "ProfilingGroupArn": {
       "base": null,
       "refs": {
-        "ProfilingGroupDescription$arn": "<p>The Amazon Resource Name (ARN) identifying the profiling group resource.</p>"
+        "ListTagsForResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource that contains the tags to return. </p>",
+        "ProfilingGroupDescription$arn": "<p>The Amazon Resource Name (ARN) identifying the profiling group resource.</p>",
+        "TagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource that the tags are added to. </p>",
+        "UntagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource that contains the tags to remove. </p>"
       }
     },
     "ProfilingGroupDescription": {
@@ -700,6 +716,9 @@
         "ServiceQuotaExceededException$message": null,
         "Strings$member": null,
         "SubmitFeedbackRequest$comment": "<p>Optional feedback about this anomaly.</p>",
+        "TagKeys$member": null,
+        "TagsMap$key": null,
+        "TagsMap$value": null,
         "TargetFrame$member": null,
         "ThreadStates$member": null,
         "ThrottlingException$message": null,
@@ -722,6 +741,31 @@
     "SubmitFeedbackResponse": {
       "base": "<p>The structure representing the SubmitFeedbackResponse.</p>",
       "refs": {
+      }
+    },
+    "TagKeys": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p> A list of tag keys. Existing tags of resources with keys in this list are removed from the specified resource. </p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagsMap": {
+      "base": null,
+      "refs": {
+        "CreateProfilingGroupRequest$tags": "<p> A list of tags to add to the created profiling group. </p>",
+        "ListTagsForResourceResponse$tags": "<p> The list of tags assigned to the specified resource. This is the list of tags returned in the response. </p>",
+        "ProfilingGroupDescription$tags": "<p> A list of the tags that belong to this profiling group. </p>",
+        "TagResourceRequest$tags": "<p> The list of tags that are added to the specified resource. </p>"
       }
     },
     "TargetFrame": {
@@ -789,6 +833,16 @@
       "base": null,
       "refs": {
         "BatchGetFrameMetricDataResponse$unprocessedEndTimes": "<p>List of instances which remained unprocessed. This will create a missing time step in the list of end times.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateProfilingGroupRequest": {
