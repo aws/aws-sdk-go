@@ -235,14 +235,8 @@ func (t *HTTPTrace) String() string {
 
 	if !t.Reused {
 		writeDurField(&w, "GetConn", t.GetConnStart, t.GetConnDone)
-
-		//writeDurField(&w, "DNSStart", t.Start, t.DNSStart)
 		writeDurField(&w, "DNS", t.DNSStart, t.DNSDone)
-
-		//writeDurField(&w, "ConnectStart", t.Start, t.DNSStart)
-		writeDurField(&w, "Connect", t.DNSStart, t.DNSDone)
-
-		//writeDurField(&w, "TLSHandshakeStart", t.Start, t.TLSHandshakeStart)
+		writeDurField(&w, "Connect", t.ConnectStart, t.ConnectDone)
 		writeDurField(&w, "TLS", t.TLSHandshakeStart, t.TLSHandshakeDone)
 	} else {
 		writeDurField(&w, "GetConn", t.Start, t.GetConnDone)
