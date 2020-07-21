@@ -14,18 +14,79 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+// RequestLatency provides latencies for the SDK API request and its attempts.
+type RequestLatency struct {
+	Latency  time.Duration
+	Validate time.Duration
+	Build    time.Duration
+
+	Attempts []RequestAttemptLatency
+}
+
+// RequestAttemptLatency provides latencies for an individual request attempt.
+type RequestAttemptLatency struct {
+	Latency time.Duration
+	Err     error
+
+	Sign time.Duration
+	Send time.Duration
+
+	HTTP HTTPLatency
+
+	Unmarshal      time.Duration
+	UnmarshalError time.Duration
+
+	WillRetry bool
+	Retry     time.Duration
+}
+
+// HTTPLatency provides latencies for an HTTP request.
+type HTTPLatency struct {
+	Latency    time.Duration
+	ConnReused bool
+
+	GetConn time.Duration
+
+	DNS     time.Duration
+	Connect time.Duration
+	TLS     time.Duration
+
+	WriteHeader           time.Duration
+	WriteRequest          time.Duration
+	WaitResponseFirstByte time.Duration
+	ReadHeader            time.Duration
+	ReadBody              time.Duration
+}
+
 // RequestTrace provides the strucutre to store SDK request attempt latencies.
 // Use TraceRequest as a API operation request option to capture trace metrics
 // for the individual request.
 type RequestTrace struct {
 	Start, Finish time.Time
 
-	SDKValidateStart, SDKValidateDone time.Time
-	SDKBuildStart, SDKBuildDone       time.Time
+	ValidateStart, ValidateDone time.Time
+	BuildStart, BuildDone       time.Time
 
 	ReadResponseBody bool
 
 	Attempts []*RequestAttemptTrace
+}
+
+// Latency returns the latencies of the request trace components.
+func (t RequestTrace) Latency() RequestLatency {
+	var attempts []RequestAttemptLatency
+	for _, a := range t.Attempts {
+		attempts = append(attempts, a.Latency())
+	}
+
+	latency := RequestLatency{
+		Latency:  safeTimeDelta(t.Start, t.Finish),
+		Validate: safeTimeDelta(t.ValidateStart, t.ValidateDone),
+		Build:    safeTimeDelta(t.BuildStart, t.BuildDone),
+		Attempts: attempts,
+	}
+
+	return latency
 }
 
 // TraceRequest is a SDK request Option that will add request handlers to an
@@ -46,20 +107,20 @@ func (t *RequestTrace) TraceRequest(r *request.Request) {
 	// Signing and Start attempt
 	r.Handlers.Sign.PushFront(func(rr *request.Request) {
 		attempt = &RequestAttemptTrace{Start: time.Now()}
-		attempt.SDKSignStart = attempt.Start
+		attempt.SignStart = attempt.Start
 	})
 	r.Handlers.Sign.PushBack(func(rr *request.Request) {
-		attempt.SDKSignDone = time.Now()
+		attempt.SignDone = time.Now()
 	})
 
 	// Send
 	r.Handlers.Send.PushFront(func(rr *request.Request) {
-		attempt.SDKSendStart = time.Now()
+		attempt.SendStart = time.Now()
 		attempt.HTTPTrace = NewHTTPTrace(rr.Context())
 		rr.SetContext(attempt.HTTPTrace)
 	})
 	r.Handlers.Send.PushBack(func(rr *request.Request) {
-		attempt.SDKSendDone = time.Now()
+		attempt.SendDone = time.Now()
 		defer func() {
 			attempt.HTTPTrace.Finish = time.Now()
 		}()
@@ -85,27 +146,27 @@ func (t *RequestTrace) TraceRequest(r *request.Request) {
 
 	// Unmarshal
 	r.Handlers.Unmarshal.PushFront(func(rr *request.Request) {
-		attempt.SDKUnmarshalStart = time.Now()
+		attempt.UnmarshalStart = time.Now()
 	})
 	r.Handlers.Unmarshal.PushBack(func(rr *request.Request) {
-		attempt.SDKUnmarshalDone = time.Now()
+		attempt.UnmarshalDone = time.Now()
 	})
 
 	// Unmarshal Error
 	r.Handlers.UnmarshalError.PushFront(func(rr *request.Request) {
-		attempt.SDKUnmarshalErrorStart = time.Now()
+		attempt.UnmarshalErrorStart = time.Now()
 	})
 	r.Handlers.UnmarshalError.PushBack(func(rr *request.Request) {
-		attempt.SDKUnmarshalErrorDone = time.Now()
+		attempt.UnmarshalErrorDone = time.Now()
 	})
 
 	// Retry handling and delay
 	r.Handlers.Retry.PushFront(func(rr *request.Request) {
-		attempt.SDKRetryStart = time.Now()
+		attempt.RetryStart = time.Now()
 		attempt.Err = rr.Error
 	})
 	r.Handlers.AfterRetry.PushBack(func(rr *request.Request) {
-		attempt.SDKRetryDone = time.Now()
+		attempt.RetryDone = time.Now()
 		attempt.WillRetry = rr.WillRetry()
 	})
 
@@ -119,9 +180,10 @@ func (t *RequestTrace) TraceRequest(r *request.Request) {
 func (t *RequestTrace) String() string {
 	var w strings.Builder
 
-	writeDurField(&w, "Latency", t.Start, t.Finish)
-	writeDurField(&w, "Validate", t.SDKValidateStart, t.SDKValidateDone)
-	writeDurField(&w, "Build", t.SDKBuildStart, t.SDKBuildDone)
+	l := t.Latency()
+	writeDurField(&w, "Latency", l.Latency)
+	writeDurField(&w, "Validate", l.Validate)
+	writeDurField(&w, "Build", l.Build)
 	writeField(&w, "Attempts", "%d", len(t.Attempts))
 
 	for i, a := range t.Attempts {
@@ -134,10 +196,10 @@ func (t *RequestTrace) String() string {
 func (t *RequestTrace) onComplete(*request.Request) {
 	t.Finish = time.Now()
 }
-func (t *RequestTrace) onValidateStart(*request.Request) { t.SDKValidateStart = time.Now() }
-func (t *RequestTrace) onValidateDone(*request.Request)  { t.SDKValidateDone = time.Now() }
-func (t *RequestTrace) onBuildStart(*request.Request)    { t.SDKBuildStart = time.Now() }
-func (t *RequestTrace) onBuildDone(*request.Request)     { t.SDKBuildDone = time.Now() }
+func (t *RequestTrace) onValidateStart(*request.Request) { t.ValidateStart = time.Now() }
+func (t *RequestTrace) onValidateDone(*request.Request)  { t.ValidateDone = time.Now() }
+func (t *RequestTrace) onBuildStart(*request.Request)    { t.BuildStart = time.Now() }
+func (t *RequestTrace) onBuildDone(*request.Request)     { t.BuildDone = time.Now() }
 
 // RequestAttemptTrace provides a structure for storing trace information on
 // the SDK's request attempt.
@@ -145,34 +207,54 @@ type RequestAttemptTrace struct {
 	Start, Finish time.Time
 	Err           error
 
-	SDKSignStart, SDKSignDone time.Time
+	SignStart, SignDone time.Time
 
-	SDKSendStart, SDKSendDone time.Time
-	HTTPTrace                 *HTTPTrace
+	SendStart, SendDone time.Time
+	HTTPTrace           *HTTPTrace
 
-	SDKUnmarshalStart, SDKUnmarshalDone           time.Time
-	SDKUnmarshalErrorStart, SDKUnmarshalErrorDone time.Time
+	UnmarshalStart, UnmarshalDone           time.Time
+	UnmarshalErrorStart, UnmarshalErrorDone time.Time
 
-	WillRetry                   bool
-	SDKRetryStart, SDKRetryDone time.Time
+	WillRetry             bool
+	RetryStart, RetryDone time.Time
 }
 
-func (at *RequestAttemptTrace) String() string {
+// Latency returns the latencies of the request attempt trace components.
+func (t *RequestAttemptTrace) Latency() RequestAttemptLatency {
+	return RequestAttemptLatency{
+		Latency: safeTimeDelta(t.Start, t.Finish),
+		Err:     t.Err,
+
+		Sign: safeTimeDelta(t.SignStart, t.SignDone),
+		Send: safeTimeDelta(t.SendStart, t.SendDone),
+
+		HTTP: t.HTTPTrace.Latency(),
+
+		Unmarshal:      safeTimeDelta(t.UnmarshalStart, t.UnmarshalDone),
+		UnmarshalError: safeTimeDelta(t.UnmarshalErrorStart, t.UnmarshalErrorDone),
+
+		WillRetry: t.WillRetry,
+		Retry:     safeTimeDelta(t.RetryStart, t.RetryDone),
+	}
+}
+
+func (t *RequestAttemptTrace) String() string {
 	var w strings.Builder
 
-	writeDurField(&w, "Latency", at.Start, at.Finish)
-	writeDurField(&w, "Sign", at.SDKSignStart, at.SDKSignDone)
-	writeDurField(&w, "Send", at.SDKSendStart, at.SDKSendDone)
+	l := t.Latency()
+	writeDurField(&w, "Latency", l.Latency)
+	writeDurField(&w, "Sign", l.Sign)
+	writeDurField(&w, "Send", l.Send)
 
-	writeDurField(&w, "Unmarshal", at.SDKUnmarshalStart, at.SDKUnmarshalDone)
-	writeDurField(&w, "UnmarshalError", at.SDKUnmarshalErrorStart, at.SDKUnmarshalErrorDone)
+	writeDurField(&w, "Unmarshal", l.Unmarshal)
+	writeDurField(&w, "UnmarshalError", l.UnmarshalError)
 
-	writeField(&w, "WillRetry", "%t", at.WillRetry)
-	writeDurField(&w, "Retry", at.SDKRetryStart, at.SDKRetryDone)
+	writeField(&w, "WillRetry", "%t", l.WillRetry)
+	writeDurField(&w, "Retry", l.Retry)
 
-	fmt.Fprintf(&w, "\n\t\tHTTP: %s", at.HTTPTrace)
-	if at.Err != nil {
-		fmt.Fprintf(&w, "\n\t\tError: %v", at.Err)
+	fmt.Fprintf(&w, "\n\t\tHTTP: %s", t.HTTPTrace)
+	if t.Err != nil {
+		fmt.Fprintf(&w, "\n\t\tError: %v", t.Err)
 	}
 
 	return w.String()
@@ -227,28 +309,50 @@ func NewHTTPTrace(ctx context.Context) *HTTPTrace {
 	return t
 }
 
+// Latency returns the latencies for an HTTP request.
+func (t *HTTPTrace) Latency() HTTPLatency {
+	latency := HTTPLatency{
+		Latency:    safeTimeDelta(t.Start, t.Finish),
+		ConnReused: t.Reused,
+
+		WriteHeader:           safeTimeDelta(t.GetConnDone, t.WriteHeaderDone),
+		WriteRequest:          safeTimeDelta(t.GetConnDone, t.WriteRequestDone),
+		WaitResponseFirstByte: safeTimeDelta(t.WriteRequestDone, t.FirstResponseByte),
+		ReadHeader:            safeTimeDelta(t.ReadHeaderStart, t.ReadHeaderDone),
+		ReadBody:              safeTimeDelta(t.ReadBodyStart, t.ReadBodyDone),
+	}
+
+	if !t.Reused {
+		latency.GetConn = safeTimeDelta(t.GetConnStart, t.GetConnDone)
+		latency.DNS = safeTimeDelta(t.DNSStart, t.DNSDone)
+		latency.Connect = safeTimeDelta(t.ConnectStart, t.ConnectDone)
+		latency.TLS = safeTimeDelta(t.TLSHandshakeStart, t.TLSHandshakeDone)
+	} else {
+		latency.GetConn = safeTimeDelta(t.Start, t.GetConnDone)
+	}
+
+	return latency
+}
+
 func (t *HTTPTrace) String() string {
 	var w strings.Builder
 
-	writeDurField(&w, "Latency", t.Start, t.Finish)
-	writeField(&w, "ConnReused", "%t", t.Reused)
+	l := t.Latency()
+	writeDurField(&w, "Latency", l.Latency)
+	writeField(&w, "ConnReused", "%t", l.ConnReused)
+	writeDurField(&w, "GetConn", l.GetConn)
 
-	if !t.Reused {
-		writeDurField(&w, "GetConn", t.GetConnStart, t.GetConnDone)
-	} else {
-		writeDurField(&w, "GetConn", t.Start, t.GetConnDone)
-	}
-
-	writeDurField(&w, "WriteRequest", t.GetConnDone, t.WriteRequestDone)
-	writeDurField(&w, "WaitResponseFirstByte", t.Start, t.FirstResponseByte)
-	writeDurField(&w, "ReadResponseHeader", t.ReadHeaderStart, t.ReadHeaderDone)
-	writeDurField(&w, "ReadResponseBody", t.ReadBodyStart, t.ReadBodyDone)
+	writeDurField(&w, "WriteHeader", l.WriteHeader)
+	writeDurField(&w, "WriteRequest", l.WriteRequest)
+	writeDurField(&w, "WaitResponseFirstByte", l.WaitResponseFirstByte)
+	writeDurField(&w, "ReadHeader", l.ReadHeader)
+	writeDurField(&w, "ReadBody", l.ReadBody)
 
 	if !t.Reused {
 		fmt.Fprintf(&w, "\n\t\t\tConn: ")
-		writeDurField(&w, "DNS", t.DNSStart, t.DNSDone)
-		writeDurField(&w, "Connect", t.ConnectStart, t.ConnectDone)
-		writeDurField(&w, "TLS", t.TLSHandshakeStart, t.TLSHandshakeDone)
+		writeDurField(&w, "DNS", l.DNS)
+		writeDurField(&w, "Connect", l.Connect)
+		writeDurField(&w, "TLS", l.TLS)
 	}
 
 	return w.String()
@@ -293,16 +397,24 @@ func (t *HTTPTrace) wroteRequest(info httptrace.WroteRequestInfo) {
 	t.WriteRequestDone = time.Now()
 }
 
+func safeTimeDelta(start, end time.Time) time.Duration {
+	if start.IsZero() || end.IsZero() {
+		return 0
+	}
+
+	return end.Sub(start)
+}
+
 func writeField(w io.Writer, field string, format string, args ...interface{}) error {
 	_, err := fmt.Fprintf(w, "%s: "+format+", ", append([]interface{}{field}, args...)...)
 	return err
 }
 
-func writeDurField(w io.Writer, field string, start, stop time.Time) error {
-	if start.IsZero() || stop.IsZero() {
+func writeDurField(w io.Writer, field string, dur time.Duration) error {
+	if dur == 0 {
 		return nil
 	}
 
-	_, err := fmt.Fprintf(w, "%s: %s, ", field, stop.Sub(start))
+	_, err := fmt.Fprintf(w, "%s: %s, ", field, dur)
 	return err
 }
