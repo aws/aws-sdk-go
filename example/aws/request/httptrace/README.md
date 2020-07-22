@@ -7,9 +7,6 @@ like SNS's `PublishWithContext`.
 The `trace.go` file demonstrates how the `httptrace` package's `ClientTrace`
 can be created to gather timing information from HTTP requests made.
 
-The `logger.go` file demonstrates how the trace information can be combined to
-retrieve timing data for the different stages of the request.
-
 The `config.go` file provides additional configuration settings to control how
 the HTTP client and its transport is configured. Such as, timeouts, and
 keepalive.
@@ -36,5 +33,24 @@ Message: My Really cool Message
 The example will output the http trace timing information for how long the request took.
 
 ```
-Latency: 79.863505ms ConnectionReused: false DNSStartAt: 280.452µs DNSDoneAt: 1.526342ms DNSDur: 1.24589ms ConnectStartAt: 1.533484ms ConnectDoneAt: 11.290792ms ConnectDur: 9.757308ms TLSStatAt: 11.331066ms TLSDoneAt: 33.912968ms TLSDur: 22.581902ms RequestWritten 34.951272ms RespFirstByte: 79.534808ms WaitRespFirstByte: 44.583536ms
+2020/07/21 15:39:07 Latency: 278.508656ms, Validate: 19.515µs, Build: 190.755µs, Attempts: 1,
+	Attempt: 0, Latency: 278.240054ms, Sign: 453.163µs, Send: 277.580235ms, Unmarshal: 202.311µs, WillRetry: false,
+		HTTP: Latency: 277.580856ms, ConnReused: false, GetConn: 225.662398ms, WriteRequest: 325.956µs, WaitResponseFirstByte: 277.509316ms, ReadResponseHeader: 71.234µs,
+			Conn: DNS: 20.385136ms, Connect: 14.947772ms, TLS: 189.910822ms,
+
+Message: second
+2020/07/21 15:39:09 Latency: 101.936094ms, Validate: 2.644µs, Build: 67.157µs, Attempts: 1,
+	Attempt: 0, Latency: 101.836442ms, Sign: 122.098µs, Send: 101.517516ms, Unmarshal: 191.31µs, WillRetry: false,
+		HTTP: Latency: 101.518147ms, ConnReused: true, GetConn: 38.265µs, WriteRequest: 178.058µs, WaitResponseFirstByte: 101.457147ms, ReadResponseHeader: 60.526µs,
+
+Message: thrid
+2020/07/21 15:39:10 Latency: 32.373919ms, Validate: 2.998µs, Build: 39.136µs, Attempts: 1,
+	Attempt: 0, Latency: 32.295677ms, Sign: 104.978µs, Send: 32.040306ms, Unmarshal: 146.096µs, WillRetry: false,
+		HTTP: Latency: 32.04078ms, ConnReused: true, GetConn: 33.36µs, WriteRequest: 166.508µs, WaitResponseFirstByte: 31.980933ms, ReadResponseHeader: 59.235µs,
+
+Message: fourth
+2020/07/21 15:39:13 Latency: 33.353819ms, Validate: 2.002µs, Build: 36.807µs, Attempts: 1,
+	Attempt: 0, Latency: 33.29846ms, Sign: 70.238µs, Send: 33.125914ms, Unmarshal: 98.181µs, WillRetry: false,
+		HTTP: Latency: 33.126453ms, ConnReused: true, GetConn: 47.516µs, WriteRequest: 251.875µs, WaitResponseFirstByte: 33.05992ms, ReadResponseHeader: 66.017µs,
 ```
+
