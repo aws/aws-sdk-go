@@ -20,6 +20,7 @@
     "DescribeChannel": "Gets details about a channel",
     "DescribeInput": "Produces details about an input",
     "DescribeInputDevice": "Gets the details for the input device",
+    "DescribeInputDeviceThumbnail": "Get the latest thumbnail data for the input device.",
     "DescribeInputSecurityGroup": "Produces a summary of an Input Security Group",
     "DescribeMultiplex": "Gets details about a multiplex.",
     "DescribeMultiplexProgram": "Get the details for a program in a multiplex.",
@@ -134,10 +135,13 @@
         "AudioCodecSettings$Ac3Settings": null
       }
     },
+    "AcceptHeader": {
+      "base": "Accept Header",
+      "refs": {}
+    },
     "AccessDenied": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "AfdSignaling": {
       "base": "Afd Signaling",
@@ -328,13 +332,11 @@
     },
     "BadGatewayException": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "BadRequestException": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "BatchScheduleActionCreateRequest": {
       "base": "A list of schedule actions to create (in a request) or that have been created (in a response).",
@@ -362,13 +364,11 @@
     },
     "BatchUpdateScheduleRequest": {
       "base": "A request to create actions (add actions to the schedule), delete actions (remove actions from the schedule), or both create and delete actions.",
-      "refs": {
-      }
+      "refs": {}
     },
     "BatchUpdateScheduleResult": {
       "base": "Results of a batch schedule update.",
-      "refs": {
-      }
+      "refs": {}
     },
     "BlackoutSlate": {
       "base": "Blackout Slate",
@@ -479,8 +479,7 @@
     },
     "ChannelConfigurationValidationError": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "ChannelEgressEndpoint": {
       "base": null,
@@ -510,53 +509,43 @@
     },
     "ConflictException": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "CreateChannel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "CreateChannelResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "CreateInput": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "CreateInputResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "CreateInputSecurityGroupResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "CreateMultiplex": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "CreateMultiplexProgram": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "CreateMultiplexProgramResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "CreateMultiplexResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "DeviceSettingsSyncState": {
       "base": "The status of the action to synchronize the device configuration. If you change the configuration of the input device (for example, the maximum bitrate), MediaLive sends the new data to the device. The device might not update itself immediately. SYNCED means the device has updated its configuration. SYNCING means that it has not updated its configuration.",
@@ -759,8 +748,7 @@
     },
     "Empty": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "EncoderSettings": {
       "base": "Encoder Settings",
@@ -839,8 +827,7 @@
     },
     "ForbiddenException": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "FrameCaptureGroupSettings": {
       "base": "Frame Capture Group Settings",
@@ -868,8 +855,7 @@
     },
     "GatewayTimeoutException": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "GlobalConfiguration": {
       "base": "Global Configuration",
@@ -1102,7 +1088,7 @@
     "H265RateControlMode": {
       "base": "H265 Rate Control Mode",
       "refs": {
-        "H265Settings$RateControlMode": "Rate control mode.\n\nQVBR: Quality will match the specified quality level except when it is constrained by the\nmaximum bitrate.  Recommended if you or your viewers pay for bandwidth.\n\nCBR: Quality varies, depending on the video complexity. Recommended only if you distribute\nyour assets to devices that cannot handle variable bitrates."
+        "H265Settings$RateControlMode": "Rate control mode.\n\nQVBR: Quality will match the specified quality level except when it is constrained by the\nmaximum bitrate.  Recommended if you or your viewers pay for bandwidth.\n\nCBR: Quality varies, depending on the video complexity. Recommended only if you distribute\nyour assets to devices that cannot handle variable bitrates.\n\nMultiplex: This rate control mode is only supported (and is required) when the video is being\ndelivered to a MediaLive Multiplex in which case the rate control configuration is controlled\nby the properties within the Multiplex Program."
       }
     },
     "H265ScanType": {
@@ -1428,8 +1414,7 @@
     },
     "InputDevice": {
       "base": "An input device.",
-      "refs": {
-      }
+      "refs": {}
     },
     "InputDeviceActiveInput": {
       "base": "The source at the input device that is currently active.",
@@ -1445,8 +1430,7 @@
     },
     "InputDeviceConfigurationValidationError": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "InputDeviceConfiguredInput": {
       "base": "The source to activate (use) from the input device.",
@@ -1615,8 +1599,7 @@
     },
     "InputSecurityGroupWhitelistRequest": {
       "base": "Request of IPv4 CIDR addresses to whitelist in a security group.",
-      "refs": {
-      }
+      "refs": {}
     },
     "InputSettings": {
       "base": "Live Event input parameters. There can be multiple inputs in a single Live Event.",
@@ -1702,18 +1685,15 @@
     },
     "InternalServerErrorException": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "InternalServiceError": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "InvalidRequest": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "KeyProviderSettings": {
       "base": "Key Provider Settings",
@@ -1729,48 +1709,39 @@
     },
     "LimitExceeded": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "ListChannelsResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "ListInputDevicesResultModel": {
       "base": "The list of input devices owned by the AWS account.",
-      "refs": {
-      }
+      "refs": {}
     },
     "ListInputSecurityGroupsResultModel": {
       "base": "Result of input security group list request",
-      "refs": {
-      }
+      "refs": {}
     },
     "ListInputsResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "ListMultiplexProgramsResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "ListMultiplexesResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "ListOfferingsResultModel": {
       "base": "ListOfferings response",
-      "refs": {
-      }
+      "refs": {}
     },
     "ListReservationsResultModel": {
       "base": "ListReservations response",
-      "refs": {
-      }
+      "refs": {}
     },
     "LogLevel": {
       "base": "The log level the user wants for their channel.",
@@ -2001,8 +1972,7 @@
     },
     "MultiplexConfigurationValidationError": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "MultiplexGroupSettings": {
       "base": "Multiplex Group Settings",
@@ -2132,8 +2102,7 @@
     },
     "NotFoundException": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "Offering": {
       "base": "Reserved resources available for purchase",
@@ -2242,13 +2211,11 @@
     },
     "PurchaseOffering": {
       "base": "PurchaseOffering request",
-      "refs": {
-      }
+      "refs": {}
     },
     "PurchaseOfferingResultModel": {
       "base": "PurchaseOffering response",
-      "refs": {
-      }
+      "refs": {}
     },
     "Rec601Settings": {
       "base": "Rec601 Settings",
@@ -2335,13 +2302,11 @@
     },
     "ResourceConflict": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "ResourceNotFound": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "RtmpCacheFullBehavior": {
       "base": "Rtmp Cache Full Behavior",
@@ -2399,13 +2364,11 @@
     },
     "ScheduleDeleteResultModel": {
       "base": "Result of a schedule deletion.",
-      "refs": {
-      }
+      "refs": {}
     },
     "ScheduleDescribeResultModel": {
       "base": "Results of a schedule describe.",
-      "refs": {
-      }
+      "refs": {}
     },
     "Scte20Convert608To708": {
       "base": "Scte20 Convert608 To708",
@@ -2661,8 +2624,7 @@
     },
     "TagsModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "TeletextDestinationSettings": {
       "base": "Teletext Destination Settings",
@@ -2708,8 +2670,7 @@
     },
     "TooManyRequestsException": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "TtmlDestinationSettings": {
       "base": "Ttml Destination Settings",
@@ -2749,73 +2710,59 @@
     },
     "UnprocessableEntityException": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateChannel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateChannelClass": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateChannelResultModel": {
       "base": "The updated channel's description.",
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateInput": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateInputDevice": {
       "base": "Updates an input device.",
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateInputResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateInputSecurityGroupResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateMultiplex": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateMultiplexProgram": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateMultiplexProgramResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateMultiplexResultModel": {
       "base": null,
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateReservation": {
       "base": "UpdateReservation request",
-      "refs": {
-      }
+      "refs": {}
     },
     "UpdateReservationResultModel": {
       "base": "UpdateReservation response",
-      "refs": {
-      }
+      "refs": {}
     },
     "ValidationError": {
       "base": null,
@@ -2939,7 +2886,6 @@
         "ChannelSummary$PipelinesRunningCount": "The number of currently healthy pipelines.",
         "DvbSubDestinationSettings$ShadowXOffset": "Specifies the horizontal offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels to the left.  All burn-in and DVB-Sub font settings must match.",
         "DvbSubDestinationSettings$ShadowYOffset": "Specifies the vertical offset of the shadow relative to the captions in pixels. A value of -2 would result in a shadow offset 2 pixels above the text.  All burn-in and DVB-Sub font settings must match.",
-        "H264Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
         "InputDeviceConfigurableSettings$MaxBitrate": "The maximum bitrate in bits per second. Set a value here to throttle the bitrate of the source video.",
         "InputDeviceHdSettings$Height": "The height of the video source, in pixels.",
         "InputDeviceHdSettings$MaxBitrate": "The current maximum bitrate for ingesting this source, in bits per second. You can specify this maximum.",
@@ -3165,6 +3111,7 @@
         "H264Settings$FramerateDenominator": "Framerate denominator.",
         "H264Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H264Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
+        "H264Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
         "H265Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H265Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
         "H265Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
@@ -3805,6 +3752,7 @@
         "M3u8Settings$Scte35Pid": "Packet Identifier (PID) of the SCTE-35 stream in the transport stream. Can be entered as a decimal or hexadecimal value.",
         "M3u8Settings$TimedMetadataPid": "Packet Identifier (PID) of the timed metadata stream in the transport stream. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
         "M3u8Settings$VideoPid": "Packet Identifier (PID) of the elementary video stream in the transport stream. Can be entered as a decimal or hexadecimal value.",
+        "InputDeviceThumbnail$Body": "The binary data for the thumbnail that the Link device has most recently sent to MediaLive.",
         "MediaConnectFlow$FlowArn": "The unique ARN of the MediaConnect Flow being used as a source.",
         "MediaConnectFlowRequest$FlowArn": "The ARN of the MediaConnect Flow that you want to use as a source.",
         "MsSmoothGroupSettings$AcquisitionPointId": "The ID to include in each message in the sparse track. Ignored if sparseTrackType is NONE.",
@@ -3913,6 +3861,12 @@
         "DvbSdtSettings$ServiceProviderName": "The service provider name placed in the serviceDescriptor in the Service Description Table. Maximum length is 256 characters."
       }
     },
+    "__stringMin1Max35": {
+      "base": null,
+      "refs": {
+        "AudioDescription$LanguageCode": "RFC 5646 language code representing the language of the audio output track. Only used if languageControlMode is useConfigured, or there is no ISO 639 language code specified in the input."
+      }
+    },
     "__stringMin32Max32": {
       "base": null,
       "refs": {
@@ -3929,7 +3883,6 @@
     "__stringMin3Max3": {
       "base": null,
       "refs": {
-        "AudioDescription$LanguageCode": "Indicates the language of the audio output track. Only used if languageControlMode is useConfigured, or there is no ISO 639 language code specified in the input.",
         "CaptionLanguageMapping$LanguageCode": "Three character ISO 639-2 language code (see http://www.loc.gov/standards/iso639-2)"
       }
     },

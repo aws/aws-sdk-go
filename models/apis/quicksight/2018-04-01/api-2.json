@@ -28,6 +28,24 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "CreateAccountCustomization":{
+      "name":"CreateAccountCustomization",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/customizations"
+      },
+      "input":{"shape":"CreateAccountCustomizationRequest"},
+      "output":{"shape":"CreateAccountCustomizationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "CreateDashboard":{
       "name":"CreateDashboard",
       "http":{
@@ -159,6 +177,27 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "CreateNamespace":{
+      "name":"CreateNamespace",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}"
+      },
+      "input":{"shape":"CreateNamespaceRequest"},
+      "output":{"shape":"CreateNamespaceResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "CreateTemplate":{
       "name":"CreateTemplate",
       "http":{
@@ -234,6 +273,23 @@
         {"shape":"ThrottlingException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "DeleteAccountCustomization":{
+      "name":"DeleteAccountCustomization",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{AwsAccountId}/customizations"
+      },
+      "input":{"shape":"DeleteAccountCustomizationRequest"},
+      "output":{"shape":"DeleteAccountCustomizationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
       ]
     },
     "DeleteDashboard":{
@@ -339,6 +395,24 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DeleteNamespace":{
+      "name":"DeleteNamespace",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{AwsAccountId}/namespaces/{Namespace}"
+      },
+      "input":{"shape":"DeleteNamespaceRequest"},
+      "output":{"shape":"DeleteNamespaceResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "DeleteTemplate":{
       "name":"DeleteTemplate",
       "http":{
@@ -421,6 +495,7 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceUnavailableException"}
       ]
@@ -433,6 +508,41 @@
       },
       "input":{"shape":"DeleteUserByPrincipalIdRequest"},
       "output":{"shape":"DeleteUserByPrincipalIdResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "DescribeAccountCustomization":{
+      "name":"DescribeAccountCustomization",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/customizations"
+      },
+      "input":{"shape":"DescribeAccountCustomizationRequest"},
+      "output":{"shape":"DescribeAccountCustomizationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "DescribeAccountSettings":{
+      "name":"DescribeAccountSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/settings"
+      },
+      "input":{"shape":"DescribeAccountSettingsRequest"},
+      "output":{"shape":"DescribeAccountSettingsResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"InvalidParameterValueException"},
@@ -591,6 +701,23 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DescribeNamespace":{
+      "name":"DescribeNamespace",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/namespaces/{Namespace}"
+      },
+      "input":{"shape":"DescribeNamespaceRequest"},
+      "output":{"shape":"DescribeNamespaceResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "DescribeTemplate":{
       "name":"DescribeTemplate",
       "http":{
@@ -707,6 +834,7 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceUnavailableException"}
       ]
@@ -728,6 +856,26 @@
         {"shape":"DomainNotWhitelistedException"},
         {"shape":"QuickSightUserNotFoundException"},
         {"shape":"IdentityTypeNotSupportedException"},
+        {"shape":"SessionLifetimeInMinutesInvalidException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "GetSessionEmbedUrl":{
+      "name":"GetSessionEmbedUrl",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/session-embed-url"
+      },
+      "input":{"shape":"GetSessionEmbedUrlRequest"},
+      "output":{"shape":"GetSessionEmbedUrlResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"QuickSightUserNotFoundException"},
         {"shape":"SessionLifetimeInMinutesInvalidException"},
         {"shape":"UnsupportedUserEditionException"},
         {"shape":"InternalFailureException"}
@@ -888,6 +1036,25 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListNamespaces":{
+      "name":"ListNamespaces",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/namespaces"
+      },
+      "input":{"shape":"ListNamespacesRequest"},
+      "output":{"shape":"ListNamespacesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -1021,6 +1188,7 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceUnavailableException"}
       ]
@@ -1039,6 +1207,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InvalidNextTokenException"},
+        {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceUnavailableException"}
       ]
@@ -1111,6 +1280,40 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "UpdateAccountCustomization":{
+      "name":"UpdateAccountCustomization",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{AwsAccountId}/customizations"
+      },
+      "input":{"shape":"UpdateAccountCustomizationRequest"},
+      "output":{"shape":"UpdateAccountCustomizationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "UpdateAccountSettings":{
+      "name":"UpdateAccountSettings",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{AwsAccountId}/settings"
+      },
+      "input":{"shape":"UpdateAccountSettingsRequest"},
+      "output":{"shape":"UpdateAccountSettingsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
       ]
     },
     "UpdateDashboard":{
@@ -1391,6 +1594,7 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"PreconditionNotMetException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceUnavailableException"}
       ]
@@ -1405,6 +1609,21 @@
       },
       "error":{"httpStatusCode":401},
       "exception":true
+    },
+    "AccountCustomization":{
+      "type":"structure",
+      "members":{
+        "DefaultTheme":{"shape":"Arn"}
+      }
+    },
+    "AccountSettings":{
+      "type":"structure",
+      "members":{
+        "AccountName":{"shape":"String"},
+        "Edition":{"shape":"Edition"},
+        "DefaultNamespace":{"shape":"Namespace"},
+        "NotificationEmail":{"shape":"String"}
+      }
     },
     "ActionList":{
       "type":"list",
@@ -1704,6 +1923,39 @@
       "type":"string",
       "pattern":"^arn:[-a-z0-9]*:quicksight:[-a-z0-9]*:[0-9]{12}:datasource/.+"
     },
+    "CreateAccountCustomizationRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "AccountCustomization"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "AccountCustomization":{"shape":"AccountCustomization"}
+      }
+    },
+    "CreateAccountCustomizationResponse":{
+      "type":"structure",
+      "members":{
+        "AwsAccountId":{"shape":"AwsAccountId"},
+        "Namespace":{"shape":"Namespace"},
+        "AccountCustomization":{"shape":"AccountCustomization"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "CreateColumnsOperation":{
       "type":"structure",
       "required":["Columns"],
@@ -1979,6 +2231,39 @@
         "IngestionId":{"shape":"IngestionId"},
         "IngestionStatus":{"shape":"IngestionStatus"},
         "RequestId":{"shape":"string"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "CreateNamespaceRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Namespace",
+        "IdentityStore"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{"shape":"Namespace"},
+        "IdentityStore":{"shape":"IdentityStore"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateNamespaceResponse":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Name":{"shape":"Namespace"},
+        "CapacityRegion":{"shape":"String"},
+        "CreationStatus":{"shape":"NamespaceStatus"},
+        "IdentityStore":{"shape":"IdentityStore"},
+        "RequestId":{"shape":"String"},
         "Status":{
           "shape":"StatusCode",
           "location":"statusCode"
@@ -2556,6 +2841,32 @@
       "member":{"shape":"DecimalParameter"},
       "max":100
     },
+    "DeleteAccountCustomizationRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        }
+      }
+    },
+    "DeleteAccountCustomizationResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "DeleteDashboardRequest":{
       "type":"structure",
       "required":[
@@ -2759,6 +3070,35 @@
       "type":"structure",
       "members":{
         "AssignmentName":{"shape":"IAMPolicyAssignmentName"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "DeleteNamespaceRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Namespace"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"uri",
+          "locationName":"Namespace"
+        }
+      }
+    },
+    "DeleteNamespaceResponse":{
+      "type":"structure",
+      "members":{
         "RequestId":{"shape":"String"},
         "Status":{
           "shape":"StatusCode",
@@ -2988,6 +3328,62 @@
       "type":"string",
       "max":1,
       "min":1
+    },
+    "DescribeAccountCustomizationRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "Resolved":{
+          "shape":"boolean",
+          "location":"querystring",
+          "locationName":"resolved"
+        }
+      }
+    },
+    "DescribeAccountCustomizationResponse":{
+      "type":"structure",
+      "members":{
+        "AwsAccountId":{"shape":"AwsAccountId"},
+        "Namespace":{"shape":"Namespace"},
+        "AccountCustomization":{"shape":"AccountCustomization"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "DescribeAccountSettingsRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        }
+      }
+    },
+    "DescribeAccountSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "AccountSettings":{"shape":"AccountSettings"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
     },
     "DescribeDashboardPermissionsRequest":{
       "type":"structure",
@@ -3293,6 +3689,36 @@
         }
       }
     },
+    "DescribeNamespaceRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Namespace"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"uri",
+          "locationName":"Namespace"
+        }
+      }
+    },
+    "DescribeNamespaceResponse":{
+      "type":"structure",
+      "members":{
+        "Namespace":{"shape":"NamespaceInfoV2"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "DescribeTemplateAliasRequest":{
       "type":"structure",
       "required":[
@@ -3564,9 +3990,21 @@
       "type":"list",
       "member":{"shape":"Double"}
     },
+    "Edition":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "ENTERPRISE"
+      ]
+    },
     "EmbeddingUrl":{
       "type":"string",
       "sensitive":true
+    },
+    "EntryPoint":{
+      "type":"string",
+      "max":1000,
+      "min":1
     },
     "ErrorInfo":{
       "type":"structure",
@@ -3707,6 +4145,43 @@
         "RequestId":{"shape":"String"}
       }
     },
+    "GetSessionEmbedUrlRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "EntryPoint":{
+          "shape":"EntryPoint",
+          "location":"querystring",
+          "locationName":"entry-point"
+        },
+        "SessionLifetimeInMinutes":{
+          "shape":"SessionLifetimeInMinutes",
+          "location":"querystring",
+          "locationName":"session-lifetime"
+        },
+        "UserArn":{
+          "shape":"Arn",
+          "location":"querystring",
+          "locationName":"user-arn"
+        }
+      }
+    },
+    "GetSessionEmbedUrlResponse":{
+      "type":"structure",
+      "members":{
+        "EmbedUrl":{"shape":"EmbeddingUrl"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
     "Group":{
       "type":"structure",
       "members":{
@@ -3805,6 +4280,10 @@
     "IdentityNameList":{
       "type":"list",
       "member":{"shape":"IdentityName"}
+    },
+    "IdentityStore":{
+      "type":"string",
+      "enum":["QUICKSIGHT"]
     },
     "IdentityType":{
       "type":"string",
@@ -4422,6 +4901,40 @@
         }
       }
     },
+    "ListNamespacesRequest":{
+      "type":"structure",
+      "required":["AwsAccountId"],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListNamespacesResponse":{
+      "type":"structure",
+      "members":{
+        "Namespaces":{"shape":"Namespaces"},
+        "NextToken":{"shape":"String"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -4873,6 +5386,45 @@
       "max":64,
       "pattern":"^[a-zA-Z0-9._-]*$"
     },
+    "NamespaceError":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"NamespaceErrorType"},
+        "Message":{"shape":"String"}
+      }
+    },
+    "NamespaceErrorType":{
+      "type":"string",
+      "enum":[
+        "PERMISSION_DENIED",
+        "INTERNAL_SERVICE_ERROR"
+      ]
+    },
+    "NamespaceInfoV2":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"Namespace"},
+        "Arn":{"shape":"Arn"},
+        "CapacityRegion":{"shape":"String"},
+        "CreationStatus":{"shape":"NamespaceStatus"},
+        "IdentityStore":{"shape":"IdentityStore"},
+        "NamespaceError":{"shape":"NamespaceError"}
+      }
+    },
+    "NamespaceStatus":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "CREATING",
+        "DELETING",
+        "RETRYABLE_FAILURE",
+        "NON_RETRYABLE_FAILURE"
+      ]
+    },
+    "Namespaces":{
+      "type":"list",
+      "member":{"shape":"NamespaceInfoV2"}
+    },
     "NonEmptyString":{
       "type":"string",
       "pattern":".*\\S.*"
@@ -5066,7 +5618,8 @@
           "location":"uri",
           "locationName":"Namespace"
         },
-        "UserName":{"shape":"UserName"}
+        "UserName":{"shape":"UserName"},
+        "CustomPermissionsName":{"shape":"RoleName"}
       }
     },
     "RegisterUserResponse":{
@@ -5185,6 +5738,12 @@
       "min":1,
       "pattern":"[\\w\\-]+"
     },
+    "RoleName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9+=,.@_-]+$"
+    },
     "RoleSessionName":{
       "type":"string",
       "max":64,
@@ -5211,6 +5770,7 @@
         "PermissionPolicy"
       ],
       "members":{
+        "Namespace":{"shape":"Namespace"},
         "Arn":{"shape":"Arn"},
         "PermissionPolicy":{"shape":"RowLevelPermissionPolicy"}
       }
@@ -5820,6 +6380,65 @@
         }
       }
     },
+    "UpdateAccountCustomizationRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "AccountCustomization"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "AccountCustomization":{"shape":"AccountCustomization"}
+      }
+    },
+    "UpdateAccountCustomizationResponse":{
+      "type":"structure",
+      "members":{
+        "AwsAccountId":{"shape":"AwsAccountId"},
+        "Namespace":{"shape":"Namespace"},
+        "AccountCustomization":{"shape":"AccountCustomization"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "UpdateAccountSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "DefaultNamespace"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DefaultNamespace":{"shape":"Namespace"},
+        "NotificationEmail":{"shape":"String"}
+      }
+    },
+    "UpdateAccountSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "UpdateDashboardPermissionsRequest":{
       "type":"structure",
       "required":[
@@ -6405,7 +7024,9 @@
           "locationName":"Namespace"
         },
         "Email":{"shape":"String"},
-        "Role":{"shape":"UserRole"}
+        "Role":{"shape":"UserRole"},
+        "CustomPermissionsName":{"shape":"RoleName"},
+        "UnapplyCustomPermissions":{"shape":"Boolean"}
       }
     },
     "UpdateUserResponse":{
@@ -6444,7 +7065,8 @@
         "Role":{"shape":"UserRole"},
         "IdentityType":{"shape":"IdentityType"},
         "Active":{"shape":"Boolean"},
-        "PrincipalId":{"shape":"String"}
+        "PrincipalId":{"shape":"String"},
+        "CustomPermissionsName":{"shape":"RoleName"}
       }
     },
     "UserList":{
