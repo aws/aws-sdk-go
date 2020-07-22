@@ -110,6 +110,108 @@ func (c *QuickSight) CancelIngestionWithContext(ctx aws.Context, input *CancelIn
 	return out, req.Send()
 }
 
+const opCreateAccountCustomization = "CreateAccountCustomization"
+
+// CreateAccountCustomizationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccountCustomization operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccountCustomization for more information on using the CreateAccountCustomization
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAccountCustomizationRequest method.
+//    req, resp := client.CreateAccountCustomizationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateAccountCustomization
+func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCustomizationInput) (req *request.Request, output *CreateAccountCustomizationOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccountCustomization,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/customizations",
+	}
+
+	if input == nil {
+		input = &CreateAccountCustomizationInput{}
+	}
+
+	output = &CreateAccountCustomizationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAccountCustomization API operation for Amazon QuickSight.
+//
+// Creates a customization for the Amazon QuickSight subscription associated
+// with your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateAccountCustomization for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceExistsException
+//   The resource specified already exists.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateAccountCustomization
+func (c *QuickSight) CreateAccountCustomization(input *CreateAccountCustomizationInput) (*CreateAccountCustomizationOutput, error) {
+	req, out := c.CreateAccountCustomizationRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccountCustomizationWithContext is the same as CreateAccountCustomization with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccountCustomization for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateAccountCustomizationWithContext(ctx aws.Context, input *CreateAccountCustomizationInput, opts ...request.Option) (*CreateAccountCustomizationOutput, error) {
+	req, out := c.CreateAccountCustomizationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDashboard = "CreateDashboard"
 
 // CreateDashboardRequest generates a "aws/request.Request" representing the
@@ -855,6 +957,125 @@ func (c *QuickSight) CreateIngestionWithContext(ctx aws.Context, input *CreateIn
 	return out, req.Send()
 }
 
+const opCreateNamespace = "CreateNamespace"
+
+// CreateNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateNamespace for more information on using the CreateNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateNamespaceRequest method.
+//    req, resp := client.CreateNamespaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateNamespace
+func (c *QuickSight) CreateNamespaceRequest(input *CreateNamespaceInput) (req *request.Request, output *CreateNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opCreateNamespace,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}",
+	}
+
+	if input == nil {
+		input = &CreateNamespaceInput{}
+	}
+
+	output = &CreateNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateNamespace API operation for Amazon QuickSight.
+//
+// (Enterprise edition only) Creates a new namespace for you to use with Amazon
+// QuickSight.
+//
+// A namespace allows you to isolate the QuickSight users and groups that are
+// registered for that namespace. Users that access the namespace can share
+// assets only with other users or groups in the same namespace. They can't
+// see users and groups in other namespaces. You can create a namespace after
+// your AWS account is subscribed to QuickSight. The namespace must be unique
+// within the AWS account. By default, there is a limit of 100 namespaces per
+// AWS account. To increase your limit, create a ticket with AWS Support.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateNamespace for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * LimitExceededException
+//   A limit is exceeded.
+//
+//   * ResourceExistsException
+//   The resource specified already exists.
+//
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateNamespace
+func (c *QuickSight) CreateNamespace(input *CreateNamespaceInput) (*CreateNamespaceOutput, error) {
+	req, out := c.CreateNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// CreateNamespaceWithContext is the same as CreateNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateNamespaceWithContext(ctx aws.Context, input *CreateNamespaceInput, opts ...request.Option) (*CreateNamespaceOutput, error) {
+	req, out := c.CreateNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateTemplate = "CreateTemplate"
 
 // CreateTemplateRequest generates a "aws/request.Request" representing the
@@ -1286,6 +1507,104 @@ func (c *QuickSight) CreateThemeAlias(input *CreateThemeAliasInput) (*CreateThem
 // for more information on using Contexts.
 func (c *QuickSight) CreateThemeAliasWithContext(ctx aws.Context, input *CreateThemeAliasInput, opts ...request.Option) (*CreateThemeAliasOutput, error) {
 	req, out := c.CreateThemeAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAccountCustomization = "DeleteAccountCustomization"
+
+// DeleteAccountCustomizationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccountCustomization operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccountCustomization for more information on using the DeleteAccountCustomization
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAccountCustomizationRequest method.
+//    req, resp := client.DeleteAccountCustomizationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteAccountCustomization
+func (c *QuickSight) DeleteAccountCustomizationRequest(input *DeleteAccountCustomizationInput) (req *request.Request, output *DeleteAccountCustomizationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccountCustomization,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/customizations",
+	}
+
+	if input == nil {
+		input = &DeleteAccountCustomizationInput{}
+	}
+
+	output = &DeleteAccountCustomizationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteAccountCustomization API operation for Amazon QuickSight.
+//
+// Deletes customizations for the QuickSight subscription on your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteAccountCustomization for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteAccountCustomization
+func (c *QuickSight) DeleteAccountCustomization(input *DeleteAccountCustomizationInput) (*DeleteAccountCustomizationOutput, error) {
+	req, out := c.DeleteAccountCustomizationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccountCustomizationWithContext is the same as DeleteAccountCustomization with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccountCustomization for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteAccountCustomizationWithContext(ctx aws.Context, input *DeleteAccountCustomizationInput, opts ...request.Option) (*DeleteAccountCustomizationOutput, error) {
+	req, out := c.DeleteAccountCustomizationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1884,6 +2203,110 @@ func (c *QuickSight) DeleteIAMPolicyAssignmentWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opDeleteNamespace = "DeleteNamespace"
+
+// DeleteNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteNamespace for more information on using the DeleteNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteNamespaceRequest method.
+//    req, resp := client.DeleteNamespaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteNamespace
+func (c *QuickSight) DeleteNamespaceRequest(input *DeleteNamespaceInput) (req *request.Request, output *DeleteNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteNamespace,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}",
+	}
+
+	if input == nil {
+		input = &DeleteNamespaceInput{}
+	}
+
+	output = &DeleteNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteNamespace API operation for Amazon QuickSight.
+//
+// Deletes a namespace and the users and groups that are associated with the
+// namespace. This is an asynchronous process. Assets including dashboards,
+// analyses, datasets and data sources are not deleted. To delete these assets,
+// you use the APIs for the relevant asset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteNamespace for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteNamespace
+func (c *QuickSight) DeleteNamespace(input *DeleteNamespaceInput) (*DeleteNamespaceOutput, error) {
+	req, out := c.DeleteNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// DeleteNamespaceWithContext is the same as DeleteNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteNamespaceWithContext(ctx aws.Context, input *DeleteNamespaceInput, opts ...request.Option) (*DeleteNamespaceOutput, error) {
+	req, out := c.DeleteNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteTemplate = "DeleteTemplate"
 
 // DeleteTemplateRequest generates a "aws/request.Request" representing the
@@ -2355,6 +2778,9 @@ func (c *QuickSight) DeleteUserRequest(input *DeleteUserInput) (req *request.Req
 //   * ThrottlingException
 //   Access is throttled.
 //
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
 //   * InternalFailureException
 //   An internal failure occurred.
 //
@@ -2453,6 +2879,9 @@ func (c *QuickSight) DeleteUserByPrincipalIdRequest(input *DeleteUserByPrincipal
 //   * ThrottlingException
 //   Access is throttled.
 //
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
 //   * InternalFailureException
 //   An internal failure occurred.
 //
@@ -2476,6 +2905,203 @@ func (c *QuickSight) DeleteUserByPrincipalId(input *DeleteUserByPrincipalIdInput
 // for more information on using Contexts.
 func (c *QuickSight) DeleteUserByPrincipalIdWithContext(ctx aws.Context, input *DeleteUserByPrincipalIdInput, opts ...request.Option) (*DeleteUserByPrincipalIdOutput, error) {
 	req, out := c.DeleteUserByPrincipalIdRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAccountCustomization = "DescribeAccountCustomization"
+
+// DescribeAccountCustomizationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccountCustomization operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAccountCustomization for more information on using the DescribeAccountCustomization
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAccountCustomizationRequest method.
+//    req, resp := client.DescribeAccountCustomizationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeAccountCustomization
+func (c *QuickSight) DescribeAccountCustomizationRequest(input *DescribeAccountCustomizationInput) (req *request.Request, output *DescribeAccountCustomizationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAccountCustomization,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/customizations",
+	}
+
+	if input == nil {
+		input = &DescribeAccountCustomizationInput{}
+	}
+
+	output = &DescribeAccountCustomizationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAccountCustomization API operation for Amazon QuickSight.
+//
+// Describes the customizations associated with your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeAccountCustomization for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeAccountCustomization
+func (c *QuickSight) DescribeAccountCustomization(input *DescribeAccountCustomizationInput) (*DescribeAccountCustomizationOutput, error) {
+	req, out := c.DescribeAccountCustomizationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAccountCustomizationWithContext is the same as DescribeAccountCustomization with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAccountCustomization for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeAccountCustomizationWithContext(ctx aws.Context, input *DescribeAccountCustomizationInput, opts ...request.Option) (*DescribeAccountCustomizationOutput, error) {
+	req, out := c.DescribeAccountCustomizationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAccountSettings = "DescribeAccountSettings"
+
+// DescribeAccountSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccountSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAccountSettings for more information on using the DescribeAccountSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAccountSettingsRequest method.
+//    req, resp := client.DescribeAccountSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeAccountSettings
+func (c *QuickSight) DescribeAccountSettingsRequest(input *DescribeAccountSettingsInput) (req *request.Request, output *DescribeAccountSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAccountSettings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/settings",
+	}
+
+	if input == nil {
+		input = &DescribeAccountSettingsInput{}
+	}
+
+	output = &DescribeAccountSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAccountSettings API operation for Amazon QuickSight.
+//
+// Describes the settings that were used when your QuickSight subscription was
+// first created in this AWS Account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeAccountSettings for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeAccountSettings
+func (c *QuickSight) DescribeAccountSettings(input *DescribeAccountSettingsInput) (*DescribeAccountSettingsOutput, error) {
+	req, out := c.DescribeAccountSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAccountSettingsWithContext is the same as DescribeAccountSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAccountSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeAccountSettingsWithContext(ctx aws.Context, input *DescribeAccountSettingsInput, opts ...request.Option) (*DescribeAccountSettingsOutput, error) {
+	req, out := c.DescribeAccountSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3357,6 +3983,104 @@ func (c *QuickSight) DescribeIngestionWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
+const opDescribeNamespace = "DescribeNamespace"
+
+// DescribeNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeNamespace for more information on using the DescribeNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeNamespaceRequest method.
+//    req, resp := client.DescribeNamespaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeNamespace
+func (c *QuickSight) DescribeNamespaceRequest(input *DescribeNamespaceInput) (req *request.Request, output *DescribeNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opDescribeNamespace,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces/{Namespace}",
+	}
+
+	if input == nil {
+		input = &DescribeNamespaceInput{}
+	}
+
+	output = &DescribeNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeNamespace API operation for Amazon QuickSight.
+//
+// Describes the current namespace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeNamespace for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeNamespace
+func (c *QuickSight) DescribeNamespace(input *DescribeNamespaceInput) (*DescribeNamespaceOutput, error) {
+	req, out := c.DescribeNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// DescribeNamespaceWithContext is the same as DescribeNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeNamespaceWithContext(ctx aws.Context, input *DescribeNamespaceInput, opts ...request.Option) (*DescribeNamespaceOutput, error) {
+	req, out := c.DescribeNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeTemplate = "DescribeTemplate"
 
 // DescribeTemplateRequest generates a "aws/request.Request" representing the
@@ -4024,6 +4748,9 @@ func (c *QuickSight) DescribeUserRequest(input *DescribeUserInput) (req *request
 //   * ThrottlingException
 //   Access is throttled.
 //
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
 //   * InternalFailureException
 //   An internal failure occurred.
 //
@@ -4187,6 +4914,120 @@ func (c *QuickSight) GetDashboardEmbedUrl(input *GetDashboardEmbedUrlInput) (*Ge
 // for more information on using Contexts.
 func (c *QuickSight) GetDashboardEmbedUrlWithContext(ctx aws.Context, input *GetDashboardEmbedUrlInput, opts ...request.Option) (*GetDashboardEmbedUrlOutput, error) {
 	req, out := c.GetDashboardEmbedUrlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSessionEmbedUrl = "GetSessionEmbedUrl"
+
+// GetSessionEmbedUrlRequest generates a "aws/request.Request" representing the
+// client's request for the GetSessionEmbedUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSessionEmbedUrl for more information on using the GetSessionEmbedUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSessionEmbedUrlRequest method.
+//    req, resp := client.GetSessionEmbedUrlRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/GetSessionEmbedUrl
+func (c *QuickSight) GetSessionEmbedUrlRequest(input *GetSessionEmbedUrlInput) (req *request.Request, output *GetSessionEmbedUrlOutput) {
+	op := &request.Operation{
+		Name:       opGetSessionEmbedUrl,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/session-embed-url",
+	}
+
+	if input == nil {
+		input = &GetSessionEmbedUrlInput{}
+	}
+
+	output = &GetSessionEmbedUrlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSessionEmbedUrl API operation for Amazon QuickSight.
+//
+// Generates a session URL and authorization code that you can embed in your
+// web server code.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation GetSessionEmbedUrl for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceExistsException
+//   The resource specified already exists.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UserNotFoundException
+//   The user with the provided name isn't found. This error can happen in any
+//   operation that requires finding a user based on a provided user name, such
+//   as DeleteUser, DescribeUser, and so on.
+//
+//   * SessionLifetimeInMinutesInvalidException
+//   The number of minutes specified for the lifetime of a session isn't valid.
+//   The session lifetime must be 15-600 minutes.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/GetSessionEmbedUrl
+func (c *QuickSight) GetSessionEmbedUrl(input *GetSessionEmbedUrlInput) (*GetSessionEmbedUrlOutput, error) {
+	req, out := c.GetSessionEmbedUrlRequest(input)
+	return out, req.Send()
+}
+
+// GetSessionEmbedUrlWithContext is the same as GetSessionEmbedUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSessionEmbedUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) GetSessionEmbedUrlWithContext(ctx aws.Context, input *GetSessionEmbedUrlInput, opts ...request.Option) (*GetSessionEmbedUrlOutput, error) {
+	req, out := c.GetSessionEmbedUrlRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5374,6 +6215,168 @@ func (c *QuickSight) ListIngestionsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListNamespaces = "ListNamespaces"
+
+// ListNamespacesRequest generates a "aws/request.Request" representing the
+// client's request for the ListNamespaces operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListNamespaces for more information on using the ListNamespaces
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListNamespacesRequest method.
+//    req, resp := client.ListNamespacesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListNamespaces
+func (c *QuickSight) ListNamespacesRequest(input *ListNamespacesInput) (req *request.Request, output *ListNamespacesOutput) {
+	op := &request.Operation{
+		Name:       opListNamespaces,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/namespaces",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListNamespacesInput{}
+	}
+
+	output = &ListNamespacesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListNamespaces API operation for Amazon QuickSight.
+//
+// Lists the namespaces for the specified AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListNamespaces for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InvalidNextTokenException
+//   The NextToken value isn't valid.
+//
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListNamespaces
+func (c *QuickSight) ListNamespaces(input *ListNamespacesInput) (*ListNamespacesOutput, error) {
+	req, out := c.ListNamespacesRequest(input)
+	return out, req.Send()
+}
+
+// ListNamespacesWithContext is the same as ListNamespaces with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListNamespaces for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListNamespacesWithContext(ctx aws.Context, input *ListNamespacesInput, opts ...request.Option) (*ListNamespacesOutput, error) {
+	req, out := c.ListNamespacesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListNamespacesPages iterates over the pages of a ListNamespaces operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListNamespaces method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListNamespaces operation.
+//    pageNum := 0
+//    err := client.ListNamespacesPages(params,
+//        func(page *quicksight.ListNamespacesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *QuickSight) ListNamespacesPages(input *ListNamespacesInput, fn func(*ListNamespacesOutput, bool) bool) error {
+	return c.ListNamespacesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListNamespacesPagesWithContext same as ListNamespacesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListNamespacesPagesWithContext(ctx aws.Context, input *ListNamespacesInput, fn func(*ListNamespacesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListNamespacesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListNamespacesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListNamespacesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -6311,6 +7314,9 @@ func (c *QuickSight) ListUserGroupsRequest(input *ListUserGroupsInput) (req *req
 //   * ThrottlingException
 //   Access is throttled.
 //
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
 //   * InternalFailureException
 //   An internal failure occurred.
 //
@@ -6411,6 +7417,9 @@ func (c *QuickSight) ListUsersRequest(input *ListUsersInput) (req *request.Reque
 //
 //   * InvalidNextTokenException
 //   The NextToken value isn't valid.
+//
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
 //
 //   * InternalFailureException
 //   An internal failure occurred.
@@ -6914,6 +7923,203 @@ func (c *QuickSight) UntagResource(input *UntagResourceInput) (*UntagResourceOut
 // for more information on using Contexts.
 func (c *QuickSight) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAccountCustomization = "UpdateAccountCustomization"
+
+// UpdateAccountCustomizationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAccountCustomization operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAccountCustomization for more information on using the UpdateAccountCustomization
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAccountCustomizationRequest method.
+//    req, resp := client.UpdateAccountCustomizationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateAccountCustomization
+func (c *QuickSight) UpdateAccountCustomizationRequest(input *UpdateAccountCustomizationInput) (req *request.Request, output *UpdateAccountCustomizationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAccountCustomization,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/customizations",
+	}
+
+	if input == nil {
+		input = &UpdateAccountCustomizationInput{}
+	}
+
+	output = &UpdateAccountCustomizationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAccountCustomization API operation for Amazon QuickSight.
+//
+// Updates customizations associated with the QuickSight subscription on your
+// AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateAccountCustomization for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateAccountCustomization
+func (c *QuickSight) UpdateAccountCustomization(input *UpdateAccountCustomizationInput) (*UpdateAccountCustomizationOutput, error) {
+	req, out := c.UpdateAccountCustomizationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAccountCustomizationWithContext is the same as UpdateAccountCustomization with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAccountCustomization for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateAccountCustomizationWithContext(ctx aws.Context, input *UpdateAccountCustomizationInput, opts ...request.Option) (*UpdateAccountCustomizationOutput, error) {
+	req, out := c.UpdateAccountCustomizationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAccountSettings = "UpdateAccountSettings"
+
+// UpdateAccountSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAccountSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAccountSettings for more information on using the UpdateAccountSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAccountSettingsRequest method.
+//    req, resp := client.UpdateAccountSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateAccountSettings
+func (c *QuickSight) UpdateAccountSettingsRequest(input *UpdateAccountSettingsInput) (req *request.Request, output *UpdateAccountSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAccountSettings,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/settings",
+	}
+
+	if input == nil {
+		input = &UpdateAccountSettingsInput{}
+	}
+
+	output = &UpdateAccountSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAccountSettings API operation for Amazon QuickSight.
+//
+// Updates the settings for the Amazon QuickSight subscription in your AWS Account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateAccountSettings for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ResourceUnavailableException
+//   This resource is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateAccountSettings
+func (c *QuickSight) UpdateAccountSettings(input *UpdateAccountSettingsInput) (*UpdateAccountSettingsOutput, error) {
+	req, out := c.UpdateAccountSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAccountSettingsWithContext is the same as UpdateAccountSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAccountSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateAccountSettingsWithContext(ctx aws.Context, input *UpdateAccountSettingsInput, opts ...request.Option) (*UpdateAccountSettingsOutput, error) {
+	req, out := c.UpdateAccountSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8510,6 +9716,9 @@ func (c *QuickSight) UpdateUserRequest(input *UpdateUserInput) (req *request.Req
 //   * ThrottlingException
 //   Access is throttled.
 //
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
 //   * InternalFailureException
 //   An internal failure occurred.
 //
@@ -8599,6 +9808,81 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The customizations associated with your AWS account for QuickSight.
+type AccountCustomization struct {
+	_ struct{} `type:"structure"`
+
+	// The default theme for this QuickSight subscription.
+	DefaultTheme *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AccountCustomization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccountCustomization) GoString() string {
+	return s.String()
+}
+
+// SetDefaultTheme sets the DefaultTheme field's value.
+func (s *AccountCustomization) SetDefaultTheme(v string) *AccountCustomization {
+	s.DefaultTheme = &v
+	return s
+}
+
+// The QuickSight settings associated with your AWS account.
+type AccountSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The name associated with the QuickSight subscription in your AWS account.
+	AccountName *string `type:"string"`
+
+	// The default QuickSight namespace for your AWS account.
+	DefaultNamespace *string `type:"string"`
+
+	// The edition of QuickSight that you're currently subscribed to.
+	Edition *string `type:"string" enum:"Edition"`
+
+	// The main notification email for your QuickSight subscription.
+	NotificationEmail *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AccountSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccountSettings) GoString() string {
+	return s.String()
+}
+
+// SetAccountName sets the AccountName field's value.
+func (s *AccountSettings) SetAccountName(v string) *AccountSettings {
+	s.AccountName = &v
+	return s
+}
+
+// SetDefaultNamespace sets the DefaultNamespace field's value.
+func (s *AccountSettings) SetDefaultNamespace(v string) *AccountSettings {
+	s.DefaultNamespace = &v
+	return s
+}
+
+// SetEdition sets the Edition field's value.
+func (s *AccountSettings) SetEdition(v string) *AccountSettings {
+	s.Edition = &v
+	return s
+}
+
+// SetNotificationEmail sets the NotificationEmail field's value.
+func (s *AccountSettings) SetNotificationEmail(v string) *AccountSettings {
+	s.NotificationEmail = &v
+	return s
 }
 
 // The active AWS Identity and Access Management (IAM) policy assignment.
@@ -9506,6 +10790,133 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type CreateAccountCustomizationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The customizations you're adding to the QuickSight subscription for the AWS
+	// account. For example, you could add a default theme by setting AccountCustomization
+	// to the midnight theme (DefaultTheme="arn:aws:quicksight::aws:theme/MIDNIGHT")
+	// or to a custom theme (DefaultTheme="arn:aws:quicksight:us-west-2:111122223333:theme/bdb844d0-0fe9-4d9d-b520-0fe602d93639").
+	//
+	// AccountCustomization is a required field
+	AccountCustomization *AccountCustomization `type:"structure" required:"true"`
+
+	// The ID for the AWS account that you want to customize QuickSight for.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The namespace associated with the customization that you're creating.
+	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateAccountCustomizationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccountCustomizationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccountCustomizationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccountCustomizationInput"}
+	if s.AccountCustomization == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountCustomization"))
+	}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountCustomization sets the AccountCustomization field's value.
+func (s *CreateAccountCustomizationInput) SetAccountCustomization(v *AccountCustomization) *CreateAccountCustomizationInput {
+	s.AccountCustomization = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateAccountCustomizationInput) SetAwsAccountId(v string) *CreateAccountCustomizationInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *CreateAccountCustomizationInput) SetNamespace(v string) *CreateAccountCustomizationInput {
+	s.Namespace = &v
+	return s
+}
+
+type CreateAccountCustomizationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The customizations you're adding to the QuickSight subscription for the AWS
+	// account.
+	AccountCustomization *AccountCustomization `type:"structure"`
+
+	// The ID for the AWS account that you want to customize QuickSight for.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// The namespace associated with the customization you're creating.
+	Namespace *string `type:"string"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateAccountCustomizationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccountCustomizationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountCustomization sets the AccountCustomization field's value.
+func (s *CreateAccountCustomizationOutput) SetAccountCustomization(v *AccountCustomization) *CreateAccountCustomizationOutput {
+	s.AccountCustomization = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateAccountCustomizationOutput) SetAwsAccountId(v string) *CreateAccountCustomizationOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *CreateAccountCustomizationOutput) SetNamespace(v string) *CreateAccountCustomizationOutput {
+	s.Namespace = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateAccountCustomizationOutput) SetRequestId(v string) *CreateAccountCustomizationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateAccountCustomizationOutput) SetStatus(v int64) *CreateAccountCustomizationOutput {
+	s.Status = &v
+	return s
 }
 
 // A transform operation that creates calculated columns. Columns created in
@@ -10980,6 +12391,181 @@ func (s *CreateIngestionOutput) SetRequestId(v string) *CreateIngestionOutput {
 
 // SetStatus sets the Status field's value.
 func (s *CreateIngestionOutput) SetStatus(v int64) *CreateIngestionOutput {
+	s.Status = &v
+	return s
+}
+
+type CreateNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the AWS account that you want to create the QuickSight namespace
+	// in.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// Specifies the type of your user identity directory. Currently, this supports
+	// users with an identity type of QUICKSIGHT.
+	//
+	// IdentityStore is a required field
+	IdentityStore *string `type:"string" required:"true" enum:"IdentityStore"`
+
+	// The name that you want to use to describe the new namespace.
+	//
+	// Namespace is a required field
+	Namespace *string `type:"string" required:"true"`
+
+	// The tags that you want to associate with the namespace that you're creating.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateNamespaceInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.IdentityStore == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityStore"))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateNamespaceInput) SetAwsAccountId(v string) *CreateNamespaceInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetIdentityStore sets the IdentityStore field's value.
+func (s *CreateNamespaceInput) SetIdentityStore(v string) *CreateNamespaceInput {
+	s.IdentityStore = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *CreateNamespaceInput) SetNamespace(v string) *CreateNamespaceInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateNamespaceInput) SetTags(v []*Tag) *CreateNamespaceInput {
+	s.Tags = v
+	return s
+}
+
+type CreateNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the QuickSight namespace you created.
+	Arn *string `type:"string"`
+
+	// The AWS Region that you want to use for the free SPICE capacity for the new
+	// namespace. This is set to the region that you run CreateNamespace in.
+	CapacityRegion *string `type:"string"`
+
+	// The status of the creation of the namespace. This is an asynchronous process.
+	// A status of CREATED means that your namespace is ready to use. If an error
+	// occurs, it indicates if the process is retryable or non-retryable. In the
+	// case of a non-retryable error, refer to the error message for follow-up actions.
+	CreationStatus *string `type:"string" enum:"NamespaceStatus"`
+
+	// Specifies the type of your user identity directory. Currently, this supports
+	// users with an identity type of QUICKSIGHT.
+	IdentityStore *string `type:"string" enum:"IdentityStore"`
+
+	// The name of the new namespace that you created.
+	Name *string `type:"string"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateNamespaceOutput) SetArn(v string) *CreateNamespaceOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCapacityRegion sets the CapacityRegion field's value.
+func (s *CreateNamespaceOutput) SetCapacityRegion(v string) *CreateNamespaceOutput {
+	s.CapacityRegion = &v
+	return s
+}
+
+// SetCreationStatus sets the CreationStatus field's value.
+func (s *CreateNamespaceOutput) SetCreationStatus(v string) *CreateNamespaceOutput {
+	s.CreationStatus = &v
+	return s
+}
+
+// SetIdentityStore sets the IdentityStore field's value.
+func (s *CreateNamespaceOutput) SetIdentityStore(v string) *CreateNamespaceOutput {
+	s.IdentityStore = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateNamespaceOutput) SetName(v string) *CreateNamespaceOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateNamespaceOutput) SetRequestId(v string) *CreateNamespaceOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateNamespaceOutput) SetStatus(v int64) *CreateNamespaceOutput {
 	s.Status = &v
 	return s
 }
@@ -13450,6 +15036,89 @@ func (s *DecimalParameter) SetValues(v []*float64) *DecimalParameter {
 	return s
 }
 
+type DeleteAccountCustomizationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the AWS account that you want to delete QuickSight customizations
+	// from.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The namespace associated with the customization that you're deleting.
+	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteAccountCustomizationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccountCustomizationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccountCustomizationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccountCustomizationInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteAccountCustomizationInput) SetAwsAccountId(v string) *DeleteAccountCustomizationInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DeleteAccountCustomizationInput) SetNamespace(v string) *DeleteAccountCustomizationInput {
+	s.Namespace = &v
+	return s
+}
+
+type DeleteAccountCustomizationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DeleteAccountCustomizationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccountCustomizationOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteAccountCustomizationOutput) SetRequestId(v string) *DeleteAccountCustomizationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteAccountCustomizationOutput) SetStatus(v int64) *DeleteAccountCustomizationOutput {
+	s.Status = &v
+	return s
+}
+
 type DeleteDashboardInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14136,6 +15805,97 @@ func (s *DeleteIAMPolicyAssignmentOutput) SetRequestId(v string) *DeleteIAMPolic
 
 // SetStatus sets the Status field's value.
 func (s *DeleteIAMPolicyAssignmentOutput) SetStatus(v int64) *DeleteIAMPolicyAssignmentOutput {
+	s.Status = &v
+	return s
+}
+
+type DeleteNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the AWS account that you want to delete the QuickSight namespace
+	// from.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The namespace that you want to delete.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteNamespaceInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteNamespaceInput) SetAwsAccountId(v string) *DeleteNamespaceInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DeleteNamespaceInput) SetNamespace(v string) *DeleteNamespaceInput {
+	s.Namespace = &v
+	return s
+}
+
+type DeleteNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DeleteNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteNamespaceOutput) SetRequestId(v string) *DeleteNamespaceOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteNamespaceOutput) SetStatus(v int64) *DeleteNamespaceOutput {
 	s.Status = &v
 	return s
 }
@@ -14867,6 +16627,215 @@ func (s *DeleteUserOutput) SetRequestId(v string) *DeleteUserOutput {
 
 // SetStatus sets the Status field's value.
 func (s *DeleteUserOutput) SetStatus(v int64) *DeleteUserOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeAccountCustomizationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the AWS account that you want to describe QuickSight customizations
+	// for.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The namespace associated with the customization that you're describing.
+	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
+
+	// The status of the creation of the customization. This is an asynchronous
+	// process. A status of CREATED means that your customization is ready to use.
+	Resolved *bool `location:"querystring" locationName:"resolved" type:"boolean"`
+}
+
+// String returns the string representation
+func (s DescribeAccountCustomizationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountCustomizationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAccountCustomizationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAccountCustomizationInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeAccountCustomizationInput) SetAwsAccountId(v string) *DescribeAccountCustomizationInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DescribeAccountCustomizationInput) SetNamespace(v string) *DescribeAccountCustomizationInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetResolved sets the Resolved field's value.
+func (s *DescribeAccountCustomizationInput) SetResolved(v bool) *DescribeAccountCustomizationInput {
+	s.Resolved = &v
+	return s
+}
+
+type DescribeAccountCustomizationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The customizations associated with QuickSight.
+	AccountCustomization *AccountCustomization `type:"structure"`
+
+	// The ID for the AWS account that you want to describe QuickSight customizations
+	// for.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// The namespace associated with the customization that you're describing.
+	Namespace *string `type:"string"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeAccountCustomizationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountCustomizationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountCustomization sets the AccountCustomization field's value.
+func (s *DescribeAccountCustomizationOutput) SetAccountCustomization(v *AccountCustomization) *DescribeAccountCustomizationOutput {
+	s.AccountCustomization = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeAccountCustomizationOutput) SetAwsAccountId(v string) *DescribeAccountCustomizationOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DescribeAccountCustomizationOutput) SetNamespace(v string) *DescribeAccountCustomizationOutput {
+	s.Namespace = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeAccountCustomizationOutput) SetRequestId(v string) *DescribeAccountCustomizationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeAccountCustomizationOutput) SetStatus(v int64) *DescribeAccountCustomizationOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeAccountSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the AWS account that contains the QuickSight namespaces that you
+	// want to list.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeAccountSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAccountSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAccountSettingsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeAccountSettingsInput) SetAwsAccountId(v string) *DescribeAccountSettingsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+type DescribeAccountSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The settings associated with the QuickSight subscription associated with
+	// this AWS account. This information includes the edition of Amazon QuickSight
+	// that you subscribed to (Standard or Enterprise) and the notification email
+	// for the QuickSight subscription. The QuickSight console, the QuickSight subscription
+	// is sometimes referred to as a QuickSight "account" even though it is technically
+	// not an account, but a subscription in your AWS account.
+	AccountSettings *AccountSettings `type:"structure"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeAccountSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountSettings sets the AccountSettings field's value.
+func (s *DescribeAccountSettingsOutput) SetAccountSettings(v *AccountSettings) *DescribeAccountSettingsOutput {
+	s.AccountSettings = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeAccountSettingsOutput) SetRequestId(v string) *DescribeAccountSettingsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeAccountSettingsOutput) SetStatus(v int64) *DescribeAccountSettingsOutput {
 	s.Status = &v
 	return s
 }
@@ -15900,6 +17869,110 @@ func (s *DescribeIngestionOutput) SetStatus(v int64) *DescribeIngestionOutput {
 	return s
 }
 
+type DescribeNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the AWS account that contains the QuickSight namespace that you
+	// want to describe.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The namespace that you want to describe.
+	//
+	// Namespace is a required field
+	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeNamespaceInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeNamespaceInput) SetAwsAccountId(v string) *DescribeNamespaceInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DescribeNamespaceInput) SetNamespace(v string) *DescribeNamespaceInput {
+	s.Namespace = &v
+	return s
+}
+
+type DescribeNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The information about the namespace that you're describing. The response
+	// includes the namespace ARN, name, AWS Region, creation status, and identity
+	// store. DescribeNamespace also works for namespaces that are in the process
+	// of being created. For incomplete namespaces, this API lists the namespace
+	// error types and messages associated with the creation process.
+	Namespace *NamespaceInfoV2 `type:"structure"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DescribeNamespaceOutput) SetNamespace(v *NamespaceInfoV2) *DescribeNamespaceOutput {
+	s.Namespace = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeNamespaceOutput) SetRequestId(v string) *DescribeNamespaceOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeNamespaceOutput) SetStatus(v int64) *DescribeNamespaceOutput {
+	s.Status = &v
+	return s
+}
+
 type DescribeTemplateAliasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16108,6 +18181,7 @@ func (s *DescribeTemplateInput) SetVersionNumber(v int64) *DescribeTemplateInput
 type DescribeTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The AWS request ID for this operation.
 	RequestId *string `type:"string"`
 
 	// The HTTP status of the request.
@@ -17135,6 +19209,135 @@ func (s *GetDashboardEmbedUrlOutput) SetRequestId(v string) *GetDashboardEmbedUr
 
 // SetStatus sets the Status field's value.
 func (s *GetDashboardEmbedUrlOutput) SetStatus(v int64) *GetDashboardEmbedUrlOutput {
+	s.Status = &v
+	return s
+}
+
+type GetSessionEmbedUrlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the AWS account that contains the QuickSight session that you're
+	// embedding.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The entry point for the embedded session.
+	EntryPoint *string `location:"querystring" locationName:"entry-point" min:"1" type:"string"`
+
+	// How many minutes the session is valid. The session lifetime must be 15-600
+	// minutes.
+	SessionLifetimeInMinutes *int64 `location:"querystring" locationName:"session-lifetime" min:"15" type:"long"`
+
+	// The Amazon QuickSight user's Amazon Resource Name (ARN), for use with QUICKSIGHT
+	// identity type. You can use this for any Amazon QuickSight users in your account
+	// (readers, authors, or admins) authenticated as one of the following:
+	//
+	//    * Active Directory (AD) users or group members
+	//
+	//    * Invited nonfederated users
+	//
+	//    * IAM users and IAM role-based sessions authenticated through Federated
+	//    Single Sign-On using SAML, OpenID Connect, or IAM federation.
+	UserArn *string `location:"querystring" locationName:"user-arn" type:"string"`
+}
+
+// String returns the string representation
+func (s GetSessionEmbedUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSessionEmbedUrlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSessionEmbedUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSessionEmbedUrlInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.EntryPoint != nil && len(*s.EntryPoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntryPoint", 1))
+	}
+	if s.SessionLifetimeInMinutes != nil && *s.SessionLifetimeInMinutes < 15 {
+		invalidParams.Add(request.NewErrParamMinValue("SessionLifetimeInMinutes", 15))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *GetSessionEmbedUrlInput) SetAwsAccountId(v string) *GetSessionEmbedUrlInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetEntryPoint sets the EntryPoint field's value.
+func (s *GetSessionEmbedUrlInput) SetEntryPoint(v string) *GetSessionEmbedUrlInput {
+	s.EntryPoint = &v
+	return s
+}
+
+// SetSessionLifetimeInMinutes sets the SessionLifetimeInMinutes field's value.
+func (s *GetSessionEmbedUrlInput) SetSessionLifetimeInMinutes(v int64) *GetSessionEmbedUrlInput {
+	s.SessionLifetimeInMinutes = &v
+	return s
+}
+
+// SetUserArn sets the UserArn field's value.
+func (s *GetSessionEmbedUrlInput) SetUserArn(v string) *GetSessionEmbedUrlInput {
+	s.UserArn = &v
+	return s
+}
+
+type GetSessionEmbedUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A single-use URL that you can put into your server-side web page to embed
+	// your QuickSight session. This URL is valid for 5 minutes. The API provides
+	// the URL with an auth_code value that enables one (and only one) sign-on to
+	// a user session that is valid for 10 hours.
+	EmbedUrl *string `type:"string" sensitive:"true"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s GetSessionEmbedUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSessionEmbedUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetEmbedUrl sets the EmbedUrl field's value.
+func (s *GetSessionEmbedUrlOutput) SetEmbedUrl(v string) *GetSessionEmbedUrlOutput {
+	s.EmbedUrl = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetSessionEmbedUrlOutput) SetRequestId(v string) *GetSessionEmbedUrlOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetSessionEmbedUrlOutput) SetStatus(v int64) *GetSessionEmbedUrlOutput {
 	s.Status = &v
 	return s
 }
@@ -19170,6 +21373,121 @@ func (s *ListIngestionsOutput) SetStatus(v int64) *ListIngestionsOutput {
 	return s
 }
 
+type ListNamespacesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the AWS account that contains the QuickSight namespaces that you
+	// want to list.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// A pagination token that can be used in a subsequent request.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation
+func (s ListNamespacesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListNamespacesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListNamespacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListNamespacesInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListNamespacesInput) SetAwsAccountId(v string) *ListNamespacesInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListNamespacesInput) SetMaxResults(v int64) *ListNamespacesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListNamespacesInput) SetNextToken(v string) *ListNamespacesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListNamespacesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The information about the namespaces in this AWS account. The response includes
+	// the namespace ARN, name, AWS Region, notification email address, creation
+	// status, and identity store.
+	Namespaces []*NamespaceInfoV2 `type:"list"`
+
+	// A pagination token that can be used in a subsequent request.
+	NextToken *string `type:"string"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListNamespacesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListNamespacesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNamespaces sets the Namespaces field's value.
+func (s *ListNamespacesOutput) SetNamespaces(v []*NamespaceInfoV2) *ListNamespacesOutput {
+	s.Namespaces = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListNamespacesOutput) SetNextToken(v string) *ListNamespacesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListNamespacesOutput) SetRequestId(v string) *ListNamespacesOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListNamespacesOutput) SetStatus(v int64) *ListNamespacesOutput {
+	s.Status = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20660,6 +22978,108 @@ func (s *MySqlParameters) SetPort(v int64) *MySqlParameters {
 	return s
 }
 
+// Errors that occur during namespace creation.
+type NamespaceError struct {
+	_ struct{} `type:"structure"`
+
+	// The message for the error.
+	Message *string `type:"string"`
+
+	// The error type.
+	Type *string `type:"string" enum:"NamespaceErrorType"`
+}
+
+// String returns the string representation
+func (s NamespaceError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NamespaceError) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *NamespaceError) SetMessage(v string) *NamespaceError {
+	s.Message = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *NamespaceError) SetType(v string) *NamespaceError {
+	s.Type = &v
+	return s
+}
+
+// The error type.
+type NamespaceInfoV2 struct {
+	_ struct{} `type:"structure"`
+
+	// The namespace ARN.
+	Arn *string `type:"string"`
+
+	// The namespace AWS Region.
+	CapacityRegion *string `type:"string"`
+
+	// The creation status of a namespace that is not yet completely created.
+	CreationStatus *string `type:"string" enum:"NamespaceStatus"`
+
+	// The identity store used for the namespace.
+	IdentityStore *string `type:"string" enum:"IdentityStore"`
+
+	// The name of the error.
+	Name *string `type:"string"`
+
+	// An error that occured when the namespace was created.
+	NamespaceError *NamespaceError `type:"structure"`
+}
+
+// String returns the string representation
+func (s NamespaceInfoV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NamespaceInfoV2) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *NamespaceInfoV2) SetArn(v string) *NamespaceInfoV2 {
+	s.Arn = &v
+	return s
+}
+
+// SetCapacityRegion sets the CapacityRegion field's value.
+func (s *NamespaceInfoV2) SetCapacityRegion(v string) *NamespaceInfoV2 {
+	s.CapacityRegion = &v
+	return s
+}
+
+// SetCreationStatus sets the CreationStatus field's value.
+func (s *NamespaceInfoV2) SetCreationStatus(v string) *NamespaceInfoV2 {
+	s.CreationStatus = &v
+	return s
+}
+
+// SetIdentityStore sets the IdentityStore field's value.
+func (s *NamespaceInfoV2) SetIdentityStore(v string) *NamespaceInfoV2 {
+	s.IdentityStore = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *NamespaceInfoV2) SetName(v string) *NamespaceInfoV2 {
+	s.Name = &v
+	return s
+}
+
+// SetNamespaceError sets the NamespaceError field's value.
+func (s *NamespaceInfoV2) SetNamespaceError(v *NamespaceError) *NamespaceInfoV2 {
+	s.NamespaceError = v
+	return s
+}
+
 // Output column.
 type OutputColumn struct {
 	_ struct{} `type:"structure"`
@@ -21297,6 +23717,30 @@ type RegisterUserInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
+	// (Enterprise edition only) The name of the custom permissions profile that
+	// you want to assign to this user. Currently, custom permissions profile names
+	// are assigned to permissions profiles in the QuickSight console. You use this
+	// API to assign the named set of permissions to a QuickSight user.
+	//
+	// Customizing permissions in the QuickSight UI allows you to control a user's
+	// access to the following operations:
+	//
+	//    *
+	//
+	//    *
+	//
+	//    *
+	//
+	//    *
+	//
+	// QuickSight custom permissions are applied through IAM policies. Therefore,
+	// they override the permissions typically granted by assigning QuickSight users
+	// to one of the default security cohorts (admin, author, reader) in QuickSight.
+	//
+	// This feature is available only to QuickSight Enterprise edition subscriptions
+	// that use SAML 2.0-Based Federation for Single Sign-On (SSO).
+	CustomPermissionsName *string `min:"1" type:"string"`
+
 	// The email address of the user that you want to register.
 	//
 	// Email is a required field
@@ -21372,6 +23816,9 @@ func (s *RegisterUserInput) Validate() error {
 	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
 		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
 	}
+	if s.CustomPermissionsName != nil && len(*s.CustomPermissionsName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomPermissionsName", 1))
+	}
 	if s.Email == nil {
 		invalidParams.Add(request.NewErrParamRequired("Email"))
 	}
@@ -21403,6 +23850,12 @@ func (s *RegisterUserInput) Validate() error {
 // SetAwsAccountId sets the AwsAccountId field's value.
 func (s *RegisterUserInput) SetAwsAccountId(v string) *RegisterUserInput {
 	s.AwsAccountId = &v
+	return s
+}
+
+// SetCustomPermissionsName sets the CustomPermissionsName field's value.
+func (s *RegisterUserInput) SetCustomPermissionsName(v string) *RegisterUserInput {
+	s.CustomPermissionsName = &v
 	return s
 }
 
@@ -21944,6 +24397,9 @@ type RowLevelPermissionDataSet struct {
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
+	// The namespace associated with the row-level permissions dataset.
+	Namespace *string `type:"string"`
+
 	// Permission policy.
 	//
 	// PermissionPolicy is a required field
@@ -21979,6 +24435,12 @@ func (s *RowLevelPermissionDataSet) Validate() error {
 // SetArn sets the Arn field's value.
 func (s *RowLevelPermissionDataSet) SetArn(v string) *RowLevelPermissionDataSet {
 	s.Arn = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *RowLevelPermissionDataSet) SetNamespace(v string) *RowLevelPermissionDataSet {
+	s.Namespace = &v
 	return s
 }
 
@@ -24544,6 +27006,230 @@ func (s *UntagResourceOutput) SetStatus(v int64) *UntagResourceOutput {
 	return s
 }
 
+type UpdateAccountCustomizationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The customizations you want to update in QuickSight.
+	//
+	// AccountCustomization is a required field
+	AccountCustomization *AccountCustomization `type:"structure" required:"true"`
+
+	// The ID for the AWS account that you want to update QuickSight customizations
+	// for.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The namespace associated with the customization that you're updating.
+	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateAccountCustomizationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAccountCustomizationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAccountCustomizationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAccountCustomizationInput"}
+	if s.AccountCustomization == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountCustomization"))
+	}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountCustomization sets the AccountCustomization field's value.
+func (s *UpdateAccountCustomizationInput) SetAccountCustomization(v *AccountCustomization) *UpdateAccountCustomizationInput {
+	s.AccountCustomization = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateAccountCustomizationInput) SetAwsAccountId(v string) *UpdateAccountCustomizationInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *UpdateAccountCustomizationInput) SetNamespace(v string) *UpdateAccountCustomizationInput {
+	s.Namespace = &v
+	return s
+}
+
+type UpdateAccountCustomizationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The customizations associated with your QuickSight subscription.
+	AccountCustomization *AccountCustomization `type:"structure"`
+
+	// The ID for the AWS account that you want to update QuickSight customizations
+	// for.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// The namespace associated with the customization that you're updating.
+	Namespace *string `type:"string"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateAccountCustomizationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAccountCustomizationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountCustomization sets the AccountCustomization field's value.
+func (s *UpdateAccountCustomizationOutput) SetAccountCustomization(v *AccountCustomization) *UpdateAccountCustomizationOutput {
+	s.AccountCustomization = v
+	return s
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateAccountCustomizationOutput) SetAwsAccountId(v string) *UpdateAccountCustomizationOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *UpdateAccountCustomizationOutput) SetNamespace(v string) *UpdateAccountCustomizationOutput {
+	s.Namespace = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateAccountCustomizationOutput) SetRequestId(v string) *UpdateAccountCustomizationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateAccountCustomizationOutput) SetStatus(v int64) *UpdateAccountCustomizationOutput {
+	s.Status = &v
+	return s
+}
+
+type UpdateAccountSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the AWS account that contains the QuickSight namespaces that you
+	// want to list.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The default namespace for this AWS Account. Currently, the default is default.
+	// IAM users who register for the first time with QuickSight provide an email
+	// that becomes associated with the default namespace.
+	//
+	// DefaultNamespace is a required field
+	DefaultNamespace *string `type:"string" required:"true"`
+
+	// Email address used to send notifications regarding administration of QuickSight.
+	NotificationEmail *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateAccountSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAccountSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAccountSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAccountSettingsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DefaultNamespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultNamespace"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateAccountSettingsInput) SetAwsAccountId(v string) *UpdateAccountSettingsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDefaultNamespace sets the DefaultNamespace field's value.
+func (s *UpdateAccountSettingsInput) SetDefaultNamespace(v string) *UpdateAccountSettingsInput {
+	s.DefaultNamespace = &v
+	return s
+}
+
+// SetNotificationEmail sets the NotificationEmail field's value.
+func (s *UpdateAccountSettingsInput) SetNotificationEmail(v string) *UpdateAccountSettingsInput {
+	s.NotificationEmail = &v
+	return s
+}
+
+type UpdateAccountSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateAccountSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAccountSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateAccountSettingsOutput) SetRequestId(v string) *UpdateAccountSettingsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateAccountSettingsOutput) SetStatus(v int64) *UpdateAccountSettingsOutput {
+	s.Status = &v
+	return s
+}
+
 type UpdateDashboardInput struct {
 	_ struct{} `type:"structure"`
 
@@ -27082,6 +29768,12 @@ type UpdateUserInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
+	// The name of the custom permissions profile that you want to assign to this
+	// user. Currently, custom permissions profile names are assigned to permissions
+	// profiles in the QuickSight console. You use this API to assign the named
+	// set of permissions to a QuickSight user.
+	CustomPermissionsName *string `min:"1" type:"string"`
+
 	// The email address of the user that you want to update.
 	//
 	// Email is a required field
@@ -27104,6 +29796,12 @@ type UpdateUserInput struct {
 	//
 	// Role is a required field
 	Role *string `type:"string" required:"true" enum:"UserRole"`
+
+	// A flag that you use to indicate that you want to remove all custom permissions
+	// from this user. Using this parameter resets the user to the state it was
+	// in before a custom permissions profile was applied. This parameter defaults
+	// to NULL and it doesn't accept any other value.
+	UnapplyCustomPermissions *bool `type:"boolean"`
 
 	// The Amazon QuickSight user name that you want to update.
 	//
@@ -27129,6 +29827,9 @@ func (s *UpdateUserInput) Validate() error {
 	}
 	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
 		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.CustomPermissionsName != nil && len(*s.CustomPermissionsName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomPermissionsName", 1))
 	}
 	if s.Email == nil {
 		invalidParams.Add(request.NewErrParamRequired("Email"))
@@ -27161,6 +29862,12 @@ func (s *UpdateUserInput) SetAwsAccountId(v string) *UpdateUserInput {
 	return s
 }
 
+// SetCustomPermissionsName sets the CustomPermissionsName field's value.
+func (s *UpdateUserInput) SetCustomPermissionsName(v string) *UpdateUserInput {
+	s.CustomPermissionsName = &v
+	return s
+}
+
 // SetEmail sets the Email field's value.
 func (s *UpdateUserInput) SetEmail(v string) *UpdateUserInput {
 	s.Email = &v
@@ -27176,6 +29883,12 @@ func (s *UpdateUserInput) SetNamespace(v string) *UpdateUserInput {
 // SetRole sets the Role field's value.
 func (s *UpdateUserInput) SetRole(v string) *UpdateUserInput {
 	s.Role = &v
+	return s
+}
+
+// SetUnapplyCustomPermissions sets the UnapplyCustomPermissions field's value.
+func (s *UpdateUserInput) SetUnapplyCustomPermissions(v bool) *UpdateUserInput {
+	s.UnapplyCustomPermissions = &v
 	return s
 }
 
@@ -27315,6 +30028,9 @@ type User struct {
 	// The Amazon Resource Name (ARN) for the user.
 	Arn *string `type:"string"`
 
+	// The custom permissions profile associated with this user.
+	CustomPermissionsName *string `min:"1" type:"string"`
+
 	// The user's email address.
 	Email *string `type:"string"`
 
@@ -27363,6 +30079,12 @@ func (s *User) SetActive(v bool) *User {
 // SetArn sets the Arn field's value.
 func (s *User) SetArn(v string) *User {
 	s.Arn = &v
+	return s
+}
+
+// SetCustomPermissionsName sets the CustomPermissionsName field's value.
+func (s *User) SetCustomPermissionsName(v string) *User {
+	s.CustomPermissionsName = &v
 	return s
 }
 
@@ -27674,6 +30396,14 @@ const (
 )
 
 const (
+	// EditionStandard is a Edition enum value
+	EditionStandard = "STANDARD"
+
+	// EditionEnterprise is a Edition enum value
+	EditionEnterprise = "ENTERPRISE"
+)
+
+const (
 	// ExceptionResourceTypeUser is a ExceptionResourceType enum value
 	ExceptionResourceTypeUser = "USER"
 
@@ -27753,6 +30483,11 @@ const (
 
 	// GeoSpatialDataRoleLatitude is a GeoSpatialDataRole enum value
 	GeoSpatialDataRoleLatitude = "LATITUDE"
+)
+
+const (
+	// IdentityStoreQuicksight is a IdentityStore enum value
+	IdentityStoreQuicksight = "QUICKSIGHT"
 )
 
 const (
@@ -27962,6 +30697,31 @@ const (
 
 	// JoinTypeRight is a JoinType enum value
 	JoinTypeRight = "RIGHT"
+)
+
+const (
+	// NamespaceErrorTypePermissionDenied is a NamespaceErrorType enum value
+	NamespaceErrorTypePermissionDenied = "PERMISSION_DENIED"
+
+	// NamespaceErrorTypeInternalServiceError is a NamespaceErrorType enum value
+	NamespaceErrorTypeInternalServiceError = "INTERNAL_SERVICE_ERROR"
+)
+
+const (
+	// NamespaceStatusCreated is a NamespaceStatus enum value
+	NamespaceStatusCreated = "CREATED"
+
+	// NamespaceStatusCreating is a NamespaceStatus enum value
+	NamespaceStatusCreating = "CREATING"
+
+	// NamespaceStatusDeleting is a NamespaceStatus enum value
+	NamespaceStatusDeleting = "DELETING"
+
+	// NamespaceStatusRetryableFailure is a NamespaceStatus enum value
+	NamespaceStatusRetryableFailure = "RETRYABLE_FAILURE"
+
+	// NamespaceStatusNonRetryableFailure is a NamespaceStatus enum value
+	NamespaceStatusNonRetryableFailure = "NON_RETRYABLE_FAILURE"
 )
 
 const (

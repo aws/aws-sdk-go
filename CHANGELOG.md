@@ -1,3 +1,16 @@
+Release v1.33.10 (2020-07-22)
+===
+
+### Service Client Updates
+* `service/medialive`: Updates service API and documentation
+  * The AWS Elemental MediaLive APIs and SDKs now support the ability to get thumbnails for MediaLive devices that are attached or not attached to a channel. Previously, this thumbnail feature was available only on the console.
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * New API operations - GetSessionEmbedUrl, CreateNamespace, DescribeNamespace, ListNamespaces, DeleteNamespace, DescribeAccountSettings, UpdateAccountSettings, CreateAccountCustomization, DescribeAccountCustomization, UpdateAccountCustomization, DeleteAccountCustomization. Modified API operations to support custom permissions restrictions - RegisterUser, UpdateUser, UpdateDashboardPermissions
+
+### SDK Enhancements
+* `example/aws/request/httptrace`: Update example with more metrics ([#3436](https://github.com/aws/aws-sdk-go/pull/3436))
+  * Updates the tracing example to include additional metrics such as SDKs request handlers, and support multiple request attempts.
+
 Release v1.33.9 (2020-07-21)
 ===
 

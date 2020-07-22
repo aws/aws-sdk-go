@@ -132,6 +132,10 @@ type MediaLiveAPI interface {
 	DescribeInputDeviceWithContext(aws.Context, *medialive.DescribeInputDeviceInput, ...request.Option) (*medialive.DescribeInputDeviceOutput, error)
 	DescribeInputDeviceRequest(*medialive.DescribeInputDeviceInput) (*request.Request, *medialive.DescribeInputDeviceOutput)
 
+	DescribeInputDeviceThumbnail(*medialive.DescribeInputDeviceThumbnailInput) (*medialive.DescribeInputDeviceThumbnailOutput, error)
+	DescribeInputDeviceThumbnailWithContext(aws.Context, *medialive.DescribeInputDeviceThumbnailInput, ...request.Option) (*medialive.DescribeInputDeviceThumbnailOutput, error)
+	DescribeInputDeviceThumbnailRequest(*medialive.DescribeInputDeviceThumbnailInput) (*request.Request, *medialive.DescribeInputDeviceThumbnailOutput)
+
 	DescribeInputSecurityGroup(*medialive.DescribeInputSecurityGroupInput) (*medialive.DescribeInputSecurityGroupOutput, error)
 	DescribeInputSecurityGroupWithContext(aws.Context, *medialive.DescribeInputSecurityGroupInput, ...request.Option) (*medialive.DescribeInputSecurityGroupOutput, error)
 	DescribeInputSecurityGroupRequest(*medialive.DescribeInputSecurityGroupInput) (*request.Request, *medialive.DescribeInputSecurityGroupOutput)
