@@ -3200,6 +3200,27 @@ func (s *CreateFileSystemInput) SetWindowsConfiguration(v *CreateFileSystemWindo
 type CreateFileSystemLustreConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Use this property to turn the Autoimport feature on and off. AutoImport enables
+	// your FSx for Lustre file system to automatically update its contents with
+	// changes that have been made to its linked Amazon S3 data repository. You
+	// can set the policy to have one the following values:
+	//
+	//    * NONE - (Default) Autoimport is turned off. Changes to your S3 repository
+	//    will not be reflected on the FSx file system.
+	//
+	//    * NEW - Autoimport is turned on; only new files in the linked S3 repository
+	//    will be imported to the FSx file system. Updates to existing files and
+	//    deleted files will not be imported to the FSx file system.
+	//
+	//    * NEW_CHANGED - Autoimport is turned on; new files and changes to existing
+	//    files in the linked S3 repository will be imported to the FSx file system.
+	//    Files deleted in S3 are not deleted in the FSx file system.
+	//
+	//    * NEW_CHANGED_DELETED - Autoimport is turned on; new files, changes to
+	//    existing files, and deleted files in the linked S3 repository will be
+	//    imported to the FSx file system.
+	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
+
 	// The number of days to retain automatic backups. Setting this to 0 disables
 	// automatic backups. You can retain automatic backups for a maximum of 35 days.
 	// The default is 0.
@@ -3325,6 +3346,12 @@ func (s *CreateFileSystemLustreConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoImportPolicy sets the AutoImportPolicy field's value.
+func (s *CreateFileSystemLustreConfiguration) SetAutoImportPolicy(v string) *CreateFileSystemLustreConfiguration {
+	s.AutoImportPolicy = &v
+	return s
 }
 
 // SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
@@ -3576,9 +3603,34 @@ func (s *CreateFileSystemWindowsConfiguration) SetWeeklyMaintenanceStartTime(v s
 type DataRepositoryConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Describes the data repository's AutoImportPolicy. AutoImport enables your
+	// FSx for Lustre file system to automatically update its contents with changes
+	// that have been made to its linked Amazon S3 data repository. The policy can
+	// have the following values:
+	//
+	//    * NONE - (Default) Autoimport is turned off, Changes to your S3 repository
+	//    will not be reflected on the FSx file system.
+	//
+	//    * NEW - Autoimport is turned on; only new files in the linked S3 repository
+	//    will be imported to the FSx file system. Updates to existing files and
+	//    deleted files will not be imported to the FSx file system.
+	//
+	//    * NEW_CHANGED - Autoimport is turned on; new files and changes to existing
+	//    files in the linked S3 repository will be imported to the FSx file system.
+	//    Files deleted in S3 are not deleted in the FSx file system.
+	//
+	//    * NEW_CHANGED_DELETED - Autoimport is turned on; new files, changes to
+	//    existing files, and deleted files in the linked S3 repository will be
+	//    imported to the FSx file system.
+	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
+
 	// The export path to the Amazon S3 bucket (and prefix) that you are using to
 	// store new and changed Lustre file system files in S3.
 	ExportPath *string `min:"3" type:"string"`
+
+	// Provides detailed information about the data respository if its Lifecycle
+	// is set to MISCONFIGURED.
+	FailureDetails *DataRepositoryFailureDetails `type:"structure"`
 
 	// The import path to the Amazon S3 bucket (and optional prefix) that you're
 	// using as the data repository for your FSx for Lustre file system, for example
@@ -3595,6 +3647,19 @@ type DataRepositoryConfiguration struct {
 	// The default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000
 	// MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.
 	ImportedFileChunkSize *int64 `min:"1" type:"integer"`
+
+	// Describes the state of the file system's S3 durable data repository, if it
+	// is configured with an S3 repository. The lifecycle can have the following
+	// values:
+	//
+	//    * CREATING - Amazon FSx is creating the new data repository.
+	//
+	//    * AVAILABLE - The data repository is available for use.
+	//
+	//    * MISCONFIGURED - The data repository is in a failed but recoverable state.
+	//
+	//    * UPDATING - The data repository is undergoing a customer initiated update.
+	Lifecycle *string `type:"string" enum:"DataRepositoryLifecycle"`
 }
 
 // String returns the string representation
@@ -3607,9 +3672,21 @@ func (s DataRepositoryConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetAutoImportPolicy sets the AutoImportPolicy field's value.
+func (s *DataRepositoryConfiguration) SetAutoImportPolicy(v string) *DataRepositoryConfiguration {
+	s.AutoImportPolicy = &v
+	return s
+}
+
 // SetExportPath sets the ExportPath field's value.
 func (s *DataRepositoryConfiguration) SetExportPath(v string) *DataRepositoryConfiguration {
 	s.ExportPath = &v
+	return s
+}
+
+// SetFailureDetails sets the FailureDetails field's value.
+func (s *DataRepositoryConfiguration) SetFailureDetails(v *DataRepositoryFailureDetails) *DataRepositoryConfiguration {
+	s.FailureDetails = v
 	return s
 }
 
@@ -3622,6 +3699,37 @@ func (s *DataRepositoryConfiguration) SetImportPath(v string) *DataRepositoryCon
 // SetImportedFileChunkSize sets the ImportedFileChunkSize field's value.
 func (s *DataRepositoryConfiguration) SetImportedFileChunkSize(v int64) *DataRepositoryConfiguration {
 	s.ImportedFileChunkSize = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *DataRepositoryConfiguration) SetLifecycle(v string) *DataRepositoryConfiguration {
+	s.Lifecycle = &v
+	return s
+}
+
+// Provides detailed information about the data respository if its Lifecycle
+// is set to MISCONFIGURED.
+type DataRepositoryFailureDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A detailed error message.
+	Message *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DataRepositoryFailureDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataRepositoryFailureDetails) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *DataRepositoryFailureDetails) SetMessage(v string) *DataRepositoryFailureDetails {
+	s.Message = &v
 	return s
 }
 
@@ -6365,13 +6473,17 @@ type Tag struct {
 
 	// A value that specifies the TagKey, the name of the tag. Tag keys must be
 	// unique for the resource to which they are attached.
-	Key *string `min:"1" type:"string"`
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
 
 	// A value that specifies the TagValue, the value assigned to the corresponding
 	// tag key. Tag values can be null and don't have to be unique in a tag set.
 	// For example, you can have a key-value pair in a tag set of finances : April
 	// and also of payroll : April.
-	Value *string `type:"string"`
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -6387,8 +6499,14 @@ func (s Tag) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Tag) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
 	if s.Key != nil && len(*s.Key) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6734,6 +6852,27 @@ func (s *UpdateFileSystemInput) SetWindowsConfiguration(v *UpdateFileSystemWindo
 type UpdateFileSystemLustreConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Use this property to turn the Autoimport feature on and off. AutoImport enables
+	// your FSx for Lustre file system to automatically update its contents with
+	// changes that have been made to its linked Amazon S3 data repository. You
+	// can set the policy to have one the following values:
+	//
+	//    * NONE - (Default) Autoimport is turned off. Changes to your S3 repository
+	//    will not be reflected on the FSx file system.
+	//
+	//    * NEW - Autoimport is turned on; only new files in the linked S3 repository
+	//    will be imported to the FSx file system. Updates to existing files and
+	//    deleted files will not be imported to the FSx file system.
+	//
+	//    * NEW_CHANGED - Autoimport is turned on; new files and changes to existing
+	//    files in the linked S3 repository will be imported to the FSx file system.
+	//    Files deleted in S3 are not deleted in the FSx file system.
+	//
+	//    * NEW_CHANGED_DELETED - Autoimport is turned on; new files, changes to
+	//    existing files, and deleted files in the linked S3 repository will be
+	//    imported to the FSx file system.
+	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
+
 	// The number of days to retain automatic backups. Setting this to 0 disables
 	// automatic backups. You can retain automatic backups for a maximum of 35 days.
 	// The default is 0.
@@ -6774,6 +6913,12 @@ func (s *UpdateFileSystemLustreConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoImportPolicy sets the AutoImportPolicy field's value.
+func (s *UpdateFileSystemLustreConfiguration) SetAutoImportPolicy(v string) *UpdateFileSystemLustreConfiguration {
+	s.AutoImportPolicy = &v
+	return s
 }
 
 // SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
@@ -7128,6 +7273,17 @@ const (
 	AdministrativeActionTypeStorageOptimization = "STORAGE_OPTIMIZATION"
 )
 
+const (
+	// AutoImportPolicyTypeNone is a AutoImportPolicyType enum value
+	AutoImportPolicyTypeNone = "NONE"
+
+	// AutoImportPolicyTypeNew is a AutoImportPolicyType enum value
+	AutoImportPolicyTypeNew = "NEW"
+
+	// AutoImportPolicyTypeNewChanged is a AutoImportPolicyType enum value
+	AutoImportPolicyTypeNewChanged = "NEW_CHANGED"
+)
+
 // The lifecycle status of the backup.
 const (
 	// BackupLifecycleAvailable is a BackupLifecycle enum value
@@ -7150,6 +7306,23 @@ const (
 
 	// BackupTypeUserInitiated is a BackupType enum value
 	BackupTypeUserInitiated = "USER_INITIATED"
+)
+
+const (
+	// DataRepositoryLifecycleCreating is a DataRepositoryLifecycle enum value
+	DataRepositoryLifecycleCreating = "CREATING"
+
+	// DataRepositoryLifecycleAvailable is a DataRepositoryLifecycle enum value
+	DataRepositoryLifecycleAvailable = "AVAILABLE"
+
+	// DataRepositoryLifecycleMisconfigured is a DataRepositoryLifecycle enum value
+	DataRepositoryLifecycleMisconfigured = "MISCONFIGURED"
+
+	// DataRepositoryLifecycleUpdating is a DataRepositoryLifecycle enum value
+	DataRepositoryLifecycleUpdating = "UPDATING"
+
+	// DataRepositoryLifecycleDeleting is a DataRepositoryLifecycle enum value
+	DataRepositoryLifecycleDeleting = "DELETING"
 )
 
 const (

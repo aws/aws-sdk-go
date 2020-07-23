@@ -30,6 +30,23 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "AttachCertificateToDistribution":{
+      "name":"AttachCertificateToDistribution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AttachCertificateToDistributionRequest"},
+      "output":{"shape":"AttachCertificateToDistributionResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "AttachDisk":{
       "name":"AttachDisk",
       "http":{
@@ -138,6 +155,22 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "CreateCertificate":{
+      "name":"CreateCertificate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCertificateRequest"},
+      "output":{"shape":"CreateCertificateResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "CreateCloudFormationStack":{
       "name":"CreateCloudFormationStack",
       "http":{
@@ -224,6 +257,23 @@
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "CreateDistribution":{
+      "name":"CreateDistribution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDistributionRequest"},
+      "output":{"shape":"CreateDistributionResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -459,6 +509,22 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "DeleteCertificate":{
+      "name":"DeleteCertificate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCertificateRequest"},
+      "output":{"shape":"DeleteCertificateResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "DeleteContactMethod":{
       "name":"DeleteContactMethod",
       "http":{
@@ -509,6 +575,23 @@
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "DeleteDistribution":{
+      "name":"DeleteDistribution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDistributionRequest"},
+      "output":{"shape":"DeleteDistributionResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -689,6 +772,23 @@
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "DetachCertificateFromDistribution":{
+      "name":"DetachCertificateFromDistribution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetachCertificateFromDistributionRequest"},
+      "output":{"shape":"DetachCertificateFromDistributionResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -904,6 +1004,22 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "GetCertificates":{
+      "name":"GetCertificates",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCertificatesRequest"},
+      "output":{"shape":"GetCertificatesResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "GetCloudFormationStackRecords":{
       "name":"GetCloudFormationStackRecords",
       "http":{
@@ -1008,6 +1124,74 @@
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetDistributionBundles":{
+      "name":"GetDistributionBundles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDistributionBundlesRequest"},
+      "output":{"shape":"GetDistributionBundlesResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetDistributionLatestCacheReset":{
+      "name":"GetDistributionLatestCacheReset",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDistributionLatestCacheResetRequest"},
+      "output":{"shape":"GetDistributionLatestCacheResetResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetDistributionMetricData":{
+      "name":"GetDistributionMetricData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDistributionMetricDataRequest"},
+      "output":{"shape":"GetDistributionMetricDataResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetDistributions":{
+      "name":"GetDistributions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDistributionsRequest"},
+      "output":{"shape":"GetDistributionsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -1802,6 +1986,23 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "ResetDistributionCache":{
+      "name":"ResetDistributionCache",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResetDistributionCacheRequest"},
+      "output":{"shape":"ResetDistributionCacheResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "SendContactMethodVerification":{
       "name":"SendContactMethodVerification",
       "http":{
@@ -1959,6 +2160,40 @@
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "UpdateDistribution":{
+      "name":"UpdateDistribution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDistributionRequest"},
+      "output":{"shape":"UpdateDistributionResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "UpdateDistributionBundle":{
+      "name":"UpdateDistributionBundle",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDistributionBundleRequest"},
+      "output":{"shape":"UpdateDistributionBundleResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -2142,6 +2377,23 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "AttachCertificateToDistributionRequest":{
+      "type":"structure",
+      "required":[
+        "distributionName",
+        "certificateName"
+      ],
+      "members":{
+        "distributionName":{"shape":"ResourceName"},
+        "certificateName":{"shape":"ResourceName"}
+      }
+    },
+    "AttachCertificateToDistributionResult":{
+      "type":"structure",
+      "members":{
+        "operation":{"shape":"Operation"}
+      }
+    },
     "AttachDiskRequest":{
       "type":"structure",
       "required":[
@@ -2272,6 +2524,13 @@
       "member":{"shape":"AvailabilityZone"}
     },
     "Base64":{"type":"string"},
+    "BehaviorEnum":{
+      "type":"string",
+      "enum":[
+        "dont-cache",
+        "cache"
+      ]
+    },
     "Blueprint":{
       "type":"structure",
       "members":{
@@ -2319,6 +2578,93 @@
     "BundleList":{
       "type":"list",
       "member":{"shape":"Bundle"}
+    },
+    "CacheBehavior":{
+      "type":"structure",
+      "members":{
+        "behavior":{"shape":"BehaviorEnum"}
+      }
+    },
+    "CacheBehaviorList":{
+      "type":"list",
+      "member":{"shape":"CacheBehaviorPerPath"}
+    },
+    "CacheBehaviorPerPath":{
+      "type":"structure",
+      "members":{
+        "path":{"shape":"string"},
+        "behavior":{"shape":"BehaviorEnum"}
+      }
+    },
+    "CacheSettings":{
+      "type":"structure",
+      "members":{
+        "defaultTTL":{"shape":"long"},
+        "minimumTTL":{"shape":"long"},
+        "maximumTTL":{"shape":"long"},
+        "allowedHTTPMethods":{"shape":"NonEmptyString"},
+        "cachedHTTPMethods":{"shape":"NonEmptyString"},
+        "forwardedCookies":{"shape":"CookieObject"},
+        "forwardedHeaders":{"shape":"HeaderObject"},
+        "forwardedQueryStrings":{"shape":"QueryStringObject"}
+      }
+    },
+    "Certificate":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"NonEmptyString"},
+        "name":{"shape":"CertificateName"},
+        "domainName":{"shape":"DomainName"},
+        "status":{"shape":"CertificateStatus"},
+        "serialNumber":{"shape":"SerialNumber"},
+        "subjectAlternativeNames":{"shape":"SubjectAlternativeNameList"},
+        "domainValidationRecords":{"shape":"DomainValidationRecordList"},
+        "requestFailureReason":{"shape":"RequestFailureReason"},
+        "inUseResourceCount":{"shape":"InUseResourceCount"},
+        "keyAlgorithm":{"shape":"KeyAlgorithm"},
+        "createdAt":{"shape":"IsoDate"},
+        "issuedAt":{"shape":"IsoDate"},
+        "issuerCA":{"shape":"IssuerCA"},
+        "notBefore":{"shape":"IsoDate"},
+        "notAfter":{"shape":"IsoDate"},
+        "eligibleToRenew":{"shape":"EligibleToRenew"},
+        "renewalSummary":{"shape":"RenewalSummary"},
+        "revokedAt":{"shape":"IsoDate"},
+        "revocationReason":{"shape":"RevocationReason"},
+        "tags":{"shape":"TagList"},
+        "supportCode":{"shape":"string"}
+      }
+    },
+    "CertificateName":{"type":"string"},
+    "CertificateStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING_VALIDATION",
+        "ISSUED",
+        "INACTIVE",
+        "EXPIRED",
+        "VALIDATION_TIMED_OUT",
+        "REVOKED",
+        "FAILED"
+      ]
+    },
+    "CertificateStatusList":{
+      "type":"list",
+      "member":{"shape":"CertificateStatus"}
+    },
+    "CertificateSummary":{
+      "type":"structure",
+      "members":{
+        "certificateArn":{"shape":"NonEmptyString"},
+        "certificateName":{"shape":"CertificateName"},
+        "domainName":{"shape":"DomainName"},
+        "certificateDetail":{"shape":"Certificate"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "CertificateSummaryList":{
+      "type":"list",
+      "member":{"shape":"CertificateSummary"}
     },
     "CloseInstancePublicPortsRequest":{
       "type":"structure",
@@ -2420,6 +2766,13 @@
       "type":"list",
       "member":{"shape":"ContactProtocol"}
     },
+    "CookieObject":{
+      "type":"structure",
+      "members":{
+        "option":{"shape":"ForwardValues"},
+        "cookiesAllowList":{"shape":"StringList"}
+      }
+    },
     "CopySnapshotRequest":{
       "type":"structure",
       "required":[
@@ -2438,6 +2791,26 @@
     "CopySnapshotResult":{
       "type":"structure",
       "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "CreateCertificateRequest":{
+      "type":"structure",
+      "required":[
+        "certificateName",
+        "domainName"
+      ],
+      "members":{
+        "certificateName":{"shape":"CertificateName"},
+        "domainName":{"shape":"DomainName"},
+        "subjectAlternativeNames":{"shape":"SubjectAlternativeNameList"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "CreateCertificateResult":{
+      "type":"structure",
+      "members":{
+        "certificate":{"shape":"CertificateSummary"},
         "operations":{"shape":"OperationList"}
       }
     },
@@ -2531,6 +2904,31 @@
       "type":"structure",
       "members":{
         "operations":{"shape":"OperationList"}
+      }
+    },
+    "CreateDistributionRequest":{
+      "type":"structure",
+      "required":[
+        "distributionName",
+        "origin",
+        "defaultCacheBehavior",
+        "bundleId"
+      ],
+      "members":{
+        "distributionName":{"shape":"ResourceName"},
+        "origin":{"shape":"InputOrigin"},
+        "defaultCacheBehavior":{"shape":"CacheBehavior"},
+        "cacheBehaviorSettings":{"shape":"CacheSettings"},
+        "cacheBehaviors":{"shape":"CacheBehaviorList"},
+        "bundleId":{"shape":"string"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "CreateDistributionResult":{
+      "type":"structure",
+      "members":{
+        "distribution":{"shape":"LightsailDistribution"},
+        "operation":{"shape":"Operation"}
       }
     },
     "CreateDomainEntryRequest":{
@@ -2797,6 +3195,19 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "DeleteCertificateRequest":{
+      "type":"structure",
+      "required":["certificateName"],
+      "members":{
+        "certificateName":{"shape":"CertificateName"}
+      }
+    },
+    "DeleteCertificateResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "DeleteContactMethodRequest":{
       "type":"structure",
       "required":["protocol"],
@@ -2835,6 +3246,18 @@
       "type":"structure",
       "members":{
         "operations":{"shape":"OperationList"}
+      }
+    },
+    "DeleteDistributionRequest":{
+      "type":"structure",
+      "members":{
+        "distributionName":{"shape":"ResourceName"}
+      }
+    },
+    "DeleteDistributionResult":{
+      "type":"structure",
+      "members":{
+        "operation":{"shape":"Operation"}
       }
     },
     "DeleteDomainEntryRequest":{
@@ -2984,6 +3407,19 @@
       "members":{
         "id":{"shape":"NonEmptyString"},
         "service":{"shape":"NonEmptyString"}
+      }
+    },
+    "DetachCertificateFromDistributionRequest":{
+      "type":"structure",
+      "required":["distributionName"],
+      "members":{
+        "distributionName":{"shape":"ResourceName"}
+      }
+    },
+    "DetachCertificateFromDistributionResult":{
+      "type":"structure",
+      "members":{
+        "operation":{"shape":"Operation"}
       }
     },
     "DetachDiskRequest":{
@@ -3151,6 +3587,35 @@
         "unknown"
       ]
     },
+    "DistributionBundle":{
+      "type":"structure",
+      "members":{
+        "bundleId":{"shape":"string"},
+        "name":{"shape":"string"},
+        "price":{"shape":"float"},
+        "transferPerMonthInGb":{"shape":"integer"},
+        "isActive":{"shape":"boolean"}
+      }
+    },
+    "DistributionBundleList":{
+      "type":"list",
+      "member":{"shape":"DistributionBundle"}
+    },
+    "DistributionList":{
+      "type":"list",
+      "member":{"shape":"LightsailDistribution"}
+    },
+    "DistributionMetricName":{
+      "type":"string",
+      "enum":[
+        "Requests",
+        "BytesDownloaded",
+        "BytesUploaded",
+        "TotalErrorRate",
+        "Http4xxErrorRate",
+        "Http5xxErrorRate"
+      ]
+    },
     "Domain":{
       "type":"structure",
       "members":{
@@ -3198,6 +3663,17 @@
       "type":"list",
       "member":{"shape":"DomainName"}
     },
+    "DomainValidationRecord":{
+      "type":"structure",
+      "members":{
+        "domainName":{"shape":"DomainName"},
+        "resourceRecord":{"shape":"ResourceRecord"}
+      }
+    },
+    "DomainValidationRecordList":{
+      "type":"list",
+      "member":{"shape":"DomainValidationRecord"}
+    },
     "DownloadDefaultKeyPairRequest":{
       "type":"structure",
       "members":{
@@ -3210,6 +3686,7 @@
         "privateKeyBase64":{"shape":"Base64"}
       }
     },
+    "EligibleToRenew":{"type":"string"},
     "EnableAddOnRequest":{
       "type":"structure",
       "required":[
@@ -3276,6 +3753,14 @@
       "members":{
         "operations":{"shape":"OperationList"}
       }
+    },
+    "ForwardValues":{
+      "type":"string",
+      "enum":[
+        "none",
+        "allow-list",
+        "all"
+      ]
     },
     "GetActiveNamesRequest":{
       "type":"structure",
@@ -3346,6 +3831,20 @@
       "members":{
         "bundles":{"shape":"BundleList"},
         "nextPageToken":{"shape":"string"}
+      }
+    },
+    "GetCertificatesRequest":{
+      "type":"structure",
+      "members":{
+        "certificateStatuses":{"shape":"CertificateStatusList"},
+        "includeCertificateDetails":{"shape":"IncludeCertificateDetails"},
+        "certificateName":{"shape":"CertificateName"}
+      }
+    },
+    "GetCertificatesResult":{
+      "type":"structure",
+      "members":{
+        "certificates":{"shape":"CertificateSummaryList"}
       }
     },
     "GetCloudFormationStackRecordsRequest":{
@@ -3422,6 +3921,72 @@
       "type":"structure",
       "members":{
         "disks":{"shape":"DiskList"},
+        "nextPageToken":{"shape":"string"}
+      }
+    },
+    "GetDistributionBundlesRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetDistributionBundlesResult":{
+      "type":"structure",
+      "members":{
+        "bundles":{"shape":"DistributionBundleList"}
+      }
+    },
+    "GetDistributionLatestCacheResetRequest":{
+      "type":"structure",
+      "members":{
+        "distributionName":{"shape":"ResourceName"}
+      }
+    },
+    "GetDistributionLatestCacheResetResult":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"string"},
+        "createTime":{"shape":"IsoDate"}
+      }
+    },
+    "GetDistributionMetricDataRequest":{
+      "type":"structure",
+      "required":[
+        "distributionName",
+        "metricName",
+        "startTime",
+        "endTime",
+        "period",
+        "unit",
+        "statistics"
+      ],
+      "members":{
+        "distributionName":{"shape":"ResourceName"},
+        "metricName":{"shape":"DistributionMetricName"},
+        "startTime":{"shape":"timestamp"},
+        "endTime":{"shape":"timestamp"},
+        "period":{"shape":"MetricPeriod"},
+        "unit":{"shape":"MetricUnit"},
+        "statistics":{"shape":"MetricStatisticList"}
+      }
+    },
+    "GetDistributionMetricDataResult":{
+      "type":"structure",
+      "members":{
+        "metricName":{"shape":"DistributionMetricName"},
+        "metricData":{"shape":"MetricDatapointList"}
+      }
+    },
+    "GetDistributionsRequest":{
+      "type":"structure",
+      "members":{
+        "distributionName":{"shape":"ResourceName"},
+        "pageToken":{"shape":"string"}
+      }
+    },
+    "GetDistributionsResult":{
+      "type":"structure",
+      "members":{
+        "distributions":{"shape":"DistributionList"},
         "nextPageToken":{"shape":"string"}
       }
     },
@@ -3949,6 +4514,37 @@
         "nextPageToken":{"shape":"string"}
       }
     },
+    "HeaderEnum":{
+      "type":"string",
+      "enum":[
+        "Accept",
+        "Accept-Charset",
+        "Accept-Datetime",
+        "Accept-Encoding",
+        "Accept-Language",
+        "Authorization",
+        "CloudFront-Forwarded-Proto",
+        "CloudFront-Is-Desktop-Viewer",
+        "CloudFront-Is-Mobile-Viewer",
+        "CloudFront-Is-SmartTV-Viewer",
+        "CloudFront-Is-Tablet-Viewer",
+        "CloudFront-Viewer-Country",
+        "Host",
+        "Origin",
+        "Referer"
+      ]
+    },
+    "HeaderForwardList":{
+      "type":"list",
+      "member":{"shape":"HeaderEnum"}
+    },
+    "HeaderObject":{
+      "type":"structure",
+      "members":{
+        "option":{"shape":"ForwardValues"},
+        "headersAllowList":{"shape":"HeaderForwardList"}
+      }
+    },
     "HostKeyAttributes":{
       "type":"structure",
       "members":{
@@ -3980,6 +4576,16 @@
       "type":"structure",
       "members":{
         "operation":{"shape":"Operation"}
+      }
+    },
+    "InUseResourceCount":{"type":"integer"},
+    "IncludeCertificateDetails":{"type":"boolean"},
+    "InputOrigin":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "regionName":{"shape":"RegionName"},
+        "protocolPolicy":{"shape":"OriginProtocolPolicyEnum"}
       }
     },
     "Instance":{
@@ -4242,6 +4848,8 @@
       }
     },
     "IsoDate":{"type":"timestamp"},
+    "IssuerCA":{"type":"string"},
+    "KeyAlgorithm":{"type":"string"},
     "KeyPair":{
       "type":"structure",
       "members":{
@@ -4258,6 +4866,30 @@
     "KeyPairList":{
       "type":"list",
       "member":{"shape":"KeyPair"}
+    },
+    "LightsailDistribution":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "arn":{"shape":"NonEmptyString"},
+        "supportCode":{"shape":"string"},
+        "createdAt":{"shape":"IsoDate"},
+        "location":{"shape":"ResourceLocation"},
+        "resourceType":{"shape":"ResourceType"},
+        "alternativeDomainNames":{"shape":"StringList"},
+        "status":{"shape":"string"},
+        "isEnabled":{"shape":"boolean"},
+        "domainName":{"shape":"string"},
+        "bundleId":{"shape":"string"},
+        "certificateName":{"shape":"ResourceName"},
+        "origin":{"shape":"Origin"},
+        "originPublicDNS":{"shape":"string"},
+        "defaultCacheBehavior":{"shape":"CacheBehavior"},
+        "cacheBehaviorSettings":{"shape":"CacheSettings"},
+        "cacheBehaviors":{"shape":"CacheBehaviorList"},
+        "ableToUpdateBundle":{"shape":"boolean"},
+        "tags":{"shape":"TagList"}
+      }
     },
     "LoadBalancer":{
       "type":"structure",
@@ -4727,7 +5359,32 @@
         "CreateContactMethod",
         "GetContactMethods",
         "SendContactMethodVerification",
-        "DeleteContactMethod"
+        "DeleteContactMethod",
+        "CreateDistribution",
+        "UpdateDistribution",
+        "DeleteDistribution",
+        "ResetDistributionCache",
+        "AttachCertificateToDistribution",
+        "DetachCertificateFromDistribution",
+        "UpdateDistributionBundle",
+        "CreateCertificate",
+        "DeleteCertificate"
+      ]
+    },
+    "Origin":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "resourceType":{"shape":"ResourceType"},
+        "regionName":{"shape":"RegionName"},
+        "protocolPolicy":{"shape":"OriginProtocolPolicyEnum"}
+      }
+    },
+    "OriginProtocolPolicyEnum":{
+      "type":"string",
+      "enum":[
+        "http-only",
+        "https-only"
       ]
     },
     "PasswordData":{
@@ -4859,6 +5516,13 @@
       "type":"structure",
       "members":{
         "operation":{"shape":"Operation"}
+      }
+    },
+    "QueryStringObject":{
+      "type":"structure",
+      "members":{
+        "option":{"shape":"boolean"},
+        "queryStringsAllowList":{"shape":"StringList"}
       }
     },
     "RebootInstanceRequest":{
@@ -5102,6 +5766,40 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "RenewalStatus":{
+      "type":"string",
+      "enum":[
+        "PendingAutoRenewal",
+        "PendingValidation",
+        "Success",
+        "Failed"
+      ]
+    },
+    "RenewalStatusReason":{"type":"string"},
+    "RenewalSummary":{
+      "type":"structure",
+      "members":{
+        "domainValidationRecords":{"shape":"DomainValidationRecordList"},
+        "renewalStatus":{"shape":"RenewalStatus"},
+        "renewalStatusReason":{"shape":"RenewalStatusReason"},
+        "updatedAt":{"shape":"IsoDate"}
+      }
+    },
+    "RequestFailureReason":{"type":"string"},
+    "ResetDistributionCacheRequest":{
+      "type":"structure",
+      "members":{
+        "distributionName":{"shape":"ResourceName"}
+      }
+    },
+    "ResetDistributionCacheResult":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"string"},
+        "createTime":{"shape":"IsoDate"},
+        "operation":{"shape":"Operation"}
+      }
+    },
     "ResourceArn":{
       "type":"string",
       "pattern":"^arn:(aws[^:]*):([a-zA-Z0-9-]+):([a-z0-9-]+):([0-9]+):([a-zA-Z]+)/([a-zA-Z0-9-]+)$"
@@ -5121,6 +5819,14 @@
       "type":"list",
       "member":{"shape":"ResourceName"}
     },
+    "ResourceRecord":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"string"},
+        "type":{"shape":"string"},
+        "value":{"shape":"string"}
+      }
+    },
     "ResourceType":{
       "type":"string",
       "enum":[
@@ -5139,9 +5845,12 @@
         "ExportSnapshotRecord",
         "CloudFormationStackRecord",
         "Alarm",
-        "ContactMethod"
+        "ContactMethod",
+        "Distribution",
+        "Certificate"
       ]
     },
+    "RevocationReason":{"type":"string"},
     "SendContactMethodVerificationRequest":{
       "type":"structure",
       "required":["protocol"],
@@ -5159,6 +5868,7 @@
       "type":"string",
       "sensitive":true
     },
+    "SerialNumber":{"type":"string"},
     "ServiceException":{
       "type":"structure",
       "members":{
@@ -5250,6 +5960,10 @@
       "type":"string",
       "max":256,
       "min":1
+    },
+    "SubjectAlternativeNameList":{
+      "type":"list",
+      "member":{"shape":"DomainName"}
     },
     "Tag":{
       "type":"structure",
@@ -5355,6 +6069,37 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "UpdateDistributionBundleRequest":{
+      "type":"structure",
+      "members":{
+        "distributionName":{"shape":"ResourceName"},
+        "bundleId":{"shape":"string"}
+      }
+    },
+    "UpdateDistributionBundleResult":{
+      "type":"structure",
+      "members":{
+        "operation":{"shape":"Operation"}
+      }
+    },
+    "UpdateDistributionRequest":{
+      "type":"structure",
+      "required":["distributionName"],
+      "members":{
+        "distributionName":{"shape":"ResourceName"},
+        "origin":{"shape":"InputOrigin"},
+        "defaultCacheBehavior":{"shape":"CacheBehavior"},
+        "cacheBehaviorSettings":{"shape":"CacheSettings"},
+        "cacheBehaviors":{"shape":"CacheBehaviorList"},
+        "isEnabled":{"shape":"boolean"}
+      }
+    },
+    "UpdateDistributionResult":{
+      "type":"structure",
+      "members":{
+        "operation":{"shape":"Operation"}
+      }
+    },
     "UpdateDomainEntryRequest":{
       "type":"structure",
       "required":[
@@ -5434,6 +6179,7 @@
     "double":{"type":"double"},
     "float":{"type":"float"},
     "integer":{"type":"integer"},
+    "long":{"type":"long"},
     "string":{"type":"string"},
     "timestamp":{"type":"timestamp"}
   }

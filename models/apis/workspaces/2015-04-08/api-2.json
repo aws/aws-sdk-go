@@ -251,6 +251,20 @@
         {"shape":"InvalidParameterValuesException"}
       ]
     },
+    "DescribeWorkspaceImagePermissions":{
+      "name":"DescribeWorkspaceImagePermissions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeWorkspaceImagePermissionsRequest"},
+      "output":{"shape":"DescribeWorkspaceImagePermissionsResult"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"}
+      ]
+    },
     "DescribeWorkspaceImages":{
       "name":"DescribeWorkspaceImages",
       "http":{
@@ -575,6 +589,22 @@
         {"shape":"InvalidResourceStateException"},
         {"shape":"AccessDeniedException"}
       ]
+    },
+    "UpdateWorkspaceImagePermission":{
+      "name":"UpdateWorkspaceImagePermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateWorkspaceImagePermissionRequest"},
+      "output":{"shape":"UpdateWorkspaceImagePermissionResult"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"}
+      ]
     }
   },
   "shapes":{
@@ -643,6 +673,10 @@
       "type":"structure",
       "members":{
       }
+    },
+    "AwsAccount":{
+      "type":"string",
+      "pattern":"^\\d{12}$"
     },
     "BooleanObject":{"type":"boolean"},
     "BundleId":{
@@ -958,10 +992,28 @@
         "NextToken":{"shape":"PaginationToken"}
       }
     },
+    "DescribeWorkspaceImagePermissionsRequest":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"WorkspaceImageId"},
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"Limit"}
+      }
+    },
+    "DescribeWorkspaceImagePermissionsResult":{
+      "type":"structure",
+      "members":{
+        "ImageId":{"shape":"WorkspaceImageId"},
+        "ImagePermissions":{"shape":"ImagePermissions"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
     "DescribeWorkspaceImagesRequest":{
       "type":"structure",
       "members":{
         "ImageIds":{"shape":"WorkspaceImageIdList"},
+        "ImageType":{"shape":"ImageType"},
         "NextToken":{"shape":"PaginationToken"},
         "MaxResults":{"shape":"Limit"}
       }
@@ -1102,6 +1154,23 @@
         "ErrorCode":{"shape":"ErrorType"},
         "ErrorMessage":{"shape":"Description"}
       }
+    },
+    "ImagePermission":{
+      "type":"structure",
+      "members":{
+        "SharedAccountId":{"shape":"AwsAccount"}
+      }
+    },
+    "ImagePermissions":{
+      "type":"list",
+      "member":{"shape":"ImagePermission"}
+    },
+    "ImageType":{
+      "type":"string",
+      "enum":[
+        "OWNED",
+        "SHARED"
+      ]
     },
     "ImportWorkspaceImageRequest":{
       "type":"structure",
@@ -1751,6 +1820,24 @@
       "members":{
       }
     },
+    "UpdateWorkspaceImagePermissionRequest":{
+      "type":"structure",
+      "required":[
+        "ImageId",
+        "AllowCopyImage",
+        "SharedAccountId"
+      ],
+      "members":{
+        "ImageId":{"shape":"WorkspaceImageId"},
+        "AllowCopyImage":{"shape":"BooleanObject"},
+        "SharedAccountId":{"shape":"AwsAccount"}
+      }
+    },
+    "UpdateWorkspaceImagePermissionResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UserName":{
       "type":"string",
       "max":63,
@@ -1892,7 +1979,9 @@
         "State":{"shape":"WorkspaceImageState"},
         "RequiredTenancy":{"shape":"WorkspaceImageRequiredTenancy"},
         "ErrorCode":{"shape":"WorkspaceImageErrorCode"},
-        "ErrorMessage":{"shape":"Description"}
+        "ErrorMessage":{"shape":"Description"},
+        "Created":{"shape":"Timestamp"},
+        "OwnerAccountId":{"shape":"AwsAccount"}
       }
     },
     "WorkspaceImageDescription":{

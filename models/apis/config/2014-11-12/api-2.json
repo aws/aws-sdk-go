@@ -385,7 +385,8 @@
       "output":{"shape":"DescribeConformancePackStatusResponse"},
       "errors":[
         {"shape":"InvalidLimitException"},
-        {"shape":"InvalidNextTokenException"}
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "DescribeConformancePacks":{
@@ -399,7 +400,8 @@
       "errors":[
         {"shape":"NoSuchConformancePackException"},
         {"shape":"InvalidLimitException"},
-        {"shape":"InvalidNextTokenException"}
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "DescribeDeliveryChannelStatus":{
@@ -956,7 +958,8 @@
       "input":{"shape":"PutRemediationExceptionsRequest"},
       "output":{"shape":"PutRemediationExceptionsResponse"},
       "errors":[
-        {"shape":"InvalidParameterValueException"}
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InsufficientPermissionsException"}
       ]
     },
     "PutResourceConfig":{
@@ -1528,7 +1531,8 @@
         "AccountAggregationSources":{"shape":"AccountAggregationSourceList"},
         "OrganizationAggregationSource":{"shape":"OrganizationAggregationSource"},
         "CreationTime":{"shape":"Date"},
-        "LastUpdatedTime":{"shape":"Date"}
+        "LastUpdatedTime":{"shape":"Date"},
+        "CreatedBy":{"shape":"StringWithCharLimit256"}
       }
     },
     "ConfigurationAggregatorArn":{
@@ -4010,7 +4014,10 @@
         "AWS::ServiceCatalog::Portfolio",
         "AWS::SQS::Queue",
         "AWS::KMS::Key",
-        "AWS::QLDB::Ledger"
+        "AWS::QLDB::Ledger",
+        "AWS::SecretsManager::Secret",
+        "AWS::SNS::Topic",
+        "AWS::SSM::FileData"
       ]
     },
     "ResourceTypeList":{
