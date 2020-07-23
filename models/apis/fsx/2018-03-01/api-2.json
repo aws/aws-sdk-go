@@ -331,6 +331,14 @@
       "min":3,
       "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{3,4357}$"
     },
+    "AutoImportPolicyType":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "NEW",
+        "NEW_CHANGED"
+      ]
+    },
     "AutomaticBackupRetentionDays":{
       "type":"integer",
       "max":35,
@@ -533,6 +541,7 @@
         "ExportPath":{"shape":"ArchivePath"},
         "ImportedFileChunkSize":{"shape":"Megabytes"},
         "DeploymentType":{"shape":"LustreDeploymentType"},
+        "AutoImportPolicy":{"shape":"AutoImportPolicyType"},
         "PerUnitStorageThroughput":{"shape":"PerUnitStorageThroughput"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
@@ -599,10 +608,29 @@
     "DataRepositoryConfiguration":{
       "type":"structure",
       "members":{
+        "Lifecycle":{"shape":"DataRepositoryLifecycle"},
         "ImportPath":{"shape":"ArchivePath"},
         "ExportPath":{"shape":"ArchivePath"},
-        "ImportedFileChunkSize":{"shape":"Megabytes"}
+        "ImportedFileChunkSize":{"shape":"Megabytes"},
+        "AutoImportPolicy":{"shape":"AutoImportPolicyType"},
+        "FailureDetails":{"shape":"DataRepositoryFailureDetails"}
       }
+    },
+    "DataRepositoryFailureDetails":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      }
+    },
+    "DataRepositoryLifecycle":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "AVAILABLE",
+        "MISCONFIGURED",
+        "UPDATING",
+        "DELETING"
+      ]
     },
     "DataRepositoryTask":{
       "type":"structure",
@@ -1298,6 +1326,10 @@
     "SucceededCount":{"type":"long"},
     "Tag":{
       "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
       "members":{
         "Key":{"shape":"TagKey"},
         "Value":{"shape":"TagValue"}
@@ -1383,7 +1415,8 @@
       "members":{
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
-        "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"}
+        "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
+        "AutoImportPolicy":{"shape":"AutoImportPolicyType"}
       }
     },
     "UpdateFileSystemRequest":{

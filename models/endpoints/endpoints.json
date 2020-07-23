@@ -8514,6 +8514,14 @@
           "us-iso-east-1" : { }
         }
       },
+      "transcribe" : {
+        "defaults" : {
+          "protocols" : [ "https" ]
+        },
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
       "transcribestreaming" : {
         "endpoints" : {
           "us-iso-east-1" : { }

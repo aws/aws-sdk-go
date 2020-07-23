@@ -83,6 +83,14 @@
         "DataRepositoryConfiguration$ExportPath": "<p>The export path to the Amazon S3 bucket (and prefix) that you are using to store new and changed Lustre file system files in S3.</p>"
       }
     },
+    "AutoImportPolicyType": {
+      "base": null,
+      "refs": {
+        "CreateFileSystemLustreConfiguration$AutoImportPolicy": "<p>Use this property to turn the Autoimport feature on and off. AutoImport enables your FSx for Lustre file system to automatically update its contents with changes that have been made to its linked Amazon S3 data repository. You can set the policy to have one the following values:</p> <ul> <li> <p> <code>NONE</code> - (Default) Autoimport is turned off. Changes to your S3 repository will not be reflected on the FSx file system.</p> </li> <li> <p> <code>NEW</code> - Autoimport is turned on; only new files in the linked S3 repository will be imported to the FSx file system. Updates to existing files and deleted files will not be imported to the FSx file system.</p> </li> <li> <p> <code>NEW_CHANGED</code> - Autoimport is turned on; new files and changes to existing files in the linked S3 repository will be imported to the FSx file system. Files deleted in S3 are not deleted in the FSx file system.</p> </li> <li> <p> <code>NEW_CHANGED_DELETED</code> - Autoimport is turned on; new files, changes to existing files, and deleted files in the linked S3 repository will be imported to the FSx file system. </p> </li> </ul>",
+        "DataRepositoryConfiguration$AutoImportPolicy": "<p>Describes the data repository's <code>AutoImportPolicy</code>. AutoImport enables your FSx for Lustre file system to automatically update its contents with changes that have been made to its linked Amazon S3 data repository. The policy can have the following values:</p> <ul> <li> <p> <code>NONE</code> - (Default) Autoimport is turned off, Changes to your S3 repository will not be reflected on the FSx file system.</p> </li> <li> <p> <code>NEW</code> - Autoimport is turned on; only new files in the linked S3 repository will be imported to the FSx file system. Updates to existing files and deleted files will not be imported to the FSx file system.</p> </li> <li> <p> <code>NEW_CHANGED</code> - Autoimport is turned on; new files and changes to existing files in the linked S3 repository will be imported to the FSx file system. Files deleted in S3 are not deleted in the FSx file system.</p> </li> <li> <p> <code>NEW_CHANGED_DELETED</code> - Autoimport is turned on; new files, changes to existing files, and deleted files in the linked S3 repository will be imported to the FSx file system. </p> </li> </ul>",
+        "UpdateFileSystemLustreConfiguration$AutoImportPolicy": "<p>Use this property to turn the Autoimport feature on and off. AutoImport enables your FSx for Lustre file system to automatically update its contents with changes that have been made to its linked Amazon S3 data repository. You can set the policy to have one the following values:</p> <ul> <li> <p> <code>NONE</code> - (Default) Autoimport is turned off. Changes to your S3 repository will not be reflected on the FSx file system.</p> </li> <li> <p> <code>NEW</code> - Autoimport is turned on; only new files in the linked S3 repository will be imported to the FSx file system. Updates to existing files and deleted files will not be imported to the FSx file system.</p> </li> <li> <p> <code>NEW_CHANGED</code> - Autoimport is turned on; new files and changes to existing files in the linked S3 repository will be imported to the FSx file system. Files deleted in S3 are not deleted in the FSx file system.</p> </li> <li> <p> <code>NEW_CHANGED_DELETED</code> - Autoimport is turned on; new files, changes to existing files, and deleted files in the linked S3 repository will be imported to the FSx file system. </p> </li> </ul>"
+      }
+    },
     "AutomaticBackupRetentionDays": {
       "base": "<p>The number of days to retain automatic backups. Setting this to 0 disables automatic backups. You can retain automatic backups for a maximum of 35 days. The default is 0.</p>",
       "refs": {
@@ -277,6 +285,18 @@
       "base": "<p>The data repository configuration object for Lustre file systems returned in the response of the <code>CreateFileSystem</code> operation.</p>",
       "refs": {
         "LustreFileSystemConfiguration$DataRepositoryConfiguration": null
+      }
+    },
+    "DataRepositoryFailureDetails": {
+      "base": "<p>Provides detailed information about the data respository if its <code>Lifecycle</code> is set to <code>MISCONFIGURED</code>.</p>",
+      "refs": {
+        "DataRepositoryConfiguration$FailureDetails": null
+      }
+    },
+    "DataRepositoryLifecycle": {
+      "base": null,
+      "refs": {
+        "DataRepositoryConfiguration$Lifecycle": "<p>Describes the state of the file system's S3 durable data repository, if it is configured with an S3 repository. The lifecycle can have the following values:</p> <ul> <li> <p> <code>CREATING</code> - Amazon FSx is creating the new data repository.</p> </li> <li> <p> <code>AVAILABLE</code> - The data repository is available for use.</p> </li> <li> <p> <code>MISCONFIGURED</code> - The data repository is in a failed but recoverable state.</p> </li> <li> <p> <code>UPDATING</code> - The data repository is undergoing a customer initiated update.</p> </li> </ul>"
       }
     },
     "DataRepositoryTask": {
@@ -498,6 +518,7 @@
         "BackupNotFound$Message": null,
         "BackupRestoring$Message": null,
         "BadRequest$Message": null,
+        "DataRepositoryFailureDetails$Message": null,
         "DataRepositoryTaskEnded$Message": null,
         "DataRepositoryTaskExecuting$Message": null,
         "DataRepositoryTaskFailureDetails$Message": null,

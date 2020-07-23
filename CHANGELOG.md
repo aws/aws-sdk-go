@@ -1,3 +1,18 @@
+Release v1.33.11 (2020-07-23)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/directconnect`: Updates service documentation
+  * Documentation updates for AWS Direct Connect
+* `service/fsx`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * Added new ConnectionProperties: "KAFKA_SSL_ENABLED" (to toggle SSL connections) and "KAFKA_CUSTOM_CERT" (import CA certificate file)
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for Amazon Lightsail content delivery network (CDN) distributions and SSL/TLS certificates.
+* `service/workspaces`: Updates service API and documentation
+  * Added UpdateWorkspaceImagePermission API to share Amazon WorkSpaces images across AWS accounts.
+
 Release v1.33.10 (2020-07-22)
 ===
 

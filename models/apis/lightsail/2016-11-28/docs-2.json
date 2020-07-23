@@ -1,19 +1,22 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Lightsail is the easiest way to get started with AWS for developers who just need virtual private servers. Lightsail includes everything you need to launch your project quickly - a virtual machine, a managed database, SSD-based storage, data transfer, DNS management, and a static IP - for a low, predictable price. You manage those Lightsail servers through the Lightsail console or by using the API or command-line interface (CLI).</p> <p>For more information about Lightsail concepts and tasks, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/all\">Lightsail Dev Guide</a>.</p> <p>To use the Lightsail API or the CLI, you will need to use AWS Identity and Access Management (IAM) to generate access keys. For details about how to set this up, see the <a href=\"http://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-set-up-access-keys-to-use-sdk-api-cli\">Lightsail Dev Guide</a>.</p>",
+  "service": "<p>Amazon Lightsail is the easiest way to get started with Amazon Web Services (AWS) for developers who need to build websites or web applications. It includes everything you need to launch your project quickly – instances (virtual private servers), managed databases, SSD-based block storage, static IP addresses, load balancers, content delivery network (CDN) distributions, DNS management of registered domains, and snapshots (backups) – for a low, predictable monthly price.</p> <p>You can manage your Lightsail resources using the Lightsail console, Lightsail API, AWS Command Line Interface (AWS CLI), or SDKs. For more information about Lightsail concepts and tasks, see the <a href=\"http://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-set-up-access-keys-to-use-sdk-api-cli\">Lightsail Dev Guide</a>.</p> <p>This API Reference provides detailed information about the actions, data types, parameters, and errors of the Lightsail service. For more information about the supported AWS Regions, endpoints, and service quotas for the Lightsail service, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/lightsail.html\">Amazon Lightsail Endpoints and Quotas</a> in the <i>AWS General Reference</i>.</p>",
   "operations": {
     "AllocateStaticIp": "<p>Allocates a static IP address.</p>",
+    "AttachCertificateToDistribution": "<p>Attaches an SSL/TLS certificate to your Amazon Lightsail content delivery network (CDN) distribution.</p> <p>After the certificate is attached, your distribution accepts HTTPS traffic for all of the domains that are associated with the certificate.</p> <p>Use the <code>CreateCertificate</code> action to create a certificate that you can attach to your distribution.</p> <important> <p>Only certificates created in the <code>us-east-1</code> AWS Region can be attached to Lightsail distributions. Lightsail distributions are global resources that can reference an origin in any AWS Region, and distribute its content globally. However, all distributions are located in the <code>us-east-1</code> Region.</p> </important>",
     "AttachDisk": "<p>Attaches a block storage disk to a running or stopped Lightsail instance and exposes it to the instance with the specified disk name.</p> <p>The <code>attach disk</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>disk name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "AttachInstancesToLoadBalancer": "<p>Attaches one or more Lightsail instances to a load balancer.</p> <p>After some time, the instances are attached to the load balancer and the health check status is available.</p> <p>The <code>attach instances to load balancer</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>load balancer name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "AttachLoadBalancerTlsCertificate": "<p>Attaches a Transport Layer Security (TLS) certificate to your load balancer. TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p> <p>Once you create and validate your certificate, you can attach it to your load balancer. You can also use this API to rotate the certificates on your account. Use the <code>AttachLoadBalancerTlsCertificate</code> action with the non-attached certificate, and it will replace the existing one and become the attached certificate.</p> <p>The <code>AttachLoadBalancerTlsCertificate</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>load balancer name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "AttachStaticIp": "<p>Attaches a static IP address to a specific Amazon Lightsail instance.</p>",
     "CloseInstancePublicPorts": "<p>Closes ports for a specific Amazon Lightsail instance.</p> <p>The <code>CloseInstancePublicPorts</code> action supports tag-based access control via resource tags applied to the resource identified by <code>instanceName</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "CopySnapshot": "<p>Copies a manual snapshot of an instance or disk as another manual snapshot, or copies an automatic snapshot of an instance or disk as a manual snapshot. This operation can also be used to copy a manual or automatic snapshot of an instance or a disk from one AWS Region to another in Amazon Lightsail.</p> <p>When copying a <i>manual snapshot</i>, be sure to define the <code>source region</code>, <code>source snapshot name</code>, and <code>target snapshot name</code> parameters.</p> <p>When copying an <i>automatic snapshot</i>, be sure to define the <code>source region</code>, <code>source resource name</code>, <code>target snapshot name</code>, and either the <code>restore date</code> or the <code>use latest restorable auto snapshot</code> parameters.</p>",
+    "CreateCertificate": "<p>Creates an SSL/TLS certificate for a Amazon Lightsail content delivery network (CDN) distribution.</p> <p>After the certificate is created, use the <code>AttachCertificateToDistribution</code> action to attach the certificate to your distribution.</p> <important> <p>Only certificates created in the <code>us-east-1</code> AWS Region can be attached to Lightsail distributions. Lightsail distributions are global resources that can reference an origin in any AWS Region, and distribute its content globally. However, all distributions are located in the <code>us-east-1</code> Region.</p> </important>",
     "CreateCloudFormationStack": "<p>Creates an AWS CloudFormation stack, which creates a new Amazon EC2 instance from an exported Amazon Lightsail snapshot. This operation results in a CloudFormation stack record that can be used to track the AWS CloudFormation stack created. Use the <code>get cloud formation stack records</code> operation to get a list of the CloudFormation stacks created.</p> <important> <p>Wait until after your new Amazon EC2 instance is created before running the <code>create cloud formation stack</code> operation again with the same export snapshot record.</p> </important>",
     "CreateContactMethod": "<p>Creates an email or SMS text message contact method.</p> <p>A contact method is used to send you notifications about your Amazon Lightsail resources. You can add one email address and one mobile phone number contact method in each AWS Region. However, SMS text messaging is not supported in some AWS Regions, and SMS text messages cannot be sent to some countries/regions. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications\">Notifications in Amazon Lightsail</a>.</p>",
     "CreateDisk": "<p>Creates a block storage disk that can be attached to an Amazon Lightsail instance in the same Availability Zone (e.g., <code>us-east-2a</code>).</p> <p>The <code>create disk</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "CreateDiskFromSnapshot": "<p>Creates a block storage disk from a manual or automatic snapshot of a disk. The resulting disk can be attached to an Amazon Lightsail instance in the same Availability Zone (e.g., <code>us-east-2a</code>).</p> <p>The <code>create disk from snapshot</code> operation supports tag-based access control via request tags and resource tags applied to the resource identified by <code>disk snapshot name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "CreateDiskSnapshot": "<p>Creates a snapshot of a block storage disk. You can use snapshots for backups, to make copies of disks, and to save data before shutting down a Lightsail instance.</p> <p>You can take a snapshot of an attached disk that is in use; however, snapshots only capture data that has been written to your disk at the time the snapshot command is issued. This may exclude any data that has been cached by any applications or the operating system. If you can pause any file systems on the disk long enough to take a snapshot, your snapshot should be complete. Nevertheless, if you cannot pause all file writes to the disk, you should unmount the disk from within the Lightsail instance, issue the create disk snapshot command, and then remount the disk to ensure a consistent and complete snapshot. You may remount and use your disk while the snapshot status is pending.</p> <p>You can also use this operation to create a snapshot of an instance's system volume. You might want to do this, for example, to recover data from the system volume of a botched instance or to create a backup of the system volume like you would for a block storage disk. To create a snapshot of a system volume, just define the <code>instance name</code> parameter when issuing the snapshot command, and a snapshot of the defined instance's system volume will be created. After the snapshot is available, you can create a block storage disk from the snapshot and attach it to a running instance to access the data on the disk.</p> <p>The <code>create disk snapshot</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
+    "CreateDistribution": "<p>Creates an Amazon Lightsail content delivery network (CDN) distribution.</p> <p>A distribution is a globally distributed network of caching servers that improve the performance of your website or web application hosted on a Lightsail instance. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-content-delivery-networks\">Content delivery networks in Amazon Lightsail</a>.</p>",
     "CreateDomain": "<p>Creates a domain resource for the specified domain (e.g., example.com).</p> <p>The <code>create domain</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "CreateDomainEntry": "<p>Creates one of the following entry records associated with the domain: Address (A), canonical name (CNAME), mail exchanger (MX), name server (NS), start of authority (SOA), service locator (SRV), or text (TXT).</p> <p>The <code>create domain entry</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>domain name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "CreateInstanceSnapshot": "<p>Creates a snapshot of a specific virtual private server, or <i>instance</i>. You can use a snapshot to create a new instance that is based on that snapshot.</p> <p>The <code>create instance snapshot</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
@@ -27,9 +30,11 @@
     "CreateRelationalDatabaseSnapshot": "<p>Creates a snapshot of your database in Amazon Lightsail. You can use snapshots for backups, to make copies of a database, and to save data before deleting a database.</p> <p>The <code>create relational database snapshot</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "DeleteAlarm": "<p>Deletes an alarm.</p> <p>An alarm is used to monitor a single metric for one of your resources. When a metric condition is met, the alarm can notify you by email, SMS text message, and a banner displayed on the Amazon Lightsail console. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-alarms\">Alarms in Amazon Lightsail</a>.</p>",
     "DeleteAutoSnapshot": "<p>Deletes an automatic snapshot of an instance or disk. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Lightsail Dev Guide</a>.</p>",
+    "DeleteCertificate": "<p>Deletes an SSL/TLS certificate for your Amazon Lightsail content delivery network (CDN) distribution.</p> <p>Certificates that are currently attached to a distribution cannot be deleted. Use the <code>DetachCertificateFromDistribution</code> action to detach a certificate from a distribution.</p>",
     "DeleteContactMethod": "<p>Deletes a contact method.</p> <p>A contact method is used to send you notifications about your Amazon Lightsail resources. You can add one email address and one mobile phone number contact method in each AWS Region. However, SMS text messaging is not supported in some AWS Regions, and SMS text messages cannot be sent to some countries/regions. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications\">Notifications in Amazon Lightsail</a>.</p>",
     "DeleteDisk": "<p>Deletes the specified block storage disk. The disk must be in the <code>available</code> state (not attached to a Lightsail instance).</p> <note> <p>The disk may remain in the <code>deleting</code> state for several minutes.</p> </note> <p>The <code>delete disk</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>disk name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "DeleteDiskSnapshot": "<p>Deletes the specified disk snapshot.</p> <p>When you make periodic snapshots of a disk, the snapshots are incremental, and only the blocks on the device that have changed since your last snapshot are saved in the new snapshot. When you delete a snapshot, only the data not needed for any other snapshot is removed. So regardless of which prior snapshots have been deleted, all active snapshots will have access to all the information needed to restore the disk.</p> <p>The <code>delete disk snapshot</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>disk snapshot name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
+    "DeleteDistribution": "<p>Deletes your Amazon Lightsail content delivery network (CDN) distribution.</p>",
     "DeleteDomain": "<p>Deletes the specified domain recordset and all of its domain records.</p> <p>The <code>delete domain</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>domain name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "DeleteDomainEntry": "<p>Deletes a specific domain entry.</p> <p>The <code>delete domain entry</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>domain name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "DeleteInstance": "<p>Deletes an Amazon Lightsail instance.</p> <p>The <code>delete instance</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>instance name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
@@ -40,6 +45,7 @@
     "DeleteLoadBalancerTlsCertificate": "<p>Deletes an SSL/TLS certificate associated with a Lightsail load balancer.</p> <p>The <code>DeleteLoadBalancerTlsCertificate</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>load balancer name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "DeleteRelationalDatabase": "<p>Deletes a database in Amazon Lightsail.</p> <p>The <code>delete relational database</code> operation supports tag-based access control via resource tags applied to the resource identified by relationalDatabaseName. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "DeleteRelationalDatabaseSnapshot": "<p>Deletes a database snapshot in Amazon Lightsail.</p> <p>The <code>delete relational database snapshot</code> operation supports tag-based access control via resource tags applied to the resource identified by relationalDatabaseName. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
+    "DetachCertificateFromDistribution": "<p>Detaches an SSL/TLS certificate from your Amazon Lightsail content delivery network (CDN) distribution.</p> <p>After the certificate is detached, your distribution stops accepting traffic for all of the domains that are associated with the certificate.</p>",
     "DetachDisk": "<p>Detaches a stopped block storage disk from a Lightsail instance. Make sure to unmount any file systems on the device within your operating system before stopping the instance and detaching the disk.</p> <p>The <code>detach disk</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>disk name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "DetachInstancesFromLoadBalancer": "<p>Detaches the specified instances from a Lightsail load balancer.</p> <p>This operation waits until the instances are no longer needed before they are detached from the load balancer.</p> <p>The <code>detach instances from load balancer</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>load balancer name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "DetachStaticIp": "<p>Detaches a static IP from the Amazon Lightsail instance to which it is attached.</p>",
@@ -52,12 +58,17 @@
     "GetAutoSnapshots": "<p>Returns the available automatic snapshots for an instance or disk. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Lightsail Dev Guide</a>.</p>",
     "GetBlueprints": "<p>Returns the list of available instance images, or <i>blueprints</i>. You can use a blueprint to create a new instance already running a specific operating system, as well as a preinstalled app or development stack. The software each instance is running depends on the blueprint image you choose.</p> <note> <p>Use active blueprints when creating new instances. Inactive blueprints are listed to support customers with existing instances and are not necessarily available to create new instances. Blueprints are marked inactive when they become outdated due to operating system updates or new application releases.</p> </note>",
     "GetBundles": "<p>Returns the list of bundles that are available for purchase. A bundle describes the specs for your virtual private server (or <i>instance</i>).</p>",
+    "GetCertificates": "<p>Returns information about one or more Amazon Lightsail SSL/TLS certificates.</p> <note> <p>To get a summary of a certificate, ommit <code>includeCertificateDetails</code> from your request. The response will include only the certificate Amazon Resource Name (ARN), certificate name, domain name, and tags.</p> </note>",
     "GetCloudFormationStackRecords": "<p>Returns the CloudFormation stack record created as a result of the <code>create cloud formation stack</code> operation.</p> <p>An AWS CloudFormation stack is used to create a new Amazon EC2 instance from an exported Lightsail snapshot.</p>",
     "GetContactMethods": "<p>Returns information about the configured contact methods. Specify a protocol in your request to return information about a specific contact method.</p> <p>A contact method is used to send you notifications about your Amazon Lightsail resources. You can add one email address and one mobile phone number contact method in each AWS Region. However, SMS text messaging is not supported in some AWS Regions, and SMS text messages cannot be sent to some countries/regions. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications\">Notifications in Amazon Lightsail</a>.</p>",
     "GetDisk": "<p>Returns information about a specific block storage disk.</p>",
     "GetDiskSnapshot": "<p>Returns information about a specific block storage disk snapshot.</p>",
     "GetDiskSnapshots": "<p>Returns information about all block storage disk snapshots in your AWS account and region.</p>",
     "GetDisks": "<p>Returns information about all block storage disks in your AWS account and region.</p>",
+    "GetDistributionBundles": "<p>Returns the list bundles that can be applied to you Amazon Lightsail content delivery network (CDN) distributions.</p> <p>A distribution bundle specifies the monthly network transfer quota and monthly cost of your dsitribution.</p>",
+    "GetDistributionLatestCacheReset": "<p>Returns the timestamp and status of the last cache reset of a specific Amazon Lightsail content delivery network (CDN) distribution.</p>",
+    "GetDistributionMetricData": "<p>Returns the data points of a specific metric for an Amazon Lightsail content delivery network (CDN) distribution.</p> <p>Metrics report the utilization of your resources, and the error counts generated by them. Monitor and collect metric data regularly to maintain the reliability, availability, and performance of your resources.</p>",
+    "GetDistributions": "<p>Returns information about one or more of your Amazon Lightsail content delivery network (CDN) distributions.</p>",
     "GetDomain": "<p>Returns information about a specific domain recordset.</p>",
     "GetDomains": "<p>Returns a list of all domains in the user's account.</p>",
     "GetExportSnapshotRecords": "<p>Returns the export snapshot record created as a result of the <code>export snapshot</code> operation.</p> <p>An export snapshot record can be used to create a new Amazon EC2 instance and its related resources with the <code>create cloud formation stack</code> operation.</p>",
@@ -102,6 +113,7 @@
     "RebootInstance": "<p>Restarts a specific instance.</p> <p>The <code>reboot instance</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>instance name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "RebootRelationalDatabase": "<p>Restarts a specific database in Amazon Lightsail.</p> <p>The <code>reboot relational database</code> operation supports tag-based access control via resource tags applied to the resource identified by relationalDatabaseName. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "ReleaseStaticIp": "<p>Deletes a specific static IP from your account.</p>",
+    "ResetDistributionCache": "<p>Deletes currently cached content from your Amazon Lightsail content delivery network (CDN) distribution.</p> <p>After resetting the cache, the next time a content request is made, your distribution pulls, serves, and caches it from the origin.</p>",
     "SendContactMethodVerification": "<p>Sends a verification request to an email contact method to ensure it's owned by the requester. SMS contact methods don't need to be verified.</p> <p>A contact method is used to send you notifications about your Amazon Lightsail resources. You can add one email address and one mobile phone number contact method in each AWS Region. However, SMS text messaging is not supported in some AWS Regions, and SMS text messages cannot be sent to some countries/regions. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications\">Notifications in Amazon Lightsail</a>.</p> <p>A verification request is sent to the contact method when you initially create it. Use this action to send another verification request if a previous verification request was deleted, or has expired.</p> <important> <p>Notifications are not sent to an email contact method until after it is verified, and confirmed as valid.</p> </important>",
     "StartInstance": "<p>Starts a specific Amazon Lightsail instance from a stopped state. To restart an instance, use the <code>reboot instance</code> operation.</p> <note> <p>When you start a stopped instance, Lightsail assigns a new public IP address to the instance. To use the same IP address after stopping and starting an instance, create a static IP address and attach it to the instance. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/lightsail-create-static-ip\">Lightsail Dev Guide</a>.</p> </note> <p>The <code>start instance</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>instance name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "StartRelationalDatabase": "<p>Starts a specific database from a stopped state in Amazon Lightsail. To restart a database, use the <code>reboot relational database</code> operation.</p> <p>The <code>start relational database</code> operation supports tag-based access control via resource tags applied to the resource identified by relationalDatabaseName. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
@@ -111,6 +123,8 @@
     "TestAlarm": "<p>Tests an alarm by displaying a banner on the Amazon Lightsail console. If a notification trigger is configured for the specified alarm, the test also sends a notification to the notification protocol (<code>Email</code> and/or <code>SMS</code>) configured for the alarm.</p> <p>An alarm is used to monitor a single metric for one of your resources. When a metric condition is met, the alarm can notify you by email, SMS text message, and a banner displayed on the Amazon Lightsail console. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-alarms\">Alarms in Amazon Lightsail</a>.</p>",
     "UnpeerVpc": "<p>Attempts to unpeer the Lightsail VPC from the user's default VPC.</p>",
     "UntagResource": "<p>Deletes the specified set of tag keys and their values from the specified Amazon Lightsail resource.</p> <p>The <code>untag resource</code> operation supports tag-based access control via request tags and resource tags applied to the resource identified by <code>resource name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
+    "UpdateDistribution": "<p>Updates an existing Amazon Lightsail content delivery network (CDN) distribution.</p> <p>Use this action to update the configuration of your existing distribution</p>",
+    "UpdateDistributionBundle": "<p>Updates the bundle of your Amazon Lightsail content delivery network (CDN) distribution.</p> <p>A distribution bundle specifies the monthly network transfer quota and monthly cost of your dsitribution.</p> <p>Update your distribution's bundle if your distribution is going over its monthly network transfer quota and is incurring an overage fee.</p> <p>You can update your distribution's bundle only one time within your monthly AWS billing cycle. To determine if you can update your distribution's bundle, use the <code>GetDistributions</code> action. The <code>ableToUpdateBundle</code> parameter in the result will indicate whether you can currently update your distribution's bundle.</p>",
     "UpdateDomainEntry": "<p>Updates a domain recordset after it is created.</p> <p>The <code>update domain entry</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>domain name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "UpdateLoadBalancerAttribute": "<p>Updates the specified attribute for a load balancer. You can only update one attribute at a time.</p> <p>The <code>update load balancer attribute</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>load balancer name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "UpdateRelationalDatabase": "<p>Allows the update of one or more attributes of a database in Amazon Lightsail.</p> <p>Updates are applied immediately, or in cases where the updates could result in an outage, are applied during the database's predefined maintenance window.</p> <p>The <code>update relational database</code> operation supports tag-based access control via resource tags applied to the resource identified by relationalDatabaseName. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
@@ -195,6 +209,16 @@
       }
     },
     "AllocateStaticIpResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AttachCertificateToDistributionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AttachCertificateToDistributionResult": {
       "base": null,
       "refs": {
       }
@@ -311,6 +335,13 @@
         "KeyPair$fingerprint": "<p>The RSA fingerprint of the key pair.</p>"
       }
     },
+    "BehaviorEnum": {
+      "base": null,
+      "refs": {
+        "CacheBehavior$behavior": "<p>The cache behavior of the distribution.</p> <p>The following cache behaviors can be specified:</p> <ul> <li> <p> <b> <code>cache</code> </b> - This option is best for static sites. When specified, your distribution caches and serves your entire website as static content. This behavior is ideal for websites with static content that doesn't change depending on who views it, or for websites that don't use cookies, headers, or query strings to personalize content.</p> </li> <li> <p> <b> <code>dont-cache</code> </b> - This option is best for sites that serve a mix of static and dynamic content. When specified, your distribution caches and serve only the content that is specified in the distribution's <code>CacheBehaviorPerPath</code> parameter. This behavior is ideal for websites or web applications that use cookies, headers, and query strings to personalize content for individual users.</p> </li> </ul>",
+        "CacheBehaviorPerPath$behavior": "<p>The cache behavior for the specified path.</p> <p>You can specify one of the following per-path cache behaviors:</p> <ul> <li> <p> <b> <code>cache</code> </b> - This behavior caches the specified path. </p> </li> <li> <p> <b> <code>dont-cache</code> </b> - This behavior doesn't cache the specified path. </p> </li> </ul>"
+      }
+    },
     "Blueprint": {
       "base": "<p>Describes a blueprint (a virtual private server image).</p>",
       "refs": {
@@ -339,6 +370,78 @@
       "base": null,
       "refs": {
         "GetBundlesResult$bundles": "<p>An array of key-value pairs that contains information about the available bundles.</p>"
+      }
+    },
+    "CacheBehavior": {
+      "base": "<p>Describes the default cache behavior of an Amazon Lightsail content delivery network (CDN) distribution.</p>",
+      "refs": {
+        "CreateDistributionRequest$defaultCacheBehavior": "<p>An object that describes the default cache behavior for the distribution.</p>",
+        "LightsailDistribution$defaultCacheBehavior": "<p>An object that describes the default cache behavior of the distribution.</p>",
+        "UpdateDistributionRequest$defaultCacheBehavior": "<p>An object that describes the default cache behavior for the distribution.</p>"
+      }
+    },
+    "CacheBehaviorList": {
+      "base": null,
+      "refs": {
+        "CreateDistributionRequest$cacheBehaviors": "<p>An array of objects that describe the per-path cache behavior for the distribution.</p>",
+        "LightsailDistribution$cacheBehaviors": "<p>An array of objects that describe the per-path cache behavior of the distribution.</p>",
+        "UpdateDistributionRequest$cacheBehaviors": "<p>An array of objects that describe the per-path cache behavior for the distribution.</p>"
+      }
+    },
+    "CacheBehaviorPerPath": {
+      "base": "<p>Describes the per-path cache behavior of an Amazon Lightsail content delivery network (CDN) distribution.</p> <p>A per-path cache behavior is used to override, or add an exception to, the default cache behavior of a distribution. For example, if the <code>cacheBehavior</code> is set to <code>cache</code>, then a per-path cache behavior can be used to specify a directory, file, or file type that your distribution will cache. Alternately, if the distribution's <code>cacheBehavior</code> is <code>dont-cache</code>, then a per-path cache behavior can be used to specify a directory, file, or file type that your distribution will not cache.</p> <p>if the cacheBehavior's behavior is set to 'cache', then</p>",
+      "refs": {
+        "CacheBehaviorList$member": null
+      }
+    },
+    "CacheSettings": {
+      "base": "<p>Describes the cache settings of an Amazon Lightsail content delivery network (CDN) distribution.</p> <p>These settings apply only to your distribution's <code>cacheBehaviors</code> (including the <code>defaultCacheBehavior</code>) that have a <code>behavior</code> of <code>cache</code>.</p>",
+      "refs": {
+        "CreateDistributionRequest$cacheBehaviorSettings": "<p>An object that describes the cache behavior settings for the distribution.</p>",
+        "LightsailDistribution$cacheBehaviorSettings": "<p>An object that describes the cache behavior settings of the distribution.</p>",
+        "UpdateDistributionRequest$cacheBehaviorSettings": "<p>An object that describes the cache behavior settings for the distribution.</p> <note> <p>The <code>cacheBehaviorSettings</code> specified in your <code>UpdateDistributionRequest</code> will replace your distribution's existing settings.</p> </note>"
+      }
+    },
+    "Certificate": {
+      "base": "<p>Describes the full details of an Amazon Lightsail SSL/TLS certificate.</p> <note> <p>To get a summary of a certificate, use the <code>GetCertificates</code> action and ommit <code>includeCertificateDetails</code> from your request. The response will include only the certificate Amazon Resource Name (ARN), certificate name, domain name, and tags.</p> </note>",
+      "refs": {
+        "CertificateSummary$certificateDetail": "<p>An object that describes a certificate in detail.</p>"
+      }
+    },
+    "CertificateName": {
+      "base": null,
+      "refs": {
+        "Certificate$name": "<p>The name of the certificate (e.g., <code>my-certificate</code>).</p>",
+        "CertificateSummary$certificateName": "<p>The name of the certificate.</p>",
+        "CreateCertificateRequest$certificateName": "<p>The name for the certificate.</p>",
+        "DeleteCertificateRequest$certificateName": "<p>The name of the certificate to delete.</p> <p>Use the <code>GetCertificates</code> action to get a list of certificate names that you can specify.</p>",
+        "GetCertificatesRequest$certificateName": "<p>The name for the certificate for which to return information.</p> <p>When omitted, the response includes all of your certificates in the AWS region where the request is made.</p>"
+      }
+    },
+    "CertificateStatus": {
+      "base": null,
+      "refs": {
+        "Certificate$status": "<p>The validation status of the certificate.</p>",
+        "CertificateStatusList$member": null
+      }
+    },
+    "CertificateStatusList": {
+      "base": null,
+      "refs": {
+        "GetCertificatesRequest$certificateStatuses": "<p>The status of the certificates for which to return information.</p> <p>For example, specify <code>ISSUED</code> to return only certificates with an <code>ISSUED</code> status.</p> <p>When omitted, the response includes all of your certificates in the AWS region where the request is made, regardless of their current status.</p>"
+      }
+    },
+    "CertificateSummary": {
+      "base": "<p>Describes an Amazon Lightsail SSL/TLS certificate.</p>",
+      "refs": {
+        "CertificateSummaryList$member": null,
+        "CreateCertificateResult$certificate": "<p>An object that describes the certificate created.</p>"
+      }
+    },
+    "CertificateSummaryList": {
+      "base": null,
+      "refs": {
+        "GetCertificatesResult$certificates": "<p>An object that describes certificates.</p>"
       }
     },
     "CloseInstancePublicPortsRequest": {
@@ -429,12 +532,28 @@
         "PutAlarmRequest$contactProtocols": "<p>The contact protocols to use for the alarm, such as <code>Email</code>, <code>SMS</code> (text messaging), or both.</p> <p>A notification is sent via the specified contact protocol if notifications are enabled for the alarm, and when the alarm is triggered.</p> <p>A notification is not sent if a contact protocol is not specified, if the specified contact protocol is not configured in the AWS Region, or if notifications are not enabled for the alarm using the <code>notificationEnabled</code> paramater.</p> <p>Use the <code>CreateContactMethod</code> action to configure a contact protocol in an AWS Region.</p>"
       }
     },
+    "CookieObject": {
+      "base": "<p>Describes whether an Amazon Lightsail content delivery network (CDN) distribution forwards cookies to the origin and, if so, which ones.</p> <p>For the cookies that you specify, your distribution caches separate versions of the specified content based on the cookie values in viewer requests.</p>",
+      "refs": {
+        "CacheSettings$forwardedCookies": "<p>An object that describes the cookies that are forwarded to the origin. Your content is cached based on the cookies that are forwarded.</p>"
+      }
+    },
     "CopySnapshotRequest": {
       "base": null,
       "refs": {
       }
     },
     "CopySnapshotResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCertificateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCertificateResult": {
       "base": null,
       "refs": {
       }
@@ -485,6 +604,16 @@
       }
     },
     "CreateDiskSnapshotResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDistributionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDistributionResult": {
       "base": null,
       "refs": {
       }
@@ -619,6 +748,16 @@
       "refs": {
       }
     },
+    "DeleteCertificateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCertificateResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteContactMethodRequest": {
       "base": null,
       "refs": {
@@ -645,6 +784,16 @@
       }
     },
     "DeleteDiskSnapshotResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDistributionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDistributionResult": {
       "base": null,
       "refs": {
       }
@@ -754,6 +903,16 @@
       "refs": {
         "CloudFormationStackRecord$destinationInfo": "<p>A list of objects describing the destination service, which is AWS CloudFormation, and the Amazon Resource Name (ARN) of the AWS CloudFormation stack.</p>",
         "ExportSnapshotRecord$destinationInfo": "<p>A list of objects describing the destination of the export snapshot record.</p>"
+      }
+    },
+    "DetachCertificateFromDistributionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetachCertificateFromDistributionResult": {
+      "base": null,
+      "refs": {
       }
     },
     "DetachDiskRequest": {
@@ -866,6 +1025,31 @@
         "Disk$state": "<p>Describes the status of the disk.</p>"
       }
     },
+    "DistributionBundle": {
+      "base": "<p>Describes the specifications of a distribution bundle.</p>",
+      "refs": {
+        "DistributionBundleList$member": null
+      }
+    },
+    "DistributionBundleList": {
+      "base": null,
+      "refs": {
+        "GetDistributionBundlesResult$bundles": "<p>An object that describes a distribution bundle.</p>"
+      }
+    },
+    "DistributionList": {
+      "base": null,
+      "refs": {
+        "GetDistributionsResult$distributions": "<p>An array of objects that describe your distributions.</p>"
+      }
+    },
+    "DistributionMetricName": {
+      "base": null,
+      "refs": {
+        "GetDistributionMetricDataRequest$metricName": "<p>The metric for which you want to return information.</p> <p>Valid distribution metric names are listed below, along with the most useful <code>statistics</code> to include in your request, and the published <code>unit</code> value.</p> <ul> <li> <p> <b> <code>Requests</code> </b> - The total number of viewer requests received by your Lightsail distribution, for all HTTP methods, and for both HTTP and HTTPS requests.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>.</p> <p> <code>Unit</code>: The published unit is <code>None</code>.</p> </li> <li> <p> <b> <code>BytesDownloaded</code> </b> - The number of bytes downloaded by viewers for GET, HEAD, and OPTIONS requests.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>.</p> <p> <code>Unit</code>: The published unit is <code>None</code>.</p> </li> <li> <p> <b> <code>BytesUploaded </code> </b> - The number of bytes uploaded to your origin by your Lightsail distribution, using POST and PUT requests.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>.</p> <p> <code>Unit</code>: The published unit is <code>None</code>.</p> </li> <li> <p> <b> <code>TotalErrorRate</code> </b> - The percentage of all viewer requests for which the response's HTTP status code was 4xx or 5xx.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Average</code>.</p> <p> <code>Unit</code>: The published unit is <code>Percent</code>.</p> </li> <li> <p> <b> <code>4xxErrorRate</code> </b> - The percentage of all viewer requests for which the response's HTTP status cod was 4xx. In these cases, the client or client viewer may have made an error. For example, a status code of 404 (Not Found) means that the client requested an object that could not be found.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Average</code>.</p> <p> <code>Unit</code>: The published unit is <code>Percent</code>.</p> </li> <li> <p> <b> <code>5xxErrorRate</code> </b> - The percentage of all viewer requests for which the response's HTTP status code was 5xx. In these cases, the origin server did not satisfy the requests. For example, a status code of 503 (Service Unavailable) means that the origin server is currently unavailable.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Average</code>.</p> <p> <code>Unit</code>: The published unit is <code>Percent</code>.</p> </li> </ul>",
+        "GetDistributionMetricDataResult$metricName": "<p>The name of the metric returned.</p>"
+      }
+    },
     "Domain": {
       "base": "<p>Describes a domain where you are storing recordsets in Lightsail.</p>",
       "refs": {
@@ -915,6 +1099,9 @@
     "DomainName": {
       "base": null,
       "refs": {
+        "Certificate$domainName": "<p>The domain name of the certificate.</p>",
+        "CertificateSummary$domainName": "<p>The domain name of the certificate.</p>",
+        "CreateCertificateRequest$domainName": "<p>The domain name (e.g., <code>example.com</code>) for the certificate.</p>",
         "CreateDomainEntryRequest$domainName": "<p>The domain name (e.g., <code>example.com</code>) for which you want to create the domain entry.</p>",
         "CreateDomainRequest$domainName": "<p>The domain name to manage (e.g., <code>example.com</code>).</p> <note> <p>You cannot register a new domain name using Lightsail. You must register a domain name using Amazon Route 53 or another domain name registrar. If you have already registered your domain, you can enter its name in this parameter to manage the DNS records for that domain.</p> </note>",
         "CreateLoadBalancerRequest$certificateDomainName": "<p>The domain name with which your certificate is associated (e.g., <code>example.com</code>).</p> <p>If you specify <code>certificateDomainName</code>, then <code>certificateName</code> is required (and vice-versa).</p>",
@@ -923,10 +1110,12 @@
         "DeleteDomainRequest$domainName": "<p>The specific domain name to delete.</p>",
         "DomainEntry$name": "<p>The name of the domain.</p>",
         "DomainNameList$member": null,
+        "DomainValidationRecord$domainName": "<p>The domain name of the certificate validation record. For example, <code>example.com</code> or <code>www.example.com</code>.</p>",
         "GetDomainRequest$domainName": "<p>The domain name for which your want to return information about.</p>",
         "LoadBalancerTlsCertificate$domainName": "<p>The domain name for your SSL/TLS certificate.</p>",
         "LoadBalancerTlsCertificateDomainValidationOption$domainName": "<p>The fully qualified domain name in the certificate request.</p>",
         "LoadBalancerTlsCertificateDomainValidationRecord$domainName": "<p>The domain name against which your SSL/TLS certificate was validated.</p>",
+        "SubjectAlternativeNameList$member": null,
         "UpdateDomainEntryRequest$domainName": "<p>The name of the domain recordset to update.</p>"
       }
     },
@@ -937,6 +1126,19 @@
         "CreateLoadBalancerTlsCertificateRequest$certificateAlternativeNames": "<p>An array of strings listing alternative domains and subdomains for your SSL/TLS certificate. Lightsail will de-dupe the names for you. You can have a maximum of 9 alternative names (in addition to the 1 primary domain). We do not support wildcards (e.g., <code>*.example.com</code>).</p>"
       }
     },
+    "DomainValidationRecord": {
+      "base": "<p>Describes the domain validation records of an Amazon Lightsail SSL/TLS certificate.</p>",
+      "refs": {
+        "DomainValidationRecordList$member": null
+      }
+    },
+    "DomainValidationRecordList": {
+      "base": null,
+      "refs": {
+        "Certificate$domainValidationRecords": "<p>An array of objects that describe the domain validation records of the certificate.</p>",
+        "RenewalSummary$domainValidationRecords": "<p>An array of objects that describe the domain validation records of the certificate.</p>"
+      }
+    },
     "DownloadDefaultKeyPairRequest": {
       "base": null,
       "refs": {
@@ -945,6 +1147,12 @@
     "DownloadDefaultKeyPairResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "EligibleToRenew": {
+      "base": null,
+      "refs": {
+        "Certificate$eligibleToRenew": "<p>The renewal eligibility of the certificate.</p>"
       }
     },
     "EnableAddOnRequest": {
@@ -989,6 +1197,13 @@
     "ExportSnapshotResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "ForwardValues": {
+      "base": null,
+      "refs": {
+        "CookieObject$option": "<p>Specifies which cookies to forward to the distribution's origin for a cache behavior: <code>all</code>, <code>none</code>, or <code>allow-list</code> to forward only the cookies specified in the <code>cookiesAllowList</code> parameter.</p>",
+        "HeaderObject$option": "<p>The headers that you want your distribution to forward to your origin and base caching on.</p> <p>You can configure your distribution to do one of the following:</p> <ul> <li> <p> <b> <code>all</code> </b> - Forward all headers to your origin.</p> </li> <li> <p> <b> <code>none</code> </b> - Forward only the default headers.</p> </li> <li> <p> <b> <code>allow-list</code> </b> - Forward only the headers you specify using the <code>headersAllowList</code> parameter.</p> </li> </ul>"
       }
     },
     "GetActiveNamesRequest": {
@@ -1037,6 +1252,16 @@
       }
     },
     "GetBundlesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCertificatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCertificatesResult": {
       "base": null,
       "refs": {
       }
@@ -1097,6 +1322,46 @@
       }
     },
     "GetDisksResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDistributionBundlesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDistributionBundlesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDistributionLatestCacheResetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDistributionLatestCacheResetResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDistributionMetricDataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDistributionMetricDataResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDistributionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDistributionsResult": {
       "base": null,
       "refs": {
       }
@@ -1451,6 +1716,24 @@
       "refs": {
       }
     },
+    "HeaderEnum": {
+      "base": null,
+      "refs": {
+        "HeaderForwardList$member": null
+      }
+    },
+    "HeaderForwardList": {
+      "base": null,
+      "refs": {
+        "HeaderObject$headersAllowList": "<p>The specific headers to forward to your distribution's origin.</p>"
+      }
+    },
+    "HeaderObject": {
+      "base": "<p>Describes the request headers that a Lightsail distribution bases caching on.</p> <p>For the headers that you specify, your distribution caches separate versions of the specified content based on the header values in viewer requests. For example, suppose viewer requests for <code>logo.jpg</code> contain a custom <code>product</code> header that has a value of either <code>acme</code> or <code>apex</code>, and you configure your distribution to cache your content based on values in the <code>product</code> header. Your distribution forwards the <code>product</code> header to the origin and caches the response from the origin once for each header value. </p>",
+      "refs": {
+        "CacheSettings$forwardedHeaders": "<p>An object that describes the headers that are forwarded to the origin. Your content is cached based on the headers that are forwarded.</p>"
+      }
+    },
     "HostKeyAttributes": {
       "base": "<p>Describes the public SSH host keys or the RDP certificate.</p>",
       "refs": {
@@ -1471,6 +1754,25 @@
     "ImportKeyPairResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "InUseResourceCount": {
+      "base": null,
+      "refs": {
+        "Certificate$inUseResourceCount": "<p>The number of Lightsail resources that the certificate is attached to.</p>"
+      }
+    },
+    "IncludeCertificateDetails": {
+      "base": null,
+      "refs": {
+        "GetCertificatesRequest$includeCertificateDetails": "<p>Indicates whether to include detailed information about the certificates in the response.</p> <p>When omitted, the response includes only the certificate names, Amazon Resource Names (ARNs), domain names, and tags.</p>"
+      }
+    },
+    "InputOrigin": {
+      "base": "<p>Describes the origin resource of an Amazon Lightsail content delivery network (CDN) distribution.</p> <p>An origin can be a Lightsail instance or load balancer. A distribution pulls content from an origin, caches it, and serves it to viewers via a worldwide network of edge servers.</p>",
+      "refs": {
+        "CreateDistributionRequest$origin": "<p>An object that describes the origin resource for the distribution, such as a Lightsail instance or load balancer.</p> <p>The distribution pulls, caches, and serves content from the origin.</p>",
+        "UpdateDistributionRequest$origin": "<p>An object that describes the origin resource for the distribution, such as a Lightsail instance or load balancer.</p> <p>The distribution pulls, caches, and serves content from the origin.</p>"
       }
     },
     "Instance": {
@@ -1658,6 +1960,11 @@
       "refs": {
         "Alarm$createdAt": "<p>The timestamp when the alarm was created.</p>",
         "AutoSnapshotDetails$createdAt": "<p>The timestamp when the automatic snapshot was created.</p>",
+        "Certificate$createdAt": "<p>The timestamp when the certificate was created.</p>",
+        "Certificate$issuedAt": "<p>The timestamp when the certificate was issued.</p>",
+        "Certificate$notBefore": "<p>The timestamp when the certificate is first valid.</p>",
+        "Certificate$notAfter": "<p>The timestamp when the certificate expires.</p>",
+        "Certificate$revokedAt": "<p>The timestamp when the certificate was revoked. This value is present only when the certificate status is <code>REVOKED</code>.</p>",
         "CloudFormationStackRecord$createdAt": "<p>The date when the CloudFormation stack record was created.</p>",
         "ContactMethod$createdAt": "<p>The timestamp when the contact method was created.</p>",
         "CreateRelationalDatabaseFromSnapshotRequest$restoreTime": "<p>The date and time to restore your database from.</p> <p>Constraints:</p> <ul> <li> <p>Must be before the latest restorable time for the database.</p> </li> <li> <p>Cannot be specified if the <code>use latest restorable time</code> parameter is <code>true</code>.</p> </li> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a restore time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the restore time.</p> </li> </ul>",
@@ -1666,6 +1973,7 @@
         "Domain$createdAt": "<p>The date when the domain recordset was created.</p>",
         "ExportSnapshotRecord$createdAt": "<p>The date when the export snapshot record was created.</p>",
         "ExportSnapshotRecordSourceInfo$createdAt": "<p>The date when the source instance or disk snapshot was created.</p>",
+        "GetDistributionLatestCacheResetResult$createTime": "<p>The timestamp of the last cache reset (e.g., <code>1479734909.17</code>) in Unix time format.</p>",
         "GetRelationalDatabaseLogEventsRequest$startTime": "<p>The start of the time interval from which to get log events.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a start time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the start time.</p> </li> </ul>",
         "GetRelationalDatabaseLogEventsRequest$endTime": "<p>The end of the time interval from which to get log events.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use an end time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the end time.</p> </li> </ul>",
         "GetRelationalDatabaseMasterUserPasswordResult$createdAt": "<p>The timestamp when the specified version of the master user password was created.</p>",
@@ -1674,16 +1982,17 @@
         "HostKeyAttributes$witnessedAt": "<p>The time that the SSH host key or RDP certificate was recorded by Lightsail.</p>",
         "HostKeyAttributes$notValidBefore": "<p>The returned RDP certificate is valid after this point in time.</p> <p>This value is listed only for RDP certificates.</p>",
         "HostKeyAttributes$notValidAfter": "<p>The returned RDP certificate is not valid after this point in time.</p> <p>This value is listed only for RDP certificates.</p>",
-        "Instance$createdAt": "<p>The timestamp when the instance was created (e.g., <code>1479734909.17</code>).</p>",
+        "Instance$createdAt": "<p>The timestamp when the instance was created (e.g., <code>1479734909.17</code>) in Unix time format.</p>",
         "InstanceAccessDetails$expiresAt": "<p>For SSH access, the date on which the temporary keys expire.</p>",
         "InstanceSnapshot$createdAt": "<p>The timestamp when the snapshot was created (e.g., <code>1479907467.024</code>).</p>",
         "KeyPair$createdAt": "<p>The timestamp when the key pair was created (e.g., <code>1479816991.349</code>).</p>",
+        "LightsailDistribution$createdAt": "<p>The timestamp when the distribution was created.</p>",
         "LoadBalancer$createdAt": "<p>The date when your load balancer was created.</p>",
         "LoadBalancerTlsCertificate$createdAt": "<p>The time when you created your SSL/TLS certificate.</p>",
         "LoadBalancerTlsCertificate$issuedAt": "<p>The time when the SSL/TLS certificate was issued.</p>",
         "LoadBalancerTlsCertificate$notAfter": "<p>The timestamp when the SSL/TLS certificate expires.</p>",
         "LoadBalancerTlsCertificate$notBefore": "<p>The timestamp when the SSL/TLS certificate is first valid.</p>",
-        "LoadBalancerTlsCertificate$revokedAt": "<p>The timestamp when the SSL/TLS certificate was revoked.</p>",
+        "LoadBalancerTlsCertificate$revokedAt": "<p>The timestamp when the certificate was revoked. This value is present only when the certificate status is <code>REVOKED</code>.</p>",
         "LogEvent$createdAt": "<p>The timestamp when the database log event was created.</p>",
         "Operation$createdAt": "<p>The timestamp when the operation was initialized (e.g., <code>1479816991.349</code>).</p>",
         "Operation$statusChangedAt": "<p>The timestamp when the status was changed (e.g., <code>1479816991.349</code>).</p>",
@@ -1692,7 +2001,21 @@
         "RelationalDatabase$latestRestorableTime": "<p>The latest point in time to which the database can be restored. Formatted in Unix time.</p>",
         "RelationalDatabaseEvent$createdAt": "<p>The timestamp when the database event was created.</p>",
         "RelationalDatabaseSnapshot$createdAt": "<p>The timestamp when the database snapshot was created.</p>",
+        "RenewalSummary$updatedAt": "<p>The timestamp when the certificate was last updated.</p>",
+        "ResetDistributionCacheResult$createTime": "<p>The timestamp of the reset cache request (e.g., <code>1479734909.17</code>) in Unix time format.</p>",
         "StaticIp$createdAt": "<p>The timestamp when the static IP was created (e.g., <code>1479735304.222</code>).</p>"
+      }
+    },
+    "IssuerCA": {
+      "base": null,
+      "refs": {
+        "Certificate$issuerCA": "<p>The certificate authority that issued the certificate.</p>"
+      }
+    },
+    "KeyAlgorithm": {
+      "base": null,
+      "refs": {
+        "Certificate$keyAlgorithm": "<p>The algorithm used to generate the key pair (the public and private key) of the certificate.</p>"
       }
     },
     "KeyPair": {
@@ -1707,6 +2030,13 @@
       "base": null,
       "refs": {
         "GetKeyPairsResult$keyPairs": "<p>An array of key-value pairs containing information about the key pairs.</p>"
+      }
+    },
+    "LightsailDistribution": {
+      "base": "<p>Describes an Amazon Lightsail content delivery network (CDN) distribution.</p>",
+      "refs": {
+        "CreateDistributionResult$distribution": "<p>An object that describes the distribution created.</p>",
+        "DistributionList$member": null
       }
     },
     "LoadBalancer": {
@@ -1794,7 +2124,7 @@
     "LoadBalancerTlsCertificateFailureReason": {
       "base": null,
       "refs": {
-        "LoadBalancerTlsCertificate$failureReason": "<p>The reason for the SSL/TLS certificate validation failure.</p>"
+        "LoadBalancerTlsCertificate$failureReason": "<p>The validation failure reason, if any, of the certificate.</p> <p>The following failure reasons are possible:</p> <ul> <li> <p> <b> <code>NO_AVAILABLE_CONTACTS</code> </b> - This failure applies to email validation, which is not available for Lightsail certificates.</p> </li> <li> <p> <b> <code>ADDITIONAL_VERIFICATION_REQUIRED</code> </b> - Lightsail requires additional information to process this certificate request. This can happen as a fraud-protection measure, such as when the domain ranks within the Alexa top 1000 websites. To provide the required information, use the <a href=\"https://console.aws.amazon.com/support/home\">AWS Support Center</a> to contact AWS Support.</p> <note> <p>You cannot request a certificate for Amazon-owned domain names such as those ending in amazonaws.com, cloudfront.net, or elasticbeanstalk.com.</p> </note> </li> <li> <p> <b> <code>DOMAIN_NOT_ALLOWED</code> </b> - One or more of the domain names in the certificate request was reported as an unsafe domain by <a href=\"https://www.virustotal.com/gui/home/url\">VirusTotal</a>. To correct the problem, search for your domain name on the <a href=\"https://www.virustotal.com/gui/home/url\">VirusTotal</a> website. If your domain is reported as suspicious, see <a href=\"https://www.google.com/webmasters/hacked/?hl=en\">Google Help for Hacked Websites</a> to learn what you can do.</p> <p>If you believe that the result is a false positive, notify the organization that is reporting the domain. VirusTotal is an aggregate of several antivirus and URL scanners and cannot remove your domain from a block list itself. After you correct the problem and the VirusTotal registry has been updated, request a new certificate.</p> <p>If you see this error and your domain is not included in the VirusTotal list, visit the <a href=\"https://console.aws.amazon.com/support/home\">AWS Support Center</a> and create a case.</p> </li> <li> <p> <b> <code>INVALID_PUBLIC_DOMAIN</code> </b> - One or more of the domain names in the certificate request is not valid. Typically, this is because a domain name in the request is not a valid top-level domain. Try to request a certificate again, correcting any spelling errors or typos that were in the failed request, and ensure that all domain names in the request are for valid top-level domains. For example, you cannot request a certificate for <code>example.invalidpublicdomain</code> because <code>invalidpublicdomain</code> is not a valid top-level domain.</p> </li> <li> <p> <b> <code>OTHER</code> </b> - Typically, this failure occurs when there is a typographical error in one or more of the domain names in the certificate request. Try to request a certificate again, correcting any spelling errors or typos that were in the failed request. </p> </li> </ul>"
       }
     },
     "LoadBalancerTlsCertificateList": {
@@ -1806,19 +2136,19 @@
     "LoadBalancerTlsCertificateRenewalStatus": {
       "base": null,
       "refs": {
-        "LoadBalancerTlsCertificateRenewalSummary$renewalStatus": "<p>The status of Lightsail's managed renewal of the certificate. Valid values are listed below.</p>"
+        "LoadBalancerTlsCertificateRenewalSummary$renewalStatus": "<p>The renewal status of the certificate.</p> <p>The following renewal status are possible:</p> <ul> <li> <p> <b> <code>PendingAutoRenewal</code> </b> - Lightsail is attempting to automatically validate the domain names of the certificate. No further action is required. </p> </li> <li> <p> <b> <code>PendingValidation</code> </b> - Lightsail couldn't automatically validate one or more domain names of the certificate. You must take action to validate these domain names or the certificate won't be renewed. Check to make sure your certificate's domain validation records exist in your domain's DNS, and that your certificate remains in use.</p> </li> <li> <p> <b> <code>Success</code> </b> - All domain names in the certificate are validated, and Lightsail renewed the certificate. No further action is required. </p> </li> <li> <p> <b> <code>Failed</code> </b> - One or more domain names were not validated before the certificate expired, and Lightsail did not renew the certificate. You can request a new certificate using the <code>CreateCertificate</code> action.</p> </li> </ul>"
       }
     },
     "LoadBalancerTlsCertificateRenewalSummary": {
-      "base": "<p>Contains information about the status of Lightsail's managed renewal for the certificate.</p>",
+      "base": "<p>Contains information about the status of Lightsail's managed renewal for the certificate.</p> <p>The renewal status of the certificate.</p> <p>The following renewal status are possible:</p> <ul> <li> <p> <b> <code>PendingAutoRenewal</code> </b> - Lightsail is attempting to automatically validate the domain names in the certificate. No further action is required. </p> </li> <li> <p> <b> <code>PendingValidation</code> </b> - Lightsail couldn't automatically validate one or more domain names in the certificate. You must take action to validate these domain names or the certificate won't be renewed. If you used DNS validation, check to make sure your certificate's domain validation records exist in your domain's DNS, and that your certificate remains in use.</p> </li> <li> <p> <b> <code>Success</code> </b> - All domain names in the certificate are validated, and Lightsail renewed the certificate. No further action is required. </p> </li> <li> <p> <b> <code>Failed</code> </b> - One or more domain names were not validated before the certificate expired, and Lightsail did not renew the certificate. You can request a new certificate using the <code>CreateCertificate</code> action.</p> </li> </ul>",
       "refs": {
-        "LoadBalancerTlsCertificate$renewalSummary": "<p>An object containing information about the status of Lightsail's managed renewal for the certificate.</p>"
+        "LoadBalancerTlsCertificate$renewalSummary": "<p>An object that describes the status of the certificate renewal managed by Lightsail.</p>"
       }
     },
     "LoadBalancerTlsCertificateRevocationReason": {
       "base": null,
       "refs": {
-        "LoadBalancerTlsCertificate$revocationReason": "<p>The reason the certificate was revoked. Valid values are below.</p>"
+        "LoadBalancerTlsCertificate$revocationReason": "<p>The reason the certificate was revoked. This value is present only when the certificate status is <code>REVOKED</code>.</p>"
       }
     },
     "LoadBalancerTlsCertificateStatus": {
@@ -1860,6 +2190,7 @@
     "MetricDatapointList": {
       "base": null,
       "refs": {
+        "GetDistributionMetricDataResult$metricData": "<p>An array of objects that describe the metric data returned.</p>",
         "GetInstanceMetricDataResult$metricData": "<p>An array of objects that describe the metric data returned.</p>",
         "GetLoadBalancerMetricDataResult$metricData": "<p>An array of objects that describe the metric data returned.</p>",
         "GetRelationalDatabaseMetricDataResult$metricData": "<p>An array of objects that describe the metric data returned.</p>"
@@ -1876,6 +2207,7 @@
       "base": null,
       "refs": {
         "Alarm$period": "<p>The period, in seconds, over which the statistic is applied.</p>",
+        "GetDistributionMetricDataRequest$period": "<p>The granularity, in seconds, for the metric data points that will be returned.</p>",
         "GetInstanceMetricDataRequest$period": "<p>The granularity, in seconds, of the returned data points.</p> <p>The <code>StatusCheckFailed</code>, <code>StatusCheckFailed_Instance</code>, and <code>StatusCheckFailed_System</code> instance metric data is available in 1-minute (60 seconds) granularity. All other instance metric data is available in 5-minute (300 seconds) granularity.</p>",
         "GetLoadBalancerMetricDataRequest$period": "<p>The granularity, in seconds, of the returned data points.</p>",
         "GetRelationalDatabaseMetricDataRequest$period": "<p>The granularity, in seconds, of the returned data points.</p> <p>All relational database metric data is available in 1-minute (60 seconds) granularity.</p>"
@@ -1891,6 +2223,7 @@
     "MetricStatisticList": {
       "base": null,
       "refs": {
+        "GetDistributionMetricDataRequest$statistics": "<p>The statistic for the metric.</p> <p>The following statistics are available:</p> <ul> <li> <p> <code>Minimum</code> - The lowest value observed during the specified period. Use this value to determine low volumes of activity for your application.</p> </li> <li> <p> <code>Maximum</code> - The highest value observed during the specified period. Use this value to determine high volumes of activity for your application.</p> </li> <li> <p> <code>Sum</code> - All values submitted for the matching metric added together. You can use this statistic to determine the total volume of a metric.</p> </li> <li> <p> <code>Average</code> - The value of Sum / SampleCount during the specified period. By comparing this statistic with the Minimum and Maximum values, you can determine the full scope of a metric and how close the average use is to the Minimum and Maximum values. This comparison helps you to know when to increase or decrease your resources.</p> </li> <li> <p> <code>SampleCount</code> - The count, or number, of data points used for the statistical calculation.</p> </li> </ul>",
         "GetInstanceMetricDataRequest$statistics": "<p>The statistic for the metric.</p> <p>The following statistics are available:</p> <ul> <li> <p> <code>Minimum</code> - The lowest value observed during the specified period. Use this value to determine low volumes of activity for your application.</p> </li> <li> <p> <code>Maximum</code> - The highest value observed during the specified period. Use this value to determine high volumes of activity for your application.</p> </li> <li> <p> <code>Sum</code> - All values submitted for the matching metric added together. You can use this statistic to determine the total volume of a metric.</p> </li> <li> <p> <code>Average</code> - The value of Sum / SampleCount during the specified period. By comparing this statistic with the Minimum and Maximum values, you can determine the full scope of a metric and how close the average use is to the Minimum and Maximum values. This comparison helps you to know when to increase or decrease your resources.</p> </li> <li> <p> <code>SampleCount</code> - The count, or number, of data points used for the statistical calculation.</p> </li> </ul>",
         "GetLoadBalancerMetricDataRequest$statistics": "<p>The statistic for the metric.</p> <p>The following statistics are available:</p> <ul> <li> <p> <code>Minimum</code> - The lowest value observed during the specified period. Use this value to determine low volumes of activity for your application.</p> </li> <li> <p> <code>Maximum</code> - The highest value observed during the specified period. Use this value to determine high volumes of activity for your application.</p> </li> <li> <p> <code>Sum</code> - All values submitted for the matching metric added together. You can use this statistic to determine the total volume of a metric.</p> </li> <li> <p> <code>Average</code> - The value of Sum / SampleCount during the specified period. By comparing this statistic with the Minimum and Maximum values, you can determine the full scope of a metric and how close the average use is to the Minimum and Maximum values. This comparison helps you to know when to increase or decrease your resources.</p> </li> <li> <p> <code>SampleCount</code> - The count, or number, of data points used for the statistical calculation.</p> </li> </ul>",
         "GetRelationalDatabaseMetricDataRequest$statistics": "<p>The statistic for the metric.</p> <p>The following statistics are available:</p> <ul> <li> <p> <code>Minimum</code> - The lowest value observed during the specified period. Use this value to determine low volumes of activity for your application.</p> </li> <li> <p> <code>Maximum</code> - The highest value observed during the specified period. Use this value to determine high volumes of activity for your application.</p> </li> <li> <p> <code>Sum</code> - All values submitted for the matching metric added together. You can use this statistic to determine the total volume of a metric.</p> </li> <li> <p> <code>Average</code> - The value of Sum / SampleCount during the specified period. By comparing this statistic with the Minimum and Maximum values, you can determine the full scope of a metric and how close the average use is to the Minimum and Maximum values. This comparison helps you to know when to increase or decrease your resources.</p> </li> <li> <p> <code>SampleCount</code> - The count, or number, of data points used for the statistical calculation.</p> </li> </ul>"
@@ -1900,6 +2233,7 @@
       "base": null,
       "refs": {
         "Alarm$unit": "<p>The unit of the metric associated with the alarm.</p>",
+        "GetDistributionMetricDataRequest$unit": "<p>The unit for the metric data request.</p> <p>Valid units depend on the metric data being requested. For the valid units with each available metric, see the <code>metricName</code> parameter.</p>",
         "GetInstanceMetricDataRequest$unit": "<p>The unit for the metric data request. Valid units depend on the metric data being requested. For the valid units to specify with each available metric, see the <code>metricName</code> parameter.</p>",
         "GetLoadBalancerMetricDataRequest$unit": "<p>The unit for the metric data request. Valid units depend on the metric data being requested. For the valid units with each available metric, see the <code>metricName</code> parameter.</p>",
         "GetRelationalDatabaseMetricDataRequest$unit": "<p>The unit for the metric data request. Valid units depend on the metric data being requested. For the valid units with each available metric, see the <code>metricName</code> parameter.</p>",
@@ -1936,6 +2270,10 @@
         "Blueprint$blueprintId": "<p>The ID for the virtual private server image (e.g., <code>app_wordpress_4_4</code> or <code>app_lamp_7_0</code>).</p>",
         "Blueprint$group": "<p>The group name of the blueprint (e.g., <code>amazon-linux</code>).</p>",
         "Bundle$bundleId": "<p>The bundle ID (e.g., <code>micro_1_0</code>).</p>",
+        "CacheSettings$allowedHTTPMethods": "<p>The HTTP methods that are processed and forwarded to the distribution's origin.</p> <p>You can specify the following options:</p> <ul> <li> <p> <code>GET,HEAD</code> - The distribution forwards the <code>GET</code> and <code>HEAD</code> methods.</p> </li> <li> <p> <code>GET,HEAD,OPTIONS</code> - The distribution forwards the <code>GET</code>, <code>HEAD</code>, and <code>OPTIONS</code> methods.</p> </li> <li> <p> <code>GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE</code> - The distribution forwards the <code>GET</code>, <code>HEAD</code>, <code>OPTIONS</code>, <code>PUT</code>, <code>PATCH</code>, <code>POST</code>, and <code>DELETE</code> methods.</p> </li> </ul> <p>If you specify the third option, you might need to restrict access to your distribution's origin so users can't perform operations that you don't want them to. For example, you might not want users to have permission to delete objects from your origin.</p>",
+        "CacheSettings$cachedHTTPMethods": "<p>The HTTP method responses that are cached by your distribution.</p> <p>You can specify the following options:</p> <ul> <li> <p> <code>GET,HEAD</code> - The distribution caches responses to the <code>GET</code> and <code>HEAD</code> methods.</p> </li> <li> <p> <code>GET,HEAD,OPTIONS</code> - The distribution caches responses to the <code>GET</code>, <code>HEAD</code>, and <code>OPTIONS</code> methods.</p> </li> </ul>",
+        "Certificate$arn": "<p>The Amazon Resource Name (ARN) of the certificate.</p>",
+        "CertificateSummary$certificateArn": "<p>The Amazon Resource Name (ARN) of the certificate.</p>",
         "CloudFormationStackRecord$arn": "<p>The Amazon Resource Name (ARN) of the CloudFormation stack record.</p>",
         "CloudFormationStackRecordSourceInfo$name": "<p>The name of the record.</p>",
         "CloudFormationStackRecordSourceInfo$arn": "<p>The Amazon Resource Name (ARN) of the export snapshot record.</p>",
@@ -1973,12 +2311,13 @@
         "InstanceSnapshotInfo$fromBundleId": "<p>The bundle ID from which the source instance was created (e.g., <code>micro_1_0</code>).</p>",
         "InstanceSnapshotInfo$fromBlueprintId": "<p>The blueprint ID from which the source instance (e.g., <code>os_debian_8_3</code>).</p>",
         "KeyPair$arn": "<p>The Amazon Resource Name (ARN) of the key pair (e.g., <code>arn:aws:lightsail:us-east-2:123456789101:KeyPair/05859e3d-331d-48ba-9034-12345EXAMPLE</code>).</p>",
+        "LightsailDistribution$arn": "<p>The Amazon Resource Name (ARN) of the distribution.</p>",
         "LoadBalancer$arn": "<p>The Amazon Resource Name (ARN) of the load balancer.</p>",
         "LoadBalancer$dnsName": "<p>The DNS name of your Lightsail load balancer.</p>",
         "LoadBalancer$healthCheckPath": "<p>The path you specified to perform your health checks. If no path is specified, the load balancer tries to make a request to the default (root) page.</p>",
         "LoadBalancerTlsCertificate$arn": "<p>The Amazon Resource Name (ARN) of the SSL/TLS certificate.</p>",
         "LoadBalancerTlsCertificate$issuer": "<p>The issuer of the certificate.</p>",
-        "LoadBalancerTlsCertificate$keyAlgorithm": "<p>The algorithm that was used to generate the key pair (the public and private key).</p>",
+        "LoadBalancerTlsCertificate$keyAlgorithm": "<p>The algorithm used to generate the key pair (the public and private key).</p>",
         "LoadBalancerTlsCertificate$serial": "<p>The serial number of the certificate.</p>",
         "LoadBalancerTlsCertificate$signatureAlgorithm": "<p>The algorithm that was used to sign the certificate.</p>",
         "LoadBalancerTlsCertificate$subject": "<p>The name of the entity that is associated with the public key contained in the certificate.</p>",
@@ -2033,20 +2372,27 @@
     "Operation": {
       "base": "<p>Describes the API operation.</p>",
       "refs": {
+        "AttachCertificateToDistributionResult$operation": "<p>An object that describes the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "CloseInstancePublicPortsResult$operation": "<p>An object that describes the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
+        "CreateDistributionResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "CreateDomainEntryResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "CreateDomainResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "CreateKeyPairResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
+        "DeleteDistributionResult$operation": "<p>An object that describes the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "DeleteDomainEntryResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "DeleteDomainResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "DeleteKeyPairResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
+        "DetachCertificateFromDistributionResult$operation": "<p>An object that describes the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "GetOperationResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "ImportKeyPairResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "OpenInstancePublicPortsResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "OperationList$member": null,
         "PeerVpcResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "PutInstancePublicPortsResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
-        "UnpeerVpcResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>"
+        "ResetDistributionCacheResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
+        "UnpeerVpcResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
+        "UpdateDistributionBundleResult$operation": null,
+        "UpdateDistributionResult$operation": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>"
       }
     },
     "OperationFailureException": {
@@ -2063,6 +2409,7 @@
         "AttachLoadBalancerTlsCertificateResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p> <p>These SSL/TLS certificates are only usable by Lightsail load balancers. You can't get the certificate and use it for another purpose.</p>",
         "AttachStaticIpResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "CopySnapshotResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
+        "CreateCertificateResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "CreateCloudFormationStackResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "CreateContactMethodResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "CreateDiskFromSnapshotResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
@@ -2078,6 +2425,7 @@
         "CreateRelationalDatabaseSnapshotResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "DeleteAlarmResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "DeleteAutoSnapshotResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
+        "DeleteCertificateResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "DeleteContactMethodResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "DeleteDiskResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
         "DeleteDiskSnapshotResult$operations": "<p>An array of objects that describe the result of the action, such as the status of the request, the timestamp of the request, and the resources affected by the request.</p>",
@@ -2124,6 +2472,19 @@
       "base": null,
       "refs": {
         "Operation$operationType": "<p>The type of operation. </p>"
+      }
+    },
+    "Origin": {
+      "base": "<p>Describes the origin resource of an Amazon Lightsail content delivery network (CDN) distribution.</p> <p>An origin can be a Lightsail instance or load balancer. A distribution pulls content from an origin, caches it, and serves it to viewers via a worldwide network of edge servers.</p>",
+      "refs": {
+        "LightsailDistribution$origin": "<p>An object that describes the origin resource of the distribution, such as a Lightsail instance or load balancer.</p> <p>The distribution pulls, caches, and serves content from the origin.</p>"
+      }
+    },
+    "OriginProtocolPolicyEnum": {
+      "base": null,
+      "refs": {
+        "InputOrigin$protocolPolicy": "<p>The protocol that your Amazon Lightsail distribution uses when establishing a connection with your origin to pull content.</p>",
+        "Origin$protocolPolicy": "<p>The protocol that your Amazon Lightsail distribution uses when establishing a connection with your origin to pull content.</p>"
       }
     },
     "PasswordData": {
@@ -2231,6 +2592,12 @@
       "refs": {
       }
     },
+    "QueryStringObject": {
+      "base": "<p>Describes the query string parameters that an Amazon Lightsail content delivery network (CDN) distribution to bases caching on.</p> <p>For the query strings that you specify, your distribution caches separate versions of the specified content based on the query string values in viewer requests.</p>",
+      "refs": {
+        "CacheSettings$forwardedQueryStrings": "<p>An object that describes the query strings that are forwarded to the origin. Your content is cached based on the query strings that are forwarded.</p>"
+      }
+    },
     "RebootInstanceRequest": {
       "base": null,
       "refs": {
@@ -2274,6 +2641,8 @@
       "base": null,
       "refs": {
         "CopySnapshotRequest$sourceRegion": "<p>The AWS Region where the source manual or automatic snapshot is located.</p>",
+        "InputOrigin$regionName": "<p>The AWS Region name of the origin resource.</p>",
+        "Origin$regionName": "<p>The AWS Region name of the origin resource.</p>",
         "Region$name": "<p>The region name (e.g., <code>us-east-2</code>).</p>",
         "ResourceLocation$regionName": "<p>The AWS Region name.</p>"
       }
@@ -2394,6 +2763,40 @@
       "refs": {
       }
     },
+    "RenewalStatus": {
+      "base": null,
+      "refs": {
+        "RenewalSummary$renewalStatus": "<p>The renewal status of the certificate.</p> <p>The following renewal status are possible:</p> <ul> <li> <p> <b> <code>PendingAutoRenewal</code> </b> - Lightsail is attempting to automatically validate the domain names of the certificate. No further action is required. </p> </li> <li> <p> <b> <code>PendingValidation</code> </b> - Lightsail couldn't automatically validate one or more domain names of the certificate. You must take action to validate these domain names or the certificate won't be renewed. Check to make sure your certificate's domain validation records exist in your domain's DNS, and that your certificate remains in use.</p> </li> <li> <p> <b> <code>Success</code> </b> - All domain names in the certificate are validated, and Lightsail renewed the certificate. No further action is required. </p> </li> <li> <p> <b> <code>Failed</code> </b> - One or more domain names were not validated before the certificate expired, and Lightsail did not renew the certificate. You can request a new certificate using the <code>CreateCertificate</code> action.</p> </li> </ul>"
+      }
+    },
+    "RenewalStatusReason": {
+      "base": null,
+      "refs": {
+        "RenewalSummary$renewalStatusReason": "<p>The reason for the renewal status of the certificate.</p>"
+      }
+    },
+    "RenewalSummary": {
+      "base": "<p>Describes the status of a SSL/TLS certificate renewal managed by Amazon Lightsail.</p>",
+      "refs": {
+        "Certificate$renewalSummary": "<p>An object that describes the status of the certificate renewal managed by Lightsail.</p>"
+      }
+    },
+    "RequestFailureReason": {
+      "base": null,
+      "refs": {
+        "Certificate$requestFailureReason": "<p>The validation failure reason, if any, of the certificate.</p> <p>The following failure reasons are possible:</p> <ul> <li> <p> <b> <code>NO_AVAILABLE_CONTACTS</code> </b> - This failure applies to email validation, which is not available for Lightsail certificates.</p> </li> <li> <p> <b> <code>ADDITIONAL_VERIFICATION_REQUIRED</code> </b> - Lightsail requires additional information to process this certificate request. This can happen as a fraud-protection measure, such as when the domain ranks within the Alexa top 1000 websites. To provide the required information, use the <a href=\"https://console.aws.amazon.com/support/home\">AWS Support Center</a> to contact AWS Support.</p> <note> <p>You cannot request a certificate for Amazon-owned domain names such as those ending in amazonaws.com, cloudfront.net, or elasticbeanstalk.com.</p> </note> </li> <li> <p> <b> <code>DOMAIN_NOT_ALLOWED</code> </b> - One or more of the domain names in the certificate request was reported as an unsafe domain by <a href=\"https://www.virustotal.com/gui/home/url\">VirusTotal</a>. To correct the problem, search for your domain name on the <a href=\"https://www.virustotal.com/gui/home/url\">VirusTotal</a> website. If your domain is reported as suspicious, see <a href=\"https://www.google.com/webmasters/hacked/?hl=en\">Google Help for Hacked Websites</a> to learn what you can do.</p> <p>If you believe that the result is a false positive, notify the organization that is reporting the domain. VirusTotal is an aggregate of several antivirus and URL scanners and cannot remove your domain from a block list itself. After you correct the problem and the VirusTotal registry has been updated, request a new certificate.</p> <p>If you see this error and your domain is not included in the VirusTotal list, visit the <a href=\"https://console.aws.amazon.com/support/home\">AWS Support Center</a> and create a case.</p> </li> <li> <p> <b> <code>INVALID_PUBLIC_DOMAIN</code> </b> - One or more of the domain names in the certificate request is not valid. Typically, this is because a domain name in the request is not a valid top-level domain. Try to request a certificate again, correcting any spelling errors or typos that were in the failed request, and ensure that all domain names in the request are for valid top-level domains. For example, you cannot request a certificate for <code>example.invalidpublicdomain</code> because <code>invalidpublicdomain</code> is not a valid top-level domain.</p> </li> <li> <p> <b> <code>OTHER</code> </b> - Typically, this failure occurs when there is a typographical error in one or more of the domain names in the certificate request. Try to request a certificate again, correcting any spelling errors or typos that were in the failed request. </p> </li> </ul>"
+      }
+    },
+    "ResetDistributionCacheRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResetDistributionCacheResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ResourceArn": {
       "base": null,
       "refs": {
@@ -2415,6 +2818,7 @@
         "Instance$location": "<p>The region name and Availability Zone where the instance is located.</p>",
         "InstanceSnapshot$location": "<p>The region name and Availability Zone where you created the snapshot.</p>",
         "KeyPair$location": "<p>The region name and Availability Zone where the key pair was created.</p>",
+        "LightsailDistribution$location": "<p>An object that describes the location of the distribution, such as the AWS Region and Availability Zone.</p> <note> <p>Lightsail distributions are global resources that can reference an origin in any AWS Region, and distribute its content globally. However, all distributions are located in the <code>us-east-1</code> Region.</p> </note>",
         "LoadBalancer$location": "<p>The AWS Region where your load balancer was created (e.g., <code>us-east-2a</code>). Lightsail automatically creates your load balancer across Availability Zones.</p>",
         "LoadBalancerTlsCertificate$location": "<p>The AWS Region and Availability Zone where you created your certificate.</p>",
         "Operation$location": "<p>The AWS Region and Availability Zone.</p>",
@@ -2428,6 +2832,8 @@
       "refs": {
         "Alarm$name": "<p>The name of the alarm.</p>",
         "AllocateStaticIpRequest$staticIpName": "<p>The name of the static IP address.</p>",
+        "AttachCertificateToDistributionRequest$distributionName": "<p>The name of the distribution that the certificate will be attached to.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p>",
+        "AttachCertificateToDistributionRequest$certificateName": "<p>The name of the certificate to attach to a distribution.</p> <p>Only certificates with a status of <code>ISSUED</code> can be attached to a distribution.</p> <p>Use the <code>GetCertificates</code> action to get a list of certificate names that you can specify.</p> <note> <p>This is the name of the certificate resource type and is used only to reference the certificate in other API actions. It can be different than the domain name of the certificate. For example, your certificate name might be <code>WordPress-Blog-Certificate</code> and the domain name of the certificate might be <code>example.com</code>.</p> </note>",
         "AttachDiskRequest$diskName": "<p>The unique Lightsail disk name (e.g., <code>my-disk</code>).</p>",
         "AttachDiskRequest$instanceName": "<p>The name of the Lightsail instance where you want to utilize the storage disk.</p>",
         "AttachInstancesToLoadBalancerRequest$loadBalancerName": "<p>The name of the load balancer.</p>",
@@ -2448,6 +2854,7 @@
         "CreateDiskSnapshotRequest$diskName": "<p>The unique name of the source disk (e.g., <code>Disk-Virginia-1</code>).</p> <note> <p>This parameter cannot be defined together with the <code>instance name</code> parameter. The <code>disk name</code> and <code>instance name</code> parameters are mutually exclusive.</p> </note>",
         "CreateDiskSnapshotRequest$diskSnapshotName": "<p>The name of the destination disk snapshot (e.g., <code>my-disk-snapshot</code>) based on the source disk.</p>",
         "CreateDiskSnapshotRequest$instanceName": "<p>The unique name of the source instance (e.g., <code>Amazon_Linux-512MB-Virginia-1</code>). When this is defined, a snapshot of the instance's system volume is created.</p> <note> <p>This parameter cannot be defined together with the <code>disk name</code> parameter. The <code>instance name</code> and <code>disk name</code> parameters are mutually exclusive.</p> </note>",
+        "CreateDistributionRequest$distributionName": "<p>The name for the distribution.</p>",
         "CreateInstanceSnapshotRequest$instanceSnapshotName": "<p>The name for your new snapshot.</p>",
         "CreateInstanceSnapshotRequest$instanceName": "<p>The Lightsail instance on which to base your snapshot.</p>",
         "CreateInstancesFromSnapshotRequest$instanceSnapshotName": "<p>The name of the instance snapshot on which you are basing your new instances. Use the get instance snapshots operation to return information about your existing snapshots.</p> <p>Constraint:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>source instance name</code> parameter. The <code>instance snapshot name</code> and <code>source instance name</code> parameters are mutually exclusive.</p> </li> </ul>",
@@ -2469,6 +2876,7 @@
         "DeleteAutoSnapshotRequest$resourceName": "<p>The name of the source instance or disk from which to delete the automatic snapshot.</p>",
         "DeleteDiskRequest$diskName": "<p>The unique name of the disk you want to delete (e.g., <code>my-disk</code>).</p>",
         "DeleteDiskSnapshotRequest$diskSnapshotName": "<p>The name of the disk snapshot you want to delete (e.g., <code>my-disk-snapshot</code>).</p>",
+        "DeleteDistributionRequest$distributionName": "<p>The name of the distribution to delete.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p>",
         "DeleteInstanceRequest$instanceName": "<p>The name of the instance to delete.</p>",
         "DeleteInstanceSnapshotRequest$instanceSnapshotName": "<p>The name of the snapshot to delete.</p>",
         "DeleteKeyPairRequest$keyPairName": "<p>The name of the key pair to delete.</p>",
@@ -2479,6 +2887,7 @@
         "DeleteRelationalDatabaseRequest$relationalDatabaseName": "<p>The name of the database that you are deleting.</p>",
         "DeleteRelationalDatabaseRequest$finalRelationalDatabaseSnapshotName": "<p>The name of the database snapshot created if <code>skip final snapshot</code> is <code>false</code>, which is the default value for that parameter.</p> <note> <p>Specifying this parameter and also specifying the <code>skip final snapshot</code> parameter to <code>true</code> results in an error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must contain from 2 to 255 alphanumeric characters, or hyphens.</p> </li> <li> <p>The first and last character must be a letter or number.</p> </li> </ul>",
         "DeleteRelationalDatabaseSnapshotRequest$relationalDatabaseSnapshotName": "<p>The name of the database snapshot that you are deleting.</p>",
+        "DetachCertificateFromDistributionRequest$distributionName": "<p>The name of the distribution from which to detach the certificate.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p>",
         "DetachDiskRequest$diskName": "<p>The unique name of the disk you want to detach from your instance (e.g., <code>my-disk</code>).</p>",
         "DetachInstancesFromLoadBalancerRequest$loadBalancerName": "<p>The name of the Lightsail load balancer.</p>",
         "DetachStaticIpRequest$staticIpName": "<p>The name of the static IP to detach from the instance.</p>",
@@ -2499,6 +2908,9 @@
         "GetAutoSnapshotsResult$resourceName": "<p>The name of the source instance or disk for the automatic snapshots.</p>",
         "GetDiskRequest$diskName": "<p>The name of the disk (e.g., <code>my-disk</code>).</p>",
         "GetDiskSnapshotRequest$diskSnapshotName": "<p>The name of the disk snapshot (e.g., <code>my-disk-snapshot</code>).</p>",
+        "GetDistributionLatestCacheResetRequest$distributionName": "<p>The name of the distribution for which to return the timestamp of the last cache reset.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p> <p>When omitted, the response includes the latest cache reset timestamp of all your distributions.</p>",
+        "GetDistributionMetricDataRequest$distributionName": "<p>The name of the distribution for which to get metric data.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p>",
+        "GetDistributionsRequest$distributionName": "<p>The name of the distribution for which to return information.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p> <p>When omitted, the response includes all of your distributions in the AWS Region where the request is made.</p>",
         "GetInstanceAccessDetailsRequest$instanceName": "<p>The name of the instance to access.</p>",
         "GetInstanceMetricDataRequest$instanceName": "<p>The name of the instance for which you want to get metrics data.</p>",
         "GetInstancePortStatesRequest$instanceName": "<p>The name of the instance for which to return firewall port states.</p>",
@@ -2520,6 +2932,7 @@
         "GetRelationalDatabaseSnapshotRequest$relationalDatabaseSnapshotName": "<p>The name of the database snapshot for which to get information.</p>",
         "GetStaticIpRequest$staticIpName": "<p>The name of the static IP in Lightsail.</p>",
         "ImportKeyPairRequest$keyPairName": "<p>The name of the key pair for which you want to import the public key.</p>",
+        "InputOrigin$name": "<p>The name of the origin resource.</p>",
         "Instance$name": "<p>The name the user gave the instance (e.g., <code>Amazon_Linux-1GB-Ohio-1</code>).</p>",
         "Instance$sshKeyName": "<p>The name of the SSH key being used to connect to the instance (e.g., <code>LightsailDefaultKeyPair</code>).</p>",
         "InstanceAccessDetails$instanceName": "<p>The name of this Amazon Lightsail instance.</p>",
@@ -2528,6 +2941,8 @@
         "InstanceSnapshot$name": "<p>The name of the snapshot.</p>",
         "InstanceSnapshot$fromInstanceName": "<p>The instance from which the snapshot was created.</p>",
         "KeyPair$name": "<p>The friendly name of the SSH key pair.</p>",
+        "LightsailDistribution$name": "<p>The name of the distribution.</p>",
+        "LightsailDistribution$certificateName": "<p>The name of the SSL/TLS certificate attached to the distribution, if any.</p>",
         "LoadBalancer$name": "<p>The name of the load balancer (e.g., <code>my-load-balancer</code>).</p>",
         "LoadBalancerTlsCertificate$name": "<p>The name of the SSL/TLS certificate (e.g., <code>my-certificate</code>).</p>",
         "LoadBalancerTlsCertificate$loadBalancerName": "<p>The load balancer name where your SSL/TLS certificate is attached.</p>",
@@ -2535,6 +2950,7 @@
         "MonitoredResourceInfo$name": "<p>The name of the Lightsail resource being monitored.</p>",
         "OpenInstancePublicPortsRequest$instanceName": "<p>The name of the instance for which to open ports.</p>",
         "Operation$resourceName": "<p>The resource name.</p>",
+        "Origin$name": "<p>The name of the origin resource.</p>",
         "PasswordData$keyPairName": "<p>The name of the key pair that you used when creating your instance. If no key pair name was specified when creating the instance, Lightsail uses the default key pair (<code>LightsailDefaultKeyPair</code>).</p> <p>If you are using a custom key pair, you need to use your own means of decrypting your password using the <code>ciphertext</code>. Lightsail creates the ciphertext by encrypting your password with the public key part of this key pair.</p>",
         "PutAlarmRequest$alarmName": "<p>The name for the alarm. Specify the name of an existing alarm to update, and overwrite the previous configuration of the alarm.</p>",
         "PutAlarmRequest$monitoredResourceName": "<p>The name of the Lightsail resource that will be monitored.</p> <p>Instances, load balancers, and relational databases are the only Lightsail resources that can currently be monitored by alarms.</p>",
@@ -2545,6 +2961,7 @@
         "RelationalDatabaseEvent$resource": "<p>The database that the database event relates to.</p>",
         "RelationalDatabaseSnapshot$name": "<p>The name of the database snapshot.</p>",
         "ReleaseStaticIpRequest$staticIpName": "<p>The name of the static IP to delete.</p>",
+        "ResetDistributionCacheRequest$distributionName": "<p>The name of the distribution for which to reset cache.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p>",
         "ResourceNameList$member": null,
         "StartInstanceRequest$instanceName": "<p>The name of the instance (a virtual private server) to start.</p>",
         "StartRelationalDatabaseRequest$relationalDatabaseName": "<p>The name of your database to start.</p>",
@@ -2556,6 +2973,8 @@
         "TagResourceRequest$resourceName": "<p>The name of the resource to which you are adding tags.</p>",
         "TestAlarmRequest$alarmName": "<p>The name of the alarm to test.</p>",
         "UntagResourceRequest$resourceName": "<p>The name of the resource from which you are removing a tag.</p>",
+        "UpdateDistributionBundleRequest$distributionName": "<p>The name of the distribution for which to update the bundle.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p>",
+        "UpdateDistributionRequest$distributionName": "<p>The name of the distribution to update.</p> <p>Use the <code>GetDistributions</code> action to get a list of distribution names that you can specify.</p>",
         "UpdateLoadBalancerAttributeRequest$loadBalancerName": "<p>The name of the load balancer that you want to modify (e.g., <code>my-load-balancer</code>.</p>",
         "UpdateRelationalDatabaseParametersRequest$relationalDatabaseName": "<p>The name of your database for which to update parameters.</p>",
         "UpdateRelationalDatabaseRequest$relationalDatabaseName": "<p>The name of your database to update.</p>"
@@ -2566,6 +2985,12 @@
       "refs": {
         "AttachInstancesToLoadBalancerRequest$instanceNames": "<p>An array of strings representing the instance name(s) you want to attach to your load balancer.</p> <p>An instance must be <code>running</code> before you can attach it to your load balancer.</p> <p>There are no additional limits on the number of instances you can attach to your load balancer, aside from the limit of Lightsail instances you can create in your account (20).</p>",
         "DetachInstancesFromLoadBalancerRequest$instanceNames": "<p>An array of strings containing the names of the instances you want to detach from the load balancer.</p>"
+      }
+    },
+    "ResourceRecord": {
+      "base": "<p>Describes the domain name system (DNS) records to add to your domain's DNS to validate it for an Amazon Lightsail certificate.</p>",
+      "refs": {
+        "DomainValidationRecord$resourceRecord": "<p>An object that describes the DNS records to add to your domain's DNS to validate it for the certificate.</p>"
       }
     },
     "ResourceType": {
@@ -2582,13 +3007,21 @@
         "Instance$resourceType": "<p>The type of resource (usually <code>Instance</code>).</p>",
         "InstanceSnapshot$resourceType": "<p>The type of resource (usually <code>InstanceSnapshot</code>).</p>",
         "KeyPair$resourceType": "<p>The resource type (usually <code>KeyPair</code>).</p>",
+        "LightsailDistribution$resourceType": "<p>The Lightsail resource type (e.g., <code>Distribution</code>).</p>",
         "LoadBalancer$resourceType": "<p>The resource type (e.g., <code>LoadBalancer</code>.</p>",
         "LoadBalancerTlsCertificate$resourceType": "<p>The resource type (e.g., <code>LoadBalancerTlsCertificate</code>).</p> <ul> <li> <p> <b> <code>Instance</code> </b> - A Lightsail instance (a virtual private server)</p> </li> <li> <p> <b> <code>StaticIp</code> </b> - A static IP address</p> </li> <li> <p> <b> <code>KeyPair</code> </b> - The key pair used to connect to a Lightsail instance</p> </li> <li> <p> <b> <code>InstanceSnapshot</code> </b> - A Lightsail instance snapshot</p> </li> <li> <p> <b> <code>Domain</code> </b> - A DNS zone</p> </li> <li> <p> <b> <code>PeeredVpc</code> </b> - A peered VPC</p> </li> <li> <p> <b> <code>LoadBalancer</code> </b> - A Lightsail load balancer</p> </li> <li> <p> <b> <code>LoadBalancerTlsCertificate</code> </b> - An SSL/TLS certificate associated with a Lightsail load balancer</p> </li> <li> <p> <b> <code>Disk</code> </b> - A Lightsail block storage disk</p> </li> <li> <p> <b> <code>DiskSnapshot</code> </b> - A block storage disk snapshot</p> </li> </ul>",
         "MonitoredResourceInfo$resourceType": "<p>The Lightsail resource type of the resource being monitored.</p> <p>Instances, load balancers, and relational databases are the only Lightsail resources that can currently be monitored by alarms.</p>",
         "Operation$resourceType": "<p>The resource type. </p>",
+        "Origin$resourceType": "<p>The resource type of the origin resource (e.g., <i>Instance</i>).</p>",
         "RelationalDatabase$resourceType": "<p>The Lightsail resource type for the database (for example, <code>RelationalDatabase</code>).</p>",
         "RelationalDatabaseSnapshot$resourceType": "<p>The Lightsail resource type.</p>",
         "StaticIp$resourceType": "<p>The resource type (usually <code>StaticIp</code>).</p>"
+      }
+    },
+    "RevocationReason": {
+      "base": null,
+      "refs": {
+        "Certificate$revocationReason": "<p>The reason the certificate was revoked. This value is present only when the certificate status is <code>REVOKED</code>.</p>"
       }
     },
     "SendContactMethodVerificationRequest": {
@@ -2607,6 +3040,12 @@
         "CreateRelationalDatabaseRequest$masterUserPassword": "<p>The password for the master user of your new database. The password can include any printable ASCII character except \"/\", \"\"\", or \"@\".</p> <p>Constraints: Must contain 8 to 41 characters.</p>",
         "GetRelationalDatabaseMasterUserPasswordResult$masterUserPassword": "<p>The master user password for the <code>password version</code> specified.</p>",
         "UpdateRelationalDatabaseRequest$masterUserPassword": "<p>The password for the master user of your database. The password can include any printable ASCII character except \"/\", \"\"\", or \"@\".</p> <p>Constraints: Must contain 8 to 41 characters.</p>"
+      }
+    },
+    "SerialNumber": {
+      "base": null,
+      "refs": {
+        "Certificate$serialNumber": "<p>The serial number of the certificate.</p>"
       }
     },
     "ServiceException": {
@@ -2670,6 +3109,7 @@
     "StringList": {
       "base": null,
       "refs": {
+        "CookieObject$cookiesAllowList": "<p>The specific cookies to forward to your distribution's origin.</p>",
         "CreateInstancesFromSnapshotRequest$instanceNames": "<p>The names for your new instances.</p>",
         "CreateInstancesRequest$instanceNames": "<p>The names to use for your new Lightsail instances. Separate multiple values using quotation marks and commas, for example: <code>[\"MyFirstInstance\",\"MySecondInstance\"]</code> </p>",
         "GetActiveNamesResult$activeNames": "<p>The list of active names returned by the get active names request.</p>",
@@ -2678,9 +3118,11 @@
         "InstancePortInfo$cidrListAliases": "<p>An alias that defines access for a preconfigured range of IP addresses.</p> <p>The only alias currently supported is <code>lightsail-connect</code>, which allows IP addresses of the browser-based RDP/SSH client in the Lightsail console to connect to your instance.</p>",
         "InstancePortState$cidrs": "<p>The IP address, or range of IP addresses in CIDR notation, that are allowed to connect to an instance through the ports, and the protocol. Lightsail supports IPv4 addresses.</p> <p>For more information about CIDR block notation, see <a href=\"https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation\">Classless Inter-Domain Routing</a> on <i>Wikipedia</i>.</p>",
         "InstancePortState$cidrListAliases": "<p>An alias that defines access for a preconfigured range of IP addresses.</p> <p>The only alias currently supported is <code>lightsail-connect</code>, which allows IP addresses of the browser-based RDP/SSH client in the Lightsail console to connect to your instance.</p>",
-        "LoadBalancerTlsCertificate$subjectAlternativeNames": "<p>One or more domains or subdomains included in the certificate. This list contains the domain names that are bound to the public key that is contained in the certificate. The subject alternative names include the canonical domain name (CNAME) of the certificate and additional domain names that can be used to connect to the website, such as <code>example.com</code>, <code>www.example.com</code>, or <code>m.example.com</code>.</p>",
+        "LightsailDistribution$alternativeDomainNames": "<p>The alternate domain names of the distribution.</p>",
+        "LoadBalancerTlsCertificate$subjectAlternativeNames": "<p>An array of strings that specify the alternate domains (e.g., <code>example2.com</code>) and subdomains (e.g., <code>blog.example.com</code>) for the certificate.</p>",
         "PortInfo$cidrs": "<p>The IP address, or range of IP addresses in CIDR notation, that are allowed to connect to an instance through the ports, and the protocol. Lightsail supports IPv4 addresses.</p> <p>Examples:</p> <ul> <li> <p>To allow the IP address <code>192.0.2.44</code>, specify <code>192.0.2.44</code> or <code>192.0.2.44/32</code>. </p> </li> <li> <p>To allow the IP addresses <code>192.0.2.0</code> to <code>192.0.2.255</code>, specify <code>192.0.2.0/24</code>.</p> </li> </ul> <p>For more information about CIDR block notation, see <a href=\"https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation\">Classless Inter-Domain Routing</a> on <i>Wikipedia</i>.</p>",
         "PortInfo$cidrListAliases": "<p>An alias that defines access for a preconfigured range of IP addresses.</p> <p>The only alias currently supported is <code>lightsail-connect</code>, which allows IP addresses of the browser-based RDP/SSH client in the Lightsail console to connect to your instance.</p>",
+        "QueryStringObject$queryStringsAllowList": "<p>The specific query strings that the distribution forwards to the origin.</p> <p>Your distribution will cache content based on the specified query strings.</p> <p>If the <code>option</code> parameter is true, then your distribution forwards all query strings, regardless of what you specify using the <code>queryStringsAllowList</code> parameter.</p>",
         "RelationalDatabaseEvent$eventCategories": "<p>The category that the database event belongs to.</p>"
       }
     },
@@ -2689,6 +3131,13 @@
       "refs": {
         "CreateContactMethodRequest$contactEndpoint": "<p>The destination of the contact method, such as an email address or a mobile phone number.</p> <p>Use the E.164 format when specifying a mobile phone number. E.164 is a standard for the phone number structure used for international telecommunication. Phone numbers that follow this format can have a maximum of 15 digits, and they are prefixed with the plus character (+) and the country code. For example, a U.S. phone number in E.164 format would be specified as +1XXX5550100. For more information, see <a href=\"https://en.wikipedia.org/wiki/E.164\">E.164</a> on <i>Wikipedia</i>.</p>",
         "UpdateLoadBalancerAttributeRequest$attributeValue": "<p>The value that you want to specify for the attribute name.</p>"
+      }
+    },
+    "SubjectAlternativeNameList": {
+      "base": null,
+      "refs": {
+        "Certificate$subjectAlternativeNames": "<p>An array of strings that specify the alternate domains (e.g., <code>example2.com</code>) and subdomains (e.g., <code>blog.example.com</code>) of the certificate.</p>",
+        "CreateCertificateRequest$subjectAlternativeNames": "<p>An array of strings that specify the alternate domains (e.g., <code>example2.com</code>) and subdomains (e.g., <code>blog.example.com</code>) for the certificate.</p> <p>You can specify a maximum of nine alternate domains (in addition to the primary domain name).</p> <p>Wildcard domain entries (e.g., <code>*.example.com</code>) are not supported.</p>"
       }
     },
     "Tag": {
@@ -2713,25 +3162,30 @@
     "TagList": {
       "base": null,
       "refs": {
-        "CreateDiskFromSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateDiskRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateDiskSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateDomainRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateInstanceSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateInstancesFromSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateInstancesRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateKeyPairRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateLoadBalancerRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateLoadBalancerTlsCertificateRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateRelationalDatabaseFromSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateRelationalDatabaseRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
-        "CreateRelationalDatabaseSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>To tag a resource after it has been created, see the <code>tag resource</code> operation.</p>",
+        "Certificate$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
+        "CertificateSummary$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
+        "CreateCertificateRequest$tags": "<p>The tag keys and optional values to add to the certificate during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateDiskFromSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateDiskRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateDiskSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateDistributionRequest$tags": "<p>The tag keys and optional values to add to the distribution during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateDomainRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateInstanceSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateInstancesFromSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateInstancesRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateKeyPairRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateLoadBalancerRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateLoadBalancerTlsCertificateRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateRelationalDatabaseFromSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateRelationalDatabaseRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateRelationalDatabaseSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
         "Disk$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "DiskSnapshot$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "Domain$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "Instance$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "InstanceSnapshot$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "KeyPair$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
+        "LightsailDistribution$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "LoadBalancer$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "LoadBalancerTlsCertificate$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "RelationalDatabase$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
@@ -2805,6 +3259,26 @@
       "refs": {
       }
     },
+    "UpdateDistributionBundleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDistributionBundleResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDistributionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDistributionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateDomainEntryRequest": {
       "base": null,
       "refs": {
@@ -2865,6 +3339,7 @@
         "Disk$isAttached": "<p>A Boolean value indicating whether the disk is attached.</p>",
         "DiskInfo$isSystemDisk": "<p>A Boolean value indicating whether this disk is a system disk (has an operating system loaded on it).</p>",
         "DiskSnapshot$isFromAutoSnapshot": "<p>A Boolean value indicating whether the snapshot was created from an automatic snapshot.</p>",
+        "DistributionBundle$isActive": "<p>Indicates whether the bundle is active, and can be specified for a new distribution.</p>",
         "DomainEntry$isAlias": "<p>When <code>true</code>, specifies whether the domain entry is an alias used by the Lightsail load balancer. You can include an alias (A type) record in your request, which points to a load balancer DNS name and routes traffic to your load balancer</p>",
         "GetBlueprintsRequest$includeInactive": "<p>A Boolean value indicating whether to include inactive results in your request.</p>",
         "GetBundlesRequest$includeInactive": "<p>A Boolean value that indicates whether to include inactive bundle results in your request.</p>",
@@ -2874,11 +3349,14 @@
         "Instance$isStaticIp": "<p>A Boolean value indicating whether this instance has a static IP assigned to it.</p>",
         "InstanceSnapshot$isFromAutoSnapshot": "<p>A Boolean value indicating whether the snapshot was created from an automatic snapshot.</p>",
         "IsVpcPeeredResult$isPeered": "<p>Returns <code>true</code> if the Lightsail VPC is peered; otherwise, <code>false</code>.</p>",
+        "LightsailDistribution$isEnabled": "<p>Indicates whether the distribution is enabled.</p>",
+        "LightsailDistribution$ableToUpdateBundle": "<p>Indicates whether the bundle that is currently applied to your distribution, specified using the <code>distributionName</code> parameter, can be changed to another bundle.</p> <p>Use the <code>UpdateDistributionBundle</code> action to change your distribution's bundle.</p>",
         "LoadBalancerTlsCertificate$isAttached": "<p>When <code>true</code>, the SSL/TLS certificate is attached to the Lightsail load balancer.</p>",
         "LoadBalancerTlsCertificateSummary$isAttached": "<p>When <code>true</code>, the SSL/TLS certificate is attached to the Lightsail load balancer.</p>",
         "Operation$isTerminal": "<p>A Boolean value indicating whether the operation is terminal.</p>",
         "PendingModifiedRelationalDatabaseValues$backupRetentionEnabled": "<p>A Boolean value indicating whether automated backup retention is enabled.</p>",
         "PutAlarmRequest$notificationEnabled": "<p>Indicates whether the alarm is enabled.</p> <p>Notifications are enabled by default if you don't specify this parameter.</p>",
+        "QueryStringObject$option": "<p>Indicates whether the distribution forwards and caches based on query strings.</p>",
         "RelationalDatabase$backupRetentionEnabled": "<p>A Boolean value indicating whether automated backup retention is enabled for the database.</p>",
         "RelationalDatabase$publiclyAccessible": "<p>A Boolean value indicating whether the database is publicly accessible.</p>",
         "RelationalDatabaseBlueprint$isEngineDefault": "<p>A Boolean value indicating whether the engine version is the default for the database blueprint.</p>",
@@ -2887,6 +3365,7 @@
         "RelationalDatabaseParameter$isModifiable": "<p>A Boolean value indicating whether the parameter can be modified.</p>",
         "StaticIp$isAttached": "<p>A Boolean value indicating whether the static IP is attached.</p>",
         "StopInstanceRequest$force": "<p>When set to <code>True</code>, forces a Lightsail instance that is stuck in a <code>stopping</code> state to stop.</p> <important> <p>Only use the <code>force</code> parameter if your instance is stuck in the <code>stopping</code> state. In any other state, your instance should stop normally without adding this parameter to your API request.</p> </important>",
+        "UpdateDistributionRequest$isEnabled": "<p>Indicates whether to enable the distribution.</p>",
         "UpdateRelationalDatabaseRequest$rotateMasterUserPassword": "<p>When <code>true</code>, the master user password is changed to a new strong password generated by Lightsail.</p> <p>Use the <code>get relational database master user password</code> operation to get the new password.</p>",
         "UpdateRelationalDatabaseRequest$enableBackupRetention": "<p>When <code>true</code>, enables automated backup retention for your database.</p> <p>Updates are applied during the next maintenance window because this can result in an outage.</p>",
         "UpdateRelationalDatabaseRequest$disableBackupRetention": "<p>When <code>true</code>, disables automated backup retention for your database.</p> <p>Disabling backup retention deletes all automated database backups. Before disabling this, you may want to create a snapshot of your database using the <code>create relational database snapshot</code> operation.</p> <p>Updates are applied during the next maintenance window because this can result in an outage.</p>",
@@ -2911,6 +3390,7 @@
       "refs": {
         "Bundle$price": "<p>The price in US dollars (e.g., <code>5.0</code>) of the bundle.</p>",
         "Bundle$ramSizeInGb": "<p>The amount of RAM in GB (e.g., <code>2.0</code>).</p>",
+        "DistributionBundle$price": "<p>The monthly price, in US dollars, of the bundle.</p>",
         "InstanceHardware$ramSizeInGb": "<p>The amount of RAM in GB on the instance (e.g., <code>1.0</code>).</p>",
         "RelationalDatabaseBundle$price": "<p>The cost of the database bundle in US currency.</p>",
         "RelationalDatabaseBundle$ramSizeInGb": "<p>The amount of RAM in GB (for example, <code>2.0</code>) for the database bundle.</p>",
@@ -2936,6 +3416,7 @@
         "DiskInfo$sizeInGb": "<p>The size of the disk in GB (e.g., <code>32</code>).</p>",
         "DiskSnapshot$sizeInGb": "<p>The size of the disk in GB.</p>",
         "DiskSnapshotInfo$sizeInGb": "<p>The size of the disk in GB (e.g., <code>32</code>).</p>",
+        "DistributionBundle$transferPerMonthInGb": "<p>The monthly network transfer quota of the bundle.</p>",
         "GetRelationalDatabaseEventsRequest$durationInMinutes": "<p>The number of minutes in the past from which to retrieve events. For example, to get all events from the past 2 hours, enter 120.</p> <p>Default: <code>60</code> </p> <p>The minimum is 1 and the maximum is 14 days (20160 minutes).</p>",
         "InstanceHardware$cpuCount": "<p>The number of vCPUs the instance has.</p>",
         "InstanceSnapshot$sizeInGb": "<p>The size in GB of the SSD.</p>",
@@ -2951,6 +3432,14 @@
         "RelationalDatabaseHardware$cpuCount": "<p>The number of vCPUs for the database.</p>",
         "RelationalDatabaseHardware$diskSizeInGb": "<p>The size of the disk for the database.</p>",
         "RelationalDatabaseSnapshot$sizeInGb": "<p>The size of the disk in GB (for example, <code>32</code>) for the database snapshot.</p>"
+      }
+    },
+    "long": {
+      "base": null,
+      "refs": {
+        "CacheSettings$defaultTTL": "<p>The default amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the content has been updated.</p> <note> <p>The value specified applies only when the origin does not add HTTP headers such as <code>Cache-Control max-age</code>, <code>Cache-Control s-maxage</code>, and <code>Expires</code> to objects.</p> </note>",
+        "CacheSettings$minimumTTL": "<p>The minimum amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the object has been updated.</p> <p>A value of <code>0</code> must be specified for <code>minimumTTL</code> if the distribution is configured to forward all headers to the origin.</p>",
+        "CacheSettings$maximumTTL": "<p>The maximum amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the object has been updated.</p> <p>The value specified applies only when the origin adds HTTP headers such as <code>Cache-Control max-age</code>, <code>Cache-Control s-maxage</code>, and <code>Expires</code> to objects.</p>"
       }
     },
     "string": {
@@ -2976,11 +3465,14 @@
         "Blueprint$licenseUrl": "<p>The end-user license agreement URL for the image or blueprint.</p>",
         "Bundle$instanceType": "<p>The Amazon EC2 instance type (e.g., <code>t2.micro</code>).</p>",
         "Bundle$name": "<p>A friendly name for the bundle (e.g., <code>Micro</code>).</p>",
+        "CacheBehaviorPerPath$path": "<p>The path to a directory or file to cached, or not cache. Use an asterisk symbol to specify wildcard directories (<code>path/to/assets/*</code>), and file types (<code>*.html, *jpg, *js</code>). Directories and file paths are case-sensitive.</p> <p>Examples:</p> <ul> <li> <p>Specify the following to cache all files in the document root of an Apache web server running on a Lightsail instance.</p> <p> <code>var/www/html/</code> </p> </li> <li> <p>Specify the following file to cache only the index page in the document root of an Apache web server.</p> <p> <code>var/www/html/index.html</code> </p> </li> <li> <p>Specify the following to cache only the .html files in the document root of an Apache web server.</p> <p> <code>var/www/html/*.html</code> </p> </li> <li> <p>Specify the following to cache only the .jpg, .png, and .gif files in the images sub-directory of the document root of an Apache web server.</p> <p> <code>var/www/html/images/*.jpg</code> </p> <p> <code>var/www/html/images/*.png</code> </p> <p> <code>var/www/html/images/*.gif</code> </p> <p>Specify the following to cache all files in the images sub-directory of the document root of an Apache web server.</p> <p> <code>var/www/html/images/</code> </p> </li> </ul>",
+        "Certificate$supportCode": "<p>The support code. Include this code in your email to support when you have questions about your Lightsail certificate. This code enables our support team to look up your Lightsail information more easily.</p>",
         "ContactMethod$supportCode": "<p>The support code. Include this code in your email to support when you have questions about your Lightsail contact method. This code enables our support team to look up your Lightsail information more easily.</p>",
         "CopySnapshotRequest$sourceResourceName": "<p>The name of the source instance or disk from which the source automatic snapshot was created.</p> <p>Constraint:</p> <ul> <li> <p>Define this parameter only when copying an automatic snapshot as a manual snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-keeping-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
         "CopySnapshotRequest$restoreDate": "<p>The date of the source automatic snapshot to copy. Use the <code>get auto snapshots</code> operation to identify the dates of the available automatic snapshots.</p> <p>Constraints:</p> <ul> <li> <p>Must be specified in <code>YYYY-MM-DD</code> format.</p> </li> <li> <p>This parameter cannot be defined together with the <code>use latest restorable auto snapshot</code> parameter. The <code>restore date</code> and <code>use latest restorable auto snapshot</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when copying an automatic snapshot as a manual snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-keeping-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
         "CreateDiskFromSnapshotRequest$sourceDiskName": "<p>The name of the source disk from which the source automatic snapshot was created.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>disk snapshot name</code> parameter. The <code>source disk name</code> and <code>disk snapshot name</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new disk from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
         "CreateDiskFromSnapshotRequest$restoreDate": "<p>The date of the automatic snapshot to use for the new disk. Use the <code>get auto snapshots</code> operation to identify the dates of the available automatic snapshots.</p> <p>Constraints:</p> <ul> <li> <p>Must be specified in <code>YYYY-MM-DD</code> format.</p> </li> <li> <p>This parameter cannot be defined together with the <code>use latest restorable auto snapshot</code> parameter. The <code>restore date</code> and <code>use latest restorable auto snapshot</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new disk from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
+        "CreateDistributionRequest$bundleId": "<p>The bundle ID to use for the distribution.</p> <p>A distribution bundle describes the specifications of your distribution, such as the monthly cost and monthly network transfer quota.</p> <p>Use the <code>GetDistributionBundles</code> action to get a list of distribution bundle IDs that you can specify.</p>",
         "CreateInstancesFromSnapshotRequest$availabilityZone": "<p>The Availability Zone where you want to create your instances. Use the following formatting: <code>us-east-2a</code> (case sensitive). You can get a list of Availability Zones by using the <a href=\"http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html\">get regions</a> operation. Be sure to add the <code>include Availability Zones</code> parameter to your request.</p>",
         "CreateInstancesFromSnapshotRequest$userData": "<p>You can create a launch script that configures a server with additional user data. For example, <code>apt-get -y update</code>.</p> <note> <p>Depending on the machine image you choose, the command to get software on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a complete list, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/getting-started/article/compare-options-choose-lightsail-instance-image\">Dev Guide</a>.</p> </note>",
         "CreateInstancesFromSnapshotRequest$sourceInstanceName": "<p>The name of the source instance from which the source automatic snapshot was created.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>instance snapshot name</code> parameter. The <code>source instance name</code> and <code>instance snapshot name</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new instance from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
@@ -3003,6 +3495,8 @@
         "DiskInfo$name": "<p>The disk name.</p>",
         "DiskSnapshot$supportCode": "<p>The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
         "DiskSnapshot$progress": "<p>The progress of the disk snapshot operation.</p>",
+        "DistributionBundle$bundleId": "<p>The ID of the bundle.</p>",
+        "DistributionBundle$name": "<p>The name of the distribution bundle.</p>",
         "Domain$supportCode": "<p>The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
         "DomainEntry$target": "<p>The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p> <p>For Lightsail load balancers, the value looks like <code>ab1234c56789c6b86aba6fb203d443bc-123456789.us-east-2.elb.amazonaws.com</code>. Be sure to also set <code>isAlias</code> to <code>true</code> when setting up an A record for a load balancer.</p>",
         "DomainEntryOptions$value": null,
@@ -3020,6 +3514,9 @@
         "GetDiskSnapshotsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDiskSnapshots</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetDisksRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetDisks</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
         "GetDisksResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDisks</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetDistributionLatestCacheResetResult$status": "<p>The status of the last cache reset.</p>",
+        "GetDistributionsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetDistributions</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
+        "GetDistributionsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDistributions</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetDomainsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetDomains</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
         "GetDomainsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDomains</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetExportSnapshotRecordsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetExportSnapshotRecords</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
@@ -3078,6 +3575,11 @@
         "InvalidInputException$message": null,
         "InvalidInputException$tip": null,
         "KeyPair$supportCode": "<p>The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
+        "LightsailDistribution$supportCode": "<p>The support code. Include this code in your email to support when you have questions about your Lightsail distribution. This code enables our support team to look up your Lightsail information more easily.</p>",
+        "LightsailDistribution$status": "<p>The status of the distribution.</p>",
+        "LightsailDistribution$domainName": "<p>The domain name of the distribution.</p>",
+        "LightsailDistribution$bundleId": "<p>The ID of the bundle currently applied to the distribution.</p>",
+        "LightsailDistribution$originPublicDNS": "<p>The public DNS of the origin.</p>",
         "LoadBalancer$supportCode": "<p>The support code. Include this code in your email to support when you have questions about your Lightsail load balancer. This code enables our support team to look up your Lightsail information more easily.</p>",
         "LoadBalancerConfigurationOptions$value": null,
         "LoadBalancerTlsCertificate$supportCode": "<p>The support code. Include this code in your email to support when you have questions about your Lightsail load balancer or SSL/TLS certificate. This code enables our support team to look up your Lightsail information more easily.</p>",
@@ -3120,7 +3622,11 @@
         "RelationalDatabaseSnapshot$supportCode": "<p>The support code for the database snapshot. Include this code in your email to support when you have questions about a database snapshot in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
         "RelationalDatabaseSnapshot$fromRelationalDatabaseBundleId": "<p>The bundle ID of the database from which the database snapshot was created.</p>",
         "RelationalDatabaseSnapshot$fromRelationalDatabaseBlueprintId": "<p>The blueprint ID of the database from which the database snapshot was created. A blueprint describes the major engine version of a database.</p>",
+        "ResetDistributionCacheResult$status": "<p>The status of the reset cache request.</p>",
         "ResourceLocation$availabilityZone": "<p>The Availability Zone. Follows the format <code>us-east-2a</code> (case-sensitive).</p>",
+        "ResourceRecord$name": "<p>The name of the record.</p>",
+        "ResourceRecord$type": "<p>The DNS record type.</p>",
+        "ResourceRecord$value": "<p>The value for the DNS record.</p>",
         "ServiceException$code": null,
         "ServiceException$docs": null,
         "ServiceException$message": null,
@@ -3131,6 +3637,7 @@
         "UnauthenticatedException$docs": null,
         "UnauthenticatedException$message": null,
         "UnauthenticatedException$tip": null,
+        "UpdateDistributionBundleRequest$bundleId": "<p>The bundle ID of the new bundle to apply to your distribution.</p> <p>Use the <code>GetDistributionBundles</code> action to get a list of distribution bundle IDs that you can specify.</p>",
         "UpdateRelationalDatabaseRequest$preferredBackupWindow": "<p>The daily time range during which automated backups are created for your database if automated backups are enabled.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the <code>hh24:mi-hh24:mi</code> format.</p> <p>Example: <code>16:00-16:30</code> </p> </li> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred maintenance window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>",
         "UpdateRelationalDatabaseRequest$preferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur on your database.</p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the <code>ddd:hh24:mi-ddd:hh24:mi</code> format.</p> </li> <li> <p>Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Example: <code>Tue:17:00-Tue:17:30</code> </p> </li> </ul>",
         "UpdateRelationalDatabaseRequest$caCertificateIdentifier": "<p>Indicates the certificate that needs to be associated with the database.</p>"
@@ -3139,6 +3646,8 @@
     "timestamp": {
       "base": null,
       "refs": {
+        "GetDistributionMetricDataRequest$startTime": "<p>The start of the time interval for which to get metric data.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a start time of October 1, 2018, at 8 PM UTC, specify <code>1538424000</code> as the start time.</p> </li> </ul> <p>You can convert a human-friendly time to Unix time format using a converter like <a href=\"https://www.epochconverter.com/\">Epoch converter</a>.</p>",
+        "GetDistributionMetricDataRequest$endTime": "<p>The end of the time interval for which to get metric data.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use an end time of October 1, 2018, at 9 PM UTC, specify <code>1538427600</code> as the end time.</p> </li> </ul> <p>You can convert a human-friendly time to Unix time format using a converter like <a href=\"https://www.epochconverter.com/\">Epoch converter</a>.</p>",
         "GetInstanceMetricDataRequest$startTime": "<p>The start time of the time period.</p>",
         "GetInstanceMetricDataRequest$endTime": "<p>The end time of the time period.</p>",
         "GetLoadBalancerMetricDataRequest$startTime": "<p>The start time of the period.</p>",

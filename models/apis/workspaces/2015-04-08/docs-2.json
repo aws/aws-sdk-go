@@ -10,7 +10,7 @@
     "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p>",
     "DeleteIpGroup": "<p>Deletes the specified IP access control group.</p> <p>You cannot delete an IP access control group that is associated with a directory.</p>",
     "DeleteTags": "<p>Deletes the specified tags from the specified WorkSpaces resource.</p>",
-    "DeleteWorkspaceImage": "<p>Deletes the specified image from your account. To delete an image, you must first delete any bundles that are associated with the image and un-share the image if it is shared with other accounts. </p>",
+    "DeleteWorkspaceImage": "<p>Deletes the specified image from your account. To delete an image, you must first delete any bundles that are associated with the image and unshare the image if it is shared with other accounts. </p>",
     "DeregisterWorkspaceDirectory": "<p>Deregisters the specified directory. This operation is asynchronous and returns before the WorkSpace directory is deregistered. If any WorkSpaces are registered to this directory, you must remove them before you can deregister the directory.</p>",
     "DescribeAccount": "<p>Retrieves a list that describes the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
     "DescribeAccountModifications": "<p>Retrieves a list that describes modifications to the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
@@ -19,6 +19,7 @@
     "DescribeTags": "<p>Describes the specified tags for the specified WorkSpaces resource.</p>",
     "DescribeWorkspaceBundles": "<p>Retrieves a list that describes the available WorkSpace bundles.</p> <p>You can filter the results using either bundle ID or owner, but not both.</p>",
     "DescribeWorkspaceDirectories": "<p>Describes the available directories that are registered with Amazon WorkSpaces.</p>",
+    "DescribeWorkspaceImagePermissions": "<p>Describes the permissions that the owner of an image has granted to other AWS accounts for an image.</p>",
     "DescribeWorkspaceImages": "<p>Retrieves a list that describes one or more specified images, if the image identifiers are provided. Otherwise, all images in the account are described. </p>",
     "DescribeWorkspaceSnapshots": "<p>Describes the snapshots for the specified WorkSpace.</p>",
     "DescribeWorkspaces": "<p>Describes the specified WorkSpaces.</p> <p>You can filter the results by using the bundle identifier, directory identifier, or owner, but you can specify only one filter at a time.</p>",
@@ -32,17 +33,18 @@
     "ModifySelfservicePermissions": "<p>Modifies the self-service WorkSpace management capabilities for your users. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/enable-user-self-service-workspace-management.html\">Enable Self-Service WorkSpace Management Capabilities for Your Users</a>.</p>",
     "ModifyWorkspaceAccessProperties": "<p>Specifies which devices and operating systems users can use to access their WorkSpaces. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/update-directory-details.html#control-device-access\"> Control Device Access</a>.</p>",
     "ModifyWorkspaceCreationProperties": "<p>Modify the default properties used to create WorkSpaces.</p>",
-    "ModifyWorkspaceProperties": "<p>Modifies the specified WorkSpace properties.</p>",
+    "ModifyWorkspaceProperties": "<p>Modifies the specified WorkSpace properties. For important information about how to modify the size of the root and user volumes, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/modify-workspaces.html\"> Modify a WorkSpace</a>. </p>",
     "ModifyWorkspaceState": "<p>Sets the state of the specified WorkSpace.</p> <p>To maintain a WorkSpace without being interrupted, set the WorkSpace state to <code>ADMIN_MAINTENANCE</code>. WorkSpaces in this state do not respond to requests to reboot, stop, start, rebuild, or restore. An AutoStop WorkSpace in this state is not stopped. Users cannot log into a WorkSpace in the <code>ADMIN_MAINTENANCE</code> state.</p>",
     "RebootWorkspaces": "<p>Reboots the specified WorkSpaces.</p> <p>You cannot reboot a WorkSpace unless its state is <code>AVAILABLE</code> or <code>UNHEALTHY</code>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have rebooted.</p>",
-    "RebuildWorkspaces": "<p>Rebuilds the specified WorkSpace.</p> <p>You cannot rebuild a WorkSpace unless its state is <code>AVAILABLE</code>, <code>ERROR</code>, <code>UNHEALTHY</code>, or <code>STOPPED</code>.</p> <p>Rebuilding a WorkSpace is a potentially destructive action that can result in the loss of data. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/reset-workspace.html\">Rebuild a WorkSpace</a>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have been completely rebuilt.</p>",
+    "RebuildWorkspaces": "<p>Rebuilds the specified WorkSpace.</p> <p>You cannot rebuild a WorkSpace unless its state is <code>AVAILABLE</code>, <code>ERROR</code>, <code>UNHEALTHY</code>, <code>STOPPED</code>, or <code>REBOOTING</code>.</p> <p>Rebuilding a WorkSpace is a potentially destructive action that can result in the loss of data. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/reset-workspace.html\">Rebuild a WorkSpace</a>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have been completely rebuilt.</p>",
     "RegisterWorkspaceDirectory": "<p>Registers the specified directory. This operation is asynchronous and returns before the WorkSpace directory is registered. If this is the first time you are registering a directory, you will need to create the workspaces_DefaultRole role before you can register a directory. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/workspaces-access-control.html#create-default-role\"> Creating the workspaces_DefaultRole Role</a>.</p>",
     "RestoreWorkspace": "<p>Restores the specified WorkSpace to its last known healthy state.</p> <p>You cannot restore a WorkSpace unless its state is <code> AVAILABLE</code>, <code>ERROR</code>, <code>UNHEALTHY</code>, or <code>STOPPED</code>.</p> <p>Restoring a WorkSpace is a potentially destructive action that can result in the loss of data. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/restore-workspace.html\">Restore a WorkSpace</a>.</p> <p>This operation is asynchronous and returns before the WorkSpace is completely restored.</p>",
     "RevokeIpRules": "<p>Removes one or more rules from the specified IP access control group.</p>",
     "StartWorkspaces": "<p>Starts the specified WorkSpaces.</p> <p>You cannot start a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>STOPPED</code>.</p>",
     "StopWorkspaces": "<p> Stops the specified WorkSpaces.</p> <p>You cannot stop a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>AVAILABLE</code>, <code>IMPAIRED</code>, <code>UNHEALTHY</code>, or <code>ERROR</code>.</p>",
     "TerminateWorkspaces": "<p>Terminates the specified WorkSpaces.</p> <p>Terminating a WorkSpace is a permanent action and cannot be undone. The user's data is destroyed. If you need to archive any user data, contact Amazon Web Services before terminating the WorkSpace.</p> <p>You can terminate a WorkSpace that is in any state except <code>SUSPENDED</code>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have been completely terminated.</p>",
-    "UpdateRulesOfIpGroup": "<p>Replaces the current rules of the specified IP access control group with the specified rules.</p>"
+    "UpdateRulesOfIpGroup": "<p>Replaces the current rules of the specified IP access control group with the specified rules.</p>",
+    "UpdateWorkspaceImagePermission": "<p>Shares or unshares an image with one account by specifying whether that account has permission to copy the image. If the copy image permission is granted, the image is shared with that account. If the copy image permission is revoked, the image is unshared with the account.</p> <note> <ul> <li> <p>To delete an image that has been shared, you must unshare the image before you delete it.</p> </li> <li> <p>Sharing Bring Your Own License (BYOL) images across AWS accounts isn't supported at this time in the AWS GovCloud (US-West) Region. To share BYOL images across accounts in the AWS GovCloud (US-West) Region, contact AWS Support.</p> </li> </ul> </note>"
   },
   "shapes": {
     "ARN": {
@@ -106,6 +108,14 @@
       "refs": {
       }
     },
+    "AwsAccount": {
+      "base": null,
+      "refs": {
+        "ImagePermission$SharedAccountId": "<p>The identifier of the AWS account that an image has been shared with.</p>",
+        "UpdateWorkspaceImagePermissionRequest$SharedAccountId": "<p>The identifier of the AWS account to share or unshare the image with.</p>",
+        "WorkspaceImage$OwnerAccountId": "<p>The identifier of the AWS account that owns the image.</p>"
+      }
+    },
     "BooleanObject": {
       "base": null,
       "refs": {
@@ -115,6 +125,7 @@
         "DefaultWorkspaceCreationProperties$EnableMaintenanceMode": "<p>Specifies whether maintenance mode is enabled for WorkSpaces. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/workspace-maintenance.html\">WorkSpace Maintenance</a>.</p>",
         "RegisterWorkspaceDirectoryRequest$EnableWorkDocs": "<p>Indicates whether Amazon WorkDocs is enabled or disabled. If you have enabled this parameter and WorkDocs is not available in the Region, you will receive an OperationNotSupportedException error. Set <code>EnableWorkDocs</code> to disabled, and try again.</p>",
         "RegisterWorkspaceDirectoryRequest$EnableSelfService": "<p>Indicates whether self-service capabilities are enabled or disabled.</p>",
+        "UpdateWorkspaceImagePermissionRequest$AllowCopyImage": "<p>The permission to copy the image. This permission can be revoked only after an image has been shared.</p>",
         "Workspace$UserVolumeEncryptionEnabled": "<p>Indicates whether the data stored on the user volume is encrypted.</p>",
         "Workspace$RootVolumeEncryptionEnabled": "<p>Indicates whether the data stored on the root volume is encrypted.</p>",
         "WorkspaceCreationProperties$EnableInternetAccess": "<p>Indicates whether internet access is enabled for your WorkSpaces.</p>",
@@ -395,6 +406,16 @@
       "refs": {
       }
     },
+    "DescribeWorkspaceImagePermissionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorkspaceImagePermissionsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeWorkspaceImagesRequest": {
       "base": null,
       "refs": {
@@ -581,6 +602,24 @@
         "FailedTerminateWorkspaceRequests$member": null
       }
     },
+    "ImagePermission": {
+      "base": "<p>Describes the AWS accounts that have been granted permission to use a shared image.</p>",
+      "refs": {
+        "ImagePermissions$member": null
+      }
+    },
+    "ImagePermissions": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspaceImagePermissionsResult$ImagePermissions": "<p>The identifiers of the AWS accounts that the image has been shared with.</p>"
+      }
+    },
+    "ImageType": {
+      "base": null,
+      "refs": {
+        "DescribeWorkspaceImagesRequest$ImageType": "<p>The type (owned or shared) of the image.</p>"
+      }
+    },
     "ImportWorkspaceImageRequest": {
       "base": null,
       "refs": {
@@ -682,6 +721,7 @@
       "refs": {
         "DescribeIpGroupsRequest$MaxResults": "<p>The maximum number of items to return.</p>",
         "DescribeWorkspaceDirectoriesRequest$Limit": "<p>The maximum number of directories to return.</p>",
+        "DescribeWorkspaceImagePermissionsRequest$MaxResults": "<p>The maximum number of items to return.</p>",
         "DescribeWorkspaceImagesRequest$MaxResults": "<p>The maximum number of items to return.</p>",
         "DescribeWorkspacesRequest$Limit": "<p>The maximum number of items to return.</p>"
       }
@@ -862,6 +902,8 @@
         "DescribeWorkspaceBundlesResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if there are no more results available. This token is valid for one day and must be used within that time frame.</p>",
         "DescribeWorkspaceDirectoriesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeWorkspaceDirectoriesResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeWorkspaceImagePermissionsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
+        "DescribeWorkspaceImagePermissionsResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
         "DescribeWorkspaceImagesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeWorkspaceImagesResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
         "DescribeWorkspacesConnectionStatusRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
@@ -1014,7 +1056,7 @@
     "RootVolumeSizeGib": {
       "base": null,
       "refs": {
-        "WorkspaceProperties$RootVolumeSizeGib": "<p>The size of the root volume.</p>"
+        "WorkspaceProperties$RootVolumeSizeGib": "<p>The size of the root volume. For important information about how to modify the size of the root and user volumes, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/modify-workspaces.html\">Modify a WorkSpace</a>.</p>"
       }
     },
     "RunningMode": {
@@ -1032,7 +1074,7 @@
     "SecurityGroupId": {
       "base": null,
       "refs": {
-        "DefaultWorkspaceCreationProperties$CustomSecurityGroupId": "<p>The identifier of any security groups to apply to WorkSpaces when they are created.</p>",
+        "DefaultWorkspaceCreationProperties$CustomSecurityGroupId": "<p>The identifier of the default security group to apply to WorkSpaces when they are created. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-security-groups.html\"> Security Groups for Your WorkSpaces</a>.</p>",
         "WorkspaceCreationProperties$CustomSecurityGroupId": "<p>The identifier of your custom security group.</p>",
         "WorkspaceDirectory$WorkspaceSecurityGroupId": "<p>The identifier of the security group that is assigned to new WorkSpaces.</p>"
       }
@@ -1193,7 +1235,8 @@
         "Snapshot$SnapshotTime": "<p>The time when the snapshot was created.</p>",
         "WorkspaceBundle$LastUpdatedTime": "<p>The last time that the bundle was updated.</p>",
         "WorkspaceConnectionStatus$ConnectionStateCheckTimestamp": "<p>The timestamp of the connection status check.</p>",
-        "WorkspaceConnectionStatus$LastKnownUserConnectionTimestamp": "<p>The timestamp of the last known user connection.</p>"
+        "WorkspaceConnectionStatus$LastKnownUserConnectionTimestamp": "<p>The timestamp of the last known user connection.</p>",
+        "WorkspaceImage$Created": "<p>The date when the image was created. If the image has been shared, the AWS account that the image has been shared with sees the original creation date of the image.</p>"
       }
     },
     "UnsupportedNetworkConfigurationException": {
@@ -1216,6 +1259,16 @@
       "refs": {
       }
     },
+    "UpdateWorkspaceImagePermissionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorkspaceImagePermissionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UserName": {
       "base": null,
       "refs": {
@@ -1234,7 +1287,7 @@
     "UserVolumeSizeGib": {
       "base": null,
       "refs": {
-        "WorkspaceProperties$UserVolumeSizeGib": "<p>The size of the user storage.</p>"
+        "WorkspaceProperties$UserVolumeSizeGib": "<p>The size of the user storage. For important information about how to modify the size of the root and user volumes, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/modify-workspaces.html\">Modify a WorkSpace</a>.</p>"
       }
     },
     "VolumeEncryptionKey": {
@@ -1360,7 +1413,10 @@
         "CopyWorkspaceImageRequest$SourceImageId": "<p>The identifier of the source image.</p>",
         "CopyWorkspaceImageResult$ImageId": "<p>The identifier of the image.</p>",
         "DeleteWorkspaceImageRequest$ImageId": "<p>The identifier of the image.</p>",
+        "DescribeWorkspaceImagePermissionsRequest$ImageId": "<p>The identifier of the image.</p>",
+        "DescribeWorkspaceImagePermissionsResult$ImageId": "<p>The identifier of the image.</p>",
         "ImportWorkspaceImageResult$ImageId": "<p>The identifier of the WorkSpace image.</p>",
+        "UpdateWorkspaceImagePermissionRequest$ImageId": "<p>The identifier of the image.</p>",
         "WorkspaceBundle$ImageId": "<p>The image identifier of the bundle.</p>",
         "WorkspaceImage$ImageId": "<p>The identifier of the image.</p>",
         "WorkspaceImageIdList$member": null

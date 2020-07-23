@@ -7273,6 +7273,11 @@ func (c *Glue) GetResourcePoliciesRequest(input *GetResourcePoliciesInput) (req 
 // Retrieves the security configurations for the resource policies set on individual
 // resources, and also the account-level policy.
 //
+// This operation also returns the Data Catalog resource policy. However, if
+// you enabled metadata encryption in Data Catalog settings, and you do not
+// have permission on the AWS KMS key, the operation can't return the Data Catalog
+// resource policy.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -16241,6 +16246,16 @@ type Connection struct {
 	//    * KAFKA_BOOTSTRAP_SERVERS - A comma-separated list of host and port pairs
 	//    that are the addresses of the Apache Kafka brokers in a Kafka cluster
 	//    to which a Kafka client will connect to and bootstrap itself.
+	//
+	//    * KAFKA_SSL_ENABLED - Whether to enable or disable SSL on an Apache Kafka
+	//    connection. Default value is "true".
+	//
+	//    * KAFKA_CUSTOM_CERT - The Amazon S3 URL for the private CA cert file (.pem
+	//    format). The default is an empty string.
+	//
+	//    * KAFKA_SKIP_CUSTOM_CERT_VALIDATION - Whether to skip the validation of
+	//    the CA cert file or not. AWS Glue validates for three algorithms: SHA256withRSA,
+	//    SHA384withRSA and SHA512withRSA. Default value is "false".
 	ConnectionProperties map[string]*string `type:"map"`
 
 	// The type of the connection. Currently, SFTP is not supported.
@@ -31380,11 +31395,20 @@ func (s *SchemaColumn) SetName(v string) *SchemaColumn {
 type SearchTablesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier, consisting of account_id/datalake.
+	// A unique identifier, consisting of account_id .
 	CatalogId *string `min:"1" type:"string"`
 
 	// A list of key-value pairs, and a comparator used to filter the search results.
 	// Returns all entities matching the predicate.
+	//
+	// The Comparator member of the PropertyPredicate struct is used only for time
+	// fields, and can be omitted for other field types. Also, when comparing string
+	// values, such as when Key=Name, a fuzzy match algorithm is used. The Key field
+	// (for example, the value of the Name field) is split on certain punctuation
+	// characters, for example, -, :, #, etc. into tokens. Then each token is exact-match
+	// compared with the Value member of PropertyPredicate. For example, if Key=Name
+	// and Value=link, tables named customer-link and xx-link-yy are returned, but
+	// xxlinkyy is not returned.
 	Filters []*PropertyPredicate `type:"list"`
 
 	// The maximum number of tables to return in a single response.
@@ -35900,10 +35924,13 @@ type UpdatePartitionInput struct {
 
 	// The new partition object to update the partition to.
 	//
+	// The Values property can't be changed. If you want to change the partition
+	// key values for a partition, delete and recreate the partition.
+	//
 	// PartitionInput is a required field
 	PartitionInput *PartitionInput `type:"structure" required:"true"`
 
-	// A list of the values defining the partition.
+	// List of partition key values that define the partition to update.
 	//
 	// PartitionValueList is a required field
 	PartitionValueList []*string `type:"list" required:"true"`
@@ -37187,6 +37214,15 @@ const (
 
 	// ConnectionPropertyKeyKafkaBootstrapServers is a ConnectionPropertyKey enum value
 	ConnectionPropertyKeyKafkaBootstrapServers = "KAFKA_BOOTSTRAP_SERVERS"
+
+	// ConnectionPropertyKeyKafkaSslEnabled is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSslEnabled = "KAFKA_SSL_ENABLED"
+
+	// ConnectionPropertyKeyKafkaCustomCert is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaCustomCert = "KAFKA_CUSTOM_CERT"
+
+	// ConnectionPropertyKeyKafkaSkipCustomCertValidation is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSkipCustomCertValidation = "KAFKA_SKIP_CUSTOM_CERT_VALIDATION"
 )
 
 const (
