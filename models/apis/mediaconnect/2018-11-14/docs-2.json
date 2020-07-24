@@ -109,6 +109,14 @@
         "__listOfEntitlement$member": null
       }
     },
+    "EntitlementStatus": {
+      "base": null,
+      "refs": {
+        "Entitlement$EntitlementStatus": "An indication of whether the entitlement is enabled.",
+        "GrantEntitlementRequest$EntitlementStatus": "An indication of whether the new entitlement should be enabled or disabled as soon as it is created. If you don\u2019t specify the entitlementStatus field in your request, MediaConnect sets it to ENABLED.",
+        "UpdateFlowEntitlementRequest$EntitlementStatus": "An indication of whether you want to enable the entitlement to allow access, or disable it to stop streaming content to the subscriber\u2019s flow temporarily. If you don\u2019t specify the entitlementStatus field in your request, MediaConnect leaves the value unchanged."
+      }
+    },
     "FailoverConfig": {
       "base": "The settings for source failover",
       "refs": {
@@ -345,7 +353,7 @@
         "__listOfVpcInterface$member": null
       }
     },
-    "VpcInterfaceAttachment" : {
+    "VpcInterfaceAttachment": {
       "base": "The settings for attaching a VPC interface to an output.",
       "refs": {
         "AddOutputRequest$VpcInterfaceAttachment": "The name of the VPC interface attachment to use for this output.",
@@ -574,7 +582,7 @@
         "VpcInterface$Name": "Immutable and has to be a unique against other VpcInterfaces in this Flow",
         "VpcInterface$RoleArn": "Role Arn MediaConnect can assumes to create ENIs in customer's account",
         "VpcInterface$SubnetId": "Subnet must be in the AZ of the Flow",
-        "VpcInterfaceAttachment$VpcInterfaceName" : "The name of the VPC interface to use for this output.",
+        "VpcInterfaceAttachment$VpcInterfaceName": "The name of the VPC interface to use for this output.",
         "VpcInterfaceRequest$Name": "The name of the VPC Interface. This value must be unique within the current flow.",
         "VpcInterfaceRequest$RoleArn": "Role Arn MediaConnect can assumes to create ENIs in customer's account",
         "VpcInterfaceRequest$SubnetId": "Subnet must be in the AZ of the Flow",

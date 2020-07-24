@@ -353,6 +353,15 @@
         {"shape":"ResourceInUse"}
       ]
     },
+    "CreateWorkforce":{
+      "name":"CreateWorkforce",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateWorkforceRequest"},
+      "output":{"shape":"CreateWorkforceResponse"}
+    },
     "CreateWorkteam":{
       "name":"CreateWorkteam",
       "http":{
@@ -443,6 +452,7 @@
       "input":{"shape":"DeleteFlowDefinitionRequest"},
       "output":{"shape":"DeleteFlowDefinitionResponse"},
       "errors":[
+        {"shape":"ResourceInUse"},
         {"shape":"ResourceNotFound"}
       ]
     },
@@ -545,6 +555,15 @@
         {"shape":"ResourceInUse"},
         {"shape":"ResourceNotFound"}
       ]
+    },
+    "DeleteWorkforce":{
+      "name":"DeleteWorkforce",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteWorkforceRequest"},
+      "output":{"shape":"DeleteWorkforceResponse"}
     },
     "DeleteWorkteam":{
       "name":"DeleteWorkteam",
@@ -1155,6 +1174,15 @@
       "input":{"shape":"ListUserProfilesRequest"},
       "output":{"shape":"ListUserProfilesResponse"}
     },
+    "ListWorkforces":{
+      "name":"ListWorkforces",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListWorkforcesRequest"},
+      "output":{"shape":"ListWorkforcesResponse"}
+    },
     "ListWorkteams":{
       "name":"ListWorkteams",
       "http":{
@@ -1171,7 +1199,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"RenderUiTemplateRequest"},
-      "output":{"shape":"RenderUiTemplateResponse"}
+      "output":{"shape":"RenderUiTemplateResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "Search":{
       "name":"Search",
@@ -1810,7 +1841,7 @@
         "ModelDataUrl"
       ],
       "members":{
-        "Image":{"shape":"Image"},
+        "Image":{"shape":"ContainerImage"},
         "ModelDataUrl":{"shape":"Url"},
         "Environment":{"shape":"EnvironmentMap"}
       }
@@ -2211,6 +2242,19 @@
       "type":"list",
       "member":{"shape":"Cidr"}
     },
+    "ClientId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w+-]+"
+    },
+    "ClientSecret":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[\\w+=/-]+",
+      "sensitive":true
+    },
     "CodeRepositoryArn":{
       "type":"string",
       "max":2048,
@@ -2268,11 +2312,16 @@
       "type":"list",
       "member":{"shape":"CodeRepositorySummary"}
     },
-    "CognitoClientId":{
-      "type":"string",
-      "max":128,
-      "min":1,
-      "pattern":"[\\w+]+"
+    "CognitoConfig":{
+      "type":"structure",
+      "required":[
+        "UserPool",
+        "ClientId"
+      ],
+      "members":{
+        "UserPool":{"shape":"CognitoUserPool"},
+        "ClientId":{"shape":"ClientId"}
+      }
     },
     "CognitoMemberDefinition":{
       "type":"structure",
@@ -2284,7 +2333,7 @@
       "members":{
         "UserPool":{"shape":"CognitoUserPool"},
         "UserGroup":{"shape":"CognitoUserGroup"},
-        "ClientId":{"shape":"CognitoClientId"}
+        "ClientId":{"shape":"ClientId"}
       }
     },
     "CognitoUserGroup":{
@@ -2351,7 +2400,6 @@
         "CompilationJobName",
         "CompilationJobArn",
         "CreationTime",
-        "CompilationTargetDevice",
         "CompilationJobStatus"
       ],
       "members":{
@@ -2361,9 +2409,18 @@
         "CompilationStartTime":{"shape":"Timestamp"},
         "CompilationEndTime":{"shape":"Timestamp"},
         "CompilationTargetDevice":{"shape":"TargetDevice"},
+        "CompilationTargetPlatformOs":{"shape":"TargetPlatformOs"},
+        "CompilationTargetPlatformArch":{"shape":"TargetPlatformArch"},
+        "CompilationTargetPlatformAccelerator":{"shape":"TargetPlatformAccelerator"},
         "LastModifiedTime":{"shape":"LastModifiedTime"},
         "CompilationJobStatus":{"shape":"CompilationJobStatus"}
       }
+    },
+    "CompilerOptions":{
+      "type":"string",
+      "max":1024,
+      "min":7,
+      "pattern":"^\\{.+\\}$"
     },
     "CompressionType":{
       "type":"string",
@@ -2409,7 +2466,7 @@
       "type":"structure",
       "members":{
         "ContainerHostname":{"shape":"ContainerHostname"},
-        "Image":{"shape":"Image"},
+        "Image":{"shape":"ContainerImage"},
         "Mode":{"shape":"ContainerMode"},
         "ModelDataUrl":{"shape":"Url"},
         "Environment":{"shape":"EnvironmentMap"},
@@ -2436,6 +2493,11 @@
       "type":"string",
       "max":63,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "ContainerImage":{
+      "type":"string",
+      "max":255,
+      "pattern":"[\\S]+"
     },
     "ContainerMode":{
       "type":"string",
@@ -3086,6 +3148,24 @@
         "UserProfileArn":{"shape":"UserProfileArn"}
       }
     },
+    "CreateWorkforceRequest":{
+      "type":"structure",
+      "required":["WorkforceName"],
+      "members":{
+        "CognitoConfig":{"shape":"CognitoConfig"},
+        "OidcConfig":{"shape":"OidcConfig"},
+        "SourceIpConfig":{"shape":"SourceIpConfig"},
+        "WorkforceName":{"shape":"WorkforceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateWorkforceResponse":{
+      "type":"structure",
+      "required":["WorkforceArn"],
+      "members":{
+        "WorkforceArn":{"shape":"WorkforceArn"}
+      }
+    },
     "CreateWorkteamRequest":{
       "type":"structure",
       "required":[
@@ -3095,6 +3175,7 @@
       ],
       "members":{
         "WorkteamName":{"shape":"WorkteamName"},
+        "WorkforceName":{"shape":"WorkforceName"},
         "MemberDefinitions":{"shape":"MemberDefinitions"},
         "Description":{"shape":"String200"},
         "NotificationConfiguration":{"shape":"NotificationConfiguration"},
@@ -3402,6 +3483,18 @@
         "UserProfileName":{"shape":"UserProfileName"}
       }
     },
+    "DeleteWorkforceRequest":{
+      "type":"structure",
+      "required":["WorkforceName"],
+      "members":{
+        "WorkforceName":{"shape":"WorkforceName"}
+      }
+    },
+    "DeleteWorkforceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteWorkteamRequest":{
       "type":"structure",
       "required":["WorkteamName"],
@@ -3419,8 +3512,8 @@
     "DeployedImage":{
       "type":"structure",
       "members":{
-        "SpecifiedImage":{"shape":"Image"},
-        "ResolvedImage":{"shape":"Image"},
+        "SpecifiedImage":{"shape":"ContainerImage"},
+        "ResolvedImage":{"shape":"ContainerImage"},
         "ResolutionTime":{"shape":"Timestamp"}
       }
     },
@@ -4783,6 +4876,18 @@
       "type":"string",
       "pattern":"^https://([^/]+)/?(.*)$"
     },
+    "Group":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+"
+    },
+    "Groups":{
+      "type":"list",
+      "member":{"shape":"Group"},
+      "max":10,
+      "min":1
+    },
     "HookParameters":{
       "type":"map",
       "key":{"shape":"ConfigKey"},
@@ -5135,10 +5240,10 @@
       "max":100,
       "min":0
     },
-    "Image":{
+    "ImageArn":{
       "type":"string",
-      "max":255,
-      "pattern":"[\\S]+"
+      "max":256,
+      "pattern":"^arn:aws(-[\\w]+)*:sagemaker:.+:[0-9]{12}:image/[a-z0-9]([-.]?[a-z0-9])*$"
     },
     "ImageDigest":{
       "type":"string",
@@ -5382,7 +5487,6 @@
     },
     "LabelingJobDataSource":{
       "type":"structure",
-      "required":["S3DataSource"],
       "members":{
         "S3DataSource":{"shape":"LabelingJobS3DataSource"}
       }
@@ -5453,6 +5557,7 @@
     "LabelingJobStatus":{
       "type":"string",
       "enum":[
+        "Initializing",
         "InProgress",
         "Completed",
         "Failed",
@@ -6175,6 +6280,34 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListWorkforcesRequest":{
+      "type":"structure",
+      "members":{
+        "SortBy":{"shape":"ListWorkforcesSortByOptions"},
+        "SortOrder":{"shape":"SortOrder"},
+        "NameContains":{"shape":"WorkforceName"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        }
+      }
+    },
+    "ListWorkforcesResponse":{
+      "type":"structure",
+      "required":["Workforces"],
+      "members":{
+        "Workforces":{"shape":"Workforces"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListWorkforcesSortByOptions":{
+      "type":"string",
+      "enum":[
+        "Name",
+        "CreateDate"
+      ]
+    },
     "ListWorkteamsRequest":{
       "type":"structure",
       "members":{
@@ -6266,7 +6399,8 @@
     "MemberDefinition":{
       "type":"structure",
       "members":{
-        "CognitoMemberDefinition":{"shape":"CognitoMemberDefinition"}
+        "CognitoMemberDefinition":{"shape":"CognitoMemberDefinition"},
+        "OidcMemberDefinition":{"shape":"OidcMemberDefinition"}
       }
     },
     "MemberDefinitions":{
@@ -6354,7 +6488,7 @@
       "required":["Image"],
       "members":{
         "ContainerHostname":{"shape":"ContainerHostname"},
-        "Image":{"shape":"Image"},
+        "Image":{"shape":"ContainerImage"},
         "ImageDigest":{"shape":"ImageDigest"},
         "ModelDataUrl":{"shape":"Url"},
         "ProductId":{"shape":"ProductId"}
@@ -6933,6 +7067,53 @@
         "Failed":{"shape":"ObjectiveStatusCounter"}
       }
     },
+    "OidcConfig":{
+      "type":"structure",
+      "required":[
+        "ClientId",
+        "ClientSecret",
+        "Issuer",
+        "AuthorizationEndpoint",
+        "TokenEndpoint",
+        "UserInfoEndpoint",
+        "LogoutEndpoint",
+        "JwksUri"
+      ],
+      "members":{
+        "ClientId":{"shape":"ClientId"},
+        "ClientSecret":{"shape":"ClientSecret"},
+        "Issuer":{"shape":"OidcEndpoint"},
+        "AuthorizationEndpoint":{"shape":"OidcEndpoint"},
+        "TokenEndpoint":{"shape":"OidcEndpoint"},
+        "UserInfoEndpoint":{"shape":"OidcEndpoint"},
+        "LogoutEndpoint":{"shape":"OidcEndpoint"},
+        "JwksUri":{"shape":"OidcEndpoint"}
+      }
+    },
+    "OidcConfigForResponse":{
+      "type":"structure",
+      "members":{
+        "ClientId":{"shape":"ClientId"},
+        "Issuer":{"shape":"OidcEndpoint"},
+        "AuthorizationEndpoint":{"shape":"OidcEndpoint"},
+        "TokenEndpoint":{"shape":"OidcEndpoint"},
+        "UserInfoEndpoint":{"shape":"OidcEndpoint"},
+        "LogoutEndpoint":{"shape":"OidcEndpoint"},
+        "JwksUri":{"shape":"OidcEndpoint"}
+      }
+    },
+    "OidcEndpoint":{
+      "type":"string",
+      "max":500,
+      "pattern":"https://\\S+"
+    },
+    "OidcMemberDefinition":{
+      "type":"structure",
+      "required":["Groups"],
+      "members":{
+        "Groups":{"shape":"Groups"}
+      }
+    },
     "Operator":{
       "type":"string",
       "enum":[
@@ -6963,13 +7144,12 @@
     },
     "OutputConfig":{
       "type":"structure",
-      "required":[
-        "S3OutputLocation",
-        "TargetDevice"
-      ],
+      "required":["S3OutputLocation"],
       "members":{
         "S3OutputLocation":{"shape":"S3Uri"},
-        "TargetDevice":{"shape":"TargetDevice"}
+        "TargetDevice":{"shape":"TargetDevice"},
+        "TargetPlatform":{"shape":"TargetPlatform"},
+        "CompilerOptions":{"shape":"CompilerOptions"}
       }
     },
     "OutputDataConfig":{
@@ -7637,7 +7817,7 @@
     "ResourceSpec":{
       "type":"structure",
       "members":{
-        "SageMakerImageArn":{"shape":"SageMakerImageArn"},
+        "SageMakerImageArn":{"shape":"ImageArn"},
         "InstanceType":{"shape":"AppInstanceType"}
       }
     },
@@ -7741,11 +7921,6 @@
       "type":"string",
       "max":1024,
       "pattern":"^(https|s3)://([^/]+)/?(.*)$"
-    },
-    "SageMakerImageArn":{
-      "type":"string",
-      "max":256,
-      "pattern":"^arn:aws(-[\\w]+)*:sagemaker:.+:[0-9]{12}:image/[a-z0-9]([-.]?[a-z0-9])*$"
     },
     "SamplingPercentage":{
       "type":"integer",
@@ -8176,6 +8351,7 @@
         "ml_c5",
         "ml_p2",
         "ml_p3",
+        "ml_g4dn",
         "ml_inf1",
         "jetson_tx1",
         "jetson_tx2",
@@ -8191,10 +8367,49 @@
         "qcs605",
         "qcs603",
         "sitara_am57x",
-        "amba_cv22"
+        "amba_cv22",
+        "x86_win32",
+        "x86_win64"
       ]
     },
     "TargetObjectiveMetricValue":{"type":"float"},
+    "TargetPlatform":{
+      "type":"structure",
+      "required":[
+        "Os",
+        "Arch"
+      ],
+      "members":{
+        "Os":{"shape":"TargetPlatformOs"},
+        "Arch":{"shape":"TargetPlatformArch"},
+        "Accelerator":{"shape":"TargetPlatformAccelerator"}
+      }
+    },
+    "TargetPlatformAccelerator":{
+      "type":"string",
+      "enum":[
+        "INTEL_GRAPHICS",
+        "MALI",
+        "NVIDIA"
+      ]
+    },
+    "TargetPlatformArch":{
+      "type":"string",
+      "enum":[
+        "X86_64",
+        "X86",
+        "ARM64",
+        "ARM_EABI",
+        "ARM_EABIHF"
+      ]
+    },
+    "TargetPlatformOs":{
+      "type":"string",
+      "enum":[
+        "ANDROID",
+        "LINUX"
+      ]
+    },
     "TaskAvailabilityLifetimeInSeconds":{
       "type":"integer",
       "max":864000,
@@ -8471,7 +8686,7 @@
         "TrainingChannels"
       ],
       "members":{
-        "TrainingImage":{"shape":"Image"},
+        "TrainingImage":{"shape":"ContainerImage"},
         "TrainingImageDigest":{"shape":"ImageDigest"},
         "SupportedHyperParameters":{"shape":"HyperParameterSpecifications"},
         "SupportedTrainingInstanceTypes":{"shape":"TrainingInstanceTypes"},
@@ -8557,6 +8772,32 @@
       "type":"list",
       "member":{"shape":"TransformInstanceType"},
       "min":1
+    },
+    "TransformJob":{
+      "type":"structure",
+      "members":{
+        "TransformJobName":{"shape":"TransformJobName"},
+        "TransformJobArn":{"shape":"TransformJobArn"},
+        "TransformJobStatus":{"shape":"TransformJobStatus"},
+        "FailureReason":{"shape":"FailureReason"},
+        "ModelName":{"shape":"ModelName"},
+        "MaxConcurrentTransforms":{"shape":"MaxConcurrentTransforms"},
+        "ModelClientConfig":{"shape":"ModelClientConfig"},
+        "MaxPayloadInMB":{"shape":"MaxPayloadInMB"},
+        "BatchStrategy":{"shape":"BatchStrategy"},
+        "Environment":{"shape":"TransformEnvironmentMap"},
+        "TransformInput":{"shape":"TransformInput"},
+        "TransformOutput":{"shape":"TransformOutput"},
+        "TransformResources":{"shape":"TransformResources"},
+        "CreationTime":{"shape":"Timestamp"},
+        "TransformStartTime":{"shape":"Timestamp"},
+        "TransformEndTime":{"shape":"Timestamp"},
+        "LabelingJobArn":{"shape":"LabelingJobArn"},
+        "AutoMLJobArn":{"shape":"AutoMLJobArn"},
+        "DataProcessing":{"shape":"DataProcessing"},
+        "ExperimentConfig":{"shape":"ExperimentConfig"},
+        "Tags":{"shape":"TagList"}
+      }
     },
     "TransformJobArn":{
       "type":"string",
@@ -8802,7 +9043,8 @@
       "members":{
         "SourceArn":{"shape":"TrialComponentSourceArn"},
         "TrainingJob":{"shape":"TrainingJob"},
-        "ProcessingJob":{"shape":"ProcessingJob"}
+        "ProcessingJob":{"shape":"ProcessingJob"},
+        "TransformJob":{"shape":"TransformJob"}
       }
     },
     "TrialComponentStatus":{
@@ -9099,7 +9341,8 @@
       "required":["WorkforceName"],
       "members":{
         "WorkforceName":{"shape":"WorkforceName"},
-        "SourceIpConfig":{"shape":"SourceIpConfig"}
+        "SourceIpConfig":{"shape":"SourceIpConfig"},
+        "OidcConfig":{"shape":"OidcConfig"}
       }
     },
     "UpdateWorkforceResponse":{
@@ -9256,7 +9499,11 @@
         "WorkforceName":{"shape":"WorkforceName"},
         "WorkforceArn":{"shape":"WorkforceArn"},
         "LastUpdatedDate":{"shape":"Timestamp"},
-        "SourceIpConfig":{"shape":"SourceIpConfig"}
+        "SourceIpConfig":{"shape":"SourceIpConfig"},
+        "SubDomain":{"shape":"String"},
+        "CognitoConfig":{"shape":"CognitoConfig"},
+        "OidcConfig":{"shape":"OidcConfigForResponse"},
+        "CreateDate":{"shape":"Timestamp"}
       }
     },
     "WorkforceArn":{
@@ -9270,6 +9517,10 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9]([a-zA-Z0-9\\-])*$"
     },
+    "Workforces":{
+      "type":"list",
+      "member":{"shape":"Workforce"}
+    },
     "Workteam":{
       "type":"structure",
       "required":[
@@ -9282,6 +9533,7 @@
         "WorkteamName":{"shape":"WorkteamName"},
         "MemberDefinitions":{"shape":"MemberDefinitions"},
         "WorkteamArn":{"shape":"WorkteamArn"},
+        "WorkforceArn":{"shape":"WorkforceArn"},
         "ProductListingIds":{"shape":"ProductListings"},
         "Description":{"shape":"String200"},
         "SubDomain":{"shape":"String"},

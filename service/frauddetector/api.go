@@ -2746,100 +2746,6 @@ func (c *FraudDetector) GetOutcomesPagesWithContext(ctx aws.Context, input *GetO
 	return p.Err()
 }
 
-const opGetPrediction = "GetPrediction"
-
-// GetPredictionRequest generates a "aws/request.Request" representing the
-// client's request for the GetPrediction operation. The "output" return
-// value will be populated with the request's response once the request completes
-// successfully.
-//
-// Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
-//
-// See GetPrediction for more information on using the GetPrediction
-// API call, and error handling.
-//
-// This method is useful when you want to inject custom logic or configuration
-// into the SDK's request lifecycle. Such as custom headers, or retry logic.
-//
-//
-//    // Example sending a request using the GetPredictionRequest method.
-//    req, resp := client.GetPredictionRequest(params)
-//
-//    err := req.Send()
-//    if err == nil { // resp is now filled
-//        fmt.Println(resp)
-//    }
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetPrediction
-func (c *FraudDetector) GetPredictionRequest(input *GetPredictionInput) (req *request.Request, output *GetPredictionOutput) {
-	op := &request.Operation{
-		Name:       opGetPrediction,
-		HTTPMethod: "POST",
-		HTTPPath:   "/",
-	}
-
-	if input == nil {
-		input = &GetPredictionInput{}
-	}
-
-	output = &GetPredictionOutput{}
-	req = c.newRequest(op, input, output)
-	return
-}
-
-// GetPrediction API operation for Amazon Fraud Detector.
-//
-// Evaluates an event against a detector version. If a version ID is not provided,
-// the detector’s (ACTIVE) version is used.
-//
-// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
-// with awserr.Error's Code and Message methods to get detailed information about
-// the error.
-//
-// See the AWS API reference guide for Amazon Fraud Detector's
-// API operation GetPrediction for usage and error information.
-//
-// Returned Error Types:
-//   * ValidationException
-//   An exception indicating a specified value is not allowed.
-//
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
-//
-//   * InternalServerException
-//   An exception indicating an internal server error.
-//
-//   * ThrottlingException
-//   An exception indicating a throttling error.
-//
-//   * AccessDeniedException
-//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
-//   This can occur if you submit a request, such as PutExternalModel, that specifies
-//   a role that is not in your account.
-//
-// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetPrediction
-func (c *FraudDetector) GetPrediction(input *GetPredictionInput) (*GetPredictionOutput, error) {
-	req, out := c.GetPredictionRequest(input)
-	return out, req.Send()
-}
-
-// GetPredictionWithContext is the same as GetPrediction with the addition of
-// the ability to pass a context and additional request options.
-//
-// See GetPrediction for details on how to use this API operation.
-//
-// The context must be non-nil and will be used for request cancellation. If
-// the context is nil a panic will occur. In the future the SDK may create
-// sub-contexts for http.Requests. See https://golang.org/pkg/context/
-// for more information on using Contexts.
-func (c *FraudDetector) GetPredictionWithContext(ctx aws.Context, input *GetPredictionInput, opts ...request.Option) (*GetPredictionOutput, error) {
-	req, out := c.GetPredictionRequest(input)
-	req.SetContext(ctx)
-	req.ApplyOptions(opts...)
-	return out, req.Send()
-}
-
 const opGetRules = "GetRules"
 
 // GetRulesRequest generates a "aws/request.Request" representing the
@@ -5995,7 +5901,7 @@ type CreateVariableInput struct {
 	// A collection of key and value pairs.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// The variable type.
+	// The variable type. For more information see Variable types (https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types).
 	//
 	// Valid Values: AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 |
 	// BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE
@@ -6205,7 +6111,7 @@ type DeleteDetectorVersionInput struct {
 	// The ID of the detector version to delete.
 	//
 	// DetectorVersionId is a required field
-	DetectorVersionId *string `locationName:"detectorVersionId" type:"string" required:"true"`
+	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -6229,6 +6135,9 @@ func (s *DeleteDetectorVersionInput) Validate() error {
 	}
 	if s.DetectorVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorVersionId"))
+	}
+	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6511,7 +6420,7 @@ type DescribeModelVersionsInput struct {
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
 
 	// The model version number.
-	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string"`
+	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"3" type:"string"`
 
 	// The next token from the previous results.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -6535,6 +6444,9 @@ func (s *DescribeModelVersionsInput) Validate() error {
 	}
 	if s.ModelId != nil && len(*s.ModelId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.ModelVersionNumber != nil && len(*s.ModelVersionNumber) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelVersionNumber", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6995,6 +6907,9 @@ type ExternalModel struct {
 	// The input configuration.
 	InputConfiguration *ModelInputConfiguration `locationName:"inputConfiguration" type:"structure"`
 
+	// The role used to invoke the model.
+	InvokeModelEndpointRoleArn *string `locationName:"invokeModelEndpointRoleArn" type:"string"`
+
 	// Timestamp of when the model was last updated.
 	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
 
@@ -7009,9 +6924,6 @@ type ExternalModel struct {
 
 	// The output configuration.
 	OutputConfiguration *ModelOutputConfiguration `locationName:"outputConfiguration" type:"structure"`
-
-	// The role used to invoke the model.
-	Role *Role `locationName:"role" type:"structure"`
 }
 
 // String returns the string representation
@@ -7048,6 +6960,12 @@ func (s *ExternalModel) SetInputConfiguration(v *ModelInputConfiguration) *Exter
 	return s
 }
 
+// SetInvokeModelEndpointRoleArn sets the InvokeModelEndpointRoleArn field's value.
+func (s *ExternalModel) SetInvokeModelEndpointRoleArn(v string) *ExternalModel {
+	s.InvokeModelEndpointRoleArn = &v
+	return s
+}
+
 // SetLastUpdatedTime sets the LastUpdatedTime field's value.
 func (s *ExternalModel) SetLastUpdatedTime(v string) *ExternalModel {
 	s.LastUpdatedTime = &v
@@ -7075,12 +6993,6 @@ func (s *ExternalModel) SetModelSource(v string) *ExternalModel {
 // SetOutputConfiguration sets the OutputConfiguration field's value.
 func (s *ExternalModel) SetOutputConfiguration(v *ModelOutputConfiguration) *ExternalModel {
 	s.OutputConfiguration = v
-	return s
-}
-
-// SetRole sets the Role field's value.
-func (s *ExternalModel) SetRole(v *Role) *ExternalModel {
-	s.Role = v
 	return s
 }
 
@@ -7197,7 +7109,7 @@ type GetDetectorVersionInput struct {
 	// The detector version ID.
 	//
 	// DetectorVersionId is a required field
-	DetectorVersionId *string `locationName:"detectorVersionId" type:"string" required:"true"`
+	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -7221,6 +7133,9 @@ func (s *GetDetectorVersionInput) Validate() error {
 	}
 	if s.DetectorVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorVersionId"))
+	}
+	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7257,7 +7172,7 @@ type GetDetectorVersionOutput struct {
 	DetectorId *string `locationName:"detectorId" min:"1" type:"string"`
 
 	// The detector version ID.
-	DetectorVersionId *string `locationName:"detectorVersionId" type:"string"`
+	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string"`
 
 	// The Amazon SageMaker model endpoints included in the detector version.
 	ExternalModelEndpoints []*string `locationName:"externalModelEndpoints" type:"list"`
@@ -7549,7 +7464,7 @@ type GetEventPredictionInput struct {
 	DetectorId *string `locationName:"detectorId" type:"string" required:"true"`
 
 	// The detector version ID.
-	DetectorVersionId *string `locationName:"detectorVersionId" type:"string"`
+	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string"`
 
 	// The entity type (associated with the detector's event type) and specific
 	// entity ID representing who performed the event. If an entity id is not available,
@@ -7599,6 +7514,9 @@ func (s *GetEventPredictionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetEventPredictionInput"}
 	if s.DetectorId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+	}
+	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
 	}
 	if s.Entities == nil {
 		invalidParams.Add(request.NewErrParamRequired("Entities"))
@@ -8046,7 +7964,7 @@ type GetModelVersionInput struct {
 	// The model version number.
 	//
 	// ModelVersionNumber is a required field
-	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string" required:"true"`
+	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"3" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -8073,6 +7991,9 @@ func (s *GetModelVersionInput) Validate() error {
 	}
 	if s.ModelVersionNumber == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelVersionNumber"))
+	}
+	if s.ModelVersionNumber != nil && len(*s.ModelVersionNumber) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelVersionNumber", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8115,7 +8036,7 @@ type GetModelVersionOutput struct {
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
 
 	// The model version number.
-	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string"`
+	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"3" type:"string"`
 
 	// The model version status.
 	Status *string `locationName:"status" type:"string"`
@@ -8372,138 +8293,6 @@ func (s *GetOutcomesOutput) SetOutcomes(v []*Outcome) *GetOutcomesOutput {
 	return s
 }
 
-type GetPredictionInput struct {
-	_ struct{} `type:"structure"`
-
-	// The detector ID.
-	//
-	// DetectorId is a required field
-	DetectorId *string `locationName:"detectorId" type:"string" required:"true"`
-
-	// The detector version ID.
-	DetectorVersionId *string `locationName:"detectorVersionId" type:"string"`
-
-	// Names of variables you defined in Amazon Fraud Detector to represent event
-	// data elements and their corresponding values for the event you are sending
-	// for evaluation.
-	EventAttributes map[string]*string `locationName:"eventAttributes" type:"map"`
-
-	// The unique ID used to identify the event.
-	//
-	// EventId is a required field
-	EventId *string `locationName:"eventId" type:"string" required:"true"`
-
-	// The Amazon SageMaker model endpoint input data blobs.
-	ExternalModelEndpointDataBlobs map[string]*ModelEndpointDataBlob `locationName:"externalModelEndpointDataBlobs" type:"map" sensitive:"true"`
-}
-
-// String returns the string representation
-func (s GetPredictionInput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s GetPredictionInput) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *GetPredictionInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "GetPredictionInput"}
-	if s.DetectorId == nil {
-		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
-	}
-	if s.EventId == nil {
-		invalidParams.Add(request.NewErrParamRequired("EventId"))
-	}
-	if s.ExternalModelEndpointDataBlobs != nil {
-		for i, v := range s.ExternalModelEndpointDataBlobs {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExternalModelEndpointDataBlobs", i), err.(request.ErrInvalidParams))
-			}
-		}
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetDetectorId sets the DetectorId field's value.
-func (s *GetPredictionInput) SetDetectorId(v string) *GetPredictionInput {
-	s.DetectorId = &v
-	return s
-}
-
-// SetDetectorVersionId sets the DetectorVersionId field's value.
-func (s *GetPredictionInput) SetDetectorVersionId(v string) *GetPredictionInput {
-	s.DetectorVersionId = &v
-	return s
-}
-
-// SetEventAttributes sets the EventAttributes field's value.
-func (s *GetPredictionInput) SetEventAttributes(v map[string]*string) *GetPredictionInput {
-	s.EventAttributes = v
-	return s
-}
-
-// SetEventId sets the EventId field's value.
-func (s *GetPredictionInput) SetEventId(v string) *GetPredictionInput {
-	s.EventId = &v
-	return s
-}
-
-// SetExternalModelEndpointDataBlobs sets the ExternalModelEndpointDataBlobs field's value.
-func (s *GetPredictionInput) SetExternalModelEndpointDataBlobs(v map[string]*ModelEndpointDataBlob) *GetPredictionInput {
-	s.ExternalModelEndpointDataBlobs = v
-	return s
-}
-
-type GetPredictionOutput struct {
-	_ struct{} `type:"structure"`
-
-	// The model scores for models used in the detector version.
-	ModelScores []*ModelScores `locationName:"modelScores" type:"list"`
-
-	// The prediction outcomes.
-	Outcomes []*string `locationName:"outcomes" type:"list"`
-
-	// The rule results in the prediction.
-	RuleResults []*RuleResult `locationName:"ruleResults" type:"list"`
-}
-
-// String returns the string representation
-func (s GetPredictionOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s GetPredictionOutput) GoString() string {
-	return s.String()
-}
-
-// SetModelScores sets the ModelScores field's value.
-func (s *GetPredictionOutput) SetModelScores(v []*ModelScores) *GetPredictionOutput {
-	s.ModelScores = v
-	return s
-}
-
-// SetOutcomes sets the Outcomes field's value.
-func (s *GetPredictionOutput) SetOutcomes(v []*string) *GetPredictionOutput {
-	s.Outcomes = v
-	return s
-}
-
-// SetRuleResults sets the RuleResults field's value.
-func (s *GetPredictionOutput) SetRuleResults(v []*RuleResult) *GetPredictionOutput {
-	s.RuleResults = v
-	return s
-}
-
 type GetRulesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8522,7 +8311,7 @@ type GetRulesInput struct {
 	RuleId *string `locationName:"ruleId" min:"1" type:"string"`
 
 	// The rule version.
-	RuleVersion *string `locationName:"ruleVersion" type:"string"`
+	RuleVersion *string `locationName:"ruleVersion" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -8549,6 +8338,9 @@ func (s *GetRulesInput) Validate() error {
 	}
 	if s.RuleId != nil && len(*s.RuleId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+	if s.RuleVersion != nil && len(*s.RuleVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleVersion", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -9439,7 +9231,7 @@ type ModelVersionDetail struct {
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
 
 	// The model version number.
-	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string"`
+	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"3" type:"string"`
 
 	// The status of the model version.
 	Status *string `locationName:"status" type:"string"`
@@ -9920,6 +9712,11 @@ type PutExternalModelInput struct {
 	// InputConfiguration is a required field
 	InputConfiguration *ModelInputConfiguration `locationName:"inputConfiguration" type:"structure" required:"true"`
 
+	// The IAM role used to invoke the model endpoint.
+	//
+	// InvokeModelEndpointRoleArn is a required field
+	InvokeModelEndpointRoleArn *string `locationName:"invokeModelEndpointRoleArn" type:"string" required:"true"`
+
 	// The model endpoints name.
 	//
 	// ModelEndpoint is a required field
@@ -9939,11 +9736,6 @@ type PutExternalModelInput struct {
 	//
 	// OutputConfiguration is a required field
 	OutputConfiguration *ModelOutputConfiguration `locationName:"outputConfiguration" type:"structure" required:"true"`
-
-	// The IAM role used to invoke the model endpoint.
-	//
-	// Role is a required field
-	Role *Role `locationName:"role" type:"structure" required:"true"`
 
 	// A collection of key and value pairs.
 	Tags []*Tag `locationName:"tags" type:"list"`
@@ -9968,6 +9760,9 @@ func (s *PutExternalModelInput) Validate() error {
 	if s.InputConfiguration == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputConfiguration"))
 	}
+	if s.InvokeModelEndpointRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("InvokeModelEndpointRoleArn"))
+	}
 	if s.ModelEndpoint == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelEndpoint"))
 	}
@@ -9983,9 +9778,6 @@ func (s *PutExternalModelInput) Validate() error {
 	if s.OutputConfiguration == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputConfiguration"))
 	}
-	if s.Role == nil {
-		invalidParams.Add(request.NewErrParamRequired("Role"))
-	}
 	if s.InputConfiguration != nil {
 		if err := s.InputConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("InputConfiguration", err.(request.ErrInvalidParams))
@@ -9994,11 +9786,6 @@ func (s *PutExternalModelInput) Validate() error {
 	if s.OutputConfiguration != nil {
 		if err := s.OutputConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("OutputConfiguration", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.Role != nil {
-		if err := s.Role.Validate(); err != nil {
-			invalidParams.AddNested("Role", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -10030,6 +9817,12 @@ func (s *PutExternalModelInput) SetInputConfiguration(v *ModelInputConfiguration
 	return s
 }
 
+// SetInvokeModelEndpointRoleArn sets the InvokeModelEndpointRoleArn field's value.
+func (s *PutExternalModelInput) SetInvokeModelEndpointRoleArn(v string) *PutExternalModelInput {
+	s.InvokeModelEndpointRoleArn = &v
+	return s
+}
+
 // SetModelEndpoint sets the ModelEndpoint field's value.
 func (s *PutExternalModelInput) SetModelEndpoint(v string) *PutExternalModelInput {
 	s.ModelEndpoint = &v
@@ -10051,12 +9844,6 @@ func (s *PutExternalModelInput) SetModelSource(v string) *PutExternalModelInput 
 // SetOutputConfiguration sets the OutputConfiguration field's value.
 func (s *PutExternalModelInput) SetOutputConfiguration(v *ModelOutputConfiguration) *PutExternalModelInput {
 	s.OutputConfiguration = v
-	return s
-}
-
-// SetRole sets the Role field's value.
-func (s *PutExternalModelInput) SetRole(v *Role) *PutExternalModelInput {
-	s.Role = v
 	return s
 }
 
@@ -10362,59 +10149,6 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The role used to invoke external model endpoints.
-type Role struct {
-	_ struct{} `type:"structure"`
-
-	// The role ARN.
-	//
-	// Arn is a required field
-	Arn *string `locationName:"arn" type:"string" required:"true"`
-
-	// The role name.
-	//
-	// Name is a required field
-	Name *string `locationName:"name" type:"string" required:"true"`
-}
-
-// String returns the string representation
-func (s Role) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s Role) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *Role) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "Role"}
-	if s.Arn == nil {
-		invalidParams.Add(request.NewErrParamRequired("Arn"))
-	}
-	if s.Name == nil {
-		invalidParams.Add(request.NewErrParamRequired("Name"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetArn sets the Arn field's value.
-func (s *Role) SetArn(v string) *Role {
-	s.Arn = &v
-	return s
-}
-
-// SetName sets the Name field's value.
-func (s *Role) SetName(v string) *Role {
-	s.Name = &v
-	return s
-}
-
 // A rule.
 type Rule struct {
 	_ struct{} `type:"structure"`
@@ -10432,7 +10166,7 @@ type Rule struct {
 	// The rule version.
 	//
 	// RuleVersion is a required field
-	RuleVersion *string `locationName:"ruleVersion" type:"string" required:"true"`
+	RuleVersion *string `locationName:"ruleVersion" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -10462,6 +10196,9 @@ func (s *Rule) Validate() error {
 	}
 	if s.RuleVersion == nil {
 		invalidParams.Add(request.NewErrParamRequired("RuleVersion"))
+	}
+	if s.RuleVersion != nil && len(*s.RuleVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleVersion", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10520,7 +10257,7 @@ type RuleDetail struct {
 	RuleId *string `locationName:"ruleId" min:"1" type:"string"`
 
 	// The rule version.
-	RuleVersion *string `locationName:"ruleVersion" type:"string"`
+	RuleVersion *string `locationName:"ruleVersion" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -11027,7 +10764,7 @@ type UpdateDetectorVersionInput struct {
 	// The detector version ID.
 	//
 	// DetectorVersionId is a required field
-	DetectorVersionId *string `locationName:"detectorVersionId" type:"string" required:"true"`
+	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
 
 	// The Amazon SageMaker model endpoints to include in the detector version.
 	//
@@ -11080,6 +10817,9 @@ func (s *UpdateDetectorVersionInput) Validate() error {
 	}
 	if s.DetectorVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorVersionId"))
+	}
+	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
 	}
 	if s.ExternalModelEndpoints == nil {
 		invalidParams.Add(request.NewErrParamRequired("ExternalModelEndpoints"))
@@ -11172,7 +10912,7 @@ type UpdateDetectorVersionMetadataInput struct {
 	// The detector version ID.
 	//
 	// DetectorVersionId is a required field
-	DetectorVersionId *string `locationName:"detectorVersionId" type:"string" required:"true"`
+	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -11202,6 +10942,9 @@ func (s *UpdateDetectorVersionMetadataInput) Validate() error {
 	}
 	if s.DetectorVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorVersionId"))
+	}
+	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -11267,7 +11010,7 @@ type UpdateDetectorVersionStatusInput struct {
 	// The detector version ID.
 	//
 	// DetectorVersionId is a required field
-	DetectorVersionId *string `locationName:"detectorVersionId" type:"string" required:"true"`
+	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string" required:"true"`
 
 	// The new status.
 	//
@@ -11296,6 +11039,9 @@ func (s *UpdateDetectorVersionStatusInput) Validate() error {
 	}
 	if s.DetectorVersionId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DetectorVersionId"))
+	}
+	if s.DetectorVersionId != nil && len(*s.DetectorVersionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorVersionId", 1))
 	}
 	if s.Status == nil {
 		invalidParams.Add(request.NewErrParamRequired("Status"))
@@ -11429,7 +11175,7 @@ type UpdateModelVersionInput struct {
 	// The major version number.
 	//
 	// MajorVersionNumber is a required field
-	MajorVersionNumber *string `locationName:"majorVersionNumber" type:"string" required:"true"`
+	MajorVersionNumber *string `locationName:"majorVersionNumber" min:"1" type:"string" required:"true"`
 
 	// The model ID.
 	//
@@ -11460,6 +11206,9 @@ func (s *UpdateModelVersionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateModelVersionInput"}
 	if s.MajorVersionNumber == nil {
 		invalidParams.Add(request.NewErrParamRequired("MajorVersionNumber"))
+	}
+	if s.MajorVersionNumber != nil && len(*s.MajorVersionNumber) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MajorVersionNumber", 1))
 	}
 	if s.ModelId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelId"))
@@ -11532,7 +11281,7 @@ type UpdateModelVersionOutput struct {
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
 
 	// The model version number of the model version updated.
-	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string"`
+	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"3" type:"string"`
 
 	// The status of the updated model version.
 	Status *string `locationName:"status" type:"string"`
@@ -11588,7 +11337,7 @@ type UpdateModelVersionStatusInput struct {
 	// The model version number.
 	//
 	// ModelVersionNumber is a required field
-	ModelVersionNumber *string `locationName:"modelVersionNumber" type:"string" required:"true"`
+	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"3" type:"string" required:"true"`
 
 	// The model version status.
 	//
@@ -11620,6 +11369,9 @@ func (s *UpdateModelVersionStatusInput) Validate() error {
 	}
 	if s.ModelVersionNumber == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelVersionNumber"))
+	}
+	if s.ModelVersionNumber != nil && len(*s.ModelVersionNumber) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelVersionNumber", 3))
 	}
 	if s.Status == nil {
 		invalidParams.Add(request.NewErrParamRequired("Status"))
@@ -11902,7 +11654,7 @@ type UpdateVariableInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The variable type.
+	// The variable type. For more information see Variable types (https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types).
 	VariableType *string `locationName:"variableType" type:"string"`
 }
 
@@ -12036,7 +11788,7 @@ type Variable struct {
 	// The data source of the variable.
 	DataSource *string `locationName:"dataSource" type:"string" enum:"DataSource"`
 
-	// The data type of the variable.
+	// The data type of the variable. For more information see Variable types (https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types).
 	DataType *string `locationName:"dataType" type:"string" enum:"DataType"`
 
 	// The default value of the variable.
@@ -12147,7 +11899,7 @@ type VariableEntry struct {
 	// The name of the variable.
 	Name *string `locationName:"name" type:"string"`
 
-	// The type of the variable.
+	// The type of the variable. For more information see Variable types (https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types).
 	//
 	// Valid Values: AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 |
 	// BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE
@@ -12282,35 +12034,11 @@ const (
 )
 
 const (
-	// ModelVersionStatusTrainingInProgress is a ModelVersionStatus enum value
-	ModelVersionStatusTrainingInProgress = "TRAINING_IN_PROGRESS"
-
-	// ModelVersionStatusTrainingComplete is a ModelVersionStatus enum value
-	ModelVersionStatusTrainingComplete = "TRAINING_COMPLETE"
-
-	// ModelVersionStatusActivateRequested is a ModelVersionStatus enum value
-	ModelVersionStatusActivateRequested = "ACTIVATE_REQUESTED"
-
-	// ModelVersionStatusActivateInProgress is a ModelVersionStatus enum value
-	ModelVersionStatusActivateInProgress = "ACTIVATE_IN_PROGRESS"
-
 	// ModelVersionStatusActive is a ModelVersionStatus enum value
 	ModelVersionStatusActive = "ACTIVE"
 
-	// ModelVersionStatusInactivateInProgress is a ModelVersionStatus enum value
-	ModelVersionStatusInactivateInProgress = "INACTIVATE_IN_PROGRESS"
-
 	// ModelVersionStatusInactive is a ModelVersionStatus enum value
 	ModelVersionStatusInactive = "INACTIVE"
-
-	// ModelVersionStatusDeleteRequested is a ModelVersionStatus enum value
-	ModelVersionStatusDeleteRequested = "DELETE_REQUESTED"
-
-	// ModelVersionStatusDeleteInProgress is a ModelVersionStatus enum value
-	ModelVersionStatusDeleteInProgress = "DELETE_IN_PROGRESS"
-
-	// ModelVersionStatusError is a ModelVersionStatus enum value
-	ModelVersionStatusError = "ERROR"
 )
 
 const (

@@ -569,7 +569,8 @@
       "enum": [
         "NONE",
         "SCTE35_ENHANCED",
-        "PASSTHROUGH"
+        "PASSTHROUGH",
+        "DATERANGE"
       ],
       "type": "string"
     },
@@ -916,8 +917,8 @@
         }
       },
       "required": [
-        "Id",
-        "ChannelId"
+        "ChannelId",
+        "Id"
       ],
       "type": "structure"
     },

@@ -169,8 +169,11 @@ func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Reques
 //
 //    * is not linked to an Amazon S3 data respository.
 //
-// For more information, see https://docs.aws.amazon.com/fsx/latest/LustreGuide/lustre-backups.html
-// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/lustre-backups.html).
+// For more information about backing up Amazon FSx for Lustre file systems,
+// see Working with FSx for Lustre backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html).
+//
+// For more information about backing up Amazon FSx for Lustre file systems,
+// see Working with FSx for Windows backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html).
 //
 // If a backup with the specified client request token exists, and the parameters
 // match, this operation returns the description of the existing backup. If
@@ -1694,9 +1697,10 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 // UpdateFileSystem API operation for Amazon FSx.
 //
 // Use this operation to update the configuration of an existing Amazon FSx
-// file system. For an Amazon FSx for Lustre file system, you can update only
-// the WeeklyMaintenanceStartTime. For an Amazon for Windows File Server file
-// system, you can update the following properties:
+// file system. You can update multiple properties in a single request.
+//
+// For Amazon FSx for Windows File Server file systems, you can update the following
+// properties:
 //
 //    * AutomaticBackupRetentionDays
 //
@@ -1710,7 +1714,15 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //    * WeeklyMaintenanceStartTime
 //
-// You can update multiple properties in a single request.
+// For Amazon FSx for Lustre file systems, you can update the following properties:
+//
+//    * AutoImportPolicy
+//
+//    * AutomaticBackupRetentionDays
+//
+//    * DailyAutomaticBackupStartTime
+//
+//    * WeeklyMaintenanceStartTime
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2033,7 +2045,7 @@ type Backup struct {
 	// Tags associated with a particular file system.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// The type of the backup.
+	// The type of the file system backup.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"BackupType"`
@@ -3200,25 +3212,29 @@ func (s *CreateFileSystemInput) SetWindowsConfiguration(v *CreateFileSystemWindo
 type CreateFileSystemLustreConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Use this property to turn the Autoimport feature on and off. AutoImport enables
-	// your FSx for Lustre file system to automatically update its contents with
-	// changes that have been made to its linked Amazon S3 data repository. You
-	// can set the policy to have one the following values:
+	// (Optional) Use this property to configure the AutoImport feature on the file
+	// system's linked Amazon S3 data repository. You use AutoImport to update the
+	// contents of your FSx for Lustre file system automatically with changes that
+	// occur in the linked S3 data repository. AutoImportPolicy can have the following
+	// values:
 	//
-	//    * NONE - (Default) Autoimport is turned off. Changes to your S3 repository
-	//    will not be reflected on the FSx file system.
+	//    * NONE - (Default) AutoImport is off. Changes in the linked data repository
+	//    are not reflected on the FSx file system.
 	//
-	//    * NEW - Autoimport is turned on; only new files in the linked S3 repository
-	//    will be imported to the FSx file system. Updates to existing files and
-	//    deleted files will not be imported to the FSx file system.
+	//    * NEW - AutoImport is on. New files in the linked data repository that
+	//    do not currently exist in the FSx file system are automatically imported.
+	//    Updates to existing FSx files are not imported to the FSx file system.
+	//    Files deleted from the linked data repository are not deleted from the
+	//    FSx file system.
 	//
-	//    * NEW_CHANGED - Autoimport is turned on; new files and changes to existing
-	//    files in the linked S3 repository will be imported to the FSx file system.
-	//    Files deleted in S3 are not deleted in the FSx file system.
+	//    * NEW_CHANGED - AutoImport is on. New files in the linked S3 data repository
+	//    that do not currently exist in the FSx file system are automatically imported.
+	//    Changes to existing FSx files in the linked repository are also automatically
+	//    imported to the FSx file system. Files deleted from the linked data repository
+	//    are not deleted from the FSx file system.
 	//
-	//    * NEW_CHANGED_DELETED - Autoimport is turned on; new files, changes to
-	//    existing files, and deleted files in the linked S3 repository will be
-	//    imported to the FSx file system.
+	// For more information, see Automatically import updates from your S3 bucket
+	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/autoimport-data-repo.html).
 	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
 
 	// The number of days to retain automatic backups. Setting this to 0 disables
@@ -3233,6 +3249,8 @@ type CreateFileSystemLustreConfiguration struct {
 	// or more tags, only the specified tags are copied to backups. If you specify
 	// one or more tags when creating a user-initiated backup, no tags are copied
 	// from the file system, regardless of this value.
+	//
+	// For more information, see Working with backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html).
 	CopyTagsToBackups *bool `type:"boolean"`
 
 	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
@@ -3243,8 +3261,6 @@ type CreateFileSystemLustreConfiguration struct {
 	// Choose SCRATCH_1 and SCRATCH_2 deployment types when you need temporary storage
 	// and shorter-term processing of data. The SCRATCH_2 deployment type provides
 	// in-transit encryption of data and higher burst throughput capacity than SCRATCH_1.
-	//
-	// This option can only be set for for PERSISTENT_1 deployments types.
 	//
 	// Choose PERSISTENT_1 deployment type for longer-term storage and workloads
 	// and encryption of data in transit. To learn more about deployment types,
@@ -3603,25 +3619,28 @@ func (s *CreateFileSystemWindowsConfiguration) SetWeeklyMaintenanceStartTime(v s
 type DataRepositoryConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the data repository's AutoImportPolicy. AutoImport enables your
-	// FSx for Lustre file system to automatically update its contents with changes
-	// that have been made to its linked Amazon S3 data repository. The policy can
-	// have the following values:
+	// Describes the file system's linked S3 data repository's AutoImportPolicy.
+	// The AutoImportPolicy configures how your FSx for Lustre file system automatically
+	// updates its contents with changes that occur in the linked S3 data repository.
+	// AutoImportPolicy can have the following values:
 	//
-	//    * NONE - (Default) Autoimport is turned off, Changes to your S3 repository
-	//    will not be reflected on the FSx file system.
+	//    * NONE - (Default) AutoImport is off. Changes in the linked data repository
+	//    are not reflected on the FSx file system.
 	//
-	//    * NEW - Autoimport is turned on; only new files in the linked S3 repository
-	//    will be imported to the FSx file system. Updates to existing files and
-	//    deleted files will not be imported to the FSx file system.
+	//    * NEW - AutoImport is on. New files in the linked data repository that
+	//    do not currently exist in the FSx file system are automatically imported.
+	//    Updates to existing FSx files are not imported to the FSx file system.
+	//    Files deleted from the linked data repository are not deleted from the
+	//    FSx file system.
 	//
-	//    * NEW_CHANGED - Autoimport is turned on; new files and changes to existing
-	//    files in the linked S3 repository will be imported to the FSx file system.
-	//    Files deleted in S3 are not deleted in the FSx file system.
+	//    * NEW_CHANGED - AutoImport is on. New files in the linked S3 data repository
+	//    that do not currently exist in the FSx file system are automatically imported.
+	//    Changes to existing FSx files in the linked repository are also automatically
+	//    imported to the FSx file system. Files deleted from the linked data repository
+	//    are not deleted from the FSx file system.
 	//
-	//    * NEW_CHANGED_DELETED - Autoimport is turned on; new files, changes to
-	//    existing files, and deleted files in the linked S3 repository will be
-	//    imported to the FSx file system.
+	// For more information, see Automatically import updates from your S3 bucket
+	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/autoimport-data-repo.html).
 	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
 
 	// The export path to the Amazon S3 bucket (and prefix) that you are using to
@@ -3652,13 +3671,19 @@ type DataRepositoryConfiguration struct {
 	// is configured with an S3 repository. The lifecycle can have the following
 	// values:
 	//
-	//    * CREATING - Amazon FSx is creating the new data repository.
+	//    * CREATING - The data repository configuration between the FSx file system
+	//    and the linked S3 data repository is being created. The data repository
+	//    is unavailable.
 	//
 	//    * AVAILABLE - The data repository is available for use.
 	//
-	//    * MISCONFIGURED - The data repository is in a failed but recoverable state.
+	//    * MISCONFIGURED - Amazon FSx cannot automatically import updates from
+	//    the S3 bucket until the data repository configuration is corrected. For
+	//    more information, see Troubleshooting a Misconfigured linked S3 bucket
+	//    (https://docs.aws.amazon.com/fsx/latest/LustreGuide/troubleshooting.html#troubleshooting-misconfigured-data-repository).
 	//
-	//    * UPDATING - The data repository is undergoing a customer initiated update.
+	//    * UPDATING - The data repository is undergoing a customer initiated update
+	//    and availability may be impacted.
 	Lifecycle *string `type:"string" enum:"DataRepositoryLifecycle"`
 }
 
@@ -6852,25 +6877,29 @@ func (s *UpdateFileSystemInput) SetWindowsConfiguration(v *UpdateFileSystemWindo
 type UpdateFileSystemLustreConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Use this property to turn the Autoimport feature on and off. AutoImport enables
-	// your FSx for Lustre file system to automatically update its contents with
-	// changes that have been made to its linked Amazon S3 data repository. You
-	// can set the policy to have one the following values:
+	// (Optional) Use this property to configure the AutoImport feature on the file
+	// system's linked Amazon S3 data repository. You use AutoImport to update the
+	// contents of your FSx for Lustre file system automatically with changes that
+	// occur in the linked S3 data repository. AutoImportPolicy can have the following
+	// values:
 	//
-	//    * NONE - (Default) Autoimport is turned off. Changes to your S3 repository
-	//    will not be reflected on the FSx file system.
+	//    * NONE - (Default) AutoImport is off. Changes in the linked data repository
+	//    are not reflected on the FSx file system.
 	//
-	//    * NEW - Autoimport is turned on; only new files in the linked S3 repository
-	//    will be imported to the FSx file system. Updates to existing files and
-	//    deleted files will not be imported to the FSx file system.
+	//    * NEW - AutoImport is on. New files in the linked data repository that
+	//    do not currently exist in the FSx file system are automatically imported.
+	//    Updates to existing FSx files are not imported to the FSx file system.
+	//    Files deleted from the linked data repository are not deleted from the
+	//    FSx file system.
 	//
-	//    * NEW_CHANGED - Autoimport is turned on; new files and changes to existing
-	//    files in the linked S3 repository will be imported to the FSx file system.
-	//    Files deleted in S3 are not deleted in the FSx file system.
+	//    * NEW_CHANGED - AutoImport is on. New files in the linked S3 data repository
+	//    that do not currently exist in the FSx file system are automatically imported.
+	//    Changes to existing FSx files in the linked repository are also automatically
+	//    imported to the FSx file system. Files deleted from the linked data repository
+	//    are not deleted from the FSx file system.
 	//
-	//    * NEW_CHANGED_DELETED - Autoimport is turned on; new files, changes to
-	//    existing files, and deleted files in the linked S3 repository will be
-	//    imported to the FSx file system.
+	// For more information, see Automatically import updates from your S3 bucket
+	// (https://docs.aws.amazon.com/fsx/latest/LustreGuide/autoimport-data-repo.html).
 	AutoImportPolicy *string `type:"string" enum:"AutoImportPolicyType"`
 
 	// The number of days to retain automatic backups. Setting this to 0 disables

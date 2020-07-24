@@ -116,6 +116,9 @@ type MQAPI interface {
 	ListBrokersWithContext(aws.Context, *mq.ListBrokersInput, ...request.Option) (*mq.ListBrokersResponse, error)
 	ListBrokersRequest(*mq.ListBrokersInput) (*request.Request, *mq.ListBrokersResponse)
 
+	ListBrokersPages(*mq.ListBrokersInput, func(*mq.ListBrokersResponse, bool) bool) error
+	ListBrokersPagesWithContext(aws.Context, *mq.ListBrokersInput, func(*mq.ListBrokersResponse, bool) bool, ...request.Option) error
+
 	ListConfigurationRevisions(*mq.ListConfigurationRevisionsInput) (*mq.ListConfigurationRevisionsResponse, error)
 	ListConfigurationRevisionsWithContext(aws.Context, *mq.ListConfigurationRevisionsInput, ...request.Option) (*mq.ListConfigurationRevisionsResponse, error)
 	ListConfigurationRevisionsRequest(*mq.ListConfigurationRevisionsInput) (*request.Request, *mq.ListConfigurationRevisionsResponse)

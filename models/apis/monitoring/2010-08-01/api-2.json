@@ -1361,7 +1361,8 @@
         "Namespace":{"shape":"Namespace"},
         "MetricName":{"shape":"MetricName"},
         "Dimensions":{"shape":"DimensionFilters"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "RecentlyActive":{"shape":"RecentlyActive"}
       }
     },
     "ListMetricsOutput":{
@@ -1738,6 +1739,10 @@
         "StartTime",
         "EndTime"
       ]
+    },
+    "RecentlyActive":{
+      "type":"string",
+      "enum":["PT3H"]
     },
     "ResourceId":{"type":"string"},
     "ResourceList":{

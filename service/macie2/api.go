@@ -6647,9 +6647,9 @@ type BucketMetadata struct {
 
 	ObjectCount *int64 `locationName:"objectCount" type:"long"`
 
-	// The total number of objects that are in the bucket, grouped by server-side
-	// encryption type. This includes a grouping that reports the total number of
-	// objects that aren't encrypted.
+	// Provides information about the number of objects that are in an S3 bucket
+	// and use certain types of server-side encryption, use client-side encryption,
+	// or aren't encrypted.
 	ObjectCountByEncryptionType *ObjectCountByEncryptionType `locationName:"objectCountByEncryptionType" type:"structure"`
 
 	// Provides information about permissions settings that determine whether an
@@ -11726,9 +11726,9 @@ func (s *MonthlySchedule) SetDayOfMonth(v int64) *MonthlySchedule {
 	return s
 }
 
-// The total number of objects that are in the bucket, grouped by server-side
-// encryption type. This includes a grouping that reports the total number of
-// objects that aren't encrypted.
+// Provides information about the number of objects that are in an S3 bucket
+// and use certain types of server-side encryption, use client-side encryption,
+// or aren't encrypted.
 type ObjectCountByEncryptionType struct {
 	_ struct{} `type:"structure"`
 
@@ -13702,13 +13702,17 @@ func (s *UsageRecord) SetUsage(v []*UsageByAccount) *UsageRecord {
 	return s
 }
 
-// Specifies criteria for filtering the results of a query for account quotas
+// Specifies a condition for filtering the results of a query for account quotas
 // and usage data.
 type UsageStatisticsFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The field to use to filter the results of a query for account quotas and
-	// usage data:
+	// The operator to use in a condition that filters the results of a query for
+	// account quotas and usage data. Valid values are:
+	Comparator *string `locationName:"comparator" type:"string" enum:"UsageStatisticsFilterComparator"`
+
+	// The field to use in a condition that filters the results of a query for account
+	// quotas and usage data. Valid values are:
 	Key *string `locationName:"key" type:"string" enum:"UsageStatisticsFilterKey"`
 
 	Values []*string `locationName:"values" type:"list"`
@@ -13722,6 +13726,12 @@ func (s UsageStatisticsFilter) String() string {
 // GoString returns the string representation
 func (s UsageStatisticsFilter) GoString() string {
 	return s.String()
+}
+
+// SetComparator sets the Comparator field's value.
+func (s *UsageStatisticsFilter) SetComparator(v string) *UsageStatisticsFilter {
+	s.Comparator = &v
+	return s
 }
 
 // SetKey sets the Key field's value.
@@ -14422,11 +14432,45 @@ const (
 	UnitTerabytes = "TERABYTES"
 )
 
-// The field to use to filter the results of a query for account quotas and
-// usage data:
+// The operator to use in a condition that filters the results of a query for
+// account quotas and usage data. Valid values are:
+const (
+	// UsageStatisticsFilterComparatorGt is a UsageStatisticsFilterComparator enum value
+	UsageStatisticsFilterComparatorGt = "GT"
+
+	// UsageStatisticsFilterComparatorGte is a UsageStatisticsFilterComparator enum value
+	UsageStatisticsFilterComparatorGte = "GTE"
+
+	// UsageStatisticsFilterComparatorLt is a UsageStatisticsFilterComparator enum value
+	UsageStatisticsFilterComparatorLt = "LT"
+
+	// UsageStatisticsFilterComparatorLte is a UsageStatisticsFilterComparator enum value
+	UsageStatisticsFilterComparatorLte = "LTE"
+
+	// UsageStatisticsFilterComparatorEq is a UsageStatisticsFilterComparator enum value
+	UsageStatisticsFilterComparatorEq = "EQ"
+
+	// UsageStatisticsFilterComparatorNe is a UsageStatisticsFilterComparator enum value
+	UsageStatisticsFilterComparatorNe = "NE"
+
+	// UsageStatisticsFilterComparatorContains is a UsageStatisticsFilterComparator enum value
+	UsageStatisticsFilterComparatorContains = "CONTAINS"
+)
+
+// The field to use in a condition that filters the results of a query for account
+// quotas and usage data. Valid values are:
 const (
 	// UsageStatisticsFilterKeyAccountId is a UsageStatisticsFilterKey enum value
 	UsageStatisticsFilterKeyAccountId = "accountId"
+
+	// UsageStatisticsFilterKeyServiceLimit is a UsageStatisticsFilterKey enum value
+	UsageStatisticsFilterKeyServiceLimit = "serviceLimit"
+
+	// UsageStatisticsFilterKeyFreeTrialStartDate is a UsageStatisticsFilterKey enum value
+	UsageStatisticsFilterKeyFreeTrialStartDate = "freeTrialStartDate"
+
+	// UsageStatisticsFilterKeyTotal is a UsageStatisticsFilterKey enum value
+	UsageStatisticsFilterKeyTotal = "total"
 )
 
 // The field to use to sort the results of a query for account quotas and usage
@@ -14437,6 +14481,12 @@ const (
 
 	// UsageStatisticsSortKeyTotal is a UsageStatisticsSortKey enum value
 	UsageStatisticsSortKeyTotal = "total"
+
+	// UsageStatisticsSortKeyServiceLimitValue is a UsageStatisticsSortKey enum value
+	UsageStatisticsSortKeyServiceLimitValue = "serviceLimitValue"
+
+	// UsageStatisticsSortKeyFreeTrialStartDate is a UsageStatisticsSortKey enum value
+	UsageStatisticsSortKeyFreeTrialStartDate = "freeTrialStartDate"
 )
 
 // The name of a usage metric for an account. Possible values are:

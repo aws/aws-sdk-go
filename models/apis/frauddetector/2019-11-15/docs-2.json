@@ -26,7 +26,6 @@
     "GetModelVersion": "<p>Gets the details of the specified model version.</p>",
     "GetModels": "<p>Gets one or more models. Gets all models for the AWS account if no model type and no model id provided. Gets all models for the AWS account and model type, if the model type is specified but model id is not provided. Gets a specific model if (model type, model id) tuple is specified. </p> <p>This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 1 and 10. To get the next page results, provide the pagination token from the response as part of your request. A null pagination token fetches the records from the beginning.</p>",
     "GetOutcomes": "<p>Gets one or more outcomes. This is a paginated API. If you provide a null <code>maxResults</code>, this actions retrieves a maximum of 100 records per page. If you provide a <code>maxResults</code>, the value must be between 50 and 100. To get the next page results, provide the pagination token from the <code>GetOutcomesResult</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
-    "GetPrediction": "<p>Evaluates an event against a detector version. If a version ID is not provided, the detector’s (<code>ACTIVE</code>) version is used. </p>",
     "GetRules": "<p>Get all rules for a detector (paginated) if <code>ruleId</code> and <code>ruleVersion</code> are not specified. Gets all rules for the detector and the <code>ruleId</code> if present (paginated). Gets a specific rule if both the <code>ruleId</code> and the <code>ruleVersion</code> are specified.</p> <p>This is a paginated API. Providing null maxResults results in retrieving maximum of 100 records per page. If you provide maxResults the value must be between 50 and 100. To get the next page result, a provide a pagination token from GetRulesResult as part of your request. Null pagination token fetches the records from the beginning.</p>",
     "GetVariables": "<p>Gets all of the variables or the specific variable. This is a paginated API. Providing null <code>maxSizePerPage</code> results in retrieving maximum of 100 records per page. If you provide <code>maxSizePerPage</code> the value must be between 50 and 100. To get the next page result, a provide a pagination token from <code>GetVariablesResult</code> as part of your request. Null pagination token fetches the records from the beginning. </p>",
     "ListTagsForResource": "<p>Lists all tags associated with the resource. This is a paginated API. To get the next page results, provide the pagination token from the response as part of your request. A null pagination token fetches the records from the beginning. </p>",
@@ -171,7 +170,7 @@
       "base": null,
       "refs": {
         "CreateVariableRequest$dataType": "<p>The data type.</p>",
-        "Variable$dataType": "<p>The data type of the variable.</p>"
+        "Variable$dataType": "<p>The data type of the variable. For more information see <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types\">Variable types</a>.</p>"
       }
     },
     "DataValidationMetrics": {
@@ -297,12 +296,6 @@
         "entityTypeList$member": null
       }
     },
-    "EventAttributeMap": {
-      "base": null,
-      "refs": {
-        "GetPredictionRequest$eventAttributes": "<p>Names of variables you defined in Amazon Fraud Detector to represent event data elements and their corresponding values for the event you are sending for evaluation.</p>"
-      }
-    },
     "EventType": {
       "base": "<p>The event type details.</p>",
       "refs": {
@@ -333,8 +326,7 @@
     "ExternalModelEndpointDataBlobMap": {
       "base": null,
       "refs": {
-        "GetEventPredictionRequest$externalModelEndpointDataBlobs": "<p>The Amazon SageMaker model endpoint input data blobs.</p>",
-        "GetPredictionRequest$externalModelEndpointDataBlobs": "<p>The Amazon SageMaker model endpoint input data blobs.</p>"
+        "GetEventPredictionRequest$externalModelEndpointDataBlobs": "<p>The Amazon SageMaker model endpoint input data blobs.</p>"
       }
     },
     "ExternalModelList": {
@@ -466,16 +458,6 @@
       "refs": {
       }
     },
-    "GetPredictionRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "GetPredictionResult": {
-      "base": null,
-      "refs": {
-      }
-    },
     "GetRulesRequest": {
       "base": null,
       "refs": {
@@ -543,8 +525,7 @@
     "ListOfModelScores": {
       "base": null,
       "refs": {
-        "GetEventPredictionResult$modelScores": "<p>The model scores. Amazon Fraud Detector generates model scores between 0 and 1000, where 0 is low fraud risk and 1000 is high fraud risk. Model scores are directly related to the false positive rate (FPR). For example, a score of 600 corresponds to an estimated 10% false positive rate whereas a score of 900 corresponds to an estimated 2% false positive rate.</p>",
-        "GetPredictionResult$modelScores": "<p>The model scores for models used in the detector version.</p>"
+        "GetEventPredictionResult$modelScores": "<p>The model scores. Amazon Fraud Detector generates model scores between 0 and 1000, where 0 is low fraud risk and 1000 is high fraud risk. Model scores are directly related to the false positive rate (FPR). For example, a score of 600 corresponds to an estimated 10% false positive rate whereas a score of 900 corresponds to an estimated 2% false positive rate.</p>"
       }
     },
     "ListOfModelVersions": {
@@ -558,8 +539,7 @@
     "ListOfRuleResults": {
       "base": null,
       "refs": {
-        "GetEventPredictionResult$ruleResults": "<p>The results.</p>",
-        "GetPredictionResult$ruleResults": "<p>The rule results in the prediction.</p>"
+        "GetEventPredictionResult$ruleResults": "<p>The results.</p>"
       }
     },
     "ListOfStrings": {
@@ -569,7 +549,6 @@
         "EventType$eventVariables": "<p>The event type event variables.</p>",
         "EventType$labels": "<p>The event type labels.</p>",
         "GetDetectorVersionResult$externalModelEndpoints": "<p>The Amazon SageMaker model endpoints included in the detector version.</p>",
-        "GetPredictionResult$outcomes": "<p>The prediction outcomes.</p>",
         "PutEventTypeRequest$labels": "<p>The event type labels.</p>",
         "RuleResult$outcomes": "<p>The outcomes of the matched rule, based on the rule execution mode.</p>",
         "TrainingDataSchema$modelVariables": "<p>The training data schema variables.</p>",
@@ -803,13 +782,6 @@
     "ResourceNotFoundException": {
       "base": "<p>An exception indicating the specified resource was not found.</p>",
       "refs": {
-      }
-    },
-    "Role": {
-      "base": "<p>The role used to invoke external model endpoints.</p>",
-      "refs": {
-        "ExternalModel$role": "<p>The role used to invoke the model. </p>",
-        "PutExternalModelRequest$role": "<p>The IAM role used to invoke the model endpoint.</p>"
       }
     },
     "Rule": {
@@ -1058,18 +1030,6 @@
       "base": null,
       "refs": {
         "GetVariablesRequest$maxResults": "<p>The max size per page determined for the get variable request. </p>"
-      }
-    },
-    "attributeKey": {
-      "base": null,
-      "refs": {
-        "EventAttributeMap$key": null
-      }
-    },
-    "attributeValue": {
-      "base": null,
-      "refs": {
-        "EventAttributeMap$value": null
       }
     },
     "blob": {
@@ -1351,7 +1311,7 @@
         "CreateVariableRequest$name": "<p>The name of the variable.</p>",
         "CreateVariableRequest$defaultValue": "<p>The default value for the variable when no value is received.</p>",
         "CreateVariableRequest$description": "<p>The description.</p>",
-        "CreateVariableRequest$variableType": "<p>The variable type.</p> <p>Valid Values: <code>AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 | BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS | FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1 | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT | SHIPPING_ZIP | USERAGENT</code> </p>",
+        "CreateVariableRequest$variableType": "<p>The variable type. For more information see <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types\">Variable types</a>. </p> <p>Valid Values: <code>AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 | BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS | FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1 | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT | SHIPPING_ZIP | USERAGENT</code> </p>",
         "CsvIndexToVariableMap$key": null,
         "CsvIndexToVariableMap$value": null,
         "DeleteEventRequest$eventId": "<p>The ID of the event to delete.</p>",
@@ -1364,6 +1324,7 @@
         "EntityType$name": "<p>The entity type name.</p>",
         "EventType$name": "<p>The event type name.</p>",
         "ExternalModel$modelEndpoint": "<p>The Amazon SageMaker model endpoints.</p>",
+        "ExternalModel$invokeModelEndpointRoleArn": "<p>The role used to invoke the model. </p>",
         "ExternalModelEndpointDataBlobMap$key": null,
         "FieldValidationMessage$fieldName": "<p>The field name.</p>",
         "FieldValidationMessage$identifier": "<p>The message ID.</p>",
@@ -1378,7 +1339,6 @@
         "GetEntityTypesRequest$nextToken": "<p>The next token for the subsequent request.</p>",
         "GetEntityTypesResult$nextToken": "<p>The next page token.</p>",
         "GetEventPredictionRequest$detectorId": "<p>The detector ID.</p>",
-        "GetEventPredictionRequest$detectorVersionId": "<p>The detector version ID.</p>",
         "GetEventPredictionRequest$eventId": "<p>The unique ID used to identify the event.</p>",
         "GetEventPredictionRequest$eventTypeName": "<p>The event type associated with the detector specified for the prediction.</p>",
         "GetEventPredictionRequest$eventTimestamp": "<p>Timestamp that defines when the event under evaluation occurred.</p>",
@@ -1394,9 +1354,6 @@
         "GetModelsResult$nextToken": "<p>The next page token to be used in subsequent requests.</p>",
         "GetOutcomesRequest$nextToken": "<p>The next page token for the request. </p>",
         "GetOutcomesResult$nextToken": "<p>The next page token for subsequent requests.</p>",
-        "GetPredictionRequest$detectorId": "<p>The detector ID. </p>",
-        "GetPredictionRequest$detectorVersionId": "<p>The detector version ID.</p>",
-        "GetPredictionRequest$eventId": "<p>The unique ID used to identify the event.</p>",
         "GetRulesRequest$nextToken": "<p>The next page token.</p>",
         "GetRulesResult$nextToken": "<p>The next page token to be used in subsequent requests.</p>",
         "GetVariablesRequest$name": "<p>The name of the variable. </p>",
@@ -1416,16 +1373,15 @@
         "ModelVersionDetail$status": "<p>The status of the model version.</p>",
         "NameList$member": null,
         "NonEmptyListOfStrings$member": null,
+        "PutExternalModelRequest$invokeModelEndpointRoleArn": "<p>The IAM role used to invoke the model endpoint.</p>",
         "ResourceNotFoundException$message": null,
-        "Role$arn": "<p>The role ARN.</p>",
-        "Role$name": "<p>The role name.</p>",
         "RuleResult$ruleId": "<p>The rule ID that was matched, based on the rule execution mode.</p>",
         "ThrottlingException$message": null,
         "UpdateModelVersionResult$status": "<p>The status of the updated model version.</p>",
         "UpdateVariableRequest$name": "<p>The name of the variable.</p>",
         "UpdateVariableRequest$defaultValue": "<p>The new default value of the variable.</p>",
         "UpdateVariableRequest$description": "<p>The new description.</p>",
-        "UpdateVariableRequest$variableType": "<p>The variable type.</p>",
+        "UpdateVariableRequest$variableType": "<p>The variable type. For more information see <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types\">Variable types</a>.</p>",
         "ValidationException$message": null,
         "Variable$name": "<p>The name of the variable.</p>",
         "Variable$defaultValue": "<p>The default value of the variable.</p>",
@@ -1436,7 +1392,7 @@
         "VariableEntry$dataSource": "<p>The data source of the variable.</p>",
         "VariableEntry$defaultValue": "<p>The default value of the variable.</p>",
         "VariableEntry$description": "<p>The description of the variable.</p>",
-        "VariableEntry$variableType": "<p>The type of the variable.</p> <p>Valid Values: <code>AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 | BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS | FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1 | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT | SHIPPING_ZIP | USERAGENT</code> </p>",
+        "VariableEntry$variableType": "<p>The type of the variable. For more information see <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types\">Variable types</a>.</p> <p>Valid Values: <code>AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 | BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS | FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1 | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT | SHIPPING_ZIP | USERAGENT</code> </p>",
         "labelMapper$key": null
       }
     },
@@ -1526,6 +1482,7 @@
         "DeleteDetectorVersionRequest$detectorVersionId": "<p>The ID of the detector version to delete.</p>",
         "GetDetectorVersionRequest$detectorVersionId": "<p>The detector version ID.</p>",
         "GetDetectorVersionResult$detectorVersionId": "<p>The detector version ID.</p>",
+        "GetEventPredictionRequest$detectorVersionId": "<p>The detector version ID.</p>",
         "GetRulesRequest$ruleVersion": "<p>The rule version.</p>",
         "Rule$ruleVersion": "<p>The rule version.</p>",
         "RuleDetail$ruleVersion": "<p>The rule version.</p>",

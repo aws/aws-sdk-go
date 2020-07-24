@@ -4502,6 +4502,10 @@ type DatabaseConfiguration struct {
 	// DatabaseEngineType is a required field
 	DatabaseEngineType *string `type:"string" required:"true" enum:"DatabaseEngineType"`
 
+	// Provides information about how Amazon Kendra uses quote marks around SQL
+	// identifiers when querying a database data source.
+	SqlConfiguration *SqlConfiguration `type:"structure"`
+
 	// Provides information for connecting to an Amazon VPC.
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
 }
@@ -4576,6 +4580,12 @@ func (s *DatabaseConfiguration) SetConnectionConfiguration(v *ConnectionConfigur
 // SetDatabaseEngineType sets the DatabaseEngineType field's value.
 func (s *DatabaseConfiguration) SetDatabaseEngineType(v string) *DatabaseConfiguration {
 	s.DatabaseEngineType = &v
+	return s
+}
+
+// SetSqlConfiguration sets the SqlConfiguration field's value.
+func (s *DatabaseConfiguration) SetSqlConfiguration(v *SqlConfiguration) *DatabaseConfiguration {
+	s.SqlConfiguration = v
 	return s
 }
 
@@ -5512,7 +5522,7 @@ func (s *DocumentAttribute) SetValue(v *DocumentAttributeValue) *DocumentAttribu
 type DocumentAttributeValue struct {
 	_ struct{} `type:"structure"`
 
-	// A date value expressed as seconds from the Unix epoch.
+	// A date expressed as an ISO 8601 string.
 	DateValue *time.Time `type:"timestamp"`
 
 	// A long integer value.
@@ -6901,6 +6911,15 @@ type QueryInput struct {
 	// attributes are included in the response. By default all document attributes
 	// are included in the response.
 	RequestedDocumentAttributes []*string `min:"1" type:"list"`
+
+	// Provides information that determines how the results of the query are sorted.
+	// You can set the field that Amazon Kendra should sort the results on, and
+	// specify whether the results should be sorted in ascending or descending order.
+	// In the case of ties in sorting the results, the results are sorted by relevance.
+	//
+	// If you don't provide sorting configuration, the results are sorted by the
+	// relevance that Amazon Kendra determines for the result.
+	SortingConfiguration *SortingConfiguration `type:"structure"`
 }
 
 // String returns the string representation
@@ -6944,6 +6963,11 @@ func (s *QueryInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Facets", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.SortingConfiguration != nil {
+		if err := s.SortingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SortingConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -6998,6 +7022,12 @@ func (s *QueryInput) SetQueryText(v string) *QueryInput {
 // SetRequestedDocumentAttributes sets the RequestedDocumentAttributes field's value.
 func (s *QueryInput) SetRequestedDocumentAttributes(v []*string) *QueryInput {
 	s.RequestedDocumentAttributes = v
+	return s
+}
+
+// SetSortingConfiguration sets the SortingConfiguration field's value.
+func (s *QueryInput) SetSortingConfiguration(v *SortingConfiguration) *QueryInput {
+	s.SortingConfiguration = v
 	return s
 }
 
@@ -8399,6 +8429,11 @@ type Search struct {
 	// weights the field in the search. The default is true for string fields and
 	// false for number and date fields.
 	Searchable *bool `type:"boolean"`
+
+	// Determines whether the field can be used to sort the results of a query.
+	// If you specify sorting on a field that does not have Sortable set to true,
+	// Amazon Kendra returns an exception. The default is false.
+	Sortable *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -8426,6 +8461,12 @@ func (s *Search) SetFacetable(v bool) *Search {
 // SetSearchable sets the Searchable field's value.
 func (s *Search) SetSearchable(v bool) *Search {
 	s.Searchable = &v
+	return s
+}
+
+// SetSortable sets the Sortable field's value.
+func (s *Search) SetSortable(v bool) *Search {
+	s.Sortable = &v
 	return s
 }
 
@@ -8862,7 +8903,7 @@ type SharePointConfiguration struct {
 	// The Microsoft SharePoint attribute field that contains the title of the document.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
-	// A list of regulary expression patterns. Documents that match the patterns
+	// A list of regular expression patterns. Documents that match the patterns
 	// are excluded from the index. Documents that don't match the patterns are
 	// included in the index. If a document matches both an exclusion pattern and
 	// an inclusion pattern, the document is not included in the index.
@@ -9029,6 +9070,115 @@ func (s *SharePointConfiguration) SetUseChangeLog(v bool) *SharePointConfigurati
 // SetVpcConfiguration sets the VpcConfiguration field's value.
 func (s *SharePointConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *SharePointConfiguration {
 	s.VpcConfiguration = v
+	return s
+}
+
+// Specifies the document attribute to use to sort the response to a Amazon
+// Kendra query. You can specify a single attribute for sorting. The attribute
+// must have the Sortable flag set to true, otherwise Amazon Kendra returns
+// an exception.
+type SortingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the document attribute used to sort the response. You can use
+	// any field that has the Sortable flag set to true.
+	//
+	// You can also sort by any of the following built-in attributes:
+	//
+	//    * _category
+	//
+	//    * _created_at
+	//
+	//    * _last_updated_at
+	//
+	//    * _version
+	//
+	//    * _view_count
+	//
+	// DocumentAttributeKey is a required field
+	DocumentAttributeKey *string `min:"1" type:"string" required:"true"`
+
+	// The order that the results should be returned in. In case of ties, the relevance
+	// assigned to the result by Amazon Kendra is used as the tie-breaker.
+	//
+	// SortOrder is a required field
+	SortOrder *string `type:"string" required:"true" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s SortingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SortingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SortingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SortingConfiguration"}
+	if s.DocumentAttributeKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentAttributeKey"))
+	}
+	if s.DocumentAttributeKey != nil && len(*s.DocumentAttributeKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentAttributeKey", 1))
+	}
+	if s.SortOrder == nil {
+		invalidParams.Add(request.NewErrParamRequired("SortOrder"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentAttributeKey sets the DocumentAttributeKey field's value.
+func (s *SortingConfiguration) SetDocumentAttributeKey(v string) *SortingConfiguration {
+	s.DocumentAttributeKey = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *SortingConfiguration) SetSortOrder(v string) *SortingConfiguration {
+	s.SortOrder = &v
+	return s
+}
+
+// Provides information that configures Amazon Kendra to use a SQL database.
+type SqlConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether Amazon Kendra encloses SQL identifiers in double quotes
+	// (") when making a database query.
+	//
+	// By default, Amazon Kendra passes SQL identifiers the way that they are entered
+	// into the data source configuration. It does not change the case of identifiers
+	// or enclose them in quotes.
+	//
+	// PostgreSQL internally converts uppercase characters to lower case characters
+	// in identifiers unless they are quoted. Choosing this option encloses identifiers
+	// in quotes so that PostgreSQL does not convert the character's case.
+	//
+	// For MySQL databases, you must enable the ansi_quotes option when you choose
+	// this option.
+	QueryIdentifiersEnclosingOption *string `type:"string" enum:"QueryIdentifiersEnclosingOption"`
+}
+
+// String returns the string representation
+func (s SqlConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SqlConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetQueryIdentifiersEnclosingOption sets the QueryIdentifiersEnclosingOption field's value.
+func (s *SqlConfiguration) SetQueryIdentifiersEnclosingOption(v string) *SqlConfiguration {
+	s.QueryIdentifiersEnclosingOption = &v
 	return s
 }
 
@@ -10166,6 +10316,14 @@ const (
 )
 
 const (
+	// QueryIdentifiersEnclosingOptionDoubleQuotes is a QueryIdentifiersEnclosingOption enum value
+	QueryIdentifiersEnclosingOptionDoubleQuotes = "DOUBLE_QUOTES"
+
+	// QueryIdentifiersEnclosingOptionNone is a QueryIdentifiersEnclosingOption enum value
+	QueryIdentifiersEnclosingOptionNone = "NONE"
+)
+
+const (
 	// QueryResultTypeDocument is a QueryResultType enum value
 	QueryResultTypeDocument = "DOCUMENT"
 
@@ -10275,4 +10433,12 @@ const (
 const (
 	// SharePointVersionSharepointOnline is a SharePointVersion enum value
 	SharePointVersionSharepointOnline = "SHAREPOINT_ONLINE"
+)
+
+const (
+	// SortOrderDesc is a SortOrder enum value
+	SortOrderDesc = "DESC"
+
+	// SortOrderAsc is a SortOrder enum value
+	SortOrderAsc = "ASC"
 )
