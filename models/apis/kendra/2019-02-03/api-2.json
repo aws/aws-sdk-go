@@ -751,7 +751,7 @@
     },
     "DataSourceInclusionsExclusionsStringsMember":{
       "type":"string",
-      "max":50,
+      "max":150,
       "min":1
     },
     "DataSourceName":{
@@ -893,7 +893,8 @@
         "ConnectionConfiguration":{"shape":"ConnectionConfiguration"},
         "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"},
         "ColumnConfiguration":{"shape":"ColumnConfiguration"},
-        "AclConfiguration":{"shape":"AclConfiguration"}
+        "AclConfiguration":{"shape":"AclConfiguration"},
+        "SqlConfiguration":{"shape":"SqlConfiguration"}
       }
     },
     "DatabaseEngineType":{
@@ -1551,6 +1552,13 @@
       "max":36,
       "min":1
     },
+    "QueryIdentifiersEnclosingOption":{
+      "type":"string",
+      "enum":[
+        "DOUBLE_QUOTES",
+        "NONE"
+      ]
+    },
     "QueryRequest":{
       "type":"structure",
       "required":[
@@ -1565,7 +1573,8 @@
         "RequestedDocumentAttributes":{"shape":"DocumentAttributeKeyList"},
         "QueryResultTypeFilter":{"shape":"QueryResultType"},
         "PageNumber":{"shape":"Integer"},
-        "PageSize":{"shape":"Integer"}
+        "PageSize":{"shape":"Integer"},
+        "SortingConfiguration":{"shape":"SortingConfiguration"}
       }
     },
     "QueryResult":{
@@ -1871,7 +1880,8 @@
       "members":{
         "Facetable":{"shape":"Boolean"},
         "Searchable":{"shape":"Boolean"},
-        "Displayable":{"shape":"Boolean"}
+        "Displayable":{"shape":"Boolean"},
+        "Sortable":{"shape":"Boolean"}
       }
     },
     "SecretArn":{
@@ -1980,6 +1990,30 @@
     "SharePointVersion":{
       "type":"string",
       "enum":["SHAREPOINT_ONLINE"]
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "DESC",
+        "ASC"
+      ]
+    },
+    "SortingConfiguration":{
+      "type":"structure",
+      "required":[
+        "DocumentAttributeKey",
+        "SortOrder"
+      ],
+      "members":{
+        "DocumentAttributeKey":{"shape":"DocumentAttributeKey"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "SqlConfiguration":{
+      "type":"structure",
+      "members":{
+        "QueryIdentifiersEnclosingOption":{"shape":"QueryIdentifiersEnclosingOption"}
+      }
     },
     "StartDataSourceSyncJobRequest":{
       "type":"structure",

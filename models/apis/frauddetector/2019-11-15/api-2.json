@@ -379,22 +379,6 @@
         {"shape":"AccessDeniedException"}
       ]
     },
-    "GetPrediction":{
-      "name":"GetPrediction",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"GetPredictionRequest"},
-      "output":{"shape":"GetPredictionResult"},
-      "errors":[
-        {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"}
-      ]
-    },
     "GetRules":{
       "name":"GetRules",
       "http":{
@@ -1084,11 +1068,6 @@
         "arn":{"shape":"fraudDetectorArn"}
       }
     },
-    "EventAttributeMap":{
-      "type":"map",
-      "key":{"shape":"attributeKey"},
-      "value":{"shape":"attributeValue"}
-    },
     "EventType":{
       "type":"structure",
       "members":{
@@ -1125,7 +1104,7 @@
         "modelEndpoint":{"shape":"string"},
         "eventTypeName":{"shape":"identifier"},
         "modelSource":{"shape":"ModelSource"},
-        "role":{"shape":"Role"},
+        "invokeModelEndpointRoleArn":{"shape":"string"},
         "inputConfiguration":{"shape":"ModelInputConfiguration"},
         "outputConfiguration":{"shape":"ModelOutputConfiguration"},
         "modelEndpointStatus":{"shape":"ModelEndpointStatus"},
@@ -1237,7 +1216,7 @@
       ],
       "members":{
         "detectorId":{"shape":"string"},
-        "detectorVersionId":{"shape":"string"},
+        "detectorVersionId":{"shape":"wholeNumberVersionString"},
         "eventId":{"shape":"string"},
         "eventTypeName":{"shape":"string"},
         "entities":{"shape":"listOfEntities"},
@@ -1359,28 +1338,6 @@
       "members":{
         "outcomes":{"shape":"OutcomeList"},
         "nextToken":{"shape":"string"}
-      }
-    },
-    "GetPredictionRequest":{
-      "type":"structure",
-      "required":[
-        "detectorId",
-        "eventId"
-      ],
-      "members":{
-        "detectorId":{"shape":"string"},
-        "detectorVersionId":{"shape":"string"},
-        "eventId":{"shape":"string"},
-        "eventAttributes":{"shape":"EventAttributeMap"},
-        "externalModelEndpointDataBlobs":{"shape":"ExternalModelEndpointDataBlobMap"}
-      }
-    },
-    "GetPredictionResult":{
-      "type":"structure",
-      "members":{
-        "outcomes":{"shape":"ListOfStrings"},
-        "modelScores":{"shape":"ListOfModelScores"},
-        "ruleResults":{"shape":"ListOfRuleResults"}
       }
     },
     "GetRulesRequest":{
@@ -1616,16 +1573,8 @@
     "ModelVersionStatus":{
       "type":"string",
       "enum":[
-        "TRAINING_IN_PROGRESS",
-        "TRAINING_COMPLETE",
-        "ACTIVATE_REQUESTED",
-        "ACTIVATE_IN_PROGRESS",
         "ACTIVE",
-        "INACTIVATE_IN_PROGRESS",
-        "INACTIVE",
-        "DELETE_REQUESTED",
-        "DELETE_IN_PROGRESS",
-        "ERROR"
+        "INACTIVE"
       ]
     },
     "NameList":{
@@ -1717,7 +1666,7 @@
       "required":[
         "modelEndpoint",
         "modelSource",
-        "role",
+        "invokeModelEndpointRoleArn",
         "inputConfiguration",
         "outputConfiguration",
         "modelEndpointStatus"
@@ -1726,7 +1675,7 @@
         "modelEndpoint":{"shape":"sageMakerEndpointIdentifier"},
         "eventTypeName":{"shape":"identifier"},
         "modelSource":{"shape":"ModelSource"},
-        "role":{"shape":"Role"},
+        "invokeModelEndpointRoleArn":{"shape":"string"},
         "inputConfiguration":{"shape":"ModelInputConfiguration"},
         "outputConfiguration":{"shape":"ModelOutputConfiguration"},
         "modelEndpointStatus":{"shape":"ModelEndpointStatus"},
@@ -1785,17 +1734,6 @@
         "message":{"shape":"string"}
       },
       "exception":true
-    },
-    "Role":{
-      "type":"structure",
-      "required":[
-        "arn",
-        "name"
-      ],
-      "members":{
-        "arn":{"shape":"string"},
-        "name":{"shape":"string"}
-      }
     },
     "Rule":{
       "type":"structure",
@@ -2163,17 +2101,6 @@
       "max":100,
       "min":50
     },
-    "attributeKey":{
-      "type":"string",
-      "max":64,
-      "min":1
-    },
-    "attributeValue":{
-      "type":"string",
-      "max":256,
-      "min":1,
-      "sensitive":true
-    },
     "blob":{"type":"blob"},
     "contentType":{
       "type":"string",
@@ -2216,6 +2143,8 @@
     "float":{"type":"float"},
     "floatVersionString":{
       "type":"string",
+      "max":7,
+      "min":3,
       "pattern":"^[1-9][0-9]{0,3}\\.[0-9]{1,2}$"
     },
     "fraudDetectorArn":{
@@ -2334,6 +2263,8 @@
     },
     "wholeNumberVersionString":{
       "type":"string",
+      "max":5,
+      "min":1,
       "pattern":"^([1-9][0-9]*)$"
     }
   }

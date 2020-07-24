@@ -1,3 +1,26 @@
+Release v1.33.12 (2020-07-24)
+===
+
+### Service Client Updates
+* `service/frauddetector`: Updates service API and documentation
+* `service/fsx`: Updates service documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports sorting query results based on document attributes. Amazon Kendra also introduced an option to enclose table and column names with double quotes for database data sources.
+* `service/macie2`: Updates service API and documentation
+* `service/mediaconnect`: Updates service API and documentation
+* `service/mediapackage`: Updates service API and documentation
+  * The release adds daterange as a new ad marker option. This option enables MediaPackage to insert EXT-X-DATERANGE tags in HLS and CMAF manifests. The EXT-X-DATERANGE tag is used to signal ad and program transition events.
+* `service/monitoring`: Updates service API and documentation
+  * AWS CloudWatch ListMetrics now supports an optional parameter (RecentlyActive) to filter results by only metrics that have received new datapoints in the past 3 hours. This enables more targeted metric data retrieval through the Get APIs
+* `service/mq`: Updates service API, documentation, and paginators
+  * Amazon MQ now supports LDAP (Lightweight Directory Access Protocol), providing authentication and authorization of Amazon MQ users via a customer designated LDAP server.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * Sagemaker Ground Truth:Added support for OIDC (OpenID Connect) to authenticate workers via their own identity provider instead of through Amazon Cognito. This release adds new APIs (CreateWorkforce, DeleteWorkforce, and ListWorkforces) to SageMaker Ground Truth service.  Sagemaker Neo: Added support for detailed target device description by using TargetPlatform fields - OS, architecture, and accelerator. Added support for additional compilation parameters by using JSON field CompilerOptions.  Sagemaker Search: SageMaker Search supports transform job details in trial components.
+
+### SDK Bugs
+* `service/s3/s3crypto`: Fix client's temporary file buffer error on retry ([#3344](https://github.com/aws/aws-sdk-go/pull/3344))
+  * Fixes the Crypto client's temporary file buffer cleanup returning an error when the request is retried.
+
 Release v1.33.11 (2020-07-23)
 ===
 

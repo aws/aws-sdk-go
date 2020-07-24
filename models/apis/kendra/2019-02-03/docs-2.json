@@ -150,6 +150,7 @@
         "Search$Facetable": "<p>Indicates that the field can be used to create search facets, a count of results for each value in the field. The default is <code>false</code> .</p>",
         "Search$Searchable": "<p>Determines whether the field is used in the search. If the <code>Searchable</code> field is <code>true</code>, you can use relevance tuning to manually tune how Amazon Kendra weights the field in the search. The default is <code>true</code> for string fields and <code>false</code> for number and date fields.</p>",
         "Search$Displayable": "<p>Determines whether the field is returned in the query response. The default is <code>true</code>.</p>",
+        "Search$Sortable": "<p>Determines whether the field can be used to sort the results of a query. If you specify sorting on a field that does not have <code>Sortable</code> set to <code>true</code>, Amazon Kendra returns an exception. The default is <code>false</code>.</p>",
         "ServiceNowKnowledgeArticleConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should index attachments to knowledge articles.</p>",
         "ServiceNowServiceCatalogConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should crawl attachments to the service catalog items. </p>",
         "SharePointConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to include attachments to documents stored in your Microsoft SharePoint site in the index; otherwise, <code>FALSE</code>.</p>",
@@ -313,7 +314,7 @@
         "ServiceNowServiceCatalogConfiguration$IncludeAttachmentFilePatterns": "<p>Determines the types of file attachments that are included in the index. </p>",
         "ServiceNowServiceCatalogConfiguration$ExcludeAttachmentFilePatterns": "<p>Determines the types of file attachments that are excluded from the index.</p>",
         "SharePointConfiguration$InclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
-        "SharePointConfiguration$ExclusionPatterns": "<p>A list of regulary expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>"
+        "SharePointConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>"
       }
     },
     "DataSourceInclusionsExclusionsStringsMember": {
@@ -536,7 +537,8 @@
         "DocumentAttribute$Key": "<p>The identifier for the attribute.</p>",
         "DocumentAttributeKeyList$member": null,
         "Facet$DocumentAttributeKey": "<p>The unique key for the document attribute.</p>",
-        "FacetResult$DocumentAttributeKey": "<p>The key for the facet values. This is the same as the <code>DocumentAttributeKey</code> provided in the query.</p>"
+        "FacetResult$DocumentAttributeKey": "<p>The key for the facet values. This is the same as the <code>DocumentAttributeKey</code> provided in the query.</p>",
+        "SortingConfiguration$DocumentAttributeKey": "<p>The name of the document attribute used to sort the response. You can use any field that has the <code>Sortable</code> flag set to true.</p> <p>You can also sort by any of the following built-in attributes:</p> <ul> <li> <p>_category</p> </li> <li> <p>_created_at</p> </li> <li> <p>_last_updated_at</p> </li> <li> <p>_version</p> </li> <li> <p>_view_count</p> </li> </ul>"
       }
     },
     "DocumentAttributeKeyList": {
@@ -1050,6 +1052,12 @@
         "SubmitFeedbackRequest$QueryId": "<p>The identifier of the specific query for which you are submitting feedback. The query ID is returned in the response to the operation.</p>"
       }
     },
+    "QueryIdentifiersEnclosingOption": {
+      "base": null,
+      "refs": {
+        "SqlConfiguration$QueryIdentifiersEnclosingOption": "<p>Determines whether Amazon Kendra encloses SQL identifiers in double quotes (\") when making a database query.</p> <p>By default, Amazon Kendra passes SQL identifiers the way that they are entered into the data source configuration. It does not change the case of identifiers or enclose them in quotes.</p> <p>PostgreSQL internally converts uppercase characters to lower case characters in identifiers unless they are quoted. Choosing this option encloses identifiers in quotes so that PostgreSQL does not convert the character's case.</p> <p>For MySQL databases, you must enable the <code>ansi_quotes</code> option when you choose this option.</p>"
+      }
+    },
     "QueryRequest": {
       "base": null,
       "refs": {
@@ -1367,6 +1375,24 @@
         "SharePointConfiguration$SharePointVersion": "<p>The version of Microsoft SharePoint that you are using as a data source.</p>"
       }
     },
+    "SortOrder": {
+      "base": null,
+      "refs": {
+        "SortingConfiguration$SortOrder": "<p>The order that the results should be returned in. In case of ties, the relevance assigned to the result by Amazon Kendra is used as the tie-breaker.</p>"
+      }
+    },
+    "SortingConfiguration": {
+      "base": "<p>Specifies the document attribute to use to sort the response to a Amazon Kendra query. You can specify a single attribute for sorting. The attribute must have the <code>Sortable</code> flag set to <code>true</code>, otherwise Amazon Kendra returns an exception.</p>",
+      "refs": {
+        "QueryRequest$SortingConfiguration": "<p>Provides information that determines how the results of the query are sorted. You can set the field that Amazon Kendra should sort the results on, and specify whether the results should be sorted in ascending or descending order. In the case of ties in sorting the results, the results are sorted by relevance.</p> <p>If you don't provide sorting configuration, the results are sorted by the relevance that Amazon Kendra determines for the result.</p>"
+      }
+    },
+    "SqlConfiguration": {
+      "base": "<p>Provides information that configures Amazon Kendra to use a SQL database.</p>",
+      "refs": {
+        "DatabaseConfiguration$SqlConfiguration": "<p>Provides information about how Amazon Kendra uses quote marks around SQL identifiers when querying a database data source.</p>"
+      }
+    },
     "StartDataSourceSyncJobRequest": {
       "base": null,
       "refs": {
@@ -1512,7 +1538,7 @@
         "DescribeFaqResponse$UpdatedAt": "<p>The date and time that the FAQ was last updated.</p>",
         "DescribeIndexResponse$CreatedAt": "<p>The Unix datetime that the index was created.</p>",
         "DescribeIndexResponse$UpdatedAt": "<p>The Unix datetime that the index was last updated.</p>",
-        "DocumentAttributeValue$DateValue": "<p>A date value expressed as seconds from the Unix epoch.</p>",
+        "DocumentAttributeValue$DateValue": "<p>A date expressed as an ISO 8601 string.</p>",
         "FaqSummary$CreatedAt": "<p>The UNIX datetime that the FAQ was added to the index.</p>",
         "FaqSummary$UpdatedAt": "<p>The UNIX datetime that the FAQ was last updated.</p>",
         "IndexConfigurationSummary$CreatedAt": "<p>The Unix timestamp when the index was created.</p>",

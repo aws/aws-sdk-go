@@ -180,10 +180,6 @@ type FraudDetectorAPI interface {
 	GetOutcomesPages(*frauddetector.GetOutcomesInput, func(*frauddetector.GetOutcomesOutput, bool) bool) error
 	GetOutcomesPagesWithContext(aws.Context, *frauddetector.GetOutcomesInput, func(*frauddetector.GetOutcomesOutput, bool) bool, ...request.Option) error
 
-	GetPrediction(*frauddetector.GetPredictionInput) (*frauddetector.GetPredictionOutput, error)
-	GetPredictionWithContext(aws.Context, *frauddetector.GetPredictionInput, ...request.Option) (*frauddetector.GetPredictionOutput, error)
-	GetPredictionRequest(*frauddetector.GetPredictionInput) (*request.Request, *frauddetector.GetPredictionOutput)
-
 	GetRules(*frauddetector.GetRulesInput) (*frauddetector.GetRulesOutput, error)
 	GetRulesWithContext(aws.Context, *frauddetector.GetRulesInput, ...request.Option) (*frauddetector.GetRulesOutput, error)
 	GetRulesRequest(*frauddetector.GetRulesInput) (*request.Request, *frauddetector.GetRulesOutput)

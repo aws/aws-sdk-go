@@ -5177,6 +5177,10 @@
     "UsageStatisticsFilter": {
       "type": "structure",
       "members": {
+        "comparator": {
+          "shape": "UsageStatisticsFilterComparator",
+          "locationName": "comparator"
+        },
         "key": {
           "shape": "UsageStatisticsFilterKey",
           "locationName": "key"
@@ -5187,10 +5191,25 @@
         }
       }
     },
+    "UsageStatisticsFilterComparator": {
+      "type": "string",
+      "enum": [
+        "GT",
+        "GTE",
+        "LT",
+        "LTE",
+        "EQ",
+        "NE",
+        "CONTAINS"
+      ]
+    },
     "UsageStatisticsFilterKey": {
       "type": "string",
       "enum": [
-        "accountId"
+        "accountId",
+        "serviceLimit",
+        "freeTrialStartDate",
+        "total"
       ]
     },
     "UsageStatisticsSortBy": {
@@ -5210,7 +5229,9 @@
       "type": "string",
       "enum": [
         "accountId",
-        "total"
+        "total",
+        "serviceLimitValue",
+        "freeTrialStartDate"
       ]
     },
     "UsageTotal": {

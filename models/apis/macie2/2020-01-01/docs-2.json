@@ -785,9 +785,9 @@
       }
     },
     "ObjectCountByEncryptionType" : {
-      "base" : "<p>The total number of objects that are in the bucket, grouped by server-side encryption type. This includes a grouping that reports the total number of objects that aren't encrypted.</p>",
+      "base" : "<p>Provides information about the number of objects that are in an S3 bucket and use certain types of server-side encryption, use client-side encryption, or aren't encrypted.</p>",
       "refs" : {
-        "BucketMetadata$ObjectCountByEncryptionType" : "<p>The total number of objects that are in the bucket, grouped by server-side encryption type. This includes a grouping that reports the total number of objects that aren't encrypted.</p>"
+        "BucketMetadata$ObjectCountByEncryptionType" : "<p>The total number of objects that are in the bucket, grouped by server-side encryption type. This includes a grouping that reports the total number of objects that aren't encrypted or use client-side encryption.</p>"
       }
     },
     "OrderBy" : {
@@ -1092,15 +1092,21 @@
       }
     },
     "UsageStatisticsFilter" : {
-      "base" : "<p>Specifies criteria for filtering the results of a query for account quotas and usage data.</p>",
+      "base" : "<p>Specifies a condition for filtering the results of a query for account quotas and usage data.</p>",
       "refs" : {
         "__listOfUsageStatisticsFilter$member" : null
       }
     },
-    "UsageStatisticsFilterKey" : {
-      "base" : "<p>The field to use to filter the results of a query for account quotas and usage data:</p>",
+    "UsageStatisticsFilterComparator" : {
+      "base" : "<p>The operator to use in a condition that filters the results of a query for account quotas and usage data. Valid values are:</p>",
       "refs" : {
-        "UsageStatisticsFilter$Key" : "<p>The field to use to filter the results. The only supported value is accountId.</p>"
+        "UsageStatisticsFilter$Comparator" : "<p>The operator to use in the condition. If the value for the key property is accountId, this value must be CONTAINS. If the value for the key property is any other supported field, this value can be EQ, GT, GTE, LT, LTE, or NE.</p>"
+      }
+    },
+    "UsageStatisticsFilterKey" : {
+      "base" : "<p>The field to use in a condition that filters the results of a query for account quotas and usage data. Valid values are:</p>",
+      "refs" : {
+        "UsageStatisticsFilter$Key" : "<p>The field to use in the condition.</p>"
       }
     },
     "UsageStatisticsSortBy" : {
@@ -1336,7 +1342,7 @@
     "__listOfUsageStatisticsFilter" : {
       "base" : null,
       "refs" : {
-        "GetUsageStatisticsRequest$FilterBy" : "<p>The criteria to use to filter the query results.</p>"
+        "GetUsageStatisticsRequest$FilterBy" : "<p>An array of objects, one for each condition to use to filter the query results. If the array contains more than one object, Amazon Macie uses an AND operator to join the conditions specified by the objects.</p>"
       }
     },
     "__listOfUsageTotal" : {
@@ -1371,7 +1377,7 @@
         "SimpleScopeTerm$Values" : "<p>An array that lists one or more values to use in the condition.</p>",
         "TestCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters.</p>",
         "TestCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters.</p>",
-        "UsageStatisticsFilter$Values" : "<p>An array that lists the AWS account ID for each account to include in the results.</p>"
+        "UsageStatisticsFilter$Values" : "<p>An array that lists values to use in the condition, based on the value for the field specified by the key property. If the value for the key property is accountId, this array can specify multiple values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported field are:</p> <ul><li><p>accountId - The unique identifier for an AWS account.</p></li></ul> <ul><li><p>freeTrialStartDate - The date and time, in UTC and extended ISO 8601 format, when the free trial started for an account.</p></li></ul> <ul><li><p>serviceLimit - A Boolean (true or false) value that indicates whether an account has reached its monthly quota.</p></li></ul> <ul><li><p>total - A string that represents the current, estimated month-to-date cost for an account.</p></li></ul>"
       }
     },
     "__long" : {
@@ -1410,10 +1416,10 @@
         "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of all the buckets.</p>",
         "GetInvitationsCountResponse$InvitationsCount" : "<p>The total number of invitations that were received by the account, not including the currently accepted invitation.</p>",
         "GroupCount$Count" : "<p>The total number of findings in the group of query results.</p>",
-        "ObjectCountByEncryptionType$CustomerManaged" : "<p>Reserved for future use.</p>",
-        "ObjectCountByEncryptionType$KmsManaged" : "<p>Reserved for future use.</p>",
-        "ObjectCountByEncryptionType$S3Managed" : "<p>Reserved for future use.</p>",
-        "ObjectCountByEncryptionType$Unencrypted" : "<p>Reserved for future use.</p>",
+        "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted using a customer-managed key. The objects use customer-provided server-side (SSE-C) encryption.</p>",
+        "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted using an AWS Key Management Service (AWS KMS) customer master key (CMK). The objects use AWS KMS AWS-managed (AWS-KMS) encryption or AWS KMS customer-managed (SSE-KMS) encryption.</p>",
+        "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted using an Amazon S3-managed key. The objects use Amazon S3-managed (SSE-S3) encryption.</p>",
+        "ObjectCountByEncryptionType$Unencrypted" : "<p>The total number of objects that aren't encrypted or use client-side encryption.</p>",
         "S3Object$Size" : "<p>The total storage size, in bytes, of the object.</p>",
         "SensitiveDataItem$TotalCount" : "<p>The total number of occurrences of the sensitive data that was detected.</p>",
         "ServiceLimit$Value" : "<p>The value for the metric specified by the UsageByAccount.type field in the response.</p>",
@@ -1627,7 +1633,7 @@
         "S3Bucket$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the bucket was created.</p>",
         "S3Object$LastModified" : "<p>The date and time, in UTC and extended ISO 8601 format, when the object was last modified.</p>",
         "SessionContextAttributes$CreationDate" : "<p>The date and time, in UTC and ISO 8601 format, when the credentials were issued.</p>",
-        "UsageRecord$FreeTrialStartDate" : "<p>The date and time, in UTC and extended ISO 8601 format, when the free trial period started for the account. This value is null if the account didn't participate in the free trial.</p>"
+        "UsageRecord$FreeTrialStartDate" : "<p>The date and time, in UTC and extended ISO 8601 format, when the free trial started for the account.</p>"
       }
     }
   }
