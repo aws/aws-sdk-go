@@ -8,6 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
+const customTypeWarningMessage = "WARNING: The S3 Encryption Client is configured to write encrypted objects using types not provided by AWS. Security and compatibility with these types can not be guaranteed."
+
 // EncryptionClientV2 is an S3 crypto client. By default the SDK will use Authentication mode which
 // will use KMS for key wrapping and AES GCM for content encryption.
 // AES GCM will load all data into memory. However, the rest of the content algorithms
@@ -33,19 +35,19 @@ type EncryptionClientOptions struct {
 }
 
 // NewEncryptionClientV2 instantiates a new S3 crypto client. An error will be returned to the caller if the provided
-// contentCipherBuilder has been deprecated, or if it uses other deprecated components.
+// contentCipherBuilder has been deprecated or was constructed with a deprecated component.
 //
 // Example:
 //	cmkID := "arn:aws:kms:region:000000000000:key/00000000-0000-0000-0000-000000000000"
 //  sess := session.Must(session.NewSession())
-//	handler := s3crypto.NewKMSContextKeyGenerator(kms.New(sess), cmkID)
-//	svc := s3crypto.NewEncryptionClientV2(sess, s3crypto.AESGCMContentCipherBuilder(handler))
+//	var matdesc s3crypto.MaterialDescription
+//	handler := s3crypto.NewKMSContextKeyGenerator(kms.New(sess), cmkID, matdesc)
+//	svc := s3crypto.NewEncryptionClientV2(sess, s3crypto.AESGCMContentCipherBuilderV2(handler))
 func NewEncryptionClientV2(prov client.ConfigProvider, contentCipherBuilder ContentCipherBuilder, options ...func(clientOptions *EncryptionClientOptions),
 ) (
 	client *EncryptionClientV2, err error,
 ) {
 	s3client := s3.New(prov)
-
 	s3client.Handlers.Build.PushBack(func(r *request.Request) {
 		request.AddToUserAgent(r, "S3CryptoV2")
 	})
@@ -56,14 +58,22 @@ func NewEncryptionClientV2(prov client.ConfigProvider, contentCipherBuilder Cont
 		SaveStrategy:         HeaderV2SaveStrategy{},
 		MinFileSize:          DefaultMinFileSize,
 	}
-
 	for _, option := range options {
 		option(clientOptions)
 	}
 
-	if feature, ok := contentCipherBuilder.(deprecatedFeatures); ok {
-		if err := feature.isUsingDeprecatedFeatures(); err != nil {
+	// Check that the configured client uses a compatible ContentCipherBuilder.
+	// User provided types will not implement this method
+	if fixture, ok := contentCipherBuilder.(compatibleEncryptionFixture); ok {
+		if err := fixture.isEncryptionVersionCompatible(v2ClientVersion); err != nil {
 			return nil, err
+		}
+	}
+
+	// Check if the passed in type is an fixture, if not log a warning message to the user
+	if fixture, ok := contentCipherBuilder.(awsFixture); !ok || !fixture.isAWSFixture() {
+		if s3client.Config.Logger != nil {
+			s3client.Config.Logger.Log(customTypeWarningMessage)
 		}
 	}
 
@@ -78,9 +88,6 @@ func NewEncryptionClientV2(prov client.ConfigProvider, contentCipherBuilder Cont
 // that data to S3.
 //
 // Example:
-//  sess := session.Must(session.NewSession())
-//	handler := s3crypto.NewKMSContextKeyGenerator(kms.New(sess), "cmkID")
-//	svc := s3crypto.NewEncryptionClientV2(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 //	req, out := svc.PutObjectRequest(&s3.PutObjectInput {
 //	  Key: aws.String("testKey"),
 //	  Bucket: aws.String("testBucket"),

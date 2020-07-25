@@ -183,7 +183,7 @@ func TestReportingMetrics(t *testing.T) {
 				{
 					"Type":                "ApiCallAttempt",
 					"SdkException":        request.ErrCodeRequestError,
-					"SdkExceptionMessage": request.ErrCodeRequestError+": sdk error",
+					"SdkExceptionMessage": request.ErrCodeRequestError + ": sdk error",
 					"HttpStatusCode":      float64(500),
 				},
 				{
