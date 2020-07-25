@@ -24830,6 +24830,29 @@ const (
 	ActionTypeResizeCluster = "resize-cluster"
 )
 
+// ActionType is an enum
+type ActionType struct{}
+
+// Contains returns whether the ActionType enum includes the element
+func (enum ActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionType enum
+func (enum ActionType) Values() []string {
+	return []string{
+		ActionTypeRestoreCluster,
+		ActionTypeRecommendNodeConfig,
+		ActionTypeResizeCluster,
+	}
+}
+
 const (
 	// ModeStandard is a Mode enum value
 	ModeStandard = "standard"
@@ -24837,6 +24860,28 @@ const (
 	// ModeHighPerformance is a Mode enum value
 	ModeHighPerformance = "high-performance"
 )
+
+// Mode is an enum
+type Mode struct{}
+
+// Contains returns whether the Mode enum includes the element
+func (enum Mode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mode enum
+func (enum Mode) Values() []string {
+	return []string{
+		ModeStandard,
+		ModeHighPerformance,
+	}
+}
 
 const (
 	// NodeConfigurationOptionsFilterNameNodeType is a NodeConfigurationOptionsFilterName enum value
@@ -24851,6 +24896,30 @@ const (
 	// NodeConfigurationOptionsFilterNameMode is a NodeConfigurationOptionsFilterName enum value
 	NodeConfigurationOptionsFilterNameMode = "Mode"
 )
+
+// NodeConfigurationOptionsFilterName is an enum
+type NodeConfigurationOptionsFilterName struct{}
+
+// Contains returns whether the NodeConfigurationOptionsFilterName enum includes the element
+func (enum NodeConfigurationOptionsFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NodeConfigurationOptionsFilterName enum
+func (enum NodeConfigurationOptionsFilterName) Values() []string {
+	return []string{
+		NodeConfigurationOptionsFilterNameNodeType,
+		NodeConfigurationOptionsFilterNameNumberOfNodes,
+		NodeConfigurationOptionsFilterNameEstimatedDiskUtilizationPercent,
+		NodeConfigurationOptionsFilterNameMode,
+	}
+}
 
 const (
 	// OperatorTypeEq is a OperatorType enum value
@@ -24875,6 +24944,33 @@ const (
 	OperatorTypeBetween = "between"
 )
 
+// OperatorType is an enum
+type OperatorType struct{}
+
+// Contains returns whether the OperatorType enum includes the element
+func (enum OperatorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperatorType enum
+func (enum OperatorType) Values() []string {
+	return []string{
+		OperatorTypeEq,
+		OperatorTypeLt,
+		OperatorTypeGt,
+		OperatorTypeLe,
+		OperatorTypeGe,
+		OperatorTypeIn,
+		OperatorTypeBetween,
+	}
+}
+
 const (
 	// ParameterApplyTypeStatic is a ParameterApplyType enum value
 	ParameterApplyTypeStatic = "static"
@@ -24883,6 +24979,28 @@ const (
 	ParameterApplyTypeDynamic = "dynamic"
 )
 
+// ParameterApplyType is an enum
+type ParameterApplyType struct{}
+
+// Contains returns whether the ParameterApplyType enum includes the element
+func (enum ParameterApplyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ParameterApplyType enum
+func (enum ParameterApplyType) Values() []string {
+	return []string{
+		ParameterApplyTypeStatic,
+		ParameterApplyTypeDynamic,
+	}
+}
+
 const (
 	// ReservedNodeOfferingTypeRegular is a ReservedNodeOfferingType enum value
 	ReservedNodeOfferingTypeRegular = "Regular"
@@ -24890,6 +25008,28 @@ const (
 	// ReservedNodeOfferingTypeUpgradable is a ReservedNodeOfferingType enum value
 	ReservedNodeOfferingTypeUpgradable = "Upgradable"
 )
+
+// ReservedNodeOfferingType is an enum
+type ReservedNodeOfferingType struct{}
+
+// Contains returns whether the ReservedNodeOfferingType enum includes the element
+func (enum ReservedNodeOfferingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservedNodeOfferingType enum
+func (enum ReservedNodeOfferingType) Values() []string {
+	return []string{
+		ReservedNodeOfferingTypeRegular,
+		ReservedNodeOfferingTypeUpgradable,
+	}
+}
 
 const (
 	// ScheduleStateModifying is a ScheduleState enum value
@@ -24902,6 +25042,29 @@ const (
 	ScheduleStateFailed = "FAILED"
 )
 
+// ScheduleState is an enum
+type ScheduleState struct{}
+
+// Contains returns whether the ScheduleState enum includes the element
+func (enum ScheduleState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScheduleState enum
+func (enum ScheduleState) Values() []string {
+	return []string{
+		ScheduleStateModifying,
+		ScheduleStateActive,
+		ScheduleStateFailed,
+	}
+}
+
 const (
 	// ScheduledActionFilterNameClusterIdentifier is a ScheduledActionFilterName enum value
 	ScheduledActionFilterNameClusterIdentifier = "cluster-identifier"
@@ -24910,6 +25073,28 @@ const (
 	ScheduledActionFilterNameIamRole = "iam-role"
 )
 
+// ScheduledActionFilterName is an enum
+type ScheduledActionFilterName struct{}
+
+// Contains returns whether the ScheduledActionFilterName enum includes the element
+func (enum ScheduledActionFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScheduledActionFilterName enum
+func (enum ScheduledActionFilterName) Values() []string {
+	return []string{
+		ScheduledActionFilterNameClusterIdentifier,
+		ScheduledActionFilterNameIamRole,
+	}
+}
+
 const (
 	// ScheduledActionStateActive is a ScheduledActionState enum value
 	ScheduledActionStateActive = "ACTIVE"
@@ -24917,6 +25102,28 @@ const (
 	// ScheduledActionStateDisabled is a ScheduledActionState enum value
 	ScheduledActionStateDisabled = "DISABLED"
 )
+
+// ScheduledActionState is an enum
+type ScheduledActionState struct{}
+
+// Contains returns whether the ScheduledActionState enum includes the element
+func (enum ScheduledActionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScheduledActionState enum
+func (enum ScheduledActionState) Values() []string {
+	return []string{
+		ScheduledActionStateActive,
+		ScheduledActionStateDisabled,
+	}
+}
 
 const (
 	// ScheduledActionTypeValuesResizeCluster is a ScheduledActionTypeValues enum value
@@ -24929,6 +25136,29 @@ const (
 	ScheduledActionTypeValuesResumeCluster = "ResumeCluster"
 )
 
+// ScheduledActionTypeValues is an enum
+type ScheduledActionTypeValues struct{}
+
+// Contains returns whether the ScheduledActionTypeValues enum includes the element
+func (enum ScheduledActionTypeValues) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScheduledActionTypeValues enum
+func (enum ScheduledActionTypeValues) Values() []string {
+	return []string{
+		ScheduledActionTypeValuesResizeCluster,
+		ScheduledActionTypeValuesPauseCluster,
+		ScheduledActionTypeValuesResumeCluster,
+	}
+}
+
 const (
 	// SnapshotAttributeToSortBySourceType is a SnapshotAttributeToSortBy enum value
 	SnapshotAttributeToSortBySourceType = "SOURCE_TYPE"
@@ -24940,6 +25170,29 @@ const (
 	SnapshotAttributeToSortByCreateTime = "CREATE_TIME"
 )
 
+// SnapshotAttributeToSortBy is an enum
+type SnapshotAttributeToSortBy struct{}
+
+// Contains returns whether the SnapshotAttributeToSortBy enum includes the element
+func (enum SnapshotAttributeToSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SnapshotAttributeToSortBy enum
+func (enum SnapshotAttributeToSortBy) Values() []string {
+	return []string{
+		SnapshotAttributeToSortBySourceType,
+		SnapshotAttributeToSortByTotalSize,
+		SnapshotAttributeToSortByCreateTime,
+	}
+}
+
 const (
 	// SortByOrderAsc is a SortByOrder enum value
 	SortByOrderAsc = "ASC"
@@ -24947,6 +25200,28 @@ const (
 	// SortByOrderDesc is a SortByOrder enum value
 	SortByOrderDesc = "DESC"
 )
+
+// SortByOrder is an enum
+type SortByOrder struct{}
+
+// Contains returns whether the SortByOrder enum includes the element
+func (enum SortByOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortByOrder enum
+func (enum SortByOrder) Values() []string {
+	return []string{
+		SortByOrderAsc,
+		SortByOrderDesc,
+	}
+}
 
 const (
 	// SourceTypeCluster is a SourceType enum value
@@ -24965,6 +25240,31 @@ const (
 	SourceTypeScheduledAction = "scheduled-action"
 )
 
+// SourceType is an enum
+type SourceType struct{}
+
+// Contains returns whether the SourceType enum includes the element
+func (enum SourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceType enum
+func (enum SourceType) Values() []string {
+	return []string{
+		SourceTypeCluster,
+		SourceTypeClusterParameterGroup,
+		SourceTypeClusterSecurityGroup,
+		SourceTypeClusterSnapshot,
+		SourceTypeScheduledAction,
+	}
+}
+
 const (
 	// TableRestoreStatusTypePending is a TableRestoreStatusType enum value
 	TableRestoreStatusTypePending = "PENDING"
@@ -24982,6 +25282,31 @@ const (
 	TableRestoreStatusTypeCanceled = "CANCELED"
 )
 
+// TableRestoreStatusType is an enum
+type TableRestoreStatusType struct{}
+
+// Contains returns whether the TableRestoreStatusType enum includes the element
+func (enum TableRestoreStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TableRestoreStatusType enum
+func (enum TableRestoreStatusType) Values() []string {
+	return []string{
+		TableRestoreStatusTypePending,
+		TableRestoreStatusTypeInProgress,
+		TableRestoreStatusTypeSucceeded,
+		TableRestoreStatusTypeFailed,
+		TableRestoreStatusTypeCanceled,
+	}
+}
+
 const (
 	// UsageLimitBreachActionLog is a UsageLimitBreachAction enum value
 	UsageLimitBreachActionLog = "log"
@@ -24993,6 +25318,29 @@ const (
 	UsageLimitBreachActionDisable = "disable"
 )
 
+// UsageLimitBreachAction is an enum
+type UsageLimitBreachAction struct{}
+
+// Contains returns whether the UsageLimitBreachAction enum includes the element
+func (enum UsageLimitBreachAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageLimitBreachAction enum
+func (enum UsageLimitBreachAction) Values() []string {
+	return []string{
+		UsageLimitBreachActionLog,
+		UsageLimitBreachActionEmitMetric,
+		UsageLimitBreachActionDisable,
+	}
+}
+
 const (
 	// UsageLimitFeatureTypeSpectrum is a UsageLimitFeatureType enum value
 	UsageLimitFeatureTypeSpectrum = "spectrum"
@@ -25001,6 +25349,28 @@ const (
 	UsageLimitFeatureTypeConcurrencyScaling = "concurrency-scaling"
 )
 
+// UsageLimitFeatureType is an enum
+type UsageLimitFeatureType struct{}
+
+// Contains returns whether the UsageLimitFeatureType enum includes the element
+func (enum UsageLimitFeatureType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageLimitFeatureType enum
+func (enum UsageLimitFeatureType) Values() []string {
+	return []string{
+		UsageLimitFeatureTypeSpectrum,
+		UsageLimitFeatureTypeConcurrencyScaling,
+	}
+}
+
 const (
 	// UsageLimitLimitTypeTime is a UsageLimitLimitType enum value
 	UsageLimitLimitTypeTime = "time"
@@ -25008,6 +25378,28 @@ const (
 	// UsageLimitLimitTypeDataScanned is a UsageLimitLimitType enum value
 	UsageLimitLimitTypeDataScanned = "data-scanned"
 )
+
+// UsageLimitLimitType is an enum
+type UsageLimitLimitType struct{}
+
+// Contains returns whether the UsageLimitLimitType enum includes the element
+func (enum UsageLimitLimitType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageLimitLimitType enum
+func (enum UsageLimitLimitType) Values() []string {
+	return []string{
+		UsageLimitLimitTypeTime,
+		UsageLimitLimitTypeDataScanned,
+	}
+}
 
 const (
 	// UsageLimitPeriodDaily is a UsageLimitPeriod enum value
@@ -25019,3 +25411,26 @@ const (
 	// UsageLimitPeriodMonthly is a UsageLimitPeriod enum value
 	UsageLimitPeriodMonthly = "monthly"
 )
+
+// UsageLimitPeriod is an enum
+type UsageLimitPeriod struct{}
+
+// Contains returns whether the UsageLimitPeriod enum includes the element
+func (enum UsageLimitPeriod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageLimitPeriod enum
+func (enum UsageLimitPeriod) Values() []string {
+	return []string{
+		UsageLimitPeriodDaily,
+		UsageLimitPeriodWeekly,
+		UsageLimitPeriodMonthly,
+	}
+}

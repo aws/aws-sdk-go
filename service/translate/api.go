@@ -3255,6 +3255,27 @@ const (
 	EncryptionKeyTypeKms = "KMS"
 )
 
+// EncryptionKeyType is an enum
+type EncryptionKeyType struct{}
+
+// Contains returns whether the EncryptionKeyType enum includes the element
+func (enum EncryptionKeyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionKeyType enum
+func (enum EncryptionKeyType) Values() []string {
+	return []string{
+		EncryptionKeyTypeKms,
+	}
+}
+
 const (
 	// JobStatusSubmitted is a JobStatus enum value
 	JobStatusSubmitted = "SUBMITTED"
@@ -3278,10 +3299,58 @@ const (
 	JobStatusStopped = "STOPPED"
 )
 
+// JobStatus is an enum
+type JobStatus struct{}
+
+// Contains returns whether the JobStatus enum includes the element
+func (enum JobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatus enum
+func (enum JobStatus) Values() []string {
+	return []string{
+		JobStatusSubmitted,
+		JobStatusInProgress,
+		JobStatusCompleted,
+		JobStatusCompletedWithError,
+		JobStatusFailed,
+		JobStatusStopRequested,
+		JobStatusStopped,
+	}
+}
+
 const (
 	// MergeStrategyOverwrite is a MergeStrategy enum value
 	MergeStrategyOverwrite = "OVERWRITE"
 )
+
+// MergeStrategy is an enum
+type MergeStrategy struct{}
+
+// Contains returns whether the MergeStrategy enum includes the element
+func (enum MergeStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MergeStrategy enum
+func (enum MergeStrategy) Values() []string {
+	return []string{
+		MergeStrategyOverwrite,
+	}
+}
 
 const (
 	// TerminologyDataFormatCsv is a TerminologyDataFormat enum value
@@ -3290,3 +3359,25 @@ const (
 	// TerminologyDataFormatTmx is a TerminologyDataFormat enum value
 	TerminologyDataFormatTmx = "TMX"
 )
+
+// TerminologyDataFormat is an enum
+type TerminologyDataFormat struct{}
+
+// Contains returns whether the TerminologyDataFormat enum includes the element
+func (enum TerminologyDataFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TerminologyDataFormat enum
+func (enum TerminologyDataFormat) Values() []string {
+	return []string{
+		TerminologyDataFormatCsv,
+		TerminologyDataFormatTmx,
+	}
+}

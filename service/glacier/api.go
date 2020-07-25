@@ -8986,6 +8986,29 @@ const (
 	ActionCodeSelect = "Select"
 )
 
+// ActionCode is an enum
+type ActionCode struct{}
+
+// Contains returns whether the ActionCode enum includes the element
+func (enum ActionCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionCode enum
+func (enum ActionCode) Values() []string {
+	return []string{
+		ActionCodeArchiveRetrieval,
+		ActionCodeInventoryRetrieval,
+		ActionCodeSelect,
+	}
+}
+
 const (
 	// CannedACLPrivate is a CannedACL enum value
 	CannedACLPrivate = "private"
@@ -9009,6 +9032,33 @@ const (
 	CannedACLBucketOwnerFullControl = "bucket-owner-full-control"
 )
 
+// CannedACL is an enum
+type CannedACL struct{}
+
+// Contains returns whether the CannedACL enum includes the element
+func (enum CannedACL) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CannedACL enum
+func (enum CannedACL) Values() []string {
+	return []string{
+		CannedACLPrivate,
+		CannedACLPublicRead,
+		CannedACLPublicReadWrite,
+		CannedACLAwsExecRead,
+		CannedACLAuthenticatedRead,
+		CannedACLBucketOwnerRead,
+		CannedACLBucketOwnerFullControl,
+	}
+}
+
 const (
 	// EncryptionTypeAwsKms is a EncryptionType enum value
 	EncryptionTypeAwsKms = "aws:kms"
@@ -9017,10 +9067,53 @@ const (
 	EncryptionTypeAes256 = "AES256"
 )
 
+// EncryptionType is an enum
+type EncryptionType struct{}
+
+// Contains returns whether the EncryptionType enum includes the element
+func (enum EncryptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionType enum
+func (enum EncryptionType) Values() []string {
+	return []string{
+		EncryptionTypeAwsKms,
+		EncryptionTypeAes256,
+	}
+}
+
 const (
 	// ExpressionTypeSql is a ExpressionType enum value
 	ExpressionTypeSql = "SQL"
 )
+
+// ExpressionType is an enum
+type ExpressionType struct{}
+
+// Contains returns whether the ExpressionType enum includes the element
+func (enum ExpressionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExpressionType enum
+func (enum ExpressionType) Values() []string {
+	return []string{
+		ExpressionTypeSql,
+	}
+}
 
 const (
 	// FileHeaderInfoUse is a FileHeaderInfo enum value
@@ -9032,6 +9125,29 @@ const (
 	// FileHeaderInfoNone is a FileHeaderInfo enum value
 	FileHeaderInfoNone = "NONE"
 )
+
+// FileHeaderInfo is an enum
+type FileHeaderInfo struct{}
+
+// Contains returns whether the FileHeaderInfo enum includes the element
+func (enum FileHeaderInfo) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileHeaderInfo enum
+func (enum FileHeaderInfo) Values() []string {
+	return []string{
+		FileHeaderInfoUse,
+		FileHeaderInfoIgnore,
+		FileHeaderInfoNone,
+	}
+}
 
 const (
 	// PermissionFullControl is a Permission enum value
@@ -9050,6 +9166,31 @@ const (
 	PermissionReadAcp = "READ_ACP"
 )
 
+// Permission is an enum
+type Permission struct{}
+
+// Contains returns whether the Permission enum includes the element
+func (enum Permission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Permission enum
+func (enum Permission) Values() []string {
+	return []string{
+		PermissionFullControl,
+		PermissionWrite,
+		PermissionWriteAcp,
+		PermissionRead,
+		PermissionReadAcp,
+	}
+}
+
 const (
 	// QuoteFieldsAlways is a QuoteFields enum value
 	QuoteFieldsAlways = "ALWAYS"
@@ -9057,6 +9198,28 @@ const (
 	// QuoteFieldsAsneeded is a QuoteFields enum value
 	QuoteFieldsAsneeded = "ASNEEDED"
 )
+
+// QuoteFields is an enum
+type QuoteFields struct{}
+
+// Contains returns whether the QuoteFields enum includes the element
+func (enum QuoteFields) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QuoteFields enum
+func (enum QuoteFields) Values() []string {
+	return []string{
+		QuoteFieldsAlways,
+		QuoteFieldsAsneeded,
+	}
+}
 
 const (
 	// StatusCodeInProgress is a StatusCode enum value
@@ -9069,6 +9232,29 @@ const (
 	StatusCodeFailed = "Failed"
 )
 
+// StatusCode is an enum
+type StatusCode struct{}
+
+// Contains returns whether the StatusCode enum includes the element
+func (enum StatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StatusCode enum
+func (enum StatusCode) Values() []string {
+	return []string{
+		StatusCodeInProgress,
+		StatusCodeSucceeded,
+		StatusCodeFailed,
+	}
+}
+
 const (
 	// StorageClassStandard is a StorageClass enum value
 	StorageClassStandard = "STANDARD"
@@ -9080,6 +9266,29 @@ const (
 	StorageClassStandardIa = "STANDARD_IA"
 )
 
+// StorageClass is an enum
+type StorageClass struct{}
+
+// Contains returns whether the StorageClass enum includes the element
+func (enum StorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StorageClass enum
+func (enum StorageClass) Values() []string {
+	return []string{
+		StorageClassStandard,
+		StorageClassReducedRedundancy,
+		StorageClassStandardIa,
+	}
+}
+
 const (
 	// TypeAmazonCustomerByEmail is a Type enum value
 	TypeAmazonCustomerByEmail = "AmazonCustomerByEmail"
@@ -9090,3 +9299,26 @@ const (
 	// TypeGroup is a Type enum value
 	TypeGroup = "Group"
 )
+
+// Type is an enum
+type Type struct{}
+
+// Contains returns whether the Type enum includes the element
+func (enum Type) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Type enum
+func (enum Type) Values() []string {
+	return []string{
+		TypeAmazonCustomerByEmail,
+		TypeCanonicalUser,
+		TypeGroup,
+	}
+}

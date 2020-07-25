@@ -14745,6 +14745,32 @@ const (
 	InstanceRefreshStatusCancelled = "Cancelled"
 )
 
+// InstanceRefreshStatus is an enum
+type InstanceRefreshStatus struct{}
+
+// Contains returns whether the InstanceRefreshStatus enum includes the element
+func (enum InstanceRefreshStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceRefreshStatus enum
+func (enum InstanceRefreshStatus) Values() []string {
+	return []string{
+		InstanceRefreshStatusPending,
+		InstanceRefreshStatusInProgress,
+		InstanceRefreshStatusSuccessful,
+		InstanceRefreshStatusFailed,
+		InstanceRefreshStatusCancelling,
+		InstanceRefreshStatusCancelled,
+	}
+}
+
 const (
 	// LifecycleStatePending is a LifecycleState enum value
 	LifecycleStatePending = "Pending"
@@ -14786,6 +14812,39 @@ const (
 	LifecycleStateStandby = "Standby"
 )
 
+// LifecycleState is an enum
+type LifecycleState struct{}
+
+// Contains returns whether the LifecycleState enum includes the element
+func (enum LifecycleState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LifecycleState enum
+func (enum LifecycleState) Values() []string {
+	return []string{
+		LifecycleStatePending,
+		LifecycleStatePendingWait,
+		LifecycleStatePendingProceed,
+		LifecycleStateQuarantined,
+		LifecycleStateInService,
+		LifecycleStateTerminating,
+		LifecycleStateTerminatingWait,
+		LifecycleStateTerminatingProceed,
+		LifecycleStateTerminated,
+		LifecycleStateDetaching,
+		LifecycleStateDetached,
+		LifecycleStateEnteringStandby,
+		LifecycleStateStandby,
+	}
+}
+
 const (
 	// MetricStatisticAverage is a MetricStatistic enum value
 	MetricStatisticAverage = "Average"
@@ -14803,6 +14862,31 @@ const (
 	MetricStatisticSum = "Sum"
 )
 
+// MetricStatistic is an enum
+type MetricStatistic struct{}
+
+// Contains returns whether the MetricStatistic enum includes the element
+func (enum MetricStatistic) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricStatistic enum
+func (enum MetricStatistic) Values() []string {
+	return []string{
+		MetricStatisticAverage,
+		MetricStatisticMinimum,
+		MetricStatisticMaximum,
+		MetricStatisticSampleCount,
+		MetricStatisticSum,
+	}
+}
+
 const (
 	// MetricTypeAsgaverageCpuutilization is a MetricType enum value
 	MetricTypeAsgaverageCpuutilization = "ASGAverageCPUUtilization"
@@ -14817,10 +14901,55 @@ const (
 	MetricTypeAlbrequestCountPerTarget = "ALBRequestCountPerTarget"
 )
 
+// MetricType is an enum
+type MetricType struct{}
+
+// Contains returns whether the MetricType enum includes the element
+func (enum MetricType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricType enum
+func (enum MetricType) Values() []string {
+	return []string{
+		MetricTypeAsgaverageCpuutilization,
+		MetricTypeAsgaverageNetworkIn,
+		MetricTypeAsgaverageNetworkOut,
+		MetricTypeAlbrequestCountPerTarget,
+	}
+}
+
 const (
 	// RefreshStrategyRolling is a RefreshStrategy enum value
 	RefreshStrategyRolling = "Rolling"
 )
+
+// RefreshStrategy is an enum
+type RefreshStrategy struct{}
+
+// Contains returns whether the RefreshStrategy enum includes the element
+func (enum RefreshStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RefreshStrategy enum
+func (enum RefreshStrategy) Values() []string {
+	return []string{
+		RefreshStrategyRolling,
+	}
+}
 
 const (
 	// ScalingActivityStatusCodePendingSpotBidPlacement is a ScalingActivityStatusCode enum value
@@ -14859,3 +14988,35 @@ const (
 	// ScalingActivityStatusCodeCancelled is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeCancelled = "Cancelled"
 )
+
+// ScalingActivityStatusCode is an enum
+type ScalingActivityStatusCode struct{}
+
+// Contains returns whether the ScalingActivityStatusCode enum includes the element
+func (enum ScalingActivityStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingActivityStatusCode enum
+func (enum ScalingActivityStatusCode) Values() []string {
+	return []string{
+		ScalingActivityStatusCodePendingSpotBidPlacement,
+		ScalingActivityStatusCodeWaitingForSpotInstanceRequestId,
+		ScalingActivityStatusCodeWaitingForSpotInstanceId,
+		ScalingActivityStatusCodeWaitingForInstanceId,
+		ScalingActivityStatusCodePreInService,
+		ScalingActivityStatusCodeInProgress,
+		ScalingActivityStatusCodeWaitingForElbconnectionDraining,
+		ScalingActivityStatusCodeMidLifecycleAction,
+		ScalingActivityStatusCodeWaitingForInstanceWarmup,
+		ScalingActivityStatusCodeSuccessful,
+		ScalingActivityStatusCodeFailed,
+		ScalingActivityStatusCodeCancelled,
+	}
+}

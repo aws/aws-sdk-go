@@ -10141,6 +10141,27 @@ const (
 	AdditionalResultAttributeValueTypeTextWithHighlightsValue = "TEXT_WITH_HIGHLIGHTS_VALUE"
 )
 
+// AdditionalResultAttributeValueType is an enum
+type AdditionalResultAttributeValueType struct{}
+
+// Contains returns whether the AdditionalResultAttributeValueType enum includes the element
+func (enum AdditionalResultAttributeValueType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdditionalResultAttributeValueType enum
+func (enum AdditionalResultAttributeValueType) Values() []string {
+	return []string{
+		AdditionalResultAttributeValueTypeTextWithHighlightsValue,
+	}
+}
+
 const (
 	// ContentTypePdf is a ContentType enum value
 	ContentTypePdf = "PDF"
@@ -10158,6 +10179,31 @@ const (
 	ContentTypePpt = "PPT"
 )
 
+// ContentType is an enum
+type ContentType struct{}
+
+// Contains returns whether the ContentType enum includes the element
+func (enum ContentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentType enum
+func (enum ContentType) Values() []string {
+	return []string{
+		ContentTypePdf,
+		ContentTypeHtml,
+		ContentTypeMsWord,
+		ContentTypePlainText,
+		ContentTypePpt,
+	}
+}
+
 const (
 	// DataSourceStatusCreating is a DataSourceStatus enum value
 	DataSourceStatusCreating = "CREATING"
@@ -10174,6 +10220,31 @@ const (
 	// DataSourceStatusActive is a DataSourceStatus enum value
 	DataSourceStatusActive = "ACTIVE"
 )
+
+// DataSourceStatus is an enum
+type DataSourceStatus struct{}
+
+// Contains returns whether the DataSourceStatus enum includes the element
+func (enum DataSourceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataSourceStatus enum
+func (enum DataSourceStatus) Values() []string {
+	return []string{
+		DataSourceStatusCreating,
+		DataSourceStatusDeleting,
+		DataSourceStatusFailed,
+		DataSourceStatusUpdating,
+		DataSourceStatusActive,
+	}
+}
 
 const (
 	// DataSourceSyncJobStatusFailed is a DataSourceSyncJobStatus enum value
@@ -10198,6 +10269,33 @@ const (
 	DataSourceSyncJobStatusSyncingIndexing = "SYNCING_INDEXING"
 )
 
+// DataSourceSyncJobStatus is an enum
+type DataSourceSyncJobStatus struct{}
+
+// Contains returns whether the DataSourceSyncJobStatus enum includes the element
+func (enum DataSourceSyncJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataSourceSyncJobStatus enum
+func (enum DataSourceSyncJobStatus) Values() []string {
+	return []string{
+		DataSourceSyncJobStatusFailed,
+		DataSourceSyncJobStatusSucceeded,
+		DataSourceSyncJobStatusSyncing,
+		DataSourceSyncJobStatusIncomplete,
+		DataSourceSyncJobStatusStopping,
+		DataSourceSyncJobStatusAborted,
+		DataSourceSyncJobStatusSyncingIndexing,
+	}
+}
+
 const (
 	// DataSourceTypeS3 is a DataSourceType enum value
 	DataSourceTypeS3 = "S3"
@@ -10218,6 +10316,32 @@ const (
 	DataSourceTypeServicenow = "SERVICENOW"
 )
 
+// DataSourceType is an enum
+type DataSourceType struct{}
+
+// Contains returns whether the DataSourceType enum includes the element
+func (enum DataSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataSourceType enum
+func (enum DataSourceType) Values() []string {
+	return []string{
+		DataSourceTypeS3,
+		DataSourceTypeSharepoint,
+		DataSourceTypeDatabase,
+		DataSourceTypeSalesforce,
+		DataSourceTypeOnedrive,
+		DataSourceTypeServicenow,
+	}
+}
+
 const (
 	// DatabaseEngineTypeRdsAuroraMysql is a DatabaseEngineType enum value
 	DatabaseEngineTypeRdsAuroraMysql = "RDS_AURORA_MYSQL"
@@ -10231,6 +10355,30 @@ const (
 	// DatabaseEngineTypeRdsPostgresql is a DatabaseEngineType enum value
 	DatabaseEngineTypeRdsPostgresql = "RDS_POSTGRESQL"
 )
+
+// DatabaseEngineType is an enum
+type DatabaseEngineType struct{}
+
+// Contains returns whether the DatabaseEngineType enum includes the element
+func (enum DatabaseEngineType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DatabaseEngineType enum
+func (enum DatabaseEngineType) Values() []string {
+	return []string{
+		DatabaseEngineTypeRdsAuroraMysql,
+		DatabaseEngineTypeRdsAuroraPostgresql,
+		DatabaseEngineTypeRdsMysql,
+		DatabaseEngineTypeRdsPostgresql,
+	}
+}
 
 const (
 	// DocumentAttributeValueTypeStringValue is a DocumentAttributeValueType enum value
@@ -10246,6 +10394,30 @@ const (
 	DocumentAttributeValueTypeDateValue = "DATE_VALUE"
 )
 
+// DocumentAttributeValueType is an enum
+type DocumentAttributeValueType struct{}
+
+// Contains returns whether the DocumentAttributeValueType enum includes the element
+func (enum DocumentAttributeValueType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DocumentAttributeValueType enum
+func (enum DocumentAttributeValueType) Values() []string {
+	return []string{
+		DocumentAttributeValueTypeStringValue,
+		DocumentAttributeValueTypeStringListValue,
+		DocumentAttributeValueTypeLongValue,
+		DocumentAttributeValueTypeDateValue,
+	}
+}
+
 const (
 	// ErrorCodeInternalError is a ErrorCode enum value
 	ErrorCodeInternalError = "InternalError"
@@ -10253,6 +10425,28 @@ const (
 	// ErrorCodeInvalidRequest is a ErrorCode enum value
 	ErrorCodeInvalidRequest = "InvalidRequest"
 )
+
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeInternalError,
+		ErrorCodeInvalidRequest,
+	}
+}
 
 const (
 	// FaqStatusCreating is a FaqStatus enum value
@@ -10271,6 +10465,31 @@ const (
 	FaqStatusFailed = "FAILED"
 )
 
+// FaqStatus is an enum
+type FaqStatus struct{}
+
+// Contains returns whether the FaqStatus enum includes the element
+func (enum FaqStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FaqStatus enum
+func (enum FaqStatus) Values() []string {
+	return []string{
+		FaqStatusCreating,
+		FaqStatusUpdating,
+		FaqStatusActive,
+		FaqStatusDeleting,
+		FaqStatusFailed,
+	}
+}
+
 const (
 	// IndexEditionDeveloperEdition is a IndexEdition enum value
 	IndexEditionDeveloperEdition = "DEVELOPER_EDITION"
@@ -10278,6 +10497,28 @@ const (
 	// IndexEditionEnterpriseEdition is a IndexEdition enum value
 	IndexEditionEnterpriseEdition = "ENTERPRISE_EDITION"
 )
+
+// IndexEdition is an enum
+type IndexEdition struct{}
+
+// Contains returns whether the IndexEdition enum includes the element
+func (enum IndexEdition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IndexEdition enum
+func (enum IndexEdition) Values() []string {
+	return []string{
+		IndexEditionDeveloperEdition,
+		IndexEditionEnterpriseEdition,
+	}
+}
 
 const (
 	// IndexStatusCreating is a IndexStatus enum value
@@ -10299,6 +10540,32 @@ const (
 	IndexStatusSystemUpdating = "SYSTEM_UPDATING"
 )
 
+// IndexStatus is an enum
+type IndexStatus struct{}
+
+// Contains returns whether the IndexStatus enum includes the element
+func (enum IndexStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IndexStatus enum
+func (enum IndexStatus) Values() []string {
+	return []string{
+		IndexStatusCreating,
+		IndexStatusActive,
+		IndexStatusDeleting,
+		IndexStatusFailed,
+		IndexStatusUpdating,
+		IndexStatusSystemUpdating,
+	}
+}
+
 const (
 	// OrderAscending is a Order enum value
 	OrderAscending = "ASCENDING"
@@ -10306,6 +10573,28 @@ const (
 	// OrderDescending is a Order enum value
 	OrderDescending = "DESCENDING"
 )
+
+// Order is an enum
+type Order struct{}
+
+// Contains returns whether the Order enum includes the element
+func (enum Order) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Order enum
+func (enum Order) Values() []string {
+	return []string{
+		OrderAscending,
+		OrderDescending,
+	}
+}
 
 const (
 	// PrincipalTypeUser is a PrincipalType enum value
@@ -10315,6 +10604,28 @@ const (
 	PrincipalTypeGroup = "GROUP"
 )
 
+// PrincipalType is an enum
+type PrincipalType struct{}
+
+// Contains returns whether the PrincipalType enum includes the element
+func (enum PrincipalType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PrincipalType enum
+func (enum PrincipalType) Values() []string {
+	return []string{
+		PrincipalTypeUser,
+		PrincipalTypeGroup,
+	}
+}
+
 const (
 	// QueryIdentifiersEnclosingOptionDoubleQuotes is a QueryIdentifiersEnclosingOption enum value
 	QueryIdentifiersEnclosingOptionDoubleQuotes = "DOUBLE_QUOTES"
@@ -10322,6 +10633,28 @@ const (
 	// QueryIdentifiersEnclosingOptionNone is a QueryIdentifiersEnclosingOption enum value
 	QueryIdentifiersEnclosingOptionNone = "NONE"
 )
+
+// QueryIdentifiersEnclosingOption is an enum
+type QueryIdentifiersEnclosingOption struct{}
+
+// Contains returns whether the QueryIdentifiersEnclosingOption enum includes the element
+func (enum QueryIdentifiersEnclosingOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueryIdentifiersEnclosingOption enum
+func (enum QueryIdentifiersEnclosingOption) Values() []string {
+	return []string{
+		QueryIdentifiersEnclosingOptionDoubleQuotes,
+		QueryIdentifiersEnclosingOptionNone,
+	}
+}
 
 const (
 	// QueryResultTypeDocument is a QueryResultType enum value
@@ -10334,6 +10667,29 @@ const (
 	QueryResultTypeAnswer = "ANSWER"
 )
 
+// QueryResultType is an enum
+type QueryResultType struct{}
+
+// Contains returns whether the QueryResultType enum includes the element
+func (enum QueryResultType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueryResultType enum
+func (enum QueryResultType) Values() []string {
+	return []string{
+		QueryResultTypeDocument,
+		QueryResultTypeQuestionAnswer,
+		QueryResultTypeAnswer,
+	}
+}
+
 const (
 	// ReadAccessTypeAllow is a ReadAccessType enum value
 	ReadAccessTypeAllow = "ALLOW"
@@ -10341,6 +10697,28 @@ const (
 	// ReadAccessTypeDeny is a ReadAccessType enum value
 	ReadAccessTypeDeny = "DENY"
 )
+
+// ReadAccessType is an enum
+type ReadAccessType struct{}
+
+// Contains returns whether the ReadAccessType enum includes the element
+func (enum ReadAccessType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReadAccessType enum
+func (enum ReadAccessType) Values() []string {
+	return []string{
+		ReadAccessTypeAllow,
+		ReadAccessTypeDeny,
+	}
+}
 
 const (
 	// RelevanceTypeRelevant is a RelevanceType enum value
@@ -10350,6 +10728,28 @@ const (
 	RelevanceTypeNotRelevant = "NOT_RELEVANT"
 )
 
+// RelevanceType is an enum
+type RelevanceType struct{}
+
+// Contains returns whether the RelevanceType enum includes the element
+func (enum RelevanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RelevanceType enum
+func (enum RelevanceType) Values() []string {
+	return []string{
+		RelevanceTypeRelevant,
+		RelevanceTypeNotRelevant,
+	}
+}
+
 const (
 	// SalesforceChatterFeedIncludeFilterTypeActiveUser is a SalesforceChatterFeedIncludeFilterType enum value
 	SalesforceChatterFeedIncludeFilterTypeActiveUser = "ACTIVE_USER"
@@ -10357,6 +10757,28 @@ const (
 	// SalesforceChatterFeedIncludeFilterTypeStandardUser is a SalesforceChatterFeedIncludeFilterType enum value
 	SalesforceChatterFeedIncludeFilterTypeStandardUser = "STANDARD_USER"
 )
+
+// SalesforceChatterFeedIncludeFilterType is an enum
+type SalesforceChatterFeedIncludeFilterType struct{}
+
+// Contains returns whether the SalesforceChatterFeedIncludeFilterType enum includes the element
+func (enum SalesforceChatterFeedIncludeFilterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SalesforceChatterFeedIncludeFilterType enum
+func (enum SalesforceChatterFeedIncludeFilterType) Values() []string {
+	return []string{
+		SalesforceChatterFeedIncludeFilterTypeActiveUser,
+		SalesforceChatterFeedIncludeFilterTypeStandardUser,
+	}
+}
 
 const (
 	// SalesforceKnowledgeArticleStateDraft is a SalesforceKnowledgeArticleState enum value
@@ -10368,6 +10790,29 @@ const (
 	// SalesforceKnowledgeArticleStateArchived is a SalesforceKnowledgeArticleState enum value
 	SalesforceKnowledgeArticleStateArchived = "ARCHIVED"
 )
+
+// SalesforceKnowledgeArticleState is an enum
+type SalesforceKnowledgeArticleState struct{}
+
+// Contains returns whether the SalesforceKnowledgeArticleState enum includes the element
+func (enum SalesforceKnowledgeArticleState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SalesforceKnowledgeArticleState enum
+func (enum SalesforceKnowledgeArticleState) Values() []string {
+	return []string{
+		SalesforceKnowledgeArticleStateDraft,
+		SalesforceKnowledgeArticleStatePublished,
+		SalesforceKnowledgeArticleStateArchived,
+	}
+}
 
 const (
 	// SalesforceStandardObjectNameAccount is a SalesforceStandardObjectName enum value
@@ -10422,6 +10867,43 @@ const (
 	SalesforceStandardObjectNameUser = "USER"
 )
 
+// SalesforceStandardObjectName is an enum
+type SalesforceStandardObjectName struct{}
+
+// Contains returns whether the SalesforceStandardObjectName enum includes the element
+func (enum SalesforceStandardObjectName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SalesforceStandardObjectName enum
+func (enum SalesforceStandardObjectName) Values() []string {
+	return []string{
+		SalesforceStandardObjectNameAccount,
+		SalesforceStandardObjectNameCampaign,
+		SalesforceStandardObjectNameCase,
+		SalesforceStandardObjectNameContact,
+		SalesforceStandardObjectNameContract,
+		SalesforceStandardObjectNameDocument,
+		SalesforceStandardObjectNameGroup,
+		SalesforceStandardObjectNameIdea,
+		SalesforceStandardObjectNameLead,
+		SalesforceStandardObjectNameOpportunity,
+		SalesforceStandardObjectNamePartner,
+		SalesforceStandardObjectNamePricebook,
+		SalesforceStandardObjectNameProduct,
+		SalesforceStandardObjectNameProfile,
+		SalesforceStandardObjectNameSolution,
+		SalesforceStandardObjectNameTask,
+		SalesforceStandardObjectNameUser,
+	}
+}
+
 const (
 	// ServiceNowBuildVersionTypeLondon is a ServiceNowBuildVersionType enum value
 	ServiceNowBuildVersionTypeLondon = "LONDON"
@@ -10430,10 +10912,53 @@ const (
 	ServiceNowBuildVersionTypeOthers = "OTHERS"
 )
 
+// ServiceNowBuildVersionType is an enum
+type ServiceNowBuildVersionType struct{}
+
+// Contains returns whether the ServiceNowBuildVersionType enum includes the element
+func (enum ServiceNowBuildVersionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceNowBuildVersionType enum
+func (enum ServiceNowBuildVersionType) Values() []string {
+	return []string{
+		ServiceNowBuildVersionTypeLondon,
+		ServiceNowBuildVersionTypeOthers,
+	}
+}
+
 const (
 	// SharePointVersionSharepointOnline is a SharePointVersion enum value
 	SharePointVersionSharepointOnline = "SHAREPOINT_ONLINE"
 )
+
+// SharePointVersion is an enum
+type SharePointVersion struct{}
+
+// Contains returns whether the SharePointVersion enum includes the element
+func (enum SharePointVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SharePointVersion enum
+func (enum SharePointVersion) Values() []string {
+	return []string{
+		SharePointVersionSharepointOnline,
+	}
+}
 
 const (
 	// SortOrderDesc is a SortOrder enum value
@@ -10442,3 +10967,25 @@ const (
 	// SortOrderAsc is a SortOrder enum value
 	SortOrderAsc = "ASC"
 )
+
+// SortOrder is an enum
+type SortOrder struct{}
+
+// Contains returns whether the SortOrder enum includes the element
+func (enum SortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortOrder enum
+func (enum SortOrder) Values() []string {
+	return []string{
+		SortOrderDesc,
+		SortOrderAsc,
+	}
+}

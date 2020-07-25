@@ -11739,6 +11739,29 @@ const (
 	ApplicationRestoreTypeRestoreFromCustomSnapshot = "RESTORE_FROM_CUSTOM_SNAPSHOT"
 )
 
+// ApplicationRestoreType is an enum
+type ApplicationRestoreType struct{}
+
+// Contains returns whether the ApplicationRestoreType enum includes the element
+func (enum ApplicationRestoreType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ApplicationRestoreType enum
+func (enum ApplicationRestoreType) Values() []string {
+	return []string{
+		ApplicationRestoreTypeSkipRestoreFromSnapshot,
+		ApplicationRestoreTypeRestoreFromLatestSnapshot,
+		ApplicationRestoreTypeRestoreFromCustomSnapshot,
+	}
+}
+
 const (
 	// ApplicationStatusDeleting is a ApplicationStatus enum value
 	ApplicationStatusDeleting = "DELETING"
@@ -11759,6 +11782,32 @@ const (
 	ApplicationStatusUpdating = "UPDATING"
 )
 
+// ApplicationStatus is an enum
+type ApplicationStatus struct{}
+
+// Contains returns whether the ApplicationStatus enum includes the element
+func (enum ApplicationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ApplicationStatus enum
+func (enum ApplicationStatus) Values() []string {
+	return []string{
+		ApplicationStatusDeleting,
+		ApplicationStatusStarting,
+		ApplicationStatusStopping,
+		ApplicationStatusReady,
+		ApplicationStatusRunning,
+		ApplicationStatusUpdating,
+	}
+}
+
 const (
 	// CodeContentTypePlaintext is a CodeContentType enum value
 	CodeContentTypePlaintext = "PLAINTEXT"
@@ -11767,6 +11816,28 @@ const (
 	CodeContentTypeZipfile = "ZIPFILE"
 )
 
+// CodeContentType is an enum
+type CodeContentType struct{}
+
+// Contains returns whether the CodeContentType enum includes the element
+func (enum CodeContentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CodeContentType enum
+func (enum CodeContentType) Values() []string {
+	return []string{
+		CodeContentTypePlaintext,
+		CodeContentTypeZipfile,
+	}
+}
+
 const (
 	// ConfigurationTypeDefault is a ConfigurationType enum value
 	ConfigurationTypeDefault = "DEFAULT"
@@ -11774,6 +11845,28 @@ const (
 	// ConfigurationTypeCustom is a ConfigurationType enum value
 	ConfigurationTypeCustom = "CUSTOM"
 )
+
+// ConfigurationType is an enum
+type ConfigurationType struct{}
+
+// Contains returns whether the ConfigurationType enum includes the element
+func (enum ConfigurationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigurationType enum
+func (enum ConfigurationType) Values() []string {
+	return []string{
+		ConfigurationTypeDefault,
+		ConfigurationTypeCustom,
+	}
+}
 
 const (
 	// InputStartingPositionNow is a InputStartingPosition enum value
@@ -11785,6 +11878,29 @@ const (
 	// InputStartingPositionLastStoppedPoint is a InputStartingPosition enum value
 	InputStartingPositionLastStoppedPoint = "LAST_STOPPED_POINT"
 )
+
+// InputStartingPosition is an enum
+type InputStartingPosition struct{}
+
+// Contains returns whether the InputStartingPosition enum includes the element
+func (enum InputStartingPosition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputStartingPosition enum
+func (enum InputStartingPosition) Values() []string {
+	return []string{
+		InputStartingPositionNow,
+		InputStartingPositionTrimHorizon,
+		InputStartingPositionLastStoppedPoint,
+	}
+}
 
 const (
 	// LogLevelInfo is a LogLevel enum value
@@ -11800,6 +11916,30 @@ const (
 	LogLevelDebug = "DEBUG"
 )
 
+// LogLevel is an enum
+type LogLevel struct{}
+
+// Contains returns whether the LogLevel enum includes the element
+func (enum LogLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogLevel enum
+func (enum LogLevel) Values() []string {
+	return []string{
+		LogLevelInfo,
+		LogLevelWarn,
+		LogLevelError,
+		LogLevelDebug,
+	}
+}
+
 const (
 	// MetricsLevelApplication is a MetricsLevel enum value
 	MetricsLevelApplication = "APPLICATION"
@@ -11814,6 +11954,30 @@ const (
 	MetricsLevelParallelism = "PARALLELISM"
 )
 
+// MetricsLevel is an enum
+type MetricsLevel struct{}
+
+// Contains returns whether the MetricsLevel enum includes the element
+func (enum MetricsLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricsLevel enum
+func (enum MetricsLevel) Values() []string {
+	return []string{
+		MetricsLevelApplication,
+		MetricsLevelTask,
+		MetricsLevelOperator,
+		MetricsLevelParallelism,
+	}
+}
+
 const (
 	// RecordFormatTypeJson is a RecordFormatType enum value
 	RecordFormatTypeJson = "JSON"
@@ -11821,6 +11985,28 @@ const (
 	// RecordFormatTypeCsv is a RecordFormatType enum value
 	RecordFormatTypeCsv = "CSV"
 )
+
+// RecordFormatType is an enum
+type RecordFormatType struct{}
+
+// Contains returns whether the RecordFormatType enum includes the element
+func (enum RecordFormatType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecordFormatType enum
+func (enum RecordFormatType) Values() []string {
+	return []string{
+		RecordFormatTypeJson,
+		RecordFormatTypeCsv,
+	}
+}
 
 const (
 	// RuntimeEnvironmentSql10 is a RuntimeEnvironment enum value
@@ -11832,6 +12018,29 @@ const (
 	// RuntimeEnvironmentFlink18 is a RuntimeEnvironment enum value
 	RuntimeEnvironmentFlink18 = "FLINK-1_8"
 )
+
+// RuntimeEnvironment is an enum
+type RuntimeEnvironment struct{}
+
+// Contains returns whether the RuntimeEnvironment enum includes the element
+func (enum RuntimeEnvironment) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RuntimeEnvironment enum
+func (enum RuntimeEnvironment) Values() []string {
+	return []string{
+		RuntimeEnvironmentSql10,
+		RuntimeEnvironmentFlink16,
+		RuntimeEnvironmentFlink18,
+	}
+}
 
 const (
 	// SnapshotStatusCreating is a SnapshotStatus enum value
@@ -11846,3 +12055,27 @@ const (
 	// SnapshotStatusFailed is a SnapshotStatus enum value
 	SnapshotStatusFailed = "FAILED"
 )
+
+// SnapshotStatus is an enum
+type SnapshotStatus struct{}
+
+// Contains returns whether the SnapshotStatus enum includes the element
+func (enum SnapshotStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SnapshotStatus enum
+func (enum SnapshotStatus) Values() []string {
+	return []string{
+		SnapshotStatusCreating,
+		SnapshotStatusReady,
+		SnapshotStatusDeleting,
+		SnapshotStatusFailed,
+	}
+}

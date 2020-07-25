@@ -5604,6 +5604,33 @@ const (
 	CapacityNoPreference = "NoPreference"
 )
 
+// Capacity is an enum
+type Capacity struct{}
+
+// Contains returns whether the Capacity enum includes the element
+func (enum Capacity) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Capacity enum
+func (enum Capacity) Values() []string {
+	return []string{
+		CapacityT50,
+		CapacityT80,
+		CapacityT100,
+		CapacityT42,
+		CapacityT98,
+		CapacityT8,
+		CapacityNoPreference,
+	}
+}
+
 const (
 	// ClusterStateAwaitingQuorum is a ClusterState enum value
 	ClusterStateAwaitingQuorum = "AwaitingQuorum"
@@ -5620,6 +5647,31 @@ const (
 	// ClusterStateCancelled is a ClusterState enum value
 	ClusterStateCancelled = "Cancelled"
 )
+
+// ClusterState is an enum
+type ClusterState struct{}
+
+// Contains returns whether the ClusterState enum includes the element
+func (enum ClusterState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ClusterState enum
+func (enum ClusterState) Values() []string {
+	return []string{
+		ClusterStateAwaitingQuorum,
+		ClusterStatePending,
+		ClusterStateInUse,
+		ClusterStateComplete,
+		ClusterStateCancelled,
+	}
+}
 
 const (
 	// JobStateNew is a JobState enum value
@@ -5662,6 +5714,39 @@ const (
 	JobStatePending = "Pending"
 )
 
+// JobState is an enum
+type JobState struct{}
+
+// Contains returns whether the JobState enum includes the element
+func (enum JobState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobState enum
+func (enum JobState) Values() []string {
+	return []string{
+		JobStateNew,
+		JobStatePreparingAppliance,
+		JobStatePreparingShipment,
+		JobStateInTransitToCustomer,
+		JobStateWithCustomer,
+		JobStateInTransitToAws,
+		JobStateWithAwssortingFacility,
+		JobStateWithAws,
+		JobStateInProgress,
+		JobStateComplete,
+		JobStateCancelled,
+		JobStateListing,
+		JobStatePending,
+	}
+}
+
 const (
 	// JobTypeImport is a JobType enum value
 	JobTypeImport = "IMPORT"
@@ -5672,6 +5757,29 @@ const (
 	// JobTypeLocalUse is a JobType enum value
 	JobTypeLocalUse = "LOCAL_USE"
 )
+
+// JobType is an enum
+type JobType struct{}
+
+// Contains returns whether the JobType enum includes the element
+func (enum JobType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobType enum
+func (enum JobType) Values() []string {
+	return []string{
+		JobTypeImport,
+		JobTypeExport,
+		JobTypeLocalUse,
+	}
+}
 
 const (
 	// ShippingOptionSecondDay is a ShippingOption enum value
@@ -5686,6 +5794,30 @@ const (
 	// ShippingOptionStandard is a ShippingOption enum value
 	ShippingOptionStandard = "STANDARD"
 )
+
+// ShippingOption is an enum
+type ShippingOption struct{}
+
+// Contains returns whether the ShippingOption enum includes the element
+func (enum ShippingOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ShippingOption enum
+func (enum ShippingOption) Values() []string {
+	return []string{
+		ShippingOptionSecondDay,
+		ShippingOptionNextDay,
+		ShippingOptionExpress,
+		ShippingOptionStandard,
+	}
+}
 
 const (
 	// TypeStandard is a Type enum value
@@ -5706,3 +5838,29 @@ const (
 	// TypeSnc1Hdd is a Type enum value
 	TypeSnc1Hdd = "SNC1_HDD"
 )
+
+// Type is an enum
+type Type struct{}
+
+// Contains returns whether the Type enum includes the element
+func (enum Type) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Type enum
+func (enum Type) Values() []string {
+	return []string{
+		TypeStandard,
+		TypeEdge,
+		TypeEdgeC,
+		TypeEdgeCg,
+		TypeEdgeS,
+		TypeSnc1Hdd,
+	}
+}

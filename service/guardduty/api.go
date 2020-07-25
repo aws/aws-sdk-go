@@ -12917,10 +12917,53 @@ const (
 	AdminStatusDisableInProgress = "DISABLE_IN_PROGRESS"
 )
 
+// AdminStatus is an enum
+type AdminStatus struct{}
+
+// Contains returns whether the AdminStatus enum includes the element
+func (enum AdminStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdminStatus enum
+func (enum AdminStatus) Values() []string {
+	return []string{
+		AdminStatusEnabled,
+		AdminStatusDisableInProgress,
+	}
+}
+
 const (
 	// DestinationTypeS3 is a DestinationType enum value
 	DestinationTypeS3 = "S3"
 )
+
+// DestinationType is an enum
+type DestinationType struct{}
+
+// Contains returns whether the DestinationType enum includes the element
+func (enum DestinationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DestinationType enum
+func (enum DestinationType) Values() []string {
+	return []string{
+		DestinationTypeS3,
+	}
+}
 
 const (
 	// DetectorStatusEnabled is a DetectorStatus enum value
@@ -12930,6 +12973,28 @@ const (
 	DetectorStatusDisabled = "DISABLED"
 )
 
+// DetectorStatus is an enum
+type DetectorStatus struct{}
+
+// Contains returns whether the DetectorStatus enum includes the element
+func (enum DetectorStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DetectorStatus enum
+func (enum DetectorStatus) Values() []string {
+	return []string{
+		DetectorStatusEnabled,
+		DetectorStatusDisabled,
+	}
+}
+
 const (
 	// FeedbackUseful is a Feedback enum value
 	FeedbackUseful = "USEFUL"
@@ -12938,6 +13003,28 @@ const (
 	FeedbackNotUseful = "NOT_USEFUL"
 )
 
+// Feedback is an enum
+type Feedback struct{}
+
+// Contains returns whether the Feedback enum includes the element
+func (enum Feedback) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Feedback enum
+func (enum Feedback) Values() []string {
+	return []string{
+		FeedbackUseful,
+		FeedbackNotUseful,
+	}
+}
+
 const (
 	// FilterActionNoop is a FilterAction enum value
 	FilterActionNoop = "NOOP"
@@ -12945,6 +13032,28 @@ const (
 	// FilterActionArchive is a FilterAction enum value
 	FilterActionArchive = "ARCHIVE"
 )
+
+// FilterAction is an enum
+type FilterAction struct{}
+
+// Contains returns whether the FilterAction enum includes the element
+func (enum FilterAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterAction enum
+func (enum FilterAction) Values() []string {
+	return []string{
+		FilterActionNoop,
+		FilterActionArchive,
+	}
+}
 
 const (
 	// FindingPublishingFrequencyFifteenMinutes is a FindingPublishingFrequency enum value
@@ -12957,10 +13066,54 @@ const (
 	FindingPublishingFrequencySixHours = "SIX_HOURS"
 )
 
+// FindingPublishingFrequency is an enum
+type FindingPublishingFrequency struct{}
+
+// Contains returns whether the FindingPublishingFrequency enum includes the element
+func (enum FindingPublishingFrequency) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingPublishingFrequency enum
+func (enum FindingPublishingFrequency) Values() []string {
+	return []string{
+		FindingPublishingFrequencyFifteenMinutes,
+		FindingPublishingFrequencyOneHour,
+		FindingPublishingFrequencySixHours,
+	}
+}
+
 const (
 	// FindingStatisticTypeCountBySeverity is a FindingStatisticType enum value
 	FindingStatisticTypeCountBySeverity = "COUNT_BY_SEVERITY"
 )
+
+// FindingStatisticType is an enum
+type FindingStatisticType struct{}
+
+// Contains returns whether the FindingStatisticType enum includes the element
+func (enum FindingStatisticType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingStatisticType enum
+func (enum FindingStatisticType) Values() []string {
+	return []string{
+		FindingStatisticTypeCountBySeverity,
+	}
+}
 
 const (
 	// IpSetFormatTxt is a IpSetFormat enum value
@@ -12981,6 +13134,32 @@ const (
 	// IpSetFormatFireEye is a IpSetFormat enum value
 	IpSetFormatFireEye = "FIRE_EYE"
 )
+
+// IpSetFormat is an enum
+type IpSetFormat struct{}
+
+// Contains returns whether the IpSetFormat enum includes the element
+func (enum IpSetFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IpSetFormat enum
+func (enum IpSetFormat) Values() []string {
+	return []string{
+		IpSetFormatTxt,
+		IpSetFormatStix,
+		IpSetFormatOtxCsv,
+		IpSetFormatAlienVault,
+		IpSetFormatProofPoint,
+		IpSetFormatFireEye,
+	}
+}
 
 const (
 	// IpSetStatusInactive is a IpSetStatus enum value
@@ -13005,6 +13184,33 @@ const (
 	IpSetStatusDeleted = "DELETED"
 )
 
+// IpSetStatus is an enum
+type IpSetStatus struct{}
+
+// Contains returns whether the IpSetStatus enum includes the element
+func (enum IpSetStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IpSetStatus enum
+func (enum IpSetStatus) Values() []string {
+	return []string{
+		IpSetStatusInactive,
+		IpSetStatusActivating,
+		IpSetStatusActive,
+		IpSetStatusDeactivating,
+		IpSetStatusError,
+		IpSetStatusDeletePending,
+		IpSetStatusDeleted,
+	}
+}
+
 const (
 	// OrderByAsc is a OrderBy enum value
 	OrderByAsc = "ASC"
@@ -13012,6 +13218,28 @@ const (
 	// OrderByDesc is a OrderBy enum value
 	OrderByDesc = "DESC"
 )
+
+// OrderBy is an enum
+type OrderBy struct{}
+
+// Contains returns whether the OrderBy enum includes the element
+func (enum OrderBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrderBy enum
+func (enum OrderBy) Values() []string {
+	return []string{
+		OrderByAsc,
+		OrderByDesc,
+	}
+}
 
 const (
 	// PublishingStatusPendingVerification is a PublishingStatus enum value
@@ -13026,6 +13254,30 @@ const (
 	// PublishingStatusStopped is a PublishingStatus enum value
 	PublishingStatusStopped = "STOPPED"
 )
+
+// PublishingStatus is an enum
+type PublishingStatus struct{}
+
+// Contains returns whether the PublishingStatus enum includes the element
+func (enum PublishingStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PublishingStatus enum
+func (enum PublishingStatus) Values() []string {
+	return []string{
+		PublishingStatusPendingVerification,
+		PublishingStatusPublishing,
+		PublishingStatusUnableToPublishFixDestinationProperty,
+		PublishingStatusStopped,
+	}
+}
 
 const (
 	// ThreatIntelSetFormatTxt is a ThreatIntelSetFormat enum value
@@ -13046,6 +13298,32 @@ const (
 	// ThreatIntelSetFormatFireEye is a ThreatIntelSetFormat enum value
 	ThreatIntelSetFormatFireEye = "FIRE_EYE"
 )
+
+// ThreatIntelSetFormat is an enum
+type ThreatIntelSetFormat struct{}
+
+// Contains returns whether the ThreatIntelSetFormat enum includes the element
+func (enum ThreatIntelSetFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThreatIntelSetFormat enum
+func (enum ThreatIntelSetFormat) Values() []string {
+	return []string{
+		ThreatIntelSetFormatTxt,
+		ThreatIntelSetFormatStix,
+		ThreatIntelSetFormatOtxCsv,
+		ThreatIntelSetFormatAlienVault,
+		ThreatIntelSetFormatProofPoint,
+		ThreatIntelSetFormatFireEye,
+	}
+}
 
 const (
 	// ThreatIntelSetStatusInactive is a ThreatIntelSetStatus enum value
@@ -13069,3 +13347,30 @@ const (
 	// ThreatIntelSetStatusDeleted is a ThreatIntelSetStatus enum value
 	ThreatIntelSetStatusDeleted = "DELETED"
 )
+
+// ThreatIntelSetStatus is an enum
+type ThreatIntelSetStatus struct{}
+
+// Contains returns whether the ThreatIntelSetStatus enum includes the element
+func (enum ThreatIntelSetStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThreatIntelSetStatus enum
+func (enum ThreatIntelSetStatus) Values() []string {
+	return []string{
+		ThreatIntelSetStatusInactive,
+		ThreatIntelSetStatusActivating,
+		ThreatIntelSetStatusActive,
+		ThreatIntelSetStatusDeactivating,
+		ThreatIntelSetStatusError,
+		ThreatIntelSetStatusDeletePending,
+		ThreatIntelSetStatusDeleted,
+	}
+}

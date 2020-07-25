@@ -1499,3 +1499,31 @@ const (
 	// JobExecutionStatusCanceled is a JobExecutionStatus enum value
 	JobExecutionStatusCanceled = "CANCELED"
 )
+
+// JobExecutionStatus is an enum
+type JobExecutionStatus struct{}
+
+// Contains returns whether the JobExecutionStatus enum includes the element
+func (enum JobExecutionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobExecutionStatus enum
+func (enum JobExecutionStatus) Values() []string {
+	return []string{
+		JobExecutionStatusQueued,
+		JobExecutionStatusInProgress,
+		JobExecutionStatusSucceeded,
+		JobExecutionStatusFailed,
+		JobExecutionStatusTimedOut,
+		JobExecutionStatusRejected,
+		JobExecutionStatusRemoved,
+		JobExecutionStatusCanceled,
+	}
+}

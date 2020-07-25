@@ -5176,10 +5176,59 @@ const (
 	MessageSystemAttributeNameAwstraceHeader = "AWSTraceHeader"
 )
 
+// MessageSystemAttributeName is an enum
+type MessageSystemAttributeName struct{}
+
+// Contains returns whether the MessageSystemAttributeName enum includes the element
+func (enum MessageSystemAttributeName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MessageSystemAttributeName enum
+func (enum MessageSystemAttributeName) Values() []string {
+	return []string{
+		MessageSystemAttributeNameSenderId,
+		MessageSystemAttributeNameSentTimestamp,
+		MessageSystemAttributeNameApproximateReceiveCount,
+		MessageSystemAttributeNameApproximateFirstReceiveTimestamp,
+		MessageSystemAttributeNameSequenceNumber,
+		MessageSystemAttributeNameMessageDeduplicationId,
+		MessageSystemAttributeNameMessageGroupId,
+		MessageSystemAttributeNameAwstraceHeader,
+	}
+}
+
 const (
 	// MessageSystemAttributeNameForSendsAwstraceHeader is a MessageSystemAttributeNameForSends enum value
 	MessageSystemAttributeNameForSendsAwstraceHeader = "AWSTraceHeader"
 )
+
+// MessageSystemAttributeNameForSends is an enum
+type MessageSystemAttributeNameForSends struct{}
+
+// Contains returns whether the MessageSystemAttributeNameForSends enum includes the element
+func (enum MessageSystemAttributeNameForSends) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MessageSystemAttributeNameForSends enum
+func (enum MessageSystemAttributeNameForSends) Values() []string {
+	return []string{
+		MessageSystemAttributeNameForSendsAwstraceHeader,
+	}
+}
 
 const (
 	// QueueAttributeNameAll is a QueueAttributeName enum value
@@ -5236,3 +5285,41 @@ const (
 	// QueueAttributeNameKmsDataKeyReusePeriodSeconds is a QueueAttributeName enum value
 	QueueAttributeNameKmsDataKeyReusePeriodSeconds = "KmsDataKeyReusePeriodSeconds"
 )
+
+// QueueAttributeName is an enum
+type QueueAttributeName struct{}
+
+// Contains returns whether the QueueAttributeName enum includes the element
+func (enum QueueAttributeName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueueAttributeName enum
+func (enum QueueAttributeName) Values() []string {
+	return []string{
+		QueueAttributeNameAll,
+		QueueAttributeNamePolicy,
+		QueueAttributeNameVisibilityTimeout,
+		QueueAttributeNameMaximumMessageSize,
+		QueueAttributeNameMessageRetentionPeriod,
+		QueueAttributeNameApproximateNumberOfMessages,
+		QueueAttributeNameApproximateNumberOfMessagesNotVisible,
+		QueueAttributeNameCreatedTimestamp,
+		QueueAttributeNameLastModifiedTimestamp,
+		QueueAttributeNameQueueArn,
+		QueueAttributeNameApproximateNumberOfMessagesDelayed,
+		QueueAttributeNameDelaySeconds,
+		QueueAttributeNameReceiveMessageWaitTimeSeconds,
+		QueueAttributeNameRedrivePolicy,
+		QueueAttributeNameFifoQueue,
+		QueueAttributeNameContentBasedDeduplication,
+		QueueAttributeNameKmsMasterKeyId,
+		QueueAttributeNameKmsDataKeyReusePeriodSeconds,
+	}
+}

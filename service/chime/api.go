@@ -25977,10 +25977,55 @@ const (
 	AccountTypeEnterpriseOidc = "EnterpriseOIDC"
 )
 
+// AccountType is an enum
+type AccountType struct{}
+
+// Contains returns whether the AccountType enum includes the element
+func (enum AccountType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccountType enum
+func (enum AccountType) Values() []string {
+	return []string{
+		AccountTypeTeam,
+		AccountTypeEnterpriseDirectory,
+		AccountTypeEnterpriseLwa,
+		AccountTypeEnterpriseOidc,
+	}
+}
+
 const (
 	// BotTypeChatBot is a BotType enum value
 	BotTypeChatBot = "ChatBot"
 )
+
+// BotType is an enum
+type BotType struct{}
+
+// Contains returns whether the BotType enum includes the element
+func (enum BotType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BotType enum
+func (enum BotType) Values() []string {
+	return []string{
+		BotTypeChatBot,
+	}
+}
 
 const (
 	// CallingNameStatusUnassigned is a CallingNameStatus enum value
@@ -25996,6 +26041,30 @@ const (
 	CallingNameStatusUpdateFailed = "UpdateFailed"
 )
 
+// CallingNameStatus is an enum
+type CallingNameStatus struct{}
+
+// Contains returns whether the CallingNameStatus enum includes the element
+func (enum CallingNameStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CallingNameStatus enum
+func (enum CallingNameStatus) Values() []string {
+	return []string{
+		CallingNameStatusUnassigned,
+		CallingNameStatusUpdateInProgress,
+		CallingNameStatusUpdateSucceeded,
+		CallingNameStatusUpdateFailed,
+	}
+}
+
 const (
 	// CapabilityVoice is a Capability enum value
 	CapabilityVoice = "Voice"
@@ -26003,6 +26072,28 @@ const (
 	// CapabilitySms is a Capability enum value
 	CapabilitySms = "SMS"
 )
+
+// Capability is an enum
+type Capability struct{}
+
+// Contains returns whether the Capability enum includes the element
+func (enum Capability) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Capability enum
+func (enum Capability) Values() []string {
+	return []string{
+		CapabilityVoice,
+		CapabilitySms,
+	}
+}
 
 const (
 	// EmailStatusNotSent is a EmailStatus enum value
@@ -26014,6 +26105,29 @@ const (
 	// EmailStatusFailed is a EmailStatus enum value
 	EmailStatusFailed = "Failed"
 )
+
+// EmailStatus is an enum
+type EmailStatus struct{}
+
+// Contains returns whether the EmailStatus enum includes the element
+func (enum EmailStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EmailStatus enum
+func (enum EmailStatus) Values() []string {
+	return []string{
+		EmailStatusNotSent,
+		EmailStatusSent,
+		EmailStatusFailed,
+	}
+}
 
 const (
 	// ErrorCodeBadRequest is a ErrorCode enum value
@@ -26059,6 +26173,40 @@ const (
 	ErrorCodePhoneNumberAssociationsExist = "PhoneNumberAssociationsExist"
 )
 
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeBadRequest,
+		ErrorCodeConflict,
+		ErrorCodeForbidden,
+		ErrorCodeNotFound,
+		ErrorCodePreconditionFailed,
+		ErrorCodeResourceLimitExceeded,
+		ErrorCodeServiceFailure,
+		ErrorCodeAccessDenied,
+		ErrorCodeServiceUnavailable,
+		ErrorCodeThrottled,
+		ErrorCodeUnauthorized,
+		ErrorCodeUnprocessable,
+		ErrorCodeVoiceConnectorGroupAssociationsExist,
+		ErrorCodePhoneNumberAssociationsExist,
+	}
+}
+
 const (
 	// GeoMatchLevelCountry is a GeoMatchLevel enum value
 	GeoMatchLevelCountry = "Country"
@@ -26066,6 +26214,28 @@ const (
 	// GeoMatchLevelAreaCode is a GeoMatchLevel enum value
 	GeoMatchLevelAreaCode = "AreaCode"
 )
+
+// GeoMatchLevel is an enum
+type GeoMatchLevel struct{}
+
+// Contains returns whether the GeoMatchLevel enum includes the element
+func (enum GeoMatchLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GeoMatchLevel enum
+func (enum GeoMatchLevel) Values() []string {
+	return []string{
+		GeoMatchLevelCountry,
+		GeoMatchLevelAreaCode,
+	}
+}
 
 const (
 	// InviteStatusPending is a InviteStatus enum value
@@ -26077,6 +26247,29 @@ const (
 	// InviteStatusFailed is a InviteStatus enum value
 	InviteStatusFailed = "Failed"
 )
+
+// InviteStatus is an enum
+type InviteStatus struct{}
+
+// Contains returns whether the InviteStatus enum includes the element
+func (enum InviteStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InviteStatus enum
+func (enum InviteStatus) Values() []string {
+	return []string{
+		InviteStatusPending,
+		InviteStatusAccepted,
+		InviteStatusFailed,
+	}
+}
 
 const (
 	// LicenseBasic is a License enum value
@@ -26092,6 +26285,30 @@ const (
 	LicenseProTrial = "ProTrial"
 )
 
+// License is an enum
+type License struct{}
+
+// Contains returns whether the License enum includes the element
+func (enum License) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the License enum
+func (enum License) Values() []string {
+	return []string{
+		LicenseBasic,
+		LicensePlus,
+		LicensePro,
+		LicenseProTrial,
+	}
+}
+
 const (
 	// MemberTypeUser is a MemberType enum value
 	MemberTypeUser = "User"
@@ -26102,6 +26319,29 @@ const (
 	// MemberTypeWebhook is a MemberType enum value
 	MemberTypeWebhook = "Webhook"
 )
+
+// MemberType is an enum
+type MemberType struct{}
+
+// Contains returns whether the MemberType enum includes the element
+func (enum MemberType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MemberType enum
+func (enum MemberType) Values() []string {
+	return []string{
+		MemberTypeUser,
+		MemberTypeBot,
+		MemberTypeWebhook,
+	}
+}
 
 const (
 	// NotificationTargetEventBridge is a NotificationTarget enum value
@@ -26114,6 +26354,29 @@ const (
 	NotificationTargetSqs = "SQS"
 )
 
+// NotificationTarget is an enum
+type NotificationTarget struct{}
+
+// Contains returns whether the NotificationTarget enum includes the element
+func (enum NotificationTarget) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotificationTarget enum
+func (enum NotificationTarget) Values() []string {
+	return []string{
+		NotificationTargetEventBridge,
+		NotificationTargetSns,
+		NotificationTargetSqs,
+	}
+}
+
 const (
 	// NumberSelectionBehaviorPreferSticky is a NumberSelectionBehavior enum value
 	NumberSelectionBehaviorPreferSticky = "PreferSticky"
@@ -26121,6 +26384,28 @@ const (
 	// NumberSelectionBehaviorAvoidSticky is a NumberSelectionBehavior enum value
 	NumberSelectionBehaviorAvoidSticky = "AvoidSticky"
 )
+
+// NumberSelectionBehavior is an enum
+type NumberSelectionBehavior struct{}
+
+// Contains returns whether the NumberSelectionBehavior enum includes the element
+func (enum NumberSelectionBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NumberSelectionBehavior enum
+func (enum NumberSelectionBehavior) Values() []string {
+	return []string{
+		NumberSelectionBehaviorPreferSticky,
+		NumberSelectionBehaviorAvoidSticky,
+	}
+}
 
 const (
 	// OrderedPhoneNumberStatusProcessing is a OrderedPhoneNumberStatus enum value
@@ -26133,6 +26418,29 @@ const (
 	OrderedPhoneNumberStatusFailed = "Failed"
 )
 
+// OrderedPhoneNumberStatus is an enum
+type OrderedPhoneNumberStatus struct{}
+
+// Contains returns whether the OrderedPhoneNumberStatus enum includes the element
+func (enum OrderedPhoneNumberStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrderedPhoneNumberStatus enum
+func (enum OrderedPhoneNumberStatus) Values() []string {
+	return []string{
+		OrderedPhoneNumberStatusProcessing,
+		OrderedPhoneNumberStatusAcquired,
+		OrderedPhoneNumberStatusFailed,
+	}
+}
+
 const (
 	// OriginationRouteProtocolTcp is a OriginationRouteProtocol enum value
 	OriginationRouteProtocolTcp = "TCP"
@@ -26140,6 +26448,28 @@ const (
 	// OriginationRouteProtocolUdp is a OriginationRouteProtocol enum value
 	OriginationRouteProtocolUdp = "UDP"
 )
+
+// OriginationRouteProtocol is an enum
+type OriginationRouteProtocol struct{}
+
+// Contains returns whether the OriginationRouteProtocol enum includes the element
+func (enum OriginationRouteProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OriginationRouteProtocol enum
+func (enum OriginationRouteProtocol) Values() []string {
+	return []string{
+		OriginationRouteProtocolTcp,
+		OriginationRouteProtocolUdp,
+	}
+}
 
 const (
 	// PhoneNumberAssociationNameAccountId is a PhoneNumberAssociationName enum value
@@ -26155,6 +26485,30 @@ const (
 	PhoneNumberAssociationNameVoiceConnectorGroupId = "VoiceConnectorGroupId"
 )
 
+// PhoneNumberAssociationName is an enum
+type PhoneNumberAssociationName struct{}
+
+// Contains returns whether the PhoneNumberAssociationName enum includes the element
+func (enum PhoneNumberAssociationName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PhoneNumberAssociationName enum
+func (enum PhoneNumberAssociationName) Values() []string {
+	return []string{
+		PhoneNumberAssociationNameAccountId,
+		PhoneNumberAssociationNameUserId,
+		PhoneNumberAssociationNameVoiceConnectorId,
+		PhoneNumberAssociationNameVoiceConnectorGroupId,
+	}
+}
+
 const (
 	// PhoneNumberOrderStatusProcessing is a PhoneNumberOrderStatus enum value
 	PhoneNumberOrderStatusProcessing = "Processing"
@@ -26169,6 +26523,30 @@ const (
 	PhoneNumberOrderStatusPartial = "Partial"
 )
 
+// PhoneNumberOrderStatus is an enum
+type PhoneNumberOrderStatus struct{}
+
+// Contains returns whether the PhoneNumberOrderStatus enum includes the element
+func (enum PhoneNumberOrderStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PhoneNumberOrderStatus enum
+func (enum PhoneNumberOrderStatus) Values() []string {
+	return []string{
+		PhoneNumberOrderStatusProcessing,
+		PhoneNumberOrderStatusSuccessful,
+		PhoneNumberOrderStatusFailed,
+		PhoneNumberOrderStatusPartial,
+	}
+}
+
 const (
 	// PhoneNumberProductTypeBusinessCalling is a PhoneNumberProductType enum value
 	PhoneNumberProductTypeBusinessCalling = "BusinessCalling"
@@ -26176,6 +26554,28 @@ const (
 	// PhoneNumberProductTypeVoiceConnector is a PhoneNumberProductType enum value
 	PhoneNumberProductTypeVoiceConnector = "VoiceConnector"
 )
+
+// PhoneNumberProductType is an enum
+type PhoneNumberProductType struct{}
+
+// Contains returns whether the PhoneNumberProductType enum includes the element
+func (enum PhoneNumberProductType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PhoneNumberProductType enum
+func (enum PhoneNumberProductType) Values() []string {
+	return []string{
+		PhoneNumberProductTypeBusinessCalling,
+		PhoneNumberProductTypeVoiceConnector,
+	}
+}
 
 const (
 	// PhoneNumberStatusAcquireInProgress is a PhoneNumberStatus enum value
@@ -26203,6 +26603,34 @@ const (
 	PhoneNumberStatusDeleteFailed = "DeleteFailed"
 )
 
+// PhoneNumberStatus is an enum
+type PhoneNumberStatus struct{}
+
+// Contains returns whether the PhoneNumberStatus enum includes the element
+func (enum PhoneNumberStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PhoneNumberStatus enum
+func (enum PhoneNumberStatus) Values() []string {
+	return []string{
+		PhoneNumberStatusAcquireInProgress,
+		PhoneNumberStatusAcquireFailed,
+		PhoneNumberStatusUnassigned,
+		PhoneNumberStatusAssigned,
+		PhoneNumberStatusReleaseInProgress,
+		PhoneNumberStatusDeleteInProgress,
+		PhoneNumberStatusReleaseFailed,
+		PhoneNumberStatusDeleteFailed,
+	}
+}
+
 const (
 	// PhoneNumberTypeLocal is a PhoneNumberType enum value
 	PhoneNumberTypeLocal = "Local"
@@ -26210,6 +26638,28 @@ const (
 	// PhoneNumberTypeTollFree is a PhoneNumberType enum value
 	PhoneNumberTypeTollFree = "TollFree"
 )
+
+// PhoneNumberType is an enum
+type PhoneNumberType struct{}
+
+// Contains returns whether the PhoneNumberType enum includes the element
+func (enum PhoneNumberType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PhoneNumberType enum
+func (enum PhoneNumberType) Values() []string {
+	return []string{
+		PhoneNumberTypeLocal,
+		PhoneNumberTypeTollFree,
+	}
+}
 
 const (
 	// ProxySessionStatusOpen is a ProxySessionStatus enum value
@@ -26222,6 +26672,29 @@ const (
 	ProxySessionStatusClosed = "Closed"
 )
 
+// ProxySessionStatus is an enum
+type ProxySessionStatus struct{}
+
+// Contains returns whether the ProxySessionStatus enum includes the element
+func (enum ProxySessionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProxySessionStatus enum
+func (enum ProxySessionStatus) Values() []string {
+	return []string{
+		ProxySessionStatusOpen,
+		ProxySessionStatusInProgress,
+		ProxySessionStatusClosed,
+	}
+}
+
 const (
 	// RegistrationStatusUnregistered is a RegistrationStatus enum value
 	RegistrationStatusUnregistered = "Unregistered"
@@ -26233,6 +26706,29 @@ const (
 	RegistrationStatusSuspended = "Suspended"
 )
 
+// RegistrationStatus is an enum
+type RegistrationStatus struct{}
+
+// Contains returns whether the RegistrationStatus enum includes the element
+func (enum RegistrationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RegistrationStatus enum
+func (enum RegistrationStatus) Values() []string {
+	return []string{
+		RegistrationStatusUnregistered,
+		RegistrationStatusRegistered,
+		RegistrationStatusSuspended,
+	}
+}
+
 const (
 	// RoomMembershipRoleAdministrator is a RoomMembershipRole enum value
 	RoomMembershipRoleAdministrator = "Administrator"
@@ -26240,6 +26736,28 @@ const (
 	// RoomMembershipRoleMember is a RoomMembershipRole enum value
 	RoomMembershipRoleMember = "Member"
 )
+
+// RoomMembershipRole is an enum
+type RoomMembershipRole struct{}
+
+// Contains returns whether the RoomMembershipRole enum includes the element
+func (enum RoomMembershipRole) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RoomMembershipRole enum
+func (enum RoomMembershipRole) Values() []string {
+	return []string{
+		RoomMembershipRoleAdministrator,
+		RoomMembershipRoleMember,
+	}
+}
 
 const (
 	// UserTypePrivateUser is a UserType enum value
@@ -26249,6 +26767,28 @@ const (
 	UserTypeSharedDevice = "SharedDevice"
 )
 
+// UserType is an enum
+type UserType struct{}
+
+// Contains returns whether the UserType enum includes the element
+func (enum UserType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserType enum
+func (enum UserType) Values() []string {
+	return []string{
+		UserTypePrivateUser,
+		UserTypeSharedDevice,
+	}
+}
+
 const (
 	// VoiceConnectorAwsRegionUsEast1 is a VoiceConnectorAwsRegion enum value
 	VoiceConnectorAwsRegionUsEast1 = "us-east-1"
@@ -26256,3 +26796,25 @@ const (
 	// VoiceConnectorAwsRegionUsWest2 is a VoiceConnectorAwsRegion enum value
 	VoiceConnectorAwsRegionUsWest2 = "us-west-2"
 )
+
+// VoiceConnectorAwsRegion is an enum
+type VoiceConnectorAwsRegion struct{}
+
+// Contains returns whether the VoiceConnectorAwsRegion enum includes the element
+func (enum VoiceConnectorAwsRegion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VoiceConnectorAwsRegion enum
+func (enum VoiceConnectorAwsRegion) Values() []string {
+	return []string{
+		VoiceConnectorAwsRegionUsEast1,
+		VoiceConnectorAwsRegionUsWest2,
+	}
+}

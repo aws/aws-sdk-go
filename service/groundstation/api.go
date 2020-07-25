@@ -6914,6 +6914,28 @@ const (
 	AngleUnitsRadian = "RADIAN"
 )
 
+// AngleUnits is an enum
+type AngleUnits struct{}
+
+// Contains returns whether the AngleUnits enum includes the element
+func (enum AngleUnits) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AngleUnits enum
+func (enum AngleUnits) Values() []string {
+	return []string{
+		AngleUnitsDegreeAngle,
+		AngleUnitsRadian,
+	}
+}
+
 const (
 	// BandwidthUnitsGhz is a BandwidthUnits enum value
 	BandwidthUnitsGhz = "GHz"
@@ -6924,6 +6946,29 @@ const (
 	// BandwidthUnitsKHz is a BandwidthUnits enum value
 	BandwidthUnitsKHz = "kHz"
 )
+
+// BandwidthUnits is an enum
+type BandwidthUnits struct{}
+
+// Contains returns whether the BandwidthUnits enum includes the element
+func (enum BandwidthUnits) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BandwidthUnits enum
+func (enum BandwidthUnits) Values() []string {
+	return []string{
+		BandwidthUnitsGhz,
+		BandwidthUnitsMhz,
+		BandwidthUnitsKHz,
+	}
+}
 
 const (
 	// ConfigCapabilityTypeAntennaDownlink is a ConfigCapabilityType enum value
@@ -6944,6 +6989,32 @@ const (
 	// ConfigCapabilityTypeUplinkEcho is a ConfigCapabilityType enum value
 	ConfigCapabilityTypeUplinkEcho = "uplink-echo"
 )
+
+// ConfigCapabilityType is an enum
+type ConfigCapabilityType struct{}
+
+// Contains returns whether the ConfigCapabilityType enum includes the element
+func (enum ConfigCapabilityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigCapabilityType enum
+func (enum ConfigCapabilityType) Values() []string {
+	return []string{
+		ConfigCapabilityTypeAntennaDownlink,
+		ConfigCapabilityTypeAntennaDownlinkDemodDecode,
+		ConfigCapabilityTypeAntennaUplink,
+		ConfigCapabilityTypeDataflowEndpoint,
+		ConfigCapabilityTypeTracking,
+		ConfigCapabilityTypeUplinkEcho,
+	}
+}
 
 const (
 	// ContactStatusAvailable is a ContactStatus enum value
@@ -6983,6 +7054,38 @@ const (
 	ContactStatusScheduling = "SCHEDULING"
 )
 
+// ContactStatus is an enum
+type ContactStatus struct{}
+
+// Contains returns whether the ContactStatus enum includes the element
+func (enum ContactStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContactStatus enum
+func (enum ContactStatus) Values() []string {
+	return []string{
+		ContactStatusAvailable,
+		ContactStatusAwsCancelled,
+		ContactStatusCancelled,
+		ContactStatusCancelling,
+		ContactStatusCompleted,
+		ContactStatusFailed,
+		ContactStatusFailedToSchedule,
+		ContactStatusPass,
+		ContactStatusPostpass,
+		ContactStatusPrepass,
+		ContactStatusScheduled,
+		ContactStatusScheduling,
+	}
+}
+
 const (
 	// CriticalityPreferred is a Criticality enum value
 	CriticalityPreferred = "PREFERRED"
@@ -6994,10 +7097,54 @@ const (
 	CriticalityRequired = "REQUIRED"
 )
 
+// Criticality is an enum
+type Criticality struct{}
+
+// Contains returns whether the Criticality enum includes the element
+func (enum Criticality) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Criticality enum
+func (enum Criticality) Values() []string {
+	return []string{
+		CriticalityPreferred,
+		CriticalityRemoved,
+		CriticalityRequired,
+	}
+}
+
 const (
 	// EirpUnitsDBw is a EirpUnits enum value
 	EirpUnitsDBw = "dBW"
 )
+
+// EirpUnits is an enum
+type EirpUnits struct{}
+
+// Contains returns whether the EirpUnits enum includes the element
+func (enum EirpUnits) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EirpUnits enum
+func (enum EirpUnits) Values() []string {
+	return []string{
+		EirpUnitsDBw,
+	}
+}
 
 const (
 	// EndpointStatusCreated is a EndpointStatus enum value
@@ -7016,6 +7163,31 @@ const (
 	EndpointStatusFailed = "failed"
 )
 
+// EndpointStatus is an enum
+type EndpointStatus struct{}
+
+// Contains returns whether the EndpointStatus enum includes the element
+func (enum EndpointStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EndpointStatus enum
+func (enum EndpointStatus) Values() []string {
+	return []string{
+		EndpointStatusCreated,
+		EndpointStatusCreating,
+		EndpointStatusDeleted,
+		EndpointStatusDeleting,
+		EndpointStatusFailed,
+	}
+}
+
 const (
 	// FrequencyUnitsGhz is a FrequencyUnits enum value
 	FrequencyUnitsGhz = "GHz"
@@ -7027,6 +7199,29 @@ const (
 	FrequencyUnitsKHz = "kHz"
 )
 
+// FrequencyUnits is an enum
+type FrequencyUnits struct{}
+
+// Contains returns whether the FrequencyUnits enum includes the element
+func (enum FrequencyUnits) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FrequencyUnits enum
+func (enum FrequencyUnits) Values() []string {
+	return []string{
+		FrequencyUnitsGhz,
+		FrequencyUnitsMhz,
+		FrequencyUnitsKHz,
+	}
+}
+
 const (
 	// PolarizationLeftHand is a Polarization enum value
 	PolarizationLeftHand = "LEFT_HAND"
@@ -7037,3 +7232,26 @@ const (
 	// PolarizationRightHand is a Polarization enum value
 	PolarizationRightHand = "RIGHT_HAND"
 )
+
+// Polarization is an enum
+type Polarization struct{}
+
+// Contains returns whether the Polarization enum includes the element
+func (enum Polarization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Polarization enum
+func (enum Polarization) Values() []string {
+	return []string{
+		PolarizationLeftHand,
+		PolarizationNone,
+		PolarizationRightHand,
+	}
+}

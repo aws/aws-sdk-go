@@ -1761,3 +1761,28 @@ const (
 	// ErrorCodeThrottlingException is a ErrorCode enum value
 	ErrorCodeThrottlingException = "ThrottlingException"
 )
+
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeResourceNotFoundException,
+		ErrorCodeInvalidRequestException,
+		ErrorCodeInternalFailureException,
+		ErrorCodeServiceUnavailableException,
+		ErrorCodeThrottlingException,
+	}
+}

@@ -3476,6 +3476,27 @@ const (
 	BackupPolicyDefault = "DEFAULT"
 )
 
+// BackupPolicy is an enum
+type BackupPolicy struct{}
+
+// Contains returns whether the BackupPolicy enum includes the element
+func (enum BackupPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BackupPolicy enum
+func (enum BackupPolicy) Values() []string {
+	return []string{
+		BackupPolicyDefault,
+	}
+}
+
 const (
 	// BackupStateCreateInProgress is a BackupState enum value
 	BackupStateCreateInProgress = "CREATE_IN_PROGRESS"
@@ -3489,6 +3510,30 @@ const (
 	// BackupStatePendingDeletion is a BackupState enum value
 	BackupStatePendingDeletion = "PENDING_DELETION"
 )
+
+// BackupState is an enum
+type BackupState struct{}
+
+// Contains returns whether the BackupState enum includes the element
+func (enum BackupState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BackupState enum
+func (enum BackupState) Values() []string {
+	return []string{
+		BackupStateCreateInProgress,
+		BackupStateReady,
+		BackupStateDeleted,
+		BackupStatePendingDeletion,
+	}
+}
 
 const (
 	// ClusterStateCreateInProgress is a ClusterState enum value
@@ -3519,6 +3564,35 @@ const (
 	ClusterStateDegraded = "DEGRADED"
 )
 
+// ClusterState is an enum
+type ClusterState struct{}
+
+// Contains returns whether the ClusterState enum includes the element
+func (enum ClusterState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ClusterState enum
+func (enum ClusterState) Values() []string {
+	return []string{
+		ClusterStateCreateInProgress,
+		ClusterStateUninitialized,
+		ClusterStateInitializeInProgress,
+		ClusterStateInitialized,
+		ClusterStateActive,
+		ClusterStateUpdateInProgress,
+		ClusterStateDeleteInProgress,
+		ClusterStateDeleted,
+		ClusterStateDegraded,
+	}
+}
+
 const (
 	// HsmStateCreateInProgress is a HsmState enum value
 	HsmStateCreateInProgress = "CREATE_IN_PROGRESS"
@@ -3535,3 +3609,28 @@ const (
 	// HsmStateDeleted is a HsmState enum value
 	HsmStateDeleted = "DELETED"
 )
+
+// HsmState is an enum
+type HsmState struct{}
+
+// Contains returns whether the HsmState enum includes the element
+func (enum HsmState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HsmState enum
+func (enum HsmState) Values() []string {
+	return []string{
+		HsmStateCreateInProgress,
+		HsmStateActive,
+		HsmStateDegraded,
+		HsmStateDeleteInProgress,
+		HsmStateDeleted,
+	}
+}

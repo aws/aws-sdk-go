@@ -9390,10 +9390,53 @@ const (
 	DomainStatusDeleted = "Deleted"
 )
 
+// DomainStatus is an enum
+type DomainStatus struct{}
+
+// Contains returns whether the DomainStatus enum includes the element
+func (enum DomainStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DomainStatus enum
+func (enum DomainStatus) Values() []string {
+	return []string{
+		DomainStatusActive,
+		DomainStatusDeleted,
+	}
+}
+
 const (
 	// ExternalConnectionStatusAvailable is a ExternalConnectionStatus enum value
 	ExternalConnectionStatusAvailable = "Available"
 )
+
+// ExternalConnectionStatus is an enum
+type ExternalConnectionStatus struct{}
+
+// Contains returns whether the ExternalConnectionStatus enum includes the element
+func (enum ExternalConnectionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExternalConnectionStatus enum
+func (enum ExternalConnectionStatus) Values() []string {
+	return []string{
+		ExternalConnectionStatusAvailable,
+	}
+}
 
 const (
 	// HashAlgorithmMd5 is a HashAlgorithm enum value
@@ -9409,6 +9452,30 @@ const (
 	HashAlgorithmSha512 = "SHA-512"
 )
 
+// HashAlgorithm is an enum
+type HashAlgorithm struct{}
+
+// Contains returns whether the HashAlgorithm enum includes the element
+func (enum HashAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HashAlgorithm enum
+func (enum HashAlgorithm) Values() []string {
+	return []string{
+		HashAlgorithmMd5,
+		HashAlgorithmSha1,
+		HashAlgorithmSha256,
+		HashAlgorithmSha512,
+	}
+}
+
 const (
 	// PackageFormatNpm is a PackageFormat enum value
 	PackageFormatNpm = "npm"
@@ -9419,6 +9486,29 @@ const (
 	// PackageFormatMaven is a PackageFormat enum value
 	PackageFormatMaven = "maven"
 )
+
+// PackageFormat is an enum
+type PackageFormat struct{}
+
+// Contains returns whether the PackageFormat enum includes the element
+func (enum PackageFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PackageFormat enum
+func (enum PackageFormat) Values() []string {
+	return []string{
+		PackageFormatNpm,
+		PackageFormatPypi,
+		PackageFormatMaven,
+	}
+}
 
 const (
 	// PackageVersionErrorCodeAlreadyExists is a PackageVersionErrorCode enum value
@@ -9440,10 +9530,57 @@ const (
 	PackageVersionErrorCodeSkipped = "SKIPPED"
 )
 
+// PackageVersionErrorCode is an enum
+type PackageVersionErrorCode struct{}
+
+// Contains returns whether the PackageVersionErrorCode enum includes the element
+func (enum PackageVersionErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PackageVersionErrorCode enum
+func (enum PackageVersionErrorCode) Values() []string {
+	return []string{
+		PackageVersionErrorCodeAlreadyExists,
+		PackageVersionErrorCodeMismatchedRevision,
+		PackageVersionErrorCodeMismatchedStatus,
+		PackageVersionErrorCodeNotAllowed,
+		PackageVersionErrorCodeNotFound,
+		PackageVersionErrorCodeSkipped,
+	}
+}
+
 const (
 	// PackageVersionSortTypePublishedTime is a PackageVersionSortType enum value
 	PackageVersionSortTypePublishedTime = "PUBLISHED_TIME"
 )
+
+// PackageVersionSortType is an enum
+type PackageVersionSortType struct{}
+
+// Contains returns whether the PackageVersionSortType enum includes the element
+func (enum PackageVersionSortType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PackageVersionSortType enum
+func (enum PackageVersionSortType) Values() []string {
+	return []string{
+		PackageVersionSortTypePublishedTime,
+	}
+}
 
 const (
 	// PackageVersionStatusPublished is a PackageVersionStatus enum value
@@ -9465,6 +9602,32 @@ const (
 	PackageVersionStatusDeleted = "Deleted"
 )
 
+// PackageVersionStatus is an enum
+type PackageVersionStatus struct{}
+
+// Contains returns whether the PackageVersionStatus enum includes the element
+func (enum PackageVersionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PackageVersionStatus enum
+func (enum PackageVersionStatus) Values() []string {
+	return []string{
+		PackageVersionStatusPublished,
+		PackageVersionStatusUnfinished,
+		PackageVersionStatusUnlisted,
+		PackageVersionStatusArchived,
+		PackageVersionStatusDisposed,
+		PackageVersionStatusDeleted,
+	}
+}
+
 const (
 	// ResourceTypeDomain is a ResourceType enum value
 	ResourceTypeDomain = "domain"
@@ -9482,6 +9645,31 @@ const (
 	ResourceTypeAsset = "asset"
 )
 
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeDomain,
+		ResourceTypeRepository,
+		ResourceTypePackage,
+		ResourceTypePackageVersion,
+		ResourceTypeAsset,
+	}
+}
+
 const (
 	// ValidationExceptionReasonCannotParse is a ValidationExceptionReason enum value
 	ValidationExceptionReasonCannotParse = "CANNOT_PARSE"
@@ -9498,3 +9686,28 @@ const (
 	// ValidationExceptionReasonOther is a ValidationExceptionReason enum value
 	ValidationExceptionReasonOther = "OTHER"
 )
+
+// ValidationExceptionReason is an enum
+type ValidationExceptionReason struct{}
+
+// Contains returns whether the ValidationExceptionReason enum includes the element
+func (enum ValidationExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ValidationExceptionReason enum
+func (enum ValidationExceptionReason) Values() []string {
+	return []string{
+		ValidationExceptionReasonCannotParse,
+		ValidationExceptionReasonEncryptionKeyError,
+		ValidationExceptionReasonFieldValidationFailed,
+		ValidationExceptionReasonUnknownOperation,
+		ValidationExceptionReasonOther,
+	}
+}

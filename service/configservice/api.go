@@ -23401,6 +23401,29 @@ const (
 	AggregatedSourceStatusTypeOutdated = "OUTDATED"
 )
 
+// AggregatedSourceStatusType is an enum
+type AggregatedSourceStatusType struct{}
+
+// Contains returns whether the AggregatedSourceStatusType enum includes the element
+func (enum AggregatedSourceStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AggregatedSourceStatusType enum
+func (enum AggregatedSourceStatusType) Values() []string {
+	return []string{
+		AggregatedSourceStatusTypeFailed,
+		AggregatedSourceStatusTypeSucceeded,
+		AggregatedSourceStatusTypeOutdated,
+	}
+}
+
 const (
 	// AggregatedSourceTypeAccount is a AggregatedSourceType enum value
 	AggregatedSourceTypeAccount = "ACCOUNT"
@@ -23409,6 +23432,28 @@ const (
 	AggregatedSourceTypeOrganization = "ORGANIZATION"
 )
 
+// AggregatedSourceType is an enum
+type AggregatedSourceType struct{}
+
+// Contains returns whether the AggregatedSourceType enum includes the element
+func (enum AggregatedSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AggregatedSourceType enum
+func (enum AggregatedSourceType) Values() []string {
+	return []string{
+		AggregatedSourceTypeAccount,
+		AggregatedSourceTypeOrganization,
+	}
+}
+
 const (
 	// ChronologicalOrderReverse is a ChronologicalOrder enum value
 	ChronologicalOrderReverse = "Reverse"
@@ -23416,6 +23461,28 @@ const (
 	// ChronologicalOrderForward is a ChronologicalOrder enum value
 	ChronologicalOrderForward = "Forward"
 )
+
+// ChronologicalOrder is an enum
+type ChronologicalOrder struct{}
+
+// Contains returns whether the ChronologicalOrder enum includes the element
+func (enum ChronologicalOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChronologicalOrder enum
+func (enum ChronologicalOrder) Values() []string {
+	return []string{
+		ChronologicalOrderReverse,
+		ChronologicalOrderForward,
+	}
+}
 
 const (
 	// ComplianceTypeCompliant is a ComplianceType enum value
@@ -23431,6 +23498,30 @@ const (
 	ComplianceTypeInsufficientData = "INSUFFICIENT_DATA"
 )
 
+// ComplianceType is an enum
+type ComplianceType struct{}
+
+// Contains returns whether the ComplianceType enum includes the element
+func (enum ComplianceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComplianceType enum
+func (enum ComplianceType) Values() []string {
+	return []string{
+		ComplianceTypeCompliant,
+		ComplianceTypeNonCompliant,
+		ComplianceTypeNotApplicable,
+		ComplianceTypeInsufficientData,
+	}
+}
+
 const (
 	// ConfigRuleComplianceSummaryGroupKeyAccountId is a ConfigRuleComplianceSummaryGroupKey enum value
 	ConfigRuleComplianceSummaryGroupKeyAccountId = "ACCOUNT_ID"
@@ -23438,6 +23529,28 @@ const (
 	// ConfigRuleComplianceSummaryGroupKeyAwsRegion is a ConfigRuleComplianceSummaryGroupKey enum value
 	ConfigRuleComplianceSummaryGroupKeyAwsRegion = "AWS_REGION"
 )
+
+// ConfigRuleComplianceSummaryGroupKey is an enum
+type ConfigRuleComplianceSummaryGroupKey struct{}
+
+// Contains returns whether the ConfigRuleComplianceSummaryGroupKey enum includes the element
+func (enum ConfigRuleComplianceSummaryGroupKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigRuleComplianceSummaryGroupKey enum
+func (enum ConfigRuleComplianceSummaryGroupKey) Values() []string {
+	return []string{
+		ConfigRuleComplianceSummaryGroupKeyAccountId,
+		ConfigRuleComplianceSummaryGroupKeyAwsRegion,
+	}
+}
 
 const (
 	// ConfigRuleStateActive is a ConfigRuleState enum value
@@ -23452,6 +23565,30 @@ const (
 	// ConfigRuleStateEvaluating is a ConfigRuleState enum value
 	ConfigRuleStateEvaluating = "EVALUATING"
 )
+
+// ConfigRuleState is an enum
+type ConfigRuleState struct{}
+
+// Contains returns whether the ConfigRuleState enum includes the element
+func (enum ConfigRuleState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigRuleState enum
+func (enum ConfigRuleState) Values() []string {
+	return []string{
+		ConfigRuleStateActive,
+		ConfigRuleStateDeleting,
+		ConfigRuleStateDeletingResults,
+		ConfigRuleStateEvaluating,
+	}
+}
 
 const (
 	// ConfigurationItemStatusOk is a ConfigurationItemStatus enum value
@@ -23470,6 +23607,31 @@ const (
 	ConfigurationItemStatusResourceDeletedNotRecorded = "ResourceDeletedNotRecorded"
 )
 
+// ConfigurationItemStatus is an enum
+type ConfigurationItemStatus struct{}
+
+// Contains returns whether the ConfigurationItemStatus enum includes the element
+func (enum ConfigurationItemStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigurationItemStatus enum
+func (enum ConfigurationItemStatus) Values() []string {
+	return []string{
+		ConfigurationItemStatusOk,
+		ConfigurationItemStatusResourceDiscovered,
+		ConfigurationItemStatusResourceNotRecorded,
+		ConfigurationItemStatusResourceDeleted,
+		ConfigurationItemStatusResourceDeletedNotRecorded,
+	}
+}
+
 const (
 	// ConformancePackComplianceTypeCompliant is a ConformancePackComplianceType enum value
 	ConformancePackComplianceTypeCompliant = "COMPLIANT"
@@ -23477,6 +23639,28 @@ const (
 	// ConformancePackComplianceTypeNonCompliant is a ConformancePackComplianceType enum value
 	ConformancePackComplianceTypeNonCompliant = "NON_COMPLIANT"
 )
+
+// ConformancePackComplianceType is an enum
+type ConformancePackComplianceType struct{}
+
+// Contains returns whether the ConformancePackComplianceType enum includes the element
+func (enum ConformancePackComplianceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConformancePackComplianceType enum
+func (enum ConformancePackComplianceType) Values() []string {
+	return []string{
+		ConformancePackComplianceTypeCompliant,
+		ConformancePackComplianceTypeNonCompliant,
+	}
+}
 
 const (
 	// ConformancePackStateCreateInProgress is a ConformancePackState enum value
@@ -23495,6 +23679,31 @@ const (
 	ConformancePackStateDeleteFailed = "DELETE_FAILED"
 )
 
+// ConformancePackState is an enum
+type ConformancePackState struct{}
+
+// Contains returns whether the ConformancePackState enum includes the element
+func (enum ConformancePackState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConformancePackState enum
+func (enum ConformancePackState) Values() []string {
+	return []string{
+		ConformancePackStateCreateInProgress,
+		ConformancePackStateCreateComplete,
+		ConformancePackStateCreateFailed,
+		ConformancePackStateDeleteInProgress,
+		ConformancePackStateDeleteFailed,
+	}
+}
+
 const (
 	// DeliveryStatusSuccess is a DeliveryStatus enum value
 	DeliveryStatusSuccess = "Success"
@@ -23506,10 +23715,54 @@ const (
 	DeliveryStatusNotApplicable = "Not_Applicable"
 )
 
+// DeliveryStatus is an enum
+type DeliveryStatus struct{}
+
+// Contains returns whether the DeliveryStatus enum includes the element
+func (enum DeliveryStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeliveryStatus enum
+func (enum DeliveryStatus) Values() []string {
+	return []string{
+		DeliveryStatusSuccess,
+		DeliveryStatusFailure,
+		DeliveryStatusNotApplicable,
+	}
+}
+
 const (
 	// EventSourceAwsConfig is a EventSource enum value
 	EventSourceAwsConfig = "aws.config"
 )
+
+// EventSource is an enum
+type EventSource struct{}
+
+// Contains returns whether the EventSource enum includes the element
+func (enum EventSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventSource enum
+func (enum EventSource) Values() []string {
+	return []string{
+		EventSourceAwsConfig,
+	}
+}
 
 const (
 	// MaximumExecutionFrequencyOneHour is a MaximumExecutionFrequency enum value
@@ -23527,6 +23780,31 @@ const (
 	// MaximumExecutionFrequencyTwentyFourHours is a MaximumExecutionFrequency enum value
 	MaximumExecutionFrequencyTwentyFourHours = "TwentyFour_Hours"
 )
+
+// MaximumExecutionFrequency is an enum
+type MaximumExecutionFrequency struct{}
+
+// Contains returns whether the MaximumExecutionFrequency enum includes the element
+func (enum MaximumExecutionFrequency) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MaximumExecutionFrequency enum
+func (enum MaximumExecutionFrequency) Values() []string {
+	return []string{
+		MaximumExecutionFrequencyOneHour,
+		MaximumExecutionFrequencyThreeHours,
+		MaximumExecutionFrequencySixHours,
+		MaximumExecutionFrequencyTwelveHours,
+		MaximumExecutionFrequencyTwentyFourHours,
+	}
+}
 
 const (
 	// MemberAccountRuleStatusCreateSuccessful is a MemberAccountRuleStatus enum value
@@ -23557,6 +23835,35 @@ const (
 	MemberAccountRuleStatusUpdateFailed = "UPDATE_FAILED"
 )
 
+// MemberAccountRuleStatus is an enum
+type MemberAccountRuleStatus struct{}
+
+// Contains returns whether the MemberAccountRuleStatus enum includes the element
+func (enum MemberAccountRuleStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MemberAccountRuleStatus enum
+func (enum MemberAccountRuleStatus) Values() []string {
+	return []string{
+		MemberAccountRuleStatusCreateSuccessful,
+		MemberAccountRuleStatusCreateInProgress,
+		MemberAccountRuleStatusCreateFailed,
+		MemberAccountRuleStatusDeleteSuccessful,
+		MemberAccountRuleStatusDeleteFailed,
+		MemberAccountRuleStatusDeleteInProgress,
+		MemberAccountRuleStatusUpdateSuccessful,
+		MemberAccountRuleStatusUpdateInProgress,
+		MemberAccountRuleStatusUpdateFailed,
+	}
+}
+
 const (
 	// MessageTypeConfigurationItemChangeNotification is a MessageType enum value
 	MessageTypeConfigurationItemChangeNotification = "ConfigurationItemChangeNotification"
@@ -23571,6 +23878,30 @@ const (
 	MessageTypeOversizedConfigurationItemChangeNotification = "OversizedConfigurationItemChangeNotification"
 )
 
+// MessageType is an enum
+type MessageType struct{}
+
+// Contains returns whether the MessageType enum includes the element
+func (enum MessageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MessageType enum
+func (enum MessageType) Values() []string {
+	return []string{
+		MessageTypeConfigurationItemChangeNotification,
+		MessageTypeConfigurationSnapshotDeliveryCompleted,
+		MessageTypeScheduledNotification,
+		MessageTypeOversizedConfigurationItemChangeNotification,
+	}
+}
+
 const (
 	// OrganizationConfigRuleTriggerTypeConfigurationItemChangeNotification is a OrganizationConfigRuleTriggerType enum value
 	OrganizationConfigRuleTriggerTypeConfigurationItemChangeNotification = "ConfigurationItemChangeNotification"
@@ -23581,6 +23912,29 @@ const (
 	// OrganizationConfigRuleTriggerTypeScheduledNotification is a OrganizationConfigRuleTriggerType enum value
 	OrganizationConfigRuleTriggerTypeScheduledNotification = "ScheduledNotification"
 )
+
+// OrganizationConfigRuleTriggerType is an enum
+type OrganizationConfigRuleTriggerType struct{}
+
+// Contains returns whether the OrganizationConfigRuleTriggerType enum includes the element
+func (enum OrganizationConfigRuleTriggerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrganizationConfigRuleTriggerType enum
+func (enum OrganizationConfigRuleTriggerType) Values() []string {
+	return []string{
+		OrganizationConfigRuleTriggerTypeConfigurationItemChangeNotification,
+		OrganizationConfigRuleTriggerTypeOversizedConfigurationItemChangeNotification,
+		OrganizationConfigRuleTriggerTypeScheduledNotification,
+	}
+}
 
 const (
 	// OrganizationResourceDetailedStatusCreateSuccessful is a OrganizationResourceDetailedStatus enum value
@@ -23611,6 +23965,35 @@ const (
 	OrganizationResourceDetailedStatusUpdateFailed = "UPDATE_FAILED"
 )
 
+// OrganizationResourceDetailedStatus is an enum
+type OrganizationResourceDetailedStatus struct{}
+
+// Contains returns whether the OrganizationResourceDetailedStatus enum includes the element
+func (enum OrganizationResourceDetailedStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrganizationResourceDetailedStatus enum
+func (enum OrganizationResourceDetailedStatus) Values() []string {
+	return []string{
+		OrganizationResourceDetailedStatusCreateSuccessful,
+		OrganizationResourceDetailedStatusCreateInProgress,
+		OrganizationResourceDetailedStatusCreateFailed,
+		OrganizationResourceDetailedStatusDeleteSuccessful,
+		OrganizationResourceDetailedStatusDeleteFailed,
+		OrganizationResourceDetailedStatusDeleteInProgress,
+		OrganizationResourceDetailedStatusUpdateSuccessful,
+		OrganizationResourceDetailedStatusUpdateInProgress,
+		OrganizationResourceDetailedStatusUpdateFailed,
+	}
+}
+
 const (
 	// OrganizationResourceStatusCreateSuccessful is a OrganizationResourceStatus enum value
 	OrganizationResourceStatusCreateSuccessful = "CREATE_SUCCESSFUL"
@@ -23639,6 +24022,35 @@ const (
 	// OrganizationResourceStatusUpdateFailed is a OrganizationResourceStatus enum value
 	OrganizationResourceStatusUpdateFailed = "UPDATE_FAILED"
 )
+
+// OrganizationResourceStatus is an enum
+type OrganizationResourceStatus struct{}
+
+// Contains returns whether the OrganizationResourceStatus enum includes the element
+func (enum OrganizationResourceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrganizationResourceStatus enum
+func (enum OrganizationResourceStatus) Values() []string {
+	return []string{
+		OrganizationResourceStatusCreateSuccessful,
+		OrganizationResourceStatusCreateInProgress,
+		OrganizationResourceStatusCreateFailed,
+		OrganizationResourceStatusDeleteSuccessful,
+		OrganizationResourceStatusDeleteFailed,
+		OrganizationResourceStatusDeleteInProgress,
+		OrganizationResourceStatusUpdateSuccessful,
+		OrganizationResourceStatusUpdateInProgress,
+		OrganizationResourceStatusUpdateFailed,
+	}
+}
 
 const (
 	// OrganizationRuleStatusCreateSuccessful is a OrganizationRuleStatus enum value
@@ -23669,6 +24081,35 @@ const (
 	OrganizationRuleStatusUpdateFailed = "UPDATE_FAILED"
 )
 
+// OrganizationRuleStatus is an enum
+type OrganizationRuleStatus struct{}
+
+// Contains returns whether the OrganizationRuleStatus enum includes the element
+func (enum OrganizationRuleStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrganizationRuleStatus enum
+func (enum OrganizationRuleStatus) Values() []string {
+	return []string{
+		OrganizationRuleStatusCreateSuccessful,
+		OrganizationRuleStatusCreateInProgress,
+		OrganizationRuleStatusCreateFailed,
+		OrganizationRuleStatusDeleteSuccessful,
+		OrganizationRuleStatusDeleteFailed,
+		OrganizationRuleStatusDeleteInProgress,
+		OrganizationRuleStatusUpdateSuccessful,
+		OrganizationRuleStatusUpdateInProgress,
+		OrganizationRuleStatusUpdateFailed,
+	}
+}
+
 const (
 	// OwnerCustomLambda is a Owner enum value
 	OwnerCustomLambda = "CUSTOM_LAMBDA"
@@ -23676,6 +24117,28 @@ const (
 	// OwnerAws is a Owner enum value
 	OwnerAws = "AWS"
 )
+
+// Owner is an enum
+type Owner struct{}
+
+// Contains returns whether the Owner enum includes the element
+func (enum Owner) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Owner enum
+func (enum Owner) Values() []string {
+	return []string{
+		OwnerCustomLambda,
+		OwnerAws,
+	}
+}
 
 const (
 	// RecorderStatusPending is a RecorderStatus enum value
@@ -23687,6 +24150,29 @@ const (
 	// RecorderStatusFailure is a RecorderStatus enum value
 	RecorderStatusFailure = "Failure"
 )
+
+// RecorderStatus is an enum
+type RecorderStatus struct{}
+
+// Contains returns whether the RecorderStatus enum includes the element
+func (enum RecorderStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecorderStatus enum
+func (enum RecorderStatus) Values() []string {
+	return []string{
+		RecorderStatusPending,
+		RecorderStatusSuccess,
+		RecorderStatusFailure,
+	}
+}
 
 const (
 	// RemediationExecutionStateQueued is a RemediationExecutionState enum value
@@ -23702,6 +24188,30 @@ const (
 	RemediationExecutionStateFailed = "FAILED"
 )
 
+// RemediationExecutionState is an enum
+type RemediationExecutionState struct{}
+
+// Contains returns whether the RemediationExecutionState enum includes the element
+func (enum RemediationExecutionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RemediationExecutionState enum
+func (enum RemediationExecutionState) Values() []string {
+	return []string{
+		RemediationExecutionStateQueued,
+		RemediationExecutionStateInProgress,
+		RemediationExecutionStateSucceeded,
+		RemediationExecutionStateFailed,
+	}
+}
+
 const (
 	// RemediationExecutionStepStateSucceeded is a RemediationExecutionStepState enum value
 	RemediationExecutionStepStateSucceeded = "SUCCEEDED"
@@ -23713,10 +24223,54 @@ const (
 	RemediationExecutionStepStateFailed = "FAILED"
 )
 
+// RemediationExecutionStepState is an enum
+type RemediationExecutionStepState struct{}
+
+// Contains returns whether the RemediationExecutionStepState enum includes the element
+func (enum RemediationExecutionStepState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RemediationExecutionStepState enum
+func (enum RemediationExecutionStepState) Values() []string {
+	return []string{
+		RemediationExecutionStepStateSucceeded,
+		RemediationExecutionStepStatePending,
+		RemediationExecutionStepStateFailed,
+	}
+}
+
 const (
 	// RemediationTargetTypeSsmDocument is a RemediationTargetType enum value
 	RemediationTargetTypeSsmDocument = "SSM_DOCUMENT"
 )
+
+// RemediationTargetType is an enum
+type RemediationTargetType struct{}
+
+// Contains returns whether the RemediationTargetType enum includes the element
+func (enum RemediationTargetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RemediationTargetType enum
+func (enum RemediationTargetType) Values() []string {
+	return []string{
+		RemediationTargetTypeSsmDocument,
+	}
+}
 
 const (
 	// ResourceCountGroupKeyResourceType is a ResourceCountGroupKey enum value
@@ -23728,6 +24282,29 @@ const (
 	// ResourceCountGroupKeyAwsRegion is a ResourceCountGroupKey enum value
 	ResourceCountGroupKeyAwsRegion = "AWS_REGION"
 )
+
+// ResourceCountGroupKey is an enum
+type ResourceCountGroupKey struct{}
+
+// Contains returns whether the ResourceCountGroupKey enum includes the element
+func (enum ResourceCountGroupKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceCountGroupKey enum
+func (enum ResourceCountGroupKey) Values() []string {
+	return []string{
+		ResourceCountGroupKeyResourceType,
+		ResourceCountGroupKeyAccountId,
+		ResourceCountGroupKeyAwsRegion,
+	}
+}
 
 const (
 	// ResourceTypeAwsEc2CustomerGateway is a ResourceType enum value
@@ -24010,7 +24587,141 @@ const (
 	ResourceTypeAwsSsmFileData = "AWS::SSM::FileData"
 )
 
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeAwsEc2CustomerGateway,
+		ResourceTypeAwsEc2Eip,
+		ResourceTypeAwsEc2Host,
+		ResourceTypeAwsEc2Instance,
+		ResourceTypeAwsEc2InternetGateway,
+		ResourceTypeAwsEc2NetworkAcl,
+		ResourceTypeAwsEc2NetworkInterface,
+		ResourceTypeAwsEc2RouteTable,
+		ResourceTypeAwsEc2SecurityGroup,
+		ResourceTypeAwsEc2Subnet,
+		ResourceTypeAwsCloudTrailTrail,
+		ResourceTypeAwsEc2Volume,
+		ResourceTypeAwsEc2Vpc,
+		ResourceTypeAwsEc2Vpnconnection,
+		ResourceTypeAwsEc2Vpngateway,
+		ResourceTypeAwsEc2RegisteredHainstance,
+		ResourceTypeAwsEc2NatGateway,
+		ResourceTypeAwsEc2EgressOnlyInternetGateway,
+		ResourceTypeAwsEc2Vpcendpoint,
+		ResourceTypeAwsEc2VpcendpointService,
+		ResourceTypeAwsEc2FlowLog,
+		ResourceTypeAwsEc2VpcpeeringConnection,
+		ResourceTypeAwsElasticsearchDomain,
+		ResourceTypeAwsIamGroup,
+		ResourceTypeAwsIamPolicy,
+		ResourceTypeAwsIamRole,
+		ResourceTypeAwsIamUser,
+		ResourceTypeAwsElasticLoadBalancingV2LoadBalancer,
+		ResourceTypeAwsAcmCertificate,
+		ResourceTypeAwsRdsDbinstance,
+		ResourceTypeAwsRdsDbsubnetGroup,
+		ResourceTypeAwsRdsDbsecurityGroup,
+		ResourceTypeAwsRdsDbsnapshot,
+		ResourceTypeAwsRdsDbcluster,
+		ResourceTypeAwsRdsDbclusterSnapshot,
+		ResourceTypeAwsRdsEventSubscription,
+		ResourceTypeAwsS3Bucket,
+		ResourceTypeAwsS3AccountPublicAccessBlock,
+		ResourceTypeAwsRedshiftCluster,
+		ResourceTypeAwsRedshiftClusterSnapshot,
+		ResourceTypeAwsRedshiftClusterParameterGroup,
+		ResourceTypeAwsRedshiftClusterSecurityGroup,
+		ResourceTypeAwsRedshiftClusterSubnetGroup,
+		ResourceTypeAwsRedshiftEventSubscription,
+		ResourceTypeAwsSsmManagedInstanceInventory,
+		ResourceTypeAwsCloudWatchAlarm,
+		ResourceTypeAwsCloudFormationStack,
+		ResourceTypeAwsElasticLoadBalancingLoadBalancer,
+		ResourceTypeAwsAutoScalingAutoScalingGroup,
+		ResourceTypeAwsAutoScalingLaunchConfiguration,
+		ResourceTypeAwsAutoScalingScalingPolicy,
+		ResourceTypeAwsAutoScalingScheduledAction,
+		ResourceTypeAwsDynamoDbTable,
+		ResourceTypeAwsCodeBuildProject,
+		ResourceTypeAwsWafRateBasedRule,
+		ResourceTypeAwsWafRule,
+		ResourceTypeAwsWafRuleGroup,
+		ResourceTypeAwsWafWebAcl,
+		ResourceTypeAwsWafregionalRateBasedRule,
+		ResourceTypeAwsWafregionalRule,
+		ResourceTypeAwsWafregionalRuleGroup,
+		ResourceTypeAwsWafregionalWebAcl,
+		ResourceTypeAwsCloudFrontDistribution,
+		ResourceTypeAwsCloudFrontStreamingDistribution,
+		ResourceTypeAwsLambdaFunction,
+		ResourceTypeAwsElasticBeanstalkApplication,
+		ResourceTypeAwsElasticBeanstalkApplicationVersion,
+		ResourceTypeAwsElasticBeanstalkEnvironment,
+		ResourceTypeAwsWafv2WebAcl,
+		ResourceTypeAwsWafv2RuleGroup,
+		ResourceTypeAwsWafv2Ipset,
+		ResourceTypeAwsWafv2RegexPatternSet,
+		ResourceTypeAwsWafv2ManagedRuleSet,
+		ResourceTypeAwsXrayEncryptionConfig,
+		ResourceTypeAwsSsmAssociationCompliance,
+		ResourceTypeAwsSsmPatchCompliance,
+		ResourceTypeAwsShieldProtection,
+		ResourceTypeAwsShieldRegionalProtection,
+		ResourceTypeAwsConfigResourceCompliance,
+		ResourceTypeAwsApiGatewayStage,
+		ResourceTypeAwsApiGatewayRestApi,
+		ResourceTypeAwsApiGatewayV2Stage,
+		ResourceTypeAwsApiGatewayV2Api,
+		ResourceTypeAwsCodePipelinePipeline,
+		ResourceTypeAwsServiceCatalogCloudFormationProvisionedProduct,
+		ResourceTypeAwsServiceCatalogCloudFormationProduct,
+		ResourceTypeAwsServiceCatalogPortfolio,
+		ResourceTypeAwsSqsQueue,
+		ResourceTypeAwsKmsKey,
+		ResourceTypeAwsQldbLedger,
+		ResourceTypeAwsSecretsManagerSecret,
+		ResourceTypeAwsSnsTopic,
+		ResourceTypeAwsSsmFileData,
+	}
+}
+
 const (
 	// ResourceValueTypeResourceId is a ResourceValueType enum value
 	ResourceValueTypeResourceId = "RESOURCE_ID"
 )
+
+// ResourceValueType is an enum
+type ResourceValueType struct{}
+
+// Contains returns whether the ResourceValueType enum includes the element
+func (enum ResourceValueType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceValueType enum
+func (enum ResourceValueType) Values() []string {
+	return []string{
+		ResourceValueTypeResourceId,
+	}
+}

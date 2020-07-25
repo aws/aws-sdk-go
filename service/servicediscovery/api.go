@@ -7523,6 +7523,28 @@ const (
 	CustomHealthStatusUnhealthy = "UNHEALTHY"
 )
 
+// CustomHealthStatus is an enum
+type CustomHealthStatus struct{}
+
+// Contains returns whether the CustomHealthStatus enum includes the element
+func (enum CustomHealthStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CustomHealthStatus enum
+func (enum CustomHealthStatus) Values() []string {
+	return []string{
+		CustomHealthStatusHealthy,
+		CustomHealthStatusUnhealthy,
+	}
+}
+
 const (
 	// FilterConditionEq is a FilterCondition enum value
 	FilterConditionEq = "EQ"
@@ -7533,6 +7555,29 @@ const (
 	// FilterConditionBetween is a FilterCondition enum value
 	FilterConditionBetween = "BETWEEN"
 )
+
+// FilterCondition is an enum
+type FilterCondition struct{}
+
+// Contains returns whether the FilterCondition enum includes the element
+func (enum FilterCondition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterCondition enum
+func (enum FilterCondition) Values() []string {
+	return []string{
+		FilterConditionEq,
+		FilterConditionIn,
+		FilterConditionBetween,
+	}
+}
 
 const (
 	// HealthCheckTypeHttp is a HealthCheckType enum value
@@ -7545,6 +7590,29 @@ const (
 	HealthCheckTypeTcp = "TCP"
 )
 
+// HealthCheckType is an enum
+type HealthCheckType struct{}
+
+// Contains returns whether the HealthCheckType enum includes the element
+func (enum HealthCheckType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HealthCheckType enum
+func (enum HealthCheckType) Values() []string {
+	return []string{
+		HealthCheckTypeHttp,
+		HealthCheckTypeHttps,
+		HealthCheckTypeTcp,
+	}
+}
+
 const (
 	// HealthStatusHealthy is a HealthStatus enum value
 	HealthStatusHealthy = "HEALTHY"
@@ -7555,6 +7623,29 @@ const (
 	// HealthStatusUnknown is a HealthStatus enum value
 	HealthStatusUnknown = "UNKNOWN"
 )
+
+// HealthStatus is an enum
+type HealthStatus struct{}
+
+// Contains returns whether the HealthStatus enum includes the element
+func (enum HealthStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HealthStatus enum
+func (enum HealthStatus) Values() []string {
+	return []string{
+		HealthStatusHealthy,
+		HealthStatusUnhealthy,
+		HealthStatusUnknown,
+	}
+}
 
 const (
 	// HealthStatusFilterHealthy is a HealthStatusFilter enum value
@@ -7567,10 +7658,54 @@ const (
 	HealthStatusFilterAll = "ALL"
 )
 
+// HealthStatusFilter is an enum
+type HealthStatusFilter struct{}
+
+// Contains returns whether the HealthStatusFilter enum includes the element
+func (enum HealthStatusFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HealthStatusFilter enum
+func (enum HealthStatusFilter) Values() []string {
+	return []string{
+		HealthStatusFilterHealthy,
+		HealthStatusFilterUnhealthy,
+		HealthStatusFilterAll,
+	}
+}
+
 const (
 	// NamespaceFilterNameType is a NamespaceFilterName enum value
 	NamespaceFilterNameType = "TYPE"
 )
+
+// NamespaceFilterName is an enum
+type NamespaceFilterName struct{}
+
+// Contains returns whether the NamespaceFilterName enum includes the element
+func (enum NamespaceFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NamespaceFilterName enum
+func (enum NamespaceFilterName) Values() []string {
+	return []string{
+		NamespaceFilterNameType,
+	}
+}
 
 const (
 	// NamespaceTypeDnsPublic is a NamespaceType enum value
@@ -7582,6 +7717,29 @@ const (
 	// NamespaceTypeHttp is a NamespaceType enum value
 	NamespaceTypeHttp = "HTTP"
 )
+
+// NamespaceType is an enum
+type NamespaceType struct{}
+
+// Contains returns whether the NamespaceType enum includes the element
+func (enum NamespaceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NamespaceType enum
+func (enum NamespaceType) Values() []string {
+	return []string{
+		NamespaceTypeDnsPublic,
+		NamespaceTypeDnsPrivate,
+		NamespaceTypeHttp,
+	}
+}
 
 const (
 	// OperationFilterNameNamespaceId is a OperationFilterName enum value
@@ -7600,6 +7758,31 @@ const (
 	OperationFilterNameUpdateDate = "UPDATE_DATE"
 )
 
+// OperationFilterName is an enum
+type OperationFilterName struct{}
+
+// Contains returns whether the OperationFilterName enum includes the element
+func (enum OperationFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperationFilterName enum
+func (enum OperationFilterName) Values() []string {
+	return []string{
+		OperationFilterNameNamespaceId,
+		OperationFilterNameServiceId,
+		OperationFilterNameStatus,
+		OperationFilterNameType,
+		OperationFilterNameUpdateDate,
+	}
+}
+
 const (
 	// OperationStatusSubmitted is a OperationStatus enum value
 	OperationStatusSubmitted = "SUBMITTED"
@@ -7614,6 +7797,30 @@ const (
 	OperationStatusFail = "FAIL"
 )
 
+// OperationStatus is an enum
+type OperationStatus struct{}
+
+// Contains returns whether the OperationStatus enum includes the element
+func (enum OperationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperationStatus enum
+func (enum OperationStatus) Values() []string {
+	return []string{
+		OperationStatusSubmitted,
+		OperationStatusPending,
+		OperationStatusSuccess,
+		OperationStatusFail,
+	}
+}
+
 const (
 	// OperationTargetTypeNamespace is a OperationTargetType enum value
 	OperationTargetTypeNamespace = "NAMESPACE"
@@ -7624,6 +7831,29 @@ const (
 	// OperationTargetTypeInstance is a OperationTargetType enum value
 	OperationTargetTypeInstance = "INSTANCE"
 )
+
+// OperationTargetType is an enum
+type OperationTargetType struct{}
+
+// Contains returns whether the OperationTargetType enum includes the element
+func (enum OperationTargetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperationTargetType enum
+func (enum OperationTargetType) Values() []string {
+	return []string{
+		OperationTargetTypeNamespace,
+		OperationTargetTypeService,
+		OperationTargetTypeInstance,
+	}
+}
 
 const (
 	// OperationTypeCreateNamespace is a OperationType enum value
@@ -7642,6 +7872,31 @@ const (
 	OperationTypeDeregisterInstance = "DEREGISTER_INSTANCE"
 )
 
+// OperationType is an enum
+type OperationType struct{}
+
+// Contains returns whether the OperationType enum includes the element
+func (enum OperationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperationType enum
+func (enum OperationType) Values() []string {
+	return []string{
+		OperationTypeCreateNamespace,
+		OperationTypeDeleteNamespace,
+		OperationTypeUpdateService,
+		OperationTypeRegisterInstance,
+		OperationTypeDeregisterInstance,
+	}
+}
+
 const (
 	// RecordTypeSrv is a RecordType enum value
 	RecordTypeSrv = "SRV"
@@ -7656,6 +7911,30 @@ const (
 	RecordTypeCname = "CNAME"
 )
 
+// RecordType is an enum
+type RecordType struct{}
+
+// Contains returns whether the RecordType enum includes the element
+func (enum RecordType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecordType enum
+func (enum RecordType) Values() []string {
+	return []string{
+		RecordTypeSrv,
+		RecordTypeA,
+		RecordTypeAaaa,
+		RecordTypeCname,
+	}
+}
+
 const (
 	// RoutingPolicyMultivalue is a RoutingPolicy enum value
 	RoutingPolicyMultivalue = "MULTIVALUE"
@@ -7664,7 +7943,50 @@ const (
 	RoutingPolicyWeighted = "WEIGHTED"
 )
 
+// RoutingPolicy is an enum
+type RoutingPolicy struct{}
+
+// Contains returns whether the RoutingPolicy enum includes the element
+func (enum RoutingPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RoutingPolicy enum
+func (enum RoutingPolicy) Values() []string {
+	return []string{
+		RoutingPolicyMultivalue,
+		RoutingPolicyWeighted,
+	}
+}
+
 const (
 	// ServiceFilterNameNamespaceId is a ServiceFilterName enum value
 	ServiceFilterNameNamespaceId = "NAMESPACE_ID"
 )
+
+// ServiceFilterName is an enum
+type ServiceFilterName struct{}
+
+// Contains returns whether the ServiceFilterName enum includes the element
+func (enum ServiceFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceFilterName enum
+func (enum ServiceFilterName) Values() []string {
+	return []string{
+		ServiceFilterNameNamespaceId,
+	}
+}

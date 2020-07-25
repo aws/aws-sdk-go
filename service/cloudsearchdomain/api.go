@@ -1551,6 +1551,28 @@ const (
 	ContentTypeApplicationXml = "application/xml"
 )
 
+// ContentType is an enum
+type ContentType struct{}
+
+// Contains returns whether the ContentType enum includes the element
+func (enum ContentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentType enum
+func (enum ContentType) Values() []string {
+	return []string{
+		ContentTypeApplicationJson,
+		ContentTypeApplicationXml,
+	}
+}
+
 const (
 	// QueryParserSimple is a QueryParser enum value
 	QueryParserSimple = "simple"
@@ -1564,3 +1586,27 @@ const (
 	// QueryParserDismax is a QueryParser enum value
 	QueryParserDismax = "dismax"
 )
+
+// QueryParser is an enum
+type QueryParser struct{}
+
+// Contains returns whether the QueryParser enum includes the element
+func (enum QueryParser) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueryParser enum
+func (enum QueryParser) Values() []string {
+	return []string{
+		QueryParserSimple,
+		QueryParserStructured,
+		QueryParserLucene,
+		QueryParserDismax,
+	}
+}

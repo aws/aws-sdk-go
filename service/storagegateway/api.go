@@ -18980,6 +18980,33 @@ const (
 	ActiveDirectoryStatusUnknownError = "UNKNOWN_ERROR"
 )
 
+// ActiveDirectoryStatus is an enum
+type ActiveDirectoryStatus struct{}
+
+// Contains returns whether the ActiveDirectoryStatus enum includes the element
+func (enum ActiveDirectoryStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActiveDirectoryStatus enum
+func (enum ActiveDirectoryStatus) Values() []string {
+	return []string{
+		ActiveDirectoryStatusAccessDenied,
+		ActiveDirectoryStatusDetached,
+		ActiveDirectoryStatusJoined,
+		ActiveDirectoryStatusJoining,
+		ActiveDirectoryStatusNetworkError,
+		ActiveDirectoryStatusTimeout,
+		ActiveDirectoryStatusUnknownError,
+	}
+}
+
 const (
 	// AvailabilityMonitorTestStatusComplete is a AvailabilityMonitorTestStatus enum value
 	AvailabilityMonitorTestStatusComplete = "COMPLETE"
@@ -18991,6 +19018,29 @@ const (
 	AvailabilityMonitorTestStatusPending = "PENDING"
 )
 
+// AvailabilityMonitorTestStatus is an enum
+type AvailabilityMonitorTestStatus struct{}
+
+// Contains returns whether the AvailabilityMonitorTestStatus enum includes the element
+func (enum AvailabilityMonitorTestStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AvailabilityMonitorTestStatus enum
+func (enum AvailabilityMonitorTestStatus) Values() []string {
+	return []string{
+		AvailabilityMonitorTestStatusComplete,
+		AvailabilityMonitorTestStatusFailed,
+		AvailabilityMonitorTestStatusPending,
+	}
+}
+
 const (
 	// CaseSensitivityClientSpecified is a CaseSensitivity enum value
 	CaseSensitivityClientSpecified = "ClientSpecified"
@@ -18998,6 +19048,28 @@ const (
 	// CaseSensitivityCaseSensitive is a CaseSensitivity enum value
 	CaseSensitivityCaseSensitive = "CaseSensitive"
 )
+
+// CaseSensitivity is an enum
+type CaseSensitivity struct{}
+
+// Contains returns whether the CaseSensitivity enum includes the element
+func (enum CaseSensitivity) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CaseSensitivity enum
+func (enum CaseSensitivity) Values() []string {
+	return []string{
+		CaseSensitivityClientSpecified,
+		CaseSensitivityCaseSensitive,
+	}
+}
 
 const (
 	// ErrorCodeActivationKeyExpired is a ErrorCode enum value
@@ -19187,6 +19259,88 @@ const (
 	ErrorCodeVolumeNotReady = "VolumeNotReady"
 )
 
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeActivationKeyExpired,
+		ErrorCodeActivationKeyInvalid,
+		ErrorCodeActivationKeyNotFound,
+		ErrorCodeGatewayInternalError,
+		ErrorCodeGatewayNotConnected,
+		ErrorCodeGatewayNotFound,
+		ErrorCodeGatewayProxyNetworkConnectionBusy,
+		ErrorCodeAuthenticationFailure,
+		ErrorCodeBandwidthThrottleScheduleNotFound,
+		ErrorCodeBlocked,
+		ErrorCodeCannotExportSnapshot,
+		ErrorCodeChapCredentialNotFound,
+		ErrorCodeDiskAlreadyAllocated,
+		ErrorCodeDiskDoesNotExist,
+		ErrorCodeDiskSizeGreaterThanVolumeMaxSize,
+		ErrorCodeDiskSizeLessThanVolumeSize,
+		ErrorCodeDiskSizeNotGigAligned,
+		ErrorCodeDuplicateCertificateInfo,
+		ErrorCodeDuplicateSchedule,
+		ErrorCodeEndpointNotFound,
+		ErrorCodeIamnotSupported,
+		ErrorCodeInitiatorInvalid,
+		ErrorCodeInitiatorNotFound,
+		ErrorCodeInternalError,
+		ErrorCodeInvalidGateway,
+		ErrorCodeInvalidEndpoint,
+		ErrorCodeInvalidParameters,
+		ErrorCodeInvalidSchedule,
+		ErrorCodeLocalStorageLimitExceeded,
+		ErrorCodeLunAlreadyAllocated,
+		ErrorCodeLunInvalid,
+		ErrorCodeJoinDomainInProgress,
+		ErrorCodeMaximumContentLengthExceeded,
+		ErrorCodeMaximumTapeCartridgeCountExceeded,
+		ErrorCodeMaximumVolumeCountExceeded,
+		ErrorCodeNetworkConfigurationChanged,
+		ErrorCodeNoDisksAvailable,
+		ErrorCodeNotImplemented,
+		ErrorCodeNotSupported,
+		ErrorCodeOperationAborted,
+		ErrorCodeOutdatedGateway,
+		ErrorCodeParametersNotImplemented,
+		ErrorCodeRegionInvalid,
+		ErrorCodeRequestTimeout,
+		ErrorCodeServiceUnavailable,
+		ErrorCodeSnapshotDeleted,
+		ErrorCodeSnapshotIdInvalid,
+		ErrorCodeSnapshotInProgress,
+		ErrorCodeSnapshotNotFound,
+		ErrorCodeSnapshotScheduleNotFound,
+		ErrorCodeStagingAreaFull,
+		ErrorCodeStorageFailure,
+		ErrorCodeTapeCartridgeNotFound,
+		ErrorCodeTargetAlreadyExists,
+		ErrorCodeTargetInvalid,
+		ErrorCodeTargetNotFound,
+		ErrorCodeUnauthorizedOperation,
+		ErrorCodeVolumeAlreadyExists,
+		ErrorCodeVolumeIdInvalid,
+		ErrorCodeVolumeInUse,
+		ErrorCodeVolumeNotFound,
+		ErrorCodeVolumeNotReady,
+	}
+}
+
 // The type of the file share.
 const (
 	// FileShareTypeNfs is a FileShareType enum value
@@ -19195,6 +19349,28 @@ const (
 	// FileShareTypeSmb is a FileShareType enum value
 	FileShareTypeSmb = "SMB"
 )
+
+// FileShareType is an enum
+type FileShareType struct{}
+
+// Contains returns whether the FileShareType enum includes the element
+func (enum FileShareType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileShareType enum
+func (enum FileShareType) Values() []string {
+	return []string{
+		FileShareTypeNfs,
+		FileShareTypeSmb,
+	}
+}
 
 const (
 	// HostEnvironmentVmware is a HostEnvironment enum value
@@ -19212,6 +19388,31 @@ const (
 	// HostEnvironmentOther is a HostEnvironment enum value
 	HostEnvironmentOther = "OTHER"
 )
+
+// HostEnvironment is an enum
+type HostEnvironment struct{}
+
+// Contains returns whether the HostEnvironment enum includes the element
+func (enum HostEnvironment) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HostEnvironment enum
+func (enum HostEnvironment) Values() []string {
+	return []string{
+		HostEnvironmentVmware,
+		HostEnvironmentHyperV,
+		HostEnvironmentEc2,
+		HostEnvironmentKvm,
+		HostEnvironmentOther,
+	}
+}
 
 // A value that sets the access control list (ACL) permission for objects in
 // the S3 bucket that a file gateway puts objects into. The default value is
@@ -19239,6 +19440,33 @@ const (
 	ObjectACLAwsExecRead = "aws-exec-read"
 )
 
+// ObjectACL is an enum
+type ObjectACL struct{}
+
+// Contains returns whether the ObjectACL enum includes the element
+func (enum ObjectACL) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectACL enum
+func (enum ObjectACL) Values() []string {
+	return []string{
+		ObjectACLPrivate,
+		ObjectACLPublicRead,
+		ObjectACLPublicReadWrite,
+		ObjectACLAuthenticatedRead,
+		ObjectACLBucketOwnerRead,
+		ObjectACLBucketOwnerFullControl,
+		ObjectACLAwsExecRead,
+	}
+}
+
 const (
 	// SMBSecurityStrategyClientSpecified is a SMBSecurityStrategy enum value
 	SMBSecurityStrategyClientSpecified = "ClientSpecified"
@@ -19249,3 +19477,26 @@ const (
 	// SMBSecurityStrategyMandatoryEncryption is a SMBSecurityStrategy enum value
 	SMBSecurityStrategyMandatoryEncryption = "MandatoryEncryption"
 )
+
+// SMBSecurityStrategy is an enum
+type SMBSecurityStrategy struct{}
+
+// Contains returns whether the SMBSecurityStrategy enum includes the element
+func (enum SMBSecurityStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SMBSecurityStrategy enum
+func (enum SMBSecurityStrategy) Values() []string {
+	return []string{
+		SMBSecurityStrategyClientSpecified,
+		SMBSecurityStrategyMandatorySigning,
+		SMBSecurityStrategyMandatoryEncryption,
+	}
+}

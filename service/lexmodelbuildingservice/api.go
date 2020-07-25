@@ -12449,6 +12449,29 @@ const (
 	ChannelStatusFailed = "FAILED"
 )
 
+// ChannelStatus is an enum
+type ChannelStatus struct{}
+
+// Contains returns whether the ChannelStatus enum includes the element
+func (enum ChannelStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelStatus enum
+func (enum ChannelStatus) Values() []string {
+	return []string{
+		ChannelStatusInProgress,
+		ChannelStatusCreated,
+		ChannelStatusFailed,
+	}
+}
+
 const (
 	// ChannelTypeFacebook is a ChannelType enum value
 	ChannelTypeFacebook = "Facebook"
@@ -12463,6 +12486,30 @@ const (
 	ChannelTypeKik = "Kik"
 )
 
+// ChannelType is an enum
+type ChannelType struct{}
+
+// Contains returns whether the ChannelType enum includes the element
+func (enum ChannelType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelType enum
+func (enum ChannelType) Values() []string {
+	return []string{
+		ChannelTypeFacebook,
+		ChannelTypeSlack,
+		ChannelTypeTwilioSms,
+		ChannelTypeKik,
+	}
+}
+
 const (
 	// ContentTypePlainText is a ContentType enum value
 	ContentTypePlainText = "PlainText"
@@ -12474,6 +12521,29 @@ const (
 	ContentTypeCustomPayload = "CustomPayload"
 )
 
+// ContentType is an enum
+type ContentType struct{}
+
+// Contains returns whether the ContentType enum includes the element
+func (enum ContentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentType enum
+func (enum ContentType) Values() []string {
+	return []string{
+		ContentTypePlainText,
+		ContentTypeSsml,
+		ContentTypeCustomPayload,
+	}
+}
+
 const (
 	// DestinationCloudwatchLogs is a Destination enum value
 	DestinationCloudwatchLogs = "CLOUDWATCH_LOGS"
@@ -12481,6 +12551,28 @@ const (
 	// DestinationS3 is a Destination enum value
 	DestinationS3 = "S3"
 )
+
+// Destination is an enum
+type Destination struct{}
+
+// Contains returns whether the Destination enum includes the element
+func (enum Destination) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Destination enum
+func (enum Destination) Values() []string {
+	return []string{
+		DestinationCloudwatchLogs,
+		DestinationS3,
+	}
+}
 
 const (
 	// ExportStatusInProgress is a ExportStatus enum value
@@ -12493,6 +12585,29 @@ const (
 	ExportStatusFailed = "FAILED"
 )
 
+// ExportStatus is an enum
+type ExportStatus struct{}
+
+// Contains returns whether the ExportStatus enum includes the element
+func (enum ExportStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExportStatus enum
+func (enum ExportStatus) Values() []string {
+	return []string{
+		ExportStatusInProgress,
+		ExportStatusReady,
+		ExportStatusFailed,
+	}
+}
+
 const (
 	// ExportTypeAlexaSkillsKit is a ExportType enum value
 	ExportTypeAlexaSkillsKit = "ALEXA_SKILLS_KIT"
@@ -12501,6 +12616,28 @@ const (
 	ExportTypeLex = "LEX"
 )
 
+// ExportType is an enum
+type ExportType struct{}
+
+// Contains returns whether the ExportType enum includes the element
+func (enum ExportType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExportType enum
+func (enum ExportType) Values() []string {
+	return []string{
+		ExportTypeAlexaSkillsKit,
+		ExportTypeLex,
+	}
+}
+
 const (
 	// FulfillmentActivityTypeReturnIntent is a FulfillmentActivityType enum value
 	FulfillmentActivityTypeReturnIntent = "ReturnIntent"
@@ -12508,6 +12645,28 @@ const (
 	// FulfillmentActivityTypeCodeHook is a FulfillmentActivityType enum value
 	FulfillmentActivityTypeCodeHook = "CodeHook"
 )
+
+// FulfillmentActivityType is an enum
+type FulfillmentActivityType struct{}
+
+// Contains returns whether the FulfillmentActivityType enum includes the element
+func (enum FulfillmentActivityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FulfillmentActivityType enum
+func (enum FulfillmentActivityType) Values() []string {
+	return []string{
+		FulfillmentActivityTypeReturnIntent,
+		FulfillmentActivityTypeCodeHook,
+	}
+}
 
 const (
 	// ImportStatusInProgress is a ImportStatus enum value
@@ -12520,6 +12679,29 @@ const (
 	ImportStatusFailed = "FAILED"
 )
 
+// ImportStatus is an enum
+type ImportStatus struct{}
+
+// Contains returns whether the ImportStatus enum includes the element
+func (enum ImportStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImportStatus enum
+func (enum ImportStatus) Values() []string {
+	return []string{
+		ImportStatusInProgress,
+		ImportStatusComplete,
+		ImportStatusFailed,
+	}
+}
+
 const (
 	// LocaleEnUs is a Locale enum value
 	LocaleEnUs = "en-US"
@@ -12531,6 +12713,29 @@ const (
 	LocaleDeDe = "de-DE"
 )
 
+// Locale is an enum
+type Locale struct{}
+
+// Contains returns whether the Locale enum includes the element
+func (enum Locale) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Locale enum
+func (enum Locale) Values() []string {
+	return []string{
+		LocaleEnUs,
+		LocaleEnGb,
+		LocaleDeDe,
+	}
+}
+
 const (
 	// LogTypeAudio is a LogType enum value
 	LogTypeAudio = "AUDIO"
@@ -12538,6 +12743,28 @@ const (
 	// LogTypeText is a LogType enum value
 	LogTypeText = "TEXT"
 )
+
+// LogType is an enum
+type LogType struct{}
+
+// Contains returns whether the LogType enum includes the element
+func (enum LogType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogType enum
+func (enum LogType) Values() []string {
+	return []string{
+		LogTypeAudio,
+		LogTypeText,
+	}
+}
 
 const (
 	// MergeStrategyOverwriteLatest is a MergeStrategy enum value
@@ -12547,6 +12774,28 @@ const (
 	MergeStrategyFailOnConflict = "FAIL_ON_CONFLICT"
 )
 
+// MergeStrategy is an enum
+type MergeStrategy struct{}
+
+// Contains returns whether the MergeStrategy enum includes the element
+func (enum MergeStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MergeStrategy enum
+func (enum MergeStrategy) Values() []string {
+	return []string{
+		MergeStrategyOverwriteLatest,
+		MergeStrategyFailOnConflict,
+	}
+}
+
 const (
 	// ObfuscationSettingNone is a ObfuscationSetting enum value
 	ObfuscationSettingNone = "NONE"
@@ -12555,6 +12804,28 @@ const (
 	ObfuscationSettingDefaultObfuscation = "DEFAULT_OBFUSCATION"
 )
 
+// ObfuscationSetting is an enum
+type ObfuscationSetting struct{}
+
+// Contains returns whether the ObfuscationSetting enum includes the element
+func (enum ObfuscationSetting) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObfuscationSetting enum
+func (enum ObfuscationSetting) Values() []string {
+	return []string{
+		ObfuscationSettingNone,
+		ObfuscationSettingDefaultObfuscation,
+	}
+}
+
 const (
 	// ProcessBehaviorSave is a ProcessBehavior enum value
 	ProcessBehaviorSave = "SAVE"
@@ -12562,6 +12833,28 @@ const (
 	// ProcessBehaviorBuild is a ProcessBehavior enum value
 	ProcessBehaviorBuild = "BUILD"
 )
+
+// ProcessBehavior is an enum
+type ProcessBehavior struct{}
+
+// Contains returns whether the ProcessBehavior enum includes the element
+func (enum ProcessBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProcessBehavior enum
+func (enum ProcessBehavior) Values() []string {
+	return []string{
+		ProcessBehaviorSave,
+		ProcessBehaviorBuild,
+	}
+}
 
 const (
 	// ReferenceTypeIntent is a ReferenceType enum value
@@ -12577,6 +12870,30 @@ const (
 	ReferenceTypeBotChannel = "BotChannel"
 )
 
+// ReferenceType is an enum
+type ReferenceType struct{}
+
+// Contains returns whether the ReferenceType enum includes the element
+func (enum ReferenceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReferenceType enum
+func (enum ReferenceType) Values() []string {
+	return []string{
+		ReferenceTypeIntent,
+		ReferenceTypeBot,
+		ReferenceTypeBotAlias,
+		ReferenceTypeBotChannel,
+	}
+}
+
 const (
 	// ResourceTypeBot is a ResourceType enum value
 	ResourceTypeBot = "BOT"
@@ -12588,6 +12905,29 @@ const (
 	ResourceTypeSlotType = "SLOT_TYPE"
 )
 
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeBot,
+		ResourceTypeIntent,
+		ResourceTypeSlotType,
+	}
+}
+
 const (
 	// SlotConstraintRequired is a SlotConstraint enum value
 	SlotConstraintRequired = "Required"
@@ -12596,6 +12936,28 @@ const (
 	SlotConstraintOptional = "Optional"
 )
 
+// SlotConstraint is an enum
+type SlotConstraint struct{}
+
+// Contains returns whether the SlotConstraint enum includes the element
+func (enum SlotConstraint) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SlotConstraint enum
+func (enum SlotConstraint) Values() []string {
+	return []string{
+		SlotConstraintRequired,
+		SlotConstraintOptional,
+	}
+}
+
 const (
 	// SlotValueSelectionStrategyOriginalValue is a SlotValueSelectionStrategy enum value
 	SlotValueSelectionStrategyOriginalValue = "ORIGINAL_VALUE"
@@ -12603,6 +12965,28 @@ const (
 	// SlotValueSelectionStrategyTopResolution is a SlotValueSelectionStrategy enum value
 	SlotValueSelectionStrategyTopResolution = "TOP_RESOLUTION"
 )
+
+// SlotValueSelectionStrategy is an enum
+type SlotValueSelectionStrategy struct{}
+
+// Contains returns whether the SlotValueSelectionStrategy enum includes the element
+func (enum SlotValueSelectionStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SlotValueSelectionStrategy enum
+func (enum SlotValueSelectionStrategy) Values() []string {
+	return []string{
+		SlotValueSelectionStrategyOriginalValue,
+		SlotValueSelectionStrategyTopResolution,
+	}
+}
 
 const (
 	// StatusBuilding is a Status enum value
@@ -12621,6 +13005,31 @@ const (
 	StatusNotBuilt = "NOT_BUILT"
 )
 
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusBuilding,
+		StatusReady,
+		StatusReadyBasicTesting,
+		StatusFailed,
+		StatusNotBuilt,
+	}
+}
+
 const (
 	// StatusTypeDetected is a StatusType enum value
 	StatusTypeDetected = "Detected"
@@ -12628,3 +13037,25 @@ const (
 	// StatusTypeMissed is a StatusType enum value
 	StatusTypeMissed = "Missed"
 )
+
+// StatusType is an enum
+type StatusType struct{}
+
+// Contains returns whether the StatusType enum includes the element
+func (enum StatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StatusType enum
+func (enum StatusType) Values() []string {
+	return []string{
+		StatusTypeDetected,
+		StatusTypeMissed,
+	}
+}

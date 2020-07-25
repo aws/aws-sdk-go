@@ -1112,6 +1112,37 @@ const (
 	AWSRegionApEast1 = "ap-east-1"
 )
 
+// AWSRegion is an enum
+type AWSRegion struct{}
+
+// Contains returns whether the AWSRegion enum includes the element
+func (enum AWSRegion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AWSRegion enum
+func (enum AWSRegion) Values() []string {
+	return []string{
+		AWSRegionUsEast1,
+		AWSRegionUsWest1,
+		AWSRegionUsWest2,
+		AWSRegionEuCentral1,
+		AWSRegionEuWest1,
+		AWSRegionApSoutheast1,
+		AWSRegionApSoutheast2,
+		AWSRegionApNortheast1,
+		AWSRegionEuNorth1,
+		AWSRegionApNortheast3,
+		AWSRegionApEast1,
+	}
+}
+
 // The types of manifest that you want AWS to create for this report.
 const (
 	// AdditionalArtifactRedshift is a AdditionalArtifact enum value
@@ -1123,6 +1154,29 @@ const (
 	// AdditionalArtifactAthena is a AdditionalArtifact enum value
 	AdditionalArtifactAthena = "ATHENA"
 )
+
+// AdditionalArtifact is an enum
+type AdditionalArtifact struct{}
+
+// Contains returns whether the AdditionalArtifact enum includes the element
+func (enum AdditionalArtifact) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdditionalArtifact enum
+func (enum AdditionalArtifact) Values() []string {
+	return []string{
+		AdditionalArtifactRedshift,
+		AdditionalArtifactQuicksight,
+		AdditionalArtifactAthena,
+	}
+}
 
 // The compression format that AWS uses for the report.
 const (
@@ -1136,6 +1190,29 @@ const (
 	CompressionFormatParquet = "Parquet"
 )
 
+// CompressionFormat is an enum
+type CompressionFormat struct{}
+
+// Contains returns whether the CompressionFormat enum includes the element
+func (enum CompressionFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CompressionFormat enum
+func (enum CompressionFormat) Values() []string {
+	return []string{
+		CompressionFormatZip,
+		CompressionFormatGzip,
+		CompressionFormatParquet,
+	}
+}
+
 // The format that AWS saves the report in.
 const (
 	// ReportFormatTextOrcsv is a ReportFormat enum value
@@ -1145,6 +1222,28 @@ const (
 	ReportFormatParquet = "Parquet"
 )
 
+// ReportFormat is an enum
+type ReportFormat struct{}
+
+// Contains returns whether the ReportFormat enum includes the element
+func (enum ReportFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportFormat enum
+func (enum ReportFormat) Values() []string {
+	return []string{
+		ReportFormatTextOrcsv,
+		ReportFormatParquet,
+	}
+}
+
 const (
 	// ReportVersioningCreateNewReport is a ReportVersioning enum value
 	ReportVersioningCreateNewReport = "CREATE_NEW_REPORT"
@@ -1153,11 +1252,54 @@ const (
 	ReportVersioningOverwriteReport = "OVERWRITE_REPORT"
 )
 
+// ReportVersioning is an enum
+type ReportVersioning struct{}
+
+// Contains returns whether the ReportVersioning enum includes the element
+func (enum ReportVersioning) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportVersioning enum
+func (enum ReportVersioning) Values() []string {
+	return []string{
+		ReportVersioningCreateNewReport,
+		ReportVersioningOverwriteReport,
+	}
+}
+
 // Whether or not AWS includes resource IDs in the report.
 const (
 	// SchemaElementResources is a SchemaElement enum value
 	SchemaElementResources = "RESOURCES"
 )
+
+// SchemaElement is an enum
+type SchemaElement struct{}
+
+// Contains returns whether the SchemaElement enum includes the element
+func (enum SchemaElement) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SchemaElement enum
+func (enum SchemaElement) Values() []string {
+	return []string{
+		SchemaElementResources,
+	}
+}
 
 // The length of time covered by the report.
 const (
@@ -1167,3 +1309,25 @@ const (
 	// TimeUnitDaily is a TimeUnit enum value
 	TimeUnitDaily = "DAILY"
 )
+
+// TimeUnit is an enum
+type TimeUnit struct{}
+
+// Contains returns whether the TimeUnit enum includes the element
+func (enum TimeUnit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TimeUnit enum
+func (enum TimeUnit) Values() []string {
+	return []string{
+		TimeUnitHourly,
+		TimeUnitDaily,
+	}
+}

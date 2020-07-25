@@ -30229,6 +30229,29 @@ const (
 	AssignmentStatusDisabled = "DISABLED"
 )
 
+// AssignmentStatus is an enum
+type AssignmentStatus struct{}
+
+// Contains returns whether the AssignmentStatus enum includes the element
+func (enum AssignmentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssignmentStatus enum
+func (enum AssignmentStatus) Values() []string {
+	return []string{
+		AssignmentStatusEnabled,
+		AssignmentStatusDraft,
+		AssignmentStatusDisabled,
+	}
+}
+
 const (
 	// ColumnDataTypeString is a ColumnDataType enum value
 	ColumnDataTypeString = "STRING"
@@ -30243,6 +30266,30 @@ const (
 	ColumnDataTypeDatetime = "DATETIME"
 )
 
+// ColumnDataType is an enum
+type ColumnDataType struct{}
+
+// Contains returns whether the ColumnDataType enum includes the element
+func (enum ColumnDataType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ColumnDataType enum
+func (enum ColumnDataType) Values() []string {
+	return []string{
+		ColumnDataTypeString,
+		ColumnDataTypeInteger,
+		ColumnDataTypeDecimal,
+		ColumnDataTypeDatetime,
+	}
+}
+
 const (
 	// DashboardBehaviorEnabled is a DashboardBehavior enum value
 	DashboardBehaviorEnabled = "ENABLED"
@@ -30250,6 +30297,28 @@ const (
 	// DashboardBehaviorDisabled is a DashboardBehavior enum value
 	DashboardBehaviorDisabled = "DISABLED"
 )
+
+// DashboardBehavior is an enum
+type DashboardBehavior struct{}
+
+// Contains returns whether the DashboardBehavior enum includes the element
+func (enum DashboardBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DashboardBehavior enum
+func (enum DashboardBehavior) Values() []string {
+	return []string{
+		DashboardBehaviorEnabled,
+		DashboardBehaviorDisabled,
+	}
+}
 
 const (
 	// DashboardErrorTypeAccessDenied is a DashboardErrorType enum value
@@ -30283,10 +30352,61 @@ const (
 	DashboardErrorTypeColumnReplacementMissing = "COLUMN_REPLACEMENT_MISSING"
 )
 
+// DashboardErrorType is an enum
+type DashboardErrorType struct{}
+
+// Contains returns whether the DashboardErrorType enum includes the element
+func (enum DashboardErrorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DashboardErrorType enum
+func (enum DashboardErrorType) Values() []string {
+	return []string{
+		DashboardErrorTypeAccessDenied,
+		DashboardErrorTypeSourceNotFound,
+		DashboardErrorTypeDataSetNotFound,
+		DashboardErrorTypeInternalFailure,
+		DashboardErrorTypeParameterValueIncompatible,
+		DashboardErrorTypeParameterTypeInvalid,
+		DashboardErrorTypeParameterNotFound,
+		DashboardErrorTypeColumnTypeMismatch,
+		DashboardErrorTypeColumnGeographicRoleMismatch,
+		DashboardErrorTypeColumnReplacementMissing,
+	}
+}
+
 const (
 	// DashboardFilterAttributeQuicksightUser is a DashboardFilterAttribute enum value
 	DashboardFilterAttributeQuicksightUser = "QUICKSIGHT_USER"
 )
+
+// DashboardFilterAttribute is an enum
+type DashboardFilterAttribute struct{}
+
+// Contains returns whether the DashboardFilterAttribute enum includes the element
+func (enum DashboardFilterAttribute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DashboardFilterAttribute enum
+func (enum DashboardFilterAttribute) Values() []string {
+	return []string{
+		DashboardFilterAttributeQuicksightUser,
+	}
+}
 
 const (
 	// DashboardUIStateExpanded is a DashboardUIState enum value
@@ -30296,6 +30416,28 @@ const (
 	DashboardUIStateCollapsed = "COLLAPSED"
 )
 
+// DashboardUIState is an enum
+type DashboardUIState struct{}
+
+// Contains returns whether the DashboardUIState enum includes the element
+func (enum DashboardUIState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DashboardUIState enum
+func (enum DashboardUIState) Values() []string {
+	return []string{
+		DashboardUIStateExpanded,
+		DashboardUIStateCollapsed,
+	}
+}
+
 const (
 	// DataSetImportModeSpice is a DataSetImportMode enum value
 	DataSetImportModeSpice = "SPICE"
@@ -30303,6 +30445,28 @@ const (
 	// DataSetImportModeDirectQuery is a DataSetImportMode enum value
 	DataSetImportModeDirectQuery = "DIRECT_QUERY"
 )
+
+// DataSetImportMode is an enum
+type DataSetImportMode struct{}
+
+// Contains returns whether the DataSetImportMode enum includes the element
+func (enum DataSetImportMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataSetImportMode enum
+func (enum DataSetImportMode) Values() []string {
+	return []string{
+		DataSetImportModeSpice,
+		DataSetImportModeDirectQuery,
+	}
+}
 
 const (
 	// DataSourceErrorInfoTypeAccessDenied is a DataSourceErrorInfoType enum value
@@ -30329,6 +30493,34 @@ const (
 	// DataSourceErrorInfoTypeUnknown is a DataSourceErrorInfoType enum value
 	DataSourceErrorInfoTypeUnknown = "UNKNOWN"
 )
+
+// DataSourceErrorInfoType is an enum
+type DataSourceErrorInfoType struct{}
+
+// Contains returns whether the DataSourceErrorInfoType enum includes the element
+func (enum DataSourceErrorInfoType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataSourceErrorInfoType enum
+func (enum DataSourceErrorInfoType) Values() []string {
+	return []string{
+		DataSourceErrorInfoTypeAccessDenied,
+		DataSourceErrorInfoTypeCopySourceNotFound,
+		DataSourceErrorInfoTypeTimeout,
+		DataSourceErrorInfoTypeEngineVersionNotSupported,
+		DataSourceErrorInfoTypeUnknownHost,
+		DataSourceErrorInfoTypeGenericSqlFailure,
+		DataSourceErrorInfoTypeConflict,
+		DataSourceErrorInfoTypeUnknown,
+	}
+}
 
 const (
 	// DataSourceTypeAdobeAnalytics is a DataSourceType enum value
@@ -30395,6 +30587,47 @@ const (
 	DataSourceTypeTwitter = "TWITTER"
 )
 
+// DataSourceType is an enum
+type DataSourceType struct{}
+
+// Contains returns whether the DataSourceType enum includes the element
+func (enum DataSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataSourceType enum
+func (enum DataSourceType) Values() []string {
+	return []string{
+		DataSourceTypeAdobeAnalytics,
+		DataSourceTypeAmazonElasticsearch,
+		DataSourceTypeAthena,
+		DataSourceTypeAurora,
+		DataSourceTypeAuroraPostgresql,
+		DataSourceTypeAwsIotAnalytics,
+		DataSourceTypeGithub,
+		DataSourceTypeJira,
+		DataSourceTypeMariadb,
+		DataSourceTypeMysql,
+		DataSourceTypePostgresql,
+		DataSourceTypePresto,
+		DataSourceTypeRedshift,
+		DataSourceTypeS3,
+		DataSourceTypeSalesforce,
+		DataSourceTypeServicenow,
+		DataSourceTypeSnowflake,
+		DataSourceTypeSpark,
+		DataSourceTypeSqlserver,
+		DataSourceTypeTeradata,
+		DataSourceTypeTwitter,
+	}
+}
+
 const (
 	// EditionStandard is a Edition enum value
 	EditionStandard = "STANDARD"
@@ -30402,6 +30635,28 @@ const (
 	// EditionEnterprise is a Edition enum value
 	EditionEnterprise = "ENTERPRISE"
 )
+
+// Edition is an enum
+type Edition struct{}
+
+// Contains returns whether the Edition enum includes the element
+func (enum Edition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Edition enum
+func (enum Edition) Values() []string {
+	return []string{
+		EditionStandard,
+		EditionEnterprise,
+	}
+}
 
 const (
 	// ExceptionResourceTypeUser is a ExceptionResourceType enum value
@@ -30432,6 +30687,35 @@ const (
 	ExceptionResourceTypeIngestion = "INGESTION"
 )
 
+// ExceptionResourceType is an enum
+type ExceptionResourceType struct{}
+
+// Contains returns whether the ExceptionResourceType enum includes the element
+func (enum ExceptionResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExceptionResourceType enum
+func (enum ExceptionResourceType) Values() []string {
+	return []string{
+		ExceptionResourceTypeUser,
+		ExceptionResourceTypeGroup,
+		ExceptionResourceTypeNamespace,
+		ExceptionResourceTypeAccountSettings,
+		ExceptionResourceTypeIampolicyAssignment,
+		ExceptionResourceTypeDataSource,
+		ExceptionResourceTypeDataSet,
+		ExceptionResourceTypeVpcConnection,
+		ExceptionResourceTypeIngestion,
+	}
+}
+
 const (
 	// FileFormatCsv is a FileFormat enum value
 	FileFormatCsv = "CSV"
@@ -30452,15 +30736,83 @@ const (
 	FileFormatJson = "JSON"
 )
 
+// FileFormat is an enum
+type FileFormat struct{}
+
+// Contains returns whether the FileFormat enum includes the element
+func (enum FileFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileFormat enum
+func (enum FileFormat) Values() []string {
+	return []string{
+		FileFormatCsv,
+		FileFormatTsv,
+		FileFormatClf,
+		FileFormatElf,
+		FileFormatXlsx,
+		FileFormatJson,
+	}
+}
+
 const (
 	// FilterOperatorStringEquals is a FilterOperator enum value
 	FilterOperatorStringEquals = "StringEquals"
 )
 
+// FilterOperator is an enum
+type FilterOperator struct{}
+
+// Contains returns whether the FilterOperator enum includes the element
+func (enum FilterOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterOperator enum
+func (enum FilterOperator) Values() []string {
+	return []string{
+		FilterOperatorStringEquals,
+	}
+}
+
 const (
 	// GeoSpatialCountryCodeUs is a GeoSpatialCountryCode enum value
 	GeoSpatialCountryCodeUs = "US"
 )
+
+// GeoSpatialCountryCode is an enum
+type GeoSpatialCountryCode struct{}
+
+// Contains returns whether the GeoSpatialCountryCode enum includes the element
+func (enum GeoSpatialCountryCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GeoSpatialCountryCode enum
+func (enum GeoSpatialCountryCode) Values() []string {
+	return []string{
+		GeoSpatialCountryCodeUs,
+	}
+}
 
 const (
 	// GeoSpatialDataRoleCountry is a GeoSpatialDataRole enum value
@@ -30485,10 +30837,58 @@ const (
 	GeoSpatialDataRoleLatitude = "LATITUDE"
 )
 
+// GeoSpatialDataRole is an enum
+type GeoSpatialDataRole struct{}
+
+// Contains returns whether the GeoSpatialDataRole enum includes the element
+func (enum GeoSpatialDataRole) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GeoSpatialDataRole enum
+func (enum GeoSpatialDataRole) Values() []string {
+	return []string{
+		GeoSpatialDataRoleCountry,
+		GeoSpatialDataRoleState,
+		GeoSpatialDataRoleCounty,
+		GeoSpatialDataRoleCity,
+		GeoSpatialDataRolePostcode,
+		GeoSpatialDataRoleLongitude,
+		GeoSpatialDataRoleLatitude,
+	}
+}
+
 const (
 	// IdentityStoreQuicksight is a IdentityStore enum value
 	IdentityStoreQuicksight = "QUICKSIGHT"
 )
+
+// IdentityStore is an enum
+type IdentityStore struct{}
+
+// Contains returns whether the IdentityStore enum includes the element
+func (enum IdentityStore) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IdentityStore enum
+func (enum IdentityStore) Values() []string {
+	return []string{
+		IdentityStoreQuicksight,
+	}
+}
 
 const (
 	// IdentityTypeIam is a IdentityType enum value
@@ -30497,6 +30897,28 @@ const (
 	// IdentityTypeQuicksight is a IdentityType enum value
 	IdentityTypeQuicksight = "QUICKSIGHT"
 )
+
+// IdentityType is an enum
+type IdentityType struct{}
+
+// Contains returns whether the IdentityType enum includes the element
+func (enum IdentityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IdentityType enum
+func (enum IdentityType) Values() []string {
+	return []string{
+		IdentityTypeIam,
+		IdentityTypeQuicksight,
+	}
+}
 
 const (
 	// IngestionErrorTypeFailureToAssumeRole is a IngestionErrorType enum value
@@ -30620,6 +31042,66 @@ const (
 	IngestionErrorTypeInternalServiceError = "INTERNAL_SERVICE_ERROR"
 )
 
+// IngestionErrorType is an enum
+type IngestionErrorType struct{}
+
+// Contains returns whether the IngestionErrorType enum includes the element
+func (enum IngestionErrorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IngestionErrorType enum
+func (enum IngestionErrorType) Values() []string {
+	return []string{
+		IngestionErrorTypeFailureToAssumeRole,
+		IngestionErrorTypeIngestionSuperseded,
+		IngestionErrorTypeIngestionCanceled,
+		IngestionErrorTypeDataSetDeleted,
+		IngestionErrorTypeDataSetNotSpice,
+		IngestionErrorTypeS3UploadedFileDeleted,
+		IngestionErrorTypeS3ManifestError,
+		IngestionErrorTypeDataToleranceException,
+		IngestionErrorTypeSpiceTableNotFound,
+		IngestionErrorTypeDataSetSizeLimitExceeded,
+		IngestionErrorTypeRowSizeLimitExceeded,
+		IngestionErrorTypeAccountCapacityLimitExceeded,
+		IngestionErrorTypeCustomerError,
+		IngestionErrorTypeDataSourceNotFound,
+		IngestionErrorTypeIamRoleNotAvailable,
+		IngestionErrorTypeConnectionFailure,
+		IngestionErrorTypeSqlTableNotFound,
+		IngestionErrorTypePermissionDenied,
+		IngestionErrorTypeSslCertificateValidationFailure,
+		IngestionErrorTypeOauthTokenFailure,
+		IngestionErrorTypeSourceApiLimitExceededFailure,
+		IngestionErrorTypePasswordAuthenticationFailure,
+		IngestionErrorTypeSqlSchemaMismatchError,
+		IngestionErrorTypeInvalidDateFormat,
+		IngestionErrorTypeInvalidDataprepSyntax,
+		IngestionErrorTypeSourceResourceLimitExceeded,
+		IngestionErrorTypeSqlInvalidParameterValue,
+		IngestionErrorTypeQueryTimeout,
+		IngestionErrorTypeSqlNumericOverflow,
+		IngestionErrorTypeUnresolvableHost,
+		IngestionErrorTypeUnroutableHost,
+		IngestionErrorTypeSqlException,
+		IngestionErrorTypeS3FileInaccessible,
+		IngestionErrorTypeIotFileNotFound,
+		IngestionErrorTypeIotDataSetFileEmpty,
+		IngestionErrorTypeInvalidDataSourceConfig,
+		IngestionErrorTypeDataSourceAuthFailed,
+		IngestionErrorTypeDataSourceConnectionFailed,
+		IngestionErrorTypeFailureToProcessJsonFile,
+		IngestionErrorTypeInternalServiceError,
+	}
+}
+
 const (
 	// IngestionRequestSourceManual is a IngestionRequestSource enum value
 	IngestionRequestSourceManual = "MANUAL"
@@ -30627,6 +31109,28 @@ const (
 	// IngestionRequestSourceScheduled is a IngestionRequestSource enum value
 	IngestionRequestSourceScheduled = "SCHEDULED"
 )
+
+// IngestionRequestSource is an enum
+type IngestionRequestSource struct{}
+
+// Contains returns whether the IngestionRequestSource enum includes the element
+func (enum IngestionRequestSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IngestionRequestSource enum
+func (enum IngestionRequestSource) Values() []string {
+	return []string{
+		IngestionRequestSourceManual,
+		IngestionRequestSourceScheduled,
+	}
+}
 
 const (
 	// IngestionRequestTypeInitialIngestion is a IngestionRequestType enum value
@@ -30641,6 +31145,30 @@ const (
 	// IngestionRequestTypeFullRefresh is a IngestionRequestType enum value
 	IngestionRequestTypeFullRefresh = "FULL_REFRESH"
 )
+
+// IngestionRequestType is an enum
+type IngestionRequestType struct{}
+
+// Contains returns whether the IngestionRequestType enum includes the element
+func (enum IngestionRequestType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IngestionRequestType enum
+func (enum IngestionRequestType) Values() []string {
+	return []string{
+		IngestionRequestTypeInitialIngestion,
+		IngestionRequestTypeEdit,
+		IngestionRequestTypeIncrementalRefresh,
+		IngestionRequestTypeFullRefresh,
+	}
+}
 
 const (
 	// IngestionStatusInitialized is a IngestionStatus enum value
@@ -30661,6 +31189,32 @@ const (
 	// IngestionStatusCancelled is a IngestionStatus enum value
 	IngestionStatusCancelled = "CANCELLED"
 )
+
+// IngestionStatus is an enum
+type IngestionStatus struct{}
+
+// Contains returns whether the IngestionStatus enum includes the element
+func (enum IngestionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IngestionStatus enum
+func (enum IngestionStatus) Values() []string {
+	return []string{
+		IngestionStatusInitialized,
+		IngestionStatusQueued,
+		IngestionStatusRunning,
+		IngestionStatusFailed,
+		IngestionStatusCompleted,
+		IngestionStatusCancelled,
+	}
+}
 
 const (
 	// InputColumnDataTypeString is a InputColumnDataType enum value
@@ -30685,6 +31239,33 @@ const (
 	InputColumnDataTypeJson = "JSON"
 )
 
+// InputColumnDataType is an enum
+type InputColumnDataType struct{}
+
+// Contains returns whether the InputColumnDataType enum includes the element
+func (enum InputColumnDataType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputColumnDataType enum
+func (enum InputColumnDataType) Values() []string {
+	return []string{
+		InputColumnDataTypeString,
+		InputColumnDataTypeInteger,
+		InputColumnDataTypeDecimal,
+		InputColumnDataTypeDatetime,
+		InputColumnDataTypeBit,
+		InputColumnDataTypeBoolean,
+		InputColumnDataTypeJson,
+	}
+}
+
 const (
 	// JoinTypeInner is a JoinType enum value
 	JoinTypeInner = "INNER"
@@ -30699,6 +31280,30 @@ const (
 	JoinTypeRight = "RIGHT"
 )
 
+// JoinType is an enum
+type JoinType struct{}
+
+// Contains returns whether the JoinType enum includes the element
+func (enum JoinType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JoinType enum
+func (enum JoinType) Values() []string {
+	return []string{
+		JoinTypeInner,
+		JoinTypeOuter,
+		JoinTypeLeft,
+		JoinTypeRight,
+	}
+}
+
 const (
 	// NamespaceErrorTypePermissionDenied is a NamespaceErrorType enum value
 	NamespaceErrorTypePermissionDenied = "PERMISSION_DENIED"
@@ -30706,6 +31311,28 @@ const (
 	// NamespaceErrorTypeInternalServiceError is a NamespaceErrorType enum value
 	NamespaceErrorTypeInternalServiceError = "INTERNAL_SERVICE_ERROR"
 )
+
+// NamespaceErrorType is an enum
+type NamespaceErrorType struct{}
+
+// Contains returns whether the NamespaceErrorType enum includes the element
+func (enum NamespaceErrorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NamespaceErrorType enum
+func (enum NamespaceErrorType) Values() []string {
+	return []string{
+		NamespaceErrorTypePermissionDenied,
+		NamespaceErrorTypeInternalServiceError,
+	}
+}
 
 const (
 	// NamespaceStatusCreated is a NamespaceStatus enum value
@@ -30723,6 +31350,31 @@ const (
 	// NamespaceStatusNonRetryableFailure is a NamespaceStatus enum value
 	NamespaceStatusNonRetryableFailure = "NON_RETRYABLE_FAILURE"
 )
+
+// NamespaceStatus is an enum
+type NamespaceStatus struct{}
+
+// Contains returns whether the NamespaceStatus enum includes the element
+func (enum NamespaceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NamespaceStatus enum
+func (enum NamespaceStatus) Values() []string {
+	return []string{
+		NamespaceStatusCreated,
+		NamespaceStatusCreating,
+		NamespaceStatusDeleting,
+		NamespaceStatusRetryableFailure,
+		NamespaceStatusNonRetryableFailure,
+	}
+}
 
 const (
 	// ResourceStatusCreationInProgress is a ResourceStatus enum value
@@ -30744,6 +31396,32 @@ const (
 	ResourceStatusUpdateFailed = "UPDATE_FAILED"
 )
 
+// ResourceStatus is an enum
+type ResourceStatus struct{}
+
+// Contains returns whether the ResourceStatus enum includes the element
+func (enum ResourceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceStatus enum
+func (enum ResourceStatus) Values() []string {
+	return []string{
+		ResourceStatusCreationInProgress,
+		ResourceStatusCreationSuccessful,
+		ResourceStatusCreationFailed,
+		ResourceStatusUpdateInProgress,
+		ResourceStatusUpdateSuccessful,
+		ResourceStatusUpdateFailed,
+	}
+}
+
 const (
 	// RowLevelPermissionPolicyGrantAccess is a RowLevelPermissionPolicy enum value
 	RowLevelPermissionPolicyGrantAccess = "GRANT_ACCESS"
@@ -30751,6 +31429,28 @@ const (
 	// RowLevelPermissionPolicyDenyAccess is a RowLevelPermissionPolicy enum value
 	RowLevelPermissionPolicyDenyAccess = "DENY_ACCESS"
 )
+
+// RowLevelPermissionPolicy is an enum
+type RowLevelPermissionPolicy struct{}
+
+// Contains returns whether the RowLevelPermissionPolicy enum includes the element
+func (enum RowLevelPermissionPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RowLevelPermissionPolicy enum
+func (enum RowLevelPermissionPolicy) Values() []string {
+	return []string{
+		RowLevelPermissionPolicyGrantAccess,
+		RowLevelPermissionPolicyDenyAccess,
+	}
+}
 
 const (
 	// TemplateErrorTypeSourceNotFound is a TemplateErrorType enum value
@@ -30763,6 +31463,29 @@ const (
 	TemplateErrorTypeInternalFailure = "INTERNAL_FAILURE"
 )
 
+// TemplateErrorType is an enum
+type TemplateErrorType struct{}
+
+// Contains returns whether the TemplateErrorType enum includes the element
+func (enum TemplateErrorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TemplateErrorType enum
+func (enum TemplateErrorType) Values() []string {
+	return []string{
+		TemplateErrorTypeSourceNotFound,
+		TemplateErrorTypeDataSetNotFound,
+		TemplateErrorTypeInternalFailure,
+	}
+}
+
 const (
 	// TextQualifierDoubleQuote is a TextQualifier enum value
 	TextQualifierDoubleQuote = "DOUBLE_QUOTE"
@@ -30771,10 +31494,53 @@ const (
 	TextQualifierSingleQuote = "SINGLE_QUOTE"
 )
 
+// TextQualifier is an enum
+type TextQualifier struct{}
+
+// Contains returns whether the TextQualifier enum includes the element
+func (enum TextQualifier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TextQualifier enum
+func (enum TextQualifier) Values() []string {
+	return []string{
+		TextQualifierDoubleQuote,
+		TextQualifierSingleQuote,
+	}
+}
+
 const (
 	// ThemeErrorTypeInternalFailure is a ThemeErrorType enum value
 	ThemeErrorTypeInternalFailure = "INTERNAL_FAILURE"
 )
+
+// ThemeErrorType is an enum
+type ThemeErrorType struct{}
+
+// Contains returns whether the ThemeErrorType enum includes the element
+func (enum ThemeErrorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThemeErrorType enum
+func (enum ThemeErrorType) Values() []string {
+	return []string{
+		ThemeErrorTypeInternalFailure,
+	}
+}
 
 const (
 	// ThemeTypeQuicksight is a ThemeType enum value
@@ -30786,6 +31552,29 @@ const (
 	// ThemeTypeAll is a ThemeType enum value
 	ThemeTypeAll = "ALL"
 )
+
+// ThemeType is an enum
+type ThemeType struct{}
+
+// Contains returns whether the ThemeType enum includes the element
+func (enum ThemeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThemeType enum
+func (enum ThemeType) Values() []string {
+	return []string{
+		ThemeTypeQuicksight,
+		ThemeTypeCustom,
+		ThemeTypeAll,
+	}
+}
 
 const (
 	// UserRoleAdmin is a UserRole enum value
@@ -30803,3 +31592,28 @@ const (
 	// UserRoleRestrictedReader is a UserRole enum value
 	UserRoleRestrictedReader = "RESTRICTED_READER"
 )
+
+// UserRole is an enum
+type UserRole struct{}
+
+// Contains returns whether the UserRole enum includes the element
+func (enum UserRole) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserRole enum
+func (enum UserRole) Values() []string {
+	return []string{
+		UserRoleAdmin,
+		UserRoleAuthor,
+		UserRoleReader,
+		UserRoleRestrictedAuthor,
+		UserRoleRestrictedReader,
+	}
+}

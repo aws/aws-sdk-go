@@ -3995,6 +3995,28 @@ const (
 	ChannelLatencyModeLow = "LOW"
 )
 
+// ChannelLatencyMode is an enum
+type ChannelLatencyMode struct{}
+
+// Contains returns whether the ChannelLatencyMode enum includes the element
+func (enum ChannelLatencyMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelLatencyMode enum
+func (enum ChannelLatencyMode) Values() []string {
+	return []string{
+		ChannelLatencyModeNormal,
+		ChannelLatencyModeLow,
+	}
+}
+
 const (
 	// ChannelTypeBasic is a ChannelType enum value
 	ChannelTypeBasic = "BASIC"
@@ -4002,6 +4024,28 @@ const (
 	// ChannelTypeStandard is a ChannelType enum value
 	ChannelTypeStandard = "STANDARD"
 )
+
+// ChannelType is an enum
+type ChannelType struct{}
+
+// Contains returns whether the ChannelType enum includes the element
+func (enum ChannelType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelType enum
+func (enum ChannelType) Values() []string {
+	return []string{
+		ChannelTypeBasic,
+		ChannelTypeStandard,
+	}
+}
 
 const (
 	// StreamHealthHealthy is a StreamHealth enum value
@@ -4014,6 +4058,29 @@ const (
 	StreamHealthUnknown = "UNKNOWN"
 )
 
+// StreamHealth is an enum
+type StreamHealth struct{}
+
+// Contains returns whether the StreamHealth enum includes the element
+func (enum StreamHealth) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamHealth enum
+func (enum StreamHealth) Values() []string {
+	return []string{
+		StreamHealthHealthy,
+		StreamHealthStarving,
+		StreamHealthUnknown,
+	}
+}
+
 const (
 	// StreamStateLive is a StreamState enum value
 	StreamStateLive = "LIVE"
@@ -4021,3 +4088,25 @@ const (
 	// StreamStateOffline is a StreamState enum value
 	StreamStateOffline = "OFFLINE"
 )
+
+// StreamState is an enum
+type StreamState struct{}
+
+// Contains returns whether the StreamState enum includes the element
+func (enum StreamState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamState enum
+func (enum StreamState) Values() []string {
+	return []string{
+		StreamStateLive,
+		StreamStateOffline,
+	}
+}

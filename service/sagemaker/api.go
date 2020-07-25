@@ -48592,6 +48592,28 @@ const (
 	AlgorithmSortByCreationTime = "CreationTime"
 )
 
+// AlgorithmSortBy is an enum
+type AlgorithmSortBy struct{}
+
+// Contains returns whether the AlgorithmSortBy enum includes the element
+func (enum AlgorithmSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AlgorithmSortBy enum
+func (enum AlgorithmSortBy) Values() []string {
+	return []string{
+		AlgorithmSortByName,
+		AlgorithmSortByCreationTime,
+	}
+}
+
 const (
 	// AlgorithmStatusPending is a AlgorithmStatus enum value
 	AlgorithmStatusPending = "Pending"
@@ -48608,6 +48630,31 @@ const (
 	// AlgorithmStatusDeleting is a AlgorithmStatus enum value
 	AlgorithmStatusDeleting = "Deleting"
 )
+
+// AlgorithmStatus is an enum
+type AlgorithmStatus struct{}
+
+// Contains returns whether the AlgorithmStatus enum includes the element
+func (enum AlgorithmStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AlgorithmStatus enum
+func (enum AlgorithmStatus) Values() []string {
+	return []string{
+		AlgorithmStatusPending,
+		AlgorithmStatusInProgress,
+		AlgorithmStatusCompleted,
+		AlgorithmStatusFailed,
+		AlgorithmStatusDeleting,
+	}
+}
 
 const (
 	// AppInstanceTypeSystem is a AppInstanceType enum value
@@ -48707,10 +48754,83 @@ const (
 	AppInstanceTypeMlG4dn16xlarge = "ml.g4dn.16xlarge"
 )
 
+// AppInstanceType is an enum
+type AppInstanceType struct{}
+
+// Contains returns whether the AppInstanceType enum includes the element
+func (enum AppInstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AppInstanceType enum
+func (enum AppInstanceType) Values() []string {
+	return []string{
+		AppInstanceTypeSystem,
+		AppInstanceTypeMlT3Micro,
+		AppInstanceTypeMlT3Small,
+		AppInstanceTypeMlT3Medium,
+		AppInstanceTypeMlT3Large,
+		AppInstanceTypeMlT3Xlarge,
+		AppInstanceTypeMlT32xlarge,
+		AppInstanceTypeMlM5Large,
+		AppInstanceTypeMlM5Xlarge,
+		AppInstanceTypeMlM52xlarge,
+		AppInstanceTypeMlM54xlarge,
+		AppInstanceTypeMlM58xlarge,
+		AppInstanceTypeMlM512xlarge,
+		AppInstanceTypeMlM516xlarge,
+		AppInstanceTypeMlM524xlarge,
+		AppInstanceTypeMlC5Large,
+		AppInstanceTypeMlC5Xlarge,
+		AppInstanceTypeMlC52xlarge,
+		AppInstanceTypeMlC54xlarge,
+		AppInstanceTypeMlC59xlarge,
+		AppInstanceTypeMlC512xlarge,
+		AppInstanceTypeMlC518xlarge,
+		AppInstanceTypeMlC524xlarge,
+		AppInstanceTypeMlP32xlarge,
+		AppInstanceTypeMlP38xlarge,
+		AppInstanceTypeMlP316xlarge,
+		AppInstanceTypeMlG4dnXlarge,
+		AppInstanceTypeMlG4dn2xlarge,
+		AppInstanceTypeMlG4dn4xlarge,
+		AppInstanceTypeMlG4dn8xlarge,
+		AppInstanceTypeMlG4dn12xlarge,
+		AppInstanceTypeMlG4dn16xlarge,
+	}
+}
+
 const (
 	// AppSortKeyCreationTime is a AppSortKey enum value
 	AppSortKeyCreationTime = "CreationTime"
 )
+
+// AppSortKey is an enum
+type AppSortKey struct{}
+
+// Contains returns whether the AppSortKey enum includes the element
+func (enum AppSortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AppSortKey enum
+func (enum AppSortKey) Values() []string {
+	return []string{
+		AppSortKeyCreationTime,
+	}
+}
 
 const (
 	// AppStatusDeleted is a AppStatus enum value
@@ -48729,6 +48849,31 @@ const (
 	AppStatusPending = "Pending"
 )
 
+// AppStatus is an enum
+type AppStatus struct{}
+
+// Contains returns whether the AppStatus enum includes the element
+func (enum AppStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AppStatus enum
+func (enum AppStatus) Values() []string {
+	return []string{
+		AppStatusDeleted,
+		AppStatusDeleting,
+		AppStatusFailed,
+		AppStatusInService,
+		AppStatusPending,
+	}
+}
+
 const (
 	// AppTypeJupyterServer is a AppType enum value
 	AppTypeJupyterServer = "JupyterServer"
@@ -48740,6 +48885,29 @@ const (
 	AppTypeTensorBoard = "TensorBoard"
 )
 
+// AppType is an enum
+type AppType struct{}
+
+// Contains returns whether the AppType enum includes the element
+func (enum AppType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AppType enum
+func (enum AppType) Values() []string {
+	return []string{
+		AppTypeJupyterServer,
+		AppTypeKernelGateway,
+		AppTypeTensorBoard,
+	}
+}
+
 const (
 	// AssemblyTypeNone is a AssemblyType enum value
 	AssemblyTypeNone = "None"
@@ -48747,6 +48915,28 @@ const (
 	// AssemblyTypeLine is a AssemblyType enum value
 	AssemblyTypeLine = "Line"
 )
+
+// AssemblyType is an enum
+type AssemblyType struct{}
+
+// Contains returns whether the AssemblyType enum includes the element
+func (enum AssemblyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssemblyType enum
+func (enum AssemblyType) Values() []string {
+	return []string{
+		AssemblyTypeNone,
+		AssemblyTypeLine,
+	}
+}
 
 const (
 	// AuthModeSso is a AuthMode enum value
@@ -48756,6 +48946,28 @@ const (
 	AuthModeIam = "IAM"
 )
 
+// AuthMode is an enum
+type AuthMode struct{}
+
+// Contains returns whether the AuthMode enum includes the element
+func (enum AuthMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthMode enum
+func (enum AuthMode) Values() []string {
+	return []string{
+		AuthModeSso,
+		AuthModeIam,
+	}
+}
+
 const (
 	// AutoMLJobObjectiveTypeMaximize is a AutoMLJobObjectiveType enum value
 	AutoMLJobObjectiveTypeMaximize = "Maximize"
@@ -48763,6 +48975,28 @@ const (
 	// AutoMLJobObjectiveTypeMinimize is a AutoMLJobObjectiveType enum value
 	AutoMLJobObjectiveTypeMinimize = "Minimize"
 )
+
+// AutoMLJobObjectiveType is an enum
+type AutoMLJobObjectiveType struct{}
+
+// Contains returns whether the AutoMLJobObjectiveType enum includes the element
+func (enum AutoMLJobObjectiveType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoMLJobObjectiveType enum
+func (enum AutoMLJobObjectiveType) Values() []string {
+	return []string{
+		AutoMLJobObjectiveTypeMaximize,
+		AutoMLJobObjectiveTypeMinimize,
+	}
+}
 
 const (
 	// AutoMLJobSecondaryStatusStarting is a AutoMLJobSecondaryStatus enum value
@@ -48796,6 +49030,36 @@ const (
 	AutoMLJobSecondaryStatusCandidateDefinitionsGenerated = "CandidateDefinitionsGenerated"
 )
 
+// AutoMLJobSecondaryStatus is an enum
+type AutoMLJobSecondaryStatus struct{}
+
+// Contains returns whether the AutoMLJobSecondaryStatus enum includes the element
+func (enum AutoMLJobSecondaryStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoMLJobSecondaryStatus enum
+func (enum AutoMLJobSecondaryStatus) Values() []string {
+	return []string{
+		AutoMLJobSecondaryStatusStarting,
+		AutoMLJobSecondaryStatusAnalyzingData,
+		AutoMLJobSecondaryStatusFeatureEngineering,
+		AutoMLJobSecondaryStatusModelTuning,
+		AutoMLJobSecondaryStatusMaxCandidatesReached,
+		AutoMLJobSecondaryStatusFailed,
+		AutoMLJobSecondaryStatusStopped,
+		AutoMLJobSecondaryStatusMaxAutoMljobRuntimeReached,
+		AutoMLJobSecondaryStatusStopping,
+		AutoMLJobSecondaryStatusCandidateDefinitionsGenerated,
+	}
+}
+
 const (
 	// AutoMLJobStatusCompleted is a AutoMLJobStatus enum value
 	AutoMLJobStatusCompleted = "Completed"
@@ -48813,6 +49077,31 @@ const (
 	AutoMLJobStatusStopping = "Stopping"
 )
 
+// AutoMLJobStatus is an enum
+type AutoMLJobStatus struct{}
+
+// Contains returns whether the AutoMLJobStatus enum includes the element
+func (enum AutoMLJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoMLJobStatus enum
+func (enum AutoMLJobStatus) Values() []string {
+	return []string{
+		AutoMLJobStatusCompleted,
+		AutoMLJobStatusInProgress,
+		AutoMLJobStatusFailed,
+		AutoMLJobStatusStopped,
+		AutoMLJobStatusStopping,
+	}
+}
+
 const (
 	// AutoMLMetricEnumAccuracy is a AutoMLMetricEnum enum value
 	AutoMLMetricEnumAccuracy = "Accuracy"
@@ -48827,6 +49116,30 @@ const (
 	AutoMLMetricEnumF1macro = "F1macro"
 )
 
+// AutoMLMetricEnum is an enum
+type AutoMLMetricEnum struct{}
+
+// Contains returns whether the AutoMLMetricEnum enum includes the element
+func (enum AutoMLMetricEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoMLMetricEnum enum
+func (enum AutoMLMetricEnum) Values() []string {
+	return []string{
+		AutoMLMetricEnumAccuracy,
+		AutoMLMetricEnumMse,
+		AutoMLMetricEnumF1,
+		AutoMLMetricEnumF1macro,
+	}
+}
+
 const (
 	// AutoMLS3DataTypeManifestFile is a AutoMLS3DataType enum value
 	AutoMLS3DataTypeManifestFile = "ManifestFile"
@@ -48834,6 +49147,28 @@ const (
 	// AutoMLS3DataTypeS3prefix is a AutoMLS3DataType enum value
 	AutoMLS3DataTypeS3prefix = "S3Prefix"
 )
+
+// AutoMLS3DataType is an enum
+type AutoMLS3DataType struct{}
+
+// Contains returns whether the AutoMLS3DataType enum includes the element
+func (enum AutoMLS3DataType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoMLS3DataType enum
+func (enum AutoMLS3DataType) Values() []string {
+	return []string{
+		AutoMLS3DataTypeManifestFile,
+		AutoMLS3DataTypeS3prefix,
+	}
+}
 
 const (
 	// AutoMLSortByName is a AutoMLSortBy enum value
@@ -48846,6 +49181,29 @@ const (
 	AutoMLSortByStatus = "Status"
 )
 
+// AutoMLSortBy is an enum
+type AutoMLSortBy struct{}
+
+// Contains returns whether the AutoMLSortBy enum includes the element
+func (enum AutoMLSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoMLSortBy enum
+func (enum AutoMLSortBy) Values() []string {
+	return []string{
+		AutoMLSortByName,
+		AutoMLSortByCreationTime,
+		AutoMLSortByStatus,
+	}
+}
+
 const (
 	// AutoMLSortOrderAscending is a AutoMLSortOrder enum value
 	AutoMLSortOrderAscending = "Ascending"
@@ -48853,6 +49211,28 @@ const (
 	// AutoMLSortOrderDescending is a AutoMLSortOrder enum value
 	AutoMLSortOrderDescending = "Descending"
 )
+
+// AutoMLSortOrder is an enum
+type AutoMLSortOrder struct{}
+
+// Contains returns whether the AutoMLSortOrder enum includes the element
+func (enum AutoMLSortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoMLSortOrder enum
+func (enum AutoMLSortOrder) Values() []string {
+	return []string{
+		AutoMLSortOrderAscending,
+		AutoMLSortOrderDescending,
+	}
+}
 
 const (
 	// AwsManagedHumanLoopRequestSourceAwsRekognitionDetectModerationLabelsImageV3 is a AwsManagedHumanLoopRequestSource enum value
@@ -48862,6 +49242,28 @@ const (
 	AwsManagedHumanLoopRequestSourceAwsTextractAnalyzeDocumentFormsV1 = "AWS/Textract/AnalyzeDocument/Forms/V1"
 )
 
+// AwsManagedHumanLoopRequestSource is an enum
+type AwsManagedHumanLoopRequestSource struct{}
+
+// Contains returns whether the AwsManagedHumanLoopRequestSource enum includes the element
+func (enum AwsManagedHumanLoopRequestSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AwsManagedHumanLoopRequestSource enum
+func (enum AwsManagedHumanLoopRequestSource) Values() []string {
+	return []string{
+		AwsManagedHumanLoopRequestSourceAwsRekognitionDetectModerationLabelsImageV3,
+		AwsManagedHumanLoopRequestSourceAwsTextractAnalyzeDocumentFormsV1,
+	}
+}
+
 const (
 	// BatchStrategyMultiRecord is a BatchStrategy enum value
 	BatchStrategyMultiRecord = "MultiRecord"
@@ -48870,6 +49272,28 @@ const (
 	BatchStrategySingleRecord = "SingleRecord"
 )
 
+// BatchStrategy is an enum
+type BatchStrategy struct{}
+
+// Contains returns whether the BatchStrategy enum includes the element
+func (enum BatchStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BatchStrategy enum
+func (enum BatchStrategy) Values() []string {
+	return []string{
+		BatchStrategyMultiRecord,
+		BatchStrategySingleRecord,
+	}
+}
+
 const (
 	// BooleanOperatorAnd is a BooleanOperator enum value
 	BooleanOperatorAnd = "And"
@@ -48877,6 +49301,28 @@ const (
 	// BooleanOperatorOr is a BooleanOperator enum value
 	BooleanOperatorOr = "Or"
 )
+
+// BooleanOperator is an enum
+type BooleanOperator struct{}
+
+// Contains returns whether the BooleanOperator enum includes the element
+func (enum BooleanOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BooleanOperator enum
+func (enum BooleanOperator) Values() []string {
+	return []string{
+		BooleanOperatorAnd,
+		BooleanOperatorOr,
+	}
+}
 
 const (
 	// CandidateSortByCreationTime is a CandidateSortBy enum value
@@ -48888,6 +49334,29 @@ const (
 	// CandidateSortByFinalObjectiveMetricValue is a CandidateSortBy enum value
 	CandidateSortByFinalObjectiveMetricValue = "FinalObjectiveMetricValue"
 )
+
+// CandidateSortBy is an enum
+type CandidateSortBy struct{}
+
+// Contains returns whether the CandidateSortBy enum includes the element
+func (enum CandidateSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CandidateSortBy enum
+func (enum CandidateSortBy) Values() []string {
+	return []string{
+		CandidateSortByCreationTime,
+		CandidateSortByStatus,
+		CandidateSortByFinalObjectiveMetricValue,
+	}
+}
 
 const (
 	// CandidateStatusCompleted is a CandidateStatus enum value
@@ -48906,6 +49375,31 @@ const (
 	CandidateStatusStopping = "Stopping"
 )
 
+// CandidateStatus is an enum
+type CandidateStatus struct{}
+
+// Contains returns whether the CandidateStatus enum includes the element
+func (enum CandidateStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CandidateStatus enum
+func (enum CandidateStatus) Values() []string {
+	return []string{
+		CandidateStatusCompleted,
+		CandidateStatusInProgress,
+		CandidateStatusFailed,
+		CandidateStatusStopped,
+		CandidateStatusStopping,
+	}
+}
+
 const (
 	// CandidateStepTypeAwsSageMakerTrainingJob is a CandidateStepType enum value
 	CandidateStepTypeAwsSageMakerTrainingJob = "AWS::SageMaker::TrainingJob"
@@ -48917,6 +49411,29 @@ const (
 	CandidateStepTypeAwsSageMakerProcessingJob = "AWS::SageMaker::ProcessingJob"
 )
 
+// CandidateStepType is an enum
+type CandidateStepType struct{}
+
+// Contains returns whether the CandidateStepType enum includes the element
+func (enum CandidateStepType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CandidateStepType enum
+func (enum CandidateStepType) Values() []string {
+	return []string{
+		CandidateStepTypeAwsSageMakerTrainingJob,
+		CandidateStepTypeAwsSageMakerTransformJob,
+		CandidateStepTypeAwsSageMakerProcessingJob,
+	}
+}
+
 const (
 	// CaptureModeInput is a CaptureMode enum value
 	CaptureModeInput = "Input"
@@ -48925,6 +49442,28 @@ const (
 	CaptureModeOutput = "Output"
 )
 
+// CaptureMode is an enum
+type CaptureMode struct{}
+
+// Contains returns whether the CaptureMode enum includes the element
+func (enum CaptureMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CaptureMode enum
+func (enum CaptureMode) Values() []string {
+	return []string{
+		CaptureModeInput,
+		CaptureModeOutput,
+	}
+}
+
 const (
 	// CaptureStatusStarted is a CaptureStatus enum value
 	CaptureStatusStarted = "Started"
@@ -48932,6 +49471,28 @@ const (
 	// CaptureStatusStopped is a CaptureStatus enum value
 	CaptureStatusStopped = "Stopped"
 )
+
+// CaptureStatus is an enum
+type CaptureStatus struct{}
+
+// Contains returns whether the CaptureStatus enum includes the element
+func (enum CaptureStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CaptureStatus enum
+func (enum CaptureStatus) Values() []string {
+	return []string{
+		CaptureStatusStarted,
+		CaptureStatusStopped,
+	}
+}
 
 const (
 	// CodeRepositorySortByName is a CodeRepositorySortBy enum value
@@ -48944,6 +49505,29 @@ const (
 	CodeRepositorySortByLastModifiedTime = "LastModifiedTime"
 )
 
+// CodeRepositorySortBy is an enum
+type CodeRepositorySortBy struct{}
+
+// Contains returns whether the CodeRepositorySortBy enum includes the element
+func (enum CodeRepositorySortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CodeRepositorySortBy enum
+func (enum CodeRepositorySortBy) Values() []string {
+	return []string{
+		CodeRepositorySortByName,
+		CodeRepositorySortByCreationTime,
+		CodeRepositorySortByLastModifiedTime,
+	}
+}
+
 const (
 	// CodeRepositorySortOrderAscending is a CodeRepositorySortOrder enum value
 	CodeRepositorySortOrderAscending = "Ascending"
@@ -48951,6 +49535,28 @@ const (
 	// CodeRepositorySortOrderDescending is a CodeRepositorySortOrder enum value
 	CodeRepositorySortOrderDescending = "Descending"
 )
+
+// CodeRepositorySortOrder is an enum
+type CodeRepositorySortOrder struct{}
+
+// Contains returns whether the CodeRepositorySortOrder enum includes the element
+func (enum CodeRepositorySortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CodeRepositorySortOrder enum
+func (enum CodeRepositorySortOrder) Values() []string {
+	return []string{
+		CodeRepositorySortOrderAscending,
+		CodeRepositorySortOrderDescending,
+	}
+}
 
 const (
 	// CompilationJobStatusInprogress is a CompilationJobStatus enum value
@@ -48972,6 +49578,32 @@ const (
 	CompilationJobStatusStopped = "STOPPED"
 )
 
+// CompilationJobStatus is an enum
+type CompilationJobStatus struct{}
+
+// Contains returns whether the CompilationJobStatus enum includes the element
+func (enum CompilationJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CompilationJobStatus enum
+func (enum CompilationJobStatus) Values() []string {
+	return []string{
+		CompilationJobStatusInprogress,
+		CompilationJobStatusCompleted,
+		CompilationJobStatusFailed,
+		CompilationJobStatusStarting,
+		CompilationJobStatusStopping,
+		CompilationJobStatusStopped,
+	}
+}
+
 const (
 	// CompressionTypeNone is a CompressionType enum value
 	CompressionTypeNone = "None"
@@ -48979,6 +49611,28 @@ const (
 	// CompressionTypeGzip is a CompressionType enum value
 	CompressionTypeGzip = "Gzip"
 )
+
+// CompressionType is an enum
+type CompressionType struct{}
+
+// Contains returns whether the CompressionType enum includes the element
+func (enum CompressionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CompressionType enum
+func (enum CompressionType) Values() []string {
+	return []string{
+		CompressionTypeNone,
+		CompressionTypeGzip,
+	}
+}
 
 const (
 	// ContainerModeSingleModel is a ContainerMode enum value
@@ -48988,6 +49642,28 @@ const (
 	ContainerModeMultiModel = "MultiModel"
 )
 
+// ContainerMode is an enum
+type ContainerMode struct{}
+
+// Contains returns whether the ContainerMode enum includes the element
+func (enum ContainerMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContainerMode enum
+func (enum ContainerMode) Values() []string {
+	return []string{
+		ContainerModeSingleModel,
+		ContainerModeMultiModel,
+	}
+}
+
 const (
 	// ContentClassifierFreeOfPersonallyIdentifiableInformation is a ContentClassifier enum value
 	ContentClassifierFreeOfPersonallyIdentifiableInformation = "FreeOfPersonallyIdentifiableInformation"
@@ -48995,6 +49671,28 @@ const (
 	// ContentClassifierFreeOfAdultContent is a ContentClassifier enum value
 	ContentClassifierFreeOfAdultContent = "FreeOfAdultContent"
 )
+
+// ContentClassifier is an enum
+type ContentClassifier struct{}
+
+// Contains returns whether the ContentClassifier enum includes the element
+func (enum ContentClassifier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentClassifier enum
+func (enum ContentClassifier) Values() []string {
+	return []string{
+		ContentClassifierFreeOfPersonallyIdentifiableInformation,
+		ContentClassifierFreeOfAdultContent,
+	}
+}
 
 const (
 	// DetailedAlgorithmStatusNotStarted is a DetailedAlgorithmStatus enum value
@@ -49010,6 +49708,30 @@ const (
 	DetailedAlgorithmStatusFailed = "Failed"
 )
 
+// DetailedAlgorithmStatus is an enum
+type DetailedAlgorithmStatus struct{}
+
+// Contains returns whether the DetailedAlgorithmStatus enum includes the element
+func (enum DetailedAlgorithmStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DetailedAlgorithmStatus enum
+func (enum DetailedAlgorithmStatus) Values() []string {
+	return []string{
+		DetailedAlgorithmStatusNotStarted,
+		DetailedAlgorithmStatusInProgress,
+		DetailedAlgorithmStatusCompleted,
+		DetailedAlgorithmStatusFailed,
+	}
+}
+
 const (
 	// DetailedModelPackageStatusNotStarted is a DetailedModelPackageStatus enum value
 	DetailedModelPackageStatusNotStarted = "NotStarted"
@@ -49024,6 +49746,30 @@ const (
 	DetailedModelPackageStatusFailed = "Failed"
 )
 
+// DetailedModelPackageStatus is an enum
+type DetailedModelPackageStatus struct{}
+
+// Contains returns whether the DetailedModelPackageStatus enum includes the element
+func (enum DetailedModelPackageStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DetailedModelPackageStatus enum
+func (enum DetailedModelPackageStatus) Values() []string {
+	return []string{
+		DetailedModelPackageStatusNotStarted,
+		DetailedModelPackageStatusInProgress,
+		DetailedModelPackageStatusCompleted,
+		DetailedModelPackageStatusFailed,
+	}
+}
+
 const (
 	// DirectInternetAccessEnabled is a DirectInternetAccess enum value
 	DirectInternetAccessEnabled = "Enabled"
@@ -49031,6 +49777,28 @@ const (
 	// DirectInternetAccessDisabled is a DirectInternetAccess enum value
 	DirectInternetAccessDisabled = "Disabled"
 )
+
+// DirectInternetAccess is an enum
+type DirectInternetAccess struct{}
+
+// Contains returns whether the DirectInternetAccess enum includes the element
+func (enum DirectInternetAccess) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DirectInternetAccess enum
+func (enum DirectInternetAccess) Values() []string {
+	return []string{
+		DirectInternetAccessEnabled,
+		DirectInternetAccessDisabled,
+	}
+}
 
 const (
 	// DomainStatusDeleting is a DomainStatus enum value
@@ -49046,6 +49814,30 @@ const (
 	DomainStatusPending = "Pending"
 )
 
+// DomainStatus is an enum
+type DomainStatus struct{}
+
+// Contains returns whether the DomainStatus enum includes the element
+func (enum DomainStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DomainStatus enum
+func (enum DomainStatus) Values() []string {
+	return []string{
+		DomainStatusDeleting,
+		DomainStatusFailed,
+		DomainStatusInService,
+		DomainStatusPending,
+	}
+}
+
 const (
 	// EndpointConfigSortKeyName is a EndpointConfigSortKey enum value
 	EndpointConfigSortKeyName = "Name"
@@ -49053,6 +49845,28 @@ const (
 	// EndpointConfigSortKeyCreationTime is a EndpointConfigSortKey enum value
 	EndpointConfigSortKeyCreationTime = "CreationTime"
 )
+
+// EndpointConfigSortKey is an enum
+type EndpointConfigSortKey struct{}
+
+// Contains returns whether the EndpointConfigSortKey enum includes the element
+func (enum EndpointConfigSortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EndpointConfigSortKey enum
+func (enum EndpointConfigSortKey) Values() []string {
+	return []string{
+		EndpointConfigSortKeyName,
+		EndpointConfigSortKeyCreationTime,
+	}
+}
 
 const (
 	// EndpointSortKeyName is a EndpointSortKey enum value
@@ -49064,6 +49878,29 @@ const (
 	// EndpointSortKeyStatus is a EndpointSortKey enum value
 	EndpointSortKeyStatus = "Status"
 )
+
+// EndpointSortKey is an enum
+type EndpointSortKey struct{}
+
+// Contains returns whether the EndpointSortKey enum includes the element
+func (enum EndpointSortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EndpointSortKey enum
+func (enum EndpointSortKey) Values() []string {
+	return []string{
+		EndpointSortKeyName,
+		EndpointSortKeyCreationTime,
+		EndpointSortKeyStatus,
+	}
+}
 
 const (
 	// EndpointStatusOutOfService is a EndpointStatus enum value
@@ -49091,6 +49928,34 @@ const (
 	EndpointStatusFailed = "Failed"
 )
 
+// EndpointStatus is an enum
+type EndpointStatus struct{}
+
+// Contains returns whether the EndpointStatus enum includes the element
+func (enum EndpointStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EndpointStatus enum
+func (enum EndpointStatus) Values() []string {
+	return []string{
+		EndpointStatusOutOfService,
+		EndpointStatusCreating,
+		EndpointStatusUpdating,
+		EndpointStatusSystemUpdating,
+		EndpointStatusRollingBack,
+		EndpointStatusInService,
+		EndpointStatusDeleting,
+		EndpointStatusFailed,
+	}
+}
+
 const (
 	// ExecutionStatusPending is a ExecutionStatus enum value
 	ExecutionStatusPending = "Pending"
@@ -49114,6 +49979,33 @@ const (
 	ExecutionStatusStopped = "Stopped"
 )
 
+// ExecutionStatus is an enum
+type ExecutionStatus struct{}
+
+// Contains returns whether the ExecutionStatus enum includes the element
+func (enum ExecutionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExecutionStatus enum
+func (enum ExecutionStatus) Values() []string {
+	return []string{
+		ExecutionStatusPending,
+		ExecutionStatusCompleted,
+		ExecutionStatusCompletedWithViolations,
+		ExecutionStatusInProgress,
+		ExecutionStatusFailed,
+		ExecutionStatusStopping,
+		ExecutionStatusStopped,
+	}
+}
+
 const (
 	// FileSystemAccessModeRw is a FileSystemAccessMode enum value
 	FileSystemAccessModeRw = "rw"
@@ -49122,6 +50014,28 @@ const (
 	FileSystemAccessModeRo = "ro"
 )
 
+// FileSystemAccessMode is an enum
+type FileSystemAccessMode struct{}
+
+// Contains returns whether the FileSystemAccessMode enum includes the element
+func (enum FileSystemAccessMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileSystemAccessMode enum
+func (enum FileSystemAccessMode) Values() []string {
+	return []string{
+		FileSystemAccessModeRw,
+		FileSystemAccessModeRo,
+	}
+}
+
 const (
 	// FileSystemTypeEfs is a FileSystemType enum value
 	FileSystemTypeEfs = "EFS"
@@ -49129,6 +50043,28 @@ const (
 	// FileSystemTypeFsxLustre is a FileSystemType enum value
 	FileSystemTypeFsxLustre = "FSxLustre"
 )
+
+// FileSystemType is an enum
+type FileSystemType struct{}
+
+// Contains returns whether the FileSystemType enum includes the element
+func (enum FileSystemType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileSystemType enum
+func (enum FileSystemType) Values() []string {
+	return []string{
+		FileSystemTypeEfs,
+		FileSystemTypeFsxLustre,
+	}
+}
 
 const (
 	// FlowDefinitionStatusInitializing is a FlowDefinitionStatus enum value
@@ -49143,6 +50079,30 @@ const (
 	// FlowDefinitionStatusDeleting is a FlowDefinitionStatus enum value
 	FlowDefinitionStatusDeleting = "Deleting"
 )
+
+// FlowDefinitionStatus is an enum
+type FlowDefinitionStatus struct{}
+
+// Contains returns whether the FlowDefinitionStatus enum includes the element
+func (enum FlowDefinitionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FlowDefinitionStatus enum
+func (enum FlowDefinitionStatus) Values() []string {
+	return []string{
+		FlowDefinitionStatusInitializing,
+		FlowDefinitionStatusActive,
+		FlowDefinitionStatusFailed,
+		FlowDefinitionStatusDeleting,
+	}
+}
 
 const (
 	// FrameworkTensorflow is a Framework enum value
@@ -49167,6 +50127,33 @@ const (
 	FrameworkTflite = "TFLITE"
 )
 
+// Framework is an enum
+type Framework struct{}
+
+// Contains returns whether the Framework enum includes the element
+func (enum Framework) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Framework enum
+func (enum Framework) Values() []string {
+	return []string{
+		FrameworkTensorflow,
+		FrameworkKeras,
+		FrameworkMxnet,
+		FrameworkOnnx,
+		FrameworkPytorch,
+		FrameworkXgboost,
+		FrameworkTflite,
+	}
+}
+
 const (
 	// HumanTaskUiStatusActive is a HumanTaskUiStatus enum value
 	HumanTaskUiStatusActive = "Active"
@@ -49174,6 +50161,28 @@ const (
 	// HumanTaskUiStatusDeleting is a HumanTaskUiStatus enum value
 	HumanTaskUiStatusDeleting = "Deleting"
 )
+
+// HumanTaskUiStatus is an enum
+type HumanTaskUiStatus struct{}
+
+// Contains returns whether the HumanTaskUiStatus enum includes the element
+func (enum HumanTaskUiStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HumanTaskUiStatus enum
+func (enum HumanTaskUiStatus) Values() []string {
+	return []string{
+		HumanTaskUiStatusActive,
+		HumanTaskUiStatusDeleting,
+	}
+}
 
 const (
 	// HyperParameterScalingTypeAuto is a HyperParameterScalingType enum value
@@ -49189,6 +50198,30 @@ const (
 	HyperParameterScalingTypeReverseLogarithmic = "ReverseLogarithmic"
 )
 
+// HyperParameterScalingType is an enum
+type HyperParameterScalingType struct{}
+
+// Contains returns whether the HyperParameterScalingType enum includes the element
+func (enum HyperParameterScalingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HyperParameterScalingType enum
+func (enum HyperParameterScalingType) Values() []string {
+	return []string{
+		HyperParameterScalingTypeAuto,
+		HyperParameterScalingTypeLinear,
+		HyperParameterScalingTypeLogarithmic,
+		HyperParameterScalingTypeReverseLogarithmic,
+	}
+}
+
 const (
 	// HyperParameterTuningJobObjectiveTypeMaximize is a HyperParameterTuningJobObjectiveType enum value
 	HyperParameterTuningJobObjectiveTypeMaximize = "Maximize"
@@ -49196,6 +50229,28 @@ const (
 	// HyperParameterTuningJobObjectiveTypeMinimize is a HyperParameterTuningJobObjectiveType enum value
 	HyperParameterTuningJobObjectiveTypeMinimize = "Minimize"
 )
+
+// HyperParameterTuningJobObjectiveType is an enum
+type HyperParameterTuningJobObjectiveType struct{}
+
+// Contains returns whether the HyperParameterTuningJobObjectiveType enum includes the element
+func (enum HyperParameterTuningJobObjectiveType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HyperParameterTuningJobObjectiveType enum
+func (enum HyperParameterTuningJobObjectiveType) Values() []string {
+	return []string{
+		HyperParameterTuningJobObjectiveTypeMaximize,
+		HyperParameterTuningJobObjectiveTypeMinimize,
+	}
+}
 
 const (
 	// HyperParameterTuningJobSortByOptionsName is a HyperParameterTuningJobSortByOptions enum value
@@ -49207,6 +50262,29 @@ const (
 	// HyperParameterTuningJobSortByOptionsCreationTime is a HyperParameterTuningJobSortByOptions enum value
 	HyperParameterTuningJobSortByOptionsCreationTime = "CreationTime"
 )
+
+// HyperParameterTuningJobSortByOptions is an enum
+type HyperParameterTuningJobSortByOptions struct{}
+
+// Contains returns whether the HyperParameterTuningJobSortByOptions enum includes the element
+func (enum HyperParameterTuningJobSortByOptions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HyperParameterTuningJobSortByOptions enum
+func (enum HyperParameterTuningJobSortByOptions) Values() []string {
+	return []string{
+		HyperParameterTuningJobSortByOptionsName,
+		HyperParameterTuningJobSortByOptionsStatus,
+		HyperParameterTuningJobSortByOptionsCreationTime,
+	}
+}
 
 const (
 	// HyperParameterTuningJobStatusCompleted is a HyperParameterTuningJobStatus enum value
@@ -49225,6 +50303,31 @@ const (
 	HyperParameterTuningJobStatusStopping = "Stopping"
 )
 
+// HyperParameterTuningJobStatus is an enum
+type HyperParameterTuningJobStatus struct{}
+
+// Contains returns whether the HyperParameterTuningJobStatus enum includes the element
+func (enum HyperParameterTuningJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HyperParameterTuningJobStatus enum
+func (enum HyperParameterTuningJobStatus) Values() []string {
+	return []string{
+		HyperParameterTuningJobStatusCompleted,
+		HyperParameterTuningJobStatusInProgress,
+		HyperParameterTuningJobStatusFailed,
+		HyperParameterTuningJobStatusStopped,
+		HyperParameterTuningJobStatusStopping,
+	}
+}
+
 // The strategy hyperparameter tuning uses to find the best combination of hyperparameters
 // for your model. Currently, the only supported value is Bayesian.
 const (
@@ -49235,6 +50338,28 @@ const (
 	HyperParameterTuningJobStrategyTypeRandom = "Random"
 )
 
+// HyperParameterTuningJobStrategyType is an enum
+type HyperParameterTuningJobStrategyType struct{}
+
+// Contains returns whether the HyperParameterTuningJobStrategyType enum includes the element
+func (enum HyperParameterTuningJobStrategyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HyperParameterTuningJobStrategyType enum
+func (enum HyperParameterTuningJobStrategyType) Values() []string {
+	return []string{
+		HyperParameterTuningJobStrategyTypeBayesian,
+		HyperParameterTuningJobStrategyTypeRandom,
+	}
+}
+
 const (
 	// HyperParameterTuningJobWarmStartTypeIdenticalDataAndAlgorithm is a HyperParameterTuningJobWarmStartType enum value
 	HyperParameterTuningJobWarmStartTypeIdenticalDataAndAlgorithm = "IdenticalDataAndAlgorithm"
@@ -49242,6 +50367,28 @@ const (
 	// HyperParameterTuningJobWarmStartTypeTransferLearning is a HyperParameterTuningJobWarmStartType enum value
 	HyperParameterTuningJobWarmStartTypeTransferLearning = "TransferLearning"
 )
+
+// HyperParameterTuningJobWarmStartType is an enum
+type HyperParameterTuningJobWarmStartType struct{}
+
+// Contains returns whether the HyperParameterTuningJobWarmStartType enum includes the element
+func (enum HyperParameterTuningJobWarmStartType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HyperParameterTuningJobWarmStartType enum
+func (enum HyperParameterTuningJobWarmStartType) Values() []string {
+	return []string{
+		HyperParameterTuningJobWarmStartTypeIdenticalDataAndAlgorithm,
+		HyperParameterTuningJobWarmStartTypeTransferLearning,
+	}
+}
 
 const (
 	// InstanceTypeMlT2Medium is a InstanceType enum value
@@ -49359,6 +50506,64 @@ const (
 	InstanceTypeMlP316xlarge = "ml.p3.16xlarge"
 )
 
+// InstanceType is an enum
+type InstanceType struct{}
+
+// Contains returns whether the InstanceType enum includes the element
+func (enum InstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceType enum
+func (enum InstanceType) Values() []string {
+	return []string{
+		InstanceTypeMlT2Medium,
+		InstanceTypeMlT2Large,
+		InstanceTypeMlT2Xlarge,
+		InstanceTypeMlT22xlarge,
+		InstanceTypeMlT3Medium,
+		InstanceTypeMlT3Large,
+		InstanceTypeMlT3Xlarge,
+		InstanceTypeMlT32xlarge,
+		InstanceTypeMlM4Xlarge,
+		InstanceTypeMlM42xlarge,
+		InstanceTypeMlM44xlarge,
+		InstanceTypeMlM410xlarge,
+		InstanceTypeMlM416xlarge,
+		InstanceTypeMlM5Xlarge,
+		InstanceTypeMlM52xlarge,
+		InstanceTypeMlM54xlarge,
+		InstanceTypeMlM512xlarge,
+		InstanceTypeMlM524xlarge,
+		InstanceTypeMlC4Xlarge,
+		InstanceTypeMlC42xlarge,
+		InstanceTypeMlC44xlarge,
+		InstanceTypeMlC48xlarge,
+		InstanceTypeMlC5Xlarge,
+		InstanceTypeMlC52xlarge,
+		InstanceTypeMlC54xlarge,
+		InstanceTypeMlC59xlarge,
+		InstanceTypeMlC518xlarge,
+		InstanceTypeMlC5dXlarge,
+		InstanceTypeMlC5d2xlarge,
+		InstanceTypeMlC5d4xlarge,
+		InstanceTypeMlC5d9xlarge,
+		InstanceTypeMlC5d18xlarge,
+		InstanceTypeMlP2Xlarge,
+		InstanceTypeMlP28xlarge,
+		InstanceTypeMlP216xlarge,
+		InstanceTypeMlP32xlarge,
+		InstanceTypeMlP38xlarge,
+		InstanceTypeMlP316xlarge,
+	}
+}
+
 const (
 	// JoinSourceInput is a JoinSource enum value
 	JoinSourceInput = "Input"
@@ -49366,6 +50571,28 @@ const (
 	// JoinSourceNone is a JoinSource enum value
 	JoinSourceNone = "None"
 )
+
+// JoinSource is an enum
+type JoinSource struct{}
+
+// Contains returns whether the JoinSource enum includes the element
+func (enum JoinSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JoinSource enum
+func (enum JoinSource) Values() []string {
+	return []string{
+		JoinSourceInput,
+		JoinSourceNone,
+	}
+}
 
 const (
 	// LabelingJobStatusInitializing is a LabelingJobStatus enum value
@@ -49387,6 +50614,32 @@ const (
 	LabelingJobStatusStopped = "Stopped"
 )
 
+// LabelingJobStatus is an enum
+type LabelingJobStatus struct{}
+
+// Contains returns whether the LabelingJobStatus enum includes the element
+func (enum LabelingJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LabelingJobStatus enum
+func (enum LabelingJobStatus) Values() []string {
+	return []string{
+		LabelingJobStatusInitializing,
+		LabelingJobStatusInProgress,
+		LabelingJobStatusCompleted,
+		LabelingJobStatusFailed,
+		LabelingJobStatusStopping,
+		LabelingJobStatusStopped,
+	}
+}
+
 const (
 	// ListCompilationJobsSortByName is a ListCompilationJobsSortBy enum value
 	ListCompilationJobsSortByName = "Name"
@@ -49398,10 +50651,54 @@ const (
 	ListCompilationJobsSortByStatus = "Status"
 )
 
+// ListCompilationJobsSortBy is an enum
+type ListCompilationJobsSortBy struct{}
+
+// Contains returns whether the ListCompilationJobsSortBy enum includes the element
+func (enum ListCompilationJobsSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListCompilationJobsSortBy enum
+func (enum ListCompilationJobsSortBy) Values() []string {
+	return []string{
+		ListCompilationJobsSortByName,
+		ListCompilationJobsSortByCreationTime,
+		ListCompilationJobsSortByStatus,
+	}
+}
+
 const (
 	// ListLabelingJobsForWorkteamSortByOptionsCreationTime is a ListLabelingJobsForWorkteamSortByOptions enum value
 	ListLabelingJobsForWorkteamSortByOptionsCreationTime = "CreationTime"
 )
+
+// ListLabelingJobsForWorkteamSortByOptions is an enum
+type ListLabelingJobsForWorkteamSortByOptions struct{}
+
+// Contains returns whether the ListLabelingJobsForWorkteamSortByOptions enum includes the element
+func (enum ListLabelingJobsForWorkteamSortByOptions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListLabelingJobsForWorkteamSortByOptions enum
+func (enum ListLabelingJobsForWorkteamSortByOptions) Values() []string {
+	return []string{
+		ListLabelingJobsForWorkteamSortByOptionsCreationTime,
+	}
+}
 
 const (
 	// ListWorkforcesSortByOptionsName is a ListWorkforcesSortByOptions enum value
@@ -49411,6 +50708,28 @@ const (
 	ListWorkforcesSortByOptionsCreateDate = "CreateDate"
 )
 
+// ListWorkforcesSortByOptions is an enum
+type ListWorkforcesSortByOptions struct{}
+
+// Contains returns whether the ListWorkforcesSortByOptions enum includes the element
+func (enum ListWorkforcesSortByOptions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListWorkforcesSortByOptions enum
+func (enum ListWorkforcesSortByOptions) Values() []string {
+	return []string{
+		ListWorkforcesSortByOptionsName,
+		ListWorkforcesSortByOptionsCreateDate,
+	}
+}
+
 const (
 	// ListWorkteamsSortByOptionsName is a ListWorkteamsSortByOptions enum value
 	ListWorkteamsSortByOptionsName = "Name"
@@ -49419,6 +50738,28 @@ const (
 	ListWorkteamsSortByOptionsCreateDate = "CreateDate"
 )
 
+// ListWorkteamsSortByOptions is an enum
+type ListWorkteamsSortByOptions struct{}
+
+// Contains returns whether the ListWorkteamsSortByOptions enum includes the element
+func (enum ListWorkteamsSortByOptions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListWorkteamsSortByOptions enum
+func (enum ListWorkteamsSortByOptions) Values() []string {
+	return []string{
+		ListWorkteamsSortByOptionsName,
+		ListWorkteamsSortByOptionsCreateDate,
+	}
+}
+
 const (
 	// ModelPackageSortByName is a ModelPackageSortBy enum value
 	ModelPackageSortByName = "Name"
@@ -49426,6 +50767,28 @@ const (
 	// ModelPackageSortByCreationTime is a ModelPackageSortBy enum value
 	ModelPackageSortByCreationTime = "CreationTime"
 )
+
+// ModelPackageSortBy is an enum
+type ModelPackageSortBy struct{}
+
+// Contains returns whether the ModelPackageSortBy enum includes the element
+func (enum ModelPackageSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModelPackageSortBy enum
+func (enum ModelPackageSortBy) Values() []string {
+	return []string{
+		ModelPackageSortByName,
+		ModelPackageSortByCreationTime,
+	}
+}
 
 const (
 	// ModelPackageStatusPending is a ModelPackageStatus enum value
@@ -49444,6 +50807,31 @@ const (
 	ModelPackageStatusDeleting = "Deleting"
 )
 
+// ModelPackageStatus is an enum
+type ModelPackageStatus struct{}
+
+// Contains returns whether the ModelPackageStatus enum includes the element
+func (enum ModelPackageStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModelPackageStatus enum
+func (enum ModelPackageStatus) Values() []string {
+	return []string{
+		ModelPackageStatusPending,
+		ModelPackageStatusInProgress,
+		ModelPackageStatusCompleted,
+		ModelPackageStatusFailed,
+		ModelPackageStatusDeleting,
+	}
+}
+
 const (
 	// ModelSortKeyName is a ModelSortKey enum value
 	ModelSortKeyName = "Name"
@@ -49451,6 +50839,28 @@ const (
 	// ModelSortKeyCreationTime is a ModelSortKey enum value
 	ModelSortKeyCreationTime = "CreationTime"
 )
+
+// ModelSortKey is an enum
+type ModelSortKey struct{}
+
+// Contains returns whether the ModelSortKey enum includes the element
+func (enum ModelSortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModelSortKey enum
+func (enum ModelSortKey) Values() []string {
+	return []string{
+		ModelSortKeyName,
+		ModelSortKeyCreationTime,
+	}
+}
 
 const (
 	// MonitoringExecutionSortKeyCreationTime is a MonitoringExecutionSortKey enum value
@@ -49463,6 +50873,29 @@ const (
 	MonitoringExecutionSortKeyStatus = "Status"
 )
 
+// MonitoringExecutionSortKey is an enum
+type MonitoringExecutionSortKey struct{}
+
+// Contains returns whether the MonitoringExecutionSortKey enum includes the element
+func (enum MonitoringExecutionSortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MonitoringExecutionSortKey enum
+func (enum MonitoringExecutionSortKey) Values() []string {
+	return []string{
+		MonitoringExecutionSortKeyCreationTime,
+		MonitoringExecutionSortKeyScheduledTime,
+		MonitoringExecutionSortKeyStatus,
+	}
+}
+
 const (
 	// MonitoringScheduleSortKeyName is a MonitoringScheduleSortKey enum value
 	MonitoringScheduleSortKeyName = "Name"
@@ -49473,6 +50906,29 @@ const (
 	// MonitoringScheduleSortKeyStatus is a MonitoringScheduleSortKey enum value
 	MonitoringScheduleSortKeyStatus = "Status"
 )
+
+// MonitoringScheduleSortKey is an enum
+type MonitoringScheduleSortKey struct{}
+
+// Contains returns whether the MonitoringScheduleSortKey enum includes the element
+func (enum MonitoringScheduleSortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MonitoringScheduleSortKey enum
+func (enum MonitoringScheduleSortKey) Values() []string {
+	return []string{
+		MonitoringScheduleSortKeyName,
+		MonitoringScheduleSortKeyCreationTime,
+		MonitoringScheduleSortKeyStatus,
+	}
+}
 
 const (
 	// NotebookInstanceAcceleratorTypeMlEia1Medium is a NotebookInstanceAcceleratorType enum value
@@ -49494,6 +50950,32 @@ const (
 	NotebookInstanceAcceleratorTypeMlEia2Xlarge = "ml.eia2.xlarge"
 )
 
+// NotebookInstanceAcceleratorType is an enum
+type NotebookInstanceAcceleratorType struct{}
+
+// Contains returns whether the NotebookInstanceAcceleratorType enum includes the element
+func (enum NotebookInstanceAcceleratorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotebookInstanceAcceleratorType enum
+func (enum NotebookInstanceAcceleratorType) Values() []string {
+	return []string{
+		NotebookInstanceAcceleratorTypeMlEia1Medium,
+		NotebookInstanceAcceleratorTypeMlEia1Large,
+		NotebookInstanceAcceleratorTypeMlEia1Xlarge,
+		NotebookInstanceAcceleratorTypeMlEia2Medium,
+		NotebookInstanceAcceleratorTypeMlEia2Large,
+		NotebookInstanceAcceleratorTypeMlEia2Xlarge,
+	}
+}
+
 const (
 	// NotebookInstanceLifecycleConfigSortKeyName is a NotebookInstanceLifecycleConfigSortKey enum value
 	NotebookInstanceLifecycleConfigSortKeyName = "Name"
@@ -49505,6 +50987,29 @@ const (
 	NotebookInstanceLifecycleConfigSortKeyLastModifiedTime = "LastModifiedTime"
 )
 
+// NotebookInstanceLifecycleConfigSortKey is an enum
+type NotebookInstanceLifecycleConfigSortKey struct{}
+
+// Contains returns whether the NotebookInstanceLifecycleConfigSortKey enum includes the element
+func (enum NotebookInstanceLifecycleConfigSortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotebookInstanceLifecycleConfigSortKey enum
+func (enum NotebookInstanceLifecycleConfigSortKey) Values() []string {
+	return []string{
+		NotebookInstanceLifecycleConfigSortKeyName,
+		NotebookInstanceLifecycleConfigSortKeyCreationTime,
+		NotebookInstanceLifecycleConfigSortKeyLastModifiedTime,
+	}
+}
+
 const (
 	// NotebookInstanceLifecycleConfigSortOrderAscending is a NotebookInstanceLifecycleConfigSortOrder enum value
 	NotebookInstanceLifecycleConfigSortOrderAscending = "Ascending"
@@ -49512,6 +51017,28 @@ const (
 	// NotebookInstanceLifecycleConfigSortOrderDescending is a NotebookInstanceLifecycleConfigSortOrder enum value
 	NotebookInstanceLifecycleConfigSortOrderDescending = "Descending"
 )
+
+// NotebookInstanceLifecycleConfigSortOrder is an enum
+type NotebookInstanceLifecycleConfigSortOrder struct{}
+
+// Contains returns whether the NotebookInstanceLifecycleConfigSortOrder enum includes the element
+func (enum NotebookInstanceLifecycleConfigSortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotebookInstanceLifecycleConfigSortOrder enum
+func (enum NotebookInstanceLifecycleConfigSortOrder) Values() []string {
+	return []string{
+		NotebookInstanceLifecycleConfigSortOrderAscending,
+		NotebookInstanceLifecycleConfigSortOrderDescending,
+	}
+}
 
 const (
 	// NotebookInstanceSortKeyName is a NotebookInstanceSortKey enum value
@@ -49524,6 +51051,29 @@ const (
 	NotebookInstanceSortKeyStatus = "Status"
 )
 
+// NotebookInstanceSortKey is an enum
+type NotebookInstanceSortKey struct{}
+
+// Contains returns whether the NotebookInstanceSortKey enum includes the element
+func (enum NotebookInstanceSortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotebookInstanceSortKey enum
+func (enum NotebookInstanceSortKey) Values() []string {
+	return []string{
+		NotebookInstanceSortKeyName,
+		NotebookInstanceSortKeyCreationTime,
+		NotebookInstanceSortKeyStatus,
+	}
+}
+
 const (
 	// NotebookInstanceSortOrderAscending is a NotebookInstanceSortOrder enum value
 	NotebookInstanceSortOrderAscending = "Ascending"
@@ -49531,6 +51081,28 @@ const (
 	// NotebookInstanceSortOrderDescending is a NotebookInstanceSortOrder enum value
 	NotebookInstanceSortOrderDescending = "Descending"
 )
+
+// NotebookInstanceSortOrder is an enum
+type NotebookInstanceSortOrder struct{}
+
+// Contains returns whether the NotebookInstanceSortOrder enum includes the element
+func (enum NotebookInstanceSortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotebookInstanceSortOrder enum
+func (enum NotebookInstanceSortOrder) Values() []string {
+	return []string{
+		NotebookInstanceSortOrderAscending,
+		NotebookInstanceSortOrderDescending,
+	}
+}
 
 const (
 	// NotebookInstanceStatusPending is a NotebookInstanceStatus enum value
@@ -49555,6 +51127,33 @@ const (
 	NotebookInstanceStatusUpdating = "Updating"
 )
 
+// NotebookInstanceStatus is an enum
+type NotebookInstanceStatus struct{}
+
+// Contains returns whether the NotebookInstanceStatus enum includes the element
+func (enum NotebookInstanceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotebookInstanceStatus enum
+func (enum NotebookInstanceStatus) Values() []string {
+	return []string{
+		NotebookInstanceStatusPending,
+		NotebookInstanceStatusInService,
+		NotebookInstanceStatusStopping,
+		NotebookInstanceStatusStopped,
+		NotebookInstanceStatusFailed,
+		NotebookInstanceStatusDeleting,
+		NotebookInstanceStatusUpdating,
+	}
+}
+
 const (
 	// NotebookOutputOptionAllowed is a NotebookOutputOption enum value
 	NotebookOutputOptionAllowed = "Allowed"
@@ -49562,6 +51161,28 @@ const (
 	// NotebookOutputOptionDisabled is a NotebookOutputOption enum value
 	NotebookOutputOptionDisabled = "Disabled"
 )
+
+// NotebookOutputOption is an enum
+type NotebookOutputOption struct{}
+
+// Contains returns whether the NotebookOutputOption enum includes the element
+func (enum NotebookOutputOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotebookOutputOption enum
+func (enum NotebookOutputOption) Values() []string {
+	return []string{
+		NotebookOutputOptionAllowed,
+		NotebookOutputOptionDisabled,
+	}
+}
 
 const (
 	// ObjectiveStatusSucceeded is a ObjectiveStatus enum value
@@ -49573,6 +51194,29 @@ const (
 	// ObjectiveStatusFailed is a ObjectiveStatus enum value
 	ObjectiveStatusFailed = "Failed"
 )
+
+// ObjectiveStatus is an enum
+type ObjectiveStatus struct{}
+
+// Contains returns whether the ObjectiveStatus enum includes the element
+func (enum ObjectiveStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectiveStatus enum
+func (enum ObjectiveStatus) Values() []string {
+	return []string{
+		ObjectiveStatusSucceeded,
+		ObjectiveStatusPending,
+		ObjectiveStatusFailed,
+	}
+}
 
 const (
 	// OperatorEquals is a Operator enum value
@@ -49606,6 +51250,36 @@ const (
 	OperatorIn = "In"
 )
 
+// Operator is an enum
+type Operator struct{}
+
+// Contains returns whether the Operator enum includes the element
+func (enum Operator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Operator enum
+func (enum Operator) Values() []string {
+	return []string{
+		OperatorEquals,
+		OperatorNotEquals,
+		OperatorGreaterThan,
+		OperatorGreaterThanOrEqualTo,
+		OperatorLessThan,
+		OperatorLessThanOrEqualTo,
+		OperatorContains,
+		OperatorExists,
+		OperatorNotExists,
+		OperatorIn,
+	}
+}
+
 const (
 	// OrderKeyAscending is a OrderKey enum value
 	OrderKeyAscending = "Ascending"
@@ -49613,6 +51287,28 @@ const (
 	// OrderKeyDescending is a OrderKey enum value
 	OrderKeyDescending = "Descending"
 )
+
+// OrderKey is an enum
+type OrderKey struct{}
+
+// Contains returns whether the OrderKey enum includes the element
+func (enum OrderKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrderKey enum
+func (enum OrderKey) Values() []string {
+	return []string{
+		OrderKeyAscending,
+		OrderKeyDescending,
+	}
+}
 
 const (
 	// ParameterTypeInteger is a ParameterType enum value
@@ -49628,6 +51324,30 @@ const (
 	ParameterTypeFreeText = "FreeText"
 )
 
+// ParameterType is an enum
+type ParameterType struct{}
+
+// Contains returns whether the ParameterType enum includes the element
+func (enum ParameterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ParameterType enum
+func (enum ParameterType) Values() []string {
+	return []string{
+		ParameterTypeInteger,
+		ParameterTypeContinuous,
+		ParameterTypeCategorical,
+		ParameterTypeFreeText,
+	}
+}
+
 const (
 	// ProblemTypeBinaryClassification is a ProblemType enum value
 	ProblemTypeBinaryClassification = "BinaryClassification"
@@ -49638,6 +51358,29 @@ const (
 	// ProblemTypeRegression is a ProblemType enum value
 	ProblemTypeRegression = "Regression"
 )
+
+// ProblemType is an enum
+type ProblemType struct{}
+
+// Contains returns whether the ProblemType enum includes the element
+func (enum ProblemType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProblemType enum
+func (enum ProblemType) Values() []string {
+	return []string{
+		ProblemTypeBinaryClassification,
+		ProblemTypeMulticlassClassification,
+		ProblemTypeRegression,
+	}
+}
 
 const (
 	// ProcessingInstanceTypeMlT3Medium is a ProcessingInstanceType enum value
@@ -49755,6 +51498,64 @@ const (
 	ProcessingInstanceTypeMlR524xlarge = "ml.r5.24xlarge"
 )
 
+// ProcessingInstanceType is an enum
+type ProcessingInstanceType struct{}
+
+// Contains returns whether the ProcessingInstanceType enum includes the element
+func (enum ProcessingInstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProcessingInstanceType enum
+func (enum ProcessingInstanceType) Values() []string {
+	return []string{
+		ProcessingInstanceTypeMlT3Medium,
+		ProcessingInstanceTypeMlT3Large,
+		ProcessingInstanceTypeMlT3Xlarge,
+		ProcessingInstanceTypeMlT32xlarge,
+		ProcessingInstanceTypeMlM4Xlarge,
+		ProcessingInstanceTypeMlM42xlarge,
+		ProcessingInstanceTypeMlM44xlarge,
+		ProcessingInstanceTypeMlM410xlarge,
+		ProcessingInstanceTypeMlM416xlarge,
+		ProcessingInstanceTypeMlC4Xlarge,
+		ProcessingInstanceTypeMlC42xlarge,
+		ProcessingInstanceTypeMlC44xlarge,
+		ProcessingInstanceTypeMlC48xlarge,
+		ProcessingInstanceTypeMlP2Xlarge,
+		ProcessingInstanceTypeMlP28xlarge,
+		ProcessingInstanceTypeMlP216xlarge,
+		ProcessingInstanceTypeMlP32xlarge,
+		ProcessingInstanceTypeMlP38xlarge,
+		ProcessingInstanceTypeMlP316xlarge,
+		ProcessingInstanceTypeMlC5Xlarge,
+		ProcessingInstanceTypeMlC52xlarge,
+		ProcessingInstanceTypeMlC54xlarge,
+		ProcessingInstanceTypeMlC59xlarge,
+		ProcessingInstanceTypeMlC518xlarge,
+		ProcessingInstanceTypeMlM5Large,
+		ProcessingInstanceTypeMlM5Xlarge,
+		ProcessingInstanceTypeMlM52xlarge,
+		ProcessingInstanceTypeMlM54xlarge,
+		ProcessingInstanceTypeMlM512xlarge,
+		ProcessingInstanceTypeMlM524xlarge,
+		ProcessingInstanceTypeMlR5Large,
+		ProcessingInstanceTypeMlR5Xlarge,
+		ProcessingInstanceTypeMlR52xlarge,
+		ProcessingInstanceTypeMlR54xlarge,
+		ProcessingInstanceTypeMlR58xlarge,
+		ProcessingInstanceTypeMlR512xlarge,
+		ProcessingInstanceTypeMlR516xlarge,
+		ProcessingInstanceTypeMlR524xlarge,
+	}
+}
+
 const (
 	// ProcessingJobStatusInProgress is a ProcessingJobStatus enum value
 	ProcessingJobStatusInProgress = "InProgress"
@@ -49772,6 +51573,31 @@ const (
 	ProcessingJobStatusStopped = "Stopped"
 )
 
+// ProcessingJobStatus is an enum
+type ProcessingJobStatus struct{}
+
+// Contains returns whether the ProcessingJobStatus enum includes the element
+func (enum ProcessingJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProcessingJobStatus enum
+func (enum ProcessingJobStatus) Values() []string {
+	return []string{
+		ProcessingJobStatusInProgress,
+		ProcessingJobStatusCompleted,
+		ProcessingJobStatusFailed,
+		ProcessingJobStatusStopping,
+		ProcessingJobStatusStopped,
+	}
+}
+
 const (
 	// ProcessingS3CompressionTypeNone is a ProcessingS3CompressionType enum value
 	ProcessingS3CompressionTypeNone = "None"
@@ -49779,6 +51605,28 @@ const (
 	// ProcessingS3CompressionTypeGzip is a ProcessingS3CompressionType enum value
 	ProcessingS3CompressionTypeGzip = "Gzip"
 )
+
+// ProcessingS3CompressionType is an enum
+type ProcessingS3CompressionType struct{}
+
+// Contains returns whether the ProcessingS3CompressionType enum includes the element
+func (enum ProcessingS3CompressionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProcessingS3CompressionType enum
+func (enum ProcessingS3CompressionType) Values() []string {
+	return []string{
+		ProcessingS3CompressionTypeNone,
+		ProcessingS3CompressionTypeGzip,
+	}
+}
 
 const (
 	// ProcessingS3DataDistributionTypeFullyReplicated is a ProcessingS3DataDistributionType enum value
@@ -49788,6 +51636,28 @@ const (
 	ProcessingS3DataDistributionTypeShardedByS3key = "ShardedByS3Key"
 )
 
+// ProcessingS3DataDistributionType is an enum
+type ProcessingS3DataDistributionType struct{}
+
+// Contains returns whether the ProcessingS3DataDistributionType enum includes the element
+func (enum ProcessingS3DataDistributionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProcessingS3DataDistributionType enum
+func (enum ProcessingS3DataDistributionType) Values() []string {
+	return []string{
+		ProcessingS3DataDistributionTypeFullyReplicated,
+		ProcessingS3DataDistributionTypeShardedByS3key,
+	}
+}
+
 const (
 	// ProcessingS3DataTypeManifestFile is a ProcessingS3DataType enum value
 	ProcessingS3DataTypeManifestFile = "ManifestFile"
@@ -49795,6 +51665,28 @@ const (
 	// ProcessingS3DataTypeS3prefix is a ProcessingS3DataType enum value
 	ProcessingS3DataTypeS3prefix = "S3Prefix"
 )
+
+// ProcessingS3DataType is an enum
+type ProcessingS3DataType struct{}
+
+// Contains returns whether the ProcessingS3DataType enum includes the element
+func (enum ProcessingS3DataType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProcessingS3DataType enum
+func (enum ProcessingS3DataType) Values() []string {
+	return []string{
+		ProcessingS3DataTypeManifestFile,
+		ProcessingS3DataTypeS3prefix,
+	}
+}
 
 const (
 	// ProcessingS3InputModePipe is a ProcessingS3InputMode enum value
@@ -49804,6 +51696,28 @@ const (
 	ProcessingS3InputModeFile = "File"
 )
 
+// ProcessingS3InputMode is an enum
+type ProcessingS3InputMode struct{}
+
+// Contains returns whether the ProcessingS3InputMode enum includes the element
+func (enum ProcessingS3InputMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProcessingS3InputMode enum
+func (enum ProcessingS3InputMode) Values() []string {
+	return []string{
+		ProcessingS3InputModePipe,
+		ProcessingS3InputModeFile,
+	}
+}
+
 const (
 	// ProcessingS3UploadModeContinuous is a ProcessingS3UploadMode enum value
 	ProcessingS3UploadModeContinuous = "Continuous"
@@ -49811,6 +51725,28 @@ const (
 	// ProcessingS3UploadModeEndOfJob is a ProcessingS3UploadMode enum value
 	ProcessingS3UploadModeEndOfJob = "EndOfJob"
 )
+
+// ProcessingS3UploadMode is an enum
+type ProcessingS3UploadMode struct{}
+
+// Contains returns whether the ProcessingS3UploadMode enum includes the element
+func (enum ProcessingS3UploadMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProcessingS3UploadMode enum
+func (enum ProcessingS3UploadMode) Values() []string {
+	return []string{
+		ProcessingS3UploadModeContinuous,
+		ProcessingS3UploadModeEndOfJob,
+	}
+}
 
 const (
 	// ProductionVariantAcceleratorTypeMlEia1Medium is a ProductionVariantAcceleratorType enum value
@@ -49831,6 +51767,32 @@ const (
 	// ProductionVariantAcceleratorTypeMlEia2Xlarge is a ProductionVariantAcceleratorType enum value
 	ProductionVariantAcceleratorTypeMlEia2Xlarge = "ml.eia2.xlarge"
 )
+
+// ProductionVariantAcceleratorType is an enum
+type ProductionVariantAcceleratorType struct{}
+
+// Contains returns whether the ProductionVariantAcceleratorType enum includes the element
+func (enum ProductionVariantAcceleratorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProductionVariantAcceleratorType enum
+func (enum ProductionVariantAcceleratorType) Values() []string {
+	return []string{
+		ProductionVariantAcceleratorTypeMlEia1Medium,
+		ProductionVariantAcceleratorTypeMlEia1Large,
+		ProductionVariantAcceleratorTypeMlEia1Xlarge,
+		ProductionVariantAcceleratorTypeMlEia2Medium,
+		ProductionVariantAcceleratorTypeMlEia2Large,
+		ProductionVariantAcceleratorTypeMlEia2Xlarge,
+	}
+}
 
 const (
 	// ProductionVariantInstanceTypeMlT2Medium is a ProductionVariantInstanceType enum value
@@ -50032,6 +51994,92 @@ const (
 	ProductionVariantInstanceTypeMlInf124xlarge = "ml.inf1.24xlarge"
 )
 
+// ProductionVariantInstanceType is an enum
+type ProductionVariantInstanceType struct{}
+
+// Contains returns whether the ProductionVariantInstanceType enum includes the element
+func (enum ProductionVariantInstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProductionVariantInstanceType enum
+func (enum ProductionVariantInstanceType) Values() []string {
+	return []string{
+		ProductionVariantInstanceTypeMlT2Medium,
+		ProductionVariantInstanceTypeMlT2Large,
+		ProductionVariantInstanceTypeMlT2Xlarge,
+		ProductionVariantInstanceTypeMlT22xlarge,
+		ProductionVariantInstanceTypeMlM4Xlarge,
+		ProductionVariantInstanceTypeMlM42xlarge,
+		ProductionVariantInstanceTypeMlM44xlarge,
+		ProductionVariantInstanceTypeMlM410xlarge,
+		ProductionVariantInstanceTypeMlM416xlarge,
+		ProductionVariantInstanceTypeMlM5Large,
+		ProductionVariantInstanceTypeMlM5Xlarge,
+		ProductionVariantInstanceTypeMlM52xlarge,
+		ProductionVariantInstanceTypeMlM54xlarge,
+		ProductionVariantInstanceTypeMlM512xlarge,
+		ProductionVariantInstanceTypeMlM524xlarge,
+		ProductionVariantInstanceTypeMlM5dLarge,
+		ProductionVariantInstanceTypeMlM5dXlarge,
+		ProductionVariantInstanceTypeMlM5d2xlarge,
+		ProductionVariantInstanceTypeMlM5d4xlarge,
+		ProductionVariantInstanceTypeMlM5d12xlarge,
+		ProductionVariantInstanceTypeMlM5d24xlarge,
+		ProductionVariantInstanceTypeMlC4Large,
+		ProductionVariantInstanceTypeMlC4Xlarge,
+		ProductionVariantInstanceTypeMlC42xlarge,
+		ProductionVariantInstanceTypeMlC44xlarge,
+		ProductionVariantInstanceTypeMlC48xlarge,
+		ProductionVariantInstanceTypeMlP2Xlarge,
+		ProductionVariantInstanceTypeMlP28xlarge,
+		ProductionVariantInstanceTypeMlP216xlarge,
+		ProductionVariantInstanceTypeMlP32xlarge,
+		ProductionVariantInstanceTypeMlP38xlarge,
+		ProductionVariantInstanceTypeMlP316xlarge,
+		ProductionVariantInstanceTypeMlC5Large,
+		ProductionVariantInstanceTypeMlC5Xlarge,
+		ProductionVariantInstanceTypeMlC52xlarge,
+		ProductionVariantInstanceTypeMlC54xlarge,
+		ProductionVariantInstanceTypeMlC59xlarge,
+		ProductionVariantInstanceTypeMlC518xlarge,
+		ProductionVariantInstanceTypeMlC5dLarge,
+		ProductionVariantInstanceTypeMlC5dXlarge,
+		ProductionVariantInstanceTypeMlC5d2xlarge,
+		ProductionVariantInstanceTypeMlC5d4xlarge,
+		ProductionVariantInstanceTypeMlC5d9xlarge,
+		ProductionVariantInstanceTypeMlC5d18xlarge,
+		ProductionVariantInstanceTypeMlG4dnXlarge,
+		ProductionVariantInstanceTypeMlG4dn2xlarge,
+		ProductionVariantInstanceTypeMlG4dn4xlarge,
+		ProductionVariantInstanceTypeMlG4dn8xlarge,
+		ProductionVariantInstanceTypeMlG4dn12xlarge,
+		ProductionVariantInstanceTypeMlG4dn16xlarge,
+		ProductionVariantInstanceTypeMlR5Large,
+		ProductionVariantInstanceTypeMlR5Xlarge,
+		ProductionVariantInstanceTypeMlR52xlarge,
+		ProductionVariantInstanceTypeMlR54xlarge,
+		ProductionVariantInstanceTypeMlR512xlarge,
+		ProductionVariantInstanceTypeMlR524xlarge,
+		ProductionVariantInstanceTypeMlR5dLarge,
+		ProductionVariantInstanceTypeMlR5dXlarge,
+		ProductionVariantInstanceTypeMlR5d2xlarge,
+		ProductionVariantInstanceTypeMlR5d4xlarge,
+		ProductionVariantInstanceTypeMlR5d12xlarge,
+		ProductionVariantInstanceTypeMlR5d24xlarge,
+		ProductionVariantInstanceTypeMlInf1Xlarge,
+		ProductionVariantInstanceTypeMlInf12xlarge,
+		ProductionVariantInstanceTypeMlInf16xlarge,
+		ProductionVariantInstanceTypeMlInf124xlarge,
+	}
+}
+
 const (
 	// RecordWrapperNone is a RecordWrapper enum value
 	RecordWrapperNone = "None"
@@ -50039,6 +52087,28 @@ const (
 	// RecordWrapperRecordIo is a RecordWrapper enum value
 	RecordWrapperRecordIo = "RecordIO"
 )
+
+// RecordWrapper is an enum
+type RecordWrapper struct{}
+
+// Contains returns whether the RecordWrapper enum includes the element
+func (enum RecordWrapper) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecordWrapper enum
+func (enum RecordWrapper) Values() []string {
+	return []string{
+		RecordWrapperNone,
+		RecordWrapperRecordIo,
+	}
+}
 
 const (
 	// ResourceTypeTrainingJob is a ResourceType enum value
@@ -50054,6 +52124,30 @@ const (
 	ResourceTypeExperimentTrialComponent = "ExperimentTrialComponent"
 )
 
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeTrainingJob,
+		ResourceTypeExperiment,
+		ResourceTypeExperimentTrial,
+		ResourceTypeExperimentTrialComponent,
+	}
+}
+
 const (
 	// RetentionTypeRetain is a RetentionType enum value
 	RetentionTypeRetain = "Retain"
@@ -50062,6 +52156,28 @@ const (
 	RetentionTypeDelete = "Delete"
 )
 
+// RetentionType is an enum
+type RetentionType struct{}
+
+// Contains returns whether the RetentionType enum includes the element
+func (enum RetentionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RetentionType enum
+func (enum RetentionType) Values() []string {
+	return []string{
+		RetentionTypeRetain,
+		RetentionTypeDelete,
+	}
+}
+
 const (
 	// RootAccessEnabled is a RootAccess enum value
 	RootAccessEnabled = "Enabled"
@@ -50069,6 +52185,28 @@ const (
 	// RootAccessDisabled is a RootAccess enum value
 	RootAccessDisabled = "Disabled"
 )
+
+// RootAccess is an enum
+type RootAccess struct{}
+
+// Contains returns whether the RootAccess enum includes the element
+func (enum RootAccess) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RootAccess enum
+func (enum RootAccess) Values() []string {
+	return []string{
+		RootAccessEnabled,
+		RootAccessDisabled,
+	}
+}
 
 const (
 	// RuleEvaluationStatusInProgress is a RuleEvaluationStatus enum value
@@ -50090,6 +52228,32 @@ const (
 	RuleEvaluationStatusStopped = "Stopped"
 )
 
+// RuleEvaluationStatus is an enum
+type RuleEvaluationStatus struct{}
+
+// Contains returns whether the RuleEvaluationStatus enum includes the element
+func (enum RuleEvaluationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RuleEvaluationStatus enum
+func (enum RuleEvaluationStatus) Values() []string {
+	return []string{
+		RuleEvaluationStatusInProgress,
+		RuleEvaluationStatusNoIssuesFound,
+		RuleEvaluationStatusIssuesFound,
+		RuleEvaluationStatusError,
+		RuleEvaluationStatusStopping,
+		RuleEvaluationStatusStopped,
+	}
+}
+
 const (
 	// S3DataDistributionFullyReplicated is a S3DataDistribution enum value
 	S3DataDistributionFullyReplicated = "FullyReplicated"
@@ -50097,6 +52261,28 @@ const (
 	// S3DataDistributionShardedByS3key is a S3DataDistribution enum value
 	S3DataDistributionShardedByS3key = "ShardedByS3Key"
 )
+
+// S3DataDistribution is an enum
+type S3DataDistribution struct{}
+
+// Contains returns whether the S3DataDistribution enum includes the element
+func (enum S3DataDistribution) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3DataDistribution enum
+func (enum S3DataDistribution) Values() []string {
+	return []string{
+		S3DataDistributionFullyReplicated,
+		S3DataDistributionShardedByS3key,
+	}
+}
 
 const (
 	// S3DataTypeManifestFile is a S3DataType enum value
@@ -50108,6 +52294,29 @@ const (
 	// S3DataTypeAugmentedManifestFile is a S3DataType enum value
 	S3DataTypeAugmentedManifestFile = "AugmentedManifestFile"
 )
+
+// S3DataType is an enum
+type S3DataType struct{}
+
+// Contains returns whether the S3DataType enum includes the element
+func (enum S3DataType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3DataType enum
+func (enum S3DataType) Values() []string {
+	return []string{
+		S3DataTypeManifestFile,
+		S3DataTypeS3prefix,
+		S3DataTypeAugmentedManifestFile,
+	}
+}
 
 const (
 	// ScheduleStatusPending is a ScheduleStatus enum value
@@ -50123,6 +52332,30 @@ const (
 	ScheduleStatusStopped = "Stopped"
 )
 
+// ScheduleStatus is an enum
+type ScheduleStatus struct{}
+
+// Contains returns whether the ScheduleStatus enum includes the element
+func (enum ScheduleStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScheduleStatus enum
+func (enum ScheduleStatus) Values() []string {
+	return []string{
+		ScheduleStatusPending,
+		ScheduleStatusFailed,
+		ScheduleStatusScheduled,
+		ScheduleStatusStopped,
+	}
+}
+
 const (
 	// SearchSortOrderAscending is a SearchSortOrder enum value
 	SearchSortOrderAscending = "Ascending"
@@ -50130,6 +52363,28 @@ const (
 	// SearchSortOrderDescending is a SearchSortOrder enum value
 	SearchSortOrderDescending = "Descending"
 )
+
+// SearchSortOrder is an enum
+type SearchSortOrder struct{}
+
+// Contains returns whether the SearchSortOrder enum includes the element
+func (enum SearchSortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SearchSortOrder enum
+func (enum SearchSortOrder) Values() []string {
+	return []string{
+		SearchSortOrderAscending,
+		SearchSortOrderDescending,
+	}
+}
 
 const (
 	// SecondaryStatusStarting is a SecondaryStatus enum value
@@ -50175,6 +52430,40 @@ const (
 	SecondaryStatusMaxWaitTimeExceeded = "MaxWaitTimeExceeded"
 )
 
+// SecondaryStatus is an enum
+type SecondaryStatus struct{}
+
+// Contains returns whether the SecondaryStatus enum includes the element
+func (enum SecondaryStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SecondaryStatus enum
+func (enum SecondaryStatus) Values() []string {
+	return []string{
+		SecondaryStatusStarting,
+		SecondaryStatusLaunchingMlinstances,
+		SecondaryStatusPreparingTrainingStack,
+		SecondaryStatusDownloading,
+		SecondaryStatusDownloadingTrainingImage,
+		SecondaryStatusTraining,
+		SecondaryStatusUploading,
+		SecondaryStatusStopping,
+		SecondaryStatusStopped,
+		SecondaryStatusMaxRuntimeExceeded,
+		SecondaryStatusCompleted,
+		SecondaryStatusFailed,
+		SecondaryStatusInterrupted,
+		SecondaryStatusMaxWaitTimeExceeded,
+	}
+}
+
 const (
 	// SortByName is a SortBy enum value
 	SortByName = "Name"
@@ -50186,6 +52475,29 @@ const (
 	SortByStatus = "Status"
 )
 
+// SortBy is an enum
+type SortBy struct{}
+
+// Contains returns whether the SortBy enum includes the element
+func (enum SortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortBy enum
+func (enum SortBy) Values() []string {
+	return []string{
+		SortByName,
+		SortByCreationTime,
+		SortByStatus,
+	}
+}
+
 const (
 	// SortExperimentsByName is a SortExperimentsBy enum value
 	SortExperimentsByName = "Name"
@@ -50193,6 +52505,28 @@ const (
 	// SortExperimentsByCreationTime is a SortExperimentsBy enum value
 	SortExperimentsByCreationTime = "CreationTime"
 )
+
+// SortExperimentsBy is an enum
+type SortExperimentsBy struct{}
+
+// Contains returns whether the SortExperimentsBy enum includes the element
+func (enum SortExperimentsBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortExperimentsBy enum
+func (enum SortExperimentsBy) Values() []string {
+	return []string{
+		SortExperimentsByName,
+		SortExperimentsByCreationTime,
+	}
+}
 
 const (
 	// SortOrderAscending is a SortOrder enum value
@@ -50202,6 +52536,28 @@ const (
 	SortOrderDescending = "Descending"
 )
 
+// SortOrder is an enum
+type SortOrder struct{}
+
+// Contains returns whether the SortOrder enum includes the element
+func (enum SortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortOrder enum
+func (enum SortOrder) Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
+	}
+}
+
 const (
 	// SortTrialComponentsByName is a SortTrialComponentsBy enum value
 	SortTrialComponentsByName = "Name"
@@ -50210,6 +52566,28 @@ const (
 	SortTrialComponentsByCreationTime = "CreationTime"
 )
 
+// SortTrialComponentsBy is an enum
+type SortTrialComponentsBy struct{}
+
+// Contains returns whether the SortTrialComponentsBy enum includes the element
+func (enum SortTrialComponentsBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortTrialComponentsBy enum
+func (enum SortTrialComponentsBy) Values() []string {
+	return []string{
+		SortTrialComponentsByName,
+		SortTrialComponentsByCreationTime,
+	}
+}
+
 const (
 	// SortTrialsByName is a SortTrialsBy enum value
 	SortTrialsByName = "Name"
@@ -50217,6 +52595,28 @@ const (
 	// SortTrialsByCreationTime is a SortTrialsBy enum value
 	SortTrialsByCreationTime = "CreationTime"
 )
+
+// SortTrialsBy is an enum
+type SortTrialsBy struct{}
+
+// Contains returns whether the SortTrialsBy enum includes the element
+func (enum SortTrialsBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortTrialsBy enum
+func (enum SortTrialsBy) Values() []string {
+	return []string{
+		SortTrialsByName,
+		SortTrialsByCreationTime,
+	}
+}
 
 const (
 	// SplitTypeNone is a SplitType enum value
@@ -50231,6 +52631,30 @@ const (
 	// SplitTypeTfrecord is a SplitType enum value
 	SplitTypeTfrecord = "TFRecord"
 )
+
+// SplitType is an enum
+type SplitType struct{}
+
+// Contains returns whether the SplitType enum includes the element
+func (enum SplitType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SplitType enum
+func (enum SplitType) Values() []string {
+	return []string{
+		SplitTypeNone,
+		SplitTypeLine,
+		SplitTypeRecordIo,
+		SplitTypeTfrecord,
+	}
+}
 
 const (
 	// TargetDeviceLambda is a TargetDevice enum value
@@ -50312,6 +52736,52 @@ const (
 	TargetDeviceX86Win64 = "x86_win64"
 )
 
+// TargetDevice is an enum
+type TargetDevice struct{}
+
+// Contains returns whether the TargetDevice enum includes the element
+func (enum TargetDevice) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetDevice enum
+func (enum TargetDevice) Values() []string {
+	return []string{
+		TargetDeviceLambda,
+		TargetDeviceMlM4,
+		TargetDeviceMlM5,
+		TargetDeviceMlC4,
+		TargetDeviceMlC5,
+		TargetDeviceMlP2,
+		TargetDeviceMlP3,
+		TargetDeviceMlG4dn,
+		TargetDeviceMlInf1,
+		TargetDeviceJetsonTx1,
+		TargetDeviceJetsonTx2,
+		TargetDeviceJetsonNano,
+		TargetDeviceJetsonXavier,
+		TargetDeviceRasp3b,
+		TargetDeviceImx8qm,
+		TargetDeviceDeeplens,
+		TargetDeviceRk3399,
+		TargetDeviceRk3288,
+		TargetDeviceAisage,
+		TargetDeviceSbeC,
+		TargetDeviceQcs605,
+		TargetDeviceQcs603,
+		TargetDeviceSitaraAm57x,
+		TargetDeviceAmbaCv22,
+		TargetDeviceX86Win32,
+		TargetDeviceX86Win64,
+	}
+}
+
 const (
 	// TargetPlatformAcceleratorIntelGraphics is a TargetPlatformAccelerator enum value
 	TargetPlatformAcceleratorIntelGraphics = "INTEL_GRAPHICS"
@@ -50322,6 +52792,29 @@ const (
 	// TargetPlatformAcceleratorNvidia is a TargetPlatformAccelerator enum value
 	TargetPlatformAcceleratorNvidia = "NVIDIA"
 )
+
+// TargetPlatformAccelerator is an enum
+type TargetPlatformAccelerator struct{}
+
+// Contains returns whether the TargetPlatformAccelerator enum includes the element
+func (enum TargetPlatformAccelerator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetPlatformAccelerator enum
+func (enum TargetPlatformAccelerator) Values() []string {
+	return []string{
+		TargetPlatformAcceleratorIntelGraphics,
+		TargetPlatformAcceleratorMali,
+		TargetPlatformAcceleratorNvidia,
+	}
+}
 
 const (
 	// TargetPlatformArchX8664 is a TargetPlatformArch enum value
@@ -50340,6 +52833,31 @@ const (
 	TargetPlatformArchArmEabihf = "ARM_EABIHF"
 )
 
+// TargetPlatformArch is an enum
+type TargetPlatformArch struct{}
+
+// Contains returns whether the TargetPlatformArch enum includes the element
+func (enum TargetPlatformArch) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetPlatformArch enum
+func (enum TargetPlatformArch) Values() []string {
+	return []string{
+		TargetPlatformArchX8664,
+		TargetPlatformArchX86,
+		TargetPlatformArchArm64,
+		TargetPlatformArchArmEabi,
+		TargetPlatformArchArmEabihf,
+	}
+}
+
 const (
 	// TargetPlatformOsAndroid is a TargetPlatformOs enum value
 	TargetPlatformOsAndroid = "ANDROID"
@@ -50348,6 +52866,28 @@ const (
 	TargetPlatformOsLinux = "LINUX"
 )
 
+// TargetPlatformOs is an enum
+type TargetPlatformOs struct{}
+
+// Contains returns whether the TargetPlatformOs enum includes the element
+func (enum TargetPlatformOs) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetPlatformOs enum
+func (enum TargetPlatformOs) Values() []string {
+	return []string{
+		TargetPlatformOsAndroid,
+		TargetPlatformOsLinux,
+	}
+}
+
 const (
 	// TrainingInputModePipe is a TrainingInputMode enum value
 	TrainingInputModePipe = "Pipe"
@@ -50355,6 +52895,28 @@ const (
 	// TrainingInputModeFile is a TrainingInputMode enum value
 	TrainingInputModeFile = "File"
 )
+
+// TrainingInputMode is an enum
+type TrainingInputMode struct{}
+
+// Contains returns whether the TrainingInputMode enum includes the element
+func (enum TrainingInputMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrainingInputMode enum
+func (enum TrainingInputMode) Values() []string {
+	return []string{
+		TrainingInputModePipe,
+		TrainingInputModeFile,
+	}
+}
 
 const (
 	// TrainingInstanceTypeMlM4Xlarge is a TrainingInstanceType enum value
@@ -50472,6 +53034,64 @@ const (
 	TrainingInstanceTypeMlC5n18xlarge = "ml.c5n.18xlarge"
 )
 
+// TrainingInstanceType is an enum
+type TrainingInstanceType struct{}
+
+// Contains returns whether the TrainingInstanceType enum includes the element
+func (enum TrainingInstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrainingInstanceType enum
+func (enum TrainingInstanceType) Values() []string {
+	return []string{
+		TrainingInstanceTypeMlM4Xlarge,
+		TrainingInstanceTypeMlM42xlarge,
+		TrainingInstanceTypeMlM44xlarge,
+		TrainingInstanceTypeMlM410xlarge,
+		TrainingInstanceTypeMlM416xlarge,
+		TrainingInstanceTypeMlG4dnXlarge,
+		TrainingInstanceTypeMlG4dn2xlarge,
+		TrainingInstanceTypeMlG4dn4xlarge,
+		TrainingInstanceTypeMlG4dn8xlarge,
+		TrainingInstanceTypeMlG4dn12xlarge,
+		TrainingInstanceTypeMlG4dn16xlarge,
+		TrainingInstanceTypeMlM5Large,
+		TrainingInstanceTypeMlM5Xlarge,
+		TrainingInstanceTypeMlM52xlarge,
+		TrainingInstanceTypeMlM54xlarge,
+		TrainingInstanceTypeMlM512xlarge,
+		TrainingInstanceTypeMlM524xlarge,
+		TrainingInstanceTypeMlC4Xlarge,
+		TrainingInstanceTypeMlC42xlarge,
+		TrainingInstanceTypeMlC44xlarge,
+		TrainingInstanceTypeMlC48xlarge,
+		TrainingInstanceTypeMlP2Xlarge,
+		TrainingInstanceTypeMlP28xlarge,
+		TrainingInstanceTypeMlP216xlarge,
+		TrainingInstanceTypeMlP32xlarge,
+		TrainingInstanceTypeMlP38xlarge,
+		TrainingInstanceTypeMlP316xlarge,
+		TrainingInstanceTypeMlP3dn24xlarge,
+		TrainingInstanceTypeMlC5Xlarge,
+		TrainingInstanceTypeMlC52xlarge,
+		TrainingInstanceTypeMlC54xlarge,
+		TrainingInstanceTypeMlC59xlarge,
+		TrainingInstanceTypeMlC518xlarge,
+		TrainingInstanceTypeMlC5nXlarge,
+		TrainingInstanceTypeMlC5n2xlarge,
+		TrainingInstanceTypeMlC5n4xlarge,
+		TrainingInstanceTypeMlC5n9xlarge,
+		TrainingInstanceTypeMlC5n18xlarge,
+	}
+}
+
 const (
 	// TrainingJobEarlyStoppingTypeOff is a TrainingJobEarlyStoppingType enum value
 	TrainingJobEarlyStoppingTypeOff = "Off"
@@ -50479,6 +53099,28 @@ const (
 	// TrainingJobEarlyStoppingTypeAuto is a TrainingJobEarlyStoppingType enum value
 	TrainingJobEarlyStoppingTypeAuto = "Auto"
 )
+
+// TrainingJobEarlyStoppingType is an enum
+type TrainingJobEarlyStoppingType struct{}
+
+// Contains returns whether the TrainingJobEarlyStoppingType enum includes the element
+func (enum TrainingJobEarlyStoppingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrainingJobEarlyStoppingType enum
+func (enum TrainingJobEarlyStoppingType) Values() []string {
+	return []string{
+		TrainingJobEarlyStoppingTypeOff,
+		TrainingJobEarlyStoppingTypeAuto,
+	}
+}
 
 const (
 	// TrainingJobSortByOptionsName is a TrainingJobSortByOptions enum value
@@ -50493,6 +53135,30 @@ const (
 	// TrainingJobSortByOptionsFinalObjectiveMetricValue is a TrainingJobSortByOptions enum value
 	TrainingJobSortByOptionsFinalObjectiveMetricValue = "FinalObjectiveMetricValue"
 )
+
+// TrainingJobSortByOptions is an enum
+type TrainingJobSortByOptions struct{}
+
+// Contains returns whether the TrainingJobSortByOptions enum includes the element
+func (enum TrainingJobSortByOptions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrainingJobSortByOptions enum
+func (enum TrainingJobSortByOptions) Values() []string {
+	return []string{
+		TrainingJobSortByOptionsName,
+		TrainingJobSortByOptionsCreationTime,
+		TrainingJobSortByOptionsStatus,
+		TrainingJobSortByOptionsFinalObjectiveMetricValue,
+	}
+}
 
 const (
 	// TrainingJobStatusInProgress is a TrainingJobStatus enum value
@@ -50510,6 +53176,31 @@ const (
 	// TrainingJobStatusStopped is a TrainingJobStatus enum value
 	TrainingJobStatusStopped = "Stopped"
 )
+
+// TrainingJobStatus is an enum
+type TrainingJobStatus struct{}
+
+// Contains returns whether the TrainingJobStatus enum includes the element
+func (enum TrainingJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrainingJobStatus enum
+func (enum TrainingJobStatus) Values() []string {
+	return []string{
+		TrainingJobStatusInProgress,
+		TrainingJobStatusCompleted,
+		TrainingJobStatusFailed,
+		TrainingJobStatusStopping,
+		TrainingJobStatusStopped,
+	}
+}
 
 const (
 	// TransformInstanceTypeMlM4Xlarge is a TransformInstanceType enum value
@@ -50591,6 +53282,52 @@ const (
 	TransformInstanceTypeMlM524xlarge = "ml.m5.24xlarge"
 )
 
+// TransformInstanceType is an enum
+type TransformInstanceType struct{}
+
+// Contains returns whether the TransformInstanceType enum includes the element
+func (enum TransformInstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TransformInstanceType enum
+func (enum TransformInstanceType) Values() []string {
+	return []string{
+		TransformInstanceTypeMlM4Xlarge,
+		TransformInstanceTypeMlM42xlarge,
+		TransformInstanceTypeMlM44xlarge,
+		TransformInstanceTypeMlM410xlarge,
+		TransformInstanceTypeMlM416xlarge,
+		TransformInstanceTypeMlC4Xlarge,
+		TransformInstanceTypeMlC42xlarge,
+		TransformInstanceTypeMlC44xlarge,
+		TransformInstanceTypeMlC48xlarge,
+		TransformInstanceTypeMlP2Xlarge,
+		TransformInstanceTypeMlP28xlarge,
+		TransformInstanceTypeMlP216xlarge,
+		TransformInstanceTypeMlP32xlarge,
+		TransformInstanceTypeMlP38xlarge,
+		TransformInstanceTypeMlP316xlarge,
+		TransformInstanceTypeMlC5Xlarge,
+		TransformInstanceTypeMlC52xlarge,
+		TransformInstanceTypeMlC54xlarge,
+		TransformInstanceTypeMlC59xlarge,
+		TransformInstanceTypeMlC518xlarge,
+		TransformInstanceTypeMlM5Large,
+		TransformInstanceTypeMlM5Xlarge,
+		TransformInstanceTypeMlM52xlarge,
+		TransformInstanceTypeMlM54xlarge,
+		TransformInstanceTypeMlM512xlarge,
+		TransformInstanceTypeMlM524xlarge,
+	}
+}
+
 const (
 	// TransformJobStatusInProgress is a TransformJobStatus enum value
 	TransformJobStatusInProgress = "InProgress"
@@ -50607,6 +53344,31 @@ const (
 	// TransformJobStatusStopped is a TransformJobStatus enum value
 	TransformJobStatusStopped = "Stopped"
 )
+
+// TransformJobStatus is an enum
+type TransformJobStatus struct{}
+
+// Contains returns whether the TransformJobStatus enum includes the element
+func (enum TransformJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TransformJobStatus enum
+func (enum TransformJobStatus) Values() []string {
+	return []string{
+		TransformJobStatusInProgress,
+		TransformJobStatusCompleted,
+		TransformJobStatusFailed,
+		TransformJobStatusStopping,
+		TransformJobStatusStopped,
+	}
+}
 
 const (
 	// TrialComponentPrimaryStatusInProgress is a TrialComponentPrimaryStatus enum value
@@ -50625,6 +53387,31 @@ const (
 	TrialComponentPrimaryStatusStopped = "Stopped"
 )
 
+// TrialComponentPrimaryStatus is an enum
+type TrialComponentPrimaryStatus struct{}
+
+// Contains returns whether the TrialComponentPrimaryStatus enum includes the element
+func (enum TrialComponentPrimaryStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrialComponentPrimaryStatus enum
+func (enum TrialComponentPrimaryStatus) Values() []string {
+	return []string{
+		TrialComponentPrimaryStatusInProgress,
+		TrialComponentPrimaryStatusCompleted,
+		TrialComponentPrimaryStatusFailed,
+		TrialComponentPrimaryStatusStopping,
+		TrialComponentPrimaryStatusStopped,
+	}
+}
+
 const (
 	// UserProfileSortKeyCreationTime is a UserProfileSortKey enum value
 	UserProfileSortKeyCreationTime = "CreationTime"
@@ -50632,6 +53419,28 @@ const (
 	// UserProfileSortKeyLastModifiedTime is a UserProfileSortKey enum value
 	UserProfileSortKeyLastModifiedTime = "LastModifiedTime"
 )
+
+// UserProfileSortKey is an enum
+type UserProfileSortKey struct{}
+
+// Contains returns whether the UserProfileSortKey enum includes the element
+func (enum UserProfileSortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserProfileSortKey enum
+func (enum UserProfileSortKey) Values() []string {
+	return []string{
+		UserProfileSortKeyCreationTime,
+		UserProfileSortKeyLastModifiedTime,
+	}
+}
 
 const (
 	// UserProfileStatusDeleting is a UserProfileStatus enum value
@@ -50647,6 +53456,30 @@ const (
 	UserProfileStatusPending = "Pending"
 )
 
+// UserProfileStatus is an enum
+type UserProfileStatus struct{}
+
+// Contains returns whether the UserProfileStatus enum includes the element
+func (enum UserProfileStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserProfileStatus enum
+func (enum UserProfileStatus) Values() []string {
+	return []string{
+		UserProfileStatusDeleting,
+		UserProfileStatusFailed,
+		UserProfileStatusInService,
+		UserProfileStatusPending,
+	}
+}
+
 const (
 	// VariantPropertyTypeDesiredInstanceCount is a VariantPropertyType enum value
 	VariantPropertyTypeDesiredInstanceCount = "DesiredInstanceCount"
@@ -50657,3 +53490,26 @@ const (
 	// VariantPropertyTypeDataCaptureConfig is a VariantPropertyType enum value
 	VariantPropertyTypeDataCaptureConfig = "DataCaptureConfig"
 )
+
+// VariantPropertyType is an enum
+type VariantPropertyType struct{}
+
+// Contains returns whether the VariantPropertyType enum includes the element
+func (enum VariantPropertyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VariantPropertyType enum
+func (enum VariantPropertyType) Values() []string {
+	return []string{
+		VariantPropertyTypeDesiredInstanceCount,
+		VariantPropertyTypeDesiredWeight,
+		VariantPropertyTypeDataCaptureConfig,
+	}
+}

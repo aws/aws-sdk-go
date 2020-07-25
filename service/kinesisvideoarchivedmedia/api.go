@@ -2907,6 +2907,28 @@ const (
 	ClipFragmentSelectorTypeServerTimestamp = "SERVER_TIMESTAMP"
 )
 
+// ClipFragmentSelectorType is an enum
+type ClipFragmentSelectorType struct{}
+
+// Contains returns whether the ClipFragmentSelectorType enum includes the element
+func (enum ClipFragmentSelectorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ClipFragmentSelectorType enum
+func (enum ClipFragmentSelectorType) Values() []string {
+	return []string{
+		ClipFragmentSelectorTypeProducerTimestamp,
+		ClipFragmentSelectorTypeServerTimestamp,
+	}
+}
+
 const (
 	// ContainerFormatFragmentedMp4 is a ContainerFormat enum value
 	ContainerFormatFragmentedMp4 = "FRAGMENTED_MP4"
@@ -2914,6 +2936,28 @@ const (
 	// ContainerFormatMpegTs is a ContainerFormat enum value
 	ContainerFormatMpegTs = "MPEG_TS"
 )
+
+// ContainerFormat is an enum
+type ContainerFormat struct{}
+
+// Contains returns whether the ContainerFormat enum includes the element
+func (enum ContainerFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContainerFormat enum
+func (enum ContainerFormat) Values() []string {
+	return []string{
+		ContainerFormatFragmentedMp4,
+		ContainerFormatMpegTs,
+	}
+}
 
 const (
 	// DASHDisplayFragmentNumberAlways is a DASHDisplayFragmentNumber enum value
@@ -2923,6 +2967,28 @@ const (
 	DASHDisplayFragmentNumberNever = "NEVER"
 )
 
+// DASHDisplayFragmentNumber is an enum
+type DASHDisplayFragmentNumber struct{}
+
+// Contains returns whether the DASHDisplayFragmentNumber enum includes the element
+func (enum DASHDisplayFragmentNumber) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DASHDisplayFragmentNumber enum
+func (enum DASHDisplayFragmentNumber) Values() []string {
+	return []string{
+		DASHDisplayFragmentNumberAlways,
+		DASHDisplayFragmentNumberNever,
+	}
+}
+
 const (
 	// DASHDisplayFragmentTimestampAlways is a DASHDisplayFragmentTimestamp enum value
 	DASHDisplayFragmentTimestampAlways = "ALWAYS"
@@ -2931,6 +2997,28 @@ const (
 	DASHDisplayFragmentTimestampNever = "NEVER"
 )
 
+// DASHDisplayFragmentTimestamp is an enum
+type DASHDisplayFragmentTimestamp struct{}
+
+// Contains returns whether the DASHDisplayFragmentTimestamp enum includes the element
+func (enum DASHDisplayFragmentTimestamp) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DASHDisplayFragmentTimestamp enum
+func (enum DASHDisplayFragmentTimestamp) Values() []string {
+	return []string{
+		DASHDisplayFragmentTimestampAlways,
+		DASHDisplayFragmentTimestampNever,
+	}
+}
+
 const (
 	// DASHFragmentSelectorTypeProducerTimestamp is a DASHFragmentSelectorType enum value
 	DASHFragmentSelectorTypeProducerTimestamp = "PRODUCER_TIMESTAMP"
@@ -2938,6 +3026,28 @@ const (
 	// DASHFragmentSelectorTypeServerTimestamp is a DASHFragmentSelectorType enum value
 	DASHFragmentSelectorTypeServerTimestamp = "SERVER_TIMESTAMP"
 )
+
+// DASHFragmentSelectorType is an enum
+type DASHFragmentSelectorType struct{}
+
+// Contains returns whether the DASHFragmentSelectorType enum includes the element
+func (enum DASHFragmentSelectorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DASHFragmentSelectorType enum
+func (enum DASHFragmentSelectorType) Values() []string {
+	return []string{
+		DASHFragmentSelectorTypeProducerTimestamp,
+		DASHFragmentSelectorTypeServerTimestamp,
+	}
+}
 
 const (
 	// DASHPlaybackModeLive is a DASHPlaybackMode enum value
@@ -2950,6 +3060,29 @@ const (
 	DASHPlaybackModeOnDemand = "ON_DEMAND"
 )
 
+// DASHPlaybackMode is an enum
+type DASHPlaybackMode struct{}
+
+// Contains returns whether the DASHPlaybackMode enum includes the element
+func (enum DASHPlaybackMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DASHPlaybackMode enum
+func (enum DASHPlaybackMode) Values() []string {
+	return []string{
+		DASHPlaybackModeLive,
+		DASHPlaybackModeLiveReplay,
+		DASHPlaybackModeOnDemand,
+	}
+}
+
 const (
 	// FragmentSelectorTypeProducerTimestamp is a FragmentSelectorType enum value
 	FragmentSelectorTypeProducerTimestamp = "PRODUCER_TIMESTAMP"
@@ -2957,6 +3090,28 @@ const (
 	// FragmentSelectorTypeServerTimestamp is a FragmentSelectorType enum value
 	FragmentSelectorTypeServerTimestamp = "SERVER_TIMESTAMP"
 )
+
+// FragmentSelectorType is an enum
+type FragmentSelectorType struct{}
+
+// Contains returns whether the FragmentSelectorType enum includes the element
+func (enum FragmentSelectorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FragmentSelectorType enum
+func (enum FragmentSelectorType) Values() []string {
+	return []string{
+		FragmentSelectorTypeProducerTimestamp,
+		FragmentSelectorTypeServerTimestamp,
+	}
+}
 
 const (
 	// HLSDiscontinuityModeAlways is a HLSDiscontinuityMode enum value
@@ -2969,6 +3124,29 @@ const (
 	HLSDiscontinuityModeOnDiscontinuity = "ON_DISCONTINUITY"
 )
 
+// HLSDiscontinuityMode is an enum
+type HLSDiscontinuityMode struct{}
+
+// Contains returns whether the HLSDiscontinuityMode enum includes the element
+func (enum HLSDiscontinuityMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HLSDiscontinuityMode enum
+func (enum HLSDiscontinuityMode) Values() []string {
+	return []string{
+		HLSDiscontinuityModeAlways,
+		HLSDiscontinuityModeNever,
+		HLSDiscontinuityModeOnDiscontinuity,
+	}
+}
+
 const (
 	// HLSDisplayFragmentTimestampAlways is a HLSDisplayFragmentTimestamp enum value
 	HLSDisplayFragmentTimestampAlways = "ALWAYS"
@@ -2977,6 +3155,28 @@ const (
 	HLSDisplayFragmentTimestampNever = "NEVER"
 )
 
+// HLSDisplayFragmentTimestamp is an enum
+type HLSDisplayFragmentTimestamp struct{}
+
+// Contains returns whether the HLSDisplayFragmentTimestamp enum includes the element
+func (enum HLSDisplayFragmentTimestamp) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HLSDisplayFragmentTimestamp enum
+func (enum HLSDisplayFragmentTimestamp) Values() []string {
+	return []string{
+		HLSDisplayFragmentTimestampAlways,
+		HLSDisplayFragmentTimestampNever,
+	}
+}
+
 const (
 	// HLSFragmentSelectorTypeProducerTimestamp is a HLSFragmentSelectorType enum value
 	HLSFragmentSelectorTypeProducerTimestamp = "PRODUCER_TIMESTAMP"
@@ -2984,6 +3184,28 @@ const (
 	// HLSFragmentSelectorTypeServerTimestamp is a HLSFragmentSelectorType enum value
 	HLSFragmentSelectorTypeServerTimestamp = "SERVER_TIMESTAMP"
 )
+
+// HLSFragmentSelectorType is an enum
+type HLSFragmentSelectorType struct{}
+
+// Contains returns whether the HLSFragmentSelectorType enum includes the element
+func (enum HLSFragmentSelectorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HLSFragmentSelectorType enum
+func (enum HLSFragmentSelectorType) Values() []string {
+	return []string{
+		HLSFragmentSelectorTypeProducerTimestamp,
+		HLSFragmentSelectorTypeServerTimestamp,
+	}
+}
 
 const (
 	// HLSPlaybackModeLive is a HLSPlaybackMode enum value
@@ -2995,3 +3217,26 @@ const (
 	// HLSPlaybackModeOnDemand is a HLSPlaybackMode enum value
 	HLSPlaybackModeOnDemand = "ON_DEMAND"
 )
+
+// HLSPlaybackMode is an enum
+type HLSPlaybackMode struct{}
+
+// Contains returns whether the HLSPlaybackMode enum includes the element
+func (enum HLSPlaybackMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HLSPlaybackMode enum
+func (enum HLSPlaybackMode) Values() []string {
+	return []string{
+		HLSPlaybackModeLive,
+		HLSPlaybackModeLiveReplay,
+		HLSPlaybackModeOnDemand,
+	}
+}

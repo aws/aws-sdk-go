@@ -12469,6 +12469,27 @@ const (
 	ConditionTypeStringequals = "STRINGEQUALS"
 )
 
+// ConditionType is an enum
+type ConditionType struct{}
+
+// Contains returns whether the ConditionType enum includes the element
+func (enum ConditionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConditionType enum
+func (enum ConditionType) Values() []string {
+	return []string{
+		ConditionTypeStringequals,
+	}
+}
+
 const (
 	// CopyJobStateCreated is a CopyJobState enum value
 	CopyJobStateCreated = "CREATED"
@@ -12482,6 +12503,30 @@ const (
 	// CopyJobStateFailed is a CopyJobState enum value
 	CopyJobStateFailed = "FAILED"
 )
+
+// CopyJobState is an enum
+type CopyJobState struct{}
+
+// Contains returns whether the CopyJobState enum includes the element
+func (enum CopyJobState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CopyJobState enum
+func (enum CopyJobState) Values() []string {
+	return []string{
+		CopyJobStateCreated,
+		CopyJobStateRunning,
+		CopyJobStateCompleted,
+		CopyJobStateFailed,
+	}
+}
 
 const (
 	// JobStateCreated is a JobState enum value
@@ -12509,6 +12554,34 @@ const (
 	JobStateExpired = "EXPIRED"
 )
 
+// JobState is an enum
+type JobState struct{}
+
+// Contains returns whether the JobState enum includes the element
+func (enum JobState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobState enum
+func (enum JobState) Values() []string {
+	return []string{
+		JobStateCreated,
+		JobStatePending,
+		JobStateRunning,
+		JobStateAborting,
+		JobStateAborted,
+		JobStateCompleted,
+		JobStateFailed,
+		JobStateExpired,
+	}
+}
+
 const (
 	// RecoveryPointStatusCompleted is a RecoveryPointStatus enum value
 	RecoveryPointStatusCompleted = "COMPLETED"
@@ -12522,6 +12595,30 @@ const (
 	// RecoveryPointStatusExpired is a RecoveryPointStatus enum value
 	RecoveryPointStatusExpired = "EXPIRED"
 )
+
+// RecoveryPointStatus is an enum
+type RecoveryPointStatus struct{}
+
+// Contains returns whether the RecoveryPointStatus enum includes the element
+func (enum RecoveryPointStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecoveryPointStatus enum
+func (enum RecoveryPointStatus) Values() []string {
+	return []string{
+		RecoveryPointStatusCompleted,
+		RecoveryPointStatusPartial,
+		RecoveryPointStatusDeleting,
+		RecoveryPointStatusExpired,
+	}
+}
 
 const (
 	// RestoreJobStatusPending is a RestoreJobStatus enum value
@@ -12540,6 +12637,31 @@ const (
 	RestoreJobStatusFailed = "FAILED"
 )
 
+// RestoreJobStatus is an enum
+type RestoreJobStatus struct{}
+
+// Contains returns whether the RestoreJobStatus enum includes the element
+func (enum RestoreJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RestoreJobStatus enum
+func (enum RestoreJobStatus) Values() []string {
+	return []string{
+		RestoreJobStatusPending,
+		RestoreJobStatusRunning,
+		RestoreJobStatusCompleted,
+		RestoreJobStatusAborted,
+		RestoreJobStatusFailed,
+	}
+}
+
 const (
 	// StorageClassWarm is a StorageClass enum value
 	StorageClassWarm = "WARM"
@@ -12550,6 +12672,29 @@ const (
 	// StorageClassDeleted is a StorageClass enum value
 	StorageClassDeleted = "DELETED"
 )
+
+// StorageClass is an enum
+type StorageClass struct{}
+
+// Contains returns whether the StorageClass enum includes the element
+func (enum StorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StorageClass enum
+func (enum StorageClass) Values() []string {
+	return []string{
+		StorageClassWarm,
+		StorageClassCold,
+		StorageClassDeleted,
+	}
+}
 
 const (
 	// VaultEventBackupJobStarted is a VaultEvent enum value
@@ -12597,3 +12742,38 @@ const (
 	// VaultEventBackupPlanModified is a VaultEvent enum value
 	VaultEventBackupPlanModified = "BACKUP_PLAN_MODIFIED"
 )
+
+// VaultEvent is an enum
+type VaultEvent struct{}
+
+// Contains returns whether the VaultEvent enum includes the element
+func (enum VaultEvent) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VaultEvent enum
+func (enum VaultEvent) Values() []string {
+	return []string{
+		VaultEventBackupJobStarted,
+		VaultEventBackupJobCompleted,
+		VaultEventBackupJobSuccessful,
+		VaultEventBackupJobFailed,
+		VaultEventBackupJobExpired,
+		VaultEventRestoreJobStarted,
+		VaultEventRestoreJobCompleted,
+		VaultEventRestoreJobSuccessful,
+		VaultEventRestoreJobFailed,
+		VaultEventCopyJobStarted,
+		VaultEventCopyJobSuccessful,
+		VaultEventCopyJobFailed,
+		VaultEventRecoveryPointModified,
+		VaultEventBackupPlanCreated,
+		VaultEventBackupPlanModified,
+	}
+}

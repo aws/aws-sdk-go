@@ -5882,6 +5882,29 @@ const (
 	ActionTypeListPermissions = "ListPermissions"
 )
 
+// ActionType is an enum
+type ActionType struct{}
+
+// Contains returns whether the ActionType enum includes the element
+func (enum ActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionType enum
+func (enum ActionType) Values() []string {
+	return []string{
+		ActionTypeIssueCertificate,
+		ActionTypeGetCertificate,
+		ActionTypeListPermissions,
+	}
+}
+
 const (
 	// AuditReportResponseFormatJson is a AuditReportResponseFormat enum value
 	AuditReportResponseFormatJson = "JSON"
@@ -5889,6 +5912,28 @@ const (
 	// AuditReportResponseFormatCsv is a AuditReportResponseFormat enum value
 	AuditReportResponseFormatCsv = "CSV"
 )
+
+// AuditReportResponseFormat is an enum
+type AuditReportResponseFormat struct{}
+
+// Contains returns whether the AuditReportResponseFormat enum includes the element
+func (enum AuditReportResponseFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuditReportResponseFormat enum
+func (enum AuditReportResponseFormat) Values() []string {
+	return []string{
+		AuditReportResponseFormatJson,
+		AuditReportResponseFormatCsv,
+	}
+}
 
 const (
 	// AuditReportStatusCreating is a AuditReportStatus enum value
@@ -5900,6 +5945,29 @@ const (
 	// AuditReportStatusFailed is a AuditReportStatus enum value
 	AuditReportStatusFailed = "FAILED"
 )
+
+// AuditReportStatus is an enum
+type AuditReportStatus struct{}
+
+// Contains returns whether the AuditReportStatus enum includes the element
+func (enum AuditReportStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuditReportStatus enum
+func (enum AuditReportStatus) Values() []string {
+	return []string{
+		AuditReportStatusCreating,
+		AuditReportStatusSuccess,
+		AuditReportStatusFailed,
+	}
+}
 
 const (
 	// CertificateAuthorityStatusCreating is a CertificateAuthorityStatus enum value
@@ -5924,6 +5992,33 @@ const (
 	CertificateAuthorityStatusFailed = "FAILED"
 )
 
+// CertificateAuthorityStatus is an enum
+type CertificateAuthorityStatus struct{}
+
+// Contains returns whether the CertificateAuthorityStatus enum includes the element
+func (enum CertificateAuthorityStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CertificateAuthorityStatus enum
+func (enum CertificateAuthorityStatus) Values() []string {
+	return []string{
+		CertificateAuthorityStatusCreating,
+		CertificateAuthorityStatusPendingCertificate,
+		CertificateAuthorityStatusActive,
+		CertificateAuthorityStatusDeleted,
+		CertificateAuthorityStatusDisabled,
+		CertificateAuthorityStatusExpired,
+		CertificateAuthorityStatusFailed,
+	}
+}
+
 const (
 	// CertificateAuthorityTypeRoot is a CertificateAuthorityType enum value
 	CertificateAuthorityTypeRoot = "ROOT"
@@ -5931,6 +6026,28 @@ const (
 	// CertificateAuthorityTypeSubordinate is a CertificateAuthorityType enum value
 	CertificateAuthorityTypeSubordinate = "SUBORDINATE"
 )
+
+// CertificateAuthorityType is an enum
+type CertificateAuthorityType struct{}
+
+// Contains returns whether the CertificateAuthorityType enum includes the element
+func (enum CertificateAuthorityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CertificateAuthorityType enum
+func (enum CertificateAuthorityType) Values() []string {
+	return []string{
+		CertificateAuthorityTypeRoot,
+		CertificateAuthorityTypeSubordinate,
+	}
+}
 
 const (
 	// FailureReasonRequestTimedOut is a FailureReason enum value
@@ -5942,6 +6059,29 @@ const (
 	// FailureReasonOther is a FailureReason enum value
 	FailureReasonOther = "OTHER"
 )
+
+// FailureReason is an enum
+type FailureReason struct{}
+
+// Contains returns whether the FailureReason enum includes the element
+func (enum FailureReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FailureReason enum
+func (enum FailureReason) Values() []string {
+	return []string{
+		FailureReasonRequestTimedOut,
+		FailureReasonUnsupportedAlgorithm,
+		FailureReasonOther,
+	}
+}
 
 const (
 	// KeyAlgorithmRsa2048 is a KeyAlgorithm enum value
@@ -5956,6 +6096,30 @@ const (
 	// KeyAlgorithmEcSecp384r1 is a KeyAlgorithm enum value
 	KeyAlgorithmEcSecp384r1 = "EC_secp384r1"
 )
+
+// KeyAlgorithm is an enum
+type KeyAlgorithm struct{}
+
+// Contains returns whether the KeyAlgorithm enum includes the element
+func (enum KeyAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KeyAlgorithm enum
+func (enum KeyAlgorithm) Values() []string {
+	return []string{
+		KeyAlgorithmRsa2048,
+		KeyAlgorithmRsa4096,
+		KeyAlgorithmEcPrime256v1,
+		KeyAlgorithmEcSecp384r1,
+	}
+}
 
 const (
 	// RevocationReasonUnspecified is a RevocationReason enum value
@@ -5983,6 +6147,34 @@ const (
 	RevocationReasonAACompromise = "A_A_COMPROMISE"
 )
 
+// RevocationReason is an enum
+type RevocationReason struct{}
+
+// Contains returns whether the RevocationReason enum includes the element
+func (enum RevocationReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RevocationReason enum
+func (enum RevocationReason) Values() []string {
+	return []string{
+		RevocationReasonUnspecified,
+		RevocationReasonKeyCompromise,
+		RevocationReasonCertificateAuthorityCompromise,
+		RevocationReasonAffiliationChanged,
+		RevocationReasonSuperseded,
+		RevocationReasonCessationOfOperation,
+		RevocationReasonPrivilegeWithdrawn,
+		RevocationReasonAACompromise,
+	}
+}
+
 const (
 	// SigningAlgorithmSha256withecdsa is a SigningAlgorithm enum value
 	SigningAlgorithmSha256withecdsa = "SHA256WITHECDSA"
@@ -6003,6 +6195,32 @@ const (
 	SigningAlgorithmSha512withrsa = "SHA512WITHRSA"
 )
 
+// SigningAlgorithm is an enum
+type SigningAlgorithm struct{}
+
+// Contains returns whether the SigningAlgorithm enum includes the element
+func (enum SigningAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SigningAlgorithm enum
+func (enum SigningAlgorithm) Values() []string {
+	return []string{
+		SigningAlgorithmSha256withecdsa,
+		SigningAlgorithmSha384withecdsa,
+		SigningAlgorithmSha512withecdsa,
+		SigningAlgorithmSha256withrsa,
+		SigningAlgorithmSha384withrsa,
+		SigningAlgorithmSha512withrsa,
+	}
+}
+
 const (
 	// ValidityPeriodTypeEndDate is a ValidityPeriodType enum value
 	ValidityPeriodTypeEndDate = "END_DATE"
@@ -6019,3 +6237,28 @@ const (
 	// ValidityPeriodTypeYears is a ValidityPeriodType enum value
 	ValidityPeriodTypeYears = "YEARS"
 )
+
+// ValidityPeriodType is an enum
+type ValidityPeriodType struct{}
+
+// Contains returns whether the ValidityPeriodType enum includes the element
+func (enum ValidityPeriodType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ValidityPeriodType enum
+func (enum ValidityPeriodType) Values() []string {
+	return []string{
+		ValidityPeriodTypeEndDate,
+		ValidityPeriodTypeAbsolute,
+		ValidityPeriodTypeDays,
+		ValidityPeriodTypeMonths,
+		ValidityPeriodTypeYears,
+	}
+}

@@ -3648,6 +3648,27 @@ const (
 	CategoryAwsioT = "AWSIoT"
 )
 
+// Category is an enum
+type Category struct{}
+
+// Contains returns whether the Category enum includes the element
+func (enum Category) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Category enum
+func (enum Category) Values() []string {
+	return []string{
+		CategoryAwsioT,
+	}
+}
+
 const (
 	// EncryptionAlgorithmRsa is a EncryptionAlgorithm enum value
 	EncryptionAlgorithmRsa = "RSA"
@@ -3656,6 +3677,28 @@ const (
 	EncryptionAlgorithmEcdsa = "ECDSA"
 )
 
+// EncryptionAlgorithm is an enum
+type EncryptionAlgorithm struct{}
+
+// Contains returns whether the EncryptionAlgorithm enum includes the element
+func (enum EncryptionAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionAlgorithm enum
+func (enum EncryptionAlgorithm) Values() []string {
+	return []string{
+		EncryptionAlgorithmRsa,
+		EncryptionAlgorithmEcdsa,
+	}
+}
+
 const (
 	// HashAlgorithmSha1 is a HashAlgorithm enum value
 	HashAlgorithmSha1 = "SHA1"
@@ -3663,6 +3706,28 @@ const (
 	// HashAlgorithmSha256 is a HashAlgorithm enum value
 	HashAlgorithmSha256 = "SHA256"
 )
+
+// HashAlgorithm is an enum
+type HashAlgorithm struct{}
+
+// Contains returns whether the HashAlgorithm enum includes the element
+func (enum HashAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HashAlgorithm enum
+func (enum HashAlgorithm) Values() []string {
+	return []string{
+		HashAlgorithmSha1,
+		HashAlgorithmSha256,
+	}
+}
 
 const (
 	// ImageFormatJson is a ImageFormat enum value
@@ -3675,6 +3740,29 @@ const (
 	ImageFormatJsondetached = "JSONDetached"
 )
 
+// ImageFormat is an enum
+type ImageFormat struct{}
+
+// Contains returns whether the ImageFormat enum includes the element
+func (enum ImageFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageFormat enum
+func (enum ImageFormat) Values() []string {
+	return []string{
+		ImageFormatJson,
+		ImageFormatJsonembedded,
+		ImageFormatJsondetached,
+	}
+}
+
 const (
 	// SigningProfileStatusActive is a SigningProfileStatus enum value
 	SigningProfileStatusActive = "Active"
@@ -3682,6 +3770,28 @@ const (
 	// SigningProfileStatusCanceled is a SigningProfileStatus enum value
 	SigningProfileStatusCanceled = "Canceled"
 )
+
+// SigningProfileStatus is an enum
+type SigningProfileStatus struct{}
+
+// Contains returns whether the SigningProfileStatus enum includes the element
+func (enum SigningProfileStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SigningProfileStatus enum
+func (enum SigningProfileStatus) Values() []string {
+	return []string{
+		SigningProfileStatusActive,
+		SigningProfileStatusCanceled,
+	}
+}
 
 const (
 	// SigningStatusInProgress is a SigningStatus enum value
@@ -3693,3 +3803,26 @@ const (
 	// SigningStatusSucceeded is a SigningStatus enum value
 	SigningStatusSucceeded = "Succeeded"
 )
+
+// SigningStatus is an enum
+type SigningStatus struct{}
+
+// Contains returns whether the SigningStatus enum includes the element
+func (enum SigningStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SigningStatus enum
+func (enum SigningStatus) Values() []string {
+	return []string{
+		SigningStatusInProgress,
+		SigningStatusFailed,
+		SigningStatusSucceeded,
+	}
+}

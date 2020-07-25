@@ -8570,6 +8570,27 @@ const (
 	BytesMeasureKilobytes = "KILOBYTES"
 )
 
+// BytesMeasure is an enum
+type BytesMeasure struct{}
+
+// Contains returns whether the BytesMeasure enum includes the element
+func (enum BytesMeasure) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BytesMeasure enum
+func (enum BytesMeasure) Values() []string {
+	return []string{
+		BytesMeasureKilobytes,
+	}
+}
+
 const (
 	// DeploymentEventTypePercentageUpdated is a DeploymentEventType enum value
 	DeploymentEventTypePercentageUpdated = "PERCENTAGE_UPDATED"
@@ -8589,6 +8610,32 @@ const (
 	// DeploymentEventTypeDeploymentCompleted is a DeploymentEventType enum value
 	DeploymentEventTypeDeploymentCompleted = "DEPLOYMENT_COMPLETED"
 )
+
+// DeploymentEventType is an enum
+type DeploymentEventType struct{}
+
+// Contains returns whether the DeploymentEventType enum includes the element
+func (enum DeploymentEventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentEventType enum
+func (enum DeploymentEventType) Values() []string {
+	return []string{
+		DeploymentEventTypePercentageUpdated,
+		DeploymentEventTypeRollbackStarted,
+		DeploymentEventTypeRollbackCompleted,
+		DeploymentEventTypeBakeTimeStarted,
+		DeploymentEventTypeDeploymentStarted,
+		DeploymentEventTypeDeploymentCompleted,
+	}
+}
 
 const (
 	// DeploymentStateBaking is a DeploymentState enum value
@@ -8610,6 +8657,32 @@ const (
 	DeploymentStateRolledBack = "ROLLED_BACK"
 )
 
+// DeploymentState is an enum
+type DeploymentState struct{}
+
+// Contains returns whether the DeploymentState enum includes the element
+func (enum DeploymentState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentState enum
+func (enum DeploymentState) Values() []string {
+	return []string{
+		DeploymentStateBaking,
+		DeploymentStateValidating,
+		DeploymentStateDeploying,
+		DeploymentStateComplete,
+		DeploymentStateRollingBack,
+		DeploymentStateRolledBack,
+	}
+}
+
 const (
 	// EnvironmentStateReadyForDeployment is a EnvironmentState enum value
 	EnvironmentStateReadyForDeployment = "READY_FOR_DEPLOYMENT"
@@ -8624,6 +8697,30 @@ const (
 	EnvironmentStateRolledBack = "ROLLED_BACK"
 )
 
+// EnvironmentState is an enum
+type EnvironmentState struct{}
+
+// Contains returns whether the EnvironmentState enum includes the element
+func (enum EnvironmentState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentState enum
+func (enum EnvironmentState) Values() []string {
+	return []string{
+		EnvironmentStateReadyForDeployment,
+		EnvironmentStateDeploying,
+		EnvironmentStateRollingBack,
+		EnvironmentStateRolledBack,
+	}
+}
+
 const (
 	// GrowthTypeLinear is a GrowthType enum value
 	GrowthTypeLinear = "LINEAR"
@@ -8632,6 +8729,28 @@ const (
 	GrowthTypeExponential = "EXPONENTIAL"
 )
 
+// GrowthType is an enum
+type GrowthType struct{}
+
+// Contains returns whether the GrowthType enum includes the element
+func (enum GrowthType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GrowthType enum
+func (enum GrowthType) Values() []string {
+	return []string{
+		GrowthTypeLinear,
+		GrowthTypeExponential,
+	}
+}
+
 const (
 	// ReplicateToNone is a ReplicateTo enum value
 	ReplicateToNone = "NONE"
@@ -8639,6 +8758,28 @@ const (
 	// ReplicateToSsmDocument is a ReplicateTo enum value
 	ReplicateToSsmDocument = "SSM_DOCUMENT"
 )
+
+// ReplicateTo is an enum
+type ReplicateTo struct{}
+
+// Contains returns whether the ReplicateTo enum includes the element
+func (enum ReplicateTo) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplicateTo enum
+func (enum ReplicateTo) Values() []string {
+	return []string{
+		ReplicateToNone,
+		ReplicateToSsmDocument,
+	}
+}
 
 const (
 	// TriggeredByUser is a TriggeredBy enum value
@@ -8654,6 +8795,30 @@ const (
 	TriggeredByInternalError = "INTERNAL_ERROR"
 )
 
+// TriggeredBy is an enum
+type TriggeredBy struct{}
+
+// Contains returns whether the TriggeredBy enum includes the element
+func (enum TriggeredBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TriggeredBy enum
+func (enum TriggeredBy) Values() []string {
+	return []string{
+		TriggeredByUser,
+		TriggeredByAppconfig,
+		TriggeredByCloudwatchAlarm,
+		TriggeredByInternalError,
+	}
+}
+
 const (
 	// ValidatorTypeJsonSchema is a ValidatorType enum value
 	ValidatorTypeJsonSchema = "JSON_SCHEMA"
@@ -8661,3 +8826,25 @@ const (
 	// ValidatorTypeLambda is a ValidatorType enum value
 	ValidatorTypeLambda = "LAMBDA"
 )
+
+// ValidatorType is an enum
+type ValidatorType struct{}
+
+// Contains returns whether the ValidatorType enum includes the element
+func (enum ValidatorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ValidatorType enum
+func (enum ValidatorType) Values() []string {
+	return []string{
+		ValidatorTypeJsonSchema,
+		ValidatorTypeLambda,
+	}
+}

@@ -1837,6 +1837,28 @@ const (
 	ModeBehindLiveEdge = "BEHIND_LIVE_EDGE"
 )
 
+// Mode is an enum
+type Mode struct{}
+
+// Contains returns whether the Mode enum includes the element
+func (enum Mode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mode enum
+func (enum Mode) Values() []string {
+	return []string{
+		ModeOff,
+		ModeBehindLiveEdge,
+	}
+}
+
 const (
 	// OriginManifestTypeSinglePeriod is a OriginManifestType enum value
 	OriginManifestTypeSinglePeriod = "SINGLE_PERIOD"
@@ -1844,3 +1866,25 @@ const (
 	// OriginManifestTypeMultiPeriod is a OriginManifestType enum value
 	OriginManifestTypeMultiPeriod = "MULTI_PERIOD"
 )
+
+// OriginManifestType is an enum
+type OriginManifestType struct{}
+
+// Contains returns whether the OriginManifestType enum includes the element
+func (enum OriginManifestType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OriginManifestType enum
+func (enum OriginManifestType) Values() []string {
+	return []string{
+		OriginManifestTypeSinglePeriod,
+		OriginManifestTypeMultiPeriod,
+	}
+}

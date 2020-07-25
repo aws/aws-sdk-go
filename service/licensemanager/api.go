@@ -4568,6 +4568,30 @@ const (
 	InventoryFilterConditionContains = "CONTAINS"
 )
 
+// InventoryFilterCondition is an enum
+type InventoryFilterCondition struct{}
+
+// Contains returns whether the InventoryFilterCondition enum includes the element
+func (enum InventoryFilterCondition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InventoryFilterCondition enum
+func (enum InventoryFilterCondition) Values() []string {
+	return []string{
+		InventoryFilterConditionEquals,
+		InventoryFilterConditionNotEquals,
+		InventoryFilterConditionBeginsWith,
+		InventoryFilterConditionContains,
+	}
+}
+
 const (
 	// LicenseConfigurationStatusAvailable is a LicenseConfigurationStatus enum value
 	LicenseConfigurationStatusAvailable = "AVAILABLE"
@@ -4575,6 +4599,28 @@ const (
 	// LicenseConfigurationStatusDisabled is a LicenseConfigurationStatus enum value
 	LicenseConfigurationStatusDisabled = "DISABLED"
 )
+
+// LicenseConfigurationStatus is an enum
+type LicenseConfigurationStatus struct{}
+
+// Contains returns whether the LicenseConfigurationStatus enum includes the element
+func (enum LicenseConfigurationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LicenseConfigurationStatus enum
+func (enum LicenseConfigurationStatus) Values() []string {
+	return []string{
+		LicenseConfigurationStatusAvailable,
+		LicenseConfigurationStatusDisabled,
+	}
+}
 
 const (
 	// LicenseCountingTypeVCpu is a LicenseCountingType enum value
@@ -4589,6 +4635,30 @@ const (
 	// LicenseCountingTypeSocket is a LicenseCountingType enum value
 	LicenseCountingTypeSocket = "Socket"
 )
+
+// LicenseCountingType is an enum
+type LicenseCountingType struct{}
+
+// Contains returns whether the LicenseCountingType enum includes the element
+func (enum LicenseCountingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LicenseCountingType enum
+func (enum LicenseCountingType) Values() []string {
+	return []string{
+		LicenseCountingTypeVCpu,
+		LicenseCountingTypeInstance,
+		LicenseCountingTypeCore,
+		LicenseCountingTypeSocket,
+	}
+}
 
 const (
 	// ResourceTypeEc2Instance is a ResourceType enum value
@@ -4606,3 +4676,28 @@ const (
 	// ResourceTypeSystemsManagerManagedInstance is a ResourceType enum value
 	ResourceTypeSystemsManagerManagedInstance = "SYSTEMS_MANAGER_MANAGED_INSTANCE"
 )
+
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeEc2Instance,
+		ResourceTypeEc2Host,
+		ResourceTypeEc2Ami,
+		ResourceTypeRds,
+		ResourceTypeSystemsManagerManagedInstance,
+	}
+}

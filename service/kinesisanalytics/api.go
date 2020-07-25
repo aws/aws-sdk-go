@@ -8195,6 +8195,32 @@ const (
 	ApplicationStatusUpdating = "UPDATING"
 )
 
+// ApplicationStatus is an enum
+type ApplicationStatus struct{}
+
+// Contains returns whether the ApplicationStatus enum includes the element
+func (enum ApplicationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ApplicationStatus enum
+func (enum ApplicationStatus) Values() []string {
+	return []string{
+		ApplicationStatusDeleting,
+		ApplicationStatusStarting,
+		ApplicationStatusStopping,
+		ApplicationStatusReady,
+		ApplicationStatusRunning,
+		ApplicationStatusUpdating,
+	}
+}
+
 const (
 	// InputStartingPositionNow is a InputStartingPosition enum value
 	InputStartingPositionNow = "NOW"
@@ -8206,6 +8232,29 @@ const (
 	InputStartingPositionLastStoppedPoint = "LAST_STOPPED_POINT"
 )
 
+// InputStartingPosition is an enum
+type InputStartingPosition struct{}
+
+// Contains returns whether the InputStartingPosition enum includes the element
+func (enum InputStartingPosition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputStartingPosition enum
+func (enum InputStartingPosition) Values() []string {
+	return []string{
+		InputStartingPositionNow,
+		InputStartingPositionTrimHorizon,
+		InputStartingPositionLastStoppedPoint,
+	}
+}
+
 const (
 	// RecordFormatTypeJson is a RecordFormatType enum value
 	RecordFormatTypeJson = "JSON"
@@ -8213,3 +8262,25 @@ const (
 	// RecordFormatTypeCsv is a RecordFormatType enum value
 	RecordFormatTypeCsv = "CSV"
 )
+
+// RecordFormatType is an enum
+type RecordFormatType struct{}
+
+// Contains returns whether the RecordFormatType enum includes the element
+func (enum RecordFormatType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecordFormatType enum
+func (enum RecordFormatType) Values() []string {
+	return []string{
+		RecordFormatTypeJson,
+		RecordFormatTypeCsv,
+	}
+}

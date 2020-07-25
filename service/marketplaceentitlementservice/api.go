@@ -516,3 +516,25 @@ const (
 	// GetEntitlementFilterNameDimension is a GetEntitlementFilterName enum value
 	GetEntitlementFilterNameDimension = "DIMENSION"
 )
+
+// GetEntitlementFilterName is an enum
+type GetEntitlementFilterName struct{}
+
+// Contains returns whether the GetEntitlementFilterName enum includes the element
+func (enum GetEntitlementFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GetEntitlementFilterName enum
+func (enum GetEntitlementFilterName) Values() []string {
+	return []string{
+		GetEntitlementFilterNameCustomerIdentifier,
+		GetEntitlementFilterNameDimension,
+	}
+}

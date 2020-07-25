@@ -4791,6 +4791,30 @@ const (
 	ErrorCodeServiceQuotaNotAvailableError = "SERVICE_QUOTA_NOT_AVAILABLE_ERROR"
 )
 
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeDependencyAccessDeniedError,
+		ErrorCodeDependencyThrottlingError,
+		ErrorCodeDependencyServiceError,
+		ErrorCodeServiceQuotaNotAvailableError,
+	}
+}
+
 const (
 	// PeriodUnitMicrosecond is a PeriodUnit enum value
 	PeriodUnitMicrosecond = "MICROSECOND"
@@ -4814,6 +4838,33 @@ const (
 	PeriodUnitWeek = "WEEK"
 )
 
+// PeriodUnit is an enum
+type PeriodUnit struct{}
+
+// Contains returns whether the PeriodUnit enum includes the element
+func (enum PeriodUnit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PeriodUnit enum
+func (enum PeriodUnit) Values() []string {
+	return []string{
+		PeriodUnitMicrosecond,
+		PeriodUnitMillisecond,
+		PeriodUnitSecond,
+		PeriodUnitMinute,
+		PeriodUnitHour,
+		PeriodUnitDay,
+		PeriodUnitWeek,
+	}
+}
+
 const (
 	// RequestStatusPending is a RequestStatus enum value
 	RequestStatusPending = "PENDING"
@@ -4831,6 +4882,31 @@ const (
 	RequestStatusCaseClosed = "CASE_CLOSED"
 )
 
+// RequestStatus is an enum
+type RequestStatus struct{}
+
+// Contains returns whether the RequestStatus enum includes the element
+func (enum RequestStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RequestStatus enum
+func (enum RequestStatus) Values() []string {
+	return []string{
+		RequestStatusPending,
+		RequestStatusCaseOpened,
+		RequestStatusApproved,
+		RequestStatusDenied,
+		RequestStatusCaseClosed,
+	}
+}
+
 const (
 	// ServiceQuotaTemplateAssociationStatusAssociated is a ServiceQuotaTemplateAssociationStatus enum value
 	ServiceQuotaTemplateAssociationStatusAssociated = "ASSOCIATED"
@@ -4838,3 +4914,25 @@ const (
 	// ServiceQuotaTemplateAssociationStatusDisassociated is a ServiceQuotaTemplateAssociationStatus enum value
 	ServiceQuotaTemplateAssociationStatusDisassociated = "DISASSOCIATED"
 )
+
+// ServiceQuotaTemplateAssociationStatus is an enum
+type ServiceQuotaTemplateAssociationStatus struct{}
+
+// Contains returns whether the ServiceQuotaTemplateAssociationStatus enum includes the element
+func (enum ServiceQuotaTemplateAssociationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceQuotaTemplateAssociationStatus enum
+func (enum ServiceQuotaTemplateAssociationStatus) Values() []string {
+	return []string{
+		ServiceQuotaTemplateAssociationStatusAssociated,
+		ServiceQuotaTemplateAssociationStatusDisassociated,
+	}
+}

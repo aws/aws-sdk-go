@@ -6661,6 +6661,27 @@ const (
 	AssetTypeS3Snapshot = "S3_SNAPSHOT"
 )
 
+// AssetType is an enum
+type AssetType struct{}
+
+// Contains returns whether the AssetType enum includes the element
+func (enum AssetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssetType enum
+func (enum AssetType) Values() []string {
+	return []string{
+		AssetTypeS3Snapshot,
+	}
+}
+
 const (
 	// CodeAccessDeniedException is a Code enum value
 	CodeAccessDeniedException = "ACCESS_DENIED_EXCEPTION"
@@ -6684,6 +6705,33 @@ const (
 	CodeMalwareScanEncryptedFile = "MALWARE_SCAN_ENCRYPTED_FILE"
 )
 
+// Code is an enum
+type Code struct{}
+
+// Contains returns whether the Code enum includes the element
+func (enum Code) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Code enum
+func (enum Code) Values() []string {
+	return []string{
+		CodeAccessDeniedException,
+		CodeInternalServerException,
+		CodeMalwareDetected,
+		CodeResourceNotFoundException,
+		CodeServiceQuotaExceededException,
+		CodeValidationException,
+		CodeMalwareScanEncryptedFile,
+	}
+}
+
 // The name of the limit that was reached.
 const (
 	// JobErrorLimitNameAssetsperrevision is a JobErrorLimitName enum value
@@ -6693,6 +6741,28 @@ const (
 	JobErrorLimitNameAssetsizeinGb = "Asset size in GB"
 )
 
+// JobErrorLimitName is an enum
+type JobErrorLimitName struct{}
+
+// Contains returns whether the JobErrorLimitName enum includes the element
+func (enum JobErrorLimitName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobErrorLimitName enum
+func (enum JobErrorLimitName) Values() []string {
+	return []string{
+		JobErrorLimitNameAssetsperrevision,
+		JobErrorLimitNameAssetsizeinGb,
+	}
+}
+
 // The types of resource which the job error can apply to.
 const (
 	// JobErrorResourceTypesRevision is a JobErrorResourceTypes enum value
@@ -6701,6 +6771,28 @@ const (
 	// JobErrorResourceTypesAsset is a JobErrorResourceTypes enum value
 	JobErrorResourceTypesAsset = "ASSET"
 )
+
+// JobErrorResourceTypes is an enum
+type JobErrorResourceTypes struct{}
+
+// Contains returns whether the JobErrorResourceTypes enum includes the element
+func (enum JobErrorResourceTypes) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobErrorResourceTypes enum
+func (enum JobErrorResourceTypes) Values() []string {
+	return []string{
+		JobErrorResourceTypesRevision,
+		JobErrorResourceTypesAsset,
+	}
+}
 
 const (
 	// LimitNameProductsperaccount is a LimitName enum value
@@ -6740,6 +6832,38 @@ const (
 	LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl = "Concurrent in progress jobs to export assets to a signed URL"
 )
 
+// LimitName is an enum
+type LimitName struct{}
+
+// Contains returns whether the LimitName enum includes the element
+func (enum LimitName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LimitName enum
+func (enum LimitName) Values() []string {
+	return []string{
+		LimitNameProductsperaccount,
+		LimitNameDatasetsperaccount,
+		LimitNameDatasetsperproduct,
+		LimitNameRevisionsperdataset,
+		LimitNameAssetsperrevision,
+		LimitNameAssetsperimportjobfromAmazonS3,
+		LimitNameAssetperexportjobfromAmazonS3,
+		LimitNameAssetsizeinGb,
+		LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3,
+		LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl,
+		LimitNameConcurrentinprogressjobstoexportassetstoAmazonS3,
+		LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl,
+	}
+}
+
 // A property that defines the data set as OWNED by the account (for providers)
 // or ENTITLED to the account (for subscribers). When an owned data set is published
 // in a product, AWS Data Exchange creates a copy of the data set. Subscribers
@@ -6751,6 +6875,28 @@ const (
 	// OriginEntitled is a Origin enum value
 	OriginEntitled = "ENTITLED"
 )
+
+// Origin is an enum
+type Origin struct{}
+
+// Contains returns whether the Origin enum includes the element
+func (enum Origin) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Origin enum
+func (enum Origin) Values() []string {
+	return []string{
+		OriginOwned,
+		OriginEntitled,
+	}
+}
 
 const (
 	// ResourceTypeDataSet is a ResourceType enum value
@@ -6766,6 +6912,30 @@ const (
 	ResourceTypeJob = "JOB"
 )
 
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeDataSet,
+		ResourceTypeRevision,
+		ResourceTypeAsset,
+		ResourceTypeJob,
+	}
+}
+
 // The types of encryption supported in export jobs to Amazon S3.
 const (
 	// ServerSideEncryptionTypesAwsKms is a ServerSideEncryptionTypes enum value
@@ -6774,6 +6944,28 @@ const (
 	// ServerSideEncryptionTypesAes256 is a ServerSideEncryptionTypes enum value
 	ServerSideEncryptionTypesAes256 = "AES256"
 )
+
+// ServerSideEncryptionTypes is an enum
+type ServerSideEncryptionTypes struct{}
+
+// Contains returns whether the ServerSideEncryptionTypes enum includes the element
+func (enum ServerSideEncryptionTypes) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServerSideEncryptionTypes enum
+func (enum ServerSideEncryptionTypes) Values() []string {
+	return []string{
+		ServerSideEncryptionTypesAwsKms,
+		ServerSideEncryptionTypesAes256,
+	}
+}
 
 const (
 	// StateWaiting is a State enum value
@@ -6795,6 +6987,32 @@ const (
 	StateTimedOut = "TIMED_OUT"
 )
 
+// State is an enum
+type State struct{}
+
+// Contains returns whether the State enum includes the element
+func (enum State) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the State enum
+func (enum State) Values() []string {
+	return []string{
+		StateWaiting,
+		StateInProgress,
+		StateError,
+		StateCompleted,
+		StateCancelled,
+		StateTimedOut,
+	}
+}
+
 const (
 	// TypeImportAssetsFromS3 is a Type enum value
 	TypeImportAssetsFromS3 = "IMPORT_ASSETS_FROM_S3"
@@ -6808,3 +7026,27 @@ const (
 	// TypeExportAssetToSignedUrl is a Type enum value
 	TypeExportAssetToSignedUrl = "EXPORT_ASSET_TO_SIGNED_URL"
 )
+
+// Type is an enum
+type Type struct{}
+
+// Contains returns whether the Type enum includes the element
+func (enum Type) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Type enum
+func (enum Type) Values() []string {
+	return []string{
+		TypeImportAssetsFromS3,
+		TypeImportAssetFromSignedUrl,
+		TypeExportAssetsToS3,
+		TypeExportAssetToSignedUrl,
+	}
+}

@@ -18594,6 +18594,29 @@ const (
 	ApplicationRevisionSortByLastUsedTime = "lastUsedTime"
 )
 
+// ApplicationRevisionSortBy is an enum
+type ApplicationRevisionSortBy struct{}
+
+// Contains returns whether the ApplicationRevisionSortBy enum includes the element
+func (enum ApplicationRevisionSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ApplicationRevisionSortBy enum
+func (enum ApplicationRevisionSortBy) Values() []string {
+	return []string{
+		ApplicationRevisionSortByRegisterTime,
+		ApplicationRevisionSortByFirstUsedTime,
+		ApplicationRevisionSortByLastUsedTime,
+	}
+}
+
 const (
 	// AutoRollbackEventDeploymentFailure is a AutoRollbackEvent enum value
 	AutoRollbackEventDeploymentFailure = "DEPLOYMENT_FAILURE"
@@ -18604,6 +18627,29 @@ const (
 	// AutoRollbackEventDeploymentStopOnRequest is a AutoRollbackEvent enum value
 	AutoRollbackEventDeploymentStopOnRequest = "DEPLOYMENT_STOP_ON_REQUEST"
 )
+
+// AutoRollbackEvent is an enum
+type AutoRollbackEvent struct{}
+
+// Contains returns whether the AutoRollbackEvent enum includes the element
+func (enum AutoRollbackEvent) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoRollbackEvent enum
+func (enum AutoRollbackEvent) Values() []string {
+	return []string{
+		AutoRollbackEventDeploymentFailure,
+		AutoRollbackEventDeploymentStopOnAlarm,
+		AutoRollbackEventDeploymentStopOnRequest,
+	}
+}
 
 const (
 	// BundleTypeTar is a BundleType enum value
@@ -18622,6 +18668,31 @@ const (
 	BundleTypeJson = "JSON"
 )
 
+// BundleType is an enum
+type BundleType struct{}
+
+// Contains returns whether the BundleType enum includes the element
+func (enum BundleType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BundleType enum
+func (enum BundleType) Values() []string {
+	return []string{
+		BundleTypeTar,
+		BundleTypeTgz,
+		BundleTypeZip,
+		BundleTypeYaml,
+		BundleTypeJson,
+	}
+}
+
 const (
 	// ComputePlatformServer is a ComputePlatform enum value
 	ComputePlatformServer = "Server"
@@ -18632,6 +18703,29 @@ const (
 	// ComputePlatformEcs is a ComputePlatform enum value
 	ComputePlatformEcs = "ECS"
 )
+
+// ComputePlatform is an enum
+type ComputePlatform struct{}
+
+// Contains returns whether the ComputePlatform enum includes the element
+func (enum ComputePlatform) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComputePlatform enum
+func (enum ComputePlatform) Values() []string {
+	return []string{
+		ComputePlatformServer,
+		ComputePlatformLambda,
+		ComputePlatformEcs,
+	}
+}
 
 const (
 	// DeploymentCreatorUser is a DeploymentCreator enum value
@@ -18653,6 +18747,32 @@ const (
 	DeploymentCreatorCloudFormationRollback = "CloudFormationRollback"
 )
 
+// DeploymentCreator is an enum
+type DeploymentCreator struct{}
+
+// Contains returns whether the DeploymentCreator enum includes the element
+func (enum DeploymentCreator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentCreator enum
+func (enum DeploymentCreator) Values() []string {
+	return []string{
+		DeploymentCreatorUser,
+		DeploymentCreatorAutoscaling,
+		DeploymentCreatorCodeDeployRollback,
+		DeploymentCreatorCodeDeploy,
+		DeploymentCreatorCloudFormation,
+		DeploymentCreatorCloudFormationRollback,
+	}
+}
+
 const (
 	// DeploymentOptionWithTrafficControl is a DeploymentOption enum value
 	DeploymentOptionWithTrafficControl = "WITH_TRAFFIC_CONTROL"
@@ -18661,6 +18781,28 @@ const (
 	DeploymentOptionWithoutTrafficControl = "WITHOUT_TRAFFIC_CONTROL"
 )
 
+// DeploymentOption is an enum
+type DeploymentOption struct{}
+
+// Contains returns whether the DeploymentOption enum includes the element
+func (enum DeploymentOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentOption enum
+func (enum DeploymentOption) Values() []string {
+	return []string{
+		DeploymentOptionWithTrafficControl,
+		DeploymentOptionWithoutTrafficControl,
+	}
+}
+
 const (
 	// DeploymentReadyActionContinueDeployment is a DeploymentReadyAction enum value
 	DeploymentReadyActionContinueDeployment = "CONTINUE_DEPLOYMENT"
@@ -18668,6 +18810,28 @@ const (
 	// DeploymentReadyActionStopDeployment is a DeploymentReadyAction enum value
 	DeploymentReadyActionStopDeployment = "STOP_DEPLOYMENT"
 )
+
+// DeploymentReadyAction is an enum
+type DeploymentReadyAction struct{}
+
+// Contains returns whether the DeploymentReadyAction enum includes the element
+func (enum DeploymentReadyAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentReadyAction enum
+func (enum DeploymentReadyAction) Values() []string {
+	return []string{
+		DeploymentReadyActionContinueDeployment,
+		DeploymentReadyActionStopDeployment,
+	}
+}
 
 const (
 	// DeploymentStatusCreated is a DeploymentStatus enum value
@@ -18695,6 +18859,34 @@ const (
 	DeploymentStatusReady = "Ready"
 )
 
+// DeploymentStatus is an enum
+type DeploymentStatus struct{}
+
+// Contains returns whether the DeploymentStatus enum includes the element
+func (enum DeploymentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentStatus enum
+func (enum DeploymentStatus) Values() []string {
+	return []string{
+		DeploymentStatusCreated,
+		DeploymentStatusQueued,
+		DeploymentStatusInProgress,
+		DeploymentStatusBaking,
+		DeploymentStatusSucceeded,
+		DeploymentStatusFailed,
+		DeploymentStatusStopped,
+		DeploymentStatusReady,
+	}
+}
+
 const (
 	// DeploymentTargetTypeInstanceTarget is a DeploymentTargetType enum value
 	DeploymentTargetTypeInstanceTarget = "InstanceTarget"
@@ -18709,6 +18901,30 @@ const (
 	DeploymentTargetTypeCloudFormationTarget = "CloudFormationTarget"
 )
 
+// DeploymentTargetType is an enum
+type DeploymentTargetType struct{}
+
+// Contains returns whether the DeploymentTargetType enum includes the element
+func (enum DeploymentTargetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentTargetType enum
+func (enum DeploymentTargetType) Values() []string {
+	return []string{
+		DeploymentTargetTypeInstanceTarget,
+		DeploymentTargetTypeLambdaTarget,
+		DeploymentTargetTypeEcstarget,
+		DeploymentTargetTypeCloudFormationTarget,
+	}
+}
+
 const (
 	// DeploymentTypeInPlace is a DeploymentType enum value
 	DeploymentTypeInPlace = "IN_PLACE"
@@ -18717,6 +18933,28 @@ const (
 	DeploymentTypeBlueGreen = "BLUE_GREEN"
 )
 
+// DeploymentType is an enum
+type DeploymentType struct{}
+
+// Contains returns whether the DeploymentType enum includes the element
+func (enum DeploymentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentType enum
+func (enum DeploymentType) Values() []string {
+	return []string{
+		DeploymentTypeInPlace,
+		DeploymentTypeBlueGreen,
+	}
+}
+
 const (
 	// DeploymentWaitTypeReadyWait is a DeploymentWaitType enum value
 	DeploymentWaitTypeReadyWait = "READY_WAIT"
@@ -18724,6 +18962,28 @@ const (
 	// DeploymentWaitTypeTerminationWait is a DeploymentWaitType enum value
 	DeploymentWaitTypeTerminationWait = "TERMINATION_WAIT"
 )
+
+// DeploymentWaitType is an enum
+type DeploymentWaitType struct{}
+
+// Contains returns whether the DeploymentWaitType enum includes the element
+func (enum DeploymentWaitType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentWaitType enum
+func (enum DeploymentWaitType) Values() []string {
+	return []string{
+		DeploymentWaitTypeReadyWait,
+		DeploymentWaitTypeTerminationWait,
+	}
+}
 
 const (
 	// EC2TagFilterTypeKeyOnly is a EC2TagFilterType enum value
@@ -18735,6 +18995,29 @@ const (
 	// EC2TagFilterTypeKeyAndValue is a EC2TagFilterType enum value
 	EC2TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
 )
+
+// EC2TagFilterType is an enum
+type EC2TagFilterType struct{}
+
+// Contains returns whether the EC2TagFilterType enum includes the element
+func (enum EC2TagFilterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EC2TagFilterType enum
+func (enum EC2TagFilterType) Values() []string {
+	return []string{
+		EC2TagFilterTypeKeyOnly,
+		EC2TagFilterTypeValueOnly,
+		EC2TagFilterTypeKeyAndValue,
+	}
+}
 
 const (
 	// ErrorCodeAgentIssue is a ErrorCode enum value
@@ -18840,6 +19123,60 @@ const (
 	ErrorCodeCloudformationStackFailure = "CLOUDFORMATION_STACK_FAILURE"
 )
 
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeAgentIssue,
+		ErrorCodeAlarmActive,
+		ErrorCodeApplicationMissing,
+		ErrorCodeAutoscalingValidationError,
+		ErrorCodeAutoScalingConfiguration,
+		ErrorCodeAutoScalingIamRolePermissions,
+		ErrorCodeCodedeployResourceCannotBeFound,
+		ErrorCodeCustomerApplicationUnhealthy,
+		ErrorCodeDeploymentGroupMissing,
+		ErrorCodeEcsUpdateError,
+		ErrorCodeElasticLoadBalancingInvalid,
+		ErrorCodeElbInvalidInstance,
+		ErrorCodeHealthConstraints,
+		ErrorCodeHealthConstraintsInvalid,
+		ErrorCodeHookExecutionFailure,
+		ErrorCodeIamRoleMissing,
+		ErrorCodeIamRolePermissions,
+		ErrorCodeInternalError,
+		ErrorCodeInvalidEcsService,
+		ErrorCodeInvalidLambdaConfiguration,
+		ErrorCodeInvalidLambdaFunction,
+		ErrorCodeInvalidRevision,
+		ErrorCodeManualStop,
+		ErrorCodeMissingBlueGreenDeploymentConfiguration,
+		ErrorCodeMissingElbInformation,
+		ErrorCodeMissingGithubToken,
+		ErrorCodeNoEc2Subscription,
+		ErrorCodeNoInstances,
+		ErrorCodeOverMaxInstances,
+		ErrorCodeResourceLimitExceeded,
+		ErrorCodeRevisionMissing,
+		ErrorCodeThrottled,
+		ErrorCodeTimeout,
+		ErrorCodeCloudformationStackFailure,
+	}
+}
+
 const (
 	// FileExistsBehaviorDisallow is a FileExistsBehavior enum value
 	FileExistsBehaviorDisallow = "DISALLOW"
@@ -18851,6 +19188,29 @@ const (
 	FileExistsBehaviorRetain = "RETAIN"
 )
 
+// FileExistsBehavior is an enum
+type FileExistsBehavior struct{}
+
+// Contains returns whether the FileExistsBehavior enum includes the element
+func (enum FileExistsBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileExistsBehavior enum
+func (enum FileExistsBehavior) Values() []string {
+	return []string{
+		FileExistsBehaviorDisallow,
+		FileExistsBehaviorOverwrite,
+		FileExistsBehaviorRetain,
+	}
+}
+
 const (
 	// GreenFleetProvisioningActionDiscoverExisting is a GreenFleetProvisioningAction enum value
 	GreenFleetProvisioningActionDiscoverExisting = "DISCOVER_EXISTING"
@@ -18859,6 +19219,28 @@ const (
 	GreenFleetProvisioningActionCopyAutoScalingGroup = "COPY_AUTO_SCALING_GROUP"
 )
 
+// GreenFleetProvisioningAction is an enum
+type GreenFleetProvisioningAction struct{}
+
+// Contains returns whether the GreenFleetProvisioningAction enum includes the element
+func (enum GreenFleetProvisioningAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GreenFleetProvisioningAction enum
+func (enum GreenFleetProvisioningAction) Values() []string {
+	return []string{
+		GreenFleetProvisioningActionDiscoverExisting,
+		GreenFleetProvisioningActionCopyAutoScalingGroup,
+	}
+}
+
 const (
 	// InstanceActionTerminate is a InstanceAction enum value
 	InstanceActionTerminate = "TERMINATE"
@@ -18866,6 +19248,28 @@ const (
 	// InstanceActionKeepAlive is a InstanceAction enum value
 	InstanceActionKeepAlive = "KEEP_ALIVE"
 )
+
+// InstanceAction is an enum
+type InstanceAction struct{}
+
+// Contains returns whether the InstanceAction enum includes the element
+func (enum InstanceAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceAction enum
+func (enum InstanceAction) Values() []string {
+	return []string{
+		InstanceActionTerminate,
+		InstanceActionKeepAlive,
+	}
+}
 
 const (
 	// InstanceStatusPending is a InstanceStatus enum value
@@ -18890,6 +19294,33 @@ const (
 	InstanceStatusReady = "Ready"
 )
 
+// InstanceStatus is an enum
+type InstanceStatus struct{}
+
+// Contains returns whether the InstanceStatus enum includes the element
+func (enum InstanceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceStatus enum
+func (enum InstanceStatus) Values() []string {
+	return []string{
+		InstanceStatusPending,
+		InstanceStatusInProgress,
+		InstanceStatusSucceeded,
+		InstanceStatusFailed,
+		InstanceStatusSkipped,
+		InstanceStatusUnknown,
+		InstanceStatusReady,
+	}
+}
+
 const (
 	// InstanceTypeBlue is a InstanceType enum value
 	InstanceTypeBlue = "Blue"
@@ -18897,6 +19328,28 @@ const (
 	// InstanceTypeGreen is a InstanceType enum value
 	InstanceTypeGreen = "Green"
 )
+
+// InstanceType is an enum
+type InstanceType struct{}
+
+// Contains returns whether the InstanceType enum includes the element
+func (enum InstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceType enum
+func (enum InstanceType) Values() []string {
+	return []string{
+		InstanceTypeBlue,
+		InstanceTypeGreen,
+	}
+}
 
 const (
 	// LifecycleErrorCodeSuccess is a LifecycleErrorCode enum value
@@ -18918,6 +19371,32 @@ const (
 	LifecycleErrorCodeUnknownError = "UnknownError"
 )
 
+// LifecycleErrorCode is an enum
+type LifecycleErrorCode struct{}
+
+// Contains returns whether the LifecycleErrorCode enum includes the element
+func (enum LifecycleErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LifecycleErrorCode enum
+func (enum LifecycleErrorCode) Values() []string {
+	return []string{
+		LifecycleErrorCodeSuccess,
+		LifecycleErrorCodeScriptMissing,
+		LifecycleErrorCodeScriptNotExecutable,
+		LifecycleErrorCodeScriptTimedOut,
+		LifecycleErrorCodeScriptFailed,
+		LifecycleErrorCodeUnknownError,
+	}
+}
+
 const (
 	// LifecycleEventStatusPending is a LifecycleEventStatus enum value
 	LifecycleEventStatusPending = "Pending"
@@ -18938,6 +19417,32 @@ const (
 	LifecycleEventStatusUnknown = "Unknown"
 )
 
+// LifecycleEventStatus is an enum
+type LifecycleEventStatus struct{}
+
+// Contains returns whether the LifecycleEventStatus enum includes the element
+func (enum LifecycleEventStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LifecycleEventStatus enum
+func (enum LifecycleEventStatus) Values() []string {
+	return []string{
+		LifecycleEventStatusPending,
+		LifecycleEventStatusInProgress,
+		LifecycleEventStatusSucceeded,
+		LifecycleEventStatusFailed,
+		LifecycleEventStatusSkipped,
+		LifecycleEventStatusUnknown,
+	}
+}
+
 const (
 	// ListStateFilterActionInclude is a ListStateFilterAction enum value
 	ListStateFilterActionInclude = "include"
@@ -18949,6 +19454,29 @@ const (
 	ListStateFilterActionIgnore = "ignore"
 )
 
+// ListStateFilterAction is an enum
+type ListStateFilterAction struct{}
+
+// Contains returns whether the ListStateFilterAction enum includes the element
+func (enum ListStateFilterAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListStateFilterAction enum
+func (enum ListStateFilterAction) Values() []string {
+	return []string{
+		ListStateFilterActionInclude,
+		ListStateFilterActionExclude,
+		ListStateFilterActionIgnore,
+	}
+}
+
 const (
 	// MinimumHealthyHostsTypeHostCount is a MinimumHealthyHostsType enum value
 	MinimumHealthyHostsTypeHostCount = "HOST_COUNT"
@@ -18957,6 +19485,28 @@ const (
 	MinimumHealthyHostsTypeFleetPercent = "FLEET_PERCENT"
 )
 
+// MinimumHealthyHostsType is an enum
+type MinimumHealthyHostsType struct{}
+
+// Contains returns whether the MinimumHealthyHostsType enum includes the element
+func (enum MinimumHealthyHostsType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MinimumHealthyHostsType enum
+func (enum MinimumHealthyHostsType) Values() []string {
+	return []string{
+		MinimumHealthyHostsTypeHostCount,
+		MinimumHealthyHostsTypeFleetPercent,
+	}
+}
+
 const (
 	// RegistrationStatusRegistered is a RegistrationStatus enum value
 	RegistrationStatusRegistered = "Registered"
@@ -18964,6 +19514,28 @@ const (
 	// RegistrationStatusDeregistered is a RegistrationStatus enum value
 	RegistrationStatusDeregistered = "Deregistered"
 )
+
+// RegistrationStatus is an enum
+type RegistrationStatus struct{}
+
+// Contains returns whether the RegistrationStatus enum includes the element
+func (enum RegistrationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RegistrationStatus enum
+func (enum RegistrationStatus) Values() []string {
+	return []string{
+		RegistrationStatusRegistered,
+		RegistrationStatusDeregistered,
+	}
+}
 
 const (
 	// RevisionLocationTypeS3 is a RevisionLocationType enum value
@@ -18979,6 +19551,30 @@ const (
 	RevisionLocationTypeAppSpecContent = "AppSpecContent"
 )
 
+// RevisionLocationType is an enum
+type RevisionLocationType struct{}
+
+// Contains returns whether the RevisionLocationType enum includes the element
+func (enum RevisionLocationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RevisionLocationType enum
+func (enum RevisionLocationType) Values() []string {
+	return []string{
+		RevisionLocationTypeS3,
+		RevisionLocationTypeGitHub,
+		RevisionLocationTypeString,
+		RevisionLocationTypeAppSpecContent,
+	}
+}
+
 const (
 	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "ascending"
@@ -18987,6 +19583,28 @@ const (
 	SortOrderDescending = "descending"
 )
 
+// SortOrder is an enum
+type SortOrder struct{}
+
+// Contains returns whether the SortOrder enum includes the element
+func (enum SortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortOrder enum
+func (enum SortOrder) Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
+	}
+}
+
 const (
 	// StopStatusPending is a StopStatus enum value
 	StopStatusPending = "Pending"
@@ -18994,6 +19612,28 @@ const (
 	// StopStatusSucceeded is a StopStatus enum value
 	StopStatusSucceeded = "Succeeded"
 )
+
+// StopStatus is an enum
+type StopStatus struct{}
+
+// Contains returns whether the StopStatus enum includes the element
+func (enum StopStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StopStatus enum
+func (enum StopStatus) Values() []string {
+	return []string{
+		StopStatusPending,
+		StopStatusSucceeded,
+	}
+}
 
 const (
 	// TagFilterTypeKeyOnly is a TagFilterType enum value
@@ -19006,6 +19646,29 @@ const (
 	TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
 )
 
+// TagFilterType is an enum
+type TagFilterType struct{}
+
+// Contains returns whether the TagFilterType enum includes the element
+func (enum TagFilterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TagFilterType enum
+func (enum TagFilterType) Values() []string {
+	return []string{
+		TagFilterTypeKeyOnly,
+		TagFilterTypeValueOnly,
+		TagFilterTypeKeyAndValue,
+	}
+}
+
 const (
 	// TargetFilterNameTargetStatus is a TargetFilterName enum value
 	TargetFilterNameTargetStatus = "TargetStatus"
@@ -19014,6 +19677,28 @@ const (
 	TargetFilterNameServerInstanceLabel = "ServerInstanceLabel"
 )
 
+// TargetFilterName is an enum
+type TargetFilterName struct{}
+
+// Contains returns whether the TargetFilterName enum includes the element
+func (enum TargetFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetFilterName enum
+func (enum TargetFilterName) Values() []string {
+	return []string{
+		TargetFilterNameTargetStatus,
+		TargetFilterNameServerInstanceLabel,
+	}
+}
+
 const (
 	// TargetLabelBlue is a TargetLabel enum value
 	TargetLabelBlue = "Blue"
@@ -19021,6 +19706,28 @@ const (
 	// TargetLabelGreen is a TargetLabel enum value
 	TargetLabelGreen = "Green"
 )
+
+// TargetLabel is an enum
+type TargetLabel struct{}
+
+// Contains returns whether the TargetLabel enum includes the element
+func (enum TargetLabel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetLabel enum
+func (enum TargetLabel) Values() []string {
+	return []string{
+		TargetLabelBlue,
+		TargetLabelGreen,
+	}
+}
 
 const (
 	// TargetStatusPending is a TargetStatus enum value
@@ -19045,6 +19752,33 @@ const (
 	TargetStatusReady = "Ready"
 )
 
+// TargetStatus is an enum
+type TargetStatus struct{}
+
+// Contains returns whether the TargetStatus enum includes the element
+func (enum TargetStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetStatus enum
+func (enum TargetStatus) Values() []string {
+	return []string{
+		TargetStatusPending,
+		TargetStatusInProgress,
+		TargetStatusSucceeded,
+		TargetStatusFailed,
+		TargetStatusSkipped,
+		TargetStatusUnknown,
+		TargetStatusReady,
+	}
+}
+
 const (
 	// TrafficRoutingTypeTimeBasedCanary is a TrafficRoutingType enum value
 	TrafficRoutingTypeTimeBasedCanary = "TimeBasedCanary"
@@ -19055,6 +19789,29 @@ const (
 	// TrafficRoutingTypeAllAtOnce is a TrafficRoutingType enum value
 	TrafficRoutingTypeAllAtOnce = "AllAtOnce"
 )
+
+// TrafficRoutingType is an enum
+type TrafficRoutingType struct{}
+
+// Contains returns whether the TrafficRoutingType enum includes the element
+func (enum TrafficRoutingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrafficRoutingType enum
+func (enum TrafficRoutingType) Values() []string {
+	return []string{
+		TrafficRoutingTypeTimeBasedCanary,
+		TrafficRoutingTypeTimeBasedLinear,
+		TrafficRoutingTypeAllAtOnce,
+	}
+}
 
 const (
 	// TriggerEventTypeDeploymentStart is a TriggerEventType enum value
@@ -19087,3 +19844,33 @@ const (
 	// TriggerEventTypeInstanceReady is a TriggerEventType enum value
 	TriggerEventTypeInstanceReady = "InstanceReady"
 )
+
+// TriggerEventType is an enum
+type TriggerEventType struct{}
+
+// Contains returns whether the TriggerEventType enum includes the element
+func (enum TriggerEventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TriggerEventType enum
+func (enum TriggerEventType) Values() []string {
+	return []string{
+		TriggerEventTypeDeploymentStart,
+		TriggerEventTypeDeploymentSuccess,
+		TriggerEventTypeDeploymentFailure,
+		TriggerEventTypeDeploymentStop,
+		TriggerEventTypeDeploymentRollback,
+		TriggerEventTypeDeploymentReady,
+		TriggerEventTypeInstanceStart,
+		TriggerEventTypeInstanceSuccess,
+		TriggerEventTypeInstanceFailure,
+		TriggerEventTypeInstanceReady,
+	}
+}

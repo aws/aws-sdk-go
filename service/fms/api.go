@@ -6713,6 +6713,31 @@ const (
 	AccountRoleStatusDeleted = "DELETED"
 )
 
+// AccountRoleStatus is an enum
+type AccountRoleStatus struct{}
+
+// Contains returns whether the AccountRoleStatus enum includes the element
+func (enum AccountRoleStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccountRoleStatus enum
+func (enum AccountRoleStatus) Values() []string {
+	return []string{
+		AccountRoleStatusReady,
+		AccountRoleStatusCreating,
+		AccountRoleStatusPendingDeletion,
+		AccountRoleStatusDeleting,
+		AccountRoleStatusDeleted,
+	}
+}
+
 const (
 	// CustomerPolicyScopeIdTypeAccount is a CustomerPolicyScopeIdType enum value
 	CustomerPolicyScopeIdTypeAccount = "ACCOUNT"
@@ -6720,6 +6745,28 @@ const (
 	// CustomerPolicyScopeIdTypeOrgUnit is a CustomerPolicyScopeIdType enum value
 	CustomerPolicyScopeIdTypeOrgUnit = "ORG_UNIT"
 )
+
+// CustomerPolicyScopeIdType is an enum
+type CustomerPolicyScopeIdType struct{}
+
+// Contains returns whether the CustomerPolicyScopeIdType enum includes the element
+func (enum CustomerPolicyScopeIdType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CustomerPolicyScopeIdType enum
+func (enum CustomerPolicyScopeIdType) Values() []string {
+	return []string{
+		CustomerPolicyScopeIdTypeAccount,
+		CustomerPolicyScopeIdTypeOrgUnit,
+	}
+}
 
 const (
 	// DependentServiceNameAwsconfig is a DependentServiceName enum value
@@ -6735,6 +6782,30 @@ const (
 	DependentServiceNameAwsvpc = "AWSVPC"
 )
 
+// DependentServiceName is an enum
+type DependentServiceName struct{}
+
+// Contains returns whether the DependentServiceName enum includes the element
+func (enum DependentServiceName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DependentServiceName enum
+func (enum DependentServiceName) Values() []string {
+	return []string{
+		DependentServiceNameAwsconfig,
+		DependentServiceNameAwswaf,
+		DependentServiceNameAwsshieldAdvanced,
+		DependentServiceNameAwsvpc,
+	}
+}
+
 const (
 	// PolicyComplianceStatusTypeCompliant is a PolicyComplianceStatusType enum value
 	PolicyComplianceStatusTypeCompliant = "COMPLIANT"
@@ -6743,6 +6814,28 @@ const (
 	PolicyComplianceStatusTypeNonCompliant = "NON_COMPLIANT"
 )
 
+// PolicyComplianceStatusType is an enum
+type PolicyComplianceStatusType struct{}
+
+// Contains returns whether the PolicyComplianceStatusType enum includes the element
+func (enum PolicyComplianceStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyComplianceStatusType enum
+func (enum PolicyComplianceStatusType) Values() []string {
+	return []string{
+		PolicyComplianceStatusTypeCompliant,
+		PolicyComplianceStatusTypeNonCompliant,
+	}
+}
+
 const (
 	// RemediationActionTypeRemove is a RemediationActionType enum value
 	RemediationActionTypeRemove = "REMOVE"
@@ -6750,6 +6843,28 @@ const (
 	// RemediationActionTypeModify is a RemediationActionType enum value
 	RemediationActionTypeModify = "MODIFY"
 )
+
+// RemediationActionType is an enum
+type RemediationActionType struct{}
+
+// Contains returns whether the RemediationActionType enum includes the element
+func (enum RemediationActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RemediationActionType enum
+func (enum RemediationActionType) Values() []string {
+	return []string{
+		RemediationActionTypeRemove,
+		RemediationActionTypeModify,
+	}
+}
 
 const (
 	// SecurityServiceTypeWaf is a SecurityServiceType enum value
@@ -6770,6 +6885,32 @@ const (
 	// SecurityServiceTypeSecurityGroupsUsageAudit is a SecurityServiceType enum value
 	SecurityServiceTypeSecurityGroupsUsageAudit = "SECURITY_GROUPS_USAGE_AUDIT"
 )
+
+// SecurityServiceType is an enum
+type SecurityServiceType struct{}
+
+// Contains returns whether the SecurityServiceType enum includes the element
+func (enum SecurityServiceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SecurityServiceType enum
+func (enum SecurityServiceType) Values() []string {
+	return []string{
+		SecurityServiceTypeWaf,
+		SecurityServiceTypeWafv2,
+		SecurityServiceTypeShieldAdvanced,
+		SecurityServiceTypeSecurityGroupsCommon,
+		SecurityServiceTypeSecurityGroupsContentAudit,
+		SecurityServiceTypeSecurityGroupsUsageAudit,
+	}
+}
 
 const (
 	// ViolationReasonWebAclMissingRuleGroup is a ViolationReason enum value
@@ -6799,3 +6940,32 @@ const (
 	// ViolationReasonSecurityGroupRedundant is a ViolationReason enum value
 	ViolationReasonSecurityGroupRedundant = "SECURITY_GROUP_REDUNDANT"
 )
+
+// ViolationReason is an enum
+type ViolationReason struct{}
+
+// Contains returns whether the ViolationReason enum includes the element
+func (enum ViolationReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ViolationReason enum
+func (enum ViolationReason) Values() []string {
+	return []string{
+		ViolationReasonWebAclMissingRuleGroup,
+		ViolationReasonResourceMissingWebAcl,
+		ViolationReasonResourceIncorrectWebAcl,
+		ViolationReasonResourceMissingShieldProtection,
+		ViolationReasonResourceMissingWebAclOrShieldProtection,
+		ViolationReasonResourceMissingSecurityGroup,
+		ViolationReasonResourceViolatesAuditSecurityGroup,
+		ViolationReasonSecurityGroupUnused,
+		ViolationReasonSecurityGroupRedundant,
+	}
+}

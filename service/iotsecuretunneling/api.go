@@ -1684,6 +1684,28 @@ const (
 	ConnectionStatusDisconnected = "DISCONNECTED"
 )
 
+// ConnectionStatus is an enum
+type ConnectionStatus struct{}
+
+// Contains returns whether the ConnectionStatus enum includes the element
+func (enum ConnectionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionStatus enum
+func (enum ConnectionStatus) Values() []string {
+	return []string{
+		ConnectionStatusConnected,
+		ConnectionStatusDisconnected,
+	}
+}
+
 const (
 	// TunnelStatusOpen is a TunnelStatus enum value
 	TunnelStatusOpen = "OPEN"
@@ -1691,3 +1713,25 @@ const (
 	// TunnelStatusClosed is a TunnelStatus enum value
 	TunnelStatusClosed = "CLOSED"
 )
+
+// TunnelStatus is an enum
+type TunnelStatus struct{}
+
+// Contains returns whether the TunnelStatus enum includes the element
+func (enum TunnelStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TunnelStatus enum
+func (enum TunnelStatus) Values() []string {
+	return []string{
+		TunnelStatusOpen,
+		TunnelStatusClosed,
+	}
+}

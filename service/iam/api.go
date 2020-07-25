@@ -33274,6 +33274,28 @@ const (
 	AccessAdvisorUsageGranularityTypeActionLevel = "ACTION_LEVEL"
 )
 
+// AccessAdvisorUsageGranularityType is an enum
+type AccessAdvisorUsageGranularityType struct{}
+
+// Contains returns whether the AccessAdvisorUsageGranularityType enum includes the element
+func (enum AccessAdvisorUsageGranularityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccessAdvisorUsageGranularityType enum
+func (enum AccessAdvisorUsageGranularityType) Values() []string {
+	return []string{
+		AccessAdvisorUsageGranularityTypeServiceLevel,
+		AccessAdvisorUsageGranularityTypeActionLevel,
+	}
+}
+
 const (
 	// AssignmentStatusTypeAssigned is a AssignmentStatusType enum value
 	AssignmentStatusTypeAssigned = "Assigned"
@@ -33284,6 +33306,29 @@ const (
 	// AssignmentStatusTypeAny is a AssignmentStatusType enum value
 	AssignmentStatusTypeAny = "Any"
 )
+
+// AssignmentStatusType is an enum
+type AssignmentStatusType struct{}
+
+// Contains returns whether the AssignmentStatusType enum includes the element
+func (enum AssignmentStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssignmentStatusType enum
+func (enum AssignmentStatusType) Values() []string {
+	return []string{
+		AssignmentStatusTypeAssigned,
+		AssignmentStatusTypeUnassigned,
+		AssignmentStatusTypeAny,
+	}
+}
 
 const (
 	// ContextKeyTypeEnumString is a ContextKeyTypeEnum enum value
@@ -33323,6 +33368,38 @@ const (
 	ContextKeyTypeEnumDateList = "dateList"
 )
 
+// ContextKeyTypeEnum is an enum
+type ContextKeyTypeEnum struct{}
+
+// Contains returns whether the ContextKeyTypeEnum enum includes the element
+func (enum ContextKeyTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContextKeyTypeEnum enum
+func (enum ContextKeyTypeEnum) Values() []string {
+	return []string{
+		ContextKeyTypeEnumString,
+		ContextKeyTypeEnumStringList,
+		ContextKeyTypeEnumNumeric,
+		ContextKeyTypeEnumNumericList,
+		ContextKeyTypeEnumBoolean,
+		ContextKeyTypeEnumBooleanList,
+		ContextKeyTypeEnumIp,
+		ContextKeyTypeEnumIpList,
+		ContextKeyTypeEnumBinary,
+		ContextKeyTypeEnumBinaryList,
+		ContextKeyTypeEnumDate,
+		ContextKeyTypeEnumDateList,
+	}
+}
+
 const (
 	// DeletionTaskStatusTypeSucceeded is a DeletionTaskStatusType enum value
 	DeletionTaskStatusTypeSucceeded = "SUCCEEDED"
@@ -33337,6 +33414,30 @@ const (
 	DeletionTaskStatusTypeNotStarted = "NOT_STARTED"
 )
 
+// DeletionTaskStatusType is an enum
+type DeletionTaskStatusType struct{}
+
+// Contains returns whether the DeletionTaskStatusType enum includes the element
+func (enum DeletionTaskStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeletionTaskStatusType enum
+func (enum DeletionTaskStatusType) Values() []string {
+	return []string{
+		DeletionTaskStatusTypeSucceeded,
+		DeletionTaskStatusTypeInProgress,
+		DeletionTaskStatusTypeFailed,
+		DeletionTaskStatusTypeNotStarted,
+	}
+}
+
 const (
 	// EncodingTypeSsh is a EncodingType enum value
 	EncodingTypeSsh = "SSH"
@@ -33344,6 +33445,28 @@ const (
 	// EncodingTypePem is a EncodingType enum value
 	EncodingTypePem = "PEM"
 )
+
+// EncodingType is an enum
+type EncodingType struct{}
+
+// Contains returns whether the EncodingType enum includes the element
+func (enum EncodingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncodingType enum
+func (enum EncodingType) Values() []string {
+	return []string{
+		EncodingTypeSsh,
+		EncodingTypePem,
+	}
+}
 
 const (
 	// EntityTypeUser is a EntityType enum value
@@ -33362,6 +33485,31 @@ const (
 	EntityTypeAwsmanagedPolicy = "AWSManagedPolicy"
 )
 
+// EntityType is an enum
+type EntityType struct{}
+
+// Contains returns whether the EntityType enum includes the element
+func (enum EntityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EntityType enum
+func (enum EntityType) Values() []string {
+	return []string{
+		EntityTypeUser,
+		EntityTypeRole,
+		EntityTypeGroup,
+		EntityTypeLocalManagedPolicy,
+		EntityTypeAwsmanagedPolicy,
+	}
+}
+
 const (
 	// GlobalEndpointTokenVersionV1token is a GlobalEndpointTokenVersion enum value
 	GlobalEndpointTokenVersionV1token = "v1Token"
@@ -33369,6 +33517,28 @@ const (
 	// GlobalEndpointTokenVersionV2token is a GlobalEndpointTokenVersion enum value
 	GlobalEndpointTokenVersionV2token = "v2Token"
 )
+
+// GlobalEndpointTokenVersion is an enum
+type GlobalEndpointTokenVersion struct{}
+
+// Contains returns whether the GlobalEndpointTokenVersion enum includes the element
+func (enum GlobalEndpointTokenVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GlobalEndpointTokenVersion enum
+func (enum GlobalEndpointTokenVersion) Values() []string {
+	return []string{
+		GlobalEndpointTokenVersionV1token,
+		GlobalEndpointTokenVersionV2token,
+	}
+}
 
 const (
 	// JobStatusTypeInProgress is a JobStatusType enum value
@@ -33381,10 +33551,54 @@ const (
 	JobStatusTypeFailed = "FAILED"
 )
 
+// JobStatusType is an enum
+type JobStatusType struct{}
+
+// Contains returns whether the JobStatusType enum includes the element
+func (enum JobStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatusType enum
+func (enum JobStatusType) Values() []string {
+	return []string{
+		JobStatusTypeInProgress,
+		JobStatusTypeCompleted,
+		JobStatusTypeFailed,
+	}
+}
+
 const (
 	// PermissionsBoundaryAttachmentTypePermissionsBoundaryPolicy is a PermissionsBoundaryAttachmentType enum value
 	PermissionsBoundaryAttachmentTypePermissionsBoundaryPolicy = "PermissionsBoundaryPolicy"
 )
+
+// PermissionsBoundaryAttachmentType is an enum
+type PermissionsBoundaryAttachmentType struct{}
+
+// Contains returns whether the PermissionsBoundaryAttachmentType enum includes the element
+func (enum PermissionsBoundaryAttachmentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PermissionsBoundaryAttachmentType enum
+func (enum PermissionsBoundaryAttachmentType) Values() []string {
+	return []string{
+		PermissionsBoundaryAttachmentTypePermissionsBoundaryPolicy,
+	}
+}
 
 const (
 	// PolicyEvaluationDecisionTypeAllowed is a PolicyEvaluationDecisionType enum value
@@ -33397,6 +33611,29 @@ const (
 	PolicyEvaluationDecisionTypeImplicitDeny = "implicitDeny"
 )
 
+// PolicyEvaluationDecisionType is an enum
+type PolicyEvaluationDecisionType struct{}
+
+// Contains returns whether the PolicyEvaluationDecisionType enum includes the element
+func (enum PolicyEvaluationDecisionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyEvaluationDecisionType enum
+func (enum PolicyEvaluationDecisionType) Values() []string {
+	return []string{
+		PolicyEvaluationDecisionTypeAllowed,
+		PolicyEvaluationDecisionTypeExplicitDeny,
+		PolicyEvaluationDecisionTypeImplicitDeny,
+	}
+}
+
 const (
 	// PolicyOwnerEntityTypeUser is a PolicyOwnerEntityType enum value
 	PolicyOwnerEntityTypeUser = "USER"
@@ -33408,6 +33645,29 @@ const (
 	PolicyOwnerEntityTypeGroup = "GROUP"
 )
 
+// PolicyOwnerEntityType is an enum
+type PolicyOwnerEntityType struct{}
+
+// Contains returns whether the PolicyOwnerEntityType enum includes the element
+func (enum PolicyOwnerEntityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyOwnerEntityType enum
+func (enum PolicyOwnerEntityType) Values() []string {
+	return []string{
+		PolicyOwnerEntityTypeUser,
+		PolicyOwnerEntityTypeRole,
+		PolicyOwnerEntityTypeGroup,
+	}
+}
+
 const (
 	// PolicyScopeTypeAll is a PolicyScopeType enum value
 	PolicyScopeTypeAll = "All"
@@ -33418,6 +33678,29 @@ const (
 	// PolicyScopeTypeLocal is a PolicyScopeType enum value
 	PolicyScopeTypeLocal = "Local"
 )
+
+// PolicyScopeType is an enum
+type PolicyScopeType struct{}
+
+// Contains returns whether the PolicyScopeType enum includes the element
+func (enum PolicyScopeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyScopeType enum
+func (enum PolicyScopeType) Values() []string {
+	return []string{
+		PolicyScopeTypeAll,
+		PolicyScopeTypeAws,
+		PolicyScopeTypeLocal,
+	}
+}
 
 const (
 	// PolicySourceTypeUser is a PolicySourceType enum value
@@ -33442,6 +33725,33 @@ const (
 	PolicySourceTypeNone = "none"
 )
 
+// PolicySourceType is an enum
+type PolicySourceType struct{}
+
+// Contains returns whether the PolicySourceType enum includes the element
+func (enum PolicySourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicySourceType enum
+func (enum PolicySourceType) Values() []string {
+	return []string{
+		PolicySourceTypeUser,
+		PolicySourceTypeGroup,
+		PolicySourceTypeRole,
+		PolicySourceTypeAwsManaged,
+		PolicySourceTypeUserManaged,
+		PolicySourceTypeResource,
+		PolicySourceTypeNone,
+	}
+}
+
 const (
 	// PolicyTypeInline is a PolicyType enum value
 	PolicyTypeInline = "INLINE"
@@ -33449,6 +33759,28 @@ const (
 	// PolicyTypeManaged is a PolicyType enum value
 	PolicyTypeManaged = "MANAGED"
 )
+
+// PolicyType is an enum
+type PolicyType struct{}
+
+// Contains returns whether the PolicyType enum includes the element
+func (enum PolicyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyType enum
+func (enum PolicyType) Values() []string {
+	return []string{
+		PolicyTypeInline,
+		PolicyTypeManaged,
+	}
+}
 
 // The policy usage type that indicates whether the policy is used as a permissions
 // policy or as the permissions boundary for an entity.
@@ -33464,10 +33796,53 @@ const (
 	PolicyUsageTypePermissionsBoundary = "PermissionsBoundary"
 )
 
+// PolicyUsageType is an enum
+type PolicyUsageType struct{}
+
+// Contains returns whether the PolicyUsageType enum includes the element
+func (enum PolicyUsageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyUsageType enum
+func (enum PolicyUsageType) Values() []string {
+	return []string{
+		PolicyUsageTypePermissionsPolicy,
+		PolicyUsageTypePermissionsBoundary,
+	}
+}
+
 const (
 	// ReportFormatTypeTextCsv is a ReportFormatType enum value
 	ReportFormatTypeTextCsv = "text/csv"
 )
+
+// ReportFormatType is an enum
+type ReportFormatType struct{}
+
+// Contains returns whether the ReportFormatType enum includes the element
+func (enum ReportFormatType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportFormatType enum
+func (enum ReportFormatType) Values() []string {
+	return []string{
+		ReportFormatTypeTextCsv,
+	}
+}
 
 const (
 	// ReportStateTypeStarted is a ReportStateType enum value
@@ -33479,6 +33854,29 @@ const (
 	// ReportStateTypeComplete is a ReportStateType enum value
 	ReportStateTypeComplete = "COMPLETE"
 )
+
+// ReportStateType is an enum
+type ReportStateType struct{}
+
+// Contains returns whether the ReportStateType enum includes the element
+func (enum ReportStateType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportStateType enum
+func (enum ReportStateType) Values() []string {
+	return []string{
+		ReportStateTypeStarted,
+		ReportStateTypeInprogress,
+		ReportStateTypeComplete,
+	}
+}
 
 const (
 	// SortKeyTypeServiceNamespaceAscending is a SortKeyType enum value
@@ -33494,6 +33892,30 @@ const (
 	SortKeyTypeLastAuthenticatedTimeDescending = "LAST_AUTHENTICATED_TIME_DESCENDING"
 )
 
+// SortKeyType is an enum
+type SortKeyType struct{}
+
+// Contains returns whether the SortKeyType enum includes the element
+func (enum SortKeyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortKeyType enum
+func (enum SortKeyType) Values() []string {
+	return []string{
+		SortKeyTypeServiceNamespaceAscending,
+		SortKeyTypeServiceNamespaceDescending,
+		SortKeyTypeLastAuthenticatedTimeAscending,
+		SortKeyTypeLastAuthenticatedTimeDescending,
+	}
+}
+
 const (
 	// StatusTypeActive is a StatusType enum value
 	StatusTypeActive = "Active"
@@ -33501,6 +33923,28 @@ const (
 	// StatusTypeInactive is a StatusType enum value
 	StatusTypeInactive = "Inactive"
 )
+
+// StatusType is an enum
+type StatusType struct{}
+
+// Contains returns whether the StatusType enum includes the element
+func (enum StatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StatusType enum
+func (enum StatusType) Values() []string {
+	return []string{
+		StatusTypeActive,
+		StatusTypeInactive,
+	}
+}
 
 const (
 	// SummaryKeyTypeUsers is a SummaryKeyType enum value
@@ -33581,3 +34025,49 @@ const (
 	// SummaryKeyTypeGlobalEndpointTokenVersion is a SummaryKeyType enum value
 	SummaryKeyTypeGlobalEndpointTokenVersion = "GlobalEndpointTokenVersion"
 )
+
+// SummaryKeyType is an enum
+type SummaryKeyType struct{}
+
+// Contains returns whether the SummaryKeyType enum includes the element
+func (enum SummaryKeyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SummaryKeyType enum
+func (enum SummaryKeyType) Values() []string {
+	return []string{
+		SummaryKeyTypeUsers,
+		SummaryKeyTypeUsersQuota,
+		SummaryKeyTypeGroups,
+		SummaryKeyTypeGroupsQuota,
+		SummaryKeyTypeServerCertificates,
+		SummaryKeyTypeServerCertificatesQuota,
+		SummaryKeyTypeUserPolicySizeQuota,
+		SummaryKeyTypeGroupPolicySizeQuota,
+		SummaryKeyTypeGroupsPerUserQuota,
+		SummaryKeyTypeSigningCertificatesPerUserQuota,
+		SummaryKeyTypeAccessKeysPerUserQuota,
+		SummaryKeyTypeMfadevices,
+		SummaryKeyTypeMfadevicesInUse,
+		SummaryKeyTypeAccountMfaenabled,
+		SummaryKeyTypeAccountAccessKeysPresent,
+		SummaryKeyTypeAccountSigningCertificatesPresent,
+		SummaryKeyTypeAttachedPoliciesPerGroupQuota,
+		SummaryKeyTypeAttachedPoliciesPerRoleQuota,
+		SummaryKeyTypeAttachedPoliciesPerUserQuota,
+		SummaryKeyTypePolicies,
+		SummaryKeyTypePoliciesQuota,
+		SummaryKeyTypePolicySizeQuota,
+		SummaryKeyTypePolicyVersionsInUse,
+		SummaryKeyTypePolicyVersionsInUseQuota,
+		SummaryKeyTypeVersionsPerPolicyQuota,
+		SummaryKeyTypeGlobalEndpointTokenVersion,
+	}
+}

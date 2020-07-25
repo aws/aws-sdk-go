@@ -5947,6 +5947,30 @@ const (
 	AdMarkersDaterange = "DATERANGE"
 )
 
+// AdMarkers is an enum
+type AdMarkers struct{}
+
+// Contains returns whether the AdMarkers enum includes the element
+func (enum AdMarkers) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdMarkers enum
+func (enum AdMarkers) Values() []string {
+	return []string{
+		AdMarkersNone,
+		AdMarkersScte35Enhanced,
+		AdMarkersPassthrough,
+		AdMarkersDaterange,
+	}
+}
+
 // This setting allows the delivery restriction flags on SCTE-35 segmentation
 // descriptors todetermine whether a message signals an ad. Choosing "NONE"
 // means no SCTE-35 messages becomeads. Choosing "RESTRICTED" means SCTE-35
@@ -5971,6 +5995,30 @@ const (
 	AdsOnDeliveryRestrictionsBoth = "BOTH"
 )
 
+// AdsOnDeliveryRestrictions is an enum
+type AdsOnDeliveryRestrictions struct{}
+
+// Contains returns whether the AdsOnDeliveryRestrictions enum includes the element
+func (enum AdsOnDeliveryRestrictions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdsOnDeliveryRestrictions enum
+func (enum AdsOnDeliveryRestrictions) Values() []string {
+	return []string{
+		AdsOnDeliveryRestrictionsNone,
+		AdsOnDeliveryRestrictionsRestricted,
+		AdsOnDeliveryRestrictionsUnrestricted,
+		AdsOnDeliveryRestrictionsBoth,
+	}
+}
+
 const (
 	// EncryptionMethodAes128 is a EncryptionMethod enum value
 	EncryptionMethodAes128 = "AES_128"
@@ -5978,6 +6026,28 @@ const (
 	// EncryptionMethodSampleAes is a EncryptionMethod enum value
 	EncryptionMethodSampleAes = "SAMPLE_AES"
 )
+
+// EncryptionMethod is an enum
+type EncryptionMethod struct{}
+
+// Contains returns whether the EncryptionMethod enum includes the element
+func (enum EncryptionMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionMethod enum
+func (enum EncryptionMethod) Values() []string {
+	return []string{
+		EncryptionMethodAes128,
+		EncryptionMethodSampleAes,
+	}
+}
 
 const (
 	// ManifestLayoutFull is a ManifestLayout enum value
@@ -5987,6 +6057,28 @@ const (
 	ManifestLayoutCompact = "COMPACT"
 )
 
+// ManifestLayout is an enum
+type ManifestLayout struct{}
+
+// Contains returns whether the ManifestLayout enum includes the element
+func (enum ManifestLayout) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ManifestLayout enum
+func (enum ManifestLayout) Values() []string {
+	return []string{
+		ManifestLayoutFull,
+		ManifestLayoutCompact,
+	}
+}
+
 const (
 	// OriginationAllow is a Origination enum value
 	OriginationAllow = "ALLOW"
@@ -5994,6 +6086,28 @@ const (
 	// OriginationDeny is a Origination enum value
 	OriginationDeny = "DENY"
 )
+
+// Origination is an enum
+type Origination struct{}
+
+// Contains returns whether the Origination enum includes the element
+func (enum Origination) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Origination enum
+func (enum Origination) Values() []string {
+	return []string{
+		OriginationAllow,
+		OriginationDeny,
+	}
+}
 
 const (
 	// PlaylistTypeNone is a PlaylistType enum value
@@ -6006,6 +6120,29 @@ const (
 	PlaylistTypeVod = "VOD"
 )
 
+// PlaylistType is an enum
+type PlaylistType struct{}
+
+// Contains returns whether the PlaylistType enum includes the element
+func (enum PlaylistType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PlaylistType enum
+func (enum PlaylistType) Values() []string {
+	return []string{
+		PlaylistTypeNone,
+		PlaylistTypeEvent,
+		PlaylistTypeVod,
+	}
+}
+
 const (
 	// ProfileNone is a Profile enum value
 	ProfileNone = "NONE"
@@ -6013,6 +6150,28 @@ const (
 	// ProfileHbbtv15 is a Profile enum value
 	ProfileHbbtv15 = "HBBTV_1_5"
 )
+
+// Profile is an enum
+type Profile struct{}
+
+// Contains returns whether the Profile enum includes the element
+func (enum Profile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Profile enum
+func (enum Profile) Values() []string {
+	return []string{
+		ProfileNone,
+		ProfileHbbtv15,
+	}
+}
 
 const (
 	// SegmentTemplateFormatNumberWithTimeline is a SegmentTemplateFormat enum value
@@ -6025,6 +6184,29 @@ const (
 	SegmentTemplateFormatNumberWithDuration = "NUMBER_WITH_DURATION"
 )
 
+// SegmentTemplateFormat is an enum
+type SegmentTemplateFormat struct{}
+
+// Contains returns whether the SegmentTemplateFormat enum includes the element
+func (enum SegmentTemplateFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SegmentTemplateFormat enum
+func (enum SegmentTemplateFormat) Values() []string {
+	return []string{
+		SegmentTemplateFormatNumberWithTimeline,
+		SegmentTemplateFormatTimeWithTimeline,
+		SegmentTemplateFormatNumberWithDuration,
+	}
+}
+
 const (
 	// StatusInProgress is a Status enum value
 	StatusInProgress = "IN_PROGRESS"
@@ -6036,6 +6218,29 @@ const (
 	StatusFailed = "FAILED"
 )
 
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusInProgress,
+		StatusSucceeded,
+		StatusFailed,
+	}
+}
+
 const (
 	// StreamOrderOriginal is a StreamOrder enum value
 	StreamOrderOriginal = "ORIGINAL"
@@ -6046,6 +6251,29 @@ const (
 	// StreamOrderVideoBitrateDescending is a StreamOrder enum value
 	StreamOrderVideoBitrateDescending = "VIDEO_BITRATE_DESCENDING"
 )
+
+// StreamOrder is an enum
+type StreamOrder struct{}
+
+// Contains returns whether the StreamOrder enum includes the element
+func (enum StreamOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamOrder enum
+func (enum StreamOrder) Values() []string {
+	return []string{
+		StreamOrderOriginal,
+		StreamOrderVideoBitrateAscending,
+		StreamOrderVideoBitrateDescending,
+	}
+}
 
 const (
 	// __AdTriggersElementSpliceInsert is a __AdTriggersElement enum value
@@ -6073,7 +6301,56 @@ const (
 	__AdTriggersElementDistributorOverlayPlacementOpportunity = "DISTRIBUTOR_OVERLAY_PLACEMENT_OPPORTUNITY"
 )
 
+// __AdTriggersElement is an enum
+type __AdTriggersElement struct{}
+
+// Contains returns whether the __AdTriggersElement enum includes the element
+func (enum __AdTriggersElement) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the __AdTriggersElement enum
+func (enum __AdTriggersElement) Values() []string {
+	return []string{
+		__AdTriggersElementSpliceInsert,
+		__AdTriggersElementBreak,
+		__AdTriggersElementProviderAdvertisement,
+		__AdTriggersElementDistributorAdvertisement,
+		__AdTriggersElementProviderPlacementOpportunity,
+		__AdTriggersElementDistributorPlacementOpportunity,
+		__AdTriggersElementProviderOverlayPlacementOpportunity,
+		__AdTriggersElementDistributorOverlayPlacementOpportunity,
+	}
+}
+
 const (
 	// __PeriodTriggersElementAds is a __PeriodTriggersElement enum value
 	__PeriodTriggersElementAds = "ADS"
 )
+
+// __PeriodTriggersElement is an enum
+type __PeriodTriggersElement struct{}
+
+// Contains returns whether the __PeriodTriggersElement enum includes the element
+func (enum __PeriodTriggersElement) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the __PeriodTriggersElement enum
+func (enum __PeriodTriggersElement) Values() []string {
+	return []string{
+		__PeriodTriggersElementAds,
+	}
+}

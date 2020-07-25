@@ -8908,6 +8908,28 @@ const (
 	AlarmTypeMetricAlarm = "MetricAlarm"
 )
 
+// AlarmType is an enum
+type AlarmType struct{}
+
+// Contains returns whether the AlarmType enum includes the element
+func (enum AlarmType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AlarmType enum
+func (enum AlarmType) Values() []string {
+	return []string{
+		AlarmTypeCompositeAlarm,
+		AlarmTypeMetricAlarm,
+	}
+}
+
 const (
 	// AnomalyDetectorStateValuePendingTraining is a AnomalyDetectorStateValue enum value
 	AnomalyDetectorStateValuePendingTraining = "PENDING_TRAINING"
@@ -8918,6 +8940,29 @@ const (
 	// AnomalyDetectorStateValueTrained is a AnomalyDetectorStateValue enum value
 	AnomalyDetectorStateValueTrained = "TRAINED"
 )
+
+// AnomalyDetectorStateValue is an enum
+type AnomalyDetectorStateValue struct{}
+
+// Contains returns whether the AnomalyDetectorStateValue enum includes the element
+func (enum AnomalyDetectorStateValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AnomalyDetectorStateValue enum
+func (enum AnomalyDetectorStateValue) Values() []string {
+	return []string{
+		AnomalyDetectorStateValuePendingTraining,
+		AnomalyDetectorStateValueTrainedInsufficientData,
+		AnomalyDetectorStateValueTrained,
+	}
+}
 
 const (
 	// ComparisonOperatorGreaterThanOrEqualToThreshold is a ComparisonOperator enum value
@@ -8942,6 +8987,33 @@ const (
 	ComparisonOperatorGreaterThanUpperThreshold = "GreaterThanUpperThreshold"
 )
 
+// ComparisonOperator is an enum
+type ComparisonOperator struct{}
+
+// Contains returns whether the ComparisonOperator enum includes the element
+func (enum ComparisonOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComparisonOperator enum
+func (enum ComparisonOperator) Values() []string {
+	return []string{
+		ComparisonOperatorGreaterThanOrEqualToThreshold,
+		ComparisonOperatorGreaterThanThreshold,
+		ComparisonOperatorLessThanThreshold,
+		ComparisonOperatorLessThanOrEqualToThreshold,
+		ComparisonOperatorLessThanLowerOrGreaterThanUpperThreshold,
+		ComparisonOperatorLessThanLowerThreshold,
+		ComparisonOperatorGreaterThanUpperThreshold,
+	}
+}
+
 const (
 	// HistoryItemTypeConfigurationUpdate is a HistoryItemType enum value
 	HistoryItemTypeConfigurationUpdate = "ConfigurationUpdate"
@@ -8953,10 +9025,54 @@ const (
 	HistoryItemTypeAction = "Action"
 )
 
+// HistoryItemType is an enum
+type HistoryItemType struct{}
+
+// Contains returns whether the HistoryItemType enum includes the element
+func (enum HistoryItemType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HistoryItemType enum
+func (enum HistoryItemType) Values() []string {
+	return []string{
+		HistoryItemTypeConfigurationUpdate,
+		HistoryItemTypeStateUpdate,
+		HistoryItemTypeAction,
+	}
+}
+
 const (
 	// RecentlyActivePt3h is a RecentlyActive enum value
 	RecentlyActivePt3h = "PT3H"
 )
+
+// RecentlyActive is an enum
+type RecentlyActive struct{}
+
+// Contains returns whether the RecentlyActive enum includes the element
+func (enum RecentlyActive) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecentlyActive enum
+func (enum RecentlyActive) Values() []string {
+	return []string{
+		RecentlyActivePt3h,
+	}
+}
 
 const (
 	// ScanByTimestampDescending is a ScanBy enum value
@@ -8965,6 +9081,28 @@ const (
 	// ScanByTimestampAscending is a ScanBy enum value
 	ScanByTimestampAscending = "TimestampAscending"
 )
+
+// ScanBy is an enum
+type ScanBy struct{}
+
+// Contains returns whether the ScanBy enum includes the element
+func (enum ScanBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScanBy enum
+func (enum ScanBy) Values() []string {
+	return []string{
+		ScanByTimestampDescending,
+		ScanByTimestampAscending,
+	}
+}
 
 const (
 	// StandardUnitSeconds is a StandardUnit enum value
@@ -9049,6 +9187,53 @@ const (
 	StandardUnitNone = "None"
 )
 
+// StandardUnit is an enum
+type StandardUnit struct{}
+
+// Contains returns whether the StandardUnit enum includes the element
+func (enum StandardUnit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StandardUnit enum
+func (enum StandardUnit) Values() []string {
+	return []string{
+		StandardUnitSeconds,
+		StandardUnitMicroseconds,
+		StandardUnitMilliseconds,
+		StandardUnitBytes,
+		StandardUnitKilobytes,
+		StandardUnitMegabytes,
+		StandardUnitGigabytes,
+		StandardUnitTerabytes,
+		StandardUnitBits,
+		StandardUnitKilobits,
+		StandardUnitMegabits,
+		StandardUnitGigabits,
+		StandardUnitTerabits,
+		StandardUnitPercent,
+		StandardUnitCount,
+		StandardUnitBytesSecond,
+		StandardUnitKilobytesSecond,
+		StandardUnitMegabytesSecond,
+		StandardUnitGigabytesSecond,
+		StandardUnitTerabytesSecond,
+		StandardUnitBitsSecond,
+		StandardUnitKilobitsSecond,
+		StandardUnitMegabitsSecond,
+		StandardUnitGigabitsSecond,
+		StandardUnitTerabitsSecond,
+		StandardUnitCountSecond,
+		StandardUnitNone,
+	}
+}
+
 const (
 	// StateValueOk is a StateValue enum value
 	StateValueOk = "OK"
@@ -9059,6 +9244,29 @@ const (
 	// StateValueInsufficientData is a StateValue enum value
 	StateValueInsufficientData = "INSUFFICIENT_DATA"
 )
+
+// StateValue is an enum
+type StateValue struct{}
+
+// Contains returns whether the StateValue enum includes the element
+func (enum StateValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StateValue enum
+func (enum StateValue) Values() []string {
+	return []string{
+		StateValueOk,
+		StateValueAlarm,
+		StateValueInsufficientData,
+	}
+}
 
 const (
 	// StatisticSampleCount is a Statistic enum value
@@ -9077,6 +9285,31 @@ const (
 	StatisticMaximum = "Maximum"
 )
 
+// Statistic is an enum
+type Statistic struct{}
+
+// Contains returns whether the Statistic enum includes the element
+func (enum Statistic) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Statistic enum
+func (enum Statistic) Values() []string {
+	return []string{
+		StatisticSampleCount,
+		StatisticAverage,
+		StatisticSum,
+		StatisticMinimum,
+		StatisticMaximum,
+	}
+}
+
 const (
 	// StatusCodeComplete is a StatusCode enum value
 	StatusCodeComplete = "Complete"
@@ -9087,3 +9320,26 @@ const (
 	// StatusCodePartialData is a StatusCode enum value
 	StatusCodePartialData = "PartialData"
 )
+
+// StatusCode is an enum
+type StatusCode struct{}
+
+// Contains returns whether the StatusCode enum includes the element
+func (enum StatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StatusCode enum
+func (enum StatusCode) Values() []string {
+	return []string{
+		StatusCodeComplete,
+		StatusCodeInternalError,
+		StatusCodePartialData,
+	}
+}

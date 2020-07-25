@@ -9169,10 +9169,53 @@ const (
 	ChannelChat = "CHAT"
 )
 
+// Channel is an enum
+type Channel struct{}
+
+// Contains returns whether the Channel enum includes the element
+func (enum Channel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Channel enum
+func (enum Channel) Values() []string {
+	return []string{
+		ChannelVoice,
+		ChannelChat,
+	}
+}
+
 const (
 	// ComparisonLt is a Comparison enum value
 	ComparisonLt = "LT"
 )
+
+// Comparison is an enum
+type Comparison struct{}
+
+// Contains returns whether the Comparison enum includes the element
+func (enum Comparison) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Comparison enum
+func (enum Comparison) Values() []string {
+	return []string{
+		ComparisonLt,
+	}
+}
 
 const (
 	// ContactFlowTypeContactFlow is a ContactFlowType enum value
@@ -9202,6 +9245,35 @@ const (
 	// ContactFlowTypeQueueTransfer is a ContactFlowType enum value
 	ContactFlowTypeQueueTransfer = "QUEUE_TRANSFER"
 )
+
+// ContactFlowType is an enum
+type ContactFlowType struct{}
+
+// Contains returns whether the ContactFlowType enum includes the element
+func (enum ContactFlowType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContactFlowType enum
+func (enum ContactFlowType) Values() []string {
+	return []string{
+		ContactFlowTypeContactFlow,
+		ContactFlowTypeCustomerQueue,
+		ContactFlowTypeCustomerHold,
+		ContactFlowTypeCustomerWhisper,
+		ContactFlowTypeAgentHold,
+		ContactFlowTypeAgentWhisper,
+		ContactFlowTypeOutboundWhisper,
+		ContactFlowTypeAgentTransfer,
+		ContactFlowTypeQueueTransfer,
+	}
+}
 
 // The current metric names.
 const (
@@ -9245,6 +9317,39 @@ const (
 	CurrentMetricNameSlotsAvailable = "SLOTS_AVAILABLE"
 )
 
+// CurrentMetricName is an enum
+type CurrentMetricName struct{}
+
+// Contains returns whether the CurrentMetricName enum includes the element
+func (enum CurrentMetricName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CurrentMetricName enum
+func (enum CurrentMetricName) Values() []string {
+	return []string{
+		CurrentMetricNameAgentsOnline,
+		CurrentMetricNameAgentsAvailable,
+		CurrentMetricNameAgentsOnCall,
+		CurrentMetricNameAgentsNonProductive,
+		CurrentMetricNameAgentsAfterContactWork,
+		CurrentMetricNameAgentsError,
+		CurrentMetricNameAgentsStaffed,
+		CurrentMetricNameContactsInQueue,
+		CurrentMetricNameOldestContactAge,
+		CurrentMetricNameContactsScheduled,
+		CurrentMetricNameAgentsOnContact,
+		CurrentMetricNameSlotsActive,
+		CurrentMetricNameSlotsAvailable,
+	}
+}
+
 const (
 	// GroupingQueue is a Grouping enum value
 	GroupingQueue = "QUEUE"
@@ -9252,6 +9357,28 @@ const (
 	// GroupingChannel is a Grouping enum value
 	GroupingChannel = "CHANNEL"
 )
+
+// Grouping is an enum
+type Grouping struct{}
+
+// Contains returns whether the Grouping enum includes the element
+func (enum Grouping) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Grouping enum
+func (enum Grouping) Values() []string {
+	return []string{
+		GroupingQueue,
+		GroupingChannel,
+	}
+}
 
 // The historical metric names.
 const (
@@ -9330,6 +9457,51 @@ const (
 	// HistoricalMetricNameServiceLevel is a HistoricalMetricName enum value
 	HistoricalMetricNameServiceLevel = "SERVICE_LEVEL"
 )
+
+// HistoricalMetricName is an enum
+type HistoricalMetricName struct{}
+
+// Contains returns whether the HistoricalMetricName enum includes the element
+func (enum HistoricalMetricName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HistoricalMetricName enum
+func (enum HistoricalMetricName) Values() []string {
+	return []string{
+		HistoricalMetricNameContactsQueued,
+		HistoricalMetricNameContactsHandled,
+		HistoricalMetricNameContactsAbandoned,
+		HistoricalMetricNameContactsConsulted,
+		HistoricalMetricNameContactsAgentHungUpFirst,
+		HistoricalMetricNameContactsHandledIncoming,
+		HistoricalMetricNameContactsHandledOutbound,
+		HistoricalMetricNameContactsHoldAbandons,
+		HistoricalMetricNameContactsTransferredIn,
+		HistoricalMetricNameContactsTransferredOut,
+		HistoricalMetricNameContactsTransferredInFromQueue,
+		HistoricalMetricNameContactsTransferredOutFromQueue,
+		HistoricalMetricNameContactsMissed,
+		HistoricalMetricNameCallbackContactsHandled,
+		HistoricalMetricNameApiContactsHandled,
+		HistoricalMetricNameOccupancy,
+		HistoricalMetricNameHandleTime,
+		HistoricalMetricNameAfterContactWorkTime,
+		HistoricalMetricNameQueuedTime,
+		HistoricalMetricNameAbandonTime,
+		HistoricalMetricNameQueueAnswerTime,
+		HistoricalMetricNameHoldTime,
+		HistoricalMetricNameInteractionTime,
+		HistoricalMetricNameInteractionAndHoldTime,
+		HistoricalMetricNameServiceLevel,
+	}
+}
 
 const (
 	// PhoneNumberCountryCodeAf is a PhoneNumberCountryCode enum value
@@ -10044,6 +10216,263 @@ const (
 	PhoneNumberCountryCodeZw = "ZW"
 )
 
+// PhoneNumberCountryCode is an enum
+type PhoneNumberCountryCode struct{}
+
+// Contains returns whether the PhoneNumberCountryCode enum includes the element
+func (enum PhoneNumberCountryCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PhoneNumberCountryCode enum
+func (enum PhoneNumberCountryCode) Values() []string {
+	return []string{
+		PhoneNumberCountryCodeAf,
+		PhoneNumberCountryCodeAl,
+		PhoneNumberCountryCodeDz,
+		PhoneNumberCountryCodeAs,
+		PhoneNumberCountryCodeAd,
+		PhoneNumberCountryCodeAo,
+		PhoneNumberCountryCodeAi,
+		PhoneNumberCountryCodeAq,
+		PhoneNumberCountryCodeAg,
+		PhoneNumberCountryCodeAr,
+		PhoneNumberCountryCodeAm,
+		PhoneNumberCountryCodeAw,
+		PhoneNumberCountryCodeAu,
+		PhoneNumberCountryCodeAt,
+		PhoneNumberCountryCodeAz,
+		PhoneNumberCountryCodeBs,
+		PhoneNumberCountryCodeBh,
+		PhoneNumberCountryCodeBd,
+		PhoneNumberCountryCodeBb,
+		PhoneNumberCountryCodeBy,
+		PhoneNumberCountryCodeBe,
+		PhoneNumberCountryCodeBz,
+		PhoneNumberCountryCodeBj,
+		PhoneNumberCountryCodeBm,
+		PhoneNumberCountryCodeBt,
+		PhoneNumberCountryCodeBo,
+		PhoneNumberCountryCodeBa,
+		PhoneNumberCountryCodeBw,
+		PhoneNumberCountryCodeBr,
+		PhoneNumberCountryCodeIo,
+		PhoneNumberCountryCodeVg,
+		PhoneNumberCountryCodeBn,
+		PhoneNumberCountryCodeBg,
+		PhoneNumberCountryCodeBf,
+		PhoneNumberCountryCodeBi,
+		PhoneNumberCountryCodeKh,
+		PhoneNumberCountryCodeCm,
+		PhoneNumberCountryCodeCa,
+		PhoneNumberCountryCodeCv,
+		PhoneNumberCountryCodeKy,
+		PhoneNumberCountryCodeCf,
+		PhoneNumberCountryCodeTd,
+		PhoneNumberCountryCodeCl,
+		PhoneNumberCountryCodeCn,
+		PhoneNumberCountryCodeCx,
+		PhoneNumberCountryCodeCc,
+		PhoneNumberCountryCodeCo,
+		PhoneNumberCountryCodeKm,
+		PhoneNumberCountryCodeCk,
+		PhoneNumberCountryCodeCr,
+		PhoneNumberCountryCodeHr,
+		PhoneNumberCountryCodeCu,
+		PhoneNumberCountryCodeCw,
+		PhoneNumberCountryCodeCy,
+		PhoneNumberCountryCodeCz,
+		PhoneNumberCountryCodeCd,
+		PhoneNumberCountryCodeDk,
+		PhoneNumberCountryCodeDj,
+		PhoneNumberCountryCodeDm,
+		PhoneNumberCountryCodeDo,
+		PhoneNumberCountryCodeTl,
+		PhoneNumberCountryCodeEc,
+		PhoneNumberCountryCodeEg,
+		PhoneNumberCountryCodeSv,
+		PhoneNumberCountryCodeGq,
+		PhoneNumberCountryCodeEr,
+		PhoneNumberCountryCodeEe,
+		PhoneNumberCountryCodeEt,
+		PhoneNumberCountryCodeFk,
+		PhoneNumberCountryCodeFo,
+		PhoneNumberCountryCodeFj,
+		PhoneNumberCountryCodeFi,
+		PhoneNumberCountryCodeFr,
+		PhoneNumberCountryCodePf,
+		PhoneNumberCountryCodeGa,
+		PhoneNumberCountryCodeGm,
+		PhoneNumberCountryCodeGe,
+		PhoneNumberCountryCodeDe,
+		PhoneNumberCountryCodeGh,
+		PhoneNumberCountryCodeGi,
+		PhoneNumberCountryCodeGr,
+		PhoneNumberCountryCodeGl,
+		PhoneNumberCountryCodeGd,
+		PhoneNumberCountryCodeGu,
+		PhoneNumberCountryCodeGt,
+		PhoneNumberCountryCodeGg,
+		PhoneNumberCountryCodeGn,
+		PhoneNumberCountryCodeGw,
+		PhoneNumberCountryCodeGy,
+		PhoneNumberCountryCodeHt,
+		PhoneNumberCountryCodeHn,
+		PhoneNumberCountryCodeHk,
+		PhoneNumberCountryCodeHu,
+		PhoneNumberCountryCodeIs,
+		PhoneNumberCountryCodeIn,
+		PhoneNumberCountryCodeId,
+		PhoneNumberCountryCodeIr,
+		PhoneNumberCountryCodeIq,
+		PhoneNumberCountryCodeIe,
+		PhoneNumberCountryCodeIm,
+		PhoneNumberCountryCodeIl,
+		PhoneNumberCountryCodeIt,
+		PhoneNumberCountryCodeCi,
+		PhoneNumberCountryCodeJm,
+		PhoneNumberCountryCodeJp,
+		PhoneNumberCountryCodeJe,
+		PhoneNumberCountryCodeJo,
+		PhoneNumberCountryCodeKz,
+		PhoneNumberCountryCodeKe,
+		PhoneNumberCountryCodeKi,
+		PhoneNumberCountryCodeKw,
+		PhoneNumberCountryCodeKg,
+		PhoneNumberCountryCodeLa,
+		PhoneNumberCountryCodeLv,
+		PhoneNumberCountryCodeLb,
+		PhoneNumberCountryCodeLs,
+		PhoneNumberCountryCodeLr,
+		PhoneNumberCountryCodeLy,
+		PhoneNumberCountryCodeLi,
+		PhoneNumberCountryCodeLt,
+		PhoneNumberCountryCodeLu,
+		PhoneNumberCountryCodeMo,
+		PhoneNumberCountryCodeMk,
+		PhoneNumberCountryCodeMg,
+		PhoneNumberCountryCodeMw,
+		PhoneNumberCountryCodeMy,
+		PhoneNumberCountryCodeMv,
+		PhoneNumberCountryCodeMl,
+		PhoneNumberCountryCodeMt,
+		PhoneNumberCountryCodeMh,
+		PhoneNumberCountryCodeMr,
+		PhoneNumberCountryCodeMu,
+		PhoneNumberCountryCodeYt,
+		PhoneNumberCountryCodeMx,
+		PhoneNumberCountryCodeFm,
+		PhoneNumberCountryCodeMd,
+		PhoneNumberCountryCodeMc,
+		PhoneNumberCountryCodeMn,
+		PhoneNumberCountryCodeMe,
+		PhoneNumberCountryCodeMs,
+		PhoneNumberCountryCodeMa,
+		PhoneNumberCountryCodeMz,
+		PhoneNumberCountryCodeMm,
+		PhoneNumberCountryCodeNa,
+		PhoneNumberCountryCodeNr,
+		PhoneNumberCountryCodeNp,
+		PhoneNumberCountryCodeNl,
+		PhoneNumberCountryCodeAn,
+		PhoneNumberCountryCodeNc,
+		PhoneNumberCountryCodeNz,
+		PhoneNumberCountryCodeNi,
+		PhoneNumberCountryCodeNe,
+		PhoneNumberCountryCodeNg,
+		PhoneNumberCountryCodeNu,
+		PhoneNumberCountryCodeKp,
+		PhoneNumberCountryCodeMp,
+		PhoneNumberCountryCodeNo,
+		PhoneNumberCountryCodeOm,
+		PhoneNumberCountryCodePk,
+		PhoneNumberCountryCodePw,
+		PhoneNumberCountryCodePa,
+		PhoneNumberCountryCodePg,
+		PhoneNumberCountryCodePy,
+		PhoneNumberCountryCodePe,
+		PhoneNumberCountryCodePh,
+		PhoneNumberCountryCodePn,
+		PhoneNumberCountryCodePl,
+		PhoneNumberCountryCodePt,
+		PhoneNumberCountryCodePr,
+		PhoneNumberCountryCodeQa,
+		PhoneNumberCountryCodeCg,
+		PhoneNumberCountryCodeRe,
+		PhoneNumberCountryCodeRo,
+		PhoneNumberCountryCodeRu,
+		PhoneNumberCountryCodeRw,
+		PhoneNumberCountryCodeBl,
+		PhoneNumberCountryCodeSh,
+		PhoneNumberCountryCodeKn,
+		PhoneNumberCountryCodeLc,
+		PhoneNumberCountryCodeMf,
+		PhoneNumberCountryCodePm,
+		PhoneNumberCountryCodeVc,
+		PhoneNumberCountryCodeWs,
+		PhoneNumberCountryCodeSm,
+		PhoneNumberCountryCodeSt,
+		PhoneNumberCountryCodeSa,
+		PhoneNumberCountryCodeSn,
+		PhoneNumberCountryCodeRs,
+		PhoneNumberCountryCodeSc,
+		PhoneNumberCountryCodeSl,
+		PhoneNumberCountryCodeSg,
+		PhoneNumberCountryCodeSx,
+		PhoneNumberCountryCodeSk,
+		PhoneNumberCountryCodeSi,
+		PhoneNumberCountryCodeSb,
+		PhoneNumberCountryCodeSo,
+		PhoneNumberCountryCodeZa,
+		PhoneNumberCountryCodeKr,
+		PhoneNumberCountryCodeEs,
+		PhoneNumberCountryCodeLk,
+		PhoneNumberCountryCodeSd,
+		PhoneNumberCountryCodeSr,
+		PhoneNumberCountryCodeSj,
+		PhoneNumberCountryCodeSz,
+		PhoneNumberCountryCodeSe,
+		PhoneNumberCountryCodeCh,
+		PhoneNumberCountryCodeSy,
+		PhoneNumberCountryCodeTw,
+		PhoneNumberCountryCodeTj,
+		PhoneNumberCountryCodeTz,
+		PhoneNumberCountryCodeTh,
+		PhoneNumberCountryCodeTg,
+		PhoneNumberCountryCodeTk,
+		PhoneNumberCountryCodeTo,
+		PhoneNumberCountryCodeTt,
+		PhoneNumberCountryCodeTn,
+		PhoneNumberCountryCodeTr,
+		PhoneNumberCountryCodeTm,
+		PhoneNumberCountryCodeTc,
+		PhoneNumberCountryCodeTv,
+		PhoneNumberCountryCodeVi,
+		PhoneNumberCountryCodeUg,
+		PhoneNumberCountryCodeUa,
+		PhoneNumberCountryCodeAe,
+		PhoneNumberCountryCodeGb,
+		PhoneNumberCountryCodeUs,
+		PhoneNumberCountryCodeUy,
+		PhoneNumberCountryCodeUz,
+		PhoneNumberCountryCodeVu,
+		PhoneNumberCountryCodeVa,
+		PhoneNumberCountryCodeVe,
+		PhoneNumberCountryCodeVn,
+		PhoneNumberCountryCodeWf,
+		PhoneNumberCountryCodeEh,
+		PhoneNumberCountryCodeYe,
+		PhoneNumberCountryCodeZm,
+		PhoneNumberCountryCodeZw,
+	}
+}
+
 const (
 	// PhoneNumberTypeTollFree is a PhoneNumberType enum value
 	PhoneNumberTypeTollFree = "TOLL_FREE"
@@ -10051,6 +10480,28 @@ const (
 	// PhoneNumberTypeDid is a PhoneNumberType enum value
 	PhoneNumberTypeDid = "DID"
 )
+
+// PhoneNumberType is an enum
+type PhoneNumberType struct{}
+
+// Contains returns whether the PhoneNumberType enum includes the element
+func (enum PhoneNumberType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PhoneNumberType enum
+func (enum PhoneNumberType) Values() []string {
+	return []string{
+		PhoneNumberTypeTollFree,
+		PhoneNumberTypeDid,
+	}
+}
 
 const (
 	// PhoneTypeSoftPhone is a PhoneType enum value
@@ -10060,6 +10511,28 @@ const (
 	PhoneTypeDeskPhone = "DESK_PHONE"
 )
 
+// PhoneType is an enum
+type PhoneType struct{}
+
+// Contains returns whether the PhoneType enum includes the element
+func (enum PhoneType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PhoneType enum
+func (enum PhoneType) Values() []string {
+	return []string{
+		PhoneTypeSoftPhone,
+		PhoneTypeDeskPhone,
+	}
+}
+
 const (
 	// QueueTypeStandard is a QueueType enum value
 	QueueTypeStandard = "STANDARD"
@@ -10067,6 +10540,28 @@ const (
 	// QueueTypeAgent is a QueueType enum value
 	QueueTypeAgent = "AGENT"
 )
+
+// QueueType is an enum
+type QueueType struct{}
+
+// Contains returns whether the QueueType enum includes the element
+func (enum QueueType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueueType enum
+func (enum QueueType) Values() []string {
+	return []string{
+		QueueTypeStandard,
+		QueueTypeAgent,
+	}
+}
 
 const (
 	// StatisticSum is a Statistic enum value
@@ -10079,6 +10574,29 @@ const (
 	StatisticAvg = "AVG"
 )
 
+// Statistic is an enum
+type Statistic struct{}
+
+// Contains returns whether the Statistic enum includes the element
+func (enum Statistic) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Statistic enum
+func (enum Statistic) Values() []string {
+	return []string{
+		StatisticSum,
+		StatisticMax,
+		StatisticAvg,
+	}
+}
+
 const (
 	// UnitSeconds is a Unit enum value
 	UnitSeconds = "SECONDS"
@@ -10090,6 +10608,29 @@ const (
 	UnitPercent = "PERCENT"
 )
 
+// Unit is an enum
+type Unit struct{}
+
+// Contains returns whether the Unit enum includes the element
+func (enum Unit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Unit enum
+func (enum Unit) Values() []string {
+	return []string{
+		UnitSeconds,
+		UnitCount,
+		UnitPercent,
+	}
+}
+
 const (
 	// VoiceRecordingTrackFromAgent is a VoiceRecordingTrack enum value
 	VoiceRecordingTrackFromAgent = "FROM_AGENT"
@@ -10100,3 +10641,26 @@ const (
 	// VoiceRecordingTrackAll is a VoiceRecordingTrack enum value
 	VoiceRecordingTrackAll = "ALL"
 )
+
+// VoiceRecordingTrack is an enum
+type VoiceRecordingTrack struct{}
+
+// Contains returns whether the VoiceRecordingTrack enum includes the element
+func (enum VoiceRecordingTrack) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VoiceRecordingTrack enum
+func (enum VoiceRecordingTrack) Values() []string {
+	return []string{
+		VoiceRecordingTrackFromAgent,
+		VoiceRecordingTrackToAgent,
+		VoiceRecordingTrackAll,
+	}
+}

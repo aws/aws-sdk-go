@@ -6625,6 +6625,30 @@ const (
 	AlgorithmicStemmingFull = "full"
 )
 
+// AlgorithmicStemming is an enum
+type AlgorithmicStemming struct{}
+
+// Contains returns whether the AlgorithmicStemming enum includes the element
+func (enum AlgorithmicStemming) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AlgorithmicStemming enum
+func (enum AlgorithmicStemming) Values() []string {
+	return []string{
+		AlgorithmicStemmingNone,
+		AlgorithmicStemmingMinimal,
+		AlgorithmicStemmingLight,
+		AlgorithmicStemmingFull,
+	}
+}
+
 // An IETF RFC 4646 (http://tools.ietf.org/html/rfc4646) language code or mul
 // for multiple languages.
 const (
@@ -6734,6 +6758,61 @@ const (
 	AnalysisSchemeLanguageZhHant = "zh-Hant"
 )
 
+// AnalysisSchemeLanguage is an enum
+type AnalysisSchemeLanguage struct{}
+
+// Contains returns whether the AnalysisSchemeLanguage enum includes the element
+func (enum AnalysisSchemeLanguage) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AnalysisSchemeLanguage enum
+func (enum AnalysisSchemeLanguage) Values() []string {
+	return []string{
+		AnalysisSchemeLanguageAr,
+		AnalysisSchemeLanguageBg,
+		AnalysisSchemeLanguageCa,
+		AnalysisSchemeLanguageCs,
+		AnalysisSchemeLanguageDa,
+		AnalysisSchemeLanguageDe,
+		AnalysisSchemeLanguageEl,
+		AnalysisSchemeLanguageEn,
+		AnalysisSchemeLanguageEs,
+		AnalysisSchemeLanguageEu,
+		AnalysisSchemeLanguageFa,
+		AnalysisSchemeLanguageFi,
+		AnalysisSchemeLanguageFr,
+		AnalysisSchemeLanguageGa,
+		AnalysisSchemeLanguageGl,
+		AnalysisSchemeLanguageHe,
+		AnalysisSchemeLanguageHi,
+		AnalysisSchemeLanguageHu,
+		AnalysisSchemeLanguageHy,
+		AnalysisSchemeLanguageId,
+		AnalysisSchemeLanguageIt,
+		AnalysisSchemeLanguageJa,
+		AnalysisSchemeLanguageKo,
+		AnalysisSchemeLanguageLv,
+		AnalysisSchemeLanguageMul,
+		AnalysisSchemeLanguageNl,
+		AnalysisSchemeLanguageNo,
+		AnalysisSchemeLanguagePt,
+		AnalysisSchemeLanguageRo,
+		AnalysisSchemeLanguageRu,
+		AnalysisSchemeLanguageSv,
+		AnalysisSchemeLanguageTh,
+		AnalysisSchemeLanguageTr,
+		AnalysisSchemeLanguageZhHans,
+		AnalysisSchemeLanguageZhHant,
+	}
+}
+
 // The type of field. The valid options for a field depend on the field type.
 // For more information about the supported field types, see Configuring Index
 // Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html)
@@ -6773,6 +6852,37 @@ const (
 	IndexFieldTypeDateArray = "date-array"
 )
 
+// IndexFieldType is an enum
+type IndexFieldType struct{}
+
+// Contains returns whether the IndexFieldType enum includes the element
+func (enum IndexFieldType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IndexFieldType enum
+func (enum IndexFieldType) Values() []string {
+	return []string{
+		IndexFieldTypeInt,
+		IndexFieldTypeDouble,
+		IndexFieldTypeLiteral,
+		IndexFieldTypeText,
+		IndexFieldTypeDate,
+		IndexFieldTypeLatlon,
+		IndexFieldTypeIntArray,
+		IndexFieldTypeDoubleArray,
+		IndexFieldTypeLiteralArray,
+		IndexFieldTypeTextArray,
+		IndexFieldTypeDateArray,
+	}
+}
+
 // The state of processing a change to an option. One of:
 //
 //    * RequiresIndexDocuments: The option's latest value will not be deployed
@@ -6798,6 +6908,30 @@ const (
 	// OptionStateFailedToValidate is a OptionState enum value
 	OptionStateFailedToValidate = "FailedToValidate"
 )
+
+// OptionState is an enum
+type OptionState struct{}
+
+// Contains returns whether the OptionState enum includes the element
+func (enum OptionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OptionState enum
+func (enum OptionState) Values() []string {
+	return []string{
+		OptionStateRequiresIndexDocuments,
+		OptionStateProcessing,
+		OptionStateActive,
+		OptionStateFailedToValidate,
+	}
+}
 
 // The instance type (such as search.m1.small) on which an index partition is
 // hosted.
@@ -6827,6 +6961,34 @@ const (
 	PartitionInstanceTypeSearchM32xlarge = "search.m3.2xlarge"
 )
 
+// PartitionInstanceType is an enum
+type PartitionInstanceType struct{}
+
+// Contains returns whether the PartitionInstanceType enum includes the element
+func (enum PartitionInstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PartitionInstanceType enum
+func (enum PartitionInstanceType) Values() []string {
+	return []string{
+		PartitionInstanceTypeSearchM1Small,
+		PartitionInstanceTypeSearchM1Large,
+		PartitionInstanceTypeSearchM2Xlarge,
+		PartitionInstanceTypeSearchM22xlarge,
+		PartitionInstanceTypeSearchM3Medium,
+		PartitionInstanceTypeSearchM3Large,
+		PartitionInstanceTypeSearchM3Xlarge,
+		PartitionInstanceTypeSearchM32xlarge,
+	}
+}
+
 const (
 	// SuggesterFuzzyMatchingNone is a SuggesterFuzzyMatching enum value
 	SuggesterFuzzyMatchingNone = "none"
@@ -6838,6 +7000,29 @@ const (
 	SuggesterFuzzyMatchingHigh = "high"
 )
 
+// SuggesterFuzzyMatching is an enum
+type SuggesterFuzzyMatching struct{}
+
+// Contains returns whether the SuggesterFuzzyMatching enum includes the element
+func (enum SuggesterFuzzyMatching) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SuggesterFuzzyMatching enum
+func (enum SuggesterFuzzyMatching) Values() []string {
+	return []string{
+		SuggesterFuzzyMatchingNone,
+		SuggesterFuzzyMatchingLow,
+		SuggesterFuzzyMatchingHigh,
+	}
+}
+
 // The minimum required TLS version.
 const (
 	// TLSSecurityPolicyPolicyMinTls10201907 is a TLSSecurityPolicy enum value
@@ -6846,3 +7031,25 @@ const (
 	// TLSSecurityPolicyPolicyMinTls12201907 is a TLSSecurityPolicy enum value
 	TLSSecurityPolicyPolicyMinTls12201907 = "Policy-Min-TLS-1-2-2019-07"
 )
+
+// TLSSecurityPolicy is an enum
+type TLSSecurityPolicy struct{}
+
+// Contains returns whether the TLSSecurityPolicy enum includes the element
+func (enum TLSSecurityPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TLSSecurityPolicy enum
+func (enum TLSSecurityPolicy) Values() []string {
+	return []string{
+		TLSSecurityPolicyPolicyMinTls10201907,
+		TLSSecurityPolicyPolicyMinTls12201907,
+	}
+}

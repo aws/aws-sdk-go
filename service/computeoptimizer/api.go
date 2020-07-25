@@ -3549,6 +3549,59 @@ const (
 	ExportableAutoScalingGroupFieldLastRefreshTimestamp = "LastRefreshTimestamp"
 )
 
+// ExportableAutoScalingGroupField is an enum
+type ExportableAutoScalingGroupField struct{}
+
+// Contains returns whether the ExportableAutoScalingGroupField enum includes the element
+func (enum ExportableAutoScalingGroupField) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExportableAutoScalingGroupField enum
+func (enum ExportableAutoScalingGroupField) Values() []string {
+	return []string{
+		ExportableAutoScalingGroupFieldAccountId,
+		ExportableAutoScalingGroupFieldAutoScalingGroupArn,
+		ExportableAutoScalingGroupFieldAutoScalingGroupName,
+		ExportableAutoScalingGroupFieldFinding,
+		ExportableAutoScalingGroupFieldUtilizationMetricsCpuMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsMemoryMaximum,
+		ExportableAutoScalingGroupFieldLookbackPeriodInDays,
+		ExportableAutoScalingGroupFieldCurrentConfigurationInstanceType,
+		ExportableAutoScalingGroupFieldCurrentConfigurationDesiredCapacity,
+		ExportableAutoScalingGroupFieldCurrentConfigurationMinSize,
+		ExportableAutoScalingGroupFieldCurrentConfigurationMaxSize,
+		ExportableAutoScalingGroupFieldCurrentOnDemandPrice,
+		ExportableAutoScalingGroupFieldCurrentStandardOneYearNoUpfrontReservedPrice,
+		ExportableAutoScalingGroupFieldCurrentStandardThreeYearNoUpfrontReservedPrice,
+		ExportableAutoScalingGroupFieldCurrentVcpus,
+		ExportableAutoScalingGroupFieldCurrentMemory,
+		ExportableAutoScalingGroupFieldCurrentStorage,
+		ExportableAutoScalingGroupFieldCurrentNetwork,
+		ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationInstanceType,
+		ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationDesiredCapacity,
+		ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationMinSize,
+		ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationMaxSize,
+		ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum,
+		ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum,
+		ExportableAutoScalingGroupFieldRecommendationOptionsPerformanceRisk,
+		ExportableAutoScalingGroupFieldRecommendationOptionsOnDemandPrice,
+		ExportableAutoScalingGroupFieldRecommendationOptionsStandardOneYearNoUpfrontReservedPrice,
+		ExportableAutoScalingGroupFieldRecommendationOptionsStandardThreeYearNoUpfrontReservedPrice,
+		ExportableAutoScalingGroupFieldRecommendationOptionsVcpus,
+		ExportableAutoScalingGroupFieldRecommendationOptionsMemory,
+		ExportableAutoScalingGroupFieldRecommendationOptionsStorage,
+		ExportableAutoScalingGroupFieldRecommendationOptionsNetwork,
+		ExportableAutoScalingGroupFieldLastRefreshTimestamp,
+	}
+}
+
 const (
 	// ExportableInstanceFieldAccountId is a ExportableInstanceField enum value
 	ExportableInstanceFieldAccountId = "AccountId"
@@ -3638,10 +3691,80 @@ const (
 	ExportableInstanceFieldLastRefreshTimestamp = "LastRefreshTimestamp"
 )
 
+// ExportableInstanceField is an enum
+type ExportableInstanceField struct{}
+
+// Contains returns whether the ExportableInstanceField enum includes the element
+func (enum ExportableInstanceField) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExportableInstanceField enum
+func (enum ExportableInstanceField) Values() []string {
+	return []string{
+		ExportableInstanceFieldAccountId,
+		ExportableInstanceFieldInstanceArn,
+		ExportableInstanceFieldInstanceName,
+		ExportableInstanceFieldFinding,
+		ExportableInstanceFieldLookbackPeriodInDays,
+		ExportableInstanceFieldCurrentInstanceType,
+		ExportableInstanceFieldUtilizationMetricsCpuMaximum,
+		ExportableInstanceFieldUtilizationMetricsMemoryMaximum,
+		ExportableInstanceFieldCurrentOnDemandPrice,
+		ExportableInstanceFieldCurrentStandardOneYearNoUpfrontReservedPrice,
+		ExportableInstanceFieldCurrentStandardThreeYearNoUpfrontReservedPrice,
+		ExportableInstanceFieldCurrentVcpus,
+		ExportableInstanceFieldCurrentMemory,
+		ExportableInstanceFieldCurrentStorage,
+		ExportableInstanceFieldCurrentNetwork,
+		ExportableInstanceFieldRecommendationOptionsInstanceType,
+		ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum,
+		ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum,
+		ExportableInstanceFieldRecommendationOptionsPerformanceRisk,
+		ExportableInstanceFieldRecommendationOptionsVcpus,
+		ExportableInstanceFieldRecommendationOptionsMemory,
+		ExportableInstanceFieldRecommendationOptionsStorage,
+		ExportableInstanceFieldRecommendationOptionsNetwork,
+		ExportableInstanceFieldRecommendationOptionsOnDemandPrice,
+		ExportableInstanceFieldRecommendationOptionsStandardOneYearNoUpfrontReservedPrice,
+		ExportableInstanceFieldRecommendationOptionsStandardThreeYearNoUpfrontReservedPrice,
+		ExportableInstanceFieldRecommendationsSourcesRecommendationSourceArn,
+		ExportableInstanceFieldRecommendationsSourcesRecommendationSourceType,
+		ExportableInstanceFieldLastRefreshTimestamp,
+	}
+}
+
 const (
 	// FileFormatCsv is a FileFormat enum value
 	FileFormatCsv = "Csv"
 )
+
+// FileFormat is an enum
+type FileFormat struct{}
+
+// Contains returns whether the FileFormat enum includes the element
+func (enum FileFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileFormat enum
+func (enum FileFormat) Values() []string {
+	return []string{
+		FileFormatCsv,
+	}
+}
 
 const (
 	// FilterNameFinding is a FilterName enum value
@@ -3650,6 +3773,28 @@ const (
 	// FilterNameRecommendationSourceType is a FilterName enum value
 	FilterNameRecommendationSourceType = "RecommendationSourceType"
 )
+
+// FilterName is an enum
+type FilterName struct{}
+
+// Contains returns whether the FilterName enum includes the element
+func (enum FilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterName enum
+func (enum FilterName) Values() []string {
+	return []string{
+		FilterNameFinding,
+		FilterNameRecommendationSourceType,
+	}
+}
 
 const (
 	// FindingUnderprovisioned is a Finding enum value
@@ -3665,6 +3810,30 @@ const (
 	FindingNotOptimized = "NotOptimized"
 )
 
+// Finding is an enum
+type Finding struct{}
+
+// Contains returns whether the Finding enum includes the element
+func (enum Finding) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Finding enum
+func (enum Finding) Values() []string {
+	return []string{
+		FindingUnderprovisioned,
+		FindingOverprovisioned,
+		FindingOptimized,
+		FindingNotOptimized,
+	}
+}
+
 const (
 	// JobFilterNameResourceType is a JobFilterName enum value
 	JobFilterNameResourceType = "ResourceType"
@@ -3672,6 +3841,28 @@ const (
 	// JobFilterNameJobStatus is a JobFilterName enum value
 	JobFilterNameJobStatus = "JobStatus"
 )
+
+// JobFilterName is an enum
+type JobFilterName struct{}
+
+// Contains returns whether the JobFilterName enum includes the element
+func (enum JobFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobFilterName enum
+func (enum JobFilterName) Values() []string {
+	return []string{
+		JobFilterNameResourceType,
+		JobFilterNameJobStatus,
+	}
+}
 
 const (
 	// JobStatusQueued is a JobStatus enum value
@@ -3687,6 +3878,30 @@ const (
 	JobStatusFailed = "Failed"
 )
 
+// JobStatus is an enum
+type JobStatus struct{}
+
+// Contains returns whether the JobStatus enum includes the element
+func (enum JobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatus enum
+func (enum JobStatus) Values() []string {
+	return []string{
+		JobStatusQueued,
+		JobStatusInProgress,
+		JobStatusComplete,
+		JobStatusFailed,
+	}
+}
+
 const (
 	// MetricNameCpu is a MetricName enum value
 	MetricNameCpu = "Cpu"
@@ -3694,6 +3909,28 @@ const (
 	// MetricNameMemory is a MetricName enum value
 	MetricNameMemory = "Memory"
 )
+
+// MetricName is an enum
+type MetricName struct{}
+
+// Contains returns whether the MetricName enum includes the element
+func (enum MetricName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricName enum
+func (enum MetricName) Values() []string {
+	return []string{
+		MetricNameCpu,
+		MetricNameMemory,
+	}
+}
 
 const (
 	// MetricStatisticMaximum is a MetricStatistic enum value
@@ -3703,6 +3940,28 @@ const (
 	MetricStatisticAverage = "Average"
 )
 
+// MetricStatistic is an enum
+type MetricStatistic struct{}
+
+// Contains returns whether the MetricStatistic enum includes the element
+func (enum MetricStatistic) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricStatistic enum
+func (enum MetricStatistic) Values() []string {
+	return []string{
+		MetricStatisticMaximum,
+		MetricStatisticAverage,
+	}
+}
+
 const (
 	// RecommendationSourceTypeEc2instance is a RecommendationSourceType enum value
 	RecommendationSourceTypeEc2instance = "Ec2Instance"
@@ -3711,6 +3970,28 @@ const (
 	RecommendationSourceTypeAutoScalingGroup = "AutoScalingGroup"
 )
 
+// RecommendationSourceType is an enum
+type RecommendationSourceType struct{}
+
+// Contains returns whether the RecommendationSourceType enum includes the element
+func (enum RecommendationSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecommendationSourceType enum
+func (enum RecommendationSourceType) Values() []string {
+	return []string{
+		RecommendationSourceTypeEc2instance,
+		RecommendationSourceTypeAutoScalingGroup,
+	}
+}
+
 const (
 	// ResourceTypeEc2instance is a ResourceType enum value
 	ResourceTypeEc2instance = "Ec2Instance"
@@ -3718,6 +3999,28 @@ const (
 	// ResourceTypeAutoScalingGroup is a ResourceType enum value
 	ResourceTypeAutoScalingGroup = "AutoScalingGroup"
 )
+
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeEc2instance,
+		ResourceTypeAutoScalingGroup,
+	}
+}
 
 const (
 	// StatusActive is a Status enum value
@@ -3732,3 +4035,27 @@ const (
 	// StatusFailed is a Status enum value
 	StatusFailed = "Failed"
 )
+
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusActive,
+		StatusInactive,
+		StatusPending,
+		StatusFailed,
+	}
+}

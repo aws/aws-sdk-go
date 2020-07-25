@@ -14843,6 +14843,29 @@ const (
 	AuthMechanismValueScramSha1 = "scram_sha_1"
 )
 
+// AuthMechanismValue is an enum
+type AuthMechanismValue struct{}
+
+// Contains returns whether the AuthMechanismValue enum includes the element
+func (enum AuthMechanismValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthMechanismValue enum
+func (enum AuthMechanismValue) Values() []string {
+	return []string{
+		AuthMechanismValueDefault,
+		AuthMechanismValueMongodbCr,
+		AuthMechanismValueScramSha1,
+	}
+}
+
 const (
 	// AuthTypeValueNo is a AuthTypeValue enum value
 	AuthTypeValueNo = "no"
@@ -14850,6 +14873,28 @@ const (
 	// AuthTypeValuePassword is a AuthTypeValue enum value
 	AuthTypeValuePassword = "password"
 )
+
+// AuthTypeValue is an enum
+type AuthTypeValue struct{}
+
+// Contains returns whether the AuthTypeValue enum includes the element
+func (enum AuthTypeValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthTypeValue enum
+func (enum AuthTypeValue) Values() []string {
+	return []string{
+		AuthTypeValueNo,
+		AuthTypeValuePassword,
+	}
+}
 
 const (
 	// CompressionTypeValueNone is a CompressionTypeValue enum value
@@ -14859,6 +14904,28 @@ const (
 	CompressionTypeValueGzip = "gzip"
 )
 
+// CompressionTypeValue is an enum
+type CompressionTypeValue struct{}
+
+// Contains returns whether the CompressionTypeValue enum includes the element
+func (enum CompressionTypeValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CompressionTypeValue enum
+func (enum CompressionTypeValue) Values() []string {
+	return []string{
+		CompressionTypeValueNone,
+		CompressionTypeValueGzip,
+	}
+}
+
 const (
 	// DataFormatValueCsv is a DataFormatValue enum value
 	DataFormatValueCsv = "csv"
@@ -14866,6 +14933,28 @@ const (
 	// DataFormatValueParquet is a DataFormatValue enum value
 	DataFormatValueParquet = "parquet"
 )
+
+// DataFormatValue is an enum
+type DataFormatValue struct{}
+
+// Contains returns whether the DataFormatValue enum includes the element
+func (enum DataFormatValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataFormatValue enum
+func (enum DataFormatValue) Values() []string {
+	return []string{
+		DataFormatValueCsv,
+		DataFormatValueParquet,
+	}
+}
 
 const (
 	// DmsSslModeValueNone is a DmsSslModeValue enum value
@@ -14881,6 +14970,30 @@ const (
 	DmsSslModeValueVerifyFull = "verify-full"
 )
 
+// DmsSslModeValue is an enum
+type DmsSslModeValue struct{}
+
+// Contains returns whether the DmsSslModeValue enum includes the element
+func (enum DmsSslModeValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DmsSslModeValue enum
+func (enum DmsSslModeValue) Values() []string {
+	return []string{
+		DmsSslModeValueNone,
+		DmsSslModeValueRequire,
+		DmsSslModeValueVerifyCa,
+		DmsSslModeValueVerifyFull,
+	}
+}
+
 const (
 	// EncodingTypeValuePlain is a EncodingTypeValue enum value
 	EncodingTypeValuePlain = "plain"
@@ -14892,6 +15005,29 @@ const (
 	EncodingTypeValueRleDictionary = "rle-dictionary"
 )
 
+// EncodingTypeValue is an enum
+type EncodingTypeValue struct{}
+
+// Contains returns whether the EncodingTypeValue enum includes the element
+func (enum EncodingTypeValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncodingTypeValue enum
+func (enum EncodingTypeValue) Values() []string {
+	return []string{
+		EncodingTypeValuePlain,
+		EncodingTypeValuePlainDictionary,
+		EncodingTypeValueRleDictionary,
+	}
+}
+
 const (
 	// EncryptionModeValueSseS3 is a EncryptionModeValue enum value
 	EncryptionModeValueSseS3 = "sse-s3"
@@ -14900,6 +15036,28 @@ const (
 	EncryptionModeValueSseKms = "sse-kms"
 )
 
+// EncryptionModeValue is an enum
+type EncryptionModeValue struct{}
+
+// Contains returns whether the EncryptionModeValue enum includes the element
+func (enum EncryptionModeValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionModeValue enum
+func (enum EncryptionModeValue) Values() []string {
+	return []string{
+		EncryptionModeValueSseS3,
+		EncryptionModeValueSseKms,
+	}
+}
+
 const (
 	// MessageFormatValueJson is a MessageFormatValue enum value
 	MessageFormatValueJson = "json"
@@ -14907,6 +15065,28 @@ const (
 	// MessageFormatValueJsonUnformatted is a MessageFormatValue enum value
 	MessageFormatValueJsonUnformatted = "json-unformatted"
 )
+
+// MessageFormatValue is an enum
+type MessageFormatValue struct{}
+
+// Contains returns whether the MessageFormatValue enum includes the element
+func (enum MessageFormatValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MessageFormatValue enum
+func (enum MessageFormatValue) Values() []string {
+	return []string{
+		MessageFormatValueJson,
+		MessageFormatValueJsonUnformatted,
+	}
+}
 
 const (
 	// MigrationTypeValueFullLoad is a MigrationTypeValue enum value
@@ -14919,6 +15099,29 @@ const (
 	MigrationTypeValueFullLoadAndCdc = "full-load-and-cdc"
 )
 
+// MigrationTypeValue is an enum
+type MigrationTypeValue struct{}
+
+// Contains returns whether the MigrationTypeValue enum includes the element
+func (enum MigrationTypeValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MigrationTypeValue enum
+func (enum MigrationTypeValue) Values() []string {
+	return []string{
+		MigrationTypeValueFullLoad,
+		MigrationTypeValueCdc,
+		MigrationTypeValueFullLoadAndCdc,
+	}
+}
+
 const (
 	// NestingLevelValueNone is a NestingLevelValue enum value
 	NestingLevelValueNone = "none"
@@ -14927,6 +15130,28 @@ const (
 	NestingLevelValueOne = "one"
 )
 
+// NestingLevelValue is an enum
+type NestingLevelValue struct{}
+
+// Contains returns whether the NestingLevelValue enum includes the element
+func (enum NestingLevelValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NestingLevelValue enum
+func (enum NestingLevelValue) Values() []string {
+	return []string{
+		NestingLevelValueNone,
+		NestingLevelValueOne,
+	}
+}
+
 const (
 	// ParquetVersionValueParquet10 is a ParquetVersionValue enum value
 	ParquetVersionValueParquet10 = "parquet-1-0"
@@ -14934,6 +15159,28 @@ const (
 	// ParquetVersionValueParquet20 is a ParquetVersionValue enum value
 	ParquetVersionValueParquet20 = "parquet-2-0"
 )
+
+// ParquetVersionValue is an enum
+type ParquetVersionValue struct{}
+
+// Contains returns whether the ParquetVersionValue enum includes the element
+func (enum ParquetVersionValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ParquetVersionValue enum
+func (enum ParquetVersionValue) Values() []string {
+	return []string{
+		ParquetVersionValueParquet10,
+		ParquetVersionValueParquet20,
+	}
+}
 
 const (
 	// RefreshSchemasStatusTypeValueSuccessful is a RefreshSchemasStatusTypeValue enum value
@@ -14946,10 +15193,54 @@ const (
 	RefreshSchemasStatusTypeValueRefreshing = "refreshing"
 )
 
+// RefreshSchemasStatusTypeValue is an enum
+type RefreshSchemasStatusTypeValue struct{}
+
+// Contains returns whether the RefreshSchemasStatusTypeValue enum includes the element
+func (enum RefreshSchemasStatusTypeValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RefreshSchemasStatusTypeValue enum
+func (enum RefreshSchemasStatusTypeValue) Values() []string {
+	return []string{
+		RefreshSchemasStatusTypeValueSuccessful,
+		RefreshSchemasStatusTypeValueFailed,
+		RefreshSchemasStatusTypeValueRefreshing,
+	}
+}
+
 const (
 	// ReleaseStatusValuesBeta is a ReleaseStatusValues enum value
 	ReleaseStatusValuesBeta = "beta"
 )
+
+// ReleaseStatusValues is an enum
+type ReleaseStatusValues struct{}
+
+// Contains returns whether the ReleaseStatusValues enum includes the element
+func (enum ReleaseStatusValues) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReleaseStatusValues enum
+func (enum ReleaseStatusValues) Values() []string {
+	return []string{
+		ReleaseStatusValuesBeta,
+	}
+}
 
 const (
 	// ReloadOptionValueDataReload is a ReloadOptionValue enum value
@@ -14959,6 +15250,28 @@ const (
 	ReloadOptionValueValidateOnly = "validate-only"
 )
 
+// ReloadOptionValue is an enum
+type ReloadOptionValue struct{}
+
+// Contains returns whether the ReloadOptionValue enum includes the element
+func (enum ReloadOptionValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReloadOptionValue enum
+func (enum ReloadOptionValue) Values() []string {
+	return []string{
+		ReloadOptionValueDataReload,
+		ReloadOptionValueValidateOnly,
+	}
+}
+
 const (
 	// ReplicationEndpointTypeValueSource is a ReplicationEndpointTypeValue enum value
 	ReplicationEndpointTypeValueSource = "source"
@@ -14967,10 +15280,53 @@ const (
 	ReplicationEndpointTypeValueTarget = "target"
 )
 
+// ReplicationEndpointTypeValue is an enum
+type ReplicationEndpointTypeValue struct{}
+
+// Contains returns whether the ReplicationEndpointTypeValue enum includes the element
+func (enum ReplicationEndpointTypeValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplicationEndpointTypeValue enum
+func (enum ReplicationEndpointTypeValue) Values() []string {
+	return []string{
+		ReplicationEndpointTypeValueSource,
+		ReplicationEndpointTypeValueTarget,
+	}
+}
+
 const (
 	// SourceTypeReplicationInstance is a SourceType enum value
 	SourceTypeReplicationInstance = "replication-instance"
 )
+
+// SourceType is an enum
+type SourceType struct{}
+
+// Contains returns whether the SourceType enum includes the element
+func (enum SourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceType enum
+func (enum SourceType) Values() []string {
+	return []string{
+		SourceTypeReplicationInstance,
+	}
+}
 
 const (
 	// StartReplicationTaskTypeValueStartReplication is a StartReplicationTaskTypeValue enum value
@@ -14982,3 +15338,26 @@ const (
 	// StartReplicationTaskTypeValueReloadTarget is a StartReplicationTaskTypeValue enum value
 	StartReplicationTaskTypeValueReloadTarget = "reload-target"
 )
+
+// StartReplicationTaskTypeValue is an enum
+type StartReplicationTaskTypeValue struct{}
+
+// Contains returns whether the StartReplicationTaskTypeValue enum includes the element
+func (enum StartReplicationTaskTypeValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StartReplicationTaskTypeValue enum
+func (enum StartReplicationTaskTypeValue) Values() []string {
+	return []string{
+		StartReplicationTaskTypeValueStartReplication,
+		StartReplicationTaskTypeValueResumeProcessing,
+		StartReplicationTaskTypeValueReloadTarget,
+	}
+}

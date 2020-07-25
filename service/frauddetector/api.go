@@ -11969,6 +11969,29 @@ const (
 	DataSourceExternalModelScore = "EXTERNAL_MODEL_SCORE"
 )
 
+// DataSource is an enum
+type DataSource struct{}
+
+// Contains returns whether the DataSource enum includes the element
+func (enum DataSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataSource enum
+func (enum DataSource) Values() []string {
+	return []string{
+		DataSourceEvent,
+		DataSourceModelScore,
+		DataSourceExternalModelScore,
+	}
+}
+
 const (
 	// DataTypeString is a DataType enum value
 	DataTypeString = "STRING"
@@ -11983,6 +12006,30 @@ const (
 	DataTypeBoolean = "BOOLEAN"
 )
 
+// DataType is an enum
+type DataType struct{}
+
+// Contains returns whether the DataType enum includes the element
+func (enum DataType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataType enum
+func (enum DataType) Values() []string {
+	return []string{
+		DataTypeString,
+		DataTypeInteger,
+		DataTypeFloat,
+		DataTypeBoolean,
+	}
+}
+
 const (
 	// DetectorVersionStatusDraft is a DetectorVersionStatus enum value
 	DetectorVersionStatusDraft = "DRAFT"
@@ -11994,10 +12041,54 @@ const (
 	DetectorVersionStatusInactive = "INACTIVE"
 )
 
+// DetectorVersionStatus is an enum
+type DetectorVersionStatus struct{}
+
+// Contains returns whether the DetectorVersionStatus enum includes the element
+func (enum DetectorVersionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DetectorVersionStatus enum
+func (enum DetectorVersionStatus) Values() []string {
+	return []string{
+		DetectorVersionStatusDraft,
+		DetectorVersionStatusActive,
+		DetectorVersionStatusInactive,
+	}
+}
+
 const (
 	// LanguageDetectorpl is a Language enum value
 	LanguageDetectorpl = "DETECTORPL"
 )
+
+// Language is an enum
+type Language struct{}
+
+// Contains returns whether the Language enum includes the element
+func (enum Language) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Language enum
+func (enum Language) Values() []string {
+	return []string{
+		LanguageDetectorpl,
+	}
+}
 
 const (
 	// ModelEndpointStatusAssociated is a ModelEndpointStatus enum value
@@ -12007,6 +12098,28 @@ const (
 	ModelEndpointStatusDissociated = "DISSOCIATED"
 )
 
+// ModelEndpointStatus is an enum
+type ModelEndpointStatus struct{}
+
+// Contains returns whether the ModelEndpointStatus enum includes the element
+func (enum ModelEndpointStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModelEndpointStatus enum
+func (enum ModelEndpointStatus) Values() []string {
+	return []string{
+		ModelEndpointStatusAssociated,
+		ModelEndpointStatusDissociated,
+	}
+}
+
 const (
 	// ModelInputDataFormatTextCsv is a ModelInputDataFormat enum value
 	ModelInputDataFormatTextCsv = "TEXT_CSV"
@@ -12014,6 +12127,28 @@ const (
 	// ModelInputDataFormatApplicationJson is a ModelInputDataFormat enum value
 	ModelInputDataFormatApplicationJson = "APPLICATION_JSON"
 )
+
+// ModelInputDataFormat is an enum
+type ModelInputDataFormat struct{}
+
+// Contains returns whether the ModelInputDataFormat enum includes the element
+func (enum ModelInputDataFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModelInputDataFormat enum
+func (enum ModelInputDataFormat) Values() []string {
+	return []string{
+		ModelInputDataFormatTextCsv,
+		ModelInputDataFormatApplicationJson,
+	}
+}
 
 const (
 	// ModelOutputDataFormatTextCsv is a ModelOutputDataFormat enum value
@@ -12023,15 +12158,79 @@ const (
 	ModelOutputDataFormatApplicationJsonlines = "APPLICATION_JSONLINES"
 )
 
+// ModelOutputDataFormat is an enum
+type ModelOutputDataFormat struct{}
+
+// Contains returns whether the ModelOutputDataFormat enum includes the element
+func (enum ModelOutputDataFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModelOutputDataFormat enum
+func (enum ModelOutputDataFormat) Values() []string {
+	return []string{
+		ModelOutputDataFormatTextCsv,
+		ModelOutputDataFormatApplicationJsonlines,
+	}
+}
+
 const (
 	// ModelSourceSagemaker is a ModelSource enum value
 	ModelSourceSagemaker = "SAGEMAKER"
 )
 
+// ModelSource is an enum
+type ModelSource struct{}
+
+// Contains returns whether the ModelSource enum includes the element
+func (enum ModelSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModelSource enum
+func (enum ModelSource) Values() []string {
+	return []string{
+		ModelSourceSagemaker,
+	}
+}
+
 const (
 	// ModelTypeEnumOnlineFraudInsights is a ModelTypeEnum enum value
 	ModelTypeEnumOnlineFraudInsights = "ONLINE_FRAUD_INSIGHTS"
 )
+
+// ModelTypeEnum is an enum
+type ModelTypeEnum struct{}
+
+// Contains returns whether the ModelTypeEnum enum includes the element
+func (enum ModelTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModelTypeEnum enum
+func (enum ModelTypeEnum) Values() []string {
+	return []string{
+		ModelTypeEnumOnlineFraudInsights,
+	}
+}
 
 const (
 	// ModelVersionStatusActive is a ModelVersionStatus enum value
@@ -12041,6 +12240,28 @@ const (
 	ModelVersionStatusInactive = "INACTIVE"
 )
 
+// ModelVersionStatus is an enum
+type ModelVersionStatus struct{}
+
+// Contains returns whether the ModelVersionStatus enum includes the element
+func (enum ModelVersionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModelVersionStatus enum
+func (enum ModelVersionStatus) Values() []string {
+	return []string{
+		ModelVersionStatusActive,
+		ModelVersionStatusInactive,
+	}
+}
+
 const (
 	// RuleExecutionModeAllMatched is a RuleExecutionMode enum value
 	RuleExecutionModeAllMatched = "ALL_MATCHED"
@@ -12049,7 +12270,50 @@ const (
 	RuleExecutionModeFirstMatched = "FIRST_MATCHED"
 )
 
+// RuleExecutionMode is an enum
+type RuleExecutionMode struct{}
+
+// Contains returns whether the RuleExecutionMode enum includes the element
+func (enum RuleExecutionMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RuleExecutionMode enum
+func (enum RuleExecutionMode) Values() []string {
+	return []string{
+		RuleExecutionModeAllMatched,
+		RuleExecutionModeFirstMatched,
+	}
+}
+
 const (
 	// TrainingDataSourceEnumExternalEvents is a TrainingDataSourceEnum enum value
 	TrainingDataSourceEnumExternalEvents = "EXTERNAL_EVENTS"
 )
+
+// TrainingDataSourceEnum is an enum
+type TrainingDataSourceEnum struct{}
+
+// Contains returns whether the TrainingDataSourceEnum enum includes the element
+func (enum TrainingDataSourceEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrainingDataSourceEnum enum
+func (enum TrainingDataSourceEnum) Values() []string {
+	return []string{
+		TrainingDataSourceEnumExternalEvents,
+	}
+}

@@ -735,6 +735,51 @@ const (
 	DataSetTypeUsSalesAndUseTaxRecords = "us_sales_and_use_tax_records"
 )
 
+// DataSetType is an enum
+type DataSetType struct{}
+
+// Contains returns whether the DataSetType enum includes the element
+func (enum DataSetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataSetType enum
+func (enum DataSetType) Values() []string {
+	return []string{
+		DataSetTypeCustomerSubscriberHourlyMonthlySubscriptions,
+		DataSetTypeCustomerSubscriberAnnualSubscriptions,
+		DataSetTypeDailyBusinessUsageByInstanceType,
+		DataSetTypeDailyBusinessFees,
+		DataSetTypeDailyBusinessFreeTrialConversions,
+		DataSetTypeDailyBusinessNewInstances,
+		DataSetTypeDailyBusinessNewProductSubscribers,
+		DataSetTypeDailyBusinessCanceledProductSubscribers,
+		DataSetTypeMonthlyRevenueBillingAndRevenueData,
+		DataSetTypeMonthlyRevenueAnnualSubscriptions,
+		DataSetTypeMonthlyRevenueFieldDemonstrationUsage,
+		DataSetTypeMonthlyRevenueFlexiblePaymentSchedule,
+		DataSetTypeDisbursedAmountByProduct,
+		DataSetTypeDisbursedAmountByProductWithUncollectedFunds,
+		DataSetTypeDisbursedAmountByInstanceHours,
+		DataSetTypeDisbursedAmountByCustomerGeo,
+		DataSetTypeDisbursedAmountByAgeOfUncollectedFunds,
+		DataSetTypeDisbursedAmountByAgeOfDisbursedFunds,
+		DataSetTypeDisbursedAmountByAgeOfPastDueFunds,
+		DataSetTypeDisbursedAmountByUncollectedFundsBreakdown,
+		DataSetTypeCustomerProfileByIndustry,
+		DataSetTypeCustomerProfileByRevenue,
+		DataSetTypeCustomerProfileByGeography,
+		DataSetTypeSalesCompensationBilledRevenue,
+		DataSetTypeUsSalesAndUseTaxRecords,
+	}
+}
+
 const (
 	// SupportDataSetTypeCustomerSupportContactsData is a SupportDataSetType enum value
 	SupportDataSetTypeCustomerSupportContactsData = "customer_support_contacts_data"
@@ -742,3 +787,25 @@ const (
 	// SupportDataSetTypeTestCustomerSupportContactsData is a SupportDataSetType enum value
 	SupportDataSetTypeTestCustomerSupportContactsData = "test_customer_support_contacts_data"
 )
+
+// SupportDataSetType is an enum
+type SupportDataSetType struct{}
+
+// Contains returns whether the SupportDataSetType enum includes the element
+func (enum SupportDataSetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SupportDataSetType enum
+func (enum SupportDataSetType) Values() []string {
+	return []string{
+		SupportDataSetTypeCustomerSupportContactsData,
+		SupportDataSetTypeTestCustomerSupportContactsData,
+	}
+}

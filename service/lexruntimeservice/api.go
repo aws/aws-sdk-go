@@ -3041,10 +3041,54 @@ const (
 	ConfirmationStatusDenied = "Denied"
 )
 
+// ConfirmationStatus is an enum
+type ConfirmationStatus struct{}
+
+// Contains returns whether the ConfirmationStatus enum includes the element
+func (enum ConfirmationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfirmationStatus enum
+func (enum ConfirmationStatus) Values() []string {
+	return []string{
+		ConfirmationStatusNone,
+		ConfirmationStatusConfirmed,
+		ConfirmationStatusDenied,
+	}
+}
+
 const (
 	// ContentTypeApplicationVndAmazonawsCardGeneric is a ContentType enum value
 	ContentTypeApplicationVndAmazonawsCardGeneric = "application/vnd.amazonaws.card.generic"
 )
+
+// ContentType is an enum
+type ContentType struct{}
+
+// Contains returns whether the ContentType enum includes the element
+func (enum ContentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentType enum
+func (enum ContentType) Values() []string {
+	return []string{
+		ContentTypeApplicationVndAmazonawsCardGeneric,
+	}
+}
 
 const (
 	// DialogActionTypeElicitIntent is a DialogActionType enum value
@@ -3062,6 +3106,31 @@ const (
 	// DialogActionTypeDelegate is a DialogActionType enum value
 	DialogActionTypeDelegate = "Delegate"
 )
+
+// DialogActionType is an enum
+type DialogActionType struct{}
+
+// Contains returns whether the DialogActionType enum includes the element
+func (enum DialogActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DialogActionType enum
+func (enum DialogActionType) Values() []string {
+	return []string{
+		DialogActionTypeElicitIntent,
+		DialogActionTypeConfirmIntent,
+		DialogActionTypeElicitSlot,
+		DialogActionTypeClose,
+		DialogActionTypeDelegate,
+	}
+}
 
 const (
 	// DialogStateElicitIntent is a DialogState enum value
@@ -3083,6 +3152,32 @@ const (
 	DialogStateFailed = "Failed"
 )
 
+// DialogState is an enum
+type DialogState struct{}
+
+// Contains returns whether the DialogState enum includes the element
+func (enum DialogState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DialogState enum
+func (enum DialogState) Values() []string {
+	return []string{
+		DialogStateElicitIntent,
+		DialogStateConfirmIntent,
+		DialogStateElicitSlot,
+		DialogStateFulfilled,
+		DialogStateReadyForFulfillment,
+		DialogStateFailed,
+	}
+}
+
 const (
 	// FulfillmentStateFulfilled is a FulfillmentState enum value
 	FulfillmentStateFulfilled = "Fulfilled"
@@ -3093,6 +3188,29 @@ const (
 	// FulfillmentStateReadyForFulfillment is a FulfillmentState enum value
 	FulfillmentStateReadyForFulfillment = "ReadyForFulfillment"
 )
+
+// FulfillmentState is an enum
+type FulfillmentState struct{}
+
+// Contains returns whether the FulfillmentState enum includes the element
+func (enum FulfillmentState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FulfillmentState enum
+func (enum FulfillmentState) Values() []string {
+	return []string{
+		FulfillmentStateFulfilled,
+		FulfillmentStateFailed,
+		FulfillmentStateReadyForFulfillment,
+	}
+}
 
 const (
 	// MessageFormatTypePlainText is a MessageFormatType enum value
@@ -3107,3 +3225,27 @@ const (
 	// MessageFormatTypeComposite is a MessageFormatType enum value
 	MessageFormatTypeComposite = "Composite"
 )
+
+// MessageFormatType is an enum
+type MessageFormatType struct{}
+
+// Contains returns whether the MessageFormatType enum includes the element
+func (enum MessageFormatType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MessageFormatType enum
+func (enum MessageFormatType) Values() []string {
+	return []string{
+		MessageFormatTypePlainText,
+		MessageFormatTypeCustomPayload,
+		MessageFormatTypeSsml,
+		MessageFormatTypeComposite,
+	}
+}

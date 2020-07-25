@@ -17248,6 +17248,28 @@ const (
 	AZModeCrossAz = "cross-az"
 )
 
+// AZMode is an enum
+type AZMode struct{}
+
+// Contains returns whether the AZMode enum includes the element
+func (enum AZMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AZMode enum
+func (enum AZMode) Values() []string {
+	return []string{
+		AZModeSingleAz,
+		AZModeCrossAz,
+	}
+}
+
 const (
 	// AuthTokenUpdateStatusSetting is a AuthTokenUpdateStatus enum value
 	AuthTokenUpdateStatusSetting = "SETTING"
@@ -17256,6 +17278,28 @@ const (
 	AuthTokenUpdateStatusRotating = "ROTATING"
 )
 
+// AuthTokenUpdateStatus is an enum
+type AuthTokenUpdateStatus struct{}
+
+// Contains returns whether the AuthTokenUpdateStatus enum includes the element
+func (enum AuthTokenUpdateStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthTokenUpdateStatus enum
+func (enum AuthTokenUpdateStatus) Values() []string {
+	return []string{
+		AuthTokenUpdateStatusSetting,
+		AuthTokenUpdateStatusRotating,
+	}
+}
+
 const (
 	// AuthTokenUpdateStrategyTypeSet is a AuthTokenUpdateStrategyType enum value
 	AuthTokenUpdateStrategyTypeSet = "SET"
@@ -17263,6 +17307,28 @@ const (
 	// AuthTokenUpdateStrategyTypeRotate is a AuthTokenUpdateStrategyType enum value
 	AuthTokenUpdateStrategyTypeRotate = "ROTATE"
 )
+
+// AuthTokenUpdateStrategyType is an enum
+type AuthTokenUpdateStrategyType struct{}
+
+// Contains returns whether the AuthTokenUpdateStrategyType enum includes the element
+func (enum AuthTokenUpdateStrategyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthTokenUpdateStrategyType enum
+func (enum AuthTokenUpdateStrategyType) Values() []string {
+	return []string{
+		AuthTokenUpdateStrategyTypeSet,
+		AuthTokenUpdateStrategyTypeRotate,
+	}
+}
 
 const (
 	// AutomaticFailoverStatusEnabled is a AutomaticFailoverStatus enum value
@@ -17278,6 +17344,30 @@ const (
 	AutomaticFailoverStatusDisabling = "disabling"
 )
 
+// AutomaticFailoverStatus is an enum
+type AutomaticFailoverStatus struct{}
+
+// Contains returns whether the AutomaticFailoverStatus enum includes the element
+func (enum AutomaticFailoverStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutomaticFailoverStatus enum
+func (enum AutomaticFailoverStatus) Values() []string {
+	return []string{
+		AutomaticFailoverStatusEnabled,
+		AutomaticFailoverStatusDisabled,
+		AutomaticFailoverStatusEnabling,
+		AutomaticFailoverStatusDisabling,
+	}
+}
+
 const (
 	// ChangeTypeImmediate is a ChangeType enum value
 	ChangeTypeImmediate = "immediate"
@@ -17285,6 +17375,28 @@ const (
 	// ChangeTypeRequiresReboot is a ChangeType enum value
 	ChangeTypeRequiresReboot = "requires-reboot"
 )
+
+// ChangeType is an enum
+type ChangeType struct{}
+
+// Contains returns whether the ChangeType enum includes the element
+func (enum ChangeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChangeType enum
+func (enum ChangeType) Values() []string {
+	return []string{
+		ChangeTypeImmediate,
+		ChangeTypeRequiresReboot,
+	}
+}
 
 const (
 	// MultiAZStatusEnabled is a MultiAZStatus enum value
@@ -17294,6 +17406,28 @@ const (
 	MultiAZStatusDisabled = "disabled"
 )
 
+// MultiAZStatus is an enum
+type MultiAZStatus struct{}
+
+// Contains returns whether the MultiAZStatus enum includes the element
+func (enum MultiAZStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MultiAZStatus enum
+func (enum MultiAZStatus) Values() []string {
+	return []string{
+		MultiAZStatusEnabled,
+		MultiAZStatusDisabled,
+	}
+}
+
 const (
 	// NodeUpdateInitiatedBySystem is a NodeUpdateInitiatedBy enum value
 	NodeUpdateInitiatedBySystem = "system"
@@ -17301,6 +17435,28 @@ const (
 	// NodeUpdateInitiatedByCustomer is a NodeUpdateInitiatedBy enum value
 	NodeUpdateInitiatedByCustomer = "customer"
 )
+
+// NodeUpdateInitiatedBy is an enum
+type NodeUpdateInitiatedBy struct{}
+
+// Contains returns whether the NodeUpdateInitiatedBy enum includes the element
+func (enum NodeUpdateInitiatedBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NodeUpdateInitiatedBy enum
+func (enum NodeUpdateInitiatedBy) Values() []string {
+	return []string{
+		NodeUpdateInitiatedBySystem,
+		NodeUpdateInitiatedByCustomer,
+	}
+}
 
 const (
 	// NodeUpdateStatusNotApplied is a NodeUpdateStatus enum value
@@ -17322,6 +17478,32 @@ const (
 	NodeUpdateStatusComplete = "complete"
 )
 
+// NodeUpdateStatus is an enum
+type NodeUpdateStatus struct{}
+
+// Contains returns whether the NodeUpdateStatus enum includes the element
+func (enum NodeUpdateStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NodeUpdateStatus enum
+func (enum NodeUpdateStatus) Values() []string {
+	return []string{
+		NodeUpdateStatusNotApplied,
+		NodeUpdateStatusWaitingToStart,
+		NodeUpdateStatusInProgress,
+		NodeUpdateStatusStopping,
+		NodeUpdateStatusStopped,
+		NodeUpdateStatusComplete,
+	}
+}
+
 const (
 	// PendingAutomaticFailoverStatusEnabled is a PendingAutomaticFailoverStatus enum value
 	PendingAutomaticFailoverStatusEnabled = "enabled"
@@ -17329,6 +17511,28 @@ const (
 	// PendingAutomaticFailoverStatusDisabled is a PendingAutomaticFailoverStatus enum value
 	PendingAutomaticFailoverStatusDisabled = "disabled"
 )
+
+// PendingAutomaticFailoverStatus is an enum
+type PendingAutomaticFailoverStatus struct{}
+
+// Contains returns whether the PendingAutomaticFailoverStatus enum includes the element
+func (enum PendingAutomaticFailoverStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PendingAutomaticFailoverStatus enum
+func (enum PendingAutomaticFailoverStatus) Values() []string {
+	return []string{
+		PendingAutomaticFailoverStatusEnabled,
+		PendingAutomaticFailoverStatusDisabled,
+	}
+}
 
 const (
 	// ServiceUpdateSeverityCritical is a ServiceUpdateSeverity enum value
@@ -17344,6 +17548,30 @@ const (
 	ServiceUpdateSeverityLow = "low"
 )
 
+// ServiceUpdateSeverity is an enum
+type ServiceUpdateSeverity struct{}
+
+// Contains returns whether the ServiceUpdateSeverity enum includes the element
+func (enum ServiceUpdateSeverity) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceUpdateSeverity enum
+func (enum ServiceUpdateSeverity) Values() []string {
+	return []string{
+		ServiceUpdateSeverityCritical,
+		ServiceUpdateSeverityImportant,
+		ServiceUpdateSeverityMedium,
+		ServiceUpdateSeverityLow,
+	}
+}
+
 const (
 	// ServiceUpdateStatusAvailable is a ServiceUpdateStatus enum value
 	ServiceUpdateStatusAvailable = "available"
@@ -17355,10 +17583,54 @@ const (
 	ServiceUpdateStatusExpired = "expired"
 )
 
+// ServiceUpdateStatus is an enum
+type ServiceUpdateStatus struct{}
+
+// Contains returns whether the ServiceUpdateStatus enum includes the element
+func (enum ServiceUpdateStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceUpdateStatus enum
+func (enum ServiceUpdateStatus) Values() []string {
+	return []string{
+		ServiceUpdateStatusAvailable,
+		ServiceUpdateStatusCancelled,
+		ServiceUpdateStatusExpired,
+	}
+}
+
 const (
 	// ServiceUpdateTypeSecurityUpdate is a ServiceUpdateType enum value
 	ServiceUpdateTypeSecurityUpdate = "security-update"
 )
+
+// ServiceUpdateType is an enum
+type ServiceUpdateType struct{}
+
+// Contains returns whether the ServiceUpdateType enum includes the element
+func (enum ServiceUpdateType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceUpdateType enum
+func (enum ServiceUpdateType) Values() []string {
+	return []string{
+		ServiceUpdateTypeSecurityUpdate,
+	}
+}
 
 const (
 	// SlaMetYes is a SlaMet enum value
@@ -17370,6 +17642,29 @@ const (
 	// SlaMetNA is a SlaMet enum value
 	SlaMetNA = "n/a"
 )
+
+// SlaMet is an enum
+type SlaMet struct{}
+
+// Contains returns whether the SlaMet enum includes the element
+func (enum SlaMet) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SlaMet enum
+func (enum SlaMet) Values() []string {
+	return []string{
+		SlaMetYes,
+		SlaMetNo,
+		SlaMetNA,
+	}
+}
 
 const (
 	// SourceTypeCacheCluster is a SourceType enum value
@@ -17387,6 +17682,31 @@ const (
 	// SourceTypeReplicationGroup is a SourceType enum value
 	SourceTypeReplicationGroup = "replication-group"
 )
+
+// SourceType is an enum
+type SourceType struct{}
+
+// Contains returns whether the SourceType enum includes the element
+func (enum SourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceType enum
+func (enum SourceType) Values() []string {
+	return []string{
+		SourceTypeCacheCluster,
+		SourceTypeCacheParameterGroup,
+		SourceTypeCacheSecurityGroup,
+		SourceTypeCacheSubnetGroup,
+		SourceTypeReplicationGroup,
+	}
+}
 
 const (
 	// UpdateActionStatusNotApplied is a UpdateActionStatus enum value
@@ -17416,3 +17736,32 @@ const (
 	// UpdateActionStatusNotApplicable is a UpdateActionStatus enum value
 	UpdateActionStatusNotApplicable = "not-applicable"
 )
+
+// UpdateActionStatus is an enum
+type UpdateActionStatus struct{}
+
+// Contains returns whether the UpdateActionStatus enum includes the element
+func (enum UpdateActionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpdateActionStatus enum
+func (enum UpdateActionStatus) Values() []string {
+	return []string{
+		UpdateActionStatusNotApplied,
+		UpdateActionStatusWaitingToStart,
+		UpdateActionStatusInProgress,
+		UpdateActionStatusStopping,
+		UpdateActionStatusStopped,
+		UpdateActionStatusComplete,
+		UpdateActionStatusScheduling,
+		UpdateActionStatusScheduled,
+		UpdateActionStatusNotApplicable,
+	}
+}

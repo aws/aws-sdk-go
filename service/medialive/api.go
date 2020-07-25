@@ -23886,6 +23886,31 @@ const (
 	AacCodingModeCodingMode51 = "CODING_MODE_5_1"
 )
 
+// AacCodingMode is an enum
+type AacCodingMode struct{}
+
+// Contains returns whether the AacCodingMode enum includes the element
+func (enum AacCodingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacCodingMode enum
+func (enum AacCodingMode) Values() []string {
+	return []string{
+		AacCodingModeAdReceiverMix,
+		AacCodingModeCodingMode10,
+		AacCodingModeCodingMode11,
+		AacCodingModeCodingMode20,
+		AacCodingModeCodingMode51,
+	}
+}
+
 // Aac Input Type
 const (
 	// AacInputTypeBroadcasterMixedAd is a AacInputType enum value
@@ -23894,6 +23919,28 @@ const (
 	// AacInputTypeNormal is a AacInputType enum value
 	AacInputTypeNormal = "NORMAL"
 )
+
+// AacInputType is an enum
+type AacInputType struct{}
+
+// Contains returns whether the AacInputType enum includes the element
+func (enum AacInputType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacInputType enum
+func (enum AacInputType) Values() []string {
+	return []string{
+		AacInputTypeBroadcasterMixedAd,
+		AacInputTypeNormal,
+	}
+}
 
 // Aac Profile
 const (
@@ -23907,6 +23954,29 @@ const (
 	AacProfileLc = "LC"
 )
 
+// AacProfile is an enum
+type AacProfile struct{}
+
+// Contains returns whether the AacProfile enum includes the element
+func (enum AacProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacProfile enum
+func (enum AacProfile) Values() []string {
+	return []string{
+		AacProfileHev1,
+		AacProfileHev2,
+		AacProfileLc,
+	}
+}
+
 // Aac Rate Control Mode
 const (
 	// AacRateControlModeCbr is a AacRateControlMode enum value
@@ -23915,6 +23985,28 @@ const (
 	// AacRateControlModeVbr is a AacRateControlMode enum value
 	AacRateControlModeVbr = "VBR"
 )
+
+// AacRateControlMode is an enum
+type AacRateControlMode struct{}
+
+// Contains returns whether the AacRateControlMode enum includes the element
+func (enum AacRateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacRateControlMode enum
+func (enum AacRateControlMode) Values() []string {
+	return []string{
+		AacRateControlModeCbr,
+		AacRateControlModeVbr,
+	}
+}
 
 // Aac Raw Format
 const (
@@ -23925,6 +24017,28 @@ const (
 	AacRawFormatNone = "NONE"
 )
 
+// AacRawFormat is an enum
+type AacRawFormat struct{}
+
+// Contains returns whether the AacRawFormat enum includes the element
+func (enum AacRawFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacRawFormat enum
+func (enum AacRawFormat) Values() []string {
+	return []string{
+		AacRawFormatLatmLoas,
+		AacRawFormatNone,
+	}
+}
+
 // Aac Spec
 const (
 	// AacSpecMpeg2 is a AacSpec enum value
@@ -23933,6 +24047,28 @@ const (
 	// AacSpecMpeg4 is a AacSpec enum value
 	AacSpecMpeg4 = "MPEG4"
 )
+
+// AacSpec is an enum
+type AacSpec struct{}
+
+// Contains returns whether the AacSpec enum includes the element
+func (enum AacSpec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacSpec enum
+func (enum AacSpec) Values() []string {
+	return []string{
+		AacSpecMpeg2,
+		AacSpecMpeg4,
+	}
+}
 
 // Aac Vbr Quality
 const (
@@ -23948,6 +24084,30 @@ const (
 	// AacVbrQualityMediumLow is a AacVbrQuality enum value
 	AacVbrQualityMediumLow = "MEDIUM_LOW"
 )
+
+// AacVbrQuality is an enum
+type AacVbrQuality struct{}
+
+// Contains returns whether the AacVbrQuality enum includes the element
+func (enum AacVbrQuality) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacVbrQuality enum
+func (enum AacVbrQuality) Values() []string {
+	return []string{
+		AacVbrQualityHigh,
+		AacVbrQualityLow,
+		AacVbrQualityMediumHigh,
+		AacVbrQualityMediumLow,
+	}
+}
 
 // Ac3 Bitstream Mode
 const (
@@ -23976,6 +24136,34 @@ const (
 	Ac3BitstreamModeVoiceOver = "VOICE_OVER"
 )
 
+// Ac3BitstreamMode is an enum
+type Ac3BitstreamMode struct{}
+
+// Contains returns whether the Ac3BitstreamMode enum includes the element
+func (enum Ac3BitstreamMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ac3BitstreamMode enum
+func (enum Ac3BitstreamMode) Values() []string {
+	return []string{
+		Ac3BitstreamModeCommentary,
+		Ac3BitstreamModeCompleteMain,
+		Ac3BitstreamModeDialogue,
+		Ac3BitstreamModeEmergency,
+		Ac3BitstreamModeHearingImpaired,
+		Ac3BitstreamModeMusicAndEffects,
+		Ac3BitstreamModeVisuallyImpaired,
+		Ac3BitstreamModeVoiceOver,
+	}
+}
+
 // Ac3 Coding Mode
 const (
 	// Ac3CodingModeCodingMode10 is a Ac3CodingMode enum value
@@ -23991,6 +24179,30 @@ const (
 	Ac3CodingModeCodingMode32Lfe = "CODING_MODE_3_2_LFE"
 )
 
+// Ac3CodingMode is an enum
+type Ac3CodingMode struct{}
+
+// Contains returns whether the Ac3CodingMode enum includes the element
+func (enum Ac3CodingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ac3CodingMode enum
+func (enum Ac3CodingMode) Values() []string {
+	return []string{
+		Ac3CodingModeCodingMode10,
+		Ac3CodingModeCodingMode11,
+		Ac3CodingModeCodingMode20,
+		Ac3CodingModeCodingMode32Lfe,
+	}
+}
+
 // Ac3 Drc Profile
 const (
 	// Ac3DrcProfileFilmStandard is a Ac3DrcProfile enum value
@@ -23999,6 +24211,28 @@ const (
 	// Ac3DrcProfileNone is a Ac3DrcProfile enum value
 	Ac3DrcProfileNone = "NONE"
 )
+
+// Ac3DrcProfile is an enum
+type Ac3DrcProfile struct{}
+
+// Contains returns whether the Ac3DrcProfile enum includes the element
+func (enum Ac3DrcProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ac3DrcProfile enum
+func (enum Ac3DrcProfile) Values() []string {
+	return []string{
+		Ac3DrcProfileFilmStandard,
+		Ac3DrcProfileNone,
+	}
+}
 
 // Ac3 Lfe Filter
 const (
@@ -24009,6 +24243,28 @@ const (
 	Ac3LfeFilterEnabled = "ENABLED"
 )
 
+// Ac3LfeFilter is an enum
+type Ac3LfeFilter struct{}
+
+// Contains returns whether the Ac3LfeFilter enum includes the element
+func (enum Ac3LfeFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ac3LfeFilter enum
+func (enum Ac3LfeFilter) Values() []string {
+	return []string{
+		Ac3LfeFilterDisabled,
+		Ac3LfeFilterEnabled,
+	}
+}
+
 // Ac3 Metadata Control
 const (
 	// Ac3MetadataControlFollowInput is a Ac3MetadataControl enum value
@@ -24018,11 +24274,54 @@ const (
 	Ac3MetadataControlUseConfigured = "USE_CONFIGURED"
 )
 
+// Ac3MetadataControl is an enum
+type Ac3MetadataControl struct{}
+
+// Contains returns whether the Ac3MetadataControl enum includes the element
+func (enum Ac3MetadataControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ac3MetadataControl enum
+func (enum Ac3MetadataControl) Values() []string {
+	return []string{
+		Ac3MetadataControlFollowInput,
+		Ac3MetadataControlUseConfigured,
+	}
+}
+
 // Accept Header
 const (
 	// AcceptHeaderImageJpeg is a AcceptHeader enum value
 	AcceptHeaderImageJpeg = "image/jpeg"
 )
+
+// AcceptHeader is an enum
+type AcceptHeader struct{}
+
+// Contains returns whether the AcceptHeader enum includes the element
+func (enum AcceptHeader) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AcceptHeader enum
+func (enum AcceptHeader) Values() []string {
+	return []string{
+		AcceptHeaderImageJpeg,
+	}
+}
 
 // Afd Signaling
 const (
@@ -24036,6 +24335,29 @@ const (
 	AfdSignalingNone = "NONE"
 )
 
+// AfdSignaling is an enum
+type AfdSignaling struct{}
+
+// Contains returns whether the AfdSignaling enum includes the element
+func (enum AfdSignaling) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AfdSignaling enum
+func (enum AfdSignaling) Values() []string {
+	return []string{
+		AfdSignalingAuto,
+		AfdSignalingFixed,
+		AfdSignalingNone,
+	}
+}
+
 // Audio Description Audio Type Control
 const (
 	// AudioDescriptionAudioTypeControlFollowInput is a AudioDescriptionAudioTypeControl enum value
@@ -24044,6 +24366,28 @@ const (
 	// AudioDescriptionAudioTypeControlUseConfigured is a AudioDescriptionAudioTypeControl enum value
 	AudioDescriptionAudioTypeControlUseConfigured = "USE_CONFIGURED"
 )
+
+// AudioDescriptionAudioTypeControl is an enum
+type AudioDescriptionAudioTypeControl struct{}
+
+// Contains returns whether the AudioDescriptionAudioTypeControl enum includes the element
+func (enum AudioDescriptionAudioTypeControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioDescriptionAudioTypeControl enum
+func (enum AudioDescriptionAudioTypeControl) Values() []string {
+	return []string{
+		AudioDescriptionAudioTypeControlFollowInput,
+		AudioDescriptionAudioTypeControlUseConfigured,
+	}
+}
 
 // Audio Description Language Code Control
 const (
@@ -24054,6 +24398,28 @@ const (
 	AudioDescriptionLanguageCodeControlUseConfigured = "USE_CONFIGURED"
 )
 
+// AudioDescriptionLanguageCodeControl is an enum
+type AudioDescriptionLanguageCodeControl struct{}
+
+// Contains returns whether the AudioDescriptionLanguageCodeControl enum includes the element
+func (enum AudioDescriptionLanguageCodeControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioDescriptionLanguageCodeControl enum
+func (enum AudioDescriptionLanguageCodeControl) Values() []string {
+	return []string{
+		AudioDescriptionLanguageCodeControlFollowInput,
+		AudioDescriptionLanguageCodeControlUseConfigured,
+	}
+}
+
 // Audio Language Selection Policy
 const (
 	// AudioLanguageSelectionPolicyLoose is a AudioLanguageSelectionPolicy enum value
@@ -24062,6 +24428,28 @@ const (
 	// AudioLanguageSelectionPolicyStrict is a AudioLanguageSelectionPolicy enum value
 	AudioLanguageSelectionPolicyStrict = "STRICT"
 )
+
+// AudioLanguageSelectionPolicy is an enum
+type AudioLanguageSelectionPolicy struct{}
+
+// Contains returns whether the AudioLanguageSelectionPolicy enum includes the element
+func (enum AudioLanguageSelectionPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioLanguageSelectionPolicy enum
+func (enum AudioLanguageSelectionPolicy) Values() []string {
+	return []string{
+		AudioLanguageSelectionPolicyLoose,
+		AudioLanguageSelectionPolicyStrict,
+	}
+}
 
 // Audio Normalization Algorithm
 const (
@@ -24072,11 +24460,54 @@ const (
 	AudioNormalizationAlgorithmItu17702 = "ITU_1770_2"
 )
 
+// AudioNormalizationAlgorithm is an enum
+type AudioNormalizationAlgorithm struct{}
+
+// Contains returns whether the AudioNormalizationAlgorithm enum includes the element
+func (enum AudioNormalizationAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioNormalizationAlgorithm enum
+func (enum AudioNormalizationAlgorithm) Values() []string {
+	return []string{
+		AudioNormalizationAlgorithmItu17701,
+		AudioNormalizationAlgorithmItu17702,
+	}
+}
+
 // Audio Normalization Algorithm Control
 const (
 	// AudioNormalizationAlgorithmControlCorrectAudio is a AudioNormalizationAlgorithmControl enum value
 	AudioNormalizationAlgorithmControlCorrectAudio = "CORRECT_AUDIO"
 )
+
+// AudioNormalizationAlgorithmControl is an enum
+type AudioNormalizationAlgorithmControl struct{}
+
+// Contains returns whether the AudioNormalizationAlgorithmControl enum includes the element
+func (enum AudioNormalizationAlgorithmControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioNormalizationAlgorithmControl enum
+func (enum AudioNormalizationAlgorithmControl) Values() []string {
+	return []string{
+		AudioNormalizationAlgorithmControlCorrectAudio,
+	}
+}
 
 // Audio Only Hls Segment Type
 const (
@@ -24086,6 +24517,28 @@ const (
 	// AudioOnlyHlsSegmentTypeFmp4 is a AudioOnlyHlsSegmentType enum value
 	AudioOnlyHlsSegmentTypeFmp4 = "FMP4"
 )
+
+// AudioOnlyHlsSegmentType is an enum
+type AudioOnlyHlsSegmentType struct{}
+
+// Contains returns whether the AudioOnlyHlsSegmentType enum includes the element
+func (enum AudioOnlyHlsSegmentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioOnlyHlsSegmentType enum
+func (enum AudioOnlyHlsSegmentType) Values() []string {
+	return []string{
+		AudioOnlyHlsSegmentTypeAac,
+		AudioOnlyHlsSegmentTypeFmp4,
+	}
+}
 
 // Audio Only Hls Track Type
 const (
@@ -24102,6 +24555,30 @@ const (
 	AudioOnlyHlsTrackTypeAudioOnlyVariantStream = "AUDIO_ONLY_VARIANT_STREAM"
 )
 
+// AudioOnlyHlsTrackType is an enum
+type AudioOnlyHlsTrackType struct{}
+
+// Contains returns whether the AudioOnlyHlsTrackType enum includes the element
+func (enum AudioOnlyHlsTrackType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioOnlyHlsTrackType enum
+func (enum AudioOnlyHlsTrackType) Values() []string {
+	return []string{
+		AudioOnlyHlsTrackTypeAlternateAudioAutoSelect,
+		AudioOnlyHlsTrackTypeAlternateAudioAutoSelectDefault,
+		AudioOnlyHlsTrackTypeAlternateAudioNotAutoSelect,
+		AudioOnlyHlsTrackTypeAudioOnlyVariantStream,
+	}
+}
+
 // Audio Type
 const (
 	// AudioTypeCleanEffects is a AudioType enum value
@@ -24117,6 +24594,30 @@ const (
 	AudioTypeVisualImpairedCommentary = "VISUAL_IMPAIRED_COMMENTARY"
 )
 
+// AudioType is an enum
+type AudioType struct{}
+
+// Contains returns whether the AudioType enum includes the element
+func (enum AudioType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioType enum
+func (enum AudioType) Values() []string {
+	return []string{
+		AudioTypeCleanEffects,
+		AudioTypeHearingImpaired,
+		AudioTypeUndefined,
+		AudioTypeVisualImpairedCommentary,
+	}
+}
+
 // Authentication Scheme
 const (
 	// AuthenticationSchemeAkamai is a AuthenticationScheme enum value
@@ -24125,6 +24626,28 @@ const (
 	// AuthenticationSchemeCommon is a AuthenticationScheme enum value
 	AuthenticationSchemeCommon = "COMMON"
 )
+
+// AuthenticationScheme is an enum
+type AuthenticationScheme struct{}
+
+// Contains returns whether the AuthenticationScheme enum includes the element
+func (enum AuthenticationScheme) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthenticationScheme enum
+func (enum AuthenticationScheme) Values() []string {
+	return []string{
+		AuthenticationSchemeAkamai,
+		AuthenticationSchemeCommon,
+	}
+}
 
 // Avail Blanking State
 const (
@@ -24135,6 +24658,28 @@ const (
 	AvailBlankingStateEnabled = "ENABLED"
 )
 
+// AvailBlankingState is an enum
+type AvailBlankingState struct{}
+
+// Contains returns whether the AvailBlankingState enum includes the element
+func (enum AvailBlankingState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AvailBlankingState enum
+func (enum AvailBlankingState) Values() []string {
+	return []string{
+		AvailBlankingStateDisabled,
+		AvailBlankingStateEnabled,
+	}
+}
+
 // Blackout Slate Network End Blackout
 const (
 	// BlackoutSlateNetworkEndBlackoutDisabled is a BlackoutSlateNetworkEndBlackout enum value
@@ -24144,6 +24689,28 @@ const (
 	BlackoutSlateNetworkEndBlackoutEnabled = "ENABLED"
 )
 
+// BlackoutSlateNetworkEndBlackout is an enum
+type BlackoutSlateNetworkEndBlackout struct{}
+
+// Contains returns whether the BlackoutSlateNetworkEndBlackout enum includes the element
+func (enum BlackoutSlateNetworkEndBlackout) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BlackoutSlateNetworkEndBlackout enum
+func (enum BlackoutSlateNetworkEndBlackout) Values() []string {
+	return []string{
+		BlackoutSlateNetworkEndBlackoutDisabled,
+		BlackoutSlateNetworkEndBlackoutEnabled,
+	}
+}
+
 // Blackout Slate State
 const (
 	// BlackoutSlateStateDisabled is a BlackoutSlateState enum value
@@ -24152,6 +24719,28 @@ const (
 	// BlackoutSlateStateEnabled is a BlackoutSlateState enum value
 	BlackoutSlateStateEnabled = "ENABLED"
 )
+
+// BlackoutSlateState is an enum
+type BlackoutSlateState struct{}
+
+// Contains returns whether the BlackoutSlateState enum includes the element
+func (enum BlackoutSlateState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BlackoutSlateState enum
+func (enum BlackoutSlateState) Values() []string {
+	return []string{
+		BlackoutSlateStateDisabled,
+		BlackoutSlateStateEnabled,
+	}
+}
 
 // Burn In Alignment
 const (
@@ -24165,6 +24754,29 @@ const (
 	BurnInAlignmentSmart = "SMART"
 )
 
+// BurnInAlignment is an enum
+type BurnInAlignment struct{}
+
+// Contains returns whether the BurnInAlignment enum includes the element
+func (enum BurnInAlignment) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurnInAlignment enum
+func (enum BurnInAlignment) Values() []string {
+	return []string{
+		BurnInAlignmentCentered,
+		BurnInAlignmentLeft,
+		BurnInAlignmentSmart,
+	}
+}
+
 // Burn In Background Color
 const (
 	// BurnInBackgroundColorBlack is a BurnInBackgroundColor enum value
@@ -24176,6 +24788,29 @@ const (
 	// BurnInBackgroundColorWhite is a BurnInBackgroundColor enum value
 	BurnInBackgroundColorWhite = "WHITE"
 )
+
+// BurnInBackgroundColor is an enum
+type BurnInBackgroundColor struct{}
+
+// Contains returns whether the BurnInBackgroundColor enum includes the element
+func (enum BurnInBackgroundColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurnInBackgroundColor enum
+func (enum BurnInBackgroundColor) Values() []string {
+	return []string{
+		BurnInBackgroundColorBlack,
+		BurnInBackgroundColorNone,
+		BurnInBackgroundColorWhite,
+	}
+}
 
 // Burn In Font Color
 const (
@@ -24198,6 +24833,32 @@ const (
 	BurnInFontColorYellow = "YELLOW"
 )
 
+// BurnInFontColor is an enum
+type BurnInFontColor struct{}
+
+// Contains returns whether the BurnInFontColor enum includes the element
+func (enum BurnInFontColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurnInFontColor enum
+func (enum BurnInFontColor) Values() []string {
+	return []string{
+		BurnInFontColorBlack,
+		BurnInFontColorBlue,
+		BurnInFontColorGreen,
+		BurnInFontColorRed,
+		BurnInFontColorWhite,
+		BurnInFontColorYellow,
+	}
+}
+
 // Burn In Outline Color
 const (
 	// BurnInOutlineColorBlack is a BurnInOutlineColor enum value
@@ -24219,6 +24880,32 @@ const (
 	BurnInOutlineColorYellow = "YELLOW"
 )
 
+// BurnInOutlineColor is an enum
+type BurnInOutlineColor struct{}
+
+// Contains returns whether the BurnInOutlineColor enum includes the element
+func (enum BurnInOutlineColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurnInOutlineColor enum
+func (enum BurnInOutlineColor) Values() []string {
+	return []string{
+		BurnInOutlineColorBlack,
+		BurnInOutlineColorBlue,
+		BurnInOutlineColorGreen,
+		BurnInOutlineColorRed,
+		BurnInOutlineColorWhite,
+		BurnInOutlineColorYellow,
+	}
+}
+
 // Burn In Shadow Color
 const (
 	// BurnInShadowColorBlack is a BurnInShadowColor enum value
@@ -24231,6 +24918,29 @@ const (
 	BurnInShadowColorWhite = "WHITE"
 )
 
+// BurnInShadowColor is an enum
+type BurnInShadowColor struct{}
+
+// Contains returns whether the BurnInShadowColor enum includes the element
+func (enum BurnInShadowColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurnInShadowColor enum
+func (enum BurnInShadowColor) Values() []string {
+	return []string{
+		BurnInShadowColorBlack,
+		BurnInShadowColorNone,
+		BurnInShadowColorWhite,
+	}
+}
+
 // Burn In Teletext Grid Control
 const (
 	// BurnInTeletextGridControlFixed is a BurnInTeletextGridControl enum value
@@ -24239,6 +24949,28 @@ const (
 	// BurnInTeletextGridControlScaled is a BurnInTeletextGridControl enum value
 	BurnInTeletextGridControlScaled = "SCALED"
 )
+
+// BurnInTeletextGridControl is an enum
+type BurnInTeletextGridControl struct{}
+
+// Contains returns whether the BurnInTeletextGridControl enum includes the element
+func (enum BurnInTeletextGridControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurnInTeletextGridControl enum
+func (enum BurnInTeletextGridControl) Values() []string {
+	return []string{
+		BurnInTeletextGridControlFixed,
+		BurnInTeletextGridControlScaled,
+	}
+}
 
 // A standard channel has two encoding pipelines and a single pipeline channel
 // only has one.
@@ -24249,6 +24981,28 @@ const (
 	// ChannelClassSinglePipeline is a ChannelClass enum value
 	ChannelClassSinglePipeline = "SINGLE_PIPELINE"
 )
+
+// ChannelClass is an enum
+type ChannelClass struct{}
+
+// Contains returns whether the ChannelClass enum includes the element
+func (enum ChannelClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelClass enum
+func (enum ChannelClass) Values() []string {
+	return []string{
+		ChannelClassStandard,
+		ChannelClassSinglePipeline,
+	}
+}
 
 const (
 	// ChannelStateCreating is a ChannelState enum value
@@ -24285,10 +25039,62 @@ const (
 	ChannelStateUpdateFailed = "UPDATE_FAILED"
 )
 
+// ChannelState is an enum
+type ChannelState struct{}
+
+// Contains returns whether the ChannelState enum includes the element
+func (enum ChannelState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelState enum
+func (enum ChannelState) Values() []string {
+	return []string{
+		ChannelStateCreating,
+		ChannelStateCreateFailed,
+		ChannelStateIdle,
+		ChannelStateStarting,
+		ChannelStateRunning,
+		ChannelStateRecovering,
+		ChannelStateStopping,
+		ChannelStateDeleting,
+		ChannelStateDeleted,
+		ChannelStateUpdating,
+		ChannelStateUpdateFailed,
+	}
+}
+
 const (
 	// ContentTypeImageJpeg is a ContentType enum value
 	ContentTypeImageJpeg = "image/jpeg"
 )
+
+// ContentType is an enum
+type ContentType struct{}
+
+// Contains returns whether the ContentType enum includes the element
+func (enum ContentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentType enum
+func (enum ContentType) Values() []string {
+	return []string{
+		ContentTypeImageJpeg,
+	}
+}
 
 // The status of the action to synchronize the device configuration. If you
 // change the configuration of the input device (for example, the maximum bitrate),
@@ -24302,6 +25108,28 @@ const (
 	// DeviceSettingsSyncStateSyncing is a DeviceSettingsSyncState enum value
 	DeviceSettingsSyncStateSyncing = "SYNCING"
 )
+
+// DeviceSettingsSyncState is an enum
+type DeviceSettingsSyncState struct{}
+
+// Contains returns whether the DeviceSettingsSyncState enum includes the element
+func (enum DeviceSettingsSyncState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceSettingsSyncState enum
+func (enum DeviceSettingsSyncState) Values() []string {
+	return []string{
+		DeviceSettingsSyncStateSynced,
+		DeviceSettingsSyncStateSyncing,
+	}
+}
 
 // Dvb Sdt Output Sdt
 const (
@@ -24318,6 +25146,30 @@ const (
 	DvbSdtOutputSdtSdtNone = "SDT_NONE"
 )
 
+// DvbSdtOutputSdt is an enum
+type DvbSdtOutputSdt struct{}
+
+// Contains returns whether the DvbSdtOutputSdt enum includes the element
+func (enum DvbSdtOutputSdt) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSdtOutputSdt enum
+func (enum DvbSdtOutputSdt) Values() []string {
+	return []string{
+		DvbSdtOutputSdtSdtFollow,
+		DvbSdtOutputSdtSdtFollowIfPresent,
+		DvbSdtOutputSdtSdtManual,
+		DvbSdtOutputSdtSdtNone,
+	}
+}
+
 // Dvb Sub Destination Alignment
 const (
 	// DvbSubDestinationAlignmentCentered is a DvbSubDestinationAlignment enum value
@@ -24330,6 +25182,29 @@ const (
 	DvbSubDestinationAlignmentSmart = "SMART"
 )
 
+// DvbSubDestinationAlignment is an enum
+type DvbSubDestinationAlignment struct{}
+
+// Contains returns whether the DvbSubDestinationAlignment enum includes the element
+func (enum DvbSubDestinationAlignment) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubDestinationAlignment enum
+func (enum DvbSubDestinationAlignment) Values() []string {
+	return []string{
+		DvbSubDestinationAlignmentCentered,
+		DvbSubDestinationAlignmentLeft,
+		DvbSubDestinationAlignmentSmart,
+	}
+}
+
 // Dvb Sub Destination Background Color
 const (
 	// DvbSubDestinationBackgroundColorBlack is a DvbSubDestinationBackgroundColor enum value
@@ -24341,6 +25216,29 @@ const (
 	// DvbSubDestinationBackgroundColorWhite is a DvbSubDestinationBackgroundColor enum value
 	DvbSubDestinationBackgroundColorWhite = "WHITE"
 )
+
+// DvbSubDestinationBackgroundColor is an enum
+type DvbSubDestinationBackgroundColor struct{}
+
+// Contains returns whether the DvbSubDestinationBackgroundColor enum includes the element
+func (enum DvbSubDestinationBackgroundColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubDestinationBackgroundColor enum
+func (enum DvbSubDestinationBackgroundColor) Values() []string {
+	return []string{
+		DvbSubDestinationBackgroundColorBlack,
+		DvbSubDestinationBackgroundColorNone,
+		DvbSubDestinationBackgroundColorWhite,
+	}
+}
 
 // Dvb Sub Destination Font Color
 const (
@@ -24363,6 +25261,32 @@ const (
 	DvbSubDestinationFontColorYellow = "YELLOW"
 )
 
+// DvbSubDestinationFontColor is an enum
+type DvbSubDestinationFontColor struct{}
+
+// Contains returns whether the DvbSubDestinationFontColor enum includes the element
+func (enum DvbSubDestinationFontColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubDestinationFontColor enum
+func (enum DvbSubDestinationFontColor) Values() []string {
+	return []string{
+		DvbSubDestinationFontColorBlack,
+		DvbSubDestinationFontColorBlue,
+		DvbSubDestinationFontColorGreen,
+		DvbSubDestinationFontColorRed,
+		DvbSubDestinationFontColorWhite,
+		DvbSubDestinationFontColorYellow,
+	}
+}
+
 // Dvb Sub Destination Outline Color
 const (
 	// DvbSubDestinationOutlineColorBlack is a DvbSubDestinationOutlineColor enum value
@@ -24384,6 +25308,32 @@ const (
 	DvbSubDestinationOutlineColorYellow = "YELLOW"
 )
 
+// DvbSubDestinationOutlineColor is an enum
+type DvbSubDestinationOutlineColor struct{}
+
+// Contains returns whether the DvbSubDestinationOutlineColor enum includes the element
+func (enum DvbSubDestinationOutlineColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubDestinationOutlineColor enum
+func (enum DvbSubDestinationOutlineColor) Values() []string {
+	return []string{
+		DvbSubDestinationOutlineColorBlack,
+		DvbSubDestinationOutlineColorBlue,
+		DvbSubDestinationOutlineColorGreen,
+		DvbSubDestinationOutlineColorRed,
+		DvbSubDestinationOutlineColorWhite,
+		DvbSubDestinationOutlineColorYellow,
+	}
+}
+
 // Dvb Sub Destination Shadow Color
 const (
 	// DvbSubDestinationShadowColorBlack is a DvbSubDestinationShadowColor enum value
@@ -24396,6 +25346,29 @@ const (
 	DvbSubDestinationShadowColorWhite = "WHITE"
 )
 
+// DvbSubDestinationShadowColor is an enum
+type DvbSubDestinationShadowColor struct{}
+
+// Contains returns whether the DvbSubDestinationShadowColor enum includes the element
+func (enum DvbSubDestinationShadowColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubDestinationShadowColor enum
+func (enum DvbSubDestinationShadowColor) Values() []string {
+	return []string{
+		DvbSubDestinationShadowColorBlack,
+		DvbSubDestinationShadowColorNone,
+		DvbSubDestinationShadowColorWhite,
+	}
+}
+
 // Dvb Sub Destination Teletext Grid Control
 const (
 	// DvbSubDestinationTeletextGridControlFixed is a DvbSubDestinationTeletextGridControl enum value
@@ -24405,6 +25378,28 @@ const (
 	DvbSubDestinationTeletextGridControlScaled = "SCALED"
 )
 
+// DvbSubDestinationTeletextGridControl is an enum
+type DvbSubDestinationTeletextGridControl struct{}
+
+// Contains returns whether the DvbSubDestinationTeletextGridControl enum includes the element
+func (enum DvbSubDestinationTeletextGridControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubDestinationTeletextGridControl enum
+func (enum DvbSubDestinationTeletextGridControl) Values() []string {
+	return []string{
+		DvbSubDestinationTeletextGridControlFixed,
+		DvbSubDestinationTeletextGridControlScaled,
+	}
+}
+
 // Eac3 Attenuation Control
 const (
 	// Eac3AttenuationControlAttenuate3Db is a Eac3AttenuationControl enum value
@@ -24413,6 +25408,28 @@ const (
 	// Eac3AttenuationControlNone is a Eac3AttenuationControl enum value
 	Eac3AttenuationControlNone = "NONE"
 )
+
+// Eac3AttenuationControl is an enum
+type Eac3AttenuationControl struct{}
+
+// Contains returns whether the Eac3AttenuationControl enum includes the element
+func (enum Eac3AttenuationControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3AttenuationControl enum
+func (enum Eac3AttenuationControl) Values() []string {
+	return []string{
+		Eac3AttenuationControlAttenuate3Db,
+		Eac3AttenuationControlNone,
+	}
+}
 
 // Eac3 Bitstream Mode
 const (
@@ -24432,6 +25449,31 @@ const (
 	Eac3BitstreamModeVisuallyImpaired = "VISUALLY_IMPAIRED"
 )
 
+// Eac3BitstreamMode is an enum
+type Eac3BitstreamMode struct{}
+
+// Contains returns whether the Eac3BitstreamMode enum includes the element
+func (enum Eac3BitstreamMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3BitstreamMode enum
+func (enum Eac3BitstreamMode) Values() []string {
+	return []string{
+		Eac3BitstreamModeCommentary,
+		Eac3BitstreamModeCompleteMain,
+		Eac3BitstreamModeEmergency,
+		Eac3BitstreamModeHearingImpaired,
+		Eac3BitstreamModeVisuallyImpaired,
+	}
+}
+
 // Eac3 Coding Mode
 const (
 	// Eac3CodingModeCodingMode10 is a Eac3CodingMode enum value
@@ -24444,6 +25486,29 @@ const (
 	Eac3CodingModeCodingMode32 = "CODING_MODE_3_2"
 )
 
+// Eac3CodingMode is an enum
+type Eac3CodingMode struct{}
+
+// Contains returns whether the Eac3CodingMode enum includes the element
+func (enum Eac3CodingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3CodingMode enum
+func (enum Eac3CodingMode) Values() []string {
+	return []string{
+		Eac3CodingModeCodingMode10,
+		Eac3CodingModeCodingMode20,
+		Eac3CodingModeCodingMode32,
+	}
+}
+
 // Eac3 Dc Filter
 const (
 	// Eac3DcFilterDisabled is a Eac3DcFilter enum value
@@ -24452,6 +25517,28 @@ const (
 	// Eac3DcFilterEnabled is a Eac3DcFilter enum value
 	Eac3DcFilterEnabled = "ENABLED"
 )
+
+// Eac3DcFilter is an enum
+type Eac3DcFilter struct{}
+
+// Contains returns whether the Eac3DcFilter enum includes the element
+func (enum Eac3DcFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3DcFilter enum
+func (enum Eac3DcFilter) Values() []string {
+	return []string{
+		Eac3DcFilterDisabled,
+		Eac3DcFilterEnabled,
+	}
+}
 
 // Eac3 Drc Line
 const (
@@ -24474,6 +25561,32 @@ const (
 	Eac3DrcLineSpeech = "SPEECH"
 )
 
+// Eac3DrcLine is an enum
+type Eac3DrcLine struct{}
+
+// Contains returns whether the Eac3DrcLine enum includes the element
+func (enum Eac3DrcLine) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3DrcLine enum
+func (enum Eac3DrcLine) Values() []string {
+	return []string{
+		Eac3DrcLineFilmLight,
+		Eac3DrcLineFilmStandard,
+		Eac3DrcLineMusicLight,
+		Eac3DrcLineMusicStandard,
+		Eac3DrcLineNone,
+		Eac3DrcLineSpeech,
+	}
+}
+
 // Eac3 Drc Rf
 const (
 	// Eac3DrcRfFilmLight is a Eac3DrcRf enum value
@@ -24495,6 +25608,32 @@ const (
 	Eac3DrcRfSpeech = "SPEECH"
 )
 
+// Eac3DrcRf is an enum
+type Eac3DrcRf struct{}
+
+// Contains returns whether the Eac3DrcRf enum includes the element
+func (enum Eac3DrcRf) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3DrcRf enum
+func (enum Eac3DrcRf) Values() []string {
+	return []string{
+		Eac3DrcRfFilmLight,
+		Eac3DrcRfFilmStandard,
+		Eac3DrcRfMusicLight,
+		Eac3DrcRfMusicStandard,
+		Eac3DrcRfNone,
+		Eac3DrcRfSpeech,
+	}
+}
+
 // Eac3 Lfe Control
 const (
 	// Eac3LfeControlLfe is a Eac3LfeControl enum value
@@ -24503,6 +25642,28 @@ const (
 	// Eac3LfeControlNoLfe is a Eac3LfeControl enum value
 	Eac3LfeControlNoLfe = "NO_LFE"
 )
+
+// Eac3LfeControl is an enum
+type Eac3LfeControl struct{}
+
+// Contains returns whether the Eac3LfeControl enum includes the element
+func (enum Eac3LfeControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3LfeControl enum
+func (enum Eac3LfeControl) Values() []string {
+	return []string{
+		Eac3LfeControlLfe,
+		Eac3LfeControlNoLfe,
+	}
+}
 
 // Eac3 Lfe Filter
 const (
@@ -24513,6 +25674,28 @@ const (
 	Eac3LfeFilterEnabled = "ENABLED"
 )
 
+// Eac3LfeFilter is an enum
+type Eac3LfeFilter struct{}
+
+// Contains returns whether the Eac3LfeFilter enum includes the element
+func (enum Eac3LfeFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3LfeFilter enum
+func (enum Eac3LfeFilter) Values() []string {
+	return []string{
+		Eac3LfeFilterDisabled,
+		Eac3LfeFilterEnabled,
+	}
+}
+
 // Eac3 Metadata Control
 const (
 	// Eac3MetadataControlFollowInput is a Eac3MetadataControl enum value
@@ -24521,6 +25704,28 @@ const (
 	// Eac3MetadataControlUseConfigured is a Eac3MetadataControl enum value
 	Eac3MetadataControlUseConfigured = "USE_CONFIGURED"
 )
+
+// Eac3MetadataControl is an enum
+type Eac3MetadataControl struct{}
+
+// Contains returns whether the Eac3MetadataControl enum includes the element
+func (enum Eac3MetadataControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3MetadataControl enum
+func (enum Eac3MetadataControl) Values() []string {
+	return []string{
+		Eac3MetadataControlFollowInput,
+		Eac3MetadataControlUseConfigured,
+	}
+}
 
 // Eac3 Passthrough Control
 const (
@@ -24531,6 +25736,28 @@ const (
 	Eac3PassthroughControlWhenPossible = "WHEN_POSSIBLE"
 )
 
+// Eac3PassthroughControl is an enum
+type Eac3PassthroughControl struct{}
+
+// Contains returns whether the Eac3PassthroughControl enum includes the element
+func (enum Eac3PassthroughControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3PassthroughControl enum
+func (enum Eac3PassthroughControl) Values() []string {
+	return []string{
+		Eac3PassthroughControlNoPassthrough,
+		Eac3PassthroughControlWhenPossible,
+	}
+}
+
 // Eac3 Phase Control
 const (
 	// Eac3PhaseControlNoShift is a Eac3PhaseControl enum value
@@ -24539,6 +25766,28 @@ const (
 	// Eac3PhaseControlShift90Degrees is a Eac3PhaseControl enum value
 	Eac3PhaseControlShift90Degrees = "SHIFT_90_DEGREES"
 )
+
+// Eac3PhaseControl is an enum
+type Eac3PhaseControl struct{}
+
+// Contains returns whether the Eac3PhaseControl enum includes the element
+func (enum Eac3PhaseControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3PhaseControl enum
+func (enum Eac3PhaseControl) Values() []string {
+	return []string{
+		Eac3PhaseControlNoShift,
+		Eac3PhaseControlShift90Degrees,
+	}
+}
 
 // Eac3 Stereo Downmix
 const (
@@ -24555,6 +25804,30 @@ const (
 	Eac3StereoDownmixNotIndicated = "NOT_INDICATED"
 )
 
+// Eac3StereoDownmix is an enum
+type Eac3StereoDownmix struct{}
+
+// Contains returns whether the Eac3StereoDownmix enum includes the element
+func (enum Eac3StereoDownmix) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3StereoDownmix enum
+func (enum Eac3StereoDownmix) Values() []string {
+	return []string{
+		Eac3StereoDownmixDpl2,
+		Eac3StereoDownmixLoRo,
+		Eac3StereoDownmixLtRt,
+		Eac3StereoDownmixNotIndicated,
+	}
+}
+
 // Eac3 Surround Ex Mode
 const (
 	// Eac3SurroundExModeDisabled is a Eac3SurroundExMode enum value
@@ -24566,6 +25839,29 @@ const (
 	// Eac3SurroundExModeNotIndicated is a Eac3SurroundExMode enum value
 	Eac3SurroundExModeNotIndicated = "NOT_INDICATED"
 )
+
+// Eac3SurroundExMode is an enum
+type Eac3SurroundExMode struct{}
+
+// Contains returns whether the Eac3SurroundExMode enum includes the element
+func (enum Eac3SurroundExMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3SurroundExMode enum
+func (enum Eac3SurroundExMode) Values() []string {
+	return []string{
+		Eac3SurroundExModeDisabled,
+		Eac3SurroundExModeEnabled,
+		Eac3SurroundExModeNotIndicated,
+	}
+}
 
 // Eac3 Surround Mode
 const (
@@ -24579,6 +25875,29 @@ const (
 	Eac3SurroundModeNotIndicated = "NOT_INDICATED"
 )
 
+// Eac3SurroundMode is an enum
+type Eac3SurroundMode struct{}
+
+// Contains returns whether the Eac3SurroundMode enum includes the element
+func (enum Eac3SurroundMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3SurroundMode enum
+func (enum Eac3SurroundMode) Values() []string {
+	return []string{
+		Eac3SurroundModeDisabled,
+		Eac3SurroundModeEnabled,
+		Eac3SurroundModeNotIndicated,
+	}
+}
+
 // Embedded Convert608 To708
 const (
 	// EmbeddedConvert608To708Disabled is a EmbeddedConvert608To708 enum value
@@ -24587,6 +25906,28 @@ const (
 	// EmbeddedConvert608To708Upconvert is a EmbeddedConvert608To708 enum value
 	EmbeddedConvert608To708Upconvert = "UPCONVERT"
 )
+
+// EmbeddedConvert608To708 is an enum
+type EmbeddedConvert608To708 struct{}
+
+// Contains returns whether the EmbeddedConvert608To708 enum includes the element
+func (enum EmbeddedConvert608To708) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EmbeddedConvert608To708 enum
+func (enum EmbeddedConvert608To708) Values() []string {
+	return []string{
+		EmbeddedConvert608To708Disabled,
+		EmbeddedConvert608To708Upconvert,
+	}
+}
 
 // Embedded Scte20 Detection
 const (
@@ -24597,6 +25938,28 @@ const (
 	EmbeddedScte20DetectionOff = "OFF"
 )
 
+// EmbeddedScte20Detection is an enum
+type EmbeddedScte20Detection struct{}
+
+// Contains returns whether the EmbeddedScte20Detection enum includes the element
+func (enum EmbeddedScte20Detection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EmbeddedScte20Detection enum
+func (enum EmbeddedScte20Detection) Values() []string {
+	return []string{
+		EmbeddedScte20DetectionAuto,
+		EmbeddedScte20DetectionOff,
+	}
+}
+
 // Feature Activations Input Prepare Schedule Actions
 const (
 	// FeatureActivationsInputPrepareScheduleActionsDisabled is a FeatureActivationsInputPrepareScheduleActions enum value
@@ -24606,6 +25969,28 @@ const (
 	FeatureActivationsInputPrepareScheduleActionsEnabled = "ENABLED"
 )
 
+// FeatureActivationsInputPrepareScheduleActions is an enum
+type FeatureActivationsInputPrepareScheduleActions struct{}
+
+// Contains returns whether the FeatureActivationsInputPrepareScheduleActions enum includes the element
+func (enum FeatureActivationsInputPrepareScheduleActions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FeatureActivationsInputPrepareScheduleActions enum
+func (enum FeatureActivationsInputPrepareScheduleActions) Values() []string {
+	return []string{
+		FeatureActivationsInputPrepareScheduleActionsDisabled,
+		FeatureActivationsInputPrepareScheduleActionsEnabled,
+	}
+}
+
 // Fec Output Include Fec
 const (
 	// FecOutputIncludeFecColumn is a FecOutputIncludeFec enum value
@@ -24614,6 +25999,28 @@ const (
 	// FecOutputIncludeFecColumnAndRow is a FecOutputIncludeFec enum value
 	FecOutputIncludeFecColumnAndRow = "COLUMN_AND_ROW"
 )
+
+// FecOutputIncludeFec is an enum
+type FecOutputIncludeFec struct{}
+
+// Contains returns whether the FecOutputIncludeFec enum includes the element
+func (enum FecOutputIncludeFec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FecOutputIncludeFec enum
+func (enum FecOutputIncludeFec) Values() []string {
+	return []string{
+		FecOutputIncludeFecColumn,
+		FecOutputIncludeFecColumnAndRow,
+	}
+}
 
 // Fixed Afd
 const (
@@ -24651,6 +26058,37 @@ const (
 	FixedAfdAfd1111 = "AFD_1111"
 )
 
+// FixedAfd is an enum
+type FixedAfd struct{}
+
+// Contains returns whether the FixedAfd enum includes the element
+func (enum FixedAfd) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FixedAfd enum
+func (enum FixedAfd) Values() []string {
+	return []string{
+		FixedAfdAfd0000,
+		FixedAfdAfd0010,
+		FixedAfdAfd0011,
+		FixedAfdAfd0100,
+		FixedAfdAfd1000,
+		FixedAfdAfd1001,
+		FixedAfdAfd1010,
+		FixedAfdAfd1011,
+		FixedAfdAfd1101,
+		FixedAfdAfd1110,
+		FixedAfdAfd1111,
+	}
+}
+
 // Fmp4 Nielsen Id3 Behavior
 const (
 	// Fmp4NielsenId3BehaviorNoPassthrough is a Fmp4NielsenId3Behavior enum value
@@ -24659,6 +26097,28 @@ const (
 	// Fmp4NielsenId3BehaviorPassthrough is a Fmp4NielsenId3Behavior enum value
 	Fmp4NielsenId3BehaviorPassthrough = "PASSTHROUGH"
 )
+
+// Fmp4NielsenId3Behavior is an enum
+type Fmp4NielsenId3Behavior struct{}
+
+// Contains returns whether the Fmp4NielsenId3Behavior enum includes the element
+func (enum Fmp4NielsenId3Behavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Fmp4NielsenId3Behavior enum
+func (enum Fmp4NielsenId3Behavior) Values() []string {
+	return []string{
+		Fmp4NielsenId3BehaviorNoPassthrough,
+		Fmp4NielsenId3BehaviorPassthrough,
+	}
+}
 
 // Fmp4 Timed Metadata Behavior
 const (
@@ -24669,6 +26129,28 @@ const (
 	Fmp4TimedMetadataBehaviorPassthrough = "PASSTHROUGH"
 )
 
+// Fmp4TimedMetadataBehavior is an enum
+type Fmp4TimedMetadataBehavior struct{}
+
+// Contains returns whether the Fmp4TimedMetadataBehavior enum includes the element
+func (enum Fmp4TimedMetadataBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Fmp4TimedMetadataBehavior enum
+func (enum Fmp4TimedMetadataBehavior) Values() []string {
+	return []string{
+		Fmp4TimedMetadataBehaviorNoPassthrough,
+		Fmp4TimedMetadataBehaviorPassthrough,
+	}
+}
+
 // Follow reference point.
 const (
 	// FollowPointEnd is a FollowPoint enum value
@@ -24677,6 +26159,28 @@ const (
 	// FollowPointStart is a FollowPoint enum value
 	FollowPointStart = "START"
 )
+
+// FollowPoint is an enum
+type FollowPoint struct{}
+
+// Contains returns whether the FollowPoint enum includes the element
+func (enum FollowPoint) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FollowPoint enum
+func (enum FollowPoint) Values() []string {
+	return []string{
+		FollowPointEnd,
+		FollowPointStart,
+	}
+}
 
 // Frame Capture Interval Unit
 const (
@@ -24687,6 +26191,28 @@ const (
 	FrameCaptureIntervalUnitSeconds = "SECONDS"
 )
 
+// FrameCaptureIntervalUnit is an enum
+type FrameCaptureIntervalUnit struct{}
+
+// Contains returns whether the FrameCaptureIntervalUnit enum includes the element
+func (enum FrameCaptureIntervalUnit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FrameCaptureIntervalUnit enum
+func (enum FrameCaptureIntervalUnit) Values() []string {
+	return []string{
+		FrameCaptureIntervalUnitMilliseconds,
+		FrameCaptureIntervalUnitSeconds,
+	}
+}
+
 // Global Configuration Input End Action
 const (
 	// GlobalConfigurationInputEndActionNone is a GlobalConfigurationInputEndAction enum value
@@ -24695,6 +26221,28 @@ const (
 	// GlobalConfigurationInputEndActionSwitchAndLoopInputs is a GlobalConfigurationInputEndAction enum value
 	GlobalConfigurationInputEndActionSwitchAndLoopInputs = "SWITCH_AND_LOOP_INPUTS"
 )
+
+// GlobalConfigurationInputEndAction is an enum
+type GlobalConfigurationInputEndAction struct{}
+
+// Contains returns whether the GlobalConfigurationInputEndAction enum includes the element
+func (enum GlobalConfigurationInputEndAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GlobalConfigurationInputEndAction enum
+func (enum GlobalConfigurationInputEndAction) Values() []string {
+	return []string{
+		GlobalConfigurationInputEndActionNone,
+		GlobalConfigurationInputEndActionSwitchAndLoopInputs,
+	}
+}
 
 // Global Configuration Low Framerate Inputs
 const (
@@ -24705,6 +26253,28 @@ const (
 	GlobalConfigurationLowFramerateInputsEnabled = "ENABLED"
 )
 
+// GlobalConfigurationLowFramerateInputs is an enum
+type GlobalConfigurationLowFramerateInputs struct{}
+
+// Contains returns whether the GlobalConfigurationLowFramerateInputs enum includes the element
+func (enum GlobalConfigurationLowFramerateInputs) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GlobalConfigurationLowFramerateInputs enum
+func (enum GlobalConfigurationLowFramerateInputs) Values() []string {
+	return []string{
+		GlobalConfigurationLowFramerateInputsDisabled,
+		GlobalConfigurationLowFramerateInputsEnabled,
+	}
+}
+
 // Global Configuration Output Locking Mode
 const (
 	// GlobalConfigurationOutputLockingModeEpochLocking is a GlobalConfigurationOutputLockingMode enum value
@@ -24714,6 +26284,28 @@ const (
 	GlobalConfigurationOutputLockingModePipelineLocking = "PIPELINE_LOCKING"
 )
 
+// GlobalConfigurationOutputLockingMode is an enum
+type GlobalConfigurationOutputLockingMode struct{}
+
+// Contains returns whether the GlobalConfigurationOutputLockingMode enum includes the element
+func (enum GlobalConfigurationOutputLockingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GlobalConfigurationOutputLockingMode enum
+func (enum GlobalConfigurationOutputLockingMode) Values() []string {
+	return []string{
+		GlobalConfigurationOutputLockingModeEpochLocking,
+		GlobalConfigurationOutputLockingModePipelineLocking,
+	}
+}
+
 // Global Configuration Output Timing Source
 const (
 	// GlobalConfigurationOutputTimingSourceInputClock is a GlobalConfigurationOutputTimingSource enum value
@@ -24722,6 +26314,28 @@ const (
 	// GlobalConfigurationOutputTimingSourceSystemClock is a GlobalConfigurationOutputTimingSource enum value
 	GlobalConfigurationOutputTimingSourceSystemClock = "SYSTEM_CLOCK"
 )
+
+// GlobalConfigurationOutputTimingSource is an enum
+type GlobalConfigurationOutputTimingSource struct{}
+
+// Contains returns whether the GlobalConfigurationOutputTimingSource enum includes the element
+func (enum GlobalConfigurationOutputTimingSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GlobalConfigurationOutputTimingSource enum
+func (enum GlobalConfigurationOutputTimingSource) Values() []string {
+	return []string{
+		GlobalConfigurationOutputTimingSourceInputClock,
+		GlobalConfigurationOutputTimingSourceSystemClock,
+	}
+}
 
 // H264 Adaptive Quantization
 const (
@@ -24744,6 +26358,32 @@ const (
 	H264AdaptiveQuantizationOff = "OFF"
 )
 
+// H264AdaptiveQuantization is an enum
+type H264AdaptiveQuantization struct{}
+
+// Contains returns whether the H264AdaptiveQuantization enum includes the element
+func (enum H264AdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264AdaptiveQuantization enum
+func (enum H264AdaptiveQuantization) Values() []string {
+	return []string{
+		H264AdaptiveQuantizationHigh,
+		H264AdaptiveQuantizationHigher,
+		H264AdaptiveQuantizationLow,
+		H264AdaptiveQuantizationMax,
+		H264AdaptiveQuantizationMedium,
+		H264AdaptiveQuantizationOff,
+	}
+}
+
 // H264 Color Metadata
 const (
 	// H264ColorMetadataIgnore is a H264ColorMetadata enum value
@@ -24752,6 +26392,28 @@ const (
 	// H264ColorMetadataInsert is a H264ColorMetadata enum value
 	H264ColorMetadataInsert = "INSERT"
 )
+
+// H264ColorMetadata is an enum
+type H264ColorMetadata struct{}
+
+// Contains returns whether the H264ColorMetadata enum includes the element
+func (enum H264ColorMetadata) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264ColorMetadata enum
+func (enum H264ColorMetadata) Values() []string {
+	return []string{
+		H264ColorMetadataIgnore,
+		H264ColorMetadataInsert,
+	}
+}
 
 // H264 Entropy Encoding
 const (
@@ -24762,6 +26424,28 @@ const (
 	H264EntropyEncodingCavlc = "CAVLC"
 )
 
+// H264EntropyEncoding is an enum
+type H264EntropyEncoding struct{}
+
+// Contains returns whether the H264EntropyEncoding enum includes the element
+func (enum H264EntropyEncoding) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264EntropyEncoding enum
+func (enum H264EntropyEncoding) Values() []string {
+	return []string{
+		H264EntropyEncodingCabac,
+		H264EntropyEncodingCavlc,
+	}
+}
+
 // H264 Flicker Aq
 const (
 	// H264FlickerAqDisabled is a H264FlickerAq enum value
@@ -24770,6 +26454,28 @@ const (
 	// H264FlickerAqEnabled is a H264FlickerAq enum value
 	H264FlickerAqEnabled = "ENABLED"
 )
+
+// H264FlickerAq is an enum
+type H264FlickerAq struct{}
+
+// Contains returns whether the H264FlickerAq enum includes the element
+func (enum H264FlickerAq) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264FlickerAq enum
+func (enum H264FlickerAq) Values() []string {
+	return []string{
+		H264FlickerAqDisabled,
+		H264FlickerAqEnabled,
+	}
+}
 
 // H264 Force Field Pictures
 const (
@@ -24780,6 +26486,28 @@ const (
 	H264ForceFieldPicturesEnabled = "ENABLED"
 )
 
+// H264ForceFieldPictures is an enum
+type H264ForceFieldPictures struct{}
+
+// Contains returns whether the H264ForceFieldPictures enum includes the element
+func (enum H264ForceFieldPictures) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264ForceFieldPictures enum
+func (enum H264ForceFieldPictures) Values() []string {
+	return []string{
+		H264ForceFieldPicturesDisabled,
+		H264ForceFieldPicturesEnabled,
+	}
+}
+
 // H264 Framerate Control
 const (
 	// H264FramerateControlInitializeFromSource is a H264FramerateControl enum value
@@ -24788,6 +26516,28 @@ const (
 	// H264FramerateControlSpecified is a H264FramerateControl enum value
 	H264FramerateControlSpecified = "SPECIFIED"
 )
+
+// H264FramerateControl is an enum
+type H264FramerateControl struct{}
+
+// Contains returns whether the H264FramerateControl enum includes the element
+func (enum H264FramerateControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264FramerateControl enum
+func (enum H264FramerateControl) Values() []string {
+	return []string{
+		H264FramerateControlInitializeFromSource,
+		H264FramerateControlSpecified,
+	}
+}
 
 // H264 Gop BReference
 const (
@@ -24798,6 +26548,28 @@ const (
 	H264GopBReferenceEnabled = "ENABLED"
 )
 
+// H264GopBReference is an enum
+type H264GopBReference struct{}
+
+// Contains returns whether the H264GopBReference enum includes the element
+func (enum H264GopBReference) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264GopBReference enum
+func (enum H264GopBReference) Values() []string {
+	return []string{
+		H264GopBReferenceDisabled,
+		H264GopBReferenceEnabled,
+	}
+}
+
 // H264 Gop Size Units
 const (
 	// H264GopSizeUnitsFrames is a H264GopSizeUnits enum value
@@ -24806,6 +26578,28 @@ const (
 	// H264GopSizeUnitsSeconds is a H264GopSizeUnits enum value
 	H264GopSizeUnitsSeconds = "SECONDS"
 )
+
+// H264GopSizeUnits is an enum
+type H264GopSizeUnits struct{}
+
+// Contains returns whether the H264GopSizeUnits enum includes the element
+func (enum H264GopSizeUnits) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264GopSizeUnits enum
+func (enum H264GopSizeUnits) Values() []string {
+	return []string{
+		H264GopSizeUnitsFrames,
+		H264GopSizeUnitsSeconds,
+	}
+}
 
 // H264 Level
 const (
@@ -24861,6 +26655,43 @@ const (
 	H264LevelH264LevelAuto = "H264_LEVEL_AUTO"
 )
 
+// H264Level is an enum
+type H264Level struct{}
+
+// Contains returns whether the H264Level enum includes the element
+func (enum H264Level) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264Level enum
+func (enum H264Level) Values() []string {
+	return []string{
+		H264LevelH264Level1,
+		H264LevelH264Level11,
+		H264LevelH264Level12,
+		H264LevelH264Level13,
+		H264LevelH264Level2,
+		H264LevelH264Level21,
+		H264LevelH264Level22,
+		H264LevelH264Level3,
+		H264LevelH264Level31,
+		H264LevelH264Level32,
+		H264LevelH264Level4,
+		H264LevelH264Level41,
+		H264LevelH264Level42,
+		H264LevelH264Level5,
+		H264LevelH264Level51,
+		H264LevelH264Level52,
+		H264LevelH264LevelAuto,
+	}
+}
+
 // H264 Look Ahead Rate Control
 const (
 	// H264LookAheadRateControlHigh is a H264LookAheadRateControl enum value
@@ -24873,6 +26704,29 @@ const (
 	H264LookAheadRateControlMedium = "MEDIUM"
 )
 
+// H264LookAheadRateControl is an enum
+type H264LookAheadRateControl struct{}
+
+// Contains returns whether the H264LookAheadRateControl enum includes the element
+func (enum H264LookAheadRateControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264LookAheadRateControl enum
+func (enum H264LookAheadRateControl) Values() []string {
+	return []string{
+		H264LookAheadRateControlHigh,
+		H264LookAheadRateControlLow,
+		H264LookAheadRateControlMedium,
+	}
+}
+
 // H264 Par Control
 const (
 	// H264ParControlInitializeFromSource is a H264ParControl enum value
@@ -24881,6 +26735,28 @@ const (
 	// H264ParControlSpecified is a H264ParControl enum value
 	H264ParControlSpecified = "SPECIFIED"
 )
+
+// H264ParControl is an enum
+type H264ParControl struct{}
+
+// Contains returns whether the H264ParControl enum includes the element
+func (enum H264ParControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264ParControl enum
+func (enum H264ParControl) Values() []string {
+	return []string{
+		H264ParControlInitializeFromSource,
+		H264ParControlSpecified,
+	}
+}
 
 // H264 Profile
 const (
@@ -24903,6 +26779,32 @@ const (
 	H264ProfileMain = "MAIN"
 )
 
+// H264Profile is an enum
+type H264Profile struct{}
+
+// Contains returns whether the H264Profile enum includes the element
+func (enum H264Profile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264Profile enum
+func (enum H264Profile) Values() []string {
+	return []string{
+		H264ProfileBaseline,
+		H264ProfileHigh,
+		H264ProfileHigh10bit,
+		H264ProfileHigh422,
+		H264ProfileHigh42210bit,
+		H264ProfileMain,
+	}
+}
+
 // H264 Quality Level
 const (
 	// H264QualityLevelEnhancedQuality is a H264QualityLevel enum value
@@ -24911,6 +26813,28 @@ const (
 	// H264QualityLevelStandardQuality is a H264QualityLevel enum value
 	H264QualityLevelStandardQuality = "STANDARD_QUALITY"
 )
+
+// H264QualityLevel is an enum
+type H264QualityLevel struct{}
+
+// Contains returns whether the H264QualityLevel enum includes the element
+func (enum H264QualityLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264QualityLevel enum
+func (enum H264QualityLevel) Values() []string {
+	return []string{
+		H264QualityLevelEnhancedQuality,
+		H264QualityLevelStandardQuality,
+	}
+}
 
 // H264 Rate Control Mode
 const (
@@ -24927,6 +26851,30 @@ const (
 	H264RateControlModeVbr = "VBR"
 )
 
+// H264RateControlMode is an enum
+type H264RateControlMode struct{}
+
+// Contains returns whether the H264RateControlMode enum includes the element
+func (enum H264RateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264RateControlMode enum
+func (enum H264RateControlMode) Values() []string {
+	return []string{
+		H264RateControlModeCbr,
+		H264RateControlModeMultiplex,
+		H264RateControlModeQvbr,
+		H264RateControlModeVbr,
+	}
+}
+
 // H264 Scan Type
 const (
 	// H264ScanTypeInterlaced is a H264ScanType enum value
@@ -24935,6 +26883,28 @@ const (
 	// H264ScanTypeProgressive is a H264ScanType enum value
 	H264ScanTypeProgressive = "PROGRESSIVE"
 )
+
+// H264ScanType is an enum
+type H264ScanType struct{}
+
+// Contains returns whether the H264ScanType enum includes the element
+func (enum H264ScanType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264ScanType enum
+func (enum H264ScanType) Values() []string {
+	return []string{
+		H264ScanTypeInterlaced,
+		H264ScanTypeProgressive,
+	}
+}
 
 // H264 Scene Change Detect
 const (
@@ -24945,6 +26915,28 @@ const (
 	H264SceneChangeDetectEnabled = "ENABLED"
 )
 
+// H264SceneChangeDetect is an enum
+type H264SceneChangeDetect struct{}
+
+// Contains returns whether the H264SceneChangeDetect enum includes the element
+func (enum H264SceneChangeDetect) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264SceneChangeDetect enum
+func (enum H264SceneChangeDetect) Values() []string {
+	return []string{
+		H264SceneChangeDetectDisabled,
+		H264SceneChangeDetectEnabled,
+	}
+}
+
 // H264 Spatial Aq
 const (
 	// H264SpatialAqDisabled is a H264SpatialAq enum value
@@ -24953,6 +26945,28 @@ const (
 	// H264SpatialAqEnabled is a H264SpatialAq enum value
 	H264SpatialAqEnabled = "ENABLED"
 )
+
+// H264SpatialAq is an enum
+type H264SpatialAq struct{}
+
+// Contains returns whether the H264SpatialAq enum includes the element
+func (enum H264SpatialAq) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264SpatialAq enum
+func (enum H264SpatialAq) Values() []string {
+	return []string{
+		H264SpatialAqDisabled,
+		H264SpatialAqEnabled,
+	}
+}
 
 // H264 Sub Gop Length
 const (
@@ -24963,6 +26977,28 @@ const (
 	H264SubGopLengthFixed = "FIXED"
 )
 
+// H264SubGopLength is an enum
+type H264SubGopLength struct{}
+
+// Contains returns whether the H264SubGopLength enum includes the element
+func (enum H264SubGopLength) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264SubGopLength enum
+func (enum H264SubGopLength) Values() []string {
+	return []string{
+		H264SubGopLengthDynamic,
+		H264SubGopLengthFixed,
+	}
+}
+
 // H264 Syntax
 const (
 	// H264SyntaxDefault is a H264Syntax enum value
@@ -24971,6 +27007,28 @@ const (
 	// H264SyntaxRp2027 is a H264Syntax enum value
 	H264SyntaxRp2027 = "RP2027"
 )
+
+// H264Syntax is an enum
+type H264Syntax struct{}
+
+// Contains returns whether the H264Syntax enum includes the element
+func (enum H264Syntax) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264Syntax enum
+func (enum H264Syntax) Values() []string {
+	return []string{
+		H264SyntaxDefault,
+		H264SyntaxRp2027,
+	}
+}
 
 // H264 Temporal Aq
 const (
@@ -24981,6 +27039,28 @@ const (
 	H264TemporalAqEnabled = "ENABLED"
 )
 
+// H264TemporalAq is an enum
+type H264TemporalAq struct{}
+
+// Contains returns whether the H264TemporalAq enum includes the element
+func (enum H264TemporalAq) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264TemporalAq enum
+func (enum H264TemporalAq) Values() []string {
+	return []string{
+		H264TemporalAqDisabled,
+		H264TemporalAqEnabled,
+	}
+}
+
 // H264 Timecode Insertion Behavior
 const (
 	// H264TimecodeInsertionBehaviorDisabled is a H264TimecodeInsertionBehavior enum value
@@ -24989,6 +27069,28 @@ const (
 	// H264TimecodeInsertionBehaviorPicTimingSei is a H264TimecodeInsertionBehavior enum value
 	H264TimecodeInsertionBehaviorPicTimingSei = "PIC_TIMING_SEI"
 )
+
+// H264TimecodeInsertionBehavior is an enum
+type H264TimecodeInsertionBehavior struct{}
+
+// Contains returns whether the H264TimecodeInsertionBehavior enum includes the element
+func (enum H264TimecodeInsertionBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264TimecodeInsertionBehavior enum
+func (enum H264TimecodeInsertionBehavior) Values() []string {
+	return []string{
+		H264TimecodeInsertionBehaviorDisabled,
+		H264TimecodeInsertionBehaviorPicTimingSei,
+	}
+}
 
 // H265 Adaptive Quantization
 const (
@@ -25011,6 +27113,32 @@ const (
 	H265AdaptiveQuantizationOff = "OFF"
 )
 
+// H265AdaptiveQuantization is an enum
+type H265AdaptiveQuantization struct{}
+
+// Contains returns whether the H265AdaptiveQuantization enum includes the element
+func (enum H265AdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265AdaptiveQuantization enum
+func (enum H265AdaptiveQuantization) Values() []string {
+	return []string{
+		H265AdaptiveQuantizationHigh,
+		H265AdaptiveQuantizationHigher,
+		H265AdaptiveQuantizationLow,
+		H265AdaptiveQuantizationMax,
+		H265AdaptiveQuantizationMedium,
+		H265AdaptiveQuantizationOff,
+	}
+}
+
 // H265 Alternative Transfer Function
 const (
 	// H265AlternativeTransferFunctionInsert is a H265AlternativeTransferFunction enum value
@@ -25019,6 +27147,28 @@ const (
 	// H265AlternativeTransferFunctionOmit is a H265AlternativeTransferFunction enum value
 	H265AlternativeTransferFunctionOmit = "OMIT"
 )
+
+// H265AlternativeTransferFunction is an enum
+type H265AlternativeTransferFunction struct{}
+
+// Contains returns whether the H265AlternativeTransferFunction enum includes the element
+func (enum H265AlternativeTransferFunction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265AlternativeTransferFunction enum
+func (enum H265AlternativeTransferFunction) Values() []string {
+	return []string{
+		H265AlternativeTransferFunctionInsert,
+		H265AlternativeTransferFunctionOmit,
+	}
+}
 
 // H265 Color Metadata
 const (
@@ -25029,6 +27179,28 @@ const (
 	H265ColorMetadataInsert = "INSERT"
 )
 
+// H265ColorMetadata is an enum
+type H265ColorMetadata struct{}
+
+// Contains returns whether the H265ColorMetadata enum includes the element
+func (enum H265ColorMetadata) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265ColorMetadata enum
+func (enum H265ColorMetadata) Values() []string {
+	return []string{
+		H265ColorMetadataIgnore,
+		H265ColorMetadataInsert,
+	}
+}
+
 // H265 Flicker Aq
 const (
 	// H265FlickerAqDisabled is a H265FlickerAq enum value
@@ -25038,6 +27210,28 @@ const (
 	H265FlickerAqEnabled = "ENABLED"
 )
 
+// H265FlickerAq is an enum
+type H265FlickerAq struct{}
+
+// Contains returns whether the H265FlickerAq enum includes the element
+func (enum H265FlickerAq) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265FlickerAq enum
+func (enum H265FlickerAq) Values() []string {
+	return []string{
+		H265FlickerAqDisabled,
+		H265FlickerAqEnabled,
+	}
+}
+
 // H265 Gop Size Units
 const (
 	// H265GopSizeUnitsFrames is a H265GopSizeUnits enum value
@@ -25046,6 +27240,28 @@ const (
 	// H265GopSizeUnitsSeconds is a H265GopSizeUnits enum value
 	H265GopSizeUnitsSeconds = "SECONDS"
 )
+
+// H265GopSizeUnits is an enum
+type H265GopSizeUnits struct{}
+
+// Contains returns whether the H265GopSizeUnits enum includes the element
+func (enum H265GopSizeUnits) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265GopSizeUnits enum
+func (enum H265GopSizeUnits) Values() []string {
+	return []string{
+		H265GopSizeUnitsFrames,
+		H265GopSizeUnitsSeconds,
+	}
+}
 
 // H265 Level
 const (
@@ -25092,6 +27308,40 @@ const (
 	H265LevelH265LevelAuto = "H265_LEVEL_AUTO"
 )
 
+// H265Level is an enum
+type H265Level struct{}
+
+// Contains returns whether the H265Level enum includes the element
+func (enum H265Level) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265Level enum
+func (enum H265Level) Values() []string {
+	return []string{
+		H265LevelH265Level1,
+		H265LevelH265Level2,
+		H265LevelH265Level21,
+		H265LevelH265Level3,
+		H265LevelH265Level31,
+		H265LevelH265Level4,
+		H265LevelH265Level41,
+		H265LevelH265Level5,
+		H265LevelH265Level51,
+		H265LevelH265Level52,
+		H265LevelH265Level6,
+		H265LevelH265Level61,
+		H265LevelH265Level62,
+		H265LevelH265LevelAuto,
+	}
+}
+
 // H265 Look Ahead Rate Control
 const (
 	// H265LookAheadRateControlHigh is a H265LookAheadRateControl enum value
@@ -25104,6 +27354,29 @@ const (
 	H265LookAheadRateControlMedium = "MEDIUM"
 )
 
+// H265LookAheadRateControl is an enum
+type H265LookAheadRateControl struct{}
+
+// Contains returns whether the H265LookAheadRateControl enum includes the element
+func (enum H265LookAheadRateControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265LookAheadRateControl enum
+func (enum H265LookAheadRateControl) Values() []string {
+	return []string{
+		H265LookAheadRateControlHigh,
+		H265LookAheadRateControlLow,
+		H265LookAheadRateControlMedium,
+	}
+}
+
 // H265 Profile
 const (
 	// H265ProfileMain is a H265Profile enum value
@@ -25112,6 +27385,28 @@ const (
 	// H265ProfileMain10bit is a H265Profile enum value
 	H265ProfileMain10bit = "MAIN_10BIT"
 )
+
+// H265Profile is an enum
+type H265Profile struct{}
+
+// Contains returns whether the H265Profile enum includes the element
+func (enum H265Profile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265Profile enum
+func (enum H265Profile) Values() []string {
+	return []string{
+		H265ProfileMain,
+		H265ProfileMain10bit,
+	}
+}
 
 // H265 Rate Control Mode
 const (
@@ -25125,11 +27420,55 @@ const (
 	H265RateControlModeQvbr = "QVBR"
 )
 
+// H265RateControlMode is an enum
+type H265RateControlMode struct{}
+
+// Contains returns whether the H265RateControlMode enum includes the element
+func (enum H265RateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265RateControlMode enum
+func (enum H265RateControlMode) Values() []string {
+	return []string{
+		H265RateControlModeCbr,
+		H265RateControlModeMultiplex,
+		H265RateControlModeQvbr,
+	}
+}
+
 // H265 Scan Type
 const (
 	// H265ScanTypeProgressive is a H265ScanType enum value
 	H265ScanTypeProgressive = "PROGRESSIVE"
 )
+
+// H265ScanType is an enum
+type H265ScanType struct{}
+
+// Contains returns whether the H265ScanType enum includes the element
+func (enum H265ScanType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265ScanType enum
+func (enum H265ScanType) Values() []string {
+	return []string{
+		H265ScanTypeProgressive,
+	}
+}
 
 // H265 Scene Change Detect
 const (
@@ -25140,6 +27479,28 @@ const (
 	H265SceneChangeDetectEnabled = "ENABLED"
 )
 
+// H265SceneChangeDetect is an enum
+type H265SceneChangeDetect struct{}
+
+// Contains returns whether the H265SceneChangeDetect enum includes the element
+func (enum H265SceneChangeDetect) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265SceneChangeDetect enum
+func (enum H265SceneChangeDetect) Values() []string {
+	return []string{
+		H265SceneChangeDetectDisabled,
+		H265SceneChangeDetectEnabled,
+	}
+}
+
 // H265 Tier
 const (
 	// H265TierHigh is a H265Tier enum value
@@ -25149,6 +27510,28 @@ const (
 	H265TierMain = "MAIN"
 )
 
+// H265Tier is an enum
+type H265Tier struct{}
+
+// Contains returns whether the H265Tier enum includes the element
+func (enum H265Tier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265Tier enum
+func (enum H265Tier) Values() []string {
+	return []string{
+		H265TierHigh,
+		H265TierMain,
+	}
+}
+
 // H265 Timecode Insertion Behavior
 const (
 	// H265TimecodeInsertionBehaviorDisabled is a H265TimecodeInsertionBehavior enum value
@@ -25157,6 +27540,28 @@ const (
 	// H265TimecodeInsertionBehaviorPicTimingSei is a H265TimecodeInsertionBehavior enum value
 	H265TimecodeInsertionBehaviorPicTimingSei = "PIC_TIMING_SEI"
 )
+
+// H265TimecodeInsertionBehavior is an enum
+type H265TimecodeInsertionBehavior struct{}
+
+// Contains returns whether the H265TimecodeInsertionBehavior enum includes the element
+func (enum H265TimecodeInsertionBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265TimecodeInsertionBehavior enum
+func (enum H265TimecodeInsertionBehavior) Values() []string {
+	return []string{
+		H265TimecodeInsertionBehaviorDisabled,
+		H265TimecodeInsertionBehaviorPicTimingSei,
+	}
+}
 
 // Hls Ad Markers
 const (
@@ -25170,6 +27575,29 @@ const (
 	HlsAdMarkersElementalScte35 = "ELEMENTAL_SCTE35"
 )
 
+// HlsAdMarkers is an enum
+type HlsAdMarkers struct{}
+
+// Contains returns whether the HlsAdMarkers enum includes the element
+func (enum HlsAdMarkers) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsAdMarkers enum
+func (enum HlsAdMarkers) Values() []string {
+	return []string{
+		HlsAdMarkersAdobe,
+		HlsAdMarkersElemental,
+		HlsAdMarkersElementalScte35,
+	}
+}
+
 // Hls Akamai Http Transfer Mode
 const (
 	// HlsAkamaiHttpTransferModeChunked is a HlsAkamaiHttpTransferMode enum value
@@ -25178,6 +27606,28 @@ const (
 	// HlsAkamaiHttpTransferModeNonChunked is a HlsAkamaiHttpTransferMode enum value
 	HlsAkamaiHttpTransferModeNonChunked = "NON_CHUNKED"
 )
+
+// HlsAkamaiHttpTransferMode is an enum
+type HlsAkamaiHttpTransferMode struct{}
+
+// Contains returns whether the HlsAkamaiHttpTransferMode enum includes the element
+func (enum HlsAkamaiHttpTransferMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsAkamaiHttpTransferMode enum
+func (enum HlsAkamaiHttpTransferMode) Values() []string {
+	return []string{
+		HlsAkamaiHttpTransferModeChunked,
+		HlsAkamaiHttpTransferModeNonChunked,
+	}
+}
 
 // Hls Caption Language Setting
 const (
@@ -25191,6 +27641,29 @@ const (
 	HlsCaptionLanguageSettingOmit = "OMIT"
 )
 
+// HlsCaptionLanguageSetting is an enum
+type HlsCaptionLanguageSetting struct{}
+
+// Contains returns whether the HlsCaptionLanguageSetting enum includes the element
+func (enum HlsCaptionLanguageSetting) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsCaptionLanguageSetting enum
+func (enum HlsCaptionLanguageSetting) Values() []string {
+	return []string{
+		HlsCaptionLanguageSettingInsert,
+		HlsCaptionLanguageSettingNone,
+		HlsCaptionLanguageSettingOmit,
+	}
+}
+
 // Hls Client Cache
 const (
 	// HlsClientCacheDisabled is a HlsClientCache enum value
@@ -25199,6 +27672,28 @@ const (
 	// HlsClientCacheEnabled is a HlsClientCache enum value
 	HlsClientCacheEnabled = "ENABLED"
 )
+
+// HlsClientCache is an enum
+type HlsClientCache struct{}
+
+// Contains returns whether the HlsClientCache enum includes the element
+func (enum HlsClientCache) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsClientCache enum
+func (enum HlsClientCache) Values() []string {
+	return []string{
+		HlsClientCacheDisabled,
+		HlsClientCacheEnabled,
+	}
+}
 
 // Hls Codec Specification
 const (
@@ -25209,6 +27704,28 @@ const (
 	HlsCodecSpecificationRfc6381 = "RFC_6381"
 )
 
+// HlsCodecSpecification is an enum
+type HlsCodecSpecification struct{}
+
+// Contains returns whether the HlsCodecSpecification enum includes the element
+func (enum HlsCodecSpecification) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsCodecSpecification enum
+func (enum HlsCodecSpecification) Values() []string {
+	return []string{
+		HlsCodecSpecificationRfc4281,
+		HlsCodecSpecificationRfc6381,
+	}
+}
+
 // Hls Directory Structure
 const (
 	// HlsDirectoryStructureSingleDirectory is a HlsDirectoryStructure enum value
@@ -25217,6 +27734,28 @@ const (
 	// HlsDirectoryStructureSubdirectoryPerStream is a HlsDirectoryStructure enum value
 	HlsDirectoryStructureSubdirectoryPerStream = "SUBDIRECTORY_PER_STREAM"
 )
+
+// HlsDirectoryStructure is an enum
+type HlsDirectoryStructure struct{}
+
+// Contains returns whether the HlsDirectoryStructure enum includes the element
+func (enum HlsDirectoryStructure) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsDirectoryStructure enum
+func (enum HlsDirectoryStructure) Values() []string {
+	return []string{
+		HlsDirectoryStructureSingleDirectory,
+		HlsDirectoryStructureSubdirectoryPerStream,
+	}
+}
 
 // Hls Encryption Type
 const (
@@ -25227,6 +27766,28 @@ const (
 	HlsEncryptionTypeSampleAes = "SAMPLE_AES"
 )
 
+// HlsEncryptionType is an enum
+type HlsEncryptionType struct{}
+
+// Contains returns whether the HlsEncryptionType enum includes the element
+func (enum HlsEncryptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsEncryptionType enum
+func (enum HlsEncryptionType) Values() []string {
+	return []string{
+		HlsEncryptionTypeAes128,
+		HlsEncryptionTypeSampleAes,
+	}
+}
+
 // Hls H265 Packaging Type
 const (
 	// HlsH265PackagingTypeHev1 is a HlsH265PackagingType enum value
@@ -25235,6 +27796,28 @@ const (
 	// HlsH265PackagingTypeHvc1 is a HlsH265PackagingType enum value
 	HlsH265PackagingTypeHvc1 = "HVC1"
 )
+
+// HlsH265PackagingType is an enum
+type HlsH265PackagingType struct{}
+
+// Contains returns whether the HlsH265PackagingType enum includes the element
+func (enum HlsH265PackagingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsH265PackagingType enum
+func (enum HlsH265PackagingType) Values() []string {
+	return []string{
+		HlsH265PackagingTypeHev1,
+		HlsH265PackagingTypeHvc1,
+	}
+}
 
 // State of HLS ID3 Segment Tagging
 const (
@@ -25245,6 +27828,28 @@ const (
 	HlsId3SegmentTaggingStateEnabled = "ENABLED"
 )
 
+// HlsId3SegmentTaggingState is an enum
+type HlsId3SegmentTaggingState struct{}
+
+// Contains returns whether the HlsId3SegmentTaggingState enum includes the element
+func (enum HlsId3SegmentTaggingState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsId3SegmentTaggingState enum
+func (enum HlsId3SegmentTaggingState) Values() []string {
+	return []string{
+		HlsId3SegmentTaggingStateDisabled,
+		HlsId3SegmentTaggingStateEnabled,
+	}
+}
+
 // Hls Iv In Manifest
 const (
 	// HlsIvInManifestExclude is a HlsIvInManifest enum value
@@ -25253,6 +27858,28 @@ const (
 	// HlsIvInManifestInclude is a HlsIvInManifest enum value
 	HlsIvInManifestInclude = "INCLUDE"
 )
+
+// HlsIvInManifest is an enum
+type HlsIvInManifest struct{}
+
+// Contains returns whether the HlsIvInManifest enum includes the element
+func (enum HlsIvInManifest) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsIvInManifest enum
+func (enum HlsIvInManifest) Values() []string {
+	return []string{
+		HlsIvInManifestExclude,
+		HlsIvInManifestInclude,
+	}
+}
 
 // Hls Iv Source
 const (
@@ -25263,6 +27890,28 @@ const (
 	HlsIvSourceFollowsSegmentNumber = "FOLLOWS_SEGMENT_NUMBER"
 )
 
+// HlsIvSource is an enum
+type HlsIvSource struct{}
+
+// Contains returns whether the HlsIvSource enum includes the element
+func (enum HlsIvSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsIvSource enum
+func (enum HlsIvSource) Values() []string {
+	return []string{
+		HlsIvSourceExplicit,
+		HlsIvSourceFollowsSegmentNumber,
+	}
+}
+
 // Hls Manifest Compression
 const (
 	// HlsManifestCompressionGzip is a HlsManifestCompression enum value
@@ -25271,6 +27920,28 @@ const (
 	// HlsManifestCompressionNone is a HlsManifestCompression enum value
 	HlsManifestCompressionNone = "NONE"
 )
+
+// HlsManifestCompression is an enum
+type HlsManifestCompression struct{}
+
+// Contains returns whether the HlsManifestCompression enum includes the element
+func (enum HlsManifestCompression) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsManifestCompression enum
+func (enum HlsManifestCompression) Values() []string {
+	return []string{
+		HlsManifestCompressionGzip,
+		HlsManifestCompressionNone,
+	}
+}
 
 // Hls Manifest Duration Format
 const (
@@ -25281,11 +27952,54 @@ const (
 	HlsManifestDurationFormatInteger = "INTEGER"
 )
 
+// HlsManifestDurationFormat is an enum
+type HlsManifestDurationFormat struct{}
+
+// Contains returns whether the HlsManifestDurationFormat enum includes the element
+func (enum HlsManifestDurationFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsManifestDurationFormat enum
+func (enum HlsManifestDurationFormat) Values() []string {
+	return []string{
+		HlsManifestDurationFormatFloatingPoint,
+		HlsManifestDurationFormatInteger,
+	}
+}
+
 // Hls Media Store Storage Class
 const (
 	// HlsMediaStoreStorageClassTemporal is a HlsMediaStoreStorageClass enum value
 	HlsMediaStoreStorageClassTemporal = "TEMPORAL"
 )
+
+// HlsMediaStoreStorageClass is an enum
+type HlsMediaStoreStorageClass struct{}
+
+// Contains returns whether the HlsMediaStoreStorageClass enum includes the element
+func (enum HlsMediaStoreStorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsMediaStoreStorageClass enum
+func (enum HlsMediaStoreStorageClass) Values() []string {
+	return []string{
+		HlsMediaStoreStorageClassTemporal,
+	}
+}
 
 // Hls Mode
 const (
@@ -25296,6 +28010,28 @@ const (
 	HlsModeVod = "VOD"
 )
 
+// HlsMode is an enum
+type HlsMode struct{}
+
+// Contains returns whether the HlsMode enum includes the element
+func (enum HlsMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsMode enum
+func (enum HlsMode) Values() []string {
+	return []string{
+		HlsModeLive,
+		HlsModeVod,
+	}
+}
+
 // Hls Output Selection
 const (
 	// HlsOutputSelectionManifestsAndSegments is a HlsOutputSelection enum value
@@ -25304,6 +28040,28 @@ const (
 	// HlsOutputSelectionSegmentsOnly is a HlsOutputSelection enum value
 	HlsOutputSelectionSegmentsOnly = "SEGMENTS_ONLY"
 )
+
+// HlsOutputSelection is an enum
+type HlsOutputSelection struct{}
+
+// Contains returns whether the HlsOutputSelection enum includes the element
+func (enum HlsOutputSelection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsOutputSelection enum
+func (enum HlsOutputSelection) Values() []string {
+	return []string{
+		HlsOutputSelectionManifestsAndSegments,
+		HlsOutputSelectionSegmentsOnly,
+	}
+}
 
 // Hls Program Date Time
 const (
@@ -25314,6 +28072,28 @@ const (
 	HlsProgramDateTimeInclude = "INCLUDE"
 )
 
+// HlsProgramDateTime is an enum
+type HlsProgramDateTime struct{}
+
+// Contains returns whether the HlsProgramDateTime enum includes the element
+func (enum HlsProgramDateTime) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsProgramDateTime enum
+func (enum HlsProgramDateTime) Values() []string {
+	return []string{
+		HlsProgramDateTimeExclude,
+		HlsProgramDateTimeInclude,
+	}
+}
+
 // Hls Redundant Manifest
 const (
 	// HlsRedundantManifestDisabled is a HlsRedundantManifest enum value
@@ -25322,6 +28102,28 @@ const (
 	// HlsRedundantManifestEnabled is a HlsRedundantManifest enum value
 	HlsRedundantManifestEnabled = "ENABLED"
 )
+
+// HlsRedundantManifest is an enum
+type HlsRedundantManifest struct{}
+
+// Contains returns whether the HlsRedundantManifest enum includes the element
+func (enum HlsRedundantManifest) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsRedundantManifest enum
+func (enum HlsRedundantManifest) Values() []string {
+	return []string{
+		HlsRedundantManifestDisabled,
+		HlsRedundantManifestEnabled,
+	}
+}
 
 // Hls Segmentation Mode
 const (
@@ -25332,6 +28134,28 @@ const (
 	HlsSegmentationModeUseSegmentDuration = "USE_SEGMENT_DURATION"
 )
 
+// HlsSegmentationMode is an enum
+type HlsSegmentationMode struct{}
+
+// Contains returns whether the HlsSegmentationMode enum includes the element
+func (enum HlsSegmentationMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsSegmentationMode enum
+func (enum HlsSegmentationMode) Values() []string {
+	return []string{
+		HlsSegmentationModeUseInputSegmentation,
+		HlsSegmentationModeUseSegmentDuration,
+	}
+}
+
 // Hls Stream Inf Resolution
 const (
 	// HlsStreamInfResolutionExclude is a HlsStreamInfResolution enum value
@@ -25340,6 +28164,28 @@ const (
 	// HlsStreamInfResolutionInclude is a HlsStreamInfResolution enum value
 	HlsStreamInfResolutionInclude = "INCLUDE"
 )
+
+// HlsStreamInfResolution is an enum
+type HlsStreamInfResolution struct{}
+
+// Contains returns whether the HlsStreamInfResolution enum includes the element
+func (enum HlsStreamInfResolution) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsStreamInfResolution enum
+func (enum HlsStreamInfResolution) Values() []string {
+	return []string{
+		HlsStreamInfResolutionExclude,
+		HlsStreamInfResolutionInclude,
+	}
+}
 
 // Hls Timed Metadata Id3 Frame
 const (
@@ -25353,6 +28199,29 @@ const (
 	HlsTimedMetadataId3FrameTdrl = "TDRL"
 )
 
+// HlsTimedMetadataId3Frame is an enum
+type HlsTimedMetadataId3Frame struct{}
+
+// Contains returns whether the HlsTimedMetadataId3Frame enum includes the element
+func (enum HlsTimedMetadataId3Frame) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsTimedMetadataId3Frame enum
+func (enum HlsTimedMetadataId3Frame) Values() []string {
+	return []string{
+		HlsTimedMetadataId3FrameNone,
+		HlsTimedMetadataId3FramePriv,
+		HlsTimedMetadataId3FrameTdrl,
+	}
+}
+
 // Hls Ts File Mode
 const (
 	// HlsTsFileModeSegmentedFiles is a HlsTsFileMode enum value
@@ -25362,6 +28231,28 @@ const (
 	HlsTsFileModeSingleFile = "SINGLE_FILE"
 )
 
+// HlsTsFileMode is an enum
+type HlsTsFileMode struct{}
+
+// Contains returns whether the HlsTsFileMode enum includes the element
+func (enum HlsTsFileMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsTsFileMode enum
+func (enum HlsTsFileMode) Values() []string {
+	return []string{
+		HlsTsFileModeSegmentedFiles,
+		HlsTsFileModeSingleFile,
+	}
+}
+
 // Hls Webdav Http Transfer Mode
 const (
 	// HlsWebdavHttpTransferModeChunked is a HlsWebdavHttpTransferMode enum value
@@ -25370,6 +28261,28 @@ const (
 	// HlsWebdavHttpTransferModeNonChunked is a HlsWebdavHttpTransferMode enum value
 	HlsWebdavHttpTransferModeNonChunked = "NON_CHUNKED"
 )
+
+// HlsWebdavHttpTransferMode is an enum
+type HlsWebdavHttpTransferMode struct{}
+
+// Contains returns whether the HlsWebdavHttpTransferMode enum includes the element
+func (enum HlsWebdavHttpTransferMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsWebdavHttpTransferMode enum
+func (enum HlsWebdavHttpTransferMode) Values() []string {
+	return []string{
+		HlsWebdavHttpTransferModeChunked,
+		HlsWebdavHttpTransferModeNonChunked,
+	}
+}
 
 // When set to "standard", an I-Frame only playlist will be written out for
 // each video output in the output group. This I-Frame only playlist will contain
@@ -25382,6 +28295,28 @@ const (
 	IFrameOnlyPlaylistTypeStandard = "STANDARD"
 )
 
+// IFrameOnlyPlaylistType is an enum
+type IFrameOnlyPlaylistType struct{}
+
+// Contains returns whether the IFrameOnlyPlaylistType enum includes the element
+func (enum IFrameOnlyPlaylistType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IFrameOnlyPlaylistType enum
+func (enum IFrameOnlyPlaylistType) Values() []string {
+	return []string{
+		IFrameOnlyPlaylistTypeDisabled,
+		IFrameOnlyPlaylistTypeStandard,
+	}
+}
+
 // A standard input has two sources and a single pipeline input only has one.
 const (
 	// InputClassStandard is a InputClass enum value
@@ -25390,6 +28325,28 @@ const (
 	// InputClassSinglePipeline is a InputClass enum value
 	InputClassSinglePipeline = "SINGLE_PIPELINE"
 )
+
+// InputClass is an enum
+type InputClass struct{}
+
+// Contains returns whether the InputClass enum includes the element
+func (enum InputClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputClass enum
+func (enum InputClass) Values() []string {
+	return []string{
+		InputClassStandard,
+		InputClassSinglePipeline,
+	}
+}
 
 // codec in increasing order of complexity
 const (
@@ -25403,6 +28360,29 @@ const (
 	InputCodecHevc = "HEVC"
 )
 
+// InputCodec is an enum
+type InputCodec struct{}
+
+// Contains returns whether the InputCodec enum includes the element
+func (enum InputCodec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputCodec enum
+func (enum InputCodec) Values() []string {
+	return []string{
+		InputCodecMpeg2,
+		InputCodecAvc,
+		InputCodecHevc,
+	}
+}
+
 // Input Deblock Filter
 const (
 	// InputDeblockFilterDisabled is a InputDeblockFilter enum value
@@ -25411,6 +28391,28 @@ const (
 	// InputDeblockFilterEnabled is a InputDeblockFilter enum value
 	InputDeblockFilterEnabled = "ENABLED"
 )
+
+// InputDeblockFilter is an enum
+type InputDeblockFilter struct{}
+
+// Contains returns whether the InputDeblockFilter enum includes the element
+func (enum InputDeblockFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDeblockFilter enum
+func (enum InputDeblockFilter) Values() []string {
+	return []string{
+		InputDeblockFilterDisabled,
+		InputDeblockFilterEnabled,
+	}
+}
 
 // Input Denoise Filter
 const (
@@ -25421,6 +28423,28 @@ const (
 	InputDenoiseFilterEnabled = "ENABLED"
 )
 
+// InputDenoiseFilter is an enum
+type InputDenoiseFilter struct{}
+
+// Contains returns whether the InputDenoiseFilter enum includes the element
+func (enum InputDenoiseFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDenoiseFilter enum
+func (enum InputDenoiseFilter) Values() []string {
+	return []string{
+		InputDenoiseFilterDisabled,
+		InputDenoiseFilterEnabled,
+	}
+}
+
 // The source at the input device that is currently active.
 const (
 	// InputDeviceActiveInputHdmi is a InputDeviceActiveInput enum value
@@ -25429,6 +28453,28 @@ const (
 	// InputDeviceActiveInputSdi is a InputDeviceActiveInput enum value
 	InputDeviceActiveInputSdi = "SDI"
 )
+
+// InputDeviceActiveInput is an enum
+type InputDeviceActiveInput struct{}
+
+// Contains returns whether the InputDeviceActiveInput enum includes the element
+func (enum InputDeviceActiveInput) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDeviceActiveInput enum
+func (enum InputDeviceActiveInput) Values() []string {
+	return []string{
+		InputDeviceActiveInputHdmi,
+		InputDeviceActiveInputSdi,
+	}
+}
 
 // The source to activate (use) from the input device.
 const (
@@ -25442,6 +28488,29 @@ const (
 	InputDeviceConfiguredInputSdi = "SDI"
 )
 
+// InputDeviceConfiguredInput is an enum
+type InputDeviceConfiguredInput struct{}
+
+// Contains returns whether the InputDeviceConfiguredInput enum includes the element
+func (enum InputDeviceConfiguredInput) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDeviceConfiguredInput enum
+func (enum InputDeviceConfiguredInput) Values() []string {
+	return []string{
+		InputDeviceConfiguredInputAuto,
+		InputDeviceConfiguredInputHdmi,
+		InputDeviceConfiguredInputSdi,
+	}
+}
+
 // The state of the connection between the input device and AWS.
 const (
 	// InputDeviceConnectionStateDisconnected is a InputDeviceConnectionState enum value
@@ -25450,6 +28519,28 @@ const (
 	// InputDeviceConnectionStateConnected is a InputDeviceConnectionState enum value
 	InputDeviceConnectionStateConnected = "CONNECTED"
 )
+
+// InputDeviceConnectionState is an enum
+type InputDeviceConnectionState struct{}
+
+// Contains returns whether the InputDeviceConnectionState enum includes the element
+func (enum InputDeviceConnectionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDeviceConnectionState enum
+func (enum InputDeviceConnectionState) Values() []string {
+	return []string{
+		InputDeviceConnectionStateDisconnected,
+		InputDeviceConnectionStateConnected,
+	}
+}
 
 // Specifies whether the input device has been configured (outside of MediaLive)
 // to use a dynamic IP address assignment (DHCP) or a static IP address.
@@ -25461,6 +28552,28 @@ const (
 	InputDeviceIpSchemeDhcp = "DHCP"
 )
 
+// InputDeviceIpScheme is an enum
+type InputDeviceIpScheme struct{}
+
+// Contains returns whether the InputDeviceIpScheme enum includes the element
+func (enum InputDeviceIpScheme) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDeviceIpScheme enum
+func (enum InputDeviceIpScheme) Values() []string {
+	return []string{
+		InputDeviceIpSchemeStatic,
+		InputDeviceIpSchemeDhcp,
+	}
+}
+
 // The scan type of the video source.
 const (
 	// InputDeviceScanTypeInterlaced is a InputDeviceScanType enum value
@@ -25469,6 +28582,28 @@ const (
 	// InputDeviceScanTypeProgressive is a InputDeviceScanType enum value
 	InputDeviceScanTypeProgressive = "PROGRESSIVE"
 )
+
+// InputDeviceScanType is an enum
+type InputDeviceScanType struct{}
+
+// Contains returns whether the InputDeviceScanType enum includes the element
+func (enum InputDeviceScanType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDeviceScanType enum
+func (enum InputDeviceScanType) Values() []string {
+	return []string{
+		InputDeviceScanTypeInterlaced,
+		InputDeviceScanTypeProgressive,
+	}
+}
 
 // The state of the input device.
 const (
@@ -25479,12 +28614,55 @@ const (
 	InputDeviceStateStreaming = "STREAMING"
 )
 
+// InputDeviceState is an enum
+type InputDeviceState struct{}
+
+// Contains returns whether the InputDeviceState enum includes the element
+func (enum InputDeviceState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDeviceState enum
+func (enum InputDeviceState) Values() []string {
+	return []string{
+		InputDeviceStateIdle,
+		InputDeviceStateStreaming,
+	}
+}
+
 // The type of the input device. For an AWS Elemental Link device that outputs
 // resolutions up to 1080, choose "HD".
 const (
 	// InputDeviceTypeHd is a InputDeviceType enum value
 	InputDeviceTypeHd = "HD"
 )
+
+// InputDeviceType is an enum
+type InputDeviceType struct{}
+
+// Contains returns whether the InputDeviceType enum includes the element
+func (enum InputDeviceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDeviceType enum
+func (enum InputDeviceType) Values() []string {
+	return []string{
+		InputDeviceTypeHd,
+	}
+}
 
 // Input Filter
 const (
@@ -25498,6 +28676,29 @@ const (
 	InputFilterForced = "FORCED"
 )
 
+// InputFilter is an enum
+type InputFilter struct{}
+
+// Contains returns whether the InputFilter enum includes the element
+func (enum InputFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputFilter enum
+func (enum InputFilter) Values() []string {
+	return []string{
+		InputFilterAuto,
+		InputFilterDisabled,
+		InputFilterForced,
+	}
+}
+
 // Input Loss Action For Hls Out
 const (
 	// InputLossActionForHlsOutEmitOutput is a InputLossActionForHlsOut enum value
@@ -25506,6 +28707,28 @@ const (
 	// InputLossActionForHlsOutPauseOutput is a InputLossActionForHlsOut enum value
 	InputLossActionForHlsOutPauseOutput = "PAUSE_OUTPUT"
 )
+
+// InputLossActionForHlsOut is an enum
+type InputLossActionForHlsOut struct{}
+
+// Contains returns whether the InputLossActionForHlsOut enum includes the element
+func (enum InputLossActionForHlsOut) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputLossActionForHlsOut enum
+func (enum InputLossActionForHlsOut) Values() []string {
+	return []string{
+		InputLossActionForHlsOutEmitOutput,
+		InputLossActionForHlsOutPauseOutput,
+	}
+}
 
 // Input Loss Action For Ms Smooth Out
 const (
@@ -25516,6 +28739,28 @@ const (
 	InputLossActionForMsSmoothOutPauseOutput = "PAUSE_OUTPUT"
 )
 
+// InputLossActionForMsSmoothOut is an enum
+type InputLossActionForMsSmoothOut struct{}
+
+// Contains returns whether the InputLossActionForMsSmoothOut enum includes the element
+func (enum InputLossActionForMsSmoothOut) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputLossActionForMsSmoothOut enum
+func (enum InputLossActionForMsSmoothOut) Values() []string {
+	return []string{
+		InputLossActionForMsSmoothOutEmitOutput,
+		InputLossActionForMsSmoothOutPauseOutput,
+	}
+}
+
 // Input Loss Action For Rtmp Out
 const (
 	// InputLossActionForRtmpOutEmitOutput is a InputLossActionForRtmpOut enum value
@@ -25524,6 +28769,28 @@ const (
 	// InputLossActionForRtmpOutPauseOutput is a InputLossActionForRtmpOut enum value
 	InputLossActionForRtmpOutPauseOutput = "PAUSE_OUTPUT"
 )
+
+// InputLossActionForRtmpOut is an enum
+type InputLossActionForRtmpOut struct{}
+
+// Contains returns whether the InputLossActionForRtmpOut enum includes the element
+func (enum InputLossActionForRtmpOut) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputLossActionForRtmpOut enum
+func (enum InputLossActionForRtmpOut) Values() []string {
+	return []string{
+		InputLossActionForRtmpOutEmitOutput,
+		InputLossActionForRtmpOutPauseOutput,
+	}
+}
 
 // Input Loss Action For Udp Out
 const (
@@ -25537,6 +28804,29 @@ const (
 	InputLossActionForUdpOutEmitProgram = "EMIT_PROGRAM"
 )
 
+// InputLossActionForUdpOut is an enum
+type InputLossActionForUdpOut struct{}
+
+// Contains returns whether the InputLossActionForUdpOut enum includes the element
+func (enum InputLossActionForUdpOut) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputLossActionForUdpOut enum
+func (enum InputLossActionForUdpOut) Values() []string {
+	return []string{
+		InputLossActionForUdpOutDropProgram,
+		InputLossActionForUdpOutDropTs,
+		InputLossActionForUdpOutEmitProgram,
+	}
+}
+
 // Input Loss Image Type
 const (
 	// InputLossImageTypeColor is a InputLossImageType enum value
@@ -25545,6 +28835,28 @@ const (
 	// InputLossImageTypeSlate is a InputLossImageType enum value
 	InputLossImageTypeSlate = "SLATE"
 )
+
+// InputLossImageType is an enum
+type InputLossImageType struct{}
+
+// Contains returns whether the InputLossImageType enum includes the element
+func (enum InputLossImageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputLossImageType enum
+func (enum InputLossImageType) Values() []string {
+	return []string{
+		InputLossImageTypeColor,
+		InputLossImageTypeSlate,
+	}
+}
 
 // Maximum input bitrate in megabits per second. Bitrates up to 50 Mbps are
 // supported currently.
@@ -25559,6 +28871,29 @@ const (
 	InputMaximumBitrateMax50Mbps = "MAX_50_MBPS"
 )
 
+// InputMaximumBitrate is an enum
+type InputMaximumBitrate struct{}
+
+// Contains returns whether the InputMaximumBitrate enum includes the element
+func (enum InputMaximumBitrate) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputMaximumBitrate enum
+func (enum InputMaximumBitrate) Values() []string {
+	return []string{
+		InputMaximumBitrateMax10Mbps,
+		InputMaximumBitrateMax20Mbps,
+		InputMaximumBitrateMax50Mbps,
+	}
+}
+
 // Input preference when deciding which input to make active when a previously
 // failed input has recovered.If \"EQUAL_INPUT_PREFERENCE\", then the active
 // input will stay active as long as it is healthy.If \"PRIMARY_INPUT_PREFERRED\",
@@ -25570,6 +28905,28 @@ const (
 	// InputPreferencePrimaryInputPreferred is a InputPreference enum value
 	InputPreferencePrimaryInputPreferred = "PRIMARY_INPUT_PREFERRED"
 )
+
+// InputPreference is an enum
+type InputPreference struct{}
+
+// Contains returns whether the InputPreference enum includes the element
+func (enum InputPreference) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputPreference enum
+func (enum InputPreference) Values() []string {
+	return []string{
+		InputPreferenceEqualInputPreference,
+		InputPreferencePrimaryInputPreferred,
+	}
+}
 
 // Input resolution based on lines of vertical resolution in the input; SD is
 // less than 720 lines, HD is 720 to 1080 lines, UHD is greater than 1080 lines
@@ -25583,6 +28940,29 @@ const (
 	// InputResolutionUhd is a InputResolution enum value
 	InputResolutionUhd = "UHD"
 )
+
+// InputResolution is an enum
+type InputResolution struct{}
+
+// Contains returns whether the InputResolution enum includes the element
+func (enum InputResolution) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputResolution enum
+func (enum InputResolution) Values() []string {
+	return []string{
+		InputResolutionSd,
+		InputResolutionHd,
+		InputResolutionUhd,
+	}
+}
 
 const (
 	// InputSecurityGroupStateIdle is a InputSecurityGroupState enum value
@@ -25598,6 +28978,30 @@ const (
 	InputSecurityGroupStateDeleted = "DELETED"
 )
 
+// InputSecurityGroupState is an enum
+type InputSecurityGroupState struct{}
+
+// Contains returns whether the InputSecurityGroupState enum includes the element
+func (enum InputSecurityGroupState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputSecurityGroupState enum
+func (enum InputSecurityGroupState) Values() []string {
+	return []string{
+		InputSecurityGroupStateIdle,
+		InputSecurityGroupStateInUse,
+		InputSecurityGroupStateUpdating,
+		InputSecurityGroupStateDeleted,
+	}
+}
+
 // Input Source End Behavior
 const (
 	// InputSourceEndBehaviorContinue is a InputSourceEndBehavior enum value
@@ -25606,6 +29010,28 @@ const (
 	// InputSourceEndBehaviorLoop is a InputSourceEndBehavior enum value
 	InputSourceEndBehaviorLoop = "LOOP"
 )
+
+// InputSourceEndBehavior is an enum
+type InputSourceEndBehavior struct{}
+
+// Contains returns whether the InputSourceEndBehavior enum includes the element
+func (enum InputSourceEndBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputSourceEndBehavior enum
+func (enum InputSourceEndBehavior) Values() []string {
+	return []string{
+		InputSourceEndBehaviorContinue,
+		InputSourceEndBehaviorLoop,
+	}
+}
 
 // There are two types of input sources, static and dynamic. If an input source
 // is dynamic you canchange the source url of the input dynamically using an
@@ -25618,6 +29044,28 @@ const (
 	// InputSourceTypeDynamic is a InputSourceType enum value
 	InputSourceTypeDynamic = "DYNAMIC"
 )
+
+// InputSourceType is an enum
+type InputSourceType struct{}
+
+// Contains returns whether the InputSourceType enum includes the element
+func (enum InputSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputSourceType enum
+func (enum InputSourceType) Values() []string {
+	return []string{
+		InputSourceTypeStatic,
+		InputSourceTypeDynamic,
+	}
+}
 
 const (
 	// InputStateCreating is a InputState enum value
@@ -25636,6 +29084,31 @@ const (
 	InputStateDeleted = "DELETED"
 )
 
+// InputState is an enum
+type InputState struct{}
+
+// Contains returns whether the InputState enum includes the element
+func (enum InputState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputState enum
+func (enum InputState) Values() []string {
+	return []string{
+		InputStateCreating,
+		InputStateDetached,
+		InputStateAttached,
+		InputStateDeleting,
+		InputStateDeleted,
+	}
+}
+
 // To clip the file, you must specify the timecode for the start and end of
 // the clip. Specify EMBEDDED to use the timecode embedded in the source content.
 // The embedded timecode must exist in the source content, otherwise MediaLive
@@ -25650,6 +29123,28 @@ const (
 	// InputTimecodeSourceEmbedded is a InputTimecodeSource enum value
 	InputTimecodeSourceEmbedded = "EMBEDDED"
 )
+
+// InputTimecodeSource is an enum
+type InputTimecodeSource struct{}
+
+// Contains returns whether the InputTimecodeSource enum includes the element
+func (enum InputTimecodeSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputTimecodeSource enum
+func (enum InputTimecodeSource) Values() []string {
+	return []string{
+		InputTimecodeSourceZerobased,
+		InputTimecodeSourceEmbedded,
+	}
+}
 
 const (
 	// InputTypeUdpPush is a InputType enum value
@@ -25677,6 +29172,34 @@ const (
 	InputTypeInputDevice = "INPUT_DEVICE"
 )
 
+// InputType is an enum
+type InputType struct{}
+
+// Contains returns whether the InputType enum includes the element
+func (enum InputType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputType enum
+func (enum InputType) Values() []string {
+	return []string{
+		InputTypeUdpPush,
+		InputTypeRtpPush,
+		InputTypeRtmpPush,
+		InputTypeRtmpPull,
+		InputTypeUrlPull,
+		InputTypeMp4File,
+		InputTypeMediaconnect,
+		InputTypeInputDevice,
+	}
+}
+
 // If you specify a StopTimecode in an input (in order to clip the file), you
 // can specify if you want the clip to exclude (the default) or include the
 // frame specified by the timecode.
@@ -25687,6 +29210,28 @@ const (
 	// LastFrameClippingBehaviorIncludeLastFrame is a LastFrameClippingBehavior enum value
 	LastFrameClippingBehaviorIncludeLastFrame = "INCLUDE_LAST_FRAME"
 )
+
+// LastFrameClippingBehavior is an enum
+type LastFrameClippingBehavior struct{}
+
+// Contains returns whether the LastFrameClippingBehavior enum includes the element
+func (enum LastFrameClippingBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LastFrameClippingBehavior enum
+func (enum LastFrameClippingBehavior) Values() []string {
+	return []string{
+		LastFrameClippingBehaviorExcludeLastFrame,
+		LastFrameClippingBehaviorIncludeLastFrame,
+	}
+}
 
 // The log level the user wants for their channel.
 const (
@@ -25706,6 +29251,31 @@ const (
 	LogLevelDisabled = "DISABLED"
 )
 
+// LogLevel is an enum
+type LogLevel struct{}
+
+// Contains returns whether the LogLevel enum includes the element
+func (enum LogLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogLevel enum
+func (enum LogLevel) Values() []string {
+	return []string{
+		LogLevelError,
+		LogLevelWarning,
+		LogLevelInfo,
+		LogLevelDebug,
+		LogLevelDisabled,
+	}
+}
+
 // M2ts Absent Input Audio Behavior
 const (
 	// M2tsAbsentInputAudioBehaviorDrop is a M2tsAbsentInputAudioBehavior enum value
@@ -25714,6 +29284,28 @@ const (
 	// M2tsAbsentInputAudioBehaviorEncodeSilence is a M2tsAbsentInputAudioBehavior enum value
 	M2tsAbsentInputAudioBehaviorEncodeSilence = "ENCODE_SILENCE"
 )
+
+// M2tsAbsentInputAudioBehavior is an enum
+type M2tsAbsentInputAudioBehavior struct{}
+
+// Contains returns whether the M2tsAbsentInputAudioBehavior enum includes the element
+func (enum M2tsAbsentInputAudioBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsAbsentInputAudioBehavior enum
+func (enum M2tsAbsentInputAudioBehavior) Values() []string {
+	return []string{
+		M2tsAbsentInputAudioBehaviorDrop,
+		M2tsAbsentInputAudioBehaviorEncodeSilence,
+	}
+}
 
 // M2ts Arib
 const (
@@ -25724,6 +29316,28 @@ const (
 	M2tsAribEnabled = "ENABLED"
 )
 
+// M2tsArib is an enum
+type M2tsArib struct{}
+
+// Contains returns whether the M2tsArib enum includes the element
+func (enum M2tsArib) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsArib enum
+func (enum M2tsArib) Values() []string {
+	return []string{
+		M2tsAribDisabled,
+		M2tsAribEnabled,
+	}
+}
+
 // M2ts Arib Captions Pid Control
 const (
 	// M2tsAribCaptionsPidControlAuto is a M2tsAribCaptionsPidControl enum value
@@ -25732,6 +29346,28 @@ const (
 	// M2tsAribCaptionsPidControlUseConfigured is a M2tsAribCaptionsPidControl enum value
 	M2tsAribCaptionsPidControlUseConfigured = "USE_CONFIGURED"
 )
+
+// M2tsAribCaptionsPidControl is an enum
+type M2tsAribCaptionsPidControl struct{}
+
+// Contains returns whether the M2tsAribCaptionsPidControl enum includes the element
+func (enum M2tsAribCaptionsPidControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsAribCaptionsPidControl enum
+func (enum M2tsAribCaptionsPidControl) Values() []string {
+	return []string{
+		M2tsAribCaptionsPidControlAuto,
+		M2tsAribCaptionsPidControlUseConfigured,
+	}
+}
 
 // M2ts Audio Buffer Model
 const (
@@ -25742,6 +29378,28 @@ const (
 	M2tsAudioBufferModelDvb = "DVB"
 )
 
+// M2tsAudioBufferModel is an enum
+type M2tsAudioBufferModel struct{}
+
+// Contains returns whether the M2tsAudioBufferModel enum includes the element
+func (enum M2tsAudioBufferModel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsAudioBufferModel enum
+func (enum M2tsAudioBufferModel) Values() []string {
+	return []string{
+		M2tsAudioBufferModelAtsc,
+		M2tsAudioBufferModelDvb,
+	}
+}
+
 // M2ts Audio Interval
 const (
 	// M2tsAudioIntervalVideoAndFixedIntervals is a M2tsAudioInterval enum value
@@ -25750,6 +29408,28 @@ const (
 	// M2tsAudioIntervalVideoInterval is a M2tsAudioInterval enum value
 	M2tsAudioIntervalVideoInterval = "VIDEO_INTERVAL"
 )
+
+// M2tsAudioInterval is an enum
+type M2tsAudioInterval struct{}
+
+// Contains returns whether the M2tsAudioInterval enum includes the element
+func (enum M2tsAudioInterval) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsAudioInterval enum
+func (enum M2tsAudioInterval) Values() []string {
+	return []string{
+		M2tsAudioIntervalVideoAndFixedIntervals,
+		M2tsAudioIntervalVideoInterval,
+	}
+}
 
 // M2ts Audio Stream Type
 const (
@@ -25760,6 +29440,28 @@ const (
 	M2tsAudioStreamTypeDvb = "DVB"
 )
 
+// M2tsAudioStreamType is an enum
+type M2tsAudioStreamType struct{}
+
+// Contains returns whether the M2tsAudioStreamType enum includes the element
+func (enum M2tsAudioStreamType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsAudioStreamType enum
+func (enum M2tsAudioStreamType) Values() []string {
+	return []string{
+		M2tsAudioStreamTypeAtsc,
+		M2tsAudioStreamTypeDvb,
+	}
+}
+
 // M2ts Buffer Model
 const (
 	// M2tsBufferModelMultiplex is a M2tsBufferModel enum value
@@ -25768,6 +29470,28 @@ const (
 	// M2tsBufferModelNone is a M2tsBufferModel enum value
 	M2tsBufferModelNone = "NONE"
 )
+
+// M2tsBufferModel is an enum
+type M2tsBufferModel struct{}
+
+// Contains returns whether the M2tsBufferModel enum includes the element
+func (enum M2tsBufferModel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsBufferModel enum
+func (enum M2tsBufferModel) Values() []string {
+	return []string{
+		M2tsBufferModelMultiplex,
+		M2tsBufferModelNone,
+	}
+}
 
 // M2ts Cc Descriptor
 const (
@@ -25778,6 +29502,28 @@ const (
 	M2tsCcDescriptorEnabled = "ENABLED"
 )
 
+// M2tsCcDescriptor is an enum
+type M2tsCcDescriptor struct{}
+
+// Contains returns whether the M2tsCcDescriptor enum includes the element
+func (enum M2tsCcDescriptor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsCcDescriptor enum
+func (enum M2tsCcDescriptor) Values() []string {
+	return []string{
+		M2tsCcDescriptorDisabled,
+		M2tsCcDescriptorEnabled,
+	}
+}
+
 // M2ts Ebif Control
 const (
 	// M2tsEbifControlNone is a M2tsEbifControl enum value
@@ -25786,6 +29532,28 @@ const (
 	// M2tsEbifControlPassthrough is a M2tsEbifControl enum value
 	M2tsEbifControlPassthrough = "PASSTHROUGH"
 )
+
+// M2tsEbifControl is an enum
+type M2tsEbifControl struct{}
+
+// Contains returns whether the M2tsEbifControl enum includes the element
+func (enum M2tsEbifControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsEbifControl enum
+func (enum M2tsEbifControl) Values() []string {
+	return []string{
+		M2tsEbifControlNone,
+		M2tsEbifControlPassthrough,
+	}
+}
 
 // M2ts Ebp Placement
 const (
@@ -25796,6 +29564,28 @@ const (
 	M2tsEbpPlacementVideoPid = "VIDEO_PID"
 )
 
+// M2tsEbpPlacement is an enum
+type M2tsEbpPlacement struct{}
+
+// Contains returns whether the M2tsEbpPlacement enum includes the element
+func (enum M2tsEbpPlacement) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsEbpPlacement enum
+func (enum M2tsEbpPlacement) Values() []string {
+	return []string{
+		M2tsEbpPlacementVideoAndAudioPids,
+		M2tsEbpPlacementVideoPid,
+	}
+}
+
 // M2ts Es Rate In Pes
 const (
 	// M2tsEsRateInPesExclude is a M2tsEsRateInPes enum value
@@ -25804,6 +29594,28 @@ const (
 	// M2tsEsRateInPesInclude is a M2tsEsRateInPes enum value
 	M2tsEsRateInPesInclude = "INCLUDE"
 )
+
+// M2tsEsRateInPes is an enum
+type M2tsEsRateInPes struct{}
+
+// Contains returns whether the M2tsEsRateInPes enum includes the element
+func (enum M2tsEsRateInPes) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsEsRateInPes enum
+func (enum M2tsEsRateInPes) Values() []string {
+	return []string{
+		M2tsEsRateInPesExclude,
+		M2tsEsRateInPesInclude,
+	}
+}
 
 // M2ts Klv
 const (
@@ -25814,6 +29626,28 @@ const (
 	M2tsKlvPassthrough = "PASSTHROUGH"
 )
 
+// M2tsKlv is an enum
+type M2tsKlv struct{}
+
+// Contains returns whether the M2tsKlv enum includes the element
+func (enum M2tsKlv) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsKlv enum
+func (enum M2tsKlv) Values() []string {
+	return []string{
+		M2tsKlvNone,
+		M2tsKlvPassthrough,
+	}
+}
+
 // M2ts Nielsen Id3 Behavior
 const (
 	// M2tsNielsenId3BehaviorNoPassthrough is a M2tsNielsenId3Behavior enum value
@@ -25822,6 +29656,28 @@ const (
 	// M2tsNielsenId3BehaviorPassthrough is a M2tsNielsenId3Behavior enum value
 	M2tsNielsenId3BehaviorPassthrough = "PASSTHROUGH"
 )
+
+// M2tsNielsenId3Behavior is an enum
+type M2tsNielsenId3Behavior struct{}
+
+// Contains returns whether the M2tsNielsenId3Behavior enum includes the element
+func (enum M2tsNielsenId3Behavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsNielsenId3Behavior enum
+func (enum M2tsNielsenId3Behavior) Values() []string {
+	return []string{
+		M2tsNielsenId3BehaviorNoPassthrough,
+		M2tsNielsenId3BehaviorPassthrough,
+	}
+}
 
 // M2ts Pcr Control
 const (
@@ -25832,6 +29688,28 @@ const (
 	M2tsPcrControlPcrEveryPesPacket = "PCR_EVERY_PES_PACKET"
 )
 
+// M2tsPcrControl is an enum
+type M2tsPcrControl struct{}
+
+// Contains returns whether the M2tsPcrControl enum includes the element
+func (enum M2tsPcrControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsPcrControl enum
+func (enum M2tsPcrControl) Values() []string {
+	return []string{
+		M2tsPcrControlConfiguredPcrPeriod,
+		M2tsPcrControlPcrEveryPesPacket,
+	}
+}
+
 // M2ts Rate Mode
 const (
 	// M2tsRateModeCbr is a M2tsRateMode enum value
@@ -25841,6 +29719,28 @@ const (
 	M2tsRateModeVbr = "VBR"
 )
 
+// M2tsRateMode is an enum
+type M2tsRateMode struct{}
+
+// Contains returns whether the M2tsRateMode enum includes the element
+func (enum M2tsRateMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsRateMode enum
+func (enum M2tsRateMode) Values() []string {
+	return []string{
+		M2tsRateModeCbr,
+		M2tsRateModeVbr,
+	}
+}
+
 // M2ts Scte35 Control
 const (
 	// M2tsScte35ControlNone is a M2tsScte35Control enum value
@@ -25849,6 +29749,28 @@ const (
 	// M2tsScte35ControlPassthrough is a M2tsScte35Control enum value
 	M2tsScte35ControlPassthrough = "PASSTHROUGH"
 )
+
+// M2tsScte35Control is an enum
+type M2tsScte35Control struct{}
+
+// Contains returns whether the M2tsScte35Control enum includes the element
+func (enum M2tsScte35Control) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsScte35Control enum
+func (enum M2tsScte35Control) Values() []string {
+	return []string{
+		M2tsScte35ControlNone,
+		M2tsScte35ControlPassthrough,
+	}
+}
 
 // M2ts Segmentation Markers
 const (
@@ -25871,6 +29793,32 @@ const (
 	M2tsSegmentationMarkersRaiSegstart = "RAI_SEGSTART"
 )
 
+// M2tsSegmentationMarkers is an enum
+type M2tsSegmentationMarkers struct{}
+
+// Contains returns whether the M2tsSegmentationMarkers enum includes the element
+func (enum M2tsSegmentationMarkers) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsSegmentationMarkers enum
+func (enum M2tsSegmentationMarkers) Values() []string {
+	return []string{
+		M2tsSegmentationMarkersEbp,
+		M2tsSegmentationMarkersEbpLegacy,
+		M2tsSegmentationMarkersNone,
+		M2tsSegmentationMarkersPsiSegstart,
+		M2tsSegmentationMarkersRaiAdapt,
+		M2tsSegmentationMarkersRaiSegstart,
+	}
+}
+
 // M2ts Segmentation Style
 const (
 	// M2tsSegmentationStyleMaintainCadence is a M2tsSegmentationStyle enum value
@@ -25879,6 +29827,28 @@ const (
 	// M2tsSegmentationStyleResetCadence is a M2tsSegmentationStyle enum value
 	M2tsSegmentationStyleResetCadence = "RESET_CADENCE"
 )
+
+// M2tsSegmentationStyle is an enum
+type M2tsSegmentationStyle struct{}
+
+// Contains returns whether the M2tsSegmentationStyle enum includes the element
+func (enum M2tsSegmentationStyle) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsSegmentationStyle enum
+func (enum M2tsSegmentationStyle) Values() []string {
+	return []string{
+		M2tsSegmentationStyleMaintainCadence,
+		M2tsSegmentationStyleResetCadence,
+	}
+}
 
 // M2ts Timed Metadata Behavior
 const (
@@ -25889,6 +29859,28 @@ const (
 	M2tsTimedMetadataBehaviorPassthrough = "PASSTHROUGH"
 )
 
+// M2tsTimedMetadataBehavior is an enum
+type M2tsTimedMetadataBehavior struct{}
+
+// Contains returns whether the M2tsTimedMetadataBehavior enum includes the element
+func (enum M2tsTimedMetadataBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsTimedMetadataBehavior enum
+func (enum M2tsTimedMetadataBehavior) Values() []string {
+	return []string{
+		M2tsTimedMetadataBehaviorNoPassthrough,
+		M2tsTimedMetadataBehaviorPassthrough,
+	}
+}
+
 // M3u8 Nielsen Id3 Behavior
 const (
 	// M3u8NielsenId3BehaviorNoPassthrough is a M3u8NielsenId3Behavior enum value
@@ -25897,6 +29889,28 @@ const (
 	// M3u8NielsenId3BehaviorPassthrough is a M3u8NielsenId3Behavior enum value
 	M3u8NielsenId3BehaviorPassthrough = "PASSTHROUGH"
 )
+
+// M3u8NielsenId3Behavior is an enum
+type M3u8NielsenId3Behavior struct{}
+
+// Contains returns whether the M3u8NielsenId3Behavior enum includes the element
+func (enum M3u8NielsenId3Behavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M3u8NielsenId3Behavior enum
+func (enum M3u8NielsenId3Behavior) Values() []string {
+	return []string{
+		M3u8NielsenId3BehaviorNoPassthrough,
+		M3u8NielsenId3BehaviorPassthrough,
+	}
+}
 
 // M3u8 Pcr Control
 const (
@@ -25907,6 +29921,28 @@ const (
 	M3u8PcrControlPcrEveryPesPacket = "PCR_EVERY_PES_PACKET"
 )
 
+// M3u8PcrControl is an enum
+type M3u8PcrControl struct{}
+
+// Contains returns whether the M3u8PcrControl enum includes the element
+func (enum M3u8PcrControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M3u8PcrControl enum
+func (enum M3u8PcrControl) Values() []string {
+	return []string{
+		M3u8PcrControlConfiguredPcrPeriod,
+		M3u8PcrControlPcrEveryPesPacket,
+	}
+}
+
 // M3u8 Scte35 Behavior
 const (
 	// M3u8Scte35BehaviorNoPassthrough is a M3u8Scte35Behavior enum value
@@ -25915,6 +29951,28 @@ const (
 	// M3u8Scte35BehaviorPassthrough is a M3u8Scte35Behavior enum value
 	M3u8Scte35BehaviorPassthrough = "PASSTHROUGH"
 )
+
+// M3u8Scte35Behavior is an enum
+type M3u8Scte35Behavior struct{}
+
+// Contains returns whether the M3u8Scte35Behavior enum includes the element
+func (enum M3u8Scte35Behavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M3u8Scte35Behavior enum
+func (enum M3u8Scte35Behavior) Values() []string {
+	return []string{
+		M3u8Scte35BehaviorNoPassthrough,
+		M3u8Scte35BehaviorPassthrough,
+	}
+}
 
 // M3u8 Timed Metadata Behavior
 const (
@@ -25925,6 +29983,28 @@ const (
 	M3u8TimedMetadataBehaviorPassthrough = "PASSTHROUGH"
 )
 
+// M3u8TimedMetadataBehavior is an enum
+type M3u8TimedMetadataBehavior struct{}
+
+// Contains returns whether the M3u8TimedMetadataBehavior enum includes the element
+func (enum M3u8TimedMetadataBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M3u8TimedMetadataBehavior enum
+func (enum M3u8TimedMetadataBehavior) Values() []string {
+	return []string{
+		M3u8TimedMetadataBehaviorNoPassthrough,
+		M3u8TimedMetadataBehaviorPassthrough,
+	}
+}
+
 // Mp2 Coding Mode
 const (
 	// Mp2CodingModeCodingMode10 is a Mp2CodingMode enum value
@@ -25934,6 +30014,28 @@ const (
 	Mp2CodingModeCodingMode20 = "CODING_MODE_2_0"
 )
 
+// Mp2CodingMode is an enum
+type Mp2CodingMode struct{}
+
+// Contains returns whether the Mp2CodingMode enum includes the element
+func (enum Mp2CodingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mp2CodingMode enum
+func (enum Mp2CodingMode) Values() []string {
+	return []string{
+		Mp2CodingModeCodingMode10,
+		Mp2CodingModeCodingMode20,
+	}
+}
+
 // Ms Smooth H265 Packaging Type
 const (
 	// MsSmoothH265PackagingTypeHev1 is a MsSmoothH265PackagingType enum value
@@ -25942,6 +30044,28 @@ const (
 	// MsSmoothH265PackagingTypeHvc1 is a MsSmoothH265PackagingType enum value
 	MsSmoothH265PackagingTypeHvc1 = "HVC1"
 )
+
+// MsSmoothH265PackagingType is an enum
+type MsSmoothH265PackagingType struct{}
+
+// Contains returns whether the MsSmoothH265PackagingType enum includes the element
+func (enum MsSmoothH265PackagingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MsSmoothH265PackagingType enum
+func (enum MsSmoothH265PackagingType) Values() []string {
+	return []string{
+		MsSmoothH265PackagingTypeHev1,
+		MsSmoothH265PackagingTypeHvc1,
+	}
+}
 
 // The current state of the multiplex.
 const (
@@ -25973,6 +30097,35 @@ const (
 	MultiplexStateDeleted = "DELETED"
 )
 
+// MultiplexState is an enum
+type MultiplexState struct{}
+
+// Contains returns whether the MultiplexState enum includes the element
+func (enum MultiplexState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MultiplexState enum
+func (enum MultiplexState) Values() []string {
+	return []string{
+		MultiplexStateCreating,
+		MultiplexStateCreateFailed,
+		MultiplexStateIdle,
+		MultiplexStateStarting,
+		MultiplexStateRunning,
+		MultiplexStateRecovering,
+		MultiplexStateStopping,
+		MultiplexStateDeleting,
+		MultiplexStateDeleted,
+	}
+}
+
 // Network Input Server Validation
 const (
 	// NetworkInputServerValidationCheckCryptographyAndValidateName is a NetworkInputServerValidation enum value
@@ -25981,6 +30134,28 @@ const (
 	// NetworkInputServerValidationCheckCryptographyOnly is a NetworkInputServerValidation enum value
 	NetworkInputServerValidationCheckCryptographyOnly = "CHECK_CRYPTOGRAPHY_ONLY"
 )
+
+// NetworkInputServerValidation is an enum
+type NetworkInputServerValidation struct{}
+
+// Contains returns whether the NetworkInputServerValidation enum includes the element
+func (enum NetworkInputServerValidation) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NetworkInputServerValidation enum
+func (enum NetworkInputServerValidation) Values() []string {
+	return []string{
+		NetworkInputServerValidationCheckCryptographyAndValidateName,
+		NetworkInputServerValidationCheckCryptographyOnly,
+	}
+}
 
 // State of Nielsen PCM to ID3 tagging
 const (
@@ -25991,17 +30166,81 @@ const (
 	NielsenPcmToId3TaggingStateEnabled = "ENABLED"
 )
 
+// NielsenPcmToId3TaggingState is an enum
+type NielsenPcmToId3TaggingState struct{}
+
+// Contains returns whether the NielsenPcmToId3TaggingState enum includes the element
+func (enum NielsenPcmToId3TaggingState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NielsenPcmToId3TaggingState enum
+func (enum NielsenPcmToId3TaggingState) Values() []string {
+	return []string{
+		NielsenPcmToId3TaggingStateDisabled,
+		NielsenPcmToId3TaggingStateEnabled,
+	}
+}
+
 // Units for duration, e.g. 'MONTHS'
 const (
 	// OfferingDurationUnitsMonths is a OfferingDurationUnits enum value
 	OfferingDurationUnitsMonths = "MONTHS"
 )
 
+// OfferingDurationUnits is an enum
+type OfferingDurationUnits struct{}
+
+// Contains returns whether the OfferingDurationUnits enum includes the element
+func (enum OfferingDurationUnits) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OfferingDurationUnits enum
+func (enum OfferingDurationUnits) Values() []string {
+	return []string{
+		OfferingDurationUnitsMonths,
+	}
+}
+
 // Offering type, e.g. 'NO_UPFRONT'
 const (
 	// OfferingTypeNoUpfront is a OfferingType enum value
 	OfferingTypeNoUpfront = "NO_UPFRONT"
 )
+
+// OfferingType is an enum
+type OfferingType struct{}
+
+// Contains returns whether the OfferingType enum includes the element
+func (enum OfferingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OfferingType enum
+func (enum OfferingType) Values() []string {
+	return []string{
+		OfferingTypeNoUpfront,
+	}
+}
 
 // Pipeline ID
 const (
@@ -26011,6 +30250,28 @@ const (
 	// PipelineIdPipeline1 is a PipelineId enum value
 	PipelineIdPipeline1 = "PIPELINE_1"
 )
+
+// PipelineId is an enum
+type PipelineId struct{}
+
+// Contains returns whether the PipelineId enum includes the element
+func (enum PipelineId) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PipelineId enum
+func (enum PipelineId) Values() []string {
+	return []string{
+		PipelineIdPipeline0,
+		PipelineIdPipeline1,
+	}
+}
 
 // Indicates which pipeline is preferred by the multiplex for program ingest.If
 // set to \"PIPELINE_0\" or \"PIPELINE_1\" and an unhealthy ingest causes the
@@ -26029,6 +30290,29 @@ const (
 	PreferredChannelPipelinePipeline1 = "PIPELINE_1"
 )
 
+// PreferredChannelPipeline is an enum
+type PreferredChannelPipeline struct{}
+
+// Contains returns whether the PreferredChannelPipeline enum includes the element
+func (enum PreferredChannelPipeline) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PreferredChannelPipeline enum
+func (enum PreferredChannelPipeline) Values() []string {
+	return []string{
+		PreferredChannelPipelineCurrentlyActive,
+		PreferredChannelPipelinePipeline0,
+		PreferredChannelPipelinePipeline1,
+	}
+}
+
 // Codec, 'MPEG2', 'AVC', 'HEVC', or 'AUDIO'
 const (
 	// ReservationCodecMpeg2 is a ReservationCodec enum value
@@ -26044,6 +30328,30 @@ const (
 	ReservationCodecAudio = "AUDIO"
 )
 
+// ReservationCodec is an enum
+type ReservationCodec struct{}
+
+// Contains returns whether the ReservationCodec enum includes the element
+func (enum ReservationCodec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservationCodec enum
+func (enum ReservationCodec) Values() []string {
+	return []string{
+		ReservationCodecMpeg2,
+		ReservationCodecAvc,
+		ReservationCodecHevc,
+		ReservationCodecAudio,
+	}
+}
+
 // Maximum bitrate in megabits per second
 const (
 	// ReservationMaximumBitrateMax10Mbps is a ReservationMaximumBitrate enum value
@@ -26056,6 +30364,29 @@ const (
 	ReservationMaximumBitrateMax50Mbps = "MAX_50_MBPS"
 )
 
+// ReservationMaximumBitrate is an enum
+type ReservationMaximumBitrate struct{}
+
+// Contains returns whether the ReservationMaximumBitrate enum includes the element
+func (enum ReservationMaximumBitrate) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservationMaximumBitrate enum
+func (enum ReservationMaximumBitrate) Values() []string {
+	return []string{
+		ReservationMaximumBitrateMax10Mbps,
+		ReservationMaximumBitrateMax20Mbps,
+		ReservationMaximumBitrateMax50Mbps,
+	}
+}
+
 // Maximum framerate in frames per second (Outputs only)
 const (
 	// ReservationMaximumFramerateMax30Fps is a ReservationMaximumFramerate enum value
@@ -26064,6 +30395,28 @@ const (
 	// ReservationMaximumFramerateMax60Fps is a ReservationMaximumFramerate enum value
 	ReservationMaximumFramerateMax60Fps = "MAX_60_FPS"
 )
+
+// ReservationMaximumFramerate is an enum
+type ReservationMaximumFramerate struct{}
+
+// Contains returns whether the ReservationMaximumFramerate enum includes the element
+func (enum ReservationMaximumFramerate) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservationMaximumFramerate enum
+func (enum ReservationMaximumFramerate) Values() []string {
+	return []string{
+		ReservationMaximumFramerateMax30Fps,
+		ReservationMaximumFramerateMax60Fps,
+	}
+}
 
 // Resolution based on lines of vertical resolution; SD is less than 720 lines,
 // HD is 720 to 1080 lines, FHD is 1080 lines, UHD is greater than 1080 lines
@@ -26081,6 +30434,30 @@ const (
 	ReservationResolutionUhd = "UHD"
 )
 
+// ReservationResolution is an enum
+type ReservationResolution struct{}
+
+// Contains returns whether the ReservationResolution enum includes the element
+func (enum ReservationResolution) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservationResolution enum
+func (enum ReservationResolution) Values() []string {
+	return []string{
+		ReservationResolutionSd,
+		ReservationResolutionHd,
+		ReservationResolutionFhd,
+		ReservationResolutionUhd,
+	}
+}
+
 // Resource type, 'INPUT', 'OUTPUT', 'MULTIPLEX', or 'CHANNEL'
 const (
 	// ReservationResourceTypeInput is a ReservationResourceType enum value
@@ -26096,6 +30473,30 @@ const (
 	ReservationResourceTypeChannel = "CHANNEL"
 )
 
+// ReservationResourceType is an enum
+type ReservationResourceType struct{}
+
+// Contains returns whether the ReservationResourceType enum includes the element
+func (enum ReservationResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservationResourceType enum
+func (enum ReservationResourceType) Values() []string {
+	return []string{
+		ReservationResourceTypeInput,
+		ReservationResourceTypeOutput,
+		ReservationResourceTypeMultiplex,
+		ReservationResourceTypeChannel,
+	}
+}
+
 // Special features, 'ADVANCED_AUDIO' or 'AUDIO_NORMALIZATION'
 const (
 	// ReservationSpecialFeatureAdvancedAudio is a ReservationSpecialFeature enum value
@@ -26104,6 +30505,28 @@ const (
 	// ReservationSpecialFeatureAudioNormalization is a ReservationSpecialFeature enum value
 	ReservationSpecialFeatureAudioNormalization = "AUDIO_NORMALIZATION"
 )
+
+// ReservationSpecialFeature is an enum
+type ReservationSpecialFeature struct{}
+
+// Contains returns whether the ReservationSpecialFeature enum includes the element
+func (enum ReservationSpecialFeature) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservationSpecialFeature enum
+func (enum ReservationSpecialFeature) Values() []string {
+	return []string{
+		ReservationSpecialFeatureAdvancedAudio,
+		ReservationSpecialFeatureAudioNormalization,
+	}
+}
 
 // Current reservation state
 const (
@@ -26120,6 +30543,30 @@ const (
 	ReservationStateDeleted = "DELETED"
 )
 
+// ReservationState is an enum
+type ReservationState struct{}
+
+// Contains returns whether the ReservationState enum includes the element
+func (enum ReservationState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservationState enum
+func (enum ReservationState) Values() []string {
+	return []string{
+		ReservationStateActive,
+		ReservationStateExpired,
+		ReservationStateCanceled,
+		ReservationStateDeleted,
+	}
+}
+
 // Video quality, e.g. 'STANDARD' (Outputs only)
 const (
 	// ReservationVideoQualityStandard is a ReservationVideoQuality enum value
@@ -26132,6 +30579,29 @@ const (
 	ReservationVideoQualityPremium = "PREMIUM"
 )
 
+// ReservationVideoQuality is an enum
+type ReservationVideoQuality struct{}
+
+// Contains returns whether the ReservationVideoQuality enum includes the element
+func (enum ReservationVideoQuality) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservationVideoQuality enum
+func (enum ReservationVideoQuality) Values() []string {
+	return []string{
+		ReservationVideoQualityStandard,
+		ReservationVideoQualityEnhanced,
+		ReservationVideoQualityPremium,
+	}
+}
+
 // Rtmp Cache Full Behavior
 const (
 	// RtmpCacheFullBehaviorDisconnectImmediately is a RtmpCacheFullBehavior enum value
@@ -26140,6 +30610,28 @@ const (
 	// RtmpCacheFullBehaviorWaitForServer is a RtmpCacheFullBehavior enum value
 	RtmpCacheFullBehaviorWaitForServer = "WAIT_FOR_SERVER"
 )
+
+// RtmpCacheFullBehavior is an enum
+type RtmpCacheFullBehavior struct{}
+
+// Contains returns whether the RtmpCacheFullBehavior enum includes the element
+func (enum RtmpCacheFullBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RtmpCacheFullBehavior enum
+func (enum RtmpCacheFullBehavior) Values() []string {
+	return []string{
+		RtmpCacheFullBehaviorDisconnectImmediately,
+		RtmpCacheFullBehaviorWaitForServer,
+	}
+}
 
 // Rtmp Caption Data
 const (
@@ -26153,6 +30645,29 @@ const (
 	RtmpCaptionDataField1AndField2608 = "FIELD1_AND_FIELD2_608"
 )
 
+// RtmpCaptionData is an enum
+type RtmpCaptionData struct{}
+
+// Contains returns whether the RtmpCaptionData enum includes the element
+func (enum RtmpCaptionData) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RtmpCaptionData enum
+func (enum RtmpCaptionData) Values() []string {
+	return []string{
+		RtmpCaptionDataAll,
+		RtmpCaptionDataField1608,
+		RtmpCaptionDataField1AndField2608,
+	}
+}
+
 // Rtmp Output Certificate Mode
 const (
 	// RtmpOutputCertificateModeSelfSigned is a RtmpOutputCertificateMode enum value
@@ -26161,6 +30676,28 @@ const (
 	// RtmpOutputCertificateModeVerifyAuthenticity is a RtmpOutputCertificateMode enum value
 	RtmpOutputCertificateModeVerifyAuthenticity = "VERIFY_AUTHENTICITY"
 )
+
+// RtmpOutputCertificateMode is an enum
+type RtmpOutputCertificateMode struct{}
+
+// Contains returns whether the RtmpOutputCertificateMode enum includes the element
+func (enum RtmpOutputCertificateMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RtmpOutputCertificateMode enum
+func (enum RtmpOutputCertificateMode) Values() []string {
+	return []string{
+		RtmpOutputCertificateModeSelfSigned,
+		RtmpOutputCertificateModeVerifyAuthenticity,
+	}
+}
 
 // Scte20 Convert608 To708
 const (
@@ -26171,6 +30708,28 @@ const (
 	Scte20Convert608To708Upconvert = "UPCONVERT"
 )
 
+// Scte20Convert608To708 is an enum
+type Scte20Convert608To708 struct{}
+
+// Contains returns whether the Scte20Convert608To708 enum includes the element
+func (enum Scte20Convert608To708) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Scte20Convert608To708 enum
+func (enum Scte20Convert608To708) Values() []string {
+	return []string{
+		Scte20Convert608To708Disabled,
+		Scte20Convert608To708Upconvert,
+	}
+}
+
 // Scte35 Apos No Regional Blackout Behavior
 const (
 	// Scte35AposNoRegionalBlackoutBehaviorFollow is a Scte35AposNoRegionalBlackoutBehavior enum value
@@ -26180,6 +30739,28 @@ const (
 	Scte35AposNoRegionalBlackoutBehaviorIgnore = "IGNORE"
 )
 
+// Scte35AposNoRegionalBlackoutBehavior is an enum
+type Scte35AposNoRegionalBlackoutBehavior struct{}
+
+// Contains returns whether the Scte35AposNoRegionalBlackoutBehavior enum includes the element
+func (enum Scte35AposNoRegionalBlackoutBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Scte35AposNoRegionalBlackoutBehavior enum
+func (enum Scte35AposNoRegionalBlackoutBehavior) Values() []string {
+	return []string{
+		Scte35AposNoRegionalBlackoutBehaviorFollow,
+		Scte35AposNoRegionalBlackoutBehaviorIgnore,
+	}
+}
+
 // Scte35 Apos Web Delivery Allowed Behavior
 const (
 	// Scte35AposWebDeliveryAllowedBehaviorFollow is a Scte35AposWebDeliveryAllowedBehavior enum value
@@ -26188,6 +30769,28 @@ const (
 	// Scte35AposWebDeliveryAllowedBehaviorIgnore is a Scte35AposWebDeliveryAllowedBehavior enum value
 	Scte35AposWebDeliveryAllowedBehaviorIgnore = "IGNORE"
 )
+
+// Scte35AposWebDeliveryAllowedBehavior is an enum
+type Scte35AposWebDeliveryAllowedBehavior struct{}
+
+// Contains returns whether the Scte35AposWebDeliveryAllowedBehavior enum includes the element
+func (enum Scte35AposWebDeliveryAllowedBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Scte35AposWebDeliveryAllowedBehavior enum
+func (enum Scte35AposWebDeliveryAllowedBehavior) Values() []string {
+	return []string{
+		Scte35AposWebDeliveryAllowedBehaviorFollow,
+		Scte35AposWebDeliveryAllowedBehaviorIgnore,
+	}
+}
 
 // Corresponds to the archive_allowed parameter. A value of ARCHIVE_NOT_ALLOWED
 // corresponds to 0 (false) in the SCTE-35 specification. If you include one
@@ -26199,6 +30802,28 @@ const (
 	// Scte35ArchiveAllowedFlagArchiveAllowed is a Scte35ArchiveAllowedFlag enum value
 	Scte35ArchiveAllowedFlagArchiveAllowed = "ARCHIVE_ALLOWED"
 )
+
+// Scte35ArchiveAllowedFlag is an enum
+type Scte35ArchiveAllowedFlag struct{}
+
+// Contains returns whether the Scte35ArchiveAllowedFlag enum includes the element
+func (enum Scte35ArchiveAllowedFlag) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Scte35ArchiveAllowedFlag enum
+func (enum Scte35ArchiveAllowedFlag) Values() []string {
+	return []string{
+		Scte35ArchiveAllowedFlagArchiveNotAllowed,
+		Scte35ArchiveAllowedFlagArchiveAllowed,
+	}
+}
 
 // Corresponds to the device_restrictions parameter in a segmentation_descriptor.
 // If you include one of the "restriction" flags then you must include all four
@@ -26217,6 +30842,30 @@ const (
 	Scte35DeviceRestrictionsRestrictGroup2 = "RESTRICT_GROUP2"
 )
 
+// Scte35DeviceRestrictions is an enum
+type Scte35DeviceRestrictions struct{}
+
+// Contains returns whether the Scte35DeviceRestrictions enum includes the element
+func (enum Scte35DeviceRestrictions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Scte35DeviceRestrictions enum
+func (enum Scte35DeviceRestrictions) Values() []string {
+	return []string{
+		Scte35DeviceRestrictionsNone,
+		Scte35DeviceRestrictionsRestrictGroup0,
+		Scte35DeviceRestrictionsRestrictGroup1,
+		Scte35DeviceRestrictionsRestrictGroup2,
+	}
+}
+
 // Corresponds to the no_regional_blackout_flag parameter. A value of REGIONAL_BLACKOUT
 // corresponds to 0 (false) in the SCTE-35 specification. If you include one
 // of the "restriction" flags then you must include all four of them.
@@ -26227,6 +30876,28 @@ const (
 	// Scte35NoRegionalBlackoutFlagNoRegionalBlackout is a Scte35NoRegionalBlackoutFlag enum value
 	Scte35NoRegionalBlackoutFlagNoRegionalBlackout = "NO_REGIONAL_BLACKOUT"
 )
+
+// Scte35NoRegionalBlackoutFlag is an enum
+type Scte35NoRegionalBlackoutFlag struct{}
+
+// Contains returns whether the Scte35NoRegionalBlackoutFlag enum includes the element
+func (enum Scte35NoRegionalBlackoutFlag) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Scte35NoRegionalBlackoutFlag enum
+func (enum Scte35NoRegionalBlackoutFlag) Values() []string {
+	return []string{
+		Scte35NoRegionalBlackoutFlagRegionalBlackout,
+		Scte35NoRegionalBlackoutFlagNoRegionalBlackout,
+	}
+}
 
 // Corresponds to SCTE-35 segmentation_event_cancel_indicator. SEGMENTATION_EVENT_NOT_CANCELED
 // corresponds to 0 in the SCTE-35 specification and indicates that this is
@@ -26241,6 +30912,28 @@ const (
 	Scte35SegmentationCancelIndicatorSegmentationEventCanceled = "SEGMENTATION_EVENT_CANCELED"
 )
 
+// Scte35SegmentationCancelIndicator is an enum
+type Scte35SegmentationCancelIndicator struct{}
+
+// Contains returns whether the Scte35SegmentationCancelIndicator enum includes the element
+func (enum Scte35SegmentationCancelIndicator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Scte35SegmentationCancelIndicator enum
+func (enum Scte35SegmentationCancelIndicator) Values() []string {
+	return []string{
+		Scte35SegmentationCancelIndicatorSegmentationEventNotCanceled,
+		Scte35SegmentationCancelIndicatorSegmentationEventCanceled,
+	}
+}
+
 // Scte35 Splice Insert No Regional Blackout Behavior
 const (
 	// Scte35SpliceInsertNoRegionalBlackoutBehaviorFollow is a Scte35SpliceInsertNoRegionalBlackoutBehavior enum value
@@ -26250,6 +30943,28 @@ const (
 	Scte35SpliceInsertNoRegionalBlackoutBehaviorIgnore = "IGNORE"
 )
 
+// Scte35SpliceInsertNoRegionalBlackoutBehavior is an enum
+type Scte35SpliceInsertNoRegionalBlackoutBehavior struct{}
+
+// Contains returns whether the Scte35SpliceInsertNoRegionalBlackoutBehavior enum includes the element
+func (enum Scte35SpliceInsertNoRegionalBlackoutBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Scte35SpliceInsertNoRegionalBlackoutBehavior enum
+func (enum Scte35SpliceInsertNoRegionalBlackoutBehavior) Values() []string {
+	return []string{
+		Scte35SpliceInsertNoRegionalBlackoutBehaviorFollow,
+		Scte35SpliceInsertNoRegionalBlackoutBehaviorIgnore,
+	}
+}
+
 // Scte35 Splice Insert Web Delivery Allowed Behavior
 const (
 	// Scte35SpliceInsertWebDeliveryAllowedBehaviorFollow is a Scte35SpliceInsertWebDeliveryAllowedBehavior enum value
@@ -26258,6 +30973,28 @@ const (
 	// Scte35SpliceInsertWebDeliveryAllowedBehaviorIgnore is a Scte35SpliceInsertWebDeliveryAllowedBehavior enum value
 	Scte35SpliceInsertWebDeliveryAllowedBehaviorIgnore = "IGNORE"
 )
+
+// Scte35SpliceInsertWebDeliveryAllowedBehavior is an enum
+type Scte35SpliceInsertWebDeliveryAllowedBehavior struct{}
+
+// Contains returns whether the Scte35SpliceInsertWebDeliveryAllowedBehavior enum includes the element
+func (enum Scte35SpliceInsertWebDeliveryAllowedBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Scte35SpliceInsertWebDeliveryAllowedBehavior enum
+func (enum Scte35SpliceInsertWebDeliveryAllowedBehavior) Values() []string {
+	return []string{
+		Scte35SpliceInsertWebDeliveryAllowedBehaviorFollow,
+		Scte35SpliceInsertWebDeliveryAllowedBehaviorIgnore,
+	}
+}
 
 // Corresponds to the web_delivery_allowed_flag parameter. A value of WEB_DELIVERY_NOT_ALLOWED
 // corresponds to 0 (false) in the SCTE-35 specification. If you include one
@@ -26270,6 +31007,28 @@ const (
 	Scte35WebDeliveryAllowedFlagWebDeliveryAllowed = "WEB_DELIVERY_ALLOWED"
 )
 
+// Scte35WebDeliveryAllowedFlag is an enum
+type Scte35WebDeliveryAllowedFlag struct{}
+
+// Contains returns whether the Scte35WebDeliveryAllowedFlag enum includes the element
+func (enum Scte35WebDeliveryAllowedFlag) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Scte35WebDeliveryAllowedFlag enum
+func (enum Scte35WebDeliveryAllowedFlag) Values() []string {
+	return []string{
+		Scte35WebDeliveryAllowedFlagWebDeliveryNotAllowed,
+		Scte35WebDeliveryAllowedFlagWebDeliveryAllowed,
+	}
+}
+
 // Smooth Group Audio Only Timecode Control
 const (
 	// SmoothGroupAudioOnlyTimecodeControlPassthrough is a SmoothGroupAudioOnlyTimecodeControl enum value
@@ -26279,6 +31038,28 @@ const (
 	SmoothGroupAudioOnlyTimecodeControlUseConfiguredClock = "USE_CONFIGURED_CLOCK"
 )
 
+// SmoothGroupAudioOnlyTimecodeControl is an enum
+type SmoothGroupAudioOnlyTimecodeControl struct{}
+
+// Contains returns whether the SmoothGroupAudioOnlyTimecodeControl enum includes the element
+func (enum SmoothGroupAudioOnlyTimecodeControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SmoothGroupAudioOnlyTimecodeControl enum
+func (enum SmoothGroupAudioOnlyTimecodeControl) Values() []string {
+	return []string{
+		SmoothGroupAudioOnlyTimecodeControlPassthrough,
+		SmoothGroupAudioOnlyTimecodeControlUseConfiguredClock,
+	}
+}
+
 // Smooth Group Certificate Mode
 const (
 	// SmoothGroupCertificateModeSelfSigned is a SmoothGroupCertificateMode enum value
@@ -26287,6 +31068,28 @@ const (
 	// SmoothGroupCertificateModeVerifyAuthenticity is a SmoothGroupCertificateMode enum value
 	SmoothGroupCertificateModeVerifyAuthenticity = "VERIFY_AUTHENTICITY"
 )
+
+// SmoothGroupCertificateMode is an enum
+type SmoothGroupCertificateMode struct{}
+
+// Contains returns whether the SmoothGroupCertificateMode enum includes the element
+func (enum SmoothGroupCertificateMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SmoothGroupCertificateMode enum
+func (enum SmoothGroupCertificateMode) Values() []string {
+	return []string{
+		SmoothGroupCertificateModeSelfSigned,
+		SmoothGroupCertificateModeVerifyAuthenticity,
+	}
+}
 
 // Smooth Group Event Id Mode
 const (
@@ -26300,6 +31103,29 @@ const (
 	SmoothGroupEventIdModeUseTimestamp = "USE_TIMESTAMP"
 )
 
+// SmoothGroupEventIdMode is an enum
+type SmoothGroupEventIdMode struct{}
+
+// Contains returns whether the SmoothGroupEventIdMode enum includes the element
+func (enum SmoothGroupEventIdMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SmoothGroupEventIdMode enum
+func (enum SmoothGroupEventIdMode) Values() []string {
+	return []string{
+		SmoothGroupEventIdModeNoEventId,
+		SmoothGroupEventIdModeUseConfigured,
+		SmoothGroupEventIdModeUseTimestamp,
+	}
+}
+
 // Smooth Group Event Stop Behavior
 const (
 	// SmoothGroupEventStopBehaviorNone is a SmoothGroupEventStopBehavior enum value
@@ -26309,6 +31135,28 @@ const (
 	SmoothGroupEventStopBehaviorSendEos = "SEND_EOS"
 )
 
+// SmoothGroupEventStopBehavior is an enum
+type SmoothGroupEventStopBehavior struct{}
+
+// Contains returns whether the SmoothGroupEventStopBehavior enum includes the element
+func (enum SmoothGroupEventStopBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SmoothGroupEventStopBehavior enum
+func (enum SmoothGroupEventStopBehavior) Values() []string {
+	return []string{
+		SmoothGroupEventStopBehaviorNone,
+		SmoothGroupEventStopBehaviorSendEos,
+	}
+}
+
 // Smooth Group Segmentation Mode
 const (
 	// SmoothGroupSegmentationModeUseInputSegmentation is a SmoothGroupSegmentationMode enum value
@@ -26317,6 +31165,28 @@ const (
 	// SmoothGroupSegmentationModeUseSegmentDuration is a SmoothGroupSegmentationMode enum value
 	SmoothGroupSegmentationModeUseSegmentDuration = "USE_SEGMENT_DURATION"
 )
+
+// SmoothGroupSegmentationMode is an enum
+type SmoothGroupSegmentationMode struct{}
+
+// Contains returns whether the SmoothGroupSegmentationMode enum includes the element
+func (enum SmoothGroupSegmentationMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SmoothGroupSegmentationMode enum
+func (enum SmoothGroupSegmentationMode) Values() []string {
+	return []string{
+		SmoothGroupSegmentationModeUseInputSegmentation,
+		SmoothGroupSegmentationModeUseSegmentDuration,
+	}
+}
 
 // Smooth Group Sparse Track Type
 const (
@@ -26330,6 +31200,29 @@ const (
 	SmoothGroupSparseTrackTypeScte35WithoutSegmentation = "SCTE_35_WITHOUT_SEGMENTATION"
 )
 
+// SmoothGroupSparseTrackType is an enum
+type SmoothGroupSparseTrackType struct{}
+
+// Contains returns whether the SmoothGroupSparseTrackType enum includes the element
+func (enum SmoothGroupSparseTrackType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SmoothGroupSparseTrackType enum
+func (enum SmoothGroupSparseTrackType) Values() []string {
+	return []string{
+		SmoothGroupSparseTrackTypeNone,
+		SmoothGroupSparseTrackTypeScte35,
+		SmoothGroupSparseTrackTypeScte35WithoutSegmentation,
+	}
+}
+
 // Smooth Group Stream Manifest Behavior
 const (
 	// SmoothGroupStreamManifestBehaviorDoNotSend is a SmoothGroupStreamManifestBehavior enum value
@@ -26338,6 +31231,28 @@ const (
 	// SmoothGroupStreamManifestBehaviorSend is a SmoothGroupStreamManifestBehavior enum value
 	SmoothGroupStreamManifestBehaviorSend = "SEND"
 )
+
+// SmoothGroupStreamManifestBehavior is an enum
+type SmoothGroupStreamManifestBehavior struct{}
+
+// Contains returns whether the SmoothGroupStreamManifestBehavior enum includes the element
+func (enum SmoothGroupStreamManifestBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SmoothGroupStreamManifestBehavior enum
+func (enum SmoothGroupStreamManifestBehavior) Values() []string {
+	return []string{
+		SmoothGroupStreamManifestBehaviorDoNotSend,
+		SmoothGroupStreamManifestBehaviorSend,
+	}
+}
 
 // Smooth Group Timestamp Offset Mode
 const (
@@ -26348,6 +31263,28 @@ const (
 	SmoothGroupTimestampOffsetModeUseEventStartDate = "USE_EVENT_START_DATE"
 )
 
+// SmoothGroupTimestampOffsetMode is an enum
+type SmoothGroupTimestampOffsetMode struct{}
+
+// Contains returns whether the SmoothGroupTimestampOffsetMode enum includes the element
+func (enum SmoothGroupTimestampOffsetMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SmoothGroupTimestampOffsetMode enum
+func (enum SmoothGroupTimestampOffsetMode) Values() []string {
+	return []string{
+		SmoothGroupTimestampOffsetModeUseConfiguredOffset,
+		SmoothGroupTimestampOffsetModeUseEventStartDate,
+	}
+}
+
 // Smpte2038 Data Preference
 const (
 	// Smpte2038DataPreferenceIgnore is a Smpte2038DataPreference enum value
@@ -26356,6 +31293,28 @@ const (
 	// Smpte2038DataPreferencePrefer is a Smpte2038DataPreference enum value
 	Smpte2038DataPreferencePrefer = "PREFER"
 )
+
+// Smpte2038DataPreference is an enum
+type Smpte2038DataPreference struct{}
+
+// Contains returns whether the Smpte2038DataPreference enum includes the element
+func (enum Smpte2038DataPreference) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Smpte2038DataPreference enum
+func (enum Smpte2038DataPreference) Values() []string {
+	return []string{
+		Smpte2038DataPreferenceIgnore,
+		Smpte2038DataPreferencePrefer,
+	}
+}
 
 // Temporal Filter Post Filter Sharpening
 const (
@@ -26368,6 +31327,29 @@ const (
 	// TemporalFilterPostFilterSharpeningEnabled is a TemporalFilterPostFilterSharpening enum value
 	TemporalFilterPostFilterSharpeningEnabled = "ENABLED"
 )
+
+// TemporalFilterPostFilterSharpening is an enum
+type TemporalFilterPostFilterSharpening struct{}
+
+// Contains returns whether the TemporalFilterPostFilterSharpening enum includes the element
+func (enum TemporalFilterPostFilterSharpening) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TemporalFilterPostFilterSharpening enum
+func (enum TemporalFilterPostFilterSharpening) Values() []string {
+	return []string{
+		TemporalFilterPostFilterSharpeningAuto,
+		TemporalFilterPostFilterSharpeningDisabled,
+		TemporalFilterPostFilterSharpeningEnabled,
+	}
+}
 
 // Temporal Filter Strength
 const (
@@ -26423,6 +31405,43 @@ const (
 	TemporalFilterStrengthStrength16 = "STRENGTH_16"
 )
 
+// TemporalFilterStrength is an enum
+type TemporalFilterStrength struct{}
+
+// Contains returns whether the TemporalFilterStrength enum includes the element
+func (enum TemporalFilterStrength) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TemporalFilterStrength enum
+func (enum TemporalFilterStrength) Values() []string {
+	return []string{
+		TemporalFilterStrengthAuto,
+		TemporalFilterStrengthStrength1,
+		TemporalFilterStrengthStrength2,
+		TemporalFilterStrengthStrength3,
+		TemporalFilterStrengthStrength4,
+		TemporalFilterStrengthStrength5,
+		TemporalFilterStrengthStrength6,
+		TemporalFilterStrengthStrength7,
+		TemporalFilterStrengthStrength8,
+		TemporalFilterStrengthStrength9,
+		TemporalFilterStrengthStrength10,
+		TemporalFilterStrengthStrength11,
+		TemporalFilterStrengthStrength12,
+		TemporalFilterStrengthStrength13,
+		TemporalFilterStrengthStrength14,
+		TemporalFilterStrengthStrength15,
+		TemporalFilterStrengthStrength16,
+	}
+}
+
 // Timecode Config Source
 const (
 	// TimecodeConfigSourceEmbedded is a TimecodeConfigSource enum value
@@ -26435,6 +31454,29 @@ const (
 	TimecodeConfigSourceZerobased = "ZEROBASED"
 )
 
+// TimecodeConfigSource is an enum
+type TimecodeConfigSource struct{}
+
+// Contains returns whether the TimecodeConfigSource enum includes the element
+func (enum TimecodeConfigSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TimecodeConfigSource enum
+func (enum TimecodeConfigSource) Values() []string {
+	return []string{
+		TimecodeConfigSourceEmbedded,
+		TimecodeConfigSourceSystemclock,
+		TimecodeConfigSourceZerobased,
+	}
+}
+
 // Ttml Destination Style Control
 const (
 	// TtmlDestinationStyleControlPassthrough is a TtmlDestinationStyleControl enum value
@@ -26443,6 +31485,28 @@ const (
 	// TtmlDestinationStyleControlUseConfigured is a TtmlDestinationStyleControl enum value
 	TtmlDestinationStyleControlUseConfigured = "USE_CONFIGURED"
 )
+
+// TtmlDestinationStyleControl is an enum
+type TtmlDestinationStyleControl struct{}
+
+// Contains returns whether the TtmlDestinationStyleControl enum includes the element
+func (enum TtmlDestinationStyleControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TtmlDestinationStyleControl enum
+func (enum TtmlDestinationStyleControl) Values() []string {
+	return []string{
+		TtmlDestinationStyleControlPassthrough,
+		TtmlDestinationStyleControlUseConfigured,
+	}
+}
 
 // Udp Timed Metadata Id3 Frame
 const (
@@ -26456,6 +31520,29 @@ const (
 	UdpTimedMetadataId3FrameTdrl = "TDRL"
 )
 
+// UdpTimedMetadataId3Frame is an enum
+type UdpTimedMetadataId3Frame struct{}
+
+// Contains returns whether the UdpTimedMetadataId3Frame enum includes the element
+func (enum UdpTimedMetadataId3Frame) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UdpTimedMetadataId3Frame enum
+func (enum UdpTimedMetadataId3Frame) Values() []string {
+	return []string{
+		UdpTimedMetadataId3FrameNone,
+		UdpTimedMetadataId3FramePriv,
+		UdpTimedMetadataId3FrameTdrl,
+	}
+}
+
 // Video Description Respond To Afd
 const (
 	// VideoDescriptionRespondToAfdNone is a VideoDescriptionRespondToAfd enum value
@@ -26468,6 +31555,29 @@ const (
 	VideoDescriptionRespondToAfdRespond = "RESPOND"
 )
 
+// VideoDescriptionRespondToAfd is an enum
+type VideoDescriptionRespondToAfd struct{}
+
+// Contains returns whether the VideoDescriptionRespondToAfd enum includes the element
+func (enum VideoDescriptionRespondToAfd) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VideoDescriptionRespondToAfd enum
+func (enum VideoDescriptionRespondToAfd) Values() []string {
+	return []string{
+		VideoDescriptionRespondToAfdNone,
+		VideoDescriptionRespondToAfdPassthrough,
+		VideoDescriptionRespondToAfdRespond,
+	}
+}
+
 // Video Description Scaling Behavior
 const (
 	// VideoDescriptionScalingBehaviorDefault is a VideoDescriptionScalingBehavior enum value
@@ -26476,6 +31586,28 @@ const (
 	// VideoDescriptionScalingBehaviorStretchToOutput is a VideoDescriptionScalingBehavior enum value
 	VideoDescriptionScalingBehaviorStretchToOutput = "STRETCH_TO_OUTPUT"
 )
+
+// VideoDescriptionScalingBehavior is an enum
+type VideoDescriptionScalingBehavior struct{}
+
+// Contains returns whether the VideoDescriptionScalingBehavior enum includes the element
+func (enum VideoDescriptionScalingBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VideoDescriptionScalingBehavior enum
+func (enum VideoDescriptionScalingBehavior) Values() []string {
+	return []string{
+		VideoDescriptionScalingBehaviorDefault,
+		VideoDescriptionScalingBehaviorStretchToOutput,
+	}
+}
 
 // Video Selector Color Space
 const (
@@ -26489,6 +31621,29 @@ const (
 	VideoSelectorColorSpaceRec709 = "REC_709"
 )
 
+// VideoSelectorColorSpace is an enum
+type VideoSelectorColorSpace struct{}
+
+// Contains returns whether the VideoSelectorColorSpace enum includes the element
+func (enum VideoSelectorColorSpace) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VideoSelectorColorSpace enum
+func (enum VideoSelectorColorSpace) Values() []string {
+	return []string{
+		VideoSelectorColorSpaceFollow,
+		VideoSelectorColorSpaceRec601,
+		VideoSelectorColorSpaceRec709,
+	}
+}
+
 // Video Selector Color Space Usage
 const (
 	// VideoSelectorColorSpaceUsageFallback is a VideoSelectorColorSpaceUsage enum value
@@ -26497,3 +31652,25 @@ const (
 	// VideoSelectorColorSpaceUsageForce is a VideoSelectorColorSpaceUsage enum value
 	VideoSelectorColorSpaceUsageForce = "FORCE"
 )
+
+// VideoSelectorColorSpaceUsage is an enum
+type VideoSelectorColorSpaceUsage struct{}
+
+// Contains returns whether the VideoSelectorColorSpaceUsage enum includes the element
+func (enum VideoSelectorColorSpaceUsage) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VideoSelectorColorSpaceUsage enum
+func (enum VideoSelectorColorSpaceUsage) Values() []string {
+	return []string{
+		VideoSelectorColorSpaceUsageFallback,
+		VideoSelectorColorSpaceUsageForce,
+	}
+}

@@ -16607,6 +16607,30 @@ const (
 	ActivityTaskTimeoutTypeHeartbeat = "HEARTBEAT"
 )
 
+// ActivityTaskTimeoutType is an enum
+type ActivityTaskTimeoutType struct{}
+
+// Contains returns whether the ActivityTaskTimeoutType enum includes the element
+func (enum ActivityTaskTimeoutType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActivityTaskTimeoutType enum
+func (enum ActivityTaskTimeoutType) Values() []string {
+	return []string{
+		ActivityTaskTimeoutTypeStartToClose,
+		ActivityTaskTimeoutTypeScheduleToStart,
+		ActivityTaskTimeoutTypeScheduleToClose,
+		ActivityTaskTimeoutTypeHeartbeat,
+	}
+}
+
 const (
 	// CancelTimerFailedCauseTimerIdUnknown is a CancelTimerFailedCause enum value
 	CancelTimerFailedCauseTimerIdUnknown = "TIMER_ID_UNKNOWN"
@@ -16615,6 +16639,28 @@ const (
 	CancelTimerFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
 
+// CancelTimerFailedCause is an enum
+type CancelTimerFailedCause struct{}
+
+// Contains returns whether the CancelTimerFailedCause enum includes the element
+func (enum CancelTimerFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CancelTimerFailedCause enum
+func (enum CancelTimerFailedCause) Values() []string {
+	return []string{
+		CancelTimerFailedCauseTimerIdUnknown,
+		CancelTimerFailedCauseOperationNotPermitted,
+	}
+}
+
 const (
 	// CancelWorkflowExecutionFailedCauseUnhandledDecision is a CancelWorkflowExecutionFailedCause enum value
 	CancelWorkflowExecutionFailedCauseUnhandledDecision = "UNHANDLED_DECISION"
@@ -16622,6 +16668,28 @@ const (
 	// CancelWorkflowExecutionFailedCauseOperationNotPermitted is a CancelWorkflowExecutionFailedCause enum value
 	CancelWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
+
+// CancelWorkflowExecutionFailedCause is an enum
+type CancelWorkflowExecutionFailedCause struct{}
+
+// Contains returns whether the CancelWorkflowExecutionFailedCause enum includes the element
+func (enum CancelWorkflowExecutionFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CancelWorkflowExecutionFailedCause enum
+func (enum CancelWorkflowExecutionFailedCause) Values() []string {
+	return []string{
+		CancelWorkflowExecutionFailedCauseUnhandledDecision,
+		CancelWorkflowExecutionFailedCauseOperationNotPermitted,
+	}
+}
 
 const (
 	// ChildPolicyTerminate is a ChildPolicy enum value
@@ -16633,6 +16701,29 @@ const (
 	// ChildPolicyAbandon is a ChildPolicy enum value
 	ChildPolicyAbandon = "ABANDON"
 )
+
+// ChildPolicy is an enum
+type ChildPolicy struct{}
+
+// Contains returns whether the ChildPolicy enum includes the element
+func (enum ChildPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChildPolicy enum
+func (enum ChildPolicy) Values() []string {
+	return []string{
+		ChildPolicyTerminate,
+		ChildPolicyRequestCancel,
+		ChildPolicyAbandon,
+	}
+}
 
 const (
 	// CloseStatusCompleted is a CloseStatus enum value
@@ -16654,6 +16745,32 @@ const (
 	CloseStatusTimedOut = "TIMED_OUT"
 )
 
+// CloseStatus is an enum
+type CloseStatus struct{}
+
+// Contains returns whether the CloseStatus enum includes the element
+func (enum CloseStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CloseStatus enum
+func (enum CloseStatus) Values() []string {
+	return []string{
+		CloseStatusCompleted,
+		CloseStatusFailed,
+		CloseStatusCanceled,
+		CloseStatusTerminated,
+		CloseStatusContinuedAsNew,
+		CloseStatusTimedOut,
+	}
+}
+
 const (
 	// CompleteWorkflowExecutionFailedCauseUnhandledDecision is a CompleteWorkflowExecutionFailedCause enum value
 	CompleteWorkflowExecutionFailedCauseUnhandledDecision = "UNHANDLED_DECISION"
@@ -16661,6 +16778,28 @@ const (
 	// CompleteWorkflowExecutionFailedCauseOperationNotPermitted is a CompleteWorkflowExecutionFailedCause enum value
 	CompleteWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
+
+// CompleteWorkflowExecutionFailedCause is an enum
+type CompleteWorkflowExecutionFailedCause struct{}
+
+// Contains returns whether the CompleteWorkflowExecutionFailedCause enum includes the element
+func (enum CompleteWorkflowExecutionFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CompleteWorkflowExecutionFailedCause enum
+func (enum CompleteWorkflowExecutionFailedCause) Values() []string {
+	return []string{
+		CompleteWorkflowExecutionFailedCauseUnhandledDecision,
+		CompleteWorkflowExecutionFailedCauseOperationNotPermitted,
+	}
+}
 
 const (
 	// ContinueAsNewWorkflowExecutionFailedCauseUnhandledDecision is a ContinueAsNewWorkflowExecutionFailedCause enum value
@@ -16691,10 +16830,60 @@ const (
 	ContinueAsNewWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
 
+// ContinueAsNewWorkflowExecutionFailedCause is an enum
+type ContinueAsNewWorkflowExecutionFailedCause struct{}
+
+// Contains returns whether the ContinueAsNewWorkflowExecutionFailedCause enum includes the element
+func (enum ContinueAsNewWorkflowExecutionFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContinueAsNewWorkflowExecutionFailedCause enum
+func (enum ContinueAsNewWorkflowExecutionFailedCause) Values() []string {
+	return []string{
+		ContinueAsNewWorkflowExecutionFailedCauseUnhandledDecision,
+		ContinueAsNewWorkflowExecutionFailedCauseWorkflowTypeDeprecated,
+		ContinueAsNewWorkflowExecutionFailedCauseWorkflowTypeDoesNotExist,
+		ContinueAsNewWorkflowExecutionFailedCauseDefaultExecutionStartToCloseTimeoutUndefined,
+		ContinueAsNewWorkflowExecutionFailedCauseDefaultTaskStartToCloseTimeoutUndefined,
+		ContinueAsNewWorkflowExecutionFailedCauseDefaultTaskListUndefined,
+		ContinueAsNewWorkflowExecutionFailedCauseDefaultChildPolicyUndefined,
+		ContinueAsNewWorkflowExecutionFailedCauseContinueAsNewWorkflowExecutionRateExceeded,
+		ContinueAsNewWorkflowExecutionFailedCauseOperationNotPermitted,
+	}
+}
+
 const (
 	// DecisionTaskTimeoutTypeStartToClose is a DecisionTaskTimeoutType enum value
 	DecisionTaskTimeoutTypeStartToClose = "START_TO_CLOSE"
 )
+
+// DecisionTaskTimeoutType is an enum
+type DecisionTaskTimeoutType struct{}
+
+// Contains returns whether the DecisionTaskTimeoutType enum includes the element
+func (enum DecisionTaskTimeoutType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DecisionTaskTimeoutType enum
+func (enum DecisionTaskTimeoutType) Values() []string {
+	return []string{
+		DecisionTaskTimeoutTypeStartToClose,
+	}
+}
 
 const (
 	// DecisionTypeScheduleActivityTask is a DecisionType enum value
@@ -16736,6 +16925,39 @@ const (
 	// DecisionTypeScheduleLambdaFunction is a DecisionType enum value
 	DecisionTypeScheduleLambdaFunction = "ScheduleLambdaFunction"
 )
+
+// DecisionType is an enum
+type DecisionType struct{}
+
+// Contains returns whether the DecisionType enum includes the element
+func (enum DecisionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DecisionType enum
+func (enum DecisionType) Values() []string {
+	return []string{
+		DecisionTypeScheduleActivityTask,
+		DecisionTypeRequestCancelActivityTask,
+		DecisionTypeCompleteWorkflowExecution,
+		DecisionTypeFailWorkflowExecution,
+		DecisionTypeCancelWorkflowExecution,
+		DecisionTypeContinueAsNewWorkflowExecution,
+		DecisionTypeRecordMarker,
+		DecisionTypeStartTimer,
+		DecisionTypeCancelTimer,
+		DecisionTypeSignalExternalWorkflowExecution,
+		DecisionTypeRequestCancelExternalWorkflowExecution,
+		DecisionTypeStartChildWorkflowExecution,
+		DecisionTypeScheduleLambdaFunction,
+	}
+}
 
 const (
 	// EventTypeWorkflowExecutionStarted is a EventType enum value
@@ -16901,6 +17123,80 @@ const (
 	EventTypeStartLambdaFunctionFailed = "StartLambdaFunctionFailed"
 )
 
+// EventType is an enum
+type EventType struct{}
+
+// Contains returns whether the EventType enum includes the element
+func (enum EventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventType enum
+func (enum EventType) Values() []string {
+	return []string{
+		EventTypeWorkflowExecutionStarted,
+		EventTypeWorkflowExecutionCancelRequested,
+		EventTypeWorkflowExecutionCompleted,
+		EventTypeCompleteWorkflowExecutionFailed,
+		EventTypeWorkflowExecutionFailed,
+		EventTypeFailWorkflowExecutionFailed,
+		EventTypeWorkflowExecutionTimedOut,
+		EventTypeWorkflowExecutionCanceled,
+		EventTypeCancelWorkflowExecutionFailed,
+		EventTypeWorkflowExecutionContinuedAsNew,
+		EventTypeContinueAsNewWorkflowExecutionFailed,
+		EventTypeWorkflowExecutionTerminated,
+		EventTypeDecisionTaskScheduled,
+		EventTypeDecisionTaskStarted,
+		EventTypeDecisionTaskCompleted,
+		EventTypeDecisionTaskTimedOut,
+		EventTypeActivityTaskScheduled,
+		EventTypeScheduleActivityTaskFailed,
+		EventTypeActivityTaskStarted,
+		EventTypeActivityTaskCompleted,
+		EventTypeActivityTaskFailed,
+		EventTypeActivityTaskTimedOut,
+		EventTypeActivityTaskCanceled,
+		EventTypeActivityTaskCancelRequested,
+		EventTypeRequestCancelActivityTaskFailed,
+		EventTypeWorkflowExecutionSignaled,
+		EventTypeMarkerRecorded,
+		EventTypeRecordMarkerFailed,
+		EventTypeTimerStarted,
+		EventTypeStartTimerFailed,
+		EventTypeTimerFired,
+		EventTypeTimerCanceled,
+		EventTypeCancelTimerFailed,
+		EventTypeStartChildWorkflowExecutionInitiated,
+		EventTypeStartChildWorkflowExecutionFailed,
+		EventTypeChildWorkflowExecutionStarted,
+		EventTypeChildWorkflowExecutionCompleted,
+		EventTypeChildWorkflowExecutionFailed,
+		EventTypeChildWorkflowExecutionTimedOut,
+		EventTypeChildWorkflowExecutionCanceled,
+		EventTypeChildWorkflowExecutionTerminated,
+		EventTypeSignalExternalWorkflowExecutionInitiated,
+		EventTypeSignalExternalWorkflowExecutionFailed,
+		EventTypeExternalWorkflowExecutionSignaled,
+		EventTypeRequestCancelExternalWorkflowExecutionInitiated,
+		EventTypeRequestCancelExternalWorkflowExecutionFailed,
+		EventTypeExternalWorkflowExecutionCancelRequested,
+		EventTypeLambdaFunctionScheduled,
+		EventTypeLambdaFunctionStarted,
+		EventTypeLambdaFunctionCompleted,
+		EventTypeLambdaFunctionFailed,
+		EventTypeLambdaFunctionTimedOut,
+		EventTypeScheduleLambdaFunctionFailed,
+		EventTypeStartLambdaFunctionFailed,
+	}
+}
+
 const (
 	// ExecutionStatusOpen is a ExecutionStatus enum value
 	ExecutionStatusOpen = "OPEN"
@@ -16908,6 +17204,28 @@ const (
 	// ExecutionStatusClosed is a ExecutionStatus enum value
 	ExecutionStatusClosed = "CLOSED"
 )
+
+// ExecutionStatus is an enum
+type ExecutionStatus struct{}
+
+// Contains returns whether the ExecutionStatus enum includes the element
+func (enum ExecutionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExecutionStatus enum
+func (enum ExecutionStatus) Values() []string {
+	return []string{
+		ExecutionStatusOpen,
+		ExecutionStatusClosed,
+	}
+}
 
 const (
 	// FailWorkflowExecutionFailedCauseUnhandledDecision is a FailWorkflowExecutionFailedCause enum value
@@ -16917,15 +17235,79 @@ const (
 	FailWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
 
+// FailWorkflowExecutionFailedCause is an enum
+type FailWorkflowExecutionFailedCause struct{}
+
+// Contains returns whether the FailWorkflowExecutionFailedCause enum includes the element
+func (enum FailWorkflowExecutionFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FailWorkflowExecutionFailedCause enum
+func (enum FailWorkflowExecutionFailedCause) Values() []string {
+	return []string{
+		FailWorkflowExecutionFailedCauseUnhandledDecision,
+		FailWorkflowExecutionFailedCauseOperationNotPermitted,
+	}
+}
+
 const (
 	// LambdaFunctionTimeoutTypeStartToClose is a LambdaFunctionTimeoutType enum value
 	LambdaFunctionTimeoutTypeStartToClose = "START_TO_CLOSE"
 )
 
+// LambdaFunctionTimeoutType is an enum
+type LambdaFunctionTimeoutType struct{}
+
+// Contains returns whether the LambdaFunctionTimeoutType enum includes the element
+func (enum LambdaFunctionTimeoutType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LambdaFunctionTimeoutType enum
+func (enum LambdaFunctionTimeoutType) Values() []string {
+	return []string{
+		LambdaFunctionTimeoutTypeStartToClose,
+	}
+}
+
 const (
 	// RecordMarkerFailedCauseOperationNotPermitted is a RecordMarkerFailedCause enum value
 	RecordMarkerFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
+
+// RecordMarkerFailedCause is an enum
+type RecordMarkerFailedCause struct{}
+
+// Contains returns whether the RecordMarkerFailedCause enum includes the element
+func (enum RecordMarkerFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecordMarkerFailedCause enum
+func (enum RecordMarkerFailedCause) Values() []string {
+	return []string{
+		RecordMarkerFailedCauseOperationNotPermitted,
+	}
+}
 
 const (
 	// RegistrationStatusRegistered is a RegistrationStatus enum value
@@ -16935,6 +17317,28 @@ const (
 	RegistrationStatusDeprecated = "DEPRECATED"
 )
 
+// RegistrationStatus is an enum
+type RegistrationStatus struct{}
+
+// Contains returns whether the RegistrationStatus enum includes the element
+func (enum RegistrationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RegistrationStatus enum
+func (enum RegistrationStatus) Values() []string {
+	return []string{
+		RegistrationStatusRegistered,
+		RegistrationStatusDeprecated,
+	}
+}
+
 const (
 	// RequestCancelActivityTaskFailedCauseActivityIdUnknown is a RequestCancelActivityTaskFailedCause enum value
 	RequestCancelActivityTaskFailedCauseActivityIdUnknown = "ACTIVITY_ID_UNKNOWN"
@@ -16942,6 +17346,28 @@ const (
 	// RequestCancelActivityTaskFailedCauseOperationNotPermitted is a RequestCancelActivityTaskFailedCause enum value
 	RequestCancelActivityTaskFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
+
+// RequestCancelActivityTaskFailedCause is an enum
+type RequestCancelActivityTaskFailedCause struct{}
+
+// Contains returns whether the RequestCancelActivityTaskFailedCause enum includes the element
+func (enum RequestCancelActivityTaskFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RequestCancelActivityTaskFailedCause enum
+func (enum RequestCancelActivityTaskFailedCause) Values() []string {
+	return []string{
+		RequestCancelActivityTaskFailedCauseActivityIdUnknown,
+		RequestCancelActivityTaskFailedCauseOperationNotPermitted,
+	}
+}
 
 const (
 	// RequestCancelExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution is a RequestCancelExternalWorkflowExecutionFailedCause enum value
@@ -16953,6 +17379,29 @@ const (
 	// RequestCancelExternalWorkflowExecutionFailedCauseOperationNotPermitted is a RequestCancelExternalWorkflowExecutionFailedCause enum value
 	RequestCancelExternalWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
+
+// RequestCancelExternalWorkflowExecutionFailedCause is an enum
+type RequestCancelExternalWorkflowExecutionFailedCause struct{}
+
+// Contains returns whether the RequestCancelExternalWorkflowExecutionFailedCause enum includes the element
+func (enum RequestCancelExternalWorkflowExecutionFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RequestCancelExternalWorkflowExecutionFailedCause enum
+func (enum RequestCancelExternalWorkflowExecutionFailedCause) Values() []string {
+	return []string{
+		RequestCancelExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution,
+		RequestCancelExternalWorkflowExecutionFailedCauseRequestCancelExternalWorkflowExecutionRateExceeded,
+		RequestCancelExternalWorkflowExecutionFailedCauseOperationNotPermitted,
+	}
+}
 
 const (
 	// ScheduleActivityTaskFailedCauseActivityTypeDeprecated is a ScheduleActivityTaskFailedCause enum value
@@ -16989,6 +17438,37 @@ const (
 	ScheduleActivityTaskFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
 
+// ScheduleActivityTaskFailedCause is an enum
+type ScheduleActivityTaskFailedCause struct{}
+
+// Contains returns whether the ScheduleActivityTaskFailedCause enum includes the element
+func (enum ScheduleActivityTaskFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScheduleActivityTaskFailedCause enum
+func (enum ScheduleActivityTaskFailedCause) Values() []string {
+	return []string{
+		ScheduleActivityTaskFailedCauseActivityTypeDeprecated,
+		ScheduleActivityTaskFailedCauseActivityTypeDoesNotExist,
+		ScheduleActivityTaskFailedCauseActivityIdAlreadyInUse,
+		ScheduleActivityTaskFailedCauseOpenActivitiesLimitExceeded,
+		ScheduleActivityTaskFailedCauseActivityCreationRateExceeded,
+		ScheduleActivityTaskFailedCauseDefaultScheduleToCloseTimeoutUndefined,
+		ScheduleActivityTaskFailedCauseDefaultTaskListUndefined,
+		ScheduleActivityTaskFailedCauseDefaultScheduleToStartTimeoutUndefined,
+		ScheduleActivityTaskFailedCauseDefaultStartToCloseTimeoutUndefined,
+		ScheduleActivityTaskFailedCauseDefaultHeartbeatTimeoutUndefined,
+		ScheduleActivityTaskFailedCauseOperationNotPermitted,
+	}
+}
+
 const (
 	// ScheduleLambdaFunctionFailedCauseIdAlreadyInUse is a ScheduleLambdaFunctionFailedCause enum value
 	ScheduleLambdaFunctionFailedCauseIdAlreadyInUse = "ID_ALREADY_IN_USE"
@@ -17003,6 +17483,30 @@ const (
 	ScheduleLambdaFunctionFailedCauseLambdaServiceNotAvailableInRegion = "LAMBDA_SERVICE_NOT_AVAILABLE_IN_REGION"
 )
 
+// ScheduleLambdaFunctionFailedCause is an enum
+type ScheduleLambdaFunctionFailedCause struct{}
+
+// Contains returns whether the ScheduleLambdaFunctionFailedCause enum includes the element
+func (enum ScheduleLambdaFunctionFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScheduleLambdaFunctionFailedCause enum
+func (enum ScheduleLambdaFunctionFailedCause) Values() []string {
+	return []string{
+		ScheduleLambdaFunctionFailedCauseIdAlreadyInUse,
+		ScheduleLambdaFunctionFailedCauseOpenLambdaFunctionsLimitExceeded,
+		ScheduleLambdaFunctionFailedCauseLambdaFunctionCreationRateExceeded,
+		ScheduleLambdaFunctionFailedCauseLambdaServiceNotAvailableInRegion,
+	}
+}
+
 const (
 	// SignalExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution is a SignalExternalWorkflowExecutionFailedCause enum value
 	SignalExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution = "UNKNOWN_EXTERNAL_WORKFLOW_EXECUTION"
@@ -17013,6 +17517,29 @@ const (
 	// SignalExternalWorkflowExecutionFailedCauseOperationNotPermitted is a SignalExternalWorkflowExecutionFailedCause enum value
 	SignalExternalWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
+
+// SignalExternalWorkflowExecutionFailedCause is an enum
+type SignalExternalWorkflowExecutionFailedCause struct{}
+
+// Contains returns whether the SignalExternalWorkflowExecutionFailedCause enum includes the element
+func (enum SignalExternalWorkflowExecutionFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SignalExternalWorkflowExecutionFailedCause enum
+func (enum SignalExternalWorkflowExecutionFailedCause) Values() []string {
+	return []string{
+		SignalExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution,
+		SignalExternalWorkflowExecutionFailedCauseSignalExternalWorkflowExecutionRateExceeded,
+		SignalExternalWorkflowExecutionFailedCauseOperationNotPermitted,
+	}
+}
 
 const (
 	// StartChildWorkflowExecutionFailedCauseWorkflowTypeDoesNotExist is a StartChildWorkflowExecutionFailedCause enum value
@@ -17049,10 +17576,62 @@ const (
 	StartChildWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
 
+// StartChildWorkflowExecutionFailedCause is an enum
+type StartChildWorkflowExecutionFailedCause struct{}
+
+// Contains returns whether the StartChildWorkflowExecutionFailedCause enum includes the element
+func (enum StartChildWorkflowExecutionFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StartChildWorkflowExecutionFailedCause enum
+func (enum StartChildWorkflowExecutionFailedCause) Values() []string {
+	return []string{
+		StartChildWorkflowExecutionFailedCauseWorkflowTypeDoesNotExist,
+		StartChildWorkflowExecutionFailedCauseWorkflowTypeDeprecated,
+		StartChildWorkflowExecutionFailedCauseOpenChildrenLimitExceeded,
+		StartChildWorkflowExecutionFailedCauseOpenWorkflowsLimitExceeded,
+		StartChildWorkflowExecutionFailedCauseChildCreationRateExceeded,
+		StartChildWorkflowExecutionFailedCauseWorkflowAlreadyRunning,
+		StartChildWorkflowExecutionFailedCauseDefaultExecutionStartToCloseTimeoutUndefined,
+		StartChildWorkflowExecutionFailedCauseDefaultTaskListUndefined,
+		StartChildWorkflowExecutionFailedCauseDefaultTaskStartToCloseTimeoutUndefined,
+		StartChildWorkflowExecutionFailedCauseDefaultChildPolicyUndefined,
+		StartChildWorkflowExecutionFailedCauseOperationNotPermitted,
+	}
+}
+
 const (
 	// StartLambdaFunctionFailedCauseAssumeRoleFailed is a StartLambdaFunctionFailedCause enum value
 	StartLambdaFunctionFailedCauseAssumeRoleFailed = "ASSUME_ROLE_FAILED"
 )
+
+// StartLambdaFunctionFailedCause is an enum
+type StartLambdaFunctionFailedCause struct{}
+
+// Contains returns whether the StartLambdaFunctionFailedCause enum includes the element
+func (enum StartLambdaFunctionFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StartLambdaFunctionFailedCause enum
+func (enum StartLambdaFunctionFailedCause) Values() []string {
+	return []string{
+		StartLambdaFunctionFailedCauseAssumeRoleFailed,
+	}
+}
 
 const (
 	// StartTimerFailedCauseTimerIdAlreadyInUse is a StartTimerFailedCause enum value
@@ -17068,10 +17647,55 @@ const (
 	StartTimerFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
 )
 
+// StartTimerFailedCause is an enum
+type StartTimerFailedCause struct{}
+
+// Contains returns whether the StartTimerFailedCause enum includes the element
+func (enum StartTimerFailedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StartTimerFailedCause enum
+func (enum StartTimerFailedCause) Values() []string {
+	return []string{
+		StartTimerFailedCauseTimerIdAlreadyInUse,
+		StartTimerFailedCauseOpenTimersLimitExceeded,
+		StartTimerFailedCauseTimerCreationRateExceeded,
+		StartTimerFailedCauseOperationNotPermitted,
+	}
+}
+
 const (
 	// WorkflowExecutionCancelRequestedCauseChildPolicyApplied is a WorkflowExecutionCancelRequestedCause enum value
 	WorkflowExecutionCancelRequestedCauseChildPolicyApplied = "CHILD_POLICY_APPLIED"
 )
+
+// WorkflowExecutionCancelRequestedCause is an enum
+type WorkflowExecutionCancelRequestedCause struct{}
+
+// Contains returns whether the WorkflowExecutionCancelRequestedCause enum includes the element
+func (enum WorkflowExecutionCancelRequestedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkflowExecutionCancelRequestedCause enum
+func (enum WorkflowExecutionCancelRequestedCause) Values() []string {
+	return []string{
+		WorkflowExecutionCancelRequestedCauseChildPolicyApplied,
+	}
+}
 
 const (
 	// WorkflowExecutionTerminatedCauseChildPolicyApplied is a WorkflowExecutionTerminatedCause enum value
@@ -17084,7 +17708,51 @@ const (
 	WorkflowExecutionTerminatedCauseOperatorInitiated = "OPERATOR_INITIATED"
 )
 
+// WorkflowExecutionTerminatedCause is an enum
+type WorkflowExecutionTerminatedCause struct{}
+
+// Contains returns whether the WorkflowExecutionTerminatedCause enum includes the element
+func (enum WorkflowExecutionTerminatedCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkflowExecutionTerminatedCause enum
+func (enum WorkflowExecutionTerminatedCause) Values() []string {
+	return []string{
+		WorkflowExecutionTerminatedCauseChildPolicyApplied,
+		WorkflowExecutionTerminatedCauseEventLimitExceeded,
+		WorkflowExecutionTerminatedCauseOperatorInitiated,
+	}
+}
+
 const (
 	// WorkflowExecutionTimeoutTypeStartToClose is a WorkflowExecutionTimeoutType enum value
 	WorkflowExecutionTimeoutTypeStartToClose = "START_TO_CLOSE"
 )
+
+// WorkflowExecutionTimeoutType is an enum
+type WorkflowExecutionTimeoutType struct{}
+
+// Contains returns whether the WorkflowExecutionTimeoutType enum includes the element
+func (enum WorkflowExecutionTimeoutType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkflowExecutionTimeoutType enum
+func (enum WorkflowExecutionTimeoutType) Values() []string {
+	return []string{
+		WorkflowExecutionTimeoutTypeStartToClose,
+	}
+}

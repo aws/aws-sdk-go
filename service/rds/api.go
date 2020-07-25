@@ -42020,6 +42020,28 @@ const (
 	ActivityStreamModeAsync = "async"
 )
 
+// ActivityStreamMode is an enum
+type ActivityStreamMode struct{}
+
+// Contains returns whether the ActivityStreamMode enum includes the element
+func (enum ActivityStreamMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActivityStreamMode enum
+func (enum ActivityStreamMode) Values() []string {
+	return []string{
+		ActivityStreamModeSync,
+		ActivityStreamModeAsync,
+	}
+}
+
 const (
 	// ActivityStreamStatusStopped is a ActivityStreamStatus enum value
 	ActivityStreamStatusStopped = "stopped"
@@ -42034,6 +42056,30 @@ const (
 	ActivityStreamStatusStopping = "stopping"
 )
 
+// ActivityStreamStatus is an enum
+type ActivityStreamStatus struct{}
+
+// Contains returns whether the ActivityStreamStatus enum includes the element
+func (enum ActivityStreamStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActivityStreamStatus enum
+func (enum ActivityStreamStatus) Values() []string {
+	return []string{
+		ActivityStreamStatusStopped,
+		ActivityStreamStatusStarting,
+		ActivityStreamStatusStarted,
+		ActivityStreamStatusStopping,
+	}
+}
+
 const (
 	// ApplyMethodImmediate is a ApplyMethod enum value
 	ApplyMethodImmediate = "immediate"
@@ -42042,10 +42088,53 @@ const (
 	ApplyMethodPendingReboot = "pending-reboot"
 )
 
+// ApplyMethod is an enum
+type ApplyMethod struct{}
+
+// Contains returns whether the ApplyMethod enum includes the element
+func (enum ApplyMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ApplyMethod enum
+func (enum ApplyMethod) Values() []string {
+	return []string{
+		ApplyMethodImmediate,
+		ApplyMethodPendingReboot,
+	}
+}
+
 const (
 	// AuthSchemeSecrets is a AuthScheme enum value
 	AuthSchemeSecrets = "SECRETS"
 )
+
+// AuthScheme is an enum
+type AuthScheme struct{}
+
+// Contains returns whether the AuthScheme enum includes the element
+func (enum AuthScheme) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthScheme enum
+func (enum AuthScheme) Values() []string {
+	return []string{
+		AuthSchemeSecrets,
+	}
+}
 
 const (
 	// DBProxyStatusAvailable is a DBProxyStatus enum value
@@ -42076,6 +42165,35 @@ const (
 	DBProxyStatusReactivating = "reactivating"
 )
 
+// DBProxyStatus is an enum
+type DBProxyStatus struct{}
+
+// Contains returns whether the DBProxyStatus enum includes the element
+func (enum DBProxyStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DBProxyStatus enum
+func (enum DBProxyStatus) Values() []string {
+	return []string{
+		DBProxyStatusAvailable,
+		DBProxyStatusModifying,
+		DBProxyStatusIncompatibleNetwork,
+		DBProxyStatusInsufficientResourceLimits,
+		DBProxyStatusCreating,
+		DBProxyStatusDeleting,
+		DBProxyStatusSuspended,
+		DBProxyStatusSuspending,
+		DBProxyStatusReactivating,
+	}
+}
+
 const (
 	// EngineFamilyMysql is a EngineFamily enum value
 	EngineFamilyMysql = "MYSQL"
@@ -42084,6 +42202,28 @@ const (
 	EngineFamilyPostgresql = "POSTGRESQL"
 )
 
+// EngineFamily is an enum
+type EngineFamily struct{}
+
+// Contains returns whether the EngineFamily enum includes the element
+func (enum EngineFamily) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EngineFamily enum
+func (enum EngineFamily) Values() []string {
+	return []string{
+		EngineFamilyMysql,
+		EngineFamilyPostgresql,
+	}
+}
+
 const (
 	// IAMAuthModeDisabled is a IAMAuthMode enum value
 	IAMAuthModeDisabled = "DISABLED"
@@ -42091,6 +42231,28 @@ const (
 	// IAMAuthModeRequired is a IAMAuthMode enum value
 	IAMAuthModeRequired = "REQUIRED"
 )
+
+// IAMAuthMode is an enum
+type IAMAuthMode struct{}
+
+// Contains returns whether the IAMAuthMode enum includes the element
+func (enum IAMAuthMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IAMAuthMode enum
+func (enum IAMAuthMode) Values() []string {
+	return []string{
+		IAMAuthModeDisabled,
+		IAMAuthModeRequired,
+	}
+}
 
 const (
 	// SourceTypeDbInstance is a SourceType enum value
@@ -42112,6 +42274,32 @@ const (
 	SourceTypeDbClusterSnapshot = "db-cluster-snapshot"
 )
 
+// SourceType is an enum
+type SourceType struct{}
+
+// Contains returns whether the SourceType enum includes the element
+func (enum SourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceType enum
+func (enum SourceType) Values() []string {
+	return []string{
+		SourceTypeDbInstance,
+		SourceTypeDbParameterGroup,
+		SourceTypeDbSecurityGroup,
+		SourceTypeDbSnapshot,
+		SourceTypeDbCluster,
+		SourceTypeDbClusterSnapshot,
+	}
+}
+
 const (
 	// TargetHealthReasonUnreachable is a TargetHealthReason enum value
 	TargetHealthReasonUnreachable = "UNREACHABLE"
@@ -42126,6 +42314,30 @@ const (
 	TargetHealthReasonPendingProxyCapacity = "PENDING_PROXY_CAPACITY"
 )
 
+// TargetHealthReason is an enum
+type TargetHealthReason struct{}
+
+// Contains returns whether the TargetHealthReason enum includes the element
+func (enum TargetHealthReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetHealthReason enum
+func (enum TargetHealthReason) Values() []string {
+	return []string{
+		TargetHealthReasonUnreachable,
+		TargetHealthReasonConnectionFailed,
+		TargetHealthReasonAuthFailure,
+		TargetHealthReasonPendingProxyCapacity,
+	}
+}
+
 const (
 	// TargetStateRegistering is a TargetState enum value
 	TargetStateRegistering = "REGISTERING"
@@ -42137,6 +42349,29 @@ const (
 	TargetStateUnavailable = "UNAVAILABLE"
 )
 
+// TargetState is an enum
+type TargetState struct{}
+
+// Contains returns whether the TargetState enum includes the element
+func (enum TargetState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetState enum
+func (enum TargetState) Values() []string {
+	return []string{
+		TargetStateRegistering,
+		TargetStateAvailable,
+		TargetStateUnavailable,
+	}
+}
+
 const (
 	// TargetTypeRdsInstance is a TargetType enum value
 	TargetTypeRdsInstance = "RDS_INSTANCE"
@@ -42147,6 +42382,29 @@ const (
 	// TargetTypeTrackedCluster is a TargetType enum value
 	TargetTypeTrackedCluster = "TRACKED_CLUSTER"
 )
+
+// TargetType is an enum
+type TargetType struct{}
+
+// Contains returns whether the TargetType enum includes the element
+func (enum TargetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetType enum
+func (enum TargetType) Values() []string {
+	return []string{
+		TargetTypeRdsInstance,
+		TargetTypeRdsServerlessEndpoint,
+		TargetTypeTrackedCluster,
+	}
+}
 
 const (
 	// WriteForwardingStatusEnabled is a WriteForwardingStatus enum value
@@ -42164,3 +42422,28 @@ const (
 	// WriteForwardingStatusUnknown is a WriteForwardingStatus enum value
 	WriteForwardingStatusUnknown = "unknown"
 )
+
+// WriteForwardingStatus is an enum
+type WriteForwardingStatus struct{}
+
+// Contains returns whether the WriteForwardingStatus enum includes the element
+func (enum WriteForwardingStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WriteForwardingStatus enum
+func (enum WriteForwardingStatus) Values() []string {
+	return []string{
+		WriteForwardingStatusEnabled,
+		WriteForwardingStatusDisabled,
+		WriteForwardingStatusEnabling,
+		WriteForwardingStatusDisabling,
+		WriteForwardingStatusUnknown,
+	}
+}

@@ -7678,6 +7678,31 @@ const (
 	ExecutionStatusAborted = "ABORTED"
 )
 
+// ExecutionStatus is an enum
+type ExecutionStatus struct{}
+
+// Contains returns whether the ExecutionStatus enum includes the element
+func (enum ExecutionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExecutionStatus enum
+func (enum ExecutionStatus) Values() []string {
+	return []string{
+		ExecutionStatusRunning,
+		ExecutionStatusSucceeded,
+		ExecutionStatusFailed,
+		ExecutionStatusTimedOut,
+		ExecutionStatusAborted,
+	}
+}
+
 const (
 	// HistoryEventTypeActivityFailed is a HistoryEventType enum value
 	HistoryEventTypeActivityFailed = "ActivityFailed"
@@ -7845,6 +7870,81 @@ const (
 	HistoryEventTypeWaitStateExited = "WaitStateExited"
 )
 
+// HistoryEventType is an enum
+type HistoryEventType struct{}
+
+// Contains returns whether the HistoryEventType enum includes the element
+func (enum HistoryEventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HistoryEventType enum
+func (enum HistoryEventType) Values() []string {
+	return []string{
+		HistoryEventTypeActivityFailed,
+		HistoryEventTypeActivityScheduled,
+		HistoryEventTypeActivityScheduleFailed,
+		HistoryEventTypeActivityStarted,
+		HistoryEventTypeActivitySucceeded,
+		HistoryEventTypeActivityTimedOut,
+		HistoryEventTypeChoiceStateEntered,
+		HistoryEventTypeChoiceStateExited,
+		HistoryEventTypeExecutionAborted,
+		HistoryEventTypeExecutionFailed,
+		HistoryEventTypeExecutionStarted,
+		HistoryEventTypeExecutionSucceeded,
+		HistoryEventTypeExecutionTimedOut,
+		HistoryEventTypeFailStateEntered,
+		HistoryEventTypeLambdaFunctionFailed,
+		HistoryEventTypeLambdaFunctionScheduled,
+		HistoryEventTypeLambdaFunctionScheduleFailed,
+		HistoryEventTypeLambdaFunctionStarted,
+		HistoryEventTypeLambdaFunctionStartFailed,
+		HistoryEventTypeLambdaFunctionSucceeded,
+		HistoryEventTypeLambdaFunctionTimedOut,
+		HistoryEventTypeMapIterationAborted,
+		HistoryEventTypeMapIterationFailed,
+		HistoryEventTypeMapIterationStarted,
+		HistoryEventTypeMapIterationSucceeded,
+		HistoryEventTypeMapStateAborted,
+		HistoryEventTypeMapStateEntered,
+		HistoryEventTypeMapStateExited,
+		HistoryEventTypeMapStateFailed,
+		HistoryEventTypeMapStateStarted,
+		HistoryEventTypeMapStateSucceeded,
+		HistoryEventTypeParallelStateAborted,
+		HistoryEventTypeParallelStateEntered,
+		HistoryEventTypeParallelStateExited,
+		HistoryEventTypeParallelStateFailed,
+		HistoryEventTypeParallelStateStarted,
+		HistoryEventTypeParallelStateSucceeded,
+		HistoryEventTypePassStateEntered,
+		HistoryEventTypePassStateExited,
+		HistoryEventTypeSucceedStateEntered,
+		HistoryEventTypeSucceedStateExited,
+		HistoryEventTypeTaskFailed,
+		HistoryEventTypeTaskScheduled,
+		HistoryEventTypeTaskStarted,
+		HistoryEventTypeTaskStartFailed,
+		HistoryEventTypeTaskStateAborted,
+		HistoryEventTypeTaskStateEntered,
+		HistoryEventTypeTaskStateExited,
+		HistoryEventTypeTaskSubmitFailed,
+		HistoryEventTypeTaskSubmitted,
+		HistoryEventTypeTaskSucceeded,
+		HistoryEventTypeTaskTimedOut,
+		HistoryEventTypeWaitStateAborted,
+		HistoryEventTypeWaitStateEntered,
+		HistoryEventTypeWaitStateExited,
+	}
+}
+
 const (
 	// LogLevelAll is a LogLevel enum value
 	LogLevelAll = "ALL"
@@ -7859,6 +7959,30 @@ const (
 	LogLevelOff = "OFF"
 )
 
+// LogLevel is an enum
+type LogLevel struct{}
+
+// Contains returns whether the LogLevel enum includes the element
+func (enum LogLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogLevel enum
+func (enum LogLevel) Values() []string {
+	return []string{
+		LogLevelAll,
+		LogLevelError,
+		LogLevelFatal,
+		LogLevelOff,
+	}
+}
+
 const (
 	// StateMachineStatusActive is a StateMachineStatus enum value
 	StateMachineStatusActive = "ACTIVE"
@@ -7867,6 +7991,28 @@ const (
 	StateMachineStatusDeleting = "DELETING"
 )
 
+// StateMachineStatus is an enum
+type StateMachineStatus struct{}
+
+// Contains returns whether the StateMachineStatus enum includes the element
+func (enum StateMachineStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StateMachineStatus enum
+func (enum StateMachineStatus) Values() []string {
+	return []string{
+		StateMachineStatusActive,
+		StateMachineStatusDeleting,
+	}
+}
+
 const (
 	// StateMachineTypeStandard is a StateMachineType enum value
 	StateMachineTypeStandard = "STANDARD"
@@ -7874,3 +8020,25 @@ const (
 	// StateMachineTypeExpress is a StateMachineType enum value
 	StateMachineTypeExpress = "EXPRESS"
 )
+
+// StateMachineType is an enum
+type StateMachineType struct{}
+
+// Contains returns whether the StateMachineType enum includes the element
+func (enum StateMachineType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StateMachineType enum
+func (enum StateMachineType) Values() []string {
+	return []string{
+		StateMachineTypeStandard,
+		StateMachineTypeExpress,
+	}
+}

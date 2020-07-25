@@ -19414,6 +19414,28 @@ const (
 	AacAudioDescriptionBroadcasterMixNormal = "NORMAL"
 )
 
+// AacAudioDescriptionBroadcasterMix is an enum
+type AacAudioDescriptionBroadcasterMix struct{}
+
+// Contains returns whether the AacAudioDescriptionBroadcasterMix enum includes the element
+func (enum AacAudioDescriptionBroadcasterMix) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacAudioDescriptionBroadcasterMix enum
+func (enum AacAudioDescriptionBroadcasterMix) Values() []string {
+	return []string{
+		AacAudioDescriptionBroadcasterMixBroadcasterMixedAd,
+		AacAudioDescriptionBroadcasterMixNormal,
+	}
+}
+
 // AAC Profile.
 const (
 	// AacCodecProfileLc is a AacCodecProfile enum value
@@ -19425,6 +19447,29 @@ const (
 	// AacCodecProfileHev2 is a AacCodecProfile enum value
 	AacCodecProfileHev2 = "HEV2"
 )
+
+// AacCodecProfile is an enum
+type AacCodecProfile struct{}
+
+// Contains returns whether the AacCodecProfile enum includes the element
+func (enum AacCodecProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacCodecProfile enum
+func (enum AacCodecProfile) Values() []string {
+	return []string{
+		AacCodecProfileLc,
+		AacCodecProfileHev1,
+		AacCodecProfileHev2,
+	}
+}
 
 // Mono (Audio Description), Mono, Stereo, or 5.1 channel layout. Valid values
 // depend on rate control mode and profile. "1.0 - Audio Description (Receiver
@@ -19448,6 +19493,31 @@ const (
 	AacCodingModeCodingMode51 = "CODING_MODE_5_1"
 )
 
+// AacCodingMode is an enum
+type AacCodingMode struct{}
+
+// Contains returns whether the AacCodingMode enum includes the element
+func (enum AacCodingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacCodingMode enum
+func (enum AacCodingMode) Values() []string {
+	return []string{
+		AacCodingModeAdReceiverMix,
+		AacCodingModeCodingMode10,
+		AacCodingModeCodingMode11,
+		AacCodingModeCodingMode20,
+		AacCodingModeCodingMode51,
+	}
+}
+
 // Rate Control Mode.
 const (
 	// AacRateControlModeCbr is a AacRateControlMode enum value
@@ -19456,6 +19526,28 @@ const (
 	// AacRateControlModeVbr is a AacRateControlMode enum value
 	AacRateControlModeVbr = "VBR"
 )
+
+// AacRateControlMode is an enum
+type AacRateControlMode struct{}
+
+// Contains returns whether the AacRateControlMode enum includes the element
+func (enum AacRateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacRateControlMode enum
+func (enum AacRateControlMode) Values() []string {
+	return []string{
+		AacRateControlModeCbr,
+		AacRateControlModeVbr,
+	}
+}
 
 // Enables LATM/LOAS AAC output. Note that if you use LATM/LOAS AAC in an output,
 // you must choose "No container" for the output container.
@@ -19467,6 +19559,28 @@ const (
 	AacRawFormatNone = "NONE"
 )
 
+// AacRawFormat is an enum
+type AacRawFormat struct{}
+
+// Contains returns whether the AacRawFormat enum includes the element
+func (enum AacRawFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacRawFormat enum
+func (enum AacRawFormat) Values() []string {
+	return []string{
+		AacRawFormatLatmLoas,
+		AacRawFormatNone,
+	}
+}
+
 // Use MPEG-2 AAC instead of MPEG-4 AAC audio for raw or MPEG-2 Transport Stream
 // containers.
 const (
@@ -19476,6 +19590,28 @@ const (
 	// AacSpecificationMpeg4 is a AacSpecification enum value
 	AacSpecificationMpeg4 = "MPEG4"
 )
+
+// AacSpecification is an enum
+type AacSpecification struct{}
+
+// Contains returns whether the AacSpecification enum includes the element
+func (enum AacSpecification) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacSpecification enum
+func (enum AacSpecification) Values() []string {
+	return []string{
+		AacSpecificationMpeg2,
+		AacSpecificationMpeg4,
+	}
+}
 
 // VBR Quality Level - Only used if rate_control_mode is VBR.
 const (
@@ -19491,6 +19627,30 @@ const (
 	// AacVbrQualityHigh is a AacVbrQuality enum value
 	AacVbrQualityHigh = "HIGH"
 )
+
+// AacVbrQuality is an enum
+type AacVbrQuality struct{}
+
+// Contains returns whether the AacVbrQuality enum includes the element
+func (enum AacVbrQuality) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AacVbrQuality enum
+func (enum AacVbrQuality) Values() []string {
+	return []string{
+		AacVbrQualityLow,
+		AacVbrQualityMediumLow,
+		AacVbrQualityMediumHigh,
+		AacVbrQualityHigh,
+	}
+}
 
 // Specify the bitstream mode for the AC-3 stream that the encoder emits. For
 // more information about the AC3 bitstream mode, see ATSC A/52-2012 (Annex
@@ -19521,6 +19681,34 @@ const (
 	Ac3BitstreamModeVoiceOver = "VOICE_OVER"
 )
 
+// Ac3BitstreamMode is an enum
+type Ac3BitstreamMode struct{}
+
+// Contains returns whether the Ac3BitstreamMode enum includes the element
+func (enum Ac3BitstreamMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ac3BitstreamMode enum
+func (enum Ac3BitstreamMode) Values() []string {
+	return []string{
+		Ac3BitstreamModeCompleteMain,
+		Ac3BitstreamModeCommentary,
+		Ac3BitstreamModeDialogue,
+		Ac3BitstreamModeEmergency,
+		Ac3BitstreamModeHearingImpaired,
+		Ac3BitstreamModeMusicAndEffects,
+		Ac3BitstreamModeVisuallyImpaired,
+		Ac3BitstreamModeVoiceOver,
+	}
+}
+
 // Dolby Digital coding mode. Determines number of channels.
 const (
 	// Ac3CodingModeCodingMode10 is a Ac3CodingMode enum value
@@ -19536,6 +19724,30 @@ const (
 	Ac3CodingModeCodingMode32Lfe = "CODING_MODE_3_2_LFE"
 )
 
+// Ac3CodingMode is an enum
+type Ac3CodingMode struct{}
+
+// Contains returns whether the Ac3CodingMode enum includes the element
+func (enum Ac3CodingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ac3CodingMode enum
+func (enum Ac3CodingMode) Values() []string {
+	return []string{
+		Ac3CodingModeCodingMode10,
+		Ac3CodingModeCodingMode11,
+		Ac3CodingModeCodingMode20,
+		Ac3CodingModeCodingMode32Lfe,
+	}
+}
+
 // If set to FILM_STANDARD, adds dynamic range compression signaling to the
 // output bitstream as defined in the Dolby Digital specification.
 const (
@@ -19545,6 +19757,28 @@ const (
 	// Ac3DynamicRangeCompressionProfileNone is a Ac3DynamicRangeCompressionProfile enum value
 	Ac3DynamicRangeCompressionProfileNone = "NONE"
 )
+
+// Ac3DynamicRangeCompressionProfile is an enum
+type Ac3DynamicRangeCompressionProfile struct{}
+
+// Contains returns whether the Ac3DynamicRangeCompressionProfile enum includes the element
+func (enum Ac3DynamicRangeCompressionProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ac3DynamicRangeCompressionProfile enum
+func (enum Ac3DynamicRangeCompressionProfile) Values() []string {
+	return []string{
+		Ac3DynamicRangeCompressionProfileFilmStandard,
+		Ac3DynamicRangeCompressionProfileNone,
+	}
+}
 
 // Applies a 120Hz lowpass filter to the LFE channel prior to encoding. Only
 // valid with 3_2_LFE coding mode.
@@ -19556,6 +19790,28 @@ const (
 	Ac3LfeFilterDisabled = "DISABLED"
 )
 
+// Ac3LfeFilter is an enum
+type Ac3LfeFilter struct{}
+
+// Contains returns whether the Ac3LfeFilter enum includes the element
+func (enum Ac3LfeFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ac3LfeFilter enum
+func (enum Ac3LfeFilter) Values() []string {
+	return []string{
+		Ac3LfeFilterEnabled,
+		Ac3LfeFilterDisabled,
+	}
+}
+
 // When set to FOLLOW_INPUT, encoder metadata will be sourced from the DD, DD+,
 // or DolbyE decoder that supplied this audio data. If audio was not supplied
 // from one of these streams, then the static metadata settings will be used.
@@ -19566,6 +19822,28 @@ const (
 	// Ac3MetadataControlUseConfigured is a Ac3MetadataControl enum value
 	Ac3MetadataControlUseConfigured = "USE_CONFIGURED"
 )
+
+// Ac3MetadataControl is an enum
+type Ac3MetadataControl struct{}
+
+// Contains returns whether the Ac3MetadataControl enum includes the element
+func (enum Ac3MetadataControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ac3MetadataControl enum
+func (enum Ac3MetadataControl) Values() []string {
+	return []string{
+		Ac3MetadataControlFollowInput,
+		Ac3MetadataControlUseConfigured,
+	}
+}
 
 // Specify whether the service runs your job with accelerated transcoding. Choose
 // DISABLED if you don't want accelerated transcoding. Choose ENABLED if you
@@ -19584,6 +19862,29 @@ const (
 	// AccelerationModePreferred is a AccelerationMode enum value
 	AccelerationModePreferred = "PREFERRED"
 )
+
+// AccelerationMode is an enum
+type AccelerationMode struct{}
+
+// Contains returns whether the AccelerationMode enum includes the element
+func (enum AccelerationMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccelerationMode enum
+func (enum AccelerationMode) Values() []string {
+	return []string{
+		AccelerationModeDisabled,
+		AccelerationModeEnabled,
+		AccelerationModePreferred,
+	}
+}
 
 // Describes whether the current job is running with accelerated transcoding.
 // For jobs that have Acceleration (AccelerationMode) set to DISABLED, AccelerationStatus
@@ -19610,6 +19911,30 @@ const (
 	AccelerationStatusNotAccelerated = "NOT_ACCELERATED"
 )
 
+// AccelerationStatus is an enum
+type AccelerationStatus struct{}
+
+// Contains returns whether the AccelerationStatus enum includes the element
+func (enum AccelerationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccelerationStatus enum
+func (enum AccelerationStatus) Values() []string {
+	return []string{
+		AccelerationStatusNotApplicable,
+		AccelerationStatusInProgress,
+		AccelerationStatusAccelerated,
+		AccelerationStatusNotAccelerated,
+	}
+}
+
 // This setting only applies to H.264, H.265, and MPEG2 outputs. Use Insert
 // AFD signaling (AfdSignaling) to specify whether the service includes AFD
 // values in the output video data and what those values are. * Choose None
@@ -19627,6 +19952,29 @@ const (
 	AfdSignalingFixed = "FIXED"
 )
 
+// AfdSignaling is an enum
+type AfdSignaling struct{}
+
+// Contains returns whether the AfdSignaling enum includes the element
+func (enum AfdSignaling) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AfdSignaling enum
+func (enum AfdSignaling) Values() []string {
+	return []string{
+		AfdSignalingNone,
+		AfdSignalingAuto,
+		AfdSignalingFixed,
+	}
+}
+
 // Ignore this setting unless this input is a QuickTime animation with an alpha
 // channel. Use this setting to create separate Key and Fill outputs. In each
 // output, specify which part of the input MediaConvert uses. Leave this setting
@@ -19641,6 +19989,28 @@ const (
 	AlphaBehaviorRemapToLuma = "REMAP_TO_LUMA"
 )
 
+// AlphaBehavior is an enum
+type AlphaBehavior struct{}
+
+// Contains returns whether the AlphaBehavior enum includes the element
+func (enum AlphaBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AlphaBehavior enum
+func (enum AlphaBehavior) Values() []string {
+	return []string{
+		AlphaBehaviorDiscard,
+		AlphaBehaviorRemapToLuma,
+	}
+}
+
 // Specify whether this set of input captions appears in your outputs in both
 // 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes
 // the captions data in two ways: it passes the 608 data through using the 608
@@ -19654,6 +20024,28 @@ const (
 	AncillaryConvert608To708Disabled = "DISABLED"
 )
 
+// AncillaryConvert608To708 is an enum
+type AncillaryConvert608To708 struct{}
+
+// Contains returns whether the AncillaryConvert608To708 enum includes the element
+func (enum AncillaryConvert608To708) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AncillaryConvert608To708 enum
+func (enum AncillaryConvert608To708) Values() []string {
+	return []string{
+		AncillaryConvert608To708Upconvert,
+		AncillaryConvert608To708Disabled,
+	}
+}
+
 // By default, the service terminates any unterminated captions at the end of
 // each input. If you want the caption to continue onto your next input, disable
 // this setting.
@@ -19665,6 +20057,28 @@ const (
 	AncillaryTerminateCaptionsDisabled = "DISABLED"
 )
 
+// AncillaryTerminateCaptions is an enum
+type AncillaryTerminateCaptions struct{}
+
+// Contains returns whether the AncillaryTerminateCaptions enum includes the element
+func (enum AncillaryTerminateCaptions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AncillaryTerminateCaptions enum
+func (enum AncillaryTerminateCaptions) Values() []string {
+	return []string{
+		AncillaryTerminateCaptionsEndOfInput,
+		AncillaryTerminateCaptionsDisabled,
+	}
+}
+
 // The anti-alias filter is automatically applied to all outputs. The service
 // no longer accepts the value DISABLED for AntiAlias. If you specify that in
 // your job, the service will ignore the setting.
@@ -19675,6 +20089,28 @@ const (
 	// AntiAliasEnabled is a AntiAlias enum value
 	AntiAliasEnabled = "ENABLED"
 )
+
+// AntiAlias is an enum
+type AntiAlias struct{}
+
+// Contains returns whether the AntiAlias enum includes the element
+func (enum AntiAlias) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AntiAlias enum
+func (enum AntiAlias) Values() []string {
+	return []string{
+		AntiAliasDisabled,
+		AntiAliasEnabled,
+	}
+}
 
 // Type of Audio codec.
 const (
@@ -19712,6 +20148,37 @@ const (
 	AudioCodecPassthrough = "PASSTHROUGH"
 )
 
+// AudioCodec is an enum
+type AudioCodec struct{}
+
+// Contains returns whether the AudioCodec enum includes the element
+func (enum AudioCodec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioCodec enum
+func (enum AudioCodec) Values() []string {
+	return []string{
+		AudioCodecAac,
+		AudioCodecMp2,
+		AudioCodecMp3,
+		AudioCodecWav,
+		AudioCodecAiff,
+		AudioCodecAc3,
+		AudioCodecEac3,
+		AudioCodecEac3Atmos,
+		AudioCodecVorbis,
+		AudioCodecOpus,
+		AudioCodecPassthrough,
+	}
+}
+
 // Enable this setting on one audio selector to set it as the default for the
 // job. The service uses this default for outputs where it can't find the specified
 // input audio. If you don't set a default, those outputs have no audio.
@@ -19722,6 +20189,28 @@ const (
 	// AudioDefaultSelectionNotDefault is a AudioDefaultSelection enum value
 	AudioDefaultSelectionNotDefault = "NOT_DEFAULT"
 )
+
+// AudioDefaultSelection is an enum
+type AudioDefaultSelection struct{}
+
+// Contains returns whether the AudioDefaultSelection enum includes the element
+func (enum AudioDefaultSelection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioDefaultSelection enum
+func (enum AudioDefaultSelection) Values() []string {
+	return []string{
+		AudioDefaultSelectionDefault,
+		AudioDefaultSelectionNotDefault,
+	}
+}
 
 // Specify which source for language code takes precedence for this audio track.
 // When you choose Follow input (FOLLOW_INPUT), the service uses the language
@@ -19736,6 +20225,28 @@ const (
 	// AudioLanguageCodeControlUseConfigured is a AudioLanguageCodeControl enum value
 	AudioLanguageCodeControlUseConfigured = "USE_CONFIGURED"
 )
+
+// AudioLanguageCodeControl is an enum
+type AudioLanguageCodeControl struct{}
+
+// Contains returns whether the AudioLanguageCodeControl enum includes the element
+func (enum AudioLanguageCodeControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioLanguageCodeControl enum
+func (enum AudioLanguageCodeControl) Values() []string {
+	return []string{
+		AudioLanguageCodeControlFollowInput,
+		AudioLanguageCodeControlUseConfigured,
+	}
+}
 
 // Choose one of the following audio normalization algorithms: ITU-R BS.1770-1:
 // Ungated loudness. A measurement of ungated average loudness for an entire
@@ -19761,6 +20272,30 @@ const (
 	AudioNormalizationAlgorithmItuBs17704 = "ITU_BS_1770_4"
 )
 
+// AudioNormalizationAlgorithm is an enum
+type AudioNormalizationAlgorithm struct{}
+
+// Contains returns whether the AudioNormalizationAlgorithm enum includes the element
+func (enum AudioNormalizationAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioNormalizationAlgorithm enum
+func (enum AudioNormalizationAlgorithm) Values() []string {
+	return []string{
+		AudioNormalizationAlgorithmItuBs17701,
+		AudioNormalizationAlgorithmItuBs17702,
+		AudioNormalizationAlgorithmItuBs17703,
+		AudioNormalizationAlgorithmItuBs17704,
+	}
+}
+
 // When enabled the output audio is corrected using the chosen algorithm. If
 // disabled, the audio will be measured but not adjusted.
 const (
@@ -19771,6 +20306,28 @@ const (
 	AudioNormalizationAlgorithmControlMeasureOnly = "MEASURE_ONLY"
 )
 
+// AudioNormalizationAlgorithmControl is an enum
+type AudioNormalizationAlgorithmControl struct{}
+
+// Contains returns whether the AudioNormalizationAlgorithmControl enum includes the element
+func (enum AudioNormalizationAlgorithmControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioNormalizationAlgorithmControl enum
+func (enum AudioNormalizationAlgorithmControl) Values() []string {
+	return []string{
+		AudioNormalizationAlgorithmControlCorrectAudio,
+		AudioNormalizationAlgorithmControlMeasureOnly,
+	}
+}
+
 // If set to LOG, log each output's audio track loudness to a CSV file.
 const (
 	// AudioNormalizationLoudnessLoggingLog is a AudioNormalizationLoudnessLogging enum value
@@ -19779,6 +20336,28 @@ const (
 	// AudioNormalizationLoudnessLoggingDontLog is a AudioNormalizationLoudnessLogging enum value
 	AudioNormalizationLoudnessLoggingDontLog = "DONT_LOG"
 )
+
+// AudioNormalizationLoudnessLogging is an enum
+type AudioNormalizationLoudnessLogging struct{}
+
+// Contains returns whether the AudioNormalizationLoudnessLogging enum includes the element
+func (enum AudioNormalizationLoudnessLogging) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioNormalizationLoudnessLogging enum
+func (enum AudioNormalizationLoudnessLogging) Values() []string {
+	return []string{
+		AudioNormalizationLoudnessLoggingLog,
+		AudioNormalizationLoudnessLoggingDontLog,
+	}
+}
 
 // If set to TRUE_PEAK, calculate and log the TruePeak for each output's audio
 // track loudness.
@@ -19789,6 +20368,28 @@ const (
 	// AudioNormalizationPeakCalculationNone is a AudioNormalizationPeakCalculation enum value
 	AudioNormalizationPeakCalculationNone = "NONE"
 )
+
+// AudioNormalizationPeakCalculation is an enum
+type AudioNormalizationPeakCalculation struct{}
+
+// Contains returns whether the AudioNormalizationPeakCalculation enum includes the element
+func (enum AudioNormalizationPeakCalculation) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioNormalizationPeakCalculation enum
+func (enum AudioNormalizationPeakCalculation) Values() []string {
+	return []string{
+		AudioNormalizationPeakCalculationTruePeak,
+		AudioNormalizationPeakCalculationNone,
+	}
+}
 
 // Specifies the type of the audio selector.
 const (
@@ -19802,6 +20403,29 @@ const (
 	AudioSelectorTypeLanguageCode = "LANGUAGE_CODE"
 )
 
+// AudioSelectorType is an enum
+type AudioSelectorType struct{}
+
+// Contains returns whether the AudioSelectorType enum includes the element
+func (enum AudioSelectorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioSelectorType enum
+func (enum AudioSelectorType) Values() []string {
+	return []string{
+		AudioSelectorTypePid,
+		AudioSelectorTypeTrack,
+		AudioSelectorTypeLanguageCode,
+	}
+}
+
 // When set to FOLLOW_INPUT, if the input contains an ISO 639 audio_type, then
 // that value is passed through to the output. If the input contains no ISO
 // 639 audio_type, the value in Audio Type is included in the output. Otherwise
@@ -19814,6 +20438,28 @@ const (
 	// AudioTypeControlUseConfigured is a AudioTypeControl enum value
 	AudioTypeControlUseConfigured = "USE_CONFIGURED"
 )
+
+// AudioTypeControl is an enum
+type AudioTypeControl struct{}
+
+// Contains returns whether the AudioTypeControl enum includes the element
+func (enum AudioTypeControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AudioTypeControl enum
+func (enum AudioTypeControl) Values() []string {
+	return []string{
+		AudioTypeControlFollowInput,
+		AudioTypeControlUseConfigured,
+	}
+}
 
 // Adaptive quantization. Allows intra-frame quantizers to vary to improve visual
 // quality.
@@ -19837,6 +20483,32 @@ const (
 	Av1AdaptiveQuantizationMax = "MAX"
 )
 
+// Av1AdaptiveQuantization is an enum
+type Av1AdaptiveQuantization struct{}
+
+// Contains returns whether the Av1AdaptiveQuantization enum includes the element
+func (enum Av1AdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Av1AdaptiveQuantization enum
+func (enum Av1AdaptiveQuantization) Values() []string {
+	return []string{
+		Av1AdaptiveQuantizationOff,
+		Av1AdaptiveQuantizationLow,
+		Av1AdaptiveQuantizationMedium,
+		Av1AdaptiveQuantizationHigh,
+		Av1AdaptiveQuantizationHigher,
+		Av1AdaptiveQuantizationMax,
+	}
+}
+
 // If you are using the console, use the Framerate setting to specify the frame
 // rate for this output. If you want to keep the same frame rate as the input
 // video, choose Follow source. If you want to do frame rate conversion, choose
@@ -19856,6 +20528,28 @@ const (
 	Av1FramerateControlSpecified = "SPECIFIED"
 )
 
+// Av1FramerateControl is an enum
+type Av1FramerateControl struct{}
+
+// Contains returns whether the Av1FramerateControl enum includes the element
+func (enum Av1FramerateControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Av1FramerateControl enum
+func (enum Av1FramerateControl) Values() []string {
+	return []string{
+		Av1FramerateControlInitializeFromSource,
+		Av1FramerateControlSpecified,
+	}
+}
+
 // Optional. Specify how the transcoder performs framerate conversion. The default
 // behavior is to use duplicate drop conversion.
 const (
@@ -19866,12 +20560,55 @@ const (
 	Av1FramerateConversionAlgorithmInterpolate = "INTERPOLATE"
 )
 
+// Av1FramerateConversionAlgorithm is an enum
+type Av1FramerateConversionAlgorithm struct{}
+
+// Contains returns whether the Av1FramerateConversionAlgorithm enum includes the element
+func (enum Av1FramerateConversionAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Av1FramerateConversionAlgorithm enum
+func (enum Av1FramerateConversionAlgorithm) Values() []string {
+	return []string{
+		Av1FramerateConversionAlgorithmDuplicateDrop,
+		Av1FramerateConversionAlgorithmInterpolate,
+	}
+}
+
 // 'With AV1 outputs, for rate control mode, MediaConvert supports only quality-defined
 // variable bitrate (QVBR). You can''t use CBR or VBR.'
 const (
 	// Av1RateControlModeQvbr is a Av1RateControlMode enum value
 	Av1RateControlModeQvbr = "QVBR"
 )
+
+// Av1RateControlMode is an enum
+type Av1RateControlMode struct{}
+
+// Contains returns whether the Av1RateControlMode enum includes the element
+func (enum Av1RateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Av1RateControlMode enum
+func (enum Av1RateControlMode) Values() []string {
+	return []string{
+		Av1RateControlModeQvbr,
+	}
+}
 
 // Adjust quantization within each frame based on spatial variation of content
 // complexity.
@@ -19882,6 +20619,28 @@ const (
 	// Av1SpatialAdaptiveQuantizationEnabled is a Av1SpatialAdaptiveQuantization enum value
 	Av1SpatialAdaptiveQuantizationEnabled = "ENABLED"
 )
+
+// Av1SpatialAdaptiveQuantization is an enum
+type Av1SpatialAdaptiveQuantization struct{}
+
+// Contains returns whether the Av1SpatialAdaptiveQuantization enum includes the element
+func (enum Av1SpatialAdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Av1SpatialAdaptiveQuantization enum
+func (enum Av1SpatialAdaptiveQuantization) Values() []string {
+	return []string{
+		Av1SpatialAdaptiveQuantizationDisabled,
+		Av1SpatialAdaptiveQuantizationEnabled,
+	}
+}
 
 // The tag type that AWS Billing and Cost Management will use to sort your AWS
 // Elemental MediaConvert costs on any billing report that you set up.
@@ -19899,6 +20658,30 @@ const (
 	BillingTagsSourceJob = "JOB"
 )
 
+// BillingTagsSource is an enum
+type BillingTagsSource struct{}
+
+// Contains returns whether the BillingTagsSource enum includes the element
+func (enum BillingTagsSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BillingTagsSource enum
+func (enum BillingTagsSource) Values() []string {
+	return []string{
+		BillingTagsSourceQueue,
+		BillingTagsSourcePreset,
+		BillingTagsSourceJobTemplate,
+		BillingTagsSourceJob,
+	}
+}
+
 // If no explicit x_position or y_position is provided, setting alignment to
 // centered will place the captions at the bottom center of the output. Similarly,
 // setting a left alignment will align captions to the bottom left of the output.
@@ -19915,6 +20698,28 @@ const (
 	BurninSubtitleAlignmentLeft = "LEFT"
 )
 
+// BurninSubtitleAlignment is an enum
+type BurninSubtitleAlignment struct{}
+
+// Contains returns whether the BurninSubtitleAlignment enum includes the element
+func (enum BurninSubtitleAlignment) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurninSubtitleAlignment enum
+func (enum BurninSubtitleAlignment) Values() []string {
+	return []string{
+		BurninSubtitleAlignmentCentered,
+		BurninSubtitleAlignmentLeft,
+	}
+}
+
 // Specifies the color of the rectangle behind the captions.All burn-in and
 // DVB-Sub font settings must match.
 const (
@@ -19927,6 +20732,29 @@ const (
 	// BurninSubtitleBackgroundColorWhite is a BurninSubtitleBackgroundColor enum value
 	BurninSubtitleBackgroundColorWhite = "WHITE"
 )
+
+// BurninSubtitleBackgroundColor is an enum
+type BurninSubtitleBackgroundColor struct{}
+
+// Contains returns whether the BurninSubtitleBackgroundColor enum includes the element
+func (enum BurninSubtitleBackgroundColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurninSubtitleBackgroundColor enum
+func (enum BurninSubtitleBackgroundColor) Values() []string {
+	return []string{
+		BurninSubtitleBackgroundColorNone,
+		BurninSubtitleBackgroundColorBlack,
+		BurninSubtitleBackgroundColorWhite,
+	}
+}
 
 // Specifies the color of the burned-in captions. This option is not valid for
 // source captions that are STL, 608/embedded or teletext. These source settings
@@ -19952,6 +20780,32 @@ const (
 	BurninSubtitleFontColorBlue = "BLUE"
 )
 
+// BurninSubtitleFontColor is an enum
+type BurninSubtitleFontColor struct{}
+
+// Contains returns whether the BurninSubtitleFontColor enum includes the element
+func (enum BurninSubtitleFontColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurninSubtitleFontColor enum
+func (enum BurninSubtitleFontColor) Values() []string {
+	return []string{
+		BurninSubtitleFontColorWhite,
+		BurninSubtitleFontColorBlack,
+		BurninSubtitleFontColorYellow,
+		BurninSubtitleFontColorRed,
+		BurninSubtitleFontColorGreen,
+		BurninSubtitleFontColorBlue,
+	}
+}
+
 // Specifies font outline color. This option is not valid for source captions
 // that are either 608/embedded or teletext. These source settings are already
 // pre-defined by the caption stream. All burn-in and DVB-Sub font settings
@@ -19976,6 +20830,32 @@ const (
 	BurninSubtitleOutlineColorBlue = "BLUE"
 )
 
+// BurninSubtitleOutlineColor is an enum
+type BurninSubtitleOutlineColor struct{}
+
+// Contains returns whether the BurninSubtitleOutlineColor enum includes the element
+func (enum BurninSubtitleOutlineColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurninSubtitleOutlineColor enum
+func (enum BurninSubtitleOutlineColor) Values() []string {
+	return []string{
+		BurninSubtitleOutlineColorBlack,
+		BurninSubtitleOutlineColorWhite,
+		BurninSubtitleOutlineColorYellow,
+		BurninSubtitleOutlineColorRed,
+		BurninSubtitleOutlineColorGreen,
+		BurninSubtitleOutlineColorBlue,
+	}
+}
+
 // Specifies the color of the shadow cast by the captions.All burn-in and DVB-Sub
 // font settings must match.
 const (
@@ -19989,6 +20869,29 @@ const (
 	BurninSubtitleShadowColorWhite = "WHITE"
 )
 
+// BurninSubtitleShadowColor is an enum
+type BurninSubtitleShadowColor struct{}
+
+// Contains returns whether the BurninSubtitleShadowColor enum includes the element
+func (enum BurninSubtitleShadowColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurninSubtitleShadowColor enum
+func (enum BurninSubtitleShadowColor) Values() []string {
+	return []string{
+		BurninSubtitleShadowColorNone,
+		BurninSubtitleShadowColorBlack,
+		BurninSubtitleShadowColorWhite,
+	}
+}
+
 // Only applies to jobs with input captions in Teletext or STL formats. Specify
 // whether the spacing between letters in your captions is set by the captions
 // grid or varies depending on letter width. Choose fixed grid to conform to
@@ -20001,6 +20904,28 @@ const (
 	// BurninSubtitleTeletextSpacingProportional is a BurninSubtitleTeletextSpacing enum value
 	BurninSubtitleTeletextSpacingProportional = "PROPORTIONAL"
 )
+
+// BurninSubtitleTeletextSpacing is an enum
+type BurninSubtitleTeletextSpacing struct{}
+
+// Contains returns whether the BurninSubtitleTeletextSpacing enum includes the element
+func (enum BurninSubtitleTeletextSpacing) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BurninSubtitleTeletextSpacing enum
+func (enum BurninSubtitleTeletextSpacing) Values() []string {
+	return []string{
+		BurninSubtitleTeletextSpacingFixedGrid,
+		BurninSubtitleTeletextSpacingProportional,
+	}
+}
 
 // Specify the format for this set of captions on this output. The default format
 // is embedded without SCTE-20. Other options are embedded with SCTE-20, burn-in,
@@ -20046,6 +20971,38 @@ const (
 	CaptionDestinationTypeWebvtt = "WEBVTT"
 )
 
+// CaptionDestinationType is an enum
+type CaptionDestinationType struct{}
+
+// Contains returns whether the CaptionDestinationType enum includes the element
+func (enum CaptionDestinationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CaptionDestinationType enum
+func (enum CaptionDestinationType) Values() []string {
+	return []string{
+		CaptionDestinationTypeBurnIn,
+		CaptionDestinationTypeDvbSub,
+		CaptionDestinationTypeEmbedded,
+		CaptionDestinationTypeEmbeddedPlusScte20,
+		CaptionDestinationTypeImsc,
+		CaptionDestinationTypeScte20PlusEmbedded,
+		CaptionDestinationTypeScc,
+		CaptionDestinationTypeSrt,
+		CaptionDestinationTypeSmi,
+		CaptionDestinationTypeTeletext,
+		CaptionDestinationTypeTtml,
+		CaptionDestinationTypeWebvtt,
+	}
+}
+
 // Use Source (SourceType) to identify the format of your input captions. The
 // service cannot auto-detect caption format.
 const (
@@ -20086,6 +21043,38 @@ const (
 	CaptionSourceTypeImsc = "IMSC"
 )
 
+// CaptionSourceType is an enum
+type CaptionSourceType struct{}
+
+// Contains returns whether the CaptionSourceType enum includes the element
+func (enum CaptionSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CaptionSourceType enum
+func (enum CaptionSourceType) Values() []string {
+	return []string{
+		CaptionSourceTypeAncillary,
+		CaptionSourceTypeDvbSub,
+		CaptionSourceTypeEmbedded,
+		CaptionSourceTypeScte20,
+		CaptionSourceTypeScc,
+		CaptionSourceTypeTtml,
+		CaptionSourceTypeStl,
+		CaptionSourceTypeSrt,
+		CaptionSourceTypeSmi,
+		CaptionSourceTypeTeletext,
+		CaptionSourceTypeNullSource,
+		CaptionSourceTypeImsc,
+	}
+}
+
 // When set to ENABLED, sets #EXT-X-ALLOW-CACHE:no tag, which prevents client
 // from saving media segments for later replay.
 const (
@@ -20095,6 +21084,28 @@ const (
 	// CmafClientCacheEnabled is a CmafClientCache enum value
 	CmafClientCacheEnabled = "ENABLED"
 )
+
+// CmafClientCache is an enum
+type CmafClientCache struct{}
+
+// Contains returns whether the CmafClientCache enum includes the element
+func (enum CmafClientCache) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafClientCache enum
+func (enum CmafClientCache) Values() []string {
+	return []string{
+		CmafClientCacheDisabled,
+		CmafClientCacheEnabled,
+	}
+}
 
 // Specification to use (RFC-6381 or the default RFC-4281) during m3u8 playlist
 // generation.
@@ -20106,6 +21117,28 @@ const (
 	CmafCodecSpecificationRfc4281 = "RFC_4281"
 )
 
+// CmafCodecSpecification is an enum
+type CmafCodecSpecification struct{}
+
+// Contains returns whether the CmafCodecSpecification enum includes the element
+func (enum CmafCodecSpecification) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafCodecSpecification enum
+func (enum CmafCodecSpecification) Values() []string {
+	return []string{
+		CmafCodecSpecificationRfc6381,
+		CmafCodecSpecificationRfc4281,
+	}
+}
+
 // Specify the encryption scheme that you want the service to use when encrypting
 // your CMAF segments. Choose AES-CBC subsample (SAMPLE-AES) or AES_CTR (AES-CTR).
 const (
@@ -20115,6 +21148,28 @@ const (
 	// CmafEncryptionTypeAesCtr is a CmafEncryptionType enum value
 	CmafEncryptionTypeAesCtr = "AES_CTR"
 )
+
+// CmafEncryptionType is an enum
+type CmafEncryptionType struct{}
+
+// Contains returns whether the CmafEncryptionType enum includes the element
+func (enum CmafEncryptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafEncryptionType enum
+func (enum CmafEncryptionType) Values() []string {
+	return []string{
+		CmafEncryptionTypeSampleAes,
+		CmafEncryptionTypeAesCtr,
+	}
+}
 
 // When you use DRM with CMAF outputs, choose whether the service writes the
 // 128-bit encryption initialization vector in the HLS and DASH manifests.
@@ -20126,6 +21181,28 @@ const (
 	CmafInitializationVectorInManifestExclude = "EXCLUDE"
 )
 
+// CmafInitializationVectorInManifest is an enum
+type CmafInitializationVectorInManifest struct{}
+
+// Contains returns whether the CmafInitializationVectorInManifest enum includes the element
+func (enum CmafInitializationVectorInManifest) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafInitializationVectorInManifest enum
+func (enum CmafInitializationVectorInManifest) Values() []string {
+	return []string{
+		CmafInitializationVectorInManifestInclude,
+		CmafInitializationVectorInManifestExclude,
+	}
+}
+
 // Specify whether your DRM encryption key is static or from a key provider
 // that follows the SPEKE standard. For more information about SPEKE, see https://docs.aws.amazon.com/speke/latest/documentation/what-is-speke.html.
 const (
@@ -20136,6 +21213,28 @@ const (
 	CmafKeyProviderTypeStaticKey = "STATIC_KEY"
 )
 
+// CmafKeyProviderType is an enum
+type CmafKeyProviderType struct{}
+
+// Contains returns whether the CmafKeyProviderType enum includes the element
+func (enum CmafKeyProviderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafKeyProviderType enum
+func (enum CmafKeyProviderType) Values() []string {
+	return []string{
+		CmafKeyProviderTypeSpeke,
+		CmafKeyProviderTypeStaticKey,
+	}
+}
+
 // When set to GZIP, compresses HLS playlist.
 const (
 	// CmafManifestCompressionGzip is a CmafManifestCompression enum value
@@ -20144,6 +21243,28 @@ const (
 	// CmafManifestCompressionNone is a CmafManifestCompression enum value
 	CmafManifestCompressionNone = "NONE"
 )
+
+// CmafManifestCompression is an enum
+type CmafManifestCompression struct{}
+
+// Contains returns whether the CmafManifestCompression enum includes the element
+func (enum CmafManifestCompression) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafManifestCompression enum
+func (enum CmafManifestCompression) Values() []string {
+	return []string{
+		CmafManifestCompressionGzip,
+		CmafManifestCompressionNone,
+	}
+}
 
 // Indicates whether the output manifest should use floating point values for
 // segment duration.
@@ -20154,6 +21275,28 @@ const (
 	// CmafManifestDurationFormatInteger is a CmafManifestDurationFormat enum value
 	CmafManifestDurationFormatInteger = "INTEGER"
 )
+
+// CmafManifestDurationFormat is an enum
+type CmafManifestDurationFormat struct{}
+
+// Contains returns whether the CmafManifestDurationFormat enum includes the element
+func (enum CmafManifestDurationFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafManifestDurationFormat enum
+func (enum CmafManifestDurationFormat) Values() []string {
+	return []string{
+		CmafManifestDurationFormatFloatingPoint,
+		CmafManifestDurationFormatInteger,
+	}
+}
 
 // Specify whether your DASH profile is on-demand or main. When you choose Main
 // profile (MAIN_PROFILE), the service signals urn:mpeg:dash:profile:isoff-main:2011
@@ -20169,6 +21312,28 @@ const (
 	CmafMpdProfileOnDemandProfile = "ON_DEMAND_PROFILE"
 )
 
+// CmafMpdProfile is an enum
+type CmafMpdProfile struct{}
+
+// Contains returns whether the CmafMpdProfile enum includes the element
+func (enum CmafMpdProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafMpdProfile enum
+func (enum CmafMpdProfile) Values() []string {
+	return []string{
+		CmafMpdProfileMainProfile,
+		CmafMpdProfileOnDemandProfile,
+	}
+}
+
 // When set to SINGLE_FILE, a single output file is generated, which is internally
 // segmented using the Fragment Length and Segment Length. When set to SEGMENTED_FILES,
 // separate segment files will be created.
@@ -20180,6 +21345,28 @@ const (
 	CmafSegmentControlSegmentedFiles = "SEGMENTED_FILES"
 )
 
+// CmafSegmentControl is an enum
+type CmafSegmentControl struct{}
+
+// Contains returns whether the CmafSegmentControl enum includes the element
+func (enum CmafSegmentControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafSegmentControl enum
+func (enum CmafSegmentControl) Values() []string {
+	return []string{
+		CmafSegmentControlSingleFile,
+		CmafSegmentControlSegmentedFiles,
+	}
+}
+
 // Include or exclude RESOLUTION attribute for video in EXT-X-STREAM-INF tag
 // of variant manifest.
 const (
@@ -20190,6 +21377,28 @@ const (
 	CmafStreamInfResolutionExclude = "EXCLUDE"
 )
 
+// CmafStreamInfResolution is an enum
+type CmafStreamInfResolution struct{}
+
+// Contains returns whether the CmafStreamInfResolution enum includes the element
+func (enum CmafStreamInfResolution) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafStreamInfResolution enum
+func (enum CmafStreamInfResolution) Values() []string {
+	return []string{
+		CmafStreamInfResolutionInclude,
+		CmafStreamInfResolutionExclude,
+	}
+}
+
 // When set to ENABLED, a DASH MPD manifest will be generated for this output.
 const (
 	// CmafWriteDASHManifestDisabled is a CmafWriteDASHManifest enum value
@@ -20199,6 +21408,28 @@ const (
 	CmafWriteDASHManifestEnabled = "ENABLED"
 )
 
+// CmafWriteDASHManifest is an enum
+type CmafWriteDASHManifest struct{}
+
+// Contains returns whether the CmafWriteDASHManifest enum includes the element
+func (enum CmafWriteDASHManifest) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafWriteDASHManifest enum
+func (enum CmafWriteDASHManifest) Values() []string {
+	return []string{
+		CmafWriteDASHManifestDisabled,
+		CmafWriteDASHManifestEnabled,
+	}
+}
+
 // When set to ENABLED, an Apple HLS manifest will be generated for this output.
 const (
 	// CmafWriteHLSManifestDisabled is a CmafWriteHLSManifest enum value
@@ -20207,6 +21438,28 @@ const (
 	// CmafWriteHLSManifestEnabled is a CmafWriteHLSManifest enum value
 	CmafWriteHLSManifestEnabled = "ENABLED"
 )
+
+// CmafWriteHLSManifest is an enum
+type CmafWriteHLSManifest struct{}
+
+// Contains returns whether the CmafWriteHLSManifest enum includes the element
+func (enum CmafWriteHLSManifest) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafWriteHLSManifest enum
+func (enum CmafWriteHLSManifest) Values() []string {
+	return []string{
+		CmafWriteHLSManifestDisabled,
+		CmafWriteHLSManifestEnabled,
+	}
+}
 
 // When you enable Precise segment duration in DASH manifests (writeSegmentTimelineInRepresentation),
 // your DASH manifest shows precise segment durations. The segment duration
@@ -20222,6 +21475,28 @@ const (
 	CmafWriteSegmentTimelineInRepresentationDisabled = "DISABLED"
 )
 
+// CmafWriteSegmentTimelineInRepresentation is an enum
+type CmafWriteSegmentTimelineInRepresentation struct{}
+
+// Contains returns whether the CmafWriteSegmentTimelineInRepresentation enum includes the element
+func (enum CmafWriteSegmentTimelineInRepresentation) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmafWriteSegmentTimelineInRepresentation enum
+func (enum CmafWriteSegmentTimelineInRepresentation) Values() []string {
+	return []string{
+		CmafWriteSegmentTimelineInRepresentationEnabled,
+		CmafWriteSegmentTimelineInRepresentationDisabled,
+	}
+}
+
 // Use this setting only when you specify SCTE-35 markers from ESAM. Choose
 // INSERT to put SCTE-35 markers in this output at the insertion points that
 // you specify in an ESAM XML document. Provide the document in the setting
@@ -20233,6 +21508,28 @@ const (
 	// CmfcScte35EsamNone is a CmfcScte35Esam enum value
 	CmfcScte35EsamNone = "NONE"
 )
+
+// CmfcScte35Esam is an enum
+type CmfcScte35Esam struct{}
+
+// Contains returns whether the CmfcScte35Esam enum includes the element
+func (enum CmfcScte35Esam) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmfcScte35Esam enum
+func (enum CmfcScte35Esam) Values() []string {
+	return []string{
+		CmfcScte35EsamInsert,
+		CmfcScte35EsamNone,
+	}
+}
 
 // Ignore this setting unless you have SCTE-35 markers in your input video file.
 // Choose Passthrough (PASSTHROUGH) if you want SCTE-35 markers that appear
@@ -20246,6 +21543,28 @@ const (
 	CmfcScte35SourceNone = "NONE"
 )
 
+// CmfcScte35Source is an enum
+type CmfcScte35Source struct{}
+
+// Contains returns whether the CmfcScte35Source enum includes the element
+func (enum CmfcScte35Source) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CmfcScte35Source enum
+func (enum CmfcScte35Source) Values() []string {
+	return []string{
+		CmfcScte35SourcePassthrough,
+		CmfcScte35SourceNone,
+	}
+}
+
 // Choose Insert (INSERT) for this setting to include color metadata in this
 // output. Choose Ignore (IGNORE) to exclude color metadata from this output.
 // If you don't specify a value, the service sets this to Insert by default.
@@ -20256,6 +21575,28 @@ const (
 	// ColorMetadataInsert is a ColorMetadata enum value
 	ColorMetadataInsert = "INSERT"
 )
+
+// ColorMetadata is an enum
+type ColorMetadata struct{}
+
+// Contains returns whether the ColorMetadata enum includes the element
+func (enum ColorMetadata) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ColorMetadata enum
+func (enum ColorMetadata) Values() []string {
+	return []string{
+		ColorMetadataIgnore,
+		ColorMetadataInsert,
+	}
+}
 
 // If your input video has accurate color space metadata, or if you don't know
 // about color space, leave this set to the default value Follow (FOLLOW). The
@@ -20283,6 +21624,31 @@ const (
 	ColorSpaceHlg2020 = "HLG_2020"
 )
 
+// ColorSpace is an enum
+type ColorSpace struct{}
+
+// Contains returns whether the ColorSpace enum includes the element
+func (enum ColorSpace) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ColorSpace enum
+func (enum ColorSpace) Values() []string {
+	return []string{
+		ColorSpaceFollow,
+		ColorSpaceRec601,
+		ColorSpaceRec709,
+		ColorSpaceHdr10,
+		ColorSpaceHlg2020,
+	}
+}
+
 // Specify the color space you want for this output. The service supports conversion
 // between HDR formats, between SDR formats, from SDR to HDR, and from HDR to
 // SDR. SDR to HDR conversion doesn't upgrade the dynamic range. The converted
@@ -20306,6 +21672,31 @@ const (
 	ColorSpaceConversionForceHlg2020 = "FORCE_HLG_2020"
 )
 
+// ColorSpaceConversion is an enum
+type ColorSpaceConversion struct{}
+
+// Contains returns whether the ColorSpaceConversion enum includes the element
+func (enum ColorSpaceConversion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ColorSpaceConversion enum
+func (enum ColorSpaceConversion) Values() []string {
+	return []string{
+		ColorSpaceConversionNone,
+		ColorSpaceConversionForce601,
+		ColorSpaceConversionForce709,
+		ColorSpaceConversionForceHdr10,
+		ColorSpaceConversionForceHlg2020,
+	}
+}
+
 // There are two sources for color metadata, the input file and the job input
 // settings Color space (ColorSpace) and HDR master display information settings(Hdr10Metadata).
 // The Color space usage setting determines which takes precedence. Choose Force
@@ -20322,11 +21713,54 @@ const (
 	ColorSpaceUsageFallback = "FALLBACK"
 )
 
+// ColorSpaceUsage is an enum
+type ColorSpaceUsage struct{}
+
+// Contains returns whether the ColorSpaceUsage enum includes the element
+func (enum ColorSpaceUsage) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ColorSpaceUsage enum
+func (enum ColorSpaceUsage) Values() []string {
+	return []string{
+		ColorSpaceUsageForce,
+		ColorSpaceUsageFallback,
+	}
+}
+
 // The length of the term of your reserved queue pricing plan commitment.
 const (
 	// CommitmentOneYear is a Commitment enum value
 	CommitmentOneYear = "ONE_YEAR"
 )
+
+// Commitment is an enum
+type Commitment struct{}
+
+// Contains returns whether the Commitment enum includes the element
+func (enum Commitment) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Commitment enum
+func (enum Commitment) Values() []string {
+	return []string{
+		CommitmentOneYear,
+	}
+}
 
 // Container for this output. Some containers require a container settings object.
 // If not specified, the default object will be created.
@@ -20365,6 +21799,37 @@ const (
 	ContainerTypeRaw = "RAW"
 )
 
+// ContainerType is an enum
+type ContainerType struct{}
+
+// Contains returns whether the ContainerType enum includes the element
+func (enum ContainerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContainerType enum
+func (enum ContainerType) Values() []string {
+	return []string{
+		ContainerTypeF4v,
+		ContainerTypeIsmv,
+		ContainerTypeM2ts,
+		ContainerTypeM3u8,
+		ContainerTypeCmfc,
+		ContainerTypeMov,
+		ContainerTypeMp4,
+		ContainerTypeMpd,
+		ContainerTypeMxf,
+		ContainerTypeWebm,
+		ContainerTypeRaw,
+	}
+}
+
 // Supports HbbTV specification as indicated
 const (
 	// DashIsoHbbtvComplianceHbbtv15 is a DashIsoHbbtvCompliance enum value
@@ -20373,6 +21838,28 @@ const (
 	// DashIsoHbbtvComplianceNone is a DashIsoHbbtvCompliance enum value
 	DashIsoHbbtvComplianceNone = "NONE"
 )
+
+// DashIsoHbbtvCompliance is an enum
+type DashIsoHbbtvCompliance struct{}
+
+// Contains returns whether the DashIsoHbbtvCompliance enum includes the element
+func (enum DashIsoHbbtvCompliance) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DashIsoHbbtvCompliance enum
+func (enum DashIsoHbbtvCompliance) Values() []string {
+	return []string{
+		DashIsoHbbtvComplianceHbbtv15,
+		DashIsoHbbtvComplianceNone,
+	}
+}
 
 // Specify whether your DASH profile is on-demand or main. When you choose Main
 // profile (MAIN_PROFILE), the service signals urn:mpeg:dash:profile:isoff-main:2011
@@ -20388,6 +21875,28 @@ const (
 	DashIsoMpdProfileOnDemandProfile = "ON_DEMAND_PROFILE"
 )
 
+// DashIsoMpdProfile is an enum
+type DashIsoMpdProfile struct{}
+
+// Contains returns whether the DashIsoMpdProfile enum includes the element
+func (enum DashIsoMpdProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DashIsoMpdProfile enum
+func (enum DashIsoMpdProfile) Values() []string {
+	return []string{
+		DashIsoMpdProfileMainProfile,
+		DashIsoMpdProfileOnDemandProfile,
+	}
+}
+
 // This setting can improve the compatibility of your output with video players
 // on obsolete devices. It applies only to DASH H.264 outputs with DRM encryption.
 // Choose Unencrypted SEI (UNENCRYPTED_SEI) only to correct problems with playback
@@ -20402,6 +21911,28 @@ const (
 	DashIsoPlaybackDeviceCompatibilityUnencryptedSei = "UNENCRYPTED_SEI"
 )
 
+// DashIsoPlaybackDeviceCompatibility is an enum
+type DashIsoPlaybackDeviceCompatibility struct{}
+
+// Contains returns whether the DashIsoPlaybackDeviceCompatibility enum includes the element
+func (enum DashIsoPlaybackDeviceCompatibility) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DashIsoPlaybackDeviceCompatibility enum
+func (enum DashIsoPlaybackDeviceCompatibility) Values() []string {
+	return []string{
+		DashIsoPlaybackDeviceCompatibilityCencV1,
+		DashIsoPlaybackDeviceCompatibilityUnencryptedSei,
+	}
+}
+
 // When set to SINGLE_FILE, a single output file is generated, which is internally
 // segmented using the Fragment Length and Segment Length. When set to SEGMENTED_FILES,
 // separate segment files will be created.
@@ -20412,6 +21943,28 @@ const (
 	// DashIsoSegmentControlSegmentedFiles is a DashIsoSegmentControl enum value
 	DashIsoSegmentControlSegmentedFiles = "SEGMENTED_FILES"
 )
+
+// DashIsoSegmentControl is an enum
+type DashIsoSegmentControl struct{}
+
+// Contains returns whether the DashIsoSegmentControl enum includes the element
+func (enum DashIsoSegmentControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DashIsoSegmentControl enum
+func (enum DashIsoSegmentControl) Values() []string {
+	return []string{
+		DashIsoSegmentControlSingleFile,
+		DashIsoSegmentControlSegmentedFiles,
+	}
+}
 
 // When you enable Precise segment duration in manifests (writeSegmentTimelineInRepresentation),
 // your DASH manifest shows precise segment durations. The segment duration
@@ -20427,6 +21980,28 @@ const (
 	DashIsoWriteSegmentTimelineInRepresentationDisabled = "DISABLED"
 )
 
+// DashIsoWriteSegmentTimelineInRepresentation is an enum
+type DashIsoWriteSegmentTimelineInRepresentation struct{}
+
+// Contains returns whether the DashIsoWriteSegmentTimelineInRepresentation enum includes the element
+func (enum DashIsoWriteSegmentTimelineInRepresentation) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DashIsoWriteSegmentTimelineInRepresentation enum
+func (enum DashIsoWriteSegmentTimelineInRepresentation) Values() []string {
+	return []string{
+		DashIsoWriteSegmentTimelineInRepresentationEnabled,
+		DashIsoWriteSegmentTimelineInRepresentationDisabled,
+	}
+}
+
 // Specify the encryption mode that you used to encrypt your input files.
 const (
 	// DecryptionModeAesCtr is a DecryptionMode enum value
@@ -20438,6 +22013,29 @@ const (
 	// DecryptionModeAesGcm is a DecryptionMode enum value
 	DecryptionModeAesGcm = "AES_GCM"
 )
+
+// DecryptionMode is an enum
+type DecryptionMode struct{}
+
+// Contains returns whether the DecryptionMode enum includes the element
+func (enum DecryptionMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DecryptionMode enum
+func (enum DecryptionMode) Values() []string {
+	return []string{
+		DecryptionModeAesCtr,
+		DecryptionModeAesCbc,
+		DecryptionModeAesGcm,
+	}
+}
 
 // Only applies when you set Deinterlacer (DeinterlaceMode) to Deinterlace (DEINTERLACE)
 // or Adaptive (ADAPTIVE). Motion adaptive interpolate (INTERPOLATE) produces
@@ -20458,6 +22056,30 @@ const (
 	DeinterlaceAlgorithmBlendTicker = "BLEND_TICKER"
 )
 
+// DeinterlaceAlgorithm is an enum
+type DeinterlaceAlgorithm struct{}
+
+// Contains returns whether the DeinterlaceAlgorithm enum includes the element
+func (enum DeinterlaceAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeinterlaceAlgorithm enum
+func (enum DeinterlaceAlgorithm) Values() []string {
+	return []string{
+		DeinterlaceAlgorithmInterpolate,
+		DeinterlaceAlgorithmInterpolateTicker,
+		DeinterlaceAlgorithmBlend,
+		DeinterlaceAlgorithmBlendTicker,
+	}
+}
+
 // - When set to NORMAL (default), the deinterlacer does not convert frames
 // that are tagged in metadata as progressive. It will only convert those that
 // are tagged as some other type. - When set to FORCE_ALL_FRAMES, the deinterlacer
@@ -20474,6 +22096,28 @@ const (
 	DeinterlacerControlNormal = "NORMAL"
 )
 
+// DeinterlacerControl is an enum
+type DeinterlacerControl struct{}
+
+// Contains returns whether the DeinterlacerControl enum includes the element
+func (enum DeinterlacerControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeinterlacerControl enum
+func (enum DeinterlacerControl) Values() []string {
+	return []string{
+		DeinterlacerControlForceAllFrames,
+		DeinterlacerControlNormal,
+	}
+}
+
 // Use Deinterlacer (DeinterlaceMode) to choose how the service will do deinterlacing.
 // Default is Deinterlace. - Deinterlace converts interlaced to progressive.
 // - Inverse telecine converts Hard Telecine 29.97i to progressive 23.976p.
@@ -20489,6 +22133,29 @@ const (
 	DeinterlacerModeAdaptive = "ADAPTIVE"
 )
 
+// DeinterlacerMode is an enum
+type DeinterlacerMode struct{}
+
+// Contains returns whether the DeinterlacerMode enum includes the element
+func (enum DeinterlacerMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeinterlacerMode enum
+func (enum DeinterlacerMode) Values() []string {
+	return []string{
+		DeinterlacerModeDeinterlace,
+		DeinterlacerModeInverseTelecine,
+		DeinterlacerModeAdaptive,
+	}
+}
+
 // Optional field, defaults to DEFAULT. Specify DEFAULT for this operation to
 // return your endpoints if any exist, or to create an endpoint for you and
 // return it if one doesn't already exist. Specify GET_ONLY to return your endpoints
@@ -20500,6 +22167,28 @@ const (
 	// DescribeEndpointsModeGetOnly is a DescribeEndpointsMode enum value
 	DescribeEndpointsModeGetOnly = "GET_ONLY"
 )
+
+// DescribeEndpointsMode is an enum
+type DescribeEndpointsMode struct{}
+
+// Contains returns whether the DescribeEndpointsMode enum includes the element
+func (enum DescribeEndpointsMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DescribeEndpointsMode enum
+func (enum DescribeEndpointsMode) Values() []string {
+	return []string{
+		DescribeEndpointsModeDefault,
+		DescribeEndpointsModeGetOnly,
+	}
+}
 
 // Use Dolby Vision Mode to choose how the service will handle Dolby Vision
 // MaxCLL and MaxFALL properies.
@@ -20514,6 +22203,29 @@ const (
 	DolbyVisionLevel6ModeSpecify = "SPECIFY"
 )
 
+// DolbyVisionLevel6Mode is an enum
+type DolbyVisionLevel6Mode struct{}
+
+// Contains returns whether the DolbyVisionLevel6Mode enum includes the element
+func (enum DolbyVisionLevel6Mode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DolbyVisionLevel6Mode enum
+func (enum DolbyVisionLevel6Mode) Values() []string {
+	return []string{
+		DolbyVisionLevel6ModePassthrough,
+		DolbyVisionLevel6ModeRecalculate,
+		DolbyVisionLevel6ModeSpecify,
+	}
+}
+
 // In the current MediaConvert implementation, the Dolby Vision profile is always
 // 5 (PROFILE_5). Therefore, all of your inputs must contain Dolby Vision frame
 // interleaved data.
@@ -20521,6 +22233,27 @@ const (
 	// DolbyVisionProfileProfile5 is a DolbyVisionProfile enum value
 	DolbyVisionProfileProfile5 = "PROFILE_5"
 )
+
+// DolbyVisionProfile is an enum
+type DolbyVisionProfile struct{}
+
+// Contains returns whether the DolbyVisionProfile enum includes the element
+func (enum DolbyVisionProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DolbyVisionProfile enum
+func (enum DolbyVisionProfile) Values() []string {
+	return []string{
+		DolbyVisionProfileProfile5,
+	}
+}
 
 // Applies only to 29.97 fps outputs. When this feature is enabled, the service
 // will use drop-frame timecode on outputs. If it is not possible to use drop-frame
@@ -20533,6 +22266,28 @@ const (
 	// DropFrameTimecodeEnabled is a DropFrameTimecode enum value
 	DropFrameTimecodeEnabled = "ENABLED"
 )
+
+// DropFrameTimecode is an enum
+type DropFrameTimecode struct{}
+
+// Contains returns whether the DropFrameTimecode enum includes the element
+func (enum DropFrameTimecode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DropFrameTimecode enum
+func (enum DropFrameTimecode) Values() []string {
+	return []string{
+		DropFrameTimecodeDisabled,
+		DropFrameTimecodeEnabled,
+	}
+}
 
 // If no explicit x_position or y_position is provided, setting alignment to
 // centered will place the captions at the bottom center of the output. Similarly,
@@ -20550,6 +22305,28 @@ const (
 	DvbSubtitleAlignmentLeft = "LEFT"
 )
 
+// DvbSubtitleAlignment is an enum
+type DvbSubtitleAlignment struct{}
+
+// Contains returns whether the DvbSubtitleAlignment enum includes the element
+func (enum DvbSubtitleAlignment) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubtitleAlignment enum
+func (enum DvbSubtitleAlignment) Values() []string {
+	return []string{
+		DvbSubtitleAlignmentCentered,
+		DvbSubtitleAlignmentLeft,
+	}
+}
+
 // Specifies the color of the rectangle behind the captions.All burn-in and
 // DVB-Sub font settings must match.
 const (
@@ -20562,6 +22339,29 @@ const (
 	// DvbSubtitleBackgroundColorWhite is a DvbSubtitleBackgroundColor enum value
 	DvbSubtitleBackgroundColorWhite = "WHITE"
 )
+
+// DvbSubtitleBackgroundColor is an enum
+type DvbSubtitleBackgroundColor struct{}
+
+// Contains returns whether the DvbSubtitleBackgroundColor enum includes the element
+func (enum DvbSubtitleBackgroundColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubtitleBackgroundColor enum
+func (enum DvbSubtitleBackgroundColor) Values() []string {
+	return []string{
+		DvbSubtitleBackgroundColorNone,
+		DvbSubtitleBackgroundColorBlack,
+		DvbSubtitleBackgroundColorWhite,
+	}
+}
 
 // Specifies the color of the burned-in captions. This option is not valid for
 // source captions that are STL, 608/embedded or teletext. These source settings
@@ -20587,6 +22387,32 @@ const (
 	DvbSubtitleFontColorBlue = "BLUE"
 )
 
+// DvbSubtitleFontColor is an enum
+type DvbSubtitleFontColor struct{}
+
+// Contains returns whether the DvbSubtitleFontColor enum includes the element
+func (enum DvbSubtitleFontColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubtitleFontColor enum
+func (enum DvbSubtitleFontColor) Values() []string {
+	return []string{
+		DvbSubtitleFontColorWhite,
+		DvbSubtitleFontColorBlack,
+		DvbSubtitleFontColorYellow,
+		DvbSubtitleFontColorRed,
+		DvbSubtitleFontColorGreen,
+		DvbSubtitleFontColorBlue,
+	}
+}
+
 // Specifies font outline color. This option is not valid for source captions
 // that are either 608/embedded or teletext. These source settings are already
 // pre-defined by the caption stream. All burn-in and DVB-Sub font settings
@@ -20611,6 +22437,32 @@ const (
 	DvbSubtitleOutlineColorBlue = "BLUE"
 )
 
+// DvbSubtitleOutlineColor is an enum
+type DvbSubtitleOutlineColor struct{}
+
+// Contains returns whether the DvbSubtitleOutlineColor enum includes the element
+func (enum DvbSubtitleOutlineColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubtitleOutlineColor enum
+func (enum DvbSubtitleOutlineColor) Values() []string {
+	return []string{
+		DvbSubtitleOutlineColorBlack,
+		DvbSubtitleOutlineColorWhite,
+		DvbSubtitleOutlineColorYellow,
+		DvbSubtitleOutlineColorRed,
+		DvbSubtitleOutlineColorGreen,
+		DvbSubtitleOutlineColorBlue,
+	}
+}
+
 // Specifies the color of the shadow cast by the captions.All burn-in and DVB-Sub
 // font settings must match.
 const (
@@ -20623,6 +22475,29 @@ const (
 	// DvbSubtitleShadowColorWhite is a DvbSubtitleShadowColor enum value
 	DvbSubtitleShadowColorWhite = "WHITE"
 )
+
+// DvbSubtitleShadowColor is an enum
+type DvbSubtitleShadowColor struct{}
+
+// Contains returns whether the DvbSubtitleShadowColor enum includes the element
+func (enum DvbSubtitleShadowColor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubtitleShadowColor enum
+func (enum DvbSubtitleShadowColor) Values() []string {
+	return []string{
+		DvbSubtitleShadowColorNone,
+		DvbSubtitleShadowColorBlack,
+		DvbSubtitleShadowColorWhite,
+	}
+}
 
 // Only applies to jobs with input captions in Teletext or STL formats. Specify
 // whether the spacing between letters in your captions is set by the captions
@@ -20637,6 +22512,28 @@ const (
 	DvbSubtitleTeletextSpacingProportional = "PROPORTIONAL"
 )
 
+// DvbSubtitleTeletextSpacing is an enum
+type DvbSubtitleTeletextSpacing struct{}
+
+// Contains returns whether the DvbSubtitleTeletextSpacing enum includes the element
+func (enum DvbSubtitleTeletextSpacing) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubtitleTeletextSpacing enum
+func (enum DvbSubtitleTeletextSpacing) Values() []string {
+	return []string{
+		DvbSubtitleTeletextSpacingFixedGrid,
+		DvbSubtitleTeletextSpacingProportional,
+	}
+}
+
 // Specify whether your DVB subtitles are standard or for hearing impaired.
 // Choose hearing impaired if your subtitles include audio descriptions and
 // dialogue. Choose standard if your subtitles include only dialogue.
@@ -20648,6 +22545,28 @@ const (
 	DvbSubtitlingTypeStandard = "STANDARD"
 )
 
+// DvbSubtitlingType is an enum
+type DvbSubtitlingType struct{}
+
+// Contains returns whether the DvbSubtitlingType enum includes the element
+func (enum DvbSubtitlingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DvbSubtitlingType enum
+func (enum DvbSubtitlingType) Values() []string {
+	return []string{
+		DvbSubtitlingTypeHearingImpaired,
+		DvbSubtitlingTypeStandard,
+	}
+}
+
 // Specify the bitstream mode for the E-AC-3 stream that the encoder emits.
 // For more information about the EAC3 bitstream mode, see ATSC A/52-2012 (Annex
 // E).
@@ -20656,11 +22575,53 @@ const (
 	Eac3AtmosBitstreamModeCompleteMain = "COMPLETE_MAIN"
 )
 
+// Eac3AtmosBitstreamMode is an enum
+type Eac3AtmosBitstreamMode struct{}
+
+// Contains returns whether the Eac3AtmosBitstreamMode enum includes the element
+func (enum Eac3AtmosBitstreamMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3AtmosBitstreamMode enum
+func (enum Eac3AtmosBitstreamMode) Values() []string {
+	return []string{
+		Eac3AtmosBitstreamModeCompleteMain,
+	}
+}
+
 // The coding mode for Dolby Digital Plus JOC (Atmos) is always 9.1.6 (CODING_MODE_9_1_6).
 const (
 	// Eac3AtmosCodingModeCodingMode916 is a Eac3AtmosCodingMode enum value
 	Eac3AtmosCodingModeCodingMode916 = "CODING_MODE_9_1_6"
 )
+
+// Eac3AtmosCodingMode is an enum
+type Eac3AtmosCodingMode struct{}
+
+// Contains returns whether the Eac3AtmosCodingMode enum includes the element
+func (enum Eac3AtmosCodingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3AtmosCodingMode enum
+func (enum Eac3AtmosCodingMode) Values() []string {
+	return []string{
+		Eac3AtmosCodingModeCodingMode916,
+	}
+}
 
 // Enable Dolby Dialogue Intelligence to adjust loudness based on dialogue analysis.
 const (
@@ -20670,6 +22631,28 @@ const (
 	// Eac3AtmosDialogueIntelligenceDisabled is a Eac3AtmosDialogueIntelligence enum value
 	Eac3AtmosDialogueIntelligenceDisabled = "DISABLED"
 )
+
+// Eac3AtmosDialogueIntelligence is an enum
+type Eac3AtmosDialogueIntelligence struct{}
+
+// Contains returns whether the Eac3AtmosDialogueIntelligence enum includes the element
+func (enum Eac3AtmosDialogueIntelligence) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3AtmosDialogueIntelligence enum
+func (enum Eac3AtmosDialogueIntelligence) Values() []string {
+	return []string{
+		Eac3AtmosDialogueIntelligenceEnabled,
+		Eac3AtmosDialogueIntelligenceDisabled,
+	}
+}
 
 // Specify the absolute peak level for a signal with dynamic range compression.
 const (
@@ -20691,6 +22674,32 @@ const (
 	// Eac3AtmosDynamicRangeCompressionLineSpeech is a Eac3AtmosDynamicRangeCompressionLine enum value
 	Eac3AtmosDynamicRangeCompressionLineSpeech = "SPEECH"
 )
+
+// Eac3AtmosDynamicRangeCompressionLine is an enum
+type Eac3AtmosDynamicRangeCompressionLine struct{}
+
+// Contains returns whether the Eac3AtmosDynamicRangeCompressionLine enum includes the element
+func (enum Eac3AtmosDynamicRangeCompressionLine) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3AtmosDynamicRangeCompressionLine enum
+func (enum Eac3AtmosDynamicRangeCompressionLine) Values() []string {
+	return []string{
+		Eac3AtmosDynamicRangeCompressionLineNone,
+		Eac3AtmosDynamicRangeCompressionLineFilmStandard,
+		Eac3AtmosDynamicRangeCompressionLineFilmLight,
+		Eac3AtmosDynamicRangeCompressionLineMusicStandard,
+		Eac3AtmosDynamicRangeCompressionLineMusicLight,
+		Eac3AtmosDynamicRangeCompressionLineSpeech,
+	}
+}
 
 // Specify how the service limits the audio dynamic range when compressing the
 // audio.
@@ -20714,6 +22723,32 @@ const (
 	Eac3AtmosDynamicRangeCompressionRfSpeech = "SPEECH"
 )
 
+// Eac3AtmosDynamicRangeCompressionRf is an enum
+type Eac3AtmosDynamicRangeCompressionRf struct{}
+
+// Contains returns whether the Eac3AtmosDynamicRangeCompressionRf enum includes the element
+func (enum Eac3AtmosDynamicRangeCompressionRf) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3AtmosDynamicRangeCompressionRf enum
+func (enum Eac3AtmosDynamicRangeCompressionRf) Values() []string {
+	return []string{
+		Eac3AtmosDynamicRangeCompressionRfNone,
+		Eac3AtmosDynamicRangeCompressionRfFilmStandard,
+		Eac3AtmosDynamicRangeCompressionRfFilmLight,
+		Eac3AtmosDynamicRangeCompressionRfMusicStandard,
+		Eac3AtmosDynamicRangeCompressionRfMusicLight,
+		Eac3AtmosDynamicRangeCompressionRfSpeech,
+	}
+}
+
 // Choose how the service meters the loudness of your audio.
 const (
 	// Eac3AtmosMeteringModeLeqA is a Eac3AtmosMeteringMode enum value
@@ -20732,6 +22767,31 @@ const (
 	Eac3AtmosMeteringModeItuBs17704 = "ITU_BS_1770_4"
 )
 
+// Eac3AtmosMeteringMode is an enum
+type Eac3AtmosMeteringMode struct{}
+
+// Contains returns whether the Eac3AtmosMeteringMode enum includes the element
+func (enum Eac3AtmosMeteringMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3AtmosMeteringMode enum
+func (enum Eac3AtmosMeteringMode) Values() []string {
+	return []string{
+		Eac3AtmosMeteringModeLeqA,
+		Eac3AtmosMeteringModeItuBs17701,
+		Eac3AtmosMeteringModeItuBs17702,
+		Eac3AtmosMeteringModeItuBs17703,
+		Eac3AtmosMeteringModeItuBs17704,
+	}
+}
+
 // Choose how the service does stereo downmixing.
 const (
 	// Eac3AtmosStereoDownmixNotIndicated is a Eac3AtmosStereoDownmix enum value
@@ -20747,6 +22807,30 @@ const (
 	Eac3AtmosStereoDownmixDpl2 = "DPL2"
 )
 
+// Eac3AtmosStereoDownmix is an enum
+type Eac3AtmosStereoDownmix struct{}
+
+// Contains returns whether the Eac3AtmosStereoDownmix enum includes the element
+func (enum Eac3AtmosStereoDownmix) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3AtmosStereoDownmix enum
+func (enum Eac3AtmosStereoDownmix) Values() []string {
+	return []string{
+		Eac3AtmosStereoDownmixNotIndicated,
+		Eac3AtmosStereoDownmixStereo,
+		Eac3AtmosStereoDownmixSurround,
+		Eac3AtmosStereoDownmixDpl2,
+	}
+}
+
 // Specify whether your input audio has an additional center rear surround channel
 // matrix encoded into your left and right surround channels.
 const (
@@ -20760,6 +22844,29 @@ const (
 	Eac3AtmosSurroundExModeDisabled = "DISABLED"
 )
 
+// Eac3AtmosSurroundExMode is an enum
+type Eac3AtmosSurroundExMode struct{}
+
+// Contains returns whether the Eac3AtmosSurroundExMode enum includes the element
+func (enum Eac3AtmosSurroundExMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3AtmosSurroundExMode enum
+func (enum Eac3AtmosSurroundExMode) Values() []string {
+	return []string{
+		Eac3AtmosSurroundExModeNotIndicated,
+		Eac3AtmosSurroundExModeEnabled,
+		Eac3AtmosSurroundExModeDisabled,
+	}
+}
+
 // If set to ATTENUATE_3_DB, applies a 3 dB attenuation to the surround channels.
 // Only used for 3/2 coding mode.
 const (
@@ -20769,6 +22876,28 @@ const (
 	// Eac3AttenuationControlNone is a Eac3AttenuationControl enum value
 	Eac3AttenuationControlNone = "NONE"
 )
+
+// Eac3AttenuationControl is an enum
+type Eac3AttenuationControl struct{}
+
+// Contains returns whether the Eac3AttenuationControl enum includes the element
+func (enum Eac3AttenuationControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3AttenuationControl enum
+func (enum Eac3AttenuationControl) Values() []string {
+	return []string{
+		Eac3AttenuationControlAttenuate3Db,
+		Eac3AttenuationControlNone,
+	}
+}
 
 // Specify the bitstream mode for the E-AC-3 stream that the encoder emits.
 // For more information about the EAC3 bitstream mode, see ATSC A/52-2012 (Annex
@@ -20790,6 +22919,31 @@ const (
 	Eac3BitstreamModeVisuallyImpaired = "VISUALLY_IMPAIRED"
 )
 
+// Eac3BitstreamMode is an enum
+type Eac3BitstreamMode struct{}
+
+// Contains returns whether the Eac3BitstreamMode enum includes the element
+func (enum Eac3BitstreamMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3BitstreamMode enum
+func (enum Eac3BitstreamMode) Values() []string {
+	return []string{
+		Eac3BitstreamModeCompleteMain,
+		Eac3BitstreamModeCommentary,
+		Eac3BitstreamModeEmergency,
+		Eac3BitstreamModeHearingImpaired,
+		Eac3BitstreamModeVisuallyImpaired,
+	}
+}
+
 // Dolby Digital Plus coding mode. Determines number of channels.
 const (
 	// Eac3CodingModeCodingMode10 is a Eac3CodingMode enum value
@@ -20802,6 +22956,29 @@ const (
 	Eac3CodingModeCodingMode32 = "CODING_MODE_3_2"
 )
 
+// Eac3CodingMode is an enum
+type Eac3CodingMode struct{}
+
+// Contains returns whether the Eac3CodingMode enum includes the element
+func (enum Eac3CodingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3CodingMode enum
+func (enum Eac3CodingMode) Values() []string {
+	return []string{
+		Eac3CodingModeCodingMode10,
+		Eac3CodingModeCodingMode20,
+		Eac3CodingModeCodingMode32,
+	}
+}
+
 // Activates a DC highpass filter for all input channels.
 const (
 	// Eac3DcFilterEnabled is a Eac3DcFilter enum value
@@ -20810,6 +22987,28 @@ const (
 	// Eac3DcFilterDisabled is a Eac3DcFilter enum value
 	Eac3DcFilterDisabled = "DISABLED"
 )
+
+// Eac3DcFilter is an enum
+type Eac3DcFilter struct{}
+
+// Contains returns whether the Eac3DcFilter enum includes the element
+func (enum Eac3DcFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3DcFilter enum
+func (enum Eac3DcFilter) Values() []string {
+	return []string{
+		Eac3DcFilterEnabled,
+		Eac3DcFilterDisabled,
+	}
+}
 
 // Specify the absolute peak level for a signal with dynamic range compression.
 const (
@@ -20831,6 +23030,32 @@ const (
 	// Eac3DynamicRangeCompressionLineSpeech is a Eac3DynamicRangeCompressionLine enum value
 	Eac3DynamicRangeCompressionLineSpeech = "SPEECH"
 )
+
+// Eac3DynamicRangeCompressionLine is an enum
+type Eac3DynamicRangeCompressionLine struct{}
+
+// Contains returns whether the Eac3DynamicRangeCompressionLine enum includes the element
+func (enum Eac3DynamicRangeCompressionLine) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3DynamicRangeCompressionLine enum
+func (enum Eac3DynamicRangeCompressionLine) Values() []string {
+	return []string{
+		Eac3DynamicRangeCompressionLineNone,
+		Eac3DynamicRangeCompressionLineFilmStandard,
+		Eac3DynamicRangeCompressionLineFilmLight,
+		Eac3DynamicRangeCompressionLineMusicStandard,
+		Eac3DynamicRangeCompressionLineMusicLight,
+		Eac3DynamicRangeCompressionLineSpeech,
+	}
+}
 
 // Specify how the service limits the audio dynamic range when compressing the
 // audio.
@@ -20854,6 +23079,32 @@ const (
 	Eac3DynamicRangeCompressionRfSpeech = "SPEECH"
 )
 
+// Eac3DynamicRangeCompressionRf is an enum
+type Eac3DynamicRangeCompressionRf struct{}
+
+// Contains returns whether the Eac3DynamicRangeCompressionRf enum includes the element
+func (enum Eac3DynamicRangeCompressionRf) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3DynamicRangeCompressionRf enum
+func (enum Eac3DynamicRangeCompressionRf) Values() []string {
+	return []string{
+		Eac3DynamicRangeCompressionRfNone,
+		Eac3DynamicRangeCompressionRfFilmStandard,
+		Eac3DynamicRangeCompressionRfFilmLight,
+		Eac3DynamicRangeCompressionRfMusicStandard,
+		Eac3DynamicRangeCompressionRfMusicLight,
+		Eac3DynamicRangeCompressionRfSpeech,
+	}
+}
+
 // When encoding 3/2 audio, controls whether the LFE channel is enabled
 const (
 	// Eac3LfeControlLfe is a Eac3LfeControl enum value
@@ -20862,6 +23113,28 @@ const (
 	// Eac3LfeControlNoLfe is a Eac3LfeControl enum value
 	Eac3LfeControlNoLfe = "NO_LFE"
 )
+
+// Eac3LfeControl is an enum
+type Eac3LfeControl struct{}
+
+// Contains returns whether the Eac3LfeControl enum includes the element
+func (enum Eac3LfeControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3LfeControl enum
+func (enum Eac3LfeControl) Values() []string {
+	return []string{
+		Eac3LfeControlLfe,
+		Eac3LfeControlNoLfe,
+	}
+}
 
 // Applies a 120Hz lowpass filter to the LFE channel prior to encoding. Only
 // valid with 3_2_LFE coding mode.
@@ -20873,6 +23146,28 @@ const (
 	Eac3LfeFilterDisabled = "DISABLED"
 )
 
+// Eac3LfeFilter is an enum
+type Eac3LfeFilter struct{}
+
+// Contains returns whether the Eac3LfeFilter enum includes the element
+func (enum Eac3LfeFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3LfeFilter enum
+func (enum Eac3LfeFilter) Values() []string {
+	return []string{
+		Eac3LfeFilterEnabled,
+		Eac3LfeFilterDisabled,
+	}
+}
+
 // When set to FOLLOW_INPUT, encoder metadata will be sourced from the DD, DD+,
 // or DolbyE decoder that supplied this audio data. If audio was not supplied
 // from one of these streams, then the static metadata settings will be used.
@@ -20883,6 +23178,28 @@ const (
 	// Eac3MetadataControlUseConfigured is a Eac3MetadataControl enum value
 	Eac3MetadataControlUseConfigured = "USE_CONFIGURED"
 )
+
+// Eac3MetadataControl is an enum
+type Eac3MetadataControl struct{}
+
+// Contains returns whether the Eac3MetadataControl enum includes the element
+func (enum Eac3MetadataControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3MetadataControl enum
+func (enum Eac3MetadataControl) Values() []string {
+	return []string{
+		Eac3MetadataControlFollowInput,
+		Eac3MetadataControlUseConfigured,
+	}
+}
 
 // When set to WHEN_POSSIBLE, input DD+ audio will be passed through if it is
 // present on the input. this detection is dynamic over the life of the transcode.
@@ -20896,6 +23213,28 @@ const (
 	Eac3PassthroughControlNoPassthrough = "NO_PASSTHROUGH"
 )
 
+// Eac3PassthroughControl is an enum
+type Eac3PassthroughControl struct{}
+
+// Contains returns whether the Eac3PassthroughControl enum includes the element
+func (enum Eac3PassthroughControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3PassthroughControl enum
+func (enum Eac3PassthroughControl) Values() []string {
+	return []string{
+		Eac3PassthroughControlWhenPossible,
+		Eac3PassthroughControlNoPassthrough,
+	}
+}
+
 // Controls the amount of phase-shift applied to the surround channels. Only
 // used for 3/2 coding mode.
 const (
@@ -20905,6 +23244,28 @@ const (
 	// Eac3PhaseControlNoShift is a Eac3PhaseControl enum value
 	Eac3PhaseControlNoShift = "NO_SHIFT"
 )
+
+// Eac3PhaseControl is an enum
+type Eac3PhaseControl struct{}
+
+// Contains returns whether the Eac3PhaseControl enum includes the element
+func (enum Eac3PhaseControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3PhaseControl enum
+func (enum Eac3PhaseControl) Values() []string {
+	return []string{
+		Eac3PhaseControlShift90Degrees,
+		Eac3PhaseControlNoShift,
+	}
+}
 
 // Choose how the service does stereo downmixing. This setting only applies
 // if you keep the default value of 3/2 - L, R, C, Ls, Rs (CODING_MODE_3_2)
@@ -20924,6 +23285,30 @@ const (
 	Eac3StereoDownmixDpl2 = "DPL2"
 )
 
+// Eac3StereoDownmix is an enum
+type Eac3StereoDownmix struct{}
+
+// Contains returns whether the Eac3StereoDownmix enum includes the element
+func (enum Eac3StereoDownmix) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3StereoDownmix enum
+func (enum Eac3StereoDownmix) Values() []string {
+	return []string{
+		Eac3StereoDownmixNotIndicated,
+		Eac3StereoDownmixLoRo,
+		Eac3StereoDownmixLtRt,
+		Eac3StereoDownmixDpl2,
+	}
+}
+
 // When encoding 3/2 audio, sets whether an extra center back surround channel
 // is matrix encoded into the left and right surround channels.
 const (
@@ -20936,6 +23321,29 @@ const (
 	// Eac3SurroundExModeDisabled is a Eac3SurroundExMode enum value
 	Eac3SurroundExModeDisabled = "DISABLED"
 )
+
+// Eac3SurroundExMode is an enum
+type Eac3SurroundExMode struct{}
+
+// Contains returns whether the Eac3SurroundExMode enum includes the element
+func (enum Eac3SurroundExMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3SurroundExMode enum
+func (enum Eac3SurroundExMode) Values() []string {
+	return []string{
+		Eac3SurroundExModeNotIndicated,
+		Eac3SurroundExModeEnabled,
+		Eac3SurroundExModeDisabled,
+	}
+}
 
 // When encoding 2/0 audio, sets whether Dolby Surround is matrix encoded into
 // the two channels.
@@ -20950,6 +23358,29 @@ const (
 	Eac3SurroundModeDisabled = "DISABLED"
 )
 
+// Eac3SurroundMode is an enum
+type Eac3SurroundMode struct{}
+
+// Contains returns whether the Eac3SurroundMode enum includes the element
+func (enum Eac3SurroundMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Eac3SurroundMode enum
+func (enum Eac3SurroundMode) Values() []string {
+	return []string{
+		Eac3SurroundModeNotIndicated,
+		Eac3SurroundModeEnabled,
+		Eac3SurroundModeDisabled,
+	}
+}
+
 // Specify whether this set of input captions appears in your outputs in both
 // 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes
 // the captions data in two ways: it passes the 608 data through using the 608
@@ -20963,6 +23394,28 @@ const (
 	EmbeddedConvert608To708Disabled = "DISABLED"
 )
 
+// EmbeddedConvert608To708 is an enum
+type EmbeddedConvert608To708 struct{}
+
+// Contains returns whether the EmbeddedConvert608To708 enum includes the element
+func (enum EmbeddedConvert608To708) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EmbeddedConvert608To708 enum
+func (enum EmbeddedConvert608To708) Values() []string {
+	return []string{
+		EmbeddedConvert608To708Upconvert,
+		EmbeddedConvert608To708Disabled,
+	}
+}
+
 // By default, the service terminates any unterminated captions at the end of
 // each input. If you want the caption to continue onto your next input, disable
 // this setting.
@@ -20974,6 +23427,28 @@ const (
 	EmbeddedTerminateCaptionsDisabled = "DISABLED"
 )
 
+// EmbeddedTerminateCaptions is an enum
+type EmbeddedTerminateCaptions struct{}
+
+// Contains returns whether the EmbeddedTerminateCaptions enum includes the element
+func (enum EmbeddedTerminateCaptions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EmbeddedTerminateCaptions enum
+func (enum EmbeddedTerminateCaptions) Values() []string {
+	return []string{
+		EmbeddedTerminateCaptionsEndOfInput,
+		EmbeddedTerminateCaptionsDisabled,
+	}
+}
+
 // If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning
 // of the archive as required for progressive downloading. Otherwise it is placed
 // normally at the end.
@@ -20984,6 +23459,28 @@ const (
 	// F4vMoovPlacementNormal is a F4vMoovPlacement enum value
 	F4vMoovPlacementNormal = "NORMAL"
 )
+
+// F4vMoovPlacement is an enum
+type F4vMoovPlacement struct{}
+
+// Contains returns whether the F4vMoovPlacement enum includes the element
+func (enum F4vMoovPlacement) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the F4vMoovPlacement enum
+func (enum F4vMoovPlacement) Values() []string {
+	return []string{
+		F4vMoovPlacementProgressiveDownload,
+		F4vMoovPlacementNormal,
+	}
+}
 
 // Specify whether this set of input captions appears in your outputs in both
 // 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes
@@ -20998,6 +23495,28 @@ const (
 	FileSourceConvert608To708Disabled = "DISABLED"
 )
 
+// FileSourceConvert608To708 is an enum
+type FileSourceConvert608To708 struct{}
+
+// Contains returns whether the FileSourceConvert608To708 enum includes the element
+func (enum FileSourceConvert608To708) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileSourceConvert608To708 enum
+func (enum FileSourceConvert608To708) Values() []string {
+	return []string{
+		FileSourceConvert608To708Upconvert,
+		FileSourceConvert608To708Disabled,
+	}
+}
+
 // Provide the font script, using an ISO 15924 script code, if the LanguageCode
 // is not sufficient for determining the script type. Where LanguageCode or
 // CustomLanguageCode is sufficient, use "AUTOMATIC" or leave unset.
@@ -21011,6 +23530,29 @@ const (
 	// FontScriptHant is a FontScript enum value
 	FontScriptHant = "HANT"
 )
+
+// FontScript is an enum
+type FontScript struct{}
+
+// Contains returns whether the FontScript enum includes the element
+func (enum FontScript) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FontScript enum
+func (enum FontScript) Values() []string {
+	return []string{
+		FontScriptAutomatic,
+		FontScriptHans,
+		FontScriptHant,
+	}
+}
 
 // Adaptive quantization. Allows intra-frame quantizers to vary to improve visual
 // quality.
@@ -21033,6 +23575,32 @@ const (
 	// H264AdaptiveQuantizationMax is a H264AdaptiveQuantization enum value
 	H264AdaptiveQuantizationMax = "MAX"
 )
+
+// H264AdaptiveQuantization is an enum
+type H264AdaptiveQuantization struct{}
+
+// Contains returns whether the H264AdaptiveQuantization enum includes the element
+func (enum H264AdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264AdaptiveQuantization enum
+func (enum H264AdaptiveQuantization) Values() []string {
+	return []string{
+		H264AdaptiveQuantizationOff,
+		H264AdaptiveQuantizationLow,
+		H264AdaptiveQuantizationMedium,
+		H264AdaptiveQuantizationHigh,
+		H264AdaptiveQuantizationHigher,
+		H264AdaptiveQuantizationMax,
+	}
+}
 
 // Specify an H.264 level that is consistent with your output video settings.
 // If you aren't sure what level to specify, choose Auto (AUTO).
@@ -21089,6 +23657,43 @@ const (
 	H264CodecLevelLevel52 = "LEVEL_5_2"
 )
 
+// H264CodecLevel is an enum
+type H264CodecLevel struct{}
+
+// Contains returns whether the H264CodecLevel enum includes the element
+func (enum H264CodecLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264CodecLevel enum
+func (enum H264CodecLevel) Values() []string {
+	return []string{
+		H264CodecLevelAuto,
+		H264CodecLevelLevel1,
+		H264CodecLevelLevel11,
+		H264CodecLevelLevel12,
+		H264CodecLevelLevel13,
+		H264CodecLevelLevel2,
+		H264CodecLevelLevel21,
+		H264CodecLevelLevel22,
+		H264CodecLevelLevel3,
+		H264CodecLevelLevel31,
+		H264CodecLevelLevel32,
+		H264CodecLevelLevel4,
+		H264CodecLevelLevel41,
+		H264CodecLevelLevel42,
+		H264CodecLevelLevel5,
+		H264CodecLevelLevel51,
+		H264CodecLevelLevel52,
+	}
+}
+
 // H.264 Profile. High 4:2:2 and 10-bit profiles are only available with the
 // AVC-I License.
 const (
@@ -21111,6 +23716,32 @@ const (
 	H264CodecProfileMain = "MAIN"
 )
 
+// H264CodecProfile is an enum
+type H264CodecProfile struct{}
+
+// Contains returns whether the H264CodecProfile enum includes the element
+func (enum H264CodecProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264CodecProfile enum
+func (enum H264CodecProfile) Values() []string {
+	return []string{
+		H264CodecProfileBaseline,
+		H264CodecProfileHigh,
+		H264CodecProfileHigh10bit,
+		H264CodecProfileHigh422,
+		H264CodecProfileHigh42210bit,
+		H264CodecProfileMain,
+	}
+}
+
 // Choose Adaptive to improve subjective video quality for high-motion content.
 // This will cause the service to use fewer B-frames (which infer information
 // based on other frames) for high-motion portions of the video and more B-frames
@@ -21124,6 +23755,28 @@ const (
 	H264DynamicSubGopStatic = "STATIC"
 )
 
+// H264DynamicSubGop is an enum
+type H264DynamicSubGop struct{}
+
+// Contains returns whether the H264DynamicSubGop enum includes the element
+func (enum H264DynamicSubGop) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264DynamicSubGop enum
+func (enum H264DynamicSubGop) Values() []string {
+	return []string{
+		H264DynamicSubGopAdaptive,
+		H264DynamicSubGopStatic,
+	}
+}
+
 // Entropy encoding mode. Use CABAC (must be in Main or High profile) or CAVLC.
 const (
 	// H264EntropyEncodingCabac is a H264EntropyEncoding enum value
@@ -21132,6 +23785,28 @@ const (
 	// H264EntropyEncodingCavlc is a H264EntropyEncoding enum value
 	H264EntropyEncodingCavlc = "CAVLC"
 )
+
+// H264EntropyEncoding is an enum
+type H264EntropyEncoding struct{}
+
+// Contains returns whether the H264EntropyEncoding enum includes the element
+func (enum H264EntropyEncoding) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264EntropyEncoding enum
+func (enum H264EntropyEncoding) Values() []string {
+	return []string{
+		H264EntropyEncodingCabac,
+		H264EntropyEncodingCavlc,
+	}
+}
 
 // Choosing FORCE_FIELD disables PAFF encoding for interlaced outputs.
 const (
@@ -21142,6 +23817,28 @@ const (
 	H264FieldEncodingForceField = "FORCE_FIELD"
 )
 
+// H264FieldEncoding is an enum
+type H264FieldEncoding struct{}
+
+// Contains returns whether the H264FieldEncoding enum includes the element
+func (enum H264FieldEncoding) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264FieldEncoding enum
+func (enum H264FieldEncoding) Values() []string {
+	return []string{
+		H264FieldEncodingPaff,
+		H264FieldEncodingForceField,
+	}
+}
+
 // Adjust quantization within each frame to reduce flicker or 'pop' on I-frames.
 const (
 	// H264FlickerAdaptiveQuantizationDisabled is a H264FlickerAdaptiveQuantization enum value
@@ -21150,6 +23847,28 @@ const (
 	// H264FlickerAdaptiveQuantizationEnabled is a H264FlickerAdaptiveQuantization enum value
 	H264FlickerAdaptiveQuantizationEnabled = "ENABLED"
 )
+
+// H264FlickerAdaptiveQuantization is an enum
+type H264FlickerAdaptiveQuantization struct{}
+
+// Contains returns whether the H264FlickerAdaptiveQuantization enum includes the element
+func (enum H264FlickerAdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264FlickerAdaptiveQuantization enum
+func (enum H264FlickerAdaptiveQuantization) Values() []string {
+	return []string{
+		H264FlickerAdaptiveQuantizationDisabled,
+		H264FlickerAdaptiveQuantizationEnabled,
+	}
+}
 
 // If you are using the console, use the Framerate setting to specify the frame
 // rate for this output. If you want to keep the same frame rate as the input
@@ -21170,6 +23889,28 @@ const (
 	H264FramerateControlSpecified = "SPECIFIED"
 )
 
+// H264FramerateControl is an enum
+type H264FramerateControl struct{}
+
+// Contains returns whether the H264FramerateControl enum includes the element
+func (enum H264FramerateControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264FramerateControl enum
+func (enum H264FramerateControl) Values() []string {
+	return []string{
+		H264FramerateControlInitializeFromSource,
+		H264FramerateControlSpecified,
+	}
+}
+
 // Optional. Specify how the transcoder performs framerate conversion. The default
 // behavior is to use duplicate drop conversion.
 const (
@@ -21179,6 +23920,28 @@ const (
 	// H264FramerateConversionAlgorithmInterpolate is a H264FramerateConversionAlgorithm enum value
 	H264FramerateConversionAlgorithmInterpolate = "INTERPOLATE"
 )
+
+// H264FramerateConversionAlgorithm is an enum
+type H264FramerateConversionAlgorithm struct{}
+
+// Contains returns whether the H264FramerateConversionAlgorithm enum includes the element
+func (enum H264FramerateConversionAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264FramerateConversionAlgorithm enum
+func (enum H264FramerateConversionAlgorithm) Values() []string {
+	return []string{
+		H264FramerateConversionAlgorithmDuplicateDrop,
+		H264FramerateConversionAlgorithmInterpolate,
+	}
+}
 
 // If enable, use reference B frames for GOP structures that have B frames >
 // 1.
@@ -21190,6 +23953,28 @@ const (
 	H264GopBReferenceEnabled = "ENABLED"
 )
 
+// H264GopBReference is an enum
+type H264GopBReference struct{}
+
+// Contains returns whether the H264GopBReference enum includes the element
+func (enum H264GopBReference) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264GopBReference enum
+func (enum H264GopBReference) Values() []string {
+	return []string{
+		H264GopBReferenceDisabled,
+		H264GopBReferenceEnabled,
+	}
+}
+
 // Indicates if the GOP Size in H264 is specified in frames or seconds. If seconds
 // the system will convert the GOP Size into a frame count at run time.
 const (
@@ -21199,6 +23984,28 @@ const (
 	// H264GopSizeUnitsSeconds is a H264GopSizeUnits enum value
 	H264GopSizeUnitsSeconds = "SECONDS"
 )
+
+// H264GopSizeUnits is an enum
+type H264GopSizeUnits struct{}
+
+// Contains returns whether the H264GopSizeUnits enum includes the element
+func (enum H264GopSizeUnits) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264GopSizeUnits enum
+func (enum H264GopSizeUnits) Values() []string {
+	return []string{
+		H264GopSizeUnitsFrames,
+		H264GopSizeUnitsSeconds,
+	}
+}
 
 // Use Interlace mode (InterlaceMode) to choose the scan line type for the output.
 // * Top Field First (TOP_FIELD) and Bottom Field First (BOTTOM_FIELD) produce
@@ -21228,6 +24035,31 @@ const (
 	H264InterlaceModeFollowBottomField = "FOLLOW_BOTTOM_FIELD"
 )
 
+// H264InterlaceMode is an enum
+type H264InterlaceMode struct{}
+
+// Contains returns whether the H264InterlaceMode enum includes the element
+func (enum H264InterlaceMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264InterlaceMode enum
+func (enum H264InterlaceMode) Values() []string {
+	return []string{
+		H264InterlaceModeProgressive,
+		H264InterlaceModeTopField,
+		H264InterlaceModeBottomField,
+		H264InterlaceModeFollowTopField,
+		H264InterlaceModeFollowBottomField,
+	}
+}
+
 // Optional. Specify how the service determines the pixel aspect ratio (PAR)
 // for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE),
 // uses the PAR from your input video for your output. To specify a different
@@ -21243,6 +24075,28 @@ const (
 	H264ParControlSpecified = "SPECIFIED"
 )
 
+// H264ParControl is an enum
+type H264ParControl struct{}
+
+// Contains returns whether the H264ParControl enum includes the element
+func (enum H264ParControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264ParControl enum
+func (enum H264ParControl) Values() []string {
+	return []string{
+		H264ParControlInitializeFromSource,
+		H264ParControlSpecified,
+	}
+}
+
 // Optional. Use Quality tuning level (qualityTuningLevel) to choose how you
 // want to trade off encoding speed for output video quality. The default behavior
 // is faster, lower quality, single-pass encoding.
@@ -21257,6 +24111,29 @@ const (
 	H264QualityTuningLevelMultiPassHq = "MULTI_PASS_HQ"
 )
 
+// H264QualityTuningLevel is an enum
+type H264QualityTuningLevel struct{}
+
+// Contains returns whether the H264QualityTuningLevel enum includes the element
+func (enum H264QualityTuningLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264QualityTuningLevel enum
+func (enum H264QualityTuningLevel) Values() []string {
+	return []string{
+		H264QualityTuningLevelSinglePass,
+		H264QualityTuningLevelSinglePassHq,
+		H264QualityTuningLevelMultiPassHq,
+	}
+}
+
 // Use this setting to specify whether this output has a variable bitrate (VBR),
 // constant bitrate (CBR) or quality-defined variable bitrate (QVBR).
 const (
@@ -21270,6 +24147,29 @@ const (
 	H264RateControlModeQvbr = "QVBR"
 )
 
+// H264RateControlMode is an enum
+type H264RateControlMode struct{}
+
+// Contains returns whether the H264RateControlMode enum includes the element
+func (enum H264RateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264RateControlMode enum
+func (enum H264RateControlMode) Values() []string {
+	return []string{
+		H264RateControlModeVbr,
+		H264RateControlModeCbr,
+		H264RateControlModeQvbr,
+	}
+}
+
 // Places a PPS header on each encoded picture, even if repeated.
 const (
 	// H264RepeatPpsDisabled is a H264RepeatPps enum value
@@ -21278,6 +24178,28 @@ const (
 	// H264RepeatPpsEnabled is a H264RepeatPps enum value
 	H264RepeatPpsEnabled = "ENABLED"
 )
+
+// H264RepeatPps is an enum
+type H264RepeatPps struct{}
+
+// Contains returns whether the H264RepeatPps enum includes the element
+func (enum H264RepeatPps) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264RepeatPps enum
+func (enum H264RepeatPps) Values() []string {
+	return []string{
+		H264RepeatPpsDisabled,
+		H264RepeatPpsEnabled,
+	}
+}
 
 // Enable this setting to insert I-frames at scene changes that the service
 // automatically detects. This improves video quality and is enabled by default.
@@ -21295,6 +24217,29 @@ const (
 	H264SceneChangeDetectTransitionDetection = "TRANSITION_DETECTION"
 )
 
+// H264SceneChangeDetect is an enum
+type H264SceneChangeDetect struct{}
+
+// Contains returns whether the H264SceneChangeDetect enum includes the element
+func (enum H264SceneChangeDetect) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264SceneChangeDetect enum
+func (enum H264SceneChangeDetect) Values() []string {
+	return []string{
+		H264SceneChangeDetectDisabled,
+		H264SceneChangeDetectEnabled,
+		H264SceneChangeDetectTransitionDetection,
+	}
+}
+
 // Enables Slow PAL rate conversion. 23.976fps and 24fps input is relabeled
 // as 25fps, and audio is sped up correspondingly.
 const (
@@ -21304,6 +24249,28 @@ const (
 	// H264SlowPalEnabled is a H264SlowPal enum value
 	H264SlowPalEnabled = "ENABLED"
 )
+
+// H264SlowPal is an enum
+type H264SlowPal struct{}
+
+// Contains returns whether the H264SlowPal enum includes the element
+func (enum H264SlowPal) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264SlowPal enum
+func (enum H264SlowPal) Values() []string {
+	return []string{
+		H264SlowPalDisabled,
+		H264SlowPalEnabled,
+	}
+}
 
 // Adjust quantization within each frame based on spatial variation of content
 // complexity.
@@ -21315,6 +24282,28 @@ const (
 	H264SpatialAdaptiveQuantizationEnabled = "ENABLED"
 )
 
+// H264SpatialAdaptiveQuantization is an enum
+type H264SpatialAdaptiveQuantization struct{}
+
+// Contains returns whether the H264SpatialAdaptiveQuantization enum includes the element
+func (enum H264SpatialAdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264SpatialAdaptiveQuantization enum
+func (enum H264SpatialAdaptiveQuantization) Values() []string {
+	return []string{
+		H264SpatialAdaptiveQuantizationDisabled,
+		H264SpatialAdaptiveQuantizationEnabled,
+	}
+}
+
 // Produces a bitstream compliant with SMPTE RP-2027.
 const (
 	// H264SyntaxDefault is a H264Syntax enum value
@@ -21323,6 +24312,28 @@ const (
 	// H264SyntaxRp2027 is a H264Syntax enum value
 	H264SyntaxRp2027 = "RP2027"
 )
+
+// H264Syntax is an enum
+type H264Syntax struct{}
+
+// Contains returns whether the H264Syntax enum includes the element
+func (enum H264Syntax) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264Syntax enum
+func (enum H264Syntax) Values() []string {
+	return []string{
+		H264SyntaxDefault,
+		H264SyntaxRp2027,
+	}
+}
 
 // This field applies only if the Streams > Advanced > Framerate (framerate)
 // field is set to 29.970. This field works with the Streams > Advanced > Preprocessors
@@ -21342,6 +24353,29 @@ const (
 	H264TelecineHard = "HARD"
 )
 
+// H264Telecine is an enum
+type H264Telecine struct{}
+
+// Contains returns whether the H264Telecine enum includes the element
+func (enum H264Telecine) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264Telecine enum
+func (enum H264Telecine) Values() []string {
+	return []string{
+		H264TelecineNone,
+		H264TelecineSoft,
+		H264TelecineHard,
+	}
+}
+
 // Adjust quantization within each frame based on temporal variation of content
 // complexity.
 const (
@@ -21352,6 +24386,28 @@ const (
 	H264TemporalAdaptiveQuantizationEnabled = "ENABLED"
 )
 
+// H264TemporalAdaptiveQuantization is an enum
+type H264TemporalAdaptiveQuantization struct{}
+
+// Contains returns whether the H264TemporalAdaptiveQuantization enum includes the element
+func (enum H264TemporalAdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264TemporalAdaptiveQuantization enum
+func (enum H264TemporalAdaptiveQuantization) Values() []string {
+	return []string{
+		H264TemporalAdaptiveQuantizationDisabled,
+		H264TemporalAdaptiveQuantizationEnabled,
+	}
+}
+
 // Inserts timecode for each frame as 4 bytes of an unregistered SEI message.
 const (
 	// H264UnregisteredSeiTimecodeDisabled is a H264UnregisteredSeiTimecode enum value
@@ -21360,6 +24416,28 @@ const (
 	// H264UnregisteredSeiTimecodeEnabled is a H264UnregisteredSeiTimecode enum value
 	H264UnregisteredSeiTimecodeEnabled = "ENABLED"
 )
+
+// H264UnregisteredSeiTimecode is an enum
+type H264UnregisteredSeiTimecode struct{}
+
+// Contains returns whether the H264UnregisteredSeiTimecode enum includes the element
+func (enum H264UnregisteredSeiTimecode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H264UnregisteredSeiTimecode enum
+func (enum H264UnregisteredSeiTimecode) Values() []string {
+	return []string{
+		H264UnregisteredSeiTimecodeDisabled,
+		H264UnregisteredSeiTimecodeEnabled,
+	}
+}
 
 // Adaptive quantization. Allows intra-frame quantizers to vary to improve visual
 // quality.
@@ -21383,6 +24461,32 @@ const (
 	H265AdaptiveQuantizationMax = "MAX"
 )
 
+// H265AdaptiveQuantization is an enum
+type H265AdaptiveQuantization struct{}
+
+// Contains returns whether the H265AdaptiveQuantization enum includes the element
+func (enum H265AdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265AdaptiveQuantization enum
+func (enum H265AdaptiveQuantization) Values() []string {
+	return []string{
+		H265AdaptiveQuantizationOff,
+		H265AdaptiveQuantizationLow,
+		H265AdaptiveQuantizationMedium,
+		H265AdaptiveQuantizationHigh,
+		H265AdaptiveQuantizationHigher,
+		H265AdaptiveQuantizationMax,
+	}
+}
+
 // Enables Alternate Transfer Function SEI message for outputs using Hybrid
 // Log Gamma (HLG) Electro-Optical Transfer Function (EOTF).
 const (
@@ -21392,6 +24496,28 @@ const (
 	// H265AlternateTransferFunctionSeiEnabled is a H265AlternateTransferFunctionSei enum value
 	H265AlternateTransferFunctionSeiEnabled = "ENABLED"
 )
+
+// H265AlternateTransferFunctionSei is an enum
+type H265AlternateTransferFunctionSei struct{}
+
+// Contains returns whether the H265AlternateTransferFunctionSei enum includes the element
+func (enum H265AlternateTransferFunctionSei) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265AlternateTransferFunctionSei enum
+func (enum H265AlternateTransferFunctionSei) Values() []string {
+	return []string{
+		H265AlternateTransferFunctionSeiDisabled,
+		H265AlternateTransferFunctionSeiEnabled,
+	}
+}
 
 // H.265 Level.
 const (
@@ -21438,6 +24564,40 @@ const (
 	H265CodecLevelLevel62 = "LEVEL_6_2"
 )
 
+// H265CodecLevel is an enum
+type H265CodecLevel struct{}
+
+// Contains returns whether the H265CodecLevel enum includes the element
+func (enum H265CodecLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265CodecLevel enum
+func (enum H265CodecLevel) Values() []string {
+	return []string{
+		H265CodecLevelAuto,
+		H265CodecLevelLevel1,
+		H265CodecLevelLevel2,
+		H265CodecLevelLevel21,
+		H265CodecLevelLevel3,
+		H265CodecLevelLevel31,
+		H265CodecLevelLevel4,
+		H265CodecLevelLevel41,
+		H265CodecLevelLevel5,
+		H265CodecLevelLevel51,
+		H265CodecLevelLevel52,
+		H265CodecLevelLevel6,
+		H265CodecLevelLevel61,
+		H265CodecLevelLevel62,
+	}
+}
+
 // Represents the Profile and Tier, per the HEVC (H.265) specification. Selections
 // are grouped as [Profile] / [Tier], so "Main/High" represents Main Profile
 // with High Tier. 4:2:2 profiles are only available with the HEVC 4:2:2 License.
@@ -21467,6 +24627,34 @@ const (
 	H265CodecProfileMain42210bitHigh = "MAIN_422_10BIT_HIGH"
 )
 
+// H265CodecProfile is an enum
+type H265CodecProfile struct{}
+
+// Contains returns whether the H265CodecProfile enum includes the element
+func (enum H265CodecProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265CodecProfile enum
+func (enum H265CodecProfile) Values() []string {
+	return []string{
+		H265CodecProfileMainMain,
+		H265CodecProfileMainHigh,
+		H265CodecProfileMain10Main,
+		H265CodecProfileMain10High,
+		H265CodecProfileMain4228bitMain,
+		H265CodecProfileMain4228bitHigh,
+		H265CodecProfileMain42210bitMain,
+		H265CodecProfileMain42210bitHigh,
+	}
+}
+
 // Choose Adaptive to improve subjective video quality for high-motion content.
 // This will cause the service to use fewer B-frames (which infer information
 // based on other frames) for high-motion portions of the video and more B-frames
@@ -21480,6 +24668,28 @@ const (
 	H265DynamicSubGopStatic = "STATIC"
 )
 
+// H265DynamicSubGop is an enum
+type H265DynamicSubGop struct{}
+
+// Contains returns whether the H265DynamicSubGop enum includes the element
+func (enum H265DynamicSubGop) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265DynamicSubGop enum
+func (enum H265DynamicSubGop) Values() []string {
+	return []string{
+		H265DynamicSubGopAdaptive,
+		H265DynamicSubGopStatic,
+	}
+}
+
 // Adjust quantization within each frame to reduce flicker or 'pop' on I-frames.
 const (
 	// H265FlickerAdaptiveQuantizationDisabled is a H265FlickerAdaptiveQuantization enum value
@@ -21488,6 +24698,28 @@ const (
 	// H265FlickerAdaptiveQuantizationEnabled is a H265FlickerAdaptiveQuantization enum value
 	H265FlickerAdaptiveQuantizationEnabled = "ENABLED"
 )
+
+// H265FlickerAdaptiveQuantization is an enum
+type H265FlickerAdaptiveQuantization struct{}
+
+// Contains returns whether the H265FlickerAdaptiveQuantization enum includes the element
+func (enum H265FlickerAdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265FlickerAdaptiveQuantization enum
+func (enum H265FlickerAdaptiveQuantization) Values() []string {
+	return []string{
+		H265FlickerAdaptiveQuantizationDisabled,
+		H265FlickerAdaptiveQuantizationEnabled,
+	}
+}
 
 // If you are using the console, use the Framerate setting to specify the frame
 // rate for this output. If you want to keep the same frame rate as the input
@@ -21508,6 +24740,28 @@ const (
 	H265FramerateControlSpecified = "SPECIFIED"
 )
 
+// H265FramerateControl is an enum
+type H265FramerateControl struct{}
+
+// Contains returns whether the H265FramerateControl enum includes the element
+func (enum H265FramerateControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265FramerateControl enum
+func (enum H265FramerateControl) Values() []string {
+	return []string{
+		H265FramerateControlInitializeFromSource,
+		H265FramerateControlSpecified,
+	}
+}
+
 // Optional. Specify how the transcoder performs framerate conversion. The default
 // behavior is to use duplicate drop conversion.
 const (
@@ -21517,6 +24771,28 @@ const (
 	// H265FramerateConversionAlgorithmInterpolate is a H265FramerateConversionAlgorithm enum value
 	H265FramerateConversionAlgorithmInterpolate = "INTERPOLATE"
 )
+
+// H265FramerateConversionAlgorithm is an enum
+type H265FramerateConversionAlgorithm struct{}
+
+// Contains returns whether the H265FramerateConversionAlgorithm enum includes the element
+func (enum H265FramerateConversionAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265FramerateConversionAlgorithm enum
+func (enum H265FramerateConversionAlgorithm) Values() []string {
+	return []string{
+		H265FramerateConversionAlgorithmDuplicateDrop,
+		H265FramerateConversionAlgorithmInterpolate,
+	}
+}
 
 // If enable, use reference B frames for GOP structures that have B frames >
 // 1.
@@ -21528,6 +24804,28 @@ const (
 	H265GopBReferenceEnabled = "ENABLED"
 )
 
+// H265GopBReference is an enum
+type H265GopBReference struct{}
+
+// Contains returns whether the H265GopBReference enum includes the element
+func (enum H265GopBReference) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265GopBReference enum
+func (enum H265GopBReference) Values() []string {
+	return []string{
+		H265GopBReferenceDisabled,
+		H265GopBReferenceEnabled,
+	}
+}
+
 // Indicates if the GOP Size in H265 is specified in frames or seconds. If seconds
 // the system will convert the GOP Size into a frame count at run time.
 const (
@@ -21537,6 +24835,28 @@ const (
 	// H265GopSizeUnitsSeconds is a H265GopSizeUnits enum value
 	H265GopSizeUnitsSeconds = "SECONDS"
 )
+
+// H265GopSizeUnits is an enum
+type H265GopSizeUnits struct{}
+
+// Contains returns whether the H265GopSizeUnits enum includes the element
+func (enum H265GopSizeUnits) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265GopSizeUnits enum
+func (enum H265GopSizeUnits) Values() []string {
+	return []string{
+		H265GopSizeUnitsFrames,
+		H265GopSizeUnitsSeconds,
+	}
+}
 
 // Choose the scan line type for the output. Choose Progressive (PROGRESSIVE)
 // to create a progressive output, regardless of the scan type of your input.
@@ -21567,6 +24887,31 @@ const (
 	H265InterlaceModeFollowBottomField = "FOLLOW_BOTTOM_FIELD"
 )
 
+// H265InterlaceMode is an enum
+type H265InterlaceMode struct{}
+
+// Contains returns whether the H265InterlaceMode enum includes the element
+func (enum H265InterlaceMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265InterlaceMode enum
+func (enum H265InterlaceMode) Values() []string {
+	return []string{
+		H265InterlaceModeProgressive,
+		H265InterlaceModeTopField,
+		H265InterlaceModeBottomField,
+		H265InterlaceModeFollowTopField,
+		H265InterlaceModeFollowBottomField,
+	}
+}
+
 // Optional. Specify how the service determines the pixel aspect ratio (PAR)
 // for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE),
 // uses the PAR from your input video for your output. To specify a different
@@ -21582,6 +24927,28 @@ const (
 	H265ParControlSpecified = "SPECIFIED"
 )
 
+// H265ParControl is an enum
+type H265ParControl struct{}
+
+// Contains returns whether the H265ParControl enum includes the element
+func (enum H265ParControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265ParControl enum
+func (enum H265ParControl) Values() []string {
+	return []string{
+		H265ParControlInitializeFromSource,
+		H265ParControlSpecified,
+	}
+}
+
 // Optional. Use Quality tuning level (qualityTuningLevel) to choose how you
 // want to trade off encoding speed for output video quality. The default behavior
 // is faster, lower quality, single-pass encoding.
@@ -21596,6 +24963,29 @@ const (
 	H265QualityTuningLevelMultiPassHq = "MULTI_PASS_HQ"
 )
 
+// H265QualityTuningLevel is an enum
+type H265QualityTuningLevel struct{}
+
+// Contains returns whether the H265QualityTuningLevel enum includes the element
+func (enum H265QualityTuningLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265QualityTuningLevel enum
+func (enum H265QualityTuningLevel) Values() []string {
+	return []string{
+		H265QualityTuningLevelSinglePass,
+		H265QualityTuningLevelSinglePassHq,
+		H265QualityTuningLevelMultiPassHq,
+	}
+}
+
 // Use this setting to specify whether this output has a variable bitrate (VBR),
 // constant bitrate (CBR) or quality-defined variable bitrate (QVBR).
 const (
@@ -21609,6 +24999,29 @@ const (
 	H265RateControlModeQvbr = "QVBR"
 )
 
+// H265RateControlMode is an enum
+type H265RateControlMode struct{}
+
+// Contains returns whether the H265RateControlMode enum includes the element
+func (enum H265RateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265RateControlMode enum
+func (enum H265RateControlMode) Values() []string {
+	return []string{
+		H265RateControlModeVbr,
+		H265RateControlModeCbr,
+		H265RateControlModeQvbr,
+	}
+}
+
 // Specify Sample Adaptive Offset (SAO) filter strength. Adaptive mode dynamically
 // selects best strength based on content
 const (
@@ -21621,6 +25034,29 @@ const (
 	// H265SampleAdaptiveOffsetFilterModeOff is a H265SampleAdaptiveOffsetFilterMode enum value
 	H265SampleAdaptiveOffsetFilterModeOff = "OFF"
 )
+
+// H265SampleAdaptiveOffsetFilterMode is an enum
+type H265SampleAdaptiveOffsetFilterMode struct{}
+
+// Contains returns whether the H265SampleAdaptiveOffsetFilterMode enum includes the element
+func (enum H265SampleAdaptiveOffsetFilterMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265SampleAdaptiveOffsetFilterMode enum
+func (enum H265SampleAdaptiveOffsetFilterMode) Values() []string {
+	return []string{
+		H265SampleAdaptiveOffsetFilterModeDefault,
+		H265SampleAdaptiveOffsetFilterModeAdaptive,
+		H265SampleAdaptiveOffsetFilterModeOff,
+	}
+}
 
 // Enable this setting to insert I-frames at scene changes that the service
 // automatically detects. This improves video quality and is enabled by default.
@@ -21638,6 +25074,29 @@ const (
 	H265SceneChangeDetectTransitionDetection = "TRANSITION_DETECTION"
 )
 
+// H265SceneChangeDetect is an enum
+type H265SceneChangeDetect struct{}
+
+// Contains returns whether the H265SceneChangeDetect enum includes the element
+func (enum H265SceneChangeDetect) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265SceneChangeDetect enum
+func (enum H265SceneChangeDetect) Values() []string {
+	return []string{
+		H265SceneChangeDetectDisabled,
+		H265SceneChangeDetectEnabled,
+		H265SceneChangeDetectTransitionDetection,
+	}
+}
+
 // Enables Slow PAL rate conversion. 23.976fps and 24fps input is relabeled
 // as 25fps, and audio is sped up correspondingly.
 const (
@@ -21648,6 +25107,28 @@ const (
 	H265SlowPalEnabled = "ENABLED"
 )
 
+// H265SlowPal is an enum
+type H265SlowPal struct{}
+
+// Contains returns whether the H265SlowPal enum includes the element
+func (enum H265SlowPal) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265SlowPal enum
+func (enum H265SlowPal) Values() []string {
+	return []string{
+		H265SlowPalDisabled,
+		H265SlowPalEnabled,
+	}
+}
+
 // Adjust quantization within each frame based on spatial variation of content
 // complexity.
 const (
@@ -21657,6 +25138,28 @@ const (
 	// H265SpatialAdaptiveQuantizationEnabled is a H265SpatialAdaptiveQuantization enum value
 	H265SpatialAdaptiveQuantizationEnabled = "ENABLED"
 )
+
+// H265SpatialAdaptiveQuantization is an enum
+type H265SpatialAdaptiveQuantization struct{}
+
+// Contains returns whether the H265SpatialAdaptiveQuantization enum includes the element
+func (enum H265SpatialAdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265SpatialAdaptiveQuantization enum
+func (enum H265SpatialAdaptiveQuantization) Values() []string {
+	return []string{
+		H265SpatialAdaptiveQuantizationDisabled,
+		H265SpatialAdaptiveQuantizationEnabled,
+	}
+}
 
 // This field applies only if the Streams > Advanced > Framerate (framerate)
 // field is set to 29.970. This field works with the Streams > Advanced > Preprocessors
@@ -21676,6 +25179,29 @@ const (
 	H265TelecineHard = "HARD"
 )
 
+// H265Telecine is an enum
+type H265Telecine struct{}
+
+// Contains returns whether the H265Telecine enum includes the element
+func (enum H265Telecine) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265Telecine enum
+func (enum H265Telecine) Values() []string {
+	return []string{
+		H265TelecineNone,
+		H265TelecineSoft,
+		H265TelecineHard,
+	}
+}
+
 // Adjust quantization within each frame based on temporal variation of content
 // complexity.
 const (
@@ -21685,6 +25211,28 @@ const (
 	// H265TemporalAdaptiveQuantizationEnabled is a H265TemporalAdaptiveQuantization enum value
 	H265TemporalAdaptiveQuantizationEnabled = "ENABLED"
 )
+
+// H265TemporalAdaptiveQuantization is an enum
+type H265TemporalAdaptiveQuantization struct{}
+
+// Contains returns whether the H265TemporalAdaptiveQuantization enum includes the element
+func (enum H265TemporalAdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265TemporalAdaptiveQuantization enum
+func (enum H265TemporalAdaptiveQuantization) Values() []string {
+	return []string{
+		H265TemporalAdaptiveQuantizationDisabled,
+		H265TemporalAdaptiveQuantizationEnabled,
+	}
+}
 
 // Enables temporal layer identifiers in the encoded bitstream. Up to 3 layers
 // are supported depending on GOP structure: I- and P-frames form one layer,
@@ -21702,6 +25250,28 @@ const (
 	H265TemporalIdsEnabled = "ENABLED"
 )
 
+// H265TemporalIds is an enum
+type H265TemporalIds struct{}
+
+// Contains returns whether the H265TemporalIds enum includes the element
+func (enum H265TemporalIds) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265TemporalIds enum
+func (enum H265TemporalIds) Values() []string {
+	return []string{
+		H265TemporalIdsDisabled,
+		H265TemporalIdsEnabled,
+	}
+}
+
 // Enable use of tiles, allowing horizontal as well as vertical subdivision
 // of the encoded pictures.
 const (
@@ -21712,6 +25282,28 @@ const (
 	H265TilesEnabled = "ENABLED"
 )
 
+// H265Tiles is an enum
+type H265Tiles struct{}
+
+// Contains returns whether the H265Tiles enum includes the element
+func (enum H265Tiles) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265Tiles enum
+func (enum H265Tiles) Values() []string {
+	return []string{
+		H265TilesDisabled,
+		H265TilesEnabled,
+	}
+}
+
 // Inserts timecode for each frame as 4 bytes of an unregistered SEI message.
 const (
 	// H265UnregisteredSeiTimecodeDisabled is a H265UnregisteredSeiTimecode enum value
@@ -21720,6 +25312,28 @@ const (
 	// H265UnregisteredSeiTimecodeEnabled is a H265UnregisteredSeiTimecode enum value
 	H265UnregisteredSeiTimecodeEnabled = "ENABLED"
 )
+
+// H265UnregisteredSeiTimecode is an enum
+type H265UnregisteredSeiTimecode struct{}
+
+// Contains returns whether the H265UnregisteredSeiTimecode enum includes the element
+func (enum H265UnregisteredSeiTimecode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265UnregisteredSeiTimecode enum
+func (enum H265UnregisteredSeiTimecode) Values() []string {
+	return []string{
+		H265UnregisteredSeiTimecodeDisabled,
+		H265UnregisteredSeiTimecodeEnabled,
+	}
+}
 
 // If the location of parameter set NAL units doesn't matter in your workflow,
 // ignore this setting. Use this setting only with CMAF or DASH outputs, or
@@ -21740,6 +25354,28 @@ const (
 	H265WriteMp4PackagingTypeHev1 = "HEV1"
 )
 
+// H265WriteMp4PackagingType is an enum
+type H265WriteMp4PackagingType struct{}
+
+// Contains returns whether the H265WriteMp4PackagingType enum includes the element
+func (enum H265WriteMp4PackagingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the H265WriteMp4PackagingType enum
+func (enum H265WriteMp4PackagingType) Values() []string {
+	return []string{
+		H265WriteMp4PackagingTypeHvc1,
+		H265WriteMp4PackagingTypeHev1,
+	}
+}
+
 const (
 	// HlsAdMarkersElemental is a HlsAdMarkers enum value
 	HlsAdMarkersElemental = "ELEMENTAL"
@@ -21747,6 +25383,28 @@ const (
 	// HlsAdMarkersElementalScte35 is a HlsAdMarkers enum value
 	HlsAdMarkersElementalScte35 = "ELEMENTAL_SCTE35"
 )
+
+// HlsAdMarkers is an enum
+type HlsAdMarkers struct{}
+
+// Contains returns whether the HlsAdMarkers enum includes the element
+func (enum HlsAdMarkers) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsAdMarkers enum
+func (enum HlsAdMarkers) Values() []string {
+	return []string{
+		HlsAdMarkersElemental,
+		HlsAdMarkersElementalScte35,
+	}
+}
 
 // Use this setting only in audio-only outputs. Choose MPEG-2 Transport Stream
 // (M2TS) to create a file in an MPEG2-TS container. Keep the default value
@@ -21760,6 +25418,28 @@ const (
 	// HlsAudioOnlyContainerM2ts is a HlsAudioOnlyContainer enum value
 	HlsAudioOnlyContainerM2ts = "M2TS"
 )
+
+// HlsAudioOnlyContainer is an enum
+type HlsAudioOnlyContainer struct{}
+
+// Contains returns whether the HlsAudioOnlyContainer enum includes the element
+func (enum HlsAudioOnlyContainer) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsAudioOnlyContainer enum
+func (enum HlsAudioOnlyContainer) Values() []string {
+	return []string{
+		HlsAudioOnlyContainerAutomatic,
+		HlsAudioOnlyContainerM2ts,
+	}
+}
 
 // Four types of audio-only tracks are supported: Audio-Only Variant Stream
 // The client can play back this audio-only stream instead of video in low-bandwidth
@@ -21786,6 +25466,30 @@ const (
 	HlsAudioTrackTypeAudioOnlyVariantStream = "AUDIO_ONLY_VARIANT_STREAM"
 )
 
+// HlsAudioTrackType is an enum
+type HlsAudioTrackType struct{}
+
+// Contains returns whether the HlsAudioTrackType enum includes the element
+func (enum HlsAudioTrackType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsAudioTrackType enum
+func (enum HlsAudioTrackType) Values() []string {
+	return []string{
+		HlsAudioTrackTypeAlternateAudioAutoSelectDefault,
+		HlsAudioTrackTypeAlternateAudioAutoSelect,
+		HlsAudioTrackTypeAlternateAudioNotAutoSelect,
+		HlsAudioTrackTypeAudioOnlyVariantStream,
+	}
+}
+
 // Applies only to 608 Embedded output captions. Insert: Include CLOSED-CAPTIONS
 // lines in the manifest. Specify at least one language in the CC1 Language
 // Code field. One CLOSED-CAPTION line is added for each Language Code you specify.
@@ -21806,6 +25510,29 @@ const (
 	HlsCaptionLanguageSettingNone = "NONE"
 )
 
+// HlsCaptionLanguageSetting is an enum
+type HlsCaptionLanguageSetting struct{}
+
+// Contains returns whether the HlsCaptionLanguageSetting enum includes the element
+func (enum HlsCaptionLanguageSetting) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsCaptionLanguageSetting enum
+func (enum HlsCaptionLanguageSetting) Values() []string {
+	return []string{
+		HlsCaptionLanguageSettingInsert,
+		HlsCaptionLanguageSettingOmit,
+		HlsCaptionLanguageSettingNone,
+	}
+}
+
 // When set to ENABLED, sets #EXT-X-ALLOW-CACHE:no tag, which prevents client
 // from saving media segments for later replay.
 const (
@@ -21815,6 +25542,28 @@ const (
 	// HlsClientCacheEnabled is a HlsClientCache enum value
 	HlsClientCacheEnabled = "ENABLED"
 )
+
+// HlsClientCache is an enum
+type HlsClientCache struct{}
+
+// Contains returns whether the HlsClientCache enum includes the element
+func (enum HlsClientCache) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsClientCache enum
+func (enum HlsClientCache) Values() []string {
+	return []string{
+		HlsClientCacheDisabled,
+		HlsClientCacheEnabled,
+	}
+}
 
 // Specification to use (RFC-6381 or the default RFC-4281) during m3u8 playlist
 // generation.
@@ -21826,6 +25575,28 @@ const (
 	HlsCodecSpecificationRfc4281 = "RFC_4281"
 )
 
+// HlsCodecSpecification is an enum
+type HlsCodecSpecification struct{}
+
+// Contains returns whether the HlsCodecSpecification enum includes the element
+func (enum HlsCodecSpecification) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsCodecSpecification enum
+func (enum HlsCodecSpecification) Values() []string {
+	return []string{
+		HlsCodecSpecificationRfc6381,
+		HlsCodecSpecificationRfc4281,
+	}
+}
+
 // Indicates whether segments should be placed in subdirectories.
 const (
 	// HlsDirectoryStructureSingleDirectory is a HlsDirectoryStructure enum value
@@ -21834,6 +25605,28 @@ const (
 	// HlsDirectoryStructureSubdirectoryPerStream is a HlsDirectoryStructure enum value
 	HlsDirectoryStructureSubdirectoryPerStream = "SUBDIRECTORY_PER_STREAM"
 )
+
+// HlsDirectoryStructure is an enum
+type HlsDirectoryStructure struct{}
+
+// Contains returns whether the HlsDirectoryStructure enum includes the element
+func (enum HlsDirectoryStructure) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsDirectoryStructure enum
+func (enum HlsDirectoryStructure) Values() []string {
+	return []string{
+		HlsDirectoryStructureSingleDirectory,
+		HlsDirectoryStructureSubdirectoryPerStream,
+	}
+}
 
 // Encrypts the segments with the given encryption scheme. Leave blank to disable.
 // Selecting 'Disabled' in the web interface also disables encryption.
@@ -21845,6 +25638,28 @@ const (
 	HlsEncryptionTypeSampleAes = "SAMPLE_AES"
 )
 
+// HlsEncryptionType is an enum
+type HlsEncryptionType struct{}
+
+// Contains returns whether the HlsEncryptionType enum includes the element
+func (enum HlsEncryptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsEncryptionType enum
+func (enum HlsEncryptionType) Values() []string {
+	return []string{
+		HlsEncryptionTypeAes128,
+		HlsEncryptionTypeSampleAes,
+	}
+}
+
 // When set to INCLUDE, writes I-Frame Only Manifest in addition to the HLS
 // manifest
 const (
@@ -21854,6 +25669,28 @@ const (
 	// HlsIFrameOnlyManifestExclude is a HlsIFrameOnlyManifest enum value
 	HlsIFrameOnlyManifestExclude = "EXCLUDE"
 )
+
+// HlsIFrameOnlyManifest is an enum
+type HlsIFrameOnlyManifest struct{}
+
+// Contains returns whether the HlsIFrameOnlyManifest enum includes the element
+func (enum HlsIFrameOnlyManifest) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsIFrameOnlyManifest enum
+func (enum HlsIFrameOnlyManifest) Values() []string {
+	return []string{
+		HlsIFrameOnlyManifestInclude,
+		HlsIFrameOnlyManifestExclude,
+	}
+}
 
 // The Initialization Vector is a 128-bit number used in conjunction with the
 // key for encrypting blocks. If set to INCLUDE, Initialization Vector is listed
@@ -21866,6 +25703,28 @@ const (
 	HlsInitializationVectorInManifestExclude = "EXCLUDE"
 )
 
+// HlsInitializationVectorInManifest is an enum
+type HlsInitializationVectorInManifest struct{}
+
+// Contains returns whether the HlsInitializationVectorInManifest enum includes the element
+func (enum HlsInitializationVectorInManifest) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsInitializationVectorInManifest enum
+func (enum HlsInitializationVectorInManifest) Values() []string {
+	return []string{
+		HlsInitializationVectorInManifestInclude,
+		HlsInitializationVectorInManifestExclude,
+	}
+}
+
 // Specify whether your DRM encryption key is static or from a key provider
 // that follows the SPEKE standard. For more information about SPEKE, see https://docs.aws.amazon.com/speke/latest/documentation/what-is-speke.html.
 const (
@@ -21876,6 +25735,28 @@ const (
 	HlsKeyProviderTypeStaticKey = "STATIC_KEY"
 )
 
+// HlsKeyProviderType is an enum
+type HlsKeyProviderType struct{}
+
+// Contains returns whether the HlsKeyProviderType enum includes the element
+func (enum HlsKeyProviderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsKeyProviderType enum
+func (enum HlsKeyProviderType) Values() []string {
+	return []string{
+		HlsKeyProviderTypeSpeke,
+		HlsKeyProviderTypeStaticKey,
+	}
+}
+
 // When set to GZIP, compresses HLS playlist.
 const (
 	// HlsManifestCompressionGzip is a HlsManifestCompression enum value
@@ -21884,6 +25765,28 @@ const (
 	// HlsManifestCompressionNone is a HlsManifestCompression enum value
 	HlsManifestCompressionNone = "NONE"
 )
+
+// HlsManifestCompression is an enum
+type HlsManifestCompression struct{}
+
+// Contains returns whether the HlsManifestCompression enum includes the element
+func (enum HlsManifestCompression) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsManifestCompression enum
+func (enum HlsManifestCompression) Values() []string {
+	return []string{
+		HlsManifestCompressionGzip,
+		HlsManifestCompressionNone,
+	}
+}
 
 // Indicates whether the output manifest should use floating point values for
 // segment duration.
@@ -21895,6 +25798,28 @@ const (
 	HlsManifestDurationFormatInteger = "INTEGER"
 )
 
+// HlsManifestDurationFormat is an enum
+type HlsManifestDurationFormat struct{}
+
+// Contains returns whether the HlsManifestDurationFormat enum includes the element
+func (enum HlsManifestDurationFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsManifestDurationFormat enum
+func (enum HlsManifestDurationFormat) Values() []string {
+	return []string{
+		HlsManifestDurationFormatFloatingPoint,
+		HlsManifestDurationFormatInteger,
+	}
+}
+
 // Enable this setting to insert the EXT-X-SESSION-KEY element into the master
 // playlist. This allows for offline Apple HLS FairPlay content protection.
 const (
@@ -21905,6 +25830,28 @@ const (
 	HlsOfflineEncryptedDisabled = "DISABLED"
 )
 
+// HlsOfflineEncrypted is an enum
+type HlsOfflineEncrypted struct{}
+
+// Contains returns whether the HlsOfflineEncrypted enum includes the element
+func (enum HlsOfflineEncrypted) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsOfflineEncrypted enum
+func (enum HlsOfflineEncrypted) Values() []string {
+	return []string{
+		HlsOfflineEncryptedEnabled,
+		HlsOfflineEncryptedDisabled,
+	}
+}
+
 // Indicates whether the .m3u8 manifest file should be generated for this HLS
 // output group.
 const (
@@ -21914,6 +25861,28 @@ const (
 	// HlsOutputSelectionSegmentsOnly is a HlsOutputSelection enum value
 	HlsOutputSelectionSegmentsOnly = "SEGMENTS_ONLY"
 )
+
+// HlsOutputSelection is an enum
+type HlsOutputSelection struct{}
+
+// Contains returns whether the HlsOutputSelection enum includes the element
+func (enum HlsOutputSelection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsOutputSelection enum
+func (enum HlsOutputSelection) Values() []string {
+	return []string{
+		HlsOutputSelectionManifestsAndSegments,
+		HlsOutputSelectionSegmentsOnly,
+	}
+}
 
 // Includes or excludes EXT-X-PROGRAM-DATE-TIME tag in .m3u8 manifest files.
 // The value is calculated as follows: either the program date and time are
@@ -21927,6 +25896,28 @@ const (
 	HlsProgramDateTimeExclude = "EXCLUDE"
 )
 
+// HlsProgramDateTime is an enum
+type HlsProgramDateTime struct{}
+
+// Contains returns whether the HlsProgramDateTime enum includes the element
+func (enum HlsProgramDateTime) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsProgramDateTime enum
+func (enum HlsProgramDateTime) Values() []string {
+	return []string{
+		HlsProgramDateTimeInclude,
+		HlsProgramDateTimeExclude,
+	}
+}
+
 // When set to SINGLE_FILE, emits program as a single media resource (.ts) file,
 // uses #EXT-X-BYTERANGE tags to index segment for playback.
 const (
@@ -21937,6 +25928,28 @@ const (
 	HlsSegmentControlSegmentedFiles = "SEGMENTED_FILES"
 )
 
+// HlsSegmentControl is an enum
+type HlsSegmentControl struct{}
+
+// Contains returns whether the HlsSegmentControl enum includes the element
+func (enum HlsSegmentControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsSegmentControl enum
+func (enum HlsSegmentControl) Values() []string {
+	return []string{
+		HlsSegmentControlSingleFile,
+		HlsSegmentControlSegmentedFiles,
+	}
+}
+
 // Include or exclude RESOLUTION attribute for video in EXT-X-STREAM-INF tag
 // of variant manifest.
 const (
@@ -21946,6 +25959,28 @@ const (
 	// HlsStreamInfResolutionExclude is a HlsStreamInfResolution enum value
 	HlsStreamInfResolutionExclude = "EXCLUDE"
 )
+
+// HlsStreamInfResolution is an enum
+type HlsStreamInfResolution struct{}
+
+// Contains returns whether the HlsStreamInfResolution enum includes the element
+func (enum HlsStreamInfResolution) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsStreamInfResolution enum
+func (enum HlsStreamInfResolution) Values() []string {
+	return []string{
+		HlsStreamInfResolutionInclude,
+		HlsStreamInfResolutionExclude,
+	}
+}
 
 // Indicates ID3 frame that has the timecode.
 const (
@@ -21959,6 +25994,29 @@ const (
 	HlsTimedMetadataId3FrameTdrl = "TDRL"
 )
 
+// HlsTimedMetadataId3Frame is an enum
+type HlsTimedMetadataId3Frame struct{}
+
+// Contains returns whether the HlsTimedMetadataId3Frame enum includes the element
+func (enum HlsTimedMetadataId3Frame) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HlsTimedMetadataId3Frame enum
+func (enum HlsTimedMetadataId3Frame) Values() []string {
+	return []string{
+		HlsTimedMetadataId3FrameNone,
+		HlsTimedMetadataId3FramePriv,
+		HlsTimedMetadataId3FrameTdrl,
+	}
+}
+
 // Keep this setting enabled to have MediaConvert use the font style and position
 // information from the captions source in the output. This option is available
 // only when your input captions are IMSC, SMPTE-TT, or TTML. Disable this setting
@@ -21971,6 +26029,28 @@ const (
 	ImscStylePassthroughDisabled = "DISABLED"
 )
 
+// ImscStylePassthrough is an enum
+type ImscStylePassthrough struct{}
+
+// Contains returns whether the ImscStylePassthrough enum includes the element
+func (enum ImscStylePassthrough) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImscStylePassthrough enum
+func (enum ImscStylePassthrough) Values() []string {
+	return []string{
+		ImscStylePassthroughEnabled,
+		ImscStylePassthroughDisabled,
+	}
+}
+
 // Enable Deblock (InputDeblockFilter) to produce smoother motion in the output.
 // Default is disabled. Only manually controllable for MPEG2 and uncompressed
 // video inputs.
@@ -21982,6 +26062,28 @@ const (
 	InputDeblockFilterDisabled = "DISABLED"
 )
 
+// InputDeblockFilter is an enum
+type InputDeblockFilter struct{}
+
+// Contains returns whether the InputDeblockFilter enum includes the element
+func (enum InputDeblockFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDeblockFilter enum
+func (enum InputDeblockFilter) Values() []string {
+	return []string{
+		InputDeblockFilterEnabled,
+		InputDeblockFilterDisabled,
+	}
+}
+
 // Enable Denoise (InputDenoiseFilter) to filter noise from the input. Default
 // is disabled. Only applicable to MPEG2, H.264, H.265, and uncompressed video
 // inputs.
@@ -21992,6 +26094,28 @@ const (
 	// InputDenoiseFilterDisabled is a InputDenoiseFilter enum value
 	InputDenoiseFilterDisabled = "DISABLED"
 )
+
+// InputDenoiseFilter is an enum
+type InputDenoiseFilter struct{}
+
+// Contains returns whether the InputDenoiseFilter enum includes the element
+func (enum InputDenoiseFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputDenoiseFilter enum
+func (enum InputDenoiseFilter) Values() []string {
+	return []string{
+		InputDenoiseFilterEnabled,
+		InputDenoiseFilterDisabled,
+	}
+}
 
 // Use Filter enable (InputFilterEnable) to specify how the transcoding service
 // applies the denoise and deblock filters. You must also enable the filters
@@ -22011,6 +26135,29 @@ const (
 	InputFilterEnableForce = "FORCE"
 )
 
+// InputFilterEnable is an enum
+type InputFilterEnable struct{}
+
+// Contains returns whether the InputFilterEnable enum includes the element
+func (enum InputFilterEnable) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputFilterEnable enum
+func (enum InputFilterEnable) Values() []string {
+	return []string{
+		InputFilterEnableAuto,
+		InputFilterEnableDisable,
+		InputFilterEnableForce,
+	}
+}
+
 // Set PSI control (InputPsiControl) for transport stream inputs to specify
 // which data the demux process to scans. * Ignore PSI - Scan all PIDs for audio
 // and video. * Use PSI - Scan only PSI data.
@@ -22021,6 +26168,28 @@ const (
 	// InputPsiControlUsePsi is a InputPsiControl enum value
 	InputPsiControlUsePsi = "USE_PSI"
 )
+
+// InputPsiControl is an enum
+type InputPsiControl struct{}
+
+// Contains returns whether the InputPsiControl enum includes the element
+func (enum InputPsiControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputPsiControl enum
+func (enum InputPsiControl) Values() []string {
+	return []string{
+		InputPsiControlIgnorePsi,
+		InputPsiControlUsePsi,
+	}
+}
 
 // Use Rotate (InputRotate) to specify how the service rotates your video. You
 // can choose automatic rotation or specify a rotation. You can specify a clockwise
@@ -22049,6 +26218,31 @@ const (
 	InputRotateAuto = "AUTO"
 )
 
+// InputRotate is an enum
+type InputRotate struct{}
+
+// Contains returns whether the InputRotate enum includes the element
+func (enum InputRotate) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputRotate enum
+func (enum InputRotate) Values() []string {
+	return []string{
+		InputRotateDegree0,
+		InputRotateDegrees90,
+		InputRotateDegrees180,
+		InputRotateDegrees270,
+		InputRotateAuto,
+	}
+}
+
 // Use this Timecode source setting, located under the input settings (InputTimecodeSource),
 // to specify how the service counts input video frames. This input frame count
 // affects only the behavior of features that apply to a single input at a time,
@@ -22070,6 +26264,29 @@ const (
 	InputTimecodeSourceSpecifiedstart = "SPECIFIEDSTART"
 )
 
+// InputTimecodeSource is an enum
+type InputTimecodeSource struct{}
+
+// Contains returns whether the InputTimecodeSource enum includes the element
+func (enum InputTimecodeSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputTimecodeSource enum
+func (enum InputTimecodeSource) Values() []string {
+	return []string{
+		InputTimecodeSourceEmbedded,
+		InputTimecodeSourceZerobased,
+		InputTimecodeSourceSpecifiedstart,
+	}
+}
+
 // A job's phase can be PROBING, TRANSCODING OR UPLOADING
 const (
 	// JobPhaseProbing is a JobPhase enum value
@@ -22081,6 +26298,29 @@ const (
 	// JobPhaseUploading is a JobPhase enum value
 	JobPhaseUploading = "UPLOADING"
 )
+
+// JobPhase is an enum
+type JobPhase struct{}
+
+// Contains returns whether the JobPhase enum includes the element
+func (enum JobPhase) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobPhase enum
+func (enum JobPhase) Values() []string {
+	return []string{
+		JobPhaseProbing,
+		JobPhaseTranscoding,
+		JobPhaseUploading,
+	}
+}
 
 // A job's status can be SUBMITTED, PROGRESSING, COMPLETE, CANCELED, or ERROR.
 const (
@@ -22100,6 +26340,31 @@ const (
 	JobStatusError = "ERROR"
 )
 
+// JobStatus is an enum
+type JobStatus struct{}
+
+// Contains returns whether the JobStatus enum includes the element
+func (enum JobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatus enum
+func (enum JobStatus) Values() []string {
+	return []string{
+		JobStatusSubmitted,
+		JobStatusProgressing,
+		JobStatusComplete,
+		JobStatusCanceled,
+		JobStatusError,
+	}
+}
+
 // Optional. When you request a list of job templates, you can choose to list
 // them alphabetically by NAME or chronologically by CREATION_DATE. If you don't
 // specify, the service will list them by name.
@@ -22113,6 +26378,29 @@ const (
 	// JobTemplateListBySystem is a JobTemplateListBy enum value
 	JobTemplateListBySystem = "SYSTEM"
 )
+
+// JobTemplateListBy is an enum
+type JobTemplateListBy struct{}
+
+// Contains returns whether the JobTemplateListBy enum includes the element
+func (enum JobTemplateListBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobTemplateListBy enum
+func (enum JobTemplateListBy) Values() []string {
+	return []string{
+		JobTemplateListByName,
+		JobTemplateListByCreationDate,
+		JobTemplateListBySystem,
+	}
+}
 
 // Specify the language, using the ISO 639-2 three-letter code listed at https://www.loc.gov/standards/iso639-2/php/code_list.php.
 const (
@@ -22690,6 +26978,217 @@ const (
 	LanguageCodeTng = "TNG"
 )
 
+// LanguageCode is an enum
+type LanguageCode struct{}
+
+// Contains returns whether the LanguageCode enum includes the element
+func (enum LanguageCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LanguageCode enum
+func (enum LanguageCode) Values() []string {
+	return []string{
+		LanguageCodeEng,
+		LanguageCodeSpa,
+		LanguageCodeFra,
+		LanguageCodeDeu,
+		LanguageCodeGer,
+		LanguageCodeZho,
+		LanguageCodeAra,
+		LanguageCodeHin,
+		LanguageCodeJpn,
+		LanguageCodeRus,
+		LanguageCodePor,
+		LanguageCodeIta,
+		LanguageCodeUrd,
+		LanguageCodeVie,
+		LanguageCodeKor,
+		LanguageCodePan,
+		LanguageCodeAbk,
+		LanguageCodeAar,
+		LanguageCodeAfr,
+		LanguageCodeAka,
+		LanguageCodeSqi,
+		LanguageCodeAmh,
+		LanguageCodeArg,
+		LanguageCodeHye,
+		LanguageCodeAsm,
+		LanguageCodeAva,
+		LanguageCodeAve,
+		LanguageCodeAym,
+		LanguageCodeAze,
+		LanguageCodeBam,
+		LanguageCodeBak,
+		LanguageCodeEus,
+		LanguageCodeBel,
+		LanguageCodeBen,
+		LanguageCodeBih,
+		LanguageCodeBis,
+		LanguageCodeBos,
+		LanguageCodeBre,
+		LanguageCodeBul,
+		LanguageCodeMya,
+		LanguageCodeCat,
+		LanguageCodeKhm,
+		LanguageCodeCha,
+		LanguageCodeChe,
+		LanguageCodeNya,
+		LanguageCodeChu,
+		LanguageCodeChv,
+		LanguageCodeCor,
+		LanguageCodeCos,
+		LanguageCodeCre,
+		LanguageCodeHrv,
+		LanguageCodeCes,
+		LanguageCodeDan,
+		LanguageCodeDiv,
+		LanguageCodeNld,
+		LanguageCodeDzo,
+		LanguageCodeEnm,
+		LanguageCodeEpo,
+		LanguageCodeEst,
+		LanguageCodeEwe,
+		LanguageCodeFao,
+		LanguageCodeFij,
+		LanguageCodeFin,
+		LanguageCodeFrm,
+		LanguageCodeFul,
+		LanguageCodeGla,
+		LanguageCodeGlg,
+		LanguageCodeLug,
+		LanguageCodeKat,
+		LanguageCodeEll,
+		LanguageCodeGrn,
+		LanguageCodeGuj,
+		LanguageCodeHat,
+		LanguageCodeHau,
+		LanguageCodeHeb,
+		LanguageCodeHer,
+		LanguageCodeHmo,
+		LanguageCodeHun,
+		LanguageCodeIsl,
+		LanguageCodeIdo,
+		LanguageCodeIbo,
+		LanguageCodeInd,
+		LanguageCodeIna,
+		LanguageCodeIle,
+		LanguageCodeIku,
+		LanguageCodeIpk,
+		LanguageCodeGle,
+		LanguageCodeJav,
+		LanguageCodeKal,
+		LanguageCodeKan,
+		LanguageCodeKau,
+		LanguageCodeKas,
+		LanguageCodeKaz,
+		LanguageCodeKik,
+		LanguageCodeKin,
+		LanguageCodeKir,
+		LanguageCodeKom,
+		LanguageCodeKon,
+		LanguageCodeKua,
+		LanguageCodeKur,
+		LanguageCodeLao,
+		LanguageCodeLat,
+		LanguageCodeLav,
+		LanguageCodeLim,
+		LanguageCodeLin,
+		LanguageCodeLit,
+		LanguageCodeLub,
+		LanguageCodeLtz,
+		LanguageCodeMkd,
+		LanguageCodeMlg,
+		LanguageCodeMsa,
+		LanguageCodeMal,
+		LanguageCodeMlt,
+		LanguageCodeGlv,
+		LanguageCodeMri,
+		LanguageCodeMar,
+		LanguageCodeMah,
+		LanguageCodeMon,
+		LanguageCodeNau,
+		LanguageCodeNav,
+		LanguageCodeNde,
+		LanguageCodeNbl,
+		LanguageCodeNdo,
+		LanguageCodeNep,
+		LanguageCodeSme,
+		LanguageCodeNor,
+		LanguageCodeNob,
+		LanguageCodeNno,
+		LanguageCodeOci,
+		LanguageCodeOji,
+		LanguageCodeOri,
+		LanguageCodeOrm,
+		LanguageCodeOss,
+		LanguageCodePli,
+		LanguageCodeFas,
+		LanguageCodePol,
+		LanguageCodePus,
+		LanguageCodeQue,
+		LanguageCodeQaa,
+		LanguageCodeRon,
+		LanguageCodeRoh,
+		LanguageCodeRun,
+		LanguageCodeSmo,
+		LanguageCodeSag,
+		LanguageCodeSan,
+		LanguageCodeSrd,
+		LanguageCodeSrb,
+		LanguageCodeSna,
+		LanguageCodeIii,
+		LanguageCodeSnd,
+		LanguageCodeSin,
+		LanguageCodeSlk,
+		LanguageCodeSlv,
+		LanguageCodeSom,
+		LanguageCodeSot,
+		LanguageCodeSun,
+		LanguageCodeSwa,
+		LanguageCodeSsw,
+		LanguageCodeSwe,
+		LanguageCodeTgl,
+		LanguageCodeTah,
+		LanguageCodeTgk,
+		LanguageCodeTam,
+		LanguageCodeTat,
+		LanguageCodeTel,
+		LanguageCodeTha,
+		LanguageCodeBod,
+		LanguageCodeTir,
+		LanguageCodeTon,
+		LanguageCodeTso,
+		LanguageCodeTsn,
+		LanguageCodeTur,
+		LanguageCodeTuk,
+		LanguageCodeTwi,
+		LanguageCodeUig,
+		LanguageCodeUkr,
+		LanguageCodeUzb,
+		LanguageCodeVen,
+		LanguageCodeVol,
+		LanguageCodeWln,
+		LanguageCodeCym,
+		LanguageCodeFry,
+		LanguageCodeWol,
+		LanguageCodeXho,
+		LanguageCodeYid,
+		LanguageCodeYor,
+		LanguageCodeZha,
+		LanguageCodeZul,
+		LanguageCodeOrj,
+		LanguageCodeQpc,
+		LanguageCodeTng,
+	}
+}
+
 // Selects between the DVB and ATSC buffer models for Dolby Digital audio.
 const (
 	// M2tsAudioBufferModelDvb is a M2tsAudioBufferModel enum value
@@ -22698,6 +27197,28 @@ const (
 	// M2tsAudioBufferModelAtsc is a M2tsAudioBufferModel enum value
 	M2tsAudioBufferModelAtsc = "ATSC"
 )
+
+// M2tsAudioBufferModel is an enum
+type M2tsAudioBufferModel struct{}
+
+// Contains returns whether the M2tsAudioBufferModel enum includes the element
+func (enum M2tsAudioBufferModel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsAudioBufferModel enum
+func (enum M2tsAudioBufferModel) Values() []string {
+	return []string{
+		M2tsAudioBufferModelDvb,
+		M2tsAudioBufferModelAtsc,
+	}
+}
 
 // Controls what buffer model to use for accurate interleaving. If set to MULTIPLEX,
 // use multiplex buffer model. If set to NONE, this can lead to lower latency,
@@ -22709,6 +27230,28 @@ const (
 	// M2tsBufferModelNone is a M2tsBufferModel enum value
 	M2tsBufferModelNone = "NONE"
 )
+
+// M2tsBufferModel is an enum
+type M2tsBufferModel struct{}
+
+// Contains returns whether the M2tsBufferModel enum includes the element
+func (enum M2tsBufferModel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsBufferModel enum
+func (enum M2tsBufferModel) Values() []string {
+	return []string{
+		M2tsBufferModelMultiplex,
+		M2tsBufferModelNone,
+	}
+}
 
 // When set to VIDEO_AND_FIXED_INTERVALS, audio EBP markers will be added to
 // partitions 3 and 4. The interval between these additional markers will be
@@ -22724,6 +27267,28 @@ const (
 	M2tsEbpAudioIntervalVideoInterval = "VIDEO_INTERVAL"
 )
 
+// M2tsEbpAudioInterval is an enum
+type M2tsEbpAudioInterval struct{}
+
+// Contains returns whether the M2tsEbpAudioInterval enum includes the element
+func (enum M2tsEbpAudioInterval) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsEbpAudioInterval enum
+func (enum M2tsEbpAudioInterval) Values() []string {
+	return []string{
+		M2tsEbpAudioIntervalVideoAndFixedIntervals,
+		M2tsEbpAudioIntervalVideoInterval,
+	}
+}
+
 // Selects which PIDs to place EBP markers on. They can either be placed only
 // on the video PID, or on both the video PID and all audio PIDs. Only applicable
 // when EBP segmentation markers are is selected (segmentationMarkers is EBP
@@ -22736,6 +27301,28 @@ const (
 	M2tsEbpPlacementVideoPid = "VIDEO_PID"
 )
 
+// M2tsEbpPlacement is an enum
+type M2tsEbpPlacement struct{}
+
+// Contains returns whether the M2tsEbpPlacement enum includes the element
+func (enum M2tsEbpPlacement) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsEbpPlacement enum
+func (enum M2tsEbpPlacement) Values() []string {
+	return []string{
+		M2tsEbpPlacementVideoAndAudioPids,
+		M2tsEbpPlacementVideoPid,
+	}
+}
+
 // Controls whether to include the ES Rate field in the PES header.
 const (
 	// M2tsEsRateInPesInclude is a M2tsEsRateInPes enum value
@@ -22744,6 +27331,28 @@ const (
 	// M2tsEsRateInPesExclude is a M2tsEsRateInPes enum value
 	M2tsEsRateInPesExclude = "EXCLUDE"
 )
+
+// M2tsEsRateInPes is an enum
+type M2tsEsRateInPes struct{}
+
+// Contains returns whether the M2tsEsRateInPes enum includes the element
+func (enum M2tsEsRateInPes) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsEsRateInPes enum
+func (enum M2tsEsRateInPes) Values() []string {
+	return []string{
+		M2tsEsRateInPesInclude,
+		M2tsEsRateInPesExclude,
+	}
+}
 
 // Keep the default value (DEFAULT) unless you know that your audio EBP markers
 // are incorrectly appearing before your video EBP markers. To correct this
@@ -22756,6 +27365,28 @@ const (
 	M2tsForceTsVideoEbpOrderDefault = "DEFAULT"
 )
 
+// M2tsForceTsVideoEbpOrder is an enum
+type M2tsForceTsVideoEbpOrder struct{}
+
+// Contains returns whether the M2tsForceTsVideoEbpOrder enum includes the element
+func (enum M2tsForceTsVideoEbpOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsForceTsVideoEbpOrder enum
+func (enum M2tsForceTsVideoEbpOrder) Values() []string {
+	return []string{
+		M2tsForceTsVideoEbpOrderForce,
+		M2tsForceTsVideoEbpOrderDefault,
+	}
+}
+
 // If INSERT, Nielsen inaudible tones for media tracking will be detected in
 // the input audio and an equivalent ID3 tag will be inserted in the output.
 const (
@@ -22765,6 +27396,28 @@ const (
 	// M2tsNielsenId3None is a M2tsNielsenId3 enum value
 	M2tsNielsenId3None = "NONE"
 )
+
+// M2tsNielsenId3 is an enum
+type M2tsNielsenId3 struct{}
+
+// Contains returns whether the M2tsNielsenId3 enum includes the element
+func (enum M2tsNielsenId3) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsNielsenId3 enum
+func (enum M2tsNielsenId3) Values() []string {
+	return []string{
+		M2tsNielsenId3Insert,
+		M2tsNielsenId3None,
+	}
+}
 
 // When set to PCR_EVERY_PES_PACKET, a Program Clock Reference value is inserted
 // for every Packetized Elementary Stream (PES) header. This is effective only
@@ -22777,6 +27430,28 @@ const (
 	M2tsPcrControlConfiguredPcrPeriod = "CONFIGURED_PCR_PERIOD"
 )
 
+// M2tsPcrControl is an enum
+type M2tsPcrControl struct{}
+
+// Contains returns whether the M2tsPcrControl enum includes the element
+func (enum M2tsPcrControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsPcrControl enum
+func (enum M2tsPcrControl) Values() []string {
+	return []string{
+		M2tsPcrControlPcrEveryPesPacket,
+		M2tsPcrControlConfiguredPcrPeriod,
+	}
+}
+
 // When set to CBR, inserts null packets into transport stream to fill specified
 // bitrate. When set to VBR, the bitrate setting acts as the maximum bitrate,
 // but the output will not be padded up to that bitrate.
@@ -22787,6 +27462,28 @@ const (
 	// M2tsRateModeCbr is a M2tsRateMode enum value
 	M2tsRateModeCbr = "CBR"
 )
+
+// M2tsRateMode is an enum
+type M2tsRateMode struct{}
+
+// Contains returns whether the M2tsRateMode enum includes the element
+func (enum M2tsRateMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsRateMode enum
+func (enum M2tsRateMode) Values() []string {
+	return []string{
+		M2tsRateModeVbr,
+		M2tsRateModeCbr,
+	}
+}
 
 // For SCTE-35 markers from your input-- Choose Passthrough (PASSTHROUGH) if
 // you want SCTE-35 markers that appear in your input to also appear in this
@@ -22801,6 +27498,28 @@ const (
 	// M2tsScte35SourceNone is a M2tsScte35Source enum value
 	M2tsScte35SourceNone = "NONE"
 )
+
+// M2tsScte35Source is an enum
+type M2tsScte35Source struct{}
+
+// Contains returns whether the M2tsScte35Source enum includes the element
+func (enum M2tsScte35Source) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsScte35Source enum
+func (enum M2tsScte35Source) Values() []string {
+	return []string{
+		M2tsScte35SourcePassthrough,
+		M2tsScte35SourceNone,
+	}
+}
 
 // Inserts segmentation markers at each segmentation_time period. rai_segstart
 // sets the Random Access Indicator bit in the adaptation field. rai_adapt sets
@@ -22829,6 +27548,32 @@ const (
 	M2tsSegmentationMarkersEbpLegacy = "EBP_LEGACY"
 )
 
+// M2tsSegmentationMarkers is an enum
+type M2tsSegmentationMarkers struct{}
+
+// Contains returns whether the M2tsSegmentationMarkers enum includes the element
+func (enum M2tsSegmentationMarkers) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsSegmentationMarkers enum
+func (enum M2tsSegmentationMarkers) Values() []string {
+	return []string{
+		M2tsSegmentationMarkersNone,
+		M2tsSegmentationMarkersRaiSegstart,
+		M2tsSegmentationMarkersRaiAdapt,
+		M2tsSegmentationMarkersPsiSegstart,
+		M2tsSegmentationMarkersEbp,
+		M2tsSegmentationMarkersEbpLegacy,
+	}
+}
+
 // The segmentation style parameter controls how segmentation markers are inserted
 // into the transport stream. With avails, it is possible that segments may
 // be truncated, which can influence where future segmentation markers are inserted.
@@ -22848,6 +27593,28 @@ const (
 	M2tsSegmentationStyleResetCadence = "RESET_CADENCE"
 )
 
+// M2tsSegmentationStyle is an enum
+type M2tsSegmentationStyle struct{}
+
+// Contains returns whether the M2tsSegmentationStyle enum includes the element
+func (enum M2tsSegmentationStyle) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M2tsSegmentationStyle enum
+func (enum M2tsSegmentationStyle) Values() []string {
+	return []string{
+		M2tsSegmentationStyleMaintainCadence,
+		M2tsSegmentationStyleResetCadence,
+	}
+}
+
 // If INSERT, Nielsen inaudible tones for media tracking will be detected in
 // the input audio and an equivalent ID3 tag will be inserted in the output.
 const (
@@ -22857,6 +27624,28 @@ const (
 	// M3u8NielsenId3None is a M3u8NielsenId3 enum value
 	M3u8NielsenId3None = "NONE"
 )
+
+// M3u8NielsenId3 is an enum
+type M3u8NielsenId3 struct{}
+
+// Contains returns whether the M3u8NielsenId3 enum includes the element
+func (enum M3u8NielsenId3) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M3u8NielsenId3 enum
+func (enum M3u8NielsenId3) Values() []string {
+	return []string{
+		M3u8NielsenId3Insert,
+		M3u8NielsenId3None,
+	}
+}
 
 // When set to PCR_EVERY_PES_PACKET a Program Clock Reference value is inserted
 // for every Packetized Elementary Stream (PES) header. This parameter is effective
@@ -22868,6 +27657,28 @@ const (
 	// M3u8PcrControlConfiguredPcrPeriod is a M3u8PcrControl enum value
 	M3u8PcrControlConfiguredPcrPeriod = "CONFIGURED_PCR_PERIOD"
 )
+
+// M3u8PcrControl is an enum
+type M3u8PcrControl struct{}
+
+// Contains returns whether the M3u8PcrControl enum includes the element
+func (enum M3u8PcrControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M3u8PcrControl enum
+func (enum M3u8PcrControl) Values() []string {
+	return []string{
+		M3u8PcrControlPcrEveryPesPacket,
+		M3u8PcrControlConfiguredPcrPeriod,
+	}
+}
 
 // For SCTE-35 markers from your input-- Choose Passthrough (PASSTHROUGH) if
 // you want SCTE-35 markers that appear in your input to also appear in this
@@ -22885,6 +27696,28 @@ const (
 	M3u8Scte35SourceNone = "NONE"
 )
 
+// M3u8Scte35Source is an enum
+type M3u8Scte35Source struct{}
+
+// Contains returns whether the M3u8Scte35Source enum includes the element
+func (enum M3u8Scte35Source) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the M3u8Scte35Source enum
+func (enum M3u8Scte35Source) Values() []string {
+	return []string{
+		M3u8Scte35SourcePassthrough,
+		M3u8Scte35SourceNone,
+	}
+}
+
 // Choose the type of motion graphic asset that you are providing for your overlay.
 // You can choose either a .mov file or a series of .png files.
 const (
@@ -22894,6 +27727,28 @@ const (
 	// MotionImageInsertionModePng is a MotionImageInsertionMode enum value
 	MotionImageInsertionModePng = "PNG"
 )
+
+// MotionImageInsertionMode is an enum
+type MotionImageInsertionMode struct{}
+
+// Contains returns whether the MotionImageInsertionMode enum includes the element
+func (enum MotionImageInsertionMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MotionImageInsertionMode enum
+func (enum MotionImageInsertionMode) Values() []string {
+	return []string{
+		MotionImageInsertionModeMov,
+		MotionImageInsertionModePng,
+	}
+}
 
 // Specify whether your motion graphic overlay repeats on a loop or plays only
 // once.
@@ -22905,6 +27760,28 @@ const (
 	MotionImagePlaybackRepeat = "REPEAT"
 )
 
+// MotionImagePlayback is an enum
+type MotionImagePlayback struct{}
+
+// Contains returns whether the MotionImagePlayback enum includes the element
+func (enum MotionImagePlayback) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MotionImagePlayback enum
+func (enum MotionImagePlayback) Values() []string {
+	return []string{
+		MotionImagePlaybackOnce,
+		MotionImagePlaybackRepeat,
+	}
+}
+
 // When enabled, include 'clap' atom if appropriate for the video output settings.
 const (
 	// MovClapAtomInclude is a MovClapAtom enum value
@@ -22913,6 +27790,28 @@ const (
 	// MovClapAtomExclude is a MovClapAtom enum value
 	MovClapAtomExclude = "EXCLUDE"
 )
+
+// MovClapAtom is an enum
+type MovClapAtom struct{}
+
+// Contains returns whether the MovClapAtom enum includes the element
+func (enum MovClapAtom) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MovClapAtom enum
+func (enum MovClapAtom) Values() []string {
+	return []string{
+		MovClapAtomInclude,
+		MovClapAtomExclude,
+	}
+}
 
 // When enabled, file composition times will start at zero, composition times
 // in the 'ctts' (composition time to sample) box for B-frames will be negative,
@@ -22926,6 +27825,28 @@ const (
 	MovCslgAtomExclude = "EXCLUDE"
 )
 
+// MovCslgAtom is an enum
+type MovCslgAtom struct{}
+
+// Contains returns whether the MovCslgAtom enum includes the element
+func (enum MovCslgAtom) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MovCslgAtom enum
+func (enum MovCslgAtom) Values() []string {
+	return []string{
+		MovCslgAtomInclude,
+		MovCslgAtomExclude,
+	}
+}
+
 // When set to XDCAM, writes MPEG2 video streams into the QuickTime file using
 // XDCAM fourcc codes. This increases compatibility with Apple editors and players,
 // but may decrease compatibility with other players. Only applicable when the
@@ -22938,6 +27859,28 @@ const (
 	MovMpeg2FourCCControlMpeg = "MPEG"
 )
 
+// MovMpeg2FourCCControl is an enum
+type MovMpeg2FourCCControl struct{}
+
+// Contains returns whether the MovMpeg2FourCCControl enum includes the element
+func (enum MovMpeg2FourCCControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MovMpeg2FourCCControl enum
+func (enum MovMpeg2FourCCControl) Values() []string {
+	return []string{
+		MovMpeg2FourCCControlXdcam,
+		MovMpeg2FourCCControlMpeg,
+	}
+}
+
 // If set to OMNEON, inserts Omneon-compatible padding
 const (
 	// MovPaddingControlOmneon is a MovPaddingControl enum value
@@ -22946,6 +27889,28 @@ const (
 	// MovPaddingControlNone is a MovPaddingControl enum value
 	MovPaddingControlNone = "NONE"
 )
+
+// MovPaddingControl is an enum
+type MovPaddingControl struct{}
+
+// Contains returns whether the MovPaddingControl enum includes the element
+func (enum MovPaddingControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MovPaddingControl enum
+func (enum MovPaddingControl) Values() []string {
+	return []string{
+		MovPaddingControlOmneon,
+		MovPaddingControlNone,
+	}
+}
 
 // Always keep the default value (SELF_CONTAINED) for this setting.
 const (
@@ -22956,6 +27921,28 @@ const (
 	MovReferenceExternal = "EXTERNAL"
 )
 
+// MovReference is an enum
+type MovReference struct{}
+
+// Contains returns whether the MovReference enum includes the element
+func (enum MovReference) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MovReference enum
+func (enum MovReference) Values() []string {
+	return []string{
+		MovReferenceSelfContained,
+		MovReferenceExternal,
+	}
+}
+
 // Specify whether the service encodes this MP3 audio output with a constant
 // bitrate (CBR) or a variable bitrate (VBR).
 const (
@@ -22965,6 +27952,28 @@ const (
 	// Mp3RateControlModeVbr is a Mp3RateControlMode enum value
 	Mp3RateControlModeVbr = "VBR"
 )
+
+// Mp3RateControlMode is an enum
+type Mp3RateControlMode struct{}
+
+// Contains returns whether the Mp3RateControlMode enum includes the element
+func (enum Mp3RateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mp3RateControlMode enum
+func (enum Mp3RateControlMode) Values() []string {
+	return []string{
+		Mp3RateControlModeCbr,
+		Mp3RateControlModeVbr,
+	}
+}
 
 // When enabled, file composition times will start at zero, composition times
 // in the 'ctts' (composition time to sample) box for B-frames will be negative,
@@ -22978,6 +27987,28 @@ const (
 	Mp4CslgAtomExclude = "EXCLUDE"
 )
 
+// Mp4CslgAtom is an enum
+type Mp4CslgAtom struct{}
+
+// Contains returns whether the Mp4CslgAtom enum includes the element
+func (enum Mp4CslgAtom) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mp4CslgAtom enum
+func (enum Mp4CslgAtom) Values() []string {
+	return []string{
+		Mp4CslgAtomInclude,
+		Mp4CslgAtomExclude,
+	}
+}
+
 // Inserts a free-space box immediately after the moov box.
 const (
 	// Mp4FreeSpaceBoxInclude is a Mp4FreeSpaceBox enum value
@@ -22986,6 +28017,28 @@ const (
 	// Mp4FreeSpaceBoxExclude is a Mp4FreeSpaceBox enum value
 	Mp4FreeSpaceBoxExclude = "EXCLUDE"
 )
+
+// Mp4FreeSpaceBox is an enum
+type Mp4FreeSpaceBox struct{}
+
+// Contains returns whether the Mp4FreeSpaceBox enum includes the element
+func (enum Mp4FreeSpaceBox) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mp4FreeSpaceBox enum
+func (enum Mp4FreeSpaceBox) Values() []string {
+	return []string{
+		Mp4FreeSpaceBoxInclude,
+		Mp4FreeSpaceBoxExclude,
+	}
+}
 
 // If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning
 // of the archive as required for progressive downloading. Otherwise it is placed
@@ -22997,6 +28050,28 @@ const (
 	// Mp4MoovPlacementNormal is a Mp4MoovPlacement enum value
 	Mp4MoovPlacementNormal = "NORMAL"
 )
+
+// Mp4MoovPlacement is an enum
+type Mp4MoovPlacement struct{}
+
+// Contains returns whether the Mp4MoovPlacement enum includes the element
+func (enum Mp4MoovPlacement) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mp4MoovPlacement enum
+func (enum Mp4MoovPlacement) Values() []string {
+	return []string{
+		Mp4MoovPlacementProgressiveDownload,
+		Mp4MoovPlacementNormal,
+	}
+}
 
 // Use this setting only in DASH output groups that include sidecar TTML or
 // IMSC captions. You specify sidecar captions in a separate output from your
@@ -23012,6 +28087,28 @@ const (
 	MpdCaptionContainerTypeFragmentedMp4 = "FRAGMENTED_MP4"
 )
 
+// MpdCaptionContainerType is an enum
+type MpdCaptionContainerType struct{}
+
+// Contains returns whether the MpdCaptionContainerType enum includes the element
+func (enum MpdCaptionContainerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MpdCaptionContainerType enum
+func (enum MpdCaptionContainerType) Values() []string {
+	return []string{
+		MpdCaptionContainerTypeRaw,
+		MpdCaptionContainerTypeFragmentedMp4,
+	}
+}
+
 // Use this setting only when you specify SCTE-35 markers from ESAM. Choose
 // INSERT to put SCTE-35 markers in this output at the insertion points that
 // you specify in an ESAM XML document. Provide the document in the setting
@@ -23024,6 +28121,28 @@ const (
 	MpdScte35EsamNone = "NONE"
 )
 
+// MpdScte35Esam is an enum
+type MpdScte35Esam struct{}
+
+// Contains returns whether the MpdScte35Esam enum includes the element
+func (enum MpdScte35Esam) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MpdScte35Esam enum
+func (enum MpdScte35Esam) Values() []string {
+	return []string{
+		MpdScte35EsamInsert,
+		MpdScte35EsamNone,
+	}
+}
+
 // Ignore this setting unless you have SCTE-35 markers in your input video file.
 // Choose Passthrough (PASSTHROUGH) if you want SCTE-35 markers that appear
 // in your input to also appear in this output. Choose None (NONE) if you don't
@@ -23035,6 +28154,28 @@ const (
 	// MpdScte35SourceNone is a MpdScte35Source enum value
 	MpdScte35SourceNone = "NONE"
 )
+
+// MpdScte35Source is an enum
+type MpdScte35Source struct{}
+
+// Contains returns whether the MpdScte35Source enum includes the element
+func (enum MpdScte35Source) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MpdScte35Source enum
+func (enum MpdScte35Source) Values() []string {
+	return []string{
+		MpdScte35SourcePassthrough,
+		MpdScte35SourceNone,
+	}
+}
 
 // Adaptive quantization. Allows intra-frame quantizers to vary to improve visual
 // quality.
@@ -23051,6 +28192,30 @@ const (
 	// Mpeg2AdaptiveQuantizationHigh is a Mpeg2AdaptiveQuantization enum value
 	Mpeg2AdaptiveQuantizationHigh = "HIGH"
 )
+
+// Mpeg2AdaptiveQuantization is an enum
+type Mpeg2AdaptiveQuantization struct{}
+
+// Contains returns whether the Mpeg2AdaptiveQuantization enum includes the element
+func (enum Mpeg2AdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2AdaptiveQuantization enum
+func (enum Mpeg2AdaptiveQuantization) Values() []string {
+	return []string{
+		Mpeg2AdaptiveQuantizationOff,
+		Mpeg2AdaptiveQuantizationLow,
+		Mpeg2AdaptiveQuantizationMedium,
+		Mpeg2AdaptiveQuantizationHigh,
+	}
+}
 
 // Use Level (Mpeg2CodecLevel) to set the MPEG-2 level for the video output.
 const (
@@ -23070,6 +28235,31 @@ const (
 	Mpeg2CodecLevelHigh = "HIGH"
 )
 
+// Mpeg2CodecLevel is an enum
+type Mpeg2CodecLevel struct{}
+
+// Contains returns whether the Mpeg2CodecLevel enum includes the element
+func (enum Mpeg2CodecLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2CodecLevel enum
+func (enum Mpeg2CodecLevel) Values() []string {
+	return []string{
+		Mpeg2CodecLevelAuto,
+		Mpeg2CodecLevelLow,
+		Mpeg2CodecLevelMain,
+		Mpeg2CodecLevelHigh1440,
+		Mpeg2CodecLevelHigh,
+	}
+}
+
 // Use Profile (Mpeg2CodecProfile) to set the MPEG-2 profile for the video output.
 const (
 	// Mpeg2CodecProfileMain is a Mpeg2CodecProfile enum value
@@ -23078,6 +28268,28 @@ const (
 	// Mpeg2CodecProfileProfile422 is a Mpeg2CodecProfile enum value
 	Mpeg2CodecProfileProfile422 = "PROFILE_422"
 )
+
+// Mpeg2CodecProfile is an enum
+type Mpeg2CodecProfile struct{}
+
+// Contains returns whether the Mpeg2CodecProfile enum includes the element
+func (enum Mpeg2CodecProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2CodecProfile enum
+func (enum Mpeg2CodecProfile) Values() []string {
+	return []string{
+		Mpeg2CodecProfileMain,
+		Mpeg2CodecProfileProfile422,
+	}
+}
 
 // Choose Adaptive to improve subjective video quality for high-motion content.
 // This will cause the service to use fewer B-frames (which infer information
@@ -23091,6 +28303,28 @@ const (
 	// Mpeg2DynamicSubGopStatic is a Mpeg2DynamicSubGop enum value
 	Mpeg2DynamicSubGopStatic = "STATIC"
 )
+
+// Mpeg2DynamicSubGop is an enum
+type Mpeg2DynamicSubGop struct{}
+
+// Contains returns whether the Mpeg2DynamicSubGop enum includes the element
+func (enum Mpeg2DynamicSubGop) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2DynamicSubGop enum
+func (enum Mpeg2DynamicSubGop) Values() []string {
+	return []string{
+		Mpeg2DynamicSubGopAdaptive,
+		Mpeg2DynamicSubGopStatic,
+	}
+}
 
 // If you are using the console, use the Framerate setting to specify the frame
 // rate for this output. If you want to keep the same frame rate as the input
@@ -23111,6 +28345,28 @@ const (
 	Mpeg2FramerateControlSpecified = "SPECIFIED"
 )
 
+// Mpeg2FramerateControl is an enum
+type Mpeg2FramerateControl struct{}
+
+// Contains returns whether the Mpeg2FramerateControl enum includes the element
+func (enum Mpeg2FramerateControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2FramerateControl enum
+func (enum Mpeg2FramerateControl) Values() []string {
+	return []string{
+		Mpeg2FramerateControlInitializeFromSource,
+		Mpeg2FramerateControlSpecified,
+	}
+}
+
 // Optional. Specify how the transcoder performs framerate conversion. The default
 // behavior is to use duplicate drop conversion.
 const (
@@ -23121,6 +28377,28 @@ const (
 	Mpeg2FramerateConversionAlgorithmInterpolate = "INTERPOLATE"
 )
 
+// Mpeg2FramerateConversionAlgorithm is an enum
+type Mpeg2FramerateConversionAlgorithm struct{}
+
+// Contains returns whether the Mpeg2FramerateConversionAlgorithm enum includes the element
+func (enum Mpeg2FramerateConversionAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2FramerateConversionAlgorithm enum
+func (enum Mpeg2FramerateConversionAlgorithm) Values() []string {
+	return []string{
+		Mpeg2FramerateConversionAlgorithmDuplicateDrop,
+		Mpeg2FramerateConversionAlgorithmInterpolate,
+	}
+}
+
 // Indicates if the GOP Size in MPEG2 is specified in frames or seconds. If
 // seconds the system will convert the GOP Size into a frame count at run time.
 const (
@@ -23130,6 +28408,28 @@ const (
 	// Mpeg2GopSizeUnitsSeconds is a Mpeg2GopSizeUnits enum value
 	Mpeg2GopSizeUnitsSeconds = "SECONDS"
 )
+
+// Mpeg2GopSizeUnits is an enum
+type Mpeg2GopSizeUnits struct{}
+
+// Contains returns whether the Mpeg2GopSizeUnits enum includes the element
+func (enum Mpeg2GopSizeUnits) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2GopSizeUnits enum
+func (enum Mpeg2GopSizeUnits) Values() []string {
+	return []string{
+		Mpeg2GopSizeUnitsFrames,
+		Mpeg2GopSizeUnitsSeconds,
+	}
+}
 
 // Use Interlace mode (InterlaceMode) to choose the scan line type for the output.
 // * Top Field First (TOP_FIELD) and Bottom Field First (BOTTOM_FIELD) produce
@@ -23159,6 +28459,31 @@ const (
 	Mpeg2InterlaceModeFollowBottomField = "FOLLOW_BOTTOM_FIELD"
 )
 
+// Mpeg2InterlaceMode is an enum
+type Mpeg2InterlaceMode struct{}
+
+// Contains returns whether the Mpeg2InterlaceMode enum includes the element
+func (enum Mpeg2InterlaceMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2InterlaceMode enum
+func (enum Mpeg2InterlaceMode) Values() []string {
+	return []string{
+		Mpeg2InterlaceModeProgressive,
+		Mpeg2InterlaceModeTopField,
+		Mpeg2InterlaceModeBottomField,
+		Mpeg2InterlaceModeFollowTopField,
+		Mpeg2InterlaceModeFollowBottomField,
+	}
+}
+
 // Use Intra DC precision (Mpeg2IntraDcPrecision) to set quantization precision
 // for intra-block DC coefficients. If you choose the value auto, the service
 // will automatically select the precision based on the per-frame compression
@@ -23180,6 +28505,31 @@ const (
 	Mpeg2IntraDcPrecisionIntraDcPrecision11 = "INTRA_DC_PRECISION_11"
 )
 
+// Mpeg2IntraDcPrecision is an enum
+type Mpeg2IntraDcPrecision struct{}
+
+// Contains returns whether the Mpeg2IntraDcPrecision enum includes the element
+func (enum Mpeg2IntraDcPrecision) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2IntraDcPrecision enum
+func (enum Mpeg2IntraDcPrecision) Values() []string {
+	return []string{
+		Mpeg2IntraDcPrecisionAuto,
+		Mpeg2IntraDcPrecisionIntraDcPrecision8,
+		Mpeg2IntraDcPrecisionIntraDcPrecision9,
+		Mpeg2IntraDcPrecisionIntraDcPrecision10,
+		Mpeg2IntraDcPrecisionIntraDcPrecision11,
+	}
+}
+
 // Optional. Specify how the service determines the pixel aspect ratio (PAR)
 // for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE),
 // uses the PAR from your input video for your output. To specify a different
@@ -23195,6 +28545,28 @@ const (
 	Mpeg2ParControlSpecified = "SPECIFIED"
 )
 
+// Mpeg2ParControl is an enum
+type Mpeg2ParControl struct{}
+
+// Contains returns whether the Mpeg2ParControl enum includes the element
+func (enum Mpeg2ParControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2ParControl enum
+func (enum Mpeg2ParControl) Values() []string {
+	return []string{
+		Mpeg2ParControlInitializeFromSource,
+		Mpeg2ParControlSpecified,
+	}
+}
+
 // Optional. Use Quality tuning level (qualityTuningLevel) to choose how you
 // want to trade off encoding speed for output video quality. The default behavior
 // is faster, lower quality, single-pass encoding.
@@ -23206,6 +28578,28 @@ const (
 	Mpeg2QualityTuningLevelMultiPass = "MULTI_PASS"
 )
 
+// Mpeg2QualityTuningLevel is an enum
+type Mpeg2QualityTuningLevel struct{}
+
+// Contains returns whether the Mpeg2QualityTuningLevel enum includes the element
+func (enum Mpeg2QualityTuningLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2QualityTuningLevel enum
+func (enum Mpeg2QualityTuningLevel) Values() []string {
+	return []string{
+		Mpeg2QualityTuningLevelSinglePass,
+		Mpeg2QualityTuningLevelMultiPass,
+	}
+}
+
 // Use Rate control mode (Mpeg2RateControlMode) to specifiy whether the bitrate
 // is variable (vbr) or constant (cbr).
 const (
@@ -23215,6 +28609,28 @@ const (
 	// Mpeg2RateControlModeCbr is a Mpeg2RateControlMode enum value
 	Mpeg2RateControlModeCbr = "CBR"
 )
+
+// Mpeg2RateControlMode is an enum
+type Mpeg2RateControlMode struct{}
+
+// Contains returns whether the Mpeg2RateControlMode enum includes the element
+func (enum Mpeg2RateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2RateControlMode enum
+func (enum Mpeg2RateControlMode) Values() []string {
+	return []string{
+		Mpeg2RateControlModeVbr,
+		Mpeg2RateControlModeCbr,
+	}
+}
 
 // Enable this setting to insert I-frames at scene changes that the service
 // automatically detects. This improves video quality and is enabled by default.
@@ -23226,6 +28642,28 @@ const (
 	Mpeg2SceneChangeDetectEnabled = "ENABLED"
 )
 
+// Mpeg2SceneChangeDetect is an enum
+type Mpeg2SceneChangeDetect struct{}
+
+// Contains returns whether the Mpeg2SceneChangeDetect enum includes the element
+func (enum Mpeg2SceneChangeDetect) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2SceneChangeDetect enum
+func (enum Mpeg2SceneChangeDetect) Values() []string {
+	return []string{
+		Mpeg2SceneChangeDetectDisabled,
+		Mpeg2SceneChangeDetectEnabled,
+	}
+}
+
 // Enables Slow PAL rate conversion. 23.976fps and 24fps input is relabeled
 // as 25fps, and audio is sped up correspondingly.
 const (
@@ -23235,6 +28673,28 @@ const (
 	// Mpeg2SlowPalEnabled is a Mpeg2SlowPal enum value
 	Mpeg2SlowPalEnabled = "ENABLED"
 )
+
+// Mpeg2SlowPal is an enum
+type Mpeg2SlowPal struct{}
+
+// Contains returns whether the Mpeg2SlowPal enum includes the element
+func (enum Mpeg2SlowPal) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2SlowPal enum
+func (enum Mpeg2SlowPal) Values() []string {
+	return []string{
+		Mpeg2SlowPalDisabled,
+		Mpeg2SlowPalEnabled,
+	}
+}
 
 // Adjust quantization within each frame based on spatial variation of content
 // complexity.
@@ -23246,6 +28706,28 @@ const (
 	Mpeg2SpatialAdaptiveQuantizationEnabled = "ENABLED"
 )
 
+// Mpeg2SpatialAdaptiveQuantization is an enum
+type Mpeg2SpatialAdaptiveQuantization struct{}
+
+// Contains returns whether the Mpeg2SpatialAdaptiveQuantization enum includes the element
+func (enum Mpeg2SpatialAdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2SpatialAdaptiveQuantization enum
+func (enum Mpeg2SpatialAdaptiveQuantization) Values() []string {
+	return []string{
+		Mpeg2SpatialAdaptiveQuantizationDisabled,
+		Mpeg2SpatialAdaptiveQuantizationEnabled,
+	}
+}
+
 // Produces a Type D-10 compatible bitstream (SMPTE 356M-2001).
 const (
 	// Mpeg2SyntaxDefault is a Mpeg2Syntax enum value
@@ -23254,6 +28736,28 @@ const (
 	// Mpeg2SyntaxD10 is a Mpeg2Syntax enum value
 	Mpeg2SyntaxD10 = "D_10"
 )
+
+// Mpeg2Syntax is an enum
+type Mpeg2Syntax struct{}
+
+// Contains returns whether the Mpeg2Syntax enum includes the element
+func (enum Mpeg2Syntax) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2Syntax enum
+func (enum Mpeg2Syntax) Values() []string {
+	return []string{
+		Mpeg2SyntaxDefault,
+		Mpeg2SyntaxD10,
+	}
+}
 
 // Only use Telecine (Mpeg2Telecine) when you set Framerate (Framerate) to 29.970.
 // Set Telecine (Mpeg2Telecine) to Hard (hard) to produce a 29.97i output from
@@ -23270,6 +28774,29 @@ const (
 	Mpeg2TelecineHard = "HARD"
 )
 
+// Mpeg2Telecine is an enum
+type Mpeg2Telecine struct{}
+
+// Contains returns whether the Mpeg2Telecine enum includes the element
+func (enum Mpeg2Telecine) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2Telecine enum
+func (enum Mpeg2Telecine) Values() []string {
+	return []string{
+		Mpeg2TelecineNone,
+		Mpeg2TelecineSoft,
+		Mpeg2TelecineHard,
+	}
+}
+
 // Adjust quantization within each frame based on temporal variation of content
 // complexity.
 const (
@@ -23279,6 +28806,28 @@ const (
 	// Mpeg2TemporalAdaptiveQuantizationEnabled is a Mpeg2TemporalAdaptiveQuantization enum value
 	Mpeg2TemporalAdaptiveQuantizationEnabled = "ENABLED"
 )
+
+// Mpeg2TemporalAdaptiveQuantization is an enum
+type Mpeg2TemporalAdaptiveQuantization struct{}
+
+// Contains returns whether the Mpeg2TemporalAdaptiveQuantization enum includes the element
+func (enum Mpeg2TemporalAdaptiveQuantization) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mpeg2TemporalAdaptiveQuantization enum
+func (enum Mpeg2TemporalAdaptiveQuantization) Values() []string {
+	return []string{
+		Mpeg2TemporalAdaptiveQuantizationDisabled,
+		Mpeg2TemporalAdaptiveQuantizationEnabled,
+	}
+}
 
 // COMBINE_DUPLICATE_STREAMS combines identical audio encoding settings across
 // a Microsoft Smooth output group into a single audio stream.
@@ -23290,6 +28839,28 @@ const (
 	MsSmoothAudioDeduplicationNone = "NONE"
 )
 
+// MsSmoothAudioDeduplication is an enum
+type MsSmoothAudioDeduplication struct{}
+
+// Contains returns whether the MsSmoothAudioDeduplication enum includes the element
+func (enum MsSmoothAudioDeduplication) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MsSmoothAudioDeduplication enum
+func (enum MsSmoothAudioDeduplication) Values() []string {
+	return []string{
+		MsSmoothAudioDeduplicationCombineDuplicateStreams,
+		MsSmoothAudioDeduplicationNone,
+	}
+}
+
 // Use Manifest encoding (MsSmoothManifestEncoding) to specify the encoding
 // format for the server and client manifest. Valid options are utf8 and utf16.
 const (
@@ -23299,6 +28870,28 @@ const (
 	// MsSmoothManifestEncodingUtf16 is a MsSmoothManifestEncoding enum value
 	MsSmoothManifestEncodingUtf16 = "UTF16"
 )
+
+// MsSmoothManifestEncoding is an enum
+type MsSmoothManifestEncoding struct{}
+
+// Contains returns whether the MsSmoothManifestEncoding enum includes the element
+func (enum MsSmoothManifestEncoding) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MsSmoothManifestEncoding enum
+func (enum MsSmoothManifestEncoding) Values() []string {
+	return []string{
+		MsSmoothManifestEncodingUtf8,
+		MsSmoothManifestEncodingUtf16,
+	}
+}
 
 // Optional. When you have AFD signaling set up in your output video stream,
 // use this setting to choose whether to also include it in the MXF wrapper.
@@ -23317,6 +28910,28 @@ const (
 	MxfAfdSignalingCopyFromVideo = "COPY_FROM_VIDEO"
 )
 
+// MxfAfdSignaling is an enum
+type MxfAfdSignaling struct{}
+
+// Contains returns whether the MxfAfdSignaling enum includes the element
+func (enum MxfAfdSignaling) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MxfAfdSignaling enum
+func (enum MxfAfdSignaling) Values() []string {
+	return []string{
+		MxfAfdSignalingNoCopy,
+		MxfAfdSignalingCopyFromVideo,
+	}
+}
+
 // Optional. When you set Noise reducer (noiseReducer) to Temporal (TEMPORAL),
 // you can optionally use this setting to apply additional sharpening. The default
 // behavior, Auto (AUTO) allows the transcoder to determine whether to apply
@@ -23331,6 +28946,29 @@ const (
 	// NoiseFilterPostTemporalSharpeningAuto is a NoiseFilterPostTemporalSharpening enum value
 	NoiseFilterPostTemporalSharpeningAuto = "AUTO"
 )
+
+// NoiseFilterPostTemporalSharpening is an enum
+type NoiseFilterPostTemporalSharpening struct{}
+
+// Contains returns whether the NoiseFilterPostTemporalSharpening enum includes the element
+func (enum NoiseFilterPostTemporalSharpening) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NoiseFilterPostTemporalSharpening enum
+func (enum NoiseFilterPostTemporalSharpening) Values() []string {
+	return []string{
+		NoiseFilterPostTemporalSharpeningDisabled,
+		NoiseFilterPostTemporalSharpeningEnabled,
+		NoiseFilterPostTemporalSharpeningAuto,
+	}
+}
 
 // Use Noise reducer filter (NoiseReducerFilter) to select one of the following
 // spatial image filtering functions. To use this setting, you must also enable
@@ -23365,6 +29003,34 @@ const (
 	NoiseReducerFilterTemporal = "TEMPORAL"
 )
 
+// NoiseReducerFilter is an enum
+type NoiseReducerFilter struct{}
+
+// Contains returns whether the NoiseReducerFilter enum includes the element
+func (enum NoiseReducerFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NoiseReducerFilter enum
+func (enum NoiseReducerFilter) Values() []string {
+	return []string{
+		NoiseReducerFilterBilateral,
+		NoiseReducerFilterMean,
+		NoiseReducerFilterGaussian,
+		NoiseReducerFilterLanczos,
+		NoiseReducerFilterSharpen,
+		NoiseReducerFilterConserve,
+		NoiseReducerFilterSpatial,
+		NoiseReducerFilterTemporal,
+	}
+}
+
 // Optional. When you request lists of resources, you can specify whether they
 // are sorted in ASCENDING or DESCENDING order. Default varies by resource.
 const (
@@ -23374,6 +29040,28 @@ const (
 	// OrderDescending is a Order enum value
 	OrderDescending = "DESCENDING"
 )
+
+// Order is an enum
+type Order struct{}
+
+// Contains returns whether the Order enum includes the element
+func (enum Order) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Order enum
+func (enum Order) Values() []string {
+	return []string{
+		OrderAscending,
+		OrderDescending,
+	}
+}
 
 // Type of output group (File group, Apple HLS, DASH ISO, Microsoft Smooth Streaming,
 // CMAF)
@@ -23393,6 +29081,31 @@ const (
 	// OutputGroupTypeCmafGroupSettings is a OutputGroupType enum value
 	OutputGroupTypeCmafGroupSettings = "CMAF_GROUP_SETTINGS"
 )
+
+// OutputGroupType is an enum
+type OutputGroupType struct{}
+
+// Contains returns whether the OutputGroupType enum includes the element
+func (enum OutputGroupType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OutputGroupType enum
+func (enum OutputGroupType) Values() []string {
+	return []string{
+		OutputGroupTypeHlsGroupSettings,
+		OutputGroupTypeDashIsoGroupSettings,
+		OutputGroupTypeFileGroupSettings,
+		OutputGroupTypeMsSmoothGroupSettings,
+		OutputGroupTypeCmafGroupSettings,
+	}
+}
 
 // Selects method of inserting SDT information into output stream. "Follow input
 // SDT" copies SDT information from input stream to output stream. "Follow input
@@ -23414,6 +29127,30 @@ const (
 	OutputSdtSdtNone = "SDT_NONE"
 )
 
+// OutputSdt is an enum
+type OutputSdt struct{}
+
+// Contains returns whether the OutputSdt enum includes the element
+func (enum OutputSdt) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OutputSdt enum
+func (enum OutputSdt) Values() []string {
+	return []string{
+		OutputSdtSdtFollow,
+		OutputSdtSdtFollowIfPresent,
+		OutputSdtSdtManual,
+		OutputSdtSdtNone,
+	}
+}
+
 // Optional. When you request a list of presets, you can choose to list them
 // alphabetically by NAME or chronologically by CREATION_DATE. If you don't
 // specify, the service will list them by name.
@@ -23428,6 +29165,29 @@ const (
 	PresetListBySystem = "SYSTEM"
 )
 
+// PresetListBy is an enum
+type PresetListBy struct{}
+
+// Contains returns whether the PresetListBy enum includes the element
+func (enum PresetListBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PresetListBy enum
+func (enum PresetListBy) Values() []string {
+	return []string{
+		PresetListByName,
+		PresetListByCreationDate,
+		PresetListBySystem,
+	}
+}
+
 // Specifies whether the pricing plan for the queue is on-demand or reserved.
 // For on-demand, you pay per minute, billed in increments of .01 minute. For
 // reserved, you pay for the transcoding capacity of the entire queue, regardless
@@ -23440,6 +29200,28 @@ const (
 	// PricingPlanReserved is a PricingPlan enum value
 	PricingPlanReserved = "RESERVED"
 )
+
+// PricingPlan is an enum
+type PricingPlan struct{}
+
+// Contains returns whether the PricingPlan enum includes the element
+func (enum PricingPlan) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PricingPlan enum
+func (enum PricingPlan) Values() []string {
+	return []string{
+		PricingPlanOnDemand,
+		PricingPlanReserved,
+	}
+}
 
 // Use Profile (ProResCodecProfile) to specifiy the type of Apple ProRes codec
 // to use for this output.
@@ -23456,6 +29238,30 @@ const (
 	// ProresCodecProfileAppleProres422Proxy is a ProresCodecProfile enum value
 	ProresCodecProfileAppleProres422Proxy = "APPLE_PRORES_422_PROXY"
 )
+
+// ProresCodecProfile is an enum
+type ProresCodecProfile struct{}
+
+// Contains returns whether the ProresCodecProfile enum includes the element
+func (enum ProresCodecProfile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProresCodecProfile enum
+func (enum ProresCodecProfile) Values() []string {
+	return []string{
+		ProresCodecProfileAppleProres422,
+		ProresCodecProfileAppleProres422Hq,
+		ProresCodecProfileAppleProres422Lt,
+		ProresCodecProfileAppleProres422Proxy,
+	}
+}
 
 // If you are using the console, use the Framerate setting to specify the frame
 // rate for this output. If you want to keep the same frame rate as the input
@@ -23476,6 +29282,28 @@ const (
 	ProresFramerateControlSpecified = "SPECIFIED"
 )
 
+// ProresFramerateControl is an enum
+type ProresFramerateControl struct{}
+
+// Contains returns whether the ProresFramerateControl enum includes the element
+func (enum ProresFramerateControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProresFramerateControl enum
+func (enum ProresFramerateControl) Values() []string {
+	return []string{
+		ProresFramerateControlInitializeFromSource,
+		ProresFramerateControlSpecified,
+	}
+}
+
 // Optional. Specify how the transcoder performs framerate conversion. The default
 // behavior is to use duplicate drop conversion.
 const (
@@ -23485,6 +29313,28 @@ const (
 	// ProresFramerateConversionAlgorithmInterpolate is a ProresFramerateConversionAlgorithm enum value
 	ProresFramerateConversionAlgorithmInterpolate = "INTERPOLATE"
 )
+
+// ProresFramerateConversionAlgorithm is an enum
+type ProresFramerateConversionAlgorithm struct{}
+
+// Contains returns whether the ProresFramerateConversionAlgorithm enum includes the element
+func (enum ProresFramerateConversionAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProresFramerateConversionAlgorithm enum
+func (enum ProresFramerateConversionAlgorithm) Values() []string {
+	return []string{
+		ProresFramerateConversionAlgorithmDuplicateDrop,
+		ProresFramerateConversionAlgorithmInterpolate,
+	}
+}
 
 // Use Interlace mode (InterlaceMode) to choose the scan line type for the output.
 // * Top Field First (TOP_FIELD) and Bottom Field First (BOTTOM_FIELD) produce
@@ -23514,6 +29364,31 @@ const (
 	ProresInterlaceModeFollowBottomField = "FOLLOW_BOTTOM_FIELD"
 )
 
+// ProresInterlaceMode is an enum
+type ProresInterlaceMode struct{}
+
+// Contains returns whether the ProresInterlaceMode enum includes the element
+func (enum ProresInterlaceMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProresInterlaceMode enum
+func (enum ProresInterlaceMode) Values() []string {
+	return []string{
+		ProresInterlaceModeProgressive,
+		ProresInterlaceModeTopField,
+		ProresInterlaceModeBottomField,
+		ProresInterlaceModeFollowTopField,
+		ProresInterlaceModeFollowBottomField,
+	}
+}
+
 // Optional. Specify how the service determines the pixel aspect ratio (PAR)
 // for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE),
 // uses the PAR from your input video for your output. To specify a different
@@ -23529,6 +29404,28 @@ const (
 	ProresParControlSpecified = "SPECIFIED"
 )
 
+// ProresParControl is an enum
+type ProresParControl struct{}
+
+// Contains returns whether the ProresParControl enum includes the element
+func (enum ProresParControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProresParControl enum
+func (enum ProresParControl) Values() []string {
+	return []string{
+		ProresParControlInitializeFromSource,
+		ProresParControlSpecified,
+	}
+}
+
 // Enables Slow PAL rate conversion. 23.976fps and 24fps input is relabeled
 // as 25fps, and audio is sped up correspondingly.
 const (
@@ -23538,6 +29435,28 @@ const (
 	// ProresSlowPalEnabled is a ProresSlowPal enum value
 	ProresSlowPalEnabled = "ENABLED"
 )
+
+// ProresSlowPal is an enum
+type ProresSlowPal struct{}
+
+// Contains returns whether the ProresSlowPal enum includes the element
+func (enum ProresSlowPal) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProresSlowPal enum
+func (enum ProresSlowPal) Values() []string {
+	return []string{
+		ProresSlowPalDisabled,
+		ProresSlowPalEnabled,
+	}
+}
 
 // Only use Telecine (ProresTelecine) when you set Framerate (Framerate) to
 // 29.970. Set Telecine (ProresTelecine) to Hard (hard) to produce a 29.97i
@@ -23551,6 +29470,28 @@ const (
 	ProresTelecineHard = "HARD"
 )
 
+// ProresTelecine is an enum
+type ProresTelecine struct{}
+
+// Contains returns whether the ProresTelecine enum includes the element
+func (enum ProresTelecine) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProresTelecine enum
+func (enum ProresTelecine) Values() []string {
+	return []string{
+		ProresTelecineNone,
+		ProresTelecineHard,
+	}
+}
+
 // Optional. When you request a list of queues, you can choose to list them
 // alphabetically by NAME or chronologically by CREATION_DATE. If you don't
 // specify, the service will list them by creation date.
@@ -23561,6 +29502,28 @@ const (
 	// QueueListByCreationDate is a QueueListBy enum value
 	QueueListByCreationDate = "CREATION_DATE"
 )
+
+// QueueListBy is an enum
+type QueueListBy struct{}
+
+// Contains returns whether the QueueListBy enum includes the element
+func (enum QueueListBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueueListBy enum
+func (enum QueueListBy) Values() []string {
+	return []string{
+		QueueListByName,
+		QueueListByCreationDate,
+	}
+}
 
 // Queues can be ACTIVE or PAUSED. If you pause a queue, jobs in that queue
 // won't begin. Jobs that are running when you pause a queue continue to run
@@ -23573,6 +29536,28 @@ const (
 	QueueStatusPaused = "PAUSED"
 )
 
+// QueueStatus is an enum
+type QueueStatus struct{}
+
+// Contains returns whether the QueueStatus enum includes the element
+func (enum QueueStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueueStatus enum
+func (enum QueueStatus) Values() []string {
+	return []string{
+		QueueStatusActive,
+		QueueStatusPaused,
+	}
+}
+
 // Specifies whether the term of your reserved queue pricing plan is automatically
 // extended (AUTO_RENEW) or expires (EXPIRE) at the end of the term.
 const (
@@ -23583,6 +29568,28 @@ const (
 	RenewalTypeExpire = "EXPIRE"
 )
 
+// RenewalType is an enum
+type RenewalType struct{}
+
+// Contains returns whether the RenewalType enum includes the element
+func (enum RenewalType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RenewalType enum
+func (enum RenewalType) Values() []string {
+	return []string{
+		RenewalTypeAutoRenew,
+		RenewalTypeExpire,
+	}
+}
+
 // Specifies whether the pricing plan for your reserved queue is ACTIVE or EXPIRED.
 const (
 	// ReservationPlanStatusActive is a ReservationPlanStatus enum value
@@ -23591,6 +29598,28 @@ const (
 	// ReservationPlanStatusExpired is a ReservationPlanStatus enum value
 	ReservationPlanStatusExpired = "EXPIRED"
 )
+
+// ReservationPlanStatus is an enum
+type ReservationPlanStatus struct{}
+
+// Contains returns whether the ReservationPlanStatus enum includes the element
+func (enum ReservationPlanStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservationPlanStatus enum
+func (enum ReservationPlanStatus) Values() []string {
+	return []string{
+		ReservationPlanStatusActive,
+		ReservationPlanStatusExpired,
+	}
+}
 
 // Use Respond to AFD (RespondToAfd) to specify how the service changes the
 // video itself in response to AFD values in the input. * Choose Respond to
@@ -23611,6 +29640,29 @@ const (
 	RespondToAfdPassthrough = "PASSTHROUGH"
 )
 
+// RespondToAfd is an enum
+type RespondToAfd struct{}
+
+// Contains returns whether the RespondToAfd enum includes the element
+func (enum RespondToAfd) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RespondToAfd enum
+func (enum RespondToAfd) Values() []string {
+	return []string{
+		RespondToAfdNone,
+		RespondToAfdRespond,
+		RespondToAfdPassthrough,
+	}
+}
+
 // Choose an Amazon S3 canned ACL for MediaConvert to apply to this output.
 const (
 	// S3ObjectCannedAclPublicRead is a S3ObjectCannedAcl enum value
@@ -23625,6 +29677,30 @@ const (
 	// S3ObjectCannedAclBucketOwnerFullControl is a S3ObjectCannedAcl enum value
 	S3ObjectCannedAclBucketOwnerFullControl = "BUCKET_OWNER_FULL_CONTROL"
 )
+
+// S3ObjectCannedAcl is an enum
+type S3ObjectCannedAcl struct{}
+
+// Contains returns whether the S3ObjectCannedAcl enum includes the element
+func (enum S3ObjectCannedAcl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3ObjectCannedAcl enum
+func (enum S3ObjectCannedAcl) Values() []string {
+	return []string{
+		S3ObjectCannedAclPublicRead,
+		S3ObjectCannedAclAuthenticatedRead,
+		S3ObjectCannedAclBucketOwnerRead,
+		S3ObjectCannedAclBucketOwnerFullControl,
+	}
+}
 
 // Specify how you want your data keys managed. AWS uses data keys to encrypt
 // your content. AWS also encrypts the data keys themselves, using a customer
@@ -23645,6 +29721,28 @@ const (
 	S3ServerSideEncryptionTypeServerSideEncryptionKms = "SERVER_SIDE_ENCRYPTION_KMS"
 )
 
+// S3ServerSideEncryptionType is an enum
+type S3ServerSideEncryptionType struct{}
+
+// Contains returns whether the S3ServerSideEncryptionType enum includes the element
+func (enum S3ServerSideEncryptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3ServerSideEncryptionType enum
+func (enum S3ServerSideEncryptionType) Values() []string {
+	return []string{
+		S3ServerSideEncryptionTypeServerSideEncryptionS3,
+		S3ServerSideEncryptionTypeServerSideEncryptionKms,
+	}
+}
+
 // Specify how the service handles outputs that have a different aspect ratio
 // from the input aspect ratio. Choose Stretch to output (STRETCH_TO_OUTPUT)
 // to have the service stretch your video image to fit. Keep the setting Default
@@ -23658,6 +29756,28 @@ const (
 	// ScalingBehaviorStretchToOutput is a ScalingBehavior enum value
 	ScalingBehaviorStretchToOutput = "STRETCH_TO_OUTPUT"
 )
+
+// ScalingBehavior is an enum
+type ScalingBehavior struct{}
+
+// Contains returns whether the ScalingBehavior enum includes the element
+func (enum ScalingBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingBehavior enum
+func (enum ScalingBehavior) Values() []string {
+	return []string{
+		ScalingBehaviorDefault,
+		ScalingBehaviorStretchToOutput,
+	}
+}
 
 // Set Framerate (SccDestinationFramerate) to make sure that the captions and
 // the video are synchronized in the output. Specify a frame rate that matches
@@ -23682,6 +29802,31 @@ const (
 	SccDestinationFramerateFramerate2997NonDropframe = "FRAMERATE_29_97_NON_DROPFRAME"
 )
 
+// SccDestinationFramerate is an enum
+type SccDestinationFramerate struct{}
+
+// Contains returns whether the SccDestinationFramerate enum includes the element
+func (enum SccDestinationFramerate) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SccDestinationFramerate enum
+func (enum SccDestinationFramerate) Values() []string {
+	return []string{
+		SccDestinationFramerateFramerate2397,
+		SccDestinationFramerateFramerate24,
+		SccDestinationFramerateFramerate25,
+		SccDestinationFramerateFramerate2997Dropframe,
+		SccDestinationFramerateFramerate2997NonDropframe,
+	}
+}
+
 // Enable this setting when you run a test job to estimate how many reserved
 // transcoding slots (RTS) you need. When this is enabled, MediaConvert runs
 // your job from an on-demand queue with similar performance to what you will
@@ -23693,6 +29838,28 @@ const (
 	// SimulateReservedQueueEnabled is a SimulateReservedQueue enum value
 	SimulateReservedQueueEnabled = "ENABLED"
 )
+
+// SimulateReservedQueue is an enum
+type SimulateReservedQueue struct{}
+
+// Contains returns whether the SimulateReservedQueue enum includes the element
+func (enum SimulateReservedQueue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SimulateReservedQueue enum
+func (enum SimulateReservedQueue) Values() []string {
+	return []string{
+		SimulateReservedQueueDisabled,
+		SimulateReservedQueueEnabled,
+	}
+}
 
 // Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch
 // Events. Set the interval, in seconds, between status updates. MediaConvert
@@ -23745,6 +29912,41 @@ const (
 	StatusUpdateIntervalSeconds600 = "SECONDS_600"
 )
 
+// StatusUpdateInterval is an enum
+type StatusUpdateInterval struct{}
+
+// Contains returns whether the StatusUpdateInterval enum includes the element
+func (enum StatusUpdateInterval) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StatusUpdateInterval enum
+func (enum StatusUpdateInterval) Values() []string {
+	return []string{
+		StatusUpdateIntervalSeconds10,
+		StatusUpdateIntervalSeconds12,
+		StatusUpdateIntervalSeconds15,
+		StatusUpdateIntervalSeconds20,
+		StatusUpdateIntervalSeconds30,
+		StatusUpdateIntervalSeconds60,
+		StatusUpdateIntervalSeconds120,
+		StatusUpdateIntervalSeconds180,
+		StatusUpdateIntervalSeconds240,
+		StatusUpdateIntervalSeconds300,
+		StatusUpdateIntervalSeconds360,
+		StatusUpdateIntervalSeconds420,
+		StatusUpdateIntervalSeconds480,
+		StatusUpdateIntervalSeconds540,
+		StatusUpdateIntervalSeconds600,
+	}
+}
+
 // A page type as defined in the standard ETSI EN 300 468, Table 94
 const (
 	// TeletextPageTypePageTypeInitial is a TeletextPageType enum value
@@ -23762,6 +29964,31 @@ const (
 	// TeletextPageTypePageTypeHearingImpairedSubtitle is a TeletextPageType enum value
 	TeletextPageTypePageTypeHearingImpairedSubtitle = "PAGE_TYPE_HEARING_IMPAIRED_SUBTITLE"
 )
+
+// TeletextPageType is an enum
+type TeletextPageType struct{}
+
+// Contains returns whether the TeletextPageType enum includes the element
+func (enum TeletextPageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TeletextPageType enum
+func (enum TeletextPageType) Values() []string {
+	return []string{
+		TeletextPageTypePageTypeInitial,
+		TeletextPageTypePageTypeSubtitle,
+		TeletextPageTypePageTypeAddlInfo,
+		TeletextPageTypePageTypeProgramSchedule,
+		TeletextPageTypePageTypeHearingImpairedSubtitle,
+	}
+}
 
 // Use Position (Position) under under Timecode burn-in (TimecodeBurnIn) to
 // specify the location the burned-in timecode on output video.
@@ -23794,6 +30021,35 @@ const (
 	TimecodeBurninPositionBottomRight = "BOTTOM_RIGHT"
 )
 
+// TimecodeBurninPosition is an enum
+type TimecodeBurninPosition struct{}
+
+// Contains returns whether the TimecodeBurninPosition enum includes the element
+func (enum TimecodeBurninPosition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TimecodeBurninPosition enum
+func (enum TimecodeBurninPosition) Values() []string {
+	return []string{
+		TimecodeBurninPositionTopCenter,
+		TimecodeBurninPositionTopLeft,
+		TimecodeBurninPositionTopRight,
+		TimecodeBurninPositionMiddleLeft,
+		TimecodeBurninPositionMiddleCenter,
+		TimecodeBurninPositionMiddleRight,
+		TimecodeBurninPositionBottomLeft,
+		TimecodeBurninPositionBottomCenter,
+		TimecodeBurninPositionBottomRight,
+	}
+}
+
 // Use Source (TimecodeSource) to set how timecodes are handled within this
 // job. To make sure that your video, audio, captions, and markers are synchronized
 // and that time-based features, such as image inserter, work correctly, choose
@@ -23816,6 +30072,29 @@ const (
 	TimecodeSourceSpecifiedstart = "SPECIFIEDSTART"
 )
 
+// TimecodeSource is an enum
+type TimecodeSource struct{}
+
+// Contains returns whether the TimecodeSource enum includes the element
+func (enum TimecodeSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TimecodeSource enum
+func (enum TimecodeSource) Values() []string {
+	return []string{
+		TimecodeSourceEmbedded,
+		TimecodeSourceZerobased,
+		TimecodeSourceSpecifiedstart,
+	}
+}
+
 // Applies only to HLS outputs. Use this setting to specify whether the service
 // inserts the ID3 timed metadata from the input in this output.
 const (
@@ -23825,6 +30104,28 @@ const (
 	// TimedMetadataNone is a TimedMetadata enum value
 	TimedMetadataNone = "NONE"
 )
+
+// TimedMetadata is an enum
+type TimedMetadata struct{}
+
+// Contains returns whether the TimedMetadata enum includes the element
+func (enum TimedMetadata) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TimedMetadata enum
+func (enum TimedMetadata) Values() []string {
+	return []string{
+		TimedMetadataPassthrough,
+		TimedMetadataNone,
+	}
+}
 
 // Pass through style and position information from a TTML-like input source
 // (TTML, SMPTE-TT) to the TTML output.
@@ -23836,6 +30137,28 @@ const (
 	TtmlStylePassthroughDisabled = "DISABLED"
 )
 
+// TtmlStylePassthrough is an enum
+type TtmlStylePassthrough struct{}
+
+// Contains returns whether the TtmlStylePassthrough enum includes the element
+func (enum TtmlStylePassthrough) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TtmlStylePassthrough enum
+func (enum TtmlStylePassthrough) Values() []string {
+	return []string{
+		TtmlStylePassthroughEnabled,
+		TtmlStylePassthroughDisabled,
+	}
+}
+
 const (
 	// TypeSystem is a Type enum value
 	TypeSystem = "SYSTEM"
@@ -23843,6 +30166,28 @@ const (
 	// TypeCustom is a Type enum value
 	TypeCustom = "CUSTOM"
 )
+
+// Type is an enum
+type Type struct{}
+
+// Contains returns whether the Type enum includes the element
+func (enum Type) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Type enum
+func (enum Type) Values() []string {
+	return []string{
+		TypeSystem,
+		TypeCustom,
+	}
+}
 
 // Type of video codec
 const (
@@ -23871,6 +30216,34 @@ const (
 	VideoCodecVp9 = "VP9"
 )
 
+// VideoCodec is an enum
+type VideoCodec struct{}
+
+// Contains returns whether the VideoCodec enum includes the element
+func (enum VideoCodec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VideoCodec enum
+func (enum VideoCodec) Values() []string {
+	return []string{
+		VideoCodecFrameCapture,
+		VideoCodecAv1,
+		VideoCodecH264,
+		VideoCodecH265,
+		VideoCodecMpeg2,
+		VideoCodecProres,
+		VideoCodecVp8,
+		VideoCodecVp9,
+	}
+}
+
 // Applies only to H.264, H.265, MPEG2, and ProRes outputs. Only enable Timecode
 // insertion when the input frame rate is identical to the output frame rate.
 // To include timecodes in this output, set Timecode insertion (VideoTimecodeInsertion)
@@ -23891,6 +30264,28 @@ const (
 	VideoTimecodeInsertionPicTimingSei = "PIC_TIMING_SEI"
 )
 
+// VideoTimecodeInsertion is an enum
+type VideoTimecodeInsertion struct{}
+
+// Contains returns whether the VideoTimecodeInsertion enum includes the element
+func (enum VideoTimecodeInsertion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VideoTimecodeInsertion enum
+func (enum VideoTimecodeInsertion) Values() []string {
+	return []string{
+		VideoTimecodeInsertionDisabled,
+		VideoTimecodeInsertionPicTimingSei,
+	}
+}
+
 // If you are using the console, use the Framerate setting to specify the frame
 // rate for this output. If you want to keep the same frame rate as the input
 // video, choose Follow source. If you want to do frame rate conversion, choose
@@ -23910,6 +30305,28 @@ const (
 	Vp8FramerateControlSpecified = "SPECIFIED"
 )
 
+// Vp8FramerateControl is an enum
+type Vp8FramerateControl struct{}
+
+// Contains returns whether the Vp8FramerateControl enum includes the element
+func (enum Vp8FramerateControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Vp8FramerateControl enum
+func (enum Vp8FramerateControl) Values() []string {
+	return []string{
+		Vp8FramerateControlInitializeFromSource,
+		Vp8FramerateControlSpecified,
+	}
+}
+
 // Optional. Specify how the transcoder performs framerate conversion. The default
 // behavior is to use Drop duplicate (DUPLICATE_DROP) conversion. When you choose
 // Interpolate (INTERPOLATE) instead, the conversion produces smoother motion.
@@ -23920,6 +30337,28 @@ const (
 	// Vp8FramerateConversionAlgorithmInterpolate is a Vp8FramerateConversionAlgorithm enum value
 	Vp8FramerateConversionAlgorithmInterpolate = "INTERPOLATE"
 )
+
+// Vp8FramerateConversionAlgorithm is an enum
+type Vp8FramerateConversionAlgorithm struct{}
+
+// Contains returns whether the Vp8FramerateConversionAlgorithm enum includes the element
+func (enum Vp8FramerateConversionAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Vp8FramerateConversionAlgorithm enum
+func (enum Vp8FramerateConversionAlgorithm) Values() []string {
+	return []string{
+		Vp8FramerateConversionAlgorithmDuplicateDrop,
+		Vp8FramerateConversionAlgorithmInterpolate,
+	}
+}
 
 // Optional. Specify how the service determines the pixel aspect ratio (PAR)
 // for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE),
@@ -23936,6 +30375,28 @@ const (
 	Vp8ParControlSpecified = "SPECIFIED"
 )
 
+// Vp8ParControl is an enum
+type Vp8ParControl struct{}
+
+// Contains returns whether the Vp8ParControl enum includes the element
+func (enum Vp8ParControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Vp8ParControl enum
+func (enum Vp8ParControl) Values() []string {
+	return []string{
+		Vp8ParControlInitializeFromSource,
+		Vp8ParControlSpecified,
+	}
+}
+
 // Optional. Use Quality tuning level (qualityTuningLevel) to choose how you
 // want to trade off encoding speed for output video quality. The default behavior
 // is faster, lower quality, multi-pass encoding.
@@ -23947,12 +30408,55 @@ const (
 	Vp8QualityTuningLevelMultiPassHq = "MULTI_PASS_HQ"
 )
 
+// Vp8QualityTuningLevel is an enum
+type Vp8QualityTuningLevel struct{}
+
+// Contains returns whether the Vp8QualityTuningLevel enum includes the element
+func (enum Vp8QualityTuningLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Vp8QualityTuningLevel enum
+func (enum Vp8QualityTuningLevel) Values() []string {
+	return []string{
+		Vp8QualityTuningLevelMultiPass,
+		Vp8QualityTuningLevelMultiPassHq,
+	}
+}
+
 // With the VP8 codec, you can use only the variable bitrate (VBR) rate control
 // mode.
 const (
 	// Vp8RateControlModeVbr is a Vp8RateControlMode enum value
 	Vp8RateControlModeVbr = "VBR"
 )
+
+// Vp8RateControlMode is an enum
+type Vp8RateControlMode struct{}
+
+// Contains returns whether the Vp8RateControlMode enum includes the element
+func (enum Vp8RateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Vp8RateControlMode enum
+func (enum Vp8RateControlMode) Values() []string {
+	return []string{
+		Vp8RateControlModeVbr,
+	}
+}
 
 // If you are using the console, use the Framerate setting to specify the frame
 // rate for this output. If you want to keep the same frame rate as the input
@@ -23973,6 +30477,28 @@ const (
 	Vp9FramerateControlSpecified = "SPECIFIED"
 )
 
+// Vp9FramerateControl is an enum
+type Vp9FramerateControl struct{}
+
+// Contains returns whether the Vp9FramerateControl enum includes the element
+func (enum Vp9FramerateControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Vp9FramerateControl enum
+func (enum Vp9FramerateControl) Values() []string {
+	return []string{
+		Vp9FramerateControlInitializeFromSource,
+		Vp9FramerateControlSpecified,
+	}
+}
+
 // Optional. Specify how the transcoder performs framerate conversion. The default
 // behavior is to use Drop duplicate (DUPLICATE_DROP) conversion. When you choose
 // Interpolate (INTERPOLATE) instead, the conversion produces smoother motion.
@@ -23983,6 +30509,28 @@ const (
 	// Vp9FramerateConversionAlgorithmInterpolate is a Vp9FramerateConversionAlgorithm enum value
 	Vp9FramerateConversionAlgorithmInterpolate = "INTERPOLATE"
 )
+
+// Vp9FramerateConversionAlgorithm is an enum
+type Vp9FramerateConversionAlgorithm struct{}
+
+// Contains returns whether the Vp9FramerateConversionAlgorithm enum includes the element
+func (enum Vp9FramerateConversionAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Vp9FramerateConversionAlgorithm enum
+func (enum Vp9FramerateConversionAlgorithm) Values() []string {
+	return []string{
+		Vp9FramerateConversionAlgorithmDuplicateDrop,
+		Vp9FramerateConversionAlgorithmInterpolate,
+	}
+}
 
 // Optional. Specify how the service determines the pixel aspect ratio (PAR)
 // for this output. The default behavior, Follow source (INITIALIZE_FROM_SOURCE),
@@ -23999,6 +30547,28 @@ const (
 	Vp9ParControlSpecified = "SPECIFIED"
 )
 
+// Vp9ParControl is an enum
+type Vp9ParControl struct{}
+
+// Contains returns whether the Vp9ParControl enum includes the element
+func (enum Vp9ParControl) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Vp9ParControl enum
+func (enum Vp9ParControl) Values() []string {
+	return []string{
+		Vp9ParControlInitializeFromSource,
+		Vp9ParControlSpecified,
+	}
+}
+
 // Optional. Use Quality tuning level (qualityTuningLevel) to choose how you
 // want to trade off encoding speed for output video quality. The default behavior
 // is faster, lower quality, multi-pass encoding.
@@ -24010,12 +30580,55 @@ const (
 	Vp9QualityTuningLevelMultiPassHq = "MULTI_PASS_HQ"
 )
 
+// Vp9QualityTuningLevel is an enum
+type Vp9QualityTuningLevel struct{}
+
+// Contains returns whether the Vp9QualityTuningLevel enum includes the element
+func (enum Vp9QualityTuningLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Vp9QualityTuningLevel enum
+func (enum Vp9QualityTuningLevel) Values() []string {
+	return []string{
+		Vp9QualityTuningLevelMultiPass,
+		Vp9QualityTuningLevelMultiPassHq,
+	}
+}
+
 // With the VP9 codec, you can use only the variable bitrate (VBR) rate control
 // mode.
 const (
 	// Vp9RateControlModeVbr is a Vp9RateControlMode enum value
 	Vp9RateControlModeVbr = "VBR"
 )
+
+// Vp9RateControlMode is an enum
+type Vp9RateControlMode struct{}
+
+// Contains returns whether the Vp9RateControlMode enum includes the element
+func (enum Vp9RateControlMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Vp9RateControlMode enum
+func (enum Vp9RateControlMode) Values() []string {
+	return []string{
+		Vp9RateControlModeVbr,
+	}
+}
 
 // Optional. Ignore this setting unless Nagra support directs you to specify
 // a value. When you don't specify a value here, the Nagra NexGuard library
@@ -24037,6 +30650,31 @@ const (
 	WatermarkingStrengthStrongest = "STRONGEST"
 )
 
+// WatermarkingStrength is an enum
+type WatermarkingStrength struct{}
+
+// Contains returns whether the WatermarkingStrength enum includes the element
+func (enum WatermarkingStrength) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WatermarkingStrength enum
+func (enum WatermarkingStrength) Values() []string {
+	return []string{
+		WatermarkingStrengthLightest,
+		WatermarkingStrengthLighter,
+		WatermarkingStrengthDefault,
+		WatermarkingStrengthStronger,
+		WatermarkingStrengthStrongest,
+	}
+}
+
 // The service defaults to using RIFF for WAV outputs. If your output audio
 // is likely to exceed 4 GB in file size, or if you otherwise need the extended
 // support of the RF64 format, set your output WAV file format to RF64.
@@ -24047,3 +30685,25 @@ const (
 	// WavFormatRf64 is a WavFormat enum value
 	WavFormatRf64 = "RF64"
 )
+
+// WavFormat is an enum
+type WavFormat struct{}
+
+// Contains returns whether the WavFormat enum includes the element
+func (enum WavFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WavFormat enum
+func (enum WavFormat) Values() []string {
+	return []string{
+		WavFormatRiff,
+		WavFormatRf64,
+	}
+}

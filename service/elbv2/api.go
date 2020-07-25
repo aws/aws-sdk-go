@@ -9168,6 +9168,31 @@ const (
 	ActionTypeEnumFixedResponse = "fixed-response"
 )
 
+// ActionTypeEnum is an enum
+type ActionTypeEnum struct{}
+
+// Contains returns whether the ActionTypeEnum enum includes the element
+func (enum ActionTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionTypeEnum enum
+func (enum ActionTypeEnum) Values() []string {
+	return []string{
+		ActionTypeEnumForward,
+		ActionTypeEnumAuthenticateOidc,
+		ActionTypeEnumAuthenticateCognito,
+		ActionTypeEnumRedirect,
+		ActionTypeEnumFixedResponse,
+	}
+}
+
 const (
 	// AuthenticateCognitoActionConditionalBehaviorEnumDeny is a AuthenticateCognitoActionConditionalBehaviorEnum enum value
 	AuthenticateCognitoActionConditionalBehaviorEnumDeny = "deny"
@@ -9178,6 +9203,29 @@ const (
 	// AuthenticateCognitoActionConditionalBehaviorEnumAuthenticate is a AuthenticateCognitoActionConditionalBehaviorEnum enum value
 	AuthenticateCognitoActionConditionalBehaviorEnumAuthenticate = "authenticate"
 )
+
+// AuthenticateCognitoActionConditionalBehaviorEnum is an enum
+type AuthenticateCognitoActionConditionalBehaviorEnum struct{}
+
+// Contains returns whether the AuthenticateCognitoActionConditionalBehaviorEnum enum includes the element
+func (enum AuthenticateCognitoActionConditionalBehaviorEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthenticateCognitoActionConditionalBehaviorEnum enum
+func (enum AuthenticateCognitoActionConditionalBehaviorEnum) Values() []string {
+	return []string{
+		AuthenticateCognitoActionConditionalBehaviorEnumDeny,
+		AuthenticateCognitoActionConditionalBehaviorEnumAllow,
+		AuthenticateCognitoActionConditionalBehaviorEnumAuthenticate,
+	}
+}
 
 const (
 	// AuthenticateOidcActionConditionalBehaviorEnumDeny is a AuthenticateOidcActionConditionalBehaviorEnum enum value
@@ -9190,6 +9238,29 @@ const (
 	AuthenticateOidcActionConditionalBehaviorEnumAuthenticate = "authenticate"
 )
 
+// AuthenticateOidcActionConditionalBehaviorEnum is an enum
+type AuthenticateOidcActionConditionalBehaviorEnum struct{}
+
+// Contains returns whether the AuthenticateOidcActionConditionalBehaviorEnum enum includes the element
+func (enum AuthenticateOidcActionConditionalBehaviorEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthenticateOidcActionConditionalBehaviorEnum enum
+func (enum AuthenticateOidcActionConditionalBehaviorEnum) Values() []string {
+	return []string{
+		AuthenticateOidcActionConditionalBehaviorEnumDeny,
+		AuthenticateOidcActionConditionalBehaviorEnumAllow,
+		AuthenticateOidcActionConditionalBehaviorEnumAuthenticate,
+	}
+}
+
 const (
 	// IpAddressTypeIpv4 is a IpAddressType enum value
 	IpAddressTypeIpv4 = "ipv4"
@@ -9198,6 +9269,28 @@ const (
 	IpAddressTypeDualstack = "dualstack"
 )
 
+// IpAddressType is an enum
+type IpAddressType struct{}
+
+// Contains returns whether the IpAddressType enum includes the element
+func (enum IpAddressType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IpAddressType enum
+func (enum IpAddressType) Values() []string {
+	return []string{
+		IpAddressTypeIpv4,
+		IpAddressTypeDualstack,
+	}
+}
+
 const (
 	// LoadBalancerSchemeEnumInternetFacing is a LoadBalancerSchemeEnum enum value
 	LoadBalancerSchemeEnumInternetFacing = "internet-facing"
@@ -9205,6 +9298,28 @@ const (
 	// LoadBalancerSchemeEnumInternal is a LoadBalancerSchemeEnum enum value
 	LoadBalancerSchemeEnumInternal = "internal"
 )
+
+// LoadBalancerSchemeEnum is an enum
+type LoadBalancerSchemeEnum struct{}
+
+// Contains returns whether the LoadBalancerSchemeEnum enum includes the element
+func (enum LoadBalancerSchemeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerSchemeEnum enum
+func (enum LoadBalancerSchemeEnum) Values() []string {
+	return []string{
+		LoadBalancerSchemeEnumInternetFacing,
+		LoadBalancerSchemeEnumInternal,
+	}
+}
 
 const (
 	// LoadBalancerStateEnumActive is a LoadBalancerStateEnum enum value
@@ -9220,6 +9335,30 @@ const (
 	LoadBalancerStateEnumFailed = "failed"
 )
 
+// LoadBalancerStateEnum is an enum
+type LoadBalancerStateEnum struct{}
+
+// Contains returns whether the LoadBalancerStateEnum enum includes the element
+func (enum LoadBalancerStateEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerStateEnum enum
+func (enum LoadBalancerStateEnum) Values() []string {
+	return []string{
+		LoadBalancerStateEnumActive,
+		LoadBalancerStateEnumProvisioning,
+		LoadBalancerStateEnumActiveImpaired,
+		LoadBalancerStateEnumFailed,
+	}
+}
+
 const (
 	// LoadBalancerTypeEnumApplication is a LoadBalancerTypeEnum enum value
 	LoadBalancerTypeEnumApplication = "application"
@@ -9227,6 +9366,28 @@ const (
 	// LoadBalancerTypeEnumNetwork is a LoadBalancerTypeEnum enum value
 	LoadBalancerTypeEnumNetwork = "network"
 )
+
+// LoadBalancerTypeEnum is an enum
+type LoadBalancerTypeEnum struct{}
+
+// Contains returns whether the LoadBalancerTypeEnum enum includes the element
+func (enum LoadBalancerTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerTypeEnum enum
+func (enum LoadBalancerTypeEnum) Values() []string {
+	return []string{
+		LoadBalancerTypeEnumApplication,
+		LoadBalancerTypeEnumNetwork,
+	}
+}
 
 const (
 	// ProtocolEnumHttp is a ProtocolEnum enum value
@@ -9248,6 +9409,32 @@ const (
 	ProtocolEnumTcpUdp = "TCP_UDP"
 )
 
+// ProtocolEnum is an enum
+type ProtocolEnum struct{}
+
+// Contains returns whether the ProtocolEnum enum includes the element
+func (enum ProtocolEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProtocolEnum enum
+func (enum ProtocolEnum) Values() []string {
+	return []string{
+		ProtocolEnumHttp,
+		ProtocolEnumHttps,
+		ProtocolEnumTcp,
+		ProtocolEnumTls,
+		ProtocolEnumUdp,
+		ProtocolEnumTcpUdp,
+	}
+}
+
 const (
 	// RedirectActionStatusCodeEnumHttp301 is a RedirectActionStatusCodeEnum enum value
 	RedirectActionStatusCodeEnumHttp301 = "HTTP_301"
@@ -9255,6 +9442,28 @@ const (
 	// RedirectActionStatusCodeEnumHttp302 is a RedirectActionStatusCodeEnum enum value
 	RedirectActionStatusCodeEnumHttp302 = "HTTP_302"
 )
+
+// RedirectActionStatusCodeEnum is an enum
+type RedirectActionStatusCodeEnum struct{}
+
+// Contains returns whether the RedirectActionStatusCodeEnum enum includes the element
+func (enum RedirectActionStatusCodeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RedirectActionStatusCodeEnum enum
+func (enum RedirectActionStatusCodeEnum) Values() []string {
+	return []string{
+		RedirectActionStatusCodeEnumHttp301,
+		RedirectActionStatusCodeEnumHttp302,
+	}
+}
 
 const (
 	// TargetHealthReasonEnumElbRegistrationInProgress is a TargetHealthReasonEnum enum value
@@ -9294,6 +9503,38 @@ const (
 	TargetHealthReasonEnumElbInternalError = "Elb.InternalError"
 )
 
+// TargetHealthReasonEnum is an enum
+type TargetHealthReasonEnum struct{}
+
+// Contains returns whether the TargetHealthReasonEnum enum includes the element
+func (enum TargetHealthReasonEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetHealthReasonEnum enum
+func (enum TargetHealthReasonEnum) Values() []string {
+	return []string{
+		TargetHealthReasonEnumElbRegistrationInProgress,
+		TargetHealthReasonEnumElbInitialHealthChecking,
+		TargetHealthReasonEnumTargetResponseCodeMismatch,
+		TargetHealthReasonEnumTargetTimeout,
+		TargetHealthReasonEnumTargetFailedHealthChecks,
+		TargetHealthReasonEnumTargetNotRegistered,
+		TargetHealthReasonEnumTargetNotInUse,
+		TargetHealthReasonEnumTargetDeregistrationInProgress,
+		TargetHealthReasonEnumTargetInvalidState,
+		TargetHealthReasonEnumTargetIpUnusable,
+		TargetHealthReasonEnumTargetHealthCheckDisabled,
+		TargetHealthReasonEnumElbInternalError,
+	}
+}
+
 const (
 	// TargetHealthStateEnumInitial is a TargetHealthStateEnum enum value
 	TargetHealthStateEnumInitial = "initial"
@@ -9314,6 +9555,32 @@ const (
 	TargetHealthStateEnumUnavailable = "unavailable"
 )
 
+// TargetHealthStateEnum is an enum
+type TargetHealthStateEnum struct{}
+
+// Contains returns whether the TargetHealthStateEnum enum includes the element
+func (enum TargetHealthStateEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetHealthStateEnum enum
+func (enum TargetHealthStateEnum) Values() []string {
+	return []string{
+		TargetHealthStateEnumInitial,
+		TargetHealthStateEnumHealthy,
+		TargetHealthStateEnumUnhealthy,
+		TargetHealthStateEnumUnused,
+		TargetHealthStateEnumDraining,
+		TargetHealthStateEnumUnavailable,
+	}
+}
+
 const (
 	// TargetTypeEnumInstance is a TargetTypeEnum enum value
 	TargetTypeEnumInstance = "instance"
@@ -9324,3 +9591,26 @@ const (
 	// TargetTypeEnumLambda is a TargetTypeEnum enum value
 	TargetTypeEnumLambda = "lambda"
 )
+
+// TargetTypeEnum is an enum
+type TargetTypeEnum struct{}
+
+// Contains returns whether the TargetTypeEnum enum includes the element
+func (enum TargetTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetTypeEnum enum
+func (enum TargetTypeEnum) Values() []string {
+	return []string{
+		TargetTypeEnumInstance,
+		TargetTypeEnumIp,
+		TargetTypeEnumLambda,
+	}
+}

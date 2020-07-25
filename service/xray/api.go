@@ -6603,6 +6603,28 @@ const (
 	EncryptionStatusActive = "ACTIVE"
 )
 
+// EncryptionStatus is an enum
+type EncryptionStatus struct{}
+
+// Contains returns whether the EncryptionStatus enum includes the element
+func (enum EncryptionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionStatus enum
+func (enum EncryptionStatus) Values() []string {
+	return []string{
+		EncryptionStatusUpdating,
+		EncryptionStatusActive,
+	}
+}
+
 const (
 	// EncryptionTypeNone is a EncryptionType enum value
 	EncryptionTypeNone = "NONE"
@@ -6610,6 +6632,28 @@ const (
 	// EncryptionTypeKms is a EncryptionType enum value
 	EncryptionTypeKms = "KMS"
 )
+
+// EncryptionType is an enum
+type EncryptionType struct{}
+
+// Contains returns whether the EncryptionType enum includes the element
+func (enum EncryptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionType enum
+func (enum EncryptionType) Values() []string {
+	return []string{
+		EncryptionTypeNone,
+		EncryptionTypeKms,
+	}
+}
 
 const (
 	// SamplingStrategyNamePartialScan is a SamplingStrategyName enum value
@@ -6619,6 +6663,28 @@ const (
 	SamplingStrategyNameFixedRate = "FixedRate"
 )
 
+// SamplingStrategyName is an enum
+type SamplingStrategyName struct{}
+
+// Contains returns whether the SamplingStrategyName enum includes the element
+func (enum SamplingStrategyName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SamplingStrategyName enum
+func (enum SamplingStrategyName) Values() []string {
+	return []string{
+		SamplingStrategyNamePartialScan,
+		SamplingStrategyNameFixedRate,
+	}
+}
+
 const (
 	// TimeRangeTypeTraceId is a TimeRangeType enum value
 	TimeRangeTypeTraceId = "TraceId"
@@ -6626,3 +6692,25 @@ const (
 	// TimeRangeTypeEvent is a TimeRangeType enum value
 	TimeRangeTypeEvent = "Event"
 )
+
+// TimeRangeType is an enum
+type TimeRangeType struct{}
+
+// Contains returns whether the TimeRangeType enum includes the element
+func (enum TimeRangeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TimeRangeType enum
+func (enum TimeRangeType) Values() []string {
+	return []string{
+		TimeRangeTypeTraceId,
+		TimeRangeTypeEvent,
+	}
+}

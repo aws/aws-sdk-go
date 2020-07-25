@@ -7845,10 +7845,52 @@ const (
 	EventCategoryInsight = "insight"
 )
 
+// EventCategory is an enum
+type EventCategory struct{}
+
+// Contains returns whether the EventCategory enum includes the element
+func (enum EventCategory) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventCategory enum
+func (enum EventCategory) Values() []string {
+	return []string{
+		EventCategoryInsight,
+	}
+}
+
 const (
 	// InsightTypeApiCallRateInsight is a InsightType enum value
 	InsightTypeApiCallRateInsight = "ApiCallRateInsight"
 )
+
+// InsightType is an enum
+type InsightType struct{}
+
+// Contains returns whether the InsightType enum includes the element
+func (enum InsightType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InsightType enum
+func (enum InsightType) Values() []string {
+	return []string{
+		InsightTypeApiCallRateInsight,
+	}
+}
 
 const (
 	// LookupAttributeKeyEventId is a LookupAttributeKey enum value
@@ -7876,6 +7918,34 @@ const (
 	LookupAttributeKeyAccessKeyId = "AccessKeyId"
 )
 
+// LookupAttributeKey is an enum
+type LookupAttributeKey struct{}
+
+// Contains returns whether the LookupAttributeKey enum includes the element
+func (enum LookupAttributeKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LookupAttributeKey enum
+func (enum LookupAttributeKey) Values() []string {
+	return []string{
+		LookupAttributeKeyEventId,
+		LookupAttributeKeyEventName,
+		LookupAttributeKeyReadOnly,
+		LookupAttributeKeyUsername,
+		LookupAttributeKeyResourceType,
+		LookupAttributeKeyResourceName,
+		LookupAttributeKeyEventSource,
+		LookupAttributeKeyAccessKeyId,
+	}
+}
+
 const (
 	// ReadWriteTypeReadOnly is a ReadWriteType enum value
 	ReadWriteTypeReadOnly = "ReadOnly"
@@ -7886,3 +7956,26 @@ const (
 	// ReadWriteTypeAll is a ReadWriteType enum value
 	ReadWriteTypeAll = "All"
 )
+
+// ReadWriteType is an enum
+type ReadWriteType struct{}
+
+// Contains returns whether the ReadWriteType enum includes the element
+func (enum ReadWriteType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReadWriteType enum
+func (enum ReadWriteType) Values() []string {
+	return []string{
+		ReadWriteTypeReadOnly,
+		ReadWriteTypeWriteOnly,
+		ReadWriteTypeAll,
+	}
+}

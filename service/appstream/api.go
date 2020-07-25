@@ -11664,6 +11664,27 @@ const (
 	AccessEndpointTypeStreaming = "STREAMING"
 )
 
+// AccessEndpointType is an enum
+type AccessEndpointType struct{}
+
+// Contains returns whether the AccessEndpointType enum includes the element
+func (enum AccessEndpointType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccessEndpointType enum
+func (enum AccessEndpointType) Values() []string {
+	return []string{
+		AccessEndpointTypeStreaming,
+	}
+}
+
 const (
 	// ActionClipboardCopyFromLocalDevice is a Action enum value
 	ActionClipboardCopyFromLocalDevice = "CLIPBOARD_COPY_FROM_LOCAL_DEVICE"
@@ -11681,6 +11702,31 @@ const (
 	ActionPrintingToLocalDevice = "PRINTING_TO_LOCAL_DEVICE"
 )
 
+// Action is an enum
+type Action struct{}
+
+// Contains returns whether the Action enum includes the element
+func (enum Action) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Action enum
+func (enum Action) Values() []string {
+	return []string{
+		ActionClipboardCopyFromLocalDevice,
+		ActionClipboardCopyToLocalDevice,
+		ActionFileUpload,
+		ActionFileDownload,
+		ActionPrintingToLocalDevice,
+	}
+}
+
 const (
 	// AuthenticationTypeApi is a AuthenticationType enum value
 	AuthenticationTypeApi = "API"
@@ -11691,6 +11737,29 @@ const (
 	// AuthenticationTypeUserpool is a AuthenticationType enum value
 	AuthenticationTypeUserpool = "USERPOOL"
 )
+
+// AuthenticationType is an enum
+type AuthenticationType struct{}
+
+// Contains returns whether the AuthenticationType enum includes the element
+func (enum AuthenticationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthenticationType enum
+func (enum AuthenticationType) Values() []string {
+	return []string{
+		AuthenticationTypeApi,
+		AuthenticationTypeSaml,
+		AuthenticationTypeUserpool,
+	}
+}
 
 // The fleet attribute.
 const (
@@ -11706,6 +11775,30 @@ const (
 	// FleetAttributeIamRoleArn is a FleetAttribute enum value
 	FleetAttributeIamRoleArn = "IAM_ROLE_ARN"
 )
+
+// FleetAttribute is an enum
+type FleetAttribute struct{}
+
+// Contains returns whether the FleetAttribute enum includes the element
+func (enum FleetAttribute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FleetAttribute enum
+func (enum FleetAttribute) Values() []string {
+	return []string{
+		FleetAttributeVpcConfiguration,
+		FleetAttributeVpcConfigurationSecurityGroupIds,
+		FleetAttributeDomainJoinInfo,
+		FleetAttributeIamRoleArn,
+	}
+}
 
 const (
 	// FleetErrorCodeIamServiceRoleMissingEniDescribeAction is a FleetErrorCode enum value
@@ -11793,6 +11886,54 @@ const (
 	FleetErrorCodeDomainJoinInternalServiceError = "DOMAIN_JOIN_INTERNAL_SERVICE_ERROR"
 )
 
+// FleetErrorCode is an enum
+type FleetErrorCode struct{}
+
+// Contains returns whether the FleetErrorCode enum includes the element
+func (enum FleetErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FleetErrorCode enum
+func (enum FleetErrorCode) Values() []string {
+	return []string{
+		FleetErrorCodeIamServiceRoleMissingEniDescribeAction,
+		FleetErrorCodeIamServiceRoleMissingEniCreateAction,
+		FleetErrorCodeIamServiceRoleMissingEniDeleteAction,
+		FleetErrorCodeNetworkInterfaceLimitExceeded,
+		FleetErrorCodeInternalServiceError,
+		FleetErrorCodeIamServiceRoleIsMissing,
+		FleetErrorCodeMachineRoleIsMissing,
+		FleetErrorCodeStsDisabledInRegion,
+		FleetErrorCodeSubnetHasInsufficientIpAddresses,
+		FleetErrorCodeIamServiceRoleMissingDescribeSubnetAction,
+		FleetErrorCodeSubnetNotFound,
+		FleetErrorCodeImageNotFound,
+		FleetErrorCodeInvalidSubnetConfiguration,
+		FleetErrorCodeSecurityGroupsNotFound,
+		FleetErrorCodeIgwNotAttached,
+		FleetErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction,
+		FleetErrorCodeDomainJoinErrorFileNotFound,
+		FleetErrorCodeDomainJoinErrorAccessDenied,
+		FleetErrorCodeDomainJoinErrorLogonFailure,
+		FleetErrorCodeDomainJoinErrorInvalidParameter,
+		FleetErrorCodeDomainJoinErrorMoreData,
+		FleetErrorCodeDomainJoinErrorNoSuchDomain,
+		FleetErrorCodeDomainJoinErrorNotSupported,
+		FleetErrorCodeDomainJoinNerrInvalidWorkgroupName,
+		FleetErrorCodeDomainJoinNerrWorkstationNotStarted,
+		FleetErrorCodeDomainJoinErrorDsMachineAccountQuotaExceeded,
+		FleetErrorCodeDomainJoinNerrPasswordExpired,
+		FleetErrorCodeDomainJoinInternalServiceError,
+	}
+}
+
 const (
 	// FleetStateStarting is a FleetState enum value
 	FleetStateStarting = "STARTING"
@@ -11807,6 +11948,30 @@ const (
 	FleetStateStopped = "STOPPED"
 )
 
+// FleetState is an enum
+type FleetState struct{}
+
+// Contains returns whether the FleetState enum includes the element
+func (enum FleetState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FleetState enum
+func (enum FleetState) Values() []string {
+	return []string{
+		FleetStateStarting,
+		FleetStateRunning,
+		FleetStateStopping,
+		FleetStateStopped,
+	}
+}
+
 const (
 	// FleetTypeAlwaysOn is a FleetType enum value
 	FleetTypeAlwaysOn = "ALWAYS_ON"
@@ -11814,6 +11979,28 @@ const (
 	// FleetTypeOnDemand is a FleetType enum value
 	FleetTypeOnDemand = "ON_DEMAND"
 )
+
+// FleetType is an enum
+type FleetType struct{}
+
+// Contains returns whether the FleetType enum includes the element
+func (enum FleetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FleetType enum
+func (enum FleetType) Values() []string {
+	return []string{
+		FleetTypeAlwaysOn,
+		FleetTypeOnDemand,
+	}
+}
 
 const (
 	// ImageBuilderStatePending is a ImageBuilderState enum value
@@ -11844,6 +12031,35 @@ const (
 	ImageBuilderStateFailed = "FAILED"
 )
 
+// ImageBuilderState is an enum
+type ImageBuilderState struct{}
+
+// Contains returns whether the ImageBuilderState enum includes the element
+func (enum ImageBuilderState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageBuilderState enum
+func (enum ImageBuilderState) Values() []string {
+	return []string{
+		ImageBuilderStatePending,
+		ImageBuilderStateUpdatingAgent,
+		ImageBuilderStateRunning,
+		ImageBuilderStateStopping,
+		ImageBuilderStateStopped,
+		ImageBuilderStateRebooting,
+		ImageBuilderStateSnapshotting,
+		ImageBuilderStateDeleting,
+		ImageBuilderStateFailed,
+	}
+}
+
 const (
 	// ImageBuilderStateChangeReasonCodeInternalError is a ImageBuilderStateChangeReasonCode enum value
 	ImageBuilderStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
@@ -11851,6 +12067,28 @@ const (
 	// ImageBuilderStateChangeReasonCodeImageUnavailable is a ImageBuilderStateChangeReasonCode enum value
 	ImageBuilderStateChangeReasonCodeImageUnavailable = "IMAGE_UNAVAILABLE"
 )
+
+// ImageBuilderStateChangeReasonCode is an enum
+type ImageBuilderStateChangeReasonCode struct{}
+
+// Contains returns whether the ImageBuilderStateChangeReasonCode enum includes the element
+func (enum ImageBuilderStateChangeReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageBuilderStateChangeReasonCode enum
+func (enum ImageBuilderStateChangeReasonCode) Values() []string {
+	return []string{
+		ImageBuilderStateChangeReasonCodeInternalError,
+		ImageBuilderStateChangeReasonCodeImageUnavailable,
+	}
+}
 
 const (
 	// ImageStatePending is a ImageState enum value
@@ -11869,6 +12107,31 @@ const (
 	ImageStateDeleting = "DELETING"
 )
 
+// ImageState is an enum
+type ImageState struct{}
+
+// Contains returns whether the ImageState enum includes the element
+func (enum ImageState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageState enum
+func (enum ImageState) Values() []string {
+	return []string{
+		ImageStatePending,
+		ImageStateAvailable,
+		ImageStateFailed,
+		ImageStateCopying,
+		ImageStateDeleting,
+	}
+}
+
 const (
 	// ImageStateChangeReasonCodeInternalError is a ImageStateChangeReasonCode enum value
 	ImageStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
@@ -11880,6 +12143,29 @@ const (
 	ImageStateChangeReasonCodeImageCopyFailure = "IMAGE_COPY_FAILURE"
 )
 
+// ImageStateChangeReasonCode is an enum
+type ImageStateChangeReasonCode struct{}
+
+// Contains returns whether the ImageStateChangeReasonCode enum includes the element
+func (enum ImageStateChangeReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageStateChangeReasonCode enum
+func (enum ImageStateChangeReasonCode) Values() []string {
+	return []string{
+		ImageStateChangeReasonCodeInternalError,
+		ImageStateChangeReasonCodeImageBuilderNotAvailable,
+		ImageStateChangeReasonCodeImageCopyFailure,
+	}
+}
+
 const (
 	// MessageActionSuppress is a MessageAction enum value
 	MessageActionSuppress = "SUPPRESS"
@@ -11888,6 +12174,28 @@ const (
 	MessageActionResend = "RESEND"
 )
 
+// MessageAction is an enum
+type MessageAction struct{}
+
+// Contains returns whether the MessageAction enum includes the element
+func (enum MessageAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MessageAction enum
+func (enum MessageAction) Values() []string {
+	return []string{
+		MessageActionSuppress,
+		MessageActionResend,
+	}
+}
+
 const (
 	// PermissionEnabled is a Permission enum value
 	PermissionEnabled = "ENABLED"
@@ -11895,6 +12203,28 @@ const (
 	// PermissionDisabled is a Permission enum value
 	PermissionDisabled = "DISABLED"
 )
+
+// Permission is an enum
+type Permission struct{}
+
+// Contains returns whether the Permission enum includes the element
+func (enum Permission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Permission enum
+func (enum Permission) Values() []string {
+	return []string{
+		PermissionEnabled,
+		PermissionDisabled,
+	}
+}
 
 const (
 	// PlatformTypeWindows is a PlatformType enum value
@@ -11907,6 +12237,29 @@ const (
 	PlatformTypeWindowsServer2019 = "WINDOWS_SERVER_2019"
 )
 
+// PlatformType is an enum
+type PlatformType struct{}
+
+// Contains returns whether the PlatformType enum includes the element
+func (enum PlatformType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PlatformType enum
+func (enum PlatformType) Values() []string {
+	return []string{
+		PlatformTypeWindows,
+		PlatformTypeWindowsServer2016,
+		PlatformTypeWindowsServer2019,
+	}
+}
+
 const (
 	// SessionConnectionStateConnected is a SessionConnectionState enum value
 	SessionConnectionStateConnected = "CONNECTED"
@@ -11914,6 +12267,28 @@ const (
 	// SessionConnectionStateNotConnected is a SessionConnectionState enum value
 	SessionConnectionStateNotConnected = "NOT_CONNECTED"
 )
+
+// SessionConnectionState is an enum
+type SessionConnectionState struct{}
+
+// Contains returns whether the SessionConnectionState enum includes the element
+func (enum SessionConnectionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SessionConnectionState enum
+func (enum SessionConnectionState) Values() []string {
+	return []string{
+		SessionConnectionStateConnected,
+		SessionConnectionStateNotConnected,
+	}
+}
 
 // Possible values for the state of a streaming session.
 const (
@@ -11926,6 +12301,29 @@ const (
 	// SessionStateExpired is a SessionState enum value
 	SessionStateExpired = "EXPIRED"
 )
+
+// SessionState is an enum
+type SessionState struct{}
+
+// Contains returns whether the SessionState enum includes the element
+func (enum SessionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SessionState enum
+func (enum SessionState) Values() []string {
+	return []string{
+		SessionStateActive,
+		SessionStatePending,
+		SessionStateExpired,
+	}
+}
 
 const (
 	// StackAttributeStorageConnectors is a StackAttribute enum value
@@ -11962,6 +12360,37 @@ const (
 	StackAttributeAccessEndpoints = "ACCESS_ENDPOINTS"
 )
 
+// StackAttribute is an enum
+type StackAttribute struct{}
+
+// Contains returns whether the StackAttribute enum includes the element
+func (enum StackAttribute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StackAttribute enum
+func (enum StackAttribute) Values() []string {
+	return []string{
+		StackAttributeStorageConnectors,
+		StackAttributeStorageConnectorHomefolders,
+		StackAttributeStorageConnectorGoogleDrive,
+		StackAttributeStorageConnectorOneDrive,
+		StackAttributeRedirectUrl,
+		StackAttributeFeedbackUrl,
+		StackAttributeThemeName,
+		StackAttributeUserSettings,
+		StackAttributeEmbedHostDomains,
+		StackAttributeIamRoleArn,
+		StackAttributeAccessEndpoints,
+	}
+}
+
 const (
 	// StackErrorCodeStorageConnectorError is a StackErrorCode enum value
 	StackErrorCodeStorageConnectorError = "STORAGE_CONNECTOR_ERROR"
@@ -11969,6 +12398,28 @@ const (
 	// StackErrorCodeInternalServiceError is a StackErrorCode enum value
 	StackErrorCodeInternalServiceError = "INTERNAL_SERVICE_ERROR"
 )
+
+// StackErrorCode is an enum
+type StackErrorCode struct{}
+
+// Contains returns whether the StackErrorCode enum includes the element
+func (enum StackErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StackErrorCode enum
+func (enum StackErrorCode) Values() []string {
+	return []string{
+		StackErrorCodeStorageConnectorError,
+		StackErrorCodeInternalServiceError,
+	}
+}
 
 // The type of storage connector.
 const (
@@ -11982,6 +12433,29 @@ const (
 	StorageConnectorTypeOneDrive = "ONE_DRIVE"
 )
 
+// StorageConnectorType is an enum
+type StorageConnectorType struct{}
+
+// Contains returns whether the StorageConnectorType enum includes the element
+func (enum StorageConnectorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StorageConnectorType enum
+func (enum StorageConnectorType) Values() []string {
+	return []string{
+		StorageConnectorTypeHomefolders,
+		StorageConnectorTypeGoogleDrive,
+		StorageConnectorTypeOneDrive,
+	}
+}
+
 const (
 	// UsageReportExecutionErrorCodeResourceNotFound is a UsageReportExecutionErrorCode enum value
 	UsageReportExecutionErrorCodeResourceNotFound = "RESOURCE_NOT_FOUND"
@@ -11993,10 +12467,54 @@ const (
 	UsageReportExecutionErrorCodeInternalServiceError = "INTERNAL_SERVICE_ERROR"
 )
 
+// UsageReportExecutionErrorCode is an enum
+type UsageReportExecutionErrorCode struct{}
+
+// Contains returns whether the UsageReportExecutionErrorCode enum includes the element
+func (enum UsageReportExecutionErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageReportExecutionErrorCode enum
+func (enum UsageReportExecutionErrorCode) Values() []string {
+	return []string{
+		UsageReportExecutionErrorCodeResourceNotFound,
+		UsageReportExecutionErrorCodeAccessDenied,
+		UsageReportExecutionErrorCodeInternalServiceError,
+	}
+}
+
 const (
 	// UsageReportScheduleDaily is a UsageReportSchedule enum value
 	UsageReportScheduleDaily = "DAILY"
 )
+
+// UsageReportSchedule is an enum
+type UsageReportSchedule struct{}
+
+// Contains returns whether the UsageReportSchedule enum includes the element
+func (enum UsageReportSchedule) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageReportSchedule enum
+func (enum UsageReportSchedule) Values() []string {
+	return []string{
+		UsageReportScheduleDaily,
+	}
+}
 
 const (
 	// UserStackAssociationErrorCodeStackNotFound is a UserStackAssociationErrorCode enum value
@@ -12009,6 +12527,29 @@ const (
 	UserStackAssociationErrorCodeInternalError = "INTERNAL_ERROR"
 )
 
+// UserStackAssociationErrorCode is an enum
+type UserStackAssociationErrorCode struct{}
+
+// Contains returns whether the UserStackAssociationErrorCode enum includes the element
+func (enum UserStackAssociationErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserStackAssociationErrorCode enum
+func (enum UserStackAssociationErrorCode) Values() []string {
+	return []string{
+		UserStackAssociationErrorCodeStackNotFound,
+		UserStackAssociationErrorCodeUserNameNotFound,
+		UserStackAssociationErrorCodeInternalError,
+	}
+}
+
 const (
 	// VisibilityTypePublic is a VisibilityType enum value
 	VisibilityTypePublic = "PUBLIC"
@@ -12019,3 +12560,26 @@ const (
 	// VisibilityTypeShared is a VisibilityType enum value
 	VisibilityTypeShared = "SHARED"
 )
+
+// VisibilityType is an enum
+type VisibilityType struct{}
+
+// Contains returns whether the VisibilityType enum includes the element
+func (enum VisibilityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VisibilityType enum
+func (enum VisibilityType) Values() []string {
+	return []string{
+		VisibilityTypePublic,
+		VisibilityTypePrivate,
+		VisibilityTypeShared,
+	}
+}

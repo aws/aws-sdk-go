@@ -1852,6 +1852,27 @@ const (
 	S3ContinuousClassificationTypeFull = "FULL"
 )
 
+// S3ContinuousClassificationType is an enum
+type S3ContinuousClassificationType struct{}
+
+// Contains returns whether the S3ContinuousClassificationType enum includes the element
+func (enum S3ContinuousClassificationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3ContinuousClassificationType enum
+func (enum S3ContinuousClassificationType) Values() []string {
+	return []string{
+		S3ContinuousClassificationTypeFull,
+	}
+}
+
 const (
 	// S3OneTimeClassificationTypeFull is a S3OneTimeClassificationType enum value
 	S3OneTimeClassificationTypeFull = "FULL"
@@ -1859,3 +1880,25 @@ const (
 	// S3OneTimeClassificationTypeNone is a S3OneTimeClassificationType enum value
 	S3OneTimeClassificationTypeNone = "NONE"
 )
+
+// S3OneTimeClassificationType is an enum
+type S3OneTimeClassificationType struct{}
+
+// Contains returns whether the S3OneTimeClassificationType enum includes the element
+func (enum S3OneTimeClassificationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3OneTimeClassificationType enum
+func (enum S3OneTimeClassificationType) Values() []string {
+	return []string{
+		S3OneTimeClassificationTypeFull,
+		S3OneTimeClassificationTypeNone,
+	}
+}

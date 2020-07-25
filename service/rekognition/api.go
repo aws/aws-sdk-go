@@ -16330,6 +16330,28 @@ const (
 	AttributeAll = "ALL"
 )
 
+// Attribute is an enum
+type Attribute struct{}
+
+// Contains returns whether the Attribute enum includes the element
+func (enum Attribute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Attribute enum
+func (enum Attribute) Values() []string {
+	return []string{
+		AttributeDefault,
+		AttributeAll,
+	}
+}
+
 const (
 	// CelebrityRecognitionSortById is a CelebrityRecognitionSortBy enum value
 	CelebrityRecognitionSortById = "ID"
@@ -16337,6 +16359,28 @@ const (
 	// CelebrityRecognitionSortByTimestamp is a CelebrityRecognitionSortBy enum value
 	CelebrityRecognitionSortByTimestamp = "TIMESTAMP"
 )
+
+// CelebrityRecognitionSortBy is an enum
+type CelebrityRecognitionSortBy struct{}
+
+// Contains returns whether the CelebrityRecognitionSortBy enum includes the element
+func (enum CelebrityRecognitionSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CelebrityRecognitionSortBy enum
+func (enum CelebrityRecognitionSortBy) Values() []string {
+	return []string{
+		CelebrityRecognitionSortById,
+		CelebrityRecognitionSortByTimestamp,
+	}
+}
 
 const (
 	// ContentClassifierFreeOfPersonallyIdentifiableInformation is a ContentClassifier enum value
@@ -16346,6 +16390,28 @@ const (
 	ContentClassifierFreeOfAdultContent = "FreeOfAdultContent"
 )
 
+// ContentClassifier is an enum
+type ContentClassifier struct{}
+
+// Contains returns whether the ContentClassifier enum includes the element
+func (enum ContentClassifier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentClassifier enum
+func (enum ContentClassifier) Values() []string {
+	return []string{
+		ContentClassifierFreeOfPersonallyIdentifiableInformation,
+		ContentClassifierFreeOfAdultContent,
+	}
+}
+
 const (
 	// ContentModerationSortByName is a ContentModerationSortBy enum value
 	ContentModerationSortByName = "NAME"
@@ -16353,6 +16419,28 @@ const (
 	// ContentModerationSortByTimestamp is a ContentModerationSortBy enum value
 	ContentModerationSortByTimestamp = "TIMESTAMP"
 )
+
+// ContentModerationSortBy is an enum
+type ContentModerationSortBy struct{}
+
+// Contains returns whether the ContentModerationSortBy enum includes the element
+func (enum ContentModerationSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentModerationSortBy enum
+func (enum ContentModerationSortBy) Values() []string {
+	return []string{
+		ContentModerationSortByName,
+		ContentModerationSortByTimestamp,
+	}
+}
 
 const (
 	// EmotionNameHappy is a EmotionName enum value
@@ -16383,6 +16471,35 @@ const (
 	EmotionNameFear = "FEAR"
 )
 
+// EmotionName is an enum
+type EmotionName struct{}
+
+// Contains returns whether the EmotionName enum includes the element
+func (enum EmotionName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EmotionName enum
+func (enum EmotionName) Values() []string {
+	return []string{
+		EmotionNameHappy,
+		EmotionNameSad,
+		EmotionNameAngry,
+		EmotionNameConfused,
+		EmotionNameDisgusted,
+		EmotionNameSurprised,
+		EmotionNameCalm,
+		EmotionNameUnknown,
+		EmotionNameFear,
+	}
+}
+
 const (
 	// FaceAttributesDefault is a FaceAttributes enum value
 	FaceAttributesDefault = "DEFAULT"
@@ -16390,6 +16507,28 @@ const (
 	// FaceAttributesAll is a FaceAttributes enum value
 	FaceAttributesAll = "ALL"
 )
+
+// FaceAttributes is an enum
+type FaceAttributes struct{}
+
+// Contains returns whether the FaceAttributes enum includes the element
+func (enum FaceAttributes) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FaceAttributes enum
+func (enum FaceAttributes) Values() []string {
+	return []string{
+		FaceAttributesDefault,
+		FaceAttributesAll,
+	}
+}
 
 const (
 	// FaceSearchSortByIndex is a FaceSearchSortBy enum value
@@ -16399,6 +16538,28 @@ const (
 	FaceSearchSortByTimestamp = "TIMESTAMP"
 )
 
+// FaceSearchSortBy is an enum
+type FaceSearchSortBy struct{}
+
+// Contains returns whether the FaceSearchSortBy enum includes the element
+func (enum FaceSearchSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FaceSearchSortBy enum
+func (enum FaceSearchSortBy) Values() []string {
+	return []string{
+		FaceSearchSortByIndex,
+		FaceSearchSortByTimestamp,
+	}
+}
+
 const (
 	// GenderTypeMale is a GenderType enum value
 	GenderTypeMale = "Male"
@@ -16407,6 +16568,28 @@ const (
 	GenderTypeFemale = "Female"
 )
 
+// GenderType is an enum
+type GenderType struct{}
+
+// Contains returns whether the GenderType enum includes the element
+func (enum GenderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GenderType enum
+func (enum GenderType) Values() []string {
+	return []string{
+		GenderTypeMale,
+		GenderTypeFemale,
+	}
+}
+
 const (
 	// LabelDetectionSortByName is a LabelDetectionSortBy enum value
 	LabelDetectionSortByName = "NAME"
@@ -16414,6 +16597,28 @@ const (
 	// LabelDetectionSortByTimestamp is a LabelDetectionSortBy enum value
 	LabelDetectionSortByTimestamp = "TIMESTAMP"
 )
+
+// LabelDetectionSortBy is an enum
+type LabelDetectionSortBy struct{}
+
+// Contains returns whether the LabelDetectionSortBy enum includes the element
+func (enum LabelDetectionSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LabelDetectionSortBy enum
+func (enum LabelDetectionSortBy) Values() []string {
+	return []string{
+		LabelDetectionSortByName,
+		LabelDetectionSortByTimestamp,
+	}
+}
 
 const (
 	// LandmarkTypeEyeLeft is a LandmarkType enum value
@@ -16507,6 +16712,56 @@ const (
 	LandmarkTypeUpperJawlineRight = "upperJawlineRight"
 )
 
+// LandmarkType is an enum
+type LandmarkType struct{}
+
+// Contains returns whether the LandmarkType enum includes the element
+func (enum LandmarkType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LandmarkType enum
+func (enum LandmarkType) Values() []string {
+	return []string{
+		LandmarkTypeEyeLeft,
+		LandmarkTypeEyeRight,
+		LandmarkTypeNose,
+		LandmarkTypeMouthLeft,
+		LandmarkTypeMouthRight,
+		LandmarkTypeLeftEyeBrowLeft,
+		LandmarkTypeLeftEyeBrowRight,
+		LandmarkTypeLeftEyeBrowUp,
+		LandmarkTypeRightEyeBrowLeft,
+		LandmarkTypeRightEyeBrowRight,
+		LandmarkTypeRightEyeBrowUp,
+		LandmarkTypeLeftEyeLeft,
+		LandmarkTypeLeftEyeRight,
+		LandmarkTypeLeftEyeUp,
+		LandmarkTypeLeftEyeDown,
+		LandmarkTypeRightEyeLeft,
+		LandmarkTypeRightEyeRight,
+		LandmarkTypeRightEyeUp,
+		LandmarkTypeRightEyeDown,
+		LandmarkTypeNoseLeft,
+		LandmarkTypeNoseRight,
+		LandmarkTypeMouthUp,
+		LandmarkTypeMouthDown,
+		LandmarkTypeLeftPupil,
+		LandmarkTypeRightPupil,
+		LandmarkTypeUpperJawlineLeft,
+		LandmarkTypeMidJawlineLeft,
+		LandmarkTypeChinBottom,
+		LandmarkTypeMidJawlineRight,
+		LandmarkTypeUpperJawlineRight,
+	}
+}
+
 const (
 	// OrientationCorrectionRotate0 is a OrientationCorrection enum value
 	OrientationCorrectionRotate0 = "ROTATE_0"
@@ -16521,6 +16776,30 @@ const (
 	OrientationCorrectionRotate270 = "ROTATE_270"
 )
 
+// OrientationCorrection is an enum
+type OrientationCorrection struct{}
+
+// Contains returns whether the OrientationCorrection enum includes the element
+func (enum OrientationCorrection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrientationCorrection enum
+func (enum OrientationCorrection) Values() []string {
+	return []string{
+		OrientationCorrectionRotate0,
+		OrientationCorrectionRotate90,
+		OrientationCorrectionRotate180,
+		OrientationCorrectionRotate270,
+	}
+}
+
 const (
 	// PersonTrackingSortByIndex is a PersonTrackingSortBy enum value
 	PersonTrackingSortByIndex = "INDEX"
@@ -16528,6 +16807,28 @@ const (
 	// PersonTrackingSortByTimestamp is a PersonTrackingSortBy enum value
 	PersonTrackingSortByTimestamp = "TIMESTAMP"
 )
+
+// PersonTrackingSortBy is an enum
+type PersonTrackingSortBy struct{}
+
+// Contains returns whether the PersonTrackingSortBy enum includes the element
+func (enum PersonTrackingSortBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PersonTrackingSortBy enum
+func (enum PersonTrackingSortBy) Values() []string {
+	return []string{
+		PersonTrackingSortByIndex,
+		PersonTrackingSortByTimestamp,
+	}
+}
 
 const (
 	// ProjectStatusCreating is a ProjectStatus enum value
@@ -16539,6 +16840,29 @@ const (
 	// ProjectStatusDeleting is a ProjectStatus enum value
 	ProjectStatusDeleting = "DELETING"
 )
+
+// ProjectStatus is an enum
+type ProjectStatus struct{}
+
+// Contains returns whether the ProjectStatus enum includes the element
+func (enum ProjectStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProjectStatus enum
+func (enum ProjectStatus) Values() []string {
+	return []string{
+		ProjectStatusCreating,
+		ProjectStatusCreated,
+		ProjectStatusDeleting,
+	}
+}
 
 const (
 	// ProjectVersionStatusTrainingInProgress is a ProjectVersionStatus enum value
@@ -16569,6 +16893,35 @@ const (
 	ProjectVersionStatusDeleting = "DELETING"
 )
 
+// ProjectVersionStatus is an enum
+type ProjectVersionStatus struct{}
+
+// Contains returns whether the ProjectVersionStatus enum includes the element
+func (enum ProjectVersionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProjectVersionStatus enum
+func (enum ProjectVersionStatus) Values() []string {
+	return []string{
+		ProjectVersionStatusTrainingInProgress,
+		ProjectVersionStatusTrainingCompleted,
+		ProjectVersionStatusTrainingFailed,
+		ProjectVersionStatusStarting,
+		ProjectVersionStatusRunning,
+		ProjectVersionStatusFailed,
+		ProjectVersionStatusStopping,
+		ProjectVersionStatusStopped,
+		ProjectVersionStatusDeleting,
+	}
+}
+
 const (
 	// QualityFilterNone is a QualityFilter enum value
 	QualityFilterNone = "NONE"
@@ -16585,6 +16938,31 @@ const (
 	// QualityFilterHigh is a QualityFilter enum value
 	QualityFilterHigh = "HIGH"
 )
+
+// QualityFilter is an enum
+type QualityFilter struct{}
+
+// Contains returns whether the QualityFilter enum includes the element
+func (enum QualityFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QualityFilter enum
+func (enum QualityFilter) Values() []string {
+	return []string{
+		QualityFilterNone,
+		QualityFilterAuto,
+		QualityFilterLow,
+		QualityFilterMedium,
+		QualityFilterHigh,
+	}
+}
 
 const (
 	// ReasonExceedsMaxFaces is a Reason enum value
@@ -16609,6 +16987,33 @@ const (
 	ReasonLowFaceQuality = "LOW_FACE_QUALITY"
 )
 
+// Reason is an enum
+type Reason struct{}
+
+// Contains returns whether the Reason enum includes the element
+func (enum Reason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Reason enum
+func (enum Reason) Values() []string {
+	return []string{
+		ReasonExceedsMaxFaces,
+		ReasonExtremePose,
+		ReasonLowBrightness,
+		ReasonLowSharpness,
+		ReasonLowConfidence,
+		ReasonSmallBoundingBox,
+		ReasonLowFaceQuality,
+	}
+}
+
 const (
 	// SegmentTypeTechnicalCue is a SegmentType enum value
 	SegmentTypeTechnicalCue = "TECHNICAL_CUE"
@@ -16616,6 +17021,28 @@ const (
 	// SegmentTypeShot is a SegmentType enum value
 	SegmentTypeShot = "SHOT"
 )
+
+// SegmentType is an enum
+type SegmentType struct{}
+
+// Contains returns whether the SegmentType enum includes the element
+func (enum SegmentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SegmentType enum
+func (enum SegmentType) Values() []string {
+	return []string{
+		SegmentTypeTechnicalCue,
+		SegmentTypeShot,
+	}
+}
 
 const (
 	// StreamProcessorStatusStopped is a StreamProcessorStatus enum value
@@ -16634,6 +17061,31 @@ const (
 	StreamProcessorStatusStopping = "STOPPING"
 )
 
+// StreamProcessorStatus is an enum
+type StreamProcessorStatus struct{}
+
+// Contains returns whether the StreamProcessorStatus enum includes the element
+func (enum StreamProcessorStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamProcessorStatus enum
+func (enum StreamProcessorStatus) Values() []string {
+	return []string{
+		StreamProcessorStatusStopped,
+		StreamProcessorStatusStarting,
+		StreamProcessorStatusRunning,
+		StreamProcessorStatusFailed,
+		StreamProcessorStatusStopping,
+	}
+}
+
 const (
 	// TechnicalCueTypeColorBars is a TechnicalCueType enum value
 	TechnicalCueTypeColorBars = "ColorBars"
@@ -16645,6 +17097,29 @@ const (
 	TechnicalCueTypeBlackFrames = "BlackFrames"
 )
 
+// TechnicalCueType is an enum
+type TechnicalCueType struct{}
+
+// Contains returns whether the TechnicalCueType enum includes the element
+func (enum TechnicalCueType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TechnicalCueType enum
+func (enum TechnicalCueType) Values() []string {
+	return []string{
+		TechnicalCueTypeColorBars,
+		TechnicalCueTypeEndCredits,
+		TechnicalCueTypeBlackFrames,
+	}
+}
+
 const (
 	// TextTypesLine is a TextTypes enum value
 	TextTypesLine = "LINE"
@@ -16652,6 +17127,28 @@ const (
 	// TextTypesWord is a TextTypes enum value
 	TextTypesWord = "WORD"
 )
+
+// TextTypes is an enum
+type TextTypes struct{}
+
+// Contains returns whether the TextTypes enum includes the element
+func (enum TextTypes) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TextTypes enum
+func (enum TextTypes) Values() []string {
+	return []string{
+		TextTypesLine,
+		TextTypesWord,
+	}
+}
 
 const (
 	// VideoJobStatusInProgress is a VideoJobStatus enum value
@@ -16663,3 +17160,26 @@ const (
 	// VideoJobStatusFailed is a VideoJobStatus enum value
 	VideoJobStatusFailed = "FAILED"
 )
+
+// VideoJobStatus is an enum
+type VideoJobStatus struct{}
+
+// Contains returns whether the VideoJobStatus enum includes the element
+func (enum VideoJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VideoJobStatus enum
+func (enum VideoJobStatus) Values() []string {
+	return []string{
+		VideoJobStatusInProgress,
+		VideoJobStatusSucceeded,
+		VideoJobStatusFailed,
+	}
+}

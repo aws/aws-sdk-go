@@ -15124,6 +15124,28 @@ const (
 	BehaviorOnMXFailureRejectMessage = "RejectMessage"
 )
 
+// BehaviorOnMXFailure is an enum
+type BehaviorOnMXFailure struct{}
+
+// Contains returns whether the BehaviorOnMXFailure enum includes the element
+func (enum BehaviorOnMXFailure) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BehaviorOnMXFailure enum
+func (enum BehaviorOnMXFailure) Values() []string {
+	return []string{
+		BehaviorOnMXFailureUseDefaultValue,
+		BehaviorOnMXFailureRejectMessage,
+	}
+}
+
 const (
 	// BounceTypeDoesNotExist is a BounceType enum value
 	BounceTypeDoesNotExist = "DoesNotExist"
@@ -15143,6 +15165,32 @@ const (
 	// BounceTypeTemporaryFailure is a BounceType enum value
 	BounceTypeTemporaryFailure = "TemporaryFailure"
 )
+
+// BounceType is an enum
+type BounceType struct{}
+
+// Contains returns whether the BounceType enum includes the element
+func (enum BounceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BounceType enum
+func (enum BounceType) Values() []string {
+	return []string{
+		BounceTypeDoesNotExist,
+		BounceTypeMessageTooLarge,
+		BounceTypeExceededQuota,
+		BounceTypeContentRejected,
+		BounceTypeUndefined,
+		BounceTypeTemporaryFailure,
+	}
+}
 
 const (
 	// BulkEmailStatusSuccess is a BulkEmailStatus enum value
@@ -15188,6 +15236,40 @@ const (
 	BulkEmailStatusFailed = "Failed"
 )
 
+// BulkEmailStatus is an enum
+type BulkEmailStatus struct{}
+
+// Contains returns whether the BulkEmailStatus enum includes the element
+func (enum BulkEmailStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BulkEmailStatus enum
+func (enum BulkEmailStatus) Values() []string {
+	return []string{
+		BulkEmailStatusSuccess,
+		BulkEmailStatusMessageRejected,
+		BulkEmailStatusMailFromDomainNotVerified,
+		BulkEmailStatusConfigurationSetDoesNotExist,
+		BulkEmailStatusTemplateDoesNotExist,
+		BulkEmailStatusAccountSuspended,
+		BulkEmailStatusAccountThrottled,
+		BulkEmailStatusAccountDailyQuotaExceeded,
+		BulkEmailStatusInvalidSendingPoolName,
+		BulkEmailStatusAccountSendingPaused,
+		BulkEmailStatusConfigurationSetSendingPaused,
+		BulkEmailStatusInvalidParameterValue,
+		BulkEmailStatusTransientFailure,
+		BulkEmailStatusFailed,
+	}
+}
+
 const (
 	// ConfigurationSetAttributeEventDestinations is a ConfigurationSetAttribute enum value
 	ConfigurationSetAttributeEventDestinations = "eventDestinations"
@@ -15201,6 +15283,30 @@ const (
 	// ConfigurationSetAttributeReputationOptions is a ConfigurationSetAttribute enum value
 	ConfigurationSetAttributeReputationOptions = "reputationOptions"
 )
+
+// ConfigurationSetAttribute is an enum
+type ConfigurationSetAttribute struct{}
+
+// Contains returns whether the ConfigurationSetAttribute enum includes the element
+func (enum ConfigurationSetAttribute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigurationSetAttribute enum
+func (enum ConfigurationSetAttribute) Values() []string {
+	return []string{
+		ConfigurationSetAttributeEventDestinations,
+		ConfigurationSetAttributeTrackingOptions,
+		ConfigurationSetAttributeDeliveryOptions,
+		ConfigurationSetAttributeReputationOptions,
+	}
+}
 
 const (
 	// CustomMailFromStatusPending is a CustomMailFromStatus enum value
@@ -15216,6 +15322,30 @@ const (
 	CustomMailFromStatusTemporaryFailure = "TemporaryFailure"
 )
 
+// CustomMailFromStatus is an enum
+type CustomMailFromStatus struct{}
+
+// Contains returns whether the CustomMailFromStatus enum includes the element
+func (enum CustomMailFromStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CustomMailFromStatus enum
+func (enum CustomMailFromStatus) Values() []string {
+	return []string{
+		CustomMailFromStatusPending,
+		CustomMailFromStatusSuccess,
+		CustomMailFromStatusFailed,
+		CustomMailFromStatusTemporaryFailure,
+	}
+}
+
 const (
 	// DimensionValueSourceMessageTag is a DimensionValueSource enum value
 	DimensionValueSourceMessageTag = "messageTag"
@@ -15226,6 +15356,29 @@ const (
 	// DimensionValueSourceLinkTag is a DimensionValueSource enum value
 	DimensionValueSourceLinkTag = "linkTag"
 )
+
+// DimensionValueSource is an enum
+type DimensionValueSource struct{}
+
+// Contains returns whether the DimensionValueSource enum includes the element
+func (enum DimensionValueSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DimensionValueSource enum
+func (enum DimensionValueSource) Values() []string {
+	return []string{
+		DimensionValueSourceMessageTag,
+		DimensionValueSourceEmailHeader,
+		DimensionValueSourceLinkTag,
+	}
+}
 
 const (
 	// DsnActionFailed is a DsnAction enum value
@@ -15243,6 +15396,31 @@ const (
 	// DsnActionExpanded is a DsnAction enum value
 	DsnActionExpanded = "expanded"
 )
+
+// DsnAction is an enum
+type DsnAction struct{}
+
+// Contains returns whether the DsnAction enum includes the element
+func (enum DsnAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DsnAction enum
+func (enum DsnAction) Values() []string {
+	return []string{
+		DsnActionFailed,
+		DsnActionDelayed,
+		DsnActionDelivered,
+		DsnActionRelayed,
+		DsnActionExpanded,
+	}
+}
 
 const (
 	// EventTypeSend is a EventType enum value
@@ -15270,6 +15448,34 @@ const (
 	EventTypeRenderingFailure = "renderingFailure"
 )
 
+// EventType is an enum
+type EventType struct{}
+
+// Contains returns whether the EventType enum includes the element
+func (enum EventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventType enum
+func (enum EventType) Values() []string {
+	return []string{
+		EventTypeSend,
+		EventTypeReject,
+		EventTypeBounce,
+		EventTypeComplaint,
+		EventTypeDelivery,
+		EventTypeOpen,
+		EventTypeClick,
+		EventTypeRenderingFailure,
+	}
+}
+
 const (
 	// IdentityTypeEmailAddress is a IdentityType enum value
 	IdentityTypeEmailAddress = "EmailAddress"
@@ -15278,6 +15484,28 @@ const (
 	IdentityTypeDomain = "Domain"
 )
 
+// IdentityType is an enum
+type IdentityType struct{}
+
+// Contains returns whether the IdentityType enum includes the element
+func (enum IdentityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IdentityType enum
+func (enum IdentityType) Values() []string {
+	return []string{
+		IdentityTypeEmailAddress,
+		IdentityTypeDomain,
+	}
+}
+
 const (
 	// InvocationTypeEvent is a InvocationType enum value
 	InvocationTypeEvent = "Event"
@@ -15285,6 +15513,28 @@ const (
 	// InvocationTypeRequestResponse is a InvocationType enum value
 	InvocationTypeRequestResponse = "RequestResponse"
 )
+
+// InvocationType is an enum
+type InvocationType struct{}
+
+// Contains returns whether the InvocationType enum includes the element
+func (enum InvocationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InvocationType enum
+func (enum InvocationType) Values() []string {
+	return []string{
+		InvocationTypeEvent,
+		InvocationTypeRequestResponse,
+	}
+}
 
 const (
 	// NotificationTypeBounce is a NotificationType enum value
@@ -15297,6 +15547,29 @@ const (
 	NotificationTypeDelivery = "Delivery"
 )
 
+// NotificationType is an enum
+type NotificationType struct{}
+
+// Contains returns whether the NotificationType enum includes the element
+func (enum NotificationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotificationType enum
+func (enum NotificationType) Values() []string {
+	return []string{
+		NotificationTypeBounce,
+		NotificationTypeComplaint,
+		NotificationTypeDelivery,
+	}
+}
+
 const (
 	// ReceiptFilterPolicyBlock is a ReceiptFilterPolicy enum value
 	ReceiptFilterPolicyBlock = "Block"
@@ -15304,6 +15577,28 @@ const (
 	// ReceiptFilterPolicyAllow is a ReceiptFilterPolicy enum value
 	ReceiptFilterPolicyAllow = "Allow"
 )
+
+// ReceiptFilterPolicy is an enum
+type ReceiptFilterPolicy struct{}
+
+// Contains returns whether the ReceiptFilterPolicy enum includes the element
+func (enum ReceiptFilterPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReceiptFilterPolicy enum
+func (enum ReceiptFilterPolicy) Values() []string {
+	return []string{
+		ReceiptFilterPolicyBlock,
+		ReceiptFilterPolicyAllow,
+	}
+}
 
 const (
 	// SNSActionEncodingUtf8 is a SNSActionEncoding enum value
@@ -15313,10 +15608,53 @@ const (
 	SNSActionEncodingBase64 = "Base64"
 )
 
+// SNSActionEncoding is an enum
+type SNSActionEncoding struct{}
+
+// Contains returns whether the SNSActionEncoding enum includes the element
+func (enum SNSActionEncoding) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SNSActionEncoding enum
+func (enum SNSActionEncoding) Values() []string {
+	return []string{
+		SNSActionEncodingUtf8,
+		SNSActionEncodingBase64,
+	}
+}
+
 const (
 	// StopScopeRuleSet is a StopScope enum value
 	StopScopeRuleSet = "RuleSet"
 )
+
+// StopScope is an enum
+type StopScope struct{}
+
+// Contains returns whether the StopScope enum includes the element
+func (enum StopScope) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StopScope enum
+func (enum StopScope) Values() []string {
+	return []string{
+		StopScopeRuleSet,
+	}
+}
 
 const (
 	// TlsPolicyRequire is a TlsPolicy enum value
@@ -15325,6 +15663,28 @@ const (
 	// TlsPolicyOptional is a TlsPolicy enum value
 	TlsPolicyOptional = "Optional"
 )
+
+// TlsPolicy is an enum
+type TlsPolicy struct{}
+
+// Contains returns whether the TlsPolicy enum includes the element
+func (enum TlsPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TlsPolicy enum
+func (enum TlsPolicy) Values() []string {
+	return []string{
+		TlsPolicyRequire,
+		TlsPolicyOptional,
+	}
+}
 
 const (
 	// VerificationStatusPending is a VerificationStatus enum value
@@ -15342,3 +15702,28 @@ const (
 	// VerificationStatusNotStarted is a VerificationStatus enum value
 	VerificationStatusNotStarted = "NotStarted"
 )
+
+// VerificationStatus is an enum
+type VerificationStatus struct{}
+
+// Contains returns whether the VerificationStatus enum includes the element
+func (enum VerificationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VerificationStatus enum
+func (enum VerificationStatus) Values() []string {
+	return []string{
+		VerificationStatusPending,
+		VerificationStatusSuccess,
+		VerificationStatusFailed,
+		VerificationStatusTemporaryFailure,
+		VerificationStatusNotStarted,
+	}
+}

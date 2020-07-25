@@ -9955,6 +9955,28 @@ const (
 	AccessPropertyValueDeny = "DENY"
 )
 
+// AccessPropertyValue is an enum
+type AccessPropertyValue struct{}
+
+// Contains returns whether the AccessPropertyValue enum includes the element
+func (enum AccessPropertyValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccessPropertyValue enum
+func (enum AccessPropertyValue) Values() []string {
+	return []string{
+		AccessPropertyValueAllow,
+		AccessPropertyValueDeny,
+	}
+}
+
 const (
 	// ComputeValue is a Compute enum value
 	ComputeValue = "VALUE"
@@ -9978,6 +10000,33 @@ const (
 	ComputeGraphicspro = "GRAPHICSPRO"
 )
 
+// Compute is an enum
+type Compute struct{}
+
+// Contains returns whether the Compute enum includes the element
+func (enum Compute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Compute enum
+func (enum Compute) Values() []string {
+	return []string{
+		ComputeValue,
+		ComputeStandard,
+		ComputePerformance,
+		ComputePower,
+		ComputeGraphics,
+		ComputePowerpro,
+		ComputeGraphicspro,
+	}
+}
+
 const (
 	// ConnectionStateConnected is a ConnectionState enum value
 	ConnectionStateConnected = "CONNECTED"
@@ -9988,6 +10037,29 @@ const (
 	// ConnectionStateUnknown is a ConnectionState enum value
 	ConnectionStateUnknown = "UNKNOWN"
 )
+
+// ConnectionState is an enum
+type ConnectionState struct{}
+
+// Contains returns whether the ConnectionState enum includes the element
+func (enum ConnectionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionState enum
+func (enum ConnectionState) Values() []string {
+	return []string{
+		ConnectionStateConnected,
+		ConnectionStateDisconnected,
+		ConnectionStateUnknown,
+	}
+}
 
 const (
 	// DedicatedTenancyModificationStateEnumPending is a DedicatedTenancyModificationStateEnum enum value
@@ -10000,10 +10072,54 @@ const (
 	DedicatedTenancyModificationStateEnumFailed = "FAILED"
 )
 
+// DedicatedTenancyModificationStateEnum is an enum
+type DedicatedTenancyModificationStateEnum struct{}
+
+// Contains returns whether the DedicatedTenancyModificationStateEnum enum includes the element
+func (enum DedicatedTenancyModificationStateEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DedicatedTenancyModificationStateEnum enum
+func (enum DedicatedTenancyModificationStateEnum) Values() []string {
+	return []string{
+		DedicatedTenancyModificationStateEnumPending,
+		DedicatedTenancyModificationStateEnumCompleted,
+		DedicatedTenancyModificationStateEnumFailed,
+	}
+}
+
 const (
 	// DedicatedTenancySupportEnumEnabled is a DedicatedTenancySupportEnum enum value
 	DedicatedTenancySupportEnumEnabled = "ENABLED"
 )
+
+// DedicatedTenancySupportEnum is an enum
+type DedicatedTenancySupportEnum struct{}
+
+// Contains returns whether the DedicatedTenancySupportEnum enum includes the element
+func (enum DedicatedTenancySupportEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DedicatedTenancySupportEnum enum
+func (enum DedicatedTenancySupportEnum) Values() []string {
+	return []string{
+		DedicatedTenancySupportEnumEnabled,
+	}
+}
 
 const (
 	// DedicatedTenancySupportResultEnumEnabled is a DedicatedTenancySupportResultEnum enum value
@@ -10013,6 +10129,28 @@ const (
 	DedicatedTenancySupportResultEnumDisabled = "DISABLED"
 )
 
+// DedicatedTenancySupportResultEnum is an enum
+type DedicatedTenancySupportResultEnum struct{}
+
+// Contains returns whether the DedicatedTenancySupportResultEnum enum includes the element
+func (enum DedicatedTenancySupportResultEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DedicatedTenancySupportResultEnum enum
+func (enum DedicatedTenancySupportResultEnum) Values() []string {
+	return []string{
+		DedicatedTenancySupportResultEnumEnabled,
+		DedicatedTenancySupportResultEnumDisabled,
+	}
+}
+
 const (
 	// ImageTypeOwned is a ImageType enum value
 	ImageTypeOwned = "OWNED"
@@ -10020,6 +10158,28 @@ const (
 	// ImageTypeShared is a ImageType enum value
 	ImageTypeShared = "SHARED"
 )
+
+// ImageType is an enum
+type ImageType struct{}
+
+// Contains returns whether the ImageType enum includes the element
+func (enum ImageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageType enum
+func (enum ImageType) Values() []string {
+	return []string{
+		ImageTypeOwned,
+		ImageTypeShared,
+	}
+}
 
 const (
 	// ModificationResourceEnumRootVolume is a ModificationResourceEnum enum value
@@ -10032,6 +10192,29 @@ const (
 	ModificationResourceEnumComputeType = "COMPUTE_TYPE"
 )
 
+// ModificationResourceEnum is an enum
+type ModificationResourceEnum struct{}
+
+// Contains returns whether the ModificationResourceEnum enum includes the element
+func (enum ModificationResourceEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModificationResourceEnum enum
+func (enum ModificationResourceEnum) Values() []string {
+	return []string{
+		ModificationResourceEnumRootVolume,
+		ModificationResourceEnumUserVolume,
+		ModificationResourceEnumComputeType,
+	}
+}
+
 const (
 	// ModificationStateEnumUpdateInitiated is a ModificationStateEnum enum value
 	ModificationStateEnumUpdateInitiated = "UPDATE_INITIATED"
@@ -10039,6 +10222,28 @@ const (
 	// ModificationStateEnumUpdateInProgress is a ModificationStateEnum enum value
 	ModificationStateEnumUpdateInProgress = "UPDATE_IN_PROGRESS"
 )
+
+// ModificationStateEnum is an enum
+type ModificationStateEnum struct{}
+
+// Contains returns whether the ModificationStateEnum enum includes the element
+func (enum ModificationStateEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ModificationStateEnum enum
+func (enum ModificationStateEnum) Values() []string {
+	return []string{
+		ModificationStateEnumUpdateInitiated,
+		ModificationStateEnumUpdateInProgress,
+	}
+}
 
 const (
 	// OperatingSystemTypeWindows is a OperatingSystemType enum value
@@ -10048,6 +10253,28 @@ const (
 	OperatingSystemTypeLinux = "LINUX"
 )
 
+// OperatingSystemType is an enum
+type OperatingSystemType struct{}
+
+// Contains returns whether the OperatingSystemType enum includes the element
+func (enum OperatingSystemType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperatingSystemType enum
+func (enum OperatingSystemType) Values() []string {
+	return []string{
+		OperatingSystemTypeWindows,
+		OperatingSystemTypeLinux,
+	}
+}
+
 const (
 	// ReconnectEnumEnabled is a ReconnectEnum enum value
 	ReconnectEnumEnabled = "ENABLED"
@@ -10055,6 +10282,28 @@ const (
 	// ReconnectEnumDisabled is a ReconnectEnum enum value
 	ReconnectEnumDisabled = "DISABLED"
 )
+
+// ReconnectEnum is an enum
+type ReconnectEnum struct{}
+
+// Contains returns whether the ReconnectEnum enum includes the element
+func (enum ReconnectEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReconnectEnum enum
+func (enum ReconnectEnum) Values() []string {
+	return []string{
+		ReconnectEnumEnabled,
+		ReconnectEnumDisabled,
+	}
+}
 
 const (
 	// RunningModeAutoStop is a RunningMode enum value
@@ -10064,6 +10313,28 @@ const (
 	RunningModeAlwaysOn = "ALWAYS_ON"
 )
 
+// RunningMode is an enum
+type RunningMode struct{}
+
+// Contains returns whether the RunningMode enum includes the element
+func (enum RunningMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RunningMode enum
+func (enum RunningMode) Values() []string {
+	return []string{
+		RunningModeAutoStop,
+		RunningModeAlwaysOn,
+	}
+}
+
 const (
 	// TargetWorkspaceStateAvailable is a TargetWorkspaceState enum value
 	TargetWorkspaceStateAvailable = "AVAILABLE"
@@ -10072,6 +10343,28 @@ const (
 	TargetWorkspaceStateAdminMaintenance = "ADMIN_MAINTENANCE"
 )
 
+// TargetWorkspaceState is an enum
+type TargetWorkspaceState struct{}
+
+// Contains returns whether the TargetWorkspaceState enum includes the element
+func (enum TargetWorkspaceState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetWorkspaceState enum
+func (enum TargetWorkspaceState) Values() []string {
+	return []string{
+		TargetWorkspaceStateAvailable,
+		TargetWorkspaceStateAdminMaintenance,
+	}
+}
+
 const (
 	// TenancyDedicated is a Tenancy enum value
 	TenancyDedicated = "DEDICATED"
@@ -10079,6 +10372,28 @@ const (
 	// TenancyShared is a Tenancy enum value
 	TenancyShared = "SHARED"
 )
+
+// Tenancy is an enum
+type Tenancy struct{}
+
+// Contains returns whether the Tenancy enum includes the element
+func (enum Tenancy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Tenancy enum
+func (enum Tenancy) Values() []string {
+	return []string{
+		TenancyDedicated,
+		TenancyShared,
+	}
+}
 
 const (
 	// WorkspaceDirectoryStateRegistering is a WorkspaceDirectoryState enum value
@@ -10097,6 +10412,31 @@ const (
 	WorkspaceDirectoryStateError = "ERROR"
 )
 
+// WorkspaceDirectoryState is an enum
+type WorkspaceDirectoryState struct{}
+
+// Contains returns whether the WorkspaceDirectoryState enum includes the element
+func (enum WorkspaceDirectoryState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkspaceDirectoryState enum
+func (enum WorkspaceDirectoryState) Values() []string {
+	return []string{
+		WorkspaceDirectoryStateRegistering,
+		WorkspaceDirectoryStateRegistered,
+		WorkspaceDirectoryStateDeregistering,
+		WorkspaceDirectoryStateDeregistered,
+		WorkspaceDirectoryStateError,
+	}
+}
+
 const (
 	// WorkspaceDirectoryTypeSimpleAd is a WorkspaceDirectoryType enum value
 	WorkspaceDirectoryTypeSimpleAd = "SIMPLE_AD"
@@ -10104,6 +10444,28 @@ const (
 	// WorkspaceDirectoryTypeAdConnector is a WorkspaceDirectoryType enum value
 	WorkspaceDirectoryTypeAdConnector = "AD_CONNECTOR"
 )
+
+// WorkspaceDirectoryType is an enum
+type WorkspaceDirectoryType struct{}
+
+// Contains returns whether the WorkspaceDirectoryType enum includes the element
+func (enum WorkspaceDirectoryType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkspaceDirectoryType enum
+func (enum WorkspaceDirectoryType) Values() []string {
+	return []string{
+		WorkspaceDirectoryTypeSimpleAd,
+		WorkspaceDirectoryTypeAdConnector,
+	}
+}
 
 const (
 	// WorkspaceImageIngestionProcessByolRegular is a WorkspaceImageIngestionProcess enum value
@@ -10116,6 +10478,29 @@ const (
 	WorkspaceImageIngestionProcessByolGraphicspro = "BYOL_GRAPHICSPRO"
 )
 
+// WorkspaceImageIngestionProcess is an enum
+type WorkspaceImageIngestionProcess struct{}
+
+// Contains returns whether the WorkspaceImageIngestionProcess enum includes the element
+func (enum WorkspaceImageIngestionProcess) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkspaceImageIngestionProcess enum
+func (enum WorkspaceImageIngestionProcess) Values() []string {
+	return []string{
+		WorkspaceImageIngestionProcessByolRegular,
+		WorkspaceImageIngestionProcessByolGraphics,
+		WorkspaceImageIngestionProcessByolGraphicspro,
+	}
+}
+
 const (
 	// WorkspaceImageRequiredTenancyDefault is a WorkspaceImageRequiredTenancy enum value
 	WorkspaceImageRequiredTenancyDefault = "DEFAULT"
@@ -10123,6 +10508,28 @@ const (
 	// WorkspaceImageRequiredTenancyDedicated is a WorkspaceImageRequiredTenancy enum value
 	WorkspaceImageRequiredTenancyDedicated = "DEDICATED"
 )
+
+// WorkspaceImageRequiredTenancy is an enum
+type WorkspaceImageRequiredTenancy struct{}
+
+// Contains returns whether the WorkspaceImageRequiredTenancy enum includes the element
+func (enum WorkspaceImageRequiredTenancy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkspaceImageRequiredTenancy enum
+func (enum WorkspaceImageRequiredTenancy) Values() []string {
+	return []string{
+		WorkspaceImageRequiredTenancyDefault,
+		WorkspaceImageRequiredTenancyDedicated,
+	}
+}
 
 const (
 	// WorkspaceImageStateAvailable is a WorkspaceImageState enum value
@@ -10134,6 +10541,29 @@ const (
 	// WorkspaceImageStateError is a WorkspaceImageState enum value
 	WorkspaceImageStateError = "ERROR"
 )
+
+// WorkspaceImageState is an enum
+type WorkspaceImageState struct{}
+
+// Contains returns whether the WorkspaceImageState enum includes the element
+func (enum WorkspaceImageState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkspaceImageState enum
+func (enum WorkspaceImageState) Values() []string {
+	return []string{
+		WorkspaceImageStateAvailable,
+		WorkspaceImageStatePending,
+		WorkspaceImageStateError,
+	}
+}
 
 const (
 	// WorkspaceStatePending is a WorkspaceState enum value
@@ -10187,3 +10617,40 @@ const (
 	// WorkspaceStateError is a WorkspaceState enum value
 	WorkspaceStateError = "ERROR"
 )
+
+// WorkspaceState is an enum
+type WorkspaceState struct{}
+
+// Contains returns whether the WorkspaceState enum includes the element
+func (enum WorkspaceState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkspaceState enum
+func (enum WorkspaceState) Values() []string {
+	return []string{
+		WorkspaceStatePending,
+		WorkspaceStateAvailable,
+		WorkspaceStateImpaired,
+		WorkspaceStateUnhealthy,
+		WorkspaceStateRebooting,
+		WorkspaceStateStarting,
+		WorkspaceStateRebuilding,
+		WorkspaceStateRestoring,
+		WorkspaceStateMaintenance,
+		WorkspaceStateAdminMaintenance,
+		WorkspaceStateTerminating,
+		WorkspaceStateTerminated,
+		WorkspaceStateSuspended,
+		WorkspaceStateUpdating,
+		WorkspaceStateStopping,
+		WorkspaceStateStopped,
+		WorkspaceStateError,
+	}
+}

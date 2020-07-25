@@ -5912,6 +5912,28 @@ const (
 	AuthenticationStrategyLdap = "LDAP"
 )
 
+// AuthenticationStrategy is an enum
+type AuthenticationStrategy struct{}
+
+// Contains returns whether the AuthenticationStrategy enum includes the element
+func (enum AuthenticationStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthenticationStrategy enum
+func (enum AuthenticationStrategy) Values() []string {
+	return []string{
+		AuthenticationStrategySimple,
+		AuthenticationStrategyLdap,
+	}
+}
+
 // The status of the broker.
 const (
 	// BrokerStateCreationInProgress is a BrokerState enum value
@@ -5930,6 +5952,31 @@ const (
 	BrokerStateRebootInProgress = "REBOOT_IN_PROGRESS"
 )
 
+// BrokerState is an enum
+type BrokerState struct{}
+
+// Contains returns whether the BrokerState enum includes the element
+func (enum BrokerState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BrokerState enum
+func (enum BrokerState) Values() []string {
+	return []string{
+		BrokerStateCreationInProgress,
+		BrokerStateCreationFailed,
+		BrokerStateDeletionInProgress,
+		BrokerStateRunning,
+		BrokerStateRebootInProgress,
+	}
+}
+
 // The storage type of the broker.
 const (
 	// BrokerStorageTypeEbs is a BrokerStorageType enum value
@@ -5938,6 +5985,28 @@ const (
 	// BrokerStorageTypeEfs is a BrokerStorageType enum value
 	BrokerStorageTypeEfs = "EFS"
 )
+
+// BrokerStorageType is an enum
+type BrokerStorageType struct{}
+
+// Contains returns whether the BrokerStorageType enum includes the element
+func (enum BrokerStorageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BrokerStorageType enum
+func (enum BrokerStorageType) Values() []string {
+	return []string{
+		BrokerStorageTypeEbs,
+		BrokerStorageTypeEfs,
+	}
+}
 
 // The type of change pending for the ActiveMQ user.
 const (
@@ -5950,6 +6019,29 @@ const (
 	// ChangeTypeDelete is a ChangeType enum value
 	ChangeTypeDelete = "DELETE"
 )
+
+// ChangeType is an enum
+type ChangeType struct{}
+
+// Contains returns whether the ChangeType enum includes the element
+func (enum ChangeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChangeType enum
+func (enum ChangeType) Values() []string {
+	return []string{
+		ChangeTypeCreate,
+		ChangeTypeUpdate,
+		ChangeTypeDelete,
+	}
+}
 
 const (
 	// DayOfWeekMonday is a DayOfWeek enum value
@@ -5974,6 +6066,33 @@ const (
 	DayOfWeekSunday = "SUNDAY"
 )
 
+// DayOfWeek is an enum
+type DayOfWeek struct{}
+
+// Contains returns whether the DayOfWeek enum includes the element
+func (enum DayOfWeek) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DayOfWeek enum
+func (enum DayOfWeek) Values() []string {
+	return []string{
+		DayOfWeekMonday,
+		DayOfWeekTuesday,
+		DayOfWeekWednesday,
+		DayOfWeekThursday,
+		DayOfWeekFriday,
+		DayOfWeekSaturday,
+		DayOfWeekSunday,
+	}
+}
+
 // The deployment mode of the broker.
 const (
 	// DeploymentModeSingleInstance is a DeploymentMode enum value
@@ -5983,11 +6102,54 @@ const (
 	DeploymentModeActiveStandbyMultiAz = "ACTIVE_STANDBY_MULTI_AZ"
 )
 
+// DeploymentMode is an enum
+type DeploymentMode struct{}
+
+// Contains returns whether the DeploymentMode enum includes the element
+func (enum DeploymentMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentMode enum
+func (enum DeploymentMode) Values() []string {
+	return []string{
+		DeploymentModeSingleInstance,
+		DeploymentModeActiveStandbyMultiAz,
+	}
+}
+
 // The type of broker engine. Note: Currently, Amazon MQ supports only ActiveMQ.
 const (
 	// EngineTypeActivemq is a EngineType enum value
 	EngineTypeActivemq = "ACTIVEMQ"
 )
+
+// EngineType is an enum
+type EngineType struct{}
+
+// Contains returns whether the EngineType enum includes the element
+func (enum EngineType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EngineType enum
+func (enum EngineType) Values() []string {
+	return []string{
+		EngineTypeActivemq,
+	}
+}
 
 // The reason for which the XML elements or attributes were sanitized.
 const (
@@ -6000,3 +6162,26 @@ const (
 	// SanitizationWarningReasonInvalidAttributeValueRemoved is a SanitizationWarningReason enum value
 	SanitizationWarningReasonInvalidAttributeValueRemoved = "INVALID_ATTRIBUTE_VALUE_REMOVED"
 )
+
+// SanitizationWarningReason is an enum
+type SanitizationWarningReason struct{}
+
+// Contains returns whether the SanitizationWarningReason enum includes the element
+func (enum SanitizationWarningReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SanitizationWarningReason enum
+func (enum SanitizationWarningReason) Values() []string {
+	return []string{
+		SanitizationWarningReasonDisallowedElementRemoved,
+		SanitizationWarningReasonDisallowedAttributeRemoved,
+		SanitizationWarningReasonInvalidAttributeValueRemoved,
+	}
+}

@@ -6218,6 +6218,28 @@ const (
 	ChangeTypeRequiresReboot = "REQUIRES_REBOOT"
 )
 
+// ChangeType is an enum
+type ChangeType struct{}
+
+// Contains returns whether the ChangeType enum includes the element
+func (enum ChangeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChangeType enum
+func (enum ChangeType) Values() []string {
+	return []string{
+		ChangeTypeImmediate,
+		ChangeTypeRequiresReboot,
+	}
+}
+
 const (
 	// IsModifiableTrue is a IsModifiable enum value
 	IsModifiableTrue = "TRUE"
@@ -6229,6 +6251,29 @@ const (
 	IsModifiableConditional = "CONDITIONAL"
 )
 
+// IsModifiable is an enum
+type IsModifiable struct{}
+
+// Contains returns whether the IsModifiable enum includes the element
+func (enum IsModifiable) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IsModifiable enum
+func (enum IsModifiable) Values() []string {
+	return []string{
+		IsModifiableTrue,
+		IsModifiableFalse,
+		IsModifiableConditional,
+	}
+}
+
 const (
 	// ParameterTypeDefault is a ParameterType enum value
 	ParameterTypeDefault = "DEFAULT"
@@ -6236,6 +6281,28 @@ const (
 	// ParameterTypeNodeTypeSpecific is a ParameterType enum value
 	ParameterTypeNodeTypeSpecific = "NODE_TYPE_SPECIFIC"
 )
+
+// ParameterType is an enum
+type ParameterType struct{}
+
+// Contains returns whether the ParameterType enum includes the element
+func (enum ParameterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ParameterType enum
+func (enum ParameterType) Values() []string {
+	return []string{
+		ParameterTypeDefault,
+		ParameterTypeNodeTypeSpecific,
+	}
+}
 
 const (
 	// SSEStatusEnabling is a SSEStatus enum value
@@ -6251,6 +6318,30 @@ const (
 	SSEStatusDisabled = "DISABLED"
 )
 
+// SSEStatus is an enum
+type SSEStatus struct{}
+
+// Contains returns whether the SSEStatus enum includes the element
+func (enum SSEStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SSEStatus enum
+func (enum SSEStatus) Values() []string {
+	return []string{
+		SSEStatusEnabling,
+		SSEStatusEnabled,
+		SSEStatusDisabling,
+		SSEStatusDisabled,
+	}
+}
+
 const (
 	// SourceTypeCluster is a SourceType enum value
 	SourceTypeCluster = "CLUSTER"
@@ -6261,3 +6352,26 @@ const (
 	// SourceTypeSubnetGroup is a SourceType enum value
 	SourceTypeSubnetGroup = "SUBNET_GROUP"
 )
+
+// SourceType is an enum
+type SourceType struct{}
+
+// Contains returns whether the SourceType enum includes the element
+func (enum SourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceType enum
+func (enum SourceType) Values() []string {
+	return []string{
+		SourceTypeCluster,
+		SourceTypeParameterGroup,
+		SourceTypeSubnetGroup,
+	}
+}

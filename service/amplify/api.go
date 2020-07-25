@@ -9338,6 +9338,34 @@ const (
 	DomainStatusUpdating = "UPDATING"
 )
 
+// DomainStatus is an enum
+type DomainStatus struct{}
+
+// Contains returns whether the DomainStatus enum includes the element
+func (enum DomainStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DomainStatus enum
+func (enum DomainStatus) Values() []string {
+	return []string{
+		DomainStatusPendingVerification,
+		DomainStatusInProgress,
+		DomainStatusAvailable,
+		DomainStatusPendingDeployment,
+		DomainStatusFailed,
+		DomainStatusCreating,
+		DomainStatusRequestingCertificate,
+		DomainStatusUpdating,
+	}
+}
+
 const (
 	// JobStatusPending is a JobStatus enum value
 	JobStatusPending = "PENDING"
@@ -9361,6 +9389,33 @@ const (
 	JobStatusCancelled = "CANCELLED"
 )
 
+// JobStatus is an enum
+type JobStatus struct{}
+
+// Contains returns whether the JobStatus enum includes the element
+func (enum JobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatus enum
+func (enum JobStatus) Values() []string {
+	return []string{
+		JobStatusPending,
+		JobStatusProvisioning,
+		JobStatusRunning,
+		JobStatusFailed,
+		JobStatusSucceed,
+		JobStatusCancelling,
+		JobStatusCancelled,
+	}
+}
+
 const (
 	// JobTypeRelease is a JobType enum value
 	JobTypeRelease = "RELEASE"
@@ -9375,10 +9430,55 @@ const (
 	JobTypeWebHook = "WEB_HOOK"
 )
 
+// JobType is an enum
+type JobType struct{}
+
+// Contains returns whether the JobType enum includes the element
+func (enum JobType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobType enum
+func (enum JobType) Values() []string {
+	return []string{
+		JobTypeRelease,
+		JobTypeRetry,
+		JobTypeManual,
+		JobTypeWebHook,
+	}
+}
+
 const (
 	// PlatformWeb is a Platform enum value
 	PlatformWeb = "WEB"
 )
+
+// Platform is an enum
+type Platform struct{}
+
+// Contains returns whether the Platform enum includes the element
+func (enum Platform) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Platform enum
+func (enum Platform) Values() []string {
+	return []string{
+		PlatformWeb,
+	}
+}
 
 const (
 	// StageProduction is a Stage enum value
@@ -9396,3 +9496,28 @@ const (
 	// StagePullRequest is a Stage enum value
 	StagePullRequest = "PULL_REQUEST"
 )
+
+// Stage is an enum
+type Stage struct{}
+
+// Contains returns whether the Stage enum includes the element
+func (enum Stage) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Stage enum
+func (enum Stage) Values() []string {
+	return []string{
+		StageProduction,
+		StageBeta,
+		StageDevelopment,
+		StageExperimental,
+		StagePullRequest,
+	}
+}

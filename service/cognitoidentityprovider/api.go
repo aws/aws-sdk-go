@@ -29240,6 +29240,30 @@ const (
 	AccountTakeoverEventActionTypeNoAction = "NO_ACTION"
 )
 
+// AccountTakeoverEventActionType is an enum
+type AccountTakeoverEventActionType struct{}
+
+// Contains returns whether the AccountTakeoverEventActionType enum includes the element
+func (enum AccountTakeoverEventActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccountTakeoverEventActionType enum
+func (enum AccountTakeoverEventActionType) Values() []string {
+	return []string{
+		AccountTakeoverEventActionTypeBlock,
+		AccountTakeoverEventActionTypeMfaIfConfigured,
+		AccountTakeoverEventActionTypeMfaRequired,
+		AccountTakeoverEventActionTypeNoAction,
+	}
+}
+
 const (
 	// AdvancedSecurityModeTypeOff is a AdvancedSecurityModeType enum value
 	AdvancedSecurityModeTypeOff = "OFF"
@@ -29251,6 +29275,29 @@ const (
 	AdvancedSecurityModeTypeEnforced = "ENFORCED"
 )
 
+// AdvancedSecurityModeType is an enum
+type AdvancedSecurityModeType struct{}
+
+// Contains returns whether the AdvancedSecurityModeType enum includes the element
+func (enum AdvancedSecurityModeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdvancedSecurityModeType enum
+func (enum AdvancedSecurityModeType) Values() []string {
+	return []string{
+		AdvancedSecurityModeTypeOff,
+		AdvancedSecurityModeTypeAudit,
+		AdvancedSecurityModeTypeEnforced,
+	}
+}
+
 const (
 	// AliasAttributeTypePhoneNumber is a AliasAttributeType enum value
 	AliasAttributeTypePhoneNumber = "phone_number"
@@ -29261,6 +29308,29 @@ const (
 	// AliasAttributeTypePreferredUsername is a AliasAttributeType enum value
 	AliasAttributeTypePreferredUsername = "preferred_username"
 )
+
+// AliasAttributeType is an enum
+type AliasAttributeType struct{}
+
+// Contains returns whether the AliasAttributeType enum includes the element
+func (enum AliasAttributeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AliasAttributeType enum
+func (enum AliasAttributeType) Values() []string {
+	return []string{
+		AliasAttributeTypePhoneNumber,
+		AliasAttributeTypeEmail,
+		AliasAttributeTypePreferredUsername,
+	}
+}
 
 const (
 	// AttributeDataTypeString is a AttributeDataType enum value
@@ -29275,6 +29345,30 @@ const (
 	// AttributeDataTypeBoolean is a AttributeDataType enum value
 	AttributeDataTypeBoolean = "Boolean"
 )
+
+// AttributeDataType is an enum
+type AttributeDataType struct{}
+
+// Contains returns whether the AttributeDataType enum includes the element
+func (enum AttributeDataType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AttributeDataType enum
+func (enum AttributeDataType) Values() []string {
+	return []string{
+		AttributeDataTypeString,
+		AttributeDataTypeNumber,
+		AttributeDataTypeDateTime,
+		AttributeDataTypeBoolean,
+	}
+}
 
 const (
 	// AuthFlowTypeUserSrpAuth is a AuthFlowType enum value
@@ -29299,6 +29393,33 @@ const (
 	AuthFlowTypeAdminUserPasswordAuth = "ADMIN_USER_PASSWORD_AUTH"
 )
 
+// AuthFlowType is an enum
+type AuthFlowType struct{}
+
+// Contains returns whether the AuthFlowType enum includes the element
+func (enum AuthFlowType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthFlowType enum
+func (enum AuthFlowType) Values() []string {
+	return []string{
+		AuthFlowTypeUserSrpAuth,
+		AuthFlowTypeRefreshTokenAuth,
+		AuthFlowTypeRefreshToken,
+		AuthFlowTypeCustomAuth,
+		AuthFlowTypeAdminNoSrpAuth,
+		AuthFlowTypeUserPasswordAuth,
+		AuthFlowTypeAdminUserPasswordAuth,
+	}
+}
+
 const (
 	// ChallengeNamePassword is a ChallengeName enum value
 	ChallengeNamePassword = "Password"
@@ -29306,6 +29427,28 @@ const (
 	// ChallengeNameMfa is a ChallengeName enum value
 	ChallengeNameMfa = "Mfa"
 )
+
+// ChallengeName is an enum
+type ChallengeName struct{}
+
+// Contains returns whether the ChallengeName enum includes the element
+func (enum ChallengeName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChallengeName enum
+func (enum ChallengeName) Values() []string {
+	return []string{
+		ChallengeNamePassword,
+		ChallengeNameMfa,
+	}
+}
 
 const (
 	// ChallengeNameTypeSmsMfa is a ChallengeNameType enum value
@@ -29339,6 +29482,36 @@ const (
 	ChallengeNameTypeNewPasswordRequired = "NEW_PASSWORD_REQUIRED"
 )
 
+// ChallengeNameType is an enum
+type ChallengeNameType struct{}
+
+// Contains returns whether the ChallengeNameType enum includes the element
+func (enum ChallengeNameType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChallengeNameType enum
+func (enum ChallengeNameType) Values() []string {
+	return []string{
+		ChallengeNameTypeSmsMfa,
+		ChallengeNameTypeSoftwareTokenMfa,
+		ChallengeNameTypeSelectMfaType,
+		ChallengeNameTypeMfaSetup,
+		ChallengeNameTypePasswordVerifier,
+		ChallengeNameTypeCustomChallenge,
+		ChallengeNameTypeDeviceSrpAuth,
+		ChallengeNameTypeDevicePasswordVerifier,
+		ChallengeNameTypeAdminNoSrpAuth,
+		ChallengeNameTypeNewPasswordRequired,
+	}
+}
+
 const (
 	// ChallengeResponseSuccess is a ChallengeResponse enum value
 	ChallengeResponseSuccess = "Success"
@@ -29346,6 +29519,28 @@ const (
 	// ChallengeResponseFailure is a ChallengeResponse enum value
 	ChallengeResponseFailure = "Failure"
 )
+
+// ChallengeResponse is an enum
+type ChallengeResponse struct{}
+
+// Contains returns whether the ChallengeResponse enum includes the element
+func (enum ChallengeResponse) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChallengeResponse enum
+func (enum ChallengeResponse) Values() []string {
+	return []string{
+		ChallengeResponseSuccess,
+		ChallengeResponseFailure,
+	}
+}
 
 const (
 	// CompromisedCredentialsEventActionTypeBlock is a CompromisedCredentialsEventActionType enum value
@@ -29355,6 +29550,28 @@ const (
 	CompromisedCredentialsEventActionTypeNoAction = "NO_ACTION"
 )
 
+// CompromisedCredentialsEventActionType is an enum
+type CompromisedCredentialsEventActionType struct{}
+
+// Contains returns whether the CompromisedCredentialsEventActionType enum includes the element
+func (enum CompromisedCredentialsEventActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CompromisedCredentialsEventActionType enum
+func (enum CompromisedCredentialsEventActionType) Values() []string {
+	return []string{
+		CompromisedCredentialsEventActionTypeBlock,
+		CompromisedCredentialsEventActionTypeNoAction,
+	}
+}
+
 const (
 	// DefaultEmailOptionTypeConfirmWithLink is a DefaultEmailOptionType enum value
 	DefaultEmailOptionTypeConfirmWithLink = "CONFIRM_WITH_LINK"
@@ -29362,6 +29579,28 @@ const (
 	// DefaultEmailOptionTypeConfirmWithCode is a DefaultEmailOptionType enum value
 	DefaultEmailOptionTypeConfirmWithCode = "CONFIRM_WITH_CODE"
 )
+
+// DefaultEmailOptionType is an enum
+type DefaultEmailOptionType struct{}
+
+// Contains returns whether the DefaultEmailOptionType enum includes the element
+func (enum DefaultEmailOptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DefaultEmailOptionType enum
+func (enum DefaultEmailOptionType) Values() []string {
+	return []string{
+		DefaultEmailOptionTypeConfirmWithLink,
+		DefaultEmailOptionTypeConfirmWithCode,
+	}
+}
 
 const (
 	// DeliveryMediumTypeSms is a DeliveryMediumType enum value
@@ -29371,6 +29610,28 @@ const (
 	DeliveryMediumTypeEmail = "EMAIL"
 )
 
+// DeliveryMediumType is an enum
+type DeliveryMediumType struct{}
+
+// Contains returns whether the DeliveryMediumType enum includes the element
+func (enum DeliveryMediumType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeliveryMediumType enum
+func (enum DeliveryMediumType) Values() []string {
+	return []string{
+		DeliveryMediumTypeSms,
+		DeliveryMediumTypeEmail,
+	}
+}
+
 const (
 	// DeviceRememberedStatusTypeRemembered is a DeviceRememberedStatusType enum value
 	DeviceRememberedStatusTypeRemembered = "remembered"
@@ -29378,6 +29639,28 @@ const (
 	// DeviceRememberedStatusTypeNotRemembered is a DeviceRememberedStatusType enum value
 	DeviceRememberedStatusTypeNotRemembered = "not_remembered"
 )
+
+// DeviceRememberedStatusType is an enum
+type DeviceRememberedStatusType struct{}
+
+// Contains returns whether the DeviceRememberedStatusType enum includes the element
+func (enum DeviceRememberedStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceRememberedStatusType enum
+func (enum DeviceRememberedStatusType) Values() []string {
+	return []string{
+		DeviceRememberedStatusTypeRemembered,
+		DeviceRememberedStatusTypeNotRemembered,
+	}
+}
 
 const (
 	// DomainStatusTypeCreating is a DomainStatusType enum value
@@ -29396,6 +29679,31 @@ const (
 	DomainStatusTypeFailed = "FAILED"
 )
 
+// DomainStatusType is an enum
+type DomainStatusType struct{}
+
+// Contains returns whether the DomainStatusType enum includes the element
+func (enum DomainStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DomainStatusType enum
+func (enum DomainStatusType) Values() []string {
+	return []string{
+		DomainStatusTypeCreating,
+		DomainStatusTypeDeleting,
+		DomainStatusTypeUpdating,
+		DomainStatusTypeActive,
+		DomainStatusTypeFailed,
+	}
+}
+
 const (
 	// EmailSendingAccountTypeCognitoDefault is a EmailSendingAccountType enum value
 	EmailSendingAccountTypeCognitoDefault = "COGNITO_DEFAULT"
@@ -29403,6 +29711,28 @@ const (
 	// EmailSendingAccountTypeDeveloper is a EmailSendingAccountType enum value
 	EmailSendingAccountTypeDeveloper = "DEVELOPER"
 )
+
+// EmailSendingAccountType is an enum
+type EmailSendingAccountType struct{}
+
+// Contains returns whether the EmailSendingAccountType enum includes the element
+func (enum EmailSendingAccountType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EmailSendingAccountType enum
+func (enum EmailSendingAccountType) Values() []string {
+	return []string{
+		EmailSendingAccountTypeCognitoDefault,
+		EmailSendingAccountTypeDeveloper,
+	}
+}
 
 const (
 	// EventFilterTypeSignIn is a EventFilterType enum value
@@ -29415,6 +29745,29 @@ const (
 	EventFilterTypeSignUp = "SIGN_UP"
 )
 
+// EventFilterType is an enum
+type EventFilterType struct{}
+
+// Contains returns whether the EventFilterType enum includes the element
+func (enum EventFilterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventFilterType enum
+func (enum EventFilterType) Values() []string {
+	return []string{
+		EventFilterTypeSignIn,
+		EventFilterTypePasswordChange,
+		EventFilterTypeSignUp,
+	}
+}
+
 const (
 	// EventResponseTypeSuccess is a EventResponseType enum value
 	EventResponseTypeSuccess = "Success"
@@ -29422,6 +29775,28 @@ const (
 	// EventResponseTypeFailure is a EventResponseType enum value
 	EventResponseTypeFailure = "Failure"
 )
+
+// EventResponseType is an enum
+type EventResponseType struct{}
+
+// Contains returns whether the EventResponseType enum includes the element
+func (enum EventResponseType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventResponseType enum
+func (enum EventResponseType) Values() []string {
+	return []string{
+		EventResponseTypeSuccess,
+		EventResponseTypeFailure,
+	}
+}
 
 const (
 	// EventTypeSignIn is a EventType enum value
@@ -29433,6 +29808,29 @@ const (
 	// EventTypeForgotPassword is a EventType enum value
 	EventTypeForgotPassword = "ForgotPassword"
 )
+
+// EventType is an enum
+type EventType struct{}
+
+// Contains returns whether the EventType enum includes the element
+func (enum EventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventType enum
+func (enum EventType) Values() []string {
+	return []string{
+		EventTypeSignIn,
+		EventTypeSignUp,
+		EventTypeForgotPassword,
+	}
+}
 
 const (
 	// ExplicitAuthFlowsTypeAdminNoSrpAuth is a ExplicitAuthFlowsType enum value
@@ -29460,6 +29858,34 @@ const (
 	ExplicitAuthFlowsTypeAllowRefreshTokenAuth = "ALLOW_REFRESH_TOKEN_AUTH"
 )
 
+// ExplicitAuthFlowsType is an enum
+type ExplicitAuthFlowsType struct{}
+
+// Contains returns whether the ExplicitAuthFlowsType enum includes the element
+func (enum ExplicitAuthFlowsType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExplicitAuthFlowsType enum
+func (enum ExplicitAuthFlowsType) Values() []string {
+	return []string{
+		ExplicitAuthFlowsTypeAdminNoSrpAuth,
+		ExplicitAuthFlowsTypeCustomAuthFlowOnly,
+		ExplicitAuthFlowsTypeUserPasswordAuth,
+		ExplicitAuthFlowsTypeAllowAdminUserPasswordAuth,
+		ExplicitAuthFlowsTypeAllowCustomAuth,
+		ExplicitAuthFlowsTypeAllowUserPasswordAuth,
+		ExplicitAuthFlowsTypeAllowUserSrpAuth,
+		ExplicitAuthFlowsTypeAllowRefreshTokenAuth,
+	}
+}
+
 const (
 	// FeedbackValueTypeValid is a FeedbackValueType enum value
 	FeedbackValueTypeValid = "Valid"
@@ -29467,6 +29893,28 @@ const (
 	// FeedbackValueTypeInvalid is a FeedbackValueType enum value
 	FeedbackValueTypeInvalid = "Invalid"
 )
+
+// FeedbackValueType is an enum
+type FeedbackValueType struct{}
+
+// Contains returns whether the FeedbackValueType enum includes the element
+func (enum FeedbackValueType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FeedbackValueType enum
+func (enum FeedbackValueType) Values() []string {
+	return []string{
+		FeedbackValueTypeValid,
+		FeedbackValueTypeInvalid,
+	}
+}
 
 const (
 	// IdentityProviderTypeTypeSaml is a IdentityProviderTypeType enum value
@@ -29488,6 +29936,32 @@ const (
 	IdentityProviderTypeTypeOidc = "OIDC"
 )
 
+// IdentityProviderTypeType is an enum
+type IdentityProviderTypeType struct{}
+
+// Contains returns whether the IdentityProviderTypeType enum includes the element
+func (enum IdentityProviderTypeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IdentityProviderTypeType enum
+func (enum IdentityProviderTypeType) Values() []string {
+	return []string{
+		IdentityProviderTypeTypeSaml,
+		IdentityProviderTypeTypeFacebook,
+		IdentityProviderTypeTypeGoogle,
+		IdentityProviderTypeTypeLoginWithAmazon,
+		IdentityProviderTypeTypeSignInWithApple,
+		IdentityProviderTypeTypeOidc,
+	}
+}
+
 const (
 	// MessageActionTypeResend is a MessageActionType enum value
 	MessageActionTypeResend = "RESEND"
@@ -29495,6 +29969,28 @@ const (
 	// MessageActionTypeSuppress is a MessageActionType enum value
 	MessageActionTypeSuppress = "SUPPRESS"
 )
+
+// MessageActionType is an enum
+type MessageActionType struct{}
+
+// Contains returns whether the MessageActionType enum includes the element
+func (enum MessageActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MessageActionType enum
+func (enum MessageActionType) Values() []string {
+	return []string{
+		MessageActionTypeResend,
+		MessageActionTypeSuppress,
+	}
+}
 
 const (
 	// OAuthFlowTypeCode is a OAuthFlowType enum value
@@ -29507,6 +30003,29 @@ const (
 	OAuthFlowTypeClientCredentials = "client_credentials"
 )
 
+// OAuthFlowType is an enum
+type OAuthFlowType struct{}
+
+// Contains returns whether the OAuthFlowType enum includes the element
+func (enum OAuthFlowType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OAuthFlowType enum
+func (enum OAuthFlowType) Values() []string {
+	return []string{
+		OAuthFlowTypeCode,
+		OAuthFlowTypeImplicit,
+		OAuthFlowTypeClientCredentials,
+	}
+}
+
 const (
 	// PreventUserExistenceErrorTypesLegacy is a PreventUserExistenceErrorTypes enum value
 	PreventUserExistenceErrorTypesLegacy = "LEGACY"
@@ -29514,6 +30033,28 @@ const (
 	// PreventUserExistenceErrorTypesEnabled is a PreventUserExistenceErrorTypes enum value
 	PreventUserExistenceErrorTypesEnabled = "ENABLED"
 )
+
+// PreventUserExistenceErrorTypes is an enum
+type PreventUserExistenceErrorTypes struct{}
+
+// Contains returns whether the PreventUserExistenceErrorTypes enum includes the element
+func (enum PreventUserExistenceErrorTypes) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PreventUserExistenceErrorTypes enum
+func (enum PreventUserExistenceErrorTypes) Values() []string {
+	return []string{
+		PreventUserExistenceErrorTypesLegacy,
+		PreventUserExistenceErrorTypesEnabled,
+	}
+}
 
 const (
 	// RecoveryOptionNameTypeVerifiedEmail is a RecoveryOptionNameType enum value
@@ -29526,6 +30067,29 @@ const (
 	RecoveryOptionNameTypeAdminOnly = "admin_only"
 )
 
+// RecoveryOptionNameType is an enum
+type RecoveryOptionNameType struct{}
+
+// Contains returns whether the RecoveryOptionNameType enum includes the element
+func (enum RecoveryOptionNameType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecoveryOptionNameType enum
+func (enum RecoveryOptionNameType) Values() []string {
+	return []string{
+		RecoveryOptionNameTypeVerifiedEmail,
+		RecoveryOptionNameTypeVerifiedPhoneNumber,
+		RecoveryOptionNameTypeAdminOnly,
+	}
+}
+
 const (
 	// RiskDecisionTypeNoRisk is a RiskDecisionType enum value
 	RiskDecisionTypeNoRisk = "NoRisk"
@@ -29536,6 +30100,29 @@ const (
 	// RiskDecisionTypeBlock is a RiskDecisionType enum value
 	RiskDecisionTypeBlock = "Block"
 )
+
+// RiskDecisionType is an enum
+type RiskDecisionType struct{}
+
+// Contains returns whether the RiskDecisionType enum includes the element
+func (enum RiskDecisionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RiskDecisionType enum
+func (enum RiskDecisionType) Values() []string {
+	return []string{
+		RiskDecisionTypeNoRisk,
+		RiskDecisionTypeAccountTakeover,
+		RiskDecisionTypeBlock,
+	}
+}
 
 const (
 	// RiskLevelTypeLow is a RiskLevelType enum value
@@ -29548,6 +30135,29 @@ const (
 	RiskLevelTypeHigh = "High"
 )
 
+// RiskLevelType is an enum
+type RiskLevelType struct{}
+
+// Contains returns whether the RiskLevelType enum includes the element
+func (enum RiskLevelType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RiskLevelType enum
+func (enum RiskLevelType) Values() []string {
+	return []string{
+		RiskLevelTypeLow,
+		RiskLevelTypeMedium,
+		RiskLevelTypeHigh,
+	}
+}
+
 const (
 	// StatusTypeEnabled is a StatusType enum value
 	StatusTypeEnabled = "Enabled"
@@ -29555,6 +30165,28 @@ const (
 	// StatusTypeDisabled is a StatusType enum value
 	StatusTypeDisabled = "Disabled"
 )
+
+// StatusType is an enum
+type StatusType struct{}
+
+// Contains returns whether the StatusType enum includes the element
+func (enum StatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StatusType enum
+func (enum StatusType) Values() []string {
+	return []string{
+		StatusTypeEnabled,
+		StatusTypeDisabled,
+	}
+}
 
 const (
 	// UserImportJobStatusTypeCreated is a UserImportJobStatusType enum value
@@ -29582,6 +30214,34 @@ const (
 	UserImportJobStatusTypeSucceeded = "Succeeded"
 )
 
+// UserImportJobStatusType is an enum
+type UserImportJobStatusType struct{}
+
+// Contains returns whether the UserImportJobStatusType enum includes the element
+func (enum UserImportJobStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserImportJobStatusType enum
+func (enum UserImportJobStatusType) Values() []string {
+	return []string{
+		UserImportJobStatusTypeCreated,
+		UserImportJobStatusTypePending,
+		UserImportJobStatusTypeInProgress,
+		UserImportJobStatusTypeStopping,
+		UserImportJobStatusTypeExpired,
+		UserImportJobStatusTypeStopped,
+		UserImportJobStatusTypeFailed,
+		UserImportJobStatusTypeSucceeded,
+	}
+}
+
 const (
 	// UserPoolMfaTypeOff is a UserPoolMfaType enum value
 	UserPoolMfaTypeOff = "OFF"
@@ -29592,6 +30252,29 @@ const (
 	// UserPoolMfaTypeOptional is a UserPoolMfaType enum value
 	UserPoolMfaTypeOptional = "OPTIONAL"
 )
+
+// UserPoolMfaType is an enum
+type UserPoolMfaType struct{}
+
+// Contains returns whether the UserPoolMfaType enum includes the element
+func (enum UserPoolMfaType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserPoolMfaType enum
+func (enum UserPoolMfaType) Values() []string {
+	return []string{
+		UserPoolMfaTypeOff,
+		UserPoolMfaTypeOn,
+		UserPoolMfaTypeOptional,
+	}
+}
 
 const (
 	// UserStatusTypeUnconfirmed is a UserStatusType enum value
@@ -29616,6 +30299,33 @@ const (
 	UserStatusTypeForceChangePassword = "FORCE_CHANGE_PASSWORD"
 )
 
+// UserStatusType is an enum
+type UserStatusType struct{}
+
+// Contains returns whether the UserStatusType enum includes the element
+func (enum UserStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserStatusType enum
+func (enum UserStatusType) Values() []string {
+	return []string{
+		UserStatusTypeUnconfirmed,
+		UserStatusTypeConfirmed,
+		UserStatusTypeArchived,
+		UserStatusTypeCompromised,
+		UserStatusTypeUnknown,
+		UserStatusTypeResetRequired,
+		UserStatusTypeForceChangePassword,
+	}
+}
+
 const (
 	// UsernameAttributeTypePhoneNumber is a UsernameAttributeType enum value
 	UsernameAttributeTypePhoneNumber = "phone_number"
@@ -29623,6 +30333,28 @@ const (
 	// UsernameAttributeTypeEmail is a UsernameAttributeType enum value
 	UsernameAttributeTypeEmail = "email"
 )
+
+// UsernameAttributeType is an enum
+type UsernameAttributeType struct{}
+
+// Contains returns whether the UsernameAttributeType enum includes the element
+func (enum UsernameAttributeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsernameAttributeType enum
+func (enum UsernameAttributeType) Values() []string {
+	return []string{
+		UsernameAttributeTypePhoneNumber,
+		UsernameAttributeTypeEmail,
+	}
+}
 
 const (
 	// VerifiedAttributeTypePhoneNumber is a VerifiedAttributeType enum value
@@ -29632,6 +30364,28 @@ const (
 	VerifiedAttributeTypeEmail = "email"
 )
 
+// VerifiedAttributeType is an enum
+type VerifiedAttributeType struct{}
+
+// Contains returns whether the VerifiedAttributeType enum includes the element
+func (enum VerifiedAttributeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VerifiedAttributeType enum
+func (enum VerifiedAttributeType) Values() []string {
+	return []string{
+		VerifiedAttributeTypePhoneNumber,
+		VerifiedAttributeTypeEmail,
+	}
+}
+
 const (
 	// VerifySoftwareTokenResponseTypeSuccess is a VerifySoftwareTokenResponseType enum value
 	VerifySoftwareTokenResponseTypeSuccess = "SUCCESS"
@@ -29639,3 +30393,25 @@ const (
 	// VerifySoftwareTokenResponseTypeError is a VerifySoftwareTokenResponseType enum value
 	VerifySoftwareTokenResponseTypeError = "ERROR"
 )
+
+// VerifySoftwareTokenResponseType is an enum
+type VerifySoftwareTokenResponseType struct{}
+
+// Contains returns whether the VerifySoftwareTokenResponseType enum includes the element
+func (enum VerifySoftwareTokenResponseType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VerifySoftwareTokenResponseType enum
+func (enum VerifySoftwareTokenResponseType) Values() []string {
+	return []string{
+		VerifySoftwareTokenResponseTypeSuccess,
+		VerifySoftwareTokenResponseTypeError,
+	}
+}

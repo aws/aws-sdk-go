@@ -4941,6 +4941,33 @@ const (
 	APINameGetClip = "GET_CLIP"
 )
 
+// APIName is an enum
+type APIName struct{}
+
+// Contains returns whether the APIName enum includes the element
+func (enum APIName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the APIName enum
+func (enum APIName) Values() []string {
+	return []string{
+		APINamePutMedia,
+		APINameGetMedia,
+		APINameListFragments,
+		APINameGetMediaForFragmentList,
+		APINameGetHlsStreamingSessionUrl,
+		APINameGetDashStreamingSessionUrl,
+		APINameGetClip,
+	}
+}
+
 const (
 	// ChannelProtocolWss is a ChannelProtocol enum value
 	ChannelProtocolWss = "WSS"
@@ -4948,6 +4975,28 @@ const (
 	// ChannelProtocolHttps is a ChannelProtocol enum value
 	ChannelProtocolHttps = "HTTPS"
 )
+
+// ChannelProtocol is an enum
+type ChannelProtocol struct{}
+
+// Contains returns whether the ChannelProtocol enum includes the element
+func (enum ChannelProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelProtocol enum
+func (enum ChannelProtocol) Values() []string {
+	return []string{
+		ChannelProtocolWss,
+		ChannelProtocolHttps,
+	}
+}
 
 const (
 	// ChannelRoleMaster is a ChannelRole enum value
@@ -4957,15 +5006,79 @@ const (
 	ChannelRoleViewer = "VIEWER"
 )
 
+// ChannelRole is an enum
+type ChannelRole struct{}
+
+// Contains returns whether the ChannelRole enum includes the element
+func (enum ChannelRole) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelRole enum
+func (enum ChannelRole) Values() []string {
+	return []string{
+		ChannelRoleMaster,
+		ChannelRoleViewer,
+	}
+}
+
 const (
 	// ChannelTypeSingleMaster is a ChannelType enum value
 	ChannelTypeSingleMaster = "SINGLE_MASTER"
 )
 
+// ChannelType is an enum
+type ChannelType struct{}
+
+// Contains returns whether the ChannelType enum includes the element
+func (enum ChannelType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelType enum
+func (enum ChannelType) Values() []string {
+	return []string{
+		ChannelTypeSingleMaster,
+	}
+}
+
 const (
 	// ComparisonOperatorBeginsWith is a ComparisonOperator enum value
 	ComparisonOperatorBeginsWith = "BEGINS_WITH"
 )
+
+// ComparisonOperator is an enum
+type ComparisonOperator struct{}
+
+// Contains returns whether the ComparisonOperator enum includes the element
+func (enum ComparisonOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComparisonOperator enum
+func (enum ComparisonOperator) Values() []string {
+	return []string{
+		ComparisonOperatorBeginsWith,
+	}
+}
 
 const (
 	// StatusCreating is a Status enum value
@@ -4981,6 +5094,30 @@ const (
 	StatusDeleting = "DELETING"
 )
 
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusCreating,
+		StatusActive,
+		StatusUpdating,
+		StatusDeleting,
+	}
+}
+
 const (
 	// UpdateDataRetentionOperationIncreaseDataRetention is a UpdateDataRetentionOperation enum value
 	UpdateDataRetentionOperationIncreaseDataRetention = "INCREASE_DATA_RETENTION"
@@ -4988,3 +5125,25 @@ const (
 	// UpdateDataRetentionOperationDecreaseDataRetention is a UpdateDataRetentionOperation enum value
 	UpdateDataRetentionOperationDecreaseDataRetention = "DECREASE_DATA_RETENTION"
 )
+
+// UpdateDataRetentionOperation is an enum
+type UpdateDataRetentionOperation struct{}
+
+// Contains returns whether the UpdateDataRetentionOperation enum includes the element
+func (enum UpdateDataRetentionOperation) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpdateDataRetentionOperation enum
+func (enum UpdateDataRetentionOperation) Values() []string {
+	return []string{
+		UpdateDataRetentionOperationIncreaseDataRetention,
+		UpdateDataRetentionOperationDecreaseDataRetention,
+	}
+}

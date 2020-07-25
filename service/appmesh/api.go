@@ -14725,6 +14725,28 @@ const (
 	DurationUnitS = "s"
 )
 
+// DurationUnit is an enum
+type DurationUnit struct{}
+
+// Contains returns whether the DurationUnit enum includes the element
+func (enum DurationUnit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DurationUnit enum
+func (enum DurationUnit) Values() []string {
+	return []string{
+		DurationUnitMs,
+		DurationUnitS,
+	}
+}
+
 const (
 	// EgressFilterTypeAllowAll is a EgressFilterType enum value
 	EgressFilterTypeAllowAll = "ALLOW_ALL"
@@ -14732,6 +14754,28 @@ const (
 	// EgressFilterTypeDropAll is a EgressFilterType enum value
 	EgressFilterTypeDropAll = "DROP_ALL"
 )
+
+// EgressFilterType is an enum
+type EgressFilterType struct{}
+
+// Contains returns whether the EgressFilterType enum includes the element
+func (enum EgressFilterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EgressFilterType enum
+func (enum EgressFilterType) Values() []string {
+	return []string{
+		EgressFilterTypeAllowAll,
+		EgressFilterTypeDropAll,
+	}
+}
 
 const (
 	// GatewayRouteStatusCodeActive is a GatewayRouteStatusCode enum value
@@ -14743,6 +14787,29 @@ const (
 	// GatewayRouteStatusCodeInactive is a GatewayRouteStatusCode enum value
 	GatewayRouteStatusCodeInactive = "INACTIVE"
 )
+
+// GatewayRouteStatusCode is an enum
+type GatewayRouteStatusCode struct{}
+
+// Contains returns whether the GatewayRouteStatusCode enum includes the element
+func (enum GatewayRouteStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GatewayRouteStatusCode enum
+func (enum GatewayRouteStatusCode) Values() []string {
+	return []string{
+		GatewayRouteStatusCodeActive,
+		GatewayRouteStatusCodeDeleted,
+		GatewayRouteStatusCodeInactive,
+	}
+}
 
 const (
 	// GrpcRetryPolicyEventCancelled is a GrpcRetryPolicyEvent enum value
@@ -14760,6 +14827,31 @@ const (
 	// GrpcRetryPolicyEventUnavailable is a GrpcRetryPolicyEvent enum value
 	GrpcRetryPolicyEventUnavailable = "unavailable"
 )
+
+// GrpcRetryPolicyEvent is an enum
+type GrpcRetryPolicyEvent struct{}
+
+// Contains returns whether the GrpcRetryPolicyEvent enum includes the element
+func (enum GrpcRetryPolicyEvent) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GrpcRetryPolicyEvent enum
+func (enum GrpcRetryPolicyEvent) Values() []string {
+	return []string{
+		GrpcRetryPolicyEventCancelled,
+		GrpcRetryPolicyEventDeadlineExceeded,
+		GrpcRetryPolicyEventInternal,
+		GrpcRetryPolicyEventResourceExhausted,
+		GrpcRetryPolicyEventUnavailable,
+	}
+}
 
 const (
 	// HttpMethodConnect is a HttpMethod enum value
@@ -14790,6 +14882,35 @@ const (
 	HttpMethodTrace = "TRACE"
 )
 
+// HttpMethod is an enum
+type HttpMethod struct{}
+
+// Contains returns whether the HttpMethod enum includes the element
+func (enum HttpMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HttpMethod enum
+func (enum HttpMethod) Values() []string {
+	return []string{
+		HttpMethodConnect,
+		HttpMethodDelete,
+		HttpMethodGet,
+		HttpMethodHead,
+		HttpMethodOptions,
+		HttpMethodPatch,
+		HttpMethodPost,
+		HttpMethodPut,
+		HttpMethodTrace,
+	}
+}
+
 const (
 	// HttpSchemeHttp is a HttpScheme enum value
 	HttpSchemeHttp = "http"
@@ -14797,6 +14918,28 @@ const (
 	// HttpSchemeHttps is a HttpScheme enum value
 	HttpSchemeHttps = "https"
 )
+
+// HttpScheme is an enum
+type HttpScheme struct{}
+
+// Contains returns whether the HttpScheme enum includes the element
+func (enum HttpScheme) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HttpScheme enum
+func (enum HttpScheme) Values() []string {
+	return []string{
+		HttpSchemeHttp,
+		HttpSchemeHttps,
+	}
+}
 
 const (
 	// ListenerTlsModeDisabled is a ListenerTlsMode enum value
@@ -14809,6 +14952,29 @@ const (
 	ListenerTlsModeStrict = "STRICT"
 )
 
+// ListenerTlsMode is an enum
+type ListenerTlsMode struct{}
+
+// Contains returns whether the ListenerTlsMode enum includes the element
+func (enum ListenerTlsMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListenerTlsMode enum
+func (enum ListenerTlsMode) Values() []string {
+	return []string{
+		ListenerTlsModeDisabled,
+		ListenerTlsModePermissive,
+		ListenerTlsModeStrict,
+	}
+}
+
 const (
 	// MeshStatusCodeActive is a MeshStatusCode enum value
 	MeshStatusCodeActive = "ACTIVE"
@@ -14819,6 +14985,29 @@ const (
 	// MeshStatusCodeInactive is a MeshStatusCode enum value
 	MeshStatusCodeInactive = "INACTIVE"
 )
+
+// MeshStatusCode is an enum
+type MeshStatusCode struct{}
+
+// Contains returns whether the MeshStatusCode enum includes the element
+func (enum MeshStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MeshStatusCode enum
+func (enum MeshStatusCode) Values() []string {
+	return []string{
+		MeshStatusCodeActive,
+		MeshStatusCodeDeleted,
+		MeshStatusCodeInactive,
+	}
+}
 
 const (
 	// PortProtocolGrpc is a PortProtocol enum value
@@ -14834,6 +15023,30 @@ const (
 	PortProtocolTcp = "tcp"
 )
 
+// PortProtocol is an enum
+type PortProtocol struct{}
+
+// Contains returns whether the PortProtocol enum includes the element
+func (enum PortProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PortProtocol enum
+func (enum PortProtocol) Values() []string {
+	return []string{
+		PortProtocolGrpc,
+		PortProtocolHttp,
+		PortProtocolHttp2,
+		PortProtocolTcp,
+	}
+}
+
 const (
 	// RouteStatusCodeActive is a RouteStatusCode enum value
 	RouteStatusCodeActive = "ACTIVE"
@@ -14845,10 +15058,54 @@ const (
 	RouteStatusCodeInactive = "INACTIVE"
 )
 
+// RouteStatusCode is an enum
+type RouteStatusCode struct{}
+
+// Contains returns whether the RouteStatusCode enum includes the element
+func (enum RouteStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RouteStatusCode enum
+func (enum RouteStatusCode) Values() []string {
+	return []string{
+		RouteStatusCodeActive,
+		RouteStatusCodeDeleted,
+		RouteStatusCodeInactive,
+	}
+}
+
 const (
 	// TcpRetryPolicyEventConnectionError is a TcpRetryPolicyEvent enum value
 	TcpRetryPolicyEventConnectionError = "connection-error"
 )
+
+// TcpRetryPolicyEvent is an enum
+type TcpRetryPolicyEvent struct{}
+
+// Contains returns whether the TcpRetryPolicyEvent enum includes the element
+func (enum TcpRetryPolicyEvent) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TcpRetryPolicyEvent enum
+func (enum TcpRetryPolicyEvent) Values() []string {
+	return []string{
+		TcpRetryPolicyEventConnectionError,
+	}
+}
 
 const (
 	// VirtualGatewayListenerTlsModeDisabled is a VirtualGatewayListenerTlsMode enum value
@@ -14861,6 +15118,29 @@ const (
 	VirtualGatewayListenerTlsModeStrict = "STRICT"
 )
 
+// VirtualGatewayListenerTlsMode is an enum
+type VirtualGatewayListenerTlsMode struct{}
+
+// Contains returns whether the VirtualGatewayListenerTlsMode enum includes the element
+func (enum VirtualGatewayListenerTlsMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VirtualGatewayListenerTlsMode enum
+func (enum VirtualGatewayListenerTlsMode) Values() []string {
+	return []string{
+		VirtualGatewayListenerTlsModeDisabled,
+		VirtualGatewayListenerTlsModePermissive,
+		VirtualGatewayListenerTlsModeStrict,
+	}
+}
+
 const (
 	// VirtualGatewayPortProtocolGrpc is a VirtualGatewayPortProtocol enum value
 	VirtualGatewayPortProtocolGrpc = "grpc"
@@ -14871,6 +15151,29 @@ const (
 	// VirtualGatewayPortProtocolHttp2 is a VirtualGatewayPortProtocol enum value
 	VirtualGatewayPortProtocolHttp2 = "http2"
 )
+
+// VirtualGatewayPortProtocol is an enum
+type VirtualGatewayPortProtocol struct{}
+
+// Contains returns whether the VirtualGatewayPortProtocol enum includes the element
+func (enum VirtualGatewayPortProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VirtualGatewayPortProtocol enum
+func (enum VirtualGatewayPortProtocol) Values() []string {
+	return []string{
+		VirtualGatewayPortProtocolGrpc,
+		VirtualGatewayPortProtocolHttp,
+		VirtualGatewayPortProtocolHttp2,
+	}
+}
 
 const (
 	// VirtualGatewayStatusCodeActive is a VirtualGatewayStatusCode enum value
@@ -14883,6 +15186,29 @@ const (
 	VirtualGatewayStatusCodeInactive = "INACTIVE"
 )
 
+// VirtualGatewayStatusCode is an enum
+type VirtualGatewayStatusCode struct{}
+
+// Contains returns whether the VirtualGatewayStatusCode enum includes the element
+func (enum VirtualGatewayStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VirtualGatewayStatusCode enum
+func (enum VirtualGatewayStatusCode) Values() []string {
+	return []string{
+		VirtualGatewayStatusCodeActive,
+		VirtualGatewayStatusCodeDeleted,
+		VirtualGatewayStatusCodeInactive,
+	}
+}
+
 const (
 	// VirtualNodeStatusCodeActive is a VirtualNodeStatusCode enum value
 	VirtualNodeStatusCodeActive = "ACTIVE"
@@ -14893,6 +15219,29 @@ const (
 	// VirtualNodeStatusCodeInactive is a VirtualNodeStatusCode enum value
 	VirtualNodeStatusCodeInactive = "INACTIVE"
 )
+
+// VirtualNodeStatusCode is an enum
+type VirtualNodeStatusCode struct{}
+
+// Contains returns whether the VirtualNodeStatusCode enum includes the element
+func (enum VirtualNodeStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VirtualNodeStatusCode enum
+func (enum VirtualNodeStatusCode) Values() []string {
+	return []string{
+		VirtualNodeStatusCodeActive,
+		VirtualNodeStatusCodeDeleted,
+		VirtualNodeStatusCodeInactive,
+	}
+}
 
 const (
 	// VirtualRouterStatusCodeActive is a VirtualRouterStatusCode enum value
@@ -14905,6 +15254,29 @@ const (
 	VirtualRouterStatusCodeInactive = "INACTIVE"
 )
 
+// VirtualRouterStatusCode is an enum
+type VirtualRouterStatusCode struct{}
+
+// Contains returns whether the VirtualRouterStatusCode enum includes the element
+func (enum VirtualRouterStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VirtualRouterStatusCode enum
+func (enum VirtualRouterStatusCode) Values() []string {
+	return []string{
+		VirtualRouterStatusCodeActive,
+		VirtualRouterStatusCodeDeleted,
+		VirtualRouterStatusCodeInactive,
+	}
+}
+
 const (
 	// VirtualServiceStatusCodeActive is a VirtualServiceStatusCode enum value
 	VirtualServiceStatusCodeActive = "ACTIVE"
@@ -14915,3 +15287,26 @@ const (
 	// VirtualServiceStatusCodeInactive is a VirtualServiceStatusCode enum value
 	VirtualServiceStatusCodeInactive = "INACTIVE"
 )
+
+// VirtualServiceStatusCode is an enum
+type VirtualServiceStatusCode struct{}
+
+// Contains returns whether the VirtualServiceStatusCode enum includes the element
+func (enum VirtualServiceStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VirtualServiceStatusCode enum
+func (enum VirtualServiceStatusCode) Values() []string {
+	return []string{
+		VirtualServiceStatusCodeActive,
+		VirtualServiceStatusCodeDeleted,
+		VirtualServiceStatusCodeInactive,
+	}
+}

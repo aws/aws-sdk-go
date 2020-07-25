@@ -10462,6 +10462,28 @@ const (
 	AccessControlRuleEffectDeny = "DENY"
 )
 
+// AccessControlRuleEffect is an enum
+type AccessControlRuleEffect struct{}
+
+// Contains returns whether the AccessControlRuleEffect enum includes the element
+func (enum AccessControlRuleEffect) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccessControlRuleEffect enum
+func (enum AccessControlRuleEffect) Values() []string {
+	return []string{
+		AccessControlRuleEffectAllow,
+		AccessControlRuleEffectDeny,
+	}
+}
+
 const (
 	// EntityStateEnabled is a EntityState enum value
 	EntityStateEnabled = "ENABLED"
@@ -10472,6 +10494,29 @@ const (
 	// EntityStateDeleted is a EntityState enum value
 	EntityStateDeleted = "DELETED"
 )
+
+// EntityState is an enum
+type EntityState struct{}
+
+// Contains returns whether the EntityState enum includes the element
+func (enum EntityState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EntityState enum
+func (enum EntityState) Values() []string {
+	return []string{
+		EntityStateEnabled,
+		EntityStateDisabled,
+		EntityStateDeleted,
+	}
+}
 
 const (
 	// FolderNameInbox is a FolderName enum value
@@ -10490,6 +10535,31 @@ const (
 	FolderNameJunkEmail = "JUNK_EMAIL"
 )
 
+// FolderName is an enum
+type FolderName struct{}
+
+// Contains returns whether the FolderName enum includes the element
+func (enum FolderName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FolderName enum
+func (enum FolderName) Values() []string {
+	return []string{
+		FolderNameInbox,
+		FolderNameDeletedItems,
+		FolderNameSentItems,
+		FolderNameDrafts,
+		FolderNameJunkEmail,
+	}
+}
+
 const (
 	// MemberTypeGroup is a MemberType enum value
 	MemberTypeGroup = "GROUP"
@@ -10497,6 +10567,28 @@ const (
 	// MemberTypeUser is a MemberType enum value
 	MemberTypeUser = "USER"
 )
+
+// MemberType is an enum
+type MemberType struct{}
+
+// Contains returns whether the MemberType enum includes the element
+func (enum MemberType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MemberType enum
+func (enum MemberType) Values() []string {
+	return []string{
+		MemberTypeGroup,
+		MemberTypeUser,
+	}
+}
 
 const (
 	// PermissionTypeFullAccess is a PermissionType enum value
@@ -10509,6 +10601,29 @@ const (
 	PermissionTypeSendOnBehalf = "SEND_ON_BEHALF"
 )
 
+// PermissionType is an enum
+type PermissionType struct{}
+
+// Contains returns whether the PermissionType enum includes the element
+func (enum PermissionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PermissionType enum
+func (enum PermissionType) Values() []string {
+	return []string{
+		PermissionTypeFullAccess,
+		PermissionTypeSendAs,
+		PermissionTypeSendOnBehalf,
+	}
+}
+
 const (
 	// ResourceTypeRoom is a ResourceType enum value
 	ResourceTypeRoom = "ROOM"
@@ -10516,6 +10631,28 @@ const (
 	// ResourceTypeEquipment is a ResourceType enum value
 	ResourceTypeEquipment = "EQUIPMENT"
 )
+
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeRoom,
+		ResourceTypeEquipment,
+	}
+}
 
 const (
 	// RetentionActionNone is a RetentionAction enum value
@@ -10528,6 +10665,29 @@ const (
 	RetentionActionPermanentlyDelete = "PERMANENTLY_DELETE"
 )
 
+// RetentionAction is an enum
+type RetentionAction struct{}
+
+// Contains returns whether the RetentionAction enum includes the element
+func (enum RetentionAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RetentionAction enum
+func (enum RetentionAction) Values() []string {
+	return []string{
+		RetentionActionNone,
+		RetentionActionDelete,
+		RetentionActionPermanentlyDelete,
+	}
+}
+
 const (
 	// UserRoleUser is a UserRole enum value
 	UserRoleUser = "USER"
@@ -10538,3 +10698,26 @@ const (
 	// UserRoleSystemUser is a UserRole enum value
 	UserRoleSystemUser = "SYSTEM_USER"
 )
+
+// UserRole is an enum
+type UserRole struct{}
+
+// Contains returns whether the UserRole enum includes the element
+func (enum UserRole) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserRole enum
+func (enum UserRole) Values() []string {
+	return []string{
+		UserRoleUser,
+		UserRoleResource,
+		UserRoleSystemUser,
+	}
+}

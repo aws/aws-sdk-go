@@ -3121,6 +3121,31 @@ const (
 	EnvironmentLifecycleStatusDeleteFailed = "DELETE_FAILED"
 )
 
+// EnvironmentLifecycleStatus is an enum
+type EnvironmentLifecycleStatus struct{}
+
+// Contains returns whether the EnvironmentLifecycleStatus enum includes the element
+func (enum EnvironmentLifecycleStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentLifecycleStatus enum
+func (enum EnvironmentLifecycleStatus) Values() []string {
+	return []string{
+		EnvironmentLifecycleStatusCreating,
+		EnvironmentLifecycleStatusCreated,
+		EnvironmentLifecycleStatusCreateFailed,
+		EnvironmentLifecycleStatusDeleting,
+		EnvironmentLifecycleStatusDeleteFailed,
+	}
+}
+
 const (
 	// EnvironmentStatusError is a EnvironmentStatus enum value
 	EnvironmentStatusError = "error"
@@ -3144,6 +3169,33 @@ const (
 	EnvironmentStatusDeleting = "deleting"
 )
 
+// EnvironmentStatus is an enum
+type EnvironmentStatus struct{}
+
+// Contains returns whether the EnvironmentStatus enum includes the element
+func (enum EnvironmentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentStatus enum
+func (enum EnvironmentStatus) Values() []string {
+	return []string{
+		EnvironmentStatusError,
+		EnvironmentStatusCreating,
+		EnvironmentStatusConnecting,
+		EnvironmentStatusReady,
+		EnvironmentStatusStopping,
+		EnvironmentStatusStopped,
+		EnvironmentStatusDeleting,
+	}
+}
+
 const (
 	// EnvironmentTypeSsh is a EnvironmentType enum value
 	EnvironmentTypeSsh = "ssh"
@@ -3152,6 +3204,28 @@ const (
 	EnvironmentTypeEc2 = "ec2"
 )
 
+// EnvironmentType is an enum
+type EnvironmentType struct{}
+
+// Contains returns whether the EnvironmentType enum includes the element
+func (enum EnvironmentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentType enum
+func (enum EnvironmentType) Values() []string {
+	return []string{
+		EnvironmentTypeSsh,
+		EnvironmentTypeEc2,
+	}
+}
+
 const (
 	// MemberPermissionsReadWrite is a MemberPermissions enum value
 	MemberPermissionsReadWrite = "read-write"
@@ -3159,6 +3233,28 @@ const (
 	// MemberPermissionsReadOnly is a MemberPermissions enum value
 	MemberPermissionsReadOnly = "read-only"
 )
+
+// MemberPermissions is an enum
+type MemberPermissions struct{}
+
+// Contains returns whether the MemberPermissions enum includes the element
+func (enum MemberPermissions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MemberPermissions enum
+func (enum MemberPermissions) Values() []string {
+	return []string{
+		MemberPermissionsReadWrite,
+		MemberPermissionsReadOnly,
+	}
+}
 
 const (
 	// PermissionsOwner is a Permissions enum value
@@ -3170,3 +3266,26 @@ const (
 	// PermissionsReadOnly is a Permissions enum value
 	PermissionsReadOnly = "read-only"
 )
+
+// Permissions is an enum
+type Permissions struct{}
+
+// Contains returns whether the Permissions enum includes the element
+func (enum Permissions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Permissions enum
+func (enum Permissions) Values() []string {
+	return []string{
+		PermissionsOwner,
+		PermissionsReadWrite,
+		PermissionsReadOnly,
+	}
+}

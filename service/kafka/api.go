@@ -7026,6 +7026,27 @@ const (
 	BrokerAZDistributionDefault = "DEFAULT"
 )
 
+// BrokerAZDistribution is an enum
+type BrokerAZDistribution struct{}
+
+// Contains returns whether the BrokerAZDistribution enum includes the element
+func (enum BrokerAZDistribution) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BrokerAZDistribution enum
+func (enum BrokerAZDistribution) Values() []string {
+	return []string{
+		BrokerAZDistributionDefault,
+	}
+}
+
 // Client-broker encryption in transit setting.
 const (
 	// ClientBrokerTls is a ClientBroker enum value
@@ -7037,6 +7058,29 @@ const (
 	// ClientBrokerPlaintext is a ClientBroker enum value
 	ClientBrokerPlaintext = "PLAINTEXT"
 )
+
+// ClientBroker is an enum
+type ClientBroker struct{}
+
+// Contains returns whether the ClientBroker enum includes the element
+func (enum ClientBroker) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ClientBroker enum
+func (enum ClientBroker) Values() []string {
+	return []string{
+		ClientBrokerTls,
+		ClientBrokerTlsPlaintext,
+		ClientBrokerPlaintext,
+	}
+}
 
 // The state of a Kafka cluster.
 const (
@@ -7056,6 +7100,31 @@ const (
 	ClusterStateFailed = "FAILED"
 )
 
+// ClusterState is an enum
+type ClusterState struct{}
+
+// Contains returns whether the ClusterState enum includes the element
+func (enum ClusterState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ClusterState enum
+func (enum ClusterState) Values() []string {
+	return []string{
+		ClusterStateActive,
+		ClusterStateCreating,
+		ClusterStateUpdating,
+		ClusterStateDeleting,
+		ClusterStateFailed,
+	}
+}
+
 // Specifies which metrics are gathered for the MSK cluster. This property has
 // three possible values: DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER. For
 // a list of the metrics associated with each of these three levels of monitoring,
@@ -7071,6 +7140,29 @@ const (
 	EnhancedMonitoringPerTopicPerBroker = "PER_TOPIC_PER_BROKER"
 )
 
+// EnhancedMonitoring is an enum
+type EnhancedMonitoring struct{}
+
+// Contains returns whether the EnhancedMonitoring enum includes the element
+func (enum EnhancedMonitoring) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnhancedMonitoring enum
+func (enum EnhancedMonitoring) Values() []string {
+	return []string{
+		EnhancedMonitoringDefault,
+		EnhancedMonitoringPerBroker,
+		EnhancedMonitoringPerTopicPerBroker,
+	}
+}
+
 // The status of a Kafka version.
 const (
 	// KafkaVersionStatusActive is a KafkaVersionStatus enum value
@@ -7080,8 +7172,51 @@ const (
 	KafkaVersionStatusDeprecated = "DEPRECATED"
 )
 
+// KafkaVersionStatus is an enum
+type KafkaVersionStatus struct{}
+
+// Contains returns whether the KafkaVersionStatus enum includes the element
+func (enum KafkaVersionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KafkaVersionStatus enum
+func (enum KafkaVersionStatus) Values() []string {
+	return []string{
+		KafkaVersionStatusActive,
+		KafkaVersionStatusDeprecated,
+	}
+}
+
 // The broker or Zookeeper node.
 const (
 	// NodeTypeBroker is a NodeType enum value
 	NodeTypeBroker = "BROKER"
 )
+
+// NodeType is an enum
+type NodeType struct{}
+
+// Contains returns whether the NodeType enum includes the element
+func (enum NodeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NodeType enum
+func (enum NodeType) Values() []string {
+	return []string{
+		NodeTypeBroker,
+	}
+}

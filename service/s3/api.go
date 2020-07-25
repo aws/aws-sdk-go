@@ -30207,6 +30207,27 @@ const (
 	AnalyticsS3ExportFileFormatCsv = "CSV"
 )
 
+// AnalyticsS3ExportFileFormat is an enum
+type AnalyticsS3ExportFileFormat struct{}
+
+// Contains returns whether the AnalyticsS3ExportFileFormat enum includes the element
+func (enum AnalyticsS3ExportFileFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AnalyticsS3ExportFileFormat enum
+func (enum AnalyticsS3ExportFileFormat) Values() []string {
+	return []string{
+		AnalyticsS3ExportFileFormatCsv,
+	}
+}
+
 const (
 	// BucketAccelerateStatusEnabled is a BucketAccelerateStatus enum value
 	BucketAccelerateStatusEnabled = "Enabled"
@@ -30214,6 +30235,28 @@ const (
 	// BucketAccelerateStatusSuspended is a BucketAccelerateStatus enum value
 	BucketAccelerateStatusSuspended = "Suspended"
 )
+
+// BucketAccelerateStatus is an enum
+type BucketAccelerateStatus struct{}
+
+// Contains returns whether the BucketAccelerateStatus enum includes the element
+func (enum BucketAccelerateStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BucketAccelerateStatus enum
+func (enum BucketAccelerateStatus) Values() []string {
+	return []string{
+		BucketAccelerateStatusEnabled,
+		BucketAccelerateStatusSuspended,
+	}
+}
 
 const (
 	// BucketCannedACLPrivate is a BucketCannedACL enum value
@@ -30228,6 +30271,30 @@ const (
 	// BucketCannedACLAuthenticatedRead is a BucketCannedACL enum value
 	BucketCannedACLAuthenticatedRead = "authenticated-read"
 )
+
+// BucketCannedACL is an enum
+type BucketCannedACL struct{}
+
+// Contains returns whether the BucketCannedACL enum includes the element
+func (enum BucketCannedACL) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BucketCannedACL enum
+func (enum BucketCannedACL) Values() []string {
+	return []string{
+		BucketCannedACLPrivate,
+		BucketCannedACLPublicRead,
+		BucketCannedACLPublicReadWrite,
+		BucketCannedACLAuthenticatedRead,
+	}
+}
 
 const (
 	// BucketLocationConstraintEu is a BucketLocationConstraint enum value
@@ -30264,6 +30331,37 @@ const (
 	BucketLocationConstraintEuCentral1 = "eu-central-1"
 )
 
+// BucketLocationConstraint is an enum
+type BucketLocationConstraint struct{}
+
+// Contains returns whether the BucketLocationConstraint enum includes the element
+func (enum BucketLocationConstraint) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BucketLocationConstraint enum
+func (enum BucketLocationConstraint) Values() []string {
+	return []string{
+		BucketLocationConstraintEu,
+		BucketLocationConstraintEuWest1,
+		BucketLocationConstraintUsWest1,
+		BucketLocationConstraintUsWest2,
+		BucketLocationConstraintApSouth1,
+		BucketLocationConstraintApSoutheast1,
+		BucketLocationConstraintApSoutheast2,
+		BucketLocationConstraintApNortheast1,
+		BucketLocationConstraintSaEast1,
+		BucketLocationConstraintCnNorth1,
+		BucketLocationConstraintEuCentral1,
+	}
+}
+
 const (
 	// BucketLogsPermissionFullControl is a BucketLogsPermission enum value
 	BucketLogsPermissionFullControl = "FULL_CONTROL"
@@ -30275,6 +30373,29 @@ const (
 	BucketLogsPermissionWrite = "WRITE"
 )
 
+// BucketLogsPermission is an enum
+type BucketLogsPermission struct{}
+
+// Contains returns whether the BucketLogsPermission enum includes the element
+func (enum BucketLogsPermission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BucketLogsPermission enum
+func (enum BucketLogsPermission) Values() []string {
+	return []string{
+		BucketLogsPermissionFullControl,
+		BucketLogsPermissionRead,
+		BucketLogsPermissionWrite,
+	}
+}
+
 const (
 	// BucketVersioningStatusEnabled is a BucketVersioningStatus enum value
 	BucketVersioningStatusEnabled = "Enabled"
@@ -30282,6 +30403,28 @@ const (
 	// BucketVersioningStatusSuspended is a BucketVersioningStatus enum value
 	BucketVersioningStatusSuspended = "Suspended"
 )
+
+// BucketVersioningStatus is an enum
+type BucketVersioningStatus struct{}
+
+// Contains returns whether the BucketVersioningStatus enum includes the element
+func (enum BucketVersioningStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BucketVersioningStatus enum
+func (enum BucketVersioningStatus) Values() []string {
+	return []string{
+		BucketVersioningStatusEnabled,
+		BucketVersioningStatusSuspended,
+	}
+}
 
 const (
 	// CompressionTypeNone is a CompressionType enum value
@@ -30294,6 +30437,29 @@ const (
 	CompressionTypeBzip2 = "BZIP2"
 )
 
+// CompressionType is an enum
+type CompressionType struct{}
+
+// Contains returns whether the CompressionType enum includes the element
+func (enum CompressionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CompressionType enum
+func (enum CompressionType) Values() []string {
+	return []string{
+		CompressionTypeNone,
+		CompressionTypeGzip,
+		CompressionTypeBzip2,
+	}
+}
+
 const (
 	// DeleteMarkerReplicationStatusEnabled is a DeleteMarkerReplicationStatus enum value
 	DeleteMarkerReplicationStatusEnabled = "Enabled"
@@ -30301,6 +30467,28 @@ const (
 	// DeleteMarkerReplicationStatusDisabled is a DeleteMarkerReplicationStatus enum value
 	DeleteMarkerReplicationStatusDisabled = "Disabled"
 )
+
+// DeleteMarkerReplicationStatus is an enum
+type DeleteMarkerReplicationStatus struct{}
+
+// Contains returns whether the DeleteMarkerReplicationStatus enum includes the element
+func (enum DeleteMarkerReplicationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeleteMarkerReplicationStatus enum
+func (enum DeleteMarkerReplicationStatus) Values() []string {
+	return []string{
+		DeleteMarkerReplicationStatusEnabled,
+		DeleteMarkerReplicationStatusDisabled,
+	}
+}
 
 // Requests Amazon S3 to encode the object keys in the response and specifies
 // the encoding method to use. An object key may contain any Unicode character;
@@ -30312,6 +30500,27 @@ const (
 	// EncodingTypeUrl is a EncodingType enum value
 	EncodingTypeUrl = "url"
 )
+
+// EncodingType is an enum
+type EncodingType struct{}
+
+// Contains returns whether the EncodingType enum includes the element
+func (enum EncodingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncodingType enum
+func (enum EncodingType) Values() []string {
+	return []string{
+		EncodingTypeUrl,
+	}
+}
 
 // The bucket event for which to send notifications.
 const (
@@ -30367,6 +30576,43 @@ const (
 	EventS3ReplicationOperationReplicatedAfterThreshold = "s3:Replication:OperationReplicatedAfterThreshold"
 )
 
+// Event is an enum
+type Event struct{}
+
+// Contains returns whether the Event enum includes the element
+func (enum Event) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Event enum
+func (enum Event) Values() []string {
+	return []string{
+		EventS3ReducedRedundancyLostObject,
+		EventS3ObjectCreated,
+		EventS3ObjectCreatedPut,
+		EventS3ObjectCreatedPost,
+		EventS3ObjectCreatedCopy,
+		EventS3ObjectCreatedCompleteMultipartUpload,
+		EventS3ObjectRemoved,
+		EventS3ObjectRemovedDelete,
+		EventS3ObjectRemovedDeleteMarkerCreated,
+		EventS3ObjectRestore,
+		EventS3ObjectRestorePost,
+		EventS3ObjectRestoreCompleted,
+		EventS3Replication,
+		EventS3ReplicationOperationFailedReplication,
+		EventS3ReplicationOperationNotTracked,
+		EventS3ReplicationOperationMissedThreshold,
+		EventS3ReplicationOperationReplicatedAfterThreshold,
+	}
+}
+
 const (
 	// ExistingObjectReplicationStatusEnabled is a ExistingObjectReplicationStatus enum value
 	ExistingObjectReplicationStatusEnabled = "Enabled"
@@ -30374,6 +30620,28 @@ const (
 	// ExistingObjectReplicationStatusDisabled is a ExistingObjectReplicationStatus enum value
 	ExistingObjectReplicationStatusDisabled = "Disabled"
 )
+
+// ExistingObjectReplicationStatus is an enum
+type ExistingObjectReplicationStatus struct{}
+
+// Contains returns whether the ExistingObjectReplicationStatus enum includes the element
+func (enum ExistingObjectReplicationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExistingObjectReplicationStatus enum
+func (enum ExistingObjectReplicationStatus) Values() []string {
+	return []string{
+		ExistingObjectReplicationStatusEnabled,
+		ExistingObjectReplicationStatusDisabled,
+	}
+}
 
 const (
 	// ExpirationStatusEnabled is a ExpirationStatus enum value
@@ -30383,10 +30651,53 @@ const (
 	ExpirationStatusDisabled = "Disabled"
 )
 
+// ExpirationStatus is an enum
+type ExpirationStatus struct{}
+
+// Contains returns whether the ExpirationStatus enum includes the element
+func (enum ExpirationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExpirationStatus enum
+func (enum ExpirationStatus) Values() []string {
+	return []string{
+		ExpirationStatusEnabled,
+		ExpirationStatusDisabled,
+	}
+}
+
 const (
 	// ExpressionTypeSql is a ExpressionType enum value
 	ExpressionTypeSql = "SQL"
 )
+
+// ExpressionType is an enum
+type ExpressionType struct{}
+
+// Contains returns whether the ExpressionType enum includes the element
+func (enum ExpressionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExpressionType enum
+func (enum ExpressionType) Values() []string {
+	return []string{
+		ExpressionTypeSql,
+	}
+}
 
 const (
 	// FileHeaderInfoUse is a FileHeaderInfo enum value
@@ -30399,6 +30710,29 @@ const (
 	FileHeaderInfoNone = "NONE"
 )
 
+// FileHeaderInfo is an enum
+type FileHeaderInfo struct{}
+
+// Contains returns whether the FileHeaderInfo enum includes the element
+func (enum FileHeaderInfo) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileHeaderInfo enum
+func (enum FileHeaderInfo) Values() []string {
+	return []string{
+		FileHeaderInfoUse,
+		FileHeaderInfoIgnore,
+		FileHeaderInfoNone,
+	}
+}
+
 const (
 	// FilterRuleNamePrefix is a FilterRuleName enum value
 	FilterRuleNamePrefix = "prefix"
@@ -30406,6 +30740,28 @@ const (
 	// FilterRuleNameSuffix is a FilterRuleName enum value
 	FilterRuleNameSuffix = "suffix"
 )
+
+// FilterRuleName is an enum
+type FilterRuleName struct{}
+
+// Contains returns whether the FilterRuleName enum includes the element
+func (enum FilterRuleName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterRuleName enum
+func (enum FilterRuleName) Values() []string {
+	return []string{
+		FilterRuleNamePrefix,
+		FilterRuleNameSuffix,
+	}
+}
 
 const (
 	// InventoryFormatCsv is a InventoryFormat enum value
@@ -30418,6 +30774,29 @@ const (
 	InventoryFormatParquet = "Parquet"
 )
 
+// InventoryFormat is an enum
+type InventoryFormat struct{}
+
+// Contains returns whether the InventoryFormat enum includes the element
+func (enum InventoryFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InventoryFormat enum
+func (enum InventoryFormat) Values() []string {
+	return []string{
+		InventoryFormatCsv,
+		InventoryFormatOrc,
+		InventoryFormatParquet,
+	}
+}
+
 const (
 	// InventoryFrequencyDaily is a InventoryFrequency enum value
 	InventoryFrequencyDaily = "Daily"
@@ -30426,6 +30805,28 @@ const (
 	InventoryFrequencyWeekly = "Weekly"
 )
 
+// InventoryFrequency is an enum
+type InventoryFrequency struct{}
+
+// Contains returns whether the InventoryFrequency enum includes the element
+func (enum InventoryFrequency) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InventoryFrequency enum
+func (enum InventoryFrequency) Values() []string {
+	return []string{
+		InventoryFrequencyDaily,
+		InventoryFrequencyWeekly,
+	}
+}
+
 const (
 	// InventoryIncludedObjectVersionsAll is a InventoryIncludedObjectVersions enum value
 	InventoryIncludedObjectVersionsAll = "All"
@@ -30433,6 +30834,28 @@ const (
 	// InventoryIncludedObjectVersionsCurrent is a InventoryIncludedObjectVersions enum value
 	InventoryIncludedObjectVersionsCurrent = "Current"
 )
+
+// InventoryIncludedObjectVersions is an enum
+type InventoryIncludedObjectVersions struct{}
+
+// Contains returns whether the InventoryIncludedObjectVersions enum includes the element
+func (enum InventoryIncludedObjectVersions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InventoryIncludedObjectVersions enum
+func (enum InventoryIncludedObjectVersions) Values() []string {
+	return []string{
+		InventoryIncludedObjectVersionsAll,
+		InventoryIncludedObjectVersionsCurrent,
+	}
+}
 
 const (
 	// InventoryOptionalFieldSize is a InventoryOptionalField enum value
@@ -30469,6 +30892,37 @@ const (
 	InventoryOptionalFieldIntelligentTieringAccessTier = "IntelligentTieringAccessTier"
 )
 
+// InventoryOptionalField is an enum
+type InventoryOptionalField struct{}
+
+// Contains returns whether the InventoryOptionalField enum includes the element
+func (enum InventoryOptionalField) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InventoryOptionalField enum
+func (enum InventoryOptionalField) Values() []string {
+	return []string{
+		InventoryOptionalFieldSize,
+		InventoryOptionalFieldLastModifiedDate,
+		InventoryOptionalFieldStorageClass,
+		InventoryOptionalFieldEtag,
+		InventoryOptionalFieldIsMultipartUploaded,
+		InventoryOptionalFieldReplicationStatus,
+		InventoryOptionalFieldEncryptionStatus,
+		InventoryOptionalFieldObjectLockRetainUntilDate,
+		InventoryOptionalFieldObjectLockMode,
+		InventoryOptionalFieldObjectLockLegalHoldStatus,
+		InventoryOptionalFieldIntelligentTieringAccessTier,
+	}
+}
+
 const (
 	// JSONTypeDocument is a JSONType enum value
 	JSONTypeDocument = "DOCUMENT"
@@ -30476,6 +30930,28 @@ const (
 	// JSONTypeLines is a JSONType enum value
 	JSONTypeLines = "LINES"
 )
+
+// JSONType is an enum
+type JSONType struct{}
+
+// Contains returns whether the JSONType enum includes the element
+func (enum JSONType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JSONType enum
+func (enum JSONType) Values() []string {
+	return []string{
+		JSONTypeDocument,
+		JSONTypeLines,
+	}
+}
 
 const (
 	// MFADeleteEnabled is a MFADelete enum value
@@ -30485,6 +30961,28 @@ const (
 	MFADeleteDisabled = "Disabled"
 )
 
+// MFADelete is an enum
+type MFADelete struct{}
+
+// Contains returns whether the MFADelete enum includes the element
+func (enum MFADelete) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MFADelete enum
+func (enum MFADelete) Values() []string {
+	return []string{
+		MFADeleteEnabled,
+		MFADeleteDisabled,
+	}
+}
+
 const (
 	// MFADeleteStatusEnabled is a MFADeleteStatus enum value
 	MFADeleteStatusEnabled = "Enabled"
@@ -30492,6 +30990,28 @@ const (
 	// MFADeleteStatusDisabled is a MFADeleteStatus enum value
 	MFADeleteStatusDisabled = "Disabled"
 )
+
+// MFADeleteStatus is an enum
+type MFADeleteStatus struct{}
+
+// Contains returns whether the MFADeleteStatus enum includes the element
+func (enum MFADeleteStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MFADeleteStatus enum
+func (enum MFADeleteStatus) Values() []string {
+	return []string{
+		MFADeleteStatusEnabled,
+		MFADeleteStatusDisabled,
+	}
+}
 
 const (
 	// MetadataDirectiveCopy is a MetadataDirective enum value
@@ -30501,6 +31021,28 @@ const (
 	MetadataDirectiveReplace = "REPLACE"
 )
 
+// MetadataDirective is an enum
+type MetadataDirective struct{}
+
+// Contains returns whether the MetadataDirective enum includes the element
+func (enum MetadataDirective) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetadataDirective enum
+func (enum MetadataDirective) Values() []string {
+	return []string{
+		MetadataDirectiveCopy,
+		MetadataDirectiveReplace,
+	}
+}
+
 const (
 	// MetricsStatusEnabled is a MetricsStatus enum value
 	MetricsStatusEnabled = "Enabled"
@@ -30508,6 +31050,28 @@ const (
 	// MetricsStatusDisabled is a MetricsStatus enum value
 	MetricsStatusDisabled = "Disabled"
 )
+
+// MetricsStatus is an enum
+type MetricsStatus struct{}
+
+// Contains returns whether the MetricsStatus enum includes the element
+func (enum MetricsStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricsStatus enum
+func (enum MetricsStatus) Values() []string {
+	return []string{
+		MetricsStatusEnabled,
+		MetricsStatusDisabled,
+	}
+}
 
 const (
 	// ObjectCannedACLPrivate is a ObjectCannedACL enum value
@@ -30532,10 +31096,58 @@ const (
 	ObjectCannedACLBucketOwnerFullControl = "bucket-owner-full-control"
 )
 
+// ObjectCannedACL is an enum
+type ObjectCannedACL struct{}
+
+// Contains returns whether the ObjectCannedACL enum includes the element
+func (enum ObjectCannedACL) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectCannedACL enum
+func (enum ObjectCannedACL) Values() []string {
+	return []string{
+		ObjectCannedACLPrivate,
+		ObjectCannedACLPublicRead,
+		ObjectCannedACLPublicReadWrite,
+		ObjectCannedACLAuthenticatedRead,
+		ObjectCannedACLAwsExecRead,
+		ObjectCannedACLBucketOwnerRead,
+		ObjectCannedACLBucketOwnerFullControl,
+	}
+}
+
 const (
 	// ObjectLockEnabledEnabled is a ObjectLockEnabled enum value
 	ObjectLockEnabledEnabled = "Enabled"
 )
+
+// ObjectLockEnabled is an enum
+type ObjectLockEnabled struct{}
+
+// Contains returns whether the ObjectLockEnabled enum includes the element
+func (enum ObjectLockEnabled) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectLockEnabled enum
+func (enum ObjectLockEnabled) Values() []string {
+	return []string{
+		ObjectLockEnabledEnabled,
+	}
+}
 
 const (
 	// ObjectLockLegalHoldStatusOn is a ObjectLockLegalHoldStatus enum value
@@ -30545,6 +31157,28 @@ const (
 	ObjectLockLegalHoldStatusOff = "OFF"
 )
 
+// ObjectLockLegalHoldStatus is an enum
+type ObjectLockLegalHoldStatus struct{}
+
+// Contains returns whether the ObjectLockLegalHoldStatus enum includes the element
+func (enum ObjectLockLegalHoldStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectLockLegalHoldStatus enum
+func (enum ObjectLockLegalHoldStatus) Values() []string {
+	return []string{
+		ObjectLockLegalHoldStatusOn,
+		ObjectLockLegalHoldStatusOff,
+	}
+}
+
 const (
 	// ObjectLockModeGovernance is a ObjectLockMode enum value
 	ObjectLockModeGovernance = "GOVERNANCE"
@@ -30553,6 +31187,28 @@ const (
 	ObjectLockModeCompliance = "COMPLIANCE"
 )
 
+// ObjectLockMode is an enum
+type ObjectLockMode struct{}
+
+// Contains returns whether the ObjectLockMode enum includes the element
+func (enum ObjectLockMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectLockMode enum
+func (enum ObjectLockMode) Values() []string {
+	return []string{
+		ObjectLockModeGovernance,
+		ObjectLockModeCompliance,
+	}
+}
+
 const (
 	// ObjectLockRetentionModeGovernance is a ObjectLockRetentionMode enum value
 	ObjectLockRetentionModeGovernance = "GOVERNANCE"
@@ -30560,6 +31216,28 @@ const (
 	// ObjectLockRetentionModeCompliance is a ObjectLockRetentionMode enum value
 	ObjectLockRetentionModeCompliance = "COMPLIANCE"
 )
+
+// ObjectLockRetentionMode is an enum
+type ObjectLockRetentionMode struct{}
+
+// Contains returns whether the ObjectLockRetentionMode enum includes the element
+func (enum ObjectLockRetentionMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectLockRetentionMode enum
+func (enum ObjectLockRetentionMode) Values() []string {
+	return []string{
+		ObjectLockRetentionModeGovernance,
+		ObjectLockRetentionModeCompliance,
+	}
+}
 
 const (
 	// ObjectStorageClassStandard is a ObjectStorageClass enum value
@@ -30584,15 +31262,84 @@ const (
 	ObjectStorageClassDeepArchive = "DEEP_ARCHIVE"
 )
 
+// ObjectStorageClass is an enum
+type ObjectStorageClass struct{}
+
+// Contains returns whether the ObjectStorageClass enum includes the element
+func (enum ObjectStorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectStorageClass enum
+func (enum ObjectStorageClass) Values() []string {
+	return []string{
+		ObjectStorageClassStandard,
+		ObjectStorageClassReducedRedundancy,
+		ObjectStorageClassGlacier,
+		ObjectStorageClassStandardIa,
+		ObjectStorageClassOnezoneIa,
+		ObjectStorageClassIntelligentTiering,
+		ObjectStorageClassDeepArchive,
+	}
+}
+
 const (
 	// ObjectVersionStorageClassStandard is a ObjectVersionStorageClass enum value
 	ObjectVersionStorageClassStandard = "STANDARD"
 )
 
+// ObjectVersionStorageClass is an enum
+type ObjectVersionStorageClass struct{}
+
+// Contains returns whether the ObjectVersionStorageClass enum includes the element
+func (enum ObjectVersionStorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectVersionStorageClass enum
+func (enum ObjectVersionStorageClass) Values() []string {
+	return []string{
+		ObjectVersionStorageClassStandard,
+	}
+}
+
 const (
 	// OwnerOverrideDestination is a OwnerOverride enum value
 	OwnerOverrideDestination = "Destination"
 )
+
+// OwnerOverride is an enum
+type OwnerOverride struct{}
+
+// Contains returns whether the OwnerOverride enum includes the element
+func (enum OwnerOverride) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OwnerOverride enum
+func (enum OwnerOverride) Values() []string {
+	return []string{
+		OwnerOverrideDestination,
+	}
+}
 
 const (
 	// PayerRequester is a Payer enum value
@@ -30601,6 +31348,28 @@ const (
 	// PayerBucketOwner is a Payer enum value
 	PayerBucketOwner = "BucketOwner"
 )
+
+// Payer is an enum
+type Payer struct{}
+
+// Contains returns whether the Payer enum includes the element
+func (enum Payer) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Payer enum
+func (enum Payer) Values() []string {
+	return []string{
+		PayerRequester,
+		PayerBucketOwner,
+	}
+}
 
 const (
 	// PermissionFullControl is a Permission enum value
@@ -30619,6 +31388,31 @@ const (
 	PermissionReadAcp = "READ_ACP"
 )
 
+// Permission is an enum
+type Permission struct{}
+
+// Contains returns whether the Permission enum includes the element
+func (enum Permission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Permission enum
+func (enum Permission) Values() []string {
+	return []string{
+		PermissionFullControl,
+		PermissionWrite,
+		PermissionWriteAcp,
+		PermissionRead,
+		PermissionReadAcp,
+	}
+}
+
 const (
 	// ProtocolHttp is a Protocol enum value
 	ProtocolHttp = "http"
@@ -30626,6 +31420,28 @@ const (
 	// ProtocolHttps is a Protocol enum value
 	ProtocolHttps = "https"
 )
+
+// Protocol is an enum
+type Protocol struct{}
+
+// Contains returns whether the Protocol enum includes the element
+func (enum Protocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Protocol enum
+func (enum Protocol) Values() []string {
+	return []string{
+		ProtocolHttp,
+		ProtocolHttps,
+	}
+}
 
 const (
 	// QuoteFieldsAlways is a QuoteFields enum value
@@ -30635,6 +31451,28 @@ const (
 	QuoteFieldsAsneeded = "ASNEEDED"
 )
 
+// QuoteFields is an enum
+type QuoteFields struct{}
+
+// Contains returns whether the QuoteFields enum includes the element
+func (enum QuoteFields) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QuoteFields enum
+func (enum QuoteFields) Values() []string {
+	return []string{
+		QuoteFieldsAlways,
+		QuoteFieldsAsneeded,
+	}
+}
+
 const (
 	// ReplicationRuleStatusEnabled is a ReplicationRuleStatus enum value
 	ReplicationRuleStatusEnabled = "Enabled"
@@ -30642,6 +31480,28 @@ const (
 	// ReplicationRuleStatusDisabled is a ReplicationRuleStatus enum value
 	ReplicationRuleStatusDisabled = "Disabled"
 )
+
+// ReplicationRuleStatus is an enum
+type ReplicationRuleStatus struct{}
+
+// Contains returns whether the ReplicationRuleStatus enum includes the element
+func (enum ReplicationRuleStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplicationRuleStatus enum
+func (enum ReplicationRuleStatus) Values() []string {
+	return []string{
+		ReplicationRuleStatusEnabled,
+		ReplicationRuleStatusDisabled,
+	}
+}
 
 const (
 	// ReplicationStatusComplete is a ReplicationStatus enum value
@@ -30657,6 +31517,30 @@ const (
 	ReplicationStatusReplica = "REPLICA"
 )
 
+// ReplicationStatus is an enum
+type ReplicationStatus struct{}
+
+// Contains returns whether the ReplicationStatus enum includes the element
+func (enum ReplicationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplicationStatus enum
+func (enum ReplicationStatus) Values() []string {
+	return []string{
+		ReplicationStatusComplete,
+		ReplicationStatusPending,
+		ReplicationStatusFailed,
+		ReplicationStatusReplica,
+	}
+}
+
 const (
 	// ReplicationTimeStatusEnabled is a ReplicationTimeStatus enum value
 	ReplicationTimeStatusEnabled = "Enabled"
@@ -30665,12 +31549,55 @@ const (
 	ReplicationTimeStatusDisabled = "Disabled"
 )
 
+// ReplicationTimeStatus is an enum
+type ReplicationTimeStatus struct{}
+
+// Contains returns whether the ReplicationTimeStatus enum includes the element
+func (enum ReplicationTimeStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplicationTimeStatus enum
+func (enum ReplicationTimeStatus) Values() []string {
+	return []string{
+		ReplicationTimeStatusEnabled,
+		ReplicationTimeStatusDisabled,
+	}
+}
+
 // If present, indicates that the requester was successfully charged for the
 // request.
 const (
 	// RequestChargedRequester is a RequestCharged enum value
 	RequestChargedRequester = "requester"
 )
+
+// RequestCharged is an enum
+type RequestCharged struct{}
+
+// Contains returns whether the RequestCharged enum includes the element
+func (enum RequestCharged) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RequestCharged enum
+func (enum RequestCharged) Values() []string {
+	return []string{
+		RequestChargedRequester,
+	}
+}
 
 // Confirms that the requester knows that they will be charged for the request.
 // Bucket owners need not specify this parameter in their requests. For information
@@ -30682,10 +31609,52 @@ const (
 	RequestPayerRequester = "requester"
 )
 
+// RequestPayer is an enum
+type RequestPayer struct{}
+
+// Contains returns whether the RequestPayer enum includes the element
+func (enum RequestPayer) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RequestPayer enum
+func (enum RequestPayer) Values() []string {
+	return []string{
+		RequestPayerRequester,
+	}
+}
+
 const (
 	// RestoreRequestTypeSelect is a RestoreRequestType enum value
 	RestoreRequestTypeSelect = "SELECT"
 )
+
+// RestoreRequestType is an enum
+type RestoreRequestType struct{}
+
+// Contains returns whether the RestoreRequestType enum includes the element
+func (enum RestoreRequestType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RestoreRequestType enum
+func (enum RestoreRequestType) Values() []string {
+	return []string{
+		RestoreRequestTypeSelect,
+	}
+}
 
 const (
 	// ServerSideEncryptionAes256 is a ServerSideEncryption enum value
@@ -30695,6 +31664,28 @@ const (
 	ServerSideEncryptionAwsKms = "aws:kms"
 )
 
+// ServerSideEncryption is an enum
+type ServerSideEncryption struct{}
+
+// Contains returns whether the ServerSideEncryption enum includes the element
+func (enum ServerSideEncryption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServerSideEncryption enum
+func (enum ServerSideEncryption) Values() []string {
+	return []string{
+		ServerSideEncryptionAes256,
+		ServerSideEncryptionAwsKms,
+	}
+}
+
 const (
 	// SseKmsEncryptedObjectsStatusEnabled is a SseKmsEncryptedObjectsStatus enum value
 	SseKmsEncryptedObjectsStatusEnabled = "Enabled"
@@ -30702,6 +31693,28 @@ const (
 	// SseKmsEncryptedObjectsStatusDisabled is a SseKmsEncryptedObjectsStatus enum value
 	SseKmsEncryptedObjectsStatusDisabled = "Disabled"
 )
+
+// SseKmsEncryptedObjectsStatus is an enum
+type SseKmsEncryptedObjectsStatus struct{}
+
+// Contains returns whether the SseKmsEncryptedObjectsStatus enum includes the element
+func (enum SseKmsEncryptedObjectsStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SseKmsEncryptedObjectsStatus enum
+func (enum SseKmsEncryptedObjectsStatus) Values() []string {
+	return []string{
+		SseKmsEncryptedObjectsStatusEnabled,
+		SseKmsEncryptedObjectsStatusDisabled,
+	}
+}
 
 const (
 	// StorageClassStandard is a StorageClass enum value
@@ -30726,10 +31739,58 @@ const (
 	StorageClassDeepArchive = "DEEP_ARCHIVE"
 )
 
+// StorageClass is an enum
+type StorageClass struct{}
+
+// Contains returns whether the StorageClass enum includes the element
+func (enum StorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StorageClass enum
+func (enum StorageClass) Values() []string {
+	return []string{
+		StorageClassStandard,
+		StorageClassReducedRedundancy,
+		StorageClassStandardIa,
+		StorageClassOnezoneIa,
+		StorageClassIntelligentTiering,
+		StorageClassGlacier,
+		StorageClassDeepArchive,
+	}
+}
+
 const (
 	// StorageClassAnalysisSchemaVersionV1 is a StorageClassAnalysisSchemaVersion enum value
 	StorageClassAnalysisSchemaVersionV1 = "V_1"
 )
+
+// StorageClassAnalysisSchemaVersion is an enum
+type StorageClassAnalysisSchemaVersion struct{}
+
+// Contains returns whether the StorageClassAnalysisSchemaVersion enum includes the element
+func (enum StorageClassAnalysisSchemaVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StorageClassAnalysisSchemaVersion enum
+func (enum StorageClassAnalysisSchemaVersion) Values() []string {
+	return []string{
+		StorageClassAnalysisSchemaVersionV1,
+	}
+}
 
 const (
 	// TaggingDirectiveCopy is a TaggingDirective enum value
@@ -30738,6 +31799,28 @@ const (
 	// TaggingDirectiveReplace is a TaggingDirective enum value
 	TaggingDirectiveReplace = "REPLACE"
 )
+
+// TaggingDirective is an enum
+type TaggingDirective struct{}
+
+// Contains returns whether the TaggingDirective enum includes the element
+func (enum TaggingDirective) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TaggingDirective enum
+func (enum TaggingDirective) Values() []string {
+	return []string{
+		TaggingDirectiveCopy,
+		TaggingDirectiveReplace,
+	}
+}
 
 const (
 	// TierStandard is a Tier enum value
@@ -30749,6 +31832,29 @@ const (
 	// TierExpedited is a Tier enum value
 	TierExpedited = "Expedited"
 )
+
+// Tier is an enum
+type Tier struct{}
+
+// Contains returns whether the Tier enum includes the element
+func (enum Tier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Tier enum
+func (enum Tier) Values() []string {
+	return []string{
+		TierStandard,
+		TierBulk,
+		TierExpedited,
+	}
+}
 
 const (
 	// TransitionStorageClassGlacier is a TransitionStorageClass enum value
@@ -30767,6 +31873,31 @@ const (
 	TransitionStorageClassDeepArchive = "DEEP_ARCHIVE"
 )
 
+// TransitionStorageClass is an enum
+type TransitionStorageClass struct{}
+
+// Contains returns whether the TransitionStorageClass enum includes the element
+func (enum TransitionStorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TransitionStorageClass enum
+func (enum TransitionStorageClass) Values() []string {
+	return []string{
+		TransitionStorageClassGlacier,
+		TransitionStorageClassStandardIa,
+		TransitionStorageClassOnezoneIa,
+		TransitionStorageClassIntelligentTiering,
+		TransitionStorageClassDeepArchive,
+	}
+}
+
 const (
 	// TypeCanonicalUser is a Type enum value
 	TypeCanonicalUser = "CanonicalUser"
@@ -30777,3 +31908,26 @@ const (
 	// TypeGroup is a Type enum value
 	TypeGroup = "Group"
 )
+
+// Type is an enum
+type Type struct{}
+
+// Contains returns whether the Type enum includes the element
+func (enum Type) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Type enum
+func (enum Type) Values() []string {
+	return []string{
+		TypeCanonicalUser,
+		TypeAmazonCustomerByEmail,
+		TypeGroup,
+	}
+}

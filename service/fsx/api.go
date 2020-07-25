@@ -7281,6 +7281,30 @@ const (
 	ActiveDirectoryErrorTypeInvalidDomainStage = "INVALID_DOMAIN_STAGE"
 )
 
+// ActiveDirectoryErrorType is an enum
+type ActiveDirectoryErrorType struct{}
+
+// Contains returns whether the ActiveDirectoryErrorType enum includes the element
+func (enum ActiveDirectoryErrorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActiveDirectoryErrorType enum
+func (enum ActiveDirectoryErrorType) Values() []string {
+	return []string{
+		ActiveDirectoryErrorTypeDomainNotFound,
+		ActiveDirectoryErrorTypeIncompatibleDomainMode,
+		ActiveDirectoryErrorTypeWrongVpc,
+		ActiveDirectoryErrorTypeInvalidDomainStage,
+	}
+}
+
 // Describes the type of administrative action, as follows:
 //
 //    * FILE_SYSTEM_UPDATE - A file system update administrative action initiated
@@ -7302,6 +7326,28 @@ const (
 	AdministrativeActionTypeStorageOptimization = "STORAGE_OPTIMIZATION"
 )
 
+// AdministrativeActionType is an enum
+type AdministrativeActionType struct{}
+
+// Contains returns whether the AdministrativeActionType enum includes the element
+func (enum AdministrativeActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdministrativeActionType enum
+func (enum AdministrativeActionType) Values() []string {
+	return []string{
+		AdministrativeActionTypeFileSystemUpdate,
+		AdministrativeActionTypeStorageOptimization,
+	}
+}
+
 const (
 	// AutoImportPolicyTypeNone is a AutoImportPolicyType enum value
 	AutoImportPolicyTypeNone = "NONE"
@@ -7312,6 +7358,29 @@ const (
 	// AutoImportPolicyTypeNewChanged is a AutoImportPolicyType enum value
 	AutoImportPolicyTypeNewChanged = "NEW_CHANGED"
 )
+
+// AutoImportPolicyType is an enum
+type AutoImportPolicyType struct{}
+
+// Contains returns whether the AutoImportPolicyType enum includes the element
+func (enum AutoImportPolicyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoImportPolicyType enum
+func (enum AutoImportPolicyType) Values() []string {
+	return []string{
+		AutoImportPolicyTypeNone,
+		AutoImportPolicyTypeNew,
+		AutoImportPolicyTypeNewChanged,
+	}
+}
 
 // The lifecycle status of the backup.
 const (
@@ -7328,6 +7397,30 @@ const (
 	BackupLifecycleFailed = "FAILED"
 )
 
+// BackupLifecycle is an enum
+type BackupLifecycle struct{}
+
+// Contains returns whether the BackupLifecycle enum includes the element
+func (enum BackupLifecycle) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BackupLifecycle enum
+func (enum BackupLifecycle) Values() []string {
+	return []string{
+		BackupLifecycleAvailable,
+		BackupLifecycleCreating,
+		BackupLifecycleDeleted,
+		BackupLifecycleFailed,
+	}
+}
+
 // The type of the backup.
 const (
 	// BackupTypeAutomatic is a BackupType enum value
@@ -7336,6 +7429,28 @@ const (
 	// BackupTypeUserInitiated is a BackupType enum value
 	BackupTypeUserInitiated = "USER_INITIATED"
 )
+
+// BackupType is an enum
+type BackupType struct{}
+
+// Contains returns whether the BackupType enum includes the element
+func (enum BackupType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BackupType enum
+func (enum BackupType) Values() []string {
+	return []string{
+		BackupTypeAutomatic,
+		BackupTypeUserInitiated,
+	}
+}
 
 const (
 	// DataRepositoryLifecycleCreating is a DataRepositoryLifecycle enum value
@@ -7354,6 +7469,31 @@ const (
 	DataRepositoryLifecycleDeleting = "DELETING"
 )
 
+// DataRepositoryLifecycle is an enum
+type DataRepositoryLifecycle struct{}
+
+// Contains returns whether the DataRepositoryLifecycle enum includes the element
+func (enum DataRepositoryLifecycle) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataRepositoryLifecycle enum
+func (enum DataRepositoryLifecycle) Values() []string {
+	return []string{
+		DataRepositoryLifecycleCreating,
+		DataRepositoryLifecycleAvailable,
+		DataRepositoryLifecycleMisconfigured,
+		DataRepositoryLifecycleUpdating,
+		DataRepositoryLifecycleDeleting,
+	}
+}
+
 const (
 	// DataRepositoryTaskFilterNameFileSystemId is a DataRepositoryTaskFilterName enum value
 	DataRepositoryTaskFilterNameFileSystemId = "file-system-id"
@@ -7361,6 +7501,28 @@ const (
 	// DataRepositoryTaskFilterNameTaskLifecycle is a DataRepositoryTaskFilterName enum value
 	DataRepositoryTaskFilterNameTaskLifecycle = "task-lifecycle"
 )
+
+// DataRepositoryTaskFilterName is an enum
+type DataRepositoryTaskFilterName struct{}
+
+// Contains returns whether the DataRepositoryTaskFilterName enum includes the element
+func (enum DataRepositoryTaskFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataRepositoryTaskFilterName enum
+func (enum DataRepositoryTaskFilterName) Values() []string {
+	return []string{
+		DataRepositoryTaskFilterNameFileSystemId,
+		DataRepositoryTaskFilterNameTaskLifecycle,
+	}
+}
 
 const (
 	// DataRepositoryTaskLifecyclePending is a DataRepositoryTaskLifecycle enum value
@@ -7382,10 +7544,57 @@ const (
 	DataRepositoryTaskLifecycleCanceling = "CANCELING"
 )
 
+// DataRepositoryTaskLifecycle is an enum
+type DataRepositoryTaskLifecycle struct{}
+
+// Contains returns whether the DataRepositoryTaskLifecycle enum includes the element
+func (enum DataRepositoryTaskLifecycle) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataRepositoryTaskLifecycle enum
+func (enum DataRepositoryTaskLifecycle) Values() []string {
+	return []string{
+		DataRepositoryTaskLifecyclePending,
+		DataRepositoryTaskLifecycleExecuting,
+		DataRepositoryTaskLifecycleFailed,
+		DataRepositoryTaskLifecycleSucceeded,
+		DataRepositoryTaskLifecycleCanceled,
+		DataRepositoryTaskLifecycleCanceling,
+	}
+}
+
 const (
 	// DataRepositoryTaskTypeExportToRepository is a DataRepositoryTaskType enum value
 	DataRepositoryTaskTypeExportToRepository = "EXPORT_TO_REPOSITORY"
 )
+
+// DataRepositoryTaskType is an enum
+type DataRepositoryTaskType struct{}
+
+// Contains returns whether the DataRepositoryTaskType enum includes the element
+func (enum DataRepositoryTaskType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataRepositoryTaskType enum
+func (enum DataRepositoryTaskType) Values() []string {
+	return []string{
+		DataRepositoryTaskTypeExportToRepository,
+	}
+}
 
 // The lifecycle status of the file system.
 const (
@@ -7408,6 +7617,32 @@ const (
 	FileSystemLifecycleUpdating = "UPDATING"
 )
 
+// FileSystemLifecycle is an enum
+type FileSystemLifecycle struct{}
+
+// Contains returns whether the FileSystemLifecycle enum includes the element
+func (enum FileSystemLifecycle) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileSystemLifecycle enum
+func (enum FileSystemLifecycle) Values() []string {
+	return []string{
+		FileSystemLifecycleAvailable,
+		FileSystemLifecycleCreating,
+		FileSystemLifecycleFailed,
+		FileSystemLifecycleDeleting,
+		FileSystemLifecycleMisconfigured,
+		FileSystemLifecycleUpdating,
+	}
+}
+
 // An enumeration specifying the currently ongoing maintenance operation.
 const (
 	// FileSystemMaintenanceOperationPatching is a FileSystemMaintenanceOperation enum value
@@ -7417,6 +7652,28 @@ const (
 	FileSystemMaintenanceOperationBackingUp = "BACKING_UP"
 )
 
+// FileSystemMaintenanceOperation is an enum
+type FileSystemMaintenanceOperation struct{}
+
+// Contains returns whether the FileSystemMaintenanceOperation enum includes the element
+func (enum FileSystemMaintenanceOperation) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileSystemMaintenanceOperation enum
+func (enum FileSystemMaintenanceOperation) Values() []string {
+	return []string{
+		FileSystemMaintenanceOperationPatching,
+		FileSystemMaintenanceOperationBackingUp,
+	}
+}
+
 // The type of file system.
 const (
 	// FileSystemTypeWindows is a FileSystemType enum value
@@ -7425,6 +7682,28 @@ const (
 	// FileSystemTypeLustre is a FileSystemType enum value
 	FileSystemTypeLustre = "LUSTRE"
 )
+
+// FileSystemType is an enum
+type FileSystemType struct{}
+
+// Contains returns whether the FileSystemType enum includes the element
+func (enum FileSystemType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileSystemType enum
+func (enum FileSystemType) Values() []string {
+	return []string{
+		FileSystemTypeWindows,
+		FileSystemTypeLustre,
+	}
+}
 
 // The name for a filter.
 const (
@@ -7438,6 +7717,29 @@ const (
 	FilterNameFileSystemType = "file-system-type"
 )
 
+// FilterName is an enum
+type FilterName struct{}
+
+// Contains returns whether the FilterName enum includes the element
+func (enum FilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterName enum
+func (enum FilterName) Values() []string {
+	return []string{
+		FilterNameFileSystemId,
+		FilterNameBackupType,
+		FilterNameFileSystemType,
+	}
+}
+
 const (
 	// LustreDeploymentTypeScratch1 is a LustreDeploymentType enum value
 	LustreDeploymentTypeScratch1 = "SCRATCH_1"
@@ -7449,15 +7751,80 @@ const (
 	LustreDeploymentTypePersistent1 = "PERSISTENT_1"
 )
 
+// LustreDeploymentType is an enum
+type LustreDeploymentType struct{}
+
+// Contains returns whether the LustreDeploymentType enum includes the element
+func (enum LustreDeploymentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LustreDeploymentType enum
+func (enum LustreDeploymentType) Values() []string {
+	return []string{
+		LustreDeploymentTypeScratch1,
+		LustreDeploymentTypeScratch2,
+		LustreDeploymentTypePersistent1,
+	}
+}
+
 const (
 	// ReportFormatReportCsv20191124 is a ReportFormat enum value
 	ReportFormatReportCsv20191124 = "REPORT_CSV_20191124"
 )
 
+// ReportFormat is an enum
+type ReportFormat struct{}
+
+// Contains returns whether the ReportFormat enum includes the element
+func (enum ReportFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportFormat enum
+func (enum ReportFormat) Values() []string {
+	return []string{
+		ReportFormatReportCsv20191124,
+	}
+}
+
 const (
 	// ReportScopeFailedFilesOnly is a ReportScope enum value
 	ReportScopeFailedFilesOnly = "FAILED_FILES_ONLY"
 )
+
+// ReportScope is an enum
+type ReportScope struct{}
+
+// Contains returns whether the ReportScope enum includes the element
+func (enum ReportScope) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportScope enum
+func (enum ReportScope) Values() []string {
+	return []string{
+		ReportScopeFailedFilesOnly,
+	}
+}
 
 // The types of limits on your service utilization. Limits include file system
 // count, total throughput capacity, total storage, and total user-initiated
@@ -7477,6 +7844,30 @@ const (
 	ServiceLimitTotalUserInitiatedBackups = "TOTAL_USER_INITIATED_BACKUPS"
 )
 
+// ServiceLimit is an enum
+type ServiceLimit struct{}
+
+// Contains returns whether the ServiceLimit enum includes the element
+func (enum ServiceLimit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceLimit enum
+func (enum ServiceLimit) Values() []string {
+	return []string{
+		ServiceLimitFileSystemCount,
+		ServiceLimitTotalThroughputCapacity,
+		ServiceLimitTotalStorage,
+		ServiceLimitTotalUserInitiatedBackups,
+	}
+}
+
 const (
 	// StatusFailed is a Status enum value
 	StatusFailed = "FAILED"
@@ -7494,6 +7885,31 @@ const (
 	StatusUpdatedOptimizing = "UPDATED_OPTIMIZING"
 )
 
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusFailed,
+		StatusInProgress,
+		StatusPending,
+		StatusCompleted,
+		StatusUpdatedOptimizing,
+	}
+}
+
 // The storage type for your Amazon FSx file system.
 const (
 	// StorageTypeSsd is a StorageType enum value
@@ -7502,6 +7918,28 @@ const (
 	// StorageTypeHdd is a StorageType enum value
 	StorageTypeHdd = "HDD"
 )
+
+// StorageType is an enum
+type StorageType struct{}
+
+// Contains returns whether the StorageType enum includes the element
+func (enum StorageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StorageType enum
+func (enum StorageType) Values() []string {
+	return []string{
+		StorageTypeSsd,
+		StorageTypeHdd,
+	}
+}
 
 const (
 	// WindowsDeploymentTypeMultiAz1 is a WindowsDeploymentType enum value
@@ -7513,3 +7951,26 @@ const (
 	// WindowsDeploymentTypeSingleAz2 is a WindowsDeploymentType enum value
 	WindowsDeploymentTypeSingleAz2 = "SINGLE_AZ_2"
 )
+
+// WindowsDeploymentType is an enum
+type WindowsDeploymentType struct{}
+
+// Contains returns whether the WindowsDeploymentType enum includes the element
+func (enum WindowsDeploymentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WindowsDeploymentType enum
+func (enum WindowsDeploymentType) Values() []string {
+	return []string{
+		WindowsDeploymentTypeMultiAz1,
+		WindowsDeploymentTypeSingleAz1,
+		WindowsDeploymentTypeSingleAz2,
+	}
+}

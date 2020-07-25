@@ -5690,6 +5690,30 @@ const (
 	JobManifestFieldNameVersionId = "VersionId"
 )
 
+// JobManifestFieldName is an enum
+type JobManifestFieldName struct{}
+
+// Contains returns whether the JobManifestFieldName enum includes the element
+func (enum JobManifestFieldName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobManifestFieldName enum
+func (enum JobManifestFieldName) Values() []string {
+	return []string{
+		JobManifestFieldNameIgnore,
+		JobManifestFieldNameBucket,
+		JobManifestFieldNameKey,
+		JobManifestFieldNameVersionId,
+	}
+}
+
 const (
 	// JobManifestFormatS3batchOperationsCsv20180820 is a JobManifestFormat enum value
 	JobManifestFormatS3batchOperationsCsv20180820 = "S3BatchOperations_CSV_20180820"
@@ -5698,10 +5722,53 @@ const (
 	JobManifestFormatS3inventoryReportCsv20161130 = "S3InventoryReport_CSV_20161130"
 )
 
+// JobManifestFormat is an enum
+type JobManifestFormat struct{}
+
+// Contains returns whether the JobManifestFormat enum includes the element
+func (enum JobManifestFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobManifestFormat enum
+func (enum JobManifestFormat) Values() []string {
+	return []string{
+		JobManifestFormatS3batchOperationsCsv20180820,
+		JobManifestFormatS3inventoryReportCsv20161130,
+	}
+}
+
 const (
 	// JobReportFormatReportCsv20180820 is a JobReportFormat enum value
 	JobReportFormatReportCsv20180820 = "Report_CSV_20180820"
 )
+
+// JobReportFormat is an enum
+type JobReportFormat struct{}
+
+// Contains returns whether the JobReportFormat enum includes the element
+func (enum JobReportFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobReportFormat enum
+func (enum JobReportFormat) Values() []string {
+	return []string{
+		JobReportFormatReportCsv20180820,
+	}
+}
 
 const (
 	// JobReportScopeAllTasks is a JobReportScope enum value
@@ -5710,6 +5777,28 @@ const (
 	// JobReportScopeFailedTasksOnly is a JobReportScope enum value
 	JobReportScopeFailedTasksOnly = "FailedTasksOnly"
 )
+
+// JobReportScope is an enum
+type JobReportScope struct{}
+
+// Contains returns whether the JobReportScope enum includes the element
+func (enum JobReportScope) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobReportScope enum
+func (enum JobReportScope) Values() []string {
+	return []string{
+		JobReportScopeAllTasks,
+		JobReportScopeFailedTasksOnly,
+	}
+}
 
 const (
 	// JobStatusActive is a JobStatus enum value
@@ -5752,6 +5841,39 @@ const (
 	JobStatusSuspended = "Suspended"
 )
 
+// JobStatus is an enum
+type JobStatus struct{}
+
+// Contains returns whether the JobStatus enum includes the element
+func (enum JobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatus enum
+func (enum JobStatus) Values() []string {
+	return []string{
+		JobStatusActive,
+		JobStatusCancelled,
+		JobStatusCancelling,
+		JobStatusComplete,
+		JobStatusCompleting,
+		JobStatusFailed,
+		JobStatusFailing,
+		JobStatusNew,
+		JobStatusPaused,
+		JobStatusPausing,
+		JobStatusPreparing,
+		JobStatusReady,
+		JobStatusSuspended,
+	}
+}
+
 const (
 	// NetworkOriginInternet is a NetworkOrigin enum value
 	NetworkOriginInternet = "Internet"
@@ -5759,6 +5881,28 @@ const (
 	// NetworkOriginVpc is a NetworkOrigin enum value
 	NetworkOriginVpc = "VPC"
 )
+
+// NetworkOrigin is an enum
+type NetworkOrigin struct{}
+
+// Contains returns whether the NetworkOrigin enum includes the element
+func (enum NetworkOrigin) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NetworkOrigin enum
+func (enum NetworkOrigin) Values() []string {
+	return []string{
+		NetworkOriginInternet,
+		NetworkOriginVpc,
+	}
+}
 
 const (
 	// OperationNameLambdaInvoke is a OperationName enum value
@@ -5783,6 +5927,33 @@ const (
 	OperationNameS3putObjectRetention = "S3PutObjectRetention"
 )
 
+// OperationName is an enum
+type OperationName struct{}
+
+// Contains returns whether the OperationName enum includes the element
+func (enum OperationName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperationName enum
+func (enum OperationName) Values() []string {
+	return []string{
+		OperationNameLambdaInvoke,
+		OperationNameS3putObjectCopy,
+		OperationNameS3putObjectAcl,
+		OperationNameS3putObjectTagging,
+		OperationNameS3initiateRestoreObject,
+		OperationNameS3putObjectLegalHold,
+		OperationNameS3putObjectRetention,
+	}
+}
+
 const (
 	// RequestedJobStatusCancelled is a RequestedJobStatus enum value
 	RequestedJobStatusCancelled = "Cancelled"
@@ -5790,6 +5961,28 @@ const (
 	// RequestedJobStatusReady is a RequestedJobStatus enum value
 	RequestedJobStatusReady = "Ready"
 )
+
+// RequestedJobStatus is an enum
+type RequestedJobStatus struct{}
+
+// Contains returns whether the RequestedJobStatus enum includes the element
+func (enum RequestedJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RequestedJobStatus enum
+func (enum RequestedJobStatus) Values() []string {
+	return []string{
+		RequestedJobStatusCancelled,
+		RequestedJobStatusReady,
+	}
+}
 
 const (
 	// S3CannedAccessControlListPrivate is a S3CannedAccessControlList enum value
@@ -5814,6 +6007,33 @@ const (
 	S3CannedAccessControlListBucketOwnerFullControl = "bucket-owner-full-control"
 )
 
+// S3CannedAccessControlList is an enum
+type S3CannedAccessControlList struct{}
+
+// Contains returns whether the S3CannedAccessControlList enum includes the element
+func (enum S3CannedAccessControlList) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3CannedAccessControlList enum
+func (enum S3CannedAccessControlList) Values() []string {
+	return []string{
+		S3CannedAccessControlListPrivate,
+		S3CannedAccessControlListPublicRead,
+		S3CannedAccessControlListPublicReadWrite,
+		S3CannedAccessControlListAwsExecRead,
+		S3CannedAccessControlListAuthenticatedRead,
+		S3CannedAccessControlListBucketOwnerRead,
+		S3CannedAccessControlListBucketOwnerFullControl,
+	}
+}
+
 const (
 	// S3GlacierJobTierBulk is a S3GlacierJobTier enum value
 	S3GlacierJobTierBulk = "BULK"
@@ -5821,6 +6041,28 @@ const (
 	// S3GlacierJobTierStandard is a S3GlacierJobTier enum value
 	S3GlacierJobTierStandard = "STANDARD"
 )
+
+// S3GlacierJobTier is an enum
+type S3GlacierJobTier struct{}
+
+// Contains returns whether the S3GlacierJobTier enum includes the element
+func (enum S3GlacierJobTier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3GlacierJobTier enum
+func (enum S3GlacierJobTier) Values() []string {
+	return []string{
+		S3GlacierJobTierBulk,
+		S3GlacierJobTierStandard,
+	}
+}
 
 const (
 	// S3GranteeTypeIdentifierId is a S3GranteeTypeIdentifier enum value
@@ -5833,6 +6075,29 @@ const (
 	S3GranteeTypeIdentifierUri = "uri"
 )
 
+// S3GranteeTypeIdentifier is an enum
+type S3GranteeTypeIdentifier struct{}
+
+// Contains returns whether the S3GranteeTypeIdentifier enum includes the element
+func (enum S3GranteeTypeIdentifier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3GranteeTypeIdentifier enum
+func (enum S3GranteeTypeIdentifier) Values() []string {
+	return []string{
+		S3GranteeTypeIdentifierId,
+		S3GranteeTypeIdentifierEmailAddress,
+		S3GranteeTypeIdentifierUri,
+	}
+}
+
 const (
 	// S3MetadataDirectiveCopy is a S3MetadataDirective enum value
 	S3MetadataDirectiveCopy = "COPY"
@@ -5840,6 +6105,28 @@ const (
 	// S3MetadataDirectiveReplace is a S3MetadataDirective enum value
 	S3MetadataDirectiveReplace = "REPLACE"
 )
+
+// S3MetadataDirective is an enum
+type S3MetadataDirective struct{}
+
+// Contains returns whether the S3MetadataDirective enum includes the element
+func (enum S3MetadataDirective) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3MetadataDirective enum
+func (enum S3MetadataDirective) Values() []string {
+	return []string{
+		S3MetadataDirectiveCopy,
+		S3MetadataDirectiveReplace,
+	}
+}
 
 const (
 	// S3ObjectLockLegalHoldStatusOff is a S3ObjectLockLegalHoldStatus enum value
@@ -5849,6 +6136,28 @@ const (
 	S3ObjectLockLegalHoldStatusOn = "ON"
 )
 
+// S3ObjectLockLegalHoldStatus is an enum
+type S3ObjectLockLegalHoldStatus struct{}
+
+// Contains returns whether the S3ObjectLockLegalHoldStatus enum includes the element
+func (enum S3ObjectLockLegalHoldStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3ObjectLockLegalHoldStatus enum
+func (enum S3ObjectLockLegalHoldStatus) Values() []string {
+	return []string{
+		S3ObjectLockLegalHoldStatusOff,
+		S3ObjectLockLegalHoldStatusOn,
+	}
+}
+
 const (
 	// S3ObjectLockModeCompliance is a S3ObjectLockMode enum value
 	S3ObjectLockModeCompliance = "COMPLIANCE"
@@ -5857,6 +6166,28 @@ const (
 	S3ObjectLockModeGovernance = "GOVERNANCE"
 )
 
+// S3ObjectLockMode is an enum
+type S3ObjectLockMode struct{}
+
+// Contains returns whether the S3ObjectLockMode enum includes the element
+func (enum S3ObjectLockMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3ObjectLockMode enum
+func (enum S3ObjectLockMode) Values() []string {
+	return []string{
+		S3ObjectLockModeCompliance,
+		S3ObjectLockModeGovernance,
+	}
+}
+
 const (
 	// S3ObjectLockRetentionModeCompliance is a S3ObjectLockRetentionMode enum value
 	S3ObjectLockRetentionModeCompliance = "COMPLIANCE"
@@ -5864,6 +6195,28 @@ const (
 	// S3ObjectLockRetentionModeGovernance is a S3ObjectLockRetentionMode enum value
 	S3ObjectLockRetentionModeGovernance = "GOVERNANCE"
 )
+
+// S3ObjectLockRetentionMode is an enum
+type S3ObjectLockRetentionMode struct{}
+
+// Contains returns whether the S3ObjectLockRetentionMode enum includes the element
+func (enum S3ObjectLockRetentionMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3ObjectLockRetentionMode enum
+func (enum S3ObjectLockRetentionMode) Values() []string {
+	return []string{
+		S3ObjectLockRetentionModeCompliance,
+		S3ObjectLockRetentionModeGovernance,
+	}
+}
 
 const (
 	// S3PermissionFullControl is a S3Permission enum value
@@ -5882,6 +6235,31 @@ const (
 	S3PermissionWriteAcp = "WRITE_ACP"
 )
 
+// S3Permission is an enum
+type S3Permission struct{}
+
+// Contains returns whether the S3Permission enum includes the element
+func (enum S3Permission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3Permission enum
+func (enum S3Permission) Values() []string {
+	return []string{
+		S3PermissionFullControl,
+		S3PermissionRead,
+		S3PermissionWrite,
+		S3PermissionReadAcp,
+		S3PermissionWriteAcp,
+	}
+}
+
 const (
 	// S3SSEAlgorithmAes256 is a S3SSEAlgorithm enum value
 	S3SSEAlgorithmAes256 = "AES256"
@@ -5889,6 +6267,28 @@ const (
 	// S3SSEAlgorithmKms is a S3SSEAlgorithm enum value
 	S3SSEAlgorithmKms = "KMS"
 )
+
+// S3SSEAlgorithm is an enum
+type S3SSEAlgorithm struct{}
+
+// Contains returns whether the S3SSEAlgorithm enum includes the element
+func (enum S3SSEAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3SSEAlgorithm enum
+func (enum S3SSEAlgorithm) Values() []string {
+	return []string{
+		S3SSEAlgorithmAes256,
+		S3SSEAlgorithmKms,
+	}
+}
 
 const (
 	// S3StorageClassStandard is a S3StorageClass enum value
@@ -5909,3 +6309,29 @@ const (
 	// S3StorageClassDeepArchive is a S3StorageClass enum value
 	S3StorageClassDeepArchive = "DEEP_ARCHIVE"
 )
+
+// S3StorageClass is an enum
+type S3StorageClass struct{}
+
+// Contains returns whether the S3StorageClass enum includes the element
+func (enum S3StorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3StorageClass enum
+func (enum S3StorageClass) Values() []string {
+	return []string{
+		S3StorageClassStandard,
+		S3StorageClassStandardIa,
+		S3StorageClassOnezoneIa,
+		S3StorageClassGlacier,
+		S3StorageClassIntelligentTiering,
+		S3StorageClassDeepArchive,
+	}
+}

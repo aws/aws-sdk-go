@@ -6987,6 +6987,28 @@ const (
 	AgentStatusOffline = "OFFLINE"
 )
 
+// AgentStatus is an enum
+type AgentStatus struct{}
+
+// Contains returns whether the AgentStatus enum includes the element
+func (enum AgentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AgentStatus enum
+func (enum AgentStatus) Values() []string {
+	return []string{
+		AgentStatusOnline,
+		AgentStatusOffline,
+	}
+}
+
 const (
 	// AtimeNone is a Atime enum value
 	AtimeNone = "NONE"
@@ -6994,6 +7016,28 @@ const (
 	// AtimeBestEffort is a Atime enum value
 	AtimeBestEffort = "BEST_EFFORT"
 )
+
+// Atime is an enum
+type Atime struct{}
+
+// Contains returns whether the Atime enum includes the element
+func (enum Atime) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Atime enum
+func (enum Atime) Values() []string {
+	return []string{
+		AtimeNone,
+		AtimeBestEffort,
+	}
+}
 
 const (
 	// EndpointTypePublic is a EndpointType enum value
@@ -7006,10 +7050,54 @@ const (
 	EndpointTypeFips = "FIPS"
 )
 
+// EndpointType is an enum
+type EndpointType struct{}
+
+// Contains returns whether the EndpointType enum includes the element
+func (enum EndpointType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EndpointType enum
+func (enum EndpointType) Values() []string {
+	return []string{
+		EndpointTypePublic,
+		EndpointTypePrivateLink,
+		EndpointTypeFips,
+	}
+}
+
 const (
 	// FilterTypeSimplePattern is a FilterType enum value
 	FilterTypeSimplePattern = "SIMPLE_PATTERN"
 )
+
+// FilterType is an enum
+type FilterType struct{}
+
+// Contains returns whether the FilterType enum includes the element
+func (enum FilterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterType enum
+func (enum FilterType) Values() []string {
+	return []string{
+		FilterTypeSimplePattern,
+	}
+}
 
 const (
 	// GidNone is a Gid enum value
@@ -7025,6 +7113,30 @@ const (
 	GidBoth = "BOTH"
 )
 
+// Gid is an enum
+type Gid struct{}
+
+// Contains returns whether the Gid enum includes the element
+func (enum Gid) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Gid enum
+func (enum Gid) Values() []string {
+	return []string{
+		GidNone,
+		GidIntValue,
+		GidName,
+		GidBoth,
+	}
+}
+
 const (
 	// LogLevelOff is a LogLevel enum value
 	LogLevelOff = "OFF"
@@ -7036,6 +7148,29 @@ const (
 	LogLevelTransfer = "TRANSFER"
 )
 
+// LogLevel is an enum
+type LogLevel struct{}
+
+// Contains returns whether the LogLevel enum includes the element
+func (enum LogLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogLevel enum
+func (enum LogLevel) Values() []string {
+	return []string{
+		LogLevelOff,
+		LogLevelBasic,
+		LogLevelTransfer,
+	}
+}
+
 const (
 	// MtimeNone is a Mtime enum value
 	MtimeNone = "NONE"
@@ -7043,6 +7178,28 @@ const (
 	// MtimePreserve is a Mtime enum value
 	MtimePreserve = "PRESERVE"
 )
+
+// Mtime is an enum
+type Mtime struct{}
+
+// Contains returns whether the Mtime enum includes the element
+func (enum Mtime) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mtime enum
+func (enum Mtime) Values() []string {
+	return []string{
+		MtimeNone,
+		MtimePreserve,
+	}
+}
 
 const (
 	// NfsVersionAutomatic is a NfsVersion enum value
@@ -7058,6 +7215,30 @@ const (
 	NfsVersionNfs41 = "NFS4_1"
 )
 
+// NfsVersion is an enum
+type NfsVersion struct{}
+
+// Contains returns whether the NfsVersion enum includes the element
+func (enum NfsVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NfsVersion enum
+func (enum NfsVersion) Values() []string {
+	return []string{
+		NfsVersionAutomatic,
+		NfsVersionNfs3,
+		NfsVersionNfs40,
+		NfsVersionNfs41,
+	}
+}
+
 const (
 	// OverwriteModeAlways is a OverwriteMode enum value
 	OverwriteModeAlways = "ALWAYS"
@@ -7065,6 +7246,28 @@ const (
 	// OverwriteModeNever is a OverwriteMode enum value
 	OverwriteModeNever = "NEVER"
 )
+
+// OverwriteMode is an enum
+type OverwriteMode struct{}
+
+// Contains returns whether the OverwriteMode enum includes the element
+func (enum OverwriteMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OverwriteMode enum
+func (enum OverwriteMode) Values() []string {
+	return []string{
+		OverwriteModeAlways,
+		OverwriteModeNever,
+	}
+}
 
 const (
 	// PhaseStatusPending is a PhaseStatus enum value
@@ -7077,6 +7280,29 @@ const (
 	PhaseStatusError = "ERROR"
 )
 
+// PhaseStatus is an enum
+type PhaseStatus struct{}
+
+// Contains returns whether the PhaseStatus enum includes the element
+func (enum PhaseStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PhaseStatus enum
+func (enum PhaseStatus) Values() []string {
+	return []string{
+		PhaseStatusPending,
+		PhaseStatusSuccess,
+		PhaseStatusError,
+	}
+}
+
 const (
 	// PosixPermissionsNone is a PosixPermissions enum value
 	PosixPermissionsNone = "NONE"
@@ -7084,6 +7310,28 @@ const (
 	// PosixPermissionsPreserve is a PosixPermissions enum value
 	PosixPermissionsPreserve = "PRESERVE"
 )
+
+// PosixPermissions is an enum
+type PosixPermissions struct{}
+
+// Contains returns whether the PosixPermissions enum includes the element
+func (enum PosixPermissions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PosixPermissions enum
+func (enum PosixPermissions) Values() []string {
+	return []string{
+		PosixPermissionsNone,
+		PosixPermissionsPreserve,
+	}
+}
 
 const (
 	// PreserveDeletedFilesPreserve is a PreserveDeletedFiles enum value
@@ -7093,6 +7341,28 @@ const (
 	PreserveDeletedFilesRemove = "REMOVE"
 )
 
+// PreserveDeletedFiles is an enum
+type PreserveDeletedFiles struct{}
+
+// Contains returns whether the PreserveDeletedFiles enum includes the element
+func (enum PreserveDeletedFiles) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PreserveDeletedFiles enum
+func (enum PreserveDeletedFiles) Values() []string {
+	return []string{
+		PreserveDeletedFilesPreserve,
+		PreserveDeletedFilesRemove,
+	}
+}
+
 const (
 	// PreserveDevicesNone is a PreserveDevices enum value
 	PreserveDevicesNone = "NONE"
@@ -7100,6 +7370,28 @@ const (
 	// PreserveDevicesPreserve is a PreserveDevices enum value
 	PreserveDevicesPreserve = "PRESERVE"
 )
+
+// PreserveDevices is an enum
+type PreserveDevices struct{}
+
+// Contains returns whether the PreserveDevices enum includes the element
+func (enum PreserveDevices) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PreserveDevices enum
+func (enum PreserveDevices) Values() []string {
+	return []string{
+		PreserveDevicesNone,
+		PreserveDevicesPreserve,
+	}
+}
 
 const (
 	// S3StorageClassStandard is a S3StorageClass enum value
@@ -7121,6 +7413,32 @@ const (
 	S3StorageClassDeepArchive = "DEEP_ARCHIVE"
 )
 
+// S3StorageClass is an enum
+type S3StorageClass struct{}
+
+// Contains returns whether the S3StorageClass enum includes the element
+func (enum S3StorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3StorageClass enum
+func (enum S3StorageClass) Values() []string {
+	return []string{
+		S3StorageClassStandard,
+		S3StorageClassStandardIa,
+		S3StorageClassOnezoneIa,
+		S3StorageClassIntelligentTiering,
+		S3StorageClassGlacier,
+		S3StorageClassDeepArchive,
+	}
+}
+
 const (
 	// SmbVersionAutomatic is a SmbVersion enum value
 	SmbVersionAutomatic = "AUTOMATIC"
@@ -7131,6 +7449,29 @@ const (
 	// SmbVersionSmb3 is a SmbVersion enum value
 	SmbVersionSmb3 = "SMB3"
 )
+
+// SmbVersion is an enum
+type SmbVersion struct{}
+
+// Contains returns whether the SmbVersion enum includes the element
+func (enum SmbVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SmbVersion enum
+func (enum SmbVersion) Values() []string {
+	return []string{
+		SmbVersionAutomatic,
+		SmbVersionSmb2,
+		SmbVersionSmb3,
+	}
+}
 
 const (
 	// TaskExecutionStatusQueued is a TaskExecutionStatus enum value
@@ -7155,6 +7496,33 @@ const (
 	TaskExecutionStatusError = "ERROR"
 )
 
+// TaskExecutionStatus is an enum
+type TaskExecutionStatus struct{}
+
+// Contains returns whether the TaskExecutionStatus enum includes the element
+func (enum TaskExecutionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TaskExecutionStatus enum
+func (enum TaskExecutionStatus) Values() []string {
+	return []string{
+		TaskExecutionStatusQueued,
+		TaskExecutionStatusLaunching,
+		TaskExecutionStatusPreparing,
+		TaskExecutionStatusTransferring,
+		TaskExecutionStatusVerifying,
+		TaskExecutionStatusSuccess,
+		TaskExecutionStatusError,
+	}
+}
+
 const (
 	// TaskQueueingEnabled is a TaskQueueing enum value
 	TaskQueueingEnabled = "ENABLED"
@@ -7162,6 +7530,28 @@ const (
 	// TaskQueueingDisabled is a TaskQueueing enum value
 	TaskQueueingDisabled = "DISABLED"
 )
+
+// TaskQueueing is an enum
+type TaskQueueing struct{}
+
+// Contains returns whether the TaskQueueing enum includes the element
+func (enum TaskQueueing) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TaskQueueing enum
+func (enum TaskQueueing) Values() []string {
+	return []string{
+		TaskQueueingEnabled,
+		TaskQueueingDisabled,
+	}
+}
 
 const (
 	// TaskStatusAvailable is a TaskStatus enum value
@@ -7180,6 +7570,31 @@ const (
 	TaskStatusUnavailable = "UNAVAILABLE"
 )
 
+// TaskStatus is an enum
+type TaskStatus struct{}
+
+// Contains returns whether the TaskStatus enum includes the element
+func (enum TaskStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TaskStatus enum
+func (enum TaskStatus) Values() []string {
+	return []string{
+		TaskStatusAvailable,
+		TaskStatusCreating,
+		TaskStatusQueued,
+		TaskStatusRunning,
+		TaskStatusUnavailable,
+	}
+}
+
 const (
 	// UidNone is a Uid enum value
 	UidNone = "NONE"
@@ -7194,6 +7609,30 @@ const (
 	UidBoth = "BOTH"
 )
 
+// Uid is an enum
+type Uid struct{}
+
+// Contains returns whether the Uid enum includes the element
+func (enum Uid) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Uid enum
+func (enum Uid) Values() []string {
+	return []string{
+		UidNone,
+		UidIntValue,
+		UidName,
+		UidBoth,
+	}
+}
+
 const (
 	// VerifyModePointInTimeConsistent is a VerifyMode enum value
 	VerifyModePointInTimeConsistent = "POINT_IN_TIME_CONSISTENT"
@@ -7204,3 +7643,26 @@ const (
 	// VerifyModeNone is a VerifyMode enum value
 	VerifyModeNone = "NONE"
 )
+
+// VerifyMode is an enum
+type VerifyMode struct{}
+
+// Contains returns whether the VerifyMode enum includes the element
+func (enum VerifyMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VerifyMode enum
+func (enum VerifyMode) Values() []string {
+	return []string{
+		VerifyModePointInTimeConsistent,
+		VerifyModeOnlyFilesTransferred,
+		VerifyModeNone,
+	}
+}

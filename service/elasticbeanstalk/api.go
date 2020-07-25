@@ -12505,6 +12505,29 @@ const (
 	ActionHistoryStatusUnknown = "Unknown"
 )
 
+// ActionHistoryStatus is an enum
+type ActionHistoryStatus struct{}
+
+// Contains returns whether the ActionHistoryStatus enum includes the element
+func (enum ActionHistoryStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionHistoryStatus enum
+func (enum ActionHistoryStatus) Values() []string {
+	return []string{
+		ActionHistoryStatusCompleted,
+		ActionHistoryStatusFailed,
+		ActionHistoryStatusUnknown,
+	}
+}
+
 const (
 	// ActionStatusScheduled is a ActionStatus enum value
 	ActionStatusScheduled = "Scheduled"
@@ -12519,6 +12542,30 @@ const (
 	ActionStatusUnknown = "Unknown"
 )
 
+// ActionStatus is an enum
+type ActionStatus struct{}
+
+// Contains returns whether the ActionStatus enum includes the element
+func (enum ActionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionStatus enum
+func (enum ActionStatus) Values() []string {
+	return []string{
+		ActionStatusScheduled,
+		ActionStatusPending,
+		ActionStatusRunning,
+		ActionStatusUnknown,
+	}
+}
+
 const (
 	// ActionTypeInstanceRefresh is a ActionType enum value
 	ActionTypeInstanceRefresh = "InstanceRefresh"
@@ -12529,6 +12576,29 @@ const (
 	// ActionTypeUnknown is a ActionType enum value
 	ActionTypeUnknown = "Unknown"
 )
+
+// ActionType is an enum
+type ActionType struct{}
+
+// Contains returns whether the ActionType enum includes the element
+func (enum ActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionType enum
+func (enum ActionType) Values() []string {
+	return []string{
+		ActionTypeInstanceRefresh,
+		ActionTypePlatformUpdate,
+		ActionTypeUnknown,
+	}
+}
 
 const (
 	// ApplicationVersionStatusProcessed is a ApplicationVersionStatus enum value
@@ -12547,6 +12617,31 @@ const (
 	ApplicationVersionStatusBuilding = "Building"
 )
 
+// ApplicationVersionStatus is an enum
+type ApplicationVersionStatus struct{}
+
+// Contains returns whether the ApplicationVersionStatus enum includes the element
+func (enum ApplicationVersionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ApplicationVersionStatus enum
+func (enum ApplicationVersionStatus) Values() []string {
+	return []string{
+		ApplicationVersionStatusProcessed,
+		ApplicationVersionStatusUnprocessed,
+		ApplicationVersionStatusFailed,
+		ApplicationVersionStatusProcessing,
+		ApplicationVersionStatusBuilding,
+	}
+}
+
 const (
 	// ComputeTypeBuildGeneral1Small is a ComputeType enum value
 	ComputeTypeBuildGeneral1Small = "BUILD_GENERAL1_SMALL"
@@ -12557,6 +12652,29 @@ const (
 	// ComputeTypeBuildGeneral1Large is a ComputeType enum value
 	ComputeTypeBuildGeneral1Large = "BUILD_GENERAL1_LARGE"
 )
+
+// ComputeType is an enum
+type ComputeType struct{}
+
+// Contains returns whether the ComputeType enum includes the element
+func (enum ComputeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComputeType enum
+func (enum ComputeType) Values() []string {
+	return []string{
+		ComputeTypeBuildGeneral1Small,
+		ComputeTypeBuildGeneral1Medium,
+		ComputeTypeBuildGeneral1Large,
+	}
+}
 
 const (
 	// ConfigurationDeploymentStatusDeployed is a ConfigurationDeploymentStatus enum value
@@ -12569,6 +12687,29 @@ const (
 	ConfigurationDeploymentStatusFailed = "failed"
 )
 
+// ConfigurationDeploymentStatus is an enum
+type ConfigurationDeploymentStatus struct{}
+
+// Contains returns whether the ConfigurationDeploymentStatus enum includes the element
+func (enum ConfigurationDeploymentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigurationDeploymentStatus enum
+func (enum ConfigurationDeploymentStatus) Values() []string {
+	return []string{
+		ConfigurationDeploymentStatusDeployed,
+		ConfigurationDeploymentStatusPending,
+		ConfigurationDeploymentStatusFailed,
+	}
+}
+
 const (
 	// ConfigurationOptionValueTypeScalar is a ConfigurationOptionValueType enum value
 	ConfigurationOptionValueTypeScalar = "Scalar"
@@ -12576,6 +12717,28 @@ const (
 	// ConfigurationOptionValueTypeList is a ConfigurationOptionValueType enum value
 	ConfigurationOptionValueTypeList = "List"
 )
+
+// ConfigurationOptionValueType is an enum
+type ConfigurationOptionValueType struct{}
+
+// Contains returns whether the ConfigurationOptionValueType enum includes the element
+func (enum ConfigurationOptionValueType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigurationOptionValueType enum
+func (enum ConfigurationOptionValueType) Values() []string {
+	return []string{
+		ConfigurationOptionValueTypeScalar,
+		ConfigurationOptionValueTypeList,
+	}
+}
 
 const (
 	// EnvironmentHealthGreen is a EnvironmentHealth enum value
@@ -12590,6 +12753,30 @@ const (
 	// EnvironmentHealthGrey is a EnvironmentHealth enum value
 	EnvironmentHealthGrey = "Grey"
 )
+
+// EnvironmentHealth is an enum
+type EnvironmentHealth struct{}
+
+// Contains returns whether the EnvironmentHealth enum includes the element
+func (enum EnvironmentHealth) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentHealth enum
+func (enum EnvironmentHealth) Values() []string {
+	return []string{
+		EnvironmentHealthGreen,
+		EnvironmentHealthYellow,
+		EnvironmentHealthRed,
+		EnvironmentHealthGrey,
+	}
+}
 
 const (
 	// EnvironmentHealthAttributeStatus is a EnvironmentHealthAttribute enum value
@@ -12616,6 +12803,34 @@ const (
 	// EnvironmentHealthAttributeRefreshedAt is a EnvironmentHealthAttribute enum value
 	EnvironmentHealthAttributeRefreshedAt = "RefreshedAt"
 )
+
+// EnvironmentHealthAttribute is an enum
+type EnvironmentHealthAttribute struct{}
+
+// Contains returns whether the EnvironmentHealthAttribute enum includes the element
+func (enum EnvironmentHealthAttribute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentHealthAttribute enum
+func (enum EnvironmentHealthAttribute) Values() []string {
+	return []string{
+		EnvironmentHealthAttributeStatus,
+		EnvironmentHealthAttributeColor,
+		EnvironmentHealthAttributeCauses,
+		EnvironmentHealthAttributeApplicationMetrics,
+		EnvironmentHealthAttributeInstancesHealth,
+		EnvironmentHealthAttributeAll,
+		EnvironmentHealthAttributeHealthStatus,
+		EnvironmentHealthAttributeRefreshedAt,
+	}
+}
 
 const (
 	// EnvironmentHealthStatusNoData is a EnvironmentHealthStatus enum value
@@ -12646,6 +12861,35 @@ const (
 	EnvironmentHealthStatusSuspended = "Suspended"
 )
 
+// EnvironmentHealthStatus is an enum
+type EnvironmentHealthStatus struct{}
+
+// Contains returns whether the EnvironmentHealthStatus enum includes the element
+func (enum EnvironmentHealthStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentHealthStatus enum
+func (enum EnvironmentHealthStatus) Values() []string {
+	return []string{
+		EnvironmentHealthStatusNoData,
+		EnvironmentHealthStatusUnknown,
+		EnvironmentHealthStatusPending,
+		EnvironmentHealthStatusOk,
+		EnvironmentHealthStatusInfo,
+		EnvironmentHealthStatusWarning,
+		EnvironmentHealthStatusDegraded,
+		EnvironmentHealthStatusSevere,
+		EnvironmentHealthStatusSuspended,
+	}
+}
+
 const (
 	// EnvironmentInfoTypeTail is a EnvironmentInfoType enum value
 	EnvironmentInfoTypeTail = "tail"
@@ -12653,6 +12897,28 @@ const (
 	// EnvironmentInfoTypeBundle is a EnvironmentInfoType enum value
 	EnvironmentInfoTypeBundle = "bundle"
 )
+
+// EnvironmentInfoType is an enum
+type EnvironmentInfoType struct{}
+
+// Contains returns whether the EnvironmentInfoType enum includes the element
+func (enum EnvironmentInfoType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentInfoType enum
+func (enum EnvironmentInfoType) Values() []string {
+	return []string{
+		EnvironmentInfoTypeTail,
+		EnvironmentInfoTypeBundle,
+	}
+}
 
 const (
 	// EnvironmentStatusLaunching is a EnvironmentStatus enum value
@@ -12670,6 +12936,31 @@ const (
 	// EnvironmentStatusTerminated is a EnvironmentStatus enum value
 	EnvironmentStatusTerminated = "Terminated"
 )
+
+// EnvironmentStatus is an enum
+type EnvironmentStatus struct{}
+
+// Contains returns whether the EnvironmentStatus enum includes the element
+func (enum EnvironmentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentStatus enum
+func (enum EnvironmentStatus) Values() []string {
+	return []string{
+		EnvironmentStatusLaunching,
+		EnvironmentStatusUpdating,
+		EnvironmentStatusReady,
+		EnvironmentStatusTerminating,
+		EnvironmentStatusTerminated,
+	}
+}
 
 const (
 	// EventSeverityTrace is a EventSeverity enum value
@@ -12690,6 +12981,32 @@ const (
 	// EventSeverityFatal is a EventSeverity enum value
 	EventSeverityFatal = "FATAL"
 )
+
+// EventSeverity is an enum
+type EventSeverity struct{}
+
+// Contains returns whether the EventSeverity enum includes the element
+func (enum EventSeverity) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventSeverity enum
+func (enum EventSeverity) Values() []string {
+	return []string{
+		EventSeverityTrace,
+		EventSeverityDebug,
+		EventSeverityInfo,
+		EventSeverityWarn,
+		EventSeverityError,
+		EventSeverityFatal,
+	}
+}
 
 const (
 	// FailureTypeUpdateCancelled is a FailureType enum value
@@ -12713,6 +13030,33 @@ const (
 	// FailureTypePermissionsError is a FailureType enum value
 	FailureTypePermissionsError = "PermissionsError"
 )
+
+// FailureType is an enum
+type FailureType struct{}
+
+// Contains returns whether the FailureType enum includes the element
+func (enum FailureType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FailureType enum
+func (enum FailureType) Values() []string {
+	return []string{
+		FailureTypeUpdateCancelled,
+		FailureTypeCancellationFailed,
+		FailureTypeRollbackFailed,
+		FailureTypeRollbackSuccessful,
+		FailureTypeInternalFailure,
+		FailureTypeInvalidEnvironmentState,
+		FailureTypePermissionsError,
+	}
+}
 
 const (
 	// InstancesHealthAttributeHealthStatus is a InstancesHealthAttribute enum value
@@ -12749,6 +13093,37 @@ const (
 	InstancesHealthAttributeAll = "All"
 )
 
+// InstancesHealthAttribute is an enum
+type InstancesHealthAttribute struct{}
+
+// Contains returns whether the InstancesHealthAttribute enum includes the element
+func (enum InstancesHealthAttribute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstancesHealthAttribute enum
+func (enum InstancesHealthAttribute) Values() []string {
+	return []string{
+		InstancesHealthAttributeHealthStatus,
+		InstancesHealthAttributeColor,
+		InstancesHealthAttributeCauses,
+		InstancesHealthAttributeApplicationMetrics,
+		InstancesHealthAttributeRefreshedAt,
+		InstancesHealthAttributeLaunchedAt,
+		InstancesHealthAttributeSystem,
+		InstancesHealthAttributeDeployment,
+		InstancesHealthAttributeAvailabilityZone,
+		InstancesHealthAttributeInstanceType,
+		InstancesHealthAttributeAll,
+	}
+}
+
 const (
 	// PlatformStatusCreating is a PlatformStatus enum value
 	PlatformStatusCreating = "Creating"
@@ -12766,6 +13141,31 @@ const (
 	PlatformStatusDeleted = "Deleted"
 )
 
+// PlatformStatus is an enum
+type PlatformStatus struct{}
+
+// Contains returns whether the PlatformStatus enum includes the element
+func (enum PlatformStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PlatformStatus enum
+func (enum PlatformStatus) Values() []string {
+	return []string{
+		PlatformStatusCreating,
+		PlatformStatusFailed,
+		PlatformStatusReady,
+		PlatformStatusDeleting,
+		PlatformStatusDeleted,
+	}
+}
+
 const (
 	// SourceRepositoryCodeCommit is a SourceRepository enum value
 	SourceRepositoryCodeCommit = "CodeCommit"
@@ -12773,6 +13173,28 @@ const (
 	// SourceRepositoryS3 is a SourceRepository enum value
 	SourceRepositoryS3 = "S3"
 )
+
+// SourceRepository is an enum
+type SourceRepository struct{}
+
+// Contains returns whether the SourceRepository enum includes the element
+func (enum SourceRepository) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceRepository enum
+func (enum SourceRepository) Values() []string {
+	return []string{
+		SourceRepositoryCodeCommit,
+		SourceRepositoryS3,
+	}
+}
 
 const (
 	// SourceTypeGit is a SourceType enum value
@@ -12782,6 +13204,28 @@ const (
 	SourceTypeZip = "Zip"
 )
 
+// SourceType is an enum
+type SourceType struct{}
+
+// Contains returns whether the SourceType enum includes the element
+func (enum SourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceType enum
+func (enum SourceType) Values() []string {
+	return []string{
+		SourceTypeGit,
+		SourceTypeZip,
+	}
+}
+
 const (
 	// ValidationSeverityError is a ValidationSeverity enum value
 	ValidationSeverityError = "error"
@@ -12789,3 +13233,25 @@ const (
 	// ValidationSeverityWarning is a ValidationSeverity enum value
 	ValidationSeverityWarning = "warning"
 )
+
+// ValidationSeverity is an enum
+type ValidationSeverity struct{}
+
+// Contains returns whether the ValidationSeverity enum includes the element
+func (enum ValidationSeverity) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ValidationSeverity enum
+func (enum ValidationSeverity) Values() []string {
+	return []string{
+		ValidationSeverityError,
+		ValidationSeverityWarning,
+	}
+}

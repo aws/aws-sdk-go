@@ -1544,6 +1544,29 @@ const (
 	ChatItemTypeConnectionAck = "CONNECTION_ACK"
 )
 
+// ChatItemType is an enum
+type ChatItemType struct{}
+
+// Contains returns whether the ChatItemType enum includes the element
+func (enum ChatItemType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChatItemType enum
+func (enum ChatItemType) Values() []string {
+	return []string{
+		ChatItemTypeMessage,
+		ChatItemTypeEvent,
+		ChatItemTypeConnectionAck,
+	}
+}
+
 const (
 	// ConnectionTypeWebsocket is a ConnectionType enum value
 	ConnectionTypeWebsocket = "WEBSOCKET"
@@ -1551,6 +1574,28 @@ const (
 	// ConnectionTypeConnectionCredentials is a ConnectionType enum value
 	ConnectionTypeConnectionCredentials = "CONNECTION_CREDENTIALS"
 )
+
+// ConnectionType is an enum
+type ConnectionType struct{}
+
+// Contains returns whether the ConnectionType enum includes the element
+func (enum ConnectionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionType enum
+func (enum ConnectionType) Values() []string {
+	return []string{
+		ConnectionTypeWebsocket,
+		ConnectionTypeConnectionCredentials,
+	}
+}
 
 const (
 	// ParticipantRoleAgent is a ParticipantRole enum value
@@ -1563,6 +1608,29 @@ const (
 	ParticipantRoleSystem = "SYSTEM"
 )
 
+// ParticipantRole is an enum
+type ParticipantRole struct{}
+
+// Contains returns whether the ParticipantRole enum includes the element
+func (enum ParticipantRole) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ParticipantRole enum
+func (enum ParticipantRole) Values() []string {
+	return []string{
+		ParticipantRoleAgent,
+		ParticipantRoleCustomer,
+		ParticipantRoleSystem,
+	}
+}
+
 const (
 	// ScanDirectionForward is a ScanDirection enum value
 	ScanDirectionForward = "FORWARD"
@@ -1571,6 +1639,28 @@ const (
 	ScanDirectionBackward = "BACKWARD"
 )
 
+// ScanDirection is an enum
+type ScanDirection struct{}
+
+// Contains returns whether the ScanDirection enum includes the element
+func (enum ScanDirection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScanDirection enum
+func (enum ScanDirection) Values() []string {
+	return []string{
+		ScanDirectionForward,
+		ScanDirectionBackward,
+	}
+}
+
 const (
 	// SortKeyDescending is a SortKey enum value
 	SortKeyDescending = "DESCENDING"
@@ -1578,3 +1668,25 @@ const (
 	// SortKeyAscending is a SortKey enum value
 	SortKeyAscending = "ASCENDING"
 )
+
+// SortKey is an enum
+type SortKey struct{}
+
+// Contains returns whether the SortKey enum includes the element
+func (enum SortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortKey enum
+func (enum SortKey) Values() []string {
+	return []string{
+		SortKeyDescending,
+		SortKeyAscending,
+	}
+}

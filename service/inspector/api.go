@@ -10339,6 +10339,34 @@ const (
 	AccessDeniedErrorCodeAccessDeniedToIamRole = "ACCESS_DENIED_TO_IAM_ROLE"
 )
 
+// AccessDeniedErrorCode is an enum
+type AccessDeniedErrorCode struct{}
+
+// Contains returns whether the AccessDeniedErrorCode enum includes the element
+func (enum AccessDeniedErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccessDeniedErrorCode enum
+func (enum AccessDeniedErrorCode) Values() []string {
+	return []string{
+		AccessDeniedErrorCodeAccessDeniedToAssessmentTarget,
+		AccessDeniedErrorCodeAccessDeniedToAssessmentTemplate,
+		AccessDeniedErrorCodeAccessDeniedToAssessmentRun,
+		AccessDeniedErrorCodeAccessDeniedToFinding,
+		AccessDeniedErrorCodeAccessDeniedToResourceGroup,
+		AccessDeniedErrorCodeAccessDeniedToRulesPackage,
+		AccessDeniedErrorCodeAccessDeniedToSnsTopic,
+		AccessDeniedErrorCodeAccessDeniedToIamRole,
+	}
+}
+
 const (
 	// AgentHealthHealthy is a AgentHealth enum value
 	AgentHealthHealthy = "HEALTHY"
@@ -10349,6 +10377,29 @@ const (
 	// AgentHealthUnknown is a AgentHealth enum value
 	AgentHealthUnknown = "UNKNOWN"
 )
+
+// AgentHealth is an enum
+type AgentHealth struct{}
+
+// Contains returns whether the AgentHealth enum includes the element
+func (enum AgentHealth) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AgentHealth enum
+func (enum AgentHealth) Values() []string {
+	return []string{
+		AgentHealthHealthy,
+		AgentHealthUnhealthy,
+		AgentHealthUnknown,
+	}
+}
 
 const (
 	// AgentHealthCodeIdle is a AgentHealthCode enum value
@@ -10370,6 +10421,32 @@ const (
 	AgentHealthCodeUnknown = "UNKNOWN"
 )
 
+// AgentHealthCode is an enum
+type AgentHealthCode struct{}
+
+// Contains returns whether the AgentHealthCode enum includes the element
+func (enum AgentHealthCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AgentHealthCode enum
+func (enum AgentHealthCode) Values() []string {
+	return []string{
+		AgentHealthCodeIdle,
+		AgentHealthCodeRunning,
+		AgentHealthCodeShutdown,
+		AgentHealthCodeUnhealthy,
+		AgentHealthCodeThrottled,
+		AgentHealthCodeUnknown,
+	}
+}
+
 const (
 	// AssessmentRunNotificationSnsStatusCodeSuccess is a AssessmentRunNotificationSnsStatusCode enum value
 	AssessmentRunNotificationSnsStatusCodeSuccess = "SUCCESS"
@@ -10383,6 +10460,30 @@ const (
 	// AssessmentRunNotificationSnsStatusCodeInternalError is a AssessmentRunNotificationSnsStatusCode enum value
 	AssessmentRunNotificationSnsStatusCodeInternalError = "INTERNAL_ERROR"
 )
+
+// AssessmentRunNotificationSnsStatusCode is an enum
+type AssessmentRunNotificationSnsStatusCode struct{}
+
+// Contains returns whether the AssessmentRunNotificationSnsStatusCode enum includes the element
+func (enum AssessmentRunNotificationSnsStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssessmentRunNotificationSnsStatusCode enum
+func (enum AssessmentRunNotificationSnsStatusCode) Values() []string {
+	return []string{
+		AssessmentRunNotificationSnsStatusCodeSuccess,
+		AssessmentRunNotificationSnsStatusCodeTopicDoesNotExist,
+		AssessmentRunNotificationSnsStatusCodeAccessDenied,
+		AssessmentRunNotificationSnsStatusCodeInternalError,
+	}
+}
 
 const (
 	// AssessmentRunStateCreated is a AssessmentRunState enum value
@@ -10425,10 +10526,64 @@ const (
 	AssessmentRunStateCanceled = "CANCELED"
 )
 
+// AssessmentRunState is an enum
+type AssessmentRunState struct{}
+
+// Contains returns whether the AssessmentRunState enum includes the element
+func (enum AssessmentRunState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssessmentRunState enum
+func (enum AssessmentRunState) Values() []string {
+	return []string{
+		AssessmentRunStateCreated,
+		AssessmentRunStateStartDataCollectionPending,
+		AssessmentRunStateStartDataCollectionInProgress,
+		AssessmentRunStateCollectingData,
+		AssessmentRunStateStopDataCollectionPending,
+		AssessmentRunStateDataCollected,
+		AssessmentRunStateStartEvaluatingRulesPending,
+		AssessmentRunStateEvaluatingRules,
+		AssessmentRunStateFailed,
+		AssessmentRunStateError,
+		AssessmentRunStateCompleted,
+		AssessmentRunStateCompletedWithErrors,
+		AssessmentRunStateCanceled,
+	}
+}
+
 const (
 	// AssetTypeEc2Instance is a AssetType enum value
 	AssetTypeEc2Instance = "ec2-instance"
 )
+
+// AssetType is an enum
+type AssetType struct{}
+
+// Contains returns whether the AssetType enum includes the element
+func (enum AssetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssetType enum
+func (enum AssetType) Values() []string {
+	return []string{
+		AssetTypeEc2Instance,
+	}
+}
 
 const (
 	// EventAssessmentRunStarted is a Event enum value
@@ -10446,6 +10601,31 @@ const (
 	// EventOther is a Event enum value
 	EventOther = "OTHER"
 )
+
+// Event is an enum
+type Event struct{}
+
+// Contains returns whether the Event enum includes the element
+func (enum Event) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Event enum
+func (enum Event) Values() []string {
+	return []string{
+		EventAssessmentRunStarted,
+		EventAssessmentRunCompleted,
+		EventAssessmentRunStateChanged,
+		EventFindingReported,
+		EventOther,
+	}
+}
 
 const (
 	// FailedItemErrorCodeInvalidArn is a FailedItemErrorCode enum value
@@ -10467,6 +10647,32 @@ const (
 	FailedItemErrorCodeInternalError = "INTERNAL_ERROR"
 )
 
+// FailedItemErrorCode is an enum
+type FailedItemErrorCode struct{}
+
+// Contains returns whether the FailedItemErrorCode enum includes the element
+func (enum FailedItemErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FailedItemErrorCode enum
+func (enum FailedItemErrorCode) Values() []string {
+	return []string{
+		FailedItemErrorCodeInvalidArn,
+		FailedItemErrorCodeDuplicateArn,
+		FailedItemErrorCodeItemDoesNotExist,
+		FailedItemErrorCodeAccessDenied,
+		FailedItemErrorCodeLimitExceeded,
+		FailedItemErrorCodeInternalError,
+	}
+}
+
 const (
 	// InvalidCrossAccountRoleErrorCodeRoleDoesNotExistOrInvalidTrustRelationship is a InvalidCrossAccountRoleErrorCode enum value
 	InvalidCrossAccountRoleErrorCodeRoleDoesNotExistOrInvalidTrustRelationship = "ROLE_DOES_NOT_EXIST_OR_INVALID_TRUST_RELATIONSHIP"
@@ -10474,6 +10680,28 @@ const (
 	// InvalidCrossAccountRoleErrorCodeRoleDoesNotHaveCorrectPolicy is a InvalidCrossAccountRoleErrorCode enum value
 	InvalidCrossAccountRoleErrorCodeRoleDoesNotHaveCorrectPolicy = "ROLE_DOES_NOT_HAVE_CORRECT_POLICY"
 )
+
+// InvalidCrossAccountRoleErrorCode is an enum
+type InvalidCrossAccountRoleErrorCode struct{}
+
+// Contains returns whether the InvalidCrossAccountRoleErrorCode enum includes the element
+func (enum InvalidCrossAccountRoleErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InvalidCrossAccountRoleErrorCode enum
+func (enum InvalidCrossAccountRoleErrorCode) Values() []string {
+	return []string{
+		InvalidCrossAccountRoleErrorCodeRoleDoesNotExistOrInvalidTrustRelationship,
+		InvalidCrossAccountRoleErrorCodeRoleDoesNotHaveCorrectPolicy,
+	}
+}
 
 const (
 	// InvalidInputErrorCodeInvalidAssessmentTargetArn is a InvalidInputErrorCode enum value
@@ -10639,6 +10867,80 @@ const (
 	InvalidInputErrorCodeInvalidNumberOfSeverities = "INVALID_NUMBER_OF_SEVERITIES"
 )
 
+// InvalidInputErrorCode is an enum
+type InvalidInputErrorCode struct{}
+
+// Contains returns whether the InvalidInputErrorCode enum includes the element
+func (enum InvalidInputErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InvalidInputErrorCode enum
+func (enum InvalidInputErrorCode) Values() []string {
+	return []string{
+		InvalidInputErrorCodeInvalidAssessmentTargetArn,
+		InvalidInputErrorCodeInvalidAssessmentTemplateArn,
+		InvalidInputErrorCodeInvalidAssessmentRunArn,
+		InvalidInputErrorCodeInvalidFindingArn,
+		InvalidInputErrorCodeInvalidResourceGroupArn,
+		InvalidInputErrorCodeInvalidRulesPackageArn,
+		InvalidInputErrorCodeInvalidResourceArn,
+		InvalidInputErrorCodeInvalidSnsTopicArn,
+		InvalidInputErrorCodeInvalidIamRoleArn,
+		InvalidInputErrorCodeInvalidAssessmentTargetName,
+		InvalidInputErrorCodeInvalidAssessmentTargetNamePattern,
+		InvalidInputErrorCodeInvalidAssessmentTemplateName,
+		InvalidInputErrorCodeInvalidAssessmentTemplateNamePattern,
+		InvalidInputErrorCodeInvalidAssessmentTemplateDuration,
+		InvalidInputErrorCodeInvalidAssessmentTemplateDurationRange,
+		InvalidInputErrorCodeInvalidAssessmentRunDurationRange,
+		InvalidInputErrorCodeInvalidAssessmentRunStartTimeRange,
+		InvalidInputErrorCodeInvalidAssessmentRunCompletionTimeRange,
+		InvalidInputErrorCodeInvalidAssessmentRunStateChangeTimeRange,
+		InvalidInputErrorCodeInvalidAssessmentRunState,
+		InvalidInputErrorCodeInvalidTag,
+		InvalidInputErrorCodeInvalidTagKey,
+		InvalidInputErrorCodeInvalidTagValue,
+		InvalidInputErrorCodeInvalidResourceGroupTagKey,
+		InvalidInputErrorCodeInvalidResourceGroupTagValue,
+		InvalidInputErrorCodeInvalidAttribute,
+		InvalidInputErrorCodeInvalidUserAttribute,
+		InvalidInputErrorCodeInvalidUserAttributeKey,
+		InvalidInputErrorCodeInvalidUserAttributeValue,
+		InvalidInputErrorCodeInvalidPaginationToken,
+		InvalidInputErrorCodeInvalidMaxResults,
+		InvalidInputErrorCodeInvalidAgentId,
+		InvalidInputErrorCodeInvalidAutoScalingGroup,
+		InvalidInputErrorCodeInvalidRuleName,
+		InvalidInputErrorCodeInvalidSeverity,
+		InvalidInputErrorCodeInvalidLocale,
+		InvalidInputErrorCodeInvalidEvent,
+		InvalidInputErrorCodeAssessmentTargetNameAlreadyTaken,
+		InvalidInputErrorCodeAssessmentTemplateNameAlreadyTaken,
+		InvalidInputErrorCodeInvalidNumberOfAssessmentTargetArns,
+		InvalidInputErrorCodeInvalidNumberOfAssessmentTemplateArns,
+		InvalidInputErrorCodeInvalidNumberOfAssessmentRunArns,
+		InvalidInputErrorCodeInvalidNumberOfFindingArns,
+		InvalidInputErrorCodeInvalidNumberOfResourceGroupArns,
+		InvalidInputErrorCodeInvalidNumberOfRulesPackageArns,
+		InvalidInputErrorCodeInvalidNumberOfAssessmentRunStates,
+		InvalidInputErrorCodeInvalidNumberOfTags,
+		InvalidInputErrorCodeInvalidNumberOfResourceGroupTags,
+		InvalidInputErrorCodeInvalidNumberOfAttributes,
+		InvalidInputErrorCodeInvalidNumberOfUserAttributes,
+		InvalidInputErrorCodeInvalidNumberOfAgentIds,
+		InvalidInputErrorCodeInvalidNumberOfAutoScalingGroups,
+		InvalidInputErrorCodeInvalidNumberOfRuleNames,
+		InvalidInputErrorCodeInvalidNumberOfSeverities,
+	}
+}
+
 const (
 	// LimitExceededErrorCodeAssessmentTargetLimitExceeded is a LimitExceededErrorCode enum value
 	LimitExceededErrorCodeAssessmentTargetLimitExceeded = "ASSESSMENT_TARGET_LIMIT_EXCEEDED"
@@ -10656,10 +10958,56 @@ const (
 	LimitExceededErrorCodeEventSubscriptionLimitExceeded = "EVENT_SUBSCRIPTION_LIMIT_EXCEEDED"
 )
 
+// LimitExceededErrorCode is an enum
+type LimitExceededErrorCode struct{}
+
+// Contains returns whether the LimitExceededErrorCode enum includes the element
+func (enum LimitExceededErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LimitExceededErrorCode enum
+func (enum LimitExceededErrorCode) Values() []string {
+	return []string{
+		LimitExceededErrorCodeAssessmentTargetLimitExceeded,
+		LimitExceededErrorCodeAssessmentTemplateLimitExceeded,
+		LimitExceededErrorCodeAssessmentRunLimitExceeded,
+		LimitExceededErrorCodeResourceGroupLimitExceeded,
+		LimitExceededErrorCodeEventSubscriptionLimitExceeded,
+	}
+}
+
 const (
 	// LocaleEnUs is a Locale enum value
 	LocaleEnUs = "EN_US"
 )
+
+// Locale is an enum
+type Locale struct{}
+
+// Contains returns whether the Locale enum includes the element
+func (enum Locale) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Locale enum
+func (enum Locale) Values() []string {
+	return []string{
+		LocaleEnUs,
+	}
+}
 
 const (
 	// NoSuchEntityErrorCodeAssessmentTargetDoesNotExist is a NoSuchEntityErrorCode enum value
@@ -10687,6 +11035,34 @@ const (
 	NoSuchEntityErrorCodeIamRoleDoesNotExist = "IAM_ROLE_DOES_NOT_EXIST"
 )
 
+// NoSuchEntityErrorCode is an enum
+type NoSuchEntityErrorCode struct{}
+
+// Contains returns whether the NoSuchEntityErrorCode enum includes the element
+func (enum NoSuchEntityErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NoSuchEntityErrorCode enum
+func (enum NoSuchEntityErrorCode) Values() []string {
+	return []string{
+		NoSuchEntityErrorCodeAssessmentTargetDoesNotExist,
+		NoSuchEntityErrorCodeAssessmentTemplateDoesNotExist,
+		NoSuchEntityErrorCodeAssessmentRunDoesNotExist,
+		NoSuchEntityErrorCodeFindingDoesNotExist,
+		NoSuchEntityErrorCodeResourceGroupDoesNotExist,
+		NoSuchEntityErrorCodeRulesPackageDoesNotExist,
+		NoSuchEntityErrorCodeSnsTopicDoesNotExist,
+		NoSuchEntityErrorCodeIamRoleDoesNotExist,
+	}
+}
+
 const (
 	// PreviewStatusWorkInProgress is a PreviewStatus enum value
 	PreviewStatusWorkInProgress = "WORK_IN_PROGRESS"
@@ -10695,6 +11071,28 @@ const (
 	PreviewStatusCompleted = "COMPLETED"
 )
 
+// PreviewStatus is an enum
+type PreviewStatus struct{}
+
+// Contains returns whether the PreviewStatus enum includes the element
+func (enum PreviewStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PreviewStatus enum
+func (enum PreviewStatus) Values() []string {
+	return []string{
+		PreviewStatusWorkInProgress,
+		PreviewStatusCompleted,
+	}
+}
+
 const (
 	// ReportFileFormatHtml is a ReportFileFormat enum value
 	ReportFileFormatHtml = "HTML"
@@ -10702,6 +11100,28 @@ const (
 	// ReportFileFormatPdf is a ReportFileFormat enum value
 	ReportFileFormatPdf = "PDF"
 )
+
+// ReportFileFormat is an enum
+type ReportFileFormat struct{}
+
+// Contains returns whether the ReportFileFormat enum includes the element
+func (enum ReportFileFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportFileFormat enum
+func (enum ReportFileFormat) Values() []string {
+	return []string{
+		ReportFileFormatHtml,
+		ReportFileFormatPdf,
+	}
+}
 
 const (
 	// ReportStatusWorkInProgress is a ReportStatus enum value
@@ -10714,6 +11134,29 @@ const (
 	ReportStatusCompleted = "COMPLETED"
 )
 
+// ReportStatus is an enum
+type ReportStatus struct{}
+
+// Contains returns whether the ReportStatus enum includes the element
+func (enum ReportStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportStatus enum
+func (enum ReportStatus) Values() []string {
+	return []string{
+		ReportStatusWorkInProgress,
+		ReportStatusFailed,
+		ReportStatusCompleted,
+	}
+}
+
 const (
 	// ReportTypeFinding is a ReportType enum value
 	ReportTypeFinding = "FINDING"
@@ -10722,6 +11165,28 @@ const (
 	ReportTypeFull = "FULL"
 )
 
+// ReportType is an enum
+type ReportType struct{}
+
+// Contains returns whether the ReportType enum includes the element
+func (enum ReportType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportType enum
+func (enum ReportType) Values() []string {
+	return []string{
+		ReportTypeFinding,
+		ReportTypeFull,
+	}
+}
+
 const (
 	// ScopeTypeInstanceId is a ScopeType enum value
 	ScopeTypeInstanceId = "INSTANCE_ID"
@@ -10729,6 +11194,28 @@ const (
 	// ScopeTypeRulesPackageArn is a ScopeType enum value
 	ScopeTypeRulesPackageArn = "RULES_PACKAGE_ARN"
 )
+
+// ScopeType is an enum
+type ScopeType struct{}
+
+// Contains returns whether the ScopeType enum includes the element
+func (enum ScopeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScopeType enum
+func (enum ScopeType) Values() []string {
+	return []string{
+		ScopeTypeInstanceId,
+		ScopeTypeRulesPackageArn,
+	}
+}
 
 const (
 	// SeverityLow is a Severity enum value
@@ -10747,6 +11234,31 @@ const (
 	SeverityUndefined = "Undefined"
 )
 
+// Severity is an enum
+type Severity struct{}
+
+// Contains returns whether the Severity enum includes the element
+func (enum Severity) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Severity enum
+func (enum Severity) Values() []string {
+	return []string{
+		SeverityLow,
+		SeverityMedium,
+		SeverityHigh,
+		SeverityInformational,
+		SeverityUndefined,
+	}
+}
+
 const (
 	// StopActionStartEvaluation is a StopAction enum value
 	StopActionStartEvaluation = "START_EVALUATION"
@@ -10754,3 +11266,25 @@ const (
 	// StopActionSkipEvaluation is a StopAction enum value
 	StopActionSkipEvaluation = "SKIP_EVALUATION"
 )
+
+// StopAction is an enum
+type StopAction struct{}
+
+// Contains returns whether the StopAction enum includes the element
+func (enum StopAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StopAction enum
+func (enum StopAction) Values() []string {
+	return []string{
+		StopActionStartEvaluation,
+		StopActionSkipEvaluation,
+	}
+}

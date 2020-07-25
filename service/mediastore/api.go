@@ -4153,6 +4153,28 @@ const (
 	ContainerLevelMetricsDisabled = "DISABLED"
 )
 
+// ContainerLevelMetrics is an enum
+type ContainerLevelMetrics struct{}
+
+// Contains returns whether the ContainerLevelMetrics enum includes the element
+func (enum ContainerLevelMetrics) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContainerLevelMetrics enum
+func (enum ContainerLevelMetrics) Values() []string {
+	return []string{
+		ContainerLevelMetricsEnabled,
+		ContainerLevelMetricsDisabled,
+	}
+}
+
 const (
 	// ContainerStatusActive is a ContainerStatus enum value
 	ContainerStatusActive = "ACTIVE"
@@ -4163,6 +4185,29 @@ const (
 	// ContainerStatusDeleting is a ContainerStatus enum value
 	ContainerStatusDeleting = "DELETING"
 )
+
+// ContainerStatus is an enum
+type ContainerStatus struct{}
+
+// Contains returns whether the ContainerStatus enum includes the element
+func (enum ContainerStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContainerStatus enum
+func (enum ContainerStatus) Values() []string {
+	return []string{
+		ContainerStatusActive,
+		ContainerStatusCreating,
+		ContainerStatusDeleting,
+	}
+}
 
 const (
 	// MethodNamePut is a MethodName enum value
@@ -4177,3 +4222,27 @@ const (
 	// MethodNameHead is a MethodName enum value
 	MethodNameHead = "HEAD"
 )
+
+// MethodName is an enum
+type MethodName struct{}
+
+// Contains returns whether the MethodName enum includes the element
+func (enum MethodName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MethodName enum
+func (enum MethodName) Values() []string {
+	return []string{
+		MethodNamePut,
+		MethodNameGet,
+		MethodNameDelete,
+		MethodNameHead,
+	}
+}

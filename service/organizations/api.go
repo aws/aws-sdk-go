@@ -21977,6 +21977,27 @@ const (
 	AccessDeniedForDependencyExceptionReasonAccessDeniedDuringCreateServiceLinkedRole = "ACCESS_DENIED_DURING_CREATE_SERVICE_LINKED_ROLE"
 )
 
+// AccessDeniedForDependencyExceptionReason is an enum
+type AccessDeniedForDependencyExceptionReason struct{}
+
+// Contains returns whether the AccessDeniedForDependencyExceptionReason enum includes the element
+func (enum AccessDeniedForDependencyExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccessDeniedForDependencyExceptionReason enum
+func (enum AccessDeniedForDependencyExceptionReason) Values() []string {
+	return []string{
+		AccessDeniedForDependencyExceptionReasonAccessDeniedDuringCreateServiceLinkedRole,
+	}
+}
+
 const (
 	// AccountJoinedMethodInvited is a AccountJoinedMethod enum value
 	AccountJoinedMethodInvited = "INVITED"
@@ -21985,6 +22006,28 @@ const (
 	AccountJoinedMethodCreated = "CREATED"
 )
 
+// AccountJoinedMethod is an enum
+type AccountJoinedMethod struct{}
+
+// Contains returns whether the AccountJoinedMethod enum includes the element
+func (enum AccountJoinedMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccountJoinedMethod enum
+func (enum AccountJoinedMethod) Values() []string {
+	return []string{
+		AccountJoinedMethodInvited,
+		AccountJoinedMethodCreated,
+	}
+}
+
 const (
 	// AccountStatusActive is a AccountStatus enum value
 	AccountStatusActive = "ACTIVE"
@@ -21992,6 +22035,28 @@ const (
 	// AccountStatusSuspended is a AccountStatus enum value
 	AccountStatusSuspended = "SUSPENDED"
 )
+
+// AccountStatus is an enum
+type AccountStatus struct{}
+
+// Contains returns whether the AccountStatus enum includes the element
+func (enum AccountStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccountStatus enum
+func (enum AccountStatus) Values() []string {
+	return []string{
+		AccountStatusActive,
+		AccountStatusSuspended,
+	}
+}
 
 const (
 	// ActionTypeInvite is a ActionType enum value
@@ -22007,6 +22072,30 @@ const (
 	ActionTypeAddOrganizationsServiceLinkedRole = "ADD_ORGANIZATIONS_SERVICE_LINKED_ROLE"
 )
 
+// ActionType is an enum
+type ActionType struct{}
+
+// Contains returns whether the ActionType enum includes the element
+func (enum ActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionType enum
+func (enum ActionType) Values() []string {
+	return []string{
+		ActionTypeInvite,
+		ActionTypeEnableAllFeatures,
+		ActionTypeApproveAllFeatures,
+		ActionTypeAddOrganizationsServiceLinkedRole,
+	}
+}
+
 const (
 	// ChildTypeAccount is a ChildType enum value
 	ChildTypeAccount = "ACCOUNT"
@@ -22014,6 +22103,28 @@ const (
 	// ChildTypeOrganizationalUnit is a ChildType enum value
 	ChildTypeOrganizationalUnit = "ORGANIZATIONAL_UNIT"
 )
+
+// ChildType is an enum
+type ChildType struct{}
+
+// Contains returns whether the ChildType enum includes the element
+func (enum ChildType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChildType enum
+func (enum ChildType) Values() []string {
+	return []string{
+		ChildTypeAccount,
+		ChildTypeOrganizationalUnit,
+	}
+}
 
 const (
 	// ConstraintViolationExceptionReasonAccountNumberLimitExceeded is a ConstraintViolationExceptionReason enum value
@@ -22101,6 +22212,54 @@ const (
 	ConstraintViolationExceptionReasonMasterAccountMissingBusinessLicense = "MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE"
 )
 
+// ConstraintViolationExceptionReason is an enum
+type ConstraintViolationExceptionReason struct{}
+
+// Contains returns whether the ConstraintViolationExceptionReason enum includes the element
+func (enum ConstraintViolationExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConstraintViolationExceptionReason enum
+func (enum ConstraintViolationExceptionReason) Values() []string {
+	return []string{
+		ConstraintViolationExceptionReasonAccountNumberLimitExceeded,
+		ConstraintViolationExceptionReasonHandshakeRateLimitExceeded,
+		ConstraintViolationExceptionReasonOuNumberLimitExceeded,
+		ConstraintViolationExceptionReasonOuDepthLimitExceeded,
+		ConstraintViolationExceptionReasonPolicyNumberLimitExceeded,
+		ConstraintViolationExceptionReasonPolicyContentLimitExceeded,
+		ConstraintViolationExceptionReasonMaxPolicyTypeAttachmentLimitExceeded,
+		ConstraintViolationExceptionReasonMinPolicyTypeAttachmentLimitExceeded,
+		ConstraintViolationExceptionReasonAccountCannotLeaveOrganization,
+		ConstraintViolationExceptionReasonAccountCannotLeaveWithoutEula,
+		ConstraintViolationExceptionReasonAccountCannotLeaveWithoutPhoneVerification,
+		ConstraintViolationExceptionReasonMasterAccountPaymentInstrumentRequired,
+		ConstraintViolationExceptionReasonMemberAccountPaymentInstrumentRequired,
+		ConstraintViolationExceptionReasonAccountCreationRateLimitExceeded,
+		ConstraintViolationExceptionReasonMasterAccountAddressDoesNotMatchMarketplace,
+		ConstraintViolationExceptionReasonMasterAccountMissingContactInfo,
+		ConstraintViolationExceptionReasonMasterAccountNotGovcloudEnabled,
+		ConstraintViolationExceptionReasonOrganizationNotInAllFeaturesMode,
+		ConstraintViolationExceptionReasonCreateOrganizationInBillingModeUnsupportedRegion,
+		ConstraintViolationExceptionReasonEmailVerificationCodeExpired,
+		ConstraintViolationExceptionReasonWaitPeriodActive,
+		ConstraintViolationExceptionReasonMaxTagLimitExceeded,
+		ConstraintViolationExceptionReasonTagPolicyViolation,
+		ConstraintViolationExceptionReasonMaxDelegatedAdministratorsForServiceLimitExceeded,
+		ConstraintViolationExceptionReasonCannotRegisterMasterAsDelegatedAdministrator,
+		ConstraintViolationExceptionReasonCannotRemoveDelegatedAdministratorFromOrg,
+		ConstraintViolationExceptionReasonDelegatedAdministratorExistsForThisService,
+		ConstraintViolationExceptionReasonMasterAccountMissingBusinessLicense,
+	}
+}
+
 const (
 	// CreateAccountFailureReasonAccountLimitExceeded is a CreateAccountFailureReason enum value
 	CreateAccountFailureReasonAccountLimitExceeded = "ACCOUNT_LIMIT_EXCEEDED"
@@ -22124,6 +22283,33 @@ const (
 	CreateAccountFailureReasonGovcloudAccountAlreadyExists = "GOVCLOUD_ACCOUNT_ALREADY_EXISTS"
 )
 
+// CreateAccountFailureReason is an enum
+type CreateAccountFailureReason struct{}
+
+// Contains returns whether the CreateAccountFailureReason enum includes the element
+func (enum CreateAccountFailureReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CreateAccountFailureReason enum
+func (enum CreateAccountFailureReason) Values() []string {
+	return []string{
+		CreateAccountFailureReasonAccountLimitExceeded,
+		CreateAccountFailureReasonEmailAlreadyExists,
+		CreateAccountFailureReasonInvalidAddress,
+		CreateAccountFailureReasonInvalidEmail,
+		CreateAccountFailureReasonConcurrentAccountModification,
+		CreateAccountFailureReasonInternalFailure,
+		CreateAccountFailureReasonGovcloudAccountAlreadyExists,
+	}
+}
+
 const (
 	// CreateAccountStateInProgress is a CreateAccountState enum value
 	CreateAccountStateInProgress = "IN_PROGRESS"
@@ -22135,6 +22321,29 @@ const (
 	CreateAccountStateFailed = "FAILED"
 )
 
+// CreateAccountState is an enum
+type CreateAccountState struct{}
+
+// Contains returns whether the CreateAccountState enum includes the element
+func (enum CreateAccountState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CreateAccountState enum
+func (enum CreateAccountState) Values() []string {
+	return []string{
+		CreateAccountStateInProgress,
+		CreateAccountStateSucceeded,
+		CreateAccountStateFailed,
+	}
+}
+
 const (
 	// EffectivePolicyTypeTagPolicy is a EffectivePolicyType enum value
 	EffectivePolicyTypeTagPolicy = "TAG_POLICY"
@@ -22145,6 +22354,29 @@ const (
 	// EffectivePolicyTypeAiservicesOptOutPolicy is a EffectivePolicyType enum value
 	EffectivePolicyTypeAiservicesOptOutPolicy = "AISERVICES_OPT_OUT_POLICY"
 )
+
+// EffectivePolicyType is an enum
+type EffectivePolicyType struct{}
+
+// Contains returns whether the EffectivePolicyType enum includes the element
+func (enum EffectivePolicyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EffectivePolicyType enum
+func (enum EffectivePolicyType) Values() []string {
+	return []string{
+		EffectivePolicyTypeTagPolicy,
+		EffectivePolicyTypeBackupPolicy,
+		EffectivePolicyTypeAiservicesOptOutPolicy,
+	}
+}
 
 const (
 	// HandshakeConstraintViolationExceptionReasonAccountNumberLimitExceeded is a HandshakeConstraintViolationExceptionReason enum value
@@ -22172,6 +22404,34 @@ const (
 	HandshakeConstraintViolationExceptionReasonOrganizationMembershipChangeRateLimitExceeded = "ORGANIZATION_MEMBERSHIP_CHANGE_RATE_LIMIT_EXCEEDED"
 )
 
+// HandshakeConstraintViolationExceptionReason is an enum
+type HandshakeConstraintViolationExceptionReason struct{}
+
+// Contains returns whether the HandshakeConstraintViolationExceptionReason enum includes the element
+func (enum HandshakeConstraintViolationExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HandshakeConstraintViolationExceptionReason enum
+func (enum HandshakeConstraintViolationExceptionReason) Values() []string {
+	return []string{
+		HandshakeConstraintViolationExceptionReasonAccountNumberLimitExceeded,
+		HandshakeConstraintViolationExceptionReasonHandshakeRateLimitExceeded,
+		HandshakeConstraintViolationExceptionReasonAlreadyInAnOrganization,
+		HandshakeConstraintViolationExceptionReasonOrganizationAlreadyHasAllFeatures,
+		HandshakeConstraintViolationExceptionReasonInviteDisabledDuringEnableAllFeatures,
+		HandshakeConstraintViolationExceptionReasonPaymentInstrumentRequired,
+		HandshakeConstraintViolationExceptionReasonOrganizationFromDifferentSellerOfRecord,
+		HandshakeConstraintViolationExceptionReasonOrganizationMembershipChangeRateLimitExceeded,
+	}
+}
+
 const (
 	// HandshakePartyTypeAccount is a HandshakePartyType enum value
 	HandshakePartyTypeAccount = "ACCOUNT"
@@ -22182,6 +22442,29 @@ const (
 	// HandshakePartyTypeEmail is a HandshakePartyType enum value
 	HandshakePartyTypeEmail = "EMAIL"
 )
+
+// HandshakePartyType is an enum
+type HandshakePartyType struct{}
+
+// Contains returns whether the HandshakePartyType enum includes the element
+func (enum HandshakePartyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HandshakePartyType enum
+func (enum HandshakePartyType) Values() []string {
+	return []string{
+		HandshakePartyTypeAccount,
+		HandshakePartyTypeOrganization,
+		HandshakePartyTypeEmail,
+	}
+}
 
 const (
 	// HandshakeResourceTypeAccount is a HandshakeResourceType enum value
@@ -22209,6 +22492,34 @@ const (
 	HandshakeResourceTypeParentHandshake = "PARENT_HANDSHAKE"
 )
 
+// HandshakeResourceType is an enum
+type HandshakeResourceType struct{}
+
+// Contains returns whether the HandshakeResourceType enum includes the element
+func (enum HandshakeResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HandshakeResourceType enum
+func (enum HandshakeResourceType) Values() []string {
+	return []string{
+		HandshakeResourceTypeAccount,
+		HandshakeResourceTypeOrganization,
+		HandshakeResourceTypeOrganizationFeatureSet,
+		HandshakeResourceTypeEmail,
+		HandshakeResourceTypeMasterEmail,
+		HandshakeResourceTypeMasterName,
+		HandshakeResourceTypeNotes,
+		HandshakeResourceTypeParentHandshake,
+	}
+}
+
 const (
 	// HandshakeStateRequested is a HandshakeState enum value
 	HandshakeStateRequested = "REQUESTED"
@@ -22229,6 +22540,32 @@ const (
 	HandshakeStateExpired = "EXPIRED"
 )
 
+// HandshakeState is an enum
+type HandshakeState struct{}
+
+// Contains returns whether the HandshakeState enum includes the element
+func (enum HandshakeState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HandshakeState enum
+func (enum HandshakeState) Values() []string {
+	return []string{
+		HandshakeStateRequested,
+		HandshakeStateOpen,
+		HandshakeStateCanceled,
+		HandshakeStateAccepted,
+		HandshakeStateDeclined,
+		HandshakeStateExpired,
+	}
+}
+
 const (
 	// IAMUserAccessToBillingAllow is a IAMUserAccessToBilling enum value
 	IAMUserAccessToBillingAllow = "ALLOW"
@@ -22236,6 +22573,28 @@ const (
 	// IAMUserAccessToBillingDeny is a IAMUserAccessToBilling enum value
 	IAMUserAccessToBillingDeny = "DENY"
 )
+
+// IAMUserAccessToBilling is an enum
+type IAMUserAccessToBilling struct{}
+
+// Contains returns whether the IAMUserAccessToBilling enum includes the element
+func (enum IAMUserAccessToBilling) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IAMUserAccessToBilling enum
+func (enum IAMUserAccessToBilling) Values() []string {
+	return []string{
+		IAMUserAccessToBillingAllow,
+		IAMUserAccessToBillingDeny,
+	}
+}
 
 const (
 	// InvalidInputExceptionReasonInvalidPartyTypeTarget is a InvalidInputExceptionReason enum value
@@ -22305,6 +22664,48 @@ const (
 	InvalidInputExceptionReasonTargetNotSupported = "TARGET_NOT_SUPPORTED"
 )
 
+// InvalidInputExceptionReason is an enum
+type InvalidInputExceptionReason struct{}
+
+// Contains returns whether the InvalidInputExceptionReason enum includes the element
+func (enum InvalidInputExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InvalidInputExceptionReason enum
+func (enum InvalidInputExceptionReason) Values() []string {
+	return []string{
+		InvalidInputExceptionReasonInvalidPartyTypeTarget,
+		InvalidInputExceptionReasonInvalidSyntaxOrganizationArn,
+		InvalidInputExceptionReasonInvalidSyntaxPolicyId,
+		InvalidInputExceptionReasonInvalidEnum,
+		InvalidInputExceptionReasonInvalidEnumPolicyType,
+		InvalidInputExceptionReasonInvalidListMember,
+		InvalidInputExceptionReasonMaxLengthExceeded,
+		InvalidInputExceptionReasonMaxValueExceeded,
+		InvalidInputExceptionReasonMinLengthExceeded,
+		InvalidInputExceptionReasonMinValueExceeded,
+		InvalidInputExceptionReasonImmutablePolicy,
+		InvalidInputExceptionReasonInvalidPattern,
+		InvalidInputExceptionReasonInvalidPatternTargetId,
+		InvalidInputExceptionReasonInputRequired,
+		InvalidInputExceptionReasonInvalidNextToken,
+		InvalidInputExceptionReasonMaxLimitExceededFilter,
+		InvalidInputExceptionReasonMovingAccountBetweenDifferentRoots,
+		InvalidInputExceptionReasonInvalidFullNameTarget,
+		InvalidInputExceptionReasonUnrecognizedServicePrincipal,
+		InvalidInputExceptionReasonInvalidRoleName,
+		InvalidInputExceptionReasonInvalidSystemTagsParameter,
+		InvalidInputExceptionReasonTargetNotSupported,
+	}
+}
+
 const (
 	// OrganizationFeatureSetAll is a OrganizationFeatureSet enum value
 	OrganizationFeatureSetAll = "ALL"
@@ -22313,6 +22714,28 @@ const (
 	OrganizationFeatureSetConsolidatedBilling = "CONSOLIDATED_BILLING"
 )
 
+// OrganizationFeatureSet is an enum
+type OrganizationFeatureSet struct{}
+
+// Contains returns whether the OrganizationFeatureSet enum includes the element
+func (enum OrganizationFeatureSet) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrganizationFeatureSet enum
+func (enum OrganizationFeatureSet) Values() []string {
+	return []string{
+		OrganizationFeatureSetAll,
+		OrganizationFeatureSetConsolidatedBilling,
+	}
+}
+
 const (
 	// ParentTypeRoot is a ParentType enum value
 	ParentTypeRoot = "ROOT"
@@ -22320,6 +22743,28 @@ const (
 	// ParentTypeOrganizationalUnit is a ParentType enum value
 	ParentTypeOrganizationalUnit = "ORGANIZATIONAL_UNIT"
 )
+
+// ParentType is an enum
+type ParentType struct{}
+
+// Contains returns whether the ParentType enum includes the element
+func (enum ParentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ParentType enum
+func (enum ParentType) Values() []string {
+	return []string{
+		ParentTypeRoot,
+		ParentTypeOrganizationalUnit,
+	}
+}
 
 const (
 	// PolicyTypeServiceControlPolicy is a PolicyType enum value
@@ -22335,6 +22780,30 @@ const (
 	PolicyTypeAiservicesOptOutPolicy = "AISERVICES_OPT_OUT_POLICY"
 )
 
+// PolicyType is an enum
+type PolicyType struct{}
+
+// Contains returns whether the PolicyType enum includes the element
+func (enum PolicyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyType enum
+func (enum PolicyType) Values() []string {
+	return []string{
+		PolicyTypeServiceControlPolicy,
+		PolicyTypeTagPolicy,
+		PolicyTypeBackupPolicy,
+		PolicyTypeAiservicesOptOutPolicy,
+	}
+}
+
 const (
 	// PolicyTypeStatusEnabled is a PolicyTypeStatus enum value
 	PolicyTypeStatusEnabled = "ENABLED"
@@ -22346,6 +22815,29 @@ const (
 	PolicyTypeStatusPendingDisable = "PENDING_DISABLE"
 )
 
+// PolicyTypeStatus is an enum
+type PolicyTypeStatus struct{}
+
+// Contains returns whether the PolicyTypeStatus enum includes the element
+func (enum PolicyTypeStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyTypeStatus enum
+func (enum PolicyTypeStatus) Values() []string {
+	return []string{
+		PolicyTypeStatusEnabled,
+		PolicyTypeStatusPendingEnable,
+		PolicyTypeStatusPendingDisable,
+	}
+}
+
 const (
 	// TargetTypeAccount is a TargetType enum value
 	TargetTypeAccount = "ACCOUNT"
@@ -22356,3 +22848,26 @@ const (
 	// TargetTypeRoot is a TargetType enum value
 	TargetTypeRoot = "ROOT"
 )
+
+// TargetType is an enum
+type TargetType struct{}
+
+// Contains returns whether the TargetType enum includes the element
+func (enum TargetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetType enum
+func (enum TargetType) Values() []string {
+	return []string{
+		TargetTypeAccount,
+		TargetTypeOrganizationalUnit,
+		TargetTypeRoot,
+	}
+}

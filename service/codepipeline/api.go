@@ -12747,6 +12747,32 @@ const (
 	ActionCategoryApproval = "Approval"
 )
 
+// ActionCategory is an enum
+type ActionCategory struct{}
+
+// Contains returns whether the ActionCategory enum includes the element
+func (enum ActionCategory) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionCategory enum
+func (enum ActionCategory) Values() []string {
+	return []string{
+		ActionCategorySource,
+		ActionCategoryBuild,
+		ActionCategoryDeploy,
+		ActionCategoryTest,
+		ActionCategoryInvoke,
+		ActionCategoryApproval,
+	}
+}
+
 const (
 	// ActionConfigurationPropertyTypeString is a ActionConfigurationPropertyType enum value
 	ActionConfigurationPropertyTypeString = "String"
@@ -12757,6 +12783,29 @@ const (
 	// ActionConfigurationPropertyTypeBoolean is a ActionConfigurationPropertyType enum value
 	ActionConfigurationPropertyTypeBoolean = "Boolean"
 )
+
+// ActionConfigurationPropertyType is an enum
+type ActionConfigurationPropertyType struct{}
+
+// Contains returns whether the ActionConfigurationPropertyType enum includes the element
+func (enum ActionConfigurationPropertyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionConfigurationPropertyType enum
+func (enum ActionConfigurationPropertyType) Values() []string {
+	return []string{
+		ActionConfigurationPropertyTypeString,
+		ActionConfigurationPropertyTypeNumber,
+		ActionConfigurationPropertyTypeBoolean,
+	}
+}
 
 const (
 	// ActionExecutionStatusInProgress is a ActionExecutionStatus enum value
@@ -12772,6 +12821,30 @@ const (
 	ActionExecutionStatusFailed = "Failed"
 )
 
+// ActionExecutionStatus is an enum
+type ActionExecutionStatus struct{}
+
+// Contains returns whether the ActionExecutionStatus enum includes the element
+func (enum ActionExecutionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionExecutionStatus enum
+func (enum ActionExecutionStatus) Values() []string {
+	return []string{
+		ActionExecutionStatusInProgress,
+		ActionExecutionStatusAbandoned,
+		ActionExecutionStatusSucceeded,
+		ActionExecutionStatusFailed,
+	}
+}
+
 const (
 	// ActionOwnerAws is a ActionOwner enum value
 	ActionOwnerAws = "AWS"
@@ -12783,6 +12856,29 @@ const (
 	ActionOwnerCustom = "Custom"
 )
 
+// ActionOwner is an enum
+type ActionOwner struct{}
+
+// Contains returns whether the ActionOwner enum includes the element
+func (enum ActionOwner) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionOwner enum
+func (enum ActionOwner) Values() []string {
+	return []string{
+		ActionOwnerAws,
+		ActionOwnerThirdParty,
+		ActionOwnerCustom,
+	}
+}
+
 const (
 	// ApprovalStatusApproved is a ApprovalStatus enum value
 	ApprovalStatusApproved = "Approved"
@@ -12791,25 +12887,131 @@ const (
 	ApprovalStatusRejected = "Rejected"
 )
 
+// ApprovalStatus is an enum
+type ApprovalStatus struct{}
+
+// Contains returns whether the ApprovalStatus enum includes the element
+func (enum ApprovalStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ApprovalStatus enum
+func (enum ApprovalStatus) Values() []string {
+	return []string{
+		ApprovalStatusApproved,
+		ApprovalStatusRejected,
+	}
+}
+
 const (
 	// ArtifactLocationTypeS3 is a ArtifactLocationType enum value
 	ArtifactLocationTypeS3 = "S3"
 )
+
+// ArtifactLocationType is an enum
+type ArtifactLocationType struct{}
+
+// Contains returns whether the ArtifactLocationType enum includes the element
+func (enum ArtifactLocationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ArtifactLocationType enum
+func (enum ArtifactLocationType) Values() []string {
+	return []string{
+		ArtifactLocationTypeS3,
+	}
+}
 
 const (
 	// ArtifactStoreTypeS3 is a ArtifactStoreType enum value
 	ArtifactStoreTypeS3 = "S3"
 )
 
+// ArtifactStoreType is an enum
+type ArtifactStoreType struct{}
+
+// Contains returns whether the ArtifactStoreType enum includes the element
+func (enum ArtifactStoreType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ArtifactStoreType enum
+func (enum ArtifactStoreType) Values() []string {
+	return []string{
+		ArtifactStoreTypeS3,
+	}
+}
+
 const (
 	// BlockerTypeSchedule is a BlockerType enum value
 	BlockerTypeSchedule = "Schedule"
 )
 
+// BlockerType is an enum
+type BlockerType struct{}
+
+// Contains returns whether the BlockerType enum includes the element
+func (enum BlockerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BlockerType enum
+func (enum BlockerType) Values() []string {
+	return []string{
+		BlockerTypeSchedule,
+	}
+}
+
 const (
 	// EncryptionKeyTypeKms is a EncryptionKeyType enum value
 	EncryptionKeyTypeKms = "KMS"
 )
+
+// EncryptionKeyType is an enum
+type EncryptionKeyType struct{}
+
+// Contains returns whether the EncryptionKeyType enum includes the element
+func (enum EncryptionKeyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionKeyType enum
+func (enum EncryptionKeyType) Values() []string {
+	return []string{
+		EncryptionKeyTypeKms,
+	}
+}
 
 const (
 	// FailureTypeJobFailed is a FailureType enum value
@@ -12830,6 +13032,32 @@ const (
 	// FailureTypeSystemUnavailable is a FailureType enum value
 	FailureTypeSystemUnavailable = "SystemUnavailable"
 )
+
+// FailureType is an enum
+type FailureType struct{}
+
+// Contains returns whether the FailureType enum includes the element
+func (enum FailureType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FailureType enum
+func (enum FailureType) Values() []string {
+	return []string{
+		FailureTypeJobFailed,
+		FailureTypeConfigurationError,
+		FailureTypePermissionError,
+		FailureTypeRevisionOutOfSync,
+		FailureTypeRevisionUnavailable,
+		FailureTypeSystemUnavailable,
+	}
+}
 
 const (
 	// JobStatusCreated is a JobStatus enum value
@@ -12854,6 +13082,33 @@ const (
 	JobStatusFailed = "Failed"
 )
 
+// JobStatus is an enum
+type JobStatus struct{}
+
+// Contains returns whether the JobStatus enum includes the element
+func (enum JobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatus enum
+func (enum JobStatus) Values() []string {
+	return []string{
+		JobStatusCreated,
+		JobStatusQueued,
+		JobStatusDispatched,
+		JobStatusInProgress,
+		JobStatusTimedOut,
+		JobStatusSucceeded,
+		JobStatusFailed,
+	}
+}
+
 const (
 	// PipelineExecutionStatusInProgress is a PipelineExecutionStatus enum value
 	PipelineExecutionStatusInProgress = "InProgress"
@@ -12874,6 +13129,32 @@ const (
 	PipelineExecutionStatusFailed = "Failed"
 )
 
+// PipelineExecutionStatus is an enum
+type PipelineExecutionStatus struct{}
+
+// Contains returns whether the PipelineExecutionStatus enum includes the element
+func (enum PipelineExecutionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PipelineExecutionStatus enum
+func (enum PipelineExecutionStatus) Values() []string {
+	return []string{
+		PipelineExecutionStatusInProgress,
+		PipelineExecutionStatusStopped,
+		PipelineExecutionStatusStopping,
+		PipelineExecutionStatusSucceeded,
+		PipelineExecutionStatusSuperseded,
+		PipelineExecutionStatusFailed,
+	}
+}
+
 const (
 	// StageExecutionStatusInProgress is a StageExecutionStatus enum value
 	StageExecutionStatusInProgress = "InProgress"
@@ -12891,10 +13172,56 @@ const (
 	StageExecutionStatusSucceeded = "Succeeded"
 )
 
+// StageExecutionStatus is an enum
+type StageExecutionStatus struct{}
+
+// Contains returns whether the StageExecutionStatus enum includes the element
+func (enum StageExecutionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StageExecutionStatus enum
+func (enum StageExecutionStatus) Values() []string {
+	return []string{
+		StageExecutionStatusInProgress,
+		StageExecutionStatusFailed,
+		StageExecutionStatusStopped,
+		StageExecutionStatusStopping,
+		StageExecutionStatusSucceeded,
+	}
+}
+
 const (
 	// StageRetryModeFailedActions is a StageRetryMode enum value
 	StageRetryModeFailedActions = "FAILED_ACTIONS"
 )
+
+// StageRetryMode is an enum
+type StageRetryMode struct{}
+
+// Contains returns whether the StageRetryMode enum includes the element
+func (enum StageRetryMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StageRetryMode enum
+func (enum StageRetryMode) Values() []string {
+	return []string{
+		StageRetryModeFailedActions,
+	}
+}
 
 const (
 	// StageTransitionTypeInbound is a StageTransitionType enum value
@@ -12903,6 +13230,28 @@ const (
 	// StageTransitionTypeOutbound is a StageTransitionType enum value
 	StageTransitionTypeOutbound = "Outbound"
 )
+
+// StageTransitionType is an enum
+type StageTransitionType struct{}
+
+// Contains returns whether the StageTransitionType enum includes the element
+func (enum StageTransitionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StageTransitionType enum
+func (enum StageTransitionType) Values() []string {
+	return []string{
+		StageTransitionTypeInbound,
+		StageTransitionTypeOutbound,
+	}
+}
 
 const (
 	// TriggerTypeCreatePipeline is a TriggerType enum value
@@ -12924,6 +13273,32 @@ const (
 	TriggerTypePutActionRevision = "PutActionRevision"
 )
 
+// TriggerType is an enum
+type TriggerType struct{}
+
+// Contains returns whether the TriggerType enum includes the element
+func (enum TriggerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TriggerType enum
+func (enum TriggerType) Values() []string {
+	return []string{
+		TriggerTypeCreatePipeline,
+		TriggerTypeStartPipelineExecution,
+		TriggerTypePollForSourceChanges,
+		TriggerTypeWebhook,
+		TriggerTypeCloudWatchEvent,
+		TriggerTypePutActionRevision,
+	}
+}
+
 const (
 	// WebhookAuthenticationTypeGithubHmac is a WebhookAuthenticationType enum value
 	WebhookAuthenticationTypeGithubHmac = "GITHUB_HMAC"
@@ -12934,3 +13309,26 @@ const (
 	// WebhookAuthenticationTypeUnauthenticated is a WebhookAuthenticationType enum value
 	WebhookAuthenticationTypeUnauthenticated = "UNAUTHENTICATED"
 )
+
+// WebhookAuthenticationType is an enum
+type WebhookAuthenticationType struct{}
+
+// Contains returns whether the WebhookAuthenticationType enum includes the element
+func (enum WebhookAuthenticationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WebhookAuthenticationType enum
+func (enum WebhookAuthenticationType) Values() []string {
+	return []string{
+		WebhookAuthenticationTypeGithubHmac,
+		WebhookAuthenticationTypeIp,
+		WebhookAuthenticationTypeUnauthenticated,
+	}
+}

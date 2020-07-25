@@ -2371,6 +2371,28 @@ const (
 	DecimalReturnTypeString = "STRING"
 )
 
+// DecimalReturnType is an enum
+type DecimalReturnType struct{}
+
+// Contains returns whether the DecimalReturnType enum includes the element
+func (enum DecimalReturnType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DecimalReturnType enum
+func (enum DecimalReturnType) Values() []string {
+	return []string{
+		DecimalReturnTypeDoubleOrLong,
+		DecimalReturnTypeString,
+	}
+}
+
 const (
 	// TypeHintDate is a TypeHint enum value
 	TypeHintDate = "DATE"
@@ -2384,3 +2406,27 @@ const (
 	// TypeHintTimestamp is a TypeHint enum value
 	TypeHintTimestamp = "TIMESTAMP"
 )
+
+// TypeHint is an enum
+type TypeHint struct{}
+
+// Contains returns whether the TypeHint enum includes the element
+func (enum TypeHint) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TypeHint enum
+func (enum TypeHint) Values() []string {
+	return []string{
+		TypeHintDate,
+		TypeHintDecimal,
+		TypeHintTime,
+		TypeHintTimestamp,
+	}
+}

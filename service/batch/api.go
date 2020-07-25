@@ -6180,6 +6180,28 @@ const (
 	ArrayJobDependencySequential = "SEQUENTIAL"
 )
 
+// ArrayJobDependency is an enum
+type ArrayJobDependency struct{}
+
+// Contains returns whether the ArrayJobDependency enum includes the element
+func (enum ArrayJobDependency) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ArrayJobDependency enum
+func (enum ArrayJobDependency) Values() []string {
+	return []string{
+		ArrayJobDependencyNToN,
+		ArrayJobDependencySequential,
+	}
+}
+
 const (
 	// CEStateEnabled is a CEState enum value
 	CEStateEnabled = "ENABLED"
@@ -6187,6 +6209,28 @@ const (
 	// CEStateDisabled is a CEState enum value
 	CEStateDisabled = "DISABLED"
 )
+
+// CEState is an enum
+type CEState struct{}
+
+// Contains returns whether the CEState enum includes the element
+func (enum CEState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CEState enum
+func (enum CEState) Values() []string {
+	return []string{
+		CEStateEnabled,
+		CEStateDisabled,
+	}
+}
 
 const (
 	// CEStatusCreating is a CEStatus enum value
@@ -6208,6 +6252,32 @@ const (
 	CEStatusInvalid = "INVALID"
 )
 
+// CEStatus is an enum
+type CEStatus struct{}
+
+// Contains returns whether the CEStatus enum includes the element
+func (enum CEStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CEStatus enum
+func (enum CEStatus) Values() []string {
+	return []string{
+		CEStatusCreating,
+		CEStatusUpdating,
+		CEStatusDeleting,
+		CEStatusDeleted,
+		CEStatusValid,
+		CEStatusInvalid,
+	}
+}
+
 const (
 	// CETypeManaged is a CEType enum value
 	CETypeManaged = "MANAGED"
@@ -6215,6 +6285,28 @@ const (
 	// CETypeUnmanaged is a CEType enum value
 	CETypeUnmanaged = "UNMANAGED"
 )
+
+// CEType is an enum
+type CEType struct{}
+
+// Contains returns whether the CEType enum includes the element
+func (enum CEType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CEType enum
+func (enum CEType) Values() []string {
+	return []string{
+		CETypeManaged,
+		CETypeUnmanaged,
+	}
+}
 
 const (
 	// CRAllocationStrategyBestFit is a CRAllocationStrategy enum value
@@ -6227,6 +6319,29 @@ const (
 	CRAllocationStrategySpotCapacityOptimized = "SPOT_CAPACITY_OPTIMIZED"
 )
 
+// CRAllocationStrategy is an enum
+type CRAllocationStrategy struct{}
+
+// Contains returns whether the CRAllocationStrategy enum includes the element
+func (enum CRAllocationStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CRAllocationStrategy enum
+func (enum CRAllocationStrategy) Values() []string {
+	return []string{
+		CRAllocationStrategyBestFit,
+		CRAllocationStrategyBestFitProgressive,
+		CRAllocationStrategySpotCapacityOptimized,
+	}
+}
+
 const (
 	// CRTypeEc2 is a CRType enum value
 	CRTypeEc2 = "EC2"
@@ -6234,6 +6349,28 @@ const (
 	// CRTypeSpot is a CRType enum value
 	CRTypeSpot = "SPOT"
 )
+
+// CRType is an enum
+type CRType struct{}
+
+// Contains returns whether the CRType enum includes the element
+func (enum CRType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CRType enum
+func (enum CRType) Values() []string {
+	return []string{
+		CRTypeEc2,
+		CRTypeSpot,
+	}
+}
 
 const (
 	// DeviceCgroupPermissionRead is a DeviceCgroupPermission enum value
@@ -6246,6 +6383,29 @@ const (
 	DeviceCgroupPermissionMknod = "MKNOD"
 )
 
+// DeviceCgroupPermission is an enum
+type DeviceCgroupPermission struct{}
+
+// Contains returns whether the DeviceCgroupPermission enum includes the element
+func (enum DeviceCgroupPermission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceCgroupPermission enum
+func (enum DeviceCgroupPermission) Values() []string {
+	return []string{
+		DeviceCgroupPermissionRead,
+		DeviceCgroupPermissionWrite,
+		DeviceCgroupPermissionMknod,
+	}
+}
+
 const (
 	// JQStateEnabled is a JQState enum value
 	JQStateEnabled = "ENABLED"
@@ -6253,6 +6413,28 @@ const (
 	// JQStateDisabled is a JQState enum value
 	JQStateDisabled = "DISABLED"
 )
+
+// JQState is an enum
+type JQState struct{}
+
+// Contains returns whether the JQState enum includes the element
+func (enum JQState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JQState enum
+func (enum JQState) Values() []string {
+	return []string{
+		JQStateEnabled,
+		JQStateDisabled,
+	}
+}
 
 const (
 	// JQStatusCreating is a JQStatus enum value
@@ -6274,6 +6456,32 @@ const (
 	JQStatusInvalid = "INVALID"
 )
 
+// JQStatus is an enum
+type JQStatus struct{}
+
+// Contains returns whether the JQStatus enum includes the element
+func (enum JQStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JQStatus enum
+func (enum JQStatus) Values() []string {
+	return []string{
+		JQStatusCreating,
+		JQStatusUpdating,
+		JQStatusDeleting,
+		JQStatusDeleted,
+		JQStatusValid,
+		JQStatusInvalid,
+	}
+}
+
 const (
 	// JobDefinitionTypeContainer is a JobDefinitionType enum value
 	JobDefinitionTypeContainer = "container"
@@ -6281,6 +6489,28 @@ const (
 	// JobDefinitionTypeMultinode is a JobDefinitionType enum value
 	JobDefinitionTypeMultinode = "multinode"
 )
+
+// JobDefinitionType is an enum
+type JobDefinitionType struct{}
+
+// Contains returns whether the JobDefinitionType enum includes the element
+func (enum JobDefinitionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobDefinitionType enum
+func (enum JobDefinitionType) Values() []string {
+	return []string{
+		JobDefinitionTypeContainer,
+		JobDefinitionTypeMultinode,
+	}
+}
 
 const (
 	// JobStatusSubmitted is a JobStatus enum value
@@ -6305,7 +6535,55 @@ const (
 	JobStatusFailed = "FAILED"
 )
 
+// JobStatus is an enum
+type JobStatus struct{}
+
+// Contains returns whether the JobStatus enum includes the element
+func (enum JobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatus enum
+func (enum JobStatus) Values() []string {
+	return []string{
+		JobStatusSubmitted,
+		JobStatusPending,
+		JobStatusRunnable,
+		JobStatusStarting,
+		JobStatusRunning,
+		JobStatusSucceeded,
+		JobStatusFailed,
+	}
+}
+
 const (
 	// ResourceTypeGpu is a ResourceType enum value
 	ResourceTypeGpu = "GPU"
 )
+
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeGpu,
+	}
+}

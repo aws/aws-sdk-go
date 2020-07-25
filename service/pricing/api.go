@@ -1241,3 +1241,24 @@ const (
 	// FilterTypeTermMatch is a FilterType enum value
 	FilterTypeTermMatch = "TERM_MATCH"
 )
+
+// FilterType is an enum
+type FilterType struct{}
+
+// Contains returns whether the FilterType enum includes the element
+func (enum FilterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterType enum
+func (enum FilterType) Values() []string {
+	return []string{
+		FilterTypeTermMatch,
+	}
+}

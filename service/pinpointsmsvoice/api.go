@@ -2040,3 +2040,30 @@ const (
 	// EventTypeNoAnswer is a EventType enum value
 	EventTypeNoAnswer = "NO_ANSWER"
 )
+
+// EventType is an enum
+type EventType struct{}
+
+// Contains returns whether the EventType enum includes the element
+func (enum EventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventType enum
+func (enum EventType) Values() []string {
+	return []string{
+		EventTypeInitiatedCall,
+		EventTypeRinging,
+		EventTypeAnswered,
+		EventTypeCompletedCall,
+		EventTypeBusy,
+		EventTypeFailed,
+		EventTypeNoAnswer,
+	}
+}

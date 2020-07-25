@@ -14162,6 +14162,32 @@ const (
 	CertificateStateDeregisterFailed = "DeregisterFailed"
 )
 
+// CertificateState is an enum
+type CertificateState struct{}
+
+// Contains returns whether the CertificateState enum includes the element
+func (enum CertificateState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CertificateState enum
+func (enum CertificateState) Values() []string {
+	return []string{
+		CertificateStateRegistering,
+		CertificateStateRegistered,
+		CertificateStateRegisterFailed,
+		CertificateStateDeregistering,
+		CertificateStateDeregistered,
+		CertificateStateDeregisterFailed,
+	}
+}
+
 const (
 	// DirectoryEditionEnterprise is a DirectoryEdition enum value
 	DirectoryEditionEnterprise = "Enterprise"
@@ -14170,6 +14196,28 @@ const (
 	DirectoryEditionStandard = "Standard"
 )
 
+// DirectoryEdition is an enum
+type DirectoryEdition struct{}
+
+// Contains returns whether the DirectoryEdition enum includes the element
+func (enum DirectoryEdition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DirectoryEdition enum
+func (enum DirectoryEdition) Values() []string {
+	return []string{
+		DirectoryEditionEnterprise,
+		DirectoryEditionStandard,
+	}
+}
+
 const (
 	// DirectorySizeSmall is a DirectorySize enum value
 	DirectorySizeSmall = "Small"
@@ -14177,6 +14225,28 @@ const (
 	// DirectorySizeLarge is a DirectorySize enum value
 	DirectorySizeLarge = "Large"
 )
+
+// DirectorySize is an enum
+type DirectorySize struct{}
+
+// Contains returns whether the DirectorySize enum includes the element
+func (enum DirectorySize) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DirectorySize enum
+func (enum DirectorySize) Values() []string {
+	return []string{
+		DirectorySizeSmall,
+		DirectorySizeLarge,
+	}
+}
 
 const (
 	// DirectoryStageRequested is a DirectoryStage enum value
@@ -14213,6 +14283,37 @@ const (
 	DirectoryStageFailed = "Failed"
 )
 
+// DirectoryStage is an enum
+type DirectoryStage struct{}
+
+// Contains returns whether the DirectoryStage enum includes the element
+func (enum DirectoryStage) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DirectoryStage enum
+func (enum DirectoryStage) Values() []string {
+	return []string{
+		DirectoryStageRequested,
+		DirectoryStageCreating,
+		DirectoryStageCreated,
+		DirectoryStageActive,
+		DirectoryStageInoperable,
+		DirectoryStageImpaired,
+		DirectoryStageRestoring,
+		DirectoryStageRestoreFailed,
+		DirectoryStageDeleting,
+		DirectoryStageDeleted,
+		DirectoryStageFailed,
+	}
+}
+
 const (
 	// DirectoryTypeSimpleAd is a DirectoryType enum value
 	DirectoryTypeSimpleAd = "SimpleAD"
@@ -14226,6 +14327,30 @@ const (
 	// DirectoryTypeSharedMicrosoftAd is a DirectoryType enum value
 	DirectoryTypeSharedMicrosoftAd = "SharedMicrosoftAD"
 )
+
+// DirectoryType is an enum
+type DirectoryType struct{}
+
+// Contains returns whether the DirectoryType enum includes the element
+func (enum DirectoryType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DirectoryType enum
+func (enum DirectoryType) Values() []string {
+	return []string{
+		DirectoryTypeSimpleAd,
+		DirectoryTypeAdconnector,
+		DirectoryTypeMicrosoftAd,
+		DirectoryTypeSharedMicrosoftAd,
+	}
+}
 
 const (
 	// DomainControllerStatusCreating is a DomainControllerStatus enum value
@@ -14250,6 +14375,33 @@ const (
 	DomainControllerStatusFailed = "Failed"
 )
 
+// DomainControllerStatus is an enum
+type DomainControllerStatus struct{}
+
+// Contains returns whether the DomainControllerStatus enum includes the element
+func (enum DomainControllerStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DomainControllerStatus enum
+func (enum DomainControllerStatus) Values() []string {
+	return []string{
+		DomainControllerStatusCreating,
+		DomainControllerStatusActive,
+		DomainControllerStatusImpaired,
+		DomainControllerStatusRestoring,
+		DomainControllerStatusDeleting,
+		DomainControllerStatusDeleted,
+		DomainControllerStatusFailed,
+	}
+}
+
 const (
 	// IpRouteStatusMsgAdding is a IpRouteStatusMsg enum value
 	IpRouteStatusMsgAdding = "Adding"
@@ -14270,6 +14422,32 @@ const (
 	IpRouteStatusMsgRemoveFailed = "RemoveFailed"
 )
 
+// IpRouteStatusMsg is an enum
+type IpRouteStatusMsg struct{}
+
+// Contains returns whether the IpRouteStatusMsg enum includes the element
+func (enum IpRouteStatusMsg) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IpRouteStatusMsg enum
+func (enum IpRouteStatusMsg) Values() []string {
+	return []string{
+		IpRouteStatusMsgAdding,
+		IpRouteStatusMsgAdded,
+		IpRouteStatusMsgRemoving,
+		IpRouteStatusMsgRemoved,
+		IpRouteStatusMsgAddFailed,
+		IpRouteStatusMsgRemoveFailed,
+	}
+}
+
 const (
 	// LDAPSStatusEnabling is a LDAPSStatus enum value
 	LDAPSStatusEnabling = "Enabling"
@@ -14284,10 +14462,55 @@ const (
 	LDAPSStatusDisabled = "Disabled"
 )
 
+// LDAPSStatus is an enum
+type LDAPSStatus struct{}
+
+// Contains returns whether the LDAPSStatus enum includes the element
+func (enum LDAPSStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LDAPSStatus enum
+func (enum LDAPSStatus) Values() []string {
+	return []string{
+		LDAPSStatusEnabling,
+		LDAPSStatusEnabled,
+		LDAPSStatusEnableFailed,
+		LDAPSStatusDisabled,
+	}
+}
+
 const (
 	// LDAPSTypeClient is a LDAPSType enum value
 	LDAPSTypeClient = "Client"
 )
+
+// LDAPSType is an enum
+type LDAPSType struct{}
+
+// Contains returns whether the LDAPSType enum includes the element
+func (enum LDAPSType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LDAPSType enum
+func (enum LDAPSType) Values() []string {
+	return []string{
+		LDAPSTypeClient,
+	}
+}
 
 const (
 	// RadiusAuthenticationProtocolPap is a RadiusAuthenticationProtocol enum value
@@ -14303,6 +14526,30 @@ const (
 	RadiusAuthenticationProtocolMsChapv2 = "MS-CHAPv2"
 )
 
+// RadiusAuthenticationProtocol is an enum
+type RadiusAuthenticationProtocol struct{}
+
+// Contains returns whether the RadiusAuthenticationProtocol enum includes the element
+func (enum RadiusAuthenticationProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RadiusAuthenticationProtocol enum
+func (enum RadiusAuthenticationProtocol) Values() []string {
+	return []string{
+		RadiusAuthenticationProtocolPap,
+		RadiusAuthenticationProtocolChap,
+		RadiusAuthenticationProtocolMsChapv1,
+		RadiusAuthenticationProtocolMsChapv2,
+	}
+}
+
 const (
 	// RadiusStatusCreating is a RadiusStatus enum value
 	RadiusStatusCreating = "Creating"
@@ -14314,10 +14561,54 @@ const (
 	RadiusStatusFailed = "Failed"
 )
 
+// RadiusStatus is an enum
+type RadiusStatus struct{}
+
+// Contains returns whether the RadiusStatus enum includes the element
+func (enum RadiusStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RadiusStatus enum
+func (enum RadiusStatus) Values() []string {
+	return []string{
+		RadiusStatusCreating,
+		RadiusStatusCompleted,
+		RadiusStatusFailed,
+	}
+}
+
 const (
 	// ReplicationScopeDomain is a ReplicationScope enum value
 	ReplicationScopeDomain = "Domain"
 )
+
+// ReplicationScope is an enum
+type ReplicationScope struct{}
+
+// Contains returns whether the ReplicationScope enum includes the element
+func (enum ReplicationScope) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplicationScope enum
+func (enum ReplicationScope) Values() []string {
+	return []string{
+		ReplicationScopeDomain,
+	}
+}
 
 const (
 	// SchemaExtensionStatusInitializing is a SchemaExtensionStatus enum value
@@ -14348,6 +14639,35 @@ const (
 	SchemaExtensionStatusCompleted = "Completed"
 )
 
+// SchemaExtensionStatus is an enum
+type SchemaExtensionStatus struct{}
+
+// Contains returns whether the SchemaExtensionStatus enum includes the element
+func (enum SchemaExtensionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SchemaExtensionStatus enum
+func (enum SchemaExtensionStatus) Values() []string {
+	return []string{
+		SchemaExtensionStatusInitializing,
+		SchemaExtensionStatusCreatingSnapshot,
+		SchemaExtensionStatusUpdatingSchema,
+		SchemaExtensionStatusReplicating,
+		SchemaExtensionStatusCancelInProgress,
+		SchemaExtensionStatusRollbackInProgress,
+		SchemaExtensionStatusCancelled,
+		SchemaExtensionStatusFailed,
+		SchemaExtensionStatusCompleted,
+	}
+}
+
 const (
 	// SelectiveAuthEnabled is a SelectiveAuth enum value
 	SelectiveAuthEnabled = "Enabled"
@@ -14356,6 +14676,28 @@ const (
 	SelectiveAuthDisabled = "Disabled"
 )
 
+// SelectiveAuth is an enum
+type SelectiveAuth struct{}
+
+// Contains returns whether the SelectiveAuth enum includes the element
+func (enum SelectiveAuth) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SelectiveAuth enum
+func (enum SelectiveAuth) Values() []string {
+	return []string{
+		SelectiveAuthEnabled,
+		SelectiveAuthDisabled,
+	}
+}
+
 const (
 	// ShareMethodOrganizations is a ShareMethod enum value
 	ShareMethodOrganizations = "ORGANIZATIONS"
@@ -14363,6 +14705,28 @@ const (
 	// ShareMethodHandshake is a ShareMethod enum value
 	ShareMethodHandshake = "HANDSHAKE"
 )
+
+// ShareMethod is an enum
+type ShareMethod struct{}
+
+// Contains returns whether the ShareMethod enum includes the element
+func (enum ShareMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ShareMethod enum
+func (enum ShareMethod) Values() []string {
+	return []string{
+		ShareMethodOrganizations,
+		ShareMethodHandshake,
+	}
+}
 
 const (
 	// ShareStatusShared is a ShareStatus enum value
@@ -14393,6 +14757,35 @@ const (
 	ShareStatusDeleting = "Deleting"
 )
 
+// ShareStatus is an enum
+type ShareStatus struct{}
+
+// Contains returns whether the ShareStatus enum includes the element
+func (enum ShareStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ShareStatus enum
+func (enum ShareStatus) Values() []string {
+	return []string{
+		ShareStatusShared,
+		ShareStatusPendingAcceptance,
+		ShareStatusRejected,
+		ShareStatusRejecting,
+		ShareStatusRejectFailed,
+		ShareStatusSharing,
+		ShareStatusShareFailed,
+		ShareStatusDeleted,
+		ShareStatusDeleting,
+	}
+}
+
 const (
 	// SnapshotStatusCreating is a SnapshotStatus enum value
 	SnapshotStatusCreating = "Creating"
@@ -14404,6 +14797,29 @@ const (
 	SnapshotStatusFailed = "Failed"
 )
 
+// SnapshotStatus is an enum
+type SnapshotStatus struct{}
+
+// Contains returns whether the SnapshotStatus enum includes the element
+func (enum SnapshotStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SnapshotStatus enum
+func (enum SnapshotStatus) Values() []string {
+	return []string{
+		SnapshotStatusCreating,
+		SnapshotStatusCompleted,
+		SnapshotStatusFailed,
+	}
+}
+
 const (
 	// SnapshotTypeAuto is a SnapshotType enum value
 	SnapshotTypeAuto = "Auto"
@@ -14412,10 +14828,53 @@ const (
 	SnapshotTypeManual = "Manual"
 )
 
+// SnapshotType is an enum
+type SnapshotType struct{}
+
+// Contains returns whether the SnapshotType enum includes the element
+func (enum SnapshotType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SnapshotType enum
+func (enum SnapshotType) Values() []string {
+	return []string{
+		SnapshotTypeAuto,
+		SnapshotTypeManual,
+	}
+}
+
 const (
 	// TargetTypeAccount is a TargetType enum value
 	TargetTypeAccount = "ACCOUNT"
 )
+
+// TargetType is an enum
+type TargetType struct{}
+
+// Contains returns whether the TargetType enum includes the element
+func (enum TargetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetType enum
+func (enum TargetType) Values() []string {
+	return []string{
+		TargetTypeAccount,
+	}
+}
 
 const (
 	// TopicStatusRegistered is a TopicStatus enum value
@@ -14431,6 +14890,30 @@ const (
 	TopicStatusDeleted = "Deleted"
 )
 
+// TopicStatus is an enum
+type TopicStatus struct{}
+
+// Contains returns whether the TopicStatus enum includes the element
+func (enum TopicStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TopicStatus enum
+func (enum TopicStatus) Values() []string {
+	return []string{
+		TopicStatusRegistered,
+		TopicStatusTopicnotfound,
+		TopicStatusFailed,
+		TopicStatusDeleted,
+	}
+}
+
 const (
 	// TrustDirectionOneWayOutgoing is a TrustDirection enum value
 	TrustDirectionOneWayOutgoing = "One-Way: Outgoing"
@@ -14441,6 +14924,29 @@ const (
 	// TrustDirectionTwoWay is a TrustDirection enum value
 	TrustDirectionTwoWay = "Two-Way"
 )
+
+// TrustDirection is an enum
+type TrustDirection struct{}
+
+// Contains returns whether the TrustDirection enum includes the element
+func (enum TrustDirection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrustDirection enum
+func (enum TrustDirection) Values() []string {
+	return []string{
+		TrustDirectionOneWayOutgoing,
+		TrustDirectionOneWayIncoming,
+		TrustDirectionTwoWay,
+	}
+}
 
 const (
 	// TrustStateCreating is a TrustState enum value
@@ -14477,6 +14983,37 @@ const (
 	TrustStateFailed = "Failed"
 )
 
+// TrustState is an enum
+type TrustState struct{}
+
+// Contains returns whether the TrustState enum includes the element
+func (enum TrustState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrustState enum
+func (enum TrustState) Values() []string {
+	return []string{
+		TrustStateCreating,
+		TrustStateCreated,
+		TrustStateVerifying,
+		TrustStateVerifyFailed,
+		TrustStateVerified,
+		TrustStateUpdating,
+		TrustStateUpdateFailed,
+		TrustStateUpdated,
+		TrustStateDeleting,
+		TrustStateDeleted,
+		TrustStateFailed,
+	}
+}
+
 const (
 	// TrustTypeForest is a TrustType enum value
 	TrustTypeForest = "Forest"
@@ -14484,3 +15021,25 @@ const (
 	// TrustTypeExternal is a TrustType enum value
 	TrustTypeExternal = "External"
 )
+
+// TrustType is an enum
+type TrustType struct{}
+
+// Contains returns whether the TrustType enum includes the element
+func (enum TrustType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrustType enum
+func (enum TrustType) Values() []string {
+	return []string{
+		TrustTypeForest,
+		TrustTypeExternal,
+	}
+}

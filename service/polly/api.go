@@ -3478,6 +3478,28 @@ const (
 	EngineNeural = "neural"
 )
 
+// Engine is an enum
+type Engine struct{}
+
+// Contains returns whether the Engine enum includes the element
+func (enum Engine) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Engine enum
+func (enum Engine) Values() []string {
+	return []string{
+		EngineStandard,
+		EngineNeural,
+	}
+}
+
 const (
 	// GenderFemale is a Gender enum value
 	GenderFemale = "Female"
@@ -3485,6 +3507,28 @@ const (
 	// GenderMale is a Gender enum value
 	GenderMale = "Male"
 )
+
+// Gender is an enum
+type Gender struct{}
+
+// Contains returns whether the Gender enum includes the element
+func (enum Gender) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Gender enum
+func (enum Gender) Values() []string {
+	return []string{
+		GenderFemale,
+		GenderMale,
+	}
+}
 
 const (
 	// LanguageCodeArb is a LanguageCode enum value
@@ -3575,6 +3619,55 @@ const (
 	LanguageCodeTrTr = "tr-TR"
 )
 
+// LanguageCode is an enum
+type LanguageCode struct{}
+
+// Contains returns whether the LanguageCode enum includes the element
+func (enum LanguageCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LanguageCode enum
+func (enum LanguageCode) Values() []string {
+	return []string{
+		LanguageCodeArb,
+		LanguageCodeCmnCn,
+		LanguageCodeCyGb,
+		LanguageCodeDaDk,
+		LanguageCodeDeDe,
+		LanguageCodeEnAu,
+		LanguageCodeEnGb,
+		LanguageCodeEnGbWls,
+		LanguageCodeEnIn,
+		LanguageCodeEnUs,
+		LanguageCodeEsEs,
+		LanguageCodeEsMx,
+		LanguageCodeEsUs,
+		LanguageCodeFrCa,
+		LanguageCodeFrFr,
+		LanguageCodeIsIs,
+		LanguageCodeItIt,
+		LanguageCodeJaJp,
+		LanguageCodeHiIn,
+		LanguageCodeKoKr,
+		LanguageCodeNbNo,
+		LanguageCodeNlNl,
+		LanguageCodePlPl,
+		LanguageCodePtBr,
+		LanguageCodePtPt,
+		LanguageCodeRoRo,
+		LanguageCodeRuRu,
+		LanguageCodeSvSe,
+		LanguageCodeTrTr,
+	}
+}
+
 const (
 	// OutputFormatJson is a OutputFormat enum value
 	OutputFormatJson = "json"
@@ -3588,6 +3681,30 @@ const (
 	// OutputFormatPcm is a OutputFormat enum value
 	OutputFormatPcm = "pcm"
 )
+
+// OutputFormat is an enum
+type OutputFormat struct{}
+
+// Contains returns whether the OutputFormat enum includes the element
+func (enum OutputFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OutputFormat enum
+func (enum OutputFormat) Values() []string {
+	return []string{
+		OutputFormatJson,
+		OutputFormatMp3,
+		OutputFormatOggVorbis,
+		OutputFormatPcm,
+	}
+}
 
 const (
 	// SpeechMarkTypeSentence is a SpeechMarkType enum value
@@ -3603,6 +3720,30 @@ const (
 	SpeechMarkTypeWord = "word"
 )
 
+// SpeechMarkType is an enum
+type SpeechMarkType struct{}
+
+// Contains returns whether the SpeechMarkType enum includes the element
+func (enum SpeechMarkType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SpeechMarkType enum
+func (enum SpeechMarkType) Values() []string {
+	return []string{
+		SpeechMarkTypeSentence,
+		SpeechMarkTypeSsml,
+		SpeechMarkTypeViseme,
+		SpeechMarkTypeWord,
+	}
+}
+
 const (
 	// TaskStatusScheduled is a TaskStatus enum value
 	TaskStatusScheduled = "scheduled"
@@ -3617,6 +3758,30 @@ const (
 	TaskStatusFailed = "failed"
 )
 
+// TaskStatus is an enum
+type TaskStatus struct{}
+
+// Contains returns whether the TaskStatus enum includes the element
+func (enum TaskStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TaskStatus enum
+func (enum TaskStatus) Values() []string {
+	return []string{
+		TaskStatusScheduled,
+		TaskStatusInProgress,
+		TaskStatusCompleted,
+		TaskStatusFailed,
+	}
+}
+
 const (
 	// TextTypeSsml is a TextType enum value
 	TextTypeSsml = "ssml"
@@ -3624,6 +3789,28 @@ const (
 	// TextTypeText is a TextType enum value
 	TextTypeText = "text"
 )
+
+// TextType is an enum
+type TextType struct{}
+
+// Contains returns whether the TextType enum includes the element
+func (enum TextType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TextType enum
+func (enum TextType) Values() []string {
+	return []string{
+		TextTypeSsml,
+		TextTypeText,
+	}
+}
 
 const (
 	// VoiceIdAditi is a VoiceId enum value
@@ -3809,3 +3996,84 @@ const (
 	// VoiceIdZhiyu is a VoiceId enum value
 	VoiceIdZhiyu = "Zhiyu"
 )
+
+// VoiceId is an enum
+type VoiceId struct{}
+
+// Contains returns whether the VoiceId enum includes the element
+func (enum VoiceId) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VoiceId enum
+func (enum VoiceId) Values() []string {
+	return []string{
+		VoiceIdAditi,
+		VoiceIdAmy,
+		VoiceIdAstrid,
+		VoiceIdBianca,
+		VoiceIdBrian,
+		VoiceIdCamila,
+		VoiceIdCarla,
+		VoiceIdCarmen,
+		VoiceIdCeline,
+		VoiceIdChantal,
+		VoiceIdConchita,
+		VoiceIdCristiano,
+		VoiceIdDora,
+		VoiceIdEmma,
+		VoiceIdEnrique,
+		VoiceIdEwa,
+		VoiceIdFiliz,
+		VoiceIdGeraint,
+		VoiceIdGiorgio,
+		VoiceIdGwyneth,
+		VoiceIdHans,
+		VoiceIdInes,
+		VoiceIdIvy,
+		VoiceIdJacek,
+		VoiceIdJan,
+		VoiceIdJoanna,
+		VoiceIdJoey,
+		VoiceIdJustin,
+		VoiceIdKarl,
+		VoiceIdKendra,
+		VoiceIdKevin,
+		VoiceIdKimberly,
+		VoiceIdLea,
+		VoiceIdLiv,
+		VoiceIdLotte,
+		VoiceIdLucia,
+		VoiceIdLupe,
+		VoiceIdMads,
+		VoiceIdMaja,
+		VoiceIdMarlene,
+		VoiceIdMathieu,
+		VoiceIdMatthew,
+		VoiceIdMaxim,
+		VoiceIdMia,
+		VoiceIdMiguel,
+		VoiceIdMizuki,
+		VoiceIdNaja,
+		VoiceIdNicole,
+		VoiceIdPenelope,
+		VoiceIdRaveena,
+		VoiceIdRicardo,
+		VoiceIdRuben,
+		VoiceIdRussell,
+		VoiceIdSalli,
+		VoiceIdSeoyeon,
+		VoiceIdTakumi,
+		VoiceIdTatyana,
+		VoiceIdVicki,
+		VoiceIdVitoria,
+		VoiceIdZeina,
+		VoiceIdZhiyu,
+	}
+}

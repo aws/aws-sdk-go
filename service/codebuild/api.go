@@ -10896,6 +10896,28 @@ const (
 	ArtifactNamespaceBuildId = "BUILD_ID"
 )
 
+// ArtifactNamespace is an enum
+type ArtifactNamespace struct{}
+
+// Contains returns whether the ArtifactNamespace enum includes the element
+func (enum ArtifactNamespace) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ArtifactNamespace enum
+func (enum ArtifactNamespace) Values() []string {
+	return []string{
+		ArtifactNamespaceNone,
+		ArtifactNamespaceBuildId,
+	}
+}
+
 const (
 	// ArtifactPackagingNone is a ArtifactPackaging enum value
 	ArtifactPackagingNone = "NONE"
@@ -10903,6 +10925,28 @@ const (
 	// ArtifactPackagingZip is a ArtifactPackaging enum value
 	ArtifactPackagingZip = "ZIP"
 )
+
+// ArtifactPackaging is an enum
+type ArtifactPackaging struct{}
+
+// Contains returns whether the ArtifactPackaging enum includes the element
+func (enum ArtifactPackaging) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ArtifactPackaging enum
+func (enum ArtifactPackaging) Values() []string {
+	return []string{
+		ArtifactPackagingNone,
+		ArtifactPackagingZip,
+	}
+}
 
 const (
 	// ArtifactsTypeCodepipeline is a ArtifactsType enum value
@@ -10915,6 +10959,29 @@ const (
 	ArtifactsTypeNoArtifacts = "NO_ARTIFACTS"
 )
 
+// ArtifactsType is an enum
+type ArtifactsType struct{}
+
+// Contains returns whether the ArtifactsType enum includes the element
+func (enum ArtifactsType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ArtifactsType enum
+func (enum ArtifactsType) Values() []string {
+	return []string{
+		ArtifactsTypeCodepipeline,
+		ArtifactsTypeS3,
+		ArtifactsTypeNoArtifacts,
+	}
+}
+
 const (
 	// AuthTypeOauth is a AuthType enum value
 	AuthTypeOauth = "OAUTH"
@@ -10925,6 +10992,29 @@ const (
 	// AuthTypePersonalAccessToken is a AuthType enum value
 	AuthTypePersonalAccessToken = "PERSONAL_ACCESS_TOKEN"
 )
+
+// AuthType is an enum
+type AuthType struct{}
+
+// Contains returns whether the AuthType enum includes the element
+func (enum AuthType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthType enum
+func (enum AuthType) Values() []string {
+	return []string{
+		AuthTypeOauth,
+		AuthTypeBasicAuth,
+		AuthTypePersonalAccessToken,
+	}
+}
 
 const (
 	// BuildPhaseTypeSubmitted is a BuildPhaseType enum value
@@ -10961,6 +11051,37 @@ const (
 	BuildPhaseTypeCompleted = "COMPLETED"
 )
 
+// BuildPhaseType is an enum
+type BuildPhaseType struct{}
+
+// Contains returns whether the BuildPhaseType enum includes the element
+func (enum BuildPhaseType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BuildPhaseType enum
+func (enum BuildPhaseType) Values() []string {
+	return []string{
+		BuildPhaseTypeSubmitted,
+		BuildPhaseTypeQueued,
+		BuildPhaseTypeProvisioning,
+		BuildPhaseTypeDownloadSource,
+		BuildPhaseTypeInstall,
+		BuildPhaseTypePreBuild,
+		BuildPhaseTypeBuild,
+		BuildPhaseTypePostBuild,
+		BuildPhaseTypeUploadArtifacts,
+		BuildPhaseTypeFinalizing,
+		BuildPhaseTypeCompleted,
+	}
+}
+
 const (
 	// CacheModeLocalDockerLayerCache is a CacheMode enum value
 	CacheModeLocalDockerLayerCache = "LOCAL_DOCKER_LAYER_CACHE"
@@ -10972,6 +11093,29 @@ const (
 	CacheModeLocalCustomCache = "LOCAL_CUSTOM_CACHE"
 )
 
+// CacheMode is an enum
+type CacheMode struct{}
+
+// Contains returns whether the CacheMode enum includes the element
+func (enum CacheMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CacheMode enum
+func (enum CacheMode) Values() []string {
+	return []string{
+		CacheModeLocalDockerLayerCache,
+		CacheModeLocalSourceCache,
+		CacheModeLocalCustomCache,
+	}
+}
+
 const (
 	// CacheTypeNoCache is a CacheType enum value
 	CacheTypeNoCache = "NO_CACHE"
@@ -10982,6 +11126,29 @@ const (
 	// CacheTypeLocal is a CacheType enum value
 	CacheTypeLocal = "LOCAL"
 )
+
+// CacheType is an enum
+type CacheType struct{}
+
+// Contains returns whether the CacheType enum includes the element
+func (enum CacheType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CacheType enum
+func (enum CacheType) Values() []string {
+	return []string{
+		CacheTypeNoCache,
+		CacheTypeS3,
+		CacheTypeLocal,
+	}
+}
 
 const (
 	// ComputeTypeBuildGeneral1Small is a ComputeType enum value
@@ -10997,10 +11164,55 @@ const (
 	ComputeTypeBuildGeneral12xlarge = "BUILD_GENERAL1_2XLARGE"
 )
 
+// ComputeType is an enum
+type ComputeType struct{}
+
+// Contains returns whether the ComputeType enum includes the element
+func (enum ComputeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComputeType enum
+func (enum ComputeType) Values() []string {
+	return []string{
+		ComputeTypeBuildGeneral1Small,
+		ComputeTypeBuildGeneral1Medium,
+		ComputeTypeBuildGeneral1Large,
+		ComputeTypeBuildGeneral12xlarge,
+	}
+}
+
 const (
 	// CredentialProviderTypeSecretsManager is a CredentialProviderType enum value
 	CredentialProviderTypeSecretsManager = "SECRETS_MANAGER"
 )
+
+// CredentialProviderType is an enum
+type CredentialProviderType struct{}
+
+// Contains returns whether the CredentialProviderType enum includes the element
+func (enum CredentialProviderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CredentialProviderType enum
+func (enum CredentialProviderType) Values() []string {
+	return []string{
+		CredentialProviderTypeSecretsManager,
+	}
+}
 
 const (
 	// EnvironmentTypeWindowsContainer is a EnvironmentType enum value
@@ -11019,6 +11231,31 @@ const (
 	EnvironmentTypeWindowsServer2019Container = "WINDOWS_SERVER_2019_CONTAINER"
 )
 
+// EnvironmentType is an enum
+type EnvironmentType struct{}
+
+// Contains returns whether the EnvironmentType enum includes the element
+func (enum EnvironmentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentType enum
+func (enum EnvironmentType) Values() []string {
+	return []string{
+		EnvironmentTypeWindowsContainer,
+		EnvironmentTypeLinuxContainer,
+		EnvironmentTypeLinuxGpuContainer,
+		EnvironmentTypeArmContainer,
+		EnvironmentTypeWindowsServer2019Container,
+	}
+}
+
 const (
 	// EnvironmentVariableTypePlaintext is a EnvironmentVariableType enum value
 	EnvironmentVariableTypePlaintext = "PLAINTEXT"
@@ -11030,10 +11267,54 @@ const (
 	EnvironmentVariableTypeSecretsManager = "SECRETS_MANAGER"
 )
 
+// EnvironmentVariableType is an enum
+type EnvironmentVariableType struct{}
+
+// Contains returns whether the EnvironmentVariableType enum includes the element
+func (enum EnvironmentVariableType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnvironmentVariableType enum
+func (enum EnvironmentVariableType) Values() []string {
+	return []string{
+		EnvironmentVariableTypePlaintext,
+		EnvironmentVariableTypeParameterStore,
+		EnvironmentVariableTypeSecretsManager,
+	}
+}
+
 const (
 	// FileSystemTypeEfs is a FileSystemType enum value
 	FileSystemTypeEfs = "EFS"
 )
+
+// FileSystemType is an enum
+type FileSystemType struct{}
+
+// Contains returns whether the FileSystemType enum includes the element
+func (enum FileSystemType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileSystemType enum
+func (enum FileSystemType) Values() []string {
+	return []string{
+		FileSystemTypeEfs,
+	}
+}
 
 const (
 	// ImagePullCredentialsTypeCodebuild is a ImagePullCredentialsType enum value
@@ -11042,6 +11323,28 @@ const (
 	// ImagePullCredentialsTypeServiceRole is a ImagePullCredentialsType enum value
 	ImagePullCredentialsTypeServiceRole = "SERVICE_ROLE"
 )
+
+// ImagePullCredentialsType is an enum
+type ImagePullCredentialsType struct{}
+
+// Contains returns whether the ImagePullCredentialsType enum includes the element
+func (enum ImagePullCredentialsType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImagePullCredentialsType enum
+func (enum ImagePullCredentialsType) Values() []string {
+	return []string{
+		ImagePullCredentialsTypeCodebuild,
+		ImagePullCredentialsTypeServiceRole,
+	}
+}
 
 const (
 	// LanguageTypeJava is a LanguageType enum value
@@ -11075,6 +11378,36 @@ const (
 	LanguageTypePhp = "PHP"
 )
 
+// LanguageType is an enum
+type LanguageType struct{}
+
+// Contains returns whether the LanguageType enum includes the element
+func (enum LanguageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LanguageType enum
+func (enum LanguageType) Values() []string {
+	return []string{
+		LanguageTypeJava,
+		LanguageTypePython,
+		LanguageTypeNodeJs,
+		LanguageTypeRuby,
+		LanguageTypeGolang,
+		LanguageTypeDocker,
+		LanguageTypeAndroid,
+		LanguageTypeDotnet,
+		LanguageTypeBase,
+		LanguageTypePhp,
+	}
+}
+
 const (
 	// LogsConfigStatusTypeEnabled is a LogsConfigStatusType enum value
 	LogsConfigStatusTypeEnabled = "ENABLED"
@@ -11082,6 +11415,28 @@ const (
 	// LogsConfigStatusTypeDisabled is a LogsConfigStatusType enum value
 	LogsConfigStatusTypeDisabled = "DISABLED"
 )
+
+// LogsConfigStatusType is an enum
+type LogsConfigStatusType struct{}
+
+// Contains returns whether the LogsConfigStatusType enum includes the element
+func (enum LogsConfigStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogsConfigStatusType enum
+func (enum LogsConfigStatusType) Values() []string {
+	return []string{
+		LogsConfigStatusTypeEnabled,
+		LogsConfigStatusTypeDisabled,
+	}
+}
 
 const (
 	// PlatformTypeDebian is a PlatformType enum value
@@ -11097,6 +11452,30 @@ const (
 	PlatformTypeWindowsServer = "WINDOWS_SERVER"
 )
 
+// PlatformType is an enum
+type PlatformType struct{}
+
+// Contains returns whether the PlatformType enum includes the element
+func (enum PlatformType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PlatformType enum
+func (enum PlatformType) Values() []string {
+	return []string{
+		PlatformTypeDebian,
+		PlatformTypeAmazonLinux,
+		PlatformTypeUbuntu,
+		PlatformTypeWindowsServer,
+	}
+}
+
 const (
 	// ProjectSortByTypeName is a ProjectSortByType enum value
 	ProjectSortByTypeName = "NAME"
@@ -11108,6 +11487,29 @@ const (
 	ProjectSortByTypeLastModifiedTime = "LAST_MODIFIED_TIME"
 )
 
+// ProjectSortByType is an enum
+type ProjectSortByType struct{}
+
+// Contains returns whether the ProjectSortByType enum includes the element
+func (enum ProjectSortByType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProjectSortByType enum
+func (enum ProjectSortByType) Values() []string {
+	return []string{
+		ProjectSortByTypeName,
+		ProjectSortByTypeCreatedTime,
+		ProjectSortByTypeLastModifiedTime,
+	}
+}
+
 const (
 	// ReportExportConfigTypeS3 is a ReportExportConfigType enum value
 	ReportExportConfigTypeS3 = "S3"
@@ -11115,6 +11517,28 @@ const (
 	// ReportExportConfigTypeNoExport is a ReportExportConfigType enum value
 	ReportExportConfigTypeNoExport = "NO_EXPORT"
 )
+
+// ReportExportConfigType is an enum
+type ReportExportConfigType struct{}
+
+// Contains returns whether the ReportExportConfigType enum includes the element
+func (enum ReportExportConfigType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportExportConfigType enum
+func (enum ReportExportConfigType) Values() []string {
+	return []string{
+		ReportExportConfigTypeS3,
+		ReportExportConfigTypeNoExport,
+	}
+}
 
 const (
 	// ReportGroupSortByTypeName is a ReportGroupSortByType enum value
@@ -11127,6 +11551,29 @@ const (
 	ReportGroupSortByTypeLastModifiedTime = "LAST_MODIFIED_TIME"
 )
 
+// ReportGroupSortByType is an enum
+type ReportGroupSortByType struct{}
+
+// Contains returns whether the ReportGroupSortByType enum includes the element
+func (enum ReportGroupSortByType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportGroupSortByType enum
+func (enum ReportGroupSortByType) Values() []string {
+	return []string{
+		ReportGroupSortByTypeName,
+		ReportGroupSortByTypeCreatedTime,
+		ReportGroupSortByTypeLastModifiedTime,
+	}
+}
+
 const (
 	// ReportPackagingTypeZip is a ReportPackagingType enum value
 	ReportPackagingTypeZip = "ZIP"
@@ -11134,6 +11581,28 @@ const (
 	// ReportPackagingTypeNone is a ReportPackagingType enum value
 	ReportPackagingTypeNone = "NONE"
 )
+
+// ReportPackagingType is an enum
+type ReportPackagingType struct{}
+
+// Contains returns whether the ReportPackagingType enum includes the element
+func (enum ReportPackagingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportPackagingType enum
+func (enum ReportPackagingType) Values() []string {
+	return []string{
+		ReportPackagingTypeZip,
+		ReportPackagingTypeNone,
+	}
+}
 
 const (
 	// ReportStatusTypeGenerating is a ReportStatusType enum value
@@ -11152,10 +11621,56 @@ const (
 	ReportStatusTypeDeleting = "DELETING"
 )
 
+// ReportStatusType is an enum
+type ReportStatusType struct{}
+
+// Contains returns whether the ReportStatusType enum includes the element
+func (enum ReportStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportStatusType enum
+func (enum ReportStatusType) Values() []string {
+	return []string{
+		ReportStatusTypeGenerating,
+		ReportStatusTypeSucceeded,
+		ReportStatusTypeFailed,
+		ReportStatusTypeIncomplete,
+		ReportStatusTypeDeleting,
+	}
+}
+
 const (
 	// ReportTypeTest is a ReportType enum value
 	ReportTypeTest = "TEST"
 )
+
+// ReportType is an enum
+type ReportType struct{}
+
+// Contains returns whether the ReportType enum includes the element
+func (enum ReportType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReportType enum
+func (enum ReportType) Values() []string {
+	return []string{
+		ReportTypeTest,
+	}
+}
 
 const (
 	// ServerTypeGithub is a ServerType enum value
@@ -11168,6 +11683,29 @@ const (
 	ServerTypeGithubEnterprise = "GITHUB_ENTERPRISE"
 )
 
+// ServerType is an enum
+type ServerType struct{}
+
+// Contains returns whether the ServerType enum includes the element
+func (enum ServerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServerType enum
+func (enum ServerType) Values() []string {
+	return []string{
+		ServerTypeGithub,
+		ServerTypeBitbucket,
+		ServerTypeGithubEnterprise,
+	}
+}
+
 const (
 	// SharedResourceSortByTypeArn is a SharedResourceSortByType enum value
 	SharedResourceSortByTypeArn = "ARN"
@@ -11175,6 +11713,28 @@ const (
 	// SharedResourceSortByTypeModifiedTime is a SharedResourceSortByType enum value
 	SharedResourceSortByTypeModifiedTime = "MODIFIED_TIME"
 )
+
+// SharedResourceSortByType is an enum
+type SharedResourceSortByType struct{}
+
+// Contains returns whether the SharedResourceSortByType enum includes the element
+func (enum SharedResourceSortByType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SharedResourceSortByType enum
+func (enum SharedResourceSortByType) Values() []string {
+	return []string{
+		SharedResourceSortByTypeArn,
+		SharedResourceSortByTypeModifiedTime,
+	}
+}
 
 const (
 	// SortOrderTypeAscending is a SortOrderType enum value
@@ -11184,10 +11744,53 @@ const (
 	SortOrderTypeDescending = "DESCENDING"
 )
 
+// SortOrderType is an enum
+type SortOrderType struct{}
+
+// Contains returns whether the SortOrderType enum includes the element
+func (enum SortOrderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortOrderType enum
+func (enum SortOrderType) Values() []string {
+	return []string{
+		SortOrderTypeAscending,
+		SortOrderTypeDescending,
+	}
+}
+
 const (
 	// SourceAuthTypeOauth is a SourceAuthType enum value
 	SourceAuthTypeOauth = "OAUTH"
 )
+
+// SourceAuthType is an enum
+type SourceAuthType struct{}
+
+// Contains returns whether the SourceAuthType enum includes the element
+func (enum SourceAuthType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceAuthType enum
+func (enum SourceAuthType) Values() []string {
+	return []string{
+		SourceAuthTypeOauth,
+	}
+}
 
 const (
 	// SourceTypeCodecommit is a SourceType enum value
@@ -11212,6 +11815,33 @@ const (
 	SourceTypeNoSource = "NO_SOURCE"
 )
 
+// SourceType is an enum
+type SourceType struct{}
+
+// Contains returns whether the SourceType enum includes the element
+func (enum SourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceType enum
+func (enum SourceType) Values() []string {
+	return []string{
+		SourceTypeCodecommit,
+		SourceTypeCodepipeline,
+		SourceTypeGithub,
+		SourceTypeS3,
+		SourceTypeBitbucket,
+		SourceTypeGithubEnterprise,
+		SourceTypeNoSource,
+	}
+}
+
 const (
 	// StatusTypeSucceeded is a StatusType enum value
 	StatusTypeSucceeded = "SUCCEEDED"
@@ -11232,6 +11862,32 @@ const (
 	StatusTypeStopped = "STOPPED"
 )
 
+// StatusType is an enum
+type StatusType struct{}
+
+// Contains returns whether the StatusType enum includes the element
+func (enum StatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StatusType enum
+func (enum StatusType) Values() []string {
+	return []string{
+		StatusTypeSucceeded,
+		StatusTypeFailed,
+		StatusTypeFault,
+		StatusTypeTimedOut,
+		StatusTypeInProgress,
+		StatusTypeStopped,
+	}
+}
+
 const (
 	// WebhookFilterTypeEvent is a WebhookFilterType enum value
 	WebhookFilterTypeEvent = "EVENT"
@@ -11251,3 +11907,29 @@ const (
 	// WebhookFilterTypeCommitMessage is a WebhookFilterType enum value
 	WebhookFilterTypeCommitMessage = "COMMIT_MESSAGE"
 )
+
+// WebhookFilterType is an enum
+type WebhookFilterType struct{}
+
+// Contains returns whether the WebhookFilterType enum includes the element
+func (enum WebhookFilterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WebhookFilterType enum
+func (enum WebhookFilterType) Values() []string {
+	return []string{
+		WebhookFilterTypeEvent,
+		WebhookFilterTypeBaseRef,
+		WebhookFilterTypeHeadRef,
+		WebhookFilterTypeActorAccountId,
+		WebhookFilterTypeFilePath,
+		WebhookFilterTypeCommitMessage,
+	}
+}

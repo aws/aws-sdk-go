@@ -1535,6 +1535,28 @@ const (
 	ItemTypePunctuation = "punctuation"
 )
 
+// ItemType is an enum
+type ItemType struct{}
+
+// Contains returns whether the ItemType enum includes the element
+func (enum ItemType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ItemType enum
+func (enum ItemType) Values() []string {
+	return []string{
+		ItemTypePronunciation,
+		ItemTypePunctuation,
+	}
+}
+
 const (
 	// LanguageCodeEnUs is a LanguageCode enum value
 	LanguageCodeEnUs = "en-US"
@@ -1555,10 +1577,57 @@ const (
 	LanguageCodeEnAu = "en-AU"
 )
 
+// LanguageCode is an enum
+type LanguageCode struct{}
+
+// Contains returns whether the LanguageCode enum includes the element
+func (enum LanguageCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LanguageCode enum
+func (enum LanguageCode) Values() []string {
+	return []string{
+		LanguageCodeEnUs,
+		LanguageCodeEnGb,
+		LanguageCodeEsUs,
+		LanguageCodeFrCa,
+		LanguageCodeFrFr,
+		LanguageCodeEnAu,
+	}
+}
+
 const (
 	// MediaEncodingPcm is a MediaEncoding enum value
 	MediaEncodingPcm = "pcm"
 )
+
+// MediaEncoding is an enum
+type MediaEncoding struct{}
+
+// Contains returns whether the MediaEncoding enum includes the element
+func (enum MediaEncoding) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MediaEncoding enum
+func (enum MediaEncoding) Values() []string {
+	return []string{
+		MediaEncodingPcm,
+	}
+}
 
 const (
 	// VocabularyFilterMethodRemove is a VocabularyFilterMethod enum value
@@ -1570,3 +1639,26 @@ const (
 	// VocabularyFilterMethodTag is a VocabularyFilterMethod enum value
 	VocabularyFilterMethodTag = "tag"
 )
+
+// VocabularyFilterMethod is an enum
+type VocabularyFilterMethod struct{}
+
+// Contains returns whether the VocabularyFilterMethod enum includes the element
+func (enum VocabularyFilterMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VocabularyFilterMethod enum
+func (enum VocabularyFilterMethod) Values() []string {
+	return []string{
+		VocabularyFilterMethodRemove,
+		VocabularyFilterMethodMask,
+		VocabularyFilterMethodTag,
+	}
+}

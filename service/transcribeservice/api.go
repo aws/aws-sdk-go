@@ -6577,6 +6577,57 @@ const (
 	LanguageCodeArAe = "ar-AE"
 )
 
+// LanguageCode is an enum
+type LanguageCode struct{}
+
+// Contains returns whether the LanguageCode enum includes the element
+func (enum LanguageCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LanguageCode enum
+func (enum LanguageCode) Values() []string {
+	return []string{
+		LanguageCodeEnUs,
+		LanguageCodeEsUs,
+		LanguageCodeEnAu,
+		LanguageCodeFrCa,
+		LanguageCodeEnGb,
+		LanguageCodeDeDe,
+		LanguageCodePtBr,
+		LanguageCodeFrFr,
+		LanguageCodeItIt,
+		LanguageCodeKoKr,
+		LanguageCodeEsEs,
+		LanguageCodeEnIn,
+		LanguageCodeHiIn,
+		LanguageCodeArSa,
+		LanguageCodeRuRu,
+		LanguageCodeZhCn,
+		LanguageCodeNlNl,
+		LanguageCodeIdId,
+		LanguageCodeTaIn,
+		LanguageCodeFaIr,
+		LanguageCodeEnIe,
+		LanguageCodeEnAb,
+		LanguageCodeEnWl,
+		LanguageCodePtPt,
+		LanguageCodeTeIn,
+		LanguageCodeTrTr,
+		LanguageCodeDeCh,
+		LanguageCodeHeIl,
+		LanguageCodeMsMy,
+		LanguageCodeJaJp,
+		LanguageCodeArAe,
+	}
+}
+
 const (
 	// MediaFormatMp3 is a MediaFormat enum value
 	MediaFormatMp3 = "mp3"
@@ -6591,6 +6642,30 @@ const (
 	MediaFormatFlac = "flac"
 )
 
+// MediaFormat is an enum
+type MediaFormat struct{}
+
+// Contains returns whether the MediaFormat enum includes the element
+func (enum MediaFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MediaFormat enum
+func (enum MediaFormat) Values() []string {
+	return []string{
+		MediaFormatMp3,
+		MediaFormatMp4,
+		MediaFormatWav,
+		MediaFormatFlac,
+	}
+}
+
 const (
 	// OutputLocationTypeCustomerBucket is a OutputLocationType enum value
 	OutputLocationTypeCustomerBucket = "CUSTOMER_BUCKET"
@@ -6598,6 +6673,28 @@ const (
 	// OutputLocationTypeServiceBucket is a OutputLocationType enum value
 	OutputLocationTypeServiceBucket = "SERVICE_BUCKET"
 )
+
+// OutputLocationType is an enum
+type OutputLocationType struct{}
+
+// Contains returns whether the OutputLocationType enum includes the element
+func (enum OutputLocationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OutputLocationType enum
+func (enum OutputLocationType) Values() []string {
+	return []string{
+		OutputLocationTypeCustomerBucket,
+		OutputLocationTypeServiceBucket,
+	}
+}
 
 const (
 	// RedactionOutputRedacted is a RedactionOutput enum value
@@ -6607,15 +6704,79 @@ const (
 	RedactionOutputRedactedAndUnredacted = "redacted_and_unredacted"
 )
 
+// RedactionOutput is an enum
+type RedactionOutput struct{}
+
+// Contains returns whether the RedactionOutput enum includes the element
+func (enum RedactionOutput) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RedactionOutput enum
+func (enum RedactionOutput) Values() []string {
+	return []string{
+		RedactionOutputRedacted,
+		RedactionOutputRedactedAndUnredacted,
+	}
+}
+
 const (
 	// RedactionTypePii is a RedactionType enum value
 	RedactionTypePii = "PII"
 )
 
+// RedactionType is an enum
+type RedactionType struct{}
+
+// Contains returns whether the RedactionType enum includes the element
+func (enum RedactionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RedactionType enum
+func (enum RedactionType) Values() []string {
+	return []string{
+		RedactionTypePii,
+	}
+}
+
 const (
 	// SpecialtyPrimarycare is a Specialty enum value
 	SpecialtyPrimarycare = "PRIMARYCARE"
 )
+
+// Specialty is an enum
+type Specialty struct{}
+
+// Contains returns whether the Specialty enum includes the element
+func (enum Specialty) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Specialty enum
+func (enum Specialty) Values() []string {
+	return []string{
+		SpecialtyPrimarycare,
+	}
+}
 
 const (
 	// TranscriptionJobStatusQueued is a TranscriptionJobStatus enum value
@@ -6631,6 +6792,30 @@ const (
 	TranscriptionJobStatusCompleted = "COMPLETED"
 )
 
+// TranscriptionJobStatus is an enum
+type TranscriptionJobStatus struct{}
+
+// Contains returns whether the TranscriptionJobStatus enum includes the element
+func (enum TranscriptionJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TranscriptionJobStatus enum
+func (enum TranscriptionJobStatus) Values() []string {
+	return []string{
+		TranscriptionJobStatusQueued,
+		TranscriptionJobStatusInProgress,
+		TranscriptionJobStatusFailed,
+		TranscriptionJobStatusCompleted,
+	}
+}
+
 const (
 	// TypeConversation is a Type enum value
 	TypeConversation = "CONVERSATION"
@@ -6639,6 +6824,28 @@ const (
 	TypeDictation = "DICTATION"
 )
 
+// Type is an enum
+type Type struct{}
+
+// Contains returns whether the Type enum includes the element
+func (enum Type) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Type enum
+func (enum Type) Values() []string {
+	return []string{
+		TypeConversation,
+		TypeDictation,
+	}
+}
+
 const (
 	// VocabularyFilterMethodRemove is a VocabularyFilterMethod enum value
 	VocabularyFilterMethodRemove = "remove"
@@ -6646,6 +6853,28 @@ const (
 	// VocabularyFilterMethodMask is a VocabularyFilterMethod enum value
 	VocabularyFilterMethodMask = "mask"
 )
+
+// VocabularyFilterMethod is an enum
+type VocabularyFilterMethod struct{}
+
+// Contains returns whether the VocabularyFilterMethod enum includes the element
+func (enum VocabularyFilterMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VocabularyFilterMethod enum
+func (enum VocabularyFilterMethod) Values() []string {
+	return []string{
+		VocabularyFilterMethodRemove,
+		VocabularyFilterMethodMask,
+	}
+}
 
 const (
 	// VocabularyStatePending is a VocabularyState enum value
@@ -6657,3 +6886,26 @@ const (
 	// VocabularyStateFailed is a VocabularyState enum value
 	VocabularyStateFailed = "FAILED"
 )
+
+// VocabularyState is an enum
+type VocabularyState struct{}
+
+// Contains returns whether the VocabularyState enum includes the element
+func (enum VocabularyState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VocabularyState enum
+func (enum VocabularyState) Values() []string {
+	return []string{
+		VocabularyStatePending,
+		VocabularyStateReady,
+		VocabularyStateFailed,
+	}
+}

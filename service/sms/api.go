@@ -6567,6 +6567,40 @@ const (
 	AppLaunchStatusTerminated = "TERMINATED"
 )
 
+// AppLaunchStatus is an enum
+type AppLaunchStatus struct{}
+
+// Contains returns whether the AppLaunchStatus enum includes the element
+func (enum AppLaunchStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AppLaunchStatus enum
+func (enum AppLaunchStatus) Values() []string {
+	return []string{
+		AppLaunchStatusReadyForConfiguration,
+		AppLaunchStatusConfigurationInProgress,
+		AppLaunchStatusConfigurationInvalid,
+		AppLaunchStatusReadyForLaunch,
+		AppLaunchStatusValidationInProgress,
+		AppLaunchStatusLaunchPending,
+		AppLaunchStatusLaunchInProgress,
+		AppLaunchStatusLaunched,
+		AppLaunchStatusDeltaLaunchInProgress,
+		AppLaunchStatusDeltaLaunchFailed,
+		AppLaunchStatusLaunchFailed,
+		AppLaunchStatusTerminateInProgress,
+		AppLaunchStatusTerminateFailed,
+		AppLaunchStatusTerminated,
+	}
+}
+
 const (
 	// AppReplicationStatusReadyForConfiguration is a AppReplicationStatus enum value
 	AppReplicationStatusReadyForConfiguration = "READY_FOR_CONFIGURATION"
@@ -6614,6 +6648,41 @@ const (
 	AppReplicationStatusReplicationStopped = "REPLICATION_STOPPED"
 )
 
+// AppReplicationStatus is an enum
+type AppReplicationStatus struct{}
+
+// Contains returns whether the AppReplicationStatus enum includes the element
+func (enum AppReplicationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AppReplicationStatus enum
+func (enum AppReplicationStatus) Values() []string {
+	return []string{
+		AppReplicationStatusReadyForConfiguration,
+		AppReplicationStatusConfigurationInProgress,
+		AppReplicationStatusConfigurationInvalid,
+		AppReplicationStatusReadyForReplication,
+		AppReplicationStatusValidationInProgress,
+		AppReplicationStatusReplicationPending,
+		AppReplicationStatusReplicationInProgress,
+		AppReplicationStatusReplicated,
+		AppReplicationStatusDeltaReplicationInProgress,
+		AppReplicationStatusDeltaReplicated,
+		AppReplicationStatusDeltaReplicationFailed,
+		AppReplicationStatusReplicationFailed,
+		AppReplicationStatusReplicationStopping,
+		AppReplicationStatusReplicationStopFailed,
+		AppReplicationStatusReplicationStopped,
+	}
+}
+
 const (
 	// AppStatusCreating is a AppStatus enum value
 	AppStatusCreating = "CREATING"
@@ -6634,6 +6703,32 @@ const (
 	AppStatusDeleteFailed = "DELETE_FAILED"
 )
 
+// AppStatus is an enum
+type AppStatus struct{}
+
+// Contains returns whether the AppStatus enum includes the element
+func (enum AppStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AppStatus enum
+func (enum AppStatus) Values() []string {
+	return []string{
+		AppStatusCreating,
+		AppStatusActive,
+		AppStatusUpdating,
+		AppStatusDeleting,
+		AppStatusDeleted,
+		AppStatusDeleteFailed,
+	}
+}
+
 const (
 	// ConnectorCapabilityVsphere is a ConnectorCapability enum value
 	ConnectorCapabilityVsphere = "VSPHERE"
@@ -6648,6 +6743,30 @@ const (
 	ConnectorCapabilitySnapshotBatching = "SNAPSHOT_BATCHING"
 )
 
+// ConnectorCapability is an enum
+type ConnectorCapability struct{}
+
+// Contains returns whether the ConnectorCapability enum includes the element
+func (enum ConnectorCapability) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectorCapability enum
+func (enum ConnectorCapability) Values() []string {
+	return []string{
+		ConnectorCapabilityVsphere,
+		ConnectorCapabilityScvmm,
+		ConnectorCapabilityHypervManager,
+		ConnectorCapabilitySnapshotBatching,
+	}
+}
+
 const (
 	// ConnectorStatusHealthy is a ConnectorStatus enum value
 	ConnectorStatusHealthy = "HEALTHY"
@@ -6655,6 +6774,28 @@ const (
 	// ConnectorStatusUnhealthy is a ConnectorStatus enum value
 	ConnectorStatusUnhealthy = "UNHEALTHY"
 )
+
+// ConnectorStatus is an enum
+type ConnectorStatus struct{}
+
+// Contains returns whether the ConnectorStatus enum includes the element
+func (enum ConnectorStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectorStatus enum
+func (enum ConnectorStatus) Values() []string {
+	return []string{
+		ConnectorStatusHealthy,
+		ConnectorStatusUnhealthy,
+	}
+}
 
 const (
 	// LicenseTypeAws is a LicenseType enum value
@@ -6664,6 +6805,28 @@ const (
 	LicenseTypeByol = "BYOL"
 )
 
+// LicenseType is an enum
+type LicenseType struct{}
+
+// Contains returns whether the LicenseType enum includes the element
+func (enum LicenseType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LicenseType enum
+func (enum LicenseType) Values() []string {
+	return []string{
+		LicenseTypeAws,
+		LicenseTypeByol,
+	}
+}
+
 const (
 	// OutputFormatJson is a OutputFormat enum value
 	OutputFormatJson = "JSON"
@@ -6671,6 +6834,28 @@ const (
 	// OutputFormatYaml is a OutputFormat enum value
 	OutputFormatYaml = "YAML"
 )
+
+// OutputFormat is an enum
+type OutputFormat struct{}
+
+// Contains returns whether the OutputFormat enum includes the element
+func (enum OutputFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OutputFormat enum
+func (enum OutputFormat) Values() []string {
+	return []string{
+		OutputFormatJson,
+		OutputFormatYaml,
+	}
+}
 
 const (
 	// ReplicationJobStatePending is a ReplicationJobState enum value
@@ -6698,6 +6883,34 @@ const (
 	ReplicationJobStateFailing = "FAILING"
 )
 
+// ReplicationJobState is an enum
+type ReplicationJobState struct{}
+
+// Contains returns whether the ReplicationJobState enum includes the element
+func (enum ReplicationJobState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplicationJobState enum
+func (enum ReplicationJobState) Values() []string {
+	return []string{
+		ReplicationJobStatePending,
+		ReplicationJobStateActive,
+		ReplicationJobStateFailed,
+		ReplicationJobStateDeleting,
+		ReplicationJobStateDeleted,
+		ReplicationJobStateCompleted,
+		ReplicationJobStatePausedOnFailure,
+		ReplicationJobStateFailing,
+	}
+}
+
 const (
 	// ReplicationRunStatePending is a ReplicationRunState enum value
 	ReplicationRunStatePending = "PENDING"
@@ -6721,6 +6934,33 @@ const (
 	ReplicationRunStateDeleted = "DELETED"
 )
 
+// ReplicationRunState is an enum
+type ReplicationRunState struct{}
+
+// Contains returns whether the ReplicationRunState enum includes the element
+func (enum ReplicationRunState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplicationRunState enum
+func (enum ReplicationRunState) Values() []string {
+	return []string{
+		ReplicationRunStatePending,
+		ReplicationRunStateMissed,
+		ReplicationRunStateActive,
+		ReplicationRunStateFailed,
+		ReplicationRunStateCompleted,
+		ReplicationRunStateDeleting,
+		ReplicationRunStateDeleted,
+	}
+}
+
 const (
 	// ReplicationRunTypeOnDemand is a ReplicationRunType enum value
 	ReplicationRunTypeOnDemand = "ON_DEMAND"
@@ -6728,6 +6968,28 @@ const (
 	// ReplicationRunTypeAutomatic is a ReplicationRunType enum value
 	ReplicationRunTypeAutomatic = "AUTOMATIC"
 )
+
+// ReplicationRunType is an enum
+type ReplicationRunType struct{}
+
+// Contains returns whether the ReplicationRunType enum includes the element
+func (enum ReplicationRunType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplicationRunType enum
+func (enum ReplicationRunType) Values() []string {
+	return []string{
+		ReplicationRunTypeOnDemand,
+		ReplicationRunTypeAutomatic,
+	}
+}
 
 const (
 	// ServerCatalogStatusNotImported is a ServerCatalogStatus enum value
@@ -6746,10 +7008,56 @@ const (
 	ServerCatalogStatusExpired = "EXPIRED"
 )
 
+// ServerCatalogStatus is an enum
+type ServerCatalogStatus struct{}
+
+// Contains returns whether the ServerCatalogStatus enum includes the element
+func (enum ServerCatalogStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServerCatalogStatus enum
+func (enum ServerCatalogStatus) Values() []string {
+	return []string{
+		ServerCatalogStatusNotImported,
+		ServerCatalogStatusImporting,
+		ServerCatalogStatusAvailable,
+		ServerCatalogStatusDeleted,
+		ServerCatalogStatusExpired,
+	}
+}
+
 const (
 	// ServerTypeVirtualMachine is a ServerType enum value
 	ServerTypeVirtualMachine = "VIRTUAL_MACHINE"
 )
+
+// ServerType is an enum
+type ServerType struct{}
+
+// Contains returns whether the ServerType enum includes the element
+func (enum ServerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServerType enum
+func (enum ServerType) Values() []string {
+	return []string{
+		ServerTypeVirtualMachine,
+	}
+}
 
 const (
 	// VmManagerTypeVsphere is a VmManagerType enum value
@@ -6761,3 +7069,26 @@ const (
 	// VmManagerTypeHypervManager is a VmManagerType enum value
 	VmManagerTypeHypervManager = "HYPERV-MANAGER"
 )
+
+// VmManagerType is an enum
+type VmManagerType struct{}
+
+// Contains returns whether the VmManagerType enum includes the element
+func (enum VmManagerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VmManagerType enum
+func (enum VmManagerType) Values() []string {
+	return []string{
+		VmManagerTypeVsphere,
+		VmManagerTypeScvmm,
+		VmManagerTypeHypervManager,
+	}
+}

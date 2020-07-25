@@ -12676,6 +12676,27 @@ const (
 	ComponentFormatShell = "SHELL"
 )
 
+// ComponentFormat is an enum
+type ComponentFormat struct{}
+
+// Contains returns whether the ComponentFormat enum includes the element
+func (enum ComponentFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComponentFormat enum
+func (enum ComponentFormat) Values() []string {
+	return []string{
+		ComponentFormatShell,
+	}
+}
+
 const (
 	// ComponentTypeBuild is a ComponentType enum value
 	ComponentTypeBuild = "BUILD"
@@ -12683,6 +12704,28 @@ const (
 	// ComponentTypeTest is a ComponentType enum value
 	ComponentTypeTest = "TEST"
 )
+
+// ComponentType is an enum
+type ComponentType struct{}
+
+// Contains returns whether the ComponentType enum includes the element
+func (enum ComponentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComponentType enum
+func (enum ComponentType) Values() []string {
+	return []string{
+		ComponentTypeBuild,
+		ComponentTypeTest,
+	}
+}
 
 const (
 	// EbsVolumeTypeStandard is a EbsVolumeType enum value
@@ -12700,6 +12743,31 @@ const (
 	// EbsVolumeTypeSt1 is a EbsVolumeType enum value
 	EbsVolumeTypeSt1 = "st1"
 )
+
+// EbsVolumeType is an enum
+type EbsVolumeType struct{}
+
+// Contains returns whether the EbsVolumeType enum includes the element
+func (enum EbsVolumeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EbsVolumeType enum
+func (enum EbsVolumeType) Values() []string {
+	return []string{
+		EbsVolumeTypeStandard,
+		EbsVolumeTypeIo1,
+		EbsVolumeTypeGp2,
+		EbsVolumeTypeSc1,
+		EbsVolumeTypeSt1,
+	}
+}
 
 const (
 	// ImageStatusPending is a ImageStatus enum value
@@ -12736,6 +12804,37 @@ const (
 	ImageStatusDeleted = "DELETED"
 )
 
+// ImageStatus is an enum
+type ImageStatus struct{}
+
+// Contains returns whether the ImageStatus enum includes the element
+func (enum ImageStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageStatus enum
+func (enum ImageStatus) Values() []string {
+	return []string{
+		ImageStatusPending,
+		ImageStatusCreating,
+		ImageStatusBuilding,
+		ImageStatusTesting,
+		ImageStatusDistributing,
+		ImageStatusIntegrating,
+		ImageStatusAvailable,
+		ImageStatusCancelled,
+		ImageStatusFailed,
+		ImageStatusDeprecated,
+		ImageStatusDeleted,
+	}
+}
+
 const (
 	// OwnershipSelf is a Ownership enum value
 	OwnershipSelf = "Self"
@@ -12747,6 +12846,29 @@ const (
 	OwnershipAmazon = "Amazon"
 )
 
+// Ownership is an enum
+type Ownership struct{}
+
+// Contains returns whether the Ownership enum includes the element
+func (enum Ownership) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Ownership enum
+func (enum Ownership) Values() []string {
+	return []string{
+		OwnershipSelf,
+		OwnershipShared,
+		OwnershipAmazon,
+	}
+}
+
 const (
 	// PipelineExecutionStartConditionExpressionMatchOnly is a PipelineExecutionStartCondition enum value
 	PipelineExecutionStartConditionExpressionMatchOnly = "EXPRESSION_MATCH_ONLY"
@@ -12754,6 +12876,28 @@ const (
 	// PipelineExecutionStartConditionExpressionMatchAndDependencyUpdatesAvailable is a PipelineExecutionStartCondition enum value
 	PipelineExecutionStartConditionExpressionMatchAndDependencyUpdatesAvailable = "EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE"
 )
+
+// PipelineExecutionStartCondition is an enum
+type PipelineExecutionStartCondition struct{}
+
+// Contains returns whether the PipelineExecutionStartCondition enum includes the element
+func (enum PipelineExecutionStartCondition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PipelineExecutionStartCondition enum
+func (enum PipelineExecutionStartCondition) Values() []string {
+	return []string{
+		PipelineExecutionStartConditionExpressionMatchOnly,
+		PipelineExecutionStartConditionExpressionMatchAndDependencyUpdatesAvailable,
+	}
+}
 
 const (
 	// PipelineStatusDisabled is a PipelineStatus enum value
@@ -12763,6 +12907,28 @@ const (
 	PipelineStatusEnabled = "ENABLED"
 )
 
+// PipelineStatus is an enum
+type PipelineStatus struct{}
+
+// Contains returns whether the PipelineStatus enum includes the element
+func (enum PipelineStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PipelineStatus enum
+func (enum PipelineStatus) Values() []string {
+	return []string{
+		PipelineStatusDisabled,
+		PipelineStatusEnabled,
+	}
+}
+
 const (
 	// PlatformWindows is a Platform enum value
 	PlatformWindows = "Windows"
@@ -12770,3 +12936,25 @@ const (
 	// PlatformLinux is a Platform enum value
 	PlatformLinux = "Linux"
 )
+
+// Platform is an enum
+type Platform struct{}
+
+// Contains returns whether the Platform enum includes the element
+func (enum Platform) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Platform enum
+func (enum Platform) Values() []string {
+	return []string{
+		PlatformWindows,
+		PlatformLinux,
+	}
+}

@@ -7206,6 +7206,29 @@ const (
 	ColumnNullableUnknown = "UNKNOWN"
 )
 
+// ColumnNullable is an enum
+type ColumnNullable struct{}
+
+// Contains returns whether the ColumnNullable enum includes the element
+func (enum ColumnNullable) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ColumnNullable enum
+func (enum ColumnNullable) Values() []string {
+	return []string{
+		ColumnNullableNotNull,
+		ColumnNullableNullable,
+		ColumnNullableUnknown,
+	}
+}
+
 const (
 	// DataCatalogTypeLambda is a DataCatalogType enum value
 	DataCatalogTypeLambda = "LAMBDA"
@@ -7217,6 +7240,29 @@ const (
 	DataCatalogTypeHive = "HIVE"
 )
 
+// DataCatalogType is an enum
+type DataCatalogType struct{}
+
+// Contains returns whether the DataCatalogType enum includes the element
+func (enum DataCatalogType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataCatalogType enum
+func (enum DataCatalogType) Values() []string {
+	return []string{
+		DataCatalogTypeLambda,
+		DataCatalogTypeGlue,
+		DataCatalogTypeHive,
+	}
+}
+
 const (
 	// EncryptionOptionSseS3 is a EncryptionOption enum value
 	EncryptionOptionSseS3 = "SSE_S3"
@@ -7227,6 +7273,29 @@ const (
 	// EncryptionOptionCseKms is a EncryptionOption enum value
 	EncryptionOptionCseKms = "CSE_KMS"
 )
+
+// EncryptionOption is an enum
+type EncryptionOption struct{}
+
+// Contains returns whether the EncryptionOption enum includes the element
+func (enum EncryptionOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionOption enum
+func (enum EncryptionOption) Values() []string {
+	return []string{
+		EncryptionOptionSseS3,
+		EncryptionOptionSseKms,
+		EncryptionOptionCseKms,
+	}
+}
 
 const (
 	// QueryExecutionStateQueued is a QueryExecutionState enum value
@@ -7245,6 +7314,31 @@ const (
 	QueryExecutionStateCancelled = "CANCELLED"
 )
 
+// QueryExecutionState is an enum
+type QueryExecutionState struct{}
+
+// Contains returns whether the QueryExecutionState enum includes the element
+func (enum QueryExecutionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueryExecutionState enum
+func (enum QueryExecutionState) Values() []string {
+	return []string{
+		QueryExecutionStateQueued,
+		QueryExecutionStateRunning,
+		QueryExecutionStateSucceeded,
+		QueryExecutionStateFailed,
+		QueryExecutionStateCancelled,
+	}
+}
+
 const (
 	// StatementTypeDdl is a StatementType enum value
 	StatementTypeDdl = "DDL"
@@ -7256,12 +7350,56 @@ const (
 	StatementTypeUtility = "UTILITY"
 )
 
+// StatementType is an enum
+type StatementType struct{}
+
+// Contains returns whether the StatementType enum includes the element
+func (enum StatementType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StatementType enum
+func (enum StatementType) Values() []string {
+	return []string{
+		StatementTypeDdl,
+		StatementTypeDml,
+		StatementTypeUtility,
+	}
+}
+
 // The reason for the query throttling, for example, when it exceeds the concurrent
 // query limit.
 const (
 	// ThrottleReasonConcurrentQueryLimitExceeded is a ThrottleReason enum value
 	ThrottleReasonConcurrentQueryLimitExceeded = "CONCURRENT_QUERY_LIMIT_EXCEEDED"
 )
+
+// ThrottleReason is an enum
+type ThrottleReason struct{}
+
+// Contains returns whether the ThrottleReason enum includes the element
+func (enum ThrottleReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThrottleReason enum
+func (enum ThrottleReason) Values() []string {
+	return []string{
+		ThrottleReasonConcurrentQueryLimitExceeded,
+	}
+}
 
 const (
 	// WorkGroupStateEnabled is a WorkGroupState enum value
@@ -7270,3 +7408,25 @@ const (
 	// WorkGroupStateDisabled is a WorkGroupState enum value
 	WorkGroupStateDisabled = "DISABLED"
 )
+
+// WorkGroupState is an enum
+type WorkGroupState struct{}
+
+// Contains returns whether the WorkGroupState enum includes the element
+func (enum WorkGroupState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkGroupState enum
+func (enum WorkGroupState) Values() []string {
+	return []string{
+		WorkGroupStateEnabled,
+		WorkGroupStateDisabled,
+	}
+}

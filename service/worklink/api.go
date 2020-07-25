@@ -6724,6 +6724,27 @@ const (
 	AuthorizationProviderTypeSaml = "SAML"
 )
 
+// AuthorizationProviderType is an enum
+type AuthorizationProviderType struct{}
+
+// Contains returns whether the AuthorizationProviderType enum includes the element
+func (enum AuthorizationProviderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthorizationProviderType enum
+func (enum AuthorizationProviderType) Values() []string {
+	return []string{
+		AuthorizationProviderTypeSaml,
+	}
+}
+
 const (
 	// DeviceStatusActive is a DeviceStatus enum value
 	DeviceStatusActive = "ACTIVE"
@@ -6731,6 +6752,28 @@ const (
 	// DeviceStatusSignedOut is a DeviceStatus enum value
 	DeviceStatusSignedOut = "SIGNED_OUT"
 )
+
+// DeviceStatus is an enum
+type DeviceStatus struct{}
+
+// Contains returns whether the DeviceStatus enum includes the element
+func (enum DeviceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceStatus enum
+func (enum DeviceStatus) Values() []string {
+	return []string{
+		DeviceStatusActive,
+		DeviceStatusSignedOut,
+	}
+}
 
 const (
 	// DomainStatusPendingValidation is a DomainStatus enum value
@@ -6758,6 +6801,34 @@ const (
 	DomainStatusFailedToDisassociate = "FAILED_TO_DISASSOCIATE"
 )
 
+// DomainStatus is an enum
+type DomainStatus struct{}
+
+// Contains returns whether the DomainStatus enum includes the element
+func (enum DomainStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DomainStatus enum
+func (enum DomainStatus) Values() []string {
+	return []string{
+		DomainStatusPendingValidation,
+		DomainStatusAssociating,
+		DomainStatusActive,
+		DomainStatusInactive,
+		DomainStatusDisassociating,
+		DomainStatusDisassociated,
+		DomainStatusFailedToAssociate,
+		DomainStatusFailedToDisassociate,
+	}
+}
+
 const (
 	// FleetStatusCreating is a FleetStatus enum value
 	FleetStatusCreating = "CREATING"
@@ -6778,7 +6849,54 @@ const (
 	FleetStatusFailedToDelete = "FAILED_TO_DELETE"
 )
 
+// FleetStatus is an enum
+type FleetStatus struct{}
+
+// Contains returns whether the FleetStatus enum includes the element
+func (enum FleetStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FleetStatus enum
+func (enum FleetStatus) Values() []string {
+	return []string{
+		FleetStatusCreating,
+		FleetStatusActive,
+		FleetStatusDeleting,
+		FleetStatusDeleted,
+		FleetStatusFailedToCreate,
+		FleetStatusFailedToDelete,
+	}
+}
+
 const (
 	// IdentityProviderTypeSaml is a IdentityProviderType enum value
 	IdentityProviderTypeSaml = "SAML"
 )
+
+// IdentityProviderType is an enum
+type IdentityProviderType struct{}
+
+// Contains returns whether the IdentityProviderType enum includes the element
+func (enum IdentityProviderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IdentityProviderType enum
+func (enum IdentityProviderType) Values() []string {
+	return []string{
+		IdentityProviderTypeSaml,
+	}
+}

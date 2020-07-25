@@ -22282,6 +22282,39 @@ const (
 	BatchReadExceptionTypeInternalServiceException = "InternalServiceException"
 )
 
+// BatchReadExceptionType is an enum
+type BatchReadExceptionType struct{}
+
+// Contains returns whether the BatchReadExceptionType enum includes the element
+func (enum BatchReadExceptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BatchReadExceptionType enum
+func (enum BatchReadExceptionType) Values() []string {
+	return []string{
+		BatchReadExceptionTypeValidationException,
+		BatchReadExceptionTypeInvalidArnException,
+		BatchReadExceptionTypeResourceNotFoundException,
+		BatchReadExceptionTypeInvalidNextTokenException,
+		BatchReadExceptionTypeAccessDeniedException,
+		BatchReadExceptionTypeNotNodeException,
+		BatchReadExceptionTypeFacetValidationException,
+		BatchReadExceptionTypeCannotListParentOfRootException,
+		BatchReadExceptionTypeNotIndexException,
+		BatchReadExceptionTypeNotPolicyException,
+		BatchReadExceptionTypeDirectoryNotEnabledException,
+		BatchReadExceptionTypeLimitExceededException,
+		BatchReadExceptionTypeInternalServiceException,
+	}
+}
+
 const (
 	// BatchWriteExceptionTypeInternalServiceException is a BatchWriteExceptionType enum value
 	BatchWriteExceptionTypeInternalServiceException = "InternalServiceException"
@@ -22338,6 +22371,44 @@ const (
 	BatchWriteExceptionTypeUnsupportedIndexTypeException = "UnsupportedIndexTypeException"
 )
 
+// BatchWriteExceptionType is an enum
+type BatchWriteExceptionType struct{}
+
+// Contains returns whether the BatchWriteExceptionType enum includes the element
+func (enum BatchWriteExceptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BatchWriteExceptionType enum
+func (enum BatchWriteExceptionType) Values() []string {
+	return []string{
+		BatchWriteExceptionTypeInternalServiceException,
+		BatchWriteExceptionTypeValidationException,
+		BatchWriteExceptionTypeInvalidArnException,
+		BatchWriteExceptionTypeLinkNameAlreadyInUseException,
+		BatchWriteExceptionTypeStillContainsLinksException,
+		BatchWriteExceptionTypeFacetValidationException,
+		BatchWriteExceptionTypeObjectNotDetachedException,
+		BatchWriteExceptionTypeResourceNotFoundException,
+		BatchWriteExceptionTypeAccessDeniedException,
+		BatchWriteExceptionTypeInvalidAttachmentException,
+		BatchWriteExceptionTypeNotIndexException,
+		BatchWriteExceptionTypeNotNodeException,
+		BatchWriteExceptionTypeIndexedAttributeMissingException,
+		BatchWriteExceptionTypeObjectAlreadyDetachedException,
+		BatchWriteExceptionTypeNotPolicyException,
+		BatchWriteExceptionTypeDirectoryNotEnabledException,
+		BatchWriteExceptionTypeLimitExceededException,
+		BatchWriteExceptionTypeUnsupportedIndexTypeException,
+	}
+}
+
 const (
 	// ConsistencyLevelSerializable is a ConsistencyLevel enum value
 	ConsistencyLevelSerializable = "SERIALIZABLE"
@@ -22345,6 +22416,28 @@ const (
 	// ConsistencyLevelEventual is a ConsistencyLevel enum value
 	ConsistencyLevelEventual = "EVENTUAL"
 )
+
+// ConsistencyLevel is an enum
+type ConsistencyLevel struct{}
+
+// Contains returns whether the ConsistencyLevel enum includes the element
+func (enum ConsistencyLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConsistencyLevel enum
+func (enum ConsistencyLevel) Values() []string {
+	return []string{
+		ConsistencyLevelSerializable,
+		ConsistencyLevelEventual,
+	}
+}
 
 const (
 	// DirectoryStateEnabled is a DirectoryState enum value
@@ -22356,6 +22449,29 @@ const (
 	// DirectoryStateDeleted is a DirectoryState enum value
 	DirectoryStateDeleted = "DELETED"
 )
+
+// DirectoryState is an enum
+type DirectoryState struct{}
+
+// Contains returns whether the DirectoryState enum includes the element
+func (enum DirectoryState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DirectoryState enum
+func (enum DirectoryState) Values() []string {
+	return []string{
+		DirectoryStateEnabled,
+		DirectoryStateDisabled,
+		DirectoryStateDeleted,
+	}
+}
 
 const (
 	// FacetAttributeTypeString is a FacetAttributeType enum value
@@ -22377,6 +22493,32 @@ const (
 	FacetAttributeTypeVariant = "VARIANT"
 )
 
+// FacetAttributeType is an enum
+type FacetAttributeType struct{}
+
+// Contains returns whether the FacetAttributeType enum includes the element
+func (enum FacetAttributeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FacetAttributeType enum
+func (enum FacetAttributeType) Values() []string {
+	return []string{
+		FacetAttributeTypeString,
+		FacetAttributeTypeBinary,
+		FacetAttributeTypeBoolean,
+		FacetAttributeTypeNumber,
+		FacetAttributeTypeDatetime,
+		FacetAttributeTypeVariant,
+	}
+}
+
 const (
 	// FacetStyleStatic is a FacetStyle enum value
 	FacetStyleStatic = "STATIC"
@@ -22384,6 +22526,28 @@ const (
 	// FacetStyleDynamic is a FacetStyle enum value
 	FacetStyleDynamic = "DYNAMIC"
 )
+
+// FacetStyle is an enum
+type FacetStyle struct{}
+
+// Contains returns whether the FacetStyle enum includes the element
+func (enum FacetStyle) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FacetStyle enum
+func (enum FacetStyle) Values() []string {
+	return []string{
+		FacetStyleStatic,
+		FacetStyleDynamic,
+	}
+}
 
 const (
 	// ObjectTypeNode is a ObjectType enum value
@@ -22398,6 +22562,30 @@ const (
 	// ObjectTypeIndex is a ObjectType enum value
 	ObjectTypeIndex = "INDEX"
 )
+
+// ObjectType is an enum
+type ObjectType struct{}
+
+// Contains returns whether the ObjectType enum includes the element
+func (enum ObjectType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectType enum
+func (enum ObjectType) Values() []string {
+	return []string{
+		ObjectTypeNode,
+		ObjectTypeLeafNode,
+		ObjectTypePolicy,
+		ObjectTypeIndex,
+	}
+}
 
 const (
 	// RangeModeFirst is a RangeMode enum value
@@ -22416,6 +22604,31 @@ const (
 	RangeModeExclusive = "EXCLUSIVE"
 )
 
+// RangeMode is an enum
+type RangeMode struct{}
+
+// Contains returns whether the RangeMode enum includes the element
+func (enum RangeMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RangeMode enum
+func (enum RangeMode) Values() []string {
+	return []string{
+		RangeModeFirst,
+		RangeModeLast,
+		RangeModeLastBeforeMissingValues,
+		RangeModeInclusive,
+		RangeModeExclusive,
+	}
+}
+
 const (
 	// RequiredAttributeBehaviorRequiredAlways is a RequiredAttributeBehavior enum value
 	RequiredAttributeBehaviorRequiredAlways = "REQUIRED_ALWAYS"
@@ -22423,6 +22636,28 @@ const (
 	// RequiredAttributeBehaviorNotRequired is a RequiredAttributeBehavior enum value
 	RequiredAttributeBehaviorNotRequired = "NOT_REQUIRED"
 )
+
+// RequiredAttributeBehavior is an enum
+type RequiredAttributeBehavior struct{}
+
+// Contains returns whether the RequiredAttributeBehavior enum includes the element
+func (enum RequiredAttributeBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RequiredAttributeBehavior enum
+func (enum RequiredAttributeBehavior) Values() []string {
+	return []string{
+		RequiredAttributeBehaviorRequiredAlways,
+		RequiredAttributeBehaviorNotRequired,
+	}
+}
 
 const (
 	// RuleTypeBinaryLength is a RuleType enum value
@@ -22438,6 +22673,30 @@ const (
 	RuleTypeStringLength = "STRING_LENGTH"
 )
 
+// RuleType is an enum
+type RuleType struct{}
+
+// Contains returns whether the RuleType enum includes the element
+func (enum RuleType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RuleType enum
+func (enum RuleType) Values() []string {
+	return []string{
+		RuleTypeBinaryLength,
+		RuleTypeNumberComparison,
+		RuleTypeStringFromSet,
+		RuleTypeStringLength,
+	}
+}
+
 const (
 	// UpdateActionTypeCreateOrUpdate is a UpdateActionType enum value
 	UpdateActionTypeCreateOrUpdate = "CREATE_OR_UPDATE"
@@ -22445,3 +22704,25 @@ const (
 	// UpdateActionTypeDelete is a UpdateActionType enum value
 	UpdateActionTypeDelete = "DELETE"
 )
+
+// UpdateActionType is an enum
+type UpdateActionType struct{}
+
+// Contains returns whether the UpdateActionType enum includes the element
+func (enum UpdateActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpdateActionType enum
+func (enum UpdateActionType) Values() []string {
+	return []string{
+		UpdateActionTypeCreateOrUpdate,
+		UpdateActionTypeDelete,
+	}
+}

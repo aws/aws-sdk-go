@@ -7900,6 +7900,27 @@ const (
 	DefinitionLanguageGraphql = "GRAPHQL"
 )
 
+// DefinitionLanguage is an enum
+type DefinitionLanguage struct{}
+
+// Contains returns whether the DefinitionLanguage enum includes the element
+func (enum DefinitionLanguage) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DefinitionLanguage enum
+func (enum DefinitionLanguage) Values() []string {
+	return []string{
+		DefinitionLanguageGraphql,
+	}
+}
+
 const (
 	// DeploymentTargetGreengrass is a DeploymentTarget enum value
 	DeploymentTargetGreengrass = "GREENGRASS"
@@ -7907,6 +7928,28 @@ const (
 	// DeploymentTargetCloud is a DeploymentTarget enum value
 	DeploymentTargetCloud = "CLOUD"
 )
+
+// DeploymentTarget is an enum
+type DeploymentTarget struct{}
+
+// Contains returns whether the DeploymentTarget enum includes the element
+func (enum DeploymentTarget) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentTarget enum
+func (enum DeploymentTarget) Values() []string {
+	return []string{
+		DeploymentTargetGreengrass,
+		DeploymentTargetCloud,
+	}
+}
 
 const (
 	// EntityFilterNameName is a EntityFilterName enum value
@@ -7921,6 +7964,30 @@ const (
 	// EntityFilterNameReferencedEntityId is a EntityFilterName enum value
 	EntityFilterNameReferencedEntityId = "REFERENCED_ENTITY_ID"
 )
+
+// EntityFilterName is an enum
+type EntityFilterName struct{}
+
+// Contains returns whether the EntityFilterName enum includes the element
+func (enum EntityFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EntityFilterName enum
+func (enum EntityFilterName) Values() []string {
+	return []string{
+		EntityFilterNameName,
+		EntityFilterNameNamespace,
+		EntityFilterNameSemanticTypePath,
+		EntityFilterNameReferencedEntityId,
+	}
+}
 
 const (
 	// EntityTypeDevice is a EntityType enum value
@@ -7953,6 +8020,36 @@ const (
 	// EntityTypeEnum is a EntityType enum value
 	EntityTypeEnum = "ENUM"
 )
+
+// EntityType is an enum
+type EntityType struct{}
+
+// Contains returns whether the EntityType enum includes the element
+func (enum EntityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EntityType enum
+func (enum EntityType) Values() []string {
+	return []string{
+		EntityTypeDevice,
+		EntityTypeService,
+		EntityTypeDeviceModel,
+		EntityTypeCapability,
+		EntityTypeState,
+		EntityTypeAction,
+		EntityTypeEvent,
+		EntityTypeProperty,
+		EntityTypeMapping,
+		EntityTypeEnum,
+	}
+}
 
 const (
 	// FlowExecutionEventTypeExecutionStarted is a FlowExecutionEventType enum value
@@ -8007,6 +8104,43 @@ const (
 	FlowExecutionEventTypeAcknowledgeTaskMessage = "ACKNOWLEDGE_TASK_MESSAGE"
 )
 
+// FlowExecutionEventType is an enum
+type FlowExecutionEventType struct{}
+
+// Contains returns whether the FlowExecutionEventType enum includes the element
+func (enum FlowExecutionEventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FlowExecutionEventType enum
+func (enum FlowExecutionEventType) Values() []string {
+	return []string{
+		FlowExecutionEventTypeExecutionStarted,
+		FlowExecutionEventTypeExecutionFailed,
+		FlowExecutionEventTypeExecutionAborted,
+		FlowExecutionEventTypeExecutionSucceeded,
+		FlowExecutionEventTypeStepStarted,
+		FlowExecutionEventTypeStepFailed,
+		FlowExecutionEventTypeStepSucceeded,
+		FlowExecutionEventTypeActivityScheduled,
+		FlowExecutionEventTypeActivityStarted,
+		FlowExecutionEventTypeActivityFailed,
+		FlowExecutionEventTypeActivitySucceeded,
+		FlowExecutionEventTypeStartFlowExecutionTask,
+		FlowExecutionEventTypeScheduleNextReadyStepsTask,
+		FlowExecutionEventTypeThingActionTask,
+		FlowExecutionEventTypeThingActionTaskFailed,
+		FlowExecutionEventTypeThingActionTaskSucceeded,
+		FlowExecutionEventTypeAcknowledgeTaskMessage,
+	}
+}
+
 const (
 	// FlowExecutionStatusRunning is a FlowExecutionStatus enum value
 	FlowExecutionStatusRunning = "RUNNING"
@@ -8021,10 +8155,55 @@ const (
 	FlowExecutionStatusFailed = "FAILED"
 )
 
+// FlowExecutionStatus is an enum
+type FlowExecutionStatus struct{}
+
+// Contains returns whether the FlowExecutionStatus enum includes the element
+func (enum FlowExecutionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FlowExecutionStatus enum
+func (enum FlowExecutionStatus) Values() []string {
+	return []string{
+		FlowExecutionStatusRunning,
+		FlowExecutionStatusAborted,
+		FlowExecutionStatusSucceeded,
+		FlowExecutionStatusFailed,
+	}
+}
+
 const (
 	// FlowTemplateFilterNameDeviceModelId is a FlowTemplateFilterName enum value
 	FlowTemplateFilterNameDeviceModelId = "DEVICE_MODEL_ID"
 )
+
+// FlowTemplateFilterName is an enum
+type FlowTemplateFilterName struct{}
+
+// Contains returns whether the FlowTemplateFilterName enum includes the element
+func (enum FlowTemplateFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FlowTemplateFilterName enum
+func (enum FlowTemplateFilterName) Values() []string {
+	return []string{
+		FlowTemplateFilterNameDeviceModelId,
+	}
+}
 
 const (
 	// NamespaceDeletionStatusInProgress is a NamespaceDeletionStatus enum value
@@ -8037,10 +8216,54 @@ const (
 	NamespaceDeletionStatusFailed = "FAILED"
 )
 
+// NamespaceDeletionStatus is an enum
+type NamespaceDeletionStatus struct{}
+
+// Contains returns whether the NamespaceDeletionStatus enum includes the element
+func (enum NamespaceDeletionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NamespaceDeletionStatus enum
+func (enum NamespaceDeletionStatus) Values() []string {
+	return []string{
+		NamespaceDeletionStatusInProgress,
+		NamespaceDeletionStatusSucceeded,
+		NamespaceDeletionStatusFailed,
+	}
+}
+
 const (
 	// NamespaceDeletionStatusErrorCodesValidationFailed is a NamespaceDeletionStatusErrorCodes enum value
 	NamespaceDeletionStatusErrorCodesValidationFailed = "VALIDATION_FAILED"
 )
+
+// NamespaceDeletionStatusErrorCodes is an enum
+type NamespaceDeletionStatusErrorCodes struct{}
+
+// Contains returns whether the NamespaceDeletionStatusErrorCodes enum includes the element
+func (enum NamespaceDeletionStatusErrorCodes) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NamespaceDeletionStatusErrorCodes enum
+func (enum NamespaceDeletionStatusErrorCodes) Values() []string {
+	return []string{
+		NamespaceDeletionStatusErrorCodesValidationFailed,
+	}
+}
 
 const (
 	// SystemInstanceDeploymentStatusNotDeployed is a SystemInstanceDeploymentStatus enum value
@@ -8068,6 +8291,34 @@ const (
 	SystemInstanceDeploymentStatusDeletedInTarget = "DELETED_IN_TARGET"
 )
 
+// SystemInstanceDeploymentStatus is an enum
+type SystemInstanceDeploymentStatus struct{}
+
+// Contains returns whether the SystemInstanceDeploymentStatus enum includes the element
+func (enum SystemInstanceDeploymentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SystemInstanceDeploymentStatus enum
+func (enum SystemInstanceDeploymentStatus) Values() []string {
+	return []string{
+		SystemInstanceDeploymentStatusNotDeployed,
+		SystemInstanceDeploymentStatusBootstrap,
+		SystemInstanceDeploymentStatusDeployInProgress,
+		SystemInstanceDeploymentStatusDeployedInTarget,
+		SystemInstanceDeploymentStatusUndeployInProgress,
+		SystemInstanceDeploymentStatusFailed,
+		SystemInstanceDeploymentStatusPendingDelete,
+		SystemInstanceDeploymentStatusDeletedInTarget,
+	}
+}
+
 const (
 	// SystemInstanceFilterNameSystemTemplateId is a SystemInstanceFilterName enum value
 	SystemInstanceFilterNameSystemTemplateId = "SYSTEM_TEMPLATE_ID"
@@ -8079,10 +8330,54 @@ const (
 	SystemInstanceFilterNameGreengrassGroupName = "GREENGRASS_GROUP_NAME"
 )
 
+// SystemInstanceFilterName is an enum
+type SystemInstanceFilterName struct{}
+
+// Contains returns whether the SystemInstanceFilterName enum includes the element
+func (enum SystemInstanceFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SystemInstanceFilterName enum
+func (enum SystemInstanceFilterName) Values() []string {
+	return []string{
+		SystemInstanceFilterNameSystemTemplateId,
+		SystemInstanceFilterNameStatus,
+		SystemInstanceFilterNameGreengrassGroupName,
+	}
+}
+
 const (
 	// SystemTemplateFilterNameFlowTemplateId is a SystemTemplateFilterName enum value
 	SystemTemplateFilterNameFlowTemplateId = "FLOW_TEMPLATE_ID"
 )
+
+// SystemTemplateFilterName is an enum
+type SystemTemplateFilterName struct{}
+
+// Contains returns whether the SystemTemplateFilterName enum includes the element
+func (enum SystemTemplateFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SystemTemplateFilterName enum
+func (enum SystemTemplateFilterName) Values() []string {
+	return []string{
+		SystemTemplateFilterNameFlowTemplateId,
+	}
+}
 
 const (
 	// UploadStatusInProgress is a UploadStatus enum value
@@ -8094,3 +8389,26 @@ const (
 	// UploadStatusFailed is a UploadStatus enum value
 	UploadStatusFailed = "FAILED"
 )
+
+// UploadStatus is an enum
+type UploadStatus struct{}
+
+// Contains returns whether the UploadStatus enum includes the element
+func (enum UploadStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UploadStatus enum
+func (enum UploadStatus) Values() []string {
+	return []string{
+		UploadStatusInProgress,
+		UploadStatusSucceeded,
+		UploadStatusFailed,
+	}
+}

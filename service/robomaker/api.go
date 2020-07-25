@@ -12788,6 +12788,29 @@ const (
 	ArchitectureArmhf = "ARMHF"
 )
 
+// Architecture is an enum
+type Architecture struct{}
+
+// Contains returns whether the Architecture enum includes the element
+func (enum Architecture) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Architecture enum
+func (enum Architecture) Values() []string {
+	return []string{
+		ArchitectureX8664,
+		ArchitectureArm64,
+		ArchitectureArmhf,
+	}
+}
+
 const (
 	// DeploymentJobErrorCodeResourceNotFound is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeResourceNotFound = "ResourceNotFound"
@@ -12850,6 +12873,46 @@ const (
 	DeploymentJobErrorCodeInternalServerError = "InternalServerError"
 )
 
+// DeploymentJobErrorCode is an enum
+type DeploymentJobErrorCode struct{}
+
+// Contains returns whether the DeploymentJobErrorCode enum includes the element
+func (enum DeploymentJobErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentJobErrorCode enum
+func (enum DeploymentJobErrorCode) Values() []string {
+	return []string{
+		DeploymentJobErrorCodeResourceNotFound,
+		DeploymentJobErrorCodeEnvironmentSetupError,
+		DeploymentJobErrorCodeEtagMismatch,
+		DeploymentJobErrorCodeFailureThresholdBreached,
+		DeploymentJobErrorCodeRobotDeploymentAborted,
+		DeploymentJobErrorCodeRobotDeploymentNoResponse,
+		DeploymentJobErrorCodeRobotAgentConnectionTimeout,
+		DeploymentJobErrorCodeGreengrassDeploymentFailed,
+		DeploymentJobErrorCodeInvalidGreengrassGroup,
+		DeploymentJobErrorCodeMissingRobotArchitecture,
+		DeploymentJobErrorCodeMissingRobotApplicationArchitecture,
+		DeploymentJobErrorCodeMissingRobotDeploymentResource,
+		DeploymentJobErrorCodeGreengrassGroupVersionDoesNotExist,
+		DeploymentJobErrorCodeLambdaDeleted,
+		DeploymentJobErrorCodeExtractingBundleFailure,
+		DeploymentJobErrorCodePreLaunchFileFailure,
+		DeploymentJobErrorCodePostLaunchFileFailure,
+		DeploymentJobErrorCodeBadPermissionError,
+		DeploymentJobErrorCodeDownloadConditionFailed,
+		DeploymentJobErrorCodeInternalServerError,
+	}
+}
+
 const (
 	// DeploymentStatusPending is a DeploymentStatus enum value
 	DeploymentStatusPending = "Pending"
@@ -12870,6 +12933,32 @@ const (
 	DeploymentStatusCanceled = "Canceled"
 )
 
+// DeploymentStatus is an enum
+type DeploymentStatus struct{}
+
+// Contains returns whether the DeploymentStatus enum includes the element
+func (enum DeploymentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentStatus enum
+func (enum DeploymentStatus) Values() []string {
+	return []string{
+		DeploymentStatusPending,
+		DeploymentStatusPreparing,
+		DeploymentStatusInProgress,
+		DeploymentStatusFailed,
+		DeploymentStatusSucceeded,
+		DeploymentStatusCanceled,
+	}
+}
+
 const (
 	// FailureBehaviorFail is a FailureBehavior enum value
 	FailureBehaviorFail = "Fail"
@@ -12878,10 +12967,53 @@ const (
 	FailureBehaviorContinue = "Continue"
 )
 
+// FailureBehavior is an enum
+type FailureBehavior struct{}
+
+// Contains returns whether the FailureBehavior enum includes the element
+func (enum FailureBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FailureBehavior enum
+func (enum FailureBehavior) Values() []string {
+	return []string{
+		FailureBehaviorFail,
+		FailureBehaviorContinue,
+	}
+}
+
 const (
 	// RenderingEngineTypeOgre is a RenderingEngineType enum value
 	RenderingEngineTypeOgre = "OGRE"
 )
+
+// RenderingEngineType is an enum
+type RenderingEngineType struct{}
+
+// Contains returns whether the RenderingEngineType enum includes the element
+func (enum RenderingEngineType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RenderingEngineType enum
+func (enum RenderingEngineType) Values() []string {
+	return []string{
+		RenderingEngineTypeOgre,
+	}
+}
 
 const (
 	// RobotDeploymentStepValidating is a RobotDeploymentStep enum value
@@ -12906,6 +13038,33 @@ const (
 	RobotDeploymentStepFinished = "Finished"
 )
 
+// RobotDeploymentStep is an enum
+type RobotDeploymentStep struct{}
+
+// Contains returns whether the RobotDeploymentStep enum includes the element
+func (enum RobotDeploymentStep) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RobotDeploymentStep enum
+func (enum RobotDeploymentStep) Values() []string {
+	return []string{
+		RobotDeploymentStepValidating,
+		RobotDeploymentStepDownloadingExtracting,
+		RobotDeploymentStepExecutingDownloadCondition,
+		RobotDeploymentStepExecutingPreLaunch,
+		RobotDeploymentStepLaunching,
+		RobotDeploymentStepExecutingPostLaunch,
+		RobotDeploymentStepFinished,
+	}
+}
+
 const (
 	// RobotSoftwareSuiteTypeRos is a RobotSoftwareSuiteType enum value
 	RobotSoftwareSuiteTypeRos = "ROS"
@@ -12913,6 +13072,28 @@ const (
 	// RobotSoftwareSuiteTypeRos2 is a RobotSoftwareSuiteType enum value
 	RobotSoftwareSuiteTypeRos2 = "ROS2"
 )
+
+// RobotSoftwareSuiteType is an enum
+type RobotSoftwareSuiteType struct{}
+
+// Contains returns whether the RobotSoftwareSuiteType enum includes the element
+func (enum RobotSoftwareSuiteType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RobotSoftwareSuiteType enum
+func (enum RobotSoftwareSuiteType) Values() []string {
+	return []string{
+		RobotSoftwareSuiteTypeRos,
+		RobotSoftwareSuiteTypeRos2,
+	}
+}
 
 const (
 	// RobotSoftwareSuiteVersionTypeKinetic is a RobotSoftwareSuiteVersionType enum value
@@ -12924,6 +13105,29 @@ const (
 	// RobotSoftwareSuiteVersionTypeDashing is a RobotSoftwareSuiteVersionType enum value
 	RobotSoftwareSuiteVersionTypeDashing = "Dashing"
 )
+
+// RobotSoftwareSuiteVersionType is an enum
+type RobotSoftwareSuiteVersionType struct{}
+
+// Contains returns whether the RobotSoftwareSuiteVersionType enum includes the element
+func (enum RobotSoftwareSuiteVersionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RobotSoftwareSuiteVersionType enum
+func (enum RobotSoftwareSuiteVersionType) Values() []string {
+	return []string{
+		RobotSoftwareSuiteVersionTypeKinetic,
+		RobotSoftwareSuiteVersionTypeMelodic,
+		RobotSoftwareSuiteVersionTypeDashing,
+	}
+}
 
 const (
 	// RobotStatusAvailable is a RobotStatus enum value
@@ -12948,10 +13152,58 @@ const (
 	RobotStatusNoResponse = "NoResponse"
 )
 
+// RobotStatus is an enum
+type RobotStatus struct{}
+
+// Contains returns whether the RobotStatus enum includes the element
+func (enum RobotStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RobotStatus enum
+func (enum RobotStatus) Values() []string {
+	return []string{
+		RobotStatusAvailable,
+		RobotStatusRegistered,
+		RobotStatusPendingNewDeployment,
+		RobotStatusDeploying,
+		RobotStatusFailed,
+		RobotStatusInSync,
+		RobotStatusNoResponse,
+	}
+}
+
 const (
 	// SimulationJobBatchErrorCodeInternalServiceError is a SimulationJobBatchErrorCode enum value
 	SimulationJobBatchErrorCodeInternalServiceError = "InternalServiceError"
 )
+
+// SimulationJobBatchErrorCode is an enum
+type SimulationJobBatchErrorCode struct{}
+
+// Contains returns whether the SimulationJobBatchErrorCode enum includes the element
+func (enum SimulationJobBatchErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SimulationJobBatchErrorCode enum
+func (enum SimulationJobBatchErrorCode) Values() []string {
+	return []string{
+		SimulationJobBatchErrorCodeInternalServiceError,
+	}
+}
 
 const (
 	// SimulationJobBatchStatusPending is a SimulationJobBatchStatus enum value
@@ -12981,6 +13233,35 @@ const (
 	// SimulationJobBatchStatusTimedOut is a SimulationJobBatchStatus enum value
 	SimulationJobBatchStatusTimedOut = "TimedOut"
 )
+
+// SimulationJobBatchStatus is an enum
+type SimulationJobBatchStatus struct{}
+
+// Contains returns whether the SimulationJobBatchStatus enum includes the element
+func (enum SimulationJobBatchStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SimulationJobBatchStatus enum
+func (enum SimulationJobBatchStatus) Values() []string {
+	return []string{
+		SimulationJobBatchStatusPending,
+		SimulationJobBatchStatusInProgress,
+		SimulationJobBatchStatusFailed,
+		SimulationJobBatchStatusCompleted,
+		SimulationJobBatchStatusCanceled,
+		SimulationJobBatchStatusCanceling,
+		SimulationJobBatchStatusCompleting,
+		SimulationJobBatchStatusTimingOut,
+		SimulationJobBatchStatusTimedOut,
+	}
+}
 
 const (
 	// SimulationJobErrorCodeInternalServiceError is a SimulationJobErrorCode enum value
@@ -13065,6 +13346,53 @@ const (
 	SimulationJobErrorCodeWrongRegionSimulationApplication = "WrongRegionSimulationApplication"
 )
 
+// SimulationJobErrorCode is an enum
+type SimulationJobErrorCode struct{}
+
+// Contains returns whether the SimulationJobErrorCode enum includes the element
+func (enum SimulationJobErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SimulationJobErrorCode enum
+func (enum SimulationJobErrorCode) Values() []string {
+	return []string{
+		SimulationJobErrorCodeInternalServiceError,
+		SimulationJobErrorCodeRobotApplicationCrash,
+		SimulationJobErrorCodeSimulationApplicationCrash,
+		SimulationJobErrorCodeBadPermissionsRobotApplication,
+		SimulationJobErrorCodeBadPermissionsSimulationApplication,
+		SimulationJobErrorCodeBadPermissionsS3object,
+		SimulationJobErrorCodeBadPermissionsS3output,
+		SimulationJobErrorCodeBadPermissionsCloudwatchLogs,
+		SimulationJobErrorCodeSubnetIpLimitExceeded,
+		SimulationJobErrorCodeEnilimitExceeded,
+		SimulationJobErrorCodeBadPermissionsUserCredentials,
+		SimulationJobErrorCodeInvalidBundleRobotApplication,
+		SimulationJobErrorCodeInvalidBundleSimulationApplication,
+		SimulationJobErrorCodeInvalidS3resource,
+		SimulationJobErrorCodeLimitExceeded,
+		SimulationJobErrorCodeMismatchedEtag,
+		SimulationJobErrorCodeRobotApplicationVersionMismatchedEtag,
+		SimulationJobErrorCodeSimulationApplicationVersionMismatchedEtag,
+		SimulationJobErrorCodeResourceNotFound,
+		SimulationJobErrorCodeRequestThrottled,
+		SimulationJobErrorCodeBatchTimedOut,
+		SimulationJobErrorCodeBatchCanceled,
+		SimulationJobErrorCodeInvalidInput,
+		SimulationJobErrorCodeWrongRegionS3bucket,
+		SimulationJobErrorCodeWrongRegionS3output,
+		SimulationJobErrorCodeWrongRegionRobotApplication,
+		SimulationJobErrorCodeWrongRegionSimulationApplication,
+	}
+}
+
 const (
 	// SimulationJobStatusPending is a SimulationJobStatus enum value
 	SimulationJobStatusPending = "Pending"
@@ -13097,6 +13425,36 @@ const (
 	SimulationJobStatusCanceled = "Canceled"
 )
 
+// SimulationJobStatus is an enum
+type SimulationJobStatus struct{}
+
+// Contains returns whether the SimulationJobStatus enum includes the element
+func (enum SimulationJobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SimulationJobStatus enum
+func (enum SimulationJobStatus) Values() []string {
+	return []string{
+		SimulationJobStatusPending,
+		SimulationJobStatusPreparing,
+		SimulationJobStatusRunning,
+		SimulationJobStatusRestarting,
+		SimulationJobStatusCompleted,
+		SimulationJobStatusFailed,
+		SimulationJobStatusRunningFailed,
+		SimulationJobStatusTerminating,
+		SimulationJobStatusTerminated,
+		SimulationJobStatusCanceled,
+	}
+}
+
 const (
 	// SimulationSoftwareSuiteTypeGazebo is a SimulationSoftwareSuiteType enum value
 	SimulationSoftwareSuiteTypeGazebo = "Gazebo"
@@ -13104,3 +13462,25 @@ const (
 	// SimulationSoftwareSuiteTypeRosbagPlay is a SimulationSoftwareSuiteType enum value
 	SimulationSoftwareSuiteTypeRosbagPlay = "RosbagPlay"
 )
+
+// SimulationSoftwareSuiteType is an enum
+type SimulationSoftwareSuiteType struct{}
+
+// Contains returns whether the SimulationSoftwareSuiteType enum includes the element
+func (enum SimulationSoftwareSuiteType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SimulationSoftwareSuiteType enum
+func (enum SimulationSoftwareSuiteType) Values() []string {
+	return []string{
+		SimulationSoftwareSuiteTypeGazebo,
+		SimulationSoftwareSuiteTypeRosbagPlay,
+	}
+}

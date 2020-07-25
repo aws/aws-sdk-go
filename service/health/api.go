@@ -4184,10 +4184,54 @@ const (
 	EntityStatusCodeUnknown = "UNKNOWN"
 )
 
+// EntityStatusCode is an enum
+type EntityStatusCode struct{}
+
+// Contains returns whether the EntityStatusCode enum includes the element
+func (enum EntityStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EntityStatusCode enum
+func (enum EntityStatusCode) Values() []string {
+	return []string{
+		EntityStatusCodeImpaired,
+		EntityStatusCodeUnimpaired,
+		EntityStatusCodeUnknown,
+	}
+}
+
 const (
 	// EventAggregateFieldEventTypeCategory is a EventAggregateField enum value
 	EventAggregateFieldEventTypeCategory = "eventTypeCategory"
 )
+
+// EventAggregateField is an enum
+type EventAggregateField struct{}
+
+// Contains returns whether the EventAggregateField enum includes the element
+func (enum EventAggregateField) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventAggregateField enum
+func (enum EventAggregateField) Values() []string {
+	return []string{
+		EventAggregateFieldEventTypeCategory,
+	}
+}
 
 const (
 	// EventScopeCodePublic is a EventScopeCode enum value
@@ -4200,6 +4244,29 @@ const (
 	EventScopeCodeNone = "NONE"
 )
 
+// EventScopeCode is an enum
+type EventScopeCode struct{}
+
+// Contains returns whether the EventScopeCode enum includes the element
+func (enum EventScopeCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventScopeCode enum
+func (enum EventScopeCode) Values() []string {
+	return []string{
+		EventScopeCodePublic,
+		EventScopeCodeAccountSpecific,
+		EventScopeCodeNone,
+	}
+}
+
 const (
 	// EventStatusCodeOpen is a EventStatusCode enum value
 	EventStatusCodeOpen = "open"
@@ -4210,6 +4277,29 @@ const (
 	// EventStatusCodeUpcoming is a EventStatusCode enum value
 	EventStatusCodeUpcoming = "upcoming"
 )
+
+// EventStatusCode is an enum
+type EventStatusCode struct{}
+
+// Contains returns whether the EventStatusCode enum includes the element
+func (enum EventStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventStatusCode enum
+func (enum EventStatusCode) Values() []string {
+	return []string{
+		EventStatusCodeOpen,
+		EventStatusCodeClosed,
+		EventStatusCodeUpcoming,
+	}
+}
 
 const (
 	// EventTypeCategoryIssue is a EventTypeCategory enum value
@@ -4224,3 +4314,27 @@ const (
 	// EventTypeCategoryInvestigation is a EventTypeCategory enum value
 	EventTypeCategoryInvestigation = "investigation"
 )
+
+// EventTypeCategory is an enum
+type EventTypeCategory struct{}
+
+// Contains returns whether the EventTypeCategory enum includes the element
+func (enum EventTypeCategory) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventTypeCategory enum
+func (enum EventTypeCategory) Values() []string {
+	return []string{
+		EventTypeCategoryIssue,
+		EventTypeCategoryAccountNotification,
+		EventTypeCategoryScheduledChange,
+		EventTypeCategoryInvestigation,
+	}
+}

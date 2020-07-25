@@ -3217,6 +3217,33 @@ const (
 	BlockTypeSelectionElement = "SELECTION_ELEMENT"
 )
 
+// BlockType is an enum
+type BlockType struct{}
+
+// Contains returns whether the BlockType enum includes the element
+func (enum BlockType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BlockType enum
+func (enum BlockType) Values() []string {
+	return []string{
+		BlockTypeKeyValueSet,
+		BlockTypePage,
+		BlockTypeLine,
+		BlockTypeWord,
+		BlockTypeTable,
+		BlockTypeCell,
+		BlockTypeSelectionElement,
+	}
+}
+
 const (
 	// ContentClassifierFreeOfPersonallyIdentifiableInformation is a ContentClassifier enum value
 	ContentClassifierFreeOfPersonallyIdentifiableInformation = "FreeOfPersonallyIdentifiableInformation"
@@ -3224,6 +3251,28 @@ const (
 	// ContentClassifierFreeOfAdultContent is a ContentClassifier enum value
 	ContentClassifierFreeOfAdultContent = "FreeOfAdultContent"
 )
+
+// ContentClassifier is an enum
+type ContentClassifier struct{}
+
+// Contains returns whether the ContentClassifier enum includes the element
+func (enum ContentClassifier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentClassifier enum
+func (enum ContentClassifier) Values() []string {
+	return []string{
+		ContentClassifierFreeOfPersonallyIdentifiableInformation,
+		ContentClassifierFreeOfAdultContent,
+	}
+}
 
 const (
 	// EntityTypeKey is a EntityType enum value
@@ -3233,6 +3282,28 @@ const (
 	EntityTypeValue = "VALUE"
 )
 
+// EntityType is an enum
+type EntityType struct{}
+
+// Contains returns whether the EntityType enum includes the element
+func (enum EntityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EntityType enum
+func (enum EntityType) Values() []string {
+	return []string{
+		EntityTypeKey,
+		EntityTypeValue,
+	}
+}
+
 const (
 	// FeatureTypeTables is a FeatureType enum value
 	FeatureTypeTables = "TABLES"
@@ -3240,6 +3311,28 @@ const (
 	// FeatureTypeForms is a FeatureType enum value
 	FeatureTypeForms = "FORMS"
 )
+
+// FeatureType is an enum
+type FeatureType struct{}
+
+// Contains returns whether the FeatureType enum includes the element
+func (enum FeatureType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FeatureType enum
+func (enum FeatureType) Values() []string {
+	return []string{
+		FeatureTypeTables,
+		FeatureTypeForms,
+	}
+}
 
 const (
 	// JobStatusInProgress is a JobStatus enum value
@@ -3255,6 +3348,30 @@ const (
 	JobStatusPartialSuccess = "PARTIAL_SUCCESS"
 )
 
+// JobStatus is an enum
+type JobStatus struct{}
+
+// Contains returns whether the JobStatus enum includes the element
+func (enum JobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatus enum
+func (enum JobStatus) Values() []string {
+	return []string{
+		JobStatusInProgress,
+		JobStatusSucceeded,
+		JobStatusFailed,
+		JobStatusPartialSuccess,
+	}
+}
+
 const (
 	// RelationshipTypeValue is a RelationshipType enum value
 	RelationshipTypeValue = "VALUE"
@@ -3263,6 +3380,28 @@ const (
 	RelationshipTypeChild = "CHILD"
 )
 
+// RelationshipType is an enum
+type RelationshipType struct{}
+
+// Contains returns whether the RelationshipType enum includes the element
+func (enum RelationshipType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RelationshipType enum
+func (enum RelationshipType) Values() []string {
+	return []string{
+		RelationshipTypeValue,
+		RelationshipTypeChild,
+	}
+}
+
 const (
 	// SelectionStatusSelected is a SelectionStatus enum value
 	SelectionStatusSelected = "SELECTED"
@@ -3270,3 +3409,25 @@ const (
 	// SelectionStatusNotSelected is a SelectionStatus enum value
 	SelectionStatusNotSelected = "NOT_SELECTED"
 )
+
+// SelectionStatus is an enum
+type SelectionStatus struct{}
+
+// Contains returns whether the SelectionStatus enum includes the element
+func (enum SelectionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SelectionStatus enum
+func (enum SelectionStatus) Values() []string {
+	return []string{
+		SelectionStatusSelected,
+		SelectionStatusNotSelected,
+	}
+}

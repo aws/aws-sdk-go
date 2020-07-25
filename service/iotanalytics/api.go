@@ -10521,6 +10521,29 @@ const (
 	ChannelStatusDeleting = "DELETING"
 )
 
+// ChannelStatus is an enum
+type ChannelStatus struct{}
+
+// Contains returns whether the ChannelStatus enum includes the element
+func (enum ChannelStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelStatus enum
+func (enum ChannelStatus) Values() []string {
+	return []string{
+		ChannelStatusCreating,
+		ChannelStatusActive,
+		ChannelStatusDeleting,
+	}
+}
+
 const (
 	// ComputeTypeAcu1 is a ComputeType enum value
 	ComputeTypeAcu1 = "ACU_1"
@@ -10529,6 +10552,28 @@ const (
 	ComputeTypeAcu2 = "ACU_2"
 )
 
+// ComputeType is an enum
+type ComputeType struct{}
+
+// Contains returns whether the ComputeType enum includes the element
+func (enum ComputeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComputeType enum
+func (enum ComputeType) Values() []string {
+	return []string{
+		ComputeTypeAcu1,
+		ComputeTypeAcu2,
+	}
+}
+
 const (
 	// DatasetActionTypeQuery is a DatasetActionType enum value
 	DatasetActionTypeQuery = "QUERY"
@@ -10536,6 +10581,28 @@ const (
 	// DatasetActionTypeContainer is a DatasetActionType enum value
 	DatasetActionTypeContainer = "CONTAINER"
 )
+
+// DatasetActionType is an enum
+type DatasetActionType struct{}
+
+// Contains returns whether the DatasetActionType enum includes the element
+func (enum DatasetActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DatasetActionType enum
+func (enum DatasetActionType) Values() []string {
+	return []string{
+		DatasetActionTypeQuery,
+		DatasetActionTypeContainer,
+	}
+}
 
 const (
 	// DatasetContentStateCreating is a DatasetContentState enum value
@@ -10548,6 +10615,29 @@ const (
 	DatasetContentStateFailed = "FAILED"
 )
 
+// DatasetContentState is an enum
+type DatasetContentState struct{}
+
+// Contains returns whether the DatasetContentState enum includes the element
+func (enum DatasetContentState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DatasetContentState enum
+func (enum DatasetContentState) Values() []string {
+	return []string{
+		DatasetContentStateCreating,
+		DatasetContentStateSucceeded,
+		DatasetContentStateFailed,
+	}
+}
+
 const (
 	// DatasetStatusCreating is a DatasetStatus enum value
 	DatasetStatusCreating = "CREATING"
@@ -10558,6 +10648,29 @@ const (
 	// DatasetStatusDeleting is a DatasetStatus enum value
 	DatasetStatusDeleting = "DELETING"
 )
+
+// DatasetStatus is an enum
+type DatasetStatus struct{}
+
+// Contains returns whether the DatasetStatus enum includes the element
+func (enum DatasetStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DatasetStatus enum
+func (enum DatasetStatus) Values() []string {
+	return []string{
+		DatasetStatusCreating,
+		DatasetStatusActive,
+		DatasetStatusDeleting,
+	}
+}
 
 const (
 	// DatastoreStatusCreating is a DatastoreStatus enum value
@@ -10570,10 +10683,54 @@ const (
 	DatastoreStatusDeleting = "DELETING"
 )
 
+// DatastoreStatus is an enum
+type DatastoreStatus struct{}
+
+// Contains returns whether the DatastoreStatus enum includes the element
+func (enum DatastoreStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DatastoreStatus enum
+func (enum DatastoreStatus) Values() []string {
+	return []string{
+		DatastoreStatusCreating,
+		DatastoreStatusActive,
+		DatastoreStatusDeleting,
+	}
+}
+
 const (
 	// LoggingLevelError is a LoggingLevel enum value
 	LoggingLevelError = "ERROR"
 )
+
+// LoggingLevel is an enum
+type LoggingLevel struct{}
+
+// Contains returns whether the LoggingLevel enum includes the element
+func (enum LoggingLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoggingLevel enum
+func (enum LoggingLevel) Values() []string {
+	return []string{
+		LoggingLevelError,
+	}
+}
 
 const (
 	// ReprocessingStatusRunning is a ReprocessingStatus enum value
@@ -10588,3 +10745,27 @@ const (
 	// ReprocessingStatusFailed is a ReprocessingStatus enum value
 	ReprocessingStatusFailed = "FAILED"
 )
+
+// ReprocessingStatus is an enum
+type ReprocessingStatus struct{}
+
+// Contains returns whether the ReprocessingStatus enum includes the element
+func (enum ReprocessingStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReprocessingStatus enum
+func (enum ReprocessingStatus) Values() []string {
+	return []string{
+		ReprocessingStatusRunning,
+		ReprocessingStatusSucceeded,
+		ReprocessingStatusCancelled,
+		ReprocessingStatusFailed,
+	}
+}

@@ -32781,6 +32781,28 @@ const (
 	ApprovalStateRevoke = "REVOKE"
 )
 
+// ApprovalState is an enum
+type ApprovalState struct{}
+
+// Contains returns whether the ApprovalState enum includes the element
+func (enum ApprovalState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ApprovalState enum
+func (enum ApprovalState) Values() []string {
+	return []string{
+		ApprovalStateApprove,
+		ApprovalStateRevoke,
+	}
+}
+
 const (
 	// ChangeTypeEnumA is a ChangeTypeEnum enum value
 	ChangeTypeEnumA = "A"
@@ -32792,6 +32814,29 @@ const (
 	ChangeTypeEnumD = "D"
 )
 
+// ChangeTypeEnum is an enum
+type ChangeTypeEnum struct{}
+
+// Contains returns whether the ChangeTypeEnum enum includes the element
+func (enum ChangeTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChangeTypeEnum enum
+func (enum ChangeTypeEnum) Values() []string {
+	return []string{
+		ChangeTypeEnumA,
+		ChangeTypeEnumM,
+		ChangeTypeEnumD,
+	}
+}
+
 const (
 	// ConflictDetailLevelTypeEnumFileLevel is a ConflictDetailLevelTypeEnum enum value
 	ConflictDetailLevelTypeEnumFileLevel = "FILE_LEVEL"
@@ -32799,6 +32844,28 @@ const (
 	// ConflictDetailLevelTypeEnumLineLevel is a ConflictDetailLevelTypeEnum enum value
 	ConflictDetailLevelTypeEnumLineLevel = "LINE_LEVEL"
 )
+
+// ConflictDetailLevelTypeEnum is an enum
+type ConflictDetailLevelTypeEnum struct{}
+
+// Contains returns whether the ConflictDetailLevelTypeEnum enum includes the element
+func (enum ConflictDetailLevelTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConflictDetailLevelTypeEnum enum
+func (enum ConflictDetailLevelTypeEnum) Values() []string {
+	return []string{
+		ConflictDetailLevelTypeEnumFileLevel,
+		ConflictDetailLevelTypeEnumLineLevel,
+	}
+}
 
 const (
 	// ConflictResolutionStrategyTypeEnumNone is a ConflictResolutionStrategyTypeEnum enum value
@@ -32814,6 +32881,30 @@ const (
 	ConflictResolutionStrategyTypeEnumAutomerge = "AUTOMERGE"
 )
 
+// ConflictResolutionStrategyTypeEnum is an enum
+type ConflictResolutionStrategyTypeEnum struct{}
+
+// Contains returns whether the ConflictResolutionStrategyTypeEnum enum includes the element
+func (enum ConflictResolutionStrategyTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConflictResolutionStrategyTypeEnum enum
+func (enum ConflictResolutionStrategyTypeEnum) Values() []string {
+	return []string{
+		ConflictResolutionStrategyTypeEnumNone,
+		ConflictResolutionStrategyTypeEnumAcceptSource,
+		ConflictResolutionStrategyTypeEnumAcceptDestination,
+		ConflictResolutionStrategyTypeEnumAutomerge,
+	}
+}
+
 const (
 	// FileModeTypeEnumExecutable is a FileModeTypeEnum enum value
 	FileModeTypeEnumExecutable = "EXECUTABLE"
@@ -32825,6 +32916,29 @@ const (
 	FileModeTypeEnumSymlink = "SYMLINK"
 )
 
+// FileModeTypeEnum is an enum
+type FileModeTypeEnum struct{}
+
+// Contains returns whether the FileModeTypeEnum enum includes the element
+func (enum FileModeTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FileModeTypeEnum enum
+func (enum FileModeTypeEnum) Values() []string {
+	return []string{
+		FileModeTypeEnumExecutable,
+		FileModeTypeEnumNormal,
+		FileModeTypeEnumSymlink,
+	}
+}
+
 const (
 	// MergeOptionTypeEnumFastForwardMerge is a MergeOptionTypeEnum enum value
 	MergeOptionTypeEnumFastForwardMerge = "FAST_FORWARD_MERGE"
@@ -32835,6 +32949,29 @@ const (
 	// MergeOptionTypeEnumThreeWayMerge is a MergeOptionTypeEnum enum value
 	MergeOptionTypeEnumThreeWayMerge = "THREE_WAY_MERGE"
 )
+
+// MergeOptionTypeEnum is an enum
+type MergeOptionTypeEnum struct{}
+
+// Contains returns whether the MergeOptionTypeEnum enum includes the element
+func (enum MergeOptionTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MergeOptionTypeEnum enum
+func (enum MergeOptionTypeEnum) Values() []string {
+	return []string{
+		MergeOptionTypeEnumFastForwardMerge,
+		MergeOptionTypeEnumSquashMerge,
+		MergeOptionTypeEnumThreeWayMerge,
+	}
+}
 
 const (
 	// ObjectTypeEnumFile is a ObjectTypeEnum enum value
@@ -32850,6 +32987,30 @@ const (
 	ObjectTypeEnumSymbolicLink = "SYMBOLIC_LINK"
 )
 
+// ObjectTypeEnum is an enum
+type ObjectTypeEnum struct{}
+
+// Contains returns whether the ObjectTypeEnum enum includes the element
+func (enum ObjectTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ObjectTypeEnum enum
+func (enum ObjectTypeEnum) Values() []string {
+	return []string{
+		ObjectTypeEnumFile,
+		ObjectTypeEnumDirectory,
+		ObjectTypeEnumGitLink,
+		ObjectTypeEnumSymbolicLink,
+	}
+}
+
 const (
 	// OrderEnumAscending is a OrderEnum enum value
 	OrderEnumAscending = "ascending"
@@ -32858,6 +33019,28 @@ const (
 	OrderEnumDescending = "descending"
 )
 
+// OrderEnum is an enum
+type OrderEnum struct{}
+
+// Contains returns whether the OrderEnum enum includes the element
+func (enum OrderEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrderEnum enum
+func (enum OrderEnum) Values() []string {
+	return []string{
+		OrderEnumAscending,
+		OrderEnumDescending,
+	}
+}
+
 const (
 	// OverrideStatusOverride is a OverrideStatus enum value
 	OverrideStatusOverride = "OVERRIDE"
@@ -32865,6 +33048,28 @@ const (
 	// OverrideStatusRevoke is a OverrideStatus enum value
 	OverrideStatusRevoke = "REVOKE"
 )
+
+// OverrideStatus is an enum
+type OverrideStatus struct{}
+
+// Contains returns whether the OverrideStatus enum includes the element
+func (enum OverrideStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OverrideStatus enum
+func (enum OverrideStatus) Values() []string {
+	return []string{
+		OverrideStatusOverride,
+		OverrideStatusRevoke,
+	}
+}
 
 const (
 	// PullRequestEventTypePullRequestCreated is a PullRequestEventType enum value
@@ -32895,6 +33100,35 @@ const (
 	PullRequestEventTypePullRequestApprovalStateChanged = "PULL_REQUEST_APPROVAL_STATE_CHANGED"
 )
 
+// PullRequestEventType is an enum
+type PullRequestEventType struct{}
+
+// Contains returns whether the PullRequestEventType enum includes the element
+func (enum PullRequestEventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PullRequestEventType enum
+func (enum PullRequestEventType) Values() []string {
+	return []string{
+		PullRequestEventTypePullRequestCreated,
+		PullRequestEventTypePullRequestStatusChanged,
+		PullRequestEventTypePullRequestSourceReferenceUpdated,
+		PullRequestEventTypePullRequestMergeStateChanged,
+		PullRequestEventTypePullRequestApprovalRuleCreated,
+		PullRequestEventTypePullRequestApprovalRuleUpdated,
+		PullRequestEventTypePullRequestApprovalRuleDeleted,
+		PullRequestEventTypePullRequestApprovalRuleOverridden,
+		PullRequestEventTypePullRequestApprovalStateChanged,
+	}
+}
+
 const (
 	// PullRequestStatusEnumOpen is a PullRequestStatusEnum enum value
 	PullRequestStatusEnumOpen = "OPEN"
@@ -32903,6 +33137,28 @@ const (
 	PullRequestStatusEnumClosed = "CLOSED"
 )
 
+// PullRequestStatusEnum is an enum
+type PullRequestStatusEnum struct{}
+
+// Contains returns whether the PullRequestStatusEnum enum includes the element
+func (enum PullRequestStatusEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PullRequestStatusEnum enum
+func (enum PullRequestStatusEnum) Values() []string {
+	return []string{
+		PullRequestStatusEnumOpen,
+		PullRequestStatusEnumClosed,
+	}
+}
+
 const (
 	// RelativeFileVersionEnumBefore is a RelativeFileVersionEnum enum value
 	RelativeFileVersionEnumBefore = "BEFORE"
@@ -32910,6 +33166,28 @@ const (
 	// RelativeFileVersionEnumAfter is a RelativeFileVersionEnum enum value
 	RelativeFileVersionEnumAfter = "AFTER"
 )
+
+// RelativeFileVersionEnum is an enum
+type RelativeFileVersionEnum struct{}
+
+// Contains returns whether the RelativeFileVersionEnum enum includes the element
+func (enum RelativeFileVersionEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RelativeFileVersionEnum enum
+func (enum RelativeFileVersionEnum) Values() []string {
+	return []string{
+		RelativeFileVersionEnumBefore,
+		RelativeFileVersionEnumAfter,
+	}
+}
 
 const (
 	// ReplacementTypeEnumKeepBase is a ReplacementTypeEnum enum value
@@ -32925,6 +33203,30 @@ const (
 	ReplacementTypeEnumUseNewContent = "USE_NEW_CONTENT"
 )
 
+// ReplacementTypeEnum is an enum
+type ReplacementTypeEnum struct{}
+
+// Contains returns whether the ReplacementTypeEnum enum includes the element
+func (enum ReplacementTypeEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplacementTypeEnum enum
+func (enum ReplacementTypeEnum) Values() []string {
+	return []string{
+		ReplacementTypeEnumKeepBase,
+		ReplacementTypeEnumKeepSource,
+		ReplacementTypeEnumKeepDestination,
+		ReplacementTypeEnumUseNewContent,
+	}
+}
+
 const (
 	// RepositoryTriggerEventEnumAll is a RepositoryTriggerEventEnum enum value
 	RepositoryTriggerEventEnumAll = "all"
@@ -32939,6 +33241,30 @@ const (
 	RepositoryTriggerEventEnumDeleteReference = "deleteReference"
 )
 
+// RepositoryTriggerEventEnum is an enum
+type RepositoryTriggerEventEnum struct{}
+
+// Contains returns whether the RepositoryTriggerEventEnum enum includes the element
+func (enum RepositoryTriggerEventEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RepositoryTriggerEventEnum enum
+func (enum RepositoryTriggerEventEnum) Values() []string {
+	return []string{
+		RepositoryTriggerEventEnumAll,
+		RepositoryTriggerEventEnumUpdateReference,
+		RepositoryTriggerEventEnumCreateReference,
+		RepositoryTriggerEventEnumDeleteReference,
+	}
+}
+
 const (
 	// SortByEnumRepositoryName is a SortByEnum enum value
 	SortByEnumRepositoryName = "repositoryName"
@@ -32946,3 +33272,25 @@ const (
 	// SortByEnumLastModifiedDate is a SortByEnum enum value
 	SortByEnumLastModifiedDate = "lastModifiedDate"
 )
+
+// SortByEnum is an enum
+type SortByEnum struct{}
+
+// Contains returns whether the SortByEnum enum includes the element
+func (enum SortByEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortByEnum enum
+func (enum SortByEnum) Values() []string {
+	return []string{
+		SortByEnumRepositoryName,
+		SortByEnumLastModifiedDate,
+	}
+}

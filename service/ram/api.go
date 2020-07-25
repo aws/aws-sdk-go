@@ -6982,6 +6982,28 @@ const (
 	ResourceOwnerOtherAccounts = "OTHER-ACCOUNTS"
 )
 
+// ResourceOwner is an enum
+type ResourceOwner struct{}
+
+// Contains returns whether the ResourceOwner enum includes the element
+func (enum ResourceOwner) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceOwner enum
+func (enum ResourceOwner) Values() []string {
+	return []string{
+		ResourceOwnerSelf,
+		ResourceOwnerOtherAccounts,
+	}
+}
+
 const (
 	// ResourceShareAssociationStatusAssociating is a ResourceShareAssociationStatus enum value
 	ResourceShareAssociationStatusAssociating = "ASSOCIATING"
@@ -6999,6 +7021,31 @@ const (
 	ResourceShareAssociationStatusDisassociated = "DISASSOCIATED"
 )
 
+// ResourceShareAssociationStatus is an enum
+type ResourceShareAssociationStatus struct{}
+
+// Contains returns whether the ResourceShareAssociationStatus enum includes the element
+func (enum ResourceShareAssociationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceShareAssociationStatus enum
+func (enum ResourceShareAssociationStatus) Values() []string {
+	return []string{
+		ResourceShareAssociationStatusAssociating,
+		ResourceShareAssociationStatusAssociated,
+		ResourceShareAssociationStatusFailed,
+		ResourceShareAssociationStatusDisassociating,
+		ResourceShareAssociationStatusDisassociated,
+	}
+}
+
 const (
 	// ResourceShareAssociationTypePrincipal is a ResourceShareAssociationType enum value
 	ResourceShareAssociationTypePrincipal = "PRINCIPAL"
@@ -7006,6 +7053,28 @@ const (
 	// ResourceShareAssociationTypeResource is a ResourceShareAssociationType enum value
 	ResourceShareAssociationTypeResource = "RESOURCE"
 )
+
+// ResourceShareAssociationType is an enum
+type ResourceShareAssociationType struct{}
+
+// Contains returns whether the ResourceShareAssociationType enum includes the element
+func (enum ResourceShareAssociationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceShareAssociationType enum
+func (enum ResourceShareAssociationType) Values() []string {
+	return []string{
+		ResourceShareAssociationTypePrincipal,
+		ResourceShareAssociationTypeResource,
+	}
+}
 
 const (
 	// ResourceShareFeatureSetCreatedFromPolicy is a ResourceShareFeatureSet enum value
@@ -7017,6 +7086,29 @@ const (
 	// ResourceShareFeatureSetStandard is a ResourceShareFeatureSet enum value
 	ResourceShareFeatureSetStandard = "STANDARD"
 )
+
+// ResourceShareFeatureSet is an enum
+type ResourceShareFeatureSet struct{}
+
+// Contains returns whether the ResourceShareFeatureSet enum includes the element
+func (enum ResourceShareFeatureSet) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceShareFeatureSet enum
+func (enum ResourceShareFeatureSet) Values() []string {
+	return []string{
+		ResourceShareFeatureSetCreatedFromPolicy,
+		ResourceShareFeatureSetPromotingToStandard,
+		ResourceShareFeatureSetStandard,
+	}
+}
 
 const (
 	// ResourceShareInvitationStatusPending is a ResourceShareInvitationStatus enum value
@@ -7031,6 +7123,30 @@ const (
 	// ResourceShareInvitationStatusExpired is a ResourceShareInvitationStatus enum value
 	ResourceShareInvitationStatusExpired = "EXPIRED"
 )
+
+// ResourceShareInvitationStatus is an enum
+type ResourceShareInvitationStatus struct{}
+
+// Contains returns whether the ResourceShareInvitationStatus enum includes the element
+func (enum ResourceShareInvitationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceShareInvitationStatus enum
+func (enum ResourceShareInvitationStatus) Values() []string {
+	return []string{
+		ResourceShareInvitationStatusPending,
+		ResourceShareInvitationStatusAccepted,
+		ResourceShareInvitationStatusRejected,
+		ResourceShareInvitationStatusExpired,
+	}
+}
 
 const (
 	// ResourceShareStatusPending is a ResourceShareStatus enum value
@@ -7049,6 +7165,31 @@ const (
 	ResourceShareStatusDeleted = "DELETED"
 )
 
+// ResourceShareStatus is an enum
+type ResourceShareStatus struct{}
+
+// Contains returns whether the ResourceShareStatus enum includes the element
+func (enum ResourceShareStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceShareStatus enum
+func (enum ResourceShareStatus) Values() []string {
+	return []string{
+		ResourceShareStatusPending,
+		ResourceShareStatusActive,
+		ResourceShareStatusFailed,
+		ResourceShareStatusDeleting,
+		ResourceShareStatusDeleted,
+	}
+}
+
 const (
 	// ResourceStatusAvailable is a ResourceStatus enum value
 	ResourceStatusAvailable = "AVAILABLE"
@@ -7065,3 +7206,28 @@ const (
 	// ResourceStatusPending is a ResourceStatus enum value
 	ResourceStatusPending = "PENDING"
 )
+
+// ResourceStatus is an enum
+type ResourceStatus struct{}
+
+// Contains returns whether the ResourceStatus enum includes the element
+func (enum ResourceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceStatus enum
+func (enum ResourceStatus) Values() []string {
+	return []string{
+		ResourceStatusAvailable,
+		ResourceStatusZonalResourceInaccessible,
+		ResourceStatusLimitExceeded,
+		ResourceStatusUnavailable,
+		ResourceStatusPending,
+	}
+}

@@ -2411,6 +2411,29 @@ const (
 	ConnectionStatusError = "ERROR"
 )
 
+// ConnectionStatus is an enum
+type ConnectionStatus struct{}
+
+// Contains returns whether the ConnectionStatus enum includes the element
+func (enum ConnectionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionStatus enum
+func (enum ConnectionStatus) Values() []string {
+	return []string{
+		ConnectionStatusPending,
+		ConnectionStatusAvailable,
+		ConnectionStatusError,
+	}
+}
+
 const (
 	// ProviderTypeBitbucket is a ProviderType enum value
 	ProviderTypeBitbucket = "Bitbucket"
@@ -2418,3 +2441,25 @@ const (
 	// ProviderTypeGitHubEnterpriseServer is a ProviderType enum value
 	ProviderTypeGitHubEnterpriseServer = "GitHubEnterpriseServer"
 )
+
+// ProviderType is an enum
+type ProviderType struct{}
+
+// Contains returns whether the ProviderType enum includes the element
+func (enum ProviderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProviderType enum
+func (enum ProviderType) Values() []string {
+	return []string{
+		ProviderTypeBitbucket,
+		ProviderTypeGitHubEnterpriseServer,
+	}
+}

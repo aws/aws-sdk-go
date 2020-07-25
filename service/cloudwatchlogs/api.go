@@ -10023,6 +10023,28 @@ const (
 	DistributionByLogStream = "ByLogStream"
 )
 
+// Distribution is an enum
+type Distribution struct{}
+
+// Contains returns whether the Distribution enum includes the element
+func (enum Distribution) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Distribution enum
+func (enum Distribution) Values() []string {
+	return []string{
+		DistributionRandom,
+		DistributionByLogStream,
+	}
+}
+
 const (
 	// ExportTaskStatusCodeCancelled is a ExportTaskStatusCode enum value
 	ExportTaskStatusCodeCancelled = "CANCELLED"
@@ -10043,6 +10065,32 @@ const (
 	ExportTaskStatusCodeRunning = "RUNNING"
 )
 
+// ExportTaskStatusCode is an enum
+type ExportTaskStatusCode struct{}
+
+// Contains returns whether the ExportTaskStatusCode enum includes the element
+func (enum ExportTaskStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExportTaskStatusCode enum
+func (enum ExportTaskStatusCode) Values() []string {
+	return []string{
+		ExportTaskStatusCodeCancelled,
+		ExportTaskStatusCodeCompleted,
+		ExportTaskStatusCodeFailed,
+		ExportTaskStatusCodePending,
+		ExportTaskStatusCodePendingCancel,
+		ExportTaskStatusCodeRunning,
+	}
+}
+
 const (
 	// OrderByLogStreamName is a OrderBy enum value
 	OrderByLogStreamName = "LogStreamName"
@@ -10050,6 +10098,28 @@ const (
 	// OrderByLastEventTime is a OrderBy enum value
 	OrderByLastEventTime = "LastEventTime"
 )
+
+// OrderBy is an enum
+type OrderBy struct{}
+
+// Contains returns whether the OrderBy enum includes the element
+func (enum OrderBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrderBy enum
+func (enum OrderBy) Values() []string {
+	return []string{
+		OrderByLogStreamName,
+		OrderByLastEventTime,
+	}
+}
 
 const (
 	// QueryStatusScheduled is a QueryStatus enum value
@@ -10067,3 +10137,28 @@ const (
 	// QueryStatusCancelled is a QueryStatus enum value
 	QueryStatusCancelled = "Cancelled"
 )
+
+// QueryStatus is an enum
+type QueryStatus struct{}
+
+// Contains returns whether the QueryStatus enum includes the element
+func (enum QueryStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueryStatus enum
+func (enum QueryStatus) Values() []string {
+	return []string{
+		QueryStatusScheduled,
+		QueryStatusRunning,
+		QueryStatusComplete,
+		QueryStatusFailed,
+		QueryStatusCancelled,
+	}
+}

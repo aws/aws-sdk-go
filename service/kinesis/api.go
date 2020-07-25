@@ -8594,6 +8594,29 @@ const (
 	ConsumerStatusActive = "ACTIVE"
 )
 
+// ConsumerStatus is an enum
+type ConsumerStatus struct{}
+
+// Contains returns whether the ConsumerStatus enum includes the element
+func (enum ConsumerStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConsumerStatus enum
+func (enum ConsumerStatus) Values() []string {
+	return []string{
+		ConsumerStatusCreating,
+		ConsumerStatusDeleting,
+		ConsumerStatusActive,
+	}
+}
+
 const (
 	// EncryptionTypeNone is a EncryptionType enum value
 	EncryptionTypeNone = "NONE"
@@ -8601,6 +8624,28 @@ const (
 	// EncryptionTypeKms is a EncryptionType enum value
 	EncryptionTypeKms = "KMS"
 )
+
+// EncryptionType is an enum
+type EncryptionType struct{}
+
+// Contains returns whether the EncryptionType enum includes the element
+func (enum EncryptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionType enum
+func (enum EncryptionType) Values() []string {
+	return []string{
+		EncryptionTypeNone,
+		EncryptionTypeKms,
+	}
+}
 
 const (
 	// MetricsNameIncomingBytes is a MetricsName enum value
@@ -8628,10 +8673,59 @@ const (
 	MetricsNameAll = "ALL"
 )
 
+// MetricsName is an enum
+type MetricsName struct{}
+
+// Contains returns whether the MetricsName enum includes the element
+func (enum MetricsName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricsName enum
+func (enum MetricsName) Values() []string {
+	return []string{
+		MetricsNameIncomingBytes,
+		MetricsNameIncomingRecords,
+		MetricsNameOutgoingBytes,
+		MetricsNameOutgoingRecords,
+		MetricsNameWriteProvisionedThroughputExceeded,
+		MetricsNameReadProvisionedThroughputExceeded,
+		MetricsNameIteratorAgeMilliseconds,
+		MetricsNameAll,
+	}
+}
+
 const (
 	// ScalingTypeUniformScaling is a ScalingType enum value
 	ScalingTypeUniformScaling = "UNIFORM_SCALING"
 )
+
+// ScalingType is an enum
+type ScalingType struct{}
+
+// Contains returns whether the ScalingType enum includes the element
+func (enum ScalingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingType enum
+func (enum ScalingType) Values() []string {
+	return []string{
+		ScalingTypeUniformScaling,
+	}
+}
 
 const (
 	// ShardIteratorTypeAtSequenceNumber is a ShardIteratorType enum value
@@ -8650,6 +8744,31 @@ const (
 	ShardIteratorTypeAtTimestamp = "AT_TIMESTAMP"
 )
 
+// ShardIteratorType is an enum
+type ShardIteratorType struct{}
+
+// Contains returns whether the ShardIteratorType enum includes the element
+func (enum ShardIteratorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ShardIteratorType enum
+func (enum ShardIteratorType) Values() []string {
+	return []string{
+		ShardIteratorTypeAtSequenceNumber,
+		ShardIteratorTypeAfterSequenceNumber,
+		ShardIteratorTypeTrimHorizon,
+		ShardIteratorTypeLatest,
+		ShardIteratorTypeAtTimestamp,
+	}
+}
+
 const (
 	// StreamStatusCreating is a StreamStatus enum value
 	StreamStatusCreating = "CREATING"
@@ -8663,3 +8782,27 @@ const (
 	// StreamStatusUpdating is a StreamStatus enum value
 	StreamStatusUpdating = "UPDATING"
 )
+
+// StreamStatus is an enum
+type StreamStatus struct{}
+
+// Contains returns whether the StreamStatus enum includes the element
+func (enum StreamStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamStatus enum
+func (enum StreamStatus) Values() []string {
+	return []string{
+		StreamStatusCreating,
+		StreamStatusDeleting,
+		StreamStatusActive,
+		StreamStatusUpdating,
+	}
+}

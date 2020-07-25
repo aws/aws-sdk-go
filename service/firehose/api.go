@@ -7412,6 +7412,31 @@ const (
 	CompressionFormatHadoopSnappy = "HADOOP_SNAPPY"
 )
 
+// CompressionFormat is an enum
+type CompressionFormat struct{}
+
+// Contains returns whether the CompressionFormat enum includes the element
+func (enum CompressionFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CompressionFormat enum
+func (enum CompressionFormat) Values() []string {
+	return []string{
+		CompressionFormatUncompressed,
+		CompressionFormatGzip,
+		CompressionFormatZip,
+		CompressionFormatSnappy,
+		CompressionFormatHadoopSnappy,
+	}
+}
+
 const (
 	// DeliveryStreamEncryptionStatusEnabled is a DeliveryStreamEncryptionStatus enum value
 	DeliveryStreamEncryptionStatusEnabled = "ENABLED"
@@ -7431,6 +7456,32 @@ const (
 	// DeliveryStreamEncryptionStatusDisablingFailed is a DeliveryStreamEncryptionStatus enum value
 	DeliveryStreamEncryptionStatusDisablingFailed = "DISABLING_FAILED"
 )
+
+// DeliveryStreamEncryptionStatus is an enum
+type DeliveryStreamEncryptionStatus struct{}
+
+// Contains returns whether the DeliveryStreamEncryptionStatus enum includes the element
+func (enum DeliveryStreamEncryptionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeliveryStreamEncryptionStatus enum
+func (enum DeliveryStreamEncryptionStatus) Values() []string {
+	return []string{
+		DeliveryStreamEncryptionStatusEnabled,
+		DeliveryStreamEncryptionStatusEnabling,
+		DeliveryStreamEncryptionStatusEnablingFailed,
+		DeliveryStreamEncryptionStatusDisabled,
+		DeliveryStreamEncryptionStatusDisabling,
+		DeliveryStreamEncryptionStatusDisablingFailed,
+	}
+}
 
 const (
 	// DeliveryStreamFailureTypeRetireKmsGrantFailed is a DeliveryStreamFailureType enum value
@@ -7479,6 +7530,41 @@ const (
 	DeliveryStreamFailureTypeUnknownError = "UNKNOWN_ERROR"
 )
 
+// DeliveryStreamFailureType is an enum
+type DeliveryStreamFailureType struct{}
+
+// Contains returns whether the DeliveryStreamFailureType enum includes the element
+func (enum DeliveryStreamFailureType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeliveryStreamFailureType enum
+func (enum DeliveryStreamFailureType) Values() []string {
+	return []string{
+		DeliveryStreamFailureTypeRetireKmsGrantFailed,
+		DeliveryStreamFailureTypeCreateKmsGrantFailed,
+		DeliveryStreamFailureTypeKmsAccessDenied,
+		DeliveryStreamFailureTypeDisabledKmsKey,
+		DeliveryStreamFailureTypeInvalidKmsKey,
+		DeliveryStreamFailureTypeKmsKeyNotFound,
+		DeliveryStreamFailureTypeKmsOptInRequired,
+		DeliveryStreamFailureTypeCreateEniFailed,
+		DeliveryStreamFailureTypeDeleteEniFailed,
+		DeliveryStreamFailureTypeSubnetNotFound,
+		DeliveryStreamFailureTypeSecurityGroupNotFound,
+		DeliveryStreamFailureTypeEniAccessDenied,
+		DeliveryStreamFailureTypeSubnetAccessDenied,
+		DeliveryStreamFailureTypeSecurityGroupAccessDenied,
+		DeliveryStreamFailureTypeUnknownError,
+	}
+}
+
 const (
 	// DeliveryStreamStatusCreating is a DeliveryStreamStatus enum value
 	DeliveryStreamStatusCreating = "CREATING"
@@ -7496,6 +7582,31 @@ const (
 	DeliveryStreamStatusActive = "ACTIVE"
 )
 
+// DeliveryStreamStatus is an enum
+type DeliveryStreamStatus struct{}
+
+// Contains returns whether the DeliveryStreamStatus enum includes the element
+func (enum DeliveryStreamStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeliveryStreamStatus enum
+func (enum DeliveryStreamStatus) Values() []string {
+	return []string{
+		DeliveryStreamStatusCreating,
+		DeliveryStreamStatusCreatingFailed,
+		DeliveryStreamStatusDeleting,
+		DeliveryStreamStatusDeletingFailed,
+		DeliveryStreamStatusActive,
+	}
+}
+
 const (
 	// DeliveryStreamTypeDirectPut is a DeliveryStreamType enum value
 	DeliveryStreamTypeDirectPut = "DirectPut"
@@ -7503,6 +7614,28 @@ const (
 	// DeliveryStreamTypeKinesisStreamAsSource is a DeliveryStreamType enum value
 	DeliveryStreamTypeKinesisStreamAsSource = "KinesisStreamAsSource"
 )
+
+// DeliveryStreamType is an enum
+type DeliveryStreamType struct{}
+
+// Contains returns whether the DeliveryStreamType enum includes the element
+func (enum DeliveryStreamType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeliveryStreamType enum
+func (enum DeliveryStreamType) Values() []string {
+	return []string{
+		DeliveryStreamTypeDirectPut,
+		DeliveryStreamTypeKinesisStreamAsSource,
+	}
+}
 
 const (
 	// ElasticsearchIndexRotationPeriodNoRotation is a ElasticsearchIndexRotationPeriod enum value
@@ -7521,6 +7654,31 @@ const (
 	ElasticsearchIndexRotationPeriodOneMonth = "OneMonth"
 )
 
+// ElasticsearchIndexRotationPeriod is an enum
+type ElasticsearchIndexRotationPeriod struct{}
+
+// Contains returns whether the ElasticsearchIndexRotationPeriod enum includes the element
+func (enum ElasticsearchIndexRotationPeriod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ElasticsearchIndexRotationPeriod enum
+func (enum ElasticsearchIndexRotationPeriod) Values() []string {
+	return []string{
+		ElasticsearchIndexRotationPeriodNoRotation,
+		ElasticsearchIndexRotationPeriodOneHour,
+		ElasticsearchIndexRotationPeriodOneDay,
+		ElasticsearchIndexRotationPeriodOneWeek,
+		ElasticsearchIndexRotationPeriodOneMonth,
+	}
+}
+
 const (
 	// ElasticsearchS3BackupModeFailedDocumentsOnly is a ElasticsearchS3BackupMode enum value
 	ElasticsearchS3BackupModeFailedDocumentsOnly = "FailedDocumentsOnly"
@@ -7528,6 +7686,28 @@ const (
 	// ElasticsearchS3BackupModeAllDocuments is a ElasticsearchS3BackupMode enum value
 	ElasticsearchS3BackupModeAllDocuments = "AllDocuments"
 )
+
+// ElasticsearchS3BackupMode is an enum
+type ElasticsearchS3BackupMode struct{}
+
+// Contains returns whether the ElasticsearchS3BackupMode enum includes the element
+func (enum ElasticsearchS3BackupMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ElasticsearchS3BackupMode enum
+func (enum ElasticsearchS3BackupMode) Values() []string {
+	return []string{
+		ElasticsearchS3BackupModeFailedDocumentsOnly,
+		ElasticsearchS3BackupModeAllDocuments,
+	}
+}
 
 const (
 	// HECEndpointTypeRaw is a HECEndpointType enum value
@@ -7537,6 +7717,28 @@ const (
 	HECEndpointTypeEvent = "Event"
 )
 
+// HECEndpointType is an enum
+type HECEndpointType struct{}
+
+// Contains returns whether the HECEndpointType enum includes the element
+func (enum HECEndpointType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HECEndpointType enum
+func (enum HECEndpointType) Values() []string {
+	return []string{
+		HECEndpointTypeRaw,
+		HECEndpointTypeEvent,
+	}
+}
+
 const (
 	// KeyTypeAwsOwnedCmk is a KeyType enum value
 	KeyTypeAwsOwnedCmk = "AWS_OWNED_CMK"
@@ -7545,10 +7747,53 @@ const (
 	KeyTypeCustomerManagedCmk = "CUSTOMER_MANAGED_CMK"
 )
 
+// KeyType is an enum
+type KeyType struct{}
+
+// Contains returns whether the KeyType enum includes the element
+func (enum KeyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KeyType enum
+func (enum KeyType) Values() []string {
+	return []string{
+		KeyTypeAwsOwnedCmk,
+		KeyTypeCustomerManagedCmk,
+	}
+}
+
 const (
 	// NoEncryptionConfigNoEncryption is a NoEncryptionConfig enum value
 	NoEncryptionConfigNoEncryption = "NoEncryption"
 )
+
+// NoEncryptionConfig is an enum
+type NoEncryptionConfig struct{}
+
+// Contains returns whether the NoEncryptionConfig enum includes the element
+func (enum NoEncryptionConfig) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NoEncryptionConfig enum
+func (enum NoEncryptionConfig) Values() []string {
+	return []string{
+		NoEncryptionConfigNoEncryption,
+	}
+}
 
 const (
 	// OrcCompressionNone is a OrcCompression enum value
@@ -7561,6 +7806,29 @@ const (
 	OrcCompressionSnappy = "SNAPPY"
 )
 
+// OrcCompression is an enum
+type OrcCompression struct{}
+
+// Contains returns whether the OrcCompression enum includes the element
+func (enum OrcCompression) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrcCompression enum
+func (enum OrcCompression) Values() []string {
+	return []string{
+		OrcCompressionNone,
+		OrcCompressionZlib,
+		OrcCompressionSnappy,
+	}
+}
+
 const (
 	// OrcFormatVersionV011 is a OrcFormatVersion enum value
 	OrcFormatVersionV011 = "V0_11"
@@ -7568,6 +7836,28 @@ const (
 	// OrcFormatVersionV012 is a OrcFormatVersion enum value
 	OrcFormatVersionV012 = "V0_12"
 )
+
+// OrcFormatVersion is an enum
+type OrcFormatVersion struct{}
+
+// Contains returns whether the OrcFormatVersion enum includes the element
+func (enum OrcFormatVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrcFormatVersion enum
+func (enum OrcFormatVersion) Values() []string {
+	return []string{
+		OrcFormatVersionV011,
+		OrcFormatVersionV012,
+	}
+}
 
 const (
 	// ParquetCompressionUncompressed is a ParquetCompression enum value
@@ -7580,6 +7870,29 @@ const (
 	ParquetCompressionSnappy = "SNAPPY"
 )
 
+// ParquetCompression is an enum
+type ParquetCompression struct{}
+
+// Contains returns whether the ParquetCompression enum includes the element
+func (enum ParquetCompression) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ParquetCompression enum
+func (enum ParquetCompression) Values() []string {
+	return []string{
+		ParquetCompressionUncompressed,
+		ParquetCompressionGzip,
+		ParquetCompressionSnappy,
+	}
+}
+
 const (
 	// ParquetWriterVersionV1 is a ParquetWriterVersion enum value
 	ParquetWriterVersionV1 = "V1"
@@ -7587,6 +7900,28 @@ const (
 	// ParquetWriterVersionV2 is a ParquetWriterVersion enum value
 	ParquetWriterVersionV2 = "V2"
 )
+
+// ParquetWriterVersion is an enum
+type ParquetWriterVersion struct{}
+
+// Contains returns whether the ParquetWriterVersion enum includes the element
+func (enum ParquetWriterVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ParquetWriterVersion enum
+func (enum ParquetWriterVersion) Values() []string {
+	return []string{
+		ParquetWriterVersionV1,
+		ParquetWriterVersionV2,
+	}
+}
 
 const (
 	// ProcessorParameterNameLambdaArn is a ProcessorParameterName enum value
@@ -7605,10 +7940,56 @@ const (
 	ProcessorParameterNameBufferIntervalInSeconds = "BufferIntervalInSeconds"
 )
 
+// ProcessorParameterName is an enum
+type ProcessorParameterName struct{}
+
+// Contains returns whether the ProcessorParameterName enum includes the element
+func (enum ProcessorParameterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProcessorParameterName enum
+func (enum ProcessorParameterName) Values() []string {
+	return []string{
+		ProcessorParameterNameLambdaArn,
+		ProcessorParameterNameNumberOfRetries,
+		ProcessorParameterNameRoleArn,
+		ProcessorParameterNameBufferSizeInMbs,
+		ProcessorParameterNameBufferIntervalInSeconds,
+	}
+}
+
 const (
 	// ProcessorTypeLambda is a ProcessorType enum value
 	ProcessorTypeLambda = "Lambda"
 )
+
+// ProcessorType is an enum
+type ProcessorType struct{}
+
+// Contains returns whether the ProcessorType enum includes the element
+func (enum ProcessorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProcessorType enum
+func (enum ProcessorType) Values() []string {
+	return []string{
+		ProcessorTypeLambda,
+	}
+}
 
 const (
 	// RedshiftS3BackupModeDisabled is a RedshiftS3BackupMode enum value
@@ -7618,6 +7999,28 @@ const (
 	RedshiftS3BackupModeEnabled = "Enabled"
 )
 
+// RedshiftS3BackupMode is an enum
+type RedshiftS3BackupMode struct{}
+
+// Contains returns whether the RedshiftS3BackupMode enum includes the element
+func (enum RedshiftS3BackupMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RedshiftS3BackupMode enum
+func (enum RedshiftS3BackupMode) Values() []string {
+	return []string{
+		RedshiftS3BackupModeDisabled,
+		RedshiftS3BackupModeEnabled,
+	}
+}
+
 const (
 	// S3BackupModeDisabled is a S3BackupMode enum value
 	S3BackupModeDisabled = "Disabled"
@@ -7626,6 +8029,28 @@ const (
 	S3BackupModeEnabled = "Enabled"
 )
 
+// S3BackupMode is an enum
+type S3BackupMode struct{}
+
+// Contains returns whether the S3BackupMode enum includes the element
+func (enum S3BackupMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3BackupMode enum
+func (enum S3BackupMode) Values() []string {
+	return []string{
+		S3BackupModeDisabled,
+		S3BackupModeEnabled,
+	}
+}
+
 const (
 	// SplunkS3BackupModeFailedEventsOnly is a SplunkS3BackupMode enum value
 	SplunkS3BackupModeFailedEventsOnly = "FailedEventsOnly"
@@ -7633,3 +8058,25 @@ const (
 	// SplunkS3BackupModeAllEvents is a SplunkS3BackupMode enum value
 	SplunkS3BackupModeAllEvents = "AllEvents"
 )
+
+// SplunkS3BackupMode is an enum
+type SplunkS3BackupMode struct{}
+
+// Contains returns whether the SplunkS3BackupMode enum includes the element
+func (enum SplunkS3BackupMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SplunkS3BackupMode enum
+func (enum SplunkS3BackupMode) Values() []string {
+	return []string{
+		SplunkS3BackupModeFailedEventsOnly,
+		SplunkS3BackupModeAllEvents,
+	}
+}

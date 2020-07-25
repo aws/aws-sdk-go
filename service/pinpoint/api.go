@@ -34960,6 +34960,29 @@ const (
 	ActionUrl = "URL"
 )
 
+// Action is an enum
+type Action struct{}
+
+// Contains returns whether the Action enum includes the element
+func (enum Action) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Action enum
+func (enum Action) Values() []string {
+	return []string{
+		ActionOpenApp,
+		ActionDeepLink,
+		ActionUrl,
+	}
+}
+
 const (
 	// AttributeTypeInclusive is a AttributeType enum value
 	AttributeTypeInclusive = "INCLUSIVE"
@@ -34967,6 +34990,28 @@ const (
 	// AttributeTypeExclusive is a AttributeType enum value
 	AttributeTypeExclusive = "EXCLUSIVE"
 )
+
+// AttributeType is an enum
+type AttributeType struct{}
+
+// Contains returns whether the AttributeType enum includes the element
+func (enum AttributeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AttributeType enum
+func (enum AttributeType) Values() []string {
+	return []string{
+		AttributeTypeInclusive,
+		AttributeTypeExclusive,
+	}
+}
 
 const (
 	// CampaignStatusScheduled is a CampaignStatus enum value
@@ -34987,6 +35032,32 @@ const (
 	// CampaignStatusDeleted is a CampaignStatus enum value
 	CampaignStatusDeleted = "DELETED"
 )
+
+// CampaignStatus is an enum
+type CampaignStatus struct{}
+
+// Contains returns whether the CampaignStatus enum includes the element
+func (enum CampaignStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CampaignStatus enum
+func (enum CampaignStatus) Values() []string {
+	return []string{
+		CampaignStatusScheduled,
+		CampaignStatusExecuting,
+		CampaignStatusPendingNextRun,
+		CampaignStatusCompleted,
+		CampaignStatusPaused,
+		CampaignStatusDeleted,
+	}
+}
 
 const (
 	// ChannelTypePush is a ChannelType enum value
@@ -35026,6 +35097,38 @@ const (
 	ChannelTypeCustom = "CUSTOM"
 )
 
+// ChannelType is an enum
+type ChannelType struct{}
+
+// Contains returns whether the ChannelType enum includes the element
+func (enum ChannelType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChannelType enum
+func (enum ChannelType) Values() []string {
+	return []string{
+		ChannelTypePush,
+		ChannelTypeGcm,
+		ChannelTypeApns,
+		ChannelTypeApnsSandbox,
+		ChannelTypeApnsVoip,
+		ChannelTypeApnsVoipSandbox,
+		ChannelTypeAdm,
+		ChannelTypeSms,
+		ChannelTypeVoice,
+		ChannelTypeEmail,
+		ChannelTypeBaidu,
+		ChannelTypeCustom,
+	}
+}
+
 const (
 	// DeliveryStatusSuccessful is a DeliveryStatus enum value
 	DeliveryStatusSuccessful = "SUCCESSFUL"
@@ -35049,6 +35152,33 @@ const (
 	DeliveryStatusDuplicate = "DUPLICATE"
 )
 
+// DeliveryStatus is an enum
+type DeliveryStatus struct{}
+
+// Contains returns whether the DeliveryStatus enum includes the element
+func (enum DeliveryStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeliveryStatus enum
+func (enum DeliveryStatus) Values() []string {
+	return []string{
+		DeliveryStatusSuccessful,
+		DeliveryStatusThrottled,
+		DeliveryStatusTemporaryFailure,
+		DeliveryStatusPermanentFailure,
+		DeliveryStatusUnknownFailure,
+		DeliveryStatusOptOut,
+		DeliveryStatusDuplicate,
+	}
+}
+
 const (
 	// DimensionTypeInclusive is a DimensionType enum value
 	DimensionTypeInclusive = "INCLUSIVE"
@@ -35056,6 +35186,28 @@ const (
 	// DimensionTypeExclusive is a DimensionType enum value
 	DimensionTypeExclusive = "EXCLUSIVE"
 )
+
+// DimensionType is an enum
+type DimensionType struct{}
+
+// Contains returns whether the DimensionType enum includes the element
+func (enum DimensionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DimensionType enum
+func (enum DimensionType) Values() []string {
+	return []string{
+		DimensionTypeInclusive,
+		DimensionTypeExclusive,
+	}
+}
 
 const (
 	// DurationHr24 is a Duration enum value
@@ -35070,6 +35222,30 @@ const (
 	// DurationDay30 is a Duration enum value
 	DurationDay30 = "DAY_30"
 )
+
+// Duration is an enum
+type Duration struct{}
+
+// Contains returns whether the Duration enum includes the element
+func (enum Duration) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Duration enum
+func (enum Duration) Values() []string {
+	return []string{
+		DurationHr24,
+		DurationDay7,
+		DurationDay14,
+		DurationDay30,
+	}
+}
 
 const (
 	// EndpointTypesElementPush is a EndpointTypesElement enum value
@@ -35109,6 +35285,38 @@ const (
 	EndpointTypesElementCustom = "CUSTOM"
 )
 
+// EndpointTypesElement is an enum
+type EndpointTypesElement struct{}
+
+// Contains returns whether the EndpointTypesElement enum includes the element
+func (enum EndpointTypesElement) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EndpointTypesElement enum
+func (enum EndpointTypesElement) Values() []string {
+	return []string{
+		EndpointTypesElementPush,
+		EndpointTypesElementGcm,
+		EndpointTypesElementApns,
+		EndpointTypesElementApnsSandbox,
+		EndpointTypesElementApnsVoip,
+		EndpointTypesElementApnsVoipSandbox,
+		EndpointTypesElementAdm,
+		EndpointTypesElementSms,
+		EndpointTypesElementVoice,
+		EndpointTypesElementEmail,
+		EndpointTypesElementBaidu,
+		EndpointTypesElementCustom,
+	}
+}
+
 const (
 	// FilterTypeSystem is a FilterType enum value
 	FilterTypeSystem = "SYSTEM"
@@ -35117,6 +35325,28 @@ const (
 	FilterTypeEndpoint = "ENDPOINT"
 )
 
+// FilterType is an enum
+type FilterType struct{}
+
+// Contains returns whether the FilterType enum includes the element
+func (enum FilterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterType enum
+func (enum FilterType) Values() []string {
+	return []string{
+		FilterTypeSystem,
+		FilterTypeEndpoint,
+	}
+}
+
 const (
 	// FormatCsv is a Format enum value
 	FormatCsv = "CSV"
@@ -35124,6 +35354,28 @@ const (
 	// FormatJson is a Format enum value
 	FormatJson = "JSON"
 )
+
+// Format is an enum
+type Format struct{}
+
+// Contains returns whether the Format enum includes the element
+func (enum Format) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Format enum
+func (enum Format) Values() []string {
+	return []string{
+		FormatCsv,
+		FormatJson,
+	}
+}
 
 const (
 	// FrequencyOnce is a Frequency enum value
@@ -35145,6 +35397,32 @@ const (
 	FrequencyEvent = "EVENT"
 )
 
+// Frequency is an enum
+type Frequency struct{}
+
+// Contains returns whether the Frequency enum includes the element
+func (enum Frequency) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Frequency enum
+func (enum Frequency) Values() []string {
+	return []string{
+		FrequencyOnce,
+		FrequencyHourly,
+		FrequencyDaily,
+		FrequencyWeekly,
+		FrequencyMonthly,
+		FrequencyEvent,
+	}
+}
+
 const (
 	// IncludeAll is a Include enum value
 	IncludeAll = "ALL"
@@ -35155,6 +35433,29 @@ const (
 	// IncludeNone is a Include enum value
 	IncludeNone = "NONE"
 )
+
+// Include is an enum
+type Include struct{}
+
+// Contains returns whether the Include enum includes the element
+func (enum Include) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Include enum
+func (enum Include) Values() []string {
+	return []string{
+		IncludeAll,
+		IncludeAny,
+		IncludeNone,
+	}
+}
 
 const (
 	// JobStatusCreated is a JobStatus enum value
@@ -35185,6 +35486,35 @@ const (
 	JobStatusFailed = "FAILED"
 )
 
+// JobStatus is an enum
+type JobStatus struct{}
+
+// Contains returns whether the JobStatus enum includes the element
+func (enum JobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatus enum
+func (enum JobStatus) Values() []string {
+	return []string{
+		JobStatusCreated,
+		JobStatusPreparingForInitialization,
+		JobStatusInitializing,
+		JobStatusProcessing,
+		JobStatusPendingJob,
+		JobStatusCompleting,
+		JobStatusCompleted,
+		JobStatusFailing,
+		JobStatusFailed,
+	}
+}
+
 const (
 	// MessageTypeTransactional is a MessageType enum value
 	MessageTypeTransactional = "TRANSACTIONAL"
@@ -35192,6 +35522,28 @@ const (
 	// MessageTypePromotional is a MessageType enum value
 	MessageTypePromotional = "PROMOTIONAL"
 )
+
+// MessageType is an enum
+type MessageType struct{}
+
+// Contains returns whether the MessageType enum includes the element
+func (enum MessageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MessageType enum
+func (enum MessageType) Values() []string {
+	return []string{
+		MessageTypeTransactional,
+		MessageTypePromotional,
+	}
+}
 
 const (
 	// ModeDelivery is a Mode enum value
@@ -35201,6 +35553,28 @@ const (
 	ModeFilter = "FILTER"
 )
 
+// Mode is an enum
+type Mode struct{}
+
+// Contains returns whether the Mode enum includes the element
+func (enum Mode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Mode enum
+func (enum Mode) Values() []string {
+	return []string{
+		ModeDelivery,
+		ModeFilter,
+	}
+}
+
 const (
 	// OperatorAll is a Operator enum value
 	OperatorAll = "ALL"
@@ -35208,6 +35582,28 @@ const (
 	// OperatorAny is a Operator enum value
 	OperatorAny = "ANY"
 )
+
+// Operator is an enum
+type Operator struct{}
+
+// Contains returns whether the Operator enum includes the element
+func (enum Operator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Operator enum
+func (enum Operator) Values() []string {
+	return []string{
+		OperatorAll,
+		OperatorAny,
+	}
+}
 
 const (
 	// RecencyTypeActive is a RecencyType enum value
@@ -35217,6 +35613,28 @@ const (
 	RecencyTypeInactive = "INACTIVE"
 )
 
+// RecencyType is an enum
+type RecencyType struct{}
+
+// Contains returns whether the RecencyType enum includes the element
+func (enum RecencyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecencyType enum
+func (enum RecencyType) Values() []string {
+	return []string{
+		RecencyTypeActive,
+		RecencyTypeInactive,
+	}
+}
+
 const (
 	// SegmentTypeDimensional is a SegmentType enum value
 	SegmentTypeDimensional = "DIMENSIONAL"
@@ -35224,6 +35642,28 @@ const (
 	// SegmentTypeImport is a SegmentType enum value
 	SegmentTypeImport = "IMPORT"
 )
+
+// SegmentType is an enum
+type SegmentType struct{}
+
+// Contains returns whether the SegmentType enum includes the element
+func (enum SegmentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SegmentType enum
+func (enum SegmentType) Values() []string {
+	return []string{
+		SegmentTypeDimensional,
+		SegmentTypeImport,
+	}
+}
 
 const (
 	// SourceTypeAll is a SourceType enum value
@@ -35235,6 +35675,29 @@ const (
 	// SourceTypeNone is a SourceType enum value
 	SourceTypeNone = "NONE"
 )
+
+// SourceType is an enum
+type SourceType struct{}
+
+// Contains returns whether the SourceType enum includes the element
+func (enum SourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceType enum
+func (enum SourceType) Values() []string {
+	return []string{
+		SourceTypeAll,
+		SourceTypeAny,
+		SourceTypeNone,
+	}
+}
 
 const (
 	// StateDraft is a State enum value
@@ -35253,6 +35716,31 @@ const (
 	StateClosed = "CLOSED"
 )
 
+// State is an enum
+type State struct{}
+
+// Contains returns whether the State enum includes the element
+func (enum State) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the State enum
+func (enum State) Values() []string {
+	return []string{
+		StateDraft,
+		StateActive,
+		StateCompleted,
+		StateCancelled,
+		StateClosed,
+	}
+}
+
 const (
 	// TemplateTypeEmail is a TemplateType enum value
 	TemplateTypeEmail = "EMAIL"
@@ -35267,6 +35755,30 @@ const (
 	TemplateTypePush = "PUSH"
 )
 
+// TemplateType is an enum
+type TemplateType struct{}
+
+// Contains returns whether the TemplateType enum includes the element
+func (enum TemplateType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TemplateType enum
+func (enum TemplateType) Values() []string {
+	return []string{
+		TemplateTypeEmail,
+		TemplateTypeSms,
+		TemplateTypeVoice,
+		TemplateTypePush,
+	}
+}
+
 const (
 	// TypeAll is a Type enum value
 	TypeAll = "ALL"
@@ -35277,3 +35789,26 @@ const (
 	// TypeNone is a Type enum value
 	TypeNone = "NONE"
 )
+
+// Type is an enum
+type Type struct{}
+
+// Contains returns whether the Type enum includes the element
+func (enum Type) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Type enum
+func (enum Type) Values() []string {
+	return []string{
+		TypeAll,
+		TypeAny,
+		TypeNone,
+	}
+}

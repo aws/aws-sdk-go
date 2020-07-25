@@ -1624,6 +1624,28 @@ const (
 	KeyTypeRange = "RANGE"
 )
 
+// KeyType is an enum
+type KeyType struct{}
+
+// Contains returns whether the KeyType enum includes the element
+func (enum KeyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KeyType enum
+func (enum KeyType) Values() []string {
+	return []string{
+		KeyTypeHash,
+		KeyTypeRange,
+	}
+}
+
 const (
 	// OperationTypeInsert is a OperationType enum value
 	OperationTypeInsert = "INSERT"
@@ -1634,6 +1656,29 @@ const (
 	// OperationTypeRemove is a OperationType enum value
 	OperationTypeRemove = "REMOVE"
 )
+
+// OperationType is an enum
+type OperationType struct{}
+
+// Contains returns whether the OperationType enum includes the element
+func (enum OperationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperationType enum
+func (enum OperationType) Values() []string {
+	return []string{
+		OperationTypeInsert,
+		OperationTypeModify,
+		OperationTypeRemove,
+	}
+}
 
 const (
 	// ShardIteratorTypeTrimHorizon is a ShardIteratorType enum value
@@ -1649,6 +1694,30 @@ const (
 	ShardIteratorTypeAfterSequenceNumber = "AFTER_SEQUENCE_NUMBER"
 )
 
+// ShardIteratorType is an enum
+type ShardIteratorType struct{}
+
+// Contains returns whether the ShardIteratorType enum includes the element
+func (enum ShardIteratorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ShardIteratorType enum
+func (enum ShardIteratorType) Values() []string {
+	return []string{
+		ShardIteratorTypeTrimHorizon,
+		ShardIteratorTypeLatest,
+		ShardIteratorTypeAtSequenceNumber,
+		ShardIteratorTypeAfterSequenceNumber,
+	}
+}
+
 const (
 	// StreamStatusEnabling is a StreamStatus enum value
 	StreamStatusEnabling = "ENABLING"
@@ -1663,6 +1732,30 @@ const (
 	StreamStatusDisabled = "DISABLED"
 )
 
+// StreamStatus is an enum
+type StreamStatus struct{}
+
+// Contains returns whether the StreamStatus enum includes the element
+func (enum StreamStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamStatus enum
+func (enum StreamStatus) Values() []string {
+	return []string{
+		StreamStatusEnabling,
+		StreamStatusEnabled,
+		StreamStatusDisabling,
+		StreamStatusDisabled,
+	}
+}
+
 const (
 	// StreamViewTypeNewImage is a StreamViewType enum value
 	StreamViewTypeNewImage = "NEW_IMAGE"
@@ -1676,3 +1769,27 @@ const (
 	// StreamViewTypeKeysOnly is a StreamViewType enum value
 	StreamViewTypeKeysOnly = "KEYS_ONLY"
 )
+
+// StreamViewType is an enum
+type StreamViewType struct{}
+
+// Contains returns whether the StreamViewType enum includes the element
+func (enum StreamViewType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamViewType enum
+func (enum StreamViewType) Values() []string {
+	return []string{
+		StreamViewTypeNewImage,
+		StreamViewTypeOldImage,
+		StreamViewTypeNewAndOldImages,
+		StreamViewTypeKeysOnly,
+	}
+}

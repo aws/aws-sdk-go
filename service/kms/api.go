@@ -14540,6 +14540,29 @@ const (
 	AlgorithmSpecRsaesOaepSha256 = "RSAES_OAEP_SHA_256"
 )
 
+// AlgorithmSpec is an enum
+type AlgorithmSpec struct{}
+
+// Contains returns whether the AlgorithmSpec enum includes the element
+func (enum AlgorithmSpec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AlgorithmSpec enum
+func (enum AlgorithmSpec) Values() []string {
+	return []string{
+		AlgorithmSpecRsaesPkcs1V15,
+		AlgorithmSpecRsaesOaepSha1,
+		AlgorithmSpecRsaesOaepSha256,
+	}
+}
+
 const (
 	// ConnectionErrorCodeTypeInvalidCredentials is a ConnectionErrorCodeType enum value
 	ConnectionErrorCodeTypeInvalidCredentials = "INVALID_CREDENTIALS"
@@ -14569,6 +14592,35 @@ const (
 	ConnectionErrorCodeTypeSubnetNotFound = "SUBNET_NOT_FOUND"
 )
 
+// ConnectionErrorCodeType is an enum
+type ConnectionErrorCodeType struct{}
+
+// Contains returns whether the ConnectionErrorCodeType enum includes the element
+func (enum ConnectionErrorCodeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionErrorCodeType enum
+func (enum ConnectionErrorCodeType) Values() []string {
+	return []string{
+		ConnectionErrorCodeTypeInvalidCredentials,
+		ConnectionErrorCodeTypeClusterNotFound,
+		ConnectionErrorCodeTypeNetworkErrors,
+		ConnectionErrorCodeTypeInternalError,
+		ConnectionErrorCodeTypeInsufficientCloudhsmHsms,
+		ConnectionErrorCodeTypeUserLockedOut,
+		ConnectionErrorCodeTypeUserNotFound,
+		ConnectionErrorCodeTypeUserLoggedIn,
+		ConnectionErrorCodeTypeSubnetNotFound,
+	}
+}
+
 const (
 	// ConnectionStateTypeConnected is a ConnectionStateType enum value
 	ConnectionStateTypeConnected = "CONNECTED"
@@ -14585,6 +14637,31 @@ const (
 	// ConnectionStateTypeDisconnecting is a ConnectionStateType enum value
 	ConnectionStateTypeDisconnecting = "DISCONNECTING"
 )
+
+// ConnectionStateType is an enum
+type ConnectionStateType struct{}
+
+// Contains returns whether the ConnectionStateType enum includes the element
+func (enum ConnectionStateType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionStateType enum
+func (enum ConnectionStateType) Values() []string {
+	return []string{
+		ConnectionStateTypeConnected,
+		ConnectionStateTypeConnecting,
+		ConnectionStateTypeFailed,
+		ConnectionStateTypeDisconnected,
+		ConnectionStateTypeDisconnecting,
+	}
+}
 
 const (
 	// CustomerMasterKeySpecRsa2048 is a CustomerMasterKeySpec enum value
@@ -14612,6 +14689,34 @@ const (
 	CustomerMasterKeySpecSymmetricDefault = "SYMMETRIC_DEFAULT"
 )
 
+// CustomerMasterKeySpec is an enum
+type CustomerMasterKeySpec struct{}
+
+// Contains returns whether the CustomerMasterKeySpec enum includes the element
+func (enum CustomerMasterKeySpec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CustomerMasterKeySpec enum
+func (enum CustomerMasterKeySpec) Values() []string {
+	return []string{
+		CustomerMasterKeySpecRsa2048,
+		CustomerMasterKeySpecRsa3072,
+		CustomerMasterKeySpecRsa4096,
+		CustomerMasterKeySpecEccNistP256,
+		CustomerMasterKeySpecEccNistP384,
+		CustomerMasterKeySpecEccNistP521,
+		CustomerMasterKeySpecEccSecgP256k1,
+		CustomerMasterKeySpecSymmetricDefault,
+	}
+}
+
 const (
 	// DataKeyPairSpecRsa2048 is a DataKeyPairSpec enum value
 	DataKeyPairSpecRsa2048 = "RSA_2048"
@@ -14635,6 +14740,33 @@ const (
 	DataKeyPairSpecEccSecgP256k1 = "ECC_SECG_P256K1"
 )
 
+// DataKeyPairSpec is an enum
+type DataKeyPairSpec struct{}
+
+// Contains returns whether the DataKeyPairSpec enum includes the element
+func (enum DataKeyPairSpec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataKeyPairSpec enum
+func (enum DataKeyPairSpec) Values() []string {
+	return []string{
+		DataKeyPairSpecRsa2048,
+		DataKeyPairSpecRsa3072,
+		DataKeyPairSpecRsa4096,
+		DataKeyPairSpecEccNistP256,
+		DataKeyPairSpecEccNistP384,
+		DataKeyPairSpecEccNistP521,
+		DataKeyPairSpecEccSecgP256k1,
+	}
+}
+
 const (
 	// DataKeySpecAes256 is a DataKeySpec enum value
 	DataKeySpecAes256 = "AES_256"
@@ -14642,6 +14774,28 @@ const (
 	// DataKeySpecAes128 is a DataKeySpec enum value
 	DataKeySpecAes128 = "AES_128"
 )
+
+// DataKeySpec is an enum
+type DataKeySpec struct{}
+
+// Contains returns whether the DataKeySpec enum includes the element
+func (enum DataKeySpec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataKeySpec enum
+func (enum DataKeySpec) Values() []string {
+	return []string{
+		DataKeySpecAes256,
+		DataKeySpecAes128,
+	}
+}
 
 const (
 	// EncryptionAlgorithmSpecSymmetricDefault is a EncryptionAlgorithmSpec enum value
@@ -14654,6 +14808,29 @@ const (
 	EncryptionAlgorithmSpecRsaesOaepSha256 = "RSAES_OAEP_SHA_256"
 )
 
+// EncryptionAlgorithmSpec is an enum
+type EncryptionAlgorithmSpec struct{}
+
+// Contains returns whether the EncryptionAlgorithmSpec enum includes the element
+func (enum EncryptionAlgorithmSpec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionAlgorithmSpec enum
+func (enum EncryptionAlgorithmSpec) Values() []string {
+	return []string{
+		EncryptionAlgorithmSpecSymmetricDefault,
+		EncryptionAlgorithmSpecRsaesOaepSha1,
+		EncryptionAlgorithmSpecRsaesOaepSha256,
+	}
+}
+
 const (
 	// ExpirationModelTypeKeyMaterialExpires is a ExpirationModelType enum value
 	ExpirationModelTypeKeyMaterialExpires = "KEY_MATERIAL_EXPIRES"
@@ -14661,6 +14838,28 @@ const (
 	// ExpirationModelTypeKeyMaterialDoesNotExpire is a ExpirationModelType enum value
 	ExpirationModelTypeKeyMaterialDoesNotExpire = "KEY_MATERIAL_DOES_NOT_EXPIRE"
 )
+
+// ExpirationModelType is an enum
+type ExpirationModelType struct{}
+
+// Contains returns whether the ExpirationModelType enum includes the element
+func (enum ExpirationModelType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExpirationModelType enum
+func (enum ExpirationModelType) Values() []string {
+	return []string{
+		ExpirationModelTypeKeyMaterialExpires,
+		ExpirationModelTypeKeyMaterialDoesNotExpire,
+	}
+}
 
 const (
 	// GrantOperationDecrypt is a GrantOperation enum value
@@ -14706,6 +14905,40 @@ const (
 	GrantOperationGenerateDataKeyPairWithoutPlaintext = "GenerateDataKeyPairWithoutPlaintext"
 )
 
+// GrantOperation is an enum
+type GrantOperation struct{}
+
+// Contains returns whether the GrantOperation enum includes the element
+func (enum GrantOperation) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GrantOperation enum
+func (enum GrantOperation) Values() []string {
+	return []string{
+		GrantOperationDecrypt,
+		GrantOperationEncrypt,
+		GrantOperationGenerateDataKey,
+		GrantOperationGenerateDataKeyWithoutPlaintext,
+		GrantOperationReEncryptFrom,
+		GrantOperationReEncryptTo,
+		GrantOperationSign,
+		GrantOperationVerify,
+		GrantOperationGetPublicKey,
+		GrantOperationCreateGrant,
+		GrantOperationRetireGrant,
+		GrantOperationDescribeKey,
+		GrantOperationGenerateDataKeyPair,
+		GrantOperationGenerateDataKeyPairWithoutPlaintext,
+	}
+}
+
 const (
 	// KeyManagerTypeAws is a KeyManagerType enum value
 	KeyManagerTypeAws = "AWS"
@@ -14713,6 +14946,28 @@ const (
 	// KeyManagerTypeCustomer is a KeyManagerType enum value
 	KeyManagerTypeCustomer = "CUSTOMER"
 )
+
+// KeyManagerType is an enum
+type KeyManagerType struct{}
+
+// Contains returns whether the KeyManagerType enum includes the element
+func (enum KeyManagerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KeyManagerType enum
+func (enum KeyManagerType) Values() []string {
+	return []string{
+		KeyManagerTypeAws,
+		KeyManagerTypeCustomer,
+	}
+}
 
 const (
 	// KeyStateEnabled is a KeyState enum value
@@ -14731,6 +14986,31 @@ const (
 	KeyStateUnavailable = "Unavailable"
 )
 
+// KeyState is an enum
+type KeyState struct{}
+
+// Contains returns whether the KeyState enum includes the element
+func (enum KeyState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KeyState enum
+func (enum KeyState) Values() []string {
+	return []string{
+		KeyStateEnabled,
+		KeyStateDisabled,
+		KeyStatePendingDeletion,
+		KeyStatePendingImport,
+		KeyStateUnavailable,
+	}
+}
+
 const (
 	// KeyUsageTypeSignVerify is a KeyUsageType enum value
 	KeyUsageTypeSignVerify = "SIGN_VERIFY"
@@ -14739,6 +15019,28 @@ const (
 	KeyUsageTypeEncryptDecrypt = "ENCRYPT_DECRYPT"
 )
 
+// KeyUsageType is an enum
+type KeyUsageType struct{}
+
+// Contains returns whether the KeyUsageType enum includes the element
+func (enum KeyUsageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KeyUsageType enum
+func (enum KeyUsageType) Values() []string {
+	return []string{
+		KeyUsageTypeSignVerify,
+		KeyUsageTypeEncryptDecrypt,
+	}
+}
+
 const (
 	// MessageTypeRaw is a MessageType enum value
 	MessageTypeRaw = "RAW"
@@ -14746,6 +15048,28 @@ const (
 	// MessageTypeDigest is a MessageType enum value
 	MessageTypeDigest = "DIGEST"
 )
+
+// MessageType is an enum
+type MessageType struct{}
+
+// Contains returns whether the MessageType enum includes the element
+func (enum MessageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MessageType enum
+func (enum MessageType) Values() []string {
+	return []string{
+		MessageTypeRaw,
+		MessageTypeDigest,
+	}
+}
 
 const (
 	// OriginTypeAwsKms is a OriginType enum value
@@ -14757,6 +15081,29 @@ const (
 	// OriginTypeAwsCloudhsm is a OriginType enum value
 	OriginTypeAwsCloudhsm = "AWS_CLOUDHSM"
 )
+
+// OriginType is an enum
+type OriginType struct{}
+
+// Contains returns whether the OriginType enum includes the element
+func (enum OriginType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OriginType enum
+func (enum OriginType) Values() []string {
+	return []string{
+		OriginTypeAwsKms,
+		OriginTypeExternal,
+		OriginTypeAwsCloudhsm,
+	}
+}
 
 const (
 	// SigningAlgorithmSpecRsassaPssSha256 is a SigningAlgorithmSpec enum value
@@ -14787,7 +15134,57 @@ const (
 	SigningAlgorithmSpecEcdsaSha512 = "ECDSA_SHA_512"
 )
 
+// SigningAlgorithmSpec is an enum
+type SigningAlgorithmSpec struct{}
+
+// Contains returns whether the SigningAlgorithmSpec enum includes the element
+func (enum SigningAlgorithmSpec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SigningAlgorithmSpec enum
+func (enum SigningAlgorithmSpec) Values() []string {
+	return []string{
+		SigningAlgorithmSpecRsassaPssSha256,
+		SigningAlgorithmSpecRsassaPssSha384,
+		SigningAlgorithmSpecRsassaPssSha512,
+		SigningAlgorithmSpecRsassaPkcs1V15Sha256,
+		SigningAlgorithmSpecRsassaPkcs1V15Sha384,
+		SigningAlgorithmSpecRsassaPkcs1V15Sha512,
+		SigningAlgorithmSpecEcdsaSha256,
+		SigningAlgorithmSpecEcdsaSha384,
+		SigningAlgorithmSpecEcdsaSha512,
+	}
+}
+
 const (
 	// WrappingKeySpecRsa2048 is a WrappingKeySpec enum value
 	WrappingKeySpecRsa2048 = "RSA_2048"
 )
+
+// WrappingKeySpec is an enum
+type WrappingKeySpec struct{}
+
+// Contains returns whether the WrappingKeySpec enum includes the element
+func (enum WrappingKeySpec) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WrappingKeySpec enum
+func (enum WrappingKeySpec) Values() []string {
+	return []string{
+		WrappingKeySpecRsa2048,
+	}
+}

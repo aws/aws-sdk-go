@@ -8939,6 +8939,28 @@ const (
 	AccountScopeLinked = "LINKED"
 )
 
+// AccountScope is an enum
+type AccountScope struct{}
+
+// Contains returns whether the AccountScope enum includes the element
+func (enum AccountScope) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccountScope enum
+func (enum AccountScope) Values() []string {
+	return []string{
+		AccountScopePayer,
+		AccountScopeLinked,
+	}
+}
+
 const (
 	// ContextCostAndUsage is a Context enum value
 	ContextCostAndUsage = "COST_AND_USAGE"
@@ -8950,11 +8972,55 @@ const (
 	ContextSavingsPlans = "SAVINGS_PLANS"
 )
 
+// Context is an enum
+type Context struct{}
+
+// Contains returns whether the Context enum includes the element
+func (enum Context) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Context enum
+func (enum Context) Values() []string {
+	return []string{
+		ContextCostAndUsage,
+		ContextReservations,
+		ContextSavingsPlans,
+	}
+}
+
 // The rule schema version in this particular Cost Category.
 const (
 	// CostCategoryRuleVersionCostCategoryExpressionV1 is a CostCategoryRuleVersion enum value
 	CostCategoryRuleVersionCostCategoryExpressionV1 = "CostCategoryExpression.v1"
 )
+
+// CostCategoryRuleVersion is an enum
+type CostCategoryRuleVersion struct{}
+
+// Contains returns whether the CostCategoryRuleVersion enum includes the element
+func (enum CostCategoryRuleVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CostCategoryRuleVersion enum
+func (enum CostCategoryRuleVersion) Values() []string {
+	return []string{
+		CostCategoryRuleVersionCostCategoryExpressionV1,
+	}
+}
 
 const (
 	// DimensionAz is a Dimension enum value
@@ -9045,6 +9111,55 @@ const (
 	DimensionPaymentOption = "PAYMENT_OPTION"
 )
 
+// Dimension is an enum
+type Dimension struct{}
+
+// Contains returns whether the Dimension enum includes the element
+func (enum Dimension) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Dimension enum
+func (enum Dimension) Values() []string {
+	return []string{
+		DimensionAz,
+		DimensionInstanceType,
+		DimensionLinkedAccount,
+		DimensionLinkedAccountName,
+		DimensionOperation,
+		DimensionPurchaseType,
+		DimensionRegion,
+		DimensionService,
+		DimensionServiceCode,
+		DimensionUsageType,
+		DimensionUsageTypeGroup,
+		DimensionRecordType,
+		DimensionOperatingSystem,
+		DimensionTenancy,
+		DimensionScope,
+		DimensionPlatform,
+		DimensionSubscriptionId,
+		DimensionLegalEntityName,
+		DimensionDeploymentOption,
+		DimensionDatabaseEngine,
+		DimensionCacheEngine,
+		DimensionInstanceTypeFamily,
+		DimensionBillingEntity,
+		DimensionReservationId,
+		DimensionResourceId,
+		DimensionRightsizingType,
+		DimensionSavingsPlansType,
+		DimensionSavingsPlanArn,
+		DimensionPaymentOption,
+	}
+}
+
 const (
 	// GranularityDaily is a Granularity enum value
 	GranularityDaily = "DAILY"
@@ -9055,6 +9170,29 @@ const (
 	// GranularityHourly is a Granularity enum value
 	GranularityHourly = "HOURLY"
 )
+
+// Granularity is an enum
+type Granularity struct{}
+
+// Contains returns whether the Granularity enum includes the element
+func (enum Granularity) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Granularity enum
+func (enum Granularity) Values() []string {
+	return []string{
+		GranularityDaily,
+		GranularityMonthly,
+		GranularityHourly,
+	}
+}
 
 const (
 	// GroupDefinitionTypeDimension is a GroupDefinitionType enum value
@@ -9067,6 +9205,29 @@ const (
 	GroupDefinitionTypeCostCategory = "COST_CATEGORY"
 )
 
+// GroupDefinitionType is an enum
+type GroupDefinitionType struct{}
+
+// Contains returns whether the GroupDefinitionType enum includes the element
+func (enum GroupDefinitionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GroupDefinitionType enum
+func (enum GroupDefinitionType) Values() []string {
+	return []string{
+		GroupDefinitionTypeDimension,
+		GroupDefinitionTypeTag,
+		GroupDefinitionTypeCostCategory,
+	}
+}
+
 const (
 	// LookbackPeriodInDaysSevenDays is a LookbackPeriodInDays enum value
 	LookbackPeriodInDaysSevenDays = "SEVEN_DAYS"
@@ -9077,6 +9238,29 @@ const (
 	// LookbackPeriodInDaysSixtyDays is a LookbackPeriodInDays enum value
 	LookbackPeriodInDaysSixtyDays = "SIXTY_DAYS"
 )
+
+// LookbackPeriodInDays is an enum
+type LookbackPeriodInDays struct{}
+
+// Contains returns whether the LookbackPeriodInDays enum includes the element
+func (enum LookbackPeriodInDays) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LookbackPeriodInDays enum
+func (enum LookbackPeriodInDays) Values() []string {
+	return []string{
+		LookbackPeriodInDaysSevenDays,
+		LookbackPeriodInDaysThirtyDays,
+		LookbackPeriodInDaysSixtyDays,
+	}
+}
 
 const (
 	// MatchOptionEquals is a MatchOption enum value
@@ -9097,6 +9281,32 @@ const (
 	// MatchOptionCaseInsensitive is a MatchOption enum value
 	MatchOptionCaseInsensitive = "CASE_INSENSITIVE"
 )
+
+// MatchOption is an enum
+type MatchOption struct{}
+
+// Contains returns whether the MatchOption enum includes the element
+func (enum MatchOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MatchOption enum
+func (enum MatchOption) Values() []string {
+	return []string{
+		MatchOptionEquals,
+		MatchOptionStartsWith,
+		MatchOptionEndsWith,
+		MatchOptionContains,
+		MatchOptionCaseSensitive,
+		MatchOptionCaseInsensitive,
+	}
+}
 
 const (
 	// MetricBlendedCost is a Metric enum value
@@ -9121,6 +9331,33 @@ const (
 	MetricNormalizedUsageAmount = "NORMALIZED_USAGE_AMOUNT"
 )
 
+// Metric is an enum
+type Metric struct{}
+
+// Contains returns whether the Metric enum includes the element
+func (enum Metric) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Metric enum
+func (enum Metric) Values() []string {
+	return []string{
+		MetricBlendedCost,
+		MetricUnblendedCost,
+		MetricAmortizedCost,
+		MetricNetUnblendedCost,
+		MetricNetAmortizedCost,
+		MetricUsageQuantity,
+		MetricNormalizedUsageAmount,
+	}
+}
+
 const (
 	// OfferingClassStandard is a OfferingClass enum value
 	OfferingClassStandard = "STANDARD"
@@ -9128,6 +9365,28 @@ const (
 	// OfferingClassConvertible is a OfferingClass enum value
 	OfferingClassConvertible = "CONVERTIBLE"
 )
+
+// OfferingClass is an enum
+type OfferingClass struct{}
+
+// Contains returns whether the OfferingClass enum includes the element
+func (enum OfferingClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OfferingClass enum
+func (enum OfferingClass) Values() []string {
+	return []string{
+		OfferingClassStandard,
+		OfferingClassConvertible,
+	}
+}
 
 const (
 	// PaymentOptionNoUpfront is a PaymentOption enum value
@@ -9149,6 +9408,32 @@ const (
 	PaymentOptionHeavyUtilization = "HEAVY_UTILIZATION"
 )
 
+// PaymentOption is an enum
+type PaymentOption struct{}
+
+// Contains returns whether the PaymentOption enum includes the element
+func (enum PaymentOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PaymentOption enum
+func (enum PaymentOption) Values() []string {
+	return []string{
+		PaymentOptionNoUpfront,
+		PaymentOptionPartialUpfront,
+		PaymentOptionAllUpfront,
+		PaymentOptionLightUtilization,
+		PaymentOptionMediumUtilization,
+		PaymentOptionHeavyUtilization,
+	}
+}
+
 const (
 	// RecommendationTargetSameInstanceFamily is a RecommendationTarget enum value
 	RecommendationTargetSameInstanceFamily = "SAME_INSTANCE_FAMILY"
@@ -9156,6 +9441,28 @@ const (
 	// RecommendationTargetCrossInstanceFamily is a RecommendationTarget enum value
 	RecommendationTargetCrossInstanceFamily = "CROSS_INSTANCE_FAMILY"
 )
+
+// RecommendationTarget is an enum
+type RecommendationTarget struct{}
+
+// Contains returns whether the RecommendationTarget enum includes the element
+func (enum RecommendationTarget) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecommendationTarget enum
+func (enum RecommendationTarget) Values() []string {
+	return []string{
+		RecommendationTargetSameInstanceFamily,
+		RecommendationTargetCrossInstanceFamily,
+	}
+}
 
 const (
 	// RightsizingTypeTerminate is a RightsizingType enum value
@@ -9165,6 +9472,28 @@ const (
 	RightsizingTypeModify = "MODIFY"
 )
 
+// RightsizingType is an enum
+type RightsizingType struct{}
+
+// Contains returns whether the RightsizingType enum includes the element
+func (enum RightsizingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RightsizingType enum
+func (enum RightsizingType) Values() []string {
+	return []string{
+		RightsizingTypeTerminate,
+		RightsizingTypeModify,
+	}
+}
+
 const (
 	// SupportedSavingsPlansTypeComputeSp is a SupportedSavingsPlansType enum value
 	SupportedSavingsPlansTypeComputeSp = "COMPUTE_SP"
@@ -9173,6 +9502,28 @@ const (
 	SupportedSavingsPlansTypeEc2InstanceSp = "EC2_INSTANCE_SP"
 )
 
+// SupportedSavingsPlansType is an enum
+type SupportedSavingsPlansType struct{}
+
+// Contains returns whether the SupportedSavingsPlansType enum includes the element
+func (enum SupportedSavingsPlansType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SupportedSavingsPlansType enum
+func (enum SupportedSavingsPlansType) Values() []string {
+	return []string{
+		SupportedSavingsPlansTypeComputeSp,
+		SupportedSavingsPlansTypeEc2InstanceSp,
+	}
+}
+
 const (
 	// TermInYearsOneYear is a TermInYears enum value
 	TermInYearsOneYear = "ONE_YEAR"
@@ -9180,3 +9531,25 @@ const (
 	// TermInYearsThreeYears is a TermInYears enum value
 	TermInYearsThreeYears = "THREE_YEARS"
 )
+
+// TermInYears is an enum
+type TermInYears struct{}
+
+// Contains returns whether the TermInYears enum includes the element
+func (enum TermInYears) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TermInYears enum
+func (enum TermInYears) Values() []string {
+	return []string{
+		TermInYearsOneYear,
+		TermInYearsThreeYears,
+	}
+}

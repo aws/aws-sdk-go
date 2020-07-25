@@ -20862,6 +20862,29 @@ const (
 	BusinessReportFailureCodeInternalFailure = "INTERNAL_FAILURE"
 )
 
+// BusinessReportFailureCode is an enum
+type BusinessReportFailureCode struct{}
+
+// Contains returns whether the BusinessReportFailureCode enum includes the element
+func (enum BusinessReportFailureCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BusinessReportFailureCode enum
+func (enum BusinessReportFailureCode) Values() []string {
+	return []string{
+		BusinessReportFailureCodeAccessDenied,
+		BusinessReportFailureCodeNoSuchBucket,
+		BusinessReportFailureCodeInternalFailure,
+	}
+}
+
 const (
 	// BusinessReportFormatCsv is a BusinessReportFormat enum value
 	BusinessReportFormatCsv = "CSV"
@@ -20869,6 +20892,28 @@ const (
 	// BusinessReportFormatCsvZip is a BusinessReportFormat enum value
 	BusinessReportFormatCsvZip = "CSV_ZIP"
 )
+
+// BusinessReportFormat is an enum
+type BusinessReportFormat struct{}
+
+// Contains returns whether the BusinessReportFormat enum includes the element
+func (enum BusinessReportFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BusinessReportFormat enum
+func (enum BusinessReportFormat) Values() []string {
+	return []string{
+		BusinessReportFormatCsv,
+		BusinessReportFormatCsvZip,
+	}
+}
 
 const (
 	// BusinessReportIntervalOneDay is a BusinessReportInterval enum value
@@ -20881,6 +20926,29 @@ const (
 	BusinessReportIntervalThirtyDays = "THIRTY_DAYS"
 )
 
+// BusinessReportInterval is an enum
+type BusinessReportInterval struct{}
+
+// Contains returns whether the BusinessReportInterval enum includes the element
+func (enum BusinessReportInterval) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BusinessReportInterval enum
+func (enum BusinessReportInterval) Values() []string {
+	return []string{
+		BusinessReportIntervalOneDay,
+		BusinessReportIntervalOneWeek,
+		BusinessReportIntervalThirtyDays,
+	}
+}
+
 const (
 	// BusinessReportStatusRunning is a BusinessReportStatus enum value
 	BusinessReportStatusRunning = "RUNNING"
@@ -20892,6 +20960,29 @@ const (
 	BusinessReportStatusFailed = "FAILED"
 )
 
+// BusinessReportStatus is an enum
+type BusinessReportStatus struct{}
+
+// Contains returns whether the BusinessReportStatus enum includes the element
+func (enum BusinessReportStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BusinessReportStatus enum
+func (enum BusinessReportStatus) Values() []string {
+	return []string{
+		BusinessReportStatusRunning,
+		BusinessReportStatusSucceeded,
+		BusinessReportStatusFailed,
+	}
+}
+
 const (
 	// CommsProtocolSip is a CommsProtocol enum value
 	CommsProtocolSip = "SIP"
@@ -20902,6 +20993,29 @@ const (
 	// CommsProtocolH323 is a CommsProtocol enum value
 	CommsProtocolH323 = "H323"
 )
+
+// CommsProtocol is an enum
+type CommsProtocol struct{}
+
+// Contains returns whether the CommsProtocol enum includes the element
+func (enum CommsProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CommsProtocol enum
+func (enum CommsProtocol) Values() []string {
+	return []string{
+		CommsProtocolSip,
+		CommsProtocolSips,
+		CommsProtocolH323,
+	}
+}
 
 const (
 	// ConferenceProviderTypeChime is a ConferenceProviderType enum value
@@ -20935,6 +21049,36 @@ const (
 	ConferenceProviderTypeCustom = "CUSTOM"
 )
 
+// ConferenceProviderType is an enum
+type ConferenceProviderType struct{}
+
+// Contains returns whether the ConferenceProviderType enum includes the element
+func (enum ConferenceProviderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConferenceProviderType enum
+func (enum ConferenceProviderType) Values() []string {
+	return []string{
+		ConferenceProviderTypeChime,
+		ConferenceProviderTypeBluejeans,
+		ConferenceProviderTypeFuze,
+		ConferenceProviderTypeGoogleHangouts,
+		ConferenceProviderTypePolycom,
+		ConferenceProviderTypeRingcentral,
+		ConferenceProviderTypeSkypeForBusiness,
+		ConferenceProviderTypeWebex,
+		ConferenceProviderTypeZoom,
+		ConferenceProviderTypeCustom,
+	}
+}
+
 const (
 	// ConnectionStatusOnline is a ConnectionStatus enum value
 	ConnectionStatusOnline = "ONLINE"
@@ -20943,6 +21087,28 @@ const (
 	ConnectionStatusOffline = "OFFLINE"
 )
 
+// ConnectionStatus is an enum
+type ConnectionStatus struct{}
+
+// Contains returns whether the ConnectionStatus enum includes the element
+func (enum ConnectionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionStatus enum
+func (enum ConnectionStatus) Values() []string {
+	return []string{
+		ConnectionStatusOnline,
+		ConnectionStatusOffline,
+	}
+}
+
 const (
 	// DeviceEventTypeConnectionStatus is a DeviceEventType enum value
 	DeviceEventTypeConnectionStatus = "CONNECTION_STATUS"
@@ -20950,6 +21116,28 @@ const (
 	// DeviceEventTypeDeviceStatus is a DeviceEventType enum value
 	DeviceEventTypeDeviceStatus = "DEVICE_STATUS"
 )
+
+// DeviceEventType is an enum
+type DeviceEventType struct{}
+
+// Contains returns whether the DeviceEventType enum includes the element
+func (enum DeviceEventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceEventType enum
+func (enum DeviceEventType) Values() []string {
+	return []string{
+		DeviceEventTypeConnectionStatus,
+		DeviceEventTypeDeviceStatus,
+	}
+}
 
 const (
 	// DeviceStatusReady is a DeviceStatus enum value
@@ -20967,6 +21155,31 @@ const (
 	// DeviceStatusFailed is a DeviceStatus enum value
 	DeviceStatusFailed = "FAILED"
 )
+
+// DeviceStatus is an enum
+type DeviceStatus struct{}
+
+// Contains returns whether the DeviceStatus enum includes the element
+func (enum DeviceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceStatus enum
+func (enum DeviceStatus) Values() []string {
+	return []string{
+		DeviceStatusReady,
+		DeviceStatusPending,
+		DeviceStatusWasOffline,
+		DeviceStatusDeregistered,
+		DeviceStatusFailed,
+	}
+}
 
 const (
 	// DeviceStatusDetailCodeDeviceSoftwareUpdateNeeded is a DeviceStatusDetailCode enum value
@@ -21021,10 +21234,68 @@ const (
 	DeviceStatusDetailCodeCertificateAuthorityAccessDenied = "CERTIFICATE_AUTHORITY_ACCESS_DENIED"
 )
 
+// DeviceStatusDetailCode is an enum
+type DeviceStatusDetailCode struct{}
+
+// Contains returns whether the DeviceStatusDetailCode enum includes the element
+func (enum DeviceStatusDetailCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceStatusDetailCode enum
+func (enum DeviceStatusDetailCode) Values() []string {
+	return []string{
+		DeviceStatusDetailCodeDeviceSoftwareUpdateNeeded,
+		DeviceStatusDetailCodeDeviceWasOffline,
+		DeviceStatusDetailCodeCredentialsAccessFailure,
+		DeviceStatusDetailCodeTlsVersionMismatch,
+		DeviceStatusDetailCodeAssociationRejection,
+		DeviceStatusDetailCodeAuthenticationFailure,
+		DeviceStatusDetailCodeDhcpFailure,
+		DeviceStatusDetailCodeInternetUnavailable,
+		DeviceStatusDetailCodeDnsFailure,
+		DeviceStatusDetailCodeUnknownFailure,
+		DeviceStatusDetailCodeCertificateIssuingLimitExceeded,
+		DeviceStatusDetailCodeInvalidCertificateAuthority,
+		DeviceStatusDetailCodeNetworkProfileNotFound,
+		DeviceStatusDetailCodeInvalidPasswordState,
+		DeviceStatusDetailCodePasswordNotFound,
+		DeviceStatusDetailCodePasswordManagerAccessDenied,
+		DeviceStatusDetailCodeCertificateAuthorityAccessDenied,
+	}
+}
+
 const (
 	// DeviceUsageTypeVoice is a DeviceUsageType enum value
 	DeviceUsageTypeVoice = "VOICE"
 )
+
+// DeviceUsageType is an enum
+type DeviceUsageType struct{}
+
+// Contains returns whether the DeviceUsageType enum includes the element
+func (enum DeviceUsageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceUsageType enum
+func (enum DeviceUsageType) Values() []string {
+	return []string{
+		DeviceUsageTypeVoice,
+	}
+}
 
 const (
 	// DistanceUnitMetric is a DistanceUnit enum value
@@ -21034,6 +21305,28 @@ const (
 	DistanceUnitImperial = "IMPERIAL"
 )
 
+// DistanceUnit is an enum
+type DistanceUnit struct{}
+
+// Contains returns whether the DistanceUnit enum includes the element
+func (enum DistanceUnit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DistanceUnit enum
+func (enum DistanceUnit) Values() []string {
+	return []string{
+		DistanceUnitMetric,
+		DistanceUnitImperial,
+	}
+}
+
 const (
 	// EnablementTypeEnabled is a EnablementType enum value
 	EnablementTypeEnabled = "ENABLED"
@@ -21042,6 +21335,28 @@ const (
 	EnablementTypePending = "PENDING"
 )
 
+// EnablementType is an enum
+type EnablementType struct{}
+
+// Contains returns whether the EnablementType enum includes the element
+func (enum EnablementType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnablementType enum
+func (enum EnablementType) Values() []string {
+	return []string{
+		EnablementTypeEnabled,
+		EnablementTypePending,
+	}
+}
+
 const (
 	// EnablementTypeFilterEnabled is a EnablementTypeFilter enum value
 	EnablementTypeFilterEnabled = "ENABLED"
@@ -21049,6 +21364,28 @@ const (
 	// EnablementTypeFilterPending is a EnablementTypeFilter enum value
 	EnablementTypeFilterPending = "PENDING"
 )
+
+// EnablementTypeFilter is an enum
+type EnablementTypeFilter struct{}
+
+// Contains returns whether the EnablementTypeFilter enum includes the element
+func (enum EnablementTypeFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnablementTypeFilter enum
+func (enum EnablementTypeFilter) Values() []string {
+	return []string{
+		EnablementTypeFilterEnabled,
+		EnablementTypeFilterPending,
+	}
+}
 
 const (
 	// EndOfMeetingReminderTypeAnnouncementTimeCheck is a EndOfMeetingReminderType enum value
@@ -21063,6 +21400,30 @@ const (
 	// EndOfMeetingReminderTypeKnock is a EndOfMeetingReminderType enum value
 	EndOfMeetingReminderTypeKnock = "KNOCK"
 )
+
+// EndOfMeetingReminderType is an enum
+type EndOfMeetingReminderType struct{}
+
+// Contains returns whether the EndOfMeetingReminderType enum includes the element
+func (enum EndOfMeetingReminderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EndOfMeetingReminderType enum
+func (enum EndOfMeetingReminderType) Values() []string {
+	return []string{
+		EndOfMeetingReminderTypeAnnouncementTimeCheck,
+		EndOfMeetingReminderTypeAnnouncementVariableTimeLeft,
+		EndOfMeetingReminderTypeChime,
+		EndOfMeetingReminderTypeKnock,
+	}
+}
 
 const (
 	// EnrollmentStatusInitialized is a EnrollmentStatus enum value
@@ -21080,6 +21441,31 @@ const (
 	// EnrollmentStatusDeregistering is a EnrollmentStatus enum value
 	EnrollmentStatusDeregistering = "DEREGISTERING"
 )
+
+// EnrollmentStatus is an enum
+type EnrollmentStatus struct{}
+
+// Contains returns whether the EnrollmentStatus enum includes the element
+func (enum EnrollmentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnrollmentStatus enum
+func (enum EnrollmentStatus) Values() []string {
+	return []string{
+		EnrollmentStatusInitialized,
+		EnrollmentStatusPending,
+		EnrollmentStatusRegistered,
+		EnrollmentStatusDisassociating,
+		EnrollmentStatusDeregistering,
+	}
+}
 
 const (
 	// FeatureBluetooth is a Feature enum value
@@ -21107,15 +21493,85 @@ const (
 	FeatureAll = "ALL"
 )
 
+// Feature is an enum
+type Feature struct{}
+
+// Contains returns whether the Feature enum includes the element
+func (enum Feature) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Feature enum
+func (enum Feature) Values() []string {
+	return []string{
+		FeatureBluetooth,
+		FeatureVolume,
+		FeatureNotifications,
+		FeatureLists,
+		FeatureSkills,
+		FeatureNetworkProfile,
+		FeatureSettings,
+		FeatureAll,
+	}
+}
+
 const (
 	// LocaleEnUs is a Locale enum value
 	LocaleEnUs = "en-US"
 )
 
+// Locale is an enum
+type Locale struct{}
+
+// Contains returns whether the Locale enum includes the element
+func (enum Locale) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Locale enum
+func (enum Locale) Values() []string {
+	return []string{
+		LocaleEnUs,
+	}
+}
+
 const (
 	// NetworkEapMethodEapTls is a NetworkEapMethod enum value
 	NetworkEapMethodEapTls = "EAP_TLS"
 )
+
+// NetworkEapMethod is an enum
+type NetworkEapMethod struct{}
+
+// Contains returns whether the NetworkEapMethod enum includes the element
+func (enum NetworkEapMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NetworkEapMethod enum
+func (enum NetworkEapMethod) Values() []string {
+	return []string{
+		NetworkEapMethodEapTls,
+	}
+}
 
 const (
 	// NetworkSecurityTypeOpen is a NetworkSecurityType enum value
@@ -21134,6 +21590,31 @@ const (
 	NetworkSecurityTypeWpa2Enterprise = "WPA2_ENTERPRISE"
 )
 
+// NetworkSecurityType is an enum
+type NetworkSecurityType struct{}
+
+// Contains returns whether the NetworkSecurityType enum includes the element
+func (enum NetworkSecurityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NetworkSecurityType enum
+func (enum NetworkSecurityType) Values() []string {
+	return []string{
+		NetworkSecurityTypeOpen,
+		NetworkSecurityTypeWep,
+		NetworkSecurityTypeWpaPsk,
+		NetworkSecurityTypeWpa2Psk,
+		NetworkSecurityTypeWpa2Enterprise,
+	}
+}
+
 const (
 	// PhoneNumberTypeMobile is a PhoneNumberType enum value
 	PhoneNumberTypeMobile = "MOBILE"
@@ -21144,6 +21625,29 @@ const (
 	// PhoneNumberTypeHome is a PhoneNumberType enum value
 	PhoneNumberTypeHome = "HOME"
 )
+
+// PhoneNumberType is an enum
+type PhoneNumberType struct{}
+
+// Contains returns whether the PhoneNumberType enum includes the element
+func (enum PhoneNumberType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PhoneNumberType enum
+func (enum PhoneNumberType) Values() []string {
+	return []string{
+		PhoneNumberTypeMobile,
+		PhoneNumberTypeWork,
+		PhoneNumberTypeHome,
+	}
+}
 
 const (
 	// RequirePinYes is a RequirePin enum value
@@ -21156,10 +21660,54 @@ const (
 	RequirePinOptional = "OPTIONAL"
 )
 
+// RequirePin is an enum
+type RequirePin struct{}
+
+// Contains returns whether the RequirePin enum includes the element
+func (enum RequirePin) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RequirePin enum
+func (enum RequirePin) Values() []string {
+	return []string{
+		RequirePinYes,
+		RequirePinNo,
+		RequirePinOptional,
+	}
+}
+
 const (
 	// SipTypeWork is a SipType enum value
 	SipTypeWork = "WORK"
 )
+
+// SipType is an enum
+type SipType struct{}
+
+// Contains returns whether the SipType enum includes the element
+func (enum SipType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SipType enum
+func (enum SipType) Values() []string {
+	return []string{
+		SipTypeWork,
+	}
+}
 
 const (
 	// SkillTypePublic is a SkillType enum value
@@ -21168,6 +21716,28 @@ const (
 	// SkillTypePrivate is a SkillType enum value
 	SkillTypePrivate = "PRIVATE"
 )
+
+// SkillType is an enum
+type SkillType struct{}
+
+// Contains returns whether the SkillType enum includes the element
+func (enum SkillType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SkillType enum
+func (enum SkillType) Values() []string {
+	return []string{
+		SkillTypePublic,
+		SkillTypePrivate,
+	}
+}
 
 const (
 	// SkillTypeFilterPublic is a SkillTypeFilter enum value
@@ -21180,6 +21750,29 @@ const (
 	SkillTypeFilterAll = "ALL"
 )
 
+// SkillTypeFilter is an enum
+type SkillTypeFilter struct{}
+
+// Contains returns whether the SkillTypeFilter enum includes the element
+func (enum SkillTypeFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SkillTypeFilter enum
+func (enum SkillTypeFilter) Values() []string {
+	return []string{
+		SkillTypeFilterPublic,
+		SkillTypeFilterPrivate,
+		SkillTypeFilterAll,
+	}
+}
+
 const (
 	// SortValueAsc is a SortValue enum value
 	SortValueAsc = "ASC"
@@ -21188,6 +21781,28 @@ const (
 	SortValueDesc = "DESC"
 )
 
+// SortValue is an enum
+type SortValue struct{}
+
+// Contains returns whether the SortValue enum includes the element
+func (enum SortValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortValue enum
+func (enum SortValue) Values() []string {
+	return []string{
+		SortValueAsc,
+		SortValueDesc,
+	}
+}
+
 const (
 	// TemperatureUnitFahrenheit is a TemperatureUnit enum value
 	TemperatureUnitFahrenheit = "FAHRENHEIT"
@@ -21195,6 +21810,28 @@ const (
 	// TemperatureUnitCelsius is a TemperatureUnit enum value
 	TemperatureUnitCelsius = "CELSIUS"
 )
+
+// TemperatureUnit is an enum
+type TemperatureUnit struct{}
+
+// Contains returns whether the TemperatureUnit enum includes the element
+func (enum TemperatureUnit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TemperatureUnit enum
+func (enum TemperatureUnit) Values() []string {
+	return []string{
+		TemperatureUnitFahrenheit,
+		TemperatureUnitCelsius,
+	}
+}
 
 const (
 	// WakeWordAlexa is a WakeWord enum value
@@ -21209,3 +21846,27 @@ const (
 	// WakeWordComputer is a WakeWord enum value
 	WakeWordComputer = "COMPUTER"
 )
+
+// WakeWord is an enum
+type WakeWord struct{}
+
+// Contains returns whether the WakeWord enum includes the element
+func (enum WakeWord) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WakeWord enum
+func (enum WakeWord) Values() []string {
+	return []string{
+		WakeWordAlexa,
+		WakeWordAmazon,
+		WakeWordEcho,
+		WakeWordComputer,
+	}
+}

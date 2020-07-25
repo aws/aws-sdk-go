@@ -3774,6 +3774,29 @@ const (
 	CanaryRunStateFailed = "FAILED"
 )
 
+// CanaryRunState is an enum
+type CanaryRunState struct{}
+
+// Contains returns whether the CanaryRunState enum includes the element
+func (enum CanaryRunState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CanaryRunState enum
+func (enum CanaryRunState) Values() []string {
+	return []string{
+		CanaryRunStateRunning,
+		CanaryRunStatePassed,
+		CanaryRunStateFailed,
+	}
+}
+
 const (
 	// CanaryRunStateReasonCodeCanaryFailure is a CanaryRunStateReasonCode enum value
 	CanaryRunStateReasonCodeCanaryFailure = "CANARY_FAILURE"
@@ -3781,6 +3804,28 @@ const (
 	// CanaryRunStateReasonCodeExecutionFailure is a CanaryRunStateReasonCode enum value
 	CanaryRunStateReasonCodeExecutionFailure = "EXECUTION_FAILURE"
 )
+
+// CanaryRunStateReasonCode is an enum
+type CanaryRunStateReasonCode struct{}
+
+// Contains returns whether the CanaryRunStateReasonCode enum includes the element
+func (enum CanaryRunStateReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CanaryRunStateReasonCode enum
+func (enum CanaryRunStateReasonCode) Values() []string {
+	return []string{
+		CanaryRunStateReasonCodeCanaryFailure,
+		CanaryRunStateReasonCodeExecutionFailure,
+	}
+}
 
 const (
 	// CanaryStateCreating is a CanaryState enum value
@@ -3811,7 +3856,57 @@ const (
 	CanaryStateDeleting = "DELETING"
 )
 
+// CanaryState is an enum
+type CanaryState struct{}
+
+// Contains returns whether the CanaryState enum includes the element
+func (enum CanaryState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CanaryState enum
+func (enum CanaryState) Values() []string {
+	return []string{
+		CanaryStateCreating,
+		CanaryStateReady,
+		CanaryStateStarting,
+		CanaryStateRunning,
+		CanaryStateUpdating,
+		CanaryStateStopping,
+		CanaryStateStopped,
+		CanaryStateError,
+		CanaryStateDeleting,
+	}
+}
+
 const (
 	// CanaryStateReasonCodeInvalidPermissions is a CanaryStateReasonCode enum value
 	CanaryStateReasonCodeInvalidPermissions = "INVALID_PERMISSIONS"
 )
+
+// CanaryStateReasonCode is an enum
+type CanaryStateReasonCode struct{}
+
+// Contains returns whether the CanaryStateReasonCode enum includes the element
+func (enum CanaryStateReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CanaryStateReasonCode enum
+func (enum CanaryStateReasonCode) Values() []string {
+	return []string{
+		CanaryStateReasonCodeInvalidPermissions,
+	}
+}

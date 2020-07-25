@@ -37112,6 +37112,28 @@ const (
 	CatalogEncryptionModeSseKms = "SSE-KMS"
 )
 
+// CatalogEncryptionMode is an enum
+type CatalogEncryptionMode struct{}
+
+// Contains returns whether the CatalogEncryptionMode enum includes the element
+func (enum CatalogEncryptionMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CatalogEncryptionMode enum
+func (enum CatalogEncryptionMode) Values() []string {
+	return []string{
+		CatalogEncryptionModeDisabled,
+		CatalogEncryptionModeSseKms,
+	}
+}
+
 const (
 	// CloudWatchEncryptionModeDisabled is a CloudWatchEncryptionMode enum value
 	CloudWatchEncryptionModeDisabled = "DISABLED"
@@ -37119,6 +37141,28 @@ const (
 	// CloudWatchEncryptionModeSseKms is a CloudWatchEncryptionMode enum value
 	CloudWatchEncryptionModeSseKms = "SSE-KMS"
 )
+
+// CloudWatchEncryptionMode is an enum
+type CloudWatchEncryptionMode struct{}
+
+// Contains returns whether the CloudWatchEncryptionMode enum includes the element
+func (enum CloudWatchEncryptionMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CloudWatchEncryptionMode enum
+func (enum CloudWatchEncryptionMode) Values() []string {
+	return []string{
+		CloudWatchEncryptionModeDisabled,
+		CloudWatchEncryptionModeSseKms,
+	}
+}
 
 const (
 	// ColumnStatisticsTypeBoolean is a ColumnStatisticsType enum value
@@ -37143,6 +37187,33 @@ const (
 	ColumnStatisticsTypeBinary = "BINARY"
 )
 
+// ColumnStatisticsType is an enum
+type ColumnStatisticsType struct{}
+
+// Contains returns whether the ColumnStatisticsType enum includes the element
+func (enum ColumnStatisticsType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ColumnStatisticsType enum
+func (enum ColumnStatisticsType) Values() []string {
+	return []string{
+		ColumnStatisticsTypeBoolean,
+		ColumnStatisticsTypeDate,
+		ColumnStatisticsTypeDecimal,
+		ColumnStatisticsTypeDouble,
+		ColumnStatisticsTypeLong,
+		ColumnStatisticsTypeString,
+		ColumnStatisticsTypeBinary,
+	}
+}
+
 const (
 	// ComparatorEquals is a Comparator enum value
 	ComparatorEquals = "EQUALS"
@@ -37159,6 +37230,31 @@ const (
 	// ComparatorLessThanEquals is a Comparator enum value
 	ComparatorLessThanEquals = "LESS_THAN_EQUALS"
 )
+
+// Comparator is an enum
+type Comparator struct{}
+
+// Contains returns whether the Comparator enum includes the element
+func (enum Comparator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Comparator enum
+func (enum Comparator) Values() []string {
+	return []string{
+		ComparatorEquals,
+		ComparatorGreaterThan,
+		ComparatorLessThan,
+		ComparatorGreaterThanEquals,
+		ComparatorLessThanEquals,
+	}
+}
 
 const (
 	// ConnectionPropertyKeyHost is a ConnectionPropertyKey enum value
@@ -37225,6 +37321,47 @@ const (
 	ConnectionPropertyKeyKafkaSkipCustomCertValidation = "KAFKA_SKIP_CUSTOM_CERT_VALIDATION"
 )
 
+// ConnectionPropertyKey is an enum
+type ConnectionPropertyKey struct{}
+
+// Contains returns whether the ConnectionPropertyKey enum includes the element
+func (enum ConnectionPropertyKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionPropertyKey enum
+func (enum ConnectionPropertyKey) Values() []string {
+	return []string{
+		ConnectionPropertyKeyHost,
+		ConnectionPropertyKeyPort,
+		ConnectionPropertyKeyUsername,
+		ConnectionPropertyKeyPassword,
+		ConnectionPropertyKeyEncryptedPassword,
+		ConnectionPropertyKeyJdbcDriverJarUri,
+		ConnectionPropertyKeyJdbcDriverClassName,
+		ConnectionPropertyKeyJdbcEngine,
+		ConnectionPropertyKeyJdbcEngineVersion,
+		ConnectionPropertyKeyConfigFiles,
+		ConnectionPropertyKeyInstanceId,
+		ConnectionPropertyKeyJdbcConnectionUrl,
+		ConnectionPropertyKeyJdbcEnforceSsl,
+		ConnectionPropertyKeyCustomJdbcCert,
+		ConnectionPropertyKeySkipCustomJdbcCertValidation,
+		ConnectionPropertyKeyCustomJdbcCertString,
+		ConnectionPropertyKeyConnectionUrl,
+		ConnectionPropertyKeyKafkaBootstrapServers,
+		ConnectionPropertyKeyKafkaSslEnabled,
+		ConnectionPropertyKeyKafkaCustomCert,
+		ConnectionPropertyKeyKafkaSkipCustomCertValidation,
+	}
+}
+
 const (
 	// ConnectionTypeJdbc is a ConnectionType enum value
 	ConnectionTypeJdbc = "JDBC"
@@ -37238,6 +37375,30 @@ const (
 	// ConnectionTypeKafka is a ConnectionType enum value
 	ConnectionTypeKafka = "KAFKA"
 )
+
+// ConnectionType is an enum
+type ConnectionType struct{}
+
+// Contains returns whether the ConnectionType enum includes the element
+func (enum ConnectionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionType enum
+func (enum ConnectionType) Values() []string {
+	return []string{
+		ConnectionTypeJdbc,
+		ConnectionTypeSftp,
+		ConnectionTypeMongodb,
+		ConnectionTypeKafka,
+	}
+}
 
 const (
 	// CrawlStateRunning is a CrawlState enum value
@@ -37256,6 +37417,31 @@ const (
 	CrawlStateFailed = "FAILED"
 )
 
+// CrawlState is an enum
+type CrawlState struct{}
+
+// Contains returns whether the CrawlState enum includes the element
+func (enum CrawlState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CrawlState enum
+func (enum CrawlState) Values() []string {
+	return []string{
+		CrawlStateRunning,
+		CrawlStateCancelling,
+		CrawlStateCancelled,
+		CrawlStateSucceeded,
+		CrawlStateFailed,
+	}
+}
+
 const (
 	// CrawlerStateReady is a CrawlerState enum value
 	CrawlerStateReady = "READY"
@@ -37266,6 +37452,29 @@ const (
 	// CrawlerStateStopping is a CrawlerState enum value
 	CrawlerStateStopping = "STOPPING"
 )
+
+// CrawlerState is an enum
+type CrawlerState struct{}
+
+// Contains returns whether the CrawlerState enum includes the element
+func (enum CrawlerState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CrawlerState enum
+func (enum CrawlerState) Values() []string {
+	return []string{
+		CrawlerStateReady,
+		CrawlerStateRunning,
+		CrawlerStateStopping,
+	}
+}
 
 const (
 	// CsvHeaderOptionUnknown is a CsvHeaderOption enum value
@@ -37278,6 +37487,29 @@ const (
 	CsvHeaderOptionAbsent = "ABSENT"
 )
 
+// CsvHeaderOption is an enum
+type CsvHeaderOption struct{}
+
+// Contains returns whether the CsvHeaderOption enum includes the element
+func (enum CsvHeaderOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CsvHeaderOption enum
+func (enum CsvHeaderOption) Values() []string {
+	return []string{
+		CsvHeaderOptionUnknown,
+		CsvHeaderOptionPresent,
+		CsvHeaderOptionAbsent,
+	}
+}
+
 const (
 	// DeleteBehaviorLog is a DeleteBehavior enum value
 	DeleteBehaviorLog = "LOG"
@@ -37289,6 +37521,29 @@ const (
 	DeleteBehaviorDeprecateInDatabase = "DEPRECATE_IN_DATABASE"
 )
 
+// DeleteBehavior is an enum
+type DeleteBehavior struct{}
+
+// Contains returns whether the DeleteBehavior enum includes the element
+func (enum DeleteBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeleteBehavior enum
+func (enum DeleteBehavior) Values() []string {
+	return []string{
+		DeleteBehaviorLog,
+		DeleteBehaviorDeleteFromDatabase,
+		DeleteBehaviorDeprecateInDatabase,
+	}
+}
+
 const (
 	// EnableHybridValuesTrue is a EnableHybridValues enum value
 	EnableHybridValuesTrue = "TRUE"
@@ -37296,6 +37551,28 @@ const (
 	// EnableHybridValuesFalse is a EnableHybridValues enum value
 	EnableHybridValuesFalse = "FALSE"
 )
+
+// EnableHybridValues is an enum
+type EnableHybridValues struct{}
+
+// Contains returns whether the EnableHybridValues enum includes the element
+func (enum EnableHybridValues) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EnableHybridValues enum
+func (enum EnableHybridValues) Values() []string {
+	return []string{
+		EnableHybridValuesTrue,
+		EnableHybridValuesFalse,
+	}
+}
 
 const (
 	// ExistConditionMustExist is a ExistCondition enum value
@@ -37308,6 +37585,29 @@ const (
 	ExistConditionNone = "NONE"
 )
 
+// ExistCondition is an enum
+type ExistCondition struct{}
+
+// Contains returns whether the ExistCondition enum includes the element
+func (enum ExistCondition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExistCondition enum
+func (enum ExistCondition) Values() []string {
+	return []string{
+		ExistConditionMustExist,
+		ExistConditionNotExist,
+		ExistConditionNone,
+	}
+}
+
 const (
 	// JobBookmarksEncryptionModeDisabled is a JobBookmarksEncryptionMode enum value
 	JobBookmarksEncryptionModeDisabled = "DISABLED"
@@ -37315,6 +37615,28 @@ const (
 	// JobBookmarksEncryptionModeCseKms is a JobBookmarksEncryptionMode enum value
 	JobBookmarksEncryptionModeCseKms = "CSE-KMS"
 )
+
+// JobBookmarksEncryptionMode is an enum
+type JobBookmarksEncryptionMode struct{}
+
+// Contains returns whether the JobBookmarksEncryptionMode enum includes the element
+func (enum JobBookmarksEncryptionMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobBookmarksEncryptionMode enum
+func (enum JobBookmarksEncryptionMode) Values() []string {
+	return []string{
+		JobBookmarksEncryptionModeDisabled,
+		JobBookmarksEncryptionModeCseKms,
+	}
+}
 
 const (
 	// JobRunStateStarting is a JobRunState enum value
@@ -37339,6 +37661,33 @@ const (
 	JobRunStateTimeout = "TIMEOUT"
 )
 
+// JobRunState is an enum
+type JobRunState struct{}
+
+// Contains returns whether the JobRunState enum includes the element
+func (enum JobRunState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobRunState enum
+func (enum JobRunState) Values() []string {
+	return []string{
+		JobRunStateStarting,
+		JobRunStateRunning,
+		JobRunStateStopping,
+		JobRunStateStopped,
+		JobRunStateSucceeded,
+		JobRunStateFailed,
+		JobRunStateTimeout,
+	}
+}
+
 const (
 	// LanguagePython is a Language enum value
 	LanguagePython = "PYTHON"
@@ -37346,6 +37695,28 @@ const (
 	// LanguageScala is a Language enum value
 	LanguageScala = "SCALA"
 )
+
+// Language is an enum
+type Language struct{}
+
+// Contains returns whether the Language enum includes the element
+func (enum Language) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Language enum
+func (enum Language) Values() []string {
+	return []string{
+		LanguagePython,
+		LanguageScala,
+	}
+}
 
 const (
 	// LastCrawlStatusSucceeded is a LastCrawlStatus enum value
@@ -37358,6 +37729,29 @@ const (
 	LastCrawlStatusFailed = "FAILED"
 )
 
+// LastCrawlStatus is an enum
+type LastCrawlStatus struct{}
+
+// Contains returns whether the LastCrawlStatus enum includes the element
+func (enum LastCrawlStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LastCrawlStatus enum
+func (enum LastCrawlStatus) Values() []string {
+	return []string{
+		LastCrawlStatusSucceeded,
+		LastCrawlStatusCancelled,
+		LastCrawlStatusFailed,
+	}
+}
+
 const (
 	// LogicalAnd is a Logical enum value
 	LogicalAnd = "AND"
@@ -37366,10 +37760,53 @@ const (
 	LogicalAny = "ANY"
 )
 
+// Logical is an enum
+type Logical struct{}
+
+// Contains returns whether the Logical enum includes the element
+func (enum Logical) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Logical enum
+func (enum Logical) Values() []string {
+	return []string{
+		LogicalAnd,
+		LogicalAny,
+	}
+}
+
 const (
 	// LogicalOperatorEquals is a LogicalOperator enum value
 	LogicalOperatorEquals = "EQUALS"
 )
+
+// LogicalOperator is an enum
+type LogicalOperator struct{}
+
+// Contains returns whether the LogicalOperator enum includes the element
+func (enum LogicalOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogicalOperator enum
+func (enum LogicalOperator) Values() []string {
+	return []string{
+		LogicalOperatorEquals,
+	}
+}
 
 const (
 	// NodeTypeCrawler is a NodeType enum value
@@ -37381,6 +37818,29 @@ const (
 	// NodeTypeTrigger is a NodeType enum value
 	NodeTypeTrigger = "TRIGGER"
 )
+
+// NodeType is an enum
+type NodeType struct{}
+
+// Contains returns whether the NodeType enum includes the element
+func (enum NodeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NodeType enum
+func (enum NodeType) Values() []string {
+	return []string{
+		NodeTypeCrawler,
+		NodeTypeJob,
+		NodeTypeTrigger,
+	}
+}
 
 const (
 	// PermissionAll is a Permission enum value
@@ -37411,6 +37871,35 @@ const (
 	PermissionDataLocationAccess = "DATA_LOCATION_ACCESS"
 )
 
+// Permission is an enum
+type Permission struct{}
+
+// Contains returns whether the Permission enum includes the element
+func (enum Permission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Permission enum
+func (enum Permission) Values() []string {
+	return []string{
+		PermissionAll,
+		PermissionSelect,
+		PermissionAlter,
+		PermissionDrop,
+		PermissionDelete,
+		PermissionInsert,
+		PermissionCreateDatabase,
+		PermissionCreateTable,
+		PermissionDataLocationAccess,
+	}
+}
+
 const (
 	// PrincipalTypeUser is a PrincipalType enum value
 	PrincipalTypeUser = "USER"
@@ -37422,6 +37911,29 @@ const (
 	PrincipalTypeGroup = "GROUP"
 )
 
+// PrincipalType is an enum
+type PrincipalType struct{}
+
+// Contains returns whether the PrincipalType enum includes the element
+func (enum PrincipalType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PrincipalType enum
+func (enum PrincipalType) Values() []string {
+	return []string{
+		PrincipalTypeUser,
+		PrincipalTypeRole,
+		PrincipalTypeGroup,
+	}
+}
+
 const (
 	// ResourceShareTypeForeign is a ResourceShareType enum value
 	ResourceShareTypeForeign = "FOREIGN"
@@ -37429,6 +37941,28 @@ const (
 	// ResourceShareTypeAll is a ResourceShareType enum value
 	ResourceShareTypeAll = "ALL"
 )
+
+// ResourceShareType is an enum
+type ResourceShareType struct{}
+
+// Contains returns whether the ResourceShareType enum includes the element
+func (enum ResourceShareType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceShareType enum
+func (enum ResourceShareType) Values() []string {
+	return []string{
+		ResourceShareTypeForeign,
+		ResourceShareTypeAll,
+	}
+}
 
 const (
 	// ResourceTypeJar is a ResourceType enum value
@@ -37441,6 +37975,29 @@ const (
 	ResourceTypeArchive = "ARCHIVE"
 )
 
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeJar,
+		ResourceTypeFile,
+		ResourceTypeArchive,
+	}
+}
+
 const (
 	// S3EncryptionModeDisabled is a S3EncryptionMode enum value
 	S3EncryptionModeDisabled = "DISABLED"
@@ -37451,6 +38008,29 @@ const (
 	// S3EncryptionModeSseS3 is a S3EncryptionMode enum value
 	S3EncryptionModeSseS3 = "SSE-S3"
 )
+
+// S3EncryptionMode is an enum
+type S3EncryptionMode struct{}
+
+// Contains returns whether the S3EncryptionMode enum includes the element
+func (enum S3EncryptionMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3EncryptionMode enum
+func (enum S3EncryptionMode) Values() []string {
+	return []string{
+		S3EncryptionModeDisabled,
+		S3EncryptionModeSseKms,
+		S3EncryptionModeSseS3,
+	}
+}
 
 const (
 	// ScheduleStateScheduled is a ScheduleState enum value
@@ -37463,6 +38043,29 @@ const (
 	ScheduleStateTransitioning = "TRANSITIONING"
 )
 
+// ScheduleState is an enum
+type ScheduleState struct{}
+
+// Contains returns whether the ScheduleState enum includes the element
+func (enum ScheduleState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScheduleState enum
+func (enum ScheduleState) Values() []string {
+	return []string{
+		ScheduleStateScheduled,
+		ScheduleStateNotScheduled,
+		ScheduleStateTransitioning,
+	}
+}
+
 const (
 	// SortAsc is a Sort enum value
 	SortAsc = "ASC"
@@ -37471,6 +38074,28 @@ const (
 	SortDesc = "DESC"
 )
 
+// Sort is an enum
+type Sort struct{}
+
+// Contains returns whether the Sort enum includes the element
+func (enum Sort) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Sort enum
+func (enum Sort) Values() []string {
+	return []string{
+		SortAsc,
+		SortDesc,
+	}
+}
+
 const (
 	// SortDirectionTypeDescending is a SortDirectionType enum value
 	SortDirectionTypeDescending = "DESCENDING"
@@ -37478,6 +38103,28 @@ const (
 	// SortDirectionTypeAscending is a SortDirectionType enum value
 	SortDirectionTypeAscending = "ASCENDING"
 )
+
+// SortDirectionType is an enum
+type SortDirectionType struct{}
+
+// Contains returns whether the SortDirectionType enum includes the element
+func (enum SortDirectionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortDirectionType enum
+func (enum SortDirectionType) Values() []string {
+	return []string{
+		SortDirectionTypeDescending,
+		SortDirectionTypeAscending,
+	}
+}
 
 const (
 	// TaskRunSortColumnTypeTaskRunType is a TaskRunSortColumnType enum value
@@ -37489,6 +38136,29 @@ const (
 	// TaskRunSortColumnTypeStarted is a TaskRunSortColumnType enum value
 	TaskRunSortColumnTypeStarted = "STARTED"
 )
+
+// TaskRunSortColumnType is an enum
+type TaskRunSortColumnType struct{}
+
+// Contains returns whether the TaskRunSortColumnType enum includes the element
+func (enum TaskRunSortColumnType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TaskRunSortColumnType enum
+func (enum TaskRunSortColumnType) Values() []string {
+	return []string{
+		TaskRunSortColumnTypeTaskRunType,
+		TaskRunSortColumnTypeStatus,
+		TaskRunSortColumnTypeStarted,
+	}
+}
 
 const (
 	// TaskStatusTypeStarting is a TaskStatusType enum value
@@ -37513,6 +38183,33 @@ const (
 	TaskStatusTypeTimeout = "TIMEOUT"
 )
 
+// TaskStatusType is an enum
+type TaskStatusType struct{}
+
+// Contains returns whether the TaskStatusType enum includes the element
+func (enum TaskStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TaskStatusType enum
+func (enum TaskStatusType) Values() []string {
+	return []string{
+		TaskStatusTypeStarting,
+		TaskStatusTypeRunning,
+		TaskStatusTypeStopping,
+		TaskStatusTypeStopped,
+		TaskStatusTypeSucceeded,
+		TaskStatusTypeFailed,
+		TaskStatusTypeTimeout,
+	}
+}
+
 const (
 	// TaskTypeEvaluation is a TaskType enum value
 	TaskTypeEvaluation = "EVALUATION"
@@ -37529,6 +38226,31 @@ const (
 	// TaskTypeFindMatches is a TaskType enum value
 	TaskTypeFindMatches = "FIND_MATCHES"
 )
+
+// TaskType is an enum
+type TaskType struct{}
+
+// Contains returns whether the TaskType enum includes the element
+func (enum TaskType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TaskType enum
+func (enum TaskType) Values() []string {
+	return []string{
+		TaskTypeEvaluation,
+		TaskTypeLabelingSetGeneration,
+		TaskTypeImportLabels,
+		TaskTypeExportLabels,
+		TaskTypeFindMatches,
+	}
+}
 
 const (
 	// TransformSortColumnTypeName is a TransformSortColumnType enum value
@@ -37547,6 +38269,31 @@ const (
 	TransformSortColumnTypeLastModified = "LAST_MODIFIED"
 )
 
+// TransformSortColumnType is an enum
+type TransformSortColumnType struct{}
+
+// Contains returns whether the TransformSortColumnType enum includes the element
+func (enum TransformSortColumnType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TransformSortColumnType enum
+func (enum TransformSortColumnType) Values() []string {
+	return []string{
+		TransformSortColumnTypeName,
+		TransformSortColumnTypeTransformType,
+		TransformSortColumnTypeStatus,
+		TransformSortColumnTypeCreated,
+		TransformSortColumnTypeLastModified,
+	}
+}
+
 const (
 	// TransformStatusTypeNotReady is a TransformStatusType enum value
 	TransformStatusTypeNotReady = "NOT_READY"
@@ -37558,10 +38305,54 @@ const (
 	TransformStatusTypeDeleting = "DELETING"
 )
 
+// TransformStatusType is an enum
+type TransformStatusType struct{}
+
+// Contains returns whether the TransformStatusType enum includes the element
+func (enum TransformStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TransformStatusType enum
+func (enum TransformStatusType) Values() []string {
+	return []string{
+		TransformStatusTypeNotReady,
+		TransformStatusTypeReady,
+		TransformStatusTypeDeleting,
+	}
+}
+
 const (
 	// TransformTypeFindMatches is a TransformType enum value
 	TransformTypeFindMatches = "FIND_MATCHES"
 )
+
+// TransformType is an enum
+type TransformType struct{}
+
+// Contains returns whether the TransformType enum includes the element
+func (enum TransformType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TransformType enum
+func (enum TransformType) Values() []string {
+	return []string{
+		TransformTypeFindMatches,
+	}
+}
 
 const (
 	// TriggerStateCreating is a TriggerState enum value
@@ -37589,6 +38380,34 @@ const (
 	TriggerStateUpdating = "UPDATING"
 )
 
+// TriggerState is an enum
+type TriggerState struct{}
+
+// Contains returns whether the TriggerState enum includes the element
+func (enum TriggerState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TriggerState enum
+func (enum TriggerState) Values() []string {
+	return []string{
+		TriggerStateCreating,
+		TriggerStateCreated,
+		TriggerStateActivating,
+		TriggerStateActivated,
+		TriggerStateDeactivating,
+		TriggerStateDeactivated,
+		TriggerStateDeleting,
+		TriggerStateUpdating,
+	}
+}
+
 const (
 	// TriggerTypeScheduled is a TriggerType enum value
 	TriggerTypeScheduled = "SCHEDULED"
@@ -37600,6 +38419,29 @@ const (
 	TriggerTypeOnDemand = "ON_DEMAND"
 )
 
+// TriggerType is an enum
+type TriggerType struct{}
+
+// Contains returns whether the TriggerType enum includes the element
+func (enum TriggerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TriggerType enum
+func (enum TriggerType) Values() []string {
+	return []string{
+		TriggerTypeScheduled,
+		TriggerTypeConditional,
+		TriggerTypeOnDemand,
+	}
+}
+
 const (
 	// UpdateBehaviorLog is a UpdateBehavior enum value
 	UpdateBehaviorLog = "LOG"
@@ -37607,6 +38449,28 @@ const (
 	// UpdateBehaviorUpdateInDatabase is a UpdateBehavior enum value
 	UpdateBehaviorUpdateInDatabase = "UPDATE_IN_DATABASE"
 )
+
+// UpdateBehavior is an enum
+type UpdateBehavior struct{}
+
+// Contains returns whether the UpdateBehavior enum includes the element
+func (enum UpdateBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpdateBehavior enum
+func (enum UpdateBehavior) Values() []string {
+	return []string{
+		UpdateBehaviorLog,
+		UpdateBehaviorUpdateInDatabase,
+	}
+}
 
 const (
 	// WorkerTypeStandard is a WorkerType enum value
@@ -37618,6 +38482,29 @@ const (
 	// WorkerTypeG2x is a WorkerType enum value
 	WorkerTypeG2x = "G.2X"
 )
+
+// WorkerType is an enum
+type WorkerType struct{}
+
+// Contains returns whether the WorkerType enum includes the element
+func (enum WorkerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkerType enum
+func (enum WorkerType) Values() []string {
+	return []string{
+		WorkerTypeStandard,
+		WorkerTypeG1x,
+		WorkerTypeG2x,
+	}
+}
 
 const (
 	// WorkflowRunStatusRunning is a WorkflowRunStatus enum value
@@ -37632,3 +38519,27 @@ const (
 	// WorkflowRunStatusStopped is a WorkflowRunStatus enum value
 	WorkflowRunStatusStopped = "STOPPED"
 )
+
+// WorkflowRunStatus is an enum
+type WorkflowRunStatus struct{}
+
+// Contains returns whether the WorkflowRunStatus enum includes the element
+func (enum WorkflowRunStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkflowRunStatus enum
+func (enum WorkflowRunStatus) Values() []string {
+	return []string{
+		WorkflowRunStatusRunning,
+		WorkflowRunStatusCompleted,
+		WorkflowRunStatusStopping,
+		WorkflowRunStatusStopped,
+	}
+}

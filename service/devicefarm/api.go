@@ -19903,6 +19903,29 @@ const (
 	ArtifactCategoryLog = "LOG"
 )
 
+// ArtifactCategory is an enum
+type ArtifactCategory struct{}
+
+// Contains returns whether the ArtifactCategory enum includes the element
+func (enum ArtifactCategory) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ArtifactCategory enum
+func (enum ArtifactCategory) Values() []string {
+	return []string{
+		ArtifactCategoryScreenshot,
+		ArtifactCategoryFile,
+		ArtifactCategoryLog,
+	}
+}
+
 const (
 	// ArtifactTypeUnknown is a ArtifactType enum value
 	ArtifactTypeUnknown = "UNKNOWN"
@@ -19989,6 +20012,54 @@ const (
 	ArtifactTypeTestspecOutput = "TESTSPEC_OUTPUT"
 )
 
+// ArtifactType is an enum
+type ArtifactType struct{}
+
+// Contains returns whether the ArtifactType enum includes the element
+func (enum ArtifactType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ArtifactType enum
+func (enum ArtifactType) Values() []string {
+	return []string{
+		ArtifactTypeUnknown,
+		ArtifactTypeScreenshot,
+		ArtifactTypeDeviceLog,
+		ArtifactTypeMessageLog,
+		ArtifactTypeVideoLog,
+		ArtifactTypeResultLog,
+		ArtifactTypeServiceLog,
+		ArtifactTypeWebkitLog,
+		ArtifactTypeInstrumentationOutput,
+		ArtifactTypeExerciserMonkeyOutput,
+		ArtifactTypeCalabashJsonOutput,
+		ArtifactTypeCalabashPrettyOutput,
+		ArtifactTypeCalabashStandardOutput,
+		ArtifactTypeCalabashJavaXmlOutput,
+		ArtifactTypeAutomationOutput,
+		ArtifactTypeAppiumServerOutput,
+		ArtifactTypeAppiumJavaOutput,
+		ArtifactTypeAppiumJavaXmlOutput,
+		ArtifactTypeAppiumPythonOutput,
+		ArtifactTypeAppiumPythonXmlOutput,
+		ArtifactTypeExplorerEventLog,
+		ArtifactTypeExplorerSummaryLog,
+		ArtifactTypeApplicationCrashReport,
+		ArtifactTypeXctestLog,
+		ArtifactTypeVideo,
+		ArtifactTypeCustomerArtifact,
+		ArtifactTypeCustomerArtifactLog,
+		ArtifactTypeTestspecOutput,
+	}
+}
+
 const (
 	// BillingMethodMetered is a BillingMethod enum value
 	BillingMethodMetered = "METERED"
@@ -19997,10 +20068,53 @@ const (
 	BillingMethodUnmetered = "UNMETERED"
 )
 
+// BillingMethod is an enum
+type BillingMethod struct{}
+
+// Contains returns whether the BillingMethod enum includes the element
+func (enum BillingMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BillingMethod enum
+func (enum BillingMethod) Values() []string {
+	return []string{
+		BillingMethodMetered,
+		BillingMethodUnmetered,
+	}
+}
+
 const (
 	// CurrencyCodeUsd is a CurrencyCode enum value
 	CurrencyCodeUsd = "USD"
 )
+
+// CurrencyCode is an enum
+type CurrencyCode struct{}
+
+// Contains returns whether the CurrencyCode enum includes the element
+func (enum CurrencyCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CurrencyCode enum
+func (enum CurrencyCode) Values() []string {
+	return []string{
+		CurrencyCodeUsd,
+	}
+}
 
 const (
 	// DeviceAttributeArn is a DeviceAttribute enum value
@@ -20043,6 +20157,39 @@ const (
 	DeviceAttributeAvailability = "AVAILABILITY"
 )
 
+// DeviceAttribute is an enum
+type DeviceAttribute struct{}
+
+// Contains returns whether the DeviceAttribute enum includes the element
+func (enum DeviceAttribute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceAttribute enum
+func (enum DeviceAttribute) Values() []string {
+	return []string{
+		DeviceAttributeArn,
+		DeviceAttributePlatform,
+		DeviceAttributeFormFactor,
+		DeviceAttributeManufacturer,
+		DeviceAttributeRemoteAccessEnabled,
+		DeviceAttributeRemoteDebugEnabled,
+		DeviceAttributeAppiumVersion,
+		DeviceAttributeInstanceArn,
+		DeviceAttributeInstanceLabels,
+		DeviceAttributeFleetType,
+		DeviceAttributeOsVersion,
+		DeviceAttributeModel,
+		DeviceAttributeAvailability,
+	}
+}
+
 const (
 	// DeviceAvailabilityTemporaryNotAvailable is a DeviceAvailability enum value
 	DeviceAvailabilityTemporaryNotAvailable = "TEMPORARY_NOT_AVAILABLE"
@@ -20056,6 +20203,30 @@ const (
 	// DeviceAvailabilityHighlyAvailable is a DeviceAvailability enum value
 	DeviceAvailabilityHighlyAvailable = "HIGHLY_AVAILABLE"
 )
+
+// DeviceAvailability is an enum
+type DeviceAvailability struct{}
+
+// Contains returns whether the DeviceAvailability enum includes the element
+func (enum DeviceAvailability) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceAvailability enum
+func (enum DeviceAvailability) Values() []string {
+	return []string{
+		DeviceAvailabilityTemporaryNotAvailable,
+		DeviceAvailabilityBusy,
+		DeviceAvailabilityAvailable,
+		DeviceAvailabilityHighlyAvailable,
+	}
+}
 
 const (
 	// DeviceFilterAttributeArn is a DeviceFilterAttribute enum value
@@ -20095,6 +20266,38 @@ const (
 	DeviceFilterAttributeFleetType = "FLEET_TYPE"
 )
 
+// DeviceFilterAttribute is an enum
+type DeviceFilterAttribute struct{}
+
+// Contains returns whether the DeviceFilterAttribute enum includes the element
+func (enum DeviceFilterAttribute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceFilterAttribute enum
+func (enum DeviceFilterAttribute) Values() []string {
+	return []string{
+		DeviceFilterAttributeArn,
+		DeviceFilterAttributePlatform,
+		DeviceFilterAttributeOsVersion,
+		DeviceFilterAttributeModel,
+		DeviceFilterAttributeAvailability,
+		DeviceFilterAttributeFormFactor,
+		DeviceFilterAttributeManufacturer,
+		DeviceFilterAttributeRemoteAccessEnabled,
+		DeviceFilterAttributeRemoteDebugEnabled,
+		DeviceFilterAttributeInstanceArn,
+		DeviceFilterAttributeInstanceLabels,
+		DeviceFilterAttributeFleetType,
+	}
+}
+
 const (
 	// DeviceFormFactorPhone is a DeviceFormFactor enum value
 	DeviceFormFactorPhone = "PHONE"
@@ -20102,6 +20305,28 @@ const (
 	// DeviceFormFactorTablet is a DeviceFormFactor enum value
 	DeviceFormFactorTablet = "TABLET"
 )
+
+// DeviceFormFactor is an enum
+type DeviceFormFactor struct{}
+
+// Contains returns whether the DeviceFormFactor enum includes the element
+func (enum DeviceFormFactor) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceFormFactor enum
+func (enum DeviceFormFactor) Values() []string {
+	return []string{
+		DeviceFormFactorPhone,
+		DeviceFormFactorTablet,
+	}
+}
 
 const (
 	// DevicePlatformAndroid is a DevicePlatform enum value
@@ -20111,6 +20336,28 @@ const (
 	DevicePlatformIos = "IOS"
 )
 
+// DevicePlatform is an enum
+type DevicePlatform struct{}
+
+// Contains returns whether the DevicePlatform enum includes the element
+func (enum DevicePlatform) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DevicePlatform enum
+func (enum DevicePlatform) Values() []string {
+	return []string{
+		DevicePlatformAndroid,
+		DevicePlatformIos,
+	}
+}
+
 const (
 	// DevicePoolTypeCurated is a DevicePoolType enum value
 	DevicePoolTypeCurated = "CURATED"
@@ -20118,6 +20365,28 @@ const (
 	// DevicePoolTypePrivate is a DevicePoolType enum value
 	DevicePoolTypePrivate = "PRIVATE"
 )
+
+// DevicePoolType is an enum
+type DevicePoolType struct{}
+
+// Contains returns whether the DevicePoolType enum includes the element
+func (enum DevicePoolType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DevicePoolType enum
+func (enum DevicePoolType) Values() []string {
+	return []string{
+		DevicePoolTypeCurated,
+		DevicePoolTypePrivate,
+	}
+}
 
 const (
 	// ExecutionResultPending is a ExecutionResult enum value
@@ -20142,6 +20411,33 @@ const (
 	ExecutionResultStopped = "STOPPED"
 )
 
+// ExecutionResult is an enum
+type ExecutionResult struct{}
+
+// Contains returns whether the ExecutionResult enum includes the element
+func (enum ExecutionResult) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExecutionResult enum
+func (enum ExecutionResult) Values() []string {
+	return []string{
+		ExecutionResultPending,
+		ExecutionResultPassed,
+		ExecutionResultWarned,
+		ExecutionResultFailed,
+		ExecutionResultSkipped,
+		ExecutionResultErrored,
+		ExecutionResultStopped,
+	}
+}
+
 const (
 	// ExecutionResultCodeParsingFailed is a ExecutionResultCode enum value
 	ExecutionResultCodeParsingFailed = "PARSING_FAILED"
@@ -20149,6 +20445,28 @@ const (
 	// ExecutionResultCodeVpcEndpointSetupFailed is a ExecutionResultCode enum value
 	ExecutionResultCodeVpcEndpointSetupFailed = "VPC_ENDPOINT_SETUP_FAILED"
 )
+
+// ExecutionResultCode is an enum
+type ExecutionResultCode struct{}
+
+// Contains returns whether the ExecutionResultCode enum includes the element
+func (enum ExecutionResultCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExecutionResultCode enum
+func (enum ExecutionResultCode) Values() []string {
+	return []string{
+		ExecutionResultCodeParsingFailed,
+		ExecutionResultCodeVpcEndpointSetupFailed,
+	}
+}
 
 const (
 	// ExecutionStatusPending is a ExecutionStatus enum value
@@ -20179,6 +20497,35 @@ const (
 	ExecutionStatusStopping = "STOPPING"
 )
 
+// ExecutionStatus is an enum
+type ExecutionStatus struct{}
+
+// Contains returns whether the ExecutionStatus enum includes the element
+func (enum ExecutionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExecutionStatus enum
+func (enum ExecutionStatus) Values() []string {
+	return []string{
+		ExecutionStatusPending,
+		ExecutionStatusPendingConcurrency,
+		ExecutionStatusPendingDevice,
+		ExecutionStatusProcessing,
+		ExecutionStatusScheduling,
+		ExecutionStatusPreparing,
+		ExecutionStatusRunning,
+		ExecutionStatusCompleted,
+		ExecutionStatusStopping,
+	}
+}
+
 const (
 	// InstanceStatusInUse is a InstanceStatus enum value
 	InstanceStatusInUse = "IN_USE"
@@ -20193,6 +20540,30 @@ const (
 	InstanceStatusNotAvailable = "NOT_AVAILABLE"
 )
 
+// InstanceStatus is an enum
+type InstanceStatus struct{}
+
+// Contains returns whether the InstanceStatus enum includes the element
+func (enum InstanceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceStatus enum
+func (enum InstanceStatus) Values() []string {
+	return []string{
+		InstanceStatusInUse,
+		InstanceStatusPreparing,
+		InstanceStatusAvailable,
+		InstanceStatusNotAvailable,
+	}
+}
+
 const (
 	// InteractionModeInteractive is a InteractionMode enum value
 	InteractionModeInteractive = "INTERACTIVE"
@@ -20204,6 +20575,29 @@ const (
 	InteractionModeVideoOnly = "VIDEO_ONLY"
 )
 
+// InteractionMode is an enum
+type InteractionMode struct{}
+
+// Contains returns whether the InteractionMode enum includes the element
+func (enum InteractionMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InteractionMode enum
+func (enum InteractionMode) Values() []string {
+	return []string{
+		InteractionModeInteractive,
+		InteractionModeNoVideo,
+		InteractionModeVideoOnly,
+	}
+}
+
 const (
 	// NetworkProfileTypeCurated is a NetworkProfileType enum value
 	NetworkProfileTypeCurated = "CURATED"
@@ -20211,6 +20605,28 @@ const (
 	// NetworkProfileTypePrivate is a NetworkProfileType enum value
 	NetworkProfileTypePrivate = "PRIVATE"
 )
+
+// NetworkProfileType is an enum
+type NetworkProfileType struct{}
+
+// Contains returns whether the NetworkProfileType enum includes the element
+func (enum NetworkProfileType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NetworkProfileType enum
+func (enum NetworkProfileType) Values() []string {
+	return []string{
+		NetworkProfileTypeCurated,
+		NetworkProfileTypePrivate,
+	}
+}
 
 const (
 	// OfferingTransactionTypePurchase is a OfferingTransactionType enum value
@@ -20223,15 +20639,80 @@ const (
 	OfferingTransactionTypeSystem = "SYSTEM"
 )
 
+// OfferingTransactionType is an enum
+type OfferingTransactionType struct{}
+
+// Contains returns whether the OfferingTransactionType enum includes the element
+func (enum OfferingTransactionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OfferingTransactionType enum
+func (enum OfferingTransactionType) Values() []string {
+	return []string{
+		OfferingTransactionTypePurchase,
+		OfferingTransactionTypeRenew,
+		OfferingTransactionTypeSystem,
+	}
+}
+
 const (
 	// OfferingTypeRecurring is a OfferingType enum value
 	OfferingTypeRecurring = "RECURRING"
 )
 
+// OfferingType is an enum
+type OfferingType struct{}
+
+// Contains returns whether the OfferingType enum includes the element
+func (enum OfferingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OfferingType enum
+func (enum OfferingType) Values() []string {
+	return []string{
+		OfferingTypeRecurring,
+	}
+}
+
 const (
 	// RecurringChargeFrequencyMonthly is a RecurringChargeFrequency enum value
 	RecurringChargeFrequencyMonthly = "MONTHLY"
 )
+
+// RecurringChargeFrequency is an enum
+type RecurringChargeFrequency struct{}
+
+// Contains returns whether the RecurringChargeFrequency enum includes the element
+func (enum RecurringChargeFrequency) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecurringChargeFrequency enum
+func (enum RecurringChargeFrequency) Values() []string {
+	return []string{
+		RecurringChargeFrequencyMonthly,
+	}
+}
 
 const (
 	// RuleOperatorEquals is a RuleOperator enum value
@@ -20258,6 +20739,34 @@ const (
 	// RuleOperatorContains is a RuleOperator enum value
 	RuleOperatorContains = "CONTAINS"
 )
+
+// RuleOperator is an enum
+type RuleOperator struct{}
+
+// Contains returns whether the RuleOperator enum includes the element
+func (enum RuleOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RuleOperator enum
+func (enum RuleOperator) Values() []string {
+	return []string{
+		RuleOperatorEquals,
+		RuleOperatorLessThan,
+		RuleOperatorLessThanOrEquals,
+		RuleOperatorGreaterThan,
+		RuleOperatorGreaterThanOrEquals,
+		RuleOperatorIn,
+		RuleOperatorNotIn,
+		RuleOperatorContains,
+	}
+}
 
 const (
 	// SampleTypeCpu is a SampleType enum value
@@ -20312,6 +20821,43 @@ const (
 	SampleTypeOpenglMaxDrawtime = "OPENGL_MAX_DRAWTIME"
 )
 
+// SampleType is an enum
+type SampleType struct{}
+
+// Contains returns whether the SampleType enum includes the element
+func (enum SampleType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SampleType enum
+func (enum SampleType) Values() []string {
+	return []string{
+		SampleTypeCpu,
+		SampleTypeMemory,
+		SampleTypeThreads,
+		SampleTypeRxRate,
+		SampleTypeTxRate,
+		SampleTypeRx,
+		SampleTypeTx,
+		SampleTypeNativeFrames,
+		SampleTypeNativeFps,
+		SampleTypeNativeMinDrawtime,
+		SampleTypeNativeAvgDrawtime,
+		SampleTypeNativeMaxDrawtime,
+		SampleTypeOpenglFrames,
+		SampleTypeOpenglFps,
+		SampleTypeOpenglMinDrawtime,
+		SampleTypeOpenglAvgDrawtime,
+		SampleTypeOpenglMaxDrawtime,
+	}
+}
+
 const (
 	// TestGridSessionArtifactCategoryVideo is a TestGridSessionArtifactCategory enum value
 	TestGridSessionArtifactCategoryVideo = "VIDEO"
@@ -20319,6 +20865,28 @@ const (
 	// TestGridSessionArtifactCategoryLog is a TestGridSessionArtifactCategory enum value
 	TestGridSessionArtifactCategoryLog = "LOG"
 )
+
+// TestGridSessionArtifactCategory is an enum
+type TestGridSessionArtifactCategory struct{}
+
+// Contains returns whether the TestGridSessionArtifactCategory enum includes the element
+func (enum TestGridSessionArtifactCategory) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TestGridSessionArtifactCategory enum
+func (enum TestGridSessionArtifactCategory) Values() []string {
+	return []string{
+		TestGridSessionArtifactCategoryVideo,
+		TestGridSessionArtifactCategoryLog,
+	}
+}
 
 const (
 	// TestGridSessionArtifactTypeUnknown is a TestGridSessionArtifactType enum value
@@ -20331,6 +20899,29 @@ const (
 	TestGridSessionArtifactTypeSeleniumLog = "SELENIUM_LOG"
 )
 
+// TestGridSessionArtifactType is an enum
+type TestGridSessionArtifactType struct{}
+
+// Contains returns whether the TestGridSessionArtifactType enum includes the element
+func (enum TestGridSessionArtifactType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TestGridSessionArtifactType enum
+func (enum TestGridSessionArtifactType) Values() []string {
+	return []string{
+		TestGridSessionArtifactTypeUnknown,
+		TestGridSessionArtifactTypeVideo,
+		TestGridSessionArtifactTypeSeleniumLog,
+	}
+}
+
 const (
 	// TestGridSessionStatusActive is a TestGridSessionStatus enum value
 	TestGridSessionStatusActive = "ACTIVE"
@@ -20341,6 +20932,29 @@ const (
 	// TestGridSessionStatusErrored is a TestGridSessionStatus enum value
 	TestGridSessionStatusErrored = "ERRORED"
 )
+
+// TestGridSessionStatus is an enum
+type TestGridSessionStatus struct{}
+
+// Contains returns whether the TestGridSessionStatus enum includes the element
+func (enum TestGridSessionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TestGridSessionStatus enum
+func (enum TestGridSessionStatus) Values() []string {
+	return []string{
+		TestGridSessionStatusActive,
+		TestGridSessionStatusClosed,
+		TestGridSessionStatusErrored,
+	}
+}
 
 const (
 	// TestTypeBuiltinFuzz is a TestType enum value
@@ -20407,6 +21021,47 @@ const (
 	TestTypeRemoteAccessReplay = "REMOTE_ACCESS_REPLAY"
 )
 
+// TestType is an enum
+type TestType struct{}
+
+// Contains returns whether the TestType enum includes the element
+func (enum TestType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TestType enum
+func (enum TestType) Values() []string {
+	return []string{
+		TestTypeBuiltinFuzz,
+		TestTypeBuiltinExplorer,
+		TestTypeWebPerformanceProfile,
+		TestTypeAppiumJavaJunit,
+		TestTypeAppiumJavaTestng,
+		TestTypeAppiumPython,
+		TestTypeAppiumNode,
+		TestTypeAppiumRuby,
+		TestTypeAppiumWebJavaJunit,
+		TestTypeAppiumWebJavaTestng,
+		TestTypeAppiumWebPython,
+		TestTypeAppiumWebNode,
+		TestTypeAppiumWebRuby,
+		TestTypeCalabash,
+		TestTypeInstrumentation,
+		TestTypeUiautomation,
+		TestTypeUiautomator,
+		TestTypeXctest,
+		TestTypeXctestUi,
+		TestTypeRemoteAccessRecord,
+		TestTypeRemoteAccessReplay,
+	}
+}
+
 const (
 	// UploadCategoryCurated is a UploadCategory enum value
 	UploadCategoryCurated = "CURATED"
@@ -20414,6 +21069,28 @@ const (
 	// UploadCategoryPrivate is a UploadCategory enum value
 	UploadCategoryPrivate = "PRIVATE"
 )
+
+// UploadCategory is an enum
+type UploadCategory struct{}
+
+// Contains returns whether the UploadCategory enum includes the element
+func (enum UploadCategory) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UploadCategory enum
+func (enum UploadCategory) Values() []string {
+	return []string{
+		UploadCategoryCurated,
+		UploadCategoryPrivate,
+	}
+}
 
 const (
 	// UploadStatusInitialized is a UploadStatus enum value
@@ -20428,6 +21105,30 @@ const (
 	// UploadStatusFailed is a UploadStatus enum value
 	UploadStatusFailed = "FAILED"
 )
+
+// UploadStatus is an enum
+type UploadStatus struct{}
+
+// Contains returns whether the UploadStatus enum includes the element
+func (enum UploadStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UploadStatus enum
+func (enum UploadStatus) Values() []string {
+	return []string{
+		UploadStatusInitialized,
+		UploadStatusProcessing,
+		UploadStatusSucceeded,
+		UploadStatusFailed,
+	}
+}
 
 const (
 	// UploadTypeAndroidApp is a UploadType enum value
@@ -20526,3 +21227,55 @@ const (
 	// UploadTypeXctestUiTestSpec is a UploadType enum value
 	UploadTypeXctestUiTestSpec = "XCTEST_UI_TEST_SPEC"
 )
+
+// UploadType is an enum
+type UploadType struct{}
+
+// Contains returns whether the UploadType enum includes the element
+func (enum UploadType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UploadType enum
+func (enum UploadType) Values() []string {
+	return []string{
+		UploadTypeAndroidApp,
+		UploadTypeIosApp,
+		UploadTypeWebApp,
+		UploadTypeExternalData,
+		UploadTypeAppiumJavaJunitTestPackage,
+		UploadTypeAppiumJavaTestngTestPackage,
+		UploadTypeAppiumPythonTestPackage,
+		UploadTypeAppiumNodeTestPackage,
+		UploadTypeAppiumRubyTestPackage,
+		UploadTypeAppiumWebJavaJunitTestPackage,
+		UploadTypeAppiumWebJavaTestngTestPackage,
+		UploadTypeAppiumWebPythonTestPackage,
+		UploadTypeAppiumWebNodeTestPackage,
+		UploadTypeAppiumWebRubyTestPackage,
+		UploadTypeCalabashTestPackage,
+		UploadTypeInstrumentationTestPackage,
+		UploadTypeUiautomationTestPackage,
+		UploadTypeUiautomatorTestPackage,
+		UploadTypeXctestTestPackage,
+		UploadTypeXctestUiTestPackage,
+		UploadTypeAppiumJavaJunitTestSpec,
+		UploadTypeAppiumJavaTestngTestSpec,
+		UploadTypeAppiumPythonTestSpec,
+		UploadTypeAppiumNodeTestSpec,
+		UploadTypeAppiumRubyTestSpec,
+		UploadTypeAppiumWebJavaJunitTestSpec,
+		UploadTypeAppiumWebJavaTestngTestSpec,
+		UploadTypeAppiumWebPythonTestSpec,
+		UploadTypeAppiumWebNodeTestSpec,
+		UploadTypeAppiumWebRubyTestSpec,
+		UploadTypeInstrumentationTestSpec,
+		UploadTypeXctestUiTestSpec,
+	}
+}

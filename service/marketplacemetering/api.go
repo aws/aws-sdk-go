@@ -1888,3 +1888,26 @@ const (
 	// UsageRecordResultStatusDuplicateRecord is a UsageRecordResultStatus enum value
 	UsageRecordResultStatusDuplicateRecord = "DuplicateRecord"
 )
+
+// UsageRecordResultStatus is an enum
+type UsageRecordResultStatus struct{}
+
+// Contains returns whether the UsageRecordResultStatus enum includes the element
+func (enum UsageRecordResultStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageRecordResultStatus enum
+func (enum UsageRecordResultStatus) Values() []string {
+	return []string{
+		UsageRecordResultStatusSuccess,
+		UsageRecordResultStatusCustomerNotSubscribed,
+		UsageRecordResultStatusDuplicateRecord,
+	}
+}

@@ -4905,6 +4905,29 @@ const (
 	ApplicationStatusCompleted = "COMPLETED"
 )
 
+// ApplicationStatus is an enum
+type ApplicationStatus struct{}
+
+// Contains returns whether the ApplicationStatus enum includes the element
+func (enum ApplicationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ApplicationStatus enum
+func (enum ApplicationStatus) Values() []string {
+	return []string{
+		ApplicationStatusNotStarted,
+		ApplicationStatusInProgress,
+		ApplicationStatusCompleted,
+	}
+}
+
 const (
 	// ResourceAttributeTypeIpv4Address is a ResourceAttributeType enum value
 	ResourceAttributeTypeIpv4Address = "IPV4_ADDRESS"
@@ -4937,6 +4960,36 @@ const (
 	ResourceAttributeTypeMotherboardSerialNumber = "MOTHERBOARD_SERIAL_NUMBER"
 )
 
+// ResourceAttributeType is an enum
+type ResourceAttributeType struct{}
+
+// Contains returns whether the ResourceAttributeType enum includes the element
+func (enum ResourceAttributeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceAttributeType enum
+func (enum ResourceAttributeType) Values() []string {
+	return []string{
+		ResourceAttributeTypeIpv4Address,
+		ResourceAttributeTypeIpv6Address,
+		ResourceAttributeTypeMacAddress,
+		ResourceAttributeTypeFqdn,
+		ResourceAttributeTypeVmManagerId,
+		ResourceAttributeTypeVmManagedObjectReference,
+		ResourceAttributeTypeVmName,
+		ResourceAttributeTypeVmPath,
+		ResourceAttributeTypeBiosId,
+		ResourceAttributeTypeMotherboardSerialNumber,
+	}
+}
+
 const (
 	// StatusNotStarted is a Status enum value
 	StatusNotStarted = "NOT_STARTED"
@@ -4950,3 +5003,27 @@ const (
 	// StatusCompleted is a Status enum value
 	StatusCompleted = "COMPLETED"
 )
+
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusNotStarted,
+		StatusInProgress,
+		StatusFailed,
+		StatusCompleted,
+	}
+}

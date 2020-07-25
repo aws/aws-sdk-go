@@ -9691,6 +9691,29 @@ const (
 	AssignmentStatusRejected = "Rejected"
 )
 
+// AssignmentStatus is an enum
+type AssignmentStatus struct{}
+
+// Contains returns whether the AssignmentStatus enum includes the element
+func (enum AssignmentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssignmentStatus enum
+func (enum AssignmentStatus) Values() []string {
+	return []string{
+		AssignmentStatusSubmitted,
+		AssignmentStatusApproved,
+		AssignmentStatusRejected,
+	}
+}
+
 const (
 	// ComparatorLessThan is a Comparator enum value
 	ComparatorLessThan = "LessThan"
@@ -9722,6 +9745,36 @@ const (
 	// ComparatorNotIn is a Comparator enum value
 	ComparatorNotIn = "NotIn"
 )
+
+// Comparator is an enum
+type Comparator struct{}
+
+// Contains returns whether the Comparator enum includes the element
+func (enum Comparator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Comparator enum
+func (enum Comparator) Values() []string {
+	return []string{
+		ComparatorLessThan,
+		ComparatorLessThanOrEqualTo,
+		ComparatorGreaterThan,
+		ComparatorGreaterThanOrEqualTo,
+		ComparatorEqualTo,
+		ComparatorNotEqualTo,
+		ComparatorExists,
+		ComparatorDoesNotExist,
+		ComparatorIn,
+		ComparatorNotIn,
+	}
+}
 
 const (
 	// EventTypeAssignmentAccepted is a EventType enum value
@@ -9761,6 +9814,38 @@ const (
 	EventTypePing = "Ping"
 )
 
+// EventType is an enum
+type EventType struct{}
+
+// Contains returns whether the EventType enum includes the element
+func (enum EventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventType enum
+func (enum EventType) Values() []string {
+	return []string{
+		EventTypeAssignmentAccepted,
+		EventTypeAssignmentAbandoned,
+		EventTypeAssignmentReturned,
+		EventTypeAssignmentSubmitted,
+		EventTypeAssignmentRejected,
+		EventTypeAssignmentApproved,
+		EventTypeHitcreated,
+		EventTypeHitexpired,
+		EventTypeHitreviewable,
+		EventTypeHitextended,
+		EventTypeHitdisposed,
+		EventTypePing,
+	}
+}
+
 const (
 	// HITAccessActionsAccept is a HITAccessActions enum value
 	HITAccessActionsAccept = "Accept"
@@ -9771,6 +9856,29 @@ const (
 	// HITAccessActionsDiscoverPreviewAndAccept is a HITAccessActions enum value
 	HITAccessActionsDiscoverPreviewAndAccept = "DiscoverPreviewAndAccept"
 )
+
+// HITAccessActions is an enum
+type HITAccessActions struct{}
+
+// Contains returns whether the HITAccessActions enum includes the element
+func (enum HITAccessActions) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HITAccessActions enum
+func (enum HITAccessActions) Values() []string {
+	return []string{
+		HITAccessActionsAccept,
+		HITAccessActionsPreviewAndAccept,
+		HITAccessActionsDiscoverPreviewAndAccept,
+	}
+}
 
 const (
 	// HITReviewStatusNotReviewed is a HITReviewStatus enum value
@@ -9785,6 +9893,30 @@ const (
 	// HITReviewStatusReviewedInappropriate is a HITReviewStatus enum value
 	HITReviewStatusReviewedInappropriate = "ReviewedInappropriate"
 )
+
+// HITReviewStatus is an enum
+type HITReviewStatus struct{}
+
+// Contains returns whether the HITReviewStatus enum includes the element
+func (enum HITReviewStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HITReviewStatus enum
+func (enum HITReviewStatus) Values() []string {
+	return []string{
+		HITReviewStatusNotReviewed,
+		HITReviewStatusMarkedForReview,
+		HITReviewStatusReviewedAppropriate,
+		HITReviewStatusReviewedInappropriate,
+	}
+}
 
 const (
 	// HITStatusAssignable is a HITStatus enum value
@@ -9803,6 +9935,31 @@ const (
 	HITStatusDisposed = "Disposed"
 )
 
+// HITStatus is an enum
+type HITStatus struct{}
+
+// Contains returns whether the HITStatus enum includes the element
+func (enum HITStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HITStatus enum
+func (enum HITStatus) Values() []string {
+	return []string{
+		HITStatusAssignable,
+		HITStatusUnassignable,
+		HITStatusReviewable,
+		HITStatusReviewing,
+		HITStatusDisposed,
+	}
+}
+
 const (
 	// NotificationTransportEmail is a NotificationTransport enum value
 	NotificationTransportEmail = "Email"
@@ -9814,6 +9971,29 @@ const (
 	NotificationTransportSns = "SNS"
 )
 
+// NotificationTransport is an enum
+type NotificationTransport struct{}
+
+// Contains returns whether the NotificationTransport enum includes the element
+func (enum NotificationTransport) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotificationTransport enum
+func (enum NotificationTransport) Values() []string {
+	return []string{
+		NotificationTransportEmail,
+		NotificationTransportSqs,
+		NotificationTransportSns,
+	}
+}
+
 const (
 	// NotifyWorkersFailureCodeSoftFailure is a NotifyWorkersFailureCode enum value
 	NotifyWorkersFailureCodeSoftFailure = "SoftFailure"
@@ -9821,6 +10001,28 @@ const (
 	// NotifyWorkersFailureCodeHardFailure is a NotifyWorkersFailureCode enum value
 	NotifyWorkersFailureCodeHardFailure = "HardFailure"
 )
+
+// NotifyWorkersFailureCode is an enum
+type NotifyWorkersFailureCode struct{}
+
+// Contains returns whether the NotifyWorkersFailureCode enum includes the element
+func (enum NotifyWorkersFailureCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotifyWorkersFailureCode enum
+func (enum NotifyWorkersFailureCode) Values() []string {
+	return []string{
+		NotifyWorkersFailureCodeSoftFailure,
+		NotifyWorkersFailureCodeHardFailure,
+	}
+}
 
 const (
 	// QualificationStatusGranted is a QualificationStatus enum value
@@ -9830,6 +10032,28 @@ const (
 	QualificationStatusRevoked = "Revoked"
 )
 
+// QualificationStatus is an enum
+type QualificationStatus struct{}
+
+// Contains returns whether the QualificationStatus enum includes the element
+func (enum QualificationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QualificationStatus enum
+func (enum QualificationStatus) Values() []string {
+	return []string{
+		QualificationStatusGranted,
+		QualificationStatusRevoked,
+	}
+}
+
 const (
 	// QualificationTypeStatusActive is a QualificationTypeStatus enum value
 	QualificationTypeStatusActive = "Active"
@@ -9837,6 +10061,28 @@ const (
 	// QualificationTypeStatusInactive is a QualificationTypeStatus enum value
 	QualificationTypeStatusInactive = "Inactive"
 )
+
+// QualificationTypeStatus is an enum
+type QualificationTypeStatus struct{}
+
+// Contains returns whether the QualificationTypeStatus enum includes the element
+func (enum QualificationTypeStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QualificationTypeStatus enum
+func (enum QualificationTypeStatus) Values() []string {
+	return []string{
+		QualificationTypeStatusActive,
+		QualificationTypeStatusInactive,
+	}
+}
 
 const (
 	// ReviewActionStatusIntended is a ReviewActionStatus enum value
@@ -9852,6 +10098,30 @@ const (
 	ReviewActionStatusCancelled = "Cancelled"
 )
 
+// ReviewActionStatus is an enum
+type ReviewActionStatus struct{}
+
+// Contains returns whether the ReviewActionStatus enum includes the element
+func (enum ReviewActionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReviewActionStatus enum
+func (enum ReviewActionStatus) Values() []string {
+	return []string{
+		ReviewActionStatusIntended,
+		ReviewActionStatusSucceeded,
+		ReviewActionStatusFailed,
+		ReviewActionStatusCancelled,
+	}
+}
+
 const (
 	// ReviewPolicyLevelAssignment is a ReviewPolicyLevel enum value
 	ReviewPolicyLevelAssignment = "Assignment"
@@ -9860,6 +10130,28 @@ const (
 	ReviewPolicyLevelHit = "HIT"
 )
 
+// ReviewPolicyLevel is an enum
+type ReviewPolicyLevel struct{}
+
+// Contains returns whether the ReviewPolicyLevel enum includes the element
+func (enum ReviewPolicyLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReviewPolicyLevel enum
+func (enum ReviewPolicyLevel) Values() []string {
+	return []string{
+		ReviewPolicyLevelAssignment,
+		ReviewPolicyLevelHit,
+	}
+}
+
 const (
 	// ReviewableHITStatusReviewable is a ReviewableHITStatus enum value
 	ReviewableHITStatusReviewable = "Reviewable"
@@ -9867,3 +10159,25 @@ const (
 	// ReviewableHITStatusReviewing is a ReviewableHITStatus enum value
 	ReviewableHITStatusReviewing = "Reviewing"
 )
+
+// ReviewableHITStatus is an enum
+type ReviewableHITStatus struct{}
+
+// Contains returns whether the ReviewableHITStatus enum includes the element
+func (enum ReviewableHITStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReviewableHITStatus enum
+func (enum ReviewableHITStatus) Values() []string {
+	return []string{
+		ReviewableHITStatusReviewable,
+		ReviewableHITStatusReviewing,
+	}
+}

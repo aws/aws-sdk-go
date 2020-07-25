@@ -5178,6 +5178,28 @@ const (
 	AttackLayerApplication = "APPLICATION"
 )
 
+// AttackLayer is an enum
+type AttackLayer struct{}
+
+// Contains returns whether the AttackLayer enum includes the element
+func (enum AttackLayer) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AttackLayer enum
+func (enum AttackLayer) Values() []string {
+	return []string{
+		AttackLayerNetwork,
+		AttackLayerApplication,
+	}
+}
+
 const (
 	// AttackPropertyIdentifierDestinationUrl is a AttackPropertyIdentifier enum value
 	AttackPropertyIdentifierDestinationUrl = "DESTINATION_URL"
@@ -5204,6 +5226,34 @@ const (
 	AttackPropertyIdentifierWordpressPingbackSource = "WORDPRESS_PINGBACK_SOURCE"
 )
 
+// AttackPropertyIdentifier is an enum
+type AttackPropertyIdentifier struct{}
+
+// Contains returns whether the AttackPropertyIdentifier enum includes the element
+func (enum AttackPropertyIdentifier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AttackPropertyIdentifier enum
+func (enum AttackPropertyIdentifier) Values() []string {
+	return []string{
+		AttackPropertyIdentifierDestinationUrl,
+		AttackPropertyIdentifierReferrer,
+		AttackPropertyIdentifierSourceAsn,
+		AttackPropertyIdentifierSourceCountry,
+		AttackPropertyIdentifierSourceIpAddress,
+		AttackPropertyIdentifierSourceUserAgent,
+		AttackPropertyIdentifierWordpressPingbackReflector,
+		AttackPropertyIdentifierWordpressPingbackSource,
+	}
+}
+
 const (
 	// AutoRenewEnabled is a AutoRenew enum value
 	AutoRenewEnabled = "ENABLED"
@@ -5211,6 +5261,28 @@ const (
 	// AutoRenewDisabled is a AutoRenew enum value
 	AutoRenewDisabled = "DISABLED"
 )
+
+// AutoRenew is an enum
+type AutoRenew struct{}
+
+// Contains returns whether the AutoRenew enum includes the element
+func (enum AutoRenew) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoRenew enum
+func (enum AutoRenew) Values() []string {
+	return []string{
+		AutoRenewEnabled,
+		AutoRenewDisabled,
+	}
+}
 
 const (
 	// ProactiveEngagementStatusEnabled is a ProactiveEngagementStatus enum value
@@ -5223,6 +5295,29 @@ const (
 	ProactiveEngagementStatusPending = "PENDING"
 )
 
+// ProactiveEngagementStatus is an enum
+type ProactiveEngagementStatus struct{}
+
+// Contains returns whether the ProactiveEngagementStatus enum includes the element
+func (enum ProactiveEngagementStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProactiveEngagementStatus enum
+func (enum ProactiveEngagementStatus) Values() []string {
+	return []string{
+		ProactiveEngagementStatusEnabled,
+		ProactiveEngagementStatusDisabled,
+		ProactiveEngagementStatusPending,
+	}
+}
+
 const (
 	// SubResourceTypeIp is a SubResourceType enum value
 	SubResourceTypeIp = "IP"
@@ -5231,6 +5326,28 @@ const (
 	SubResourceTypeUrl = "URL"
 )
 
+// SubResourceType is an enum
+type SubResourceType struct{}
+
+// Contains returns whether the SubResourceType enum includes the element
+func (enum SubResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SubResourceType enum
+func (enum SubResourceType) Values() []string {
+	return []string{
+		SubResourceTypeIp,
+		SubResourceTypeUrl,
+	}
+}
+
 const (
 	// SubscriptionStateActive is a SubscriptionState enum value
 	SubscriptionStateActive = "ACTIVE"
@@ -5238,6 +5355,28 @@ const (
 	// SubscriptionStateInactive is a SubscriptionState enum value
 	SubscriptionStateInactive = "INACTIVE"
 )
+
+// SubscriptionState is an enum
+type SubscriptionState struct{}
+
+// Contains returns whether the SubscriptionState enum includes the element
+func (enum SubscriptionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SubscriptionState enum
+func (enum SubscriptionState) Values() []string {
+	return []string{
+		SubscriptionStateActive,
+		SubscriptionStateInactive,
+	}
+}
 
 const (
 	// UnitBits is a Unit enum value
@@ -5252,3 +5391,27 @@ const (
 	// UnitRequests is a Unit enum value
 	UnitRequests = "REQUESTS"
 )
+
+// Unit is an enum
+type Unit struct{}
+
+// Contains returns whether the Unit enum includes the element
+func (enum Unit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Unit enum
+func (enum Unit) Values() []string {
+	return []string{
+		UnitBits,
+		UnitBytes,
+		UnitPackets,
+		UnitRequests,
+	}
+}

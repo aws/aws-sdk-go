@@ -4210,6 +4210,32 @@ const (
 	BudgetTypeSavingsPlansCoverage = "SAVINGS_PLANS_COVERAGE"
 )
 
+// BudgetType is an enum
+type BudgetType struct{}
+
+// Contains returns whether the BudgetType enum includes the element
+func (enum BudgetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BudgetType enum
+func (enum BudgetType) Values() []string {
+	return []string{
+		BudgetTypeUsage,
+		BudgetTypeCost,
+		BudgetTypeRiUtilization,
+		BudgetTypeRiCoverage,
+		BudgetTypeSavingsPlansUtilization,
+		BudgetTypeSavingsPlansCoverage,
+	}
+}
+
 // The comparison operator of a notification. Currently the service supports
 // the following operators:
 //
@@ -4225,6 +4251,29 @@ const (
 	ComparisonOperatorEqualTo = "EQUAL_TO"
 )
 
+// ComparisonOperator is an enum
+type ComparisonOperator struct{}
+
+// Contains returns whether the ComparisonOperator enum includes the element
+func (enum ComparisonOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComparisonOperator enum
+func (enum ComparisonOperator) Values() []string {
+	return []string{
+		ComparisonOperatorGreaterThan,
+		ComparisonOperatorLessThan,
+		ComparisonOperatorEqualTo,
+	}
+}
+
 const (
 	// NotificationStateOk is a NotificationState enum value
 	NotificationStateOk = "OK"
@@ -4232,6 +4281,28 @@ const (
 	// NotificationStateAlarm is a NotificationState enum value
 	NotificationStateAlarm = "ALARM"
 )
+
+// NotificationState is an enum
+type NotificationState struct{}
+
+// Contains returns whether the NotificationState enum includes the element
+func (enum NotificationState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotificationState enum
+func (enum NotificationState) Values() []string {
+	return []string{
+		NotificationStateOk,
+		NotificationStateAlarm,
+	}
+}
 
 // The type of a notification. It must be ACTUAL or FORECASTED.
 const (
@@ -4242,6 +4313,28 @@ const (
 	NotificationTypeForecasted = "FORECASTED"
 )
 
+// NotificationType is an enum
+type NotificationType struct{}
+
+// Contains returns whether the NotificationType enum includes the element
+func (enum NotificationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotificationType enum
+func (enum NotificationType) Values() []string {
+	return []string{
+		NotificationTypeActual,
+		NotificationTypeForecasted,
+	}
+}
+
 // The subscription type of the subscriber. It can be SMS or EMAIL.
 const (
 	// SubscriptionTypeSns is a SubscriptionType enum value
@@ -4251,6 +4344,28 @@ const (
 	SubscriptionTypeEmail = "EMAIL"
 )
 
+// SubscriptionType is an enum
+type SubscriptionType struct{}
+
+// Contains returns whether the SubscriptionType enum includes the element
+func (enum SubscriptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SubscriptionType enum
+func (enum SubscriptionType) Values() []string {
+	return []string{
+		SubscriptionTypeSns,
+		SubscriptionTypeEmail,
+	}
+}
+
 // The type of threshold for a notification. It can be PERCENTAGE or ABSOLUTE_VALUE.
 const (
 	// ThresholdTypePercentage is a ThresholdType enum value
@@ -4259,6 +4374,28 @@ const (
 	// ThresholdTypeAbsoluteValue is a ThresholdType enum value
 	ThresholdTypeAbsoluteValue = "ABSOLUTE_VALUE"
 )
+
+// ThresholdType is an enum
+type ThresholdType struct{}
+
+// Contains returns whether the ThresholdType enum includes the element
+func (enum ThresholdType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThresholdType enum
+func (enum ThresholdType) Values() []string {
+	return []string{
+		ThresholdTypePercentage,
+		ThresholdTypeAbsoluteValue,
+	}
+}
 
 // The time unit of the budget, such as MONTHLY or QUARTERLY.
 const (
@@ -4274,3 +4411,27 @@ const (
 	// TimeUnitAnnually is a TimeUnit enum value
 	TimeUnitAnnually = "ANNUALLY"
 )
+
+// TimeUnit is an enum
+type TimeUnit struct{}
+
+// Contains returns whether the TimeUnit enum includes the element
+func (enum TimeUnit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TimeUnit enum
+func (enum TimeUnit) Values() []string {
+	return []string{
+		TimeUnitDaily,
+		TimeUnitMonthly,
+		TimeUnitQuarterly,
+		TimeUnitAnnually,
+	}
+}

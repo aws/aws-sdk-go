@@ -17616,6 +17616,30 @@ const (
 	AppAttributesKeysAwsFlowRubySettings = "AwsFlowRubySettings"
 )
 
+// AppAttributesKeys is an enum
+type AppAttributesKeys struct{}
+
+// Contains returns whether the AppAttributesKeys enum includes the element
+func (enum AppAttributesKeys) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AppAttributesKeys enum
+func (enum AppAttributesKeys) Values() []string {
+	return []string{
+		AppAttributesKeysDocumentRoot,
+		AppAttributesKeysRailsEnv,
+		AppAttributesKeysAutoBundleOnDeploy,
+		AppAttributesKeysAwsFlowRubySettings,
+	}
+}
+
 const (
 	// AppTypeAwsFlowRuby is a AppType enum value
 	AppTypeAwsFlowRuby = "aws-flow-ruby"
@@ -17639,6 +17663,33 @@ const (
 	AppTypeOther = "other"
 )
 
+// AppType is an enum
+type AppType struct{}
+
+// Contains returns whether the AppType enum includes the element
+func (enum AppType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AppType enum
+func (enum AppType) Values() []string {
+	return []string{
+		AppTypeAwsFlowRuby,
+		AppTypeJava,
+		AppTypeRails,
+		AppTypePhp,
+		AppTypeNodejs,
+		AppTypeStatic,
+		AppTypeOther,
+	}
+}
+
 const (
 	// ArchitectureX8664 is a Architecture enum value
 	ArchitectureX8664 = "x86_64"
@@ -17647,6 +17698,28 @@ const (
 	ArchitectureI386 = "i386"
 )
 
+// Architecture is an enum
+type Architecture struct{}
+
+// Contains returns whether the Architecture enum includes the element
+func (enum Architecture) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Architecture enum
+func (enum Architecture) Values() []string {
+	return []string{
+		ArchitectureX8664,
+		ArchitectureI386,
+	}
+}
+
 const (
 	// AutoScalingTypeLoad is a AutoScalingType enum value
 	AutoScalingTypeLoad = "load"
@@ -17654,6 +17727,28 @@ const (
 	// AutoScalingTypeTimer is a AutoScalingType enum value
 	AutoScalingTypeTimer = "timer"
 )
+
+// AutoScalingType is an enum
+type AutoScalingType struct{}
+
+// Contains returns whether the AutoScalingType enum includes the element
+func (enum AutoScalingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoScalingType enum
+func (enum AutoScalingType) Values() []string {
+	return []string{
+		AutoScalingTypeLoad,
+		AutoScalingTypeTimer,
+	}
+}
 
 // Specifies the encoding of the log file so that the file can be read correctly.
 // The default is utf_8. Encodings supported by Python codecs.decode() can be
@@ -17936,6 +18031,118 @@ const (
 	CloudWatchLogsEncodingUtf8Sig = "utf_8_sig"
 )
 
+// CloudWatchLogsEncoding is an enum
+type CloudWatchLogsEncoding struct{}
+
+// Contains returns whether the CloudWatchLogsEncoding enum includes the element
+func (enum CloudWatchLogsEncoding) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CloudWatchLogsEncoding enum
+func (enum CloudWatchLogsEncoding) Values() []string {
+	return []string{
+		CloudWatchLogsEncodingAscii,
+		CloudWatchLogsEncodingBig5,
+		CloudWatchLogsEncodingBig5hkscs,
+		CloudWatchLogsEncodingCp037,
+		CloudWatchLogsEncodingCp424,
+		CloudWatchLogsEncodingCp437,
+		CloudWatchLogsEncodingCp500,
+		CloudWatchLogsEncodingCp720,
+		CloudWatchLogsEncodingCp737,
+		CloudWatchLogsEncodingCp775,
+		CloudWatchLogsEncodingCp850,
+		CloudWatchLogsEncodingCp852,
+		CloudWatchLogsEncodingCp855,
+		CloudWatchLogsEncodingCp856,
+		CloudWatchLogsEncodingCp857,
+		CloudWatchLogsEncodingCp858,
+		CloudWatchLogsEncodingCp860,
+		CloudWatchLogsEncodingCp861,
+		CloudWatchLogsEncodingCp862,
+		CloudWatchLogsEncodingCp863,
+		CloudWatchLogsEncodingCp864,
+		CloudWatchLogsEncodingCp865,
+		CloudWatchLogsEncodingCp866,
+		CloudWatchLogsEncodingCp869,
+		CloudWatchLogsEncodingCp874,
+		CloudWatchLogsEncodingCp875,
+		CloudWatchLogsEncodingCp932,
+		CloudWatchLogsEncodingCp949,
+		CloudWatchLogsEncodingCp950,
+		CloudWatchLogsEncodingCp1006,
+		CloudWatchLogsEncodingCp1026,
+		CloudWatchLogsEncodingCp1140,
+		CloudWatchLogsEncodingCp1250,
+		CloudWatchLogsEncodingCp1251,
+		CloudWatchLogsEncodingCp1252,
+		CloudWatchLogsEncodingCp1253,
+		CloudWatchLogsEncodingCp1254,
+		CloudWatchLogsEncodingCp1255,
+		CloudWatchLogsEncodingCp1256,
+		CloudWatchLogsEncodingCp1257,
+		CloudWatchLogsEncodingCp1258,
+		CloudWatchLogsEncodingEucJp,
+		CloudWatchLogsEncodingEucJis2004,
+		CloudWatchLogsEncodingEucJisx0213,
+		CloudWatchLogsEncodingEucKr,
+		CloudWatchLogsEncodingGb2312,
+		CloudWatchLogsEncodingGbk,
+		CloudWatchLogsEncodingGb18030,
+		CloudWatchLogsEncodingHz,
+		CloudWatchLogsEncodingIso2022Jp,
+		CloudWatchLogsEncodingIso2022Jp1,
+		CloudWatchLogsEncodingIso2022Jp2,
+		CloudWatchLogsEncodingIso2022Jp2004,
+		CloudWatchLogsEncodingIso2022Jp3,
+		CloudWatchLogsEncodingIso2022JpExt,
+		CloudWatchLogsEncodingIso2022Kr,
+		CloudWatchLogsEncodingLatin1,
+		CloudWatchLogsEncodingIso88592,
+		CloudWatchLogsEncodingIso88593,
+		CloudWatchLogsEncodingIso88594,
+		CloudWatchLogsEncodingIso88595,
+		CloudWatchLogsEncodingIso88596,
+		CloudWatchLogsEncodingIso88597,
+		CloudWatchLogsEncodingIso88598,
+		CloudWatchLogsEncodingIso88599,
+		CloudWatchLogsEncodingIso885910,
+		CloudWatchLogsEncodingIso885913,
+		CloudWatchLogsEncodingIso885914,
+		CloudWatchLogsEncodingIso885915,
+		CloudWatchLogsEncodingIso885916,
+		CloudWatchLogsEncodingJohab,
+		CloudWatchLogsEncodingKoi8R,
+		CloudWatchLogsEncodingKoi8U,
+		CloudWatchLogsEncodingMacCyrillic,
+		CloudWatchLogsEncodingMacGreek,
+		CloudWatchLogsEncodingMacIceland,
+		CloudWatchLogsEncodingMacLatin2,
+		CloudWatchLogsEncodingMacRoman,
+		CloudWatchLogsEncodingMacTurkish,
+		CloudWatchLogsEncodingPtcp154,
+		CloudWatchLogsEncodingShiftJis,
+		CloudWatchLogsEncodingShiftJis2004,
+		CloudWatchLogsEncodingShiftJisx0213,
+		CloudWatchLogsEncodingUtf32,
+		CloudWatchLogsEncodingUtf32Be,
+		CloudWatchLogsEncodingUtf32Le,
+		CloudWatchLogsEncodingUtf16,
+		CloudWatchLogsEncodingUtf16Be,
+		CloudWatchLogsEncodingUtf16Le,
+		CloudWatchLogsEncodingUtf7,
+		CloudWatchLogsEncodingUtf8,
+		CloudWatchLogsEncodingUtf8Sig,
+	}
+}
+
 // Specifies where to start to read data (start_of_file or end_of_file). The
 // default is start_of_file. It's only used if there is no state persisted for
 // that log stream.
@@ -17947,6 +18154,28 @@ const (
 	CloudWatchLogsInitialPositionEndOfFile = "end_of_file"
 )
 
+// CloudWatchLogsInitialPosition is an enum
+type CloudWatchLogsInitialPosition struct{}
+
+// Contains returns whether the CloudWatchLogsInitialPosition enum includes the element
+func (enum CloudWatchLogsInitialPosition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CloudWatchLogsInitialPosition enum
+func (enum CloudWatchLogsInitialPosition) Values() []string {
+	return []string{
+		CloudWatchLogsInitialPositionStartOfFile,
+		CloudWatchLogsInitialPositionEndOfFile,
+	}
+}
+
 // The preferred time zone for logs streamed to CloudWatch Logs. Valid values
 // are LOCAL and UTC, for Coordinated Universal Time.
 const (
@@ -17956,6 +18185,28 @@ const (
 	// CloudWatchLogsTimeZoneUtc is a CloudWatchLogsTimeZone enum value
 	CloudWatchLogsTimeZoneUtc = "UTC"
 )
+
+// CloudWatchLogsTimeZone is an enum
+type CloudWatchLogsTimeZone struct{}
+
+// Contains returns whether the CloudWatchLogsTimeZone enum includes the element
+func (enum CloudWatchLogsTimeZone) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CloudWatchLogsTimeZone enum
+func (enum CloudWatchLogsTimeZone) Values() []string {
+	return []string{
+		CloudWatchLogsTimeZoneLocal,
+		CloudWatchLogsTimeZoneUtc,
+	}
+}
 
 const (
 	// DeploymentCommandNameInstallDependencies is a DeploymentCommandName enum value
@@ -17994,6 +18245,38 @@ const (
 	// DeploymentCommandNameUndeploy is a DeploymentCommandName enum value
 	DeploymentCommandNameUndeploy = "undeploy"
 )
+
+// DeploymentCommandName is an enum
+type DeploymentCommandName struct{}
+
+// Contains returns whether the DeploymentCommandName enum includes the element
+func (enum DeploymentCommandName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentCommandName enum
+func (enum DeploymentCommandName) Values() []string {
+	return []string{
+		DeploymentCommandNameInstallDependencies,
+		DeploymentCommandNameUpdateDependencies,
+		DeploymentCommandNameUpdateCustomCookbooks,
+		DeploymentCommandNameExecuteRecipes,
+		DeploymentCommandNameConfigure,
+		DeploymentCommandNameSetup,
+		DeploymentCommandNameDeploy,
+		DeploymentCommandNameRollback,
+		DeploymentCommandNameStart,
+		DeploymentCommandNameStop,
+		DeploymentCommandNameRestart,
+		DeploymentCommandNameUndeploy,
+	}
+}
 
 const (
 	// LayerAttributesKeysEcsClusterArn is a LayerAttributesKeys enum value
@@ -18072,6 +18355,51 @@ const (
 	LayerAttributesKeysJavaAppServerVersion = "JavaAppServerVersion"
 )
 
+// LayerAttributesKeys is an enum
+type LayerAttributesKeys struct{}
+
+// Contains returns whether the LayerAttributesKeys enum includes the element
+func (enum LayerAttributesKeys) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LayerAttributesKeys enum
+func (enum LayerAttributesKeys) Values() []string {
+	return []string{
+		LayerAttributesKeysEcsClusterArn,
+		LayerAttributesKeysEnableHaproxyStats,
+		LayerAttributesKeysHaproxyStatsUrl,
+		LayerAttributesKeysHaproxyStatsUser,
+		LayerAttributesKeysHaproxyStatsPassword,
+		LayerAttributesKeysHaproxyHealthCheckUrl,
+		LayerAttributesKeysHaproxyHealthCheckMethod,
+		LayerAttributesKeysMysqlRootPassword,
+		LayerAttributesKeysMysqlRootPasswordUbiquitous,
+		LayerAttributesKeysGangliaUrl,
+		LayerAttributesKeysGangliaUser,
+		LayerAttributesKeysGangliaPassword,
+		LayerAttributesKeysMemcachedMemory,
+		LayerAttributesKeysNodejsVersion,
+		LayerAttributesKeysRubyVersion,
+		LayerAttributesKeysRubygemsVersion,
+		LayerAttributesKeysManageBundler,
+		LayerAttributesKeysBundlerVersion,
+		LayerAttributesKeysRailsStack,
+		LayerAttributesKeysPassengerVersion,
+		LayerAttributesKeysJvm,
+		LayerAttributesKeysJvmVersion,
+		LayerAttributesKeysJvmOptions,
+		LayerAttributesKeysJavaAppServer,
+		LayerAttributesKeysJavaAppServerVersion,
+	}
+}
+
 const (
 	// LayerTypeAwsFlowRuby is a LayerType enum value
 	LayerTypeAwsFlowRuby = "aws-flow-ruby"
@@ -18110,6 +18438,38 @@ const (
 	LayerTypeCustom = "custom"
 )
 
+// LayerType is an enum
+type LayerType struct{}
+
+// Contains returns whether the LayerType enum includes the element
+func (enum LayerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LayerType enum
+func (enum LayerType) Values() []string {
+	return []string{
+		LayerTypeAwsFlowRuby,
+		LayerTypeEcsCluster,
+		LayerTypeJavaApp,
+		LayerTypeLb,
+		LayerTypeWeb,
+		LayerTypePhpApp,
+		LayerTypeRailsApp,
+		LayerTypeNodejsApp,
+		LayerTypeMemcached,
+		LayerTypeDbMaster,
+		LayerTypeMonitoringMaster,
+		LayerTypeCustom,
+	}
+}
+
 const (
 	// RootDeviceTypeEbs is a RootDeviceType enum value
 	RootDeviceTypeEbs = "ebs"
@@ -18117,6 +18477,28 @@ const (
 	// RootDeviceTypeInstanceStore is a RootDeviceType enum value
 	RootDeviceTypeInstanceStore = "instance-store"
 )
+
+// RootDeviceType is an enum
+type RootDeviceType struct{}
+
+// Contains returns whether the RootDeviceType enum includes the element
+func (enum RootDeviceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RootDeviceType enum
+func (enum RootDeviceType) Values() []string {
+	return []string{
+		RootDeviceTypeEbs,
+		RootDeviceTypeInstanceStore,
+	}
+}
 
 const (
 	// SourceTypeGit is a SourceType enum value
@@ -18132,10 +18514,55 @@ const (
 	SourceTypeS3 = "s3"
 )
 
+// SourceType is an enum
+type SourceType struct{}
+
+// Contains returns whether the SourceType enum includes the element
+func (enum SourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceType enum
+func (enum SourceType) Values() []string {
+	return []string{
+		SourceTypeGit,
+		SourceTypeSvn,
+		SourceTypeArchive,
+		SourceTypeS3,
+	}
+}
+
 const (
 	// StackAttributesKeysColor is a StackAttributesKeys enum value
 	StackAttributesKeysColor = "Color"
 )
+
+// StackAttributesKeys is an enum
+type StackAttributesKeys struct{}
+
+// Contains returns whether the StackAttributesKeys enum includes the element
+func (enum StackAttributesKeys) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StackAttributesKeys enum
+func (enum StackAttributesKeys) Values() []string {
+	return []string{
+		StackAttributesKeysColor,
+	}
+}
 
 const (
 	// VirtualizationTypeParavirtual is a VirtualizationType enum value
@@ -18144,6 +18571,28 @@ const (
 	// VirtualizationTypeHvm is a VirtualizationType enum value
 	VirtualizationTypeHvm = "hvm"
 )
+
+// VirtualizationType is an enum
+type VirtualizationType struct{}
+
+// Contains returns whether the VirtualizationType enum includes the element
+func (enum VirtualizationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VirtualizationType enum
+func (enum VirtualizationType) Values() []string {
+	return []string{
+		VirtualizationTypeParavirtual,
+		VirtualizationTypeHvm,
+	}
+}
 
 const (
 	// VolumeTypeGp2 is a VolumeType enum value
@@ -18155,3 +18604,26 @@ const (
 	// VolumeTypeStandard is a VolumeType enum value
 	VolumeTypeStandard = "standard"
 )
+
+// VolumeType is an enum
+type VolumeType struct{}
+
+// Contains returns whether the VolumeType enum includes the element
+func (enum VolumeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VolumeType enum
+func (enum VolumeType) Values() []string {
+	return []string{
+		VolumeTypeGp2,
+		VolumeTypeIo1,
+		VolumeTypeStandard,
+	}
+}

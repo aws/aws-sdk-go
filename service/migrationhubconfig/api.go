@@ -1072,3 +1072,24 @@ const (
 	// TargetTypeAccount is a TargetType enum value
 	TargetTypeAccount = "ACCOUNT"
 )
+
+// TargetType is an enum
+type TargetType struct{}
+
+// Contains returns whether the TargetType enum includes the element
+func (enum TargetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetType enum
+func (enum TargetType) Values() []string {
+	return []string{
+		TargetTypeAccount,
+	}
+}

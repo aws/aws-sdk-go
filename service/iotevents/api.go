@@ -6010,6 +6010,33 @@ const (
 	DetectorModelVersionStatusFailed = "FAILED"
 )
 
+// DetectorModelVersionStatus is an enum
+type DetectorModelVersionStatus struct{}
+
+// Contains returns whether the DetectorModelVersionStatus enum includes the element
+func (enum DetectorModelVersionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DetectorModelVersionStatus enum
+func (enum DetectorModelVersionStatus) Values() []string {
+	return []string{
+		DetectorModelVersionStatusActive,
+		DetectorModelVersionStatusActivating,
+		DetectorModelVersionStatusInactive,
+		DetectorModelVersionStatusDeprecated,
+		DetectorModelVersionStatusDraft,
+		DetectorModelVersionStatusPaused,
+		DetectorModelVersionStatusFailed,
+	}
+}
+
 const (
 	// EvaluationMethodBatch is a EvaluationMethod enum value
 	EvaluationMethodBatch = "BATCH"
@@ -6017,6 +6044,28 @@ const (
 	// EvaluationMethodSerial is a EvaluationMethod enum value
 	EvaluationMethodSerial = "SERIAL"
 )
+
+// EvaluationMethod is an enum
+type EvaluationMethod struct{}
+
+// Contains returns whether the EvaluationMethod enum includes the element
+func (enum EvaluationMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EvaluationMethod enum
+func (enum EvaluationMethod) Values() []string {
+	return []string{
+		EvaluationMethodBatch,
+		EvaluationMethodSerial,
+	}
+}
 
 const (
 	// InputStatusCreating is a InputStatus enum value
@@ -6032,6 +6081,30 @@ const (
 	InputStatusDeleting = "DELETING"
 )
 
+// InputStatus is an enum
+type InputStatus struct{}
+
+// Contains returns whether the InputStatus enum includes the element
+func (enum InputStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InputStatus enum
+func (enum InputStatus) Values() []string {
+	return []string{
+		InputStatusCreating,
+		InputStatusUpdating,
+		InputStatusActive,
+		InputStatusDeleting,
+	}
+}
+
 const (
 	// LoggingLevelError is a LoggingLevel enum value
 	LoggingLevelError = "ERROR"
@@ -6043,6 +6116,29 @@ const (
 	LoggingLevelDebug = "DEBUG"
 )
 
+// LoggingLevel is an enum
+type LoggingLevel struct{}
+
+// Contains returns whether the LoggingLevel enum includes the element
+func (enum LoggingLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoggingLevel enum
+func (enum LoggingLevel) Values() []string {
+	return []string{
+		LoggingLevelError,
+		LoggingLevelInfo,
+		LoggingLevelDebug,
+	}
+}
+
 const (
 	// PayloadTypeString is a PayloadType enum value
 	PayloadTypeString = "STRING"
@@ -6050,3 +6146,25 @@ const (
 	// PayloadTypeJson is a PayloadType enum value
 	PayloadTypeJson = "JSON"
 )
+
+// PayloadType is an enum
+type PayloadType struct{}
+
+// Contains returns whether the PayloadType enum includes the element
+func (enum PayloadType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PayloadType enum
+func (enum PayloadType) Values() []string {
+	return []string{
+		PayloadTypeString,
+		PayloadTypeJson,
+	}
+}

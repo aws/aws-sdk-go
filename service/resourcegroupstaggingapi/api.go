@@ -2668,6 +2668,28 @@ const (
 	ErrorCodeInvalidParameterException = "InvalidParameterException"
 )
 
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeInternalServiceException,
+		ErrorCodeInvalidParameterException,
+	}
+}
+
 const (
 	// GroupByAttributeTargetId is a GroupByAttribute enum value
 	GroupByAttributeTargetId = "TARGET_ID"
@@ -2679,6 +2701,29 @@ const (
 	GroupByAttributeResourceType = "RESOURCE_TYPE"
 )
 
+// GroupByAttribute is an enum
+type GroupByAttribute struct{}
+
+// Contains returns whether the GroupByAttribute enum includes the element
+func (enum GroupByAttribute) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GroupByAttribute enum
+func (enum GroupByAttribute) Values() []string {
+	return []string{
+		GroupByAttributeTargetId,
+		GroupByAttributeRegion,
+		GroupByAttributeResourceType,
+	}
+}
+
 const (
 	// TargetIdTypeAccount is a TargetIdType enum value
 	TargetIdTypeAccount = "ACCOUNT"
@@ -2689,3 +2734,26 @@ const (
 	// TargetIdTypeRoot is a TargetIdType enum value
 	TargetIdTypeRoot = "ROOT"
 )
+
+// TargetIdType is an enum
+type TargetIdType struct{}
+
+// Contains returns whether the TargetIdType enum includes the element
+func (enum TargetIdType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetIdType enum
+func (enum TargetIdType) Values() []string {
+	return []string{
+		TargetIdTypeAccount,
+		TargetIdTypeOu,
+		TargetIdTypeRoot,
+	}
+}

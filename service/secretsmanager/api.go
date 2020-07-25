@@ -6549,6 +6549,31 @@ const (
 	FilterNameStringTypeAll = "all"
 )
 
+// FilterNameStringType is an enum
+type FilterNameStringType struct{}
+
+// Contains returns whether the FilterNameStringType enum includes the element
+func (enum FilterNameStringType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterNameStringType enum
+func (enum FilterNameStringType) Values() []string {
+	return []string{
+		FilterNameStringTypeDescription,
+		FilterNameStringTypeName,
+		FilterNameStringTypeTagKey,
+		FilterNameStringTypeTagValue,
+		FilterNameStringTypeAll,
+	}
+}
+
 const (
 	// SortOrderTypeAsc is a SortOrderType enum value
 	SortOrderTypeAsc = "asc"
@@ -6556,3 +6581,25 @@ const (
 	// SortOrderTypeDesc is a SortOrderType enum value
 	SortOrderTypeDesc = "desc"
 )
+
+// SortOrderType is an enum
+type SortOrderType struct{}
+
+// Contains returns whether the SortOrderType enum includes the element
+func (enum SortOrderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortOrderType enum
+func (enum SortOrderType) Values() []string {
+	return []string{
+		SortOrderTypeAsc,
+		SortOrderTypeDesc,
+	}
+}

@@ -6694,6 +6694,29 @@ const (
 	AlgorithmAes256 = "aes256"
 )
 
+// Algorithm is an enum
+type Algorithm struct{}
+
+// Contains returns whether the Algorithm enum includes the element
+func (enum Algorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Algorithm enum
+func (enum Algorithm) Values() []string {
+	return []string{
+		AlgorithmAes128,
+		AlgorithmAes192,
+		AlgorithmAes256,
+	}
+}
+
 const (
 	// EntitlementStatusEnabled is a EntitlementStatus enum value
 	EntitlementStatusEnabled = "ENABLED"
@@ -6702,6 +6725,28 @@ const (
 	EntitlementStatusDisabled = "DISABLED"
 )
 
+// EntitlementStatus is an enum
+type EntitlementStatus struct{}
+
+// Contains returns whether the EntitlementStatus enum includes the element
+func (enum EntitlementStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EntitlementStatus enum
+func (enum EntitlementStatus) Values() []string {
+	return []string{
+		EntitlementStatusEnabled,
+		EntitlementStatusDisabled,
+	}
+}
+
 const (
 	// KeyTypeSpeke is a KeyType enum value
 	KeyTypeSpeke = "speke"
@@ -6709,6 +6754,28 @@ const (
 	// KeyTypeStaticKey is a KeyType enum value
 	KeyTypeStaticKey = "static-key"
 )
+
+// KeyType is an enum
+type KeyType struct{}
+
+// Contains returns whether the KeyType enum includes the element
+func (enum KeyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KeyType enum
+func (enum KeyType) Values() []string {
+	return []string{
+		KeyTypeSpeke,
+		KeyTypeStaticKey,
+	}
+}
 
 const (
 	// ProtocolZixiPush is a Protocol enum value
@@ -6727,6 +6794,31 @@ const (
 	ProtocolRist = "rist"
 )
 
+// Protocol is an enum
+type Protocol struct{}
+
+// Contains returns whether the Protocol enum includes the element
+func (enum Protocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Protocol enum
+func (enum Protocol) Values() []string {
+	return []string{
+		ProtocolZixiPush,
+		ProtocolRtpFec,
+		ProtocolRtp,
+		ProtocolZixiPull,
+		ProtocolRist,
+	}
+}
+
 const (
 	// SourceTypeOwned is a SourceType enum value
 	SourceTypeOwned = "OWNED"
@@ -6735,6 +6827,28 @@ const (
 	SourceTypeEntitled = "ENTITLED"
 )
 
+// SourceType is an enum
+type SourceType struct{}
+
+// Contains returns whether the SourceType enum includes the element
+func (enum SourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SourceType enum
+func (enum SourceType) Values() []string {
+	return []string{
+		SourceTypeOwned,
+		SourceTypeEntitled,
+	}
+}
+
 const (
 	// StateEnabled is a State enum value
 	StateEnabled = "ENABLED"
@@ -6742,6 +6856,28 @@ const (
 	// StateDisabled is a State enum value
 	StateDisabled = "DISABLED"
 )
+
+// State is an enum
+type State struct{}
+
+// Contains returns whether the State enum includes the element
+func (enum State) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the State enum
+func (enum State) Values() []string {
+	return []string{
+		StateEnabled,
+		StateDisabled,
+	}
+}
 
 const (
 	// StatusStandby is a Status enum value
@@ -6765,3 +6901,30 @@ const (
 	// StatusError is a Status enum value
 	StatusError = "ERROR"
 )
+
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusStandby,
+		StatusActive,
+		StatusUpdating,
+		StatusDeleting,
+		StatusStarting,
+		StatusStopping,
+		StatusError,
+	}
+}

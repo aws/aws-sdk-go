@@ -3374,6 +3374,28 @@ const (
 	DetailTypeFull = "FULL"
 )
 
+// DetailType is an enum
+type DetailType struct{}
+
+// Contains returns whether the DetailType enum includes the element
+func (enum DetailType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DetailType enum
+func (enum DetailType) Values() []string {
+	return []string{
+		DetailTypeBasic,
+		DetailTypeFull,
+	}
+}
+
 const (
 	// ListEventTypesFilterNameResourceType is a ListEventTypesFilterName enum value
 	ListEventTypesFilterNameResourceType = "RESOURCE_TYPE"
@@ -3381,6 +3403,28 @@ const (
 	// ListEventTypesFilterNameServiceName is a ListEventTypesFilterName enum value
 	ListEventTypesFilterNameServiceName = "SERVICE_NAME"
 )
+
+// ListEventTypesFilterName is an enum
+type ListEventTypesFilterName struct{}
+
+// Contains returns whether the ListEventTypesFilterName enum includes the element
+func (enum ListEventTypesFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListEventTypesFilterName enum
+func (enum ListEventTypesFilterName) Values() []string {
+	return []string{
+		ListEventTypesFilterNameResourceType,
+		ListEventTypesFilterNameServiceName,
+	}
+}
 
 const (
 	// ListNotificationRulesFilterNameEventTypeId is a ListNotificationRulesFilterName enum value
@@ -3396,6 +3440,30 @@ const (
 	ListNotificationRulesFilterNameTargetAddress = "TARGET_ADDRESS"
 )
 
+// ListNotificationRulesFilterName is an enum
+type ListNotificationRulesFilterName struct{}
+
+// Contains returns whether the ListNotificationRulesFilterName enum includes the element
+func (enum ListNotificationRulesFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListNotificationRulesFilterName enum
+func (enum ListNotificationRulesFilterName) Values() []string {
+	return []string{
+		ListNotificationRulesFilterNameEventTypeId,
+		ListNotificationRulesFilterNameCreatedBy,
+		ListNotificationRulesFilterNameResource,
+		ListNotificationRulesFilterNameTargetAddress,
+	}
+}
+
 const (
 	// ListTargetsFilterNameTargetType is a ListTargetsFilterName enum value
 	ListTargetsFilterNameTargetType = "TARGET_TYPE"
@@ -3407,6 +3475,29 @@ const (
 	ListTargetsFilterNameTargetStatus = "TARGET_STATUS"
 )
 
+// ListTargetsFilterName is an enum
+type ListTargetsFilterName struct{}
+
+// Contains returns whether the ListTargetsFilterName enum includes the element
+func (enum ListTargetsFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListTargetsFilterName enum
+func (enum ListTargetsFilterName) Values() []string {
+	return []string{
+		ListTargetsFilterNameTargetType,
+		ListTargetsFilterNameTargetAddress,
+		ListTargetsFilterNameTargetStatus,
+	}
+}
+
 const (
 	// NotificationRuleStatusEnabled is a NotificationRuleStatus enum value
 	NotificationRuleStatusEnabled = "ENABLED"
@@ -3414,6 +3505,28 @@ const (
 	// NotificationRuleStatusDisabled is a NotificationRuleStatus enum value
 	NotificationRuleStatusDisabled = "DISABLED"
 )
+
+// NotificationRuleStatus is an enum
+type NotificationRuleStatus struct{}
+
+// Contains returns whether the NotificationRuleStatus enum includes the element
+func (enum NotificationRuleStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NotificationRuleStatus enum
+func (enum NotificationRuleStatus) Values() []string {
+	return []string{
+		NotificationRuleStatusEnabled,
+		NotificationRuleStatusDisabled,
+	}
+}
 
 const (
 	// TargetStatusPending is a TargetStatus enum value
@@ -3431,3 +3544,28 @@ const (
 	// TargetStatusDeactivated is a TargetStatus enum value
 	TargetStatusDeactivated = "DEACTIVATED"
 )
+
+// TargetStatus is an enum
+type TargetStatus struct{}
+
+// Contains returns whether the TargetStatus enum includes the element
+func (enum TargetStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TargetStatus enum
+func (enum TargetStatus) Values() []string {
+	return []string{
+		TargetStatusPending,
+		TargetStatusActive,
+		TargetStatusUnreachable,
+		TargetStatusInactive,
+		TargetStatusDeactivated,
+	}
+}

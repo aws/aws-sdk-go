@@ -766,3 +766,29 @@ const (
 	// StartSelectorTypeContinuationToken is a StartSelectorType enum value
 	StartSelectorTypeContinuationToken = "CONTINUATION_TOKEN"
 )
+
+// StartSelectorType is an enum
+type StartSelectorType struct{}
+
+// Contains returns whether the StartSelectorType enum includes the element
+func (enum StartSelectorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StartSelectorType enum
+func (enum StartSelectorType) Values() []string {
+	return []string{
+		StartSelectorTypeFragmentNumber,
+		StartSelectorTypeServerTimestamp,
+		StartSelectorTypeProducerTimestamp,
+		StartSelectorTypeNow,
+		StartSelectorTypeEarliest,
+		StartSelectorTypeContinuationToken,
+	}
+}

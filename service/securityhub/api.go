@@ -15808,6 +15808,28 @@ const (
 	AwsIamAccessKeyStatusInactive = "Inactive"
 )
 
+// AwsIamAccessKeyStatus is an enum
+type AwsIamAccessKeyStatus struct{}
+
+// Contains returns whether the AwsIamAccessKeyStatus enum includes the element
+func (enum AwsIamAccessKeyStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AwsIamAccessKeyStatus enum
+func (enum AwsIamAccessKeyStatus) Values() []string {
+	return []string{
+		AwsIamAccessKeyStatusActive,
+		AwsIamAccessKeyStatusInactive,
+	}
+}
+
 const (
 	// ComplianceStatusPassed is a ComplianceStatus enum value
 	ComplianceStatusPassed = "PASSED"
@@ -15822,6 +15844,30 @@ const (
 	ComplianceStatusNotAvailable = "NOT_AVAILABLE"
 )
 
+// ComplianceStatus is an enum
+type ComplianceStatus struct{}
+
+// Contains returns whether the ComplianceStatus enum includes the element
+func (enum ComplianceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComplianceStatus enum
+func (enum ComplianceStatus) Values() []string {
+	return []string{
+		ComplianceStatusPassed,
+		ComplianceStatusWarning,
+		ComplianceStatusFailed,
+		ComplianceStatusNotAvailable,
+	}
+}
+
 const (
 	// ControlStatusEnabled is a ControlStatus enum value
 	ControlStatusEnabled = "ENABLED"
@@ -15830,10 +15876,53 @@ const (
 	ControlStatusDisabled = "DISABLED"
 )
 
+// ControlStatus is an enum
+type ControlStatus struct{}
+
+// Contains returns whether the ControlStatus enum includes the element
+func (enum ControlStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ControlStatus enum
+func (enum ControlStatus) Values() []string {
+	return []string{
+		ControlStatusEnabled,
+		ControlStatusDisabled,
+	}
+}
+
 const (
 	// DateRangeUnitDays is a DateRangeUnit enum value
 	DateRangeUnitDays = "DAYS"
 )
+
+// DateRangeUnit is an enum
+type DateRangeUnit struct{}
+
+// Contains returns whether the DateRangeUnit enum includes the element
+func (enum DateRangeUnit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DateRangeUnit enum
+func (enum DateRangeUnit) Values() []string {
+	return []string{
+		DateRangeUnitDays,
+	}
+}
 
 const (
 	// IntegrationTypeSendFindingsToSecurityHub is a IntegrationType enum value
@@ -15842,6 +15931,28 @@ const (
 	// IntegrationTypeReceiveFindingsFromSecurityHub is a IntegrationType enum value
 	IntegrationTypeReceiveFindingsFromSecurityHub = "RECEIVE_FINDINGS_FROM_SECURITY_HUB"
 )
+
+// IntegrationType is an enum
+type IntegrationType struct{}
+
+// Contains returns whether the IntegrationType enum includes the element
+func (enum IntegrationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IntegrationType enum
+func (enum IntegrationType) Values() []string {
+	return []string{
+		IntegrationTypeSendFindingsToSecurityHub,
+		IntegrationTypeReceiveFindingsFromSecurityHub,
+	}
+}
 
 const (
 	// MalwareStateObserved is a MalwareState enum value
@@ -15853,6 +15964,29 @@ const (
 	// MalwareStateRemoved is a MalwareState enum value
 	MalwareStateRemoved = "REMOVED"
 )
+
+// MalwareState is an enum
+type MalwareState struct{}
+
+// Contains returns whether the MalwareState enum includes the element
+func (enum MalwareState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MalwareState enum
+func (enum MalwareState) Values() []string {
+	return []string{
+		MalwareStateObserved,
+		MalwareStateRemovalFailed,
+		MalwareStateRemoved,
+	}
+}
 
 const (
 	// MalwareTypeAdware is a MalwareType enum value
@@ -15901,10 +16035,66 @@ const (
 	MalwareTypeWorm = "WORM"
 )
 
+// MalwareType is an enum
+type MalwareType struct{}
+
+// Contains returns whether the MalwareType enum includes the element
+func (enum MalwareType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MalwareType enum
+func (enum MalwareType) Values() []string {
+	return []string{
+		MalwareTypeAdware,
+		MalwareTypeBlendedThreat,
+		MalwareTypeBotnetAgent,
+		MalwareTypeCoinMiner,
+		MalwareTypeExploitKit,
+		MalwareTypeKeylogger,
+		MalwareTypeMacro,
+		MalwareTypePotentiallyUnwanted,
+		MalwareTypeSpyware,
+		MalwareTypeRansomware,
+		MalwareTypeRemoteAccess,
+		MalwareTypeRootkit,
+		MalwareTypeTrojan,
+		MalwareTypeVirus,
+		MalwareTypeWorm,
+	}
+}
+
 const (
 	// MapFilterComparisonEquals is a MapFilterComparison enum value
 	MapFilterComparisonEquals = "EQUALS"
 )
+
+// MapFilterComparison is an enum
+type MapFilterComparison struct{}
+
+// Contains returns whether the MapFilterComparison enum includes the element
+func (enum MapFilterComparison) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MapFilterComparison enum
+func (enum MapFilterComparison) Values() []string {
+	return []string{
+		MapFilterComparisonEquals,
+	}
+}
 
 const (
 	// NetworkDirectionIn is a NetworkDirection enum value
@@ -15913,6 +16103,28 @@ const (
 	// NetworkDirectionOut is a NetworkDirection enum value
 	NetworkDirectionOut = "OUT"
 )
+
+// NetworkDirection is an enum
+type NetworkDirection struct{}
+
+// Contains returns whether the NetworkDirection enum includes the element
+func (enum NetworkDirection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NetworkDirection enum
+func (enum NetworkDirection) Values() []string {
+	return []string{
+		NetworkDirectionIn,
+		NetworkDirectionOut,
+	}
+}
 
 const (
 	// PartitionAws is a Partition enum value
@@ -15925,6 +16137,29 @@ const (
 	PartitionAwsUsGov = "aws-us-gov"
 )
 
+// Partition is an enum
+type Partition struct{}
+
+// Contains returns whether the Partition enum includes the element
+func (enum Partition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Partition enum
+func (enum Partition) Values() []string {
+	return []string{
+		PartitionAws,
+		PartitionAwsCn,
+		PartitionAwsUsGov,
+	}
+}
+
 const (
 	// RecordStateActive is a RecordState enum value
 	RecordStateActive = "ACTIVE"
@@ -15932,6 +16167,28 @@ const (
 	// RecordStateArchived is a RecordState enum value
 	RecordStateArchived = "ARCHIVED"
 )
+
+// RecordState is an enum
+type RecordState struct{}
+
+// Contains returns whether the RecordState enum includes the element
+func (enum RecordState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecordState enum
+func (enum RecordState) Values() []string {
+	return []string{
+		RecordStateActive,
+		RecordStateArchived,
+	}
+}
 
 const (
 	// SeverityLabelInformational is a SeverityLabel enum value
@@ -15950,6 +16207,31 @@ const (
 	SeverityLabelCritical = "CRITICAL"
 )
 
+// SeverityLabel is an enum
+type SeverityLabel struct{}
+
+// Contains returns whether the SeverityLabel enum includes the element
+func (enum SeverityLabel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SeverityLabel enum
+func (enum SeverityLabel) Values() []string {
+	return []string{
+		SeverityLabelInformational,
+		SeverityLabelLow,
+		SeverityLabelMedium,
+		SeverityLabelHigh,
+		SeverityLabelCritical,
+	}
+}
+
 const (
 	// SeverityRatingLow is a SeverityRating enum value
 	SeverityRatingLow = "LOW"
@@ -15964,6 +16246,30 @@ const (
 	SeverityRatingCritical = "CRITICAL"
 )
 
+// SeverityRating is an enum
+type SeverityRating struct{}
+
+// Contains returns whether the SeverityRating enum includes the element
+func (enum SeverityRating) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SeverityRating enum
+func (enum SeverityRating) Values() []string {
+	return []string{
+		SeverityRatingLow,
+		SeverityRatingMedium,
+		SeverityRatingHigh,
+		SeverityRatingCritical,
+	}
+}
+
 const (
 	// SortOrderAsc is a SortOrder enum value
 	SortOrderAsc = "asc"
@@ -15971,6 +16277,28 @@ const (
 	// SortOrderDesc is a SortOrder enum value
 	SortOrderDesc = "desc"
 )
+
+// SortOrder is an enum
+type SortOrder struct{}
+
+// Contains returns whether the SortOrder enum includes the element
+func (enum SortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortOrder enum
+func (enum SortOrder) Values() []string {
+	return []string{
+		SortOrderAsc,
+		SortOrderDesc,
+	}
+}
 
 const (
 	// StandardsStatusPending is a StandardsStatus enum value
@@ -15989,6 +16317,31 @@ const (
 	StandardsStatusIncomplete = "INCOMPLETE"
 )
 
+// StandardsStatus is an enum
+type StandardsStatus struct{}
+
+// Contains returns whether the StandardsStatus enum includes the element
+func (enum StandardsStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StandardsStatus enum
+func (enum StandardsStatus) Values() []string {
+	return []string{
+		StandardsStatusPending,
+		StandardsStatusReady,
+		StandardsStatusFailed,
+		StandardsStatusDeleting,
+		StandardsStatusIncomplete,
+	}
+}
+
 const (
 	// StringFilterComparisonEquals is a StringFilterComparison enum value
 	StringFilterComparisonEquals = "EQUALS"
@@ -15996,6 +16349,28 @@ const (
 	// StringFilterComparisonPrefix is a StringFilterComparison enum value
 	StringFilterComparisonPrefix = "PREFIX"
 )
+
+// StringFilterComparison is an enum
+type StringFilterComparison struct{}
+
+// Contains returns whether the StringFilterComparison enum includes the element
+func (enum StringFilterComparison) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StringFilterComparison enum
+func (enum StringFilterComparison) Values() []string {
+	return []string{
+		StringFilterComparisonEquals,
+		StringFilterComparisonPrefix,
+	}
+}
 
 const (
 	// ThreatIntelIndicatorCategoryBackdoor is a ThreatIntelIndicatorCategory enum value
@@ -16016,6 +16391,32 @@ const (
 	// ThreatIntelIndicatorCategoryKeylogger is a ThreatIntelIndicatorCategory enum value
 	ThreatIntelIndicatorCategoryKeylogger = "KEYLOGGER"
 )
+
+// ThreatIntelIndicatorCategory is an enum
+type ThreatIntelIndicatorCategory struct{}
+
+// Contains returns whether the ThreatIntelIndicatorCategory enum includes the element
+func (enum ThreatIntelIndicatorCategory) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThreatIntelIndicatorCategory enum
+func (enum ThreatIntelIndicatorCategory) Values() []string {
+	return []string{
+		ThreatIntelIndicatorCategoryBackdoor,
+		ThreatIntelIndicatorCategoryCardStealer,
+		ThreatIntelIndicatorCategoryCommandAndControl,
+		ThreatIntelIndicatorCategoryDropSite,
+		ThreatIntelIndicatorCategoryExploitSite,
+		ThreatIntelIndicatorCategoryKeylogger,
+	}
+}
 
 const (
 	// ThreatIntelIndicatorTypeDomain is a ThreatIntelIndicatorType enum value
@@ -16052,6 +16453,37 @@ const (
 	ThreatIntelIndicatorTypeUrl = "URL"
 )
 
+// ThreatIntelIndicatorType is an enum
+type ThreatIntelIndicatorType struct{}
+
+// Contains returns whether the ThreatIntelIndicatorType enum includes the element
+func (enum ThreatIntelIndicatorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThreatIntelIndicatorType enum
+func (enum ThreatIntelIndicatorType) Values() []string {
+	return []string{
+		ThreatIntelIndicatorTypeDomain,
+		ThreatIntelIndicatorTypeEmailAddress,
+		ThreatIntelIndicatorTypeHashMd5,
+		ThreatIntelIndicatorTypeHashSha1,
+		ThreatIntelIndicatorTypeHashSha256,
+		ThreatIntelIndicatorTypeHashSha512,
+		ThreatIntelIndicatorTypeIpv4Address,
+		ThreatIntelIndicatorTypeIpv6Address,
+		ThreatIntelIndicatorTypeMutex,
+		ThreatIntelIndicatorTypeProcess,
+		ThreatIntelIndicatorTypeUrl,
+	}
+}
+
 const (
 	// VerificationStateUnknown is a VerificationState enum value
 	VerificationStateUnknown = "UNKNOWN"
@@ -16065,6 +16497,30 @@ const (
 	// VerificationStateBenignPositive is a VerificationState enum value
 	VerificationStateBenignPositive = "BENIGN_POSITIVE"
 )
+
+// VerificationState is an enum
+type VerificationState struct{}
+
+// Contains returns whether the VerificationState enum includes the element
+func (enum VerificationState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VerificationState enum
+func (enum VerificationState) Values() []string {
+	return []string{
+		VerificationStateUnknown,
+		VerificationStateTruePositive,
+		VerificationStateFalsePositive,
+		VerificationStateBenignPositive,
+	}
+}
 
 const (
 	// WorkflowStateNew is a WorkflowState enum value
@@ -16083,6 +16539,31 @@ const (
 	WorkflowStateResolved = "RESOLVED"
 )
 
+// WorkflowState is an enum
+type WorkflowState struct{}
+
+// Contains returns whether the WorkflowState enum includes the element
+func (enum WorkflowState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkflowState enum
+func (enum WorkflowState) Values() []string {
+	return []string{
+		WorkflowStateNew,
+		WorkflowStateAssigned,
+		WorkflowStateInProgress,
+		WorkflowStateDeferred,
+		WorkflowStateResolved,
+	}
+}
+
 const (
 	// WorkflowStatusNew is a WorkflowStatus enum value
 	WorkflowStatusNew = "NEW"
@@ -16096,3 +16577,27 @@ const (
 	// WorkflowStatusSuppressed is a WorkflowStatus enum value
 	WorkflowStatusSuppressed = "SUPPRESSED"
 )
+
+// WorkflowStatus is an enum
+type WorkflowStatus struct{}
+
+// Contains returns whether the WorkflowStatus enum includes the element
+func (enum WorkflowStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WorkflowStatus enum
+func (enum WorkflowStatus) Values() []string {
+	return []string{
+		WorkflowStatusNew,
+		WorkflowStatusNotified,
+		WorkflowStatusResolved,
+		WorkflowStatusSuppressed,
+	}
+}

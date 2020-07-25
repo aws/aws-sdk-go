@@ -2946,6 +2946,30 @@ const (
 	ForecastDataTypeScheduledActionMaxCapacity = "ScheduledActionMaxCapacity"
 )
 
+// ForecastDataType is an enum
+type ForecastDataType struct{}
+
+// Contains returns whether the ForecastDataType enum includes the element
+func (enum ForecastDataType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ForecastDataType enum
+func (enum ForecastDataType) Values() []string {
+	return []string{
+		ForecastDataTypeCapacityForecast,
+		ForecastDataTypeLoadForecast,
+		ForecastDataTypeScheduledActionMinCapacity,
+		ForecastDataTypeScheduledActionMaxCapacity,
+	}
+}
+
 const (
 	// LoadMetricTypeAsgtotalCpuutilization is a LoadMetricType enum value
 	LoadMetricTypeAsgtotalCpuutilization = "ASGTotalCPUUtilization"
@@ -2959,6 +2983,30 @@ const (
 	// LoadMetricTypeAlbtargetGroupRequestCount is a LoadMetricType enum value
 	LoadMetricTypeAlbtargetGroupRequestCount = "ALBTargetGroupRequestCount"
 )
+
+// LoadMetricType is an enum
+type LoadMetricType struct{}
+
+// Contains returns whether the LoadMetricType enum includes the element
+func (enum LoadMetricType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadMetricType enum
+func (enum LoadMetricType) Values() []string {
+	return []string{
+		LoadMetricTypeAsgtotalCpuutilization,
+		LoadMetricTypeAsgtotalNetworkIn,
+		LoadMetricTypeAsgtotalNetworkOut,
+		LoadMetricTypeAlbtargetGroupRequestCount,
+	}
+}
 
 const (
 	// MetricStatisticAverage is a MetricStatistic enum value
@@ -2977,10 +3025,56 @@ const (
 	MetricStatisticSum = "Sum"
 )
 
+// MetricStatistic is an enum
+type MetricStatistic struct{}
+
+// Contains returns whether the MetricStatistic enum includes the element
+func (enum MetricStatistic) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricStatistic enum
+func (enum MetricStatistic) Values() []string {
+	return []string{
+		MetricStatisticAverage,
+		MetricStatisticMinimum,
+		MetricStatisticMaximum,
+		MetricStatisticSampleCount,
+		MetricStatisticSum,
+	}
+}
+
 const (
 	// PolicyTypeTargetTrackingScaling is a PolicyType enum value
 	PolicyTypeTargetTrackingScaling = "TargetTrackingScaling"
 )
+
+// PolicyType is an enum
+type PolicyType struct{}
+
+// Contains returns whether the PolicyType enum includes the element
+func (enum PolicyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyType enum
+func (enum PolicyType) Values() []string {
+	return []string{
+		PolicyTypeTargetTrackingScaling,
+	}
+}
 
 const (
 	// PredictiveScalingMaxCapacityBehaviorSetForecastCapacityToMaxCapacity is a PredictiveScalingMaxCapacityBehavior enum value
@@ -2993,6 +3087,29 @@ const (
 	PredictiveScalingMaxCapacityBehaviorSetMaxCapacityAboveForecastCapacity = "SetMaxCapacityAboveForecastCapacity"
 )
 
+// PredictiveScalingMaxCapacityBehavior is an enum
+type PredictiveScalingMaxCapacityBehavior struct{}
+
+// Contains returns whether the PredictiveScalingMaxCapacityBehavior enum includes the element
+func (enum PredictiveScalingMaxCapacityBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PredictiveScalingMaxCapacityBehavior enum
+func (enum PredictiveScalingMaxCapacityBehavior) Values() []string {
+	return []string{
+		PredictiveScalingMaxCapacityBehaviorSetForecastCapacityToMaxCapacity,
+		PredictiveScalingMaxCapacityBehaviorSetMaxCapacityToForecastCapacity,
+		PredictiveScalingMaxCapacityBehaviorSetMaxCapacityAboveForecastCapacity,
+	}
+}
+
 const (
 	// PredictiveScalingModeForecastAndScale is a PredictiveScalingMode enum value
 	PredictiveScalingModeForecastAndScale = "ForecastAndScale"
@@ -3000,6 +3117,28 @@ const (
 	// PredictiveScalingModeForecastOnly is a PredictiveScalingMode enum value
 	PredictiveScalingModeForecastOnly = "ForecastOnly"
 )
+
+// PredictiveScalingMode is an enum
+type PredictiveScalingMode struct{}
+
+// Contains returns whether the PredictiveScalingMode enum includes the element
+func (enum PredictiveScalingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PredictiveScalingMode enum
+func (enum PredictiveScalingMode) Values() []string {
+	return []string{
+		PredictiveScalingModeForecastAndScale,
+		PredictiveScalingModeForecastOnly,
+	}
+}
 
 const (
 	// ScalableDimensionAutoscalingAutoScalingGroupDesiredCapacity is a ScalableDimension enum value
@@ -3026,6 +3165,34 @@ const (
 	// ScalableDimensionDynamodbIndexWriteCapacityUnits is a ScalableDimension enum value
 	ScalableDimensionDynamodbIndexWriteCapacityUnits = "dynamodb:index:WriteCapacityUnits"
 )
+
+// ScalableDimension is an enum
+type ScalableDimension struct{}
+
+// Contains returns whether the ScalableDimension enum includes the element
+func (enum ScalableDimension) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalableDimension enum
+func (enum ScalableDimension) Values() []string {
+	return []string{
+		ScalableDimensionAutoscalingAutoScalingGroupDesiredCapacity,
+		ScalableDimensionEcsServiceDesiredCount,
+		ScalableDimensionEc2SpotFleetRequestTargetCapacity,
+		ScalableDimensionRdsClusterReadReplicaCount,
+		ScalableDimensionDynamodbTableReadCapacityUnits,
+		ScalableDimensionDynamodbTableWriteCapacityUnits,
+		ScalableDimensionDynamodbIndexReadCapacityUnits,
+		ScalableDimensionDynamodbIndexWriteCapacityUnits,
+	}
+}
 
 const (
 	// ScalingMetricTypeAsgaverageCpuutilization is a ScalingMetricType enum value
@@ -3068,6 +3235,39 @@ const (
 	ScalingMetricTypeEc2spotFleetRequestAverageNetworkOut = "EC2SpotFleetRequestAverageNetworkOut"
 )
 
+// ScalingMetricType is an enum
+type ScalingMetricType struct{}
+
+// Contains returns whether the ScalingMetricType enum includes the element
+func (enum ScalingMetricType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingMetricType enum
+func (enum ScalingMetricType) Values() []string {
+	return []string{
+		ScalingMetricTypeAsgaverageCpuutilization,
+		ScalingMetricTypeAsgaverageNetworkIn,
+		ScalingMetricTypeAsgaverageNetworkOut,
+		ScalingMetricTypeDynamoDbreadCapacityUtilization,
+		ScalingMetricTypeDynamoDbwriteCapacityUtilization,
+		ScalingMetricTypeEcsserviceAverageCpuutilization,
+		ScalingMetricTypeEcsserviceAverageMemoryUtilization,
+		ScalingMetricTypeAlbrequestCountPerTarget,
+		ScalingMetricTypeRdsreaderAverageCpuutilization,
+		ScalingMetricTypeRdsreaderAverageDatabaseConnections,
+		ScalingMetricTypeEc2spotFleetRequestAverageCpuutilization,
+		ScalingMetricTypeEc2spotFleetRequestAverageNetworkIn,
+		ScalingMetricTypeEc2spotFleetRequestAverageNetworkOut,
+	}
+}
+
 const (
 	// ScalingPlanStatusCodeActive is a ScalingPlanStatusCode enum value
 	ScalingPlanStatusCodeActive = "Active"
@@ -3094,6 +3294,34 @@ const (
 	ScalingPlanStatusCodeUpdateFailed = "UpdateFailed"
 )
 
+// ScalingPlanStatusCode is an enum
+type ScalingPlanStatusCode struct{}
+
+// Contains returns whether the ScalingPlanStatusCode enum includes the element
+func (enum ScalingPlanStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingPlanStatusCode enum
+func (enum ScalingPlanStatusCode) Values() []string {
+	return []string{
+		ScalingPlanStatusCodeActive,
+		ScalingPlanStatusCodeActiveWithProblems,
+		ScalingPlanStatusCodeCreationInProgress,
+		ScalingPlanStatusCodeCreationFailed,
+		ScalingPlanStatusCodeDeletionInProgress,
+		ScalingPlanStatusCodeDeletionFailed,
+		ScalingPlanStatusCodeUpdateInProgress,
+		ScalingPlanStatusCodeUpdateFailed,
+	}
+}
+
 const (
 	// ScalingPolicyUpdateBehaviorKeepExternalPolicies is a ScalingPolicyUpdateBehavior enum value
 	ScalingPolicyUpdateBehaviorKeepExternalPolicies = "KeepExternalPolicies"
@@ -3101,6 +3329,28 @@ const (
 	// ScalingPolicyUpdateBehaviorReplaceExternalPolicies is a ScalingPolicyUpdateBehavior enum value
 	ScalingPolicyUpdateBehaviorReplaceExternalPolicies = "ReplaceExternalPolicies"
 )
+
+// ScalingPolicyUpdateBehavior is an enum
+type ScalingPolicyUpdateBehavior struct{}
+
+// Contains returns whether the ScalingPolicyUpdateBehavior enum includes the element
+func (enum ScalingPolicyUpdateBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingPolicyUpdateBehavior enum
+func (enum ScalingPolicyUpdateBehavior) Values() []string {
+	return []string{
+		ScalingPolicyUpdateBehaviorKeepExternalPolicies,
+		ScalingPolicyUpdateBehaviorReplaceExternalPolicies,
+	}
+}
 
 const (
 	// ScalingStatusCodeInactive is a ScalingStatusCode enum value
@@ -3112,6 +3362,29 @@ const (
 	// ScalingStatusCodeActive is a ScalingStatusCode enum value
 	ScalingStatusCodeActive = "Active"
 )
+
+// ScalingStatusCode is an enum
+type ScalingStatusCode struct{}
+
+// Contains returns whether the ScalingStatusCode enum includes the element
+func (enum ScalingStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingStatusCode enum
+func (enum ScalingStatusCode) Values() []string {
+	return []string{
+		ScalingStatusCodeInactive,
+		ScalingStatusCodePartiallyActive,
+		ScalingStatusCodeActive,
+	}
+}
 
 const (
 	// ServiceNamespaceAutoscaling is a ServiceNamespace enum value
@@ -3129,3 +3402,28 @@ const (
 	// ServiceNamespaceDynamodb is a ServiceNamespace enum value
 	ServiceNamespaceDynamodb = "dynamodb"
 )
+
+// ServiceNamespace is an enum
+type ServiceNamespace struct{}
+
+// Contains returns whether the ServiceNamespace enum includes the element
+func (enum ServiceNamespace) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceNamespace enum
+func (enum ServiceNamespace) Values() []string {
+	return []string{
+		ServiceNamespaceAutoscaling,
+		ServiceNamespaceEcs,
+		ServiceNamespaceEc2,
+		ServiceNamespaceRds,
+		ServiceNamespaceDynamodb,
+	}
+}

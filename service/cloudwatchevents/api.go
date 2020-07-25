@@ -8084,6 +8084,28 @@ const (
 	AssignPublicIpDisabled = "DISABLED"
 )
 
+// AssignPublicIp is an enum
+type AssignPublicIp struct{}
+
+// Contains returns whether the AssignPublicIp enum includes the element
+func (enum AssignPublicIp) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssignPublicIp enum
+func (enum AssignPublicIp) Values() []string {
+	return []string{
+		AssignPublicIpEnabled,
+		AssignPublicIpDisabled,
+	}
+}
+
 const (
 	// EventSourceStatePending is a EventSourceState enum value
 	EventSourceStatePending = "PENDING"
@@ -8095,6 +8117,29 @@ const (
 	EventSourceStateDeleted = "DELETED"
 )
 
+// EventSourceState is an enum
+type EventSourceState struct{}
+
+// Contains returns whether the EventSourceState enum includes the element
+func (enum EventSourceState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventSourceState enum
+func (enum EventSourceState) Values() []string {
+	return []string{
+		EventSourceStatePending,
+		EventSourceStateActive,
+		EventSourceStateDeleted,
+	}
+}
+
 const (
 	// LaunchTypeEc2 is a LaunchType enum value
 	LaunchTypeEc2 = "EC2"
@@ -8103,6 +8148,28 @@ const (
 	LaunchTypeFargate = "FARGATE"
 )
 
+// LaunchType is an enum
+type LaunchType struct{}
+
+// Contains returns whether the LaunchType enum includes the element
+func (enum LaunchType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LaunchType enum
+func (enum LaunchType) Values() []string {
+	return []string{
+		LaunchTypeEc2,
+		LaunchTypeFargate,
+	}
+}
+
 const (
 	// RuleStateEnabled is a RuleState enum value
 	RuleStateEnabled = "ENABLED"
@@ -8110,3 +8177,25 @@ const (
 	// RuleStateDisabled is a RuleState enum value
 	RuleStateDisabled = "DISABLED"
 )
+
+// RuleState is an enum
+type RuleState struct{}
+
+// Contains returns whether the RuleState enum includes the element
+func (enum RuleState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RuleState enum
+func (enum RuleState) Values() []string {
+	return []string{
+		RuleStateEnabled,
+		RuleStateDisabled,
+	}
+}

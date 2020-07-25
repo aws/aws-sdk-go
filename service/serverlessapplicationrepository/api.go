@@ -4520,6 +4520,30 @@ const (
 	CapabilityCapabilityResourcePolicy = "CAPABILITY_RESOURCE_POLICY"
 )
 
+// Capability is an enum
+type Capability struct{}
+
+// Contains returns whether the Capability enum includes the element
+func (enum Capability) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Capability enum
+func (enum Capability) Values() []string {
+	return []string{
+		CapabilityCapabilityIam,
+		CapabilityCapabilityNamedIam,
+		CapabilityCapabilityAutoExpand,
+		CapabilityCapabilityResourcePolicy,
+	}
+}
+
 const (
 	// StatusPreparing is a Status enum value
 	StatusPreparing = "PREPARING"
@@ -4530,3 +4554,26 @@ const (
 	// StatusExpired is a Status enum value
 	StatusExpired = "EXPIRED"
 )
+
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusPreparing,
+		StatusActive,
+		StatusExpired,
+	}
+}

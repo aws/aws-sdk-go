@@ -4878,6 +4878,30 @@ const (
 	AnalyzerStatusFailed = "FAILED"
 )
 
+// AnalyzerStatus is an enum
+type AnalyzerStatus struct{}
+
+// Contains returns whether the AnalyzerStatus enum includes the element
+func (enum AnalyzerStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AnalyzerStatus enum
+func (enum AnalyzerStatus) Values() []string {
+	return []string{
+		AnalyzerStatusActive,
+		AnalyzerStatusCreating,
+		AnalyzerStatusDisabled,
+		AnalyzerStatusFailed,
+	}
+}
+
 const (
 	// FindingSourceTypeBucketAcl is a FindingSourceType enum value
 	FindingSourceTypeBucketAcl = "BUCKET_ACL"
@@ -4888,6 +4912,29 @@ const (
 	// FindingSourceTypeS3AccessPoint is a FindingSourceType enum value
 	FindingSourceTypeS3AccessPoint = "S3_ACCESS_POINT"
 )
+
+// FindingSourceType is an enum
+type FindingSourceType struct{}
+
+// Contains returns whether the FindingSourceType enum includes the element
+func (enum FindingSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingSourceType enum
+func (enum FindingSourceType) Values() []string {
+	return []string{
+		FindingSourceTypeBucketAcl,
+		FindingSourceTypePolicy,
+		FindingSourceTypeS3AccessPoint,
+	}
+}
 
 const (
 	// FindingStatusActive is a FindingStatus enum value
@@ -4900,6 +4947,29 @@ const (
 	FindingStatusResolved = "RESOLVED"
 )
 
+// FindingStatus is an enum
+type FindingStatus struct{}
+
+// Contains returns whether the FindingStatus enum includes the element
+func (enum FindingStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingStatus enum
+func (enum FindingStatus) Values() []string {
+	return []string{
+		FindingStatusActive,
+		FindingStatusArchived,
+		FindingStatusResolved,
+	}
+}
+
 const (
 	// FindingStatusUpdateActive is a FindingStatusUpdate enum value
 	FindingStatusUpdateActive = "ACTIVE"
@@ -4908,6 +4978,28 @@ const (
 	FindingStatusUpdateArchived = "ARCHIVED"
 )
 
+// FindingStatusUpdate is an enum
+type FindingStatusUpdate struct{}
+
+// Contains returns whether the FindingStatusUpdate enum includes the element
+func (enum FindingStatusUpdate) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingStatusUpdate enum
+func (enum FindingStatusUpdate) Values() []string {
+	return []string{
+		FindingStatusUpdateActive,
+		FindingStatusUpdateArchived,
+	}
+}
+
 const (
 	// OrderByAsc is a OrderBy enum value
 	OrderByAsc = "ASC"
@@ -4915,6 +5007,28 @@ const (
 	// OrderByDesc is a OrderBy enum value
 	OrderByDesc = "DESC"
 )
+
+// OrderBy is an enum
+type OrderBy struct{}
+
+// Contains returns whether the OrderBy enum includes the element
+func (enum OrderBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrderBy enum
+func (enum OrderBy) Values() []string {
+	return []string{
+		OrderByAsc,
+		OrderByDesc,
+	}
+}
 
 const (
 	// ReasonCodeAwsServiceAccessDisabled is a ReasonCode enum value
@@ -4929,6 +5043,30 @@ const (
 	// ReasonCodeServiceLinkedRoleCreationFailed is a ReasonCode enum value
 	ReasonCodeServiceLinkedRoleCreationFailed = "SERVICE_LINKED_ROLE_CREATION_FAILED"
 )
+
+// ReasonCode is an enum
+type ReasonCode struct{}
+
+// Contains returns whether the ReasonCode enum includes the element
+func (enum ReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReasonCode enum
+func (enum ReasonCode) Values() []string {
+	return []string{
+		ReasonCodeAwsServiceAccessDisabled,
+		ReasonCodeDelegatedAdministratorDeregistered,
+		ReasonCodeOrganizationDeleted,
+		ReasonCodeServiceLinkedRoleCreationFailed,
+	}
+}
 
 const (
 	// ResourceTypeAwsIamRole is a ResourceType enum value
@@ -4950,6 +5088,32 @@ const (
 	ResourceTypeAwsSqsQueue = "AWS::SQS::Queue"
 )
 
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeAwsIamRole,
+		ResourceTypeAwsKmsKey,
+		ResourceTypeAwsLambdaFunction,
+		ResourceTypeAwsLambdaLayerVersion,
+		ResourceTypeAwsS3Bucket,
+		ResourceTypeAwsSqsQueue,
+	}
+}
+
 const (
 	// TypeAccount is a Type enum value
 	TypeAccount = "ACCOUNT"
@@ -4957,6 +5121,28 @@ const (
 	// TypeOrganization is a Type enum value
 	TypeOrganization = "ORGANIZATION"
 )
+
+// Type is an enum
+type Type struct{}
+
+// Contains returns whether the Type enum includes the element
+func (enum Type) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Type enum
+func (enum Type) Values() []string {
+	return []string{
+		TypeAccount,
+		TypeOrganization,
+	}
+}
 
 const (
 	// ValidationExceptionReasonCannotParse is a ValidationExceptionReason enum value
@@ -4971,3 +5157,27 @@ const (
 	// ValidationExceptionReasonUnknownOperation is a ValidationExceptionReason enum value
 	ValidationExceptionReasonUnknownOperation = "unknownOperation"
 )
+
+// ValidationExceptionReason is an enum
+type ValidationExceptionReason struct{}
+
+// Contains returns whether the ValidationExceptionReason enum includes the element
+func (enum ValidationExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ValidationExceptionReason enum
+func (enum ValidationExceptionReason) Values() []string {
+	return []string{
+		ValidationExceptionReasonCannotParse,
+		ValidationExceptionReasonFieldValidationFailed,
+		ValidationExceptionReasonOther,
+		ValidationExceptionReasonUnknownOperation,
+	}
+}

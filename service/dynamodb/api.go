@@ -19885,6 +19885,29 @@ const (
 	AttributeActionDelete = "DELETE"
 )
 
+// AttributeAction is an enum
+type AttributeAction struct{}
+
+// Contains returns whether the AttributeAction enum includes the element
+func (enum AttributeAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AttributeAction enum
+func (enum AttributeAction) Values() []string {
+	return []string{
+		AttributeActionAdd,
+		AttributeActionPut,
+		AttributeActionDelete,
+	}
+}
+
 const (
 	// BackupStatusCreating is a BackupStatus enum value
 	BackupStatusCreating = "CREATING"
@@ -19896,6 +19919,29 @@ const (
 	BackupStatusAvailable = "AVAILABLE"
 )
 
+// BackupStatus is an enum
+type BackupStatus struct{}
+
+// Contains returns whether the BackupStatus enum includes the element
+func (enum BackupStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BackupStatus enum
+func (enum BackupStatus) Values() []string {
+	return []string{
+		BackupStatusCreating,
+		BackupStatusDeleted,
+		BackupStatusAvailable,
+	}
+}
+
 const (
 	// BackupTypeUser is a BackupType enum value
 	BackupTypeUser = "USER"
@@ -19906,6 +19952,29 @@ const (
 	// BackupTypeAwsBackup is a BackupType enum value
 	BackupTypeAwsBackup = "AWS_BACKUP"
 )
+
+// BackupType is an enum
+type BackupType struct{}
+
+// Contains returns whether the BackupType enum includes the element
+func (enum BackupType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BackupType enum
+func (enum BackupType) Values() []string {
+	return []string{
+		BackupTypeUser,
+		BackupTypeSystem,
+		BackupTypeAwsBackup,
+	}
+}
 
 const (
 	// BackupTypeFilterUser is a BackupTypeFilter enum value
@@ -19921,6 +19990,30 @@ const (
 	BackupTypeFilterAll = "ALL"
 )
 
+// BackupTypeFilter is an enum
+type BackupTypeFilter struct{}
+
+// Contains returns whether the BackupTypeFilter enum includes the element
+func (enum BackupTypeFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BackupTypeFilter enum
+func (enum BackupTypeFilter) Values() []string {
+	return []string{
+		BackupTypeFilterUser,
+		BackupTypeFilterSystem,
+		BackupTypeFilterAwsBackup,
+		BackupTypeFilterAll,
+	}
+}
+
 const (
 	// BillingModeProvisioned is a BillingMode enum value
 	BillingModeProvisioned = "PROVISIONED"
@@ -19928,6 +20021,28 @@ const (
 	// BillingModePayPerRequest is a BillingMode enum value
 	BillingModePayPerRequest = "PAY_PER_REQUEST"
 )
+
+// BillingMode is an enum
+type BillingMode struct{}
+
+// Contains returns whether the BillingMode enum includes the element
+func (enum BillingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BillingMode enum
+func (enum BillingMode) Values() []string {
+	return []string{
+		BillingModeProvisioned,
+		BillingModePayPerRequest,
+	}
+}
 
 const (
 	// ComparisonOperatorEq is a ComparisonOperator enum value
@@ -19970,6 +20085,39 @@ const (
 	ComparisonOperatorBeginsWith = "BEGINS_WITH"
 )
 
+// ComparisonOperator is an enum
+type ComparisonOperator struct{}
+
+// Contains returns whether the ComparisonOperator enum includes the element
+func (enum ComparisonOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComparisonOperator enum
+func (enum ComparisonOperator) Values() []string {
+	return []string{
+		ComparisonOperatorEq,
+		ComparisonOperatorNe,
+		ComparisonOperatorIn,
+		ComparisonOperatorLe,
+		ComparisonOperatorLt,
+		ComparisonOperatorGe,
+		ComparisonOperatorGt,
+		ComparisonOperatorBetween,
+		ComparisonOperatorNotNull,
+		ComparisonOperatorNull,
+		ComparisonOperatorContains,
+		ComparisonOperatorNotContains,
+		ComparisonOperatorBeginsWith,
+	}
+}
+
 const (
 	// ConditionalOperatorAnd is a ConditionalOperator enum value
 	ConditionalOperatorAnd = "AND"
@@ -19977,6 +20125,28 @@ const (
 	// ConditionalOperatorOr is a ConditionalOperator enum value
 	ConditionalOperatorOr = "OR"
 )
+
+// ConditionalOperator is an enum
+type ConditionalOperator struct{}
+
+// Contains returns whether the ConditionalOperator enum includes the element
+func (enum ConditionalOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConditionalOperator enum
+func (enum ConditionalOperator) Values() []string {
+	return []string{
+		ConditionalOperatorAnd,
+		ConditionalOperatorOr,
+	}
+}
 
 const (
 	// ContinuousBackupsStatusEnabled is a ContinuousBackupsStatus enum value
@@ -19986,6 +20156,28 @@ const (
 	ContinuousBackupsStatusDisabled = "DISABLED"
 )
 
+// ContinuousBackupsStatus is an enum
+type ContinuousBackupsStatus struct{}
+
+// Contains returns whether the ContinuousBackupsStatus enum includes the element
+func (enum ContinuousBackupsStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContinuousBackupsStatus enum
+func (enum ContinuousBackupsStatus) Values() []string {
+	return []string{
+		ContinuousBackupsStatusEnabled,
+		ContinuousBackupsStatusDisabled,
+	}
+}
+
 const (
 	// ContributorInsightsActionEnable is a ContributorInsightsAction enum value
 	ContributorInsightsActionEnable = "ENABLE"
@@ -19993,6 +20185,28 @@ const (
 	// ContributorInsightsActionDisable is a ContributorInsightsAction enum value
 	ContributorInsightsActionDisable = "DISABLE"
 )
+
+// ContributorInsightsAction is an enum
+type ContributorInsightsAction struct{}
+
+// Contains returns whether the ContributorInsightsAction enum includes the element
+func (enum ContributorInsightsAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContributorInsightsAction enum
+func (enum ContributorInsightsAction) Values() []string {
+	return []string{
+		ContributorInsightsActionEnable,
+		ContributorInsightsActionDisable,
+	}
+}
 
 const (
 	// ContributorInsightsStatusEnabling is a ContributorInsightsStatus enum value
@@ -20011,6 +20225,31 @@ const (
 	ContributorInsightsStatusFailed = "FAILED"
 )
 
+// ContributorInsightsStatus is an enum
+type ContributorInsightsStatus struct{}
+
+// Contains returns whether the ContributorInsightsStatus enum includes the element
+func (enum ContributorInsightsStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContributorInsightsStatus enum
+func (enum ContributorInsightsStatus) Values() []string {
+	return []string{
+		ContributorInsightsStatusEnabling,
+		ContributorInsightsStatusEnabled,
+		ContributorInsightsStatusDisabling,
+		ContributorInsightsStatusDisabled,
+		ContributorInsightsStatusFailed,
+	}
+}
+
 const (
 	// GlobalTableStatusCreating is a GlobalTableStatus enum value
 	GlobalTableStatusCreating = "CREATING"
@@ -20024,6 +20263,30 @@ const (
 	// GlobalTableStatusUpdating is a GlobalTableStatus enum value
 	GlobalTableStatusUpdating = "UPDATING"
 )
+
+// GlobalTableStatus is an enum
+type GlobalTableStatus struct{}
+
+// Contains returns whether the GlobalTableStatus enum includes the element
+func (enum GlobalTableStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GlobalTableStatus enum
+func (enum GlobalTableStatus) Values() []string {
+	return []string{
+		GlobalTableStatusCreating,
+		GlobalTableStatusActive,
+		GlobalTableStatusDeleting,
+		GlobalTableStatusUpdating,
+	}
+}
 
 const (
 	// IndexStatusCreating is a IndexStatus enum value
@@ -20039,6 +20302,30 @@ const (
 	IndexStatusActive = "ACTIVE"
 )
 
+// IndexStatus is an enum
+type IndexStatus struct{}
+
+// Contains returns whether the IndexStatus enum includes the element
+func (enum IndexStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IndexStatus enum
+func (enum IndexStatus) Values() []string {
+	return []string{
+		IndexStatusCreating,
+		IndexStatusUpdating,
+		IndexStatusDeleting,
+		IndexStatusActive,
+	}
+}
+
 const (
 	// KeyTypeHash is a KeyType enum value
 	KeyTypeHash = "HASH"
@@ -20047,6 +20334,28 @@ const (
 	KeyTypeRange = "RANGE"
 )
 
+// KeyType is an enum
+type KeyType struct{}
+
+// Contains returns whether the KeyType enum includes the element
+func (enum KeyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KeyType enum
+func (enum KeyType) Values() []string {
+	return []string{
+		KeyTypeHash,
+		KeyTypeRange,
+	}
+}
+
 const (
 	// PointInTimeRecoveryStatusEnabled is a PointInTimeRecoveryStatus enum value
 	PointInTimeRecoveryStatusEnabled = "ENABLED"
@@ -20054,6 +20363,28 @@ const (
 	// PointInTimeRecoveryStatusDisabled is a PointInTimeRecoveryStatus enum value
 	PointInTimeRecoveryStatusDisabled = "DISABLED"
 )
+
+// PointInTimeRecoveryStatus is an enum
+type PointInTimeRecoveryStatus struct{}
+
+// Contains returns whether the PointInTimeRecoveryStatus enum includes the element
+func (enum PointInTimeRecoveryStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PointInTimeRecoveryStatus enum
+func (enum PointInTimeRecoveryStatus) Values() []string {
+	return []string{
+		PointInTimeRecoveryStatusEnabled,
+		PointInTimeRecoveryStatusDisabled,
+	}
+}
 
 const (
 	// ProjectionTypeAll is a ProjectionType enum value
@@ -20065,6 +20396,29 @@ const (
 	// ProjectionTypeInclude is a ProjectionType enum value
 	ProjectionTypeInclude = "INCLUDE"
 )
+
+// ProjectionType is an enum
+type ProjectionType struct{}
+
+// Contains returns whether the ProjectionType enum includes the element
+func (enum ProjectionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProjectionType enum
+func (enum ProjectionType) Values() []string {
+	return []string{
+		ProjectionTypeAll,
+		ProjectionTypeKeysOnly,
+		ProjectionTypeInclude,
+	}
+}
 
 const (
 	// ReplicaStatusCreating is a ReplicaStatus enum value
@@ -20082,6 +20436,31 @@ const (
 	// ReplicaStatusActive is a ReplicaStatus enum value
 	ReplicaStatusActive = "ACTIVE"
 )
+
+// ReplicaStatus is an enum
+type ReplicaStatus struct{}
+
+// Contains returns whether the ReplicaStatus enum includes the element
+func (enum ReplicaStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReplicaStatus enum
+func (enum ReplicaStatus) Values() []string {
+	return []string{
+		ReplicaStatusCreating,
+		ReplicaStatusCreationFailed,
+		ReplicaStatusUpdating,
+		ReplicaStatusDeleting,
+		ReplicaStatusActive,
+	}
+}
 
 // Determines the level of detail about provisioned throughput consumption that
 // is returned in the response:
@@ -20107,6 +20486,29 @@ const (
 	ReturnConsumedCapacityNone = "NONE"
 )
 
+// ReturnConsumedCapacity is an enum
+type ReturnConsumedCapacity struct{}
+
+// Contains returns whether the ReturnConsumedCapacity enum includes the element
+func (enum ReturnConsumedCapacity) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReturnConsumedCapacity enum
+func (enum ReturnConsumedCapacity) Values() []string {
+	return []string{
+		ReturnConsumedCapacityIndexes,
+		ReturnConsumedCapacityTotal,
+		ReturnConsumedCapacityNone,
+	}
+}
+
 const (
 	// ReturnItemCollectionMetricsSize is a ReturnItemCollectionMetrics enum value
 	ReturnItemCollectionMetricsSize = "SIZE"
@@ -20114,6 +20516,28 @@ const (
 	// ReturnItemCollectionMetricsNone is a ReturnItemCollectionMetrics enum value
 	ReturnItemCollectionMetricsNone = "NONE"
 )
+
+// ReturnItemCollectionMetrics is an enum
+type ReturnItemCollectionMetrics struct{}
+
+// Contains returns whether the ReturnItemCollectionMetrics enum includes the element
+func (enum ReturnItemCollectionMetrics) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReturnItemCollectionMetrics enum
+func (enum ReturnItemCollectionMetrics) Values() []string {
+	return []string{
+		ReturnItemCollectionMetricsSize,
+		ReturnItemCollectionMetricsNone,
+	}
+}
 
 const (
 	// ReturnValueNone is a ReturnValue enum value
@@ -20132,6 +20556,31 @@ const (
 	ReturnValueUpdatedNew = "UPDATED_NEW"
 )
 
+// ReturnValue is an enum
+type ReturnValue struct{}
+
+// Contains returns whether the ReturnValue enum includes the element
+func (enum ReturnValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReturnValue enum
+func (enum ReturnValue) Values() []string {
+	return []string{
+		ReturnValueNone,
+		ReturnValueAllOld,
+		ReturnValueUpdatedOld,
+		ReturnValueAllNew,
+		ReturnValueUpdatedNew,
+	}
+}
+
 const (
 	// ReturnValuesOnConditionCheckFailureAllOld is a ReturnValuesOnConditionCheckFailure enum value
 	ReturnValuesOnConditionCheckFailureAllOld = "ALL_OLD"
@@ -20139,6 +20588,28 @@ const (
 	// ReturnValuesOnConditionCheckFailureNone is a ReturnValuesOnConditionCheckFailure enum value
 	ReturnValuesOnConditionCheckFailureNone = "NONE"
 )
+
+// ReturnValuesOnConditionCheckFailure is an enum
+type ReturnValuesOnConditionCheckFailure struct{}
+
+// Contains returns whether the ReturnValuesOnConditionCheckFailure enum includes the element
+func (enum ReturnValuesOnConditionCheckFailure) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReturnValuesOnConditionCheckFailure enum
+func (enum ReturnValuesOnConditionCheckFailure) Values() []string {
+	return []string{
+		ReturnValuesOnConditionCheckFailureAllOld,
+		ReturnValuesOnConditionCheckFailureNone,
+	}
+}
 
 const (
 	// SSEStatusEnabling is a SSEStatus enum value
@@ -20157,6 +20628,31 @@ const (
 	SSEStatusUpdating = "UPDATING"
 )
 
+// SSEStatus is an enum
+type SSEStatus struct{}
+
+// Contains returns whether the SSEStatus enum includes the element
+func (enum SSEStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SSEStatus enum
+func (enum SSEStatus) Values() []string {
+	return []string{
+		SSEStatusEnabling,
+		SSEStatusEnabled,
+		SSEStatusDisabling,
+		SSEStatusDisabled,
+		SSEStatusUpdating,
+	}
+}
+
 const (
 	// SSETypeAes256 is a SSEType enum value
 	SSETypeAes256 = "AES256"
@@ -20164,6 +20660,28 @@ const (
 	// SSETypeKms is a SSEType enum value
 	SSETypeKms = "KMS"
 )
+
+// SSEType is an enum
+type SSEType struct{}
+
+// Contains returns whether the SSEType enum includes the element
+func (enum SSEType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SSEType enum
+func (enum SSEType) Values() []string {
+	return []string{
+		SSETypeAes256,
+		SSETypeKms,
+	}
+}
 
 const (
 	// ScalarAttributeTypeS is a ScalarAttributeType enum value
@@ -20175,6 +20693,29 @@ const (
 	// ScalarAttributeTypeB is a ScalarAttributeType enum value
 	ScalarAttributeTypeB = "B"
 )
+
+// ScalarAttributeType is an enum
+type ScalarAttributeType struct{}
+
+// Contains returns whether the ScalarAttributeType enum includes the element
+func (enum ScalarAttributeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalarAttributeType enum
+func (enum ScalarAttributeType) Values() []string {
+	return []string{
+		ScalarAttributeTypeS,
+		ScalarAttributeTypeN,
+		ScalarAttributeTypeB,
+	}
+}
 
 const (
 	// SelectAllAttributes is a Select enum value
@@ -20190,6 +20731,30 @@ const (
 	SelectCount = "COUNT"
 )
 
+// Select is an enum
+type Select struct{}
+
+// Contains returns whether the Select enum includes the element
+func (enum Select) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Select enum
+func (enum Select) Values() []string {
+	return []string{
+		SelectAllAttributes,
+		SelectAllProjectedAttributes,
+		SelectSpecificAttributes,
+		SelectCount,
+	}
+}
+
 const (
 	// StreamViewTypeNewImage is a StreamViewType enum value
 	StreamViewTypeNewImage = "NEW_IMAGE"
@@ -20203,6 +20768,30 @@ const (
 	// StreamViewTypeKeysOnly is a StreamViewType enum value
 	StreamViewTypeKeysOnly = "KEYS_ONLY"
 )
+
+// StreamViewType is an enum
+type StreamViewType struct{}
+
+// Contains returns whether the StreamViewType enum includes the element
+func (enum StreamViewType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamViewType enum
+func (enum StreamViewType) Values() []string {
+	return []string{
+		StreamViewTypeNewImage,
+		StreamViewTypeOldImage,
+		StreamViewTypeNewAndOldImages,
+		StreamViewTypeKeysOnly,
+	}
+}
 
 const (
 	// TableStatusCreating is a TableStatus enum value
@@ -20227,6 +20816,33 @@ const (
 	TableStatusArchived = "ARCHIVED"
 )
 
+// TableStatus is an enum
+type TableStatus struct{}
+
+// Contains returns whether the TableStatus enum includes the element
+func (enum TableStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TableStatus enum
+func (enum TableStatus) Values() []string {
+	return []string{
+		TableStatusCreating,
+		TableStatusUpdating,
+		TableStatusDeleting,
+		TableStatusActive,
+		TableStatusInaccessibleEncryptionCredentials,
+		TableStatusArchiving,
+		TableStatusArchived,
+	}
+}
+
 const (
 	// TimeToLiveStatusEnabling is a TimeToLiveStatus enum value
 	TimeToLiveStatusEnabling = "ENABLING"
@@ -20240,3 +20856,27 @@ const (
 	// TimeToLiveStatusDisabled is a TimeToLiveStatus enum value
 	TimeToLiveStatusDisabled = "DISABLED"
 )
+
+// TimeToLiveStatus is an enum
+type TimeToLiveStatus struct{}
+
+// Contains returns whether the TimeToLiveStatus enum includes the element
+func (enum TimeToLiveStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TimeToLiveStatus enum
+func (enum TimeToLiveStatus) Values() []string {
+	return []string{
+		TimeToLiveStatusEnabling,
+		TimeToLiveStatusDisabling,
+		TimeToLiveStatusEnabled,
+		TimeToLiveStatusDisabled,
+	}
+}

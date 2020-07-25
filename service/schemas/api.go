@@ -6521,6 +6521,29 @@ const (
 	CodeGenerationStatusCreateFailed = "CREATE_FAILED"
 )
 
+// CodeGenerationStatus is an enum
+type CodeGenerationStatus struct{}
+
+// Contains returns whether the CodeGenerationStatus enum includes the element
+func (enum CodeGenerationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CodeGenerationStatus enum
+func (enum CodeGenerationStatus) Values() []string {
+	return []string{
+		CodeGenerationStatusCreateInProgress,
+		CodeGenerationStatusCreateComplete,
+		CodeGenerationStatusCreateFailed,
+	}
+}
+
 const (
 	// DiscovererStateStarted is a DiscovererState enum value
 	DiscovererStateStarted = "STARTED"
@@ -6529,7 +6552,50 @@ const (
 	DiscovererStateStopped = "STOPPED"
 )
 
+// DiscovererState is an enum
+type DiscovererState struct{}
+
+// Contains returns whether the DiscovererState enum includes the element
+func (enum DiscovererState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DiscovererState enum
+func (enum DiscovererState) Values() []string {
+	return []string{
+		DiscovererStateStarted,
+		DiscovererStateStopped,
+	}
+}
+
 const (
 	// TypeOpenApi3 is a Type enum value
 	TypeOpenApi3 = "OpenApi3"
 )
+
+// Type is an enum
+type Type struct{}
+
+// Contains returns whether the Type enum includes the element
+func (enum Type) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Type enum
+func (enum Type) Values() []string {
+	return []string{
+		TypeOpenApi3,
+	}
+}

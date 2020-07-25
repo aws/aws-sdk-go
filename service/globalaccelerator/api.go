@@ -6179,6 +6179,28 @@ const (
 	AcceleratorStatusInProgress = "IN_PROGRESS"
 )
 
+// AcceleratorStatus is an enum
+type AcceleratorStatus struct{}
+
+// Contains returns whether the AcceleratorStatus enum includes the element
+func (enum AcceleratorStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AcceleratorStatus enum
+func (enum AcceleratorStatus) Values() []string {
+	return []string{
+		AcceleratorStatusDeployed,
+		AcceleratorStatusInProgress,
+	}
+}
+
 const (
 	// ByoipCidrStatePendingProvisioning is a ByoipCidrState enum value
 	ByoipCidrStatePendingProvisioning = "PENDING_PROVISIONING"
@@ -6214,6 +6236,37 @@ const (
 	ByoipCidrStateFailedDeprovision = "FAILED_DEPROVISION"
 )
 
+// ByoipCidrState is an enum
+type ByoipCidrState struct{}
+
+// Contains returns whether the ByoipCidrState enum includes the element
+func (enum ByoipCidrState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ByoipCidrState enum
+func (enum ByoipCidrState) Values() []string {
+	return []string{
+		ByoipCidrStatePendingProvisioning,
+		ByoipCidrStateReady,
+		ByoipCidrStatePendingAdvertising,
+		ByoipCidrStateAdvertising,
+		ByoipCidrStatePendingWithdrawing,
+		ByoipCidrStatePendingDeprovisioning,
+		ByoipCidrStateDeprovisioned,
+		ByoipCidrStateFailedProvision,
+		ByoipCidrStateFailedAdvertising,
+		ByoipCidrStateFailedWithdraw,
+		ByoipCidrStateFailedDeprovision,
+	}
+}
+
 const (
 	// ClientAffinityNone is a ClientAffinity enum value
 	ClientAffinityNone = "NONE"
@@ -6221,6 +6274,28 @@ const (
 	// ClientAffinitySourceIp is a ClientAffinity enum value
 	ClientAffinitySourceIp = "SOURCE_IP"
 )
+
+// ClientAffinity is an enum
+type ClientAffinity struct{}
+
+// Contains returns whether the ClientAffinity enum includes the element
+func (enum ClientAffinity) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ClientAffinity enum
+func (enum ClientAffinity) Values() []string {
+	return []string{
+		ClientAffinityNone,
+		ClientAffinitySourceIp,
+	}
+}
 
 const (
 	// HealthCheckProtocolTcp is a HealthCheckProtocol enum value
@@ -6233,6 +6308,29 @@ const (
 	HealthCheckProtocolHttps = "HTTPS"
 )
 
+// HealthCheckProtocol is an enum
+type HealthCheckProtocol struct{}
+
+// Contains returns whether the HealthCheckProtocol enum includes the element
+func (enum HealthCheckProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HealthCheckProtocol enum
+func (enum HealthCheckProtocol) Values() []string {
+	return []string{
+		HealthCheckProtocolTcp,
+		HealthCheckProtocolHttp,
+		HealthCheckProtocolHttps,
+	}
+}
+
 const (
 	// HealthStateInitial is a HealthState enum value
 	HealthStateInitial = "INITIAL"
@@ -6244,10 +6342,54 @@ const (
 	HealthStateUnhealthy = "UNHEALTHY"
 )
 
+// HealthState is an enum
+type HealthState struct{}
+
+// Contains returns whether the HealthState enum includes the element
+func (enum HealthState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HealthState enum
+func (enum HealthState) Values() []string {
+	return []string{
+		HealthStateInitial,
+		HealthStateHealthy,
+		HealthStateUnhealthy,
+	}
+}
+
 const (
 	// IpAddressTypeIpv4 is a IpAddressType enum value
 	IpAddressTypeIpv4 = "IPV4"
 )
+
+// IpAddressType is an enum
+type IpAddressType struct{}
+
+// Contains returns whether the IpAddressType enum includes the element
+func (enum IpAddressType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IpAddressType enum
+func (enum IpAddressType) Values() []string {
+	return []string{
+		IpAddressTypeIpv4,
+	}
+}
 
 const (
 	// ProtocolTcp is a Protocol enum value
@@ -6256,3 +6398,25 @@ const (
 	// ProtocolUdp is a Protocol enum value
 	ProtocolUdp = "UDP"
 )
+
+// Protocol is an enum
+type Protocol struct{}
+
+// Contains returns whether the Protocol enum includes the element
+func (enum Protocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Protocol enum
+func (enum Protocol) Values() []string {
+	return []string{
+		ProtocolTcp,
+		ProtocolUdp,
+	}
+}

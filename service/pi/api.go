@@ -1255,3 +1255,24 @@ const (
 	// ServiceTypeRds is a ServiceType enum value
 	ServiceTypeRds = "RDS"
 )
+
+// ServiceType is an enum
+type ServiceType struct{}
+
+// Contains returns whether the ServiceType enum includes the element
+func (enum ServiceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceType enum
+func (enum ServiceType) Values() []string {
+	return []string{
+		ServiceTypeRds,
+	}
+}

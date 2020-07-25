@@ -4956,6 +4956,31 @@ const (
 	OperatorTypeBetween = "BETWEEN"
 )
 
+// OperatorType is an enum
+type OperatorType struct{}
+
+// Contains returns whether the OperatorType enum includes the element
+func (enum OperatorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperatorType enum
+func (enum OperatorType) Values() []string {
+	return []string{
+		OperatorTypeEq,
+		OperatorTypeRefEq,
+		OperatorTypeLe,
+		OperatorTypeGe,
+		OperatorTypeBetween,
+	}
+}
+
 const (
 	// TaskStatusFinished is a TaskStatus enum value
 	TaskStatusFinished = "FINISHED"
@@ -4966,3 +4991,26 @@ const (
 	// TaskStatusFalse is a TaskStatus enum value
 	TaskStatusFalse = "FALSE"
 )
+
+// TaskStatus is an enum
+type TaskStatus struct{}
+
+// Contains returns whether the TaskStatus enum includes the element
+func (enum TaskStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TaskStatus enum
+func (enum TaskStatus) Values() []string {
+	return []string{
+		TaskStatusFinished,
+		TaskStatusFailed,
+		TaskStatusFalse,
+	}
+}

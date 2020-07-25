@@ -4688,6 +4688,30 @@ const (
 	BulkPublishStatusSucceeded = "SUCCEEDED"
 )
 
+// BulkPublishStatus is an enum
+type BulkPublishStatus struct{}
+
+// Contains returns whether the BulkPublishStatus enum includes the element
+func (enum BulkPublishStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BulkPublishStatus enum
+func (enum BulkPublishStatus) Values() []string {
+	return []string{
+		BulkPublishStatusNotStarted,
+		BulkPublishStatusInProgress,
+		BulkPublishStatusFailed,
+		BulkPublishStatusSucceeded,
+	}
+}
+
 const (
 	// OperationReplace is a Operation enum value
 	OperationReplace = "replace"
@@ -4695,6 +4719,28 @@ const (
 	// OperationRemove is a Operation enum value
 	OperationRemove = "remove"
 )
+
+// Operation is an enum
+type Operation struct{}
+
+// Contains returns whether the Operation enum includes the element
+func (enum Operation) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Operation enum
+func (enum Operation) Values() []string {
+	return []string{
+		OperationReplace,
+		OperationRemove,
+	}
+}
 
 const (
 	// PlatformApns is a Platform enum value
@@ -4710,6 +4756,30 @@ const (
 	PlatformAdm = "ADM"
 )
 
+// Platform is an enum
+type Platform struct{}
+
+// Contains returns whether the Platform enum includes the element
+func (enum Platform) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Platform enum
+func (enum Platform) Values() []string {
+	return []string{
+		PlatformApns,
+		PlatformApnsSandbox,
+		PlatformGcm,
+		PlatformAdm,
+	}
+}
+
 const (
 	// StreamingStatusEnabled is a StreamingStatus enum value
 	StreamingStatusEnabled = "ENABLED"
@@ -4717,3 +4787,25 @@ const (
 	// StreamingStatusDisabled is a StreamingStatus enum value
 	StreamingStatusDisabled = "DISABLED"
 )
+
+// StreamingStatus is an enum
+type StreamingStatus struct{}
+
+// Contains returns whether the StreamingStatus enum includes the element
+func (enum StreamingStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamingStatus enum
+func (enum StreamingStatus) Values() []string {
+	return []string{
+		StreamingStatusEnabled,
+		StreamingStatusDisabled,
+	}
+}

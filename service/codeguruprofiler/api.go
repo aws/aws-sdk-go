@@ -6317,6 +6317,27 @@ const (
 	ActionGroupAgentPermissions = "agentPermissions"
 )
 
+// ActionGroup is an enum
+type ActionGroup struct{}
+
+// Contains returns whether the ActionGroup enum includes the element
+func (enum ActionGroup) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionGroup enum
+func (enum ActionGroup) Values() []string {
+	return []string{
+		ActionGroupAgentPermissions,
+	}
+}
+
 const (
 	// AgentParameterFieldMaxStackDepth is a AgentParameterField enum value
 	AgentParameterFieldMaxStackDepth = "MaxStackDepth"
@@ -6334,6 +6355,31 @@ const (
 	AgentParameterFieldSamplingIntervalInMilliseconds = "SamplingIntervalInMilliseconds"
 )
 
+// AgentParameterField is an enum
+type AgentParameterField struct{}
+
+// Contains returns whether the AgentParameterField enum includes the element
+func (enum AgentParameterField) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AgentParameterField enum
+func (enum AgentParameterField) Values() []string {
+	return []string{
+		AgentParameterFieldMaxStackDepth,
+		AgentParameterFieldMemoryUsageLimitPercent,
+		AgentParameterFieldMinimumTimeForReportingInMilliseconds,
+		AgentParameterFieldReportingIntervalInMilliseconds,
+		AgentParameterFieldSamplingIntervalInMilliseconds,
+	}
+}
+
 const (
 	// AggregationPeriodP1d is a AggregationPeriod enum value
 	AggregationPeriodP1d = "P1D"
@@ -6345,6 +6391,29 @@ const (
 	AggregationPeriodPt5m = "PT5M"
 )
 
+// AggregationPeriod is an enum
+type AggregationPeriod struct{}
+
+// Contains returns whether the AggregationPeriod enum includes the element
+func (enum AggregationPeriod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AggregationPeriod enum
+func (enum AggregationPeriod) Values() []string {
+	return []string{
+		AggregationPeriodP1d,
+		AggregationPeriodPt1h,
+		AggregationPeriodPt5m,
+	}
+}
+
 const (
 	// ComputePlatformAwslambda is a ComputePlatform enum value
 	ComputePlatformAwslambda = "AWSLambda"
@@ -6353,10 +6422,53 @@ const (
 	ComputePlatformDefault = "Default"
 )
 
+// ComputePlatform is an enum
+type ComputePlatform struct{}
+
+// Contains returns whether the ComputePlatform enum includes the element
+func (enum ComputePlatform) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComputePlatform enum
+func (enum ComputePlatform) Values() []string {
+	return []string{
+		ComputePlatformAwslambda,
+		ComputePlatformDefault,
+	}
+}
+
 const (
 	// EventPublisherAnomalyDetection is a EventPublisher enum value
 	EventPublisherAnomalyDetection = "AnomalyDetection"
 )
+
+// EventPublisher is an enum
+type EventPublisher struct{}
+
+// Contains returns whether the EventPublisher enum includes the element
+func (enum EventPublisher) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventPublisher enum
+func (enum EventPublisher) Values() []string {
+	return []string{
+		EventPublisherAnomalyDetection,
+	}
+}
 
 const (
 	// FeedbackTypeNegative is a FeedbackType enum value
@@ -6365,6 +6477,28 @@ const (
 	// FeedbackTypePositive is a FeedbackType enum value
 	FeedbackTypePositive = "Positive"
 )
+
+// FeedbackType is an enum
+type FeedbackType struct{}
+
+// Contains returns whether the FeedbackType enum includes the element
+func (enum FeedbackType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FeedbackType enum
+func (enum FeedbackType) Values() []string {
+	return []string{
+		FeedbackTypeNegative,
+		FeedbackTypePositive,
+	}
+}
 
 const (
 	// MetadataFieldAgentId is a MetadataField enum value
@@ -6395,10 +6529,60 @@ const (
 	MetadataFieldLambdaTimeGapBetweenInvokesInMilliseconds = "LambdaTimeGapBetweenInvokesInMilliseconds"
 )
 
+// MetadataField is an enum
+type MetadataField struct{}
+
+// Contains returns whether the MetadataField enum includes the element
+func (enum MetadataField) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetadataField enum
+func (enum MetadataField) Values() []string {
+	return []string{
+		MetadataFieldAgentId,
+		MetadataFieldAwsRequestId,
+		MetadataFieldComputePlatform,
+		MetadataFieldExecutionEnvironment,
+		MetadataFieldLambdaFunctionArn,
+		MetadataFieldLambdaMemoryLimitInMb,
+		MetadataFieldLambdaPreviousExecutionTimeInMilliseconds,
+		MetadataFieldLambdaRemainingTimeInMilliseconds,
+		MetadataFieldLambdaTimeGapBetweenInvokesInMilliseconds,
+	}
+}
+
 const (
 	// MetricTypeAggregatedRelativeTotalTime is a MetricType enum value
 	MetricTypeAggregatedRelativeTotalTime = "AggregatedRelativeTotalTime"
 )
+
+// MetricType is an enum
+type MetricType struct{}
+
+// Contains returns whether the MetricType enum includes the element
+func (enum MetricType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricType enum
+func (enum MetricType) Values() []string {
+	return []string{
+		MetricTypeAggregatedRelativeTotalTime,
+	}
+}
 
 const (
 	// OrderByTimestampAscending is a OrderBy enum value
@@ -6407,3 +6591,25 @@ const (
 	// OrderByTimestampDescending is a OrderBy enum value
 	OrderByTimestampDescending = "TimestampDescending"
 )
+
+// OrderBy is an enum
+type OrderBy struct{}
+
+// Contains returns whether the OrderBy enum includes the element
+func (enum OrderBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrderBy enum
+func (enum OrderBy) Values() []string {
+	return []string{
+		OrderByTimestampAscending,
+		OrderByTimestampDescending,
+	}
+}

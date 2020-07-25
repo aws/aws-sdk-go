@@ -26088,6 +26088,28 @@ const (
 	AcceptanceTypeReject = "REJECT"
 )
 
+// AcceptanceType is an enum
+type AcceptanceType struct{}
+
+// Contains returns whether the AcceptanceType enum includes the element
+func (enum AcceptanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AcceptanceType enum
+func (enum AcceptanceType) Values() []string {
+	return []string{
+		AcceptanceTypeAccept,
+		AcceptanceTypeReject,
+	}
+}
+
 const (
 	// BackfillModeAutomatic is a BackfillMode enum value
 	BackfillModeAutomatic = "AUTOMATIC"
@@ -26096,6 +26118,28 @@ const (
 	BackfillModeManual = "MANUAL"
 )
 
+// BackfillMode is an enum
+type BackfillMode struct{}
+
+// Contains returns whether the BackfillMode enum includes the element
+func (enum BackfillMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BackfillMode enum
+func (enum BackfillMode) Values() []string {
+	return []string{
+		BackfillModeAutomatic,
+		BackfillModeManual,
+	}
+}
+
 const (
 	// BalancingStrategySpotOnly is a BalancingStrategy enum value
 	BalancingStrategySpotOnly = "SPOT_ONLY"
@@ -26103,6 +26147,28 @@ const (
 	// BalancingStrategySpotPreferred is a BalancingStrategy enum value
 	BalancingStrategySpotPreferred = "SPOT_PREFERRED"
 )
+
+// BalancingStrategy is an enum
+type BalancingStrategy struct{}
+
+// Contains returns whether the BalancingStrategy enum includes the element
+func (enum BalancingStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BalancingStrategy enum
+func (enum BalancingStrategy) Values() []string {
+	return []string{
+		BalancingStrategySpotOnly,
+		BalancingStrategySpotPreferred,
+	}
+}
 
 const (
 	// BuildStatusInitialized is a BuildStatus enum value
@@ -26115,6 +26181,29 @@ const (
 	BuildStatusFailed = "FAILED"
 )
 
+// BuildStatus is an enum
+type BuildStatus struct{}
+
+// Contains returns whether the BuildStatus enum includes the element
+func (enum BuildStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BuildStatus enum
+func (enum BuildStatus) Values() []string {
+	return []string{
+		BuildStatusInitialized,
+		BuildStatusReady,
+		BuildStatusFailed,
+	}
+}
+
 const (
 	// CertificateTypeDisabled is a CertificateType enum value
 	CertificateTypeDisabled = "DISABLED"
@@ -26122,6 +26211,28 @@ const (
 	// CertificateTypeGenerated is a CertificateType enum value
 	CertificateTypeGenerated = "GENERATED"
 )
+
+// CertificateType is an enum
+type CertificateType struct{}
+
+// Contains returns whether the CertificateType enum includes the element
+func (enum CertificateType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CertificateType enum
+func (enum CertificateType) Values() []string {
+	return []string{
+		CertificateTypeDisabled,
+		CertificateTypeGenerated,
+	}
+}
 
 const (
 	// ComparisonOperatorTypeGreaterThanOrEqualToThreshold is a ComparisonOperatorType enum value
@@ -26136,6 +26247,30 @@ const (
 	// ComparisonOperatorTypeLessThanOrEqualToThreshold is a ComparisonOperatorType enum value
 	ComparisonOperatorTypeLessThanOrEqualToThreshold = "LessThanOrEqualToThreshold"
 )
+
+// ComparisonOperatorType is an enum
+type ComparisonOperatorType struct{}
+
+// Contains returns whether the ComparisonOperatorType enum includes the element
+func (enum ComparisonOperatorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComparisonOperatorType enum
+func (enum ComparisonOperatorType) Values() []string {
+	return []string{
+		ComparisonOperatorTypeGreaterThanOrEqualToThreshold,
+		ComparisonOperatorTypeGreaterThanThreshold,
+		ComparisonOperatorTypeLessThanThreshold,
+		ComparisonOperatorTypeLessThanOrEqualToThreshold,
+	}
+}
 
 const (
 	// EC2InstanceTypeT2Micro is a EC2InstanceType enum value
@@ -26313,6 +26448,84 @@ const (
 	EC2InstanceTypeM524xlarge = "m5.24xlarge"
 )
 
+// EC2InstanceType is an enum
+type EC2InstanceType struct{}
+
+// Contains returns whether the EC2InstanceType enum includes the element
+func (enum EC2InstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EC2InstanceType enum
+func (enum EC2InstanceType) Values() []string {
+	return []string{
+		EC2InstanceTypeT2Micro,
+		EC2InstanceTypeT2Small,
+		EC2InstanceTypeT2Medium,
+		EC2InstanceTypeT2Large,
+		EC2InstanceTypeC3Large,
+		EC2InstanceTypeC3Xlarge,
+		EC2InstanceTypeC32xlarge,
+		EC2InstanceTypeC34xlarge,
+		EC2InstanceTypeC38xlarge,
+		EC2InstanceTypeC4Large,
+		EC2InstanceTypeC4Xlarge,
+		EC2InstanceTypeC42xlarge,
+		EC2InstanceTypeC44xlarge,
+		EC2InstanceTypeC48xlarge,
+		EC2InstanceTypeC5Large,
+		EC2InstanceTypeC5Xlarge,
+		EC2InstanceTypeC52xlarge,
+		EC2InstanceTypeC54xlarge,
+		EC2InstanceTypeC59xlarge,
+		EC2InstanceTypeC512xlarge,
+		EC2InstanceTypeC518xlarge,
+		EC2InstanceTypeC524xlarge,
+		EC2InstanceTypeR3Large,
+		EC2InstanceTypeR3Xlarge,
+		EC2InstanceTypeR32xlarge,
+		EC2InstanceTypeR34xlarge,
+		EC2InstanceTypeR38xlarge,
+		EC2InstanceTypeR4Large,
+		EC2InstanceTypeR4Xlarge,
+		EC2InstanceTypeR42xlarge,
+		EC2InstanceTypeR44xlarge,
+		EC2InstanceTypeR48xlarge,
+		EC2InstanceTypeR416xlarge,
+		EC2InstanceTypeR5Large,
+		EC2InstanceTypeR5Xlarge,
+		EC2InstanceTypeR52xlarge,
+		EC2InstanceTypeR54xlarge,
+		EC2InstanceTypeR58xlarge,
+		EC2InstanceTypeR512xlarge,
+		EC2InstanceTypeR516xlarge,
+		EC2InstanceTypeR524xlarge,
+		EC2InstanceTypeM3Medium,
+		EC2InstanceTypeM3Large,
+		EC2InstanceTypeM3Xlarge,
+		EC2InstanceTypeM32xlarge,
+		EC2InstanceTypeM4Large,
+		EC2InstanceTypeM4Xlarge,
+		EC2InstanceTypeM42xlarge,
+		EC2InstanceTypeM44xlarge,
+		EC2InstanceTypeM410xlarge,
+		EC2InstanceTypeM5Large,
+		EC2InstanceTypeM5Xlarge,
+		EC2InstanceTypeM52xlarge,
+		EC2InstanceTypeM54xlarge,
+		EC2InstanceTypeM58xlarge,
+		EC2InstanceTypeM512xlarge,
+		EC2InstanceTypeM516xlarge,
+		EC2InstanceTypeM524xlarge,
+	}
+}
+
 const (
 	// EventCodeGenericEvent is a EventCode enum value
 	EventCodeGenericEvent = "GENERIC_EVENT"
@@ -26414,10 +26627,84 @@ const (
 	EventCodeInstanceInterrupted = "INSTANCE_INTERRUPTED"
 )
 
+// EventCode is an enum
+type EventCode struct{}
+
+// Contains returns whether the EventCode enum includes the element
+func (enum EventCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventCode enum
+func (enum EventCode) Values() []string {
+	return []string{
+		EventCodeGenericEvent,
+		EventCodeFleetCreated,
+		EventCodeFleetDeleted,
+		EventCodeFleetScalingEvent,
+		EventCodeFleetStateDownloading,
+		EventCodeFleetStateValidating,
+		EventCodeFleetStateBuilding,
+		EventCodeFleetStateActivating,
+		EventCodeFleetStateActive,
+		EventCodeFleetStateError,
+		EventCodeFleetInitializationFailed,
+		EventCodeFleetBinaryDownloadFailed,
+		EventCodeFleetValidationLaunchPathNotFound,
+		EventCodeFleetValidationExecutableRuntimeFailure,
+		EventCodeFleetValidationTimedOut,
+		EventCodeFleetActivationFailed,
+		EventCodeFleetActivationFailedNoInstances,
+		EventCodeFleetNewGameSessionProtectionPolicyUpdated,
+		EventCodeServerProcessInvalidPath,
+		EventCodeServerProcessSdkInitializationTimeout,
+		EventCodeServerProcessProcessReadyTimeout,
+		EventCodeServerProcessCrashed,
+		EventCodeServerProcessTerminatedUnhealthy,
+		EventCodeServerProcessForceTerminated,
+		EventCodeServerProcessProcessExitTimeout,
+		EventCodeGameSessionActivationTimeout,
+		EventCodeFleetCreationExtractingBuild,
+		EventCodeFleetCreationRunningInstaller,
+		EventCodeFleetCreationValidatingRuntimeConfig,
+		EventCodeFleetVpcPeeringSucceeded,
+		EventCodeFleetVpcPeeringFailed,
+		EventCodeFleetVpcPeeringDeleted,
+		EventCodeInstanceInterrupted,
+	}
+}
+
 const (
 	// FleetActionAutoScaling is a FleetAction enum value
 	FleetActionAutoScaling = "AUTO_SCALING"
 )
+
+// FleetAction is an enum
+type FleetAction struct{}
+
+// Contains returns whether the FleetAction enum includes the element
+func (enum FleetAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FleetAction enum
+func (enum FleetAction) Values() []string {
+	return []string{
+		FleetActionAutoScaling,
+	}
+}
 
 const (
 	// FleetStatusNew is a FleetStatus enum value
@@ -26448,6 +26735,35 @@ const (
 	FleetStatusTerminated = "TERMINATED"
 )
 
+// FleetStatus is an enum
+type FleetStatus struct{}
+
+// Contains returns whether the FleetStatus enum includes the element
+func (enum FleetStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FleetStatus enum
+func (enum FleetStatus) Values() []string {
+	return []string{
+		FleetStatusNew,
+		FleetStatusDownloading,
+		FleetStatusValidating,
+		FleetStatusBuilding,
+		FleetStatusActivating,
+		FleetStatusActive,
+		FleetStatusDeleting,
+		FleetStatusError,
+		FleetStatusTerminated,
+	}
+}
+
 const (
 	// FleetTypeOnDemand is a FleetType enum value
 	FleetTypeOnDemand = "ON_DEMAND"
@@ -26456,15 +26772,79 @@ const (
 	FleetTypeSpot = "SPOT"
 )
 
+// FleetType is an enum
+type FleetType struct{}
+
+// Contains returns whether the FleetType enum includes the element
+func (enum FleetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FleetType enum
+func (enum FleetType) Values() []string {
+	return []string{
+		FleetTypeOnDemand,
+		FleetTypeSpot,
+	}
+}
+
 const (
 	// GameServerClaimStatusClaimed is a GameServerClaimStatus enum value
 	GameServerClaimStatusClaimed = "CLAIMED"
 )
 
+// GameServerClaimStatus is an enum
+type GameServerClaimStatus struct{}
+
+// Contains returns whether the GameServerClaimStatus enum includes the element
+func (enum GameServerClaimStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameServerClaimStatus enum
+func (enum GameServerClaimStatus) Values() []string {
+	return []string{
+		GameServerClaimStatusClaimed,
+	}
+}
+
 const (
 	// GameServerGroupActionReplaceInstanceTypes is a GameServerGroupAction enum value
 	GameServerGroupActionReplaceInstanceTypes = "REPLACE_INSTANCE_TYPES"
 )
+
+// GameServerGroupAction is an enum
+type GameServerGroupAction struct{}
+
+// Contains returns whether the GameServerGroupAction enum includes the element
+func (enum GameServerGroupAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameServerGroupAction enum
+func (enum GameServerGroupAction) Values() []string {
+	return []string{
+		GameServerGroupActionReplaceInstanceTypes,
+	}
+}
 
 const (
 	// GameServerGroupDeleteOptionSafeDelete is a GameServerGroupDeleteOption enum value
@@ -26476,6 +26856,29 @@ const (
 	// GameServerGroupDeleteOptionRetain is a GameServerGroupDeleteOption enum value
 	GameServerGroupDeleteOptionRetain = "RETAIN"
 )
+
+// GameServerGroupDeleteOption is an enum
+type GameServerGroupDeleteOption struct{}
+
+// Contains returns whether the GameServerGroupDeleteOption enum includes the element
+func (enum GameServerGroupDeleteOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameServerGroupDeleteOption enum
+func (enum GameServerGroupDeleteOption) Values() []string {
+	return []string{
+		GameServerGroupDeleteOptionSafeDelete,
+		GameServerGroupDeleteOptionForceDelete,
+		GameServerGroupDeleteOptionRetain,
+	}
+}
 
 const (
 	// GameServerGroupInstanceTypeC4Large is a GameServerGroupInstanceType enum value
@@ -26599,6 +27002,66 @@ const (
 	GameServerGroupInstanceTypeM524xlarge = "m5.24xlarge"
 )
 
+// GameServerGroupInstanceType is an enum
+type GameServerGroupInstanceType struct{}
+
+// Contains returns whether the GameServerGroupInstanceType enum includes the element
+func (enum GameServerGroupInstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameServerGroupInstanceType enum
+func (enum GameServerGroupInstanceType) Values() []string {
+	return []string{
+		GameServerGroupInstanceTypeC4Large,
+		GameServerGroupInstanceTypeC4Xlarge,
+		GameServerGroupInstanceTypeC42xlarge,
+		GameServerGroupInstanceTypeC44xlarge,
+		GameServerGroupInstanceTypeC48xlarge,
+		GameServerGroupInstanceTypeC5Large,
+		GameServerGroupInstanceTypeC5Xlarge,
+		GameServerGroupInstanceTypeC52xlarge,
+		GameServerGroupInstanceTypeC54xlarge,
+		GameServerGroupInstanceTypeC59xlarge,
+		GameServerGroupInstanceTypeC512xlarge,
+		GameServerGroupInstanceTypeC518xlarge,
+		GameServerGroupInstanceTypeC524xlarge,
+		GameServerGroupInstanceTypeR4Large,
+		GameServerGroupInstanceTypeR4Xlarge,
+		GameServerGroupInstanceTypeR42xlarge,
+		GameServerGroupInstanceTypeR44xlarge,
+		GameServerGroupInstanceTypeR48xlarge,
+		GameServerGroupInstanceTypeR416xlarge,
+		GameServerGroupInstanceTypeR5Large,
+		GameServerGroupInstanceTypeR5Xlarge,
+		GameServerGroupInstanceTypeR52xlarge,
+		GameServerGroupInstanceTypeR54xlarge,
+		GameServerGroupInstanceTypeR58xlarge,
+		GameServerGroupInstanceTypeR512xlarge,
+		GameServerGroupInstanceTypeR516xlarge,
+		GameServerGroupInstanceTypeR524xlarge,
+		GameServerGroupInstanceTypeM4Large,
+		GameServerGroupInstanceTypeM4Xlarge,
+		GameServerGroupInstanceTypeM42xlarge,
+		GameServerGroupInstanceTypeM44xlarge,
+		GameServerGroupInstanceTypeM410xlarge,
+		GameServerGroupInstanceTypeM5Large,
+		GameServerGroupInstanceTypeM5Xlarge,
+		GameServerGroupInstanceTypeM52xlarge,
+		GameServerGroupInstanceTypeM54xlarge,
+		GameServerGroupInstanceTypeM58xlarge,
+		GameServerGroupInstanceTypeM512xlarge,
+		GameServerGroupInstanceTypeM516xlarge,
+		GameServerGroupInstanceTypeM524xlarge,
+	}
+}
+
 const (
 	// GameServerGroupStatusNew is a GameServerGroupStatus enum value
 	GameServerGroupStatusNew = "NEW"
@@ -26622,10 +27085,58 @@ const (
 	GameServerGroupStatusError = "ERROR"
 )
 
+// GameServerGroupStatus is an enum
+type GameServerGroupStatus struct{}
+
+// Contains returns whether the GameServerGroupStatus enum includes the element
+func (enum GameServerGroupStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameServerGroupStatus enum
+func (enum GameServerGroupStatus) Values() []string {
+	return []string{
+		GameServerGroupStatusNew,
+		GameServerGroupStatusActivating,
+		GameServerGroupStatusActive,
+		GameServerGroupStatusDeleteScheduled,
+		GameServerGroupStatusDeleting,
+		GameServerGroupStatusDeleted,
+		GameServerGroupStatusError,
+	}
+}
+
 const (
 	// GameServerHealthCheckHealthy is a GameServerHealthCheck enum value
 	GameServerHealthCheckHealthy = "HEALTHY"
 )
+
+// GameServerHealthCheck is an enum
+type GameServerHealthCheck struct{}
+
+// Contains returns whether the GameServerHealthCheck enum includes the element
+func (enum GameServerHealthCheck) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameServerHealthCheck enum
+func (enum GameServerHealthCheck) Values() []string {
+	return []string{
+		GameServerHealthCheckHealthy,
+	}
+}
 
 const (
 	// GameServerProtectionPolicyNoProtection is a GameServerProtectionPolicy enum value
@@ -26635,6 +27146,28 @@ const (
 	GameServerProtectionPolicyFullProtection = "FULL_PROTECTION"
 )
 
+// GameServerProtectionPolicy is an enum
+type GameServerProtectionPolicy struct{}
+
+// Contains returns whether the GameServerProtectionPolicy enum includes the element
+func (enum GameServerProtectionPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameServerProtectionPolicy enum
+func (enum GameServerProtectionPolicy) Values() []string {
+	return []string{
+		GameServerProtectionPolicyNoProtection,
+		GameServerProtectionPolicyFullProtection,
+	}
+}
+
 const (
 	// GameServerUtilizationStatusAvailable is a GameServerUtilizationStatus enum value
 	GameServerUtilizationStatusAvailable = "AVAILABLE"
@@ -26642,6 +27175,28 @@ const (
 	// GameServerUtilizationStatusUtilized is a GameServerUtilizationStatus enum value
 	GameServerUtilizationStatusUtilized = "UTILIZED"
 )
+
+// GameServerUtilizationStatus is an enum
+type GameServerUtilizationStatus struct{}
+
+// Contains returns whether the GameServerUtilizationStatus enum includes the element
+func (enum GameServerUtilizationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameServerUtilizationStatus enum
+func (enum GameServerUtilizationStatus) Values() []string {
+	return []string{
+		GameServerUtilizationStatusAvailable,
+		GameServerUtilizationStatusUtilized,
+	}
+}
 
 const (
 	// GameSessionPlacementStatePending is a GameSessionPlacementState enum value
@@ -26660,6 +27215,31 @@ const (
 	GameSessionPlacementStateFailed = "FAILED"
 )
 
+// GameSessionPlacementState is an enum
+type GameSessionPlacementState struct{}
+
+// Contains returns whether the GameSessionPlacementState enum includes the element
+func (enum GameSessionPlacementState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameSessionPlacementState enum
+func (enum GameSessionPlacementState) Values() []string {
+	return []string{
+		GameSessionPlacementStatePending,
+		GameSessionPlacementStateFulfilled,
+		GameSessionPlacementStateCancelled,
+		GameSessionPlacementStateTimedOut,
+		GameSessionPlacementStateFailed,
+	}
+}
+
 const (
 	// GameSessionStatusActive is a GameSessionStatus enum value
 	GameSessionStatusActive = "ACTIVE"
@@ -26677,10 +27257,56 @@ const (
 	GameSessionStatusError = "ERROR"
 )
 
+// GameSessionStatus is an enum
+type GameSessionStatus struct{}
+
+// Contains returns whether the GameSessionStatus enum includes the element
+func (enum GameSessionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameSessionStatus enum
+func (enum GameSessionStatus) Values() []string {
+	return []string{
+		GameSessionStatusActive,
+		GameSessionStatusActivating,
+		GameSessionStatusTerminated,
+		GameSessionStatusTerminating,
+		GameSessionStatusError,
+	}
+}
+
 const (
 	// GameSessionStatusReasonInterrupted is a GameSessionStatusReason enum value
 	GameSessionStatusReasonInterrupted = "INTERRUPTED"
 )
+
+// GameSessionStatusReason is an enum
+type GameSessionStatusReason struct{}
+
+// Contains returns whether the GameSessionStatusReason enum includes the element
+func (enum GameSessionStatusReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GameSessionStatusReason enum
+func (enum GameSessionStatusReason) Values() []string {
+	return []string{
+		GameSessionStatusReasonInterrupted,
+	}
+}
 
 const (
 	// InstanceStatusPending is a InstanceStatus enum value
@@ -26693,6 +27319,29 @@ const (
 	InstanceStatusTerminating = "TERMINATING"
 )
 
+// InstanceStatus is an enum
+type InstanceStatus struct{}
+
+// Contains returns whether the InstanceStatus enum includes the element
+func (enum InstanceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceStatus enum
+func (enum InstanceStatus) Values() []string {
+	return []string{
+		InstanceStatusPending,
+		InstanceStatusActive,
+		InstanceStatusTerminating,
+	}
+}
+
 const (
 	// IpProtocolTcp is a IpProtocol enum value
 	IpProtocolTcp = "TCP"
@@ -26700,6 +27349,28 @@ const (
 	// IpProtocolUdp is a IpProtocol enum value
 	IpProtocolUdp = "UDP"
 )
+
+// IpProtocol is an enum
+type IpProtocol struct{}
+
+// Contains returns whether the IpProtocol enum includes the element
+func (enum IpProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IpProtocol enum
+func (enum IpProtocol) Values() []string {
+	return []string{
+		IpProtocolTcp,
+		IpProtocolUdp,
+	}
+}
 
 const (
 	// MatchmakingConfigurationStatusCancelled is a MatchmakingConfigurationStatus enum value
@@ -26726,6 +27397,34 @@ const (
 	// MatchmakingConfigurationStatusTimedOut is a MatchmakingConfigurationStatus enum value
 	MatchmakingConfigurationStatusTimedOut = "TIMED_OUT"
 )
+
+// MatchmakingConfigurationStatus is an enum
+type MatchmakingConfigurationStatus struct{}
+
+// Contains returns whether the MatchmakingConfigurationStatus enum includes the element
+func (enum MatchmakingConfigurationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MatchmakingConfigurationStatus enum
+func (enum MatchmakingConfigurationStatus) Values() []string {
+	return []string{
+		MatchmakingConfigurationStatusCancelled,
+		MatchmakingConfigurationStatusCompleted,
+		MatchmakingConfigurationStatusFailed,
+		MatchmakingConfigurationStatusPlacing,
+		MatchmakingConfigurationStatusQueued,
+		MatchmakingConfigurationStatusRequiresAcceptance,
+		MatchmakingConfigurationStatusSearching,
+		MatchmakingConfigurationStatusTimedOut,
+	}
+}
 
 const (
 	// MetricNameActivatingGameSessions is a MetricName enum value
@@ -26762,6 +27461,37 @@ const (
 	MetricNameWaitTime = "WaitTime"
 )
 
+// MetricName is an enum
+type MetricName struct{}
+
+// Contains returns whether the MetricName enum includes the element
+func (enum MetricName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricName enum
+func (enum MetricName) Values() []string {
+	return []string{
+		MetricNameActivatingGameSessions,
+		MetricNameActiveGameSessions,
+		MetricNameActiveInstances,
+		MetricNameAvailableGameSessions,
+		MetricNameAvailablePlayerSessions,
+		MetricNameCurrentPlayerSessions,
+		MetricNameIdleInstances,
+		MetricNamePercentAvailableGameSessions,
+		MetricNamePercentIdleInstances,
+		MetricNameQueueDepth,
+		MetricNameWaitTime,
+	}
+}
+
 const (
 	// OperatingSystemWindows2012 is a OperatingSystem enum value
 	OperatingSystemWindows2012 = "WINDOWS_2012"
@@ -26773,6 +27503,29 @@ const (
 	OperatingSystemAmazonLinux2 = "AMAZON_LINUX_2"
 )
 
+// OperatingSystem is an enum
+type OperatingSystem struct{}
+
+// Contains returns whether the OperatingSystem enum includes the element
+func (enum OperatingSystem) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperatingSystem enum
+func (enum OperatingSystem) Values() []string {
+	return []string{
+		OperatingSystemWindows2012,
+		OperatingSystemAmazonLinux,
+		OperatingSystemAmazonLinux2,
+	}
+}
+
 const (
 	// PlayerSessionCreationPolicyAcceptAll is a PlayerSessionCreationPolicy enum value
 	PlayerSessionCreationPolicyAcceptAll = "ACCEPT_ALL"
@@ -26780,6 +27533,28 @@ const (
 	// PlayerSessionCreationPolicyDenyAll is a PlayerSessionCreationPolicy enum value
 	PlayerSessionCreationPolicyDenyAll = "DENY_ALL"
 )
+
+// PlayerSessionCreationPolicy is an enum
+type PlayerSessionCreationPolicy struct{}
+
+// Contains returns whether the PlayerSessionCreationPolicy enum includes the element
+func (enum PlayerSessionCreationPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PlayerSessionCreationPolicy enum
+func (enum PlayerSessionCreationPolicy) Values() []string {
+	return []string{
+		PlayerSessionCreationPolicyAcceptAll,
+		PlayerSessionCreationPolicyDenyAll,
+	}
+}
 
 const (
 	// PlayerSessionStatusReserved is a PlayerSessionStatus enum value
@@ -26795,6 +27570,30 @@ const (
 	PlayerSessionStatusTimedout = "TIMEDOUT"
 )
 
+// PlayerSessionStatus is an enum
+type PlayerSessionStatus struct{}
+
+// Contains returns whether the PlayerSessionStatus enum includes the element
+func (enum PlayerSessionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PlayerSessionStatus enum
+func (enum PlayerSessionStatus) Values() []string {
+	return []string{
+		PlayerSessionStatusReserved,
+		PlayerSessionStatusActive,
+		PlayerSessionStatusCompleted,
+		PlayerSessionStatusTimedout,
+	}
+}
+
 const (
 	// PolicyTypeRuleBased is a PolicyType enum value
 	PolicyTypeRuleBased = "RuleBased"
@@ -26802,6 +27601,28 @@ const (
 	// PolicyTypeTargetBased is a PolicyType enum value
 	PolicyTypeTargetBased = "TargetBased"
 )
+
+// PolicyType is an enum
+type PolicyType struct{}
+
+// Contains returns whether the PolicyType enum includes the element
+func (enum PolicyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyType enum
+func (enum PolicyType) Values() []string {
+	return []string{
+		PolicyTypeRuleBased,
+		PolicyTypeTargetBased,
+	}
+}
 
 const (
 	// ProtectionPolicyNoProtection is a ProtectionPolicy enum value
@@ -26811,6 +27632,28 @@ const (
 	ProtectionPolicyFullProtection = "FullProtection"
 )
 
+// ProtectionPolicy is an enum
+type ProtectionPolicy struct{}
+
+// Contains returns whether the ProtectionPolicy enum includes the element
+func (enum ProtectionPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProtectionPolicy enum
+func (enum ProtectionPolicy) Values() []string {
+	return []string{
+		ProtectionPolicyNoProtection,
+		ProtectionPolicyFullProtection,
+	}
+}
+
 const (
 	// RoutingStrategyTypeSimple is a RoutingStrategyType enum value
 	RoutingStrategyTypeSimple = "SIMPLE"
@@ -26818,6 +27661,28 @@ const (
 	// RoutingStrategyTypeTerminal is a RoutingStrategyType enum value
 	RoutingStrategyTypeTerminal = "TERMINAL"
 )
+
+// RoutingStrategyType is an enum
+type RoutingStrategyType struct{}
+
+// Contains returns whether the RoutingStrategyType enum includes the element
+func (enum RoutingStrategyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RoutingStrategyType enum
+func (enum RoutingStrategyType) Values() []string {
+	return []string{
+		RoutingStrategyTypeSimple,
+		RoutingStrategyTypeTerminal,
+	}
+}
 
 const (
 	// ScalingAdjustmentTypeChangeInCapacity is a ScalingAdjustmentType enum value
@@ -26829,6 +27694,29 @@ const (
 	// ScalingAdjustmentTypePercentChangeInCapacity is a ScalingAdjustmentType enum value
 	ScalingAdjustmentTypePercentChangeInCapacity = "PercentChangeInCapacity"
 )
+
+// ScalingAdjustmentType is an enum
+type ScalingAdjustmentType struct{}
+
+// Contains returns whether the ScalingAdjustmentType enum includes the element
+func (enum ScalingAdjustmentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingAdjustmentType enum
+func (enum ScalingAdjustmentType) Values() []string {
+	return []string{
+		ScalingAdjustmentTypeChangeInCapacity,
+		ScalingAdjustmentTypeExactCapacity,
+		ScalingAdjustmentTypePercentChangeInCapacity,
+	}
+}
 
 const (
 	// ScalingStatusTypeActive is a ScalingStatusType enum value
@@ -26853,6 +27741,33 @@ const (
 	ScalingStatusTypeError = "ERROR"
 )
 
+// ScalingStatusType is an enum
+type ScalingStatusType struct{}
+
+// Contains returns whether the ScalingStatusType enum includes the element
+func (enum ScalingStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingStatusType enum
+func (enum ScalingStatusType) Values() []string {
+	return []string{
+		ScalingStatusTypeActive,
+		ScalingStatusTypeUpdateRequested,
+		ScalingStatusTypeUpdating,
+		ScalingStatusTypeDeleteRequested,
+		ScalingStatusTypeDeleting,
+		ScalingStatusTypeDeleted,
+		ScalingStatusTypeError,
+	}
+}
+
 const (
 	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "ASCENDING"
@@ -26860,3 +27775,25 @@ const (
 	// SortOrderDescending is a SortOrder enum value
 	SortOrderDescending = "DESCENDING"
 )
+
+// SortOrder is an enum
+type SortOrder struct{}
+
+// Contains returns whether the SortOrder enum includes the element
+func (enum SortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortOrder enum
+func (enum SortOrder) Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
+	}
+}

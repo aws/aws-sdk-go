@@ -5119,6 +5119,30 @@ const (
 	BackupStatusDeleting = "DELETING"
 )
 
+// BackupStatus is an enum
+type BackupStatus struct{}
+
+// Contains returns whether the BackupStatus enum includes the element
+func (enum BackupStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BackupStatus enum
+func (enum BackupStatus) Values() []string {
+	return []string{
+		BackupStatusInProgress,
+		BackupStatusOk,
+		BackupStatusFailed,
+		BackupStatusDeleting,
+	}
+}
+
 const (
 	// BackupTypeAutomated is a BackupType enum value
 	BackupTypeAutomated = "AUTOMATED"
@@ -5127,6 +5151,28 @@ const (
 	BackupTypeManual = "MANUAL"
 )
 
+// BackupType is an enum
+type BackupType struct{}
+
+// Contains returns whether the BackupType enum includes the element
+func (enum BackupType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BackupType enum
+func (enum BackupType) Values() []string {
+	return []string{
+		BackupTypeAutomated,
+		BackupTypeManual,
+	}
+}
+
 const (
 	// MaintenanceStatusSuccess is a MaintenanceStatus enum value
 	MaintenanceStatusSuccess = "SUCCESS"
@@ -5134,6 +5180,28 @@ const (
 	// MaintenanceStatusFailed is a MaintenanceStatus enum value
 	MaintenanceStatusFailed = "FAILED"
 )
+
+// MaintenanceStatus is an enum
+type MaintenanceStatus struct{}
+
+// Contains returns whether the MaintenanceStatus enum includes the element
+func (enum MaintenanceStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MaintenanceStatus enum
+func (enum MaintenanceStatus) Values() []string {
+	return []string{
+		MaintenanceStatusSuccess,
+		MaintenanceStatusFailed,
+	}
+}
 
 // The status of the association or disassociation request.
 //
@@ -5154,6 +5222,29 @@ const (
 	// NodeAssociationStatusInProgress is a NodeAssociationStatus enum value
 	NodeAssociationStatusInProgress = "IN_PROGRESS"
 )
+
+// NodeAssociationStatus is an enum
+type NodeAssociationStatus struct{}
+
+// Contains returns whether the NodeAssociationStatus enum includes the element
+func (enum NodeAssociationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NodeAssociationStatus enum
+func (enum NodeAssociationStatus) Values() []string {
+	return []string{
+		NodeAssociationStatusSuccess,
+		NodeAssociationStatusFailed,
+		NodeAssociationStatusInProgress,
+	}
+}
 
 const (
 	// ServerStatusBackingUp is a ServerStatus enum value
@@ -5195,3 +5286,36 @@ const (
 	// ServerStatusTerminated is a ServerStatus enum value
 	ServerStatusTerminated = "TERMINATED"
 )
+
+// ServerStatus is an enum
+type ServerStatus struct{}
+
+// Contains returns whether the ServerStatus enum includes the element
+func (enum ServerStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServerStatus enum
+func (enum ServerStatus) Values() []string {
+	return []string{
+		ServerStatusBackingUp,
+		ServerStatusConnectionLost,
+		ServerStatusCreating,
+		ServerStatusDeleting,
+		ServerStatusModifying,
+		ServerStatusFailed,
+		ServerStatusHealthy,
+		ServerStatusRunning,
+		ServerStatusRestoring,
+		ServerStatusSetup,
+		ServerStatusUnderMaintenance,
+		ServerStatusUnhealthy,
+		ServerStatusTerminated,
+	}
+}

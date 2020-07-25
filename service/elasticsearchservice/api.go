@@ -10943,6 +10943,31 @@ const (
 	DeploymentStatusEligible = "ELIGIBLE"
 )
 
+// DeploymentStatus is an enum
+type DeploymentStatus struct{}
+
+// Contains returns whether the DeploymentStatus enum includes the element
+func (enum DeploymentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentStatus enum
+func (enum DeploymentStatus) Values() []string {
+	return []string{
+		DeploymentStatusPendingUpdate,
+		DeploymentStatusInProgress,
+		DeploymentStatusCompleted,
+		DeploymentStatusNotEligible,
+		DeploymentStatusEligible,
+	}
+}
+
 const (
 	// DescribePackagesFilterNamePackageId is a DescribePackagesFilterName enum value
 	DescribePackagesFilterNamePackageId = "PackageID"
@@ -10953,6 +10978,29 @@ const (
 	// DescribePackagesFilterNamePackageStatus is a DescribePackagesFilterName enum value
 	DescribePackagesFilterNamePackageStatus = "PackageStatus"
 )
+
+// DescribePackagesFilterName is an enum
+type DescribePackagesFilterName struct{}
+
+// Contains returns whether the DescribePackagesFilterName enum includes the element
+func (enum DescribePackagesFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DescribePackagesFilterName enum
+func (enum DescribePackagesFilterName) Values() []string {
+	return []string{
+		DescribePackagesFilterNamePackageId,
+		DescribePackagesFilterNamePackageName,
+		DescribePackagesFilterNamePackageStatus,
+	}
+}
 
 const (
 	// DomainPackageStatusAssociating is a DomainPackageStatus enum value
@@ -10970,6 +11018,31 @@ const (
 	// DomainPackageStatusDissociationFailed is a DomainPackageStatus enum value
 	DomainPackageStatusDissociationFailed = "DISSOCIATION_FAILED"
 )
+
+// DomainPackageStatus is an enum
+type DomainPackageStatus struct{}
+
+// Contains returns whether the DomainPackageStatus enum includes the element
+func (enum DomainPackageStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DomainPackageStatus enum
+func (enum DomainPackageStatus) Values() []string {
+	return []string{
+		DomainPackageStatusAssociating,
+		DomainPackageStatusAssociationFailed,
+		DomainPackageStatusActive,
+		DomainPackageStatusDissociating,
+		DomainPackageStatusDissociationFailed,
+	}
+}
 
 const (
 	// ESPartitionInstanceTypeM3MediumElasticsearch is a ESPartitionInstanceType enum value
@@ -11147,6 +11220,84 @@ const (
 	ESPartitionInstanceTypeI316xlargeElasticsearch = "i3.16xlarge.elasticsearch"
 )
 
+// ESPartitionInstanceType is an enum
+type ESPartitionInstanceType struct{}
+
+// Contains returns whether the ESPartitionInstanceType enum includes the element
+func (enum ESPartitionInstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ESPartitionInstanceType enum
+func (enum ESPartitionInstanceType) Values() []string {
+	return []string{
+		ESPartitionInstanceTypeM3MediumElasticsearch,
+		ESPartitionInstanceTypeM3LargeElasticsearch,
+		ESPartitionInstanceTypeM3XlargeElasticsearch,
+		ESPartitionInstanceTypeM32xlargeElasticsearch,
+		ESPartitionInstanceTypeM4LargeElasticsearch,
+		ESPartitionInstanceTypeM4XlargeElasticsearch,
+		ESPartitionInstanceTypeM42xlargeElasticsearch,
+		ESPartitionInstanceTypeM44xlargeElasticsearch,
+		ESPartitionInstanceTypeM410xlargeElasticsearch,
+		ESPartitionInstanceTypeM5LargeElasticsearch,
+		ESPartitionInstanceTypeM5XlargeElasticsearch,
+		ESPartitionInstanceTypeM52xlargeElasticsearch,
+		ESPartitionInstanceTypeM54xlargeElasticsearch,
+		ESPartitionInstanceTypeM512xlargeElasticsearch,
+		ESPartitionInstanceTypeR5LargeElasticsearch,
+		ESPartitionInstanceTypeR5XlargeElasticsearch,
+		ESPartitionInstanceTypeR52xlargeElasticsearch,
+		ESPartitionInstanceTypeR54xlargeElasticsearch,
+		ESPartitionInstanceTypeR512xlargeElasticsearch,
+		ESPartitionInstanceTypeC5LargeElasticsearch,
+		ESPartitionInstanceTypeC5XlargeElasticsearch,
+		ESPartitionInstanceTypeC52xlargeElasticsearch,
+		ESPartitionInstanceTypeC54xlargeElasticsearch,
+		ESPartitionInstanceTypeC59xlargeElasticsearch,
+		ESPartitionInstanceTypeC518xlargeElasticsearch,
+		ESPartitionInstanceTypeUltrawarm1MediumElasticsearch,
+		ESPartitionInstanceTypeUltrawarm1LargeElasticsearch,
+		ESPartitionInstanceTypeT2MicroElasticsearch,
+		ESPartitionInstanceTypeT2SmallElasticsearch,
+		ESPartitionInstanceTypeT2MediumElasticsearch,
+		ESPartitionInstanceTypeR3LargeElasticsearch,
+		ESPartitionInstanceTypeR3XlargeElasticsearch,
+		ESPartitionInstanceTypeR32xlargeElasticsearch,
+		ESPartitionInstanceTypeR34xlargeElasticsearch,
+		ESPartitionInstanceTypeR38xlargeElasticsearch,
+		ESPartitionInstanceTypeI2XlargeElasticsearch,
+		ESPartitionInstanceTypeI22xlargeElasticsearch,
+		ESPartitionInstanceTypeD2XlargeElasticsearch,
+		ESPartitionInstanceTypeD22xlargeElasticsearch,
+		ESPartitionInstanceTypeD24xlargeElasticsearch,
+		ESPartitionInstanceTypeD28xlargeElasticsearch,
+		ESPartitionInstanceTypeC4LargeElasticsearch,
+		ESPartitionInstanceTypeC4XlargeElasticsearch,
+		ESPartitionInstanceTypeC42xlargeElasticsearch,
+		ESPartitionInstanceTypeC44xlargeElasticsearch,
+		ESPartitionInstanceTypeC48xlargeElasticsearch,
+		ESPartitionInstanceTypeR4LargeElasticsearch,
+		ESPartitionInstanceTypeR4XlargeElasticsearch,
+		ESPartitionInstanceTypeR42xlargeElasticsearch,
+		ESPartitionInstanceTypeR44xlargeElasticsearch,
+		ESPartitionInstanceTypeR48xlargeElasticsearch,
+		ESPartitionInstanceTypeR416xlargeElasticsearch,
+		ESPartitionInstanceTypeI3LargeElasticsearch,
+		ESPartitionInstanceTypeI3XlargeElasticsearch,
+		ESPartitionInstanceTypeI32xlargeElasticsearch,
+		ESPartitionInstanceTypeI34xlargeElasticsearch,
+		ESPartitionInstanceTypeI38xlargeElasticsearch,
+		ESPartitionInstanceTypeI316xlargeElasticsearch,
+	}
+}
+
 const (
 	// ESWarmPartitionInstanceTypeUltrawarm1MediumElasticsearch is a ESWarmPartitionInstanceType enum value
 	ESWarmPartitionInstanceTypeUltrawarm1MediumElasticsearch = "ultrawarm1.medium.elasticsearch"
@@ -11154,6 +11305,28 @@ const (
 	// ESWarmPartitionInstanceTypeUltrawarm1LargeElasticsearch is a ESWarmPartitionInstanceType enum value
 	ESWarmPartitionInstanceTypeUltrawarm1LargeElasticsearch = "ultrawarm1.large.elasticsearch"
 )
+
+// ESWarmPartitionInstanceType is an enum
+type ESWarmPartitionInstanceType struct{}
+
+// Contains returns whether the ESWarmPartitionInstanceType enum includes the element
+func (enum ESWarmPartitionInstanceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ESWarmPartitionInstanceType enum
+func (enum ESWarmPartitionInstanceType) Values() []string {
+	return []string{
+		ESWarmPartitionInstanceTypeUltrawarm1MediumElasticsearch,
+		ESWarmPartitionInstanceTypeUltrawarm1LargeElasticsearch,
+	}
+}
 
 const (
 	// InboundCrossClusterSearchConnectionStatusCodePendingAcceptance is a InboundCrossClusterSearchConnectionStatusCode enum value
@@ -11174,6 +11347,32 @@ const (
 	// InboundCrossClusterSearchConnectionStatusCodeDeleted is a InboundCrossClusterSearchConnectionStatusCode enum value
 	InboundCrossClusterSearchConnectionStatusCodeDeleted = "DELETED"
 )
+
+// InboundCrossClusterSearchConnectionStatusCode is an enum
+type InboundCrossClusterSearchConnectionStatusCode struct{}
+
+// Contains returns whether the InboundCrossClusterSearchConnectionStatusCode enum includes the element
+func (enum InboundCrossClusterSearchConnectionStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InboundCrossClusterSearchConnectionStatusCode enum
+func (enum InboundCrossClusterSearchConnectionStatusCode) Values() []string {
+	return []string{
+		InboundCrossClusterSearchConnectionStatusCodePendingAcceptance,
+		InboundCrossClusterSearchConnectionStatusCodeApproved,
+		InboundCrossClusterSearchConnectionStatusCodeRejecting,
+		InboundCrossClusterSearchConnectionStatusCodeRejected,
+		InboundCrossClusterSearchConnectionStatusCodeDeleting,
+		InboundCrossClusterSearchConnectionStatusCodeDeleted,
+	}
+}
 
 // Type of Log File, it can be one of the following:
 //    * INDEX_SLOW_LOGS: Index slow logs contain insert requests that took more
@@ -11196,6 +11395,29 @@ const (
 	LogTypeEsApplicationLogs = "ES_APPLICATION_LOGS"
 )
 
+// LogType is an enum
+type LogType struct{}
+
+// Contains returns whether the LogType enum includes the element
+func (enum LogType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogType enum
+func (enum LogType) Values() []string {
+	return []string{
+		LogTypeIndexSlowLogs,
+		LogTypeSearchSlowLogs,
+		LogTypeEsApplicationLogs,
+	}
+}
+
 // The state of a requested change. One of the following:
 //
 //    * Processing: The request change is still in-process.
@@ -11212,6 +11434,29 @@ const (
 	// OptionStateActive is a OptionState enum value
 	OptionStateActive = "Active"
 )
+
+// OptionState is an enum
+type OptionState struct{}
+
+// Contains returns whether the OptionState enum includes the element
+func (enum OptionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OptionState enum
+func (enum OptionState) Values() []string {
+	return []string{
+		OptionStateRequiresIndexDocuments,
+		OptionStateProcessing,
+		OptionStateActive,
+	}
+}
 
 const (
 	// OutboundCrossClusterSearchConnectionStatusCodePendingAcceptance is a OutboundCrossClusterSearchConnectionStatusCode enum value
@@ -11239,6 +11484,34 @@ const (
 	OutboundCrossClusterSearchConnectionStatusCodeDeleted = "DELETED"
 )
 
+// OutboundCrossClusterSearchConnectionStatusCode is an enum
+type OutboundCrossClusterSearchConnectionStatusCode struct{}
+
+// Contains returns whether the OutboundCrossClusterSearchConnectionStatusCode enum includes the element
+func (enum OutboundCrossClusterSearchConnectionStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OutboundCrossClusterSearchConnectionStatusCode enum
+func (enum OutboundCrossClusterSearchConnectionStatusCode) Values() []string {
+	return []string{
+		OutboundCrossClusterSearchConnectionStatusCodePendingAcceptance,
+		OutboundCrossClusterSearchConnectionStatusCodeValidating,
+		OutboundCrossClusterSearchConnectionStatusCodeValidationFailed,
+		OutboundCrossClusterSearchConnectionStatusCodeProvisioning,
+		OutboundCrossClusterSearchConnectionStatusCodeActive,
+		OutboundCrossClusterSearchConnectionStatusCodeRejected,
+		OutboundCrossClusterSearchConnectionStatusCodeDeleting,
+		OutboundCrossClusterSearchConnectionStatusCodeDeleted,
+	}
+}
+
 const (
 	// PackageStatusCopying is a PackageStatus enum value
 	PackageStatusCopying = "COPYING"
@@ -11265,10 +11538,59 @@ const (
 	PackageStatusDeleteFailed = "DELETE_FAILED"
 )
 
+// PackageStatus is an enum
+type PackageStatus struct{}
+
+// Contains returns whether the PackageStatus enum includes the element
+func (enum PackageStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PackageStatus enum
+func (enum PackageStatus) Values() []string {
+	return []string{
+		PackageStatusCopying,
+		PackageStatusCopyFailed,
+		PackageStatusValidating,
+		PackageStatusValidationFailed,
+		PackageStatusAvailable,
+		PackageStatusDeleting,
+		PackageStatusDeleted,
+		PackageStatusDeleteFailed,
+	}
+}
+
 const (
 	// PackageTypeTxtDictionary is a PackageType enum value
 	PackageTypeTxtDictionary = "TXT-DICTIONARY"
 )
+
+// PackageType is an enum
+type PackageType struct{}
+
+// Contains returns whether the PackageType enum includes the element
+func (enum PackageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PackageType enum
+func (enum PackageType) Values() []string {
+	return []string{
+		PackageTypeTxtDictionary,
+	}
+}
 
 const (
 	// ReservedElasticsearchInstancePaymentOptionAllUpfront is a ReservedElasticsearchInstancePaymentOption enum value
@@ -11281,6 +11603,29 @@ const (
 	ReservedElasticsearchInstancePaymentOptionNoUpfront = "NO_UPFRONT"
 )
 
+// ReservedElasticsearchInstancePaymentOption is an enum
+type ReservedElasticsearchInstancePaymentOption struct{}
+
+// Contains returns whether the ReservedElasticsearchInstancePaymentOption enum includes the element
+func (enum ReservedElasticsearchInstancePaymentOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ReservedElasticsearchInstancePaymentOption enum
+func (enum ReservedElasticsearchInstancePaymentOption) Values() []string {
+	return []string{
+		ReservedElasticsearchInstancePaymentOptionAllUpfront,
+		ReservedElasticsearchInstancePaymentOptionPartialUpfront,
+		ReservedElasticsearchInstancePaymentOptionNoUpfront,
+	}
+}
+
 const (
 	// TLSSecurityPolicyPolicyMinTls10201907 is a TLSSecurityPolicy enum value
 	TLSSecurityPolicyPolicyMinTls10201907 = "Policy-Min-TLS-1-0-2019-07"
@@ -11288,6 +11633,28 @@ const (
 	// TLSSecurityPolicyPolicyMinTls12201907 is a TLSSecurityPolicy enum value
 	TLSSecurityPolicyPolicyMinTls12201907 = "Policy-Min-TLS-1-2-2019-07"
 )
+
+// TLSSecurityPolicy is an enum
+type TLSSecurityPolicy struct{}
+
+// Contains returns whether the TLSSecurityPolicy enum includes the element
+func (enum TLSSecurityPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TLSSecurityPolicy enum
+func (enum TLSSecurityPolicy) Values() []string {
+	return []string{
+		TLSSecurityPolicyPolicyMinTls10201907,
+		TLSSecurityPolicyPolicyMinTls12201907,
+	}
+}
 
 const (
 	// UpgradeStatusInProgress is a UpgradeStatus enum value
@@ -11303,6 +11670,30 @@ const (
 	UpgradeStatusFailed = "FAILED"
 )
 
+// UpgradeStatus is an enum
+type UpgradeStatus struct{}
+
+// Contains returns whether the UpgradeStatus enum includes the element
+func (enum UpgradeStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpgradeStatus enum
+func (enum UpgradeStatus) Values() []string {
+	return []string{
+		UpgradeStatusInProgress,
+		UpgradeStatusSucceeded,
+		UpgradeStatusSucceededWithIssues,
+		UpgradeStatusFailed,
+	}
+}
+
 const (
 	// UpgradeStepPreUpgradeCheck is a UpgradeStep enum value
 	UpgradeStepPreUpgradeCheck = "PRE_UPGRADE_CHECK"
@@ -11313,6 +11704,29 @@ const (
 	// UpgradeStepUpgrade is a UpgradeStep enum value
 	UpgradeStepUpgrade = "UPGRADE"
 )
+
+// UpgradeStep is an enum
+type UpgradeStep struct{}
+
+// Contains returns whether the UpgradeStep enum includes the element
+func (enum UpgradeStep) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpgradeStep enum
+func (enum UpgradeStep) Values() []string {
+	return []string{
+		UpgradeStepPreUpgradeCheck,
+		UpgradeStepSnapshot,
+		UpgradeStepUpgrade,
+	}
+}
 
 // The type of EBS volume, standard, gp2, or io1. See Configuring EBS-based
 // Storage (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs)for
@@ -11327,3 +11741,26 @@ const (
 	// VolumeTypeIo1 is a VolumeType enum value
 	VolumeTypeIo1 = "io1"
 )
+
+// VolumeType is an enum
+type VolumeType struct{}
+
+// Contains returns whether the VolumeType enum includes the element
+func (enum VolumeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VolumeType enum
+func (enum VolumeType) Values() []string {
+	return []string{
+		VolumeTypeStandard,
+		VolumeTypeGp2,
+		VolumeTypeIo1,
+	}
+}

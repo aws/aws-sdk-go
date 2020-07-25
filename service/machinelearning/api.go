@@ -9240,6 +9240,27 @@ const (
 	AlgorithmSgd = "sgd"
 )
 
+// Algorithm is an enum
+type Algorithm struct{}
+
+// Contains returns whether the Algorithm enum includes the element
+func (enum Algorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Algorithm enum
+func (enum Algorithm) Values() []string {
+	return []string{
+		AlgorithmSgd,
+	}
+}
+
 // A list of the variables to use in searching or filtering BatchPrediction.
 //
 //    * CreatedAt - Sets the search criteria to BatchPrediction creation date.
@@ -9285,6 +9306,34 @@ const (
 	BatchPredictionFilterVariableDataUri = "DataURI"
 )
 
+// BatchPredictionFilterVariable is an enum
+type BatchPredictionFilterVariable struct{}
+
+// Contains returns whether the BatchPredictionFilterVariable enum includes the element
+func (enum BatchPredictionFilterVariable) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BatchPredictionFilterVariable enum
+func (enum BatchPredictionFilterVariable) Values() []string {
+	return []string{
+		BatchPredictionFilterVariableCreatedAt,
+		BatchPredictionFilterVariableLastUpdatedAt,
+		BatchPredictionFilterVariableStatus,
+		BatchPredictionFilterVariableName,
+		BatchPredictionFilterVariableIamuser,
+		BatchPredictionFilterVariableMlmodelId,
+		BatchPredictionFilterVariableDataSourceId,
+		BatchPredictionFilterVariableDataUri,
+	}
+}
+
 // A list of the variables to use in searching or filtering DataSource.
 //
 //    * CreatedAt - Sets the search criteria to DataSource creation date.
@@ -9321,6 +9370,32 @@ const (
 	DataSourceFilterVariableIamuser = "IAMUser"
 )
 
+// DataSourceFilterVariable is an enum
+type DataSourceFilterVariable struct{}
+
+// Contains returns whether the DataSourceFilterVariable enum includes the element
+func (enum DataSourceFilterVariable) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataSourceFilterVariable enum
+func (enum DataSourceFilterVariable) Values() []string {
+	return []string{
+		DataSourceFilterVariableCreatedAt,
+		DataSourceFilterVariableLastUpdatedAt,
+		DataSourceFilterVariableStatus,
+		DataSourceFilterVariableName,
+		DataSourceFilterVariableDataLocationS3,
+		DataSourceFilterVariableIamuser,
+	}
+}
+
 // Contains the key values of
 //    DetailsMap
 // :
@@ -9339,6 +9414,28 @@ const (
 	// DetailsAttributesAlgorithm is a DetailsAttributes enum value
 	DetailsAttributesAlgorithm = "Algorithm"
 )
+
+// DetailsAttributes is an enum
+type DetailsAttributes struct{}
+
+// Contains returns whether the DetailsAttributes enum includes the element
+func (enum DetailsAttributes) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DetailsAttributes enum
+func (enum DetailsAttributes) Values() []string {
+	return []string{
+		DetailsAttributesPredictiveModelType,
+		DetailsAttributesAlgorithm,
+	}
+}
 
 // Object status with the following possible values:
 //
@@ -9367,6 +9464,31 @@ const (
 	// EntityStatusDeleted is a EntityStatus enum value
 	EntityStatusDeleted = "DELETED"
 )
+
+// EntityStatus is an enum
+type EntityStatus struct{}
+
+// Contains returns whether the EntityStatus enum includes the element
+func (enum EntityStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EntityStatus enum
+func (enum EntityStatus) Values() []string {
+	return []string{
+		EntityStatusPending,
+		EntityStatusInprogress,
+		EntityStatusFailed,
+		EntityStatusCompleted,
+		EntityStatusDeleted,
+	}
+}
 
 // A list of the variables to use in searching or filtering Evaluation.
 //
@@ -9412,6 +9534,34 @@ const (
 	EvaluationFilterVariableDataUri = "DataURI"
 )
 
+// EvaluationFilterVariable is an enum
+type EvaluationFilterVariable struct{}
+
+// Contains returns whether the EvaluationFilterVariable enum includes the element
+func (enum EvaluationFilterVariable) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EvaluationFilterVariable enum
+func (enum EvaluationFilterVariable) Values() []string {
+	return []string{
+		EvaluationFilterVariableCreatedAt,
+		EvaluationFilterVariableLastUpdatedAt,
+		EvaluationFilterVariableStatus,
+		EvaluationFilterVariableName,
+		EvaluationFilterVariableIamuser,
+		EvaluationFilterVariableMlmodelId,
+		EvaluationFilterVariableDataSourceId,
+		EvaluationFilterVariableDataUri,
+	}
+}
+
 const (
 	// MLModelFilterVariableCreatedAt is a MLModelFilterVariable enum value
 	MLModelFilterVariableCreatedAt = "CreatedAt"
@@ -9444,6 +9594,36 @@ const (
 	MLModelFilterVariableTrainingDataUri = "TrainingDataURI"
 )
 
+// MLModelFilterVariable is an enum
+type MLModelFilterVariable struct{}
+
+// Contains returns whether the MLModelFilterVariable enum includes the element
+func (enum MLModelFilterVariable) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MLModelFilterVariable enum
+func (enum MLModelFilterVariable) Values() []string {
+	return []string{
+		MLModelFilterVariableCreatedAt,
+		MLModelFilterVariableLastUpdatedAt,
+		MLModelFilterVariableStatus,
+		MLModelFilterVariableName,
+		MLModelFilterVariableIamuser,
+		MLModelFilterVariableTrainingDataSourceId,
+		MLModelFilterVariableRealtimeEndpointStatus,
+		MLModelFilterVariableMlmodelType,
+		MLModelFilterVariableAlgorithm,
+		MLModelFilterVariableTrainingDataUri,
+	}
+}
+
 const (
 	// MLModelTypeRegression is a MLModelType enum value
 	MLModelTypeRegression = "REGRESSION"
@@ -9454,6 +9634,29 @@ const (
 	// MLModelTypeMulticlass is a MLModelType enum value
 	MLModelTypeMulticlass = "MULTICLASS"
 )
+
+// MLModelType is an enum
+type MLModelType struct{}
+
+// Contains returns whether the MLModelType enum includes the element
+func (enum MLModelType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MLModelType enum
+func (enum MLModelType) Values() []string {
+	return []string{
+		MLModelTypeRegression,
+		MLModelTypeBinary,
+		MLModelTypeMulticlass,
+	}
+}
 
 const (
 	// RealtimeEndpointStatusNone is a RealtimeEndpointStatus enum value
@@ -9469,6 +9672,30 @@ const (
 	RealtimeEndpointStatusFailed = "FAILED"
 )
 
+// RealtimeEndpointStatus is an enum
+type RealtimeEndpointStatus struct{}
+
+// Contains returns whether the RealtimeEndpointStatus enum includes the element
+func (enum RealtimeEndpointStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RealtimeEndpointStatus enum
+func (enum RealtimeEndpointStatus) Values() []string {
+	return []string{
+		RealtimeEndpointStatusNone,
+		RealtimeEndpointStatusReady,
+		RealtimeEndpointStatusUpdating,
+		RealtimeEndpointStatusFailed,
+	}
+}
+
 // The sort order specified in a listing condition. Possible values include
 // the following:
 //
@@ -9483,6 +9710,28 @@ const (
 	SortOrderDsc = "dsc"
 )
 
+// SortOrder is an enum
+type SortOrder struct{}
+
+// Contains returns whether the SortOrder enum includes the element
+func (enum SortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortOrder enum
+func (enum SortOrder) Values() []string {
+	return []string{
+		SortOrderAsc,
+		SortOrderDsc,
+	}
+}
+
 const (
 	// TaggableResourceTypeBatchPrediction is a TaggableResourceType enum value
 	TaggableResourceTypeBatchPrediction = "BatchPrediction"
@@ -9496,3 +9745,27 @@ const (
 	// TaggableResourceTypeMlmodel is a TaggableResourceType enum value
 	TaggableResourceTypeMlmodel = "MLModel"
 )
+
+// TaggableResourceType is an enum
+type TaggableResourceType struct{}
+
+// Contains returns whether the TaggableResourceType enum includes the element
+func (enum TaggableResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TaggableResourceType enum
+func (enum TaggableResourceType) Values() []string {
+	return []string{
+		TaggableResourceTypeBatchPrediction,
+		TaggableResourceTypeDataSource,
+		TaggableResourceTypeEvaluation,
+		TaggableResourceTypeMlmodel,
+	}
+}

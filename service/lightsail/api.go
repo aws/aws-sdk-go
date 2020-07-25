@@ -31983,10 +31983,53 @@ const (
 	AccessDirectionOutbound = "outbound"
 )
 
+// AccessDirection is an enum
+type AccessDirection struct{}
+
+// Contains returns whether the AccessDirection enum includes the element
+func (enum AccessDirection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccessDirection enum
+func (enum AccessDirection) Values() []string {
+	return []string{
+		AccessDirectionInbound,
+		AccessDirectionOutbound,
+	}
+}
+
 const (
 	// AddOnTypeAutoSnapshot is a AddOnType enum value
 	AddOnTypeAutoSnapshot = "AutoSnapshot"
 )
+
+// AddOnType is an enum
+type AddOnType struct{}
+
+// Contains returns whether the AddOnType enum includes the element
+func (enum AddOnType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AddOnType enum
+func (enum AddOnType) Values() []string {
+	return []string{
+		AddOnTypeAutoSnapshot,
+	}
+}
 
 const (
 	// AlarmStateOk is a AlarmState enum value
@@ -31998,6 +32041,29 @@ const (
 	// AlarmStateInsufficientData is a AlarmState enum value
 	AlarmStateInsufficientData = "INSUFFICIENT_DATA"
 )
+
+// AlarmState is an enum
+type AlarmState struct{}
+
+// Contains returns whether the AlarmState enum includes the element
+func (enum AlarmState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AlarmState enum
+func (enum AlarmState) Values() []string {
+	return []string{
+		AlarmStateOk,
+		AlarmStateAlarm,
+		AlarmStateInsufficientData,
+	}
+}
 
 const (
 	// AutoSnapshotStatusSuccess is a AutoSnapshotStatus enum value
@@ -32013,6 +32079,30 @@ const (
 	AutoSnapshotStatusNotFound = "NotFound"
 )
 
+// AutoSnapshotStatus is an enum
+type AutoSnapshotStatus struct{}
+
+// Contains returns whether the AutoSnapshotStatus enum includes the element
+func (enum AutoSnapshotStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoSnapshotStatus enum
+func (enum AutoSnapshotStatus) Values() []string {
+	return []string{
+		AutoSnapshotStatusSuccess,
+		AutoSnapshotStatusFailed,
+		AutoSnapshotStatusInProgress,
+		AutoSnapshotStatusNotFound,
+	}
+}
+
 const (
 	// BehaviorEnumDontCache is a BehaviorEnum enum value
 	BehaviorEnumDontCache = "dont-cache"
@@ -32021,6 +32111,28 @@ const (
 	BehaviorEnumCache = "cache"
 )
 
+// BehaviorEnum is an enum
+type BehaviorEnum struct{}
+
+// Contains returns whether the BehaviorEnum enum includes the element
+func (enum BehaviorEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BehaviorEnum enum
+func (enum BehaviorEnum) Values() []string {
+	return []string{
+		BehaviorEnumDontCache,
+		BehaviorEnumCache,
+	}
+}
+
 const (
 	// BlueprintTypeOs is a BlueprintType enum value
 	BlueprintTypeOs = "os"
@@ -32028,6 +32140,28 @@ const (
 	// BlueprintTypeApp is a BlueprintType enum value
 	BlueprintTypeApp = "app"
 )
+
+// BlueprintType is an enum
+type BlueprintType struct{}
+
+// Contains returns whether the BlueprintType enum includes the element
+func (enum BlueprintType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BlueprintType enum
+func (enum BlueprintType) Values() []string {
+	return []string{
+		BlueprintTypeOs,
+		BlueprintTypeApp,
+	}
+}
 
 const (
 	// CertificateStatusPendingValidation is a CertificateStatus enum value
@@ -32052,10 +32186,58 @@ const (
 	CertificateStatusFailed = "FAILED"
 )
 
+// CertificateStatus is an enum
+type CertificateStatus struct{}
+
+// Contains returns whether the CertificateStatus enum includes the element
+func (enum CertificateStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CertificateStatus enum
+func (enum CertificateStatus) Values() []string {
+	return []string{
+		CertificateStatusPendingValidation,
+		CertificateStatusIssued,
+		CertificateStatusInactive,
+		CertificateStatusExpired,
+		CertificateStatusValidationTimedOut,
+		CertificateStatusRevoked,
+		CertificateStatusFailed,
+	}
+}
+
 const (
 	// CloudFormationStackRecordSourceTypeExportSnapshotRecord is a CloudFormationStackRecordSourceType enum value
 	CloudFormationStackRecordSourceTypeExportSnapshotRecord = "ExportSnapshotRecord"
 )
+
+// CloudFormationStackRecordSourceType is an enum
+type CloudFormationStackRecordSourceType struct{}
+
+// Contains returns whether the CloudFormationStackRecordSourceType enum includes the element
+func (enum CloudFormationStackRecordSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CloudFormationStackRecordSourceType enum
+func (enum CloudFormationStackRecordSourceType) Values() []string {
+	return []string{
+		CloudFormationStackRecordSourceTypeExportSnapshotRecord,
+	}
+}
 
 const (
 	// ComparisonOperatorGreaterThanOrEqualToThreshold is a ComparisonOperator enum value
@@ -32071,6 +32253,30 @@ const (
 	ComparisonOperatorLessThanOrEqualToThreshold = "LessThanOrEqualToThreshold"
 )
 
+// ComparisonOperator is an enum
+type ComparisonOperator struct{}
+
+// Contains returns whether the ComparisonOperator enum includes the element
+func (enum ComparisonOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComparisonOperator enum
+func (enum ComparisonOperator) Values() []string {
+	return []string{
+		ComparisonOperatorGreaterThanOrEqualToThreshold,
+		ComparisonOperatorGreaterThanThreshold,
+		ComparisonOperatorLessThanThreshold,
+		ComparisonOperatorLessThanOrEqualToThreshold,
+	}
+}
+
 const (
 	// ContactMethodStatusPendingVerification is a ContactMethodStatus enum value
 	ContactMethodStatusPendingVerification = "PendingVerification"
@@ -32082,10 +32288,54 @@ const (
 	ContactMethodStatusInvalid = "Invalid"
 )
 
+// ContactMethodStatus is an enum
+type ContactMethodStatus struct{}
+
+// Contains returns whether the ContactMethodStatus enum includes the element
+func (enum ContactMethodStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContactMethodStatus enum
+func (enum ContactMethodStatus) Values() []string {
+	return []string{
+		ContactMethodStatusPendingVerification,
+		ContactMethodStatusValid,
+		ContactMethodStatusInvalid,
+	}
+}
+
 const (
 	// ContactMethodVerificationProtocolEmail is a ContactMethodVerificationProtocol enum value
 	ContactMethodVerificationProtocolEmail = "Email"
 )
+
+// ContactMethodVerificationProtocol is an enum
+type ContactMethodVerificationProtocol struct{}
+
+// Contains returns whether the ContactMethodVerificationProtocol enum includes the element
+func (enum ContactMethodVerificationProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContactMethodVerificationProtocol enum
+func (enum ContactMethodVerificationProtocol) Values() []string {
+	return []string{
+		ContactMethodVerificationProtocolEmail,
+	}
+}
 
 const (
 	// ContactProtocolEmail is a ContactProtocol enum value
@@ -32094,6 +32344,28 @@ const (
 	// ContactProtocolSms is a ContactProtocol enum value
 	ContactProtocolSms = "SMS"
 )
+
+// ContactProtocol is an enum
+type ContactProtocol struct{}
+
+// Contains returns whether the ContactProtocol enum includes the element
+func (enum ContactProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContactProtocol enum
+func (enum ContactProtocol) Values() []string {
+	return []string{
+		ContactProtocolEmail,
+		ContactProtocolSms,
+	}
+}
 
 const (
 	// DiskSnapshotStatePending is a DiskSnapshotState enum value
@@ -32108,6 +32380,30 @@ const (
 	// DiskSnapshotStateUnknown is a DiskSnapshotState enum value
 	DiskSnapshotStateUnknown = "unknown"
 )
+
+// DiskSnapshotState is an enum
+type DiskSnapshotState struct{}
+
+// Contains returns whether the DiskSnapshotState enum includes the element
+func (enum DiskSnapshotState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DiskSnapshotState enum
+func (enum DiskSnapshotState) Values() []string {
+	return []string{
+		DiskSnapshotStatePending,
+		DiskSnapshotStateCompleted,
+		DiskSnapshotStateError,
+		DiskSnapshotStateUnknown,
+	}
+}
 
 const (
 	// DiskStatePending is a DiskState enum value
@@ -32125,6 +32421,31 @@ const (
 	// DiskStateUnknown is a DiskState enum value
 	DiskStateUnknown = "unknown"
 )
+
+// DiskState is an enum
+type DiskState struct{}
+
+// Contains returns whether the DiskState enum includes the element
+func (enum DiskState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DiskState enum
+func (enum DiskState) Values() []string {
+	return []string{
+		DiskStatePending,
+		DiskStateError,
+		DiskStateAvailable,
+		DiskStateInUse,
+		DiskStateUnknown,
+	}
+}
 
 const (
 	// DistributionMetricNameRequests is a DistributionMetricName enum value
@@ -32146,6 +32467,32 @@ const (
 	DistributionMetricNameHttp5xxErrorRate = "Http5xxErrorRate"
 )
 
+// DistributionMetricName is an enum
+type DistributionMetricName struct{}
+
+// Contains returns whether the DistributionMetricName enum includes the element
+func (enum DistributionMetricName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DistributionMetricName enum
+func (enum DistributionMetricName) Values() []string {
+	return []string{
+		DistributionMetricNameRequests,
+		DistributionMetricNameBytesDownloaded,
+		DistributionMetricNameBytesUploaded,
+		DistributionMetricNameTotalErrorRate,
+		DistributionMetricNameHttp4xxErrorRate,
+		DistributionMetricNameHttp5xxErrorRate,
+	}
+}
+
 const (
 	// ExportSnapshotRecordSourceTypeInstanceSnapshot is a ExportSnapshotRecordSourceType enum value
 	ExportSnapshotRecordSourceTypeInstanceSnapshot = "InstanceSnapshot"
@@ -32153,6 +32500,28 @@ const (
 	// ExportSnapshotRecordSourceTypeDiskSnapshot is a ExportSnapshotRecordSourceType enum value
 	ExportSnapshotRecordSourceTypeDiskSnapshot = "DiskSnapshot"
 )
+
+// ExportSnapshotRecordSourceType is an enum
+type ExportSnapshotRecordSourceType struct{}
+
+// Contains returns whether the ExportSnapshotRecordSourceType enum includes the element
+func (enum ExportSnapshotRecordSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExportSnapshotRecordSourceType enum
+func (enum ExportSnapshotRecordSourceType) Values() []string {
+	return []string{
+		ExportSnapshotRecordSourceTypeInstanceSnapshot,
+		ExportSnapshotRecordSourceTypeDiskSnapshot,
+	}
+}
 
 const (
 	// ForwardValuesNone is a ForwardValues enum value
@@ -32164,6 +32533,29 @@ const (
 	// ForwardValuesAll is a ForwardValues enum value
 	ForwardValuesAll = "all"
 )
+
+// ForwardValues is an enum
+type ForwardValues struct{}
+
+// Contains returns whether the ForwardValues enum includes the element
+func (enum ForwardValues) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ForwardValues enum
+func (enum ForwardValues) Values() []string {
+	return []string{
+		ForwardValuesNone,
+		ForwardValuesAllowList,
+		ForwardValuesAll,
+	}
+}
 
 const (
 	// HeaderEnumAccept is a HeaderEnum enum value
@@ -32212,6 +32604,41 @@ const (
 	HeaderEnumReferer = "Referer"
 )
 
+// HeaderEnum is an enum
+type HeaderEnum struct{}
+
+// Contains returns whether the HeaderEnum enum includes the element
+func (enum HeaderEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HeaderEnum enum
+func (enum HeaderEnum) Values() []string {
+	return []string{
+		HeaderEnumAccept,
+		HeaderEnumAcceptCharset,
+		HeaderEnumAcceptDatetime,
+		HeaderEnumAcceptEncoding,
+		HeaderEnumAcceptLanguage,
+		HeaderEnumAuthorization,
+		HeaderEnumCloudFrontForwardedProto,
+		HeaderEnumCloudFrontIsDesktopViewer,
+		HeaderEnumCloudFrontIsMobileViewer,
+		HeaderEnumCloudFrontIsSmartTvViewer,
+		HeaderEnumCloudFrontIsTabletViewer,
+		HeaderEnumCloudFrontViewerCountry,
+		HeaderEnumHost,
+		HeaderEnumOrigin,
+		HeaderEnumReferer,
+	}
+}
+
 const (
 	// InstanceAccessProtocolSsh is a InstanceAccessProtocol enum value
 	InstanceAccessProtocolSsh = "ssh"
@@ -32219,6 +32646,28 @@ const (
 	// InstanceAccessProtocolRdp is a InstanceAccessProtocol enum value
 	InstanceAccessProtocolRdp = "rdp"
 )
+
+// InstanceAccessProtocol is an enum
+type InstanceAccessProtocol struct{}
+
+// Contains returns whether the InstanceAccessProtocol enum includes the element
+func (enum InstanceAccessProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceAccessProtocol enum
+func (enum InstanceAccessProtocol) Values() []string {
+	return []string{
+		InstanceAccessProtocolSsh,
+		InstanceAccessProtocolRdp,
+	}
+}
 
 const (
 	// InstanceHealthReasonLbRegistrationInProgress is a InstanceHealthReason enum value
@@ -32255,6 +32704,37 @@ const (
 	InstanceHealthReasonInstanceIpUnusable = "Instance.IpUnusable"
 )
 
+// InstanceHealthReason is an enum
+type InstanceHealthReason struct{}
+
+// Contains returns whether the InstanceHealthReason enum includes the element
+func (enum InstanceHealthReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceHealthReason enum
+func (enum InstanceHealthReason) Values() []string {
+	return []string{
+		InstanceHealthReasonLbRegistrationInProgress,
+		InstanceHealthReasonLbInitialHealthChecking,
+		InstanceHealthReasonLbInternalError,
+		InstanceHealthReasonInstanceResponseCodeMismatch,
+		InstanceHealthReasonInstanceTimeout,
+		InstanceHealthReasonInstanceFailedHealthChecks,
+		InstanceHealthReasonInstanceNotRegistered,
+		InstanceHealthReasonInstanceNotInUse,
+		InstanceHealthReasonInstanceDeregistrationInProgress,
+		InstanceHealthReasonInstanceInvalidState,
+		InstanceHealthReasonInstanceIpUnusable,
+	}
+}
+
 const (
 	// InstanceHealthStateInitial is a InstanceHealthState enum value
 	InstanceHealthStateInitial = "initial"
@@ -32274,6 +32754,32 @@ const (
 	// InstanceHealthStateUnavailable is a InstanceHealthState enum value
 	InstanceHealthStateUnavailable = "unavailable"
 )
+
+// InstanceHealthState is an enum
+type InstanceHealthState struct{}
+
+// Contains returns whether the InstanceHealthState enum includes the element
+func (enum InstanceHealthState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceHealthState enum
+func (enum InstanceHealthState) Values() []string {
+	return []string{
+		InstanceHealthStateInitial,
+		InstanceHealthStateHealthy,
+		InstanceHealthStateUnhealthy,
+		InstanceHealthStateUnused,
+		InstanceHealthStateDraining,
+		InstanceHealthStateUnavailable,
+	}
+}
 
 const (
 	// InstanceMetricNameCpuutilization is a InstanceMetricName enum value
@@ -32301,6 +32807,34 @@ const (
 	InstanceMetricNameBurstCapacityPercentage = "BurstCapacityPercentage"
 )
 
+// InstanceMetricName is an enum
+type InstanceMetricName struct{}
+
+// Contains returns whether the InstanceMetricName enum includes the element
+func (enum InstanceMetricName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceMetricName enum
+func (enum InstanceMetricName) Values() []string {
+	return []string{
+		InstanceMetricNameCpuutilization,
+		InstanceMetricNameNetworkIn,
+		InstanceMetricNameNetworkOut,
+		InstanceMetricNameStatusCheckFailed,
+		InstanceMetricNameStatusCheckFailedInstance,
+		InstanceMetricNameStatusCheckFailedSystem,
+		InstanceMetricNameBurstCapacityTime,
+		InstanceMetricNameBurstCapacityPercentage,
+	}
+}
+
 const (
 	// InstancePlatformLinuxUnix is a InstancePlatform enum value
 	InstancePlatformLinuxUnix = "LINUX_UNIX"
@@ -32308,6 +32842,28 @@ const (
 	// InstancePlatformWindows is a InstancePlatform enum value
 	InstancePlatformWindows = "WINDOWS"
 )
+
+// InstancePlatform is an enum
+type InstancePlatform struct{}
+
+// Contains returns whether the InstancePlatform enum includes the element
+func (enum InstancePlatform) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstancePlatform enum
+func (enum InstancePlatform) Values() []string {
+	return []string{
+		InstancePlatformLinuxUnix,
+		InstancePlatformWindows,
+	}
+}
 
 const (
 	// InstanceSnapshotStatePending is a InstanceSnapshotState enum value
@@ -32320,6 +32876,29 @@ const (
 	InstanceSnapshotStateAvailable = "available"
 )
 
+// InstanceSnapshotState is an enum
+type InstanceSnapshotState struct{}
+
+// Contains returns whether the InstanceSnapshotState enum includes the element
+func (enum InstanceSnapshotState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceSnapshotState enum
+func (enum InstanceSnapshotState) Values() []string {
+	return []string{
+		InstanceSnapshotStatePending,
+		InstanceSnapshotStateError,
+		InstanceSnapshotStateAvailable,
+	}
+}
+
 const (
 	// LoadBalancerAttributeNameHealthCheckPath is a LoadBalancerAttributeName enum value
 	LoadBalancerAttributeNameHealthCheckPath = "HealthCheckPath"
@@ -32330,6 +32909,29 @@ const (
 	// LoadBalancerAttributeNameSessionStickinessLbCookieDurationSeconds is a LoadBalancerAttributeName enum value
 	LoadBalancerAttributeNameSessionStickinessLbCookieDurationSeconds = "SessionStickiness_LB_CookieDurationSeconds"
 )
+
+// LoadBalancerAttributeName is an enum
+type LoadBalancerAttributeName struct{}
+
+// Contains returns whether the LoadBalancerAttributeName enum includes the element
+func (enum LoadBalancerAttributeName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerAttributeName enum
+func (enum LoadBalancerAttributeName) Values() []string {
+	return []string{
+		LoadBalancerAttributeNameHealthCheckPath,
+		LoadBalancerAttributeNameSessionStickinessEnabled,
+		LoadBalancerAttributeNameSessionStickinessLbCookieDurationSeconds,
+	}
+}
 
 const (
 	// LoadBalancerMetricNameClientTlsnegotiationErrorCount is a LoadBalancerMetricName enum value
@@ -32369,6 +32971,38 @@ const (
 	LoadBalancerMetricNameRequestCount = "RequestCount"
 )
 
+// LoadBalancerMetricName is an enum
+type LoadBalancerMetricName struct{}
+
+// Contains returns whether the LoadBalancerMetricName enum includes the element
+func (enum LoadBalancerMetricName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerMetricName enum
+func (enum LoadBalancerMetricName) Values() []string {
+	return []string{
+		LoadBalancerMetricNameClientTlsnegotiationErrorCount,
+		LoadBalancerMetricNameHealthyHostCount,
+		LoadBalancerMetricNameUnhealthyHostCount,
+		LoadBalancerMetricNameHttpcodeLb4xxCount,
+		LoadBalancerMetricNameHttpcodeLb5xxCount,
+		LoadBalancerMetricNameHttpcodeInstance2xxCount,
+		LoadBalancerMetricNameHttpcodeInstance3xxCount,
+		LoadBalancerMetricNameHttpcodeInstance4xxCount,
+		LoadBalancerMetricNameHttpcodeInstance5xxCount,
+		LoadBalancerMetricNameInstanceResponseTime,
+		LoadBalancerMetricNameRejectedConnectionCount,
+		LoadBalancerMetricNameRequestCount,
+	}
+}
+
 const (
 	// LoadBalancerProtocolHttpHttps is a LoadBalancerProtocol enum value
 	LoadBalancerProtocolHttpHttps = "HTTP_HTTPS"
@@ -32376,6 +33010,28 @@ const (
 	// LoadBalancerProtocolHttp is a LoadBalancerProtocol enum value
 	LoadBalancerProtocolHttp = "HTTP"
 )
+
+// LoadBalancerProtocol is an enum
+type LoadBalancerProtocol struct{}
+
+// Contains returns whether the LoadBalancerProtocol enum includes the element
+func (enum LoadBalancerProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerProtocol enum
+func (enum LoadBalancerProtocol) Values() []string {
+	return []string{
+		LoadBalancerProtocolHttpHttps,
+		LoadBalancerProtocolHttp,
+	}
+}
 
 const (
 	// LoadBalancerStateActive is a LoadBalancerState enum value
@@ -32394,6 +33050,31 @@ const (
 	LoadBalancerStateUnknown = "unknown"
 )
 
+// LoadBalancerState is an enum
+type LoadBalancerState struct{}
+
+// Contains returns whether the LoadBalancerState enum includes the element
+func (enum LoadBalancerState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerState enum
+func (enum LoadBalancerState) Values() []string {
+	return []string{
+		LoadBalancerStateActive,
+		LoadBalancerStateProvisioning,
+		LoadBalancerStateActiveImpaired,
+		LoadBalancerStateFailed,
+		LoadBalancerStateUnknown,
+	}
+}
+
 const (
 	// LoadBalancerTlsCertificateDomainStatusPendingValidation is a LoadBalancerTlsCertificateDomainStatus enum value
 	LoadBalancerTlsCertificateDomainStatusPendingValidation = "PENDING_VALIDATION"
@@ -32404,6 +33085,29 @@ const (
 	// LoadBalancerTlsCertificateDomainStatusSuccess is a LoadBalancerTlsCertificateDomainStatus enum value
 	LoadBalancerTlsCertificateDomainStatusSuccess = "SUCCESS"
 )
+
+// LoadBalancerTlsCertificateDomainStatus is an enum
+type LoadBalancerTlsCertificateDomainStatus struct{}
+
+// Contains returns whether the LoadBalancerTlsCertificateDomainStatus enum includes the element
+func (enum LoadBalancerTlsCertificateDomainStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerTlsCertificateDomainStatus enum
+func (enum LoadBalancerTlsCertificateDomainStatus) Values() []string {
+	return []string{
+		LoadBalancerTlsCertificateDomainStatusPendingValidation,
+		LoadBalancerTlsCertificateDomainStatusFailed,
+		LoadBalancerTlsCertificateDomainStatusSuccess,
+	}
+}
 
 const (
 	// LoadBalancerTlsCertificateFailureReasonNoAvailableContacts is a LoadBalancerTlsCertificateFailureReason enum value
@@ -32422,6 +33126,31 @@ const (
 	LoadBalancerTlsCertificateFailureReasonOther = "OTHER"
 )
 
+// LoadBalancerTlsCertificateFailureReason is an enum
+type LoadBalancerTlsCertificateFailureReason struct{}
+
+// Contains returns whether the LoadBalancerTlsCertificateFailureReason enum includes the element
+func (enum LoadBalancerTlsCertificateFailureReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerTlsCertificateFailureReason enum
+func (enum LoadBalancerTlsCertificateFailureReason) Values() []string {
+	return []string{
+		LoadBalancerTlsCertificateFailureReasonNoAvailableContacts,
+		LoadBalancerTlsCertificateFailureReasonAdditionalVerificationRequired,
+		LoadBalancerTlsCertificateFailureReasonDomainNotAllowed,
+		LoadBalancerTlsCertificateFailureReasonInvalidPublicDomain,
+		LoadBalancerTlsCertificateFailureReasonOther,
+	}
+}
+
 const (
 	// LoadBalancerTlsCertificateRenewalStatusPendingAutoRenewal is a LoadBalancerTlsCertificateRenewalStatus enum value
 	LoadBalancerTlsCertificateRenewalStatusPendingAutoRenewal = "PENDING_AUTO_RENEWAL"
@@ -32435,6 +33164,30 @@ const (
 	// LoadBalancerTlsCertificateRenewalStatusFailed is a LoadBalancerTlsCertificateRenewalStatus enum value
 	LoadBalancerTlsCertificateRenewalStatusFailed = "FAILED"
 )
+
+// LoadBalancerTlsCertificateRenewalStatus is an enum
+type LoadBalancerTlsCertificateRenewalStatus struct{}
+
+// Contains returns whether the LoadBalancerTlsCertificateRenewalStatus enum includes the element
+func (enum LoadBalancerTlsCertificateRenewalStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerTlsCertificateRenewalStatus enum
+func (enum LoadBalancerTlsCertificateRenewalStatus) Values() []string {
+	return []string{
+		LoadBalancerTlsCertificateRenewalStatusPendingAutoRenewal,
+		LoadBalancerTlsCertificateRenewalStatusPendingValidation,
+		LoadBalancerTlsCertificateRenewalStatusSuccess,
+		LoadBalancerTlsCertificateRenewalStatusFailed,
+	}
+}
 
 const (
 	// LoadBalancerTlsCertificateRevocationReasonUnspecified is a LoadBalancerTlsCertificateRevocationReason enum value
@@ -32468,6 +33221,36 @@ const (
 	LoadBalancerTlsCertificateRevocationReasonAACompromise = "A_A_COMPROMISE"
 )
 
+// LoadBalancerTlsCertificateRevocationReason is an enum
+type LoadBalancerTlsCertificateRevocationReason struct{}
+
+// Contains returns whether the LoadBalancerTlsCertificateRevocationReason enum includes the element
+func (enum LoadBalancerTlsCertificateRevocationReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerTlsCertificateRevocationReason enum
+func (enum LoadBalancerTlsCertificateRevocationReason) Values() []string {
+	return []string{
+		LoadBalancerTlsCertificateRevocationReasonUnspecified,
+		LoadBalancerTlsCertificateRevocationReasonKeyCompromise,
+		LoadBalancerTlsCertificateRevocationReasonCaCompromise,
+		LoadBalancerTlsCertificateRevocationReasonAffiliationChanged,
+		LoadBalancerTlsCertificateRevocationReasonSuperceded,
+		LoadBalancerTlsCertificateRevocationReasonCessationOfOperation,
+		LoadBalancerTlsCertificateRevocationReasonCertificateHold,
+		LoadBalancerTlsCertificateRevocationReasonRemoveFromCrl,
+		LoadBalancerTlsCertificateRevocationReasonPrivilegeWithdrawn,
+		LoadBalancerTlsCertificateRevocationReasonAACompromise,
+	}
+}
+
 const (
 	// LoadBalancerTlsCertificateStatusPendingValidation is a LoadBalancerTlsCertificateStatus enum value
 	LoadBalancerTlsCertificateStatusPendingValidation = "PENDING_VALIDATION"
@@ -32493,6 +33276,34 @@ const (
 	// LoadBalancerTlsCertificateStatusUnknown is a LoadBalancerTlsCertificateStatus enum value
 	LoadBalancerTlsCertificateStatusUnknown = "UNKNOWN"
 )
+
+// LoadBalancerTlsCertificateStatus is an enum
+type LoadBalancerTlsCertificateStatus struct{}
+
+// Contains returns whether the LoadBalancerTlsCertificateStatus enum includes the element
+func (enum LoadBalancerTlsCertificateStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoadBalancerTlsCertificateStatus enum
+func (enum LoadBalancerTlsCertificateStatus) Values() []string {
+	return []string{
+		LoadBalancerTlsCertificateStatusPendingValidation,
+		LoadBalancerTlsCertificateStatusIssued,
+		LoadBalancerTlsCertificateStatusInactive,
+		LoadBalancerTlsCertificateStatusExpired,
+		LoadBalancerTlsCertificateStatusValidationTimedOut,
+		LoadBalancerTlsCertificateStatusRevoked,
+		LoadBalancerTlsCertificateStatusFailed,
+		LoadBalancerTlsCertificateStatusUnknown,
+	}
+}
 
 const (
 	// MetricNameCpuutilization is a MetricName enum value
@@ -32571,6 +33382,51 @@ const (
 	MetricNameBurstCapacityPercentage = "BurstCapacityPercentage"
 )
 
+// MetricName is an enum
+type MetricName struct{}
+
+// Contains returns whether the MetricName enum includes the element
+func (enum MetricName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricName enum
+func (enum MetricName) Values() []string {
+	return []string{
+		MetricNameCpuutilization,
+		MetricNameNetworkIn,
+		MetricNameNetworkOut,
+		MetricNameStatusCheckFailed,
+		MetricNameStatusCheckFailedInstance,
+		MetricNameStatusCheckFailedSystem,
+		MetricNameClientTlsnegotiationErrorCount,
+		MetricNameHealthyHostCount,
+		MetricNameUnhealthyHostCount,
+		MetricNameHttpcodeLb4xxCount,
+		MetricNameHttpcodeLb5xxCount,
+		MetricNameHttpcodeInstance2xxCount,
+		MetricNameHttpcodeInstance3xxCount,
+		MetricNameHttpcodeInstance4xxCount,
+		MetricNameHttpcodeInstance5xxCount,
+		MetricNameInstanceResponseTime,
+		MetricNameRejectedConnectionCount,
+		MetricNameRequestCount,
+		MetricNameDatabaseConnections,
+		MetricNameDiskQueueDepth,
+		MetricNameFreeStorageSpace,
+		MetricNameNetworkReceiveThroughput,
+		MetricNameNetworkTransmitThroughput,
+		MetricNameBurstCapacityTime,
+		MetricNameBurstCapacityPercentage,
+	}
+}
+
 const (
 	// MetricStatisticMinimum is a MetricStatistic enum value
 	MetricStatisticMinimum = "Minimum"
@@ -32587,6 +33443,31 @@ const (
 	// MetricStatisticSampleCount is a MetricStatistic enum value
 	MetricStatisticSampleCount = "SampleCount"
 )
+
+// MetricStatistic is an enum
+type MetricStatistic struct{}
+
+// Contains returns whether the MetricStatistic enum includes the element
+func (enum MetricStatistic) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricStatistic enum
+func (enum MetricStatistic) Values() []string {
+	return []string{
+		MetricStatisticMinimum,
+		MetricStatisticMaximum,
+		MetricStatisticSum,
+		MetricStatisticAverage,
+		MetricStatisticSampleCount,
+	}
+}
 
 const (
 	// MetricUnitSeconds is a MetricUnit enum value
@@ -32671,6 +33552,53 @@ const (
 	MetricUnitNone = "None"
 )
 
+// MetricUnit is an enum
+type MetricUnit struct{}
+
+// Contains returns whether the MetricUnit enum includes the element
+func (enum MetricUnit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricUnit enum
+func (enum MetricUnit) Values() []string {
+	return []string{
+		MetricUnitSeconds,
+		MetricUnitMicroseconds,
+		MetricUnitMilliseconds,
+		MetricUnitBytes,
+		MetricUnitKilobytes,
+		MetricUnitMegabytes,
+		MetricUnitGigabytes,
+		MetricUnitTerabytes,
+		MetricUnitBits,
+		MetricUnitKilobits,
+		MetricUnitMegabits,
+		MetricUnitGigabits,
+		MetricUnitTerabits,
+		MetricUnitPercent,
+		MetricUnitCount,
+		MetricUnitBytesSecond,
+		MetricUnitKilobytesSecond,
+		MetricUnitMegabytesSecond,
+		MetricUnitGigabytesSecond,
+		MetricUnitTerabytesSecond,
+		MetricUnitBitsSecond,
+		MetricUnitKilobitsSecond,
+		MetricUnitMegabitsSecond,
+		MetricUnitGigabitsSecond,
+		MetricUnitTerabitsSecond,
+		MetricUnitCountSecond,
+		MetricUnitNone,
+	}
+}
+
 const (
 	// NetworkProtocolTcp is a NetworkProtocol enum value
 	NetworkProtocolTcp = "tcp"
@@ -32684,6 +33612,30 @@ const (
 	// NetworkProtocolIcmp is a NetworkProtocol enum value
 	NetworkProtocolIcmp = "icmp"
 )
+
+// NetworkProtocol is an enum
+type NetworkProtocol struct{}
+
+// Contains returns whether the NetworkProtocol enum includes the element
+func (enum NetworkProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NetworkProtocol enum
+func (enum NetworkProtocol) Values() []string {
+	return []string{
+		NetworkProtocolTcp,
+		NetworkProtocolAll,
+		NetworkProtocolUdp,
+		NetworkProtocolIcmp,
+	}
+}
 
 const (
 	// OperationStatusNotStarted is a OperationStatus enum value
@@ -32701,6 +33653,31 @@ const (
 	// OperationStatusSucceeded is a OperationStatus enum value
 	OperationStatusSucceeded = "Succeeded"
 )
+
+// OperationStatus is an enum
+type OperationStatus struct{}
+
+// Contains returns whether the OperationStatus enum includes the element
+func (enum OperationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperationStatus enum
+func (enum OperationStatus) Values() []string {
+	return []string{
+		OperationStatusNotStarted,
+		OperationStatusStarted,
+		OperationStatusFailed,
+		OperationStatusCompleted,
+		OperationStatusSucceeded,
+	}
+}
 
 const (
 	// OperationTypeDeleteKnownHostKeys is a OperationType enum value
@@ -32896,6 +33873,90 @@ const (
 	OperationTypeDeleteCertificate = "DeleteCertificate"
 )
 
+// OperationType is an enum
+type OperationType struct{}
+
+// Contains returns whether the OperationType enum includes the element
+func (enum OperationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OperationType enum
+func (enum OperationType) Values() []string {
+	return []string{
+		OperationTypeDeleteKnownHostKeys,
+		OperationTypeDeleteInstance,
+		OperationTypeCreateInstance,
+		OperationTypeStopInstance,
+		OperationTypeStartInstance,
+		OperationTypeRebootInstance,
+		OperationTypeOpenInstancePublicPorts,
+		OperationTypePutInstancePublicPorts,
+		OperationTypeCloseInstancePublicPorts,
+		OperationTypeAllocateStaticIp,
+		OperationTypeReleaseStaticIp,
+		OperationTypeAttachStaticIp,
+		OperationTypeDetachStaticIp,
+		OperationTypeUpdateDomainEntry,
+		OperationTypeDeleteDomainEntry,
+		OperationTypeCreateDomain,
+		OperationTypeDeleteDomain,
+		OperationTypeCreateInstanceSnapshot,
+		OperationTypeDeleteInstanceSnapshot,
+		OperationTypeCreateInstancesFromSnapshot,
+		OperationTypeCreateLoadBalancer,
+		OperationTypeDeleteLoadBalancer,
+		OperationTypeAttachInstancesToLoadBalancer,
+		OperationTypeDetachInstancesFromLoadBalancer,
+		OperationTypeUpdateLoadBalancerAttribute,
+		OperationTypeCreateLoadBalancerTlsCertificate,
+		OperationTypeDeleteLoadBalancerTlsCertificate,
+		OperationTypeAttachLoadBalancerTlsCertificate,
+		OperationTypeCreateDisk,
+		OperationTypeDeleteDisk,
+		OperationTypeAttachDisk,
+		OperationTypeDetachDisk,
+		OperationTypeCreateDiskSnapshot,
+		OperationTypeDeleteDiskSnapshot,
+		OperationTypeCreateDiskFromSnapshot,
+		OperationTypeCreateRelationalDatabase,
+		OperationTypeUpdateRelationalDatabase,
+		OperationTypeDeleteRelationalDatabase,
+		OperationTypeCreateRelationalDatabaseFromSnapshot,
+		OperationTypeCreateRelationalDatabaseSnapshot,
+		OperationTypeDeleteRelationalDatabaseSnapshot,
+		OperationTypeUpdateRelationalDatabaseParameters,
+		OperationTypeStartRelationalDatabase,
+		OperationTypeRebootRelationalDatabase,
+		OperationTypeStopRelationalDatabase,
+		OperationTypeEnableAddOn,
+		OperationTypeDisableAddOn,
+		OperationTypePutAlarm,
+		OperationTypeGetAlarms,
+		OperationTypeDeleteAlarm,
+		OperationTypeTestAlarm,
+		OperationTypeCreateContactMethod,
+		OperationTypeGetContactMethods,
+		OperationTypeSendContactMethodVerification,
+		OperationTypeDeleteContactMethod,
+		OperationTypeCreateDistribution,
+		OperationTypeUpdateDistribution,
+		OperationTypeDeleteDistribution,
+		OperationTypeResetDistributionCache,
+		OperationTypeAttachCertificateToDistribution,
+		OperationTypeDetachCertificateFromDistribution,
+		OperationTypeUpdateDistributionBundle,
+		OperationTypeCreateCertificate,
+		OperationTypeDeleteCertificate,
+	}
+}
+
 const (
 	// OriginProtocolPolicyEnumHttpOnly is a OriginProtocolPolicyEnum enum value
 	OriginProtocolPolicyEnumHttpOnly = "http-only"
@@ -32904,6 +33965,28 @@ const (
 	OriginProtocolPolicyEnumHttpsOnly = "https-only"
 )
 
+// OriginProtocolPolicyEnum is an enum
+type OriginProtocolPolicyEnum struct{}
+
+// Contains returns whether the OriginProtocolPolicyEnum enum includes the element
+func (enum OriginProtocolPolicyEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OriginProtocolPolicyEnum enum
+func (enum OriginProtocolPolicyEnum) Values() []string {
+	return []string{
+		OriginProtocolPolicyEnumHttpOnly,
+		OriginProtocolPolicyEnumHttpsOnly,
+	}
+}
+
 const (
 	// PortAccessTypePublic is a PortAccessType enum value
 	PortAccessTypePublic = "Public"
@@ -32911,6 +33994,28 @@ const (
 	// PortAccessTypePrivate is a PortAccessType enum value
 	PortAccessTypePrivate = "Private"
 )
+
+// PortAccessType is an enum
+type PortAccessType struct{}
+
+// Contains returns whether the PortAccessType enum includes the element
+func (enum PortAccessType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PortAccessType enum
+func (enum PortAccessType) Values() []string {
+	return []string{
+		PortAccessTypePublic,
+		PortAccessTypePrivate,
+	}
+}
 
 const (
 	// PortInfoSourceTypeDefault is a PortInfoSourceType enum value
@@ -32926,6 +34031,30 @@ const (
 	PortInfoSourceTypeClosed = "CLOSED"
 )
 
+// PortInfoSourceType is an enum
+type PortInfoSourceType struct{}
+
+// Contains returns whether the PortInfoSourceType enum includes the element
+func (enum PortInfoSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PortInfoSourceType enum
+func (enum PortInfoSourceType) Values() []string {
+	return []string{
+		PortInfoSourceTypeDefault,
+		PortInfoSourceTypeInstance,
+		PortInfoSourceTypeNone,
+		PortInfoSourceTypeClosed,
+	}
+}
+
 const (
 	// PortStateOpen is a PortState enum value
 	PortStateOpen = "open"
@@ -32933,6 +34062,28 @@ const (
 	// PortStateClosed is a PortState enum value
 	PortStateClosed = "closed"
 )
+
+// PortState is an enum
+type PortState struct{}
+
+// Contains returns whether the PortState enum includes the element
+func (enum PortState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PortState enum
+func (enum PortState) Values() []string {
+	return []string{
+		PortStateOpen,
+		PortStateClosed,
+	}
+}
 
 const (
 	// RecordStateStarted is a RecordState enum value
@@ -32944,6 +34095,29 @@ const (
 	// RecordStateFailed is a RecordState enum value
 	RecordStateFailed = "Failed"
 )
+
+// RecordState is an enum
+type RecordState struct{}
+
+// Contains returns whether the RecordState enum includes the element
+func (enum RecordState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecordState enum
+func (enum RecordState) Values() []string {
+	return []string{
+		RecordStateStarted,
+		RecordStateSucceeded,
+		RecordStateFailed,
+	}
+}
 
 const (
 	// RegionNameUsEast1 is a RegionName enum value
@@ -32989,10 +34163,65 @@ const (
 	RegionNameApNortheast2 = "ap-northeast-2"
 )
 
+// RegionName is an enum
+type RegionName struct{}
+
+// Contains returns whether the RegionName enum includes the element
+func (enum RegionName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RegionName enum
+func (enum RegionName) Values() []string {
+	return []string{
+		RegionNameUsEast1,
+		RegionNameUsEast2,
+		RegionNameUsWest1,
+		RegionNameUsWest2,
+		RegionNameEuWest1,
+		RegionNameEuWest2,
+		RegionNameEuWest3,
+		RegionNameEuCentral1,
+		RegionNameCaCentral1,
+		RegionNameApSouth1,
+		RegionNameApSoutheast1,
+		RegionNameApSoutheast2,
+		RegionNameApNortheast1,
+		RegionNameApNortheast2,
+	}
+}
+
 const (
 	// RelationalDatabaseEngineMysql is a RelationalDatabaseEngine enum value
 	RelationalDatabaseEngineMysql = "mysql"
 )
+
+// RelationalDatabaseEngine is an enum
+type RelationalDatabaseEngine struct{}
+
+// Contains returns whether the RelationalDatabaseEngine enum includes the element
+func (enum RelationalDatabaseEngine) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RelationalDatabaseEngine enum
+func (enum RelationalDatabaseEngine) Values() []string {
+	return []string{
+		RelationalDatabaseEngineMysql,
+	}
+}
 
 const (
 	// RelationalDatabaseMetricNameCpuutilization is a RelationalDatabaseMetricName enum value
@@ -33014,6 +34243,32 @@ const (
 	RelationalDatabaseMetricNameNetworkTransmitThroughput = "NetworkTransmitThroughput"
 )
 
+// RelationalDatabaseMetricName is an enum
+type RelationalDatabaseMetricName struct{}
+
+// Contains returns whether the RelationalDatabaseMetricName enum includes the element
+func (enum RelationalDatabaseMetricName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RelationalDatabaseMetricName enum
+func (enum RelationalDatabaseMetricName) Values() []string {
+	return []string{
+		RelationalDatabaseMetricNameCpuutilization,
+		RelationalDatabaseMetricNameDatabaseConnections,
+		RelationalDatabaseMetricNameDiskQueueDepth,
+		RelationalDatabaseMetricNameFreeStorageSpace,
+		RelationalDatabaseMetricNameNetworkReceiveThroughput,
+		RelationalDatabaseMetricNameNetworkTransmitThroughput,
+	}
+}
+
 const (
 	// RelationalDatabasePasswordVersionCurrent is a RelationalDatabasePasswordVersion enum value
 	RelationalDatabasePasswordVersionCurrent = "CURRENT"
@@ -33024,6 +34279,29 @@ const (
 	// RelationalDatabasePasswordVersionPending is a RelationalDatabasePasswordVersion enum value
 	RelationalDatabasePasswordVersionPending = "PENDING"
 )
+
+// RelationalDatabasePasswordVersion is an enum
+type RelationalDatabasePasswordVersion struct{}
+
+// Contains returns whether the RelationalDatabasePasswordVersion enum includes the element
+func (enum RelationalDatabasePasswordVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RelationalDatabasePasswordVersion enum
+func (enum RelationalDatabasePasswordVersion) Values() []string {
+	return []string{
+		RelationalDatabasePasswordVersionCurrent,
+		RelationalDatabasePasswordVersionPrevious,
+		RelationalDatabasePasswordVersionPending,
+	}
+}
 
 const (
 	// RenewalStatusPendingAutoRenewal is a RenewalStatus enum value
@@ -33038,6 +34316,30 @@ const (
 	// RenewalStatusFailed is a RenewalStatus enum value
 	RenewalStatusFailed = "Failed"
 )
+
+// RenewalStatus is an enum
+type RenewalStatus struct{}
+
+// Contains returns whether the RenewalStatus enum includes the element
+func (enum RenewalStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RenewalStatus enum
+func (enum RenewalStatus) Values() []string {
+	return []string{
+		RenewalStatusPendingAutoRenewal,
+		RenewalStatusPendingValidation,
+		RenewalStatusSuccess,
+		RenewalStatusFailed,
+	}
+}
 
 const (
 	// ResourceTypeInstance is a ResourceType enum value
@@ -33095,6 +34397,44 @@ const (
 	ResourceTypeCertificate = "Certificate"
 )
 
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeInstance,
+		ResourceTypeStaticIp,
+		ResourceTypeKeyPair,
+		ResourceTypeInstanceSnapshot,
+		ResourceTypeDomain,
+		ResourceTypePeeredVpc,
+		ResourceTypeLoadBalancer,
+		ResourceTypeLoadBalancerTlsCertificate,
+		ResourceTypeDisk,
+		ResourceTypeDiskSnapshot,
+		ResourceTypeRelationalDatabase,
+		ResourceTypeRelationalDatabaseSnapshot,
+		ResourceTypeExportSnapshotRecord,
+		ResourceTypeCloudFormationStackRecord,
+		ResourceTypeAlarm,
+		ResourceTypeContactMethod,
+		ResourceTypeDistribution,
+		ResourceTypeCertificate,
+	}
+}
+
 const (
 	// TreatMissingDataBreaching is a TreatMissingData enum value
 	TreatMissingDataBreaching = "breaching"
@@ -33108,3 +34448,27 @@ const (
 	// TreatMissingDataMissing is a TreatMissingData enum value
 	TreatMissingDataMissing = "missing"
 )
+
+// TreatMissingData is an enum
+type TreatMissingData struct{}
+
+// Contains returns whether the TreatMissingData enum includes the element
+func (enum TreatMissingData) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TreatMissingData enum
+func (enum TreatMissingData) Values() []string {
+	return []string{
+		TreatMissingDataBreaching,
+		TreatMissingDataNotBreaching,
+		TreatMissingDataIgnore,
+		TreatMissingDataMissing,
+	}
+}

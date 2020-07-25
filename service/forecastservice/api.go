@@ -9287,6 +9287,30 @@ const (
 	AttributeTypeTimestamp = "timestamp"
 )
 
+// AttributeType is an enum
+type AttributeType struct{}
+
+// Contains returns whether the AttributeType enum includes the element
+func (enum AttributeType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AttributeType enum
+func (enum AttributeType) Values() []string {
+	return []string{
+		AttributeTypeString,
+		AttributeTypeInteger,
+		AttributeTypeFloat,
+		AttributeTypeTimestamp,
+	}
+}
+
 const (
 	// DatasetTypeTargetTimeSeries is a DatasetType enum value
 	DatasetTypeTargetTimeSeries = "TARGET_TIME_SERIES"
@@ -9297,6 +9321,29 @@ const (
 	// DatasetTypeItemMetadata is a DatasetType enum value
 	DatasetTypeItemMetadata = "ITEM_METADATA"
 )
+
+// DatasetType is an enum
+type DatasetType struct{}
+
+// Contains returns whether the DatasetType enum includes the element
+func (enum DatasetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DatasetType enum
+func (enum DatasetType) Values() []string {
+	return []string{
+		DatasetTypeTargetTimeSeries,
+		DatasetTypeRelatedTimeSeries,
+		DatasetTypeItemMetadata,
+	}
+}
 
 const (
 	// DomainRetail is a Domain enum value
@@ -9321,6 +9368,33 @@ const (
 	DomainMetrics = "METRICS"
 )
 
+// Domain is an enum
+type Domain struct{}
+
+// Contains returns whether the Domain enum includes the element
+func (enum Domain) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Domain enum
+func (enum Domain) Values() []string {
+	return []string{
+		DomainRetail,
+		DomainCustom,
+		DomainInventoryPlanning,
+		DomainEc2Capacity,
+		DomainWorkForce,
+		DomainWebTraffic,
+		DomainMetrics,
+	}
+}
+
 const (
 	// EvaluationTypeSummary is a EvaluationType enum value
 	EvaluationTypeSummary = "SUMMARY"
@@ -9329,10 +9403,53 @@ const (
 	EvaluationTypeComputed = "COMPUTED"
 )
 
+// EvaluationType is an enum
+type EvaluationType struct{}
+
+// Contains returns whether the EvaluationType enum includes the element
+func (enum EvaluationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EvaluationType enum
+func (enum EvaluationType) Values() []string {
+	return []string{
+		EvaluationTypeSummary,
+		EvaluationTypeComputed,
+	}
+}
+
 const (
 	// FeaturizationMethodNameFilling is a FeaturizationMethodName enum value
 	FeaturizationMethodNameFilling = "filling"
 )
+
+// FeaturizationMethodName is an enum
+type FeaturizationMethodName struct{}
+
+// Contains returns whether the FeaturizationMethodName enum includes the element
+func (enum FeaturizationMethodName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FeaturizationMethodName enum
+func (enum FeaturizationMethodName) Values() []string {
+	return []string{
+		FeaturizationMethodNameFilling,
+	}
+}
 
 const (
 	// FilterConditionStringIs is a FilterConditionString enum value
@@ -9341,6 +9458,28 @@ const (
 	// FilterConditionStringIsNot is a FilterConditionString enum value
 	FilterConditionStringIsNot = "IS_NOT"
 )
+
+// FilterConditionString is an enum
+type FilterConditionString struct{}
+
+// Contains returns whether the FilterConditionString enum includes the element
+func (enum FilterConditionString) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FilterConditionString enum
+func (enum FilterConditionString) Values() []string {
+	return []string{
+		FilterConditionStringIs,
+		FilterConditionStringIsNot,
+	}
+}
 
 const (
 	// ScalingTypeAuto is a ScalingType enum value
@@ -9355,3 +9494,27 @@ const (
 	// ScalingTypeReverseLogarithmic is a ScalingType enum value
 	ScalingTypeReverseLogarithmic = "ReverseLogarithmic"
 )
+
+// ScalingType is an enum
+type ScalingType struct{}
+
+// Contains returns whether the ScalingType enum includes the element
+func (enum ScalingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingType enum
+func (enum ScalingType) Values() []string {
+	return []string{
+		ScalingTypeAuto,
+		ScalingTypeLinear,
+		ScalingTypeLogarithmic,
+		ScalingTypeReverseLogarithmic,
+	}
+}

@@ -2450,6 +2450,33 @@ const (
 	PlatformJavascript = "JAVASCRIPT"
 )
 
+// Platform is an enum
+type Platform struct{}
+
+// Contains returns whether the Platform enum includes the element
+func (enum Platform) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Platform enum
+func (enum Platform) Values() []string {
+	return []string{
+		PlatformOsx,
+		PlatformWindows,
+		PlatformLinux,
+		PlatformObjc,
+		PlatformSwift,
+		PlatformAndroid,
+		PlatformJavascript,
+	}
+}
+
 // Synchronization state for a project.
 const (
 	// ProjectStateNormal is a ProjectState enum value
@@ -2461,3 +2488,26 @@ const (
 	// ProjectStateImporting is a ProjectState enum value
 	ProjectStateImporting = "IMPORTING"
 )
+
+// ProjectState is an enum
+type ProjectState struct{}
+
+// Contains returns whether the ProjectState enum includes the element
+func (enum ProjectState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProjectState enum
+func (enum ProjectState) Values() []string {
+	return []string{
+		ProjectStateNormal,
+		ProjectStateSyncing,
+		ProjectStateImporting,
+	}
+}

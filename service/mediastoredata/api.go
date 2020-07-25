@@ -1418,10 +1418,53 @@ const (
 	ItemTypeFolder = "FOLDER"
 )
 
+// ItemType is an enum
+type ItemType struct{}
+
+// Contains returns whether the ItemType enum includes the element
+func (enum ItemType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ItemType enum
+func (enum ItemType) Values() []string {
+	return []string{
+		ItemTypeObject,
+		ItemTypeFolder,
+	}
+}
+
 const (
 	// StorageClassTemporal is a StorageClass enum value
 	StorageClassTemporal = "TEMPORAL"
 )
+
+// StorageClass is an enum
+type StorageClass struct{}
+
+// Contains returns whether the StorageClass enum includes the element
+func (enum StorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StorageClass enum
+func (enum StorageClass) Values() []string {
+	return []string{
+		StorageClassTemporal,
+	}
+}
 
 const (
 	// UploadAvailabilityStandard is a UploadAvailability enum value
@@ -1430,3 +1473,25 @@ const (
 	// UploadAvailabilityStreaming is a UploadAvailability enum value
 	UploadAvailabilityStreaming = "STREAMING"
 )
+
+// UploadAvailability is an enum
+type UploadAvailability struct{}
+
+// Contains returns whether the UploadAvailability enum includes the element
+func (enum UploadAvailability) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UploadAvailability enum
+func (enum UploadAvailability) Values() []string {
+	return []string{
+		UploadAvailabilityStandard,
+		UploadAvailabilityStreaming,
+	}
+}

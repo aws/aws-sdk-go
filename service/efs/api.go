@@ -7795,6 +7795,31 @@ const (
 	LifeCycleStateDeleted = "deleted"
 )
 
+// LifeCycleState is an enum
+type LifeCycleState struct{}
+
+// Contains returns whether the LifeCycleState enum includes the element
+func (enum LifeCycleState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LifeCycleState enum
+func (enum LifeCycleState) Values() []string {
+	return []string{
+		LifeCycleStateCreating,
+		LifeCycleStateAvailable,
+		LifeCycleStateUpdating,
+		LifeCycleStateDeleting,
+		LifeCycleStateDeleted,
+	}
+}
+
 const (
 	// PerformanceModeGeneralPurpose is a PerformanceMode enum value
 	PerformanceModeGeneralPurpose = "generalPurpose"
@@ -7802,6 +7827,28 @@ const (
 	// PerformanceModeMaxIo is a PerformanceMode enum value
 	PerformanceModeMaxIo = "maxIO"
 )
+
+// PerformanceMode is an enum
+type PerformanceMode struct{}
+
+// Contains returns whether the PerformanceMode enum includes the element
+func (enum PerformanceMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PerformanceMode enum
+func (enum PerformanceMode) Values() []string {
+	return []string{
+		PerformanceModeGeneralPurpose,
+		PerformanceModeMaxIo,
+	}
+}
 
 const (
 	// StatusEnabled is a Status enum value
@@ -7817,6 +7864,30 @@ const (
 	StatusDisabling = "DISABLING"
 )
 
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusEnabled,
+		StatusEnabling,
+		StatusDisabled,
+		StatusDisabling,
+	}
+}
+
 const (
 	// ThroughputModeBursting is a ThroughputMode enum value
 	ThroughputModeBursting = "bursting"
@@ -7824,6 +7895,28 @@ const (
 	// ThroughputModeProvisioned is a ThroughputMode enum value
 	ThroughputModeProvisioned = "provisioned"
 )
+
+// ThroughputMode is an enum
+type ThroughputMode struct{}
+
+// Contains returns whether the ThroughputMode enum includes the element
+func (enum ThroughputMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThroughputMode enum
+func (enum ThroughputMode) Values() []string {
+	return []string{
+		ThroughputModeBursting,
+		ThroughputModeProvisioned,
+	}
+}
 
 const (
 	// TransitionToIARulesAfter7Days is a TransitionToIARules enum value
@@ -7841,3 +7934,28 @@ const (
 	// TransitionToIARulesAfter90Days is a TransitionToIARules enum value
 	TransitionToIARulesAfter90Days = "AFTER_90_DAYS"
 )
+
+// TransitionToIARules is an enum
+type TransitionToIARules struct{}
+
+// Contains returns whether the TransitionToIARules enum includes the element
+func (enum TransitionToIARules) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TransitionToIARules enum
+func (enum TransitionToIARules) Values() []string {
+	return []string{
+		TransitionToIARulesAfter7Days,
+		TransitionToIARulesAfter14Days,
+		TransitionToIARulesAfter30Days,
+		TransitionToIARulesAfter60Days,
+		TransitionToIARulesAfter90Days,
+	}
+}

@@ -23047,6 +23047,28 @@ const (
 	ChangeActionDelete = "DELETE"
 )
 
+// ChangeAction is an enum
+type ChangeAction struct{}
+
+// Contains returns whether the ChangeAction enum includes the element
+func (enum ChangeAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChangeAction enum
+func (enum ChangeAction) Values() []string {
+	return []string{
+		ChangeActionInsert,
+		ChangeActionDelete,
+	}
+}
+
 const (
 	// ChangeTokenStatusProvisioned is a ChangeTokenStatus enum value
 	ChangeTokenStatusProvisioned = "PROVISIONED"
@@ -23057,6 +23079,29 @@ const (
 	// ChangeTokenStatusInsync is a ChangeTokenStatus enum value
 	ChangeTokenStatusInsync = "INSYNC"
 )
+
+// ChangeTokenStatus is an enum
+type ChangeTokenStatus struct{}
+
+// Contains returns whether the ChangeTokenStatus enum includes the element
+func (enum ChangeTokenStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChangeTokenStatus enum
+func (enum ChangeTokenStatus) Values() []string {
+	return []string{
+		ChangeTokenStatusProvisioned,
+		ChangeTokenStatusPending,
+		ChangeTokenStatusInsync,
+	}
+}
 
 const (
 	// ComparisonOperatorEq is a ComparisonOperator enum value
@@ -23078,10 +23123,57 @@ const (
 	ComparisonOperatorGt = "GT"
 )
 
+// ComparisonOperator is an enum
+type ComparisonOperator struct{}
+
+// Contains returns whether the ComparisonOperator enum includes the element
+func (enum ComparisonOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComparisonOperator enum
+func (enum ComparisonOperator) Values() []string {
+	return []string{
+		ComparisonOperatorEq,
+		ComparisonOperatorNe,
+		ComparisonOperatorLe,
+		ComparisonOperatorLt,
+		ComparisonOperatorGe,
+		ComparisonOperatorGt,
+	}
+}
+
 const (
 	// GeoMatchConstraintTypeCountry is a GeoMatchConstraintType enum value
 	GeoMatchConstraintTypeCountry = "Country"
 )
+
+// GeoMatchConstraintType is an enum
+type GeoMatchConstraintType struct{}
+
+// Contains returns whether the GeoMatchConstraintType enum includes the element
+func (enum GeoMatchConstraintType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GeoMatchConstraintType enum
+func (enum GeoMatchConstraintType) Values() []string {
+	return []string{
+		GeoMatchConstraintTypeCountry,
+	}
+}
 
 const (
 	// GeoMatchConstraintValueAf is a GeoMatchConstraintValue enum value
@@ -23832,6 +23924,275 @@ const (
 	GeoMatchConstraintValueZw = "ZW"
 )
 
+// GeoMatchConstraintValue is an enum
+type GeoMatchConstraintValue struct{}
+
+// Contains returns whether the GeoMatchConstraintValue enum includes the element
+func (enum GeoMatchConstraintValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GeoMatchConstraintValue enum
+func (enum GeoMatchConstraintValue) Values() []string {
+	return []string{
+		GeoMatchConstraintValueAf,
+		GeoMatchConstraintValueAx,
+		GeoMatchConstraintValueAl,
+		GeoMatchConstraintValueDz,
+		GeoMatchConstraintValueAs,
+		GeoMatchConstraintValueAd,
+		GeoMatchConstraintValueAo,
+		GeoMatchConstraintValueAi,
+		GeoMatchConstraintValueAq,
+		GeoMatchConstraintValueAg,
+		GeoMatchConstraintValueAr,
+		GeoMatchConstraintValueAm,
+		GeoMatchConstraintValueAw,
+		GeoMatchConstraintValueAu,
+		GeoMatchConstraintValueAt,
+		GeoMatchConstraintValueAz,
+		GeoMatchConstraintValueBs,
+		GeoMatchConstraintValueBh,
+		GeoMatchConstraintValueBd,
+		GeoMatchConstraintValueBb,
+		GeoMatchConstraintValueBy,
+		GeoMatchConstraintValueBe,
+		GeoMatchConstraintValueBz,
+		GeoMatchConstraintValueBj,
+		GeoMatchConstraintValueBm,
+		GeoMatchConstraintValueBt,
+		GeoMatchConstraintValueBo,
+		GeoMatchConstraintValueBq,
+		GeoMatchConstraintValueBa,
+		GeoMatchConstraintValueBw,
+		GeoMatchConstraintValueBv,
+		GeoMatchConstraintValueBr,
+		GeoMatchConstraintValueIo,
+		GeoMatchConstraintValueBn,
+		GeoMatchConstraintValueBg,
+		GeoMatchConstraintValueBf,
+		GeoMatchConstraintValueBi,
+		GeoMatchConstraintValueKh,
+		GeoMatchConstraintValueCm,
+		GeoMatchConstraintValueCa,
+		GeoMatchConstraintValueCv,
+		GeoMatchConstraintValueKy,
+		GeoMatchConstraintValueCf,
+		GeoMatchConstraintValueTd,
+		GeoMatchConstraintValueCl,
+		GeoMatchConstraintValueCn,
+		GeoMatchConstraintValueCx,
+		GeoMatchConstraintValueCc,
+		GeoMatchConstraintValueCo,
+		GeoMatchConstraintValueKm,
+		GeoMatchConstraintValueCg,
+		GeoMatchConstraintValueCd,
+		GeoMatchConstraintValueCk,
+		GeoMatchConstraintValueCr,
+		GeoMatchConstraintValueCi,
+		GeoMatchConstraintValueHr,
+		GeoMatchConstraintValueCu,
+		GeoMatchConstraintValueCw,
+		GeoMatchConstraintValueCy,
+		GeoMatchConstraintValueCz,
+		GeoMatchConstraintValueDk,
+		GeoMatchConstraintValueDj,
+		GeoMatchConstraintValueDm,
+		GeoMatchConstraintValueDo,
+		GeoMatchConstraintValueEc,
+		GeoMatchConstraintValueEg,
+		GeoMatchConstraintValueSv,
+		GeoMatchConstraintValueGq,
+		GeoMatchConstraintValueEr,
+		GeoMatchConstraintValueEe,
+		GeoMatchConstraintValueEt,
+		GeoMatchConstraintValueFk,
+		GeoMatchConstraintValueFo,
+		GeoMatchConstraintValueFj,
+		GeoMatchConstraintValueFi,
+		GeoMatchConstraintValueFr,
+		GeoMatchConstraintValueGf,
+		GeoMatchConstraintValuePf,
+		GeoMatchConstraintValueTf,
+		GeoMatchConstraintValueGa,
+		GeoMatchConstraintValueGm,
+		GeoMatchConstraintValueGe,
+		GeoMatchConstraintValueDe,
+		GeoMatchConstraintValueGh,
+		GeoMatchConstraintValueGi,
+		GeoMatchConstraintValueGr,
+		GeoMatchConstraintValueGl,
+		GeoMatchConstraintValueGd,
+		GeoMatchConstraintValueGp,
+		GeoMatchConstraintValueGu,
+		GeoMatchConstraintValueGt,
+		GeoMatchConstraintValueGg,
+		GeoMatchConstraintValueGn,
+		GeoMatchConstraintValueGw,
+		GeoMatchConstraintValueGy,
+		GeoMatchConstraintValueHt,
+		GeoMatchConstraintValueHm,
+		GeoMatchConstraintValueVa,
+		GeoMatchConstraintValueHn,
+		GeoMatchConstraintValueHk,
+		GeoMatchConstraintValueHu,
+		GeoMatchConstraintValueIs,
+		GeoMatchConstraintValueIn,
+		GeoMatchConstraintValueId,
+		GeoMatchConstraintValueIr,
+		GeoMatchConstraintValueIq,
+		GeoMatchConstraintValueIe,
+		GeoMatchConstraintValueIm,
+		GeoMatchConstraintValueIl,
+		GeoMatchConstraintValueIt,
+		GeoMatchConstraintValueJm,
+		GeoMatchConstraintValueJp,
+		GeoMatchConstraintValueJe,
+		GeoMatchConstraintValueJo,
+		GeoMatchConstraintValueKz,
+		GeoMatchConstraintValueKe,
+		GeoMatchConstraintValueKi,
+		GeoMatchConstraintValueKp,
+		GeoMatchConstraintValueKr,
+		GeoMatchConstraintValueKw,
+		GeoMatchConstraintValueKg,
+		GeoMatchConstraintValueLa,
+		GeoMatchConstraintValueLv,
+		GeoMatchConstraintValueLb,
+		GeoMatchConstraintValueLs,
+		GeoMatchConstraintValueLr,
+		GeoMatchConstraintValueLy,
+		GeoMatchConstraintValueLi,
+		GeoMatchConstraintValueLt,
+		GeoMatchConstraintValueLu,
+		GeoMatchConstraintValueMo,
+		GeoMatchConstraintValueMk,
+		GeoMatchConstraintValueMg,
+		GeoMatchConstraintValueMw,
+		GeoMatchConstraintValueMy,
+		GeoMatchConstraintValueMv,
+		GeoMatchConstraintValueMl,
+		GeoMatchConstraintValueMt,
+		GeoMatchConstraintValueMh,
+		GeoMatchConstraintValueMq,
+		GeoMatchConstraintValueMr,
+		GeoMatchConstraintValueMu,
+		GeoMatchConstraintValueYt,
+		GeoMatchConstraintValueMx,
+		GeoMatchConstraintValueFm,
+		GeoMatchConstraintValueMd,
+		GeoMatchConstraintValueMc,
+		GeoMatchConstraintValueMn,
+		GeoMatchConstraintValueMe,
+		GeoMatchConstraintValueMs,
+		GeoMatchConstraintValueMa,
+		GeoMatchConstraintValueMz,
+		GeoMatchConstraintValueMm,
+		GeoMatchConstraintValueNa,
+		GeoMatchConstraintValueNr,
+		GeoMatchConstraintValueNp,
+		GeoMatchConstraintValueNl,
+		GeoMatchConstraintValueNc,
+		GeoMatchConstraintValueNz,
+		GeoMatchConstraintValueNi,
+		GeoMatchConstraintValueNe,
+		GeoMatchConstraintValueNg,
+		GeoMatchConstraintValueNu,
+		GeoMatchConstraintValueNf,
+		GeoMatchConstraintValueMp,
+		GeoMatchConstraintValueNo,
+		GeoMatchConstraintValueOm,
+		GeoMatchConstraintValuePk,
+		GeoMatchConstraintValuePw,
+		GeoMatchConstraintValuePs,
+		GeoMatchConstraintValuePa,
+		GeoMatchConstraintValuePg,
+		GeoMatchConstraintValuePy,
+		GeoMatchConstraintValuePe,
+		GeoMatchConstraintValuePh,
+		GeoMatchConstraintValuePn,
+		GeoMatchConstraintValuePl,
+		GeoMatchConstraintValuePt,
+		GeoMatchConstraintValuePr,
+		GeoMatchConstraintValueQa,
+		GeoMatchConstraintValueRe,
+		GeoMatchConstraintValueRo,
+		GeoMatchConstraintValueRu,
+		GeoMatchConstraintValueRw,
+		GeoMatchConstraintValueBl,
+		GeoMatchConstraintValueSh,
+		GeoMatchConstraintValueKn,
+		GeoMatchConstraintValueLc,
+		GeoMatchConstraintValueMf,
+		GeoMatchConstraintValuePm,
+		GeoMatchConstraintValueVc,
+		GeoMatchConstraintValueWs,
+		GeoMatchConstraintValueSm,
+		GeoMatchConstraintValueSt,
+		GeoMatchConstraintValueSa,
+		GeoMatchConstraintValueSn,
+		GeoMatchConstraintValueRs,
+		GeoMatchConstraintValueSc,
+		GeoMatchConstraintValueSl,
+		GeoMatchConstraintValueSg,
+		GeoMatchConstraintValueSx,
+		GeoMatchConstraintValueSk,
+		GeoMatchConstraintValueSi,
+		GeoMatchConstraintValueSb,
+		GeoMatchConstraintValueSo,
+		GeoMatchConstraintValueZa,
+		GeoMatchConstraintValueGs,
+		GeoMatchConstraintValueSs,
+		GeoMatchConstraintValueEs,
+		GeoMatchConstraintValueLk,
+		GeoMatchConstraintValueSd,
+		GeoMatchConstraintValueSr,
+		GeoMatchConstraintValueSj,
+		GeoMatchConstraintValueSz,
+		GeoMatchConstraintValueSe,
+		GeoMatchConstraintValueCh,
+		GeoMatchConstraintValueSy,
+		GeoMatchConstraintValueTw,
+		GeoMatchConstraintValueTj,
+		GeoMatchConstraintValueTz,
+		GeoMatchConstraintValueTh,
+		GeoMatchConstraintValueTl,
+		GeoMatchConstraintValueTg,
+		GeoMatchConstraintValueTk,
+		GeoMatchConstraintValueTo,
+		GeoMatchConstraintValueTt,
+		GeoMatchConstraintValueTn,
+		GeoMatchConstraintValueTr,
+		GeoMatchConstraintValueTm,
+		GeoMatchConstraintValueTc,
+		GeoMatchConstraintValueTv,
+		GeoMatchConstraintValueUg,
+		GeoMatchConstraintValueUa,
+		GeoMatchConstraintValueAe,
+		GeoMatchConstraintValueGb,
+		GeoMatchConstraintValueUs,
+		GeoMatchConstraintValueUm,
+		GeoMatchConstraintValueUy,
+		GeoMatchConstraintValueUz,
+		GeoMatchConstraintValueVu,
+		GeoMatchConstraintValueVe,
+		GeoMatchConstraintValueVn,
+		GeoMatchConstraintValueVg,
+		GeoMatchConstraintValueVi,
+		GeoMatchConstraintValueWf,
+		GeoMatchConstraintValueEh,
+		GeoMatchConstraintValueYe,
+		GeoMatchConstraintValueZm,
+		GeoMatchConstraintValueZw,
+	}
+}
+
 const (
 	// IPSetDescriptorTypeIpv4 is a IPSetDescriptorType enum value
 	IPSetDescriptorTypeIpv4 = "IPV4"
@@ -23839,6 +24200,28 @@ const (
 	// IPSetDescriptorTypeIpv6 is a IPSetDescriptorType enum value
 	IPSetDescriptorTypeIpv6 = "IPV6"
 )
+
+// IPSetDescriptorType is an enum
+type IPSetDescriptorType struct{}
+
+// Contains returns whether the IPSetDescriptorType enum includes the element
+func (enum IPSetDescriptorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IPSetDescriptorType enum
+func (enum IPSetDescriptorType) Values() []string {
+	return []string{
+		IPSetDescriptorTypeIpv4,
+		IPSetDescriptorTypeIpv6,
+	}
+}
 
 const (
 	// MatchFieldTypeUri is a MatchFieldType enum value
@@ -23863,6 +24246,33 @@ const (
 	MatchFieldTypeAllQueryArgs = "ALL_QUERY_ARGS"
 )
 
+// MatchFieldType is an enum
+type MatchFieldType struct{}
+
+// Contains returns whether the MatchFieldType enum includes the element
+func (enum MatchFieldType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MatchFieldType enum
+func (enum MatchFieldType) Values() []string {
+	return []string{
+		MatchFieldTypeUri,
+		MatchFieldTypeQueryString,
+		MatchFieldTypeHeader,
+		MatchFieldTypeMethod,
+		MatchFieldTypeBody,
+		MatchFieldTypeSingleQueryArg,
+		MatchFieldTypeAllQueryArgs,
+	}
+}
+
 const (
 	// MigrationErrorTypeEntityNotSupported is a MigrationErrorType enum value
 	MigrationErrorTypeEntityNotSupported = "ENTITY_NOT_SUPPORTED"
@@ -23885,6 +24295,33 @@ const (
 	// MigrationErrorTypeS3InternalError is a MigrationErrorType enum value
 	MigrationErrorTypeS3InternalError = "S3_INTERNAL_ERROR"
 )
+
+// MigrationErrorType is an enum
+type MigrationErrorType struct{}
+
+// Contains returns whether the MigrationErrorType enum includes the element
+func (enum MigrationErrorType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MigrationErrorType enum
+func (enum MigrationErrorType) Values() []string {
+	return []string{
+		MigrationErrorTypeEntityNotSupported,
+		MigrationErrorTypeEntityNotFound,
+		MigrationErrorTypeS3BucketNoPermission,
+		MigrationErrorTypeS3BucketNotAccessible,
+		MigrationErrorTypeS3BucketNotFound,
+		MigrationErrorTypeS3BucketInvalidRegion,
+		MigrationErrorTypeS3InternalError,
+	}
+}
 
 const (
 	// ParameterExceptionFieldChangeAction is a ParameterExceptionField enum value
@@ -23942,6 +24379,44 @@ const (
 	ParameterExceptionFieldTagKeys = "TAG_KEYS"
 )
 
+// ParameterExceptionField is an enum
+type ParameterExceptionField struct{}
+
+// Contains returns whether the ParameterExceptionField enum includes the element
+func (enum ParameterExceptionField) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ParameterExceptionField enum
+func (enum ParameterExceptionField) Values() []string {
+	return []string{
+		ParameterExceptionFieldChangeAction,
+		ParameterExceptionFieldWafAction,
+		ParameterExceptionFieldWafOverrideAction,
+		ParameterExceptionFieldPredicateType,
+		ParameterExceptionFieldIpsetType,
+		ParameterExceptionFieldByteMatchFieldType,
+		ParameterExceptionFieldSqlInjectionMatchFieldType,
+		ParameterExceptionFieldByteMatchTextTransformation,
+		ParameterExceptionFieldByteMatchPositionalConstraint,
+		ParameterExceptionFieldSizeConstraintComparisonOperator,
+		ParameterExceptionFieldGeoMatchLocationType,
+		ParameterExceptionFieldGeoMatchLocationValue,
+		ParameterExceptionFieldRateKey,
+		ParameterExceptionFieldRuleType,
+		ParameterExceptionFieldNextMarker,
+		ParameterExceptionFieldResourceArn,
+		ParameterExceptionFieldTags,
+		ParameterExceptionFieldTagKeys,
+	}
+}
+
 const (
 	// ParameterExceptionReasonInvalidOption is a ParameterExceptionReason enum value
 	ParameterExceptionReasonInvalidOption = "INVALID_OPTION"
@@ -23955,6 +24430,30 @@ const (
 	// ParameterExceptionReasonInvalidTagKey is a ParameterExceptionReason enum value
 	ParameterExceptionReasonInvalidTagKey = "INVALID_TAG_KEY"
 )
+
+// ParameterExceptionReason is an enum
+type ParameterExceptionReason struct{}
+
+// Contains returns whether the ParameterExceptionReason enum includes the element
+func (enum ParameterExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ParameterExceptionReason enum
+func (enum ParameterExceptionReason) Values() []string {
+	return []string{
+		ParameterExceptionReasonInvalidOption,
+		ParameterExceptionReasonIllegalCombination,
+		ParameterExceptionReasonIllegalArgument,
+		ParameterExceptionReasonInvalidTagKey,
+	}
+}
 
 const (
 	// PositionalConstraintExactly is a PositionalConstraint enum value
@@ -23972,6 +24471,31 @@ const (
 	// PositionalConstraintContainsWord is a PositionalConstraint enum value
 	PositionalConstraintContainsWord = "CONTAINS_WORD"
 )
+
+// PositionalConstraint is an enum
+type PositionalConstraint struct{}
+
+// Contains returns whether the PositionalConstraint enum includes the element
+func (enum PositionalConstraint) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PositionalConstraint enum
+func (enum PositionalConstraint) Values() []string {
+	return []string{
+		PositionalConstraintExactly,
+		PositionalConstraintStartsWith,
+		PositionalConstraintEndsWith,
+		PositionalConstraintContains,
+		PositionalConstraintContainsWord,
+	}
+}
 
 const (
 	// PredicateTypeIpmatch is a PredicateType enum value
@@ -23996,10 +24520,58 @@ const (
 	PredicateTypeRegexMatch = "RegexMatch"
 )
 
+// PredicateType is an enum
+type PredicateType struct{}
+
+// Contains returns whether the PredicateType enum includes the element
+func (enum PredicateType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PredicateType enum
+func (enum PredicateType) Values() []string {
+	return []string{
+		PredicateTypeIpmatch,
+		PredicateTypeByteMatch,
+		PredicateTypeSqlInjectionMatch,
+		PredicateTypeGeoMatch,
+		PredicateTypeSizeConstraint,
+		PredicateTypeXssMatch,
+		PredicateTypeRegexMatch,
+	}
+}
+
 const (
 	// RateKeyIp is a RateKey enum value
 	RateKeyIp = "IP"
 )
+
+// RateKey is an enum
+type RateKey struct{}
+
+// Contains returns whether the RateKey enum includes the element
+func (enum RateKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RateKey enum
+func (enum RateKey) Values() []string {
+	return []string{
+		RateKeyIp,
+	}
+}
 
 const (
 	// TextTransformationNone is a TextTransformation enum value
@@ -24021,6 +24593,32 @@ const (
 	TextTransformationUrlDecode = "URL_DECODE"
 )
 
+// TextTransformation is an enum
+type TextTransformation struct{}
+
+// Contains returns whether the TextTransformation enum includes the element
+func (enum TextTransformation) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TextTransformation enum
+func (enum TextTransformation) Values() []string {
+	return []string{
+		TextTransformationNone,
+		TextTransformationCompressWhiteSpace,
+		TextTransformationHtmlEntityDecode,
+		TextTransformationLowercase,
+		TextTransformationCmdLine,
+		TextTransformationUrlDecode,
+	}
+}
+
 const (
 	// WafActionTypeBlock is a WafActionType enum value
 	WafActionTypeBlock = "BLOCK"
@@ -24032,6 +24630,29 @@ const (
 	WafActionTypeCount = "COUNT"
 )
 
+// WafActionType is an enum
+type WafActionType struct{}
+
+// Contains returns whether the WafActionType enum includes the element
+func (enum WafActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WafActionType enum
+func (enum WafActionType) Values() []string {
+	return []string{
+		WafActionTypeBlock,
+		WafActionTypeAllow,
+		WafActionTypeCount,
+	}
+}
+
 const (
 	// WafOverrideActionTypeNone is a WafOverrideActionType enum value
 	WafOverrideActionTypeNone = "NONE"
@@ -24039,6 +24660,28 @@ const (
 	// WafOverrideActionTypeCount is a WafOverrideActionType enum value
 	WafOverrideActionTypeCount = "COUNT"
 )
+
+// WafOverrideActionType is an enum
+type WafOverrideActionType struct{}
+
+// Contains returns whether the WafOverrideActionType enum includes the element
+func (enum WafOverrideActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WafOverrideActionType enum
+func (enum WafOverrideActionType) Values() []string {
+	return []string{
+		WafOverrideActionTypeNone,
+		WafOverrideActionTypeCount,
+	}
+}
 
 const (
 	// WafRuleTypeRegular is a WafRuleType enum value
@@ -24050,3 +24693,26 @@ const (
 	// WafRuleTypeGroup is a WafRuleType enum value
 	WafRuleTypeGroup = "GROUP"
 )
+
+// WafRuleType is an enum
+type WafRuleType struct{}
+
+// Contains returns whether the WafRuleType enum includes the element
+func (enum WafRuleType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WafRuleType enum
+func (enum WafRuleType) Values() []string {
+	return []string{
+		WafRuleTypeRegular,
+		WafRuleTypeRateBased,
+		WafRuleTypeGroup,
+	}
+}

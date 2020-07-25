@@ -1476,3 +1476,26 @@ const (
 	// LocationTypeAvailabilityZoneId is a LocationType enum value
 	LocationTypeAvailabilityZoneId = "availability-zone-id"
 )
+
+// LocationType is an enum
+type LocationType struct{}
+
+// Contains returns whether the LocationType enum includes the element
+func (enum LocationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LocationType enum
+func (enum LocationType) Values() []string {
+	return []string{
+		LocationTypeRegion,
+		LocationTypeAvailabilityZone,
+		LocationTypeAvailabilityZoneId,
+	}
+}

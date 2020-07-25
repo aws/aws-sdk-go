@@ -4522,6 +4522,29 @@ const (
 	AdMarkersPassthrough = "PASSTHROUGH"
 )
 
+// AdMarkers is an enum
+type AdMarkers struct{}
+
+// Contains returns whether the AdMarkers enum includes the element
+func (enum AdMarkers) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdMarkers enum
+func (enum AdMarkers) Values() []string {
+	return []string{
+		AdMarkersNone,
+		AdMarkersScte35Enhanced,
+		AdMarkersPassthrough,
+	}
+}
+
 const (
 	// EncryptionMethodAes128 is a EncryptionMethod enum value
 	EncryptionMethodAes128 = "AES_128"
@@ -4529,6 +4552,28 @@ const (
 	// EncryptionMethodSampleAes is a EncryptionMethod enum value
 	EncryptionMethodSampleAes = "SAMPLE_AES"
 )
+
+// EncryptionMethod is an enum
+type EncryptionMethod struct{}
+
+// Contains returns whether the EncryptionMethod enum includes the element
+func (enum EncryptionMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionMethod enum
+func (enum EncryptionMethod) Values() []string {
+	return []string{
+		EncryptionMethodAes128,
+		EncryptionMethodSampleAes,
+	}
+}
 
 const (
 	// ManifestLayoutFull is a ManifestLayout enum value
@@ -4538,10 +4583,53 @@ const (
 	ManifestLayoutCompact = "COMPACT"
 )
 
+// ManifestLayout is an enum
+type ManifestLayout struct{}
+
+// Contains returns whether the ManifestLayout enum includes the element
+func (enum ManifestLayout) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ManifestLayout enum
+func (enum ManifestLayout) Values() []string {
+	return []string{
+		ManifestLayoutFull,
+		ManifestLayoutCompact,
+	}
+}
+
 const (
 	// PeriodTriggersElementAds is a PeriodTriggersElement enum value
 	PeriodTriggersElementAds = "ADS"
 )
+
+// PeriodTriggersElement is an enum
+type PeriodTriggersElement struct{}
+
+// Contains returns whether the PeriodTriggersElement enum includes the element
+func (enum PeriodTriggersElement) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PeriodTriggersElement enum
+func (enum PeriodTriggersElement) Values() []string {
+	return []string{
+		PeriodTriggersElementAds,
+	}
+}
 
 const (
 	// ProfileNone is a Profile enum value
@@ -4550,6 +4638,28 @@ const (
 	// ProfileHbbtv15 is a Profile enum value
 	ProfileHbbtv15 = "HBBTV_1_5"
 )
+
+// Profile is an enum
+type Profile struct{}
+
+// Contains returns whether the Profile enum includes the element
+func (enum Profile) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Profile enum
+func (enum Profile) Values() []string {
+	return []string{
+		ProfileNone,
+		ProfileHbbtv15,
+	}
+}
 
 const (
 	// SegmentTemplateFormatNumberWithTimeline is a SegmentTemplateFormat enum value
@@ -4562,6 +4672,29 @@ const (
 	SegmentTemplateFormatNumberWithDuration = "NUMBER_WITH_DURATION"
 )
 
+// SegmentTemplateFormat is an enum
+type SegmentTemplateFormat struct{}
+
+// Contains returns whether the SegmentTemplateFormat enum includes the element
+func (enum SegmentTemplateFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SegmentTemplateFormat enum
+func (enum SegmentTemplateFormat) Values() []string {
+	return []string{
+		SegmentTemplateFormatNumberWithTimeline,
+		SegmentTemplateFormatTimeWithTimeline,
+		SegmentTemplateFormatNumberWithDuration,
+	}
+}
+
 const (
 	// StreamOrderOriginal is a StreamOrder enum value
 	StreamOrderOriginal = "ORIGINAL"
@@ -4572,3 +4705,26 @@ const (
 	// StreamOrderVideoBitrateDescending is a StreamOrder enum value
 	StreamOrderVideoBitrateDescending = "VIDEO_BITRATE_DESCENDING"
 )
+
+// StreamOrder is an enum
+type StreamOrder struct{}
+
+// Contains returns whether the StreamOrder enum includes the element
+func (enum StreamOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamOrder enum
+func (enum StreamOrder) Values() []string {
+	return []string{
+		StreamOrderOriginal,
+		StreamOrderVideoBitrateAscending,
+		StreamOrderVideoBitrateDescending,
+	}
+}

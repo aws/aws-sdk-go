@@ -5880,6 +5880,36 @@ const (
 	IpAddressStatusDeleteFailedFasExpired = "DELETE_FAILED_FAS_EXPIRED"
 )
 
+// IpAddressStatus is an enum
+type IpAddressStatus struct{}
+
+// Contains returns whether the IpAddressStatus enum includes the element
+func (enum IpAddressStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IpAddressStatus enum
+func (enum IpAddressStatus) Values() []string {
+	return []string{
+		IpAddressStatusCreating,
+		IpAddressStatusFailedCreation,
+		IpAddressStatusAttaching,
+		IpAddressStatusAttached,
+		IpAddressStatusRemapDetaching,
+		IpAddressStatusRemapAttaching,
+		IpAddressStatusDetaching,
+		IpAddressStatusFailedResourceGone,
+		IpAddressStatusDeleting,
+		IpAddressStatusDeleteFailedFasExpired,
+	}
+}
+
 const (
 	// ResolverEndpointDirectionInbound is a ResolverEndpointDirection enum value
 	ResolverEndpointDirectionInbound = "INBOUND"
@@ -5887,6 +5917,28 @@ const (
 	// ResolverEndpointDirectionOutbound is a ResolverEndpointDirection enum value
 	ResolverEndpointDirectionOutbound = "OUTBOUND"
 )
+
+// ResolverEndpointDirection is an enum
+type ResolverEndpointDirection struct{}
+
+// Contains returns whether the ResolverEndpointDirection enum includes the element
+func (enum ResolverEndpointDirection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResolverEndpointDirection enum
+func (enum ResolverEndpointDirection) Values() []string {
+	return []string{
+		ResolverEndpointDirectionInbound,
+		ResolverEndpointDirectionOutbound,
+	}
+}
 
 const (
 	// ResolverEndpointStatusCreating is a ResolverEndpointStatus enum value
@@ -5908,6 +5960,32 @@ const (
 	ResolverEndpointStatusDeleting = "DELETING"
 )
 
+// ResolverEndpointStatus is an enum
+type ResolverEndpointStatus struct{}
+
+// Contains returns whether the ResolverEndpointStatus enum includes the element
+func (enum ResolverEndpointStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResolverEndpointStatus enum
+func (enum ResolverEndpointStatus) Values() []string {
+	return []string{
+		ResolverEndpointStatusCreating,
+		ResolverEndpointStatusOperational,
+		ResolverEndpointStatusUpdating,
+		ResolverEndpointStatusAutoRecovering,
+		ResolverEndpointStatusActionNeeded,
+		ResolverEndpointStatusDeleting,
+	}
+}
+
 const (
 	// ResolverRuleAssociationStatusCreating is a ResolverRuleAssociationStatus enum value
 	ResolverRuleAssociationStatusCreating = "CREATING"
@@ -5925,6 +6003,31 @@ const (
 	ResolverRuleAssociationStatusOverridden = "OVERRIDDEN"
 )
 
+// ResolverRuleAssociationStatus is an enum
+type ResolverRuleAssociationStatus struct{}
+
+// Contains returns whether the ResolverRuleAssociationStatus enum includes the element
+func (enum ResolverRuleAssociationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResolverRuleAssociationStatus enum
+func (enum ResolverRuleAssociationStatus) Values() []string {
+	return []string{
+		ResolverRuleAssociationStatusCreating,
+		ResolverRuleAssociationStatusComplete,
+		ResolverRuleAssociationStatusDeleting,
+		ResolverRuleAssociationStatusFailed,
+		ResolverRuleAssociationStatusOverridden,
+	}
+}
+
 const (
 	// ResolverRuleStatusComplete is a ResolverRuleStatus enum value
 	ResolverRuleStatusComplete = "COMPLETE"
@@ -5939,6 +6042,30 @@ const (
 	ResolverRuleStatusFailed = "FAILED"
 )
 
+// ResolverRuleStatus is an enum
+type ResolverRuleStatus struct{}
+
+// Contains returns whether the ResolverRuleStatus enum includes the element
+func (enum ResolverRuleStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResolverRuleStatus enum
+func (enum ResolverRuleStatus) Values() []string {
+	return []string{
+		ResolverRuleStatusComplete,
+		ResolverRuleStatusDeleting,
+		ResolverRuleStatusUpdating,
+		ResolverRuleStatusFailed,
+	}
+}
+
 const (
 	// RuleTypeOptionForward is a RuleTypeOption enum value
 	RuleTypeOptionForward = "FORWARD"
@@ -5950,6 +6077,29 @@ const (
 	RuleTypeOptionRecursive = "RECURSIVE"
 )
 
+// RuleTypeOption is an enum
+type RuleTypeOption struct{}
+
+// Contains returns whether the RuleTypeOption enum includes the element
+func (enum RuleTypeOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RuleTypeOption enum
+func (enum RuleTypeOption) Values() []string {
+	return []string{
+		RuleTypeOptionForward,
+		RuleTypeOptionSystem,
+		RuleTypeOptionRecursive,
+	}
+}
+
 const (
 	// ShareStatusNotShared is a ShareStatus enum value
 	ShareStatusNotShared = "NOT_SHARED"
@@ -5960,3 +6110,26 @@ const (
 	// ShareStatusSharedByMe is a ShareStatus enum value
 	ShareStatusSharedByMe = "SHARED_BY_ME"
 )
+
+// ShareStatus is an enum
+type ShareStatus struct{}
+
+// Contains returns whether the ShareStatus enum includes the element
+func (enum ShareStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ShareStatus enum
+func (enum ShareStatus) Values() []string {
+	return []string{
+		ShareStatusNotShared,
+		ShareStatusSharedWithMe,
+		ShareStatusSharedByMe,
+	}
+}

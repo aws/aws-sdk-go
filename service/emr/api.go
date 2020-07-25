@@ -11987,6 +11987,30 @@ const (
 	ActionOnFailureContinue = "CONTINUE"
 )
 
+// ActionOnFailure is an enum
+type ActionOnFailure struct{}
+
+// Contains returns whether the ActionOnFailure enum includes the element
+func (enum ActionOnFailure) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActionOnFailure enum
+func (enum ActionOnFailure) Values() []string {
+	return []string{
+		ActionOnFailureTerminateJobFlow,
+		ActionOnFailureTerminateCluster,
+		ActionOnFailureCancelAndWait,
+		ActionOnFailureContinue,
+	}
+}
+
 const (
 	// AdjustmentTypeChangeInCapacity is a AdjustmentType enum value
 	AdjustmentTypeChangeInCapacity = "CHANGE_IN_CAPACITY"
@@ -11997,6 +12021,29 @@ const (
 	// AdjustmentTypeExactCapacity is a AdjustmentType enum value
 	AdjustmentTypeExactCapacity = "EXACT_CAPACITY"
 )
+
+// AdjustmentType is an enum
+type AdjustmentType struct{}
+
+// Contains returns whether the AdjustmentType enum includes the element
+func (enum AdjustmentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdjustmentType enum
+func (enum AdjustmentType) Values() []string {
+	return []string{
+		AdjustmentTypeChangeInCapacity,
+		AdjustmentTypePercentChangeInCapacity,
+		AdjustmentTypeExactCapacity,
+	}
+}
 
 const (
 	// AutoScalingPolicyStatePending is a AutoScalingPolicyState enum value
@@ -12018,6 +12065,32 @@ const (
 	AutoScalingPolicyStateFailed = "FAILED"
 )
 
+// AutoScalingPolicyState is an enum
+type AutoScalingPolicyState struct{}
+
+// Contains returns whether the AutoScalingPolicyState enum includes the element
+func (enum AutoScalingPolicyState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoScalingPolicyState enum
+func (enum AutoScalingPolicyState) Values() []string {
+	return []string{
+		AutoScalingPolicyStatePending,
+		AutoScalingPolicyStateAttaching,
+		AutoScalingPolicyStateAttached,
+		AutoScalingPolicyStateDetaching,
+		AutoScalingPolicyStateDetached,
+		AutoScalingPolicyStateFailed,
+	}
+}
+
 const (
 	// AutoScalingPolicyStateChangeReasonCodeUserRequest is a AutoScalingPolicyStateChangeReasonCode enum value
 	AutoScalingPolicyStateChangeReasonCodeUserRequest = "USER_REQUEST"
@@ -12029,6 +12102,29 @@ const (
 	AutoScalingPolicyStateChangeReasonCodeCleanupFailure = "CLEANUP_FAILURE"
 )
 
+// AutoScalingPolicyStateChangeReasonCode is an enum
+type AutoScalingPolicyStateChangeReasonCode struct{}
+
+// Contains returns whether the AutoScalingPolicyStateChangeReasonCode enum includes the element
+func (enum AutoScalingPolicyStateChangeReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AutoScalingPolicyStateChangeReasonCode enum
+func (enum AutoScalingPolicyStateChangeReasonCode) Values() []string {
+	return []string{
+		AutoScalingPolicyStateChangeReasonCodeUserRequest,
+		AutoScalingPolicyStateChangeReasonCodeProvisionFailure,
+		AutoScalingPolicyStateChangeReasonCodeCleanupFailure,
+	}
+}
+
 const (
 	// CancelStepsRequestStatusSubmitted is a CancelStepsRequestStatus enum value
 	CancelStepsRequestStatusSubmitted = "SUBMITTED"
@@ -12036,6 +12132,28 @@ const (
 	// CancelStepsRequestStatusFailed is a CancelStepsRequestStatus enum value
 	CancelStepsRequestStatusFailed = "FAILED"
 )
+
+// CancelStepsRequestStatus is an enum
+type CancelStepsRequestStatus struct{}
+
+// Contains returns whether the CancelStepsRequestStatus enum includes the element
+func (enum CancelStepsRequestStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CancelStepsRequestStatus enum
+func (enum CancelStepsRequestStatus) Values() []string {
+	return []string{
+		CancelStepsRequestStatusSubmitted,
+		CancelStepsRequestStatusFailed,
+	}
+}
 
 const (
 	// ClusterStateStarting is a ClusterState enum value
@@ -12059,6 +12177,33 @@ const (
 	// ClusterStateTerminatedWithErrors is a ClusterState enum value
 	ClusterStateTerminatedWithErrors = "TERMINATED_WITH_ERRORS"
 )
+
+// ClusterState is an enum
+type ClusterState struct{}
+
+// Contains returns whether the ClusterState enum includes the element
+func (enum ClusterState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ClusterState enum
+func (enum ClusterState) Values() []string {
+	return []string{
+		ClusterStateStarting,
+		ClusterStateBootstrapping,
+		ClusterStateRunning,
+		ClusterStateWaiting,
+		ClusterStateTerminating,
+		ClusterStateTerminated,
+		ClusterStateTerminatedWithErrors,
+	}
+}
 
 const (
 	// ClusterStateChangeReasonCodeInternalError is a ClusterStateChangeReasonCode enum value
@@ -12086,6 +12231,34 @@ const (
 	ClusterStateChangeReasonCodeAllStepsCompleted = "ALL_STEPS_COMPLETED"
 )
 
+// ClusterStateChangeReasonCode is an enum
+type ClusterStateChangeReasonCode struct{}
+
+// Contains returns whether the ClusterStateChangeReasonCode enum includes the element
+func (enum ClusterStateChangeReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ClusterStateChangeReasonCode enum
+func (enum ClusterStateChangeReasonCode) Values() []string {
+	return []string{
+		ClusterStateChangeReasonCodeInternalError,
+		ClusterStateChangeReasonCodeValidationError,
+		ClusterStateChangeReasonCodeInstanceFailure,
+		ClusterStateChangeReasonCodeInstanceFleetTimeout,
+		ClusterStateChangeReasonCodeBootstrapFailure,
+		ClusterStateChangeReasonCodeUserRequest,
+		ClusterStateChangeReasonCodeStepFailure,
+		ClusterStateChangeReasonCodeAllStepsCompleted,
+	}
+}
+
 const (
 	// ComparisonOperatorGreaterThanOrEqual is a ComparisonOperator enum value
 	ComparisonOperatorGreaterThanOrEqual = "GREATER_THAN_OR_EQUAL"
@@ -12100,6 +12273,30 @@ const (
 	ComparisonOperatorLessThanOrEqual = "LESS_THAN_OR_EQUAL"
 )
 
+// ComparisonOperator is an enum
+type ComparisonOperator struct{}
+
+// Contains returns whether the ComparisonOperator enum includes the element
+func (enum ComparisonOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComparisonOperator enum
+func (enum ComparisonOperator) Values() []string {
+	return []string{
+		ComparisonOperatorGreaterThanOrEqual,
+		ComparisonOperatorGreaterThan,
+		ComparisonOperatorLessThan,
+		ComparisonOperatorLessThanOrEqual,
+	}
+}
+
 const (
 	// ComputeLimitsUnitTypeInstanceFleetUnits is a ComputeLimitsUnitType enum value
 	ComputeLimitsUnitTypeInstanceFleetUnits = "InstanceFleetUnits"
@@ -12111,6 +12308,29 @@ const (
 	ComputeLimitsUnitTypeVcpu = "VCPU"
 )
 
+// ComputeLimitsUnitType is an enum
+type ComputeLimitsUnitType struct{}
+
+// Contains returns whether the ComputeLimitsUnitType enum includes the element
+func (enum ComputeLimitsUnitType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComputeLimitsUnitType enum
+func (enum ComputeLimitsUnitType) Values() []string {
+	return []string{
+		ComputeLimitsUnitTypeInstanceFleetUnits,
+		ComputeLimitsUnitTypeInstances,
+		ComputeLimitsUnitTypeVcpu,
+	}
+}
+
 const (
 	// InstanceCollectionTypeInstanceFleet is a InstanceCollectionType enum value
 	InstanceCollectionTypeInstanceFleet = "INSTANCE_FLEET"
@@ -12118,6 +12338,28 @@ const (
 	// InstanceCollectionTypeInstanceGroup is a InstanceCollectionType enum value
 	InstanceCollectionTypeInstanceGroup = "INSTANCE_GROUP"
 )
+
+// InstanceCollectionType is an enum
+type InstanceCollectionType struct{}
+
+// Contains returns whether the InstanceCollectionType enum includes the element
+func (enum InstanceCollectionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceCollectionType enum
+func (enum InstanceCollectionType) Values() []string {
+	return []string{
+		InstanceCollectionTypeInstanceFleet,
+		InstanceCollectionTypeInstanceGroup,
+	}
+}
 
 const (
 	// InstanceFleetStateProvisioning is a InstanceFleetState enum value
@@ -12142,6 +12384,33 @@ const (
 	InstanceFleetStateTerminated = "TERMINATED"
 )
 
+// InstanceFleetState is an enum
+type InstanceFleetState struct{}
+
+// Contains returns whether the InstanceFleetState enum includes the element
+func (enum InstanceFleetState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceFleetState enum
+func (enum InstanceFleetState) Values() []string {
+	return []string{
+		InstanceFleetStateProvisioning,
+		InstanceFleetStateBootstrapping,
+		InstanceFleetStateRunning,
+		InstanceFleetStateResizing,
+		InstanceFleetStateSuspended,
+		InstanceFleetStateTerminating,
+		InstanceFleetStateTerminated,
+	}
+}
+
 const (
 	// InstanceFleetStateChangeReasonCodeInternalError is a InstanceFleetStateChangeReasonCode enum value
 	InstanceFleetStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
@@ -12156,6 +12425,30 @@ const (
 	InstanceFleetStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
 )
 
+// InstanceFleetStateChangeReasonCode is an enum
+type InstanceFleetStateChangeReasonCode struct{}
+
+// Contains returns whether the InstanceFleetStateChangeReasonCode enum includes the element
+func (enum InstanceFleetStateChangeReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceFleetStateChangeReasonCode enum
+func (enum InstanceFleetStateChangeReasonCode) Values() []string {
+	return []string{
+		InstanceFleetStateChangeReasonCodeInternalError,
+		InstanceFleetStateChangeReasonCodeValidationError,
+		InstanceFleetStateChangeReasonCodeInstanceFailure,
+		InstanceFleetStateChangeReasonCodeClusterTerminated,
+	}
+}
+
 const (
 	// InstanceFleetTypeMaster is a InstanceFleetType enum value
 	InstanceFleetTypeMaster = "MASTER"
@@ -12166,6 +12459,29 @@ const (
 	// InstanceFleetTypeTask is a InstanceFleetType enum value
 	InstanceFleetTypeTask = "TASK"
 )
+
+// InstanceFleetType is an enum
+type InstanceFleetType struct{}
+
+// Contains returns whether the InstanceFleetType enum includes the element
+func (enum InstanceFleetType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceFleetType enum
+func (enum InstanceFleetType) Values() []string {
+	return []string{
+		InstanceFleetTypeMaster,
+		InstanceFleetTypeCore,
+		InstanceFleetTypeTask,
+	}
+}
 
 const (
 	// InstanceGroupStateProvisioning is a InstanceGroupState enum value
@@ -12202,6 +12518,37 @@ const (
 	InstanceGroupStateEnded = "ENDED"
 )
 
+// InstanceGroupState is an enum
+type InstanceGroupState struct{}
+
+// Contains returns whether the InstanceGroupState enum includes the element
+func (enum InstanceGroupState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceGroupState enum
+func (enum InstanceGroupState) Values() []string {
+	return []string{
+		InstanceGroupStateProvisioning,
+		InstanceGroupStateBootstrapping,
+		InstanceGroupStateRunning,
+		InstanceGroupStateReconfiguring,
+		InstanceGroupStateResizing,
+		InstanceGroupStateSuspended,
+		InstanceGroupStateTerminating,
+		InstanceGroupStateTerminated,
+		InstanceGroupStateArrested,
+		InstanceGroupStateShuttingDown,
+		InstanceGroupStateEnded,
+	}
+}
+
 const (
 	// InstanceGroupStateChangeReasonCodeInternalError is a InstanceGroupStateChangeReasonCode enum value
 	InstanceGroupStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
@@ -12216,6 +12563,30 @@ const (
 	InstanceGroupStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
 )
 
+// InstanceGroupStateChangeReasonCode is an enum
+type InstanceGroupStateChangeReasonCode struct{}
+
+// Contains returns whether the InstanceGroupStateChangeReasonCode enum includes the element
+func (enum InstanceGroupStateChangeReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceGroupStateChangeReasonCode enum
+func (enum InstanceGroupStateChangeReasonCode) Values() []string {
+	return []string{
+		InstanceGroupStateChangeReasonCodeInternalError,
+		InstanceGroupStateChangeReasonCodeValidationError,
+		InstanceGroupStateChangeReasonCodeInstanceFailure,
+		InstanceGroupStateChangeReasonCodeClusterTerminated,
+	}
+}
+
 const (
 	// InstanceGroupTypeMaster is a InstanceGroupType enum value
 	InstanceGroupTypeMaster = "MASTER"
@@ -12227,6 +12598,29 @@ const (
 	InstanceGroupTypeTask = "TASK"
 )
 
+// InstanceGroupType is an enum
+type InstanceGroupType struct{}
+
+// Contains returns whether the InstanceGroupType enum includes the element
+func (enum InstanceGroupType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceGroupType enum
+func (enum InstanceGroupType) Values() []string {
+	return []string{
+		InstanceGroupTypeMaster,
+		InstanceGroupTypeCore,
+		InstanceGroupTypeTask,
+	}
+}
+
 const (
 	// InstanceRoleTypeMaster is a InstanceRoleType enum value
 	InstanceRoleTypeMaster = "MASTER"
@@ -12237,6 +12631,29 @@ const (
 	// InstanceRoleTypeTask is a InstanceRoleType enum value
 	InstanceRoleTypeTask = "TASK"
 )
+
+// InstanceRoleType is an enum
+type InstanceRoleType struct{}
+
+// Contains returns whether the InstanceRoleType enum includes the element
+func (enum InstanceRoleType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceRoleType enum
+func (enum InstanceRoleType) Values() []string {
+	return []string{
+		InstanceRoleTypeMaster,
+		InstanceRoleTypeCore,
+		InstanceRoleTypeTask,
+	}
+}
 
 const (
 	// InstanceStateAwaitingFulfillment is a InstanceState enum value
@@ -12255,6 +12672,31 @@ const (
 	InstanceStateTerminated = "TERMINATED"
 )
 
+// InstanceState is an enum
+type InstanceState struct{}
+
+// Contains returns whether the InstanceState enum includes the element
+func (enum InstanceState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceState enum
+func (enum InstanceState) Values() []string {
+	return []string{
+		InstanceStateAwaitingFulfillment,
+		InstanceStateProvisioning,
+		InstanceStateBootstrapping,
+		InstanceStateRunning,
+		InstanceStateTerminated,
+	}
+}
+
 const (
 	// InstanceStateChangeReasonCodeInternalError is a InstanceStateChangeReasonCode enum value
 	InstanceStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
@@ -12271,6 +12713,31 @@ const (
 	// InstanceStateChangeReasonCodeClusterTerminated is a InstanceStateChangeReasonCode enum value
 	InstanceStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
 )
+
+// InstanceStateChangeReasonCode is an enum
+type InstanceStateChangeReasonCode struct{}
+
+// Contains returns whether the InstanceStateChangeReasonCode enum includes the element
+func (enum InstanceStateChangeReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InstanceStateChangeReasonCode enum
+func (enum InstanceStateChangeReasonCode) Values() []string {
+	return []string{
+		InstanceStateChangeReasonCodeInternalError,
+		InstanceStateChangeReasonCodeValidationError,
+		InstanceStateChangeReasonCodeInstanceFailure,
+		InstanceStateChangeReasonCodeBootstrapFailure,
+		InstanceStateChangeReasonCodeClusterTerminated,
+	}
+}
 
 // The type of instance.
 const (
@@ -12299,6 +12766,34 @@ const (
 	JobFlowExecutionStateFailed = "FAILED"
 )
 
+// JobFlowExecutionState is an enum
+type JobFlowExecutionState struct{}
+
+// Contains returns whether the JobFlowExecutionState enum includes the element
+func (enum JobFlowExecutionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobFlowExecutionState enum
+func (enum JobFlowExecutionState) Values() []string {
+	return []string{
+		JobFlowExecutionStateStarting,
+		JobFlowExecutionStateBootstrapping,
+		JobFlowExecutionStateRunning,
+		JobFlowExecutionStateWaiting,
+		JobFlowExecutionStateShuttingDown,
+		JobFlowExecutionStateTerminated,
+		JobFlowExecutionStateCompleted,
+		JobFlowExecutionStateFailed,
+	}
+}
+
 const (
 	// MarketTypeOnDemand is a MarketType enum value
 	MarketTypeOnDemand = "ON_DEMAND"
@@ -12307,10 +12802,53 @@ const (
 	MarketTypeSpot = "SPOT"
 )
 
+// MarketType is an enum
+type MarketType struct{}
+
+// Contains returns whether the MarketType enum includes the element
+func (enum MarketType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MarketType enum
+func (enum MarketType) Values() []string {
+	return []string{
+		MarketTypeOnDemand,
+		MarketTypeSpot,
+	}
+}
+
 const (
 	// OnDemandProvisioningAllocationStrategyLowestPrice is a OnDemandProvisioningAllocationStrategy enum value
 	OnDemandProvisioningAllocationStrategyLowestPrice = "lowest-price"
 )
+
+// OnDemandProvisioningAllocationStrategy is an enum
+type OnDemandProvisioningAllocationStrategy struct{}
+
+// Contains returns whether the OnDemandProvisioningAllocationStrategy enum includes the element
+func (enum OnDemandProvisioningAllocationStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OnDemandProvisioningAllocationStrategy enum
+func (enum OnDemandProvisioningAllocationStrategy) Values() []string {
+	return []string{
+		OnDemandProvisioningAllocationStrategyLowestPrice,
+	}
+}
 
 const (
 	// RepoUpgradeOnBootSecurity is a RepoUpgradeOnBoot enum value
@@ -12320,6 +12858,28 @@ const (
 	RepoUpgradeOnBootNone = "NONE"
 )
 
+// RepoUpgradeOnBoot is an enum
+type RepoUpgradeOnBoot struct{}
+
+// Contains returns whether the RepoUpgradeOnBoot enum includes the element
+func (enum RepoUpgradeOnBoot) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RepoUpgradeOnBoot enum
+func (enum RepoUpgradeOnBoot) Values() []string {
+	return []string{
+		RepoUpgradeOnBootSecurity,
+		RepoUpgradeOnBootNone,
+	}
+}
+
 const (
 	// ScaleDownBehaviorTerminateAtInstanceHour is a ScaleDownBehavior enum value
 	ScaleDownBehaviorTerminateAtInstanceHour = "TERMINATE_AT_INSTANCE_HOUR"
@@ -12328,10 +12888,53 @@ const (
 	ScaleDownBehaviorTerminateAtTaskCompletion = "TERMINATE_AT_TASK_COMPLETION"
 )
 
+// ScaleDownBehavior is an enum
+type ScaleDownBehavior struct{}
+
+// Contains returns whether the ScaleDownBehavior enum includes the element
+func (enum ScaleDownBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScaleDownBehavior enum
+func (enum ScaleDownBehavior) Values() []string {
+	return []string{
+		ScaleDownBehaviorTerminateAtInstanceHour,
+		ScaleDownBehaviorTerminateAtTaskCompletion,
+	}
+}
+
 const (
 	// SpotProvisioningAllocationStrategyCapacityOptimized is a SpotProvisioningAllocationStrategy enum value
 	SpotProvisioningAllocationStrategyCapacityOptimized = "capacity-optimized"
 )
+
+// SpotProvisioningAllocationStrategy is an enum
+type SpotProvisioningAllocationStrategy struct{}
+
+// Contains returns whether the SpotProvisioningAllocationStrategy enum includes the element
+func (enum SpotProvisioningAllocationStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SpotProvisioningAllocationStrategy enum
+func (enum SpotProvisioningAllocationStrategy) Values() []string {
+	return []string{
+		SpotProvisioningAllocationStrategyCapacityOptimized,
+	}
+}
 
 const (
 	// SpotProvisioningTimeoutActionSwitchToOnDemand is a SpotProvisioningTimeoutAction enum value
@@ -12340,6 +12943,28 @@ const (
 	// SpotProvisioningTimeoutActionTerminateCluster is a SpotProvisioningTimeoutAction enum value
 	SpotProvisioningTimeoutActionTerminateCluster = "TERMINATE_CLUSTER"
 )
+
+// SpotProvisioningTimeoutAction is an enum
+type SpotProvisioningTimeoutAction struct{}
+
+// Contains returns whether the SpotProvisioningTimeoutAction enum includes the element
+func (enum SpotProvisioningTimeoutAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SpotProvisioningTimeoutAction enum
+func (enum SpotProvisioningTimeoutAction) Values() []string {
+	return []string{
+		SpotProvisioningTimeoutActionSwitchToOnDemand,
+		SpotProvisioningTimeoutActionTerminateCluster,
+	}
+}
 
 const (
 	// StatisticSampleCount is a Statistic enum value
@@ -12358,6 +12983,31 @@ const (
 	StatisticMaximum = "MAXIMUM"
 )
 
+// Statistic is an enum
+type Statistic struct{}
+
+// Contains returns whether the Statistic enum includes the element
+func (enum Statistic) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Statistic enum
+func (enum Statistic) Values() []string {
+	return []string{
+		StatisticSampleCount,
+		StatisticAverage,
+		StatisticSum,
+		StatisticMinimum,
+		StatisticMaximum,
+	}
+}
+
 const (
 	// StepCancellationOptionSendInterrupt is a StepCancellationOption enum value
 	StepCancellationOptionSendInterrupt = "SEND_INTERRUPT"
@@ -12365,6 +13015,28 @@ const (
 	// StepCancellationOptionTerminateProcess is a StepCancellationOption enum value
 	StepCancellationOptionTerminateProcess = "TERMINATE_PROCESS"
 )
+
+// StepCancellationOption is an enum
+type StepCancellationOption struct{}
+
+// Contains returns whether the StepCancellationOption enum includes the element
+func (enum StepCancellationOption) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StepCancellationOption enum
+func (enum StepCancellationOption) Values() []string {
+	return []string{
+		StepCancellationOptionSendInterrupt,
+		StepCancellationOptionTerminateProcess,
+	}
+}
 
 const (
 	// StepExecutionStatePending is a StepExecutionState enum value
@@ -12389,6 +13061,33 @@ const (
 	StepExecutionStateInterrupted = "INTERRUPTED"
 )
 
+// StepExecutionState is an enum
+type StepExecutionState struct{}
+
+// Contains returns whether the StepExecutionState enum includes the element
+func (enum StepExecutionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StepExecutionState enum
+func (enum StepExecutionState) Values() []string {
+	return []string{
+		StepExecutionStatePending,
+		StepExecutionStateRunning,
+		StepExecutionStateContinue,
+		StepExecutionStateCompleted,
+		StepExecutionStateCancelled,
+		StepExecutionStateFailed,
+		StepExecutionStateInterrupted,
+	}
+}
+
 const (
 	// StepStatePending is a StepState enum value
 	StepStatePending = "PENDING"
@@ -12412,10 +13111,58 @@ const (
 	StepStateInterrupted = "INTERRUPTED"
 )
 
+// StepState is an enum
+type StepState struct{}
+
+// Contains returns whether the StepState enum includes the element
+func (enum StepState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StepState enum
+func (enum StepState) Values() []string {
+	return []string{
+		StepStatePending,
+		StepStateCancelPending,
+		StepStateRunning,
+		StepStateCompleted,
+		StepStateCancelled,
+		StepStateFailed,
+		StepStateInterrupted,
+	}
+}
+
 const (
 	// StepStateChangeReasonCodeNone is a StepStateChangeReasonCode enum value
 	StepStateChangeReasonCodeNone = "NONE"
 )
+
+// StepStateChangeReasonCode is an enum
+type StepStateChangeReasonCode struct{}
+
+// Contains returns whether the StepStateChangeReasonCode enum includes the element
+func (enum StepStateChangeReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StepStateChangeReasonCode enum
+func (enum StepStateChangeReasonCode) Values() []string {
+	return []string{
+		StepStateChangeReasonCodeNone,
+	}
+}
 
 const (
 	// UnitNone is a Unit enum value
@@ -12499,3 +13246,50 @@ const (
 	// UnitCountPerSecond is a Unit enum value
 	UnitCountPerSecond = "COUNT_PER_SECOND"
 )
+
+// Unit is an enum
+type Unit struct{}
+
+// Contains returns whether the Unit enum includes the element
+func (enum Unit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Unit enum
+func (enum Unit) Values() []string {
+	return []string{
+		UnitNone,
+		UnitSeconds,
+		UnitMicroSeconds,
+		UnitMilliSeconds,
+		UnitBytes,
+		UnitKiloBytes,
+		UnitMegaBytes,
+		UnitGigaBytes,
+		UnitTeraBytes,
+		UnitBits,
+		UnitKiloBits,
+		UnitMegaBits,
+		UnitGigaBits,
+		UnitTeraBits,
+		UnitPercent,
+		UnitCount,
+		UnitBytesPerSecond,
+		UnitKiloBytesPerSecond,
+		UnitMegaBytesPerSecond,
+		UnitGigaBytesPerSecond,
+		UnitTeraBytesPerSecond,
+		UnitBitsPerSecond,
+		UnitKiloBitsPerSecond,
+		UnitMegaBitsPerSecond,
+		UnitGigaBitsPerSecond,
+		UnitTeraBitsPerSecond,
+		UnitCountPerSecond,
+	}
+}

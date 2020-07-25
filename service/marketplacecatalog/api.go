@@ -2443,6 +2443,31 @@ const (
 	ChangeStatusFailed = "FAILED"
 )
 
+// ChangeStatus is an enum
+type ChangeStatus struct{}
+
+// Contains returns whether the ChangeStatus enum includes the element
+func (enum ChangeStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChangeStatus enum
+func (enum ChangeStatus) Values() []string {
+	return []string{
+		ChangeStatusPreparing,
+		ChangeStatusApplying,
+		ChangeStatusSucceeded,
+		ChangeStatusCancelled,
+		ChangeStatusFailed,
+	}
+}
+
 const (
 	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "ASCENDING"
@@ -2450,3 +2475,25 @@ const (
 	// SortOrderDescending is a SortOrder enum value
 	SortOrderDescending = "DESCENDING"
 )
+
+// SortOrder is an enum
+type SortOrder struct{}
+
+// Contains returns whether the SortOrder enum includes the element
+func (enum SortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortOrder enum
+func (enum SortOrder) Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
+	}
+}

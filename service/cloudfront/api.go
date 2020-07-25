@@ -19343,6 +19343,30 @@ const (
 	CachePolicyCookieBehaviorAll = "all"
 )
 
+// CachePolicyCookieBehavior is an enum
+type CachePolicyCookieBehavior struct{}
+
+// Contains returns whether the CachePolicyCookieBehavior enum includes the element
+func (enum CachePolicyCookieBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CachePolicyCookieBehavior enum
+func (enum CachePolicyCookieBehavior) Values() []string {
+	return []string{
+		CachePolicyCookieBehaviorNone,
+		CachePolicyCookieBehaviorWhitelist,
+		CachePolicyCookieBehaviorAllExcept,
+		CachePolicyCookieBehaviorAll,
+	}
+}
+
 const (
 	// CachePolicyHeaderBehaviorNone is a CachePolicyHeaderBehavior enum value
 	CachePolicyHeaderBehaviorNone = "none"
@@ -19350,6 +19374,28 @@ const (
 	// CachePolicyHeaderBehaviorWhitelist is a CachePolicyHeaderBehavior enum value
 	CachePolicyHeaderBehaviorWhitelist = "whitelist"
 )
+
+// CachePolicyHeaderBehavior is an enum
+type CachePolicyHeaderBehavior struct{}
+
+// Contains returns whether the CachePolicyHeaderBehavior enum includes the element
+func (enum CachePolicyHeaderBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CachePolicyHeaderBehavior enum
+func (enum CachePolicyHeaderBehavior) Values() []string {
+	return []string{
+		CachePolicyHeaderBehaviorNone,
+		CachePolicyHeaderBehaviorWhitelist,
+	}
+}
 
 const (
 	// CachePolicyQueryStringBehaviorNone is a CachePolicyQueryStringBehavior enum value
@@ -19365,6 +19411,30 @@ const (
 	CachePolicyQueryStringBehaviorAll = "all"
 )
 
+// CachePolicyQueryStringBehavior is an enum
+type CachePolicyQueryStringBehavior struct{}
+
+// Contains returns whether the CachePolicyQueryStringBehavior enum includes the element
+func (enum CachePolicyQueryStringBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CachePolicyQueryStringBehavior enum
+func (enum CachePolicyQueryStringBehavior) Values() []string {
+	return []string{
+		CachePolicyQueryStringBehaviorNone,
+		CachePolicyQueryStringBehaviorWhitelist,
+		CachePolicyQueryStringBehaviorAllExcept,
+		CachePolicyQueryStringBehaviorAll,
+	}
+}
+
 const (
 	// CachePolicyTypeManaged is a CachePolicyType enum value
 	CachePolicyTypeManaged = "managed"
@@ -19372,6 +19442,28 @@ const (
 	// CachePolicyTypeCustom is a CachePolicyType enum value
 	CachePolicyTypeCustom = "custom"
 )
+
+// CachePolicyType is an enum
+type CachePolicyType struct{}
+
+// Contains returns whether the CachePolicyType enum includes the element
+func (enum CachePolicyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CachePolicyType enum
+func (enum CachePolicyType) Values() []string {
+	return []string{
+		CachePolicyTypeManaged,
+		CachePolicyTypeCustom,
+	}
+}
 
 const (
 	// CertificateSourceCloudfront is a CertificateSource enum value
@@ -19383,6 +19475,29 @@ const (
 	// CertificateSourceAcm is a CertificateSource enum value
 	CertificateSourceAcm = "acm"
 )
+
+// CertificateSource is an enum
+type CertificateSource struct{}
+
+// Contains returns whether the CertificateSource enum includes the element
+func (enum CertificateSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CertificateSource enum
+func (enum CertificateSource) Values() []string {
+	return []string{
+		CertificateSourceCloudfront,
+		CertificateSourceIam,
+		CertificateSourceAcm,
+	}
+}
 
 const (
 	// EventTypeViewerRequest is a EventType enum value
@@ -19398,10 +19513,55 @@ const (
 	EventTypeOriginResponse = "origin-response"
 )
 
+// EventType is an enum
+type EventType struct{}
+
+// Contains returns whether the EventType enum includes the element
+func (enum EventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventType enum
+func (enum EventType) Values() []string {
+	return []string{
+		EventTypeViewerRequest,
+		EventTypeViewerResponse,
+		EventTypeOriginRequest,
+		EventTypeOriginResponse,
+	}
+}
+
 const (
 	// FormatUrlencoded is a Format enum value
 	FormatUrlencoded = "URLEncoded"
 )
+
+// Format is an enum
+type Format struct{}
+
+// Contains returns whether the Format enum includes the element
+func (enum Format) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Format enum
+func (enum Format) Values() []string {
+	return []string{
+		FormatUrlencoded,
+	}
+}
 
 const (
 	// GeoRestrictionTypeBlacklist is a GeoRestrictionType enum value
@@ -19414,6 +19574,29 @@ const (
 	GeoRestrictionTypeNone = "none"
 )
 
+// GeoRestrictionType is an enum
+type GeoRestrictionType struct{}
+
+// Contains returns whether the GeoRestrictionType enum includes the element
+func (enum GeoRestrictionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GeoRestrictionType enum
+func (enum GeoRestrictionType) Values() []string {
+	return []string{
+		GeoRestrictionTypeBlacklist,
+		GeoRestrictionTypeWhitelist,
+		GeoRestrictionTypeNone,
+	}
+}
+
 const (
 	// HttpVersionHttp11 is a HttpVersion enum value
 	HttpVersionHttp11 = "http1.1"
@@ -19421,6 +19604,28 @@ const (
 	// HttpVersionHttp2 is a HttpVersion enum value
 	HttpVersionHttp2 = "http2"
 )
+
+// HttpVersion is an enum
+type HttpVersion struct{}
+
+// Contains returns whether the HttpVersion enum includes the element
+func (enum HttpVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HttpVersion enum
+func (enum HttpVersion) Values() []string {
+	return []string{
+		HttpVersionHttp11,
+		HttpVersionHttp2,
+	}
+}
 
 const (
 	// ICPRecordalStatusApproved is a ICPRecordalStatus enum value
@@ -19433,6 +19638,29 @@ const (
 	ICPRecordalStatusPending = "PENDING"
 )
 
+// ICPRecordalStatus is an enum
+type ICPRecordalStatus struct{}
+
+// Contains returns whether the ICPRecordalStatus enum includes the element
+func (enum ICPRecordalStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ICPRecordalStatus enum
+func (enum ICPRecordalStatus) Values() []string {
+	return []string{
+		ICPRecordalStatusApproved,
+		ICPRecordalStatusSuspended,
+		ICPRecordalStatusPending,
+	}
+}
+
 const (
 	// ItemSelectionNone is a ItemSelection enum value
 	ItemSelectionNone = "none"
@@ -19443,6 +19671,29 @@ const (
 	// ItemSelectionAll is a ItemSelection enum value
 	ItemSelectionAll = "all"
 )
+
+// ItemSelection is an enum
+type ItemSelection struct{}
+
+// Contains returns whether the ItemSelection enum includes the element
+func (enum ItemSelection) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ItemSelection enum
+func (enum ItemSelection) Values() []string {
+	return []string{
+		ItemSelectionNone,
+		ItemSelectionWhitelist,
+		ItemSelectionAll,
+	}
+}
 
 const (
 	// MethodGet is a Method enum value
@@ -19467,6 +19718,33 @@ const (
 	MethodDelete = "DELETE"
 )
 
+// Method is an enum
+type Method struct{}
+
+// Contains returns whether the Method enum includes the element
+func (enum Method) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Method enum
+func (enum Method) Values() []string {
+	return []string{
+		MethodGet,
+		MethodHead,
+		MethodPost,
+		MethodPut,
+		MethodPatch,
+		MethodOptions,
+		MethodDelete,
+	}
+}
+
 const (
 	// MinimumProtocolVersionSslv3 is a MinimumProtocolVersion enum value
 	MinimumProtocolVersionSslv3 = "SSLv3"
@@ -19487,6 +19765,32 @@ const (
 	MinimumProtocolVersionTlsv122019 = "TLSv1.2_2019"
 )
 
+// MinimumProtocolVersion is an enum
+type MinimumProtocolVersion struct{}
+
+// Contains returns whether the MinimumProtocolVersion enum includes the element
+func (enum MinimumProtocolVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MinimumProtocolVersion enum
+func (enum MinimumProtocolVersion) Values() []string {
+	return []string{
+		MinimumProtocolVersionSslv3,
+		MinimumProtocolVersionTlsv1,
+		MinimumProtocolVersionTlsv12016,
+		MinimumProtocolVersionTlsv112016,
+		MinimumProtocolVersionTlsv122018,
+		MinimumProtocolVersionTlsv122019,
+	}
+}
+
 const (
 	// OriginProtocolPolicyHttpOnly is a OriginProtocolPolicy enum value
 	OriginProtocolPolicyHttpOnly = "http-only"
@@ -19498,6 +19802,29 @@ const (
 	OriginProtocolPolicyHttpsOnly = "https-only"
 )
 
+// OriginProtocolPolicy is an enum
+type OriginProtocolPolicy struct{}
+
+// Contains returns whether the OriginProtocolPolicy enum includes the element
+func (enum OriginProtocolPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OriginProtocolPolicy enum
+func (enum OriginProtocolPolicy) Values() []string {
+	return []string{
+		OriginProtocolPolicyHttpOnly,
+		OriginProtocolPolicyMatchViewer,
+		OriginProtocolPolicyHttpsOnly,
+	}
+}
+
 const (
 	// OriginRequestPolicyCookieBehaviorNone is a OriginRequestPolicyCookieBehavior enum value
 	OriginRequestPolicyCookieBehaviorNone = "none"
@@ -19508,6 +19835,29 @@ const (
 	// OriginRequestPolicyCookieBehaviorAll is a OriginRequestPolicyCookieBehavior enum value
 	OriginRequestPolicyCookieBehaviorAll = "all"
 )
+
+// OriginRequestPolicyCookieBehavior is an enum
+type OriginRequestPolicyCookieBehavior struct{}
+
+// Contains returns whether the OriginRequestPolicyCookieBehavior enum includes the element
+func (enum OriginRequestPolicyCookieBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OriginRequestPolicyCookieBehavior enum
+func (enum OriginRequestPolicyCookieBehavior) Values() []string {
+	return []string{
+		OriginRequestPolicyCookieBehaviorNone,
+		OriginRequestPolicyCookieBehaviorWhitelist,
+		OriginRequestPolicyCookieBehaviorAll,
+	}
+}
 
 const (
 	// OriginRequestPolicyHeaderBehaviorNone is a OriginRequestPolicyHeaderBehavior enum value
@@ -19523,6 +19873,30 @@ const (
 	OriginRequestPolicyHeaderBehaviorAllViewerAndWhitelistCloudFront = "allViewerAndWhitelistCloudFront"
 )
 
+// OriginRequestPolicyHeaderBehavior is an enum
+type OriginRequestPolicyHeaderBehavior struct{}
+
+// Contains returns whether the OriginRequestPolicyHeaderBehavior enum includes the element
+func (enum OriginRequestPolicyHeaderBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OriginRequestPolicyHeaderBehavior enum
+func (enum OriginRequestPolicyHeaderBehavior) Values() []string {
+	return []string{
+		OriginRequestPolicyHeaderBehaviorNone,
+		OriginRequestPolicyHeaderBehaviorWhitelist,
+		OriginRequestPolicyHeaderBehaviorAllViewer,
+		OriginRequestPolicyHeaderBehaviorAllViewerAndWhitelistCloudFront,
+	}
+}
+
 const (
 	// OriginRequestPolicyQueryStringBehaviorNone is a OriginRequestPolicyQueryStringBehavior enum value
 	OriginRequestPolicyQueryStringBehaviorNone = "none"
@@ -19534,6 +19908,29 @@ const (
 	OriginRequestPolicyQueryStringBehaviorAll = "all"
 )
 
+// OriginRequestPolicyQueryStringBehavior is an enum
+type OriginRequestPolicyQueryStringBehavior struct{}
+
+// Contains returns whether the OriginRequestPolicyQueryStringBehavior enum includes the element
+func (enum OriginRequestPolicyQueryStringBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OriginRequestPolicyQueryStringBehavior enum
+func (enum OriginRequestPolicyQueryStringBehavior) Values() []string {
+	return []string{
+		OriginRequestPolicyQueryStringBehaviorNone,
+		OriginRequestPolicyQueryStringBehaviorWhitelist,
+		OriginRequestPolicyQueryStringBehaviorAll,
+	}
+}
+
 const (
 	// OriginRequestPolicyTypeManaged is a OriginRequestPolicyType enum value
 	OriginRequestPolicyTypeManaged = "managed"
@@ -19541,6 +19938,28 @@ const (
 	// OriginRequestPolicyTypeCustom is a OriginRequestPolicyType enum value
 	OriginRequestPolicyTypeCustom = "custom"
 )
+
+// OriginRequestPolicyType is an enum
+type OriginRequestPolicyType struct{}
+
+// Contains returns whether the OriginRequestPolicyType enum includes the element
+func (enum OriginRequestPolicyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OriginRequestPolicyType enum
+func (enum OriginRequestPolicyType) Values() []string {
+	return []string{
+		OriginRequestPolicyTypeManaged,
+		OriginRequestPolicyTypeCustom,
+	}
+}
 
 const (
 	// PriceClassPriceClass100 is a PriceClass enum value
@@ -19553,6 +19972,29 @@ const (
 	PriceClassPriceClassAll = "PriceClass_All"
 )
 
+// PriceClass is an enum
+type PriceClass struct{}
+
+// Contains returns whether the PriceClass enum includes the element
+func (enum PriceClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PriceClass enum
+func (enum PriceClass) Values() []string {
+	return []string{
+		PriceClassPriceClass100,
+		PriceClassPriceClass200,
+		PriceClassPriceClassAll,
+	}
+}
+
 const (
 	// SSLSupportMethodSniOnly is a SSLSupportMethod enum value
 	SSLSupportMethodSniOnly = "sni-only"
@@ -19560,6 +20002,28 @@ const (
 	// SSLSupportMethodVip is a SSLSupportMethod enum value
 	SSLSupportMethodVip = "vip"
 )
+
+// SSLSupportMethod is an enum
+type SSLSupportMethod struct{}
+
+// Contains returns whether the SSLSupportMethod enum includes the element
+func (enum SSLSupportMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SSLSupportMethod enum
+func (enum SSLSupportMethod) Values() []string {
+	return []string{
+		SSLSupportMethodSniOnly,
+		SSLSupportMethodVip,
+	}
+}
 
 const (
 	// SslProtocolSslv3 is a SslProtocol enum value
@@ -19575,6 +20039,30 @@ const (
 	SslProtocolTlsv12 = "TLSv1.2"
 )
 
+// SslProtocol is an enum
+type SslProtocol struct{}
+
+// Contains returns whether the SslProtocol enum includes the element
+func (enum SslProtocol) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SslProtocol enum
+func (enum SslProtocol) Values() []string {
+	return []string{
+		SslProtocolSslv3,
+		SslProtocolTlsv1,
+		SslProtocolTlsv11,
+		SslProtocolTlsv12,
+	}
+}
+
 const (
 	// ViewerProtocolPolicyAllowAll is a ViewerProtocolPolicy enum value
 	ViewerProtocolPolicyAllowAll = "allow-all"
@@ -19585,3 +20073,26 @@ const (
 	// ViewerProtocolPolicyRedirectToHttps is a ViewerProtocolPolicy enum value
 	ViewerProtocolPolicyRedirectToHttps = "redirect-to-https"
 )
+
+// ViewerProtocolPolicy is an enum
+type ViewerProtocolPolicy struct{}
+
+// Contains returns whether the ViewerProtocolPolicy enum includes the element
+func (enum ViewerProtocolPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ViewerProtocolPolicy enum
+func (enum ViewerProtocolPolicy) Values() []string {
+	return []string{
+		ViewerProtocolPolicyAllowAll,
+		ViewerProtocolPolicyHttpsOnly,
+		ViewerProtocolPolicyRedirectToHttps,
+	}
+}

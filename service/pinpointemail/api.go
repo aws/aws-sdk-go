@@ -10502,6 +10502,28 @@ const (
 	BehaviorOnMxFailureRejectMessage = "REJECT_MESSAGE"
 )
 
+// BehaviorOnMxFailure is an enum
+type BehaviorOnMxFailure struct{}
+
+// Contains returns whether the BehaviorOnMxFailure enum includes the element
+func (enum BehaviorOnMxFailure) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BehaviorOnMxFailure enum
+func (enum BehaviorOnMxFailure) Values() []string {
+	return []string{
+		BehaviorOnMxFailureUseDefaultValue,
+		BehaviorOnMxFailureRejectMessage,
+	}
+}
+
 // The current status of your Deliverability dashboard subscription. If this
 // value is PENDING_EXPIRATION, your subscription is scheduled to expire at
 // the end of the current calendar month.
@@ -10516,6 +10538,29 @@ const (
 	DeliverabilityDashboardAccountStatusDisabled = "DISABLED"
 )
 
+// DeliverabilityDashboardAccountStatus is an enum
+type DeliverabilityDashboardAccountStatus struct{}
+
+// Contains returns whether the DeliverabilityDashboardAccountStatus enum includes the element
+func (enum DeliverabilityDashboardAccountStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeliverabilityDashboardAccountStatus enum
+func (enum DeliverabilityDashboardAccountStatus) Values() []string {
+	return []string{
+		DeliverabilityDashboardAccountStatusActive,
+		DeliverabilityDashboardAccountStatusPendingExpiration,
+		DeliverabilityDashboardAccountStatusDisabled,
+	}
+}
+
 // The status of a predictive inbox placement test. If the status is IN_PROGRESS,
 // then the predictive inbox placement test is currently running. Predictive
 // inbox placement tests are usually complete within 24 hours of creating the
@@ -10528,6 +10573,28 @@ const (
 	// DeliverabilityTestStatusCompleted is a DeliverabilityTestStatus enum value
 	DeliverabilityTestStatusCompleted = "COMPLETED"
 )
+
+// DeliverabilityTestStatus is an enum
+type DeliverabilityTestStatus struct{}
+
+// Contains returns whether the DeliverabilityTestStatus enum includes the element
+func (enum DeliverabilityTestStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeliverabilityTestStatus enum
+func (enum DeliverabilityTestStatus) Values() []string {
+	return []string{
+		DeliverabilityTestStatusInProgress,
+		DeliverabilityTestStatusCompleted,
+	}
+}
 
 // The location where Amazon Pinpoint finds the value of a dimension to publish
 // to Amazon CloudWatch. If you want Amazon Pinpoint to use the message tags
@@ -10545,6 +10612,29 @@ const (
 	// DimensionValueSourceLinkTag is a DimensionValueSource enum value
 	DimensionValueSourceLinkTag = "LINK_TAG"
 )
+
+// DimensionValueSource is an enum
+type DimensionValueSource struct{}
+
+// Contains returns whether the DimensionValueSource enum includes the element
+func (enum DimensionValueSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DimensionValueSource enum
+func (enum DimensionValueSource) Values() []string {
+	return []string{
+		DimensionValueSourceMessageTag,
+		DimensionValueSourceEmailHeader,
+		DimensionValueSourceLinkTag,
+	}
+}
 
 // The DKIM authentication status of the identity. The status can be one of
 // the following:
@@ -10581,6 +10671,31 @@ const (
 	DkimStatusNotStarted = "NOT_STARTED"
 )
 
+// DkimStatus is an enum
+type DkimStatus struct{}
+
+// Contains returns whether the DkimStatus enum includes the element
+func (enum DkimStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DkimStatus enum
+func (enum DkimStatus) Values() []string {
+	return []string{
+		DkimStatusPending,
+		DkimStatusSuccess,
+		DkimStatusFailed,
+		DkimStatusTemporaryFailure,
+		DkimStatusNotStarted,
+	}
+}
+
 // An email sending event type. For example, email sends, opens, and bounces
 // are all email events.
 const (
@@ -10609,6 +10724,34 @@ const (
 	EventTypeRenderingFailure = "RENDERING_FAILURE"
 )
 
+// EventType is an enum
+type EventType struct{}
+
+// Contains returns whether the EventType enum includes the element
+func (enum EventType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventType enum
+func (enum EventType) Values() []string {
+	return []string{
+		EventTypeSend,
+		EventTypeReject,
+		EventTypeBounce,
+		EventTypeComplaint,
+		EventTypeDelivery,
+		EventTypeOpen,
+		EventTypeClick,
+		EventTypeRenderingFailure,
+	}
+}
+
 // The email identity type. The identity type can be one of the following:
 //
 //    * EMAIL_ADDRESS – The identity is an email address.
@@ -10624,6 +10767,29 @@ const (
 	// IdentityTypeManagedDomain is a IdentityType enum value
 	IdentityTypeManagedDomain = "MANAGED_DOMAIN"
 )
+
+// IdentityType is an enum
+type IdentityType struct{}
+
+// Contains returns whether the IdentityType enum includes the element
+func (enum IdentityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IdentityType enum
+func (enum IdentityType) Values() []string {
+	return []string{
+		IdentityTypeEmailAddress,
+		IdentityTypeDomain,
+		IdentityTypeManagedDomain,
+	}
+}
 
 // The status of the MAIL FROM domain. This status can have the following values:
 //
@@ -10652,6 +10818,30 @@ const (
 	MailFromDomainStatusTemporaryFailure = "TEMPORARY_FAILURE"
 )
 
+// MailFromDomainStatus is an enum
+type MailFromDomainStatus struct{}
+
+// Contains returns whether the MailFromDomainStatus enum includes the element
+func (enum MailFromDomainStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MailFromDomainStatus enum
+func (enum MailFromDomainStatus) Values() []string {
+	return []string{
+		MailFromDomainStatusPending,
+		MailFromDomainStatusSuccess,
+		MailFromDomainStatusFailed,
+		MailFromDomainStatusTemporaryFailure,
+	}
+}
+
 // Specifies whether messages that use the configuration set are required to
 // use Transport Layer Security (TLS). If the value is Require, messages are
 // only delivered if a TLS connection can be established. If the value is Optional,
@@ -10664,6 +10854,28 @@ const (
 	TlsPolicyOptional = "OPTIONAL"
 )
 
+// TlsPolicy is an enum
+type TlsPolicy struct{}
+
+// Contains returns whether the TlsPolicy enum includes the element
+func (enum TlsPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TlsPolicy enum
+func (enum TlsPolicy) Values() []string {
+	return []string{
+		TlsPolicyRequire,
+		TlsPolicyOptional,
+	}
+}
+
 // The warmup status of a dedicated IP.
 const (
 	// WarmupStatusInProgress is a WarmupStatus enum value
@@ -10672,3 +10884,25 @@ const (
 	// WarmupStatusDone is a WarmupStatus enum value
 	WarmupStatusDone = "DONE"
 )
+
+// WarmupStatus is an enum
+type WarmupStatus struct{}
+
+// Contains returns whether the WarmupStatus enum includes the element
+func (enum WarmupStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the WarmupStatus enum
+func (enum WarmupStatus) Values() []string {
+	return []string{
+		WarmupStatusInProgress,
+		WarmupStatusDone,
+	}
+}

@@ -17704,6 +17704,32 @@ const (
 	BulkDeploymentStatusFailed = "Failed"
 )
 
+// BulkDeploymentStatus is an enum
+type BulkDeploymentStatus struct{}
+
+// Contains returns whether the BulkDeploymentStatus enum includes the element
+func (enum BulkDeploymentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BulkDeploymentStatus enum
+func (enum BulkDeploymentStatus) Values() []string {
+	return []string{
+		BulkDeploymentStatusInitializing,
+		BulkDeploymentStatusRunning,
+		BulkDeploymentStatusCompleted,
+		BulkDeploymentStatusStopping,
+		BulkDeploymentStatusStopped,
+		BulkDeploymentStatusFailed,
+	}
+}
+
 // The type of deployment. When used for ''CreateDeployment'', only ''NewDeployment''
 // and ''Redeployment'' are valid.
 const (
@@ -17720,6 +17746,30 @@ const (
 	DeploymentTypeForceResetDeployment = "ForceResetDeployment"
 )
 
+// DeploymentType is an enum
+type DeploymentType struct{}
+
+// Contains returns whether the DeploymentType enum includes the element
+func (enum DeploymentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentType enum
+func (enum DeploymentType) Values() []string {
+	return []string{
+		DeploymentTypeNewDeployment,
+		DeploymentTypeRedeployment,
+		DeploymentTypeResetDeployment,
+		DeploymentTypeForceResetDeployment,
+	}
+}
+
 const (
 	// EncodingTypeBinary is a EncodingType enum value
 	EncodingTypeBinary = "binary"
@@ -17727,6 +17777,28 @@ const (
 	// EncodingTypeJson is a EncodingType enum value
 	EncodingTypeJson = "json"
 )
+
+// EncodingType is an enum
+type EncodingType struct{}
+
+// Contains returns whether the EncodingType enum includes the element
+func (enum EncodingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncodingType enum
+func (enum EncodingType) Values() []string {
+	return []string{
+		EncodingTypeBinary,
+		EncodingTypeJson,
+	}
+}
 
 // Specifies whether the Lambda function runs in a Greengrass container (default)
 // or without containerization. Unless your scenario requires that you run without
@@ -17741,6 +17813,28 @@ const (
 	FunctionIsolationModeNoContainer = "NoContainer"
 )
 
+// FunctionIsolationMode is an enum
+type FunctionIsolationMode struct{}
+
+// Contains returns whether the FunctionIsolationMode enum includes the element
+func (enum FunctionIsolationMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FunctionIsolationMode enum
+func (enum FunctionIsolationMode) Values() []string {
+	return []string{
+		FunctionIsolationModeGreengrassContainer,
+		FunctionIsolationModeNoContainer,
+	}
+}
+
 const (
 	// LoggerComponentGreengrassSystem is a LoggerComponent enum value
 	LoggerComponentGreengrassSystem = "GreengrassSystem"
@@ -17748,6 +17842,28 @@ const (
 	// LoggerComponentLambda is a LoggerComponent enum value
 	LoggerComponentLambda = "Lambda"
 )
+
+// LoggerComponent is an enum
+type LoggerComponent struct{}
+
+// Contains returns whether the LoggerComponent enum includes the element
+func (enum LoggerComponent) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoggerComponent enum
+func (enum LoggerComponent) Values() []string {
+	return []string{
+		LoggerComponentGreengrassSystem,
+		LoggerComponentLambda,
+	}
+}
 
 const (
 	// LoggerLevelDebug is a LoggerLevel enum value
@@ -17766,6 +17882,31 @@ const (
 	LoggerLevelFatal = "FATAL"
 )
 
+// LoggerLevel is an enum
+type LoggerLevel struct{}
+
+// Contains returns whether the LoggerLevel enum includes the element
+func (enum LoggerLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoggerLevel enum
+func (enum LoggerLevel) Values() []string {
+	return []string{
+		LoggerLevelDebug,
+		LoggerLevelInfo,
+		LoggerLevelWarn,
+		LoggerLevelError,
+		LoggerLevelFatal,
+	}
+}
+
 const (
 	// LoggerTypeFileSystem is a LoggerType enum value
 	LoggerTypeFileSystem = "FileSystem"
@@ -17773,6 +17914,28 @@ const (
 	// LoggerTypeAwscloudWatch is a LoggerType enum value
 	LoggerTypeAwscloudWatch = "AWSCloudWatch"
 )
+
+// LoggerType is an enum
+type LoggerType struct{}
+
+// Contains returns whether the LoggerType enum includes the element
+func (enum LoggerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoggerType enum
+func (enum LoggerType) Values() []string {
+	return []string{
+		LoggerTypeFileSystem,
+		LoggerTypeAwscloudWatch,
+	}
+}
 
 // The type of permission a function has to access a resource.
 const (
@@ -17783,6 +17946,28 @@ const (
 	PermissionRw = "rw"
 )
 
+// Permission is an enum
+type Permission struct{}
+
+// Contains returns whether the Permission enum includes the element
+func (enum Permission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Permission enum
+func (enum Permission) Values() []string {
+	return []string{
+		PermissionRo,
+		PermissionRw,
+	}
+}
+
 // The piece of software on the Greengrass core that will be updated.
 const (
 	// SoftwareToUpdateCore is a SoftwareToUpdate enum value
@@ -17791,6 +17976,28 @@ const (
 	// SoftwareToUpdateOtaAgent is a SoftwareToUpdate enum value
 	SoftwareToUpdateOtaAgent = "ota_agent"
 )
+
+// SoftwareToUpdate is an enum
+type SoftwareToUpdate struct{}
+
+// Contains returns whether the SoftwareToUpdate enum includes the element
+func (enum SoftwareToUpdate) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SoftwareToUpdate enum
+func (enum SoftwareToUpdate) Values() []string {
+	return []string{
+		SoftwareToUpdateCore,
+		SoftwareToUpdateOtaAgent,
+	}
+}
 
 // The minimum level of log statements that should be logged by the OTA Agent
 // during an update.
@@ -17820,6 +18027,34 @@ const (
 	UpdateAgentLogLevelFatal = "FATAL"
 )
 
+// UpdateAgentLogLevel is an enum
+type UpdateAgentLogLevel struct{}
+
+// Contains returns whether the UpdateAgentLogLevel enum includes the element
+func (enum UpdateAgentLogLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpdateAgentLogLevel enum
+func (enum UpdateAgentLogLevel) Values() []string {
+	return []string{
+		UpdateAgentLogLevelNone,
+		UpdateAgentLogLevelTrace,
+		UpdateAgentLogLevelDebug,
+		UpdateAgentLogLevelVerbose,
+		UpdateAgentLogLevelInfo,
+		UpdateAgentLogLevelWarn,
+		UpdateAgentLogLevelError,
+		UpdateAgentLogLevelFatal,
+	}
+}
+
 // The architecture of the cores which are the targets of an update.
 const (
 	// UpdateTargetsArchitectureArmv6l is a UpdateTargetsArchitecture enum value
@@ -17835,6 +18070,30 @@ const (
 	UpdateTargetsArchitectureAarch64 = "aarch64"
 )
 
+// UpdateTargetsArchitecture is an enum
+type UpdateTargetsArchitecture struct{}
+
+// Contains returns whether the UpdateTargetsArchitecture enum includes the element
+func (enum UpdateTargetsArchitecture) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpdateTargetsArchitecture enum
+func (enum UpdateTargetsArchitecture) Values() []string {
+	return []string{
+		UpdateTargetsArchitectureArmv6l,
+		UpdateTargetsArchitectureArmv7l,
+		UpdateTargetsArchitectureX8664,
+		UpdateTargetsArchitectureAarch64,
+	}
+}
+
 // The operating system of the cores which are the targets of an update.
 const (
 	// UpdateTargetsOperatingSystemUbuntu is a UpdateTargetsOperatingSystem enum value
@@ -17849,3 +18108,27 @@ const (
 	// UpdateTargetsOperatingSystemOpenwrt is a UpdateTargetsOperatingSystem enum value
 	UpdateTargetsOperatingSystemOpenwrt = "openwrt"
 )
+
+// UpdateTargetsOperatingSystem is an enum
+type UpdateTargetsOperatingSystem struct{}
+
+// Contains returns whether the UpdateTargetsOperatingSystem enum includes the element
+func (enum UpdateTargetsOperatingSystem) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpdateTargetsOperatingSystem enum
+func (enum UpdateTargetsOperatingSystem) Values() []string {
+	return []string{
+		UpdateTargetsOperatingSystemUbuntu,
+		UpdateTargetsOperatingSystemRaspbian,
+		UpdateTargetsOperatingSystemAmazonLinux,
+		UpdateTargetsOperatingSystemOpenwrt,
+	}
+}

@@ -2273,15 +2273,79 @@ const (
 	AccessDeniedExceptionReasonDependencyAccessDenied = "DEPENDENCY_ACCESS_DENIED"
 )
 
+// AccessDeniedExceptionReason is an enum
+type AccessDeniedExceptionReason struct{}
+
+// Contains returns whether the AccessDeniedExceptionReason enum includes the element
+func (enum AccessDeniedExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AccessDeniedExceptionReason enum
+func (enum AccessDeniedExceptionReason) Values() []string {
+	return []string{
+		AccessDeniedExceptionReasonUnauthorizedAccount,
+		AccessDeniedExceptionReasonDependencyAccessDenied,
+	}
+}
+
 const (
 	// ChecksumAggregationMethodLinear is a ChecksumAggregationMethod enum value
 	ChecksumAggregationMethodLinear = "LINEAR"
 )
 
+// ChecksumAggregationMethod is an enum
+type ChecksumAggregationMethod struct{}
+
+// Contains returns whether the ChecksumAggregationMethod enum includes the element
+func (enum ChecksumAggregationMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChecksumAggregationMethod enum
+func (enum ChecksumAggregationMethod) Values() []string {
+	return []string{
+		ChecksumAggregationMethodLinear,
+	}
+}
+
 const (
 	// ChecksumAlgorithmSha256 is a ChecksumAlgorithm enum value
 	ChecksumAlgorithmSha256 = "SHA256"
 )
+
+// ChecksumAlgorithm is an enum
+type ChecksumAlgorithm struct{}
+
+// Contains returns whether the ChecksumAlgorithm enum includes the element
+func (enum ChecksumAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ChecksumAlgorithm enum
+func (enum ChecksumAlgorithm) Values() []string {
+	return []string{
+		ChecksumAlgorithmSha256,
+	}
+}
 
 const (
 	// RequestThrottledExceptionReasonAccountThrottled is a RequestThrottledExceptionReason enum value
@@ -2291,6 +2355,28 @@ const (
 	RequestThrottledExceptionReasonDependencyRequestThrottled = "DEPENDENCY_REQUEST_THROTTLED"
 )
 
+// RequestThrottledExceptionReason is an enum
+type RequestThrottledExceptionReason struct{}
+
+// Contains returns whether the RequestThrottledExceptionReason enum includes the element
+func (enum RequestThrottledExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RequestThrottledExceptionReason enum
+func (enum RequestThrottledExceptionReason) Values() []string {
+	return []string{
+		RequestThrottledExceptionReasonAccountThrottled,
+		RequestThrottledExceptionReasonDependencyRequestThrottled,
+	}
+}
+
 const (
 	// ResourceNotFoundExceptionReasonSnapshotNotFound is a ResourceNotFoundExceptionReason enum value
 	ResourceNotFoundExceptionReasonSnapshotNotFound = "SNAPSHOT_NOT_FOUND"
@@ -2299,10 +2385,53 @@ const (
 	ResourceNotFoundExceptionReasonDependencyResourceNotFound = "DEPENDENCY_RESOURCE_NOT_FOUND"
 )
 
+// ResourceNotFoundExceptionReason is an enum
+type ResourceNotFoundExceptionReason struct{}
+
+// Contains returns whether the ResourceNotFoundExceptionReason enum includes the element
+func (enum ResourceNotFoundExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceNotFoundExceptionReason enum
+func (enum ResourceNotFoundExceptionReason) Values() []string {
+	return []string{
+		ResourceNotFoundExceptionReasonSnapshotNotFound,
+		ResourceNotFoundExceptionReasonDependencyResourceNotFound,
+	}
+}
+
 const (
 	// ServiceQuotaExceededExceptionReasonDependencyServiceQuotaExceeded is a ServiceQuotaExceededExceptionReason enum value
 	ServiceQuotaExceededExceptionReasonDependencyServiceQuotaExceeded = "DEPENDENCY_SERVICE_QUOTA_EXCEEDED"
 )
+
+// ServiceQuotaExceededExceptionReason is an enum
+type ServiceQuotaExceededExceptionReason struct{}
+
+// Contains returns whether the ServiceQuotaExceededExceptionReason enum includes the element
+func (enum ServiceQuotaExceededExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceQuotaExceededExceptionReason enum
+func (enum ServiceQuotaExceededExceptionReason) Values() []string {
+	return []string{
+		ServiceQuotaExceededExceptionReasonDependencyServiceQuotaExceeded,
+	}
+}
 
 const (
 	// StatusCompleted is a Status enum value
@@ -2314,6 +2443,29 @@ const (
 	// StatusError is a Status enum value
 	StatusError = "error"
 )
+
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusCompleted,
+		StatusPending,
+		StatusError,
+	}
+}
 
 const (
 	// ValidationExceptionReasonInvalidCustomerKey is a ValidationExceptionReason enum value
@@ -2349,3 +2501,34 @@ const (
 	// ValidationExceptionReasonInvalidVolumeSize is a ValidationExceptionReason enum value
 	ValidationExceptionReasonInvalidVolumeSize = "INVALID_VOLUME_SIZE"
 )
+
+// ValidationExceptionReason is an enum
+type ValidationExceptionReason struct{}
+
+// Contains returns whether the ValidationExceptionReason enum includes the element
+func (enum ValidationExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ValidationExceptionReason enum
+func (enum ValidationExceptionReason) Values() []string {
+	return []string{
+		ValidationExceptionReasonInvalidCustomerKey,
+		ValidationExceptionReasonInvalidPageToken,
+		ValidationExceptionReasonInvalidBlockToken,
+		ValidationExceptionReasonInvalidSnapshotId,
+		ValidationExceptionReasonUnrelatedSnapshots,
+		ValidationExceptionReasonInvalidBlock,
+		ValidationExceptionReasonInvalidContentEncoding,
+		ValidationExceptionReasonInvalidTag,
+		ValidationExceptionReasonInvalidDependencyRequest,
+		ValidationExceptionReasonInvalidParameterValue,
+		ValidationExceptionReasonInvalidVolumeSize,
+	}
+}

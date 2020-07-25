@@ -3660,6 +3660,30 @@ const (
 	JobStateDeleting = "Deleting"
 )
 
+// JobState is an enum
+type JobState struct{}
+
+// Contains returns whether the JobState enum includes the element
+func (enum JobState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobState enum
+func (enum JobState) Values() []string {
+	return []string{
+		JobStateCompleted,
+		JobStatePending,
+		JobStateFailed,
+		JobStateDeleting,
+	}
+}
+
 const (
 	// ProviderTypeCodeCommit is a ProviderType enum value
 	ProviderTypeCodeCommit = "CodeCommit"
@@ -3674,6 +3698,30 @@ const (
 	ProviderTypeGitHubEnterpriseServer = "GitHubEnterpriseServer"
 )
 
+// ProviderType is an enum
+type ProviderType struct{}
+
+// Contains returns whether the ProviderType enum includes the element
+func (enum ProviderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProviderType enum
+func (enum ProviderType) Values() []string {
+	return []string{
+		ProviderTypeCodeCommit,
+		ProviderTypeGitHub,
+		ProviderTypeBitbucket,
+		ProviderTypeGitHubEnterpriseServer,
+	}
+}
+
 const (
 	// ReactionThumbsUp is a Reaction enum value
 	ReactionThumbsUp = "ThumbsUp"
@@ -3681,6 +3729,28 @@ const (
 	// ReactionThumbsDown is a Reaction enum value
 	ReactionThumbsDown = "ThumbsDown"
 )
+
+// Reaction is an enum
+type Reaction struct{}
+
+// Contains returns whether the Reaction enum includes the element
+func (enum Reaction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Reaction enum
+func (enum Reaction) Values() []string {
+	return []string{
+		ReactionThumbsUp,
+		ReactionThumbsDown,
+	}
+}
 
 const (
 	// RepositoryAssociationStateAssociated is a RepositoryAssociationState enum value
@@ -3696,7 +3766,52 @@ const (
 	RepositoryAssociationStateDisassociating = "Disassociating"
 )
 
+// RepositoryAssociationState is an enum
+type RepositoryAssociationState struct{}
+
+// Contains returns whether the RepositoryAssociationState enum includes the element
+func (enum RepositoryAssociationState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RepositoryAssociationState enum
+func (enum RepositoryAssociationState) Values() []string {
+	return []string{
+		RepositoryAssociationStateAssociated,
+		RepositoryAssociationStateAssociating,
+		RepositoryAssociationStateFailed,
+		RepositoryAssociationStateDisassociating,
+	}
+}
+
 const (
 	// TypePullRequest is a Type enum value
 	TypePullRequest = "PullRequest"
 )
+
+// Type is an enum
+type Type struct{}
+
+// Contains returns whether the Type enum includes the element
+func (enum Type) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Type enum
+func (enum Type) Values() []string {
+	return []string{
+		TypePullRequest,
+	}
+}

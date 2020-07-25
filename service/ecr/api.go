@@ -8804,10 +8804,57 @@ const (
 	FindingSeverityUndefined = "UNDEFINED"
 )
 
+// FindingSeverity is an enum
+type FindingSeverity struct{}
+
+// Contains returns whether the FindingSeverity enum includes the element
+func (enum FindingSeverity) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingSeverity enum
+func (enum FindingSeverity) Values() []string {
+	return []string{
+		FindingSeverityInformational,
+		FindingSeverityLow,
+		FindingSeverityMedium,
+		FindingSeverityHigh,
+		FindingSeverityCritical,
+		FindingSeverityUndefined,
+	}
+}
+
 const (
 	// ImageActionTypeExpire is a ImageActionType enum value
 	ImageActionTypeExpire = "EXPIRE"
 )
+
+// ImageActionType is an enum
+type ImageActionType struct{}
+
+// Contains returns whether the ImageActionType enum includes the element
+func (enum ImageActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageActionType enum
+func (enum ImageActionType) Values() []string {
+	return []string{
+		ImageActionTypeExpire,
+	}
+}
 
 const (
 	// ImageFailureCodeInvalidImageDigest is a ImageFailureCode enum value
@@ -8829,6 +8876,32 @@ const (
 	ImageFailureCodeImageReferencedByManifestList = "ImageReferencedByManifestList"
 )
 
+// ImageFailureCode is an enum
+type ImageFailureCode struct{}
+
+// Contains returns whether the ImageFailureCode enum includes the element
+func (enum ImageFailureCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageFailureCode enum
+func (enum ImageFailureCode) Values() []string {
+	return []string{
+		ImageFailureCodeInvalidImageDigest,
+		ImageFailureCodeInvalidImageTag,
+		ImageFailureCodeImageTagDoesNotMatchDigest,
+		ImageFailureCodeImageNotFound,
+		ImageFailureCodeMissingDigestAndTag,
+		ImageFailureCodeImageReferencedByManifestList,
+	}
+}
+
 const (
 	// ImageTagMutabilityMutable is a ImageTagMutability enum value
 	ImageTagMutabilityMutable = "MUTABLE"
@@ -8836,6 +8909,28 @@ const (
 	// ImageTagMutabilityImmutable is a ImageTagMutability enum value
 	ImageTagMutabilityImmutable = "IMMUTABLE"
 )
+
+// ImageTagMutability is an enum
+type ImageTagMutability struct{}
+
+// Contains returns whether the ImageTagMutability enum includes the element
+func (enum ImageTagMutability) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageTagMutability enum
+func (enum ImageTagMutability) Values() []string {
+	return []string{
+		ImageTagMutabilityMutable,
+		ImageTagMutabilityImmutable,
+	}
+}
 
 const (
 	// LayerAvailabilityAvailable is a LayerAvailability enum value
@@ -8845,6 +8940,28 @@ const (
 	LayerAvailabilityUnavailable = "UNAVAILABLE"
 )
 
+// LayerAvailability is an enum
+type LayerAvailability struct{}
+
+// Contains returns whether the LayerAvailability enum includes the element
+func (enum LayerAvailability) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LayerAvailability enum
+func (enum LayerAvailability) Values() []string {
+	return []string{
+		LayerAvailabilityAvailable,
+		LayerAvailabilityUnavailable,
+	}
+}
+
 const (
 	// LayerFailureCodeInvalidLayerDigest is a LayerFailureCode enum value
 	LayerFailureCodeInvalidLayerDigest = "InvalidLayerDigest"
@@ -8852,6 +8969,28 @@ const (
 	// LayerFailureCodeMissingLayerDigest is a LayerFailureCode enum value
 	LayerFailureCodeMissingLayerDigest = "MissingLayerDigest"
 )
+
+// LayerFailureCode is an enum
+type LayerFailureCode struct{}
+
+// Contains returns whether the LayerFailureCode enum includes the element
+func (enum LayerFailureCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LayerFailureCode enum
+func (enum LayerFailureCode) Values() []string {
+	return []string{
+		LayerFailureCodeInvalidLayerDigest,
+		LayerFailureCodeMissingLayerDigest,
+	}
+}
 
 const (
 	// LifecyclePolicyPreviewStatusInProgress is a LifecyclePolicyPreviewStatus enum value
@@ -8867,6 +9006,30 @@ const (
 	LifecyclePolicyPreviewStatusFailed = "FAILED"
 )
 
+// LifecyclePolicyPreviewStatus is an enum
+type LifecyclePolicyPreviewStatus struct{}
+
+// Contains returns whether the LifecyclePolicyPreviewStatus enum includes the element
+func (enum LifecyclePolicyPreviewStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LifecyclePolicyPreviewStatus enum
+func (enum LifecyclePolicyPreviewStatus) Values() []string {
+	return []string{
+		LifecyclePolicyPreviewStatusInProgress,
+		LifecyclePolicyPreviewStatusComplete,
+		LifecyclePolicyPreviewStatusExpired,
+		LifecyclePolicyPreviewStatusFailed,
+	}
+}
+
 const (
 	// ScanStatusInProgress is a ScanStatus enum value
 	ScanStatusInProgress = "IN_PROGRESS"
@@ -8878,6 +9041,29 @@ const (
 	ScanStatusFailed = "FAILED"
 )
 
+// ScanStatus is an enum
+type ScanStatus struct{}
+
+// Contains returns whether the ScanStatus enum includes the element
+func (enum ScanStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScanStatus enum
+func (enum ScanStatus) Values() []string {
+	return []string{
+		ScanStatusInProgress,
+		ScanStatusComplete,
+		ScanStatusFailed,
+	}
+}
+
 const (
 	// TagStatusTagged is a TagStatus enum value
 	TagStatusTagged = "TAGGED"
@@ -8888,3 +9074,26 @@ const (
 	// TagStatusAny is a TagStatus enum value
 	TagStatusAny = "ANY"
 )
+
+// TagStatus is an enum
+type TagStatus struct{}
+
+// Contains returns whether the TagStatus enum includes the element
+func (enum TagStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TagStatus enum
+func (enum TagStatus) Values() []string {
+	return []string{
+		TagStatusTagged,
+		TagStatusUntagged,
+		TagStatusAny,
+	}
+}

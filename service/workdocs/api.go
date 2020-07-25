@@ -11536,6 +11536,59 @@ const (
 	ActivityTypeFolderMoved = "FOLDER_MOVED"
 )
 
+// ActivityType is an enum
+type ActivityType struct{}
+
+// Contains returns whether the ActivityType enum includes the element
+func (enum ActivityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ActivityType enum
+func (enum ActivityType) Values() []string {
+	return []string{
+		ActivityTypeDocumentCheckedIn,
+		ActivityTypeDocumentCheckedOut,
+		ActivityTypeDocumentRenamed,
+		ActivityTypeDocumentVersionUploaded,
+		ActivityTypeDocumentVersionDeleted,
+		ActivityTypeDocumentVersionViewed,
+		ActivityTypeDocumentVersionDownloaded,
+		ActivityTypeDocumentRecycled,
+		ActivityTypeDocumentRestored,
+		ActivityTypeDocumentReverted,
+		ActivityTypeDocumentShared,
+		ActivityTypeDocumentUnshared,
+		ActivityTypeDocumentSharePermissionChanged,
+		ActivityTypeDocumentShareableLinkCreated,
+		ActivityTypeDocumentShareableLinkRemoved,
+		ActivityTypeDocumentShareableLinkPermissionChanged,
+		ActivityTypeDocumentMoved,
+		ActivityTypeDocumentCommentAdded,
+		ActivityTypeDocumentCommentDeleted,
+		ActivityTypeDocumentAnnotationAdded,
+		ActivityTypeDocumentAnnotationDeleted,
+		ActivityTypeFolderCreated,
+		ActivityTypeFolderDeleted,
+		ActivityTypeFolderRenamed,
+		ActivityTypeFolderRecycled,
+		ActivityTypeFolderRestored,
+		ActivityTypeFolderShared,
+		ActivityTypeFolderUnshared,
+		ActivityTypeFolderSharePermissionChanged,
+		ActivityTypeFolderShareableLinkCreated,
+		ActivityTypeFolderShareableLinkRemoved,
+		ActivityTypeFolderShareableLinkPermissionChanged,
+		ActivityTypeFolderMoved,
+	}
+}
+
 const (
 	// BooleanEnumTypeTrue is a BooleanEnumType enum value
 	BooleanEnumTypeTrue = "TRUE"
@@ -11543,6 +11596,28 @@ const (
 	// BooleanEnumTypeFalse is a BooleanEnumType enum value
 	BooleanEnumTypeFalse = "FALSE"
 )
+
+// BooleanEnumType is an enum
+type BooleanEnumType struct{}
+
+// Contains returns whether the BooleanEnumType enum includes the element
+func (enum BooleanEnumType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BooleanEnumType enum
+func (enum BooleanEnumType) Values() []string {
+	return []string{
+		BooleanEnumTypeTrue,
+		BooleanEnumTypeFalse,
+	}
+}
 
 const (
 	// CommentStatusTypeDraft is a CommentStatusType enum value
@@ -11555,6 +11630,29 @@ const (
 	CommentStatusTypeDeleted = "DELETED"
 )
 
+// CommentStatusType is an enum
+type CommentStatusType struct{}
+
+// Contains returns whether the CommentStatusType enum includes the element
+func (enum CommentStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CommentStatusType enum
+func (enum CommentStatusType) Values() []string {
+	return []string{
+		CommentStatusTypeDraft,
+		CommentStatusTypePublished,
+		CommentStatusTypeDeleted,
+	}
+}
+
 const (
 	// CommentVisibilityTypePublic is a CommentVisibilityType enum value
 	CommentVisibilityTypePublic = "PUBLIC"
@@ -11562,6 +11660,28 @@ const (
 	// CommentVisibilityTypePrivate is a CommentVisibilityType enum value
 	CommentVisibilityTypePrivate = "PRIVATE"
 )
+
+// CommentVisibilityType is an enum
+type CommentVisibilityType struct{}
+
+// Contains returns whether the CommentVisibilityType enum includes the element
+func (enum CommentVisibilityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CommentVisibilityType enum
+func (enum CommentVisibilityType) Values() []string {
+	return []string{
+		CommentVisibilityTypePublic,
+		CommentVisibilityTypePrivate,
+	}
+}
 
 const (
 	// DocumentSourceTypeOriginal is a DocumentSourceType enum value
@@ -11571,6 +11691,28 @@ const (
 	DocumentSourceTypeWithComments = "WITH_COMMENTS"
 )
 
+// DocumentSourceType is an enum
+type DocumentSourceType struct{}
+
+// Contains returns whether the DocumentSourceType enum includes the element
+func (enum DocumentSourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DocumentSourceType enum
+func (enum DocumentSourceType) Values() []string {
+	return []string{
+		DocumentSourceTypeOriginal,
+		DocumentSourceTypeWithComments,
+	}
+}
+
 const (
 	// DocumentStatusTypeInitialized is a DocumentStatusType enum value
 	DocumentStatusTypeInitialized = "INITIALIZED"
@@ -11578,6 +11720,28 @@ const (
 	// DocumentStatusTypeActive is a DocumentStatusType enum value
 	DocumentStatusTypeActive = "ACTIVE"
 )
+
+// DocumentStatusType is an enum
+type DocumentStatusType struct{}
+
+// Contains returns whether the DocumentStatusType enum includes the element
+func (enum DocumentStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DocumentStatusType enum
+func (enum DocumentStatusType) Values() []string {
+	return []string{
+		DocumentStatusTypeInitialized,
+		DocumentStatusTypeActive,
+	}
+}
 
 const (
 	// DocumentThumbnailTypeSmall is a DocumentThumbnailType enum value
@@ -11590,10 +11754,54 @@ const (
 	DocumentThumbnailTypeLarge = "LARGE"
 )
 
+// DocumentThumbnailType is an enum
+type DocumentThumbnailType struct{}
+
+// Contains returns whether the DocumentThumbnailType enum includes the element
+func (enum DocumentThumbnailType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DocumentThumbnailType enum
+func (enum DocumentThumbnailType) Values() []string {
+	return []string{
+		DocumentThumbnailTypeSmall,
+		DocumentThumbnailTypeSmallHq,
+		DocumentThumbnailTypeLarge,
+	}
+}
+
 const (
 	// DocumentVersionStatusActive is a DocumentVersionStatus enum value
 	DocumentVersionStatusActive = "ACTIVE"
 )
+
+// DocumentVersionStatus is an enum
+type DocumentVersionStatus struct{}
+
+// Contains returns whether the DocumentVersionStatus enum includes the element
+func (enum DocumentVersionStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DocumentVersionStatus enum
+func (enum DocumentVersionStatus) Values() []string {
+	return []string{
+		DocumentVersionStatusActive,
+	}
+}
 
 const (
 	// FolderContentTypeAll is a FolderContentType enum value
@@ -11605,6 +11813,29 @@ const (
 	// FolderContentTypeFolder is a FolderContentType enum value
 	FolderContentTypeFolder = "FOLDER"
 )
+
+// FolderContentType is an enum
+type FolderContentType struct{}
+
+// Contains returns whether the FolderContentType enum includes the element
+func (enum FolderContentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FolderContentType enum
+func (enum FolderContentType) Values() []string {
+	return []string{
+		FolderContentTypeAll,
+		FolderContentTypeDocument,
+		FolderContentTypeFolder,
+	}
+}
 
 const (
 	// LocaleTypeEn is a LocaleType enum value
@@ -11641,6 +11872,37 @@ const (
 	LocaleTypeDefault = "default"
 )
 
+// LocaleType is an enum
+type LocaleType struct{}
+
+// Contains returns whether the LocaleType enum includes the element
+func (enum LocaleType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LocaleType enum
+func (enum LocaleType) Values() []string {
+	return []string{
+		LocaleTypeEn,
+		LocaleTypeFr,
+		LocaleTypeKo,
+		LocaleTypeDe,
+		LocaleTypeEs,
+		LocaleTypeJa,
+		LocaleTypeRu,
+		LocaleTypeZhCn,
+		LocaleTypeZhTw,
+		LocaleTypePtBr,
+		LocaleTypeDefault,
+	}
+}
+
 const (
 	// OrderTypeAscending is a OrderType enum value
 	OrderTypeAscending = "ASCENDING"
@@ -11648,6 +11910,28 @@ const (
 	// OrderTypeDescending is a OrderType enum value
 	OrderTypeDescending = "DESCENDING"
 )
+
+// OrderType is an enum
+type OrderType struct{}
+
+// Contains returns whether the OrderType enum includes the element
+func (enum OrderType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrderType enum
+func (enum OrderType) Values() []string {
+	return []string{
+		OrderTypeAscending,
+		OrderTypeDescending,
+	}
+}
 
 const (
 	// PrincipalTypeUser is a PrincipalType enum value
@@ -11666,10 +11950,56 @@ const (
 	PrincipalTypeOrganization = "ORGANIZATION"
 )
 
+// PrincipalType is an enum
+type PrincipalType struct{}
+
+// Contains returns whether the PrincipalType enum includes the element
+func (enum PrincipalType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PrincipalType enum
+func (enum PrincipalType) Values() []string {
+	return []string{
+		PrincipalTypeUser,
+		PrincipalTypeGroup,
+		PrincipalTypeInvite,
+		PrincipalTypeAnonymous,
+		PrincipalTypeOrganization,
+	}
+}
+
 const (
 	// ResourceCollectionTypeSharedWithMe is a ResourceCollectionType enum value
 	ResourceCollectionTypeSharedWithMe = "SHARED_WITH_ME"
 )
+
+// ResourceCollectionType is an enum
+type ResourceCollectionType struct{}
+
+// Contains returns whether the ResourceCollectionType enum includes the element
+func (enum ResourceCollectionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceCollectionType enum
+func (enum ResourceCollectionType) Values() []string {
+	return []string{
+		ResourceCollectionTypeSharedWithMe,
+	}
+}
 
 const (
 	// ResourceSortTypeDate is a ResourceSortType enum value
@@ -11678,6 +12008,28 @@ const (
 	// ResourceSortTypeName is a ResourceSortType enum value
 	ResourceSortTypeName = "NAME"
 )
+
+// ResourceSortType is an enum
+type ResourceSortType struct{}
+
+// Contains returns whether the ResourceSortType enum includes the element
+func (enum ResourceSortType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceSortType enum
+func (enum ResourceSortType) Values() []string {
+	return []string{
+		ResourceSortTypeDate,
+		ResourceSortTypeName,
+	}
+}
 
 const (
 	// ResourceStateTypeActive is a ResourceStateType enum value
@@ -11693,6 +12045,30 @@ const (
 	ResourceStateTypeRecycled = "RECYCLED"
 )
 
+// ResourceStateType is an enum
+type ResourceStateType struct{}
+
+// Contains returns whether the ResourceStateType enum includes the element
+func (enum ResourceStateType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceStateType enum
+func (enum ResourceStateType) Values() []string {
+	return []string{
+		ResourceStateTypeActive,
+		ResourceStateTypeRestoring,
+		ResourceStateTypeRecycling,
+		ResourceStateTypeRecycled,
+	}
+}
+
 const (
 	// ResourceTypeFolder is a ResourceType enum value
 	ResourceTypeFolder = "FOLDER"
@@ -11701,6 +12077,28 @@ const (
 	ResourceTypeDocument = "DOCUMENT"
 )
 
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypeFolder,
+		ResourceTypeDocument,
+	}
+}
+
 const (
 	// RolePermissionTypeDirect is a RolePermissionType enum value
 	RolePermissionTypeDirect = "DIRECT"
@@ -11708,6 +12106,28 @@ const (
 	// RolePermissionTypeInherited is a RolePermissionType enum value
 	RolePermissionTypeInherited = "INHERITED"
 )
+
+// RolePermissionType is an enum
+type RolePermissionType struct{}
+
+// Contains returns whether the RolePermissionType enum includes the element
+func (enum RolePermissionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RolePermissionType enum
+func (enum RolePermissionType) Values() []string {
+	return []string{
+		RolePermissionTypeDirect,
+		RolePermissionTypeInherited,
+	}
+}
 
 const (
 	// RoleTypeViewer is a RoleType enum value
@@ -11723,6 +12143,30 @@ const (
 	RoleTypeCoowner = "COOWNER"
 )
 
+// RoleType is an enum
+type RoleType struct{}
+
+// Contains returns whether the RoleType enum includes the element
+func (enum RoleType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RoleType enum
+func (enum RoleType) Values() []string {
+	return []string{
+		RoleTypeViewer,
+		RoleTypeContributor,
+		RoleTypeOwner,
+		RoleTypeCoowner,
+	}
+}
+
 const (
 	// ShareStatusTypeSuccess is a ShareStatusType enum value
 	ShareStatusTypeSuccess = "SUCCESS"
@@ -11730,6 +12174,28 @@ const (
 	// ShareStatusTypeFailure is a ShareStatusType enum value
 	ShareStatusTypeFailure = "FAILURE"
 )
+
+// ShareStatusType is an enum
+type ShareStatusType struct{}
+
+// Contains returns whether the ShareStatusType enum includes the element
+func (enum ShareStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ShareStatusType enum
+func (enum ShareStatusType) Values() []string {
+	return []string{
+		ShareStatusTypeSuccess,
+		ShareStatusTypeFailure,
+	}
+}
 
 const (
 	// StorageTypeUnlimited is a StorageType enum value
@@ -11739,15 +12205,79 @@ const (
 	StorageTypeQuota = "QUOTA"
 )
 
+// StorageType is an enum
+type StorageType struct{}
+
+// Contains returns whether the StorageType enum includes the element
+func (enum StorageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StorageType enum
+func (enum StorageType) Values() []string {
+	return []string{
+		StorageTypeUnlimited,
+		StorageTypeQuota,
+	}
+}
+
 const (
 	// SubscriptionProtocolTypeHttps is a SubscriptionProtocolType enum value
 	SubscriptionProtocolTypeHttps = "HTTPS"
 )
 
+// SubscriptionProtocolType is an enum
+type SubscriptionProtocolType struct{}
+
+// Contains returns whether the SubscriptionProtocolType enum includes the element
+func (enum SubscriptionProtocolType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SubscriptionProtocolType enum
+func (enum SubscriptionProtocolType) Values() []string {
+	return []string{
+		SubscriptionProtocolTypeHttps,
+	}
+}
+
 const (
 	// SubscriptionTypeAll is a SubscriptionType enum value
 	SubscriptionTypeAll = "ALL"
 )
+
+// SubscriptionType is an enum
+type SubscriptionType struct{}
+
+// Contains returns whether the SubscriptionType enum includes the element
+func (enum SubscriptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SubscriptionType enum
+func (enum SubscriptionType) Values() []string {
+	return []string{
+		SubscriptionTypeAll,
+	}
+}
 
 const (
 	// UserFilterTypeAll is a UserFilterType enum value
@@ -11756,6 +12286,28 @@ const (
 	// UserFilterTypeActivePending is a UserFilterType enum value
 	UserFilterTypeActivePending = "ACTIVE_PENDING"
 )
+
+// UserFilterType is an enum
+type UserFilterType struct{}
+
+// Contains returns whether the UserFilterType enum includes the element
+func (enum UserFilterType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserFilterType enum
+func (enum UserFilterType) Values() []string {
+	return []string{
+		UserFilterTypeAll,
+		UserFilterTypeActivePending,
+	}
+}
 
 const (
 	// UserSortTypeUserName is a UserSortType enum value
@@ -11774,6 +12326,31 @@ const (
 	UserSortTypeStorageUsed = "STORAGE_USED"
 )
 
+// UserSortType is an enum
+type UserSortType struct{}
+
+// Contains returns whether the UserSortType enum includes the element
+func (enum UserSortType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserSortType enum
+func (enum UserSortType) Values() []string {
+	return []string{
+		UserSortTypeUserName,
+		UserSortTypeFullName,
+		UserSortTypeStorageLimit,
+		UserSortTypeUserStatus,
+		UserSortTypeStorageUsed,
+	}
+}
+
 const (
 	// UserStatusTypeActive is a UserStatusType enum value
 	UserStatusTypeActive = "ACTIVE"
@@ -11784,6 +12361,29 @@ const (
 	// UserStatusTypePending is a UserStatusType enum value
 	UserStatusTypePending = "PENDING"
 )
+
+// UserStatusType is an enum
+type UserStatusType struct{}
+
+// Contains returns whether the UserStatusType enum includes the element
+func (enum UserStatusType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserStatusType enum
+func (enum UserStatusType) Values() []string {
+	return []string{
+		UserStatusTypeActive,
+		UserStatusTypeInactive,
+		UserStatusTypePending,
+	}
+}
 
 const (
 	// UserTypeUser is a UserType enum value
@@ -11801,3 +12401,28 @@ const (
 	// UserTypeWorkspacesuser is a UserType enum value
 	UserTypeWorkspacesuser = "WORKSPACESUSER"
 )
+
+// UserType is an enum
+type UserType struct{}
+
+// Contains returns whether the UserType enum includes the element
+func (enum UserType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserType enum
+func (enum UserType) Values() []string {
+	return []string{
+		UserTypeUser,
+		UserTypeAdmin,
+		UserTypePoweruser,
+		UserTypeMinimaluser,
+		UserTypeWorkspacesuser,
+	}
+}

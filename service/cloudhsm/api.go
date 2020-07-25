@@ -3943,6 +3943,28 @@ const (
 	ClientVersion53 = "5.3"
 )
 
+// ClientVersion is an enum
+type ClientVersion struct{}
+
+// Contains returns whether the ClientVersion enum includes the element
+func (enum ClientVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ClientVersion enum
+func (enum ClientVersion) Values() []string {
+	return []string{
+		ClientVersion51,
+		ClientVersion53,
+	}
+}
+
 const (
 	// CloudHsmObjectStateReady is a CloudHsmObjectState enum value
 	CloudHsmObjectStateReady = "READY"
@@ -3953,6 +3975,29 @@ const (
 	// CloudHsmObjectStateDegraded is a CloudHsmObjectState enum value
 	CloudHsmObjectStateDegraded = "DEGRADED"
 )
+
+// CloudHsmObjectState is an enum
+type CloudHsmObjectState struct{}
+
+// Contains returns whether the CloudHsmObjectState enum includes the element
+func (enum CloudHsmObjectState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CloudHsmObjectState enum
+func (enum CloudHsmObjectState) Values() []string {
+	return []string{
+		CloudHsmObjectStateReady,
+		CloudHsmObjectStateUpdating,
+		CloudHsmObjectStateDegraded,
+	}
+}
 
 const (
 	// HsmStatusPending is a HsmStatus enum value
@@ -3977,6 +4022,33 @@ const (
 	HsmStatusDegraded = "DEGRADED"
 )
 
+// HsmStatus is an enum
+type HsmStatus struct{}
+
+// Contains returns whether the HsmStatus enum includes the element
+func (enum HsmStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HsmStatus enum
+func (enum HsmStatus) Values() []string {
+	return []string{
+		HsmStatusPending,
+		HsmStatusRunning,
+		HsmStatusUpdating,
+		HsmStatusSuspended,
+		HsmStatusTerminating,
+		HsmStatusTerminated,
+		HsmStatusDegraded,
+	}
+}
+
 // Specifies the type of subscription for the HSM.
 //
 //    * PRODUCTION - The HSM is being used in a production environment.
@@ -3986,3 +4058,24 @@ const (
 	// SubscriptionTypeProduction is a SubscriptionType enum value
 	SubscriptionTypeProduction = "PRODUCTION"
 )
+
+// SubscriptionType is an enum
+type SubscriptionType struct{}
+
+// Contains returns whether the SubscriptionType enum includes the element
+func (enum SubscriptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SubscriptionType enum
+func (enum SubscriptionType) Values() []string {
+	return []string{
+		SubscriptionTypeProduction,
+	}
+}

@@ -4142,6 +4142,33 @@ const (
 	CertificateStatusFailed = "FAILED"
 )
 
+// CertificateStatus is an enum
+type CertificateStatus struct{}
+
+// Contains returns whether the CertificateStatus enum includes the element
+func (enum CertificateStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CertificateStatus enum
+func (enum CertificateStatus) Values() []string {
+	return []string{
+		CertificateStatusPendingValidation,
+		CertificateStatusIssued,
+		CertificateStatusInactive,
+		CertificateStatusExpired,
+		CertificateStatusValidationTimedOut,
+		CertificateStatusRevoked,
+		CertificateStatusFailed,
+	}
+}
+
 const (
 	// CertificateTransparencyLoggingPreferenceEnabled is a CertificateTransparencyLoggingPreference enum value
 	CertificateTransparencyLoggingPreferenceEnabled = "ENABLED"
@@ -4149,6 +4176,28 @@ const (
 	// CertificateTransparencyLoggingPreferenceDisabled is a CertificateTransparencyLoggingPreference enum value
 	CertificateTransparencyLoggingPreferenceDisabled = "DISABLED"
 )
+
+// CertificateTransparencyLoggingPreference is an enum
+type CertificateTransparencyLoggingPreference struct{}
+
+// Contains returns whether the CertificateTransparencyLoggingPreference enum includes the element
+func (enum CertificateTransparencyLoggingPreference) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CertificateTransparencyLoggingPreference enum
+func (enum CertificateTransparencyLoggingPreference) Values() []string {
+	return []string{
+		CertificateTransparencyLoggingPreferenceEnabled,
+		CertificateTransparencyLoggingPreferenceDisabled,
+	}
+}
 
 const (
 	// CertificateTypeImported is a CertificateType enum value
@@ -4161,6 +4210,29 @@ const (
 	CertificateTypePrivate = "PRIVATE"
 )
 
+// CertificateType is an enum
+type CertificateType struct{}
+
+// Contains returns whether the CertificateType enum includes the element
+func (enum CertificateType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CertificateType enum
+func (enum CertificateType) Values() []string {
+	return []string{
+		CertificateTypeImported,
+		CertificateTypeAmazonIssued,
+		CertificateTypePrivate,
+	}
+}
+
 const (
 	// DomainStatusPendingValidation is a DomainStatus enum value
 	DomainStatusPendingValidation = "PENDING_VALIDATION"
@@ -4171,6 +4243,29 @@ const (
 	// DomainStatusFailed is a DomainStatus enum value
 	DomainStatusFailed = "FAILED"
 )
+
+// DomainStatus is an enum
+type DomainStatus struct{}
+
+// Contains returns whether the DomainStatus enum includes the element
+func (enum DomainStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DomainStatus enum
+func (enum DomainStatus) Values() []string {
+	return []string{
+		DomainStatusPendingValidation,
+		DomainStatusSuccess,
+		DomainStatusFailed,
+	}
+}
 
 const (
 	// ExtendedKeyUsageNameTlsWebServerAuthentication is a ExtendedKeyUsageName enum value
@@ -4209,6 +4304,38 @@ const (
 	// ExtendedKeyUsageNameCustom is a ExtendedKeyUsageName enum value
 	ExtendedKeyUsageNameCustom = "CUSTOM"
 )
+
+// ExtendedKeyUsageName is an enum
+type ExtendedKeyUsageName struct{}
+
+// Contains returns whether the ExtendedKeyUsageName enum includes the element
+func (enum ExtendedKeyUsageName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExtendedKeyUsageName enum
+func (enum ExtendedKeyUsageName) Values() []string {
+	return []string{
+		ExtendedKeyUsageNameTlsWebServerAuthentication,
+		ExtendedKeyUsageNameTlsWebClientAuthentication,
+		ExtendedKeyUsageNameCodeSigning,
+		ExtendedKeyUsageNameEmailProtection,
+		ExtendedKeyUsageNameTimeStamping,
+		ExtendedKeyUsageNameOcspSigning,
+		ExtendedKeyUsageNameIpsecEndSystem,
+		ExtendedKeyUsageNameIpsecTunnel,
+		ExtendedKeyUsageNameIpsecUser,
+		ExtendedKeyUsageNameAny,
+		ExtendedKeyUsageNameNone,
+		ExtendedKeyUsageNameCustom,
+	}
+}
 
 const (
 	// FailureReasonNoAvailableContacts is a FailureReason enum value
@@ -4260,6 +4387,42 @@ const (
 	FailureReasonOther = "OTHER"
 )
 
+// FailureReason is an enum
+type FailureReason struct{}
+
+// Contains returns whether the FailureReason enum includes the element
+func (enum FailureReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FailureReason enum
+func (enum FailureReason) Values() []string {
+	return []string{
+		FailureReasonNoAvailableContacts,
+		FailureReasonAdditionalVerificationRequired,
+		FailureReasonDomainNotAllowed,
+		FailureReasonInvalidPublicDomain,
+		FailureReasonDomainValidationDenied,
+		FailureReasonCaaError,
+		FailureReasonPcaLimitExceeded,
+		FailureReasonPcaInvalidArn,
+		FailureReasonPcaInvalidState,
+		FailureReasonPcaRequestFailed,
+		FailureReasonPcaNameConstraintsValidation,
+		FailureReasonPcaResourceNotFound,
+		FailureReasonPcaInvalidArgs,
+		FailureReasonPcaInvalidDuration,
+		FailureReasonPcaAccessDenied,
+		FailureReasonOther,
+	}
+}
+
 const (
 	// KeyAlgorithmRsa2048 is a KeyAlgorithm enum value
 	KeyAlgorithmRsa2048 = "RSA_2048"
@@ -4279,6 +4442,32 @@ const (
 	// KeyAlgorithmEcSecp521r1 is a KeyAlgorithm enum value
 	KeyAlgorithmEcSecp521r1 = "EC_secp521r1"
 )
+
+// KeyAlgorithm is an enum
+type KeyAlgorithm struct{}
+
+// Contains returns whether the KeyAlgorithm enum includes the element
+func (enum KeyAlgorithm) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KeyAlgorithm enum
+func (enum KeyAlgorithm) Values() []string {
+	return []string{
+		KeyAlgorithmRsa2048,
+		KeyAlgorithmRsa1024,
+		KeyAlgorithmRsa4096,
+		KeyAlgorithmEcPrime256v1,
+		KeyAlgorithmEcSecp384r1,
+		KeyAlgorithmEcSecp521r1,
+	}
+}
 
 const (
 	// KeyUsageNameDigitalSignature is a KeyUsageName enum value
@@ -4315,10 +4504,62 @@ const (
 	KeyUsageNameCustom = "CUSTOM"
 )
 
+// KeyUsageName is an enum
+type KeyUsageName struct{}
+
+// Contains returns whether the KeyUsageName enum includes the element
+func (enum KeyUsageName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the KeyUsageName enum
+func (enum KeyUsageName) Values() []string {
+	return []string{
+		KeyUsageNameDigitalSignature,
+		KeyUsageNameNonRepudiation,
+		KeyUsageNameKeyEncipherment,
+		KeyUsageNameDataEncipherment,
+		KeyUsageNameKeyAgreement,
+		KeyUsageNameCertificateSigning,
+		KeyUsageNameCrlSigning,
+		KeyUsageNameEncipherOnly,
+		KeyUsageNameDecipherOnly,
+		KeyUsageNameAny,
+		KeyUsageNameCustom,
+	}
+}
+
 const (
 	// RecordTypeCname is a RecordType enum value
 	RecordTypeCname = "CNAME"
 )
+
+// RecordType is an enum
+type RecordType struct{}
+
+// Contains returns whether the RecordType enum includes the element
+func (enum RecordType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecordType enum
+func (enum RecordType) Values() []string {
+	return []string{
+		RecordTypeCname,
+	}
+}
 
 const (
 	// RenewalEligibilityEligible is a RenewalEligibility enum value
@@ -4327,6 +4568,28 @@ const (
 	// RenewalEligibilityIneligible is a RenewalEligibility enum value
 	RenewalEligibilityIneligible = "INELIGIBLE"
 )
+
+// RenewalEligibility is an enum
+type RenewalEligibility struct{}
+
+// Contains returns whether the RenewalEligibility enum includes the element
+func (enum RenewalEligibility) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RenewalEligibility enum
+func (enum RenewalEligibility) Values() []string {
+	return []string{
+		RenewalEligibilityEligible,
+		RenewalEligibilityIneligible,
+	}
+}
 
 const (
 	// RenewalStatusPendingAutoRenewal is a RenewalStatus enum value
@@ -4341,6 +4604,30 @@ const (
 	// RenewalStatusFailed is a RenewalStatus enum value
 	RenewalStatusFailed = "FAILED"
 )
+
+// RenewalStatus is an enum
+type RenewalStatus struct{}
+
+// Contains returns whether the RenewalStatus enum includes the element
+func (enum RenewalStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RenewalStatus enum
+func (enum RenewalStatus) Values() []string {
+	return []string{
+		RenewalStatusPendingAutoRenewal,
+		RenewalStatusPendingValidation,
+		RenewalStatusSuccess,
+		RenewalStatusFailed,
+	}
+}
 
 const (
 	// RevocationReasonUnspecified is a RevocationReason enum value
@@ -4374,6 +4661,36 @@ const (
 	RevocationReasonAACompromise = "A_A_COMPROMISE"
 )
 
+// RevocationReason is an enum
+type RevocationReason struct{}
+
+// Contains returns whether the RevocationReason enum includes the element
+func (enum RevocationReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RevocationReason enum
+func (enum RevocationReason) Values() []string {
+	return []string{
+		RevocationReasonUnspecified,
+		RevocationReasonKeyCompromise,
+		RevocationReasonCaCompromise,
+		RevocationReasonAffiliationChanged,
+		RevocationReasonSuperceded,
+		RevocationReasonCessationOfOperation,
+		RevocationReasonCertificateHold,
+		RevocationReasonRemoveFromCrl,
+		RevocationReasonPrivilegeWithdrawn,
+		RevocationReasonAACompromise,
+	}
+}
+
 const (
 	// ValidationMethodEmail is a ValidationMethod enum value
 	ValidationMethodEmail = "EMAIL"
@@ -4381,3 +4698,25 @@ const (
 	// ValidationMethodDns is a ValidationMethod enum value
 	ValidationMethodDns = "DNS"
 )
+
+// ValidationMethod is an enum
+type ValidationMethod struct{}
+
+// Contains returns whether the ValidationMethod enum includes the element
+func (enum ValidationMethod) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ValidationMethod enum
+func (enum ValidationMethod) Values() []string {
+	return []string{
+		ValidationMethodEmail,
+		ValidationMethodDns,
+	}
+}

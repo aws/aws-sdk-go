@@ -18128,6 +18128,30 @@ const (
 	AuthorizationTypeJwt = "JWT"
 )
 
+// AuthorizationType is an enum
+type AuthorizationType struct{}
+
+// Contains returns whether the AuthorizationType enum includes the element
+func (enum AuthorizationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthorizationType enum
+func (enum AuthorizationType) Values() []string {
+	return []string{
+		AuthorizationTypeNone,
+		AuthorizationTypeAwsIam,
+		AuthorizationTypeCustom,
+		AuthorizationTypeJwt,
+	}
+}
+
 // The authorizer type. For WebSocket APIs, specify REQUEST for a Lambda function
 // using incoming request parameters. For HTTP APIs, specify JWT to use JSON
 // Web Tokens.
@@ -18139,6 +18163,28 @@ const (
 	AuthorizerTypeJwt = "JWT"
 )
 
+// AuthorizerType is an enum
+type AuthorizerType struct{}
+
+// Contains returns whether the AuthorizerType enum includes the element
+func (enum AuthorizerType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AuthorizerType enum
+func (enum AuthorizerType) Values() []string {
+	return []string{
+		AuthorizerTypeRequest,
+		AuthorizerTypeJwt,
+	}
+}
+
 // Represents a connection type.
 const (
 	// ConnectionTypeInternet is a ConnectionType enum value
@@ -18147,6 +18193,28 @@ const (
 	// ConnectionTypeVpcLink is a ConnectionType enum value
 	ConnectionTypeVpcLink = "VPC_LINK"
 )
+
+// ConnectionType is an enum
+type ConnectionType struct{}
+
+// Contains returns whether the ConnectionType enum includes the element
+func (enum ConnectionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionType enum
+func (enum ConnectionType) Values() []string {
+	return []string{
+		ConnectionTypeInternet,
+		ConnectionTypeVpcLink,
+	}
+}
 
 // Specifies how to handle response payload content type conversions. Supported
 // only for WebSocket APIs.
@@ -18157,6 +18225,28 @@ const (
 	// ContentHandlingStrategyConvertToText is a ContentHandlingStrategy enum value
 	ContentHandlingStrategyConvertToText = "CONVERT_TO_TEXT"
 )
+
+// ContentHandlingStrategy is an enum
+type ContentHandlingStrategy struct{}
+
+// Contains returns whether the ContentHandlingStrategy enum includes the element
+func (enum ContentHandlingStrategy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentHandlingStrategy enum
+func (enum ContentHandlingStrategy) Values() []string {
+	return []string{
+		ContentHandlingStrategyConvertToBinary,
+		ContentHandlingStrategyConvertToText,
+	}
+}
 
 // Represents a deployment status.
 const (
@@ -18170,6 +18260,29 @@ const (
 	DeploymentStatusDeployed = "DEPLOYED"
 )
 
+// DeploymentStatus is an enum
+type DeploymentStatus struct{}
+
+// Contains returns whether the DeploymentStatus enum includes the element
+func (enum DeploymentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeploymentStatus enum
+func (enum DeploymentStatus) Values() []string {
+	return []string{
+		DeploymentStatusPending,
+		DeploymentStatusFailed,
+		DeploymentStatusDeployed,
+	}
+}
+
 // The status of the domain name migration. The valid values are AVAILABLE and
 // UPDATING. If the status is UPDATING, the domain cannot be modified further
 // until the existing operation is complete. If it is AVAILABLE, the domain
@@ -18182,6 +18295,28 @@ const (
 	DomainNameStatusUpdating = "UPDATING"
 )
 
+// DomainNameStatus is an enum
+type DomainNameStatus struct{}
+
+// Contains returns whether the DomainNameStatus enum includes the element
+func (enum DomainNameStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DomainNameStatus enum
+func (enum DomainNameStatus) Values() []string {
+	return []string{
+		DomainNameStatusAvailable,
+		DomainNameStatusUpdating,
+	}
+}
+
 // Represents an endpoint type.
 const (
 	// EndpointTypeRegional is a EndpointType enum value
@@ -18190,6 +18325,28 @@ const (
 	// EndpointTypeEdge is a EndpointType enum value
 	EndpointTypeEdge = "EDGE"
 )
+
+// EndpointType is an enum
+type EndpointType struct{}
+
+// Contains returns whether the EndpointType enum includes the element
+func (enum EndpointType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EndpointType enum
+func (enum EndpointType) Values() []string {
+	return []string{
+		EndpointTypeRegional,
+		EndpointTypeEdge,
+	}
+}
 
 // Represents an API method integration type.
 const (
@@ -18209,6 +18366,31 @@ const (
 	IntegrationTypeAwsProxy = "AWS_PROXY"
 )
 
+// IntegrationType is an enum
+type IntegrationType struct{}
+
+// Contains returns whether the IntegrationType enum includes the element
+func (enum IntegrationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IntegrationType enum
+func (enum IntegrationType) Values() []string {
+	return []string{
+		IntegrationTypeAws,
+		IntegrationTypeHttp,
+		IntegrationTypeMock,
+		IntegrationTypeHttpProxy,
+		IntegrationTypeAwsProxy,
+	}
+}
+
 // The logging level.
 const (
 	// LoggingLevelError is a LoggingLevel enum value
@@ -18220,6 +18402,29 @@ const (
 	// LoggingLevelOff is a LoggingLevel enum value
 	LoggingLevelOff = "OFF"
 )
+
+// LoggingLevel is an enum
+type LoggingLevel struct{}
+
+// Contains returns whether the LoggingLevel enum includes the element
+func (enum LoggingLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoggingLevel enum
+func (enum LoggingLevel) Values() []string {
+	return []string{
+		LoggingLevelError,
+		LoggingLevelInfo,
+		LoggingLevelOff,
+	}
+}
 
 // Represents passthrough behavior for an integration response. Supported only
 // for WebSocket APIs.
@@ -18234,6 +18439,29 @@ const (
 	PassthroughBehaviorWhenNoTemplates = "WHEN_NO_TEMPLATES"
 )
 
+// PassthroughBehavior is an enum
+type PassthroughBehavior struct{}
+
+// Contains returns whether the PassthroughBehavior enum includes the element
+func (enum PassthroughBehavior) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PassthroughBehavior enum
+func (enum PassthroughBehavior) Values() []string {
+	return []string{
+		PassthroughBehaviorWhenNoMatch,
+		PassthroughBehaviorNever,
+		PassthroughBehaviorWhenNoTemplates,
+	}
+}
+
 // Represents a protocol type.
 const (
 	// ProtocolTypeWebsocket is a ProtocolType enum value
@@ -18242,6 +18470,28 @@ const (
 	// ProtocolTypeHttp is a ProtocolType enum value
 	ProtocolTypeHttp = "HTTP"
 )
+
+// ProtocolType is an enum
+type ProtocolType struct{}
+
+// Contains returns whether the ProtocolType enum includes the element
+func (enum ProtocolType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProtocolType enum
+func (enum ProtocolType) Values() []string {
+	return []string{
+		ProtocolTypeWebsocket,
+		ProtocolTypeHttp,
+	}
+}
 
 // The Transport Layer Security (TLS) version of the security policy for this
 // domain name. The valid values are TLS_1_0 and TLS_1_2.
@@ -18252,6 +18502,28 @@ const (
 	// SecurityPolicyTls12 is a SecurityPolicy enum value
 	SecurityPolicyTls12 = "TLS_1_2"
 )
+
+// SecurityPolicy is an enum
+type SecurityPolicy struct{}
+
+// Contains returns whether the SecurityPolicy enum includes the element
+func (enum SecurityPolicy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SecurityPolicy enum
+func (enum SecurityPolicy) Values() []string {
+	return []string{
+		SecurityPolicyTls10,
+		SecurityPolicyTls12,
+	}
+}
 
 // The status of the VPC link.
 const (
@@ -18271,8 +18543,54 @@ const (
 	VpcLinkStatusInactive = "INACTIVE"
 )
 
+// VpcLinkStatus is an enum
+type VpcLinkStatus struct{}
+
+// Contains returns whether the VpcLinkStatus enum includes the element
+func (enum VpcLinkStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VpcLinkStatus enum
+func (enum VpcLinkStatus) Values() []string {
+	return []string{
+		VpcLinkStatusPending,
+		VpcLinkStatusAvailable,
+		VpcLinkStatusDeleting,
+		VpcLinkStatusFailed,
+		VpcLinkStatusInactive,
+	}
+}
+
 // The version of the VPC link.
 const (
 	// VpcLinkVersionV2 is a VpcLinkVersion enum value
 	VpcLinkVersionV2 = "V2"
 )
+
+// VpcLinkVersion is an enum
+type VpcLinkVersion struct{}
+
+// Contains returns whether the VpcLinkVersion enum includes the element
+func (enum VpcLinkVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VpcLinkVersion enum
+func (enum VpcLinkVersion) Values() []string {
+	return []string{
+		VpcLinkVersionV2,
+	}
+}

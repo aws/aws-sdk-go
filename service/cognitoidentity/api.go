@@ -5240,6 +5240,28 @@ const (
 	AmbiguousRoleResolutionTypeDeny = "Deny"
 )
 
+// AmbiguousRoleResolutionType is an enum
+type AmbiguousRoleResolutionType struct{}
+
+// Contains returns whether the AmbiguousRoleResolutionType enum includes the element
+func (enum AmbiguousRoleResolutionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AmbiguousRoleResolutionType enum
+func (enum AmbiguousRoleResolutionType) Values() []string {
+	return []string{
+		AmbiguousRoleResolutionTypeAuthenticatedRole,
+		AmbiguousRoleResolutionTypeDeny,
+	}
+}
+
 const (
 	// ErrorCodeAccessDenied is a ErrorCode enum value
 	ErrorCodeAccessDenied = "AccessDenied"
@@ -5247,6 +5269,28 @@ const (
 	// ErrorCodeInternalServerError is a ErrorCode enum value
 	ErrorCodeInternalServerError = "InternalServerError"
 )
+
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeAccessDenied,
+		ErrorCodeInternalServerError,
+	}
+}
 
 const (
 	// MappingRuleMatchTypeEquals is a MappingRuleMatchType enum value
@@ -5262,6 +5306,30 @@ const (
 	MappingRuleMatchTypeNotEqual = "NotEqual"
 )
 
+// MappingRuleMatchType is an enum
+type MappingRuleMatchType struct{}
+
+// Contains returns whether the MappingRuleMatchType enum includes the element
+func (enum MappingRuleMatchType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MappingRuleMatchType enum
+func (enum MappingRuleMatchType) Values() []string {
+	return []string{
+		MappingRuleMatchTypeEquals,
+		MappingRuleMatchTypeContains,
+		MappingRuleMatchTypeStartsWith,
+		MappingRuleMatchTypeNotEqual,
+	}
+}
+
 const (
 	// RoleMappingTypeToken is a RoleMappingType enum value
 	RoleMappingTypeToken = "Token"
@@ -5269,3 +5337,25 @@ const (
 	// RoleMappingTypeRules is a RoleMappingType enum value
 	RoleMappingTypeRules = "Rules"
 )
+
+// RoleMappingType is an enum
+type RoleMappingType struct{}
+
+// Contains returns whether the RoleMappingType enum includes the element
+func (enum RoleMappingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RoleMappingType enum
+func (enum RoleMappingType) Values() []string {
+	return []string{
+		RoleMappingTypeToken,
+		RoleMappingTypeRules,
+	}
+}

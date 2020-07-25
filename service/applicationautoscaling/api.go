@@ -5508,6 +5508,29 @@ const (
 	AdjustmentTypeExactCapacity = "ExactCapacity"
 )
 
+// AdjustmentType is an enum
+type AdjustmentType struct{}
+
+// Contains returns whether the AdjustmentType enum includes the element
+func (enum AdjustmentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdjustmentType enum
+func (enum AdjustmentType) Values() []string {
+	return []string{
+		AdjustmentTypeChangeInCapacity,
+		AdjustmentTypePercentChangeInCapacity,
+		AdjustmentTypeExactCapacity,
+	}
+}
+
 const (
 	// MetricAggregationTypeAverage is a MetricAggregationType enum value
 	MetricAggregationTypeAverage = "Average"
@@ -5518,6 +5541,29 @@ const (
 	// MetricAggregationTypeMaximum is a MetricAggregationType enum value
 	MetricAggregationTypeMaximum = "Maximum"
 )
+
+// MetricAggregationType is an enum
+type MetricAggregationType struct{}
+
+// Contains returns whether the MetricAggregationType enum includes the element
+func (enum MetricAggregationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricAggregationType enum
+func (enum MetricAggregationType) Values() []string {
+	return []string{
+		MetricAggregationTypeAverage,
+		MetricAggregationTypeMinimum,
+		MetricAggregationTypeMaximum,
+	}
+}
 
 const (
 	// MetricStatisticAverage is a MetricStatistic enum value
@@ -5535,6 +5581,31 @@ const (
 	// MetricStatisticSum is a MetricStatistic enum value
 	MetricStatisticSum = "Sum"
 )
+
+// MetricStatistic is an enum
+type MetricStatistic struct{}
+
+// Contains returns whether the MetricStatistic enum includes the element
+func (enum MetricStatistic) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricStatistic enum
+func (enum MetricStatistic) Values() []string {
+	return []string{
+		MetricStatisticAverage,
+		MetricStatisticMinimum,
+		MetricStatisticMaximum,
+		MetricStatisticSampleCount,
+		MetricStatisticSum,
+	}
+}
 
 const (
 	// MetricTypeDynamoDbreadCapacityUtilization is a MetricType enum value
@@ -5586,6 +5657,42 @@ const (
 	MetricTypeCassandraWriteCapacityUtilization = "CassandraWriteCapacityUtilization"
 )
 
+// MetricType is an enum
+type MetricType struct{}
+
+// Contains returns whether the MetricType enum includes the element
+func (enum MetricType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MetricType enum
+func (enum MetricType) Values() []string {
+	return []string{
+		MetricTypeDynamoDbreadCapacityUtilization,
+		MetricTypeDynamoDbwriteCapacityUtilization,
+		MetricTypeAlbrequestCountPerTarget,
+		MetricTypeRdsreaderAverageCpuutilization,
+		MetricTypeRdsreaderAverageDatabaseConnections,
+		MetricTypeEc2spotFleetRequestAverageCpuutilization,
+		MetricTypeEc2spotFleetRequestAverageNetworkIn,
+		MetricTypeEc2spotFleetRequestAverageNetworkOut,
+		MetricTypeSageMakerVariantInvocationsPerInstance,
+		MetricTypeEcsserviceAverageCpuutilization,
+		MetricTypeEcsserviceAverageMemoryUtilization,
+		MetricTypeAppStreamAverageCapacityUtilization,
+		MetricTypeComprehendInferenceUtilization,
+		MetricTypeLambdaProvisionedConcurrencyUtilization,
+		MetricTypeCassandraReadCapacityUtilization,
+		MetricTypeCassandraWriteCapacityUtilization,
+	}
+}
+
 const (
 	// PolicyTypeStepScaling is a PolicyType enum value
 	PolicyTypeStepScaling = "StepScaling"
@@ -5593,6 +5700,28 @@ const (
 	// PolicyTypeTargetTrackingScaling is a PolicyType enum value
 	PolicyTypeTargetTrackingScaling = "TargetTrackingScaling"
 )
+
+// PolicyType is an enum
+type PolicyType struct{}
+
+// Contains returns whether the PolicyType enum includes the element
+func (enum PolicyType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyType enum
+func (enum PolicyType) Values() []string {
+	return []string{
+		PolicyTypeStepScaling,
+		PolicyTypeTargetTrackingScaling,
+	}
+}
 
 const (
 	// ScalableDimensionEcsServiceDesiredCount is a ScalableDimension enum value
@@ -5641,6 +5770,41 @@ const (
 	ScalableDimensionCassandraTableWriteCapacityUnits = "cassandra:table:WriteCapacityUnits"
 )
 
+// ScalableDimension is an enum
+type ScalableDimension struct{}
+
+// Contains returns whether the ScalableDimension enum includes the element
+func (enum ScalableDimension) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalableDimension enum
+func (enum ScalableDimension) Values() []string {
+	return []string{
+		ScalableDimensionEcsServiceDesiredCount,
+		ScalableDimensionEc2SpotFleetRequestTargetCapacity,
+		ScalableDimensionElasticmapreduceInstancegroupInstanceCount,
+		ScalableDimensionAppstreamFleetDesiredCapacity,
+		ScalableDimensionDynamodbTableReadCapacityUnits,
+		ScalableDimensionDynamodbTableWriteCapacityUnits,
+		ScalableDimensionDynamodbIndexReadCapacityUnits,
+		ScalableDimensionDynamodbIndexWriteCapacityUnits,
+		ScalableDimensionRdsClusterReadReplicaCount,
+		ScalableDimensionSagemakerVariantDesiredInstanceCount,
+		ScalableDimensionCustomResourceResourceTypeProperty,
+		ScalableDimensionComprehendDocumentClassifierEndpointDesiredInferenceUnits,
+		ScalableDimensionLambdaFunctionProvisionedConcurrency,
+		ScalableDimensionCassandraTableReadCapacityUnits,
+		ScalableDimensionCassandraTableWriteCapacityUnits,
+	}
+}
+
 const (
 	// ScalingActivityStatusCodePending is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodePending = "Pending"
@@ -5660,6 +5824,32 @@ const (
 	// ScalingActivityStatusCodeFailed is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeFailed = "Failed"
 )
+
+// ScalingActivityStatusCode is an enum
+type ScalingActivityStatusCode struct{}
+
+// Contains returns whether the ScalingActivityStatusCode enum includes the element
+func (enum ScalingActivityStatusCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScalingActivityStatusCode enum
+func (enum ScalingActivityStatusCode) Values() []string {
+	return []string{
+		ScalingActivityStatusCodePending,
+		ScalingActivityStatusCodeInProgress,
+		ScalingActivityStatusCodeSuccessful,
+		ScalingActivityStatusCodeOverridden,
+		ScalingActivityStatusCodeUnfulfilled,
+		ScalingActivityStatusCodeFailed,
+	}
+}
 
 const (
 	// ServiceNamespaceEcs is a ServiceNamespace enum value
@@ -5695,3 +5885,34 @@ const (
 	// ServiceNamespaceCassandra is a ServiceNamespace enum value
 	ServiceNamespaceCassandra = "cassandra"
 )
+
+// ServiceNamespace is an enum
+type ServiceNamespace struct{}
+
+// Contains returns whether the ServiceNamespace enum includes the element
+func (enum ServiceNamespace) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ServiceNamespace enum
+func (enum ServiceNamespace) Values() []string {
+	return []string{
+		ServiceNamespaceEcs,
+		ServiceNamespaceElasticmapreduce,
+		ServiceNamespaceEc2,
+		ServiceNamespaceAppstream,
+		ServiceNamespaceDynamodb,
+		ServiceNamespaceRds,
+		ServiceNamespaceSagemaker,
+		ServiceNamespaceCustomResource,
+		ServiceNamespaceComprehend,
+		ServiceNamespaceLambda,
+		ServiceNamespaceCassandra,
+	}
+}

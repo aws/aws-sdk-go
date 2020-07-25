@@ -6715,10 +6715,53 @@ const (
 	EditionStandard = "STANDARD"
 )
 
+// Edition is an enum
+type Edition struct{}
+
+// Contains returns whether the Edition enum includes the element
+func (enum Edition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Edition enum
+func (enum Edition) Values() []string {
+	return []string{
+		EditionStarter,
+		EditionStandard,
+	}
+}
+
 const (
 	// FrameworkHyperledgerFabric is a Framework enum value
 	FrameworkHyperledgerFabric = "HYPERLEDGER_FABRIC"
 )
+
+// Framework is an enum
+type Framework struct{}
+
+// Contains returns whether the Framework enum includes the element
+func (enum Framework) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Framework enum
+func (enum Framework) Values() []string {
+	return []string{
+		FrameworkHyperledgerFabric,
+	}
+}
 
 const (
 	// InvitationStatusPending is a InvitationStatus enum value
@@ -6736,6 +6779,31 @@ const (
 	// InvitationStatusExpired is a InvitationStatus enum value
 	InvitationStatusExpired = "EXPIRED"
 )
+
+// InvitationStatus is an enum
+type InvitationStatus struct{}
+
+// Contains returns whether the InvitationStatus enum includes the element
+func (enum InvitationStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InvitationStatus enum
+func (enum InvitationStatus) Values() []string {
+	return []string{
+		InvitationStatusPending,
+		InvitationStatusAccepted,
+		InvitationStatusAccepting,
+		InvitationStatusRejected,
+		InvitationStatusExpired,
+	}
+}
 
 const (
 	// MemberStatusCreating is a MemberStatus enum value
@@ -6757,6 +6825,32 @@ const (
 	MemberStatusDeleted = "DELETED"
 )
 
+// MemberStatus is an enum
+type MemberStatus struct{}
+
+// Contains returns whether the MemberStatus enum includes the element
+func (enum MemberStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MemberStatus enum
+func (enum MemberStatus) Values() []string {
+	return []string{
+		MemberStatusCreating,
+		MemberStatusAvailable,
+		MemberStatusCreateFailed,
+		MemberStatusUpdating,
+		MemberStatusDeleting,
+		MemberStatusDeleted,
+	}
+}
+
 const (
 	// NetworkStatusCreating is a NetworkStatus enum value
 	NetworkStatusCreating = "CREATING"
@@ -6773,6 +6867,31 @@ const (
 	// NetworkStatusDeleted is a NetworkStatus enum value
 	NetworkStatusDeleted = "DELETED"
 )
+
+// NetworkStatus is an enum
+type NetworkStatus struct{}
+
+// Contains returns whether the NetworkStatus enum includes the element
+func (enum NetworkStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NetworkStatus enum
+func (enum NetworkStatus) Values() []string {
+	return []string{
+		NetworkStatusCreating,
+		NetworkStatusAvailable,
+		NetworkStatusCreateFailed,
+		NetworkStatusDeleting,
+		NetworkStatusDeleted,
+	}
+}
 
 const (
 	// NodeStatusCreating is a NodeStatus enum value
@@ -6797,6 +6916,33 @@ const (
 	NodeStatusFailed = "FAILED"
 )
 
+// NodeStatus is an enum
+type NodeStatus struct{}
+
+// Contains returns whether the NodeStatus enum includes the element
+func (enum NodeStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NodeStatus enum
+func (enum NodeStatus) Values() []string {
+	return []string{
+		NodeStatusCreating,
+		NodeStatusAvailable,
+		NodeStatusCreateFailed,
+		NodeStatusUpdating,
+		NodeStatusDeleting,
+		NodeStatusDeleted,
+		NodeStatusFailed,
+	}
+}
+
 const (
 	// ProposalStatusInProgress is a ProposalStatus enum value
 	ProposalStatusInProgress = "IN_PROGRESS"
@@ -6814,6 +6960,31 @@ const (
 	ProposalStatusActionFailed = "ACTION_FAILED"
 )
 
+// ProposalStatus is an enum
+type ProposalStatus struct{}
+
+// Contains returns whether the ProposalStatus enum includes the element
+func (enum ProposalStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProposalStatus enum
+func (enum ProposalStatus) Values() []string {
+	return []string{
+		ProposalStatusInProgress,
+		ProposalStatusApproved,
+		ProposalStatusRejected,
+		ProposalStatusExpired,
+		ProposalStatusActionFailed,
+	}
+}
+
 const (
 	// ThresholdComparatorGreaterThan is a ThresholdComparator enum value
 	ThresholdComparatorGreaterThan = "GREATER_THAN"
@@ -6822,6 +6993,28 @@ const (
 	ThresholdComparatorGreaterThanOrEqualTo = "GREATER_THAN_OR_EQUAL_TO"
 )
 
+// ThresholdComparator is an enum
+type ThresholdComparator struct{}
+
+// Contains returns whether the ThresholdComparator enum includes the element
+func (enum ThresholdComparator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThresholdComparator enum
+func (enum ThresholdComparator) Values() []string {
+	return []string{
+		ThresholdComparatorGreaterThan,
+		ThresholdComparatorGreaterThanOrEqualTo,
+	}
+}
+
 const (
 	// VoteValueYes is a VoteValue enum value
 	VoteValueYes = "YES"
@@ -6829,3 +7022,25 @@ const (
 	// VoteValueNo is a VoteValue enum value
 	VoteValueNo = "NO"
 )
+
+// VoteValue is an enum
+type VoteValue struct{}
+
+// Contains returns whether the VoteValue enum includes the element
+func (enum VoteValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VoteValue enum
+func (enum VoteValue) Values() []string {
+	return []string{
+		VoteValueYes,
+		VoteValueNo,
+	}
+}

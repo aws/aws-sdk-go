@@ -14122,10 +14122,54 @@ const (
 	EventSourcePositionAtTimestamp = "AT_TIMESTAMP"
 )
 
+// EventSourcePosition is an enum
+type EventSourcePosition struct{}
+
+// Contains returns whether the EventSourcePosition enum includes the element
+func (enum EventSourcePosition) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EventSourcePosition enum
+func (enum EventSourcePosition) Values() []string {
+	return []string{
+		EventSourcePositionTrimHorizon,
+		EventSourcePositionLatest,
+		EventSourcePositionAtTimestamp,
+	}
+}
+
 const (
 	// FunctionVersionAll is a FunctionVersion enum value
 	FunctionVersionAll = "ALL"
 )
+
+// FunctionVersion is an enum
+type FunctionVersion struct{}
+
+// Contains returns whether the FunctionVersion enum includes the element
+func (enum FunctionVersion) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FunctionVersion enum
+func (enum FunctionVersion) Values() []string {
+	return []string{
+		FunctionVersionAll,
+	}
+}
 
 const (
 	// InvocationTypeEvent is a InvocationType enum value
@@ -14138,6 +14182,29 @@ const (
 	InvocationTypeDryRun = "DryRun"
 )
 
+// InvocationType is an enum
+type InvocationType struct{}
+
+// Contains returns whether the InvocationType enum includes the element
+func (enum InvocationType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InvocationType enum
+func (enum InvocationType) Values() []string {
+	return []string{
+		InvocationTypeEvent,
+		InvocationTypeRequestResponse,
+		InvocationTypeDryRun,
+	}
+}
+
 const (
 	// LastUpdateStatusSuccessful is a LastUpdateStatus enum value
 	LastUpdateStatusSuccessful = "Successful"
@@ -14148,6 +14215,29 @@ const (
 	// LastUpdateStatusInProgress is a LastUpdateStatus enum value
 	LastUpdateStatusInProgress = "InProgress"
 )
+
+// LastUpdateStatus is an enum
+type LastUpdateStatus struct{}
+
+// Contains returns whether the LastUpdateStatus enum includes the element
+func (enum LastUpdateStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LastUpdateStatus enum
+func (enum LastUpdateStatus) Values() []string {
+	return []string{
+		LastUpdateStatusSuccessful,
+		LastUpdateStatusFailed,
+		LastUpdateStatusInProgress,
+	}
+}
 
 const (
 	// LastUpdateStatusReasonCodeEniLimitExceeded is a LastUpdateStatusReasonCode enum value
@@ -14172,6 +14262,33 @@ const (
 	LastUpdateStatusReasonCodeInvalidSecurityGroup = "InvalidSecurityGroup"
 )
 
+// LastUpdateStatusReasonCode is an enum
+type LastUpdateStatusReasonCode struct{}
+
+// Contains returns whether the LastUpdateStatusReasonCode enum includes the element
+func (enum LastUpdateStatusReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LastUpdateStatusReasonCode enum
+func (enum LastUpdateStatusReasonCode) Values() []string {
+	return []string{
+		LastUpdateStatusReasonCodeEniLimitExceeded,
+		LastUpdateStatusReasonCodeInsufficientRolePermissions,
+		LastUpdateStatusReasonCodeInvalidConfiguration,
+		LastUpdateStatusReasonCodeInternalError,
+		LastUpdateStatusReasonCodeSubnetOutOfIpaddresses,
+		LastUpdateStatusReasonCodeInvalidSubnet,
+		LastUpdateStatusReasonCodeInvalidSecurityGroup,
+	}
+}
+
 const (
 	// LogTypeNone is a LogType enum value
 	LogTypeNone = "None"
@@ -14179,6 +14296,28 @@ const (
 	// LogTypeTail is a LogType enum value
 	LogTypeTail = "Tail"
 )
+
+// LogType is an enum
+type LogType struct{}
+
+// Contains returns whether the LogType enum includes the element
+func (enum LogType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogType enum
+func (enum LogType) Values() []string {
+	return []string{
+		LogTypeNone,
+		LogTypeTail,
+	}
+}
 
 const (
 	// ProvisionedConcurrencyStatusEnumInProgress is a ProvisionedConcurrencyStatusEnum enum value
@@ -14190,6 +14329,29 @@ const (
 	// ProvisionedConcurrencyStatusEnumFailed is a ProvisionedConcurrencyStatusEnum enum value
 	ProvisionedConcurrencyStatusEnumFailed = "FAILED"
 )
+
+// ProvisionedConcurrencyStatusEnum is an enum
+type ProvisionedConcurrencyStatusEnum struct{}
+
+// Contains returns whether the ProvisionedConcurrencyStatusEnum enum includes the element
+func (enum ProvisionedConcurrencyStatusEnum) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ProvisionedConcurrencyStatusEnum enum
+func (enum ProvisionedConcurrencyStatusEnum) Values() []string {
+	return []string{
+		ProvisionedConcurrencyStatusEnumInProgress,
+		ProvisionedConcurrencyStatusEnumReady,
+		ProvisionedConcurrencyStatusEnumFailed,
+	}
+}
 
 const (
 	// RuntimeNodejs is a Runtime enum value
@@ -14256,6 +14418,47 @@ const (
 	RuntimeProvided = "provided"
 )
 
+// Runtime is an enum
+type Runtime struct{}
+
+// Contains returns whether the Runtime enum includes the element
+func (enum Runtime) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Runtime enum
+func (enum Runtime) Values() []string {
+	return []string{
+		RuntimeNodejs,
+		RuntimeNodejs43,
+		RuntimeNodejs610,
+		RuntimeNodejs810,
+		RuntimeNodejs10X,
+		RuntimeNodejs12X,
+		RuntimeJava8,
+		RuntimeJava11,
+		RuntimePython27,
+		RuntimePython36,
+		RuntimePython37,
+		RuntimePython38,
+		RuntimeDotnetcore10,
+		RuntimeDotnetcore20,
+		RuntimeDotnetcore21,
+		RuntimeDotnetcore31,
+		RuntimeNodejs43Edge,
+		RuntimeGo1X,
+		RuntimeRuby25,
+		RuntimeRuby27,
+		RuntimeProvided,
+	}
+}
+
 const (
 	// StatePending is a State enum value
 	StatePending = "Pending"
@@ -14269,6 +14472,30 @@ const (
 	// StateFailed is a State enum value
 	StateFailed = "Failed"
 )
+
+// State is an enum
+type State struct{}
+
+// Contains returns whether the State enum includes the element
+func (enum State) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the State enum
+func (enum State) Values() []string {
+	return []string{
+		StatePending,
+		StateActive,
+		StateInactive,
+		StateFailed,
+	}
+}
 
 const (
 	// StateReasonCodeIdle is a StateReasonCode enum value
@@ -14302,6 +14529,36 @@ const (
 	StateReasonCodeInvalidSecurityGroup = "InvalidSecurityGroup"
 )
 
+// StateReasonCode is an enum
+type StateReasonCode struct{}
+
+// Contains returns whether the StateReasonCode enum includes the element
+func (enum StateReasonCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StateReasonCode enum
+func (enum StateReasonCode) Values() []string {
+	return []string{
+		StateReasonCodeIdle,
+		StateReasonCodeCreating,
+		StateReasonCodeRestoring,
+		StateReasonCodeEniLimitExceeded,
+		StateReasonCodeInsufficientRolePermissions,
+		StateReasonCodeInvalidConfiguration,
+		StateReasonCodeInternalError,
+		StateReasonCodeSubnetOutOfIpaddresses,
+		StateReasonCodeInvalidSubnet,
+		StateReasonCodeInvalidSecurityGroup,
+	}
+}
+
 const (
 	// ThrottleReasonConcurrentInvocationLimitExceeded is a ThrottleReason enum value
 	ThrottleReasonConcurrentInvocationLimitExceeded = "ConcurrentInvocationLimitExceeded"
@@ -14319,6 +14576,31 @@ const (
 	ThrottleReasonCallerRateLimitExceeded = "CallerRateLimitExceeded"
 )
 
+// ThrottleReason is an enum
+type ThrottleReason struct{}
+
+// Contains returns whether the ThrottleReason enum includes the element
+func (enum ThrottleReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ThrottleReason enum
+func (enum ThrottleReason) Values() []string {
+	return []string{
+		ThrottleReasonConcurrentInvocationLimitExceeded,
+		ThrottleReasonFunctionInvocationRateLimitExceeded,
+		ThrottleReasonReservedFunctionConcurrentInvocationLimitExceeded,
+		ThrottleReasonReservedFunctionInvocationRateLimitExceeded,
+		ThrottleReasonCallerRateLimitExceeded,
+	}
+}
+
 const (
 	// TracingModeActive is a TracingMode enum value
 	TracingModeActive = "Active"
@@ -14326,3 +14608,25 @@ const (
 	// TracingModePassThrough is a TracingMode enum value
 	TracingModePassThrough = "PassThrough"
 )
+
+// TracingMode is an enum
+type TracingMode struct{}
+
+// Contains returns whether the TracingMode enum includes the element
+func (enum TracingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TracingMode enum
+func (enum TracingMode) Values() []string {
+	return []string{
+		TracingModeActive,
+		TracingModePassThrough,
+	}
+}

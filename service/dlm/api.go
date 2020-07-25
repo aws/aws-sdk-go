@@ -2453,15 +2453,80 @@ const (
 	GettablePolicyStateValuesError = "ERROR"
 )
 
+// GettablePolicyStateValues is an enum
+type GettablePolicyStateValues struct{}
+
+// Contains returns whether the GettablePolicyStateValues enum includes the element
+func (enum GettablePolicyStateValues) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GettablePolicyStateValues enum
+func (enum GettablePolicyStateValues) Values() []string {
+	return []string{
+		GettablePolicyStateValuesEnabled,
+		GettablePolicyStateValuesDisabled,
+		GettablePolicyStateValuesError,
+	}
+}
+
 const (
 	// IntervalUnitValuesHours is a IntervalUnitValues enum value
 	IntervalUnitValuesHours = "HOURS"
 )
 
+// IntervalUnitValues is an enum
+type IntervalUnitValues struct{}
+
+// Contains returns whether the IntervalUnitValues enum includes the element
+func (enum IntervalUnitValues) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IntervalUnitValues enum
+func (enum IntervalUnitValues) Values() []string {
+	return []string{
+		IntervalUnitValuesHours,
+	}
+}
+
 const (
 	// PolicyTypeValuesEbsSnapshotManagement is a PolicyTypeValues enum value
 	PolicyTypeValuesEbsSnapshotManagement = "EBS_SNAPSHOT_MANAGEMENT"
 )
+
+// PolicyTypeValues is an enum
+type PolicyTypeValues struct{}
+
+// Contains returns whether the PolicyTypeValues enum includes the element
+func (enum PolicyTypeValues) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PolicyTypeValues enum
+func (enum PolicyTypeValues) Values() []string {
+	return []string{
+		PolicyTypeValuesEbsSnapshotManagement,
+	}
+}
 
 const (
 	// ResourceTypeValuesVolume is a ResourceTypeValues enum value
@@ -2470,6 +2535,28 @@ const (
 	// ResourceTypeValuesInstance is a ResourceTypeValues enum value
 	ResourceTypeValuesInstance = "INSTANCE"
 )
+
+// ResourceTypeValues is an enum
+type ResourceTypeValues struct{}
+
+// Contains returns whether the ResourceTypeValues enum includes the element
+func (enum ResourceTypeValues) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceTypeValues enum
+func (enum ResourceTypeValues) Values() []string {
+	return []string{
+		ResourceTypeValuesVolume,
+		ResourceTypeValuesInstance,
+	}
+}
 
 const (
 	// RetentionIntervalUnitValuesDays is a RetentionIntervalUnitValues enum value
@@ -2485,6 +2572,30 @@ const (
 	RetentionIntervalUnitValuesYears = "YEARS"
 )
 
+// RetentionIntervalUnitValues is an enum
+type RetentionIntervalUnitValues struct{}
+
+// Contains returns whether the RetentionIntervalUnitValues enum includes the element
+func (enum RetentionIntervalUnitValues) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RetentionIntervalUnitValues enum
+func (enum RetentionIntervalUnitValues) Values() []string {
+	return []string{
+		RetentionIntervalUnitValuesDays,
+		RetentionIntervalUnitValuesWeeks,
+		RetentionIntervalUnitValuesMonths,
+		RetentionIntervalUnitValuesYears,
+	}
+}
+
 const (
 	// SettablePolicyStateValuesEnabled is a SettablePolicyStateValues enum value
 	SettablePolicyStateValuesEnabled = "ENABLED"
@@ -2492,3 +2603,25 @@ const (
 	// SettablePolicyStateValuesDisabled is a SettablePolicyStateValues enum value
 	SettablePolicyStateValuesDisabled = "DISABLED"
 )
+
+// SettablePolicyStateValues is an enum
+type SettablePolicyStateValues struct{}
+
+// Contains returns whether the SettablePolicyStateValues enum includes the element
+func (enum SettablePolicyStateValues) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SettablePolicyStateValues enum
+func (enum SettablePolicyStateValues) Values() []string {
+	return []string{
+		SettablePolicyStateValuesEnabled,
+		SettablePolicyStateValuesDisabled,
+	}
+}

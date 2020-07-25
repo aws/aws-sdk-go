@@ -6546,6 +6546,32 @@ const (
 	AgentStatusShutdown = "SHUTDOWN"
 )
 
+// AgentStatus is an enum
+type AgentStatus struct{}
+
+// Contains returns whether the AgentStatus enum includes the element
+func (enum AgentStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AgentStatus enum
+func (enum AgentStatus) Values() []string {
+	return []string{
+		AgentStatusHealthy,
+		AgentStatusUnhealthy,
+		AgentStatusRunning,
+		AgentStatusUnknown,
+		AgentStatusBlacklisted,
+		AgentStatusShutdown,
+	}
+}
+
 const (
 	// BatchDeleteImportDataErrorCodeNotFound is a BatchDeleteImportDataErrorCode enum value
 	BatchDeleteImportDataErrorCodeNotFound = "NOT_FOUND"
@@ -6556,6 +6582,29 @@ const (
 	// BatchDeleteImportDataErrorCodeOverLimit is a BatchDeleteImportDataErrorCode enum value
 	BatchDeleteImportDataErrorCodeOverLimit = "OVER_LIMIT"
 )
+
+// BatchDeleteImportDataErrorCode is an enum
+type BatchDeleteImportDataErrorCode struct{}
+
+// Contains returns whether the BatchDeleteImportDataErrorCode enum includes the element
+func (enum BatchDeleteImportDataErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BatchDeleteImportDataErrorCode enum
+func (enum BatchDeleteImportDataErrorCode) Values() []string {
+	return []string{
+		BatchDeleteImportDataErrorCodeNotFound,
+		BatchDeleteImportDataErrorCodeInternalServerError,
+		BatchDeleteImportDataErrorCodeOverLimit,
+	}
+}
 
 const (
 	// ConfigurationItemTypeServer is a ConfigurationItemType enum value
@@ -6570,6 +6619,30 @@ const (
 	// ConfigurationItemTypeApplication is a ConfigurationItemType enum value
 	ConfigurationItemTypeApplication = "APPLICATION"
 )
+
+// ConfigurationItemType is an enum
+type ConfigurationItemType struct{}
+
+// Contains returns whether the ConfigurationItemType enum includes the element
+func (enum ConfigurationItemType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigurationItemType enum
+func (enum ConfigurationItemType) Values() []string {
+	return []string{
+		ConfigurationItemTypeServer,
+		ConfigurationItemTypeProcess,
+		ConfigurationItemTypeConnection,
+		ConfigurationItemTypeApplication,
+	}
+}
 
 const (
 	// ContinuousExportStatusStartInProgress is a ContinuousExportStatus enum value
@@ -6594,10 +6667,58 @@ const (
 	ContinuousExportStatusInactive = "INACTIVE"
 )
 
+// ContinuousExportStatus is an enum
+type ContinuousExportStatus struct{}
+
+// Contains returns whether the ContinuousExportStatus enum includes the element
+func (enum ContinuousExportStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContinuousExportStatus enum
+func (enum ContinuousExportStatus) Values() []string {
+	return []string{
+		ContinuousExportStatusStartInProgress,
+		ContinuousExportStatusStartFailed,
+		ContinuousExportStatusActive,
+		ContinuousExportStatusError,
+		ContinuousExportStatusStopInProgress,
+		ContinuousExportStatusStopFailed,
+		ContinuousExportStatusInactive,
+	}
+}
+
 const (
 	// DataSourceAgent is a DataSource enum value
 	DataSourceAgent = "AGENT"
 )
+
+// DataSource is an enum
+type DataSource struct{}
+
+// Contains returns whether the DataSource enum includes the element
+func (enum DataSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataSource enum
+func (enum DataSource) Values() []string {
+	return []string{
+		DataSourceAgent,
+	}
+}
 
 const (
 	// ExportDataFormatCsv is a ExportDataFormat enum value
@@ -6606,6 +6727,28 @@ const (
 	// ExportDataFormatGraphml is a ExportDataFormat enum value
 	ExportDataFormatGraphml = "GRAPHML"
 )
+
+// ExportDataFormat is an enum
+type ExportDataFormat struct{}
+
+// Contains returns whether the ExportDataFormat enum includes the element
+func (enum ExportDataFormat) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExportDataFormat enum
+func (enum ExportDataFormat) Values() []string {
+	return []string{
+		ExportDataFormatCsv,
+		ExportDataFormatGraphml,
+	}
+}
 
 const (
 	// ExportStatusFailed is a ExportStatus enum value
@@ -6617,6 +6760,29 @@ const (
 	// ExportStatusInProgress is a ExportStatus enum value
 	ExportStatusInProgress = "IN_PROGRESS"
 )
+
+// ExportStatus is an enum
+type ExportStatus struct{}
+
+// Contains returns whether the ExportStatus enum includes the element
+func (enum ExportStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExportStatus enum
+func (enum ExportStatus) Values() []string {
+	return []string{
+		ExportStatusFailed,
+		ExportStatusSucceeded,
+		ExportStatusInProgress,
+	}
+}
 
 const (
 	// ImportStatusImportInProgress is a ImportStatus enum value
@@ -6653,6 +6819,37 @@ const (
 	ImportStatusInternalError = "INTERNAL_ERROR"
 )
 
+// ImportStatus is an enum
+type ImportStatus struct{}
+
+// Contains returns whether the ImportStatus enum includes the element
+func (enum ImportStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImportStatus enum
+func (enum ImportStatus) Values() []string {
+	return []string{
+		ImportStatusImportInProgress,
+		ImportStatusImportComplete,
+		ImportStatusImportCompleteWithErrors,
+		ImportStatusImportFailed,
+		ImportStatusImportFailedServerLimitExceeded,
+		ImportStatusImportFailedRecordLimitExceeded,
+		ImportStatusDeleteInProgress,
+		ImportStatusDeleteComplete,
+		ImportStatusDeleteFailed,
+		ImportStatusDeleteFailedLimitExceeded,
+		ImportStatusInternalError,
+	}
+}
+
 const (
 	// ImportTaskFilterNameImportTaskId is a ImportTaskFilterName enum value
 	ImportTaskFilterNameImportTaskId = "IMPORT_TASK_ID"
@@ -6664,6 +6861,29 @@ const (
 	ImportTaskFilterNameName = "NAME"
 )
 
+// ImportTaskFilterName is an enum
+type ImportTaskFilterName struct{}
+
+// Contains returns whether the ImportTaskFilterName enum includes the element
+func (enum ImportTaskFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImportTaskFilterName enum
+func (enum ImportTaskFilterName) Values() []string {
+	return []string{
+		ImportTaskFilterNameImportTaskId,
+		ImportTaskFilterNameStatus,
+		ImportTaskFilterNameName,
+	}
+}
+
 const (
 	// OrderStringAsc is a OrderString enum value
 	OrderStringAsc = "ASC"
@@ -6671,3 +6891,25 @@ const (
 	// OrderStringDesc is a OrderString enum value
 	OrderStringDesc = "DESC"
 )
+
+// OrderString is an enum
+type OrderString struct{}
+
+// Contains returns whether the OrderString enum includes the element
+func (enum OrderString) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrderString enum
+func (enum OrderString) Values() []string {
+	return []string{
+		OrderStringAsc,
+		OrderStringDesc,
+	}
+}

@@ -6991,6 +6991,30 @@ const (
 	CustomerGatewayAssociationStateDeleted = "DELETED"
 )
 
+// CustomerGatewayAssociationState is an enum
+type CustomerGatewayAssociationState struct{}
+
+// Contains returns whether the CustomerGatewayAssociationState enum includes the element
+func (enum CustomerGatewayAssociationState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CustomerGatewayAssociationState enum
+func (enum CustomerGatewayAssociationState) Values() []string {
+	return []string{
+		CustomerGatewayAssociationStatePending,
+		CustomerGatewayAssociationStateAvailable,
+		CustomerGatewayAssociationStateDeleting,
+		CustomerGatewayAssociationStateDeleted,
+	}
+}
+
 const (
 	// DeviceStatePending is a DeviceState enum value
 	DeviceStatePending = "PENDING"
@@ -7004,6 +7028,30 @@ const (
 	// DeviceStateUpdating is a DeviceState enum value
 	DeviceStateUpdating = "UPDATING"
 )
+
+// DeviceState is an enum
+type DeviceState struct{}
+
+// Contains returns whether the DeviceState enum includes the element
+func (enum DeviceState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DeviceState enum
+func (enum DeviceState) Values() []string {
+	return []string{
+		DeviceStatePending,
+		DeviceStateAvailable,
+		DeviceStateDeleting,
+		DeviceStateUpdating,
+	}
+}
 
 const (
 	// GlobalNetworkStatePending is a GlobalNetworkState enum value
@@ -7019,6 +7067,30 @@ const (
 	GlobalNetworkStateUpdating = "UPDATING"
 )
 
+// GlobalNetworkState is an enum
+type GlobalNetworkState struct{}
+
+// Contains returns whether the GlobalNetworkState enum includes the element
+func (enum GlobalNetworkState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GlobalNetworkState enum
+func (enum GlobalNetworkState) Values() []string {
+	return []string{
+		GlobalNetworkStatePending,
+		GlobalNetworkStateAvailable,
+		GlobalNetworkStateDeleting,
+		GlobalNetworkStateUpdating,
+	}
+}
+
 const (
 	// LinkAssociationStatePending is a LinkAssociationState enum value
 	LinkAssociationStatePending = "PENDING"
@@ -7032,6 +7104,30 @@ const (
 	// LinkAssociationStateDeleted is a LinkAssociationState enum value
 	LinkAssociationStateDeleted = "DELETED"
 )
+
+// LinkAssociationState is an enum
+type LinkAssociationState struct{}
+
+// Contains returns whether the LinkAssociationState enum includes the element
+func (enum LinkAssociationState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LinkAssociationState enum
+func (enum LinkAssociationState) Values() []string {
+	return []string{
+		LinkAssociationStatePending,
+		LinkAssociationStateAvailable,
+		LinkAssociationStateDeleting,
+		LinkAssociationStateDeleted,
+	}
+}
 
 const (
 	// LinkStatePending is a LinkState enum value
@@ -7047,6 +7143,30 @@ const (
 	LinkStateUpdating = "UPDATING"
 )
 
+// LinkState is an enum
+type LinkState struct{}
+
+// Contains returns whether the LinkState enum includes the element
+func (enum LinkState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LinkState enum
+func (enum LinkState) Values() []string {
+	return []string{
+		LinkStatePending,
+		LinkStateAvailable,
+		LinkStateDeleting,
+		LinkStateUpdating,
+	}
+}
+
 const (
 	// SiteStatePending is a SiteState enum value
 	SiteStatePending = "PENDING"
@@ -7060,6 +7180,30 @@ const (
 	// SiteStateUpdating is a SiteState enum value
 	SiteStateUpdating = "UPDATING"
 )
+
+// SiteState is an enum
+type SiteState struct{}
+
+// Contains returns whether the SiteState enum includes the element
+func (enum SiteState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SiteState enum
+func (enum SiteState) Values() []string {
+	return []string{
+		SiteStatePending,
+		SiteStateAvailable,
+		SiteStateDeleting,
+		SiteStateUpdating,
+	}
+}
 
 const (
 	// TransitGatewayRegistrationStatePending is a TransitGatewayRegistrationState enum value
@@ -7078,6 +7222,31 @@ const (
 	TransitGatewayRegistrationStateFailed = "FAILED"
 )
 
+// TransitGatewayRegistrationState is an enum
+type TransitGatewayRegistrationState struct{}
+
+// Contains returns whether the TransitGatewayRegistrationState enum includes the element
+func (enum TransitGatewayRegistrationState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TransitGatewayRegistrationState enum
+func (enum TransitGatewayRegistrationState) Values() []string {
+	return []string{
+		TransitGatewayRegistrationStatePending,
+		TransitGatewayRegistrationStateAvailable,
+		TransitGatewayRegistrationStateDeleting,
+		TransitGatewayRegistrationStateDeleted,
+		TransitGatewayRegistrationStateFailed,
+	}
+}
+
 const (
 	// ValidationExceptionReasonUnknownOperation is a ValidationExceptionReason enum value
 	ValidationExceptionReasonUnknownOperation = "UnknownOperation"
@@ -7091,3 +7260,27 @@ const (
 	// ValidationExceptionReasonOther is a ValidationExceptionReason enum value
 	ValidationExceptionReasonOther = "Other"
 )
+
+// ValidationExceptionReason is an enum
+type ValidationExceptionReason struct{}
+
+// Contains returns whether the ValidationExceptionReason enum includes the element
+func (enum ValidationExceptionReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ValidationExceptionReason enum
+func (enum ValidationExceptionReason) Values() []string {
+	return []string{
+		ValidationExceptionReasonUnknownOperation,
+		ValidationExceptionReasonCannotParse,
+		ValidationExceptionReasonFieldValidationFailed,
+		ValidationExceptionReasonOther,
+	}
+}

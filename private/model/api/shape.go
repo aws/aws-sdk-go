@@ -862,6 +862,29 @@ const (
 
 	{{ end }}
 )
+
+// {{ $.ShapeName }} is an enum
+type {{ $.ShapeName }} struct{}
+
+// Contains returns whether the {{ $.ShapeName }} enum includes the element
+func (enum {{ $.ShapeName }}) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the {{ $.ShapeName }} enum
+func (enum {{ $.ShapeName }}) Values() []string {
+	return []string{
+		{{ range $index, $elem := $.Enum -}}
+		{{ index $.EnumConsts $index }},
+		{{ end }}
+	}
+}
 `))
 
 // GoCode returns the rendered Go code for the Shape.

@@ -3782,6 +3782,37 @@ const (
 	ComparisonOperatorBetween = "BETWEEN"
 )
 
+// ComparisonOperator is an enum
+type ComparisonOperator struct{}
+
+// Contains returns whether the ComparisonOperator enum includes the element
+func (enum ComparisonOperator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ComparisonOperator enum
+func (enum ComparisonOperator) Values() []string {
+	return []string{
+		ComparisonOperatorEq,
+		ComparisonOperatorNe,
+		ComparisonOperatorLe,
+		ComparisonOperatorLt,
+		ComparisonOperatorGe,
+		ComparisonOperatorGt,
+		ComparisonOperatorContains,
+		ComparisonOperatorNotContains,
+		ComparisonOperatorBeginsWith,
+		ComparisonOperatorIn,
+		ComparisonOperatorBetween,
+	}
+}
+
 const (
 	// DataLakeResourceTypeCatalog is a DataLakeResourceType enum value
 	DataLakeResourceTypeCatalog = "CATALOG"
@@ -3796,6 +3827,30 @@ const (
 	DataLakeResourceTypeDataLocation = "DATA_LOCATION"
 )
 
+// DataLakeResourceType is an enum
+type DataLakeResourceType struct{}
+
+// Contains returns whether the DataLakeResourceType enum includes the element
+func (enum DataLakeResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DataLakeResourceType enum
+func (enum DataLakeResourceType) Values() []string {
+	return []string{
+		DataLakeResourceTypeCatalog,
+		DataLakeResourceTypeDatabase,
+		DataLakeResourceTypeTable,
+		DataLakeResourceTypeDataLocation,
+	}
+}
+
 const (
 	// FieldNameStringResourceArn is a FieldNameString enum value
 	FieldNameStringResourceArn = "RESOURCE_ARN"
@@ -3806,6 +3861,29 @@ const (
 	// FieldNameStringLastModified is a FieldNameString enum value
 	FieldNameStringLastModified = "LAST_MODIFIED"
 )
+
+// FieldNameString is an enum
+type FieldNameString struct{}
+
+// Contains returns whether the FieldNameString enum includes the element
+func (enum FieldNameString) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FieldNameString enum
+func (enum FieldNameString) Values() []string {
+	return []string{
+		FieldNameStringResourceArn,
+		FieldNameStringRoleArn,
+		FieldNameStringLastModified,
+	}
+}
 
 const (
 	// PermissionAll is a Permission enum value
@@ -3838,3 +3916,33 @@ const (
 	// PermissionDataLocationAccess is a Permission enum value
 	PermissionDataLocationAccess = "DATA_LOCATION_ACCESS"
 )
+
+// Permission is an enum
+type Permission struct{}
+
+// Contains returns whether the Permission enum includes the element
+func (enum Permission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Permission enum
+func (enum Permission) Values() []string {
+	return []string{
+		PermissionAll,
+		PermissionSelect,
+		PermissionAlter,
+		PermissionDrop,
+		PermissionDelete,
+		PermissionInsert,
+		PermissionDescribe,
+		PermissionCreateDatabase,
+		PermissionCreateTable,
+		PermissionDataLocationAccess,
+	}
+}

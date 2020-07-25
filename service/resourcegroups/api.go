@@ -3221,6 +3221,27 @@ const (
 	GroupFilterNameResourceType = "resource-type"
 )
 
+// GroupFilterName is an enum
+type GroupFilterName struct{}
+
+// Contains returns whether the GroupFilterName enum includes the element
+func (enum GroupFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GroupFilterName enum
+func (enum GroupFilterName) Values() []string {
+	return []string{
+		GroupFilterNameResourceType,
+	}
+}
+
 const (
 	// QueryErrorCodeCloudformationStackInactive is a QueryErrorCode enum value
 	QueryErrorCodeCloudformationStackInactive = "CLOUDFORMATION_STACK_INACTIVE"
@@ -3228,6 +3249,28 @@ const (
 	// QueryErrorCodeCloudformationStackNotExisting is a QueryErrorCode enum value
 	QueryErrorCodeCloudformationStackNotExisting = "CLOUDFORMATION_STACK_NOT_EXISTING"
 )
+
+// QueryErrorCode is an enum
+type QueryErrorCode struct{}
+
+// Contains returns whether the QueryErrorCode enum includes the element
+func (enum QueryErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueryErrorCode enum
+func (enum QueryErrorCode) Values() []string {
+	return []string{
+		QueryErrorCodeCloudformationStackInactive,
+		QueryErrorCodeCloudformationStackNotExisting,
+	}
+}
 
 const (
 	// QueryTypeTagFilters10 is a QueryType enum value
@@ -3237,7 +3280,50 @@ const (
 	QueryTypeCloudformationStack10 = "CLOUDFORMATION_STACK_1_0"
 )
 
+// QueryType is an enum
+type QueryType struct{}
+
+// Contains returns whether the QueryType enum includes the element
+func (enum QueryType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the QueryType enum
+func (enum QueryType) Values() []string {
+	return []string{
+		QueryTypeTagFilters10,
+		QueryTypeCloudformationStack10,
+	}
+}
+
 const (
 	// ResourceFilterNameResourceType is a ResourceFilterName enum value
 	ResourceFilterNameResourceType = "resource-type"
 )
+
+// ResourceFilterName is an enum
+type ResourceFilterName struct{}
+
+// Contains returns whether the ResourceFilterName enum includes the element
+func (enum ResourceFilterName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceFilterName enum
+func (enum ResourceFilterName) Values() []string {
+	return []string{
+		ResourceFilterNameResourceType,
+	}
+}

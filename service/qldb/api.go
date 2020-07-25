@@ -4759,6 +4759,28 @@ const (
 	ErrorCauseIamPermissionRevoked = "IAM_PERMISSION_REVOKED"
 )
 
+// ErrorCause is an enum
+type ErrorCause struct{}
+
+// Contains returns whether the ErrorCause enum includes the element
+func (enum ErrorCause) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCause enum
+func (enum ErrorCause) Values() []string {
+	return []string{
+		ErrorCauseKinesisStreamNotFound,
+		ErrorCauseIamPermissionRevoked,
+	}
+}
+
 const (
 	// ExportStatusInProgress is a ExportStatus enum value
 	ExportStatusInProgress = "IN_PROGRESS"
@@ -4769,6 +4791,29 @@ const (
 	// ExportStatusCancelled is a ExportStatus enum value
 	ExportStatusCancelled = "CANCELLED"
 )
+
+// ExportStatus is an enum
+type ExportStatus struct{}
+
+// Contains returns whether the ExportStatus enum includes the element
+func (enum ExportStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ExportStatus enum
+func (enum ExportStatus) Values() []string {
+	return []string{
+		ExportStatusInProgress,
+		ExportStatusCompleted,
+		ExportStatusCancelled,
+	}
+}
 
 const (
 	// LedgerStateCreating is a LedgerState enum value
@@ -4784,10 +4829,55 @@ const (
 	LedgerStateDeleted = "DELETED"
 )
 
+// LedgerState is an enum
+type LedgerState struct{}
+
+// Contains returns whether the LedgerState enum includes the element
+func (enum LedgerState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LedgerState enum
+func (enum LedgerState) Values() []string {
+	return []string{
+		LedgerStateCreating,
+		LedgerStateActive,
+		LedgerStateDeleting,
+		LedgerStateDeleted,
+	}
+}
+
 const (
 	// PermissionsModeAllowAll is a PermissionsMode enum value
 	PermissionsModeAllowAll = "ALLOW_ALL"
 )
+
+// PermissionsMode is an enum
+type PermissionsMode struct{}
+
+// Contains returns whether the PermissionsMode enum includes the element
+func (enum PermissionsMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PermissionsMode enum
+func (enum PermissionsMode) Values() []string {
+	return []string{
+		PermissionsModeAllowAll,
+	}
+}
 
 const (
 	// S3ObjectEncryptionTypeSseKms is a S3ObjectEncryptionType enum value
@@ -4799,6 +4889,29 @@ const (
 	// S3ObjectEncryptionTypeNoEncryption is a S3ObjectEncryptionType enum value
 	S3ObjectEncryptionTypeNoEncryption = "NO_ENCRYPTION"
 )
+
+// S3ObjectEncryptionType is an enum
+type S3ObjectEncryptionType struct{}
+
+// Contains returns whether the S3ObjectEncryptionType enum includes the element
+func (enum S3ObjectEncryptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the S3ObjectEncryptionType enum
+func (enum S3ObjectEncryptionType) Values() []string {
+	return []string{
+		S3ObjectEncryptionTypeSseKms,
+		S3ObjectEncryptionTypeSseS3,
+		S3ObjectEncryptionTypeNoEncryption,
+	}
+}
 
 const (
 	// StreamStatusActive is a StreamStatus enum value
@@ -4816,3 +4929,28 @@ const (
 	// StreamStatusImpaired is a StreamStatus enum value
 	StreamStatusImpaired = "IMPAIRED"
 )
+
+// StreamStatus is an enum
+type StreamStatus struct{}
+
+// Contains returns whether the StreamStatus enum includes the element
+func (enum StreamStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StreamStatus enum
+func (enum StreamStatus) Values() []string {
+	return []string{
+		StreamStatusActive,
+		StreamStatusCompleted,
+		StreamStatusCanceled,
+		StreamStatusFailed,
+		StreamStatusImpaired,
+	}
+}

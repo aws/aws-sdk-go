@@ -1533,6 +1533,28 @@ const (
 	ContentClassifierFreeOfAdultContent = "FreeOfAdultContent"
 )
 
+// ContentClassifier is an enum
+type ContentClassifier struct{}
+
+// Contains returns whether the ContentClassifier enum includes the element
+func (enum ContentClassifier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ContentClassifier enum
+func (enum ContentClassifier) Values() []string {
+	return []string{
+		ContentClassifierFreeOfPersonallyIdentifiableInformation,
+		ContentClassifierFreeOfAdultContent,
+	}
+}
+
 const (
 	// HumanLoopStatusInProgress is a HumanLoopStatus enum value
 	HumanLoopStatusInProgress = "InProgress"
@@ -1550,6 +1572,31 @@ const (
 	HumanLoopStatusStopping = "Stopping"
 )
 
+// HumanLoopStatus is an enum
+type HumanLoopStatus struct{}
+
+// Contains returns whether the HumanLoopStatus enum includes the element
+func (enum HumanLoopStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HumanLoopStatus enum
+func (enum HumanLoopStatus) Values() []string {
+	return []string{
+		HumanLoopStatusInProgress,
+		HumanLoopStatusFailed,
+		HumanLoopStatusCompleted,
+		HumanLoopStatusStopped,
+		HumanLoopStatusStopping,
+	}
+}
+
 const (
 	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "Ascending"
@@ -1557,3 +1604,25 @@ const (
 	// SortOrderDescending is a SortOrder enum value
 	SortOrderDescending = "Descending"
 )
+
+// SortOrder is an enum
+type SortOrder struct{}
+
+// Contains returns whether the SortOrder enum includes the element
+func (enum SortOrder) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SortOrder enum
+func (enum SortOrder) Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
+	}
+}

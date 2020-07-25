@@ -15962,10 +15962,57 @@ const (
 	AggregateTypeStandardDeviation = "STANDARD_DEVIATION"
 )
 
+// AggregateType is an enum
+type AggregateType struct{}
+
+// Contains returns whether the AggregateType enum includes the element
+func (enum AggregateType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AggregateType enum
+func (enum AggregateType) Values() []string {
+	return []string{
+		AggregateTypeAverage,
+		AggregateTypeCount,
+		AggregateTypeMaximum,
+		AggregateTypeMinimum,
+		AggregateTypeSum,
+		AggregateTypeStandardDeviation,
+	}
+}
+
 const (
 	// AssetErrorCodeInternalFailure is a AssetErrorCode enum value
 	AssetErrorCodeInternalFailure = "INTERNAL_FAILURE"
 )
+
+// AssetErrorCode is an enum
+type AssetErrorCode struct{}
+
+// Contains returns whether the AssetErrorCode enum includes the element
+func (enum AssetErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssetErrorCode enum
+func (enum AssetErrorCode) Values() []string {
+	return []string{
+		AssetErrorCodeInternalFailure,
+	}
+}
 
 const (
 	// AssetModelStateCreating is a AssetModelState enum value
@@ -15987,6 +16034,32 @@ const (
 	AssetModelStateFailed = "FAILED"
 )
 
+// AssetModelState is an enum
+type AssetModelState struct{}
+
+// Contains returns whether the AssetModelState enum includes the element
+func (enum AssetModelState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssetModelState enum
+func (enum AssetModelState) Values() []string {
+	return []string{
+		AssetModelStateCreating,
+		AssetModelStateActive,
+		AssetModelStateUpdating,
+		AssetModelStatePropagating,
+		AssetModelStateDeleting,
+		AssetModelStateFailed,
+	}
+}
+
 const (
 	// AssetStateCreating is a AssetState enum value
 	AssetStateCreating = "CREATING"
@@ -16003,6 +16076,31 @@ const (
 	// AssetStateFailed is a AssetState enum value
 	AssetStateFailed = "FAILED"
 )
+
+// AssetState is an enum
+type AssetState struct{}
+
+// Contains returns whether the AssetState enum includes the element
+func (enum AssetState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AssetState enum
+func (enum AssetState) Values() []string {
+	return []string{
+		AssetStateCreating,
+		AssetStateActive,
+		AssetStateUpdating,
+		AssetStateDeleting,
+		AssetStateFailed,
+	}
+}
 
 const (
 	// BatchPutAssetPropertyValueErrorCodeResourceNotFoundException is a BatchPutAssetPropertyValueErrorCode enum value
@@ -16033,6 +16131,35 @@ const (
 	BatchPutAssetPropertyValueErrorCodeAccessDeniedException = "AccessDeniedException"
 )
 
+// BatchPutAssetPropertyValueErrorCode is an enum
+type BatchPutAssetPropertyValueErrorCode struct{}
+
+// Contains returns whether the BatchPutAssetPropertyValueErrorCode enum includes the element
+func (enum BatchPutAssetPropertyValueErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BatchPutAssetPropertyValueErrorCode enum
+func (enum BatchPutAssetPropertyValueErrorCode) Values() []string {
+	return []string{
+		BatchPutAssetPropertyValueErrorCodeResourceNotFoundException,
+		BatchPutAssetPropertyValueErrorCodeInvalidRequestException,
+		BatchPutAssetPropertyValueErrorCodeInternalFailureException,
+		BatchPutAssetPropertyValueErrorCodeServiceUnavailableException,
+		BatchPutAssetPropertyValueErrorCodeThrottlingException,
+		BatchPutAssetPropertyValueErrorCodeLimitExceededException,
+		BatchPutAssetPropertyValueErrorCodeConflictingOperationException,
+		BatchPutAssetPropertyValueErrorCodeTimestampOutOfRangeException,
+		BatchPutAssetPropertyValueErrorCodeAccessDeniedException,
+	}
+}
+
 const (
 	// CapabilitySyncStatusInSync is a CapabilitySyncStatus enum value
 	CapabilitySyncStatusInSync = "IN_SYNC"
@@ -16044,6 +16171,29 @@ const (
 	CapabilitySyncStatusSyncFailed = "SYNC_FAILED"
 )
 
+// CapabilitySyncStatus is an enum
+type CapabilitySyncStatus struct{}
+
+// Contains returns whether the CapabilitySyncStatus enum includes the element
+func (enum CapabilitySyncStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CapabilitySyncStatus enum
+func (enum CapabilitySyncStatus) Values() []string {
+	return []string{
+		CapabilitySyncStatusInSync,
+		CapabilitySyncStatusOutOfSync,
+		CapabilitySyncStatusSyncFailed,
+	}
+}
+
 const (
 	// ErrorCodeValidationError is a ErrorCode enum value
 	ErrorCodeValidationError = "VALIDATION_ERROR"
@@ -16051,6 +16201,28 @@ const (
 	// ErrorCodeInternalFailure is a ErrorCode enum value
 	ErrorCodeInternalFailure = "INTERNAL_FAILURE"
 )
+
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeValidationError,
+		ErrorCodeInternalFailure,
+	}
+}
 
 const (
 	// IdentityTypeUser is a IdentityType enum value
@@ -16060,10 +16232,53 @@ const (
 	IdentityTypeGroup = "GROUP"
 )
 
+// IdentityType is an enum
+type IdentityType struct{}
+
+// Contains returns whether the IdentityType enum includes the element
+func (enum IdentityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the IdentityType enum
+func (enum IdentityType) Values() []string {
+	return []string{
+		IdentityTypeUser,
+		IdentityTypeGroup,
+	}
+}
+
 const (
 	// ImageFileTypePng is a ImageFileType enum value
 	ImageFileTypePng = "PNG"
 )
+
+// ImageFileType is an enum
+type ImageFileType struct{}
+
+// Contains returns whether the ImageFileType enum includes the element
+func (enum ImageFileType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ImageFileType enum
+func (enum ImageFileType) Values() []string {
+	return []string{
+		ImageFileTypePng,
+	}
+}
 
 const (
 	// ListAssetsFilterAll is a ListAssetsFilter enum value
@@ -16072,6 +16287,28 @@ const (
 	// ListAssetsFilterTopLevel is a ListAssetsFilter enum value
 	ListAssetsFilterTopLevel = "TOP_LEVEL"
 )
+
+// ListAssetsFilter is an enum
+type ListAssetsFilter struct{}
+
+// Contains returns whether the ListAssetsFilter enum includes the element
+func (enum ListAssetsFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListAssetsFilter enum
+func (enum ListAssetsFilter) Values() []string {
+	return []string{
+		ListAssetsFilterAll,
+		ListAssetsFilterTopLevel,
+	}
+}
 
 const (
 	// LoggingLevelError is a LoggingLevel enum value
@@ -16084,10 +16321,54 @@ const (
 	LoggingLevelOff = "OFF"
 )
 
+// LoggingLevel is an enum
+type LoggingLevel struct{}
+
+// Contains returns whether the LoggingLevel enum includes the element
+func (enum LoggingLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoggingLevel enum
+func (enum LoggingLevel) Values() []string {
+	return []string{
+		LoggingLevelError,
+		LoggingLevelInfo,
+		LoggingLevelOff,
+	}
+}
+
 const (
 	// MonitorErrorCodeInternalFailure is a MonitorErrorCode enum value
 	MonitorErrorCodeInternalFailure = "INTERNAL_FAILURE"
 )
+
+// MonitorErrorCode is an enum
+type MonitorErrorCode struct{}
+
+// Contains returns whether the MonitorErrorCode enum includes the element
+func (enum MonitorErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MonitorErrorCode enum
+func (enum MonitorErrorCode) Values() []string {
+	return []string{
+		MonitorErrorCodeInternalFailure,
+	}
+}
 
 const (
 	// PermissionAdministrator is a Permission enum value
@@ -16096,6 +16377,28 @@ const (
 	// PermissionViewer is a Permission enum value
 	PermissionViewer = "VIEWER"
 )
+
+// Permission is an enum
+type Permission struct{}
+
+// Contains returns whether the Permission enum includes the element
+func (enum Permission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Permission enum
+func (enum Permission) Values() []string {
+	return []string{
+		PermissionAdministrator,
+		PermissionViewer,
+	}
+}
 
 const (
 	// PortalStateCreating is a PortalState enum value
@@ -16114,6 +16417,31 @@ const (
 	PortalStateFailed = "FAILED"
 )
 
+// PortalState is an enum
+type PortalState struct{}
+
+// Contains returns whether the PortalState enum includes the element
+func (enum PortalState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PortalState enum
+func (enum PortalState) Values() []string {
+	return []string{
+		PortalStateCreating,
+		PortalStateUpdating,
+		PortalStateDeleting,
+		PortalStateActive,
+		PortalStateFailed,
+	}
+}
+
 const (
 	// PropertyDataTypeString is a PropertyDataType enum value
 	PropertyDataTypeString = "STRING"
@@ -16128,6 +16456,30 @@ const (
 	PropertyDataTypeBoolean = "BOOLEAN"
 )
 
+// PropertyDataType is an enum
+type PropertyDataType struct{}
+
+// Contains returns whether the PropertyDataType enum includes the element
+func (enum PropertyDataType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PropertyDataType enum
+func (enum PropertyDataType) Values() []string {
+	return []string{
+		PropertyDataTypeString,
+		PropertyDataTypeInteger,
+		PropertyDataTypeDouble,
+		PropertyDataTypeBoolean,
+	}
+}
+
 const (
 	// PropertyNotificationStateEnabled is a PropertyNotificationState enum value
 	PropertyNotificationStateEnabled = "ENABLED"
@@ -16135,6 +16487,28 @@ const (
 	// PropertyNotificationStateDisabled is a PropertyNotificationState enum value
 	PropertyNotificationStateDisabled = "DISABLED"
 )
+
+// PropertyNotificationState is an enum
+type PropertyNotificationState struct{}
+
+// Contains returns whether the PropertyNotificationState enum includes the element
+func (enum PropertyNotificationState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the PropertyNotificationState enum
+func (enum PropertyNotificationState) Values() []string {
+	return []string{
+		PropertyNotificationStateEnabled,
+		PropertyNotificationStateDisabled,
+	}
+}
 
 const (
 	// QualityGood is a Quality enum value
@@ -16147,6 +16521,29 @@ const (
 	QualityUncertain = "UNCERTAIN"
 )
 
+// Quality is an enum
+type Quality struct{}
+
+// Contains returns whether the Quality enum includes the element
+func (enum Quality) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Quality enum
+func (enum Quality) Values() []string {
+	return []string{
+		QualityGood,
+		QualityBad,
+		QualityUncertain,
+	}
+}
+
 const (
 	// ResourceTypePortal is a ResourceType enum value
 	ResourceTypePortal = "PORTAL"
@@ -16155,6 +16552,28 @@ const (
 	ResourceTypeProject = "PROJECT"
 )
 
+// ResourceType is an enum
+type ResourceType struct{}
+
+// Contains returns whether the ResourceType enum includes the element
+func (enum ResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ResourceType enum
+func (enum ResourceType) Values() []string {
+	return []string{
+		ResourceTypePortal,
+		ResourceTypeProject,
+	}
+}
+
 const (
 	// TimeOrderingAscending is a TimeOrdering enum value
 	TimeOrderingAscending = "ASCENDING"
@@ -16162,3 +16581,25 @@ const (
 	// TimeOrderingDescending is a TimeOrdering enum value
 	TimeOrderingDescending = "DESCENDING"
 )
+
+// TimeOrdering is an enum
+type TimeOrdering struct{}
+
+// Contains returns whether the TimeOrdering enum includes the element
+func (enum TimeOrdering) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TimeOrdering enum
+func (enum TimeOrdering) Values() []string {
+	return []string{
+		TimeOrderingAscending,
+		TimeOrderingDescending,
+	}
+}

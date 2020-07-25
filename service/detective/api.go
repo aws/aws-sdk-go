@@ -2808,6 +2808,28 @@ const (
 	MemberDisabledReasonVolumeUnknown = "VOLUME_UNKNOWN"
 )
 
+// MemberDisabledReason is an enum
+type MemberDisabledReason struct{}
+
+// Contains returns whether the MemberDisabledReason enum includes the element
+func (enum MemberDisabledReason) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MemberDisabledReason enum
+func (enum MemberDisabledReason) Values() []string {
+	return []string{
+		MemberDisabledReasonVolumeTooHigh,
+		MemberDisabledReasonVolumeUnknown,
+	}
+}
+
 const (
 	// MemberStatusInvited is a MemberStatus enum value
 	MemberStatusInvited = "INVITED"
@@ -2824,3 +2846,28 @@ const (
 	// MemberStatusAcceptedButDisabled is a MemberStatus enum value
 	MemberStatusAcceptedButDisabled = "ACCEPTED_BUT_DISABLED"
 )
+
+// MemberStatus is an enum
+type MemberStatus struct{}
+
+// Contains returns whether the MemberStatus enum includes the element
+func (enum MemberStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MemberStatus enum
+func (enum MemberStatus) Values() []string {
+	return []string{
+		MemberStatusInvited,
+		MemberStatusVerificationInProgress,
+		MemberStatusVerificationFailed,
+		MemberStatusEnabled,
+		MemberStatusAcceptedButDisabled,
+	}
+}

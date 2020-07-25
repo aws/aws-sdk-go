@@ -6393,6 +6393,29 @@ const (
 	CloudWatchEventSourceHealth = "HEALTH"
 )
 
+// CloudWatchEventSource is an enum
+type CloudWatchEventSource struct{}
+
+// Contains returns whether the CloudWatchEventSource enum includes the element
+func (enum CloudWatchEventSource) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the CloudWatchEventSource enum
+func (enum CloudWatchEventSource) Values() []string {
+	return []string{
+		CloudWatchEventSourceEc2,
+		CloudWatchEventSourceCodeDeploy,
+		CloudWatchEventSourceHealth,
+	}
+}
+
 const (
 	// ConfigurationEventResourceTypeCloudwatchAlarm is a ConfigurationEventResourceType enum value
 	ConfigurationEventResourceTypeCloudwatchAlarm = "CLOUDWATCH_ALARM"
@@ -6403,6 +6426,29 @@ const (
 	// ConfigurationEventResourceTypeSsmAssociation is a ConfigurationEventResourceType enum value
 	ConfigurationEventResourceTypeSsmAssociation = "SSM_ASSOCIATION"
 )
+
+// ConfigurationEventResourceType is an enum
+type ConfigurationEventResourceType struct{}
+
+// Contains returns whether the ConfigurationEventResourceType enum includes the element
+func (enum ConfigurationEventResourceType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigurationEventResourceType enum
+func (enum ConfigurationEventResourceType) Values() []string {
+	return []string{
+		ConfigurationEventResourceTypeCloudwatchAlarm,
+		ConfigurationEventResourceTypeCloudformation,
+		ConfigurationEventResourceTypeSsmAssociation,
+	}
+}
 
 const (
 	// ConfigurationEventStatusInfo is a ConfigurationEventStatus enum value
@@ -6415,10 +6461,54 @@ const (
 	ConfigurationEventStatusError = "ERROR"
 )
 
+// ConfigurationEventStatus is an enum
+type ConfigurationEventStatus struct{}
+
+// Contains returns whether the ConfigurationEventStatus enum includes the element
+func (enum ConfigurationEventStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConfigurationEventStatus enum
+func (enum ConfigurationEventStatus) Values() []string {
+	return []string{
+		ConfigurationEventStatusInfo,
+		ConfigurationEventStatusWarn,
+		ConfigurationEventStatusError,
+	}
+}
+
 const (
 	// FeedbackKeyInsightsFeedback is a FeedbackKey enum value
 	FeedbackKeyInsightsFeedback = "INSIGHTS_FEEDBACK"
 )
+
+// FeedbackKey is an enum
+type FeedbackKey struct{}
+
+// Contains returns whether the FeedbackKey enum includes the element
+func (enum FeedbackKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FeedbackKey enum
+func (enum FeedbackKey) Values() []string {
+	return []string{
+		FeedbackKeyInsightsFeedback,
+	}
+}
 
 const (
 	// FeedbackValueNotSpecified is a FeedbackValue enum value
@@ -6431,6 +6521,29 @@ const (
 	FeedbackValueNotUseful = "NOT_USEFUL"
 )
 
+// FeedbackValue is an enum
+type FeedbackValue struct{}
+
+// Contains returns whether the FeedbackValue enum includes the element
+func (enum FeedbackValue) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FeedbackValue enum
+func (enum FeedbackValue) Values() []string {
+	return []string{
+		FeedbackValueNotSpecified,
+		FeedbackValueUseful,
+		FeedbackValueNotUseful,
+	}
+}
+
 const (
 	// LogFilterError is a LogFilter enum value
 	LogFilterError = "ERROR"
@@ -6441,6 +6554,29 @@ const (
 	// LogFilterInfo is a LogFilter enum value
 	LogFilterInfo = "INFO"
 )
+
+// LogFilter is an enum
+type LogFilter struct{}
+
+// Contains returns whether the LogFilter enum includes the element
+func (enum LogFilter) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogFilter enum
+func (enum LogFilter) Values() []string {
+	return []string{
+		LogFilterError,
+		LogFilterWarn,
+		LogFilterInfo,
+	}
+}
 
 const (
 	// SeverityLevelLow is a SeverityLevel enum value
@@ -6453,6 +6589,29 @@ const (
 	SeverityLevelHigh = "High"
 )
 
+// SeverityLevel is an enum
+type SeverityLevel struct{}
+
+// Contains returns whether the SeverityLevel enum includes the element
+func (enum SeverityLevel) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SeverityLevel enum
+func (enum SeverityLevel) Values() []string {
+	return []string{
+		SeverityLevelLow,
+		SeverityLevelMedium,
+		SeverityLevelHigh,
+	}
+}
+
 const (
 	// StatusIgnore is a Status enum value
 	StatusIgnore = "IGNORE"
@@ -6463,6 +6622,29 @@ const (
 	// StatusPending is a Status enum value
 	StatusPending = "PENDING"
 )
+
+// Status is an enum
+type Status struct{}
+
+// Contains returns whether the Status enum includes the element
+func (enum Status) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Status enum
+func (enum Status) Values() []string {
+	return []string{
+		StatusIgnore,
+		StatusResolved,
+		StatusPending,
+	}
+}
 
 const (
 	// TierDefault is a Tier enum value
@@ -6480,3 +6662,28 @@ const (
 	// TierSqlServer is a Tier enum value
 	TierSqlServer = "SQL_SERVER"
 )
+
+// Tier is an enum
+type Tier struct{}
+
+// Contains returns whether the Tier enum includes the element
+func (enum Tier) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Tier enum
+func (enum Tier) Values() []string {
+	return []string{
+		TierDefault,
+		TierDotNetCore,
+		TierDotNetWorker,
+		TierDotNetWeb,
+		TierSqlServer,
+	}
+}

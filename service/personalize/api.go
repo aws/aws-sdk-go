@@ -11397,6 +11397,27 @@ const (
 	RecipeProviderService = "SERVICE"
 )
 
+// RecipeProvider is an enum
+type RecipeProvider struct{}
+
+// Contains returns whether the RecipeProvider enum includes the element
+func (enum RecipeProvider) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RecipeProvider enum
+func (enum RecipeProvider) Values() []string {
+	return []string{
+		RecipeProviderService,
+	}
+}
+
 const (
 	// TrainingModeFull is a TrainingMode enum value
 	TrainingModeFull = "FULL"
@@ -11404,3 +11425,25 @@ const (
 	// TrainingModeUpdate is a TrainingMode enum value
 	TrainingModeUpdate = "UPDATE"
 )
+
+// TrainingMode is an enum
+type TrainingMode struct{}
+
+// Contains returns whether the TrainingMode enum includes the element
+func (enum TrainingMode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TrainingMode enum
+func (enum TrainingMode) Values() []string {
+	return []string{
+		TrainingModeFull,
+		TrainingModeUpdate,
+	}
+}

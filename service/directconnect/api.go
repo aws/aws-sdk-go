@@ -12212,6 +12212,28 @@ const (
 	AddressFamilyIpv6 = "ipv6"
 )
 
+// AddressFamily is an enum
+type AddressFamily struct{}
+
+// Contains returns whether the AddressFamily enum includes the element
+func (enum AddressFamily) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AddressFamily enum
+func (enum AddressFamily) Values() []string {
+	return []string{
+		AddressFamilyIpv4,
+		AddressFamilyIpv6,
+	}
+}
+
 const (
 	// BGPPeerStateVerifying is a BGPPeerState enum value
 	BGPPeerStateVerifying = "verifying"
@@ -12229,6 +12251,31 @@ const (
 	BGPPeerStateDeleted = "deleted"
 )
 
+// BGPPeerState is an enum
+type BGPPeerState struct{}
+
+// Contains returns whether the BGPPeerState enum includes the element
+func (enum BGPPeerState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BGPPeerState enum
+func (enum BGPPeerState) Values() []string {
+	return []string{
+		BGPPeerStateVerifying,
+		BGPPeerStatePending,
+		BGPPeerStateAvailable,
+		BGPPeerStateDeleting,
+		BGPPeerStateDeleted,
+	}
+}
+
 const (
 	// BGPStatusUp is a BGPStatus enum value
 	BGPStatusUp = "up"
@@ -12239,6 +12286,29 @@ const (
 	// BGPStatusUnknown is a BGPStatus enum value
 	BGPStatusUnknown = "unknown"
 )
+
+// BGPStatus is an enum
+type BGPStatus struct{}
+
+// Contains returns whether the BGPStatus enum includes the element
+func (enum BGPStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the BGPStatus enum
+func (enum BGPStatus) Values() []string {
+	return []string{
+		BGPStatusUp,
+		BGPStatusDown,
+		BGPStatusUnknown,
+	}
+}
 
 const (
 	// ConnectionStateOrdering is a ConnectionState enum value
@@ -12269,6 +12339,35 @@ const (
 	ConnectionStateUnknown = "unknown"
 )
 
+// ConnectionState is an enum
+type ConnectionState struct{}
+
+// Contains returns whether the ConnectionState enum includes the element
+func (enum ConnectionState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ConnectionState enum
+func (enum ConnectionState) Values() []string {
+	return []string{
+		ConnectionStateOrdering,
+		ConnectionStateRequested,
+		ConnectionStatePending,
+		ConnectionStateAvailable,
+		ConnectionStateDown,
+		ConnectionStateDeleting,
+		ConnectionStateDeleted,
+		ConnectionStateRejected,
+		ConnectionStateUnknown,
+	}
+}
+
 const (
 	// GatewayAssociationProposalStateRequested is a GatewayAssociationProposalState enum value
 	GatewayAssociationProposalStateRequested = "requested"
@@ -12279,6 +12378,29 @@ const (
 	// GatewayAssociationProposalStateDeleted is a GatewayAssociationProposalState enum value
 	GatewayAssociationProposalStateDeleted = "deleted"
 )
+
+// GatewayAssociationProposalState is an enum
+type GatewayAssociationProposalState struct{}
+
+// Contains returns whether the GatewayAssociationProposalState enum includes the element
+func (enum GatewayAssociationProposalState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GatewayAssociationProposalState enum
+func (enum GatewayAssociationProposalState) Values() []string {
+	return []string{
+		GatewayAssociationProposalStateRequested,
+		GatewayAssociationProposalStateAccepted,
+		GatewayAssociationProposalStateDeleted,
+	}
+}
 
 const (
 	// GatewayAssociationStateAssociating is a GatewayAssociationState enum value
@@ -12297,6 +12419,31 @@ const (
 	GatewayAssociationStateUpdating = "updating"
 )
 
+// GatewayAssociationState is an enum
+type GatewayAssociationState struct{}
+
+// Contains returns whether the GatewayAssociationState enum includes the element
+func (enum GatewayAssociationState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GatewayAssociationState enum
+func (enum GatewayAssociationState) Values() []string {
+	return []string{
+		GatewayAssociationStateAssociating,
+		GatewayAssociationStateAssociated,
+		GatewayAssociationStateDisassociating,
+		GatewayAssociationStateDisassociated,
+		GatewayAssociationStateUpdating,
+	}
+}
+
 const (
 	// GatewayAttachmentStateAttaching is a GatewayAttachmentState enum value
 	GatewayAttachmentStateAttaching = "attaching"
@@ -12311,6 +12458,30 @@ const (
 	GatewayAttachmentStateDetached = "detached"
 )
 
+// GatewayAttachmentState is an enum
+type GatewayAttachmentState struct{}
+
+// Contains returns whether the GatewayAttachmentState enum includes the element
+func (enum GatewayAttachmentState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GatewayAttachmentState enum
+func (enum GatewayAttachmentState) Values() []string {
+	return []string{
+		GatewayAttachmentStateAttaching,
+		GatewayAttachmentStateAttached,
+		GatewayAttachmentStateDetaching,
+		GatewayAttachmentStateDetached,
+	}
+}
+
 const (
 	// GatewayAttachmentTypeTransitVirtualInterface is a GatewayAttachmentType enum value
 	GatewayAttachmentTypeTransitVirtualInterface = "TransitVirtualInterface"
@@ -12318,6 +12489,28 @@ const (
 	// GatewayAttachmentTypePrivateVirtualInterface is a GatewayAttachmentType enum value
 	GatewayAttachmentTypePrivateVirtualInterface = "PrivateVirtualInterface"
 )
+
+// GatewayAttachmentType is an enum
+type GatewayAttachmentType struct{}
+
+// Contains returns whether the GatewayAttachmentType enum includes the element
+func (enum GatewayAttachmentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GatewayAttachmentType enum
+func (enum GatewayAttachmentType) Values() []string {
+	return []string{
+		GatewayAttachmentTypeTransitVirtualInterface,
+		GatewayAttachmentTypePrivateVirtualInterface,
+	}
+}
 
 const (
 	// GatewayStatePending is a GatewayState enum value
@@ -12333,6 +12526,30 @@ const (
 	GatewayStateDeleted = "deleted"
 )
 
+// GatewayState is an enum
+type GatewayState struct{}
+
+// Contains returns whether the GatewayState enum includes the element
+func (enum GatewayState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GatewayState enum
+func (enum GatewayState) Values() []string {
+	return []string{
+		GatewayStatePending,
+		GatewayStateAvailable,
+		GatewayStateDeleting,
+		GatewayStateDeleted,
+	}
+}
+
 const (
 	// GatewayTypeVirtualPrivateGateway is a GatewayType enum value
 	GatewayTypeVirtualPrivateGateway = "virtualPrivateGateway"
@@ -12340,6 +12557,28 @@ const (
 	// GatewayTypeTransitGateway is a GatewayType enum value
 	GatewayTypeTransitGateway = "transitGateway"
 )
+
+// GatewayType is an enum
+type GatewayType struct{}
+
+// Contains returns whether the GatewayType enum includes the element
+func (enum GatewayType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GatewayType enum
+func (enum GatewayType) Values() []string {
+	return []string{
+		GatewayTypeVirtualPrivateGateway,
+		GatewayTypeTransitGateway,
+	}
+}
 
 const (
 	// HasLogicalRedundancyUnknown is a HasLogicalRedundancy enum value
@@ -12351,6 +12590,29 @@ const (
 	// HasLogicalRedundancyNo is a HasLogicalRedundancy enum value
 	HasLogicalRedundancyNo = "no"
 )
+
+// HasLogicalRedundancy is an enum
+type HasLogicalRedundancy struct{}
+
+// Contains returns whether the HasLogicalRedundancy enum includes the element
+func (enum HasLogicalRedundancy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the HasLogicalRedundancy enum
+func (enum HasLogicalRedundancy) Values() []string {
+	return []string{
+		HasLogicalRedundancyUnknown,
+		HasLogicalRedundancyYes,
+		HasLogicalRedundancyNo,
+	}
+}
 
 const (
 	// InterconnectStateRequested is a InterconnectState enum value
@@ -12375,6 +12637,33 @@ const (
 	InterconnectStateUnknown = "unknown"
 )
 
+// InterconnectState is an enum
+type InterconnectState struct{}
+
+// Contains returns whether the InterconnectState enum includes the element
+func (enum InterconnectState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the InterconnectState enum
+func (enum InterconnectState) Values() []string {
+	return []string{
+		InterconnectStateRequested,
+		InterconnectStatePending,
+		InterconnectStateAvailable,
+		InterconnectStateDown,
+		InterconnectStateDeleting,
+		InterconnectStateDeleted,
+		InterconnectStateUnknown,
+	}
+}
+
 const (
 	// LagStateRequested is a LagState enum value
 	LagStateRequested = "requested"
@@ -12398,10 +12687,58 @@ const (
 	LagStateUnknown = "unknown"
 )
 
+// LagState is an enum
+type LagState struct{}
+
+// Contains returns whether the LagState enum includes the element
+func (enum LagState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LagState enum
+func (enum LagState) Values() []string {
+	return []string{
+		LagStateRequested,
+		LagStatePending,
+		LagStateAvailable,
+		LagStateDown,
+		LagStateDeleting,
+		LagStateDeleted,
+		LagStateUnknown,
+	}
+}
+
 const (
 	// LoaContentTypeApplicationPdf is a LoaContentType enum value
 	LoaContentTypeApplicationPdf = "application/pdf"
 )
+
+// LoaContentType is an enum
+type LoaContentType struct{}
+
+// Contains returns whether the LoaContentType enum includes the element
+func (enum LoaContentType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LoaContentType enum
+func (enum LoaContentType) Values() []string {
+	return []string{
+		LoaContentTypeApplicationPdf,
+	}
+}
 
 const (
 	// VirtualInterfaceStateConfirming is a VirtualInterfaceState enum value
@@ -12431,3 +12768,32 @@ const (
 	// VirtualInterfaceStateUnknown is a VirtualInterfaceState enum value
 	VirtualInterfaceStateUnknown = "unknown"
 )
+
+// VirtualInterfaceState is an enum
+type VirtualInterfaceState struct{}
+
+// Contains returns whether the VirtualInterfaceState enum includes the element
+func (enum VirtualInterfaceState) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the VirtualInterfaceState enum
+func (enum VirtualInterfaceState) Values() []string {
+	return []string{
+		VirtualInterfaceStateConfirming,
+		VirtualInterfaceStateVerifying,
+		VirtualInterfaceStatePending,
+		VirtualInterfaceStateAvailable,
+		VirtualInterfaceStateDown,
+		VirtualInterfaceStateDeleting,
+		VirtualInterfaceStateDeleted,
+		VirtualInterfaceStateRejected,
+		VirtualInterfaceStateUnknown,
+	}
+}

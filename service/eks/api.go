@@ -6637,6 +6637,28 @@ const (
 	AMITypesAl2X8664Gpu = "AL2_x86_64_GPU"
 )
 
+// AMITypes is an enum
+type AMITypes struct{}
+
+// Contains returns whether the AMITypes enum includes the element
+func (enum AMITypes) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AMITypes enum
+func (enum AMITypes) Values() []string {
+	return []string{
+		AMITypesAl2X8664,
+		AMITypesAl2X8664Gpu,
+	}
+}
+
 const (
 	// ClusterStatusCreating is a ClusterStatus enum value
 	ClusterStatusCreating = "CREATING"
@@ -6653,6 +6675,31 @@ const (
 	// ClusterStatusUpdating is a ClusterStatus enum value
 	ClusterStatusUpdating = "UPDATING"
 )
+
+// ClusterStatus is an enum
+type ClusterStatus struct{}
+
+// Contains returns whether the ClusterStatus enum includes the element
+func (enum ClusterStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ClusterStatus enum
+func (enum ClusterStatus) Values() []string {
+	return []string{
+		ClusterStatusCreating,
+		ClusterStatusActive,
+		ClusterStatusDeleting,
+		ClusterStatusFailed,
+		ClusterStatusUpdating,
+	}
+}
 
 const (
 	// ErrorCodeSubnetNotFound is a ErrorCode enum value
@@ -6689,6 +6736,37 @@ const (
 	ErrorCodeInsufficientFreeAddresses = "InsufficientFreeAddresses"
 )
 
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeSubnetNotFound,
+		ErrorCodeSecurityGroupNotFound,
+		ErrorCodeEniLimitReached,
+		ErrorCodeIpNotAvailable,
+		ErrorCodeAccessDenied,
+		ErrorCodeOperationNotPermitted,
+		ErrorCodeVpcIdNotFound,
+		ErrorCodeUnknown,
+		ErrorCodeNodeCreationFailure,
+		ErrorCodePodEvictionFailure,
+		ErrorCodeInsufficientFreeAddresses,
+	}
+}
+
 const (
 	// FargateProfileStatusCreating is a FargateProfileStatus enum value
 	FargateProfileStatusCreating = "CREATING"
@@ -6706,6 +6784,31 @@ const (
 	FargateProfileStatusDeleteFailed = "DELETE_FAILED"
 )
 
+// FargateProfileStatus is an enum
+type FargateProfileStatus struct{}
+
+// Contains returns whether the FargateProfileStatus enum includes the element
+func (enum FargateProfileStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FargateProfileStatus enum
+func (enum FargateProfileStatus) Values() []string {
+	return []string{
+		FargateProfileStatusCreating,
+		FargateProfileStatusActive,
+		FargateProfileStatusDeleting,
+		FargateProfileStatusCreateFailed,
+		FargateProfileStatusDeleteFailed,
+	}
+}
+
 const (
 	// LogTypeApi is a LogType enum value
 	LogTypeApi = "api"
@@ -6722,6 +6825,31 @@ const (
 	// LogTypeScheduler is a LogType enum value
 	LogTypeScheduler = "scheduler"
 )
+
+// LogType is an enum
+type LogType struct{}
+
+// Contains returns whether the LogType enum includes the element
+func (enum LogType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the LogType enum
+func (enum LogType) Values() []string {
+	return []string{
+		LogTypeApi,
+		LogTypeAudit,
+		LogTypeAuthenticator,
+		LogTypeControllerManager,
+		LogTypeScheduler,
+	}
+}
 
 const (
 	// NodegroupIssueCodeAutoScalingGroupNotFound is a NodegroupIssueCode enum value
@@ -6776,6 +6904,43 @@ const (
 	NodegroupIssueCodeInternalFailure = "InternalFailure"
 )
 
+// NodegroupIssueCode is an enum
+type NodegroupIssueCode struct{}
+
+// Contains returns whether the NodegroupIssueCode enum includes the element
+func (enum NodegroupIssueCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NodegroupIssueCode enum
+func (enum NodegroupIssueCode) Values() []string {
+	return []string{
+		NodegroupIssueCodeAutoScalingGroupNotFound,
+		NodegroupIssueCodeAutoScalingGroupInvalidConfiguration,
+		NodegroupIssueCodeEc2securityGroupNotFound,
+		NodegroupIssueCodeEc2securityGroupDeletionFailure,
+		NodegroupIssueCodeEc2launchTemplateNotFound,
+		NodegroupIssueCodeEc2launchTemplateVersionMismatch,
+		NodegroupIssueCodeEc2subnetNotFound,
+		NodegroupIssueCodeEc2subnetInvalidConfiguration,
+		NodegroupIssueCodeIamInstanceProfileNotFound,
+		NodegroupIssueCodeIamLimitExceeded,
+		NodegroupIssueCodeIamNodeRoleNotFound,
+		NodegroupIssueCodeNodeCreationFailure,
+		NodegroupIssueCodeAsgInstanceLaunchFailures,
+		NodegroupIssueCodeInstanceLimitExceeded,
+		NodegroupIssueCodeInsufficientFreeAddresses,
+		NodegroupIssueCodeAccessDenied,
+		NodegroupIssueCodeInternalFailure,
+	}
+}
+
 const (
 	// NodegroupStatusCreating is a NodegroupStatus enum value
 	NodegroupStatusCreating = "CREATING"
@@ -6798,6 +6963,33 @@ const (
 	// NodegroupStatusDegraded is a NodegroupStatus enum value
 	NodegroupStatusDegraded = "DEGRADED"
 )
+
+// NodegroupStatus is an enum
+type NodegroupStatus struct{}
+
+// Contains returns whether the NodegroupStatus enum includes the element
+func (enum NodegroupStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the NodegroupStatus enum
+func (enum NodegroupStatus) Values() []string {
+	return []string{
+		NodegroupStatusCreating,
+		NodegroupStatusActive,
+		NodegroupStatusUpdating,
+		NodegroupStatusDeleting,
+		NodegroupStatusCreateFailed,
+		NodegroupStatusDeleteFailed,
+		NodegroupStatusDegraded,
+	}
+}
 
 const (
 	// UpdateParamTypeVersion is a UpdateParamType enum value
@@ -6837,6 +7029,38 @@ const (
 	UpdateParamTypePublicAccessCidrs = "PublicAccessCidrs"
 )
 
+// UpdateParamType is an enum
+type UpdateParamType struct{}
+
+// Contains returns whether the UpdateParamType enum includes the element
+func (enum UpdateParamType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpdateParamType enum
+func (enum UpdateParamType) Values() []string {
+	return []string{
+		UpdateParamTypeVersion,
+		UpdateParamTypePlatformVersion,
+		UpdateParamTypeEndpointPrivateAccess,
+		UpdateParamTypeEndpointPublicAccess,
+		UpdateParamTypeClusterLogging,
+		UpdateParamTypeDesiredSize,
+		UpdateParamTypeLabelsToAdd,
+		UpdateParamTypeLabelsToRemove,
+		UpdateParamTypeMaxSize,
+		UpdateParamTypeMinSize,
+		UpdateParamTypeReleaseVersion,
+		UpdateParamTypePublicAccessCidrs,
+	}
+}
+
 const (
 	// UpdateStatusInProgress is a UpdateStatus enum value
 	UpdateStatusInProgress = "InProgress"
@@ -6851,6 +7075,30 @@ const (
 	UpdateStatusSuccessful = "Successful"
 )
 
+// UpdateStatus is an enum
+type UpdateStatus struct{}
+
+// Contains returns whether the UpdateStatus enum includes the element
+func (enum UpdateStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpdateStatus enum
+func (enum UpdateStatus) Values() []string {
+	return []string{
+		UpdateStatusInProgress,
+		UpdateStatusFailed,
+		UpdateStatusCancelled,
+		UpdateStatusSuccessful,
+	}
+}
+
 const (
 	// UpdateTypeVersionUpdate is a UpdateType enum value
 	UpdateTypeVersionUpdate = "VersionUpdate"
@@ -6864,3 +7112,27 @@ const (
 	// UpdateTypeConfigUpdate is a UpdateType enum value
 	UpdateTypeConfigUpdate = "ConfigUpdate"
 )
+
+// UpdateType is an enum
+type UpdateType struct{}
+
+// Contains returns whether the UpdateType enum includes the element
+func (enum UpdateType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UpdateType enum
+func (enum UpdateType) Values() []string {
+	return []string{
+		UpdateTypeVersionUpdate,
+		UpdateTypeEndpointAccessUpdate,
+		UpdateTypeLoggingUpdate,
+		UpdateTypeConfigUpdate,
+	}
+}

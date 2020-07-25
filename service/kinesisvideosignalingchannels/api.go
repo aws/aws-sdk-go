@@ -811,3 +811,24 @@ const (
 	// ServiceTurn is a Service enum value
 	ServiceTurn = "TURN"
 )
+
+// Service is an enum
+type Service struct{}
+
+// Contains returns whether the Service enum includes the element
+func (enum Service) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Service enum
+func (enum Service) Values() []string {
+	return []string{
+		ServiceTurn,
+	}
+}

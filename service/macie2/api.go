@@ -14046,12 +14046,55 @@ const (
 	AdminStatusDisablingInProgress = "DISABLING_IN_PROGRESS"
 )
 
+// AdminStatus is an enum
+type AdminStatus struct{}
+
+// Contains returns whether the AdminStatus enum includes the element
+func (enum AdminStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the AdminStatus enum
+func (enum AdminStatus) Values() []string {
+	return []string{
+		AdminStatusEnabled,
+		AdminStatusDisablingInProgress,
+	}
+}
+
 // The type of currency that data for a usage metric is reported in. Possible
 // values are:
 const (
 	// CurrencyUsd is a Currency enum value
 	CurrencyUsd = "USD"
 )
+
+// Currency is an enum
+type Currency struct{}
+
+// Contains returns whether the Currency enum includes the element
+func (enum Currency) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Currency enum
+func (enum Currency) Values() []string {
+	return []string{
+		CurrencyUsd,
+	}
+}
 
 const (
 	// DayOfWeekSunday is a DayOfWeek enum value
@@ -14076,6 +14119,33 @@ const (
 	DayOfWeekSaturday = "SATURDAY"
 )
 
+// DayOfWeek is an enum
+type DayOfWeek struct{}
+
+// Contains returns whether the DayOfWeek enum includes the element
+func (enum DayOfWeek) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the DayOfWeek enum
+func (enum DayOfWeek) Values() []string {
+	return []string{
+		DayOfWeekSunday,
+		DayOfWeekMonday,
+		DayOfWeekTuesday,
+		DayOfWeekWednesday,
+		DayOfWeekThursday,
+		DayOfWeekFriday,
+		DayOfWeekSaturday,
+	}
+}
+
 const (
 	// EffectivePermissionPublic is a EffectivePermission enum value
 	EffectivePermissionPublic = "PUBLIC"
@@ -14083,6 +14153,28 @@ const (
 	// EffectivePermissionNotPublic is a EffectivePermission enum value
 	EffectivePermissionNotPublic = "NOT_PUBLIC"
 )
+
+// EffectivePermission is an enum
+type EffectivePermission struct{}
+
+// Contains returns whether the EffectivePermission enum includes the element
+func (enum EffectivePermission) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EffectivePermission enum
+func (enum EffectivePermission) Values() []string {
+	return []string{
+		EffectivePermissionPublic,
+		EffectivePermissionNotPublic,
+	}
+}
 
 // The type of server-side encryption that's used to encrypt objects in the
 // S3 bucket. Valid values are:
@@ -14100,6 +14192,30 @@ const (
 	EncryptionTypeUnknown = "UNKNOWN"
 )
 
+// EncryptionType is an enum
+type EncryptionType struct{}
+
+// Contains returns whether the EncryptionType enum includes the element
+func (enum EncryptionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the EncryptionType enum
+func (enum EncryptionType) Values() []string {
+	return []string{
+		EncryptionTypeNone,
+		EncryptionTypeAes256,
+		EncryptionTypeAwsKms,
+		EncryptionTypeUnknown,
+	}
+}
+
 // The source of an error, issue, or delay. Possible values are:
 const (
 	// ErrorCodeClientError is a ErrorCode enum value
@@ -14109,12 +14225,55 @@ const (
 	ErrorCodeInternalError = "InternalError"
 )
 
+// ErrorCode is an enum
+type ErrorCode struct{}
+
+// Contains returns whether the ErrorCode enum includes the element
+func (enum ErrorCode) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ErrorCode enum
+func (enum ErrorCode) Values() []string {
+	return []string{
+		ErrorCodeClientError,
+		ErrorCodeInternalError,
+	}
+}
+
 // The type of action that occurred for the resource and produced the policy
 // finding:
 const (
 	// FindingActionTypeAwsApiCall is a FindingActionType enum value
 	FindingActionTypeAwsApiCall = "AWS_API_CALL"
 )
+
+// FindingActionType is an enum
+type FindingActionType struct{}
+
+// Contains returns whether the FindingActionType enum includes the element
+func (enum FindingActionType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingActionType enum
+func (enum FindingActionType) Values() []string {
+	return []string{
+		FindingActionTypeAwsApiCall,
+	}
+}
 
 // The category of the finding. Valid values are:
 const (
@@ -14124,6 +14283,28 @@ const (
 	// FindingCategoryPolicy is a FindingCategory enum value
 	FindingCategoryPolicy = "POLICY"
 )
+
+// FindingCategory is an enum
+type FindingCategory struct{}
+
+// Contains returns whether the FindingCategory enum includes the element
+func (enum FindingCategory) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingCategory enum
+func (enum FindingCategory) Values() []string {
+	return []string{
+		FindingCategoryClassification,
+		FindingCategoryPolicy,
+	}
+}
 
 // The frequency with which Amazon Macie publishes updates to policy findings
 // for an account. This includes publishing updates to AWS Security Hub and
@@ -14140,6 +14321,29 @@ const (
 	FindingPublishingFrequencySixHours = "SIX_HOURS"
 )
 
+// FindingPublishingFrequency is an enum
+type FindingPublishingFrequency struct{}
+
+// Contains returns whether the FindingPublishingFrequency enum includes the element
+func (enum FindingPublishingFrequency) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingPublishingFrequency enum
+func (enum FindingPublishingFrequency) Values() []string {
+	return []string{
+		FindingPublishingFrequencyFifteenMinutes,
+		FindingPublishingFrequencyOneHour,
+		FindingPublishingFrequencySixHours,
+	}
+}
+
 // The grouping to sort the results by. Valid values are:
 const (
 	// FindingStatisticsSortAttributeNameGroupKey is a FindingStatisticsSortAttributeName enum value
@@ -14148,6 +14352,28 @@ const (
 	// FindingStatisticsSortAttributeNameCount is a FindingStatisticsSortAttributeName enum value
 	FindingStatisticsSortAttributeNameCount = "count"
 )
+
+// FindingStatisticsSortAttributeName is an enum
+type FindingStatisticsSortAttributeName struct{}
+
+// Contains returns whether the FindingStatisticsSortAttributeName enum includes the element
+func (enum FindingStatisticsSortAttributeName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingStatisticsSortAttributeName enum
+func (enum FindingStatisticsSortAttributeName) Values() []string {
+	return []string{
+		FindingStatisticsSortAttributeNameGroupKey,
+		FindingStatisticsSortAttributeNameCount,
+	}
+}
 
 // The type of finding. Valid values are:
 const (
@@ -14182,6 +14408,36 @@ const (
 	FindingTypePolicyIamuserS3blockPublicAccessDisabled = "Policy:IAMUser/S3BlockPublicAccessDisabled"
 )
 
+// FindingType is an enum
+type FindingType struct{}
+
+// Contains returns whether the FindingType enum includes the element
+func (enum FindingType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingType enum
+func (enum FindingType) Values() []string {
+	return []string{
+		FindingTypeSensitiveDataS3objectMultiple,
+		FindingTypeSensitiveDataS3objectFinancial,
+		FindingTypeSensitiveDataS3objectPersonal,
+		FindingTypeSensitiveDataS3objectCredentials,
+		FindingTypeSensitiveDataS3objectCustomIdentifier,
+		FindingTypePolicyIamuserS3bucketPublic,
+		FindingTypePolicyIamuserS3bucketSharedExternally,
+		FindingTypePolicyIamuserS3bucketReplicatedExternally,
+		FindingTypePolicyIamuserS3bucketEncryptionDisabled,
+		FindingTypePolicyIamuserS3blockPublicAccessDisabled,
+	}
+}
+
 // The action to perform on findings that meet the filter criteria. To suppress
 // (automatically archive) findings that meet the criteria, set this value to
 // ARCHIVE. Valid values are:
@@ -14192,6 +14448,28 @@ const (
 	// FindingsFilterActionNoop is a FindingsFilterAction enum value
 	FindingsFilterActionNoop = "NOOP"
 )
+
+// FindingsFilterAction is an enum
+type FindingsFilterAction struct{}
+
+// Contains returns whether the FindingsFilterAction enum includes the element
+func (enum FindingsFilterAction) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the FindingsFilterAction enum
+func (enum FindingsFilterAction) Values() []string {
+	return []string{
+		FindingsFilterActionArchive,
+		FindingsFilterActionNoop,
+	}
+}
 
 const (
 	// GroupByResourcesAffectedS3bucketName is a GroupBy enum value
@@ -14206,6 +14484,30 @@ const (
 	// GroupBySeverityDescription is a GroupBy enum value
 	GroupBySeverityDescription = "severity.description"
 )
+
+// GroupBy is an enum
+type GroupBy struct{}
+
+// Contains returns whether the GroupBy enum includes the element
+func (enum GroupBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the GroupBy enum
+func (enum GroupBy) Values() []string {
+	return []string{
+		GroupByResourcesAffectedS3bucketName,
+		GroupByType,
+		GroupByClassificationDetailsJobId,
+		GroupBySeverityDescription,
+	}
+}
 
 // The operator to use in a condition. Valid values are:
 const (
@@ -14231,6 +14533,33 @@ const (
 	JobComparatorContains = "CONTAINS"
 )
 
+// JobComparator is an enum
+type JobComparator struct{}
+
+// Contains returns whether the JobComparator enum includes the element
+func (enum JobComparator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobComparator enum
+func (enum JobComparator) Values() []string {
+	return []string{
+		JobComparatorEq,
+		JobComparatorGt,
+		JobComparatorGte,
+		JobComparatorLt,
+		JobComparatorLte,
+		JobComparatorNe,
+		JobComparatorContains,
+	}
+}
+
 // The current status of a classification job. Possible values are:
 const (
 	// JobStatusRunning is a JobStatus enum value
@@ -14249,6 +14578,31 @@ const (
 	JobStatusIdle = "IDLE"
 )
 
+// JobStatus is an enum
+type JobStatus struct{}
+
+// Contains returns whether the JobStatus enum includes the element
+func (enum JobStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobStatus enum
+func (enum JobStatus) Values() []string {
+	return []string{
+		JobStatusRunning,
+		JobStatusPaused,
+		JobStatusCancelled,
+		JobStatusComplete,
+		JobStatusIdle,
+	}
+}
+
 // The schedule for running a classification job. Valid values are:
 const (
 	// JobTypeOneTime is a JobType enum value
@@ -14257,6 +14611,28 @@ const (
 	// JobTypeScheduled is a JobType enum value
 	JobTypeScheduled = "SCHEDULED"
 )
+
+// JobType is an enum
+type JobType struct{}
+
+// Contains returns whether the JobType enum includes the element
+func (enum JobType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the JobType enum
+func (enum JobType) Values() []string {
+	return []string{
+		JobTypeOneTime,
+		JobTypeScheduled,
+	}
+}
 
 // The property to use to filter the results. Valid values are:
 const (
@@ -14273,6 +14649,30 @@ const (
 	ListJobsFilterKeyName = "name"
 )
 
+// ListJobsFilterKey is an enum
+type ListJobsFilterKey struct{}
+
+// Contains returns whether the ListJobsFilterKey enum includes the element
+func (enum ListJobsFilterKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListJobsFilterKey enum
+func (enum ListJobsFilterKey) Values() []string {
+	return []string{
+		ListJobsFilterKeyJobType,
+		ListJobsFilterKeyJobStatus,
+		ListJobsFilterKeyCreatedAt,
+		ListJobsFilterKeyName,
+	}
+}
+
 // The property to sort the results by. Valid values are:
 const (
 	// ListJobsSortAttributeNameCreatedAt is a ListJobsSortAttributeName enum value
@@ -14288,6 +14688,30 @@ const (
 	ListJobsSortAttributeNameJobType = "jobType"
 )
 
+// ListJobsSortAttributeName is an enum
+type ListJobsSortAttributeName struct{}
+
+// Contains returns whether the ListJobsSortAttributeName enum includes the element
+func (enum ListJobsSortAttributeName) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ListJobsSortAttributeName enum
+func (enum ListJobsSortAttributeName) Values() []string {
+	return []string{
+		ListJobsSortAttributeNameCreatedAt,
+		ListJobsSortAttributeNameJobStatus,
+		ListJobsSortAttributeNameName,
+		ListJobsSortAttributeNameJobType,
+	}
+}
+
 // The status of an Amazon Macie account. Valid values are:
 const (
 	// MacieStatusPaused is a MacieStatus enum value
@@ -14297,6 +14721,28 @@ const (
 	MacieStatusEnabled = "ENABLED"
 )
 
+// MacieStatus is an enum
+type MacieStatus struct{}
+
+// Contains returns whether the MacieStatus enum includes the element
+func (enum MacieStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the MacieStatus enum
+func (enum MacieStatus) Values() []string {
+	return []string{
+		MacieStatusPaused,
+		MacieStatusEnabled,
+	}
+}
+
 const (
 	// OrderByAsc is a OrderBy enum value
 	OrderByAsc = "ASC"
@@ -14304,6 +14750,28 @@ const (
 	// OrderByDesc is a OrderBy enum value
 	OrderByDesc = "DESC"
 )
+
+// OrderBy is an enum
+type OrderBy struct{}
+
+// Contains returns whether the OrderBy enum includes the element
+func (enum OrderBy) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the OrderBy enum
+func (enum OrderBy) Values() []string {
+	return []string{
+		OrderByAsc,
+		OrderByDesc,
+	}
+}
 
 // The current status of the relationship between an account and an associated
 // Amazon Macie master account (inviter account). Possible values are:
@@ -14339,6 +14807,36 @@ const (
 	RelationshipStatusAccountSuspended = "AccountSuspended"
 )
 
+// RelationshipStatus is an enum
+type RelationshipStatus struct{}
+
+// Contains returns whether the RelationshipStatus enum includes the element
+func (enum RelationshipStatus) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the RelationshipStatus enum
+func (enum RelationshipStatus) Values() []string {
+	return []string{
+		RelationshipStatusEnabled,
+		RelationshipStatusPaused,
+		RelationshipStatusInvited,
+		RelationshipStatusCreated,
+		RelationshipStatusRemoved,
+		RelationshipStatusResigned,
+		RelationshipStatusEmailVerificationInProgress,
+		RelationshipStatusEmailVerificationFailed,
+		RelationshipStatusRegionDisabled,
+		RelationshipStatusAccountSuspended,
+	}
+}
+
 // The property to use in a condition that determines which objects are analyzed
 // by a classification job. Valid values are:
 const (
@@ -14358,6 +14856,31 @@ const (
 	ScopeFilterKeyTag = "TAG"
 )
 
+// ScopeFilterKey is an enum
+type ScopeFilterKey struct{}
+
+// Contains returns whether the ScopeFilterKey enum includes the element
+func (enum ScopeFilterKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the ScopeFilterKey enum
+func (enum ScopeFilterKey) Values() []string {
+	return []string{
+		ScopeFilterKeyBucketCreationDate,
+		ScopeFilterKeyObjectExtension,
+		ScopeFilterKeyObjectLastModifiedDate,
+		ScopeFilterKeyObjectSize,
+		ScopeFilterKeyTag,
+	}
+}
+
 // The category of sensitive data that was detected and produced the finding.
 // Possible values are:
 const (
@@ -14374,6 +14897,30 @@ const (
 	SensitiveDataItemCategoryCustomIdentifier = "CUSTOM_IDENTIFIER"
 )
 
+// SensitiveDataItemCategory is an enum
+type SensitiveDataItemCategory struct{}
+
+// Contains returns whether the SensitiveDataItemCategory enum includes the element
+func (enum SensitiveDataItemCategory) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SensitiveDataItemCategory enum
+func (enum SensitiveDataItemCategory) Values() []string {
+	return []string{
+		SensitiveDataItemCategoryFinancialInformation,
+		SensitiveDataItemCategoryPersonalInformation,
+		SensitiveDataItemCategoryCredentials,
+		SensitiveDataItemCategoryCustomIdentifier,
+	}
+}
+
 // The textual representation of the finding's severity. Possible values are:
 const (
 	// SeverityDescriptionLow is a SeverityDescription enum value
@@ -14386,6 +14933,29 @@ const (
 	SeverityDescriptionHigh = "High"
 )
 
+// SeverityDescription is an enum
+type SeverityDescription struct{}
+
+// Contains returns whether the SeverityDescription enum includes the element
+func (enum SeverityDescription) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SeverityDescription enum
+func (enum SeverityDescription) Values() []string {
+	return []string{
+		SeverityDescriptionLow,
+		SeverityDescriptionMedium,
+		SeverityDescriptionHigh,
+	}
+}
+
 const (
 	// SharedAccessExternal is a SharedAccess enum value
 	SharedAccessExternal = "EXTERNAL"
@@ -14396,6 +14966,29 @@ const (
 	// SharedAccessNotShared is a SharedAccess enum value
 	SharedAccessNotShared = "NOT_SHARED"
 )
+
+// SharedAccess is an enum
+type SharedAccess struct{}
+
+// Contains returns whether the SharedAccess enum includes the element
+func (enum SharedAccess) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the SharedAccess enum
+func (enum SharedAccess) Values() []string {
+	return []string{
+		SharedAccessExternal,
+		SharedAccessInternal,
+		SharedAccessNotShared,
+	}
+}
 
 // The storage class of the S3 bucket or object. Possible values are:
 const (
@@ -14421,16 +15014,85 @@ const (
 	StorageClassGlacier = "GLACIER"
 )
 
+// StorageClass is an enum
+type StorageClass struct{}
+
+// Contains returns whether the StorageClass enum includes the element
+func (enum StorageClass) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the StorageClass enum
+func (enum StorageClass) Values() []string {
+	return []string{
+		StorageClassStandard,
+		StorageClassReducedRedundancy,
+		StorageClassStandardIa,
+		StorageClassIntelligentTiering,
+		StorageClassDeepArchive,
+		StorageClassOnezoneIa,
+		StorageClassGlacier,
+	}
+}
+
 // The type of object to apply a tag-based condition to. Valid values are:
 const (
 	// TagTargetS3Object is a TagTarget enum value
 	TagTargetS3Object = "S3_OBJECT"
 )
 
+// TagTarget is an enum
+type TagTarget struct{}
+
+// Contains returns whether the TagTarget enum includes the element
+func (enum TagTarget) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the TagTarget enum
+func (enum TagTarget) Values() []string {
+	return []string{
+		TagTargetS3Object,
+	}
+}
+
 const (
 	// UnitTerabytes is a Unit enum value
 	UnitTerabytes = "TERABYTES"
 )
+
+// Unit is an enum
+type Unit struct{}
+
+// Contains returns whether the Unit enum includes the element
+func (enum Unit) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Unit enum
+func (enum Unit) Values() []string {
+	return []string{
+		UnitTerabytes,
+	}
+}
 
 // The operator to use in a condition that filters the results of a query for
 // account quotas and usage data. Valid values are:
@@ -14457,6 +15119,33 @@ const (
 	UsageStatisticsFilterComparatorContains = "CONTAINS"
 )
 
+// UsageStatisticsFilterComparator is an enum
+type UsageStatisticsFilterComparator struct{}
+
+// Contains returns whether the UsageStatisticsFilterComparator enum includes the element
+func (enum UsageStatisticsFilterComparator) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageStatisticsFilterComparator enum
+func (enum UsageStatisticsFilterComparator) Values() []string {
+	return []string{
+		UsageStatisticsFilterComparatorGt,
+		UsageStatisticsFilterComparatorGte,
+		UsageStatisticsFilterComparatorLt,
+		UsageStatisticsFilterComparatorLte,
+		UsageStatisticsFilterComparatorEq,
+		UsageStatisticsFilterComparatorNe,
+		UsageStatisticsFilterComparatorContains,
+	}
+}
+
 // The field to use in a condition that filters the results of a query for account
 // quotas and usage data. Valid values are:
 const (
@@ -14472,6 +15161,30 @@ const (
 	// UsageStatisticsFilterKeyTotal is a UsageStatisticsFilterKey enum value
 	UsageStatisticsFilterKeyTotal = "total"
 )
+
+// UsageStatisticsFilterKey is an enum
+type UsageStatisticsFilterKey struct{}
+
+// Contains returns whether the UsageStatisticsFilterKey enum includes the element
+func (enum UsageStatisticsFilterKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageStatisticsFilterKey enum
+func (enum UsageStatisticsFilterKey) Values() []string {
+	return []string{
+		UsageStatisticsFilterKeyAccountId,
+		UsageStatisticsFilterKeyServiceLimit,
+		UsageStatisticsFilterKeyFreeTrialStartDate,
+		UsageStatisticsFilterKeyTotal,
+	}
+}
 
 // The field to use to sort the results of a query for account quotas and usage
 // data. Valid values are:
@@ -14489,6 +15202,30 @@ const (
 	UsageStatisticsSortKeyFreeTrialStartDate = "freeTrialStartDate"
 )
 
+// UsageStatisticsSortKey is an enum
+type UsageStatisticsSortKey struct{}
+
+// Contains returns whether the UsageStatisticsSortKey enum includes the element
+func (enum UsageStatisticsSortKey) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageStatisticsSortKey enum
+func (enum UsageStatisticsSortKey) Values() []string {
+	return []string{
+		UsageStatisticsSortKeyAccountId,
+		UsageStatisticsSortKeyTotal,
+		UsageStatisticsSortKeyServiceLimitValue,
+		UsageStatisticsSortKeyFreeTrialStartDate,
+	}
+}
+
 // The name of a usage metric for an account. Possible values are:
 const (
 	// UsageTypeDataInventoryEvaluation is a UsageType enum value
@@ -14497,6 +15234,28 @@ const (
 	// UsageTypeSensitiveDataDiscovery is a UsageType enum value
 	UsageTypeSensitiveDataDiscovery = "SENSITIVE_DATA_DISCOVERY"
 )
+
+// UsageType is an enum
+type UsageType struct{}
+
+// Contains returns whether the UsageType enum includes the element
+func (enum UsageType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UsageType enum
+func (enum UsageType) Values() []string {
+	return []string{
+		UsageTypeDataInventoryEvaluation,
+		UsageTypeSensitiveDataDiscovery,
+	}
+}
 
 // The type of entity that performed the action on the affected resource. Possible
 // values are:
@@ -14519,3 +15278,29 @@ const (
 	// UserIdentityTypeAwsservice is a UserIdentityType enum value
 	UserIdentityTypeAwsservice = "AWSService"
 )
+
+// UserIdentityType is an enum
+type UserIdentityType struct{}
+
+// Contains returns whether the UserIdentityType enum includes the element
+func (enum UserIdentityType) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the UserIdentityType enum
+func (enum UserIdentityType) Values() []string {
+	return []string{
+		UserIdentityTypeAssumedRole,
+		UserIdentityTypeIamuser,
+		UserIdentityTypeFederatedUser,
+		UserIdentityTypeRoot,
+		UserIdentityTypeAwsaccount,
+		UserIdentityTypeAwsservice,
+	}
+}

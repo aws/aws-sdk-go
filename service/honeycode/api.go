@@ -1314,3 +1314,34 @@ const (
 	// FormatRowlink is a Format enum value
 	FormatRowlink = "ROWLINK"
 )
+
+// Format is an enum
+type Format struct{}
+
+// Contains returns whether the Format enum includes the element
+func (enum Format) Contains(element string) bool {
+	for _, v := range enum.Values() {
+		if v == element {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Values returns all elements of the Format enum
+func (enum Format) Values() []string {
+	return []string{
+		FormatAuto,
+		FormatNumber,
+		FormatCurrency,
+		FormatDate,
+		FormatTime,
+		FormatDateTime,
+		FormatPercentage,
+		FormatText,
+		FormatAccounting,
+		FormatContact,
+		FormatRowlink,
+	}
+}
