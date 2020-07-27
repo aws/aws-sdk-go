@@ -103,6 +103,7 @@
     "PutResourcePolicy": "<p>Sets the Data Catalog resource policy for access control.</p>",
     "PutWorkflowRunProperties": "<p>Puts the specified workflow run properties for the given workflow run. If a property already exists for the specified run, then it overrides the value otherwise adds the property to existing properties.</p>",
     "ResetJobBookmark": "<p>Resets a bookmark entry.</p>",
+    "ResumeWorkflowRun": "<p>Restarts any completed nodes in a workflow run and resumes the run execution.</p>",
     "SearchTables": "<p>Searches a set of tables based on properties in the table metadata as well as on the parent database. You can search against text or filter conditions. </p> <p>You can only get tables that you have access to based on the security policies defined in Lake Formation. You need at least a read-only access to the table for it to be returned. If you do not have access to all the columns in the table, these columns will not be searched against when returning the list of tables back to you. If you have access to the columns but not the data in the columns, those columns and the associated metadata for those columns will be included in the search. </p>",
     "StartCrawler": "<p>Starts a crawl using the specified crawler, regardless of what is scheduled. If the crawler is already running, returns a <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-exceptions.html#aws-glue-api-exceptions-CrawlerRunningException\">CrawlerRunningException</a>.</p>",
     "StartCrawlerSchedule": "<p>Changes the schedule state of the specified crawler to <code>SCHEDULED</code>, unless the crawler is already running or the schedule state is already <code>SCHEDULED</code>.</p>",
@@ -1487,7 +1488,7 @@
       }
     },
     "Edge": {
-      "base": "<p>An edge represents a directed connection between two AWS Glue components which are part of the workflow the edge belongs to.</p>",
+      "base": "<p>An edge represents a directed connection between two AWS Glue components that are part of the workflow the edge belongs to.</p>",
       "refs": {
         "EdgeList$member": null
       }
@@ -1697,7 +1698,7 @@
         "GetTriggersResponse$NextToken": "<p>A continuation token, if not all the requested triggers have yet been returned.</p>",
         "GetWorkflowRunsRequest$NextToken": "<p>The maximum size of the response.</p>",
         "GetWorkflowRunsResponse$NextToken": "<p>A continuation token, if not all requested workflow runs have been returned.</p>",
-        "JobCommand$Name": "<p>The name of the job command. For an Apache Spark ETL job, this must be <code>glueetl</code>. For a Python shell job, it must be <code>pythonshell</code>.</p>",
+        "JobCommand$Name": "<p>The name of the job command. For an Apache Spark ETL job, this must be <code>glueetl</code>. For a Python shell job, it must be <code>pythonshell</code>. For an Apache Spark streaming ETL job, this must be <code>gluestreaming</code>.</p>",
         "JobRun$LogGroupName": "<p>The name of the log group for secure logging that can be server-side encrypted in Amazon CloudWatch using AWS KMS. This name can be <code>/aws-glue/jobs/</code>, in which case the default encryption is <code>NONE</code>. If you add a role name and <code>SecurityConfiguration</code> name (in other words, <code>/aws-glue/jobs-yourRoleName-yourSecurityConfigurationName/</code>), then that security configuration is used to encrypt the log group.</p>",
         "ListDevEndpointsRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
         "ListDevEndpointsResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>",
@@ -2328,12 +2329,15 @@
         "JobRun$PreviousRunId": "<p>The ID of the previous run of this job. For example, the <code>JobRunId</code> specified in the <code>StartJobRun</code> action.</p>",
         "Predecessor$RunId": "<p>The job-run ID of the predecessor job run.</p>",
         "PutWorkflowRunPropertiesRequest$RunId": "<p>The ID of the workflow run for which the run properties should be updated.</p>",
+        "ResumeWorkflowRunRequest$RunId": "<p>The ID of the workflow run to resume.</p>",
+        "ResumeWorkflowRunResponse$RunId": "<p>The new ID assigned to the resumed workflow run. Each resume of a workflow run will have a new run ID.</p>",
         "StartJobRunRequest$JobRunId": "<p>The ID of a previous <code>JobRun</code> to retry.</p>",
         "StartJobRunResponse$JobRunId": "<p>The ID assigned to this job run.</p>",
         "StartWorkflowRunResponse$RunId": "<p>An Id for the new run.</p>",
         "StopWorkflowRunRequest$RunId": "<p>The ID of the workflow run to stop.</p>",
         "Trigger$Id": "<p>Reserved for future use.</p>",
         "WorkflowRun$WorkflowRunId": "<p>The ID of this workflow run.</p>",
+        "WorkflowRun$PreviousRunId": "<p>The ID of the previous workflow run.</p>",
         "WorkflowRunProperties$key": null
       }
     },
@@ -2394,10 +2398,10 @@
         "JobUpdate$AllocatedCapacity": "<p>This field is deprecated. Use <code>MaxCapacity</code> instead.</p> <p>The number of AWS Glue data processing units (DPUs) to allocate to this job. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p>",
         "StartJobRunRequest$AllocatedCapacity": "<p>This field is deprecated. Use <code>MaxCapacity</code> instead.</p> <p>The number of AWS Glue data processing units (DPUs) to allocate to this JobRun. From 2 to 100 DPUs can be allocated; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://docs.aws.amazon.com/https:/aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p>",
         "WorkflowRunStatistics$TotalActions": "<p>Total number of Actions in the workflow run.</p>",
-        "WorkflowRunStatistics$TimeoutActions": "<p>Total number of Actions which timed out.</p>",
-        "WorkflowRunStatistics$FailedActions": "<p>Total number of Actions which have failed.</p>",
-        "WorkflowRunStatistics$StoppedActions": "<p>Total number of Actions which have stopped.</p>",
-        "WorkflowRunStatistics$SucceededActions": "<p>Total number of Actions which have succeeded.</p>",
+        "WorkflowRunStatistics$TimeoutActions": "<p>Total number of Actions that timed out.</p>",
+        "WorkflowRunStatistics$FailedActions": "<p>Total number of Actions that have failed.</p>",
+        "WorkflowRunStatistics$StoppedActions": "<p>Total number of Actions that have stopped.</p>",
+        "WorkflowRunStatistics$SucceededActions": "<p>Total number of Actions that have succeeded.</p>",
         "WorkflowRunStatistics$RunningActions": "<p>Total number Actions in running state.</p>"
       }
     },
@@ -2503,8 +2507,8 @@
     "JobRunState": {
       "base": null,
       "refs": {
-        "Condition$State": "<p>The condition state. Currently, the only job states that a trigger can listen for are <code>SUCCEEDED</code>, <code>STOPPED</code>, <code>FAILED</code>, and <code>TIMEOUT</code>. The only crawler states that a trigger can listen for are <code>SUCCEEDED</code>, <code>FAILED</code>, and <code>CANCELLED</code>.</p>",
-        "JobRun$JobRunState": "<p>The current state of the job run. For more information about the statuses of jobs that have terminated abnormally, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/job-run-statuses.html\">AWS Glue Job Run Statuses</a>.</p>"
+        "Condition$State": "<p>The condition state. Currently, the values supported are <code>SUCCEEDED</code>, <code>STOPPED</code>, <code>TIMEOUT</code>, and <code>FAILED</code>.</p>",
+        "JobRun$JobRunState": "<p>The current state of the job run.</p>"
       }
     },
     "JobUpdate": {
@@ -2944,6 +2948,7 @@
         "NameStringList$member": null,
         "Node$Name": "<p>The name of the AWS Glue component represented by the node.</p>",
         "Node$UniqueId": "<p>The unique Id assigned to the node within the workflow.</p>",
+        "NodeIdList$member": null,
         "Order$Column": "<p>The name of the column.</p>",
         "Partition$DatabaseName": "<p>The name of the catalog database in which to create the partition.</p>",
         "Partition$TableName": "<p>The name of the database table in which to create the partition.</p>",
@@ -2951,6 +2956,7 @@
         "PhysicalConnectionRequirements$AvailabilityZone": "<p>The connection's Availability Zone. This field is redundant because the specified subnet implies the Availability Zone to be used. Currently the field must be populated, but it will be deprecated in the future.</p>",
         "Predecessor$JobName": "<p>The name of the job definition used by the predecessor job run.</p>",
         "PutWorkflowRunPropertiesRequest$Name": "<p>Name of the workflow which was run.</p>",
+        "ResumeWorkflowRunRequest$Name": "<p>The name of the workflow to resume.</p>",
         "SecurityConfiguration$Name": "<p>The name of the security configuration.</p>",
         "SecurityGroupIdList$member": null,
         "SerDeInfo$Name": "<p>Name of the SerDe.</p>",
@@ -3014,7 +3020,7 @@
         "UserDefinedFunctionInput$OwnerName": "<p>The owner of the function.</p>",
         "Workflow$Name": "<p>The name of the workflow representing the flow.</p>",
         "WorkflowNames$member": null,
-        "WorkflowRun$Name": "<p>Name of the workflow which was executed.</p>",
+        "WorkflowRun$Name": "<p>Name of the workflow that was executed.</p>",
         "XMLClassifier$Name": "<p>The name of the classifier.</p>"
       }
     },
@@ -3032,9 +3038,16 @@
       }
     },
     "Node": {
-      "base": "<p>A node represents an AWS Glue component like Trigger, Job etc. which is part of a workflow.</p>",
+      "base": "<p>A node represents an AWS Glue component such as a trigger, or job, etc., that is part of a workflow.</p>",
       "refs": {
         "NodeList$member": null
+      }
+    },
+    "NodeIdList": {
+      "base": null,
+      "refs": {
+        "ResumeWorkflowRunRequest$NodeIds": "<p>A list of the node IDs for the nodes you want to restart. The nodes that are to be restarted must have an execution attempt in the original run.</p>",
+        "ResumeWorkflowRunResponse$NodeIds": "<p>A list of the node IDs for the nodes that were actually restarted.</p>"
       }
     },
     "NodeList": {
@@ -3128,13 +3141,13 @@
     "NullableDouble": {
       "base": null,
       "refs": {
-        "CreateJobRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
+        "CreateJobRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\") or Apache Spark streaming ETL job (<code>JobCommand.Name</code>=\"gluestreaming\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "CreateMLTransformRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>. </p> <p> <code>MaxCapacity</code> is a mutually exclusive option with <code>NumberOfWorkers</code> and <code>WorkerType</code>.</p> <ul> <li> <p>If either <code>NumberOfWorkers</code> or <code>WorkerType</code> is set, then <code>MaxCapacity</code> cannot be set.</p> </li> <li> <p>If <code>MaxCapacity</code> is set then neither <code>NumberOfWorkers</code> or <code>WorkerType</code> can be set.</p> </li> <li> <p>If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and vice versa).</p> </li> <li> <p> <code>MaxCapacity</code> and <code>NumberOfWorkers</code> must both be at least 1.</p> </li> </ul> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
         "DynamoDBTarget$scanRate": "<p>The percentage of the configured read capacity units to use by the AWS Glue crawler. Read capacity units is a term defined by DynamoDB, and is a numeric value that acts as rate limiter for the number of reads that can be performed on that table per second.</p> <p>The valid values are null or a value between 0.1 to 1.5. A null value is used when user does not provide a value, and defaults to 0.5 of the configured Read Capacity Unit (for provisioned tables), or 0.25 of the max configured Read Capacity Unit (for tables using on-demand mode).</p>",
         "GetMLTransformResponse$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
-        "Job$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
+        "Job$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job, an Apache Spark ETL job, or an Apache Spark streaming ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\") or Apache Spark streaming ETL job (<code>JobCommand.Name</code>=\"gluestreaming\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "JobRun$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://docs.aws.amazon.com/https:/aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
-        "JobUpdate$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
+        "JobUpdate$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\") or Apache Spark streaming ETL job (<code>JobCommand.Name</code>=\"gluestreaming\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "MLTransform$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"http://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>. </p> <p> <code>MaxCapacity</code> is a mutually exclusive option with <code>NumberOfWorkers</code> and <code>WorkerType</code>.</p> <ul> <li> <p>If either <code>NumberOfWorkers</code> or <code>WorkerType</code> is set, then <code>MaxCapacity</code> cannot be set.</p> </li> <li> <p>If <code>MaxCapacity</code> is set then neither <code>NumberOfWorkers</code> or <code>WorkerType</code> can be set.</p> </li> <li> <p>If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and vice versa).</p> </li> <li> <p> <code>MaxCapacity</code> and <code>NumberOfWorkers</code> must both be at least 1.</p> </li> </ul> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>",
         "StartJobRunRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that can be allocated when this job runs. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://docs.aws.amazon.com/https:/aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>.</p> <p>Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and <code>NumberOfWorkers</code>.</p> <p>The value that can be allocated for <code>MaxCapacity</code> depends on whether you are running a Python shell job, or an Apache Spark ETL job:</p> <ul> <li> <p>When you specify a Python shell job (<code>JobCommand.Name</code>=\"pythonshell\"), you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.</p> </li> <li> <p>When you specify an Apache Spark ETL job (<code>JobCommand.Name</code>=\"glueetl\"), you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type cannot have a fractional DPU allocation.</p> </li> </ul>",
         "UpdateMLTransformRequest$MaxCapacity": "<p>The number of AWS Glue data processing units (DPUs) that are allocated to task runs for this transform. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative measure of processing power that consists of 4 vCPUs of compute capacity and 16 GB of memory. For more information, see the <a href=\"https://aws.amazon.com/glue/pricing/\">AWS Glue pricing page</a>. </p> <p>When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>, the <code>MaxCapacity</code> field is set automatically and becomes read-only.</p>"
@@ -3496,6 +3509,16 @@
       "refs": {
         "UserDefinedFunction$ResourceUris": "<p>The resource URIs for the function.</p>",
         "UserDefinedFunctionInput$ResourceUris": "<p>The resource URIs for the function.</p>"
+      }
+    },
+    "ResumeWorkflowRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResumeWorkflowRunResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "Role": {

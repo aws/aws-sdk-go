@@ -10437,6 +10437,100 @@ func (c *Glue) ResetJobBookmarkWithContext(ctx aws.Context, input *ResetJobBookm
 	return out, req.Send()
 }
 
+const opResumeWorkflowRun = "ResumeWorkflowRun"
+
+// ResumeWorkflowRunRequest generates a "aws/request.Request" representing the
+// client's request for the ResumeWorkflowRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ResumeWorkflowRun for more information on using the ResumeWorkflowRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ResumeWorkflowRunRequest method.
+//    req, resp := client.ResumeWorkflowRunRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ResumeWorkflowRun
+func (c *Glue) ResumeWorkflowRunRequest(input *ResumeWorkflowRunInput) (req *request.Request, output *ResumeWorkflowRunOutput) {
+	op := &request.Operation{
+		Name:       opResumeWorkflowRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ResumeWorkflowRunInput{}
+	}
+
+	output = &ResumeWorkflowRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ResumeWorkflowRun API operation for AWS Glue.
+//
+// Restarts any completed nodes in a workflow run and resumes the run execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ResumeWorkflowRun for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * ConcurrentRunsExceededException
+//   Too many jobs are being run concurrently.
+//
+//   * IllegalWorkflowStateException
+//   The workflow is in an invalid state to perform a requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ResumeWorkflowRun
+func (c *Glue) ResumeWorkflowRun(input *ResumeWorkflowRunInput) (*ResumeWorkflowRunOutput, error) {
+	req, out := c.ResumeWorkflowRunRequest(input)
+	return out, req.Send()
+}
+
+// ResumeWorkflowRunWithContext is the same as ResumeWorkflowRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResumeWorkflowRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ResumeWorkflowRunWithContext(ctx aws.Context, input *ResumeWorkflowRunInput, opts ...request.Option) (*ResumeWorkflowRunOutput, error) {
+	req, out := c.ResumeWorkflowRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSearchTables = "SearchTables"
 
 // SearchTablesRequest generates a "aws/request.Request" representing the
@@ -16003,9 +16097,8 @@ type Condition struct {
 	// A logical operator.
 	LogicalOperator *string `type:"string" enum:"LogicalOperator"`
 
-	// The condition state. Currently, the only job states that a trigger can listen
-	// for are SUCCEEDED, STOPPED, FAILED, and TIMEOUT. The only crawler states
-	// that a trigger can listen for are SUCCEEDED, FAILED, and CANCELLED.
+	// The condition state. Currently, the values supported are SUCCEEDED, STOPPED,
+	// TIMEOUT, and FAILED.
 	State *string `type:"string" enum:"JobRunState"`
 }
 
@@ -18256,9 +18349,10 @@ type CreateJobInput struct {
 	//    * When you specify a Python shell job (JobCommand.Name="pythonshell"),
 	//    you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.
 	//
-	//    * When you specify an Apache Spark ETL job (JobCommand.Name="glueetl"),
-	//    you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job
-	//    type cannot have a fractional DPU allocation.
+	//    * When you specify an Apache Spark ETL job (JobCommand.Name="glueetl")
+	//    or Apache Spark streaming ETL job (JobCommand.Name="gluestreaming"), you
+	//    can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type
+	//    cannot have a fractional DPU allocation.
 	MaxCapacity *float64 `type:"double"`
 
 	// The maximum number of times to retry this job if it fails.
@@ -22031,7 +22125,7 @@ func (s *DynamoDBTarget) SetScanRate(v float64) *DynamoDBTarget {
 }
 
 // An edge represents a directed connection between two AWS Glue components
-// which are part of the workflow the edge belongs to.
+// that are part of the workflow the edge belongs to.
 type Edge struct {
 	_ struct{} `type:"structure"`
 
@@ -27676,14 +27770,16 @@ type Job struct {
 	// Do not set Max Capacity if using WorkerType and NumberOfWorkers.
 	//
 	// The value that can be allocated for MaxCapacity depends on whether you are
-	// running a Python shell job or an Apache Spark ETL job:
+	// running a Python shell job, an Apache Spark ETL job, or an Apache Spark streaming
+	// ETL job:
 	//
 	//    * When you specify a Python shell job (JobCommand.Name="pythonshell"),
 	//    you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.
 	//
-	//    * When you specify an Apache Spark ETL job (JobCommand.Name="glueetl"),
-	//    you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job
-	//    type cannot have a fractional DPU allocation.
+	//    * When you specify an Apache Spark ETL job (JobCommand.Name="glueetl")
+	//    or Apache Spark streaming ETL job (JobCommand.Name="gluestreaming"), you
+	//    can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type
+	//    cannot have a fractional DPU allocation.
 	MaxCapacity *float64 `type:"double"`
 
 	// The maximum number of times to retry this job after a JobRun fails.
@@ -27979,7 +28075,8 @@ type JobCommand struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the job command. For an Apache Spark ETL job, this must be glueetl.
-	// For a Python shell job, it must be pythonshell.
+	// For a Python shell job, it must be pythonshell. For an Apache Spark streaming
+	// ETL job, this must be gluestreaming.
 	Name *string `type:"string"`
 
 	// The Python version being used to execute a Python shell job. Allowed values
@@ -28102,8 +28199,7 @@ type JobRun struct {
 	// The name of the job definition being used in this run.
 	JobName *string `min:"1" type:"string"`
 
-	// The current state of the job run. For more information about the statuses
-	// of jobs that have terminated abnormally, see AWS Glue Job Run Statuses (https://docs.aws.amazon.com/glue/latest/dg/job-run-statuses.html).
+	// The current state of the job run.
 	JobRunState *string `type:"string" enum:"JobRunState"`
 
 	// The last time that this job run was modified.
@@ -28391,9 +28487,10 @@ type JobUpdate struct {
 	//    * When you specify a Python shell job (JobCommand.Name="pythonshell"),
 	//    you can allocate either 0.0625 or 1 DPU. The default is 0.0625 DPU.
 	//
-	//    * When you specify an Apache Spark ETL job (JobCommand.Name="glueetl"),
-	//    you can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job
-	//    type cannot have a fractional DPU allocation.
+	//    * When you specify an Apache Spark ETL job (JobCommand.Name="glueetl")
+	//    or Apache Spark streaming ETL job (JobCommand.Name="gluestreaming"), you
+	//    can allocate from 2 to 100 DPUs. The default is 10 DPUs. This job type
+	//    cannot have a fractional DPU allocation.
 	MaxCapacity *float64 `type:"double"`
 
 	// The maximum number of times to retry this job if it fails.
@@ -29880,8 +29977,8 @@ func (s *NoScheduleException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A node represents an AWS Glue component like Trigger, Job etc. which is part
-// of a workflow.
+// A node represents an AWS Glue component such as a trigger, or job, etc.,
+// that is part of a workflow.
 type Node struct {
 	_ struct{} `type:"structure"`
 
@@ -31034,6 +31131,112 @@ func (s *ResourceUri) SetResourceType(v string) *ResourceUri {
 // SetUri sets the Uri field's value.
 func (s *ResourceUri) SetUri(v string) *ResourceUri {
 	s.Uri = &v
+	return s
+}
+
+type ResumeWorkflowRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the workflow to resume.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// A list of the node IDs for the nodes you want to restart. The nodes that
+	// are to be restarted must have an execution attempt in the original run.
+	//
+	// NodeIds is a required field
+	NodeIds []*string `type:"list" required:"true"`
+
+	// The ID of the workflow run to resume.
+	//
+	// RunId is a required field
+	RunId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ResumeWorkflowRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResumeWorkflowRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResumeWorkflowRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResumeWorkflowRunInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NodeIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("NodeIds"))
+	}
+	if s.RunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunId"))
+	}
+	if s.RunId != nil && len(*s.RunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ResumeWorkflowRunInput) SetName(v string) *ResumeWorkflowRunInput {
+	s.Name = &v
+	return s
+}
+
+// SetNodeIds sets the NodeIds field's value.
+func (s *ResumeWorkflowRunInput) SetNodeIds(v []*string) *ResumeWorkflowRunInput {
+	s.NodeIds = v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *ResumeWorkflowRunInput) SetRunId(v string) *ResumeWorkflowRunInput {
+	s.RunId = &v
+	return s
+}
+
+type ResumeWorkflowRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the node IDs for the nodes that were actually restarted.
+	NodeIds []*string `type:"list"`
+
+	// The new ID assigned to the resumed workflow run. Each resume of a workflow
+	// run will have a new run ID.
+	RunId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ResumeWorkflowRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResumeWorkflowRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetNodeIds sets the NodeIds field's value.
+func (s *ResumeWorkflowRunOutput) SetNodeIds(v []*string) *ResumeWorkflowRunOutput {
+	s.NodeIds = v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *ResumeWorkflowRunOutput) SetRunId(v string) *ResumeWorkflowRunOutput {
+	s.RunId = &v
 	return s
 }
 
@@ -36881,8 +37084,11 @@ type WorkflowRun struct {
 	// as nodes and directed connections between them as edges.
 	Graph *WorkflowGraph `type:"structure"`
 
-	// Name of the workflow which was executed.
+	// Name of the workflow that was executed.
 	Name *string `min:"1" type:"string"`
+
+	// The ID of the previous workflow run.
+	PreviousRunId *string `min:"1" type:"string"`
 
 	// The date and time when the workflow run was started.
 	StartedOn *time.Time `type:"timestamp"`
@@ -36928,6 +37134,12 @@ func (s *WorkflowRun) SetName(v string) *WorkflowRun {
 	return s
 }
 
+// SetPreviousRunId sets the PreviousRunId field's value.
+func (s *WorkflowRun) SetPreviousRunId(v string) *WorkflowRun {
+	s.PreviousRunId = &v
+	return s
+}
+
 // SetStartedOn sets the StartedOn field's value.
 func (s *WorkflowRun) SetStartedOn(v time.Time) *WorkflowRun {
 	s.StartedOn = &v
@@ -36962,19 +37174,19 @@ func (s *WorkflowRun) SetWorkflowRunProperties(v map[string]*string) *WorkflowRu
 type WorkflowRunStatistics struct {
 	_ struct{} `type:"structure"`
 
-	// Total number of Actions which have failed.
+	// Total number of Actions that have failed.
 	FailedActions *int64 `type:"integer"`
 
 	// Total number Actions in running state.
 	RunningActions *int64 `type:"integer"`
 
-	// Total number of Actions which have stopped.
+	// Total number of Actions that have stopped.
 	StoppedActions *int64 `type:"integer"`
 
-	// Total number of Actions which have succeeded.
+	// Total number of Actions that have succeeded.
 	SucceededActions *int64 `type:"integer"`
 
-	// Total number of Actions which timed out.
+	// Total number of Actions that timed out.
 	TimeoutActions *int64 `type:"integer"`
 
 	// Total number of Actions in the workflow run.

@@ -797,7 +797,7 @@
         "eventTypeName"
       ],
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "description":{"shape":"description"},
         "eventTypeName":{"shape":"string"},
@@ -818,7 +818,7 @@
         "trainingDataSchema"
       ],
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "trainingDataSource":{"shape":"TrainingDataSourceEnum"},
         "trainingDataSchema":{"shape":"TrainingDataSchema"},
@@ -829,7 +829,7 @@
     "CreateModelVersionResult":{
       "type":"structure",
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "modelVersionNumber":{"shape":"nonEmptyString"},
         "status":{"shape":"string"}
@@ -989,7 +989,7 @@
     "DescribeModelVersionsRequest":{
       "type":"structure",
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelVersionNumber":{"shape":"floatVersionString"},
         "modelType":{"shape":"ModelTypeEnum"},
         "nextToken":{"shape":"string"},
@@ -1053,6 +1053,10 @@
     },
     "Entity":{
       "type":"structure",
+      "required":[
+        "entityType",
+        "entityId"
+      ],
       "members":{
         "entityType":{"shape":"string"},
         "entityId":{"shape":"identifier"}
@@ -1102,7 +1106,6 @@
       "type":"structure",
       "members":{
         "modelEndpoint":{"shape":"string"},
-        "eventTypeName":{"shape":"identifier"},
         "modelSource":{"shape":"ModelSource"},
         "invokeModelEndpointRoleArn":{"shape":"string"},
         "inputConfiguration":{"shape":"ModelInputConfiguration"},
@@ -1291,7 +1294,7 @@
         "modelVersionNumber"
       ],
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "modelVersionNumber":{"shape":"floatVersionString"}
       }
@@ -1299,7 +1302,7 @@
     "GetModelVersionResult":{
       "type":"structure",
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "modelVersionNumber":{"shape":"floatVersionString"},
         "trainingDataSource":{"shape":"TrainingDataSourceEnum"},
@@ -1312,7 +1315,7 @@
     "GetModelsRequest":{
       "type":"structure",
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "nextToken":{"shape":"string"},
         "maxResults":{"shape":"modelsMaxPageSize"}
@@ -1464,7 +1467,7 @@
     "Model":{
       "type":"structure",
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "description":{"shape":"description"},
         "eventTypeName":{"shape":"string"},
@@ -1491,6 +1494,7 @@
       "type":"structure",
       "required":["useEventVariables"],
       "members":{
+        "eventTypeName":{"shape":"identifier"},
         "format":{"shape":"ModelInputDataFormat"},
         "useEventVariables":{"shape":"UseEventVariables"},
         "jsonInputTemplate":{"shape":"string"},
@@ -1548,7 +1552,7 @@
         "modelVersionNumber"
       ],
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "modelVersionNumber":{"shape":"nonEmptyString"},
         "arn":{"shape":"fraudDetectorArn"}
@@ -1557,7 +1561,7 @@
     "ModelVersionDetail":{
       "type":"structure",
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "modelVersionNumber":{"shape":"floatVersionString"},
         "status":{"shape":"string"},
@@ -1673,7 +1677,6 @@
       ],
       "members":{
         "modelEndpoint":{"shape":"sageMakerEndpointIdentifier"},
-        "eventTypeName":{"shape":"identifier"},
         "modelSource":{"shape":"ModelSource"},
         "invokeModelEndpointRoleArn":{"shape":"string"},
         "inputConfiguration":{"shape":"ModelInputConfiguration"},
@@ -1943,7 +1946,7 @@
         "modelType"
       ],
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "description":{"shape":"description"}
       }
@@ -1961,7 +1964,7 @@
         "majorVersionNumber"
       ],
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "majorVersionNumber":{"shape":"wholeNumberVersionString"},
         "externalEventsDetail":{"shape":"ExternalEventsDetail"},
@@ -1971,7 +1974,7 @@
     "UpdateModelVersionResult":{
       "type":"structure",
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "modelVersionNumber":{"shape":"floatVersionString"},
         "status":{"shape":"string"}
@@ -1986,7 +1989,7 @@
         "status"
       ],
       "members":{
-        "modelId":{"shape":"identifier"},
+        "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
         "modelVersionNumber":{"shape":"floatVersionString"},
         "status":{"shape":"ModelVersionStatus"}
@@ -2188,6 +2191,12 @@
     "metricDataPointsList":{
       "type":"list",
       "member":{"shape":"MetricDataPoint"}
+    },
+    "modelIdentifier":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[0-9a-z_]+$"
     },
     "modelList":{
       "type":"list",
