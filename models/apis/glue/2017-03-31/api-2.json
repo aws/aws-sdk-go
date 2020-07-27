@@ -1539,6 +1539,23 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "ResumeWorkflowRun":{
+      "name":"ResumeWorkflowRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResumeWorkflowRunRequest"},
+      "output":{"shape":"ResumeWorkflowRunResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"ConcurrentRunsExceededException"},
+        {"shape":"IllegalWorkflowStateException"}
+      ]
+    },
     "SearchTables":{
       "name":"SearchTables",
       "http":{
@@ -5267,6 +5284,10 @@
         "CrawlerDetails":{"shape":"CrawlerNodeDetails"}
       }
     },
+    "NodeIdList":{
+      "type":"list",
+      "member":{"shape":"NameString"}
+    },
     "NodeList":{
       "type":"list",
       "member":{"shape":"Node"}
@@ -5606,6 +5627,26 @@
       "member":{"shape":"ResourceUri"},
       "max":1000,
       "min":0
+    },
+    "ResumeWorkflowRunRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RunId",
+        "NodeIds"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "RunId":{"shape":"IdString"},
+        "NodeIds":{"shape":"NodeIdList"}
+      }
+    },
+    "ResumeWorkflowRunResponse":{
+      "type":"structure",
+      "members":{
+        "RunId":{"shape":"IdString"},
+        "NodeIds":{"shape":"NodeIdList"}
+      }
     },
     "Role":{"type":"string"},
     "RoleArn":{
@@ -6831,6 +6872,7 @@
       "members":{
         "Name":{"shape":"NameString"},
         "WorkflowRunId":{"shape":"IdString"},
+        "PreviousRunId":{"shape":"IdString"},
         "WorkflowRunProperties":{"shape":"WorkflowRunProperties"},
         "StartedOn":{"shape":"TimestampValue"},
         "CompletedOn":{"shape":"TimestampValue"},

@@ -80,6 +80,10 @@ type DataSyncAPI interface {
 	CreateLocationNfsWithContext(aws.Context, *datasync.CreateLocationNfsInput, ...request.Option) (*datasync.CreateLocationNfsOutput, error)
 	CreateLocationNfsRequest(*datasync.CreateLocationNfsInput) (*request.Request, *datasync.CreateLocationNfsOutput)
 
+	CreateLocationObjectStorage(*datasync.CreateLocationObjectStorageInput) (*datasync.CreateLocationObjectStorageOutput, error)
+	CreateLocationObjectStorageWithContext(aws.Context, *datasync.CreateLocationObjectStorageInput, ...request.Option) (*datasync.CreateLocationObjectStorageOutput, error)
+	CreateLocationObjectStorageRequest(*datasync.CreateLocationObjectStorageInput) (*request.Request, *datasync.CreateLocationObjectStorageOutput)
+
 	CreateLocationS3(*datasync.CreateLocationS3Input) (*datasync.CreateLocationS3Output, error)
 	CreateLocationS3WithContext(aws.Context, *datasync.CreateLocationS3Input, ...request.Option) (*datasync.CreateLocationS3Output, error)
 	CreateLocationS3Request(*datasync.CreateLocationS3Input) (*request.Request, *datasync.CreateLocationS3Output)
@@ -119,6 +123,10 @@ type DataSyncAPI interface {
 	DescribeLocationNfs(*datasync.DescribeLocationNfsInput) (*datasync.DescribeLocationNfsOutput, error)
 	DescribeLocationNfsWithContext(aws.Context, *datasync.DescribeLocationNfsInput, ...request.Option) (*datasync.DescribeLocationNfsOutput, error)
 	DescribeLocationNfsRequest(*datasync.DescribeLocationNfsInput) (*request.Request, *datasync.DescribeLocationNfsOutput)
+
+	DescribeLocationObjectStorage(*datasync.DescribeLocationObjectStorageInput) (*datasync.DescribeLocationObjectStorageOutput, error)
+	DescribeLocationObjectStorageWithContext(aws.Context, *datasync.DescribeLocationObjectStorageInput, ...request.Option) (*datasync.DescribeLocationObjectStorageOutput, error)
+	DescribeLocationObjectStorageRequest(*datasync.DescribeLocationObjectStorageInput) (*request.Request, *datasync.DescribeLocationObjectStorageOutput)
 
 	DescribeLocationS3(*datasync.DescribeLocationS3Input) (*datasync.DescribeLocationS3Output, error)
 	DescribeLocationS3WithContext(aws.Context, *datasync.DescribeLocationS3Input, ...request.Option) (*datasync.DescribeLocationS3Output, error)

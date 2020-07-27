@@ -6643,10 +6643,14 @@ type Entity struct {
 
 	// The entity ID. If you do not know the entityId, you can pass unknown, which
 	// is areserved string literal.
-	EntityId *string `locationName:"entityId" min:"1" type:"string"`
+	//
+	// EntityId is a required field
+	EntityId *string `locationName:"entityId" min:"1" type:"string" required:"true"`
 
 	// The entity type.
-	EntityType *string `locationName:"entityType" type:"string"`
+	//
+	// EntityType is a required field
+	EntityType *string `locationName:"entityType" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -6662,8 +6666,14 @@ func (s Entity) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Entity) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Entity"}
+	if s.EntityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityId"))
+	}
 	if s.EntityId != nil && len(*s.EntityId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
+	}
+	if s.EntityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityType"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6901,9 +6911,6 @@ type ExternalModel struct {
 	// Timestamp of when the model was last created.
 	CreatedTime *string `locationName:"createdTime" type:"string"`
 
-	// The event type names.
-	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
-
 	// The input configuration.
 	InputConfiguration *ModelInputConfiguration `locationName:"inputConfiguration" type:"structure"`
 
@@ -6945,12 +6952,6 @@ func (s *ExternalModel) SetArn(v string) *ExternalModel {
 // SetCreatedTime sets the CreatedTime field's value.
 func (s *ExternalModel) SetCreatedTime(v string) *ExternalModel {
 	s.CreatedTime = &v
-	return s
-}
-
-// SetEventTypeName sets the EventTypeName field's value.
-func (s *ExternalModel) SetEventTypeName(v string) *ExternalModel {
-	s.EventTypeName = &v
 	return s
 }
 
@@ -8969,6 +8970,9 @@ type ModelInputConfiguration struct {
 	// the variable values before being sent to SageMaker.
 	CsvInputTemplate *string `locationName:"csvInputTemplate" type:"string"`
 
+	// The event type name.
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
+
 	// The format of the model input configuration. The format differs depending
 	// on if it is passed through to SageMaker or constructed by Amazon Fraud Detector.
 	Format *string `locationName:"format" type:"string" enum:"ModelInputDataFormat"`
@@ -8997,6 +9001,9 @@ func (s ModelInputConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelInputConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelInputConfiguration"}
+	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
+	}
 	if s.UseEventVariables == nil {
 		invalidParams.Add(request.NewErrParamRequired("UseEventVariables"))
 	}
@@ -9010,6 +9017,12 @@ func (s *ModelInputConfiguration) Validate() error {
 // SetCsvInputTemplate sets the CsvInputTemplate field's value.
 func (s *ModelInputConfiguration) SetCsvInputTemplate(v string) *ModelInputConfiguration {
 	s.CsvInputTemplate = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *ModelInputConfiguration) SetEventTypeName(v string) *ModelInputConfiguration {
+	s.EventTypeName = &v
 	return s
 }
 
@@ -9704,9 +9717,6 @@ func (s PutEventTypeOutput) GoString() string {
 type PutExternalModelInput struct {
 	_ struct{} `type:"structure"`
 
-	// The event type name.
-	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
-
 	// The model endpoint input configuration.
 	//
 	// InputConfiguration is a required field
@@ -9754,9 +9764,6 @@ func (s PutExternalModelInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PutExternalModelInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutExternalModelInput"}
-	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
-	}
 	if s.InputConfiguration == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputConfiguration"))
 	}
@@ -9803,12 +9810,6 @@ func (s *PutExternalModelInput) Validate() error {
 		return invalidParams
 	}
 	return nil
-}
-
-// SetEventTypeName sets the EventTypeName field's value.
-func (s *PutExternalModelInput) SetEventTypeName(v string) *PutExternalModelInput {
-	s.EventTypeName = &v
-	return s
 }
 
 // SetInputConfiguration sets the InputConfiguration field's value.

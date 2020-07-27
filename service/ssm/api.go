@@ -15195,6 +15195,9 @@ func (s *Command) SetTimeoutSeconds(v int64) *Command {
 }
 
 // Describes a command filter.
+//
+// An instance ID can't be specified when a command status is Pending because
+// the command hasn't run on the instance yet.
 type CommandFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -22236,6 +22239,15 @@ type DescribePatchGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// One or more filters. Use a filter to return a more specific list of results.
+	//
+	// For DescribePatchGroups,valid filter keys include the following:
+	//
+	//    * NAME_PREFIX: The name of the patch group. Wildcards (*) are accepted.
+	//
+	//    * OPERATING_SYSTEM: The supported operating system type to return results
+	//    for. For valid operating system values, see GetDefaultPatchBaselineRequest$OperatingSystem
+	//    in CreatePatchBaseline. Examples: --filters Key=NAME_PREFIX,Values=MyPatchGroup*
+	//    --filters Key=OPERATING_SYSTEM,Values=AMAZON_LINUX_2
 	Filters []*PatchOrchestratorFilter `type:"list"`
 
 	// The maximum number of patch groups to return (per page).
@@ -24104,6 +24116,8 @@ type GetCommandInvocationInput struct {
 	// (Optional) The name of the plugin for which you want detailed results. If
 	// the document contains only one plugin, the name can be omitted and the details
 	// will be returned.
+	//
+	// Plugin names are also referred to as step names in Systems Manager documents.
 	PluginName *string `min:"4" type:"string"`
 }
 
@@ -27510,8 +27524,12 @@ type InstanceInformation struct {
 	IPAddress *string `min:"1" type:"string"`
 
 	// The Amazon Identity and Access Management (IAM) role assigned to the on-premises
-	// Systems Manager managed instances. This call does not return the IAM role
-	// for EC2 instances.
+	// Systems Manager managed instance. This call does not return the IAM role
+	// for EC2 instances. To retrieve the IAM role for an EC2 instance, use the
+	// Amazon EC2 DescribeInstances action. For information, see DescribeInstances
+	// (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)
+	// in the Amazon EC2 API Reference or describe-instances (http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)
+	// in the AWS CLI Command Reference.
 	IamRole *string `type:"string"`
 
 	// The instance ID.
@@ -27532,7 +27550,17 @@ type InstanceInformation struct {
 	// The last date the association was successfully run.
 	LastSuccessfulAssociationExecutionDate *time.Time `type:"timestamp"`
 
-	// The name of the managed instance.
+	// The name assigned to an on-premises server or virtual machine (VM) when it
+	// is activated as a Systems Manager managed instance. The name is specified
+	// as the DefaultInstanceName property using the CreateActivation command. It
+	// is applied to the managed instance by specifying the Activation Code and
+	// Activation ID when you install SSM Agent on the instance, as explained in
+	// Install SSM Agent for a hybrid environment (Linux) (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-linux.html)
+	// and Install SSM Agent for a hybrid environment (Windows) (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-win.html).
+	// To retrieve the Name tag of an EC2 instance, use the Amazon EC2 DescribeInstances
+	// action. For information, see DescribeInstances (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)
+	// in the Amazon EC2 API Reference or describe-instances (http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)
+	// in the AWS CLI Command Reference.
 	Name *string `type:"string"`
 
 	// Connection status of SSM Agent.
@@ -32173,6 +32201,9 @@ type ListCommandsInput struct {
 	Filters []*CommandFilter `min:"1" type:"list"`
 
 	// (Optional) Lists commands issued against this instance ID.
+	//
+	// You can't specify an instance ID in the same command that you specify Status
+	// = Pending. This is because the command has not reached the instance yet.
 	InstanceId *string `type:"string"`
 
 	// (Optional) The maximum number of items to return for this call. The call
@@ -40423,11 +40454,18 @@ type SendCommandInput struct {
 	// --document-version "3"
 	DocumentVersion *string `type:"string"`
 
-	// The instance IDs where the command should run. You can specify a maximum
-	// of 50 IDs. If you prefer not to list individual instance IDs, you can instead
-	// send commands to a fleet of instances using the Targets parameter, which
-	// accepts EC2 tags. For more information about how to use targets, see Using
-	// targets and rate controls to send commands to a fleet (https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html)
+	// The IDs of the instances where the command should run. Specifying instance
+	// IDs is most useful when you are targeting a limited number of instances,
+	// though you can specify up to 50 IDs.
+	//
+	// To target a larger number of instances, or if you prefer not to list individual
+	// instance IDs, we recommend using the Targets option instead. Using Targets,
+	// which accepts tag key-value pairs to identify the instances to send commands
+	// to, you can a send command to tens, hundreds, or thousands of instances at
+	// once.
+	//
+	// For more information about how to use targets, see Using targets and rate
+	// controls to send commands to a fleet (https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html)
 	// in the AWS Systems Manager User Guide.
 	InstanceIds []*string `type:"list"`
 
@@ -40468,10 +40506,17 @@ type SendCommandInput struct {
 	// Service (Amazon SNS) notifications for Run Command commands.
 	ServiceRoleArn *string `type:"string"`
 
-	// (Optional) An array of search criteria that targets instances using a Key,Value
-	// combination that you specify. Targets is required if you don't provide one
-	// or more instance IDs in the call. For more information about how to use targets,
-	// see Sending commands to a fleet (https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html)
+	// An array of search criteria that targets instances using a Key,Value combination
+	// that you specify. Specifying targets is most useful when you want to send
+	// a command to a large number of instances at once. Using Targets, which accepts
+	// tag key-value pairs to identify instances, you can send a command to tens,
+	// hundreds, or thousands of instances at once.
+	//
+	// To send a command to a smaller number of instances, you can use the InstanceIds
+	// option instead.
+	//
+	// For more information about how to use targets, see Sending commands to a
+	// fleet (https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html)
 	// in the AWS Systems Manager User Guide.
 	Targets []*Target `type:"list"`
 
@@ -42039,9 +42084,11 @@ func (s *Tag) SetValue(v string) *Tag {
 //
 //    * Key=tag-key,Values=my-tag-key-1,my-tag-key-2
 //
-//    * (Maintenance window targets only) Key=resource-groups:Name,Values=resource-group-name
+//    * Run Command and Maintenance window targets only: Key=resource-groups:Name,Values=resource-group-name
 //
-//    * (Maintenance window targets only) Key=resource-groups:ResourceTypeFilters,Values=resource-type-1,resource-type-2
+//    * Maintenance window targets only: Key=resource-groups:ResourceTypeFilters,Values=resource-type-1,resource-type-2
+//
+//    * Automation targets only: Key=ResourceGroup;Values=resource-group-name
 //
 // For example:
 //
@@ -42051,20 +42098,22 @@ func (s *Tag) SetValue(v string) *Tag {
 //
 //    * Key=tag-key,Values=Name,Instance-Type,CostCenter
 //
-//    * (Maintenance window targets only) Key=resource-groups:Name,Values=ProductionResourceGroup
+//    * Run Command and Maintenance window targets only: Key=resource-groups:Name,Values=ProductionResourceGroup
 //    This example demonstrates how to target all resources in the resource
 //    group ProductionResourceGroup in your maintenance window.
 //
-//    * (Maintenance window targets only) Key=resource-groups:ResourceTypeFilters,Values=AWS::EC2::INSTANCE,AWS::EC2::VPC
+//    * Maintenance window targets only: Key=resource-groups:ResourceTypeFilters,Values=AWS::EC2::INSTANCE,AWS::EC2::VPC
 //    This example demonstrates how to target only EC2 instances and VPCs in
 //    your maintenance window.
 //
-//    * (State Manager association targets only) Key=InstanceIds,Values=* This
+//    * Automation targets only: Key=ResourceGroup,Values=MyResourceGroup
+//
+//    * State Manager association targets only: Key=InstanceIds,Values=* This
 //    example demonstrates how to target all managed instances in the AWS Region
 //    where the association was created.
 //
-// For information about how to send commands that target instances using Key,Value
-// parameters, see Targeting multiple instances (https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-targeting)
+// For more information about how to send commands that target instances using
+// Key,Value parameters, see Targeting multiple instances (https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-targeting)
 // in the AWS Systems Manager User Guide.
 type Target struct {
 	_ struct{} `type:"structure"`

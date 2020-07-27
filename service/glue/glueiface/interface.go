@@ -533,6 +533,10 @@ type GlueAPI interface {
 	ResetJobBookmarkWithContext(aws.Context, *glue.ResetJobBookmarkInput, ...request.Option) (*glue.ResetJobBookmarkOutput, error)
 	ResetJobBookmarkRequest(*glue.ResetJobBookmarkInput) (*request.Request, *glue.ResetJobBookmarkOutput)
 
+	ResumeWorkflowRun(*glue.ResumeWorkflowRunInput) (*glue.ResumeWorkflowRunOutput, error)
+	ResumeWorkflowRunWithContext(aws.Context, *glue.ResumeWorkflowRunInput, ...request.Option) (*glue.ResumeWorkflowRunOutput, error)
+	ResumeWorkflowRunRequest(*glue.ResumeWorkflowRunInput) (*request.Request, *glue.ResumeWorkflowRunOutput)
+
 	SearchTables(*glue.SearchTablesInput) (*glue.SearchTablesOutput, error)
 	SearchTablesWithContext(aws.Context, *glue.SearchTablesInput, ...request.Option) (*glue.SearchTablesOutput, error)
 	SearchTablesRequest(*glue.SearchTablesInput) (*request.Request, *glue.SearchTablesOutput)

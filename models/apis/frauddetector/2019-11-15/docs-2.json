@@ -1162,41 +1162,30 @@
       "refs": {
         "CreateDetectorVersionRequest$detectorId": "<p>The ID of the detector under which you want to create a new version.</p>",
         "CreateDetectorVersionResult$detectorId": "<p>The ID for the created version's parent detector.</p>",
-        "CreateModelRequest$modelId": "<p>The model ID.</p>",
-        "CreateModelVersionRequest$modelId": "<p>The model ID. </p>",
-        "CreateModelVersionResult$modelId": "<p>The model ID.</p>",
         "CreateRuleRequest$ruleId": "<p>The rule ID.</p>",
         "CreateRuleRequest$detectorId": "<p>The detector ID for the rule's parent detector.</p>",
         "DeleteDetectorRequest$detectorId": "<p>The ID of the detector to delete.</p>",
         "DeleteDetectorVersionRequest$detectorId": "<p>The ID of the parent detector for the detector version to delete.</p>",
         "DescribeDetectorRequest$detectorId": "<p>The detector ID.</p>",
         "DescribeDetectorResult$detectorId": "<p>The detector ID.</p>",
-        "DescribeModelVersionsRequest$modelId": "<p>The model ID.</p>",
         "Detector$detectorId": "<p>The detector ID.</p>",
         "Detector$eventTypeName": "<p>The name of the event type.</p>",
         "Entity$entityId": "<p>The entity ID. If you do not know the <code>entityId</code>, you can pass <code>unknown</code>, which is areserved string literal.</p>",
-        "ExternalModel$eventTypeName": "<p>The event type names.</p>",
         "GetDetectorVersionRequest$detectorId": "<p>The detector ID.</p>",
         "GetDetectorVersionResult$detectorId": "<p>The detector ID.</p>",
         "GetDetectorsRequest$detectorId": "<p>The detector ID.</p>",
         "GetEntityTypesRequest$name": "<p>The name.</p>",
         "GetEventTypesRequest$name": "<p>The name.</p>",
         "GetLabelsRequest$name": "<p>The name of the label or labels to get.</p>",
-        "GetModelVersionRequest$modelId": "<p>The model ID.</p>",
-        "GetModelVersionResult$modelId": "<p>The model ID.</p>",
-        "GetModelsRequest$modelId": "<p>The model ID.</p>",
         "GetOutcomesRequest$name": "<p>The name of the outcome or outcomes to get.</p>",
         "GetRulesRequest$ruleId": "<p>The rule ID.</p>",
         "GetRulesRequest$detectorId": "<p>The detector ID.</p>",
-        "Model$modelId": "<p>The model ID.</p>",
-        "ModelVersion$modelId": "<p>The model ID.</p>",
-        "ModelVersionDetail$modelId": "<p>The model ID.</p>",
+        "ModelInputConfiguration$eventTypeName": "<p>The event type name.</p>",
         "Outcome$name": "<p>The outcome name.</p>",
         "PutDetectorRequest$detectorId": "<p>The detector ID. </p>",
         "PutDetectorRequest$eventTypeName": "<p>The name of the event type.</p>",
         "PutEntityTypeRequest$name": "<p>The name of the entity type.</p>",
         "PutEventTypeRequest$name": "<p>The name.</p>",
-        "PutExternalModelRequest$eventTypeName": "<p>The event type name.</p>",
         "PutLabelRequest$name": "<p>The label name.</p>",
         "PutOutcomeRequest$name": "<p>The name of the outcome.</p>",
         "Rule$detectorId": "<p>The detector for which the rule is associated.</p>",
@@ -1205,11 +1194,7 @@
         "RuleDetail$detectorId": "<p>The detector for which the rule is associated.</p>",
         "UpdateDetectorVersionMetadataRequest$detectorId": "<p>The detector ID.</p>",
         "UpdateDetectorVersionRequest$detectorId": "<p>The parent detector ID for the detector version you want to update.</p>",
-        "UpdateDetectorVersionStatusRequest$detectorId": "<p>The detector ID. </p>",
-        "UpdateModelRequest$modelId": "<p>The model ID.</p>",
-        "UpdateModelVersionRequest$modelId": "<p>The model ID.</p>",
-        "UpdateModelVersionResult$modelId": "<p>The model ID.</p>",
-        "UpdateModelVersionStatusRequest$modelId": "<p>The model ID of the model version to update.</p>"
+        "UpdateDetectorVersionStatusRequest$detectorId": "<p>The detector ID. </p>"
       }
     },
     "integer": {
@@ -1247,6 +1232,25 @@
       "base": null,
       "refs": {
         "TrainingMetrics$metricDataPoints": "<p>The data points details.</p>"
+      }
+    },
+    "modelIdentifier": {
+      "base": null,
+      "refs": {
+        "CreateModelRequest$modelId": "<p>The model ID.</p>",
+        "CreateModelVersionRequest$modelId": "<p>The model ID. </p>",
+        "CreateModelVersionResult$modelId": "<p>The model ID.</p>",
+        "DescribeModelVersionsRequest$modelId": "<p>The model ID.</p>",
+        "GetModelVersionRequest$modelId": "<p>The model ID.</p>",
+        "GetModelVersionResult$modelId": "<p>The model ID.</p>",
+        "GetModelsRequest$modelId": "<p>The model ID.</p>",
+        "Model$modelId": "<p>The model ID.</p>",
+        "ModelVersion$modelId": "<p>The model ID.</p>",
+        "ModelVersionDetail$modelId": "<p>The model ID.</p>",
+        "UpdateModelRequest$modelId": "<p>The model ID.</p>",
+        "UpdateModelVersionRequest$modelId": "<p>The model ID.</p>",
+        "UpdateModelVersionResult$modelId": "<p>The model ID.</p>",
+        "UpdateModelVersionStatusRequest$modelId": "<p>The model ID of the model version to update.</p>"
       }
     },
     "modelList": {

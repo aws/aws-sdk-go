@@ -1,3 +1,18 @@
+Release v1.33.13 (2020-07-27)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/dms`: Updates service API, documentation, and paginators
+  * Basic endpoint settings for relational databases, Preflight validation API.
+* `service/ec2`: Updates service API
+  * m6gd, c6gd, r6gd instances are powered by AWS Graviton2 processors and support local NVMe instance storage
+* `service/frauddetector`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * Add ability to manually resume workflows in AWS Glue providing customers further control over the orchestration of ETL workloads.
+* `service/ssm`: Updates service documentation
+  * Assorted doc ticket-fix updates for Systems Manager.
+
 Release v1.33.12 (2020-07-24)
 ===
 

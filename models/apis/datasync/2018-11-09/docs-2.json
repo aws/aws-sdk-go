@@ -2,13 +2,14 @@
   "version": "2.0",
   "service": "<fullname>AWS DataSync</fullname> <p>AWS DataSync is a managed data transfer service that makes it simpler for you to automate moving data between on-premises storage and Amazon Simple Storage Service (Amazon S3) or Amazon Elastic File System (Amazon EFS). </p> <p>This API interface reference for AWS DataSync contains documentation for a programming interface that you can use to manage AWS DataSync.</p>",
   "operations": {
-    "CancelTaskExecution": "<p>Cancels execution of a task. </p> <p>When you cancel a task execution, the transfer of some files are abruptly interrupted. The contents of files that are transferred to the destination might be incomplete or inconsistent with the source files. However, if you start a new task execution on the same task and you allow the task execution to complete, file content on the destination is complete and consistent. This applies to other unexpected failures that interrupt a task execution. In all of these cases, AWS DataSync successfully complete the transfer when you start the next task execution.</p>",
-    "CreateAgent": "<p>Activates an AWS DataSync agent that you have deployed on your host. The activation process associates your agent with your account. In the activation process, you specify information such as the AWS Region that you want to activate the agent in. You activate the agent in the AWS Region where your target locations (in Amazon S3 or Amazon EFS) reside. Your tasks are created in this AWS Region.</p> <p>You can activate the agent in a VPC (Virtual private Cloud) or provide the agent access to a VPC endpoint so you can run tasks without going over the public Internet.</p> <p>You can use an agent for more than one location. If a task uses multiple agents, all of them need to have status AVAILABLE for the task to run. If you use multiple agents for a source location, the status of all the agents must be AVAILABLE for the task to run. </p> <p>Agents are automatically updated by AWS on a regular basis, using a mechanism that ensures minimal interruption to your tasks.</p> <p/>",
+    "CancelTaskExecution": "<p>Cancels execution of a task. </p> <p>When you cancel a task execution, the transfer of some files is abruptly interrupted. The contents of files that are transferred to the destination might be incomplete or inconsistent with the source files. However, if you start a new task execution on the same task and you allow the task execution to complete, file content on the destination is complete and consistent. This applies to other unexpected failures that interrupt a task execution. In all of these cases, AWS DataSync successfully complete the transfer when you start the next task execution.</p>",
+    "CreateAgent": "<p>Activates an AWS DataSync agent that you have deployed on your host. The activation process associates your agent with your account. In the activation process, you specify information such as the AWS Region that you want to activate the agent in. You activate the agent in the AWS Region where your target locations (in Amazon S3 or Amazon EFS) reside. Your tasks are created in this AWS Region.</p> <p>You can activate the agent in a VPC (virtual private cloud) or provide the agent access to a VPC endpoint so you can run tasks without going over the public Internet.</p> <p>You can use an agent for more than one location. If a task uses multiple agents, all of them need to have status AVAILABLE for the task to run. If you use multiple agents for a source location, the status of all the agents must be AVAILABLE for the task to run. </p> <p>Agents are automatically updated by AWS on a regular basis, using a mechanism that ensures minimal interruption to your tasks.</p> <p/>",
     "CreateLocationEfs": "<p>Creates an endpoint for an Amazon EFS file system.</p>",
     "CreateLocationFsxWindows": "<p>Creates an endpoint for an Amazon FSx for Windows file system.</p>",
-    "CreateLocationNfs": "<p>Defines a file system on a Network File System (NFS) server that can be read from or written to</p>",
+    "CreateLocationNfs": "<p>Defines a file system on a Network File System (NFS) server that can be read from or written to.</p>",
+    "CreateLocationObjectStorage": "<p>Creates an endpoint for a self-managed object storage bucket.</p>",
     "CreateLocationS3": "<p>Creates an endpoint for an Amazon S3 bucket.</p> <p>For AWS DataSync to access a destination S3 bucket, it needs an AWS Identity and Access Management (IAM) role that has the required permissions. You can set up the required permissions by creating an IAM policy that grants the required permissions and attaching the policy to the role. An example of such a policy is shown in the examples section.</p> <p>For more information, see https://docs.aws.amazon.com/datasync/latest/userguide/working-with-locations.html#create-s3-location in the <i>AWS DataSync User Guide.</i> </p>",
-    "CreateLocationSmb": "<p>Defines a file system on an Server Message Block (SMB) server that can be read from or written to.</p>",
+    "CreateLocationSmb": "<p>Defines a file system on a Server Message Block (SMB) server that can be read from or written to.</p>",
     "CreateTask": "<p>Creates a task. A task is a set of two locations (source and destination) and a set of Options that you use to control the behavior of a task. If you don't specify Options when you create a task, AWS DataSync populates them with service defaults.</p> <p>When you create a task, it first enters the CREATING state. During CREATING AWS DataSync attempts to mount the on-premises Network File System (NFS) location. The task transitions to the AVAILABLE state without waiting for the AWS location to become mounted. If required, AWS DataSync mounts the AWS location before each task execution.</p> <p>If an agent that is associated with a source (NFS) location goes offline, the task transitions to the UNAVAILABLE status. If the status of the task remains in the CREATING status for more than a few minutes, it means that your agent might be having trouble mounting the source NFS file system. Check the task's ErrorCode and ErrorDetail. Mount issues are often caused by either a misconfigured firewall or a mistyped NFS server host name.</p>",
     "DeleteAgent": "<p>Deletes an agent. To specify which agent to delete, use the Amazon Resource Name (ARN) of the agent in your request. The operation disassociates the agent from your AWS account. However, it doesn't delete the agent virtual machine (VM) from your on-premises environment.</p>",
     "DeleteLocation": "<p>Deletes the configuration of a location used by AWS DataSync. </p>",
@@ -16,14 +17,15 @@
     "DescribeAgent": "<p>Returns metadata such as the name, the network interfaces, and the status (that is, whether the agent is running or not) for an agent. To specify which agent to describe, use the Amazon Resource Name (ARN) of the agent in your request. </p>",
     "DescribeLocationEfs": "<p>Returns metadata, such as the path information about an Amazon EFS location.</p>",
     "DescribeLocationFsxWindows": "<p>Returns metadata, such as the path information about an Amazon FSx for Windows location.</p>",
-    "DescribeLocationNfs": "<p>Returns metadata, such as the path information, about a NFS location.</p>",
+    "DescribeLocationNfs": "<p>Returns metadata, such as the path information, about an NFS location.</p>",
+    "DescribeLocationObjectStorage": "<p>Returns metadata about a self-managed object storage server location.</p>",
     "DescribeLocationS3": "<p>Returns metadata, such as bucket name, about an Amazon S3 bucket location.</p>",
-    "DescribeLocationSmb": "<p>Returns metadata, such as the path and user information about a SMB location.</p>",
+    "DescribeLocationSmb": "<p>Returns metadata, such as the path and user information about an SMB location.</p>",
     "DescribeTask": "<p>Returns metadata about a task.</p>",
     "DescribeTaskExecution": "<p>Returns detailed metadata about a task that is being executed.</p>",
     "ListAgents": "<p>Returns a list of agents owned by an AWS account in the AWS Region specified in the request. The returned list is ordered by agent Amazon Resource Name (ARN).</p> <p>By default, this operation returns a maximum of 100 agents. This operation supports pagination that enables you to optionally reduce the number of agents returned in a response.</p> <p>If you have more agents than are returned in a response (that is, the response returns only a truncated list of your agents), the response contains a marker that you can specify in your next request to fetch the next page of agents.</p>",
-    "ListLocations": "<p>Returns a lists of source and destination locations.</p> <p>If you have more locations than are returned in a response (that is, the response returns only a truncated list of your agents), the response contains a token that you can specify in your next request to fetch the next page of locations.</p>",
-    "ListTagsForResource": "<p>Returns all the tags associated with a specified resources. </p>",
+    "ListLocations": "<p>Returns a list of source and destination locations.</p> <p>If you have more locations than are returned in a response (that is, the response returns only a truncated list of your agents), the response contains a token that you can specify in your next request to fetch the next page of locations.</p>",
+    "ListTagsForResource": "<p>Returns all the tags associated with a specified resource. </p>",
     "ListTaskExecutions": "<p>Returns a list of executed tasks.</p>",
     "ListTasks": "<p>Returns a list of all the tasks.</p>",
     "StartTaskExecution": "<p>Starts a specific invocation of a task. A <code>TaskExecution</code> value represents an individual run of a task. Each task can have at most one <code>TaskExecution</code> at a time.</p> <p> <code>TaskExecution</code> has the following transition phases: INITIALIZING | PREPARING | TRANSFERRING | VERIFYING | SUCCESS/FAILURE. </p> <p>For detailed information, see the Task Execution section in the Components and Terminology topic in the <i>AWS DataSync User Guide</i>.</p>",
@@ -54,7 +56,9 @@
     "AgentArnList": {
       "base": null,
       "refs": {
+        "CreateLocationObjectStorageRequest$AgentArns": "<p>The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.</p>",
         "CreateLocationSmbRequest$AgentArns": "<p>The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location. </p>",
+        "DescribeLocationObjectStorageResponse$AgentArns": "<p>The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.</p>",
         "DescribeLocationSmbResponse$AgentArns": "<p>The Amazon Resource Name (ARN) of the source SMB file system location that is created.</p>",
         "OnPremConfig$AgentArns": "<p>ARNs)of the agents to use for an NFS location.</p>"
       }
@@ -137,6 +141,16 @@
     },
     "CreateLocationNfsResponse": {
       "base": "<p>CreateLocationNfsResponse</p>",
+      "refs": {
+      }
+    },
+    "CreateLocationObjectStorageRequest": {
+      "base": "<p>CreateLocationObjectStorageRequest</p>",
+      "refs": {
+      }
+    },
+    "CreateLocationObjectStorageResponse": {
+      "base": "<p>CreateLocationObjectStorageResponse</p>",
       "refs": {
       }
     },
@@ -240,6 +254,16 @@
       "refs": {
       }
     },
+    "DescribeLocationObjectStorageRequest": {
+      "base": "<p>DescribeLocationObjectStorageRequest</p>",
+      "refs": {
+      }
+    },
+    "DescribeLocationObjectStorageResponse": {
+      "base": "<p>DescribeLocationObjectStorageResponse</p>",
+      "refs": {
+      }
+    },
     "DescribeLocationS3Request": {
       "base": "<p>DescribeLocationS3Request</p>",
       "refs": {
@@ -313,7 +337,7 @@
       "base": null,
       "refs": {
         "CreateLocationFsxWindowsRequest$SecurityGroupArns": "<p>The Amazon Resource Names (ARNs) of the security groups that are to use to configure the FSx for Windows file system.</p>",
-        "DescribeLocationFsxWindowsResponse$SecurityGroupArns": "<p>The Amazon Resource Names (ARNs) of the security groups that are configured for the for the FSx for Windows file system.</p>",
+        "DescribeLocationFsxWindowsResponse$SecurityGroupArns": "<p>The Amazon Resource Names (ARNs) of the security groups that are configured for the FSx for Windows file system.</p>",
         "Ec2Config$SecurityGroupArns": "<p>The Amazon Resource Names (ARNs) of the security groups that are configured for the Amazon EC2 resource.</p>"
       }
     },
@@ -333,19 +357,19 @@
     "EfsSubdirectory": {
       "base": null,
       "refs": {
-        "CreateLocationEfsRequest$Subdirectory": "<p>A subdirectory in the location’s path. This subdirectory in the EFS file system is used to read data from the EFS source location or write data to the EFS destination. By default, AWS DataSync uses the root directory.</p> <note> <p> <code>Subdirectory</code> must be specified with forward slashes. For example <code>/path/to/folder</code>.</p> </note>"
+        "CreateLocationEfsRequest$Subdirectory": "<p>A subdirectory in the location’s path. This subdirectory in the EFS file system is used to read data from the EFS source location or write data to the EFS destination. By default, AWS DataSync uses the root directory.</p> <note> <p> <code>Subdirectory</code> must be specified with forward slashes. For example, <code>/path/to/folder</code>.</p> </note>"
       }
     },
     "Endpoint": {
       "base": null,
       "refs": {
-        "PrivateLinkConfig$PrivateLinkEndpoint": "<p>The private endpoint that is configured for an agent that has access to IP addresses in a <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html\">PrivateLink</a>. An agent that is configured with this endpoint will not be accessible over the public Internet.</p>"
+        "PrivateLinkConfig$PrivateLinkEndpoint": "<p>The private endpoint that is configured for an agent that has access to IP addresses in a <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html\">PrivateLink</a>. An agent that is configured with this endpoint will not be accessible over the public internet.</p>"
       }
     },
     "EndpointType": {
       "base": null,
       "refs": {
-        "DescribeAgentResponse$EndpointType": "<p>The type of endpoint that your agent is connected to. If the endpoint is a VPC endpoint, the agent is not accessible over the public Internet. </p>"
+        "DescribeAgentResponse$EndpointType": "<p>The type of endpoint that your agent is connected to. If the endpoint is a VPC endpoint, the agent is not accessible over the public internet. </p>"
       }
     },
     "FilterList": {
@@ -399,6 +423,20 @@
       "base": null,
       "refs": {
         "S3Config$BucketAccessRoleArn": "<p>The Amazon S3 bucket to access. This bucket is used as a parameter in the <a>CreateLocationS3</a> operation. </p>"
+      }
+    },
+    "InputTagList": {
+      "base": null,
+      "refs": {
+        "CreateAgentRequest$Tags": "<p>The key-value pair that represents the tag that you want to associate with the agent. The value can be an empty string. This value helps you manage, filter, and search for your agents.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @. </p> </note>",
+        "CreateLocationEfsRequest$Tags": "<p>The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location.</p>",
+        "CreateLocationFsxWindowsRequest$Tags": "<p>The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location.</p>",
+        "CreateLocationNfsRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
+        "CreateLocationObjectStorageRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
+        "CreateLocationS3Request$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
+        "CreateLocationSmbRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
+        "CreateTaskRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the resource. The value can be an empty string. </p>",
+        "TagResourceRequest$Tags": "<p>The tags to apply.</p>"
       }
     },
     "InternalException": {
@@ -467,21 +505,24 @@
         "CreateLocationEfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the Amazon EFS file system location that is created.</p>",
         "CreateLocationFsxWindowsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the FSx for Windows file system location that is created.</p>",
         "CreateLocationNfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the source NFS file system location that is created.</p>",
+        "CreateLocationObjectStorageResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.</p>",
         "CreateLocationS3Response$LocationArn": "<p>The Amazon Resource Name (ARN) of the source Amazon S3 bucket location that is created.</p>",
         "CreateLocationSmbResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the source SMB file system location that is created.</p>",
         "CreateTaskRequest$SourceLocationArn": "<p>The Amazon Resource Name (ARN) of the source location for the task.</p>",
         "CreateTaskRequest$DestinationLocationArn": "<p>The Amazon Resource Name (ARN) of an AWS storage resource's location. </p>",
         "DeleteLocationRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the location to delete.</p>",
         "DescribeLocationEfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the EFS location to describe.</p>",
-        "DescribeLocationEfsResponse$LocationArn": "<p>The Amazon resource Name (ARN) of the EFS location that was described.</p>",
+        "DescribeLocationEfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the EFS location that was described.</p>",
         "DescribeLocationFsxWindowsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the FSx for Windows location to describe.</p>",
-        "DescribeLocationFsxWindowsResponse$LocationArn": "<p>The Amazon resource Name (ARN) of the FSx for Windows location that was described.</p>",
-        "DescribeLocationNfsRequest$LocationArn": "<p>The Amazon resource Name (ARN) of the NFS location to describe.</p>",
-        "DescribeLocationNfsResponse$LocationArn": "<p>The Amazon resource Name (ARN) of the NFS location that was described.</p>",
+        "DescribeLocationFsxWindowsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the FSx for Windows location that was described.</p>",
+        "DescribeLocationNfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the NFS location to describe.</p>",
+        "DescribeLocationNfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the NFS location that was described.</p>",
+        "DescribeLocationObjectStorageRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the self-managed object storage server location that was described.</p>",
+        "DescribeLocationObjectStorageResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the self-managed object storage server location to describe.</p>",
         "DescribeLocationS3Request$LocationArn": "<p>The Amazon Resource Name (ARN) of the Amazon S3 bucket location to describe.</p>",
         "DescribeLocationS3Response$LocationArn": "<p>The Amazon Resource Name (ARN) of the Amazon S3 bucket location.</p>",
-        "DescribeLocationSmbRequest$LocationArn": "<p>The Amazon resource Name (ARN) of the SMB location to describe.</p>",
-        "DescribeLocationSmbResponse$LocationArn": "<p>The Amazon resource Name (ARN) of the SMB location that was described.</p>",
+        "DescribeLocationSmbRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the SMB location to describe.</p>",
+        "DescribeLocationSmbResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the SMB location that was described.</p>",
         "DescribeTaskResponse$SourceLocationArn": "<p>The Amazon Resource Name (ARN) of the source file system's location.</p>",
         "DescribeTaskResponse$DestinationLocationArn": "<p>The Amazon Resource Name (ARN) of the AWS storage resource's location.</p>",
         "LocationListEntry$LocationArn": "<p>The Amazon Resource Name (ARN) of the location. For Network File System (NFS) or Amazon EFS, the location is the export path. For Amazon S3, the location is the prefix path that you want to mount and use as the root of the location.</p>"
@@ -505,6 +546,7 @@
         "DescribeLocationEfsResponse$LocationUri": "<p>The URL of the EFS location that was described.</p>",
         "DescribeLocationFsxWindowsResponse$LocationUri": "<p>The URL of the FSx for Windows location that was described.</p>",
         "DescribeLocationNfsResponse$LocationUri": "<p>The URL of the source NFS location that was described.</p>",
+        "DescribeLocationObjectStorageResponse$LocationUri": "<p>The URL of the source self-managed object storage server location that was described.</p>",
         "DescribeLocationS3Response$LocationUri": "<p>The URL of the Amazon S3 location that was described.</p>",
         "DescribeLocationSmbResponse$LocationUri": "<p>The URL of the source SBM location that was described.</p>",
         "LocationListEntry$LocationUri": "<p>Represents a list of URLs of a location. <code>LocationUri</code> returns an array that contains a list of locations when the <a>ListLocations</a> operation is called.</p> <p>Format: <code>TYPE://GLOBAL_ID/SUBDIR</code>.</p> <p>TYPE designates the type of location. Valid values: NFS | EFS | S3.</p> <p>GLOBAL_ID is the globally unique identifier of the resource that backs the location. An example for EFS is <code>us-east-2.fs-abcd1234</code>. An example for Amazon S3 is the bucket name, such as <code>myBucket</code>. An example for NFS is a valid IPv4 address or a host name compliant with Domain Name Service (DNS).</p> <p>SUBDIR is a valid file system path, delimited by forward slashes as is the *nix convention. For NFS and Amazon EFS, it's the export path to mount the location. For Amazon S3, it's the prefix path that you mount to and treat as the root of the location.</p> <p/>"
@@ -513,7 +555,7 @@
     "LogGroupArn": {
       "base": null,
       "refs": {
-        "CreateTaskRequest$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that is used to monitor and log events in the task. </p> <p>For more information on these groups, see Working with Log Groups and Log Streams in the <i>Amazon CloudWatch User Guide.</i> </p> <p>For more information about how to use CloudWatch Logs with DataSync, see Monitoring Your Task in the <i>AWS DataSync User Guide.</i> </p>",
+        "CreateTaskRequest$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that is used to monitor and log events in the task. </p>",
         "DescribeTaskResponse$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that was used to monitor and log events in the task.</p> <p>For more information on these groups, see Working with Log Groups and Log Streams in the <i>Amazon CloudWatch User Guide</i>.</p>",
         "UpdateTaskRequest$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the resource name of the CloudWatch LogGroup.</p>"
       }
@@ -521,7 +563,7 @@
     "LogLevel": {
       "base": null,
       "refs": {
-        "Options$LogLevel": "<p>A value that determines the type of logs DataSync will deliver to your AWS CloudWatch Logs file. If set to <code>OFF</code>, no logs will be delivered. <code>BASIC</code> will deliver a few logs per transfer operation and <code>TRANSFER</code> will deliver a verbose log that contains logs for every file that is transferred.</p>"
+        "Options$LogLevel": "<p>A value that determines the type of logs that DataSync publishes to a log stream in the Amazon CloudWatch log group that you provide. For more information about providing a log group for DataSync, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateTask.html#DataSync-CreateTask-request-CloudWatchLogGroupArn\">CloudWatchLogGroupArn</a>. If set to <code>OFF</code>, no logs are published. <code>BASIC</code> publishes logs on errors for individual files transferred, and <code>TRANSFER</code> publishes logs for every file or object that is transferred and integrity checked.</p>"
       }
     },
     "MaxResults": {
@@ -572,7 +614,7 @@
     "NfsSubdirectory": {
       "base": null,
       "refs": {
-        "CreateLocationNfsRequest$Subdirectory": "<p>The subdirectory in the NFS file system that is used to read data from the NFS source location or write data to the NFS destination. The NFS path should be a path that's exported by the NFS server, or a subdirectory of that path. The path should be such that it can be mounted by other NFS clients in your network. </p> <p>To see all the paths exported by your NFS server. run \"<code>showmount -e nfs-server-name</code>\" from an NFS client that has access to your server. You can specify any directory that appears in the results, and any subdirectory of that directory. Ensure that the NFS export is accessible without Kerberos authentication. </p> <p>To transfer all the data in the folder you specified, DataSync needs to have permissions to read all the data. To ensure this, either configure the NFS export with <code>no_root_squash,</code> or ensure that the permissions for all of the files that you want DataSync allow read access for all users. Doing either enables the agent to read the files. For the agent to access directories, you must additionally enable all execute access.</p> <p>For information about NFS export configuration, see 18.7. The /etc/exports Configuration File in the Red Hat Enterprise Linux documentation.</p>"
+        "CreateLocationNfsRequest$Subdirectory": "<p>The subdirectory in the NFS file system that is used to read data from the NFS source location or write data to the NFS destination. The NFS path should be a path that's exported by the NFS server, or a subdirectory of that path. The path should be such that it can be mounted by other NFS clients in your network. </p> <p>To see all the paths exported by your NFS server. run \"<code>showmount -e nfs-server-name</code>\" from an NFS client that has access to your server. You can specify any directory that appears in the results, and any subdirectory of that directory. Ensure that the NFS export is accessible without Kerberos authentication. </p> <p>To transfer all the data in the folder you specified, DataSync needs to have permissions to read all the data. To ensure this, either configure the NFS export with <code>no_root_squash,</code> or ensure that the permissions for all of the files that you want DataSync allow read access for all users. Doing either enables the agent to read the files. For the agent to access directories, you must additionally enable all execute access.</p> <p>If you are copying data to or from your AWS Snowcone device, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone\">NFS Server on AWS Snowcone</a> for more information.</p> <p>For information about NFS export configuration, see 18.7. The /etc/exports Configuration File in the Red Hat Enterprise Linux documentation.</p>"
       }
     },
     "NfsVersion": {
@@ -581,21 +623,60 @@
         "NfsMountOptions$Version": "<p>The specific NFS version that you want DataSync to use to mount your NFS share. If the server refuses to use the version specified, the sync will fail. If you don't specify a version, DataSync defaults to <code>AUTOMATIC</code>. That is, DataSync automatically selects a version based on negotiation with the NFS server.</p> <p>You can specify the following NFS versions:</p> <ul> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc1813\">NFSv3</a> </b> - stateless protocol version that allows for asynchronous writes on the server.</p> </li> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc3530\">NFSv4.0</a> </b> - stateful, firewall-friendly protocol version that supports delegations and pseudo filesystems.</p> </li> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc5661\">NFSv4.1</a> </b> - stateful protocol version that supports sessions, directory delegations, and parallel data processing. Version 4.1 also includes all features available in version 4.0.</p> </li> </ul>"
       }
     },
+    "ObjectStorageAccessKey": {
+      "base": null,
+      "refs": {
+        "CreateLocationObjectStorageRequest$AccessKey": "<p>Optional. The access key is used if credentials are required to access the self-managed object storage server.</p>",
+        "DescribeLocationObjectStorageResponse$AccessKey": "<p>Optional. The access key is used if credentials are required to access the self-managed object storage server.</p>"
+      }
+    },
+    "ObjectStorageBucketName": {
+      "base": null,
+      "refs": {
+        "CreateLocationObjectStorageRequest$BucketName": "<p>The bucket on the self-managed object storage server that is used to read data from.</p>"
+      }
+    },
+    "ObjectStorageSecretKey": {
+      "base": null,
+      "refs": {
+        "CreateLocationObjectStorageRequest$SecretKey": "<p>Optional. The secret key is used if credentials are required to access the self-managed object storage server.</p>"
+      }
+    },
+    "ObjectStorageServerPort": {
+      "base": null,
+      "refs": {
+        "CreateLocationObjectStorageRequest$ServerPort": "<p>The port that your self-managed object storage server accepts inbound network traffic on. The server port is set by default to TCP 80 (HTTP) or TCP 443 (HTTPS). You can specify a custom port if your self-managed object storage server requires one.</p>",
+        "DescribeLocationObjectStorageResponse$ServerPort": "<p>The port that your self-managed object storage server accepts inbound network traffic on. The server port is set by default to TCP 80 (HTTP) or TCP 443 (HTTPS).</p>"
+      }
+    },
+    "ObjectStorageServerProtocol": {
+      "base": null,
+      "refs": {
+        "CreateLocationObjectStorageRequest$ServerProtocol": "<p>The protocol that the object storage server uses to communicate. Valid values are HTTP or HTTPS.</p>",
+        "DescribeLocationObjectStorageResponse$ServerProtocol": "<p>The protocol that the object storage server uses to communicate. Valid values are HTTP or HTTPS.</p>"
+      }
+    },
     "OnPremConfig": {
       "base": "<p>A list of Amazon Resource Names (ARNs) of agents to use for a Network File System (NFS) location.</p>",
       "refs": {
-        "CreateLocationNfsRequest$OnPremConfig": "<p>Contains a list of Amazon Resource Names (ARNs) of agents that are used to connect to an NFS server.</p>",
+        "CreateLocationNfsRequest$OnPremConfig": "<p>Contains a list of Amazon Resource Names (ARNs) of agents that are used to connect to an NFS server. </p> <p>If you are copying data to or from your AWS Snowcone device, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone\">NFS Server on AWS Snowcone</a> for more information.</p>",
         "DescribeLocationNfsResponse$OnPremConfig": null
       }
     },
     "Options": {
       "base": "<p>Represents the options that are available to control the behavior of a <a>StartTaskExecution</a> operation. Behavior includes preserving metadata such as user ID (UID), group ID (GID), and file permissions, and also overwriting files in the destination, data integrity verification, and so on.</p> <p>A task has a set of default options associated with it. If you don't specify an option in <a>StartTaskExecution</a>, the default value is used. You can override the defaults options on each task execution by specifying an overriding <code>Options</code> value to <a>StartTaskExecution</a>.</p>",
       "refs": {
-        "CreateTaskRequest$Options": "<p>The set of configuration options that control the behavior of a single execution of the task that occurs when you call <code>StartTaskExecution</code>. You can configure these options to preserve metadata such as user ID (UID) and group ID (GID), file permissions, data integrity verification, and so on.</p> <p>For each individual task execution, you can override these options by specifying the <code>OverrideOptions</code> before starting a the task execution. For more information, see the operation. </p>",
+        "CreateTaskRequest$Options": "<p>The set of configuration options that control the behavior of a single execution of the task that occurs when you call <code>StartTaskExecution</code>. You can configure these options to preserve metadata such as user ID (UID) and group ID (GID), file permissions, data integrity verification, and so on.</p> <p>For each individual task execution, you can override these options by specifying the <code>OverrideOptions</code> before starting the task execution. For more information, see the operation. </p>",
         "DescribeTaskExecutionResponse$Options": null,
         "DescribeTaskResponse$Options": "<p>The set of configuration options that control the behavior of a single execution of the task that occurs when you call <code>StartTaskExecution</code>. You can configure these options to preserve metadata such as user ID (UID) and group (GID), file permissions, data integrity verification, and so on.</p> <p>For each individual task execution, you can override these options by specifying the overriding <code>OverrideOptions</code> value to operation. </p>",
         "StartTaskExecutionRequest$OverrideOptions": null,
         "UpdateTaskRequest$Options": null
+      }
+    },
+    "OutputTagList": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceResponse$Tags": "<p>Array of resource tags.</p>"
       }
     },
     "OverwriteMode": {
@@ -645,7 +726,7 @@
       }
     },
     "PrivateLinkConfig": {
-      "base": "<p>The VPC endpoint, subnet and security group that an agent uses to access IP addresses in a VPC (Virtual Private Cloud).</p>",
+      "base": "<p>The VPC endpoint, subnet, and security group that an agent uses to access IP addresses in a VPC (Virtual Private Cloud).</p>",
       "refs": {
         "DescribeAgentResponse$PrivateLinkConfig": "<p>The subnet and the security group that DataSync used to access a VPC endpoint.</p>"
       }
@@ -673,6 +754,7 @@
     "S3Subdirectory": {
       "base": null,
       "refs": {
+        "CreateLocationObjectStorageRequest$Subdirectory": "<p>The subdirectory in the self-managed object storage server that is used to read data from.</p>",
         "CreateLocationS3Request$Subdirectory": "<p>A subdirectory in the Amazon S3 bucket. This subdirectory in Amazon S3 is used to read data from the S3 source location or write data to the S3 destination.</p>"
       }
     },
@@ -685,7 +767,8 @@
     "ServerHostname": {
       "base": null,
       "refs": {
-        "CreateLocationNfsRequest$ServerHostname": "<p>The name of the NFS server. This value is the IP address or Domain Name Service (DNS) name of the NFS server. An agent that is installed on-premises uses this host name to mount the NFS server in a network. </p> <note> <p>This name must either be DNS-compliant or must be an IP version 4 (IPv4) address.</p> </note>",
+        "CreateLocationNfsRequest$ServerHostname": "<p>The name of the NFS server. This value is the IP address or Domain Name Service (DNS) name of the NFS server. An agent that is installed on-premises uses this host name to mount the NFS server in a network. </p> <p>If you are copying data to or from your AWS Snowcone device, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone\">NFS Server on AWS Snowcone</a> for more information.</p> <note> <p>This name must either be DNS-compliant or must be an IP version 4 (IPv4) address.</p> </note>",
+        "CreateLocationObjectStorageRequest$ServerHostname": "<p>The name of the self-managed object storage server. This value is the IP address or Domain Name Service (DNS) name of the object storage server. An agent uses this host name to mount the object storage server in a network. </p>",
         "CreateLocationSmbRequest$ServerHostname": "<p>The name of the SMB server. This value is the IP address or Domain Name Service (DNS) name of the SMB server. An agent that is installed on-premises uses this hostname to mount the SMB server in a network.</p> <note> <p>This name must either be DNS-compliant or must be an IP version 4 (IPv4) address.</p> </note>"
       }
     },
@@ -715,7 +798,7 @@
     "SmbSubdirectory": {
       "base": null,
       "refs": {
-        "CreateLocationSmbRequest$Subdirectory": "<p>The subdirectory in the SMB file system that is used to read data from the SMB source location or write data to the SMB destination. The SMB path should be a path that's exported by the SMB server, or a subdirectory of that path. The path should be such that it can be mounted by other SMB clients in your network.</p> <note> <p> <code>Subdirectory</code> must be specified with forward slashes. For example <code>/path/to/folder</code>.</p> </note> <p>To transfer all the data in the folder you specified, DataSync needs to have permissions to mount the SMB share, as well as to access all the data in that share. To ensure this, either ensure that the user/password specified belongs to the user who can mount the share, and who has the appropriate permissions for all of the files and directories that you want DataSync to access, or use credentials of a member of the Backup Operators group to mount the share. Doing either enables the agent to access the data. For the agent to access directories, you must additionally enable all execute access.</p>"
+        "CreateLocationSmbRequest$Subdirectory": "<p>The subdirectory in the SMB file system that is used to read data from the SMB source location or write data to the SMB destination. The SMB path should be a path that's exported by the SMB server, or a subdirectory of that path. The path should be such that it can be mounted by other SMB clients in your network.</p> <note> <p> <code>Subdirectory</code> must be specified with forward slashes. For example, <code>/path/to/folder</code>.</p> </note> <p>To transfer all the data in the folder you specified, DataSync needs to have permissions to mount the SMB share, as well as to access all the data in that share. To ensure this, either ensure that the user/password specified belongs to the user who can mount the share, and who has the appropriate permissions for all of the files and directories that you want DataSync to access, or use credentials of a member of the Backup Operators group to mount the share. Doing either enables the agent to access the data. For the agent to access directories, you must additionally enable all execute access.</p>"
       }
     },
     "SmbUser": {
@@ -762,24 +845,11 @@
         "UntagResourceRequest$Keys": "<p>The keys in the key-value pair in the tag to remove.</p>"
       }
     },
-    "TagList": {
-      "base": null,
-      "refs": {
-        "CreateAgentRequest$Tags": "<p>The key-value pair that represents the tag that you want to associate with the agent. The value can be an empty string. This value helps you manage, filter, and search for your agents.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @. </p> </note>",
-        "CreateLocationEfsRequest$Tags": "<p>The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location.</p>",
-        "CreateLocationFsxWindowsRequest$Tags": "<p>The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location.</p>",
-        "CreateLocationNfsRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
-        "CreateLocationS3Request$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
-        "CreateLocationSmbRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
-        "CreateTaskRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the resource. The value can be an empty string. </p>",
-        "ListTagsForResourceResponse$Tags": "<p>Array of resource tags.</p>",
-        "TagResourceRequest$Tags": "<p>The tags to apply.</p>"
-      }
-    },
     "TagListEntry": {
       "base": "<p>Represents a single entry in a list of AWS resource tags. <code>TagListEntry</code> returns an array that contains a list of tasks when the <a>ListTagsForResource</a> operation is called.</p>",
       "refs": {
-        "TagList$member": null
+        "InputTagList$member": null,
+        "OutputTagList$member": null
       }
     },
     "TagResourceRequest": {
@@ -878,7 +948,7 @@
     "TaskQueueing": {
       "base": null,
       "refs": {
-        "Options$TaskQueueing": "<p>A value that determines whether tasks should be queued before executing the tasks. If set to <code>ENABLED</code>, the tasks will be queued. The default is <code>ENABLED</code>.</p> <p>If you use the same agent to run multiple tasks you can enable the tasks to run in series. For more information see <a>queue-task-execution</a>.</p>"
+        "Options$TaskQueueing": "<p>A value that determines whether tasks should be queued before executing the tasks. If set to <code>ENABLED</code>, the tasks will be queued. The default is <code>ENABLED</code>.</p> <p>If you use the same agent to run multiple tasks, you can enable the tasks to run in series. For more information, see <a>queue-task-execution</a>.</p>"
       }
     },
     "TaskSchedule": {
@@ -904,10 +974,17 @@
         "DescribeLocationEfsResponse$CreationTime": "<p>The time that the EFS location was created.</p>",
         "DescribeLocationFsxWindowsResponse$CreationTime": "<p>The time that the FSx for Windows location was created.</p>",
         "DescribeLocationNfsResponse$CreationTime": "<p>The time that the NFS location was created.</p>",
+        "DescribeLocationObjectStorageResponse$CreationTime": "<p>The time that the self-managed object storage server agent was created.</p>",
         "DescribeLocationS3Response$CreationTime": "<p>The time that the Amazon S3 bucket location was created.</p>",
         "DescribeLocationSmbResponse$CreationTime": "<p>The time that the SMB location was created.</p>",
         "DescribeTaskExecutionResponse$StartTime": "<p>The time that the task execution was started.</p>",
         "DescribeTaskResponse$CreationTime": "<p>The time that the task was created.</p>"
+      }
+    },
+    "TransferMode": {
+      "base": null,
+      "refs": {
+        "Options$TransferMode": "<p>TransferMode has two values: CHANGED and ALL. CHANGED performs an \"incremental\" or \"delta sync\", it compares file modification time between source and destination to determine which files need to be transferred. ALL skips destination inventory and transfers all files discovered on the source.</p>"
       }
     },
     "Uid": {
@@ -949,14 +1026,14 @@
     "VerifyMode": {
       "base": null,
       "refs": {
-        "Options$VerifyMode": "<p>A value that determines whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred. </p> <p>Default value: POINT_IN_TIME_CONSISTENT.</p> <p>POINT_IN_TIME_CONSISTENT: Perform verification (recommended). </p> <p>ONLY_FILES_TRANSFERRED: Perform verification on only files that were transferred.</p> <p>NONE: Skip verification.</p>"
+        "Options$VerifyMode": "<p>A value that determines whether a data integrity verification should be performed at the end of a task execution after all data and metadata have been transferred. For more information, see <a>create-task</a> </p> <p>Default value: POINT_IN_TIME_CONSISTENT.</p> <p>ONLY_FILES_TRANSFERRED (recommended): Perform verification only on files that were transferred. </p> <p>POINT_IN_TIME_CONSISTENT: Scan the entire source and entire destination at the end of the transfer to verify that source and destination are fully synchronized. This option isn't supported when transferring to S3 Glacier or S3 Glacier Deep Archive storage classes.</p> <p>NONE: No additional verification is done at the end of the transfer, but all data transmissions are integrity-checked with checksum verification during the transfer.</p>"
       }
     },
     "VpcEndpointId": {
       "base": null,
       "refs": {
-        "CreateAgentRequest$VpcEndpointId": "<p>The ID of the VPC (Virtual Private Cloud) endpoint that the agent has access to. This is the client-side VPC endpoint, also called a PrivateLink. If you don't have a PrivateLink VPC endpoint, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html#create-endpoint-service\">Creating a VPC Endpoint Service Configuration</a> in the AWS VPC User Guide.</p> <p>VPC endpoint ID looks like this: <code>vpce-01234d5aff67890e1</code>.</p>",
-        "PrivateLinkConfig$VpcEndpointId": "<p>The ID of the VPC endpoint that is configured for an agent. An agent that is configured with a VPC endpoint will not be accessible over the public Internet.</p>"
+        "CreateAgentRequest$VpcEndpointId": "<p>The ID of the VPC (virtual private cloud) endpoint that the agent has access to. This is the client-side VPC endpoint, also called a PrivateLink. If you don't have a PrivateLink VPC endpoint, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html#create-endpoint-service\">Creating a VPC Endpoint Service Configuration</a> in the Amazon VPC User Guide.</p> <p>VPC endpoint ID looks like this: <code>vpce-01234d5aff67890e1</code>.</p>",
+        "PrivateLinkConfig$VpcEndpointId": "<p>The ID of the VPC endpoint that is configured for an agent. An agent that is configured with a VPC endpoint will not be accessible over the public internet.</p>"
       }
     },
     "long": {
