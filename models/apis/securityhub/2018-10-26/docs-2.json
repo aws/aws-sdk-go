@@ -43,6 +43,7 @@
     "UpdateActionTarget": "<p>Updates the name and description of a custom action target in Security Hub.</p>",
     "UpdateFindings": "<p> <code>UpdateFindings</code> is deprecated. Instead of <code>UpdateFindings</code>, use <code>BatchUpdateFindings</code>.</p> <p>Updates the <code>Note</code> and <code>RecordState</code> of the Security Hub-aggregated findings that the filter attributes specify. Any member account that can view the finding also sees the update to the finding.</p>",
     "UpdateInsight": "<p>Updates the Security Hub insight identified by the specified insight ARN.</p>",
+    "UpdateSecurityHubConfiguration": "<p>Updates configuration options for Security Hub.</p>",
     "UpdateStandardsControl": "<p>Used to control whether an individual security standard control is enabled or disabled.</p>"
   },
   "shapes": {
@@ -525,7 +526,7 @@
       "base": "<p>A collection of attributes that are applied to all active Security Hub-aggregated findings and that result in a subset of findings that are included in this insight.</p>",
       "refs": {
         "CreateInsightRequest$Filters": "<p>One or more attributes used to filter the findings included in the insight. The insight only includes findings that match the criteria defined in the filters.</p>",
-        "GetFindingsRequest$Filters": "<p>The finding attributes used to define a condition to filter the returned findings.</p>",
+        "GetFindingsRequest$Filters": "<p>The finding attributes used to define a condition to filter the returned findings.</p> <p>Note that in the available filter fields, <code>WorkflowState</code> is deprecated. To search for a finding based on its workflow status, use <code>WorkflowStatus</code>.</p>",
         "Insight$Filters": "<p>One or more attributes used to filter the findings included in the insight. The insight only includes findings that match the criteria defined in the filters.</p>",
         "UpdateFindingsRequest$Filters": "<p>A collection of attributes that specify which findings you want to update.</p>",
         "UpdateInsightRequest$Filters": "<p>The updated filters that define this insight.</p>"
@@ -663,9 +664,11 @@
         "AwsRdsDbInstanceDetails$IAMDatabaseAuthenticationEnabled": "<p>True if mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false.</p> <p>IAM database authentication can be enabled for the following database engines.</p> <ul> <li> <p>For MySQL 5.6, minor version 5.6.34 or higher</p> </li> <li> <p>For MySQL 5.7, minor version 5.7.16 or higher</p> </li> <li> <p>Aurora 5.6 or higher</p> </li> </ul>",
         "AwsRdsDbInstanceDetails$PubliclyAccessible": "<p>Specifies the accessibility options for the DB instance.</p> <p>A value of true specifies an Internet-facing instance with a publicly resolvable DNS name, which resolves to a public IP address.</p> <p>A value of false specifies an internal instance with a DNS name that resolves to a private IP address. </p>",
         "AwsRdsDbInstanceDetails$StorageEncrypted": "<p>Specifies whether the DB instance is encrypted.</p>",
+        "DescribeHubResponse$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>If set to <code>true</code>, then new controls for enabled standards are enabled automatically. If set to <code>false</code>, then new controls are not enabled.</p>",
         "EnableSecurityHubRequest$EnableDefaultStandards": "<p>Whether to enable the security standards that Security Hub has designated as automatically enabled. If you do not provide a value for <code>EnableDefaultStandards</code>, it is set to <code>true</code>. To not enable the automatically enabled standards, set <code>EnableDefaultStandards</code> to <code>false</code>.</p>",
         "ListMembersRequest$OnlyAssociated": "<p>Specifies which member accounts to include in the response based on their relationship status with the master account. The default value is <code>TRUE</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>TRUE</code>, the response includes member accounts whose relationship status with the master is set to <code>ENABLED</code> or <code>DISABLED</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>FALSE</code>, the response includes all existing member accounts. </p>",
-        "Standard$EnabledByDefault": "<p>Whether the standard is enabled by default. When Security Hub is enabled from the console, if a standard is enabled by default, the check box for that standard is selected by default.</p> <p>When Security Hub is enabled using the <code>EnableSecurityHub</code> API operation, the standard is enabled by default unless <code>EnableDefaultStandards</code> is set to <code>false</code>.</p>"
+        "Standard$EnabledByDefault": "<p>Whether the standard is enabled by default. When Security Hub is enabled from the console, if a standard is enabled by default, the check box for that standard is selected by default.</p> <p>When Security Hub is enabled using the <code>EnableSecurityHub</code> API operation, the standard is enabled by default unless <code>EnableDefaultStandards</code> is set to <code>false</code>.</p>",
+        "UpdateSecurityHubConfigurationRequest$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>By default, this is set to <code>true</code>, and new controls are enabled automatically. To not automatically enable new controls, set this to <code>false</code>. </p>"
       }
     },
     "CategoryList": {
@@ -1113,7 +1116,7 @@
         "PortRange$End": "<p>The last port in the port range.</p>",
         "ProcessDetails$Pid": "<p>The process ID.</p>",
         "ProcessDetails$ParentPid": "<p>The parent process ID.</p>",
-        "Severity$Normalized": "<p>Deprecated. This attribute is being deprecated. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>If you provide <code>Normalized</code> and do not provide <code>Label</code>, <code>Label</code> is set automatically as follows. </p> <ul> <li> <p>0 - <code>INFORMATIONAL</code> </p> </li> <li> <p>1–39 - <code>LOW</code> </p> </li> <li> <p>40–69 - <code>MEDIUM</code> </p> </li> <li> <p>70–89 - <code>HIGH</code> </p> </li> <li> <p>90–100 - <code>CRITICAL</code> </p> </li> </ul>"
+        "Severity$Normalized": "<p>Deprecated. The normalized severity of a finding. This attribute is being deprecated. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>If you provide <code>Label</code> and do not provide <code>Normalized</code>, then <code>Normalized</code> is set automatically as follows.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - 0</p> </li> <li> <p> <code>LOW</code> - 1</p> </li> <li> <p> <code>MEDIUM</code> - 40</p> </li> <li> <p> <code>HIGH</code> - 70</p> </li> <li> <p> <code>CRITICAL</code> - 90</p> </li> </ul>"
       }
     },
     "IntegrationType": {
@@ -1933,7 +1936,7 @@
       }
     },
     "Severity": {
-      "base": "<p>The severity of the finding.</p>",
+      "base": "<p>The severity of the finding.</p> <p>The finding provider can provide the initial severity, but cannot update it after that. The severity can only be updated by a master account. It cannot be updated by a member account.</p> <p>The finding must have either <code>Label</code> or <code>Normalized</code> populated. If only one of these attributes is populated, then Security Hub automatically populates the other one. If neither attribute is populated, then the finding is invalid. <code>Label</code> is the preferred attribute.</p>",
       "refs": {
         "AwsSecurityFinding$Severity": "<p>A finding's severity.</p>"
       }
@@ -1941,7 +1944,7 @@
     "SeverityLabel": {
       "base": null,
       "refs": {
-        "Severity$Label": "<p>The severity value of the finding. The allowed values are the following.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - No issue was found.</p> </li> <li> <p> <code>LOW</code> - The issue does not require action on its own.</p> </li> <li> <p> <code>MEDIUM</code> - The issue must be addressed but not urgently.</p> </li> <li> <p> <code>HIGH</code> - The issue must be addressed as a priority.</p> </li> <li> <p> <code>CRITICAL</code> - The issue must be remediated immediately to avoid it escalating.</p> </li> </ul>",
+        "Severity$Label": "<p>The severity value of the finding. The allowed values are the following.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - No issue was found.</p> </li> <li> <p> <code>LOW</code> - The issue does not require action on its own.</p> </li> <li> <p> <code>MEDIUM</code> - The issue must be addressed but not urgently.</p> </li> <li> <p> <code>HIGH</code> - The issue must be addressed as a priority.</p> </li> <li> <p> <code>CRITICAL</code> - The issue must be remediated immediately to avoid it escalating.</p> </li> </ul> <p>If you provide <code>Normalized</code> and do not provide <code>Label</code>, then <code>Label</code> is set automatically as follows. </p> <ul> <li> <p>0 - <code>INFORMATIONAL</code> </p> </li> <li> <p>1–39 - <code>LOW</code> </p> </li> <li> <p>40–69 - <code>MEDIUM</code> </p> </li> <li> <p>70–89 - <code>HIGH</code> </p> </li> <li> <p>90–100 - <code>CRITICAL</code> </p> </li> </ul>",
         "SeverityUpdate$Label": "<p>The severity value of the finding. The allowed values are the following.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - No issue was found.</p> </li> <li> <p> <code>LOW</code> - The issue does not require action on its own.</p> </li> <li> <p> <code>MEDIUM</code> - The issue must be addressed but not urgently.</p> </li> <li> <p> <code>HIGH</code> - The issue must be addressed as a priority.</p> </li> <li> <p> <code>CRITICAL</code> - The issue must be remediated immediately to avoid it escalating.</p> </li> </ul>"
       }
     },
@@ -2131,7 +2134,7 @@
         "AwsSecurityFindingFilters$ResourceContainerImageName": "<p>The name of the image related to a finding.</p>",
         "AwsSecurityFindingFilters$ComplianceStatus": "<p>Exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard, such as CIS AWS Foundations. Contains security standard-related finding details.</p>",
         "AwsSecurityFindingFilters$VerificationState": "<p>The veracity of a finding.</p>",
-        "AwsSecurityFindingFilters$WorkflowState": "<p>The workflow state of a finding.</p>",
+        "AwsSecurityFindingFilters$WorkflowState": "<p>The workflow state of a finding.</p> <p>Note that this field is deprecated. To search for a finding based on its workflow status, use <code>WorkflowStatus</code>.</p>",
         "AwsSecurityFindingFilters$WorkflowStatus": "<p>The status of the investigation into a finding. Allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> </li> <li> <p> <code>NOTIFIED</code> - Indicates that the resource owner has been notified about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>",
         "AwsSecurityFindingFilters$RecordState": "<p>The updated record state for the finding.</p>",
         "AwsSecurityFindingFilters$RelatedFindingsProductArn": "<p>The ARN of the solution that generated a related finding.</p>",
@@ -2264,6 +2267,16 @@
       }
     },
     "UpdateInsightResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSecurityHubConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSecurityHubConfigurationResponse": {
       "base": null,
       "refs": {
       }

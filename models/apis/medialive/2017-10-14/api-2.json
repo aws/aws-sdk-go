@@ -2663,6 +2663,10 @@
           "shape": "DvbSubDestinationSettings",
           "locationName": "dvbSubDestinationSettings"
         },
+        "EbuTtDDestinationSettings": {
+          "shape": "EbuTtDDestinationSettings",
+          "locationName": "ebuTtDDestinationSettings"
+        },
         "EmbeddedDestinationSettings": {
           "shape": "EmbeddedDestinationSettings",
           "locationName": "embeddedDestinationSettings"
@@ -4722,6 +4726,37 @@
         "NOT_INDICATED"
       ]
     },
+    "EbuTtDDestinationSettings": {
+      "type": "structure",
+      "members": {
+        "FillLineGap": {
+          "shape": "EbuTtDFillLineGapControl",
+          "locationName": "fillLineGap"
+        },
+        "FontFamily": {
+          "shape": "__string",
+          "locationName": "fontFamily"
+        },
+        "StyleControl": {
+          "shape": "EbuTtDDestinationStyleControl",
+          "locationName": "styleControl"
+        }
+      }
+    },
+    "EbuTtDDestinationStyleControl": {
+      "type": "string",
+      "enum": [
+        "EXCLUDE",
+        "INCLUDE"
+      ]
+    },
+    "EbuTtDFillLineGapControl": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
     "EmbeddedConvert608To708": {
       "type": "string",
       "enum": [
@@ -5488,6 +5523,15 @@
         }
       }
     },
+    "H265FilterSettings": {
+      "type": "structure",
+      "members": {
+        "TemporalFilterSettings": {
+          "shape": "TemporalFilterSettings",
+          "locationName": "temporalFilterSettings"
+        }
+      }
+    },
     "H265FlickerAq": {
       "type": "string",
       "enum": [
@@ -5547,6 +5591,7 @@
     "H265ScanType": {
       "type": "string",
       "enum": [
+        "INTERLACED",
         "PROGRESSIVE"
       ]
     },
@@ -5587,6 +5632,10 @@
         "ColorSpaceSettings": {
           "shape": "H265ColorSpaceSettings",
           "locationName": "colorSpaceSettings"
+        },
+        "FilterSettings": {
+          "shape": "H265FilterSettings",
+          "locationName": "filterSettings"
         },
         "FixedAfd": {
           "shape": "FixedAfd",
@@ -6116,7 +6165,8 @@
       "type": "string",
       "enum": [
         "MANIFESTS_AND_SEGMENTS",
-        "SEGMENTS_ONLY"
+        "SEGMENTS_ONLY",
+        "VARIANT_MANIFESTS_AND_SEGMENTS"
       ]
     },
     "HlsOutputSettings": {

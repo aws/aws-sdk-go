@@ -221,6 +221,8 @@ func (c *IVS) CreateChannelRequest(input *CreateChannelInput) (req *request.Requ
 //
 //   * ServiceQuotaExceededException
 //
+//   * PendingVerification
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/CreateChannel
 func (c *IVS) CreateChannel(input *CreateChannelInput) (*CreateChannelOutput, error) {
 	req, out := c.CreateChannelRequest(input)
@@ -287,7 +289,7 @@ func (c *IVS) CreateStreamKeyRequest(input *CreateStreamKeyInput) (req *request.
 
 // CreateStreamKey API operation for Amazon Interactive Video Service.
 //
-// Creates a stream key, used to initiate a stream, for a specified channel
+// Creates a stream key, used to initiate a stream, for the specified channel
 // ARN.
 //
 // Note that CreateChannel creates a stream key. If you subsequently use CreateStreamKey
@@ -310,6 +312,8 @@ func (c *IVS) CreateStreamKeyRequest(input *CreateStreamKeyInput) (req *request.
 //   * ResourceNotFoundException
 //
 //   * ServiceQuotaExceededException
+//
+//   * PendingVerification
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/CreateStreamKey
 func (c *IVS) CreateStreamKey(input *CreateStreamKeyInput) (*CreateStreamKeyOutput, error) {
@@ -378,7 +382,7 @@ func (c *IVS) DeleteChannelRequest(input *DeleteChannelInput) (req *request.Requ
 
 // DeleteChannel API operation for Amazon Interactive Video Service.
 //
-// Deletes a specified channel and its associated stream keys.
+// Deletes the specified channel and its associated stream keys.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -395,6 +399,8 @@ func (c *IVS) DeleteChannelRequest(input *DeleteChannelInput) (req *request.Requ
 //   * ResourceNotFoundException
 //
 //   * ConflictException
+//
+//   * PendingVerification
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeleteChannel
 func (c *IVS) DeleteChannel(input *DeleteChannelInput) (*DeleteChannelOutput, error) {
@@ -463,8 +469,8 @@ func (c *IVS) DeleteStreamKeyRequest(input *DeleteStreamKeyInput) (req *request.
 
 // DeleteStreamKey API operation for Amazon Interactive Video Service.
 //
-// Deletes the stream key for a specified ARN, so it can no longer be used to
-// stream.
+// Deletes the stream key for the specified ARN, so it can no longer be used
+// to stream.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -479,6 +485,8 @@ func (c *IVS) DeleteStreamKeyRequest(input *DeleteStreamKeyInput) (req *request.
 //   * AccessDeniedException
 //
 //   * ResourceNotFoundException
+//
+//   * PendingVerification
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeleteStreamKey
 func (c *IVS) DeleteStreamKey(input *DeleteStreamKeyInput) (*DeleteStreamKeyOutput, error) {
@@ -546,7 +554,7 @@ func (c *IVS) GetChannelRequest(input *GetChannelInput) (req *request.Request, o
 
 // GetChannel API operation for Amazon Interactive Video Service.
 //
-// Gets the channel configuration for a specified channel ARN. See also BatchGetChannel.
+// Gets the channel configuration for the specified channel ARN. See also BatchGetChannel.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -800,8 +808,9 @@ func (c *IVS) ListChannelsRequest(input *ListChannelsInput) (req *request.Reques
 
 // ListChannels API operation for Amazon Interactive Video Service.
 //
-// Gets summary information about channels. This list can be filtered to match
-// a specified string.
+// Gets summary information about all channels in your account, in the AWS region
+// where the API request is processed. This list can be filtered to match a
+// specified string.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -939,8 +948,7 @@ func (c *IVS) ListStreamKeysRequest(input *ListStreamKeysInput) (req *request.Re
 
 // ListStreamKeys API operation for Amazon Interactive Video Service.
 //
-// Gets summary information about stream keys. The list can be filtered to a
-// particular channel.
+// Gets summary information about stream keys for the specified channel.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1080,7 +1088,8 @@ func (c *IVS) ListStreamsRequest(input *ListStreamsInput) (req *request.Request,
 
 // ListStreams API operation for Amazon Interactive Video Service.
 //
-// Gets summary information about live streams.
+// Gets summary information about live streams in your account, in the AWS region
+// where the API request is processed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1216,7 +1225,7 @@ func (c *IVS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 
 // ListTagsForResource API operation for Amazon Interactive Video Service.
 //
-// Gets information about the tags for a specified ARN.
+// Gets information about AWS tags for the specified ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1351,8 +1360,9 @@ func (c *IVS) PutMetadataRequest(input *PutMetadataInput) (req *request.Request,
 
 // PutMetadata API operation for Amazon Interactive Video Service.
 //
-// Inserts metadata into an RTMP stream for a specified channel. A maximum of
-// 5 requests per second per channel is allowed, each with a maximum 1KB payload.
+// Inserts metadata into an RTMPS stream for the specified channel. A maximum
+// of 5 requests per second per channel is allowed, each with a maximum 1KB
+// payload.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1439,12 +1449,11 @@ func (c *IVS) StopStreamRequest(input *StopStreamInput) (req *request.Request, o
 
 // StopStream API operation for Amazon Interactive Video Service.
 //
-// Disconnects the stream for the specified channel. This disconnects the incoming
-// RTMP stream from the client. Can be used in conjunction with DeleteStreamKey
-// to prevent further streaming to a channel.
+// Disconnects the incoming RTMPS stream for the specified channel. Can be used
+// in conjunction with DeleteStreamKey to prevent further streaming to a channel.
 //
 // Many streaming client-software libraries automatically reconnect a dropped
-// RTMP session, so to stop the stream permanently, you may want to first revoke
+// RTMPS session, so to stop the stream permanently, you may want to first revoke
 // the streamKey attached to the channel.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1532,7 +1541,7 @@ func (c *IVS) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 
 // TagResource API operation for Amazon Interactive Video Service.
 //
-// Adds or updates tags for a resource with a specified ARN.
+// Adds or updates tags for the AWS resource with the specified ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1615,7 +1624,7 @@ func (c *IVS) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 
 // UntagResource API operation for Amazon Interactive Video Service.
 //
-// Removes tags for a resource with a specified ARN.
+// Removes tags from the resource with the specified ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1716,6 +1725,8 @@ func (c *IVS) UpdateChannelRequest(input *UpdateChannelInput) (req *request.Requ
 //   * ResourceNotFoundException
 //
 //   * ConflictException
+//
+//   * PendingVerification
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/UpdateChannel
 func (c *IVS) UpdateChannel(input *UpdateChannelInput) (*UpdateChannelOutput, error) {
@@ -2005,11 +2016,20 @@ type Channel struct {
 	// Array of 1-50 maps, each of the form string:string (key:value).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// Channel type, which determines the allowable resolution and bitrate. STANDARD:
-	// The stream is transcoded; resolution (width, in landscape orientation) can
-	// be up to 1080p or the input source resolution, whichever is lower; and bitrate
-	// can be up to 8.5 Mbps. BASIC: The stream is transfixed; resolution can be
-	// up to 480p; and bitrate can be up to 1.5 Mbps. Default STANDARD.
+	// Channel type, which determines the allowable resolution and bitrate. If you
+	// exceed the allowable resolution or bitrate, the stream probably will disconnect
+	// immediately. Valid values:
+	//
+	//    * STANDARD: Multiple qualities are generated from the original input,
+	//    to automatically give viewers the best experience for their devices and
+	//    network conditions. Vertical resolution can be up to 1080 and bitrate
+	//    can be up to 8.5 Mbps.
+	//
+	//    * BASIC: Amazon IVS delivers the original input to viewers. The viewer’s
+	//    video-quality choice is limited to the original input. Vertical resolution
+	//    can be up to 480 and bitrate can be up to 1.5 Mbps.
+	//
+	// Default: STANDARD.
 	Type *string `locationName:"type" type:"string" enum:"ChannelType"`
 }
 
@@ -2244,11 +2264,20 @@ type CreateChannelInput struct {
 	// See Channel$tags.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// Channel type, which determines the allowable resolution and bitrate. STANDARD:
-	// The stream is transcoded; resolution (width, in landscape orientation) can
-	// be up to 1080p or the input source resolution, whichever is lower; and bitrate
-	// can be up to 8.5 Mbps. BASIC: The stream is transfixed; resolution can be
-	// up to 480p; and bitrate can be up to 1.5 Mbps. Default: STANDARD.
+	// Channel type, which determines the allowable resolution and bitrate. If you
+	// exceed the allowable resolution or bitrate, the stream probably will disconnect
+	// immediately. Valid values:
+	//
+	//    * STANDARD: Multiple qualities are generated from the original input,
+	//    to automatically give viewers the best experience for their devices and
+	//    network conditions. Vertical resolution can be up to 1080 and bitrate
+	//    can be up to 8.5 Mbps.
+	//
+	//    * BASIC: Amazon IVS delivers the original input to viewers. The viewer’s
+	//    video-quality choice is limited to the original input. Vertical resolution
+	//    can be up to 480 and bitrate can be up to 1.5 Mbps.
+	//
+	// Default: STANDARD.
 	Type *string `locationName:"type" type:"string" enum:"ChannelType"`
 }
 
@@ -2371,7 +2400,7 @@ func (s *CreateStreamKeyInput) SetTags(v map[string]*string) *CreateStreamKeyInp
 type CreateStreamKeyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Stream key used to authenticate an RTMP stream for ingestion.
+	// Stream key used to authenticate an RTMPS stream for ingestion.
 	StreamKey *StreamKey `locationName:"streamKey" type:"structure"`
 }
 
@@ -3116,6 +3145,64 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+type PendingVerification struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Your account is pending verification.
+	ExceptionMessage *string `locationName:"exceptionMessage" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s PendingVerification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PendingVerification) GoString() string {
+	return s.String()
+}
+
+func newErrorPendingVerification(v protocol.ResponseMetadata) error {
+	return &PendingVerification{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *PendingVerification) Code() string {
+	return "PendingVerification"
+}
+
+// Message returns the exception's message.
+func (s *PendingVerification) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *PendingVerification) OrigErr() error {
+	return nil
+}
+
+func (s *PendingVerification) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *PendingVerification) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *PendingVerification) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type PutMetadataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3848,11 +3935,20 @@ type UpdateChannelInput struct {
 	// Channel name.
 	Name *string `locationName:"name" type:"string"`
 
-	// Channel type, which determines the allowable resolution and bitrate. STANDARD:
-	// The stream is transcoded; resolution (width, in landscape orientation) can
-	// be up to 1080p or the input source resolution, whichever is lower; and bitrate
-	// can be up to 8.5 Mbps. BASIC: The stream is transfixed; resolution can be
-	// up to 480p; and bitrate can be up to 1.5 Mbps. Default STANDARD.
+	// Channel type, which determines the allowable resolution and bitrate. If you
+	// exceed the allowable resolution or bitrate, the stream probably will disconnect
+	// immediately. Valid values:
+	//
+	//    * STANDARD: Multiple qualities are generated from the original input,
+	//    to automatically give viewers the best experience for their devices and
+	//    network conditions. Vertical resolution can be up to 1080 and bitrate
+	//    can be up to 8.5 Mbps.
+	//
+	//    * BASIC: Amazon IVS delivers the original input to viewers. The viewer’s
+	//    video-quality choice is limited to the original input. Vertical resolution
+	//    can be up to 480 and bitrate can be up to 1.5 Mbps.
+	//
+	// Default: STANDARD.
 	Type *string `locationName:"type" type:"string" enum:"ChannelType"`
 }
 

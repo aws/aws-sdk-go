@@ -24,6 +24,10 @@ const (
 	// "InternalServerException".
 	ErrCodeInternalServerException = "InternalServerException"
 
+	// ErrCodePendingVerification for service response error code
+	// "PendingVerification".
+	ErrCodePendingVerification = "PendingVerification"
+
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
@@ -50,6 +54,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ChannelNotBroadcasting":        newErrorChannelNotBroadcasting,
 	"ConflictException":             newErrorConflictException,
 	"InternalServerException":       newErrorInternalServerException,
+	"PendingVerification":           newErrorPendingVerification,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
 	"StreamUnavailable":             newErrorStreamUnavailable,

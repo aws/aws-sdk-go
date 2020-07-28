@@ -1231,7 +1231,8 @@
         "IamInstanceProfile":{"shape":"XmlStringMaxLen1600"},
         "EbsOptimized":{"shape":"EbsOptimized"},
         "AssociatePublicIpAddress":{"shape":"AssociatePublicIpAddress"},
-        "PlacementTenancy":{"shape":"XmlStringMaxLen64"}
+        "PlacementTenancy":{"shape":"XmlStringMaxLen64"},
+        "MetadataOptions":{"shape":"InstanceMetadataOptions"}
       }
     },
     "CreateOrUpdateTagsType":{
@@ -1674,6 +1675,33 @@
       "type":"list",
       "member":{"shape":"XmlStringMaxLen19"}
     },
+    "InstanceMetadataEndpointState":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled"
+      ]
+    },
+    "InstanceMetadataHttpPutResponseHopLimit":{
+      "type":"integer",
+      "max":64,
+      "min":1
+    },
+    "InstanceMetadataHttpTokensState":{
+      "type":"string",
+      "enum":[
+        "optional",
+        "required"
+      ]
+    },
+    "InstanceMetadataOptions":{
+      "type":"structure",
+      "members":{
+        "HttpTokens":{"shape":"InstanceMetadataHttpTokensState"},
+        "HttpPutResponseHopLimit":{"shape":"InstanceMetadataHttpPutResponseHopLimit"},
+        "HttpEndpoint":{"shape":"InstanceMetadataEndpointState"}
+      }
+    },
     "InstanceMonitoring":{
       "type":"structure",
       "members":{
@@ -1788,7 +1816,8 @@
         "CreatedTime":{"shape":"TimestampType"},
         "EbsOptimized":{"shape":"EbsOptimized"},
         "AssociatePublicIpAddress":{"shape":"AssociatePublicIpAddress"},
-        "PlacementTenancy":{"shape":"XmlStringMaxLen64"}
+        "PlacementTenancy":{"shape":"XmlStringMaxLen64"},
+        "MetadataOptions":{"shape":"InstanceMetadataOptions"}
       }
     },
     "LaunchConfigurationNameType":{

@@ -41,7 +41,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ServiceQuotaExceededException"}
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"PendingVerification"}
       ]
     },
     "CreateStreamKey":{
@@ -56,7 +57,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ServiceQuotaExceededException"}
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"PendingVerification"}
       ]
     },
     "DeleteChannel":{
@@ -70,7 +72,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"PendingVerification"}
       ]
     },
     "DeleteStreamKey":{
@@ -83,7 +86,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"PendingVerification"}
       ]
     },
     "GetChannel":{
@@ -253,7 +257,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"PendingVerification"}
       ]
     }
   },
@@ -568,6 +573,14 @@
       "type":"string",
       "max":500,
       "min":0
+    },
+    "PendingVerification":{
+      "type":"structure",
+      "members":{
+        "exceptionMessage":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
     },
     "PlaybackURL":{"type":"string"},
     "PutMetadataRequest":{

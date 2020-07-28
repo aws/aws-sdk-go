@@ -490,7 +490,7 @@
       "base": null,
       "refs": {
         "ListComponentsRequest$filters": "<p>The filters. </p>",
-        "ListDistributionConfigurationsRequest$filters": "<p>The filters. </p>",
+        "ListDistributionConfigurationsRequest$filters": "<p>The filters. </p> <ul> <li> <p> <code>name</code> - The name of this distribution configuration.</p> </li> </ul>",
         "ListImageBuildVersionsRequest$filters": "<p>The filters. </p>",
         "ListImagePipelineImagesRequest$filters": "<p>The filters. </p>",
         "ListImagePipelinesRequest$filters": "<p>The filters. </p>",

@@ -254,6 +254,10 @@ type SecurityHubAPI interface {
 	UpdateInsightWithContext(aws.Context, *securityhub.UpdateInsightInput, ...request.Option) (*securityhub.UpdateInsightOutput, error)
 	UpdateInsightRequest(*securityhub.UpdateInsightInput) (*request.Request, *securityhub.UpdateInsightOutput)
 
+	UpdateSecurityHubConfiguration(*securityhub.UpdateSecurityHubConfigurationInput) (*securityhub.UpdateSecurityHubConfigurationOutput, error)
+	UpdateSecurityHubConfigurationWithContext(aws.Context, *securityhub.UpdateSecurityHubConfigurationInput, ...request.Option) (*securityhub.UpdateSecurityHubConfigurationOutput, error)
+	UpdateSecurityHubConfigurationRequest(*securityhub.UpdateSecurityHubConfigurationInput) (*request.Request, *securityhub.UpdateSecurityHubConfigurationOutput)
+
 	UpdateStandardsControl(*securityhub.UpdateStandardsControlInput) (*securityhub.UpdateStandardsControlOutput, error)
 	UpdateStandardsControlWithContext(aws.Context, *securityhub.UpdateStandardsControlInput, ...request.Option) (*securityhub.UpdateStandardsControlOutput, error)
 	UpdateStandardsControlRequest(*securityhub.UpdateStandardsControlInput) (*request.Request, *securityhub.UpdateStandardsControlOutput)

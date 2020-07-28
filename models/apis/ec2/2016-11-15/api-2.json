@@ -6556,6 +6556,10 @@
         },
         "CertificateArn":{"shape":"String"},
         "Type":{"shape":"GatewayType"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "DeviceName":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
@@ -8113,6 +8117,10 @@
         "Options":{
           "shape":"VpnConnectionOptionsSpecification",
           "locationName":"options"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },
@@ -8142,6 +8150,10 @@
       "members":{
         "AvailabilityZone":{"shape":"String"},
         "Type":{"shape":"GatewayType"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "AmazonSideAsn":{"shape":"Long"},
         "DryRun":{
           "shape":"Boolean",
