@@ -10,12 +10,34 @@
 // for responses. JSON is used for both requests and responses, including errors.
 //
 // The API is an AWS regional service, currently in these regions: us-west-2,
-// us-east-2, and eu-west-1.
+// us-east-1, and eu-west-1.
 //
 //  All API request parameters and URLs are case sensitive.
 //
 // For a summary of notable documentation changes in each release, see Document
 // History (https://docs.aws.amazon.com/ivs/latest/userguide/doc-history.html).
+//
+// Service Endpoints
+//
+// The following are the Amazon IVS service endpoints (all HTTPS):
+//
+// Region name: US West (Oregon)
+//
+//    * Region: us-west-2
+//
+//    * Endpoint: ivs.us-west-2.amazonaws.com
+//
+// Region name: US East (Virginia)
+//
+//    * Region: us-east-1
+//
+//    * Endpoint: ivs.us-east-1.amazonaws.com
+//
+// Region name: EU West (Dublin)
+//
+//    * Region: eu-west-1
+//
+//    * Endpoint: ivs.eu-west-1.amazonaws.com
 //
 // Allowed Header Values
 //
@@ -61,58 +83,61 @@
 //    * CreateChannel — Creates a new channel and an associated stream key
 //    to start streaming.
 //
-//    * GetChannel — Gets the channel configuration for a specified channel
+//    * GetChannel — Gets the channel configuration for the specified channel
 //    ARN (Amazon Resource Name).
 //
 //    * BatchGetChannel — Performs GetChannel on multiple ARNs simultaneously.
 //
-//    * ListChannels — Gets summary information about channels. This list
+//    * ListChannels — Gets summary information about all channels in your
+//    account, in the AWS region where the API request is processed. This list
 //    can be filtered to match a specified string.
 //
 //    * UpdateChannel — Updates a channel's configuration. This does not affect
 //    an ongoing stream of this channel. You must stop and restart the stream
 //    for the changes to take effect.
 //
-//    * DeleteChannel — Deletes a specified channel.
+//    * DeleteChannel — Deletes the specified channel.
 //
 // StreamKey:
 //
 //    * CreateStreamKey — Creates a stream key, used to initiate a stream,
-//    for a specified channel ARN.
+//    for the specified channel ARN.
 //
 //    * GetStreamKey — Gets stream key information for the specified ARN.
 //
 //    * BatchGetStreamKey — Performs GetStreamKey on multiple ARNs simultaneously.
 //
-//    * ListStreamKeys — Gets a list of stream keys. The list can be filtered
-//    to a particular channel.
+//    * ListStreamKeys — Gets summary information about stream keys for the
+//    specified channel.
 //
-//    * DeleteStreamKey — Deletes the stream key for a specified ARN, so it
-//    can no longer be used to stream.
+//    * DeleteStreamKey — Deletes the stream key for the specified ARN, so
+//    it can no longer be used to stream.
 //
 // Stream:
 //
 //    * GetStream — Gets information about the active (live) stream on a specified
 //    channel.
 //
-//    * ListStreams — Gets summary information about live streams.
+//    * ListStreams — Gets summary information about live streams in your
+//    account, in the AWS region where the API request is processed.
 //
-//    * StopStream — Disconnects a streamer on a specified channel. This disconnects
-//    the incoming RTMP stream from the client. Can be used in conjunction with
-//    DeleteStreamKey to prevent further streaming to a channel.
+//    * StopStream — Disconnects the incoming RTMPS stream for the specified
+//    channel. Can be used in conjunction with DeleteStreamKey to prevent further
+//    streaming to a channel.
 //
-//    * PutMetadata Inserts metadata into an RTMP stream for a specified channel.
-//    A maximum of 5 requests per second per channel is allowed, each with a
-//    maximum 1KB payload.
+//    * PutMetadata — Inserts metadata into an RTMPS stream for the specified
+//    channel. A maximum of 5 requests per second per channel is allowed, each
+//    with a maximum 1KB payload.
 //
 //  AWS Tags (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html):
 //
-//    * TagResource — Adds or updates tags for an AWS resource with a specified
+//    * TagResource — Adds or updates tags for the AWS resource with the specified
 //    ARN.
 //
-//    * UntagResource — Removes tags from a resource with a specified ARN.
+//    * UntagResource — Removes tags from the resource with the specified
+//    ARN.
 //
-//    * ListTagsForResource — Gets information about AWS tags for a specified
+//    * ListTagsForResource — Gets information about AWS tags for the specified
 //    ARN.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14 for more information on this service.

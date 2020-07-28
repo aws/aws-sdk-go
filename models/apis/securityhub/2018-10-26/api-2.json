@@ -643,6 +643,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateSecurityHubConfiguration":{
+      "name":"UpdateSecurityHubConfiguration",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/accounts"
+      },
+      "input":{"shape":"UpdateSecurityHubConfigurationRequest"},
+      "output":{"shape":"UpdateSecurityHubConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateStandardsControl":{
       "name":"UpdateStandardsControl",
       "http":{
@@ -1814,7 +1830,8 @@
       "type":"structure",
       "members":{
         "HubArn":{"shape":"NonEmptyString"},
-        "SubscribedAt":{"shape":"NonEmptyString"}
+        "SubscribedAt":{"shape":"NonEmptyString"},
+        "AutoEnableControls":{"shape":"Boolean"}
       }
     },
     "DescribeProductsRequest":{
@@ -3042,6 +3059,17 @@
       }
     },
     "UpdateInsightResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateSecurityHubConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "AutoEnableControls":{"shape":"Boolean"}
+      }
+    },
+    "UpdateSecurityHubConfigurationResponse":{
       "type":"structure",
       "members":{
       }

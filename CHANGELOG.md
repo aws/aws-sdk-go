@@ -1,3 +1,19 @@
+Release v1.33.14 (2020-07-28)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Now you can enable Instance Metadata Service Version 2 (IMDSv2) or disable the instance metadata endpoint with Launch Configurations.
+* `service/ec2`: Updates service API and documentation
+  * Introduces support for tag-on-create capability for the following APIs: CreateVpnConnection, CreateVpnGateway, and CreateCustomerGateway. A user can now add tags while creating these resources. For further detail, please see AWS Tagging Strategies.
+* `service/imagebuilder`: Updates service API and documentation
+* `service/ivs`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports several new features: EBU-TT-D captions in Microsoft Smooth outputs; interlaced video in HEVC outputs; video noise reduction (using temporal filtering) in HEVC outputs.
+* `service/rds`: Updates service documentation
+  * Adds reporting of manual cluster snapshot quota to DescribeAccountAttributes API
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.33.13 (2020-07-27)
 ===
 

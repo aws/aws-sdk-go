@@ -816,7 +816,7 @@
       "type":"string",
       "max":127,
       "min":1,
-      "pattern":"^[-_A-Za-z0-9{][-_A-Za-z0-9\\s:{}]+[-_A-Za-z0-9}]$"
+      "pattern":"^[-_A-Za-z0-9{][-_A-Za-z0-9\\s:{}\\.]+[-_A-Za-z0-9}]$"
     },
     "Arn":{"type":"string"},
     "ArnList":{

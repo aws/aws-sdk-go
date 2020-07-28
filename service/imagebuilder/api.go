@@ -10161,6 +10161,8 @@ type ListDistributionConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The filters.
+	//
+	//    * name - The name of this distribution configuration.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum items to return in a request.

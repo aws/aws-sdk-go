@@ -6862,6 +6862,9 @@ type CaptionDestinationSettings struct {
 	// Dvb Sub Destination Settings
 	DvbSubDestinationSettings *DvbSubDestinationSettings `locationName:"dvbSubDestinationSettings" type:"structure"`
 
+	// Ebu Tt DDestination Settings
+	EbuTtDDestinationSettings *EbuTtDDestinationSettings `locationName:"ebuTtDDestinationSettings" type:"structure"`
+
 	// Embedded Destination Settings
 	EmbeddedDestinationSettings *EmbeddedDestinationSettings `locationName:"embeddedDestinationSettings" type:"structure"`
 
@@ -6935,6 +6938,12 @@ func (s *CaptionDestinationSettings) SetBurnInDestinationSettings(v *BurnInDesti
 // SetDvbSubDestinationSettings sets the DvbSubDestinationSettings field's value.
 func (s *CaptionDestinationSettings) SetDvbSubDestinationSettings(v *DvbSubDestinationSettings) *CaptionDestinationSettings {
 	s.DvbSubDestinationSettings = v
+	return s
+}
+
+// SetEbuTtDDestinationSettings sets the EbuTtDDestinationSettings field's value.
+func (s *CaptionDestinationSettings) SetEbuTtDDestinationSettings(v *EbuTtDDestinationSettings) *CaptionDestinationSettings {
+	s.EbuTtDDestinationSettings = v
 	return s
 }
 
@@ -11136,6 +11145,66 @@ func (s *Eac3Settings) SetSurroundMode(v string) *Eac3Settings {
 	return s
 }
 
+// Ebu Tt DDestination Settings
+type EbuTtDDestinationSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies how to handle the gap between the lines (in multi-line captions).-
+	// enabled: Fill with the captions background color (as specified in the input
+	// captions).- disabled: Leave the gap unfilled.
+	FillLineGap *string `locationName:"fillLineGap" type:"string" enum:"EbuTtDFillLineGapControl"`
+
+	// Specifies the font family to include in the font data attached to the EBU-TT
+	// captions. Valid only if styleControl is set to include. If you leave this
+	// field empty, the font family is set to "monospaced". (If styleControl is
+	// set to exclude, the font family is always set to "monospaced".)You specify
+	// only the font family. All other style information (color, bold, position
+	// and so on) is copied from the input captions. The size is always set to 100%
+	// to allow the downstream player to choose the size.- Enter a list of font
+	// families, as a comma-separated list of font names, in order of preference.
+	// The name can be a font family (such as “Arial”), or a generic font family
+	// (such as “serif”), or “default” (to let the downstream player choose
+	// the font).- Leave blank to set the family to “monospace”.
+	FontFamily *string `locationName:"fontFamily" type:"string"`
+
+	// Specifies the style information (font color, font position, and so on) to
+	// include in the font data that is attached to the EBU-TT captions.- include:
+	// Take the style information (font color, font position, and so on) from the
+	// source captions and include that information in the font data attached to
+	// the EBU-TT captions. This option is valid only if the source captions are
+	// Embedded or Teletext.- exclude: In the font data attached to the EBU-TT captions,
+	// set the font family to "monospaced". Do not include any other style information.
+	StyleControl *string `locationName:"styleControl" type:"string" enum:"EbuTtDDestinationStyleControl"`
+}
+
+// String returns the string representation
+func (s EbuTtDDestinationSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EbuTtDDestinationSettings) GoString() string {
+	return s.String()
+}
+
+// SetFillLineGap sets the FillLineGap field's value.
+func (s *EbuTtDDestinationSettings) SetFillLineGap(v string) *EbuTtDDestinationSettings {
+	s.FillLineGap = &v
+	return s
+}
+
+// SetFontFamily sets the FontFamily field's value.
+func (s *EbuTtDDestinationSettings) SetFontFamily(v string) *EbuTtDDestinationSettings {
+	s.FontFamily = &v
+	return s
+}
+
+// SetStyleControl sets the StyleControl field's value.
+func (s *EbuTtDDestinationSettings) SetStyleControl(v string) *EbuTtDDestinationSettings {
+	s.StyleControl = &v
+	return s
+}
+
 // Embedded Destination Settings
 type EmbeddedDestinationSettings struct {
 	_ struct{} `type:"structure"`
@@ -12614,6 +12683,30 @@ func (s *H265ColorSpaceSettings) SetRec709Settings(v *Rec709Settings) *H265Color
 	return s
 }
 
+// H265 Filter Settings
+type H265FilterSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Temporal Filter Settings
+	TemporalFilterSettings *TemporalFilterSettings `locationName:"temporalFilterSettings" type:"structure"`
+}
+
+// String returns the string representation
+func (s H265FilterSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s H265FilterSettings) GoString() string {
+	return s.String()
+}
+
+// SetTemporalFilterSettings sets the TemporalFilterSettings field's value.
+func (s *H265FilterSettings) SetTemporalFilterSettings(v *TemporalFilterSettings) *H265FilterSettings {
+	s.TemporalFilterSettings = v
+	return s
+}
+
 // H265 Settings
 type H265Settings struct {
 	_ struct{} `type:"structure"`
@@ -12646,6 +12739,9 @@ type H265Settings struct {
 
 	// Color Space settings
 	ColorSpaceSettings *H265ColorSpaceSettings `locationName:"colorSpaceSettings" type:"structure"`
+
+	// Optional filters that you can apply to an encode.
+	FilterSettings *H265FilterSettings `locationName:"filterSettings" type:"structure"`
 
 	// Four bit AFD value to write on all frames of video in the output stream.
 	// Only valid when afdSignaling is set to 'Fixed'.
@@ -12841,6 +12937,12 @@ func (s *H265Settings) SetColorMetadata(v string) *H265Settings {
 // SetColorSpaceSettings sets the ColorSpaceSettings field's value.
 func (s *H265Settings) SetColorSpaceSettings(v *H265ColorSpaceSettings) *H265Settings {
 	s.ColorSpaceSettings = v
+	return s
+}
+
+// SetFilterSettings sets the FilterSettings field's value.
+func (s *H265Settings) SetFilterSettings(v *H265FilterSettings) *H265Settings {
+	s.FilterSettings = v
 	return s
 }
 
@@ -24579,6 +24681,24 @@ const (
 	Eac3SurroundModeNotIndicated = "NOT_INDICATED"
 )
 
+// Ebu Tt DDestination Style Control
+const (
+	// EbuTtDDestinationStyleControlExclude is a EbuTtDDestinationStyleControl enum value
+	EbuTtDDestinationStyleControlExclude = "EXCLUDE"
+
+	// EbuTtDDestinationStyleControlInclude is a EbuTtDDestinationStyleControl enum value
+	EbuTtDDestinationStyleControlInclude = "INCLUDE"
+)
+
+// Ebu Tt DFill Line Gap Control
+const (
+	// EbuTtDFillLineGapControlDisabled is a EbuTtDFillLineGapControl enum value
+	EbuTtDFillLineGapControlDisabled = "DISABLED"
+
+	// EbuTtDFillLineGapControlEnabled is a EbuTtDFillLineGapControl enum value
+	EbuTtDFillLineGapControlEnabled = "ENABLED"
+)
+
 // Embedded Convert608 To708
 const (
 	// EmbeddedConvert608To708Disabled is a EmbeddedConvert608To708 enum value
@@ -25127,6 +25247,9 @@ const (
 
 // H265 Scan Type
 const (
+	// H265ScanTypeInterlaced is a H265ScanType enum value
+	H265ScanTypeInterlaced = "INTERLACED"
+
 	// H265ScanTypeProgressive is a H265ScanType enum value
 	H265ScanTypeProgressive = "PROGRESSIVE"
 )
@@ -25303,6 +25426,9 @@ const (
 
 	// HlsOutputSelectionSegmentsOnly is a HlsOutputSelection enum value
 	HlsOutputSelectionSegmentsOnly = "SEGMENTS_ONLY"
+
+	// HlsOutputSelectionVariantManifestsAndSegments is a HlsOutputSelection enum value
+	HlsOutputSelectionVariantManifestsAndSegments = "VARIANT_MANIFESTS_AND_SEGMENTS"
 )
 
 // Hls Program Date Time
