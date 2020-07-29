@@ -302,6 +302,7 @@
     "GetDefaultCreditSpecification": "<p>Describes the default credit option for CPU usage of a burstable performance instance family.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable performance instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "GetEbsDefaultKmsKeyId": "<p>Describes the default customer master key (CMK) for EBS encryption by default for your account in this Region. You can change the default CMK for encryption by default using <a>ModifyEbsDefaultKmsKeyId</a> or <a>ResetEbsDefaultKmsKeyId</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "GetEbsEncryptionByDefault": "<p>Describes whether EBS encryption by default is enabled for your account in the current Region.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "GetGroupsForCapacityReservation": "<p>Lists the resource groups to which a Capacity Reservation has been added.</p>",
     "GetHostReservationPurchasePreview": "<p>Preview a reservation purchase with configurations that match those of your Dedicated Host. You must have active Dedicated Hosts in your account before you purchase a reservation.</p> <p>This is a preview of the <a>PurchaseHostReservation</a> action and does not result in the offering being purchased.</p>",
     "GetLaunchTemplateData": "<p>Retrieves the configuration data of the specified instance. You can use this data to create a launch template. </p> <p>This action calls on other describe actions to get instance information. Depending on your instance configuration, you may need to allow the following actions in your IAM policy: DescribeSpotInstanceRequests, DescribeInstanceCreditSpecifications, DescribeVolumes, DescribeInstanceAttribute, and DescribeElasticGpus. Or, you can allow <code>describe*</code> depending on your instance requirements.</p>",
     "GetManagedPrefixListAssociations": "<p>Gets information about the resources that are associated with the specified managed prefix list.</p>",
@@ -1435,6 +1436,7 @@
         "GetEbsDefaultKmsKeyIdRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>Indicates whether encryption by default is enabled.</p>",
+        "GetGroupsForCapacityReservationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetLaunchTemplateDataRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetManagedPrefixListAssociationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetManagedPrefixListEntriesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1889,13 +1891,26 @@
         "CreateCapacityReservationResult$CapacityReservation": "<p>Information about the Capacity Reservation.</p>"
       }
     },
+    "CapacityReservationGroup": {
+      "base": "<p>Describes a resource group to which a Capacity Reservation has been added.</p>",
+      "refs": {
+        "CapacityReservationGroupSet$member": null
+      }
+    },
+    "CapacityReservationGroupSet": {
+      "base": null,
+      "refs": {
+        "GetGroupsForCapacityReservationResult$CapacityReservationGroups": "<p>Information about the resource groups to which the Capacity Reservation has been added.</p>"
+      }
+    },
     "CapacityReservationId": {
       "base": null,
       "refs": {
         "CancelCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation to be cancelled.</p>",
         "CapacityReservationIdSet$member": null,
-        "CapacityReservationTarget$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
+        "CapacityReservationTarget$CapacityReservationId": "<p>The ID of the Capacity Reservation in which to run the instance.</p>",
         "GetCapacityReservationUsageRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
+        "GetGroupsForCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
         "ModifyCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>"
       }
     },
@@ -1927,7 +1942,7 @@
     "CapacityReservationPreference": {
       "base": null,
       "refs": {
-        "CapacityReservationSpecification$CapacityReservationPreference": "<p>Indicates the instance's Capacity Reservation preferences. Possible preferences include:</p> <ul> <li> <p> <code>open</code> - The instance can run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).</p> </li> <li> <p> <code>none</code> - The instance avoids running in a Capacity Reservation even if one is available. The instance runs as an On-Demand Instance.</p> </li> </ul> <p>When <code>CapacityReservationPreference</code> is not specified, it defaults to <code>open</code>.</p>",
+        "CapacityReservationSpecification$CapacityReservationPreference": "<p>Indicates the instance's Capacity Reservation preferences. Possible preferences include:</p> <ul> <li> <p> <code>open</code> - The instance can run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).</p> </li> <li> <p> <code>none</code> - The instance avoids running in a Capacity Reservation even if one is available. The instance runs as an On-Demand Instance.</p> </li> </ul>",
         "CapacityReservationSpecificationResponse$CapacityReservationPreference": "<p>Describes the instance's Capacity Reservation preferences. Possible preferences include:</p> <ul> <li> <p> <code>open</code> - The instance can run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).</p> </li> <li> <p> <code>none</code> - The instance avoids running in a Capacity Reservation even if one is available. The instance runs in On-Demand capacity.</p> </li> </ul>",
         "LaunchTemplateCapacityReservationSpecificationRequest$CapacityReservationPreference": "<p>Indicates the instance's Capacity Reservation preferences. Possible preferences include:</p> <ul> <li> <p> <code>open</code> - The instance can run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).</p> </li> <li> <p> <code>none</code> - The instance avoids running in a Capacity Reservation even if one is available. The instance runs in On-Demand capacity.</p> </li> </ul>",
         "LaunchTemplateCapacityReservationSpecificationResponse$CapacityReservationPreference": "<p>Indicates the instance's Capacity Reservation preferences. Possible preferences include:</p> <ul> <li> <p> <code>open</code> - The instance can run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).</p> </li> <li> <p> <code>none</code> - The instance avoids running in a Capacity Reservation even if one is available. The instance runs in On-Demand capacity.</p> </li> </ul>"
@@ -1940,14 +1955,14 @@
       }
     },
     "CapacityReservationSpecification": {
-      "base": "<p>Describes an instance's Capacity Reservation targeting option. You can specify only one parameter at a time. If you specify <code>CapacityReservationPreference</code> and <code>CapacityReservationTarget</code>, the request fails.</p> <p>Use the <code>CapacityReservationPreference</code> parameter to configure the instance to run as an On-Demand Instance or to run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone). Use the <code>CapacityReservationTarget</code> parameter to explicitly target a specific Capacity Reservation.</p>",
+      "base": "<p>Describes an instance's Capacity Reservation targeting option. You can specify only one parameter at a time. If you specify <code>CapacityReservationPreference</code> and <code>CapacityReservationTarget</code>, the request fails.</p> <p>Use the <code>CapacityReservationPreference</code> parameter to configure the instance to run as an On-Demand Instance or to run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone). Use the <code>CapacityReservationTarget</code> parameter to explicitly target a specific Capacity Reservation or a Capacity Reservation group.</p>",
       "refs": {
         "ModifyInstanceCapacityReservationAttributesRequest$CapacityReservationSpecification": "<p>Information about the Capacity Reservation targeting option.</p>",
         "RunInstancesRequest$CapacityReservationSpecification": "<p>Information about the Capacity Reservation targeting option. If you do not specify this parameter, the instance's Capacity Reservation preference defaults to <code>open</code>, which enables it to run in any open Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).</p>"
       }
     },
     "CapacityReservationSpecificationResponse": {
-      "base": "<p>Describes the instance's Capacity Reservation targeting preferences. The action returns the <code>capacityReservationPreference</code> response element if the instance is configured to run in On-Demand capacity, or if it is configured in run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone). The action returns the <code>capacityReservationTarget</code> response element if the instance explicily targets a specific Capacity Reservation.</p>",
+      "base": "<p>Describes the instance's Capacity Reservation targeting preferences. The action returns the <code>capacityReservationPreference</code> response element if the instance is configured to run in On-Demand capacity, or if it is configured in run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone). The action returns the <code>capacityReservationTarget</code> response element if the instance explicily targets a specific Capacity Reservation or Capacity Reservation group.</p>",
       "refs": {
         "Instance$CapacityReservationSpecification": "<p>Information about the Capacity Reservation targeting option.</p>"
       }
@@ -1960,17 +1975,17 @@
       }
     },
     "CapacityReservationTarget": {
-      "base": "<p>Describes a target Capacity Reservation.</p>",
+      "base": "<p>Describes a target Capacity Reservation or Capacity Reservation group.</p>",
       "refs": {
-        "CapacityReservationSpecification$CapacityReservationTarget": "<p>Information about the target Capacity Reservation.</p>",
-        "LaunchTemplateCapacityReservationSpecificationRequest$CapacityReservationTarget": "<p>Information about the target Capacity Reservation.</p>"
+        "CapacityReservationSpecification$CapacityReservationTarget": "<p>Information about the target Capacity Reservation or Capacity Reservation group.</p>",
+        "LaunchTemplateCapacityReservationSpecificationRequest$CapacityReservationTarget": "<p>Information about the target Capacity Reservation or Capacity Reservation group.</p>"
       }
     },
     "CapacityReservationTargetResponse": {
-      "base": "<p>Describes a target Capacity Reservation.</p>",
+      "base": "<p>Describes a target Capacity Reservation or Capacity Reservation group.</p>",
       "refs": {
-        "CapacityReservationSpecificationResponse$CapacityReservationTarget": "<p>Information about the targeted Capacity Reservation.</p>",
-        "LaunchTemplateCapacityReservationSpecificationResponse$CapacityReservationTarget": "<p>Information about the target Capacity Reservation.</p>"
+        "CapacityReservationSpecificationResponse$CapacityReservationTarget": "<p>Information about the targeted Capacity Reservation or Capacity Reservation group.</p>",
+        "LaunchTemplateCapacityReservationSpecificationResponse$CapacityReservationTarget": "<p>Information about the target Capacity Reservation or Capacity Reservation group.</p>"
       }
     },
     "CapacityReservationTenancy": {
@@ -3798,7 +3813,7 @@
     "DescribeCapacityReservationsMaxResults": {
       "base": null,
       "refs": {
-        "DescribeCapacityReservationsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned nextToken value.</p>"
+        "DescribeCapacityReservationsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned <code>nextToken</code> value. This value can be between 5 and 500. If <code>maxResults</code> is given a larger value than 500, you receive an error.</p>"
       }
     },
     "DescribeCapacityReservationsRequest": {
@@ -6497,7 +6512,7 @@
     "GetCapacityReservationUsageRequestMaxResults": {
       "base": null,
       "refs": {
-        "GetCapacityReservationUsageRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned nextToken value.</p> <p>Valid range: Minimum value of 1. Maximum value of 1000.</p>"
+        "GetCapacityReservationUsageRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned <code>nextToken</code> value. This value can be between 5 and 500. If <code>maxResults</code> is given a larger value than 500, you receive an error.</p> <p>Valid range: Minimum value of 1. Maximum value of 1000.</p>"
       }
     },
     "GetCapacityReservationUsageResult": {
@@ -6561,6 +6576,22 @@
       }
     },
     "GetEbsEncryptionByDefaultResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetGroupsForCapacityReservationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetGroupsForCapacityReservationRequestMaxResults": {
+      "base": null,
+      "refs": {
+        "GetGroupsForCapacityReservationRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned <code>nextToken</code> value. This value can be between 5 and 500. If <code>maxResults</code> is given a larger value than 500, you receive an error.</p>"
+      }
+    },
+    "GetGroupsForCapacityReservationResult": {
       "base": null,
       "refs": {
       }
@@ -8382,7 +8413,7 @@
       }
     },
     "LaunchTemplateCapacityReservationSpecificationRequest": {
-      "base": "<p>Describes an instance's Capacity Reservation targeting option. You can specify only one option at a time. Use the <code>CapacityReservationPreference</code> parameter to configure the instance to run in On-Demand capacity or to run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone). Use the <code>CapacityReservationTarget</code> parameter to explicitly target a specific Capacity Reservation.</p>",
+      "base": "<p>Describes an instance's Capacity Reservation targeting option. You can specify only one option at a time. Use the <code>CapacityReservationPreference</code> parameter to configure the instance to run in On-Demand capacity or to run in any <code>open</code> Capacity Reservation that has matching attributes (instance type, platform, Availability Zone). Use the <code>CapacityReservationTarget</code> parameter to explicitly target a specific Capacity Reservation or a Capacity Reservation group.</p>",
       "refs": {
         "RequestLaunchTemplateData$CapacityReservationSpecification": "<p>The Capacity Reservation targeting option. If you do not specify this parameter, the instance's Capacity Reservation preference defaults to <code>open</code>, which enables it to run in any open Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).</p>"
       }
@@ -12280,7 +12311,11 @@
         "CapacityReservation$AvailabilityZoneId": "<p>The Availability Zone ID of the Capacity Reservation.</p>",
         "CapacityReservation$InstanceType": "<p>The type of instance for which the Capacity Reservation reserves capacity.</p>",
         "CapacityReservation$AvailabilityZone": "<p>The Availability Zone in which the capacity is reserved.</p>",
-        "CapacityReservationTargetResponse$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
+        "CapacityReservationGroup$GroupArn": "<p>The ARN of the resource group.</p>",
+        "CapacityReservationGroup$OwnerId": "<p>The ID of the AWS account that owns the resource group.</p>",
+        "CapacityReservationTarget$CapacityReservationResourceGroupArn": "<p>The ARN of the Capacity Reservation resource group in which to run the instance.</p>",
+        "CapacityReservationTargetResponse$CapacityReservationId": "<p>The ID of the targeted Capacity Reservation.</p>",
+        "CapacityReservationTargetResponse$CapacityReservationResourceGroupArn": "<p>The ARN of the targeted Capacity Reservation group.</p>",
         "CertificateAuthentication$ClientRootCertificateChain": "<p>The ARN of the client certificate. </p>",
         "CertificateAuthenticationRequest$ClientRootCertificateChainArn": "<p>The ARN of the client certificate. The certificate must be signed by a certificate authority (CA) and it must be provisioned in AWS Certificate Manager (ACM).</p>",
         "CidrAuthorizationContext$Message": "<p>The plain-text authorization message for the prefix and account.</p>",
@@ -12356,7 +12391,7 @@
         "CopySnapshotRequest$SourceRegion": "<p>The ID of the Region that contains the snapshot to be copied.</p>",
         "CopySnapshotRequest$SourceSnapshotId": "<p>The ID of the EBS snapshot to copy.</p>",
         "CopySnapshotResult$SnapshotId": "<p>The ID of the new snapshot.</p>",
-        "CreateCapacityReservationRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p> <p>Constraint: Maximum 64 ASCII characters.</p>",
+        "CreateCapacityReservationRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "CreateCapacityReservationRequest$InstanceType": "<p>The instance type for which to reserve capacity. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CreateCapacityReservationRequest$AvailabilityZone": "<p>The Availability Zone in which to create the Capacity Reservation.</p>",
         "CreateCapacityReservationRequest$AvailabilityZoneId": "<p>The ID of the Availability Zone in which to create the Capacity Reservation.</p>",
@@ -12497,7 +12532,7 @@
         "DeregisterTransitGatewayMulticastGroupMembersRequest$GroupIpAddress": "<p>The IP address assigned to the transit gateway multicast group.</p>",
         "DeregisterTransitGatewayMulticastGroupSourcesRequest$GroupIpAddress": "<p>The IP address assigned to the transit gateway multicast group.</p>",
         "DescribeByoipCidrsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
-        "DescribeCapacityReservationsRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
+        "DescribeCapacityReservationsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "DescribeCapacityReservationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeClassicLinkInstancesRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeClassicLinkInstancesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
@@ -12773,7 +12808,7 @@
         "FpgaImageAttribute$Description": "<p>The description of the AFI.</p>",
         "FpgaImageState$Message": "<p>If the state is <code>failed</code>, this is the error message.</p>",
         "GetAssociatedIpv6PoolCidrsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
-        "GetCapacityReservationUsageRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
+        "GetCapacityReservationUsageRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "GetCapacityReservationUsageResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetCapacityReservationUsageResult$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
         "GetCapacityReservationUsageResult$InstanceType": "<p>The type of instance for which the Capacity Reservation reserves capacity.</p>",
@@ -12785,6 +12820,8 @@
         "GetConsoleScreenshotResult$ImageData": "<p>The data that comprises the image.</p>",
         "GetConsoleScreenshotResult$InstanceId": "<p>The ID of the instance.</p>",
         "GetEbsDefaultKmsKeyIdResult$KmsKeyId": "<p>The Amazon Resource Name (ARN) of the default CMK for encryption by default.</p>",
+        "GetGroupsForCapacityReservationRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "GetGroupsForCapacityReservationResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetHostReservationPurchasePreviewResult$TotalHourlyPrice": "<p>The potential total hourly price of the reservation per hour.</p>",
         "GetHostReservationPurchasePreviewResult$TotalUpfrontPrice": "<p>The potential total upfront price. This is billed immediately.</p>",
         "GetManagedPrefixListAssociationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",

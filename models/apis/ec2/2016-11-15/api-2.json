@@ -2674,6 +2674,15 @@
       "input":{"shape":"GetEbsEncryptionByDefaultRequest"},
       "output":{"shape":"GetEbsEncryptionByDefaultResult"}
     },
+    "GetGroupsForCapacityReservation":{
+      "name":"GetGroupsForCapacityReservation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetGroupsForCapacityReservationRequest"},
+      "output":{"shape":"GetGroupsForCapacityReservationResult"}
+    },
     "GetHostReservationPurchasePreview":{
       "name":"GetHostReservationPurchasePreview",
       "http":{
@@ -5465,6 +5474,26 @@
         }
       }
     },
+    "CapacityReservationGroup":{
+      "type":"structure",
+      "members":{
+        "GroupArn":{
+          "shape":"String",
+          "locationName":"groupArn"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        }
+      }
+    },
+    "CapacityReservationGroupSet":{
+      "type":"list",
+      "member":{
+        "shape":"CapacityReservationGroup",
+        "locationName":"item"
+      }
+    },
     "CapacityReservationId":{"type":"string"},
     "CapacityReservationIdSet":{
       "type":"list",
@@ -5551,7 +5580,8 @@
     "CapacityReservationTarget":{
       "type":"structure",
       "members":{
-        "CapacityReservationId":{"shape":"CapacityReservationId"}
+        "CapacityReservationId":{"shape":"CapacityReservationId"},
+        "CapacityReservationResourceGroupArn":{"shape":"String"}
       }
     },
     "CapacityReservationTargetResponse":{
@@ -5560,6 +5590,10 @@
         "CapacityReservationId":{
           "shape":"String",
           "locationName":"capacityReservationId"
+        },
+        "CapacityReservationResourceGroupArn":{
+          "shape":"String",
+          "locationName":"capacityReservationResourceGroupArn"
         }
       }
     },
@@ -15507,6 +15541,34 @@
         "EbsEncryptionByDefault":{
           "shape":"Boolean",
           "locationName":"ebsEncryptionByDefault"
+        }
+      }
+    },
+    "GetGroupsForCapacityReservationRequest":{
+      "type":"structure",
+      "required":["CapacityReservationId"],
+      "members":{
+        "CapacityReservationId":{"shape":"CapacityReservationId"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"GetGroupsForCapacityReservationRequestMaxResults"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetGroupsForCapacityReservationRequestMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "GetGroupsForCapacityReservationResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "CapacityReservationGroups":{
+          "shape":"CapacityReservationGroupSet",
+          "locationName":"capacityReservationGroupSet"
         }
       }
     },

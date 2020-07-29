@@ -180,6 +180,10 @@ type GuardDutyAPI interface {
 	GetMasterAccountWithContext(aws.Context, *guardduty.GetMasterAccountInput, ...request.Option) (*guardduty.GetMasterAccountOutput, error)
 	GetMasterAccountRequest(*guardduty.GetMasterAccountInput) (*request.Request, *guardduty.GetMasterAccountOutput)
 
+	GetMemberDetectors(*guardduty.GetMemberDetectorsInput) (*guardduty.GetMemberDetectorsOutput, error)
+	GetMemberDetectorsWithContext(aws.Context, *guardduty.GetMemberDetectorsInput, ...request.Option) (*guardduty.GetMemberDetectorsOutput, error)
+	GetMemberDetectorsRequest(*guardduty.GetMemberDetectorsInput) (*request.Request, *guardduty.GetMemberDetectorsOutput)
+
 	GetMembers(*guardduty.GetMembersInput) (*guardduty.GetMembersOutput, error)
 	GetMembersWithContext(aws.Context, *guardduty.GetMembersInput, ...request.Option) (*guardduty.GetMembersOutput, error)
 	GetMembersRequest(*guardduty.GetMembersInput) (*request.Request, *guardduty.GetMembersOutput)
@@ -294,6 +298,10 @@ type GuardDutyAPI interface {
 	UpdateIPSet(*guardduty.UpdateIPSetInput) (*guardduty.UpdateIPSetOutput, error)
 	UpdateIPSetWithContext(aws.Context, *guardduty.UpdateIPSetInput, ...request.Option) (*guardduty.UpdateIPSetOutput, error)
 	UpdateIPSetRequest(*guardduty.UpdateIPSetInput) (*request.Request, *guardduty.UpdateIPSetOutput)
+
+	UpdateMemberDetectors(*guardduty.UpdateMemberDetectorsInput) (*guardduty.UpdateMemberDetectorsOutput, error)
+	UpdateMemberDetectorsWithContext(aws.Context, *guardduty.UpdateMemberDetectorsInput, ...request.Option) (*guardduty.UpdateMemberDetectorsOutput, error)
+	UpdateMemberDetectorsRequest(*guardduty.UpdateMemberDetectorsInput) (*request.Request, *guardduty.UpdateMemberDetectorsOutput)
 
 	UpdateOrganizationConfiguration(*guardduty.UpdateOrganizationConfigurationInput) (*guardduty.UpdateOrganizationConfigurationOutput, error)
 	UpdateOrganizationConfigurationWithContext(aws.Context, *guardduty.UpdateOrganizationConfigurationInput, ...request.Option) (*guardduty.UpdateOrganizationConfigurationOutput, error)

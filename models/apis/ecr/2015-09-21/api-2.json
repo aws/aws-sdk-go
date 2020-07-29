@@ -72,7 +72,8 @@
         {"shape":"InvalidLayerException"},
         {"shape":"LayerPartTooSmallException"},
         {"shape":"LayerAlreadyExistsException"},
-        {"shape":"EmptyUploadException"}
+        {"shape":"EmptyUploadException"},
+        {"shape":"KmsException"}
       ]
     },
     "CreateRepository":{
@@ -89,7 +90,8 @@
         {"shape":"InvalidTagParameterException"},
         {"shape":"TooManyTagsException"},
         {"shape":"RepositoryAlreadyExistsException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"KmsException"}
       ]
     },
     "DeleteLifecyclePolicy":{
@@ -119,7 +121,8 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
-        {"shape":"RepositoryNotEmptyException"}
+        {"shape":"RepositoryNotEmptyException"},
+        {"shape":"KmsException"}
       ]
     },
     "DeleteRepositoryPolicy":{
@@ -267,7 +270,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RepositoryNotFoundException"}
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"KmsException"}
       ]
     },
     "ListImages":{
@@ -315,7 +319,8 @@
         {"shape":"ReferencedImagesNotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"ImageTagAlreadyExistsException"},
-        {"shape":"ImageDigestDoesNotMatchException"}
+        {"shape":"ImageDigestDoesNotMatchException"},
+        {"shape":"KmsException"}
       ]
     },
     "PutImageScanningConfiguration":{
@@ -453,7 +458,8 @@
         {"shape":"InvalidLayerPartException"},
         {"shape":"RepositoryNotFoundException"},
         {"shape":"UploadNotFoundException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"KmsException"}
       ]
     }
   },
@@ -598,7 +604,8 @@
         "repositoryName":{"shape":"RepositoryName"},
         "tags":{"shape":"TagList"},
         "imageTagMutability":{"shape":"ImageTagMutability"},
-        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "encryptionConfiguration":{"shape":"EncryptionConfiguration"}
       }
     },
     "CreateRepositoryResponse":{
@@ -728,6 +735,21 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "EncryptionConfiguration":{
+      "type":"structure",
+      "required":["encryptionType"],
+      "members":{
+        "encryptionType":{"shape":"EncryptionType"},
+        "kmsKey":{"shape":"KmsKey"}
+      }
+    },
+    "EncryptionType":{
+      "type":"string",
+      "enum":[
+        "AES256",
+        "KMS"
+      ]
     },
     "EvaluationTimestamp":{"type":"timestamp"},
     "ExceptionMessage":{"type":"string"},
@@ -911,7 +933,8 @@
         "ImageTagDoesNotMatchDigest",
         "ImageNotFound",
         "MissingDigestAndTag",
-        "ImageReferencedByManifestList"
+        "ImageReferencedByManifestList",
+        "KmsError"
       ]
     },
     "ImageFailureList":{
@@ -1062,6 +1085,20 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "KmsError":{"type":"string"},
+    "KmsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"},
+        "kmsError":{"shape":"KmsError"}
+      },
+      "exception":true
+    },
+    "KmsKey":{
+      "type":"string",
+      "max":2048,
+      "min":1
     },
     "Layer":{
       "type":"structure",
@@ -1387,7 +1424,8 @@
         "repositoryUri":{"shape":"Url"},
         "createdAt":{"shape":"CreationTimestamp"},
         "imageTagMutability":{"shape":"ImageTagMutability"},
-        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"}
+        "imageScanningConfiguration":{"shape":"ImageScanningConfiguration"},
+        "encryptionConfiguration":{"shape":"EncryptionConfiguration"}
       }
     },
     "RepositoryAlreadyExistsException":{

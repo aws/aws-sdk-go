@@ -2512,6 +2512,88 @@ func (c *GuardDuty) GetMasterAccountWithContext(ctx aws.Context, input *GetMaste
 	return out, req.Send()
 }
 
+const opGetMemberDetectors = "GetMemberDetectors"
+
+// GetMemberDetectorsRequest generates a "aws/request.Request" representing the
+// client's request for the GetMemberDetectors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMemberDetectors for more information on using the GetMemberDetectors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMemberDetectorsRequest method.
+//    req, resp := client.GetMemberDetectorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/GetMemberDetectors
+func (c *GuardDuty) GetMemberDetectorsRequest(input *GetMemberDetectorsInput) (req *request.Request, output *GetMemberDetectorsOutput) {
+	op := &request.Operation{
+		Name:       opGetMemberDetectors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/detector/{detectorId}/member/detector/get",
+	}
+
+	if input == nil {
+		input = &GetMemberDetectorsInput{}
+	}
+
+	output = &GetMemberDetectorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMemberDetectors API operation for Amazon GuardDuty.
+//
+// Describes which data sources are enabled for the member account's detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GuardDuty's
+// API operation GetMemberDetectors for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   A bad request exception object.
+//
+//   * InternalServerErrorException
+//   An internal server error exception object.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/GetMemberDetectors
+func (c *GuardDuty) GetMemberDetectors(input *GetMemberDetectorsInput) (*GetMemberDetectorsOutput, error) {
+	req, out := c.GetMemberDetectorsRequest(input)
+	return out, req.Send()
+}
+
+// GetMemberDetectorsWithContext is the same as GetMemberDetectors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMemberDetectors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GuardDuty) GetMemberDetectorsWithContext(ctx aws.Context, input *GetMemberDetectorsInput, opts ...request.Option) (*GetMemberDetectorsOutput, error) {
+	req, out := c.GetMemberDetectorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetMembers = "GetMembers"
 
 // GetMembersRequest generates a "aws/request.Request" representing the
@@ -3515,8 +3597,8 @@ func (c *GuardDuty) ListMembersRequest(input *ListMembersInput) (req *request.Re
 
 // ListMembers API operation for Amazon GuardDuty.
 //
-// Lists details about all member accounts for the current GuardDuty master
-// account.
+// Lists details about associated member accounts for the current GuardDuty
+// master account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4860,6 +4942,88 @@ func (c *GuardDuty) UpdateIPSetWithContext(ctx aws.Context, input *UpdateIPSetIn
 	return out, req.Send()
 }
 
+const opUpdateMemberDetectors = "UpdateMemberDetectors"
+
+// UpdateMemberDetectorsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMemberDetectors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMemberDetectors for more information on using the UpdateMemberDetectors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateMemberDetectorsRequest method.
+//    req, resp := client.UpdateMemberDetectorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/UpdateMemberDetectors
+func (c *GuardDuty) UpdateMemberDetectorsRequest(input *UpdateMemberDetectorsInput) (req *request.Request, output *UpdateMemberDetectorsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMemberDetectors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/detector/{detectorId}/member/detector/update",
+	}
+
+	if input == nil {
+		input = &UpdateMemberDetectorsInput{}
+	}
+
+	output = &UpdateMemberDetectorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateMemberDetectors API operation for Amazon GuardDuty.
+//
+// Contains information on member accounts to be updated.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GuardDuty's
+// API operation UpdateMemberDetectors for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   A bad request exception object.
+//
+//   * InternalServerErrorException
+//   An internal server error exception object.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/guardduty-2017-11-28/UpdateMemberDetectors
+func (c *GuardDuty) UpdateMemberDetectors(input *UpdateMemberDetectorsInput) (*UpdateMemberDetectorsOutput, error) {
+	req, out := c.UpdateMemberDetectorsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMemberDetectorsWithContext is the same as UpdateMemberDetectors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMemberDetectors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GuardDuty) UpdateMemberDetectorsWithContext(ctx aws.Context, input *UpdateMemberDetectorsInput, opts ...request.Option) (*UpdateMemberDetectorsOutput, error) {
+	req, out := c.UpdateMemberDetectorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateOrganizationConfiguration = "UpdateOrganizationConfiguration"
 
 // UpdateOrganizationConfigurationRequest generates a "aws/request.Request" representing the
@@ -5800,6 +5964,33 @@ func (s *City) SetCityName(v string) *City {
 	return s
 }
 
+// Contains information on the status of CloudTrail as a data source for the
+// detector.
+type CloudTrailConfigurationResult struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether CloudTrail is enabled as a data source for the detector.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" min:"1" type:"string" required:"true" enum:"DataSourceStatus"`
+}
+
+// String returns the string representation
+func (s CloudTrailConfigurationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CloudTrailConfigurationResult) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *CloudTrailConfigurationResult) SetStatus(v string) *CloudTrailConfigurationResult {
+	s.Status = &v
+	return s
+}
+
 // Contains information about the condition.
 type Condition struct {
 	_ struct{} `type:"structure"`
@@ -5986,6 +6177,9 @@ type CreateDetectorInput struct {
 	// The idempotency token for the create request.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
+	// An object that describes which data sources will be enabled for the detector.
+	DataSources *DataSourceConfigurations `locationName:"dataSources" type:"structure"`
+
 	// A Boolean value that specifies whether the detector is to be enabled.
 	//
 	// Enable is a required field
@@ -6017,6 +6211,11 @@ func (s *CreateDetectorInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.DataSources != nil {
+		if err := s.DataSources.Validate(); err != nil {
+			invalidParams.AddNested("DataSources", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6027,6 +6226,12 @@ func (s *CreateDetectorInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateDetectorInput) SetClientToken(v string) *CreateDetectorInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *CreateDetectorInput) SetDataSources(v *DataSourceConfigurations) *CreateDetectorInput {
+	s.DataSources = v
 	return s
 }
 
@@ -6353,7 +6558,7 @@ type CreateIPSetInput struct {
 	// Format is a required field
 	Format *string `locationName:"format" min:"1" type:"string" required:"true" enum:"IpSetFormat"`
 
-	// The URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The URI of the file that contains the IPSet.
 	//
 	// Location is a required field
 	Location *string `locationName:"location" min:"1" type:"string" required:"true"`
@@ -6778,7 +6983,7 @@ type CreateThreatIntelSetInput struct {
 	// Format is a required field
 	Format *string `locationName:"format" min:"1" type:"string" required:"true" enum:"ThreatIntelSetFormat"`
 
-	// The URI of the file that contains the ThreatIntelSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The URI of the file that contains the ThreatIntelSet.
 	//
 	// Location is a required field
 	Location *string `locationName:"location" min:"1" type:"string" required:"true"`
@@ -6907,6 +7112,133 @@ func (s CreateThreatIntelSetOutput) GoString() string {
 // SetThreatIntelSetId sets the ThreatIntelSetId field's value.
 func (s *CreateThreatIntelSetOutput) SetThreatIntelSetId(v string) *CreateThreatIntelSetOutput {
 	s.ThreatIntelSetId = &v
+	return s
+}
+
+// Contains information on the status of DNS logs as a data source.
+type DNSLogsConfigurationResult struct {
+	_ struct{} `type:"structure"`
+
+	// Denotes whether DNS logs is enabled as a data source.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" min:"1" type:"string" required:"true" enum:"DataSourceStatus"`
+}
+
+// String returns the string representation
+func (s DNSLogsConfigurationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DNSLogsConfigurationResult) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *DNSLogsConfigurationResult) SetStatus(v string) *DNSLogsConfigurationResult {
+	s.Status = &v
+	return s
+}
+
+// Contains information about which data sources are enabled.
+type DataSourceConfigurations struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether S3 data event logs are enabled as a data source.
+	S3Logs *S3LogsConfiguration `locationName:"s3Logs" type:"structure"`
+}
+
+// String returns the string representation
+func (s DataSourceConfigurations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataSourceConfigurations) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSourceConfigurations) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSourceConfigurations"}
+	if s.S3Logs != nil {
+		if err := s.S3Logs.Validate(); err != nil {
+			invalidParams.AddNested("S3Logs", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Logs sets the S3Logs field's value.
+func (s *DataSourceConfigurations) SetS3Logs(v *S3LogsConfiguration) *DataSourceConfigurations {
+	s.S3Logs = v
+	return s
+}
+
+// Contains information on the status of data sources for the detector.
+type DataSourceConfigurationsResult struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains information on the status of CloudTrail as a data
+	// source.
+	//
+	// CloudTrail is a required field
+	CloudTrail *CloudTrailConfigurationResult `locationName:"cloudTrail" type:"structure" required:"true"`
+
+	// An object that contains information on the status of DNS logs as a data source.
+	//
+	// DNSLogs is a required field
+	DNSLogs *DNSLogsConfigurationResult `locationName:"dnsLogs" type:"structure" required:"true"`
+
+	// An object that contains information on the status of VPC flow logs as a data
+	// source.
+	//
+	// FlowLogs is a required field
+	FlowLogs *FlowLogsConfigurationResult `locationName:"flowLogs" type:"structure" required:"true"`
+
+	// An object that contains information on the status of S3 Data event logs as
+	// a data source.
+	//
+	// S3Logs is a required field
+	S3Logs *S3LogsConfigurationResult `locationName:"s3Logs" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DataSourceConfigurationsResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataSourceConfigurationsResult) GoString() string {
+	return s.String()
+}
+
+// SetCloudTrail sets the CloudTrail field's value.
+func (s *DataSourceConfigurationsResult) SetCloudTrail(v *CloudTrailConfigurationResult) *DataSourceConfigurationsResult {
+	s.CloudTrail = v
+	return s
+}
+
+// SetDNSLogs sets the DNSLogs field's value.
+func (s *DataSourceConfigurationsResult) SetDNSLogs(v *DNSLogsConfigurationResult) *DataSourceConfigurationsResult {
+	s.DNSLogs = v
+	return s
+}
+
+// SetFlowLogs sets the FlowLogs field's value.
+func (s *DataSourceConfigurationsResult) SetFlowLogs(v *FlowLogsConfigurationResult) *DataSourceConfigurationsResult {
+	s.FlowLogs = v
+	return s
+}
+
+// SetS3Logs sets the S3Logs field's value.
+func (s *DataSourceConfigurationsResult) SetS3Logs(v *S3LogsConfigurationResult) *DataSourceConfigurationsResult {
+	s.S3Logs = v
 	return s
 }
 
@@ -7561,6 +7893,10 @@ type DescribeOrganizationConfigurationOutput struct {
 	// AutoEnable is a required field
 	AutoEnable *bool `locationName:"autoEnable" type:"boolean" required:"true"`
 
+	// An object that describes which data sources are enabled automatically for
+	// member accounts.
+	DataSources *OrganizationDataSourceConfigurationsResult `locationName:"dataSources" type:"structure"`
+
 	// Indicates whether the maximum number of allowed member accounts are already
 	// associated with the delegated administrator master account.
 	//
@@ -7581,6 +7917,12 @@ func (s DescribeOrganizationConfigurationOutput) GoString() string {
 // SetAutoEnable sets the AutoEnable field's value.
 func (s *DescribeOrganizationConfigurationOutput) SetAutoEnable(v bool) *DescribeOrganizationConfigurationOutput {
 	s.AutoEnable = &v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *DescribeOrganizationConfigurationOutput) SetDataSources(v *OrganizationDataSourceConfigurationsResult) *DescribeOrganizationConfigurationOutput {
+	s.DataSources = v
 	return s
 }
 
@@ -8345,6 +8687,32 @@ func (s *FindingStatistics) SetCountBySeverity(v map[string]*int64) *FindingStat
 	return s
 }
 
+// Contains information on the status of VPC flow logs as a data source.
+type FlowLogsConfigurationResult struct {
+	_ struct{} `type:"structure"`
+
+	// Denotes whether VPC flow logs is enabled as a data source.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" min:"1" type:"string" required:"true" enum:"DataSourceStatus"`
+}
+
+// String returns the string representation
+func (s FlowLogsConfigurationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FlowLogsConfigurationResult) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *FlowLogsConfigurationResult) SetStatus(v string) *FlowLogsConfigurationResult {
+	s.Status = &v
+	return s
+}
+
 // Contains information about the location of the remote IP address.
 type GeoLocation struct {
 	_ struct{} `type:"structure"`
@@ -8425,6 +8793,9 @@ type GetDetectorOutput struct {
 	// The timestamp of when the detector was created.
 	CreatedAt *string `locationName:"createdAt" type:"string"`
 
+	// An object that describes which data sources are enabled for the detector.
+	DataSources *DataSourceConfigurationsResult `locationName:"dataSources" type:"structure"`
+
 	// The publishing frequency of the finding.
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
@@ -8458,6 +8829,12 @@ func (s GetDetectorOutput) GoString() string {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *GetDetectorOutput) SetCreatedAt(v string) *GetDetectorOutput {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *GetDetectorOutput) SetDataSources(v *DataSourceConfigurationsResult) *GetDetectorOutput {
+	s.DataSources = v
 	return s
 }
 
@@ -8871,7 +9248,7 @@ type GetIPSetOutput struct {
 	// Format is a required field
 	Format *string `locationName:"format" min:"1" type:"string" required:"true" enum:"IpSetFormat"`
 
-	// The URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The URI of the file that contains the IPSet.
 	//
 	// Location is a required field
 	Location *string `locationName:"location" min:"1" type:"string" required:"true"`
@@ -9030,6 +9407,101 @@ func (s GetMasterAccountOutput) GoString() string {
 // SetMaster sets the Master field's value.
 func (s *GetMasterAccountOutput) SetMaster(v *Master) *GetMasterAccountOutput {
 	s.Master = v
+	return s
+}
+
+type GetMemberDetectorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID of the member account.
+	//
+	// AccountIds is a required field
+	AccountIds []*string `locationName:"accountIds" min:"1" type:"list" required:"true"`
+
+	// The detector ID for the master account.
+	//
+	// DetectorId is a required field
+	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMemberDetectorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMemberDetectorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMemberDetectorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMemberDetectorsInput"}
+	if s.AccountIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountIds"))
+	}
+	if s.AccountIds != nil && len(s.AccountIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIds", 1))
+	}
+	if s.DetectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+	}
+	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *GetMemberDetectorsInput) SetAccountIds(v []*string) *GetMemberDetectorsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetDetectorId sets the DetectorId field's value.
+func (s *GetMemberDetectorsInput) SetDetectorId(v string) *GetMemberDetectorsInput {
+	s.DetectorId = &v
+	return s
+}
+
+type GetMemberDetectorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes which data sources are enabled for a member account.
+	//
+	// MemberDataSourceConfigurations is a required field
+	MemberDataSourceConfigurations []*MemberDataSourceConfiguration `locationName:"members" min:"1" type:"list" required:"true"`
+
+	// A list of member account IDs that were unable to be processed along with
+	// an explanation for why they were not processed.
+	//
+	// UnprocessedAccounts is a required field
+	UnprocessedAccounts []*UnprocessedAccount `locationName:"unprocessedAccounts" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMemberDetectorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMemberDetectorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMemberDataSourceConfigurations sets the MemberDataSourceConfigurations field's value.
+func (s *GetMemberDetectorsOutput) SetMemberDataSourceConfigurations(v []*MemberDataSourceConfiguration) *GetMemberDetectorsOutput {
+	s.MemberDataSourceConfigurations = v
+	return s
+}
+
+// SetUnprocessedAccounts sets the UnprocessedAccounts field's value.
+func (s *GetMemberDetectorsOutput) SetUnprocessedAccounts(v []*UnprocessedAccount) *GetMemberDetectorsOutput {
+	s.UnprocessedAccounts = v
 	return s
 }
 
@@ -9195,7 +9667,7 @@ type GetThreatIntelSetOutput struct {
 	// Format is a required field
 	Format *string `locationName:"format" min:"1" type:"string" required:"true" enum:"ThreatIntelSetFormat"`
 
-	// The URI of the file that contains the ThreatIntelSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The URI of the file that contains the ThreatIntelSet.
 	//
 	// Location is a required field
 	Location *string `locationName:"location" min:"1" type:"string" required:"true"`
@@ -9859,6 +10331,8 @@ type ListFindingsInput struct {
 	//
 	//    * resource.instanceDetails.instanceId
 	//
+	//    * resource.instanceDetails.outpostArn
+	//
 	//    * resource.instanceDetails.networkInterfaces.ipv6Addresses
 	//
 	//    * resource.instanceDetails.networkInterfaces.privateIpAddresses.privateIpAddress
@@ -9908,6 +10382,8 @@ type ListFindingsInput struct {
 	//    * service.action.networkConnectionAction.localPortDetails.port
 	//
 	//    * service.action.networkConnectionAction.protocol
+	//
+	//    * service.action.networkConnectionAction.localIpDetails.ipAddressV4
 	//
 	//    * service.action.networkConnectionAction.remoteIpDetails.city.cityName
 	//
@@ -10246,8 +10722,10 @@ type ListMembersInput struct {
 	// from the previous response to continue listing data.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// Specifies whether to only return associated members or to return all members
-	// (including members who haven't been invited yet or have been disassociated).
+	// Specifies what member accounts the response includes based on their relationship
+	// status with the master account. The default value is "true". If set to "false"
+	// the response includes all existing member accounts (including members who
+	// haven't been invited yet or have been disassociated).
 	OnlyAssociated *string `location:"querystring" locationName:"onlyAssociated" type:"string"`
 }
 
@@ -10883,6 +11361,43 @@ func (s *Member) SetUpdatedAt(v string) *Member {
 	return s
 }
 
+// Contains information on which data sources are enabled for a member account.
+type MemberDataSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID for the member account.
+	//
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// Contains information on the status of data sources for the account.
+	//
+	// DataSources is a required field
+	DataSources *DataSourceConfigurationsResult `locationName:"dataSources" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s MemberDataSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MemberDataSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *MemberDataSourceConfiguration) SetAccountId(v string) *MemberDataSourceConfiguration {
+	s.AccountId = &v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *MemberDataSourceConfiguration) SetDataSources(v *DataSourceConfigurationsResult) *MemberDataSourceConfiguration {
+	s.DataSources = v
+	return s
+}
+
 // Contains information about the NETWORK_CONNECTION action described in the
 // finding.
 type NetworkConnectionAction struct {
@@ -11116,6 +11631,142 @@ func (s *Organization) SetIsp(v string) *Organization {
 // SetOrg sets the Org field's value.
 func (s *Organization) SetOrg(v string) *Organization {
 	s.Org = &v
+	return s
+}
+
+// An object that contains information on which data sources will be configured
+// to be automatically enabled for new members within the organization.
+type OrganizationDataSourceConfigurations struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether S3 data event logs are enabled for new members of the organization.
+	S3Logs *OrganizationS3LogsConfiguration `locationName:"s3Logs" type:"structure"`
+}
+
+// String returns the string representation
+func (s OrganizationDataSourceConfigurations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OrganizationDataSourceConfigurations) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OrganizationDataSourceConfigurations) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OrganizationDataSourceConfigurations"}
+	if s.S3Logs != nil {
+		if err := s.S3Logs.Validate(); err != nil {
+			invalidParams.AddNested("S3Logs", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Logs sets the S3Logs field's value.
+func (s *OrganizationDataSourceConfigurations) SetS3Logs(v *OrganizationS3LogsConfiguration) *OrganizationDataSourceConfigurations {
+	s.S3Logs = v
+	return s
+}
+
+// An object that contains information on which data sources are automatically
+// enabled for new members within the organization.
+type OrganizationDataSourceConfigurationsResult struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether S3 data event logs are enabled as a data source.
+	//
+	// S3Logs is a required field
+	S3Logs *OrganizationS3LogsConfigurationResult `locationName:"s3Logs" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s OrganizationDataSourceConfigurationsResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OrganizationDataSourceConfigurationsResult) GoString() string {
+	return s.String()
+}
+
+// SetS3Logs sets the S3Logs field's value.
+func (s *OrganizationDataSourceConfigurationsResult) SetS3Logs(v *OrganizationS3LogsConfigurationResult) *OrganizationDataSourceConfigurationsResult {
+	s.S3Logs = v
+	return s
+}
+
+// Describes whether S3 data event logs will be automatically enabled for new
+// members of the organization.
+type OrganizationS3LogsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A value that contains information on whether S3 data event logs will be enabled
+	// automatically as a data source for the organization.
+	//
+	// AutoEnable is a required field
+	AutoEnable *bool `locationName:"autoEnable" type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s OrganizationS3LogsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OrganizationS3LogsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OrganizationS3LogsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OrganizationS3LogsConfiguration"}
+	if s.AutoEnable == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutoEnable"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoEnable sets the AutoEnable field's value.
+func (s *OrganizationS3LogsConfiguration) SetAutoEnable(v bool) *OrganizationS3LogsConfiguration {
+	s.AutoEnable = &v
+	return s
+}
+
+// The current configuration of S3 data event logs as a data source for the
+// organization.
+type OrganizationS3LogsConfigurationResult struct {
+	_ struct{} `type:"structure"`
+
+	// A value that describes whether S3 data event logs are automatically enabled
+	// for new members of the organization.
+	//
+	// AutoEnable is a required field
+	AutoEnable *bool `locationName:"autoEnable" type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s OrganizationS3LogsConfigurationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OrganizationS3LogsConfigurationResult) GoString() string {
+	return s.String()
+}
+
+// SetAutoEnable sets the AutoEnable field's value.
+func (s *OrganizationS3LogsConfigurationResult) SetAutoEnable(v bool) *OrganizationS3LogsConfigurationResult {
+	s.AutoEnable = &v
 	return s
 }
 
@@ -11500,6 +12151,7 @@ func (s *Resource) SetS3BucketDetails(v []*S3BucketDetail) *Resource {
 	return s
 }
 
+// Contains information on the S3 bucket.
 type S3BucketDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -11583,6 +12235,72 @@ func (s *S3BucketDetail) SetTags(v []*Tag) *S3BucketDetail {
 // SetType sets the Type field's value.
 func (s *S3BucketDetail) SetType(v string) *S3BucketDetail {
 	s.Type = &v
+	return s
+}
+
+// Describes whether S3 data event logs will be enabled as a data source.
+type S3LogsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The status of S3 data event logs as a data source.
+	//
+	// Enable is a required field
+	Enable *bool `locationName:"enable" type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s S3LogsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3LogsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3LogsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3LogsConfiguration"}
+	if s.Enable == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enable"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnable sets the Enable field's value.
+func (s *S3LogsConfiguration) SetEnable(v bool) *S3LogsConfiguration {
+	s.Enable = &v
+	return s
+}
+
+// Describes whether S3 data event logs will be enabled as a data source.
+type S3LogsConfigurationResult struct {
+	_ struct{} `type:"structure"`
+
+	// A value that describes whether S3 data event logs are automatically enabled
+	// for new members of the organization.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" min:"1" type:"string" required:"true" enum:"DataSourceStatus"`
+}
+
+// String returns the string representation
+func (s S3LogsConfigurationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3LogsConfigurationResult) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *S3LogsConfigurationResult) SetStatus(v string) *S3LogsConfigurationResult {
+	s.Status = &v
 	return s
 }
 
@@ -12253,6 +12971,9 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDetectorInput struct {
 	_ struct{} `type:"structure"`
 
+	// An object that describes which data sources will be updated.
+	DataSources *DataSourceConfigurations `locationName:"dataSources" type:"structure"`
+
 	// The unique ID of the detector to update.
 	//
 	// DetectorId is a required field
@@ -12285,11 +13006,22 @@ func (s *UpdateDetectorInput) Validate() error {
 	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
 	}
+	if s.DataSources != nil {
+		if err := s.DataSources.Validate(); err != nil {
+			invalidParams.AddNested("DataSources", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *UpdateDetectorInput) SetDataSources(v *DataSourceConfigurations) *UpdateDetectorInput {
+	s.DataSources = v
+	return s
 }
 
 // SetDetectorId sets the DetectorId field's value.
@@ -12561,7 +13293,7 @@ type UpdateIPSetInput struct {
 	// IpSetId is a required field
 	IpSetId *string `location:"uri" locationName:"ipSetId" type:"string" required:"true"`
 
-	// The updated URI of the file that contains the IPSet. For example: https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The updated URI of the file that contains the IPSet.
 	Location *string `locationName:"location" min:"1" type:"string"`
 
 	// The unique ID that specifies the IPSet that you want to update.
@@ -12650,6 +13382,104 @@ func (s UpdateIPSetOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateMemberDetectorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of member account IDs to be updated.
+	//
+	// AccountIds is a required field
+	AccountIds []*string `locationName:"accountIds" min:"1" type:"list" required:"true"`
+
+	// An object describes which data sources will be updated.
+	DataSources *DataSourceConfigurations `locationName:"dataSources" type:"structure"`
+
+	// The detector ID of the master account.
+	//
+	// DetectorId is a required field
+	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateMemberDetectorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMemberDetectorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMemberDetectorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMemberDetectorsInput"}
+	if s.AccountIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountIds"))
+	}
+	if s.AccountIds != nil && len(s.AccountIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIds", 1))
+	}
+	if s.DetectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorId"))
+	}
+	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
+	}
+	if s.DataSources != nil {
+		if err := s.DataSources.Validate(); err != nil {
+			invalidParams.AddNested("DataSources", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *UpdateMemberDetectorsInput) SetAccountIds(v []*string) *UpdateMemberDetectorsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *UpdateMemberDetectorsInput) SetDataSources(v *DataSourceConfigurations) *UpdateMemberDetectorsInput {
+	s.DataSources = v
+	return s
+}
+
+// SetDetectorId sets the DetectorId field's value.
+func (s *UpdateMemberDetectorsInput) SetDetectorId(v string) *UpdateMemberDetectorsInput {
+	s.DetectorId = &v
+	return s
+}
+
+type UpdateMemberDetectorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of member account IDs that were unable to be processed along with
+	// an explanation for why they were not processed.
+	//
+	// UnprocessedAccounts is a required field
+	UnprocessedAccounts []*UnprocessedAccount `locationName:"unprocessedAccounts" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateMemberDetectorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMemberDetectorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetUnprocessedAccounts sets the UnprocessedAccounts field's value.
+func (s *UpdateMemberDetectorsOutput) SetUnprocessedAccounts(v []*UnprocessedAccount) *UpdateMemberDetectorsOutput {
+	s.UnprocessedAccounts = v
+	return s
+}
+
 type UpdateOrganizationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12657,6 +13487,9 @@ type UpdateOrganizationConfigurationInput struct {
 	//
 	// AutoEnable is a required field
 	AutoEnable *bool `locationName:"autoEnable" type:"boolean" required:"true"`
+
+	// An object describes which data sources will be updated.
+	DataSources *OrganizationDataSourceConfigurations `locationName:"dataSources" type:"structure"`
 
 	// The ID of the detector to update the delegated administrator for.
 	//
@@ -12686,6 +13519,11 @@ func (s *UpdateOrganizationConfigurationInput) Validate() error {
 	if s.DetectorId != nil && len(*s.DetectorId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DetectorId", 1))
 	}
+	if s.DataSources != nil {
+		if err := s.DataSources.Validate(); err != nil {
+			invalidParams.AddNested("DataSources", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12696,6 +13534,12 @@ func (s *UpdateOrganizationConfigurationInput) Validate() error {
 // SetAutoEnable sets the AutoEnable field's value.
 func (s *UpdateOrganizationConfigurationInput) SetAutoEnable(v bool) *UpdateOrganizationConfigurationInput {
 	s.AutoEnable = &v
+	return s
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *UpdateOrganizationConfigurationInput) SetDataSources(v *OrganizationDataSourceConfigurations) *UpdateOrganizationConfigurationInput {
+	s.DataSources = v
 	return s
 }
 
@@ -12814,8 +13658,7 @@ type UpdateThreatIntelSetInput struct {
 	// DetectorId is a required field
 	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
 
-	// The updated URI of the file that contains the ThreateIntelSet. For example:
-	// https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The updated URI of the file that contains the ThreateIntelSet.
 	Location *string `locationName:"location" min:"1" type:"string"`
 
 	// The unique ID that specifies the ThreatIntelSet that you want to update.
@@ -12915,6 +13758,14 @@ const (
 
 	// AdminStatusDisableInProgress is a AdminStatus enum value
 	AdminStatusDisableInProgress = "DISABLE_IN_PROGRESS"
+)
+
+const (
+	// DataSourceStatusEnabled is a DataSourceStatus enum value
+	DataSourceStatusEnabled = "ENABLED"
+
+	// DataSourceStatusDisabled is a DataSourceStatus enum value
+	DataSourceStatusDisabled = "DISABLED"
 )
 
 const (
