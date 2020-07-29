@@ -50,6 +50,7 @@ package credentials
 
 import (
 	"fmt"
+	"sync"
 	"sync/atomic"
 	"time"
 
@@ -210,6 +211,8 @@ type Credentials struct {
 	creds atomic.Value
 	sf    singleflight.Group
 
+	m sync.RWMutex
+
 	provider Provider
 }
 
@@ -235,9 +238,12 @@ func NewCredentials(provider Provider) *Credentials {
 //
 // Passed in Context is equivalent to aws.Context, and context.Context.
 func (c *Credentials) GetWithContext(ctx Context) (Value, error) {
+	c.m.RLock()
 	if curCreds := c.creds.Load(); !c.isExpired(curCreds) {
+		c.m.RUnlock()
 		return curCreds.(Value), nil
 	}
+	c.m.RUnlock()
 
 	// Cannot pass context down to the actual retrieve, because the first
 	// context would cancel the whole group when there is not direct
@@ -255,10 +261,15 @@ func (c *Credentials) GetWithContext(ctx Context) (Value, error) {
 }
 
 func (c *Credentials) singleRetrieve(ctx Context) (creds interface{}, err error) {
+	c.m.RLock()
 	if curCreds := c.creds.Load(); !c.isExpired(curCreds) {
+		c.m.RUnlock()
 		return curCreds.(Value), nil
 	}
+	c.m.RUnlock()
 
+	c.m.Lock()
+	defer c.m.Unlock()
 	if p, ok := c.provider.(ProviderWithContext); ok {
 		creds, err = p.RetrieveWithContext(ctx)
 	} else {
