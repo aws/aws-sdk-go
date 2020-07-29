@@ -862,6 +862,15 @@ const (
 
 	{{ end }}
 )
+
+// {{ $.ShapeName }}_Values returns all elements of the {{ $.ShapeName }} enum
+func {{ $.ShapeName }}_Values() []string {
+	return []string{
+		{{ range $index, $elem := $.Enum -}}
+		{{ index $.EnumConsts $index }},
+		{{ end }}
+	}
+}
 `))
 
 // GoCode returns the rendered Go code for the Shape.

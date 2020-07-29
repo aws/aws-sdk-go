@@ -2273,15 +2273,37 @@ const (
 	AccessDeniedExceptionReasonDependencyAccessDenied = "DEPENDENCY_ACCESS_DENIED"
 )
 
+// AccessDeniedExceptionReason_Values returns all elements of the AccessDeniedExceptionReason enum
+func AccessDeniedExceptionReason_Values() []string {
+	return []string{
+		AccessDeniedExceptionReasonUnauthorizedAccount,
+		AccessDeniedExceptionReasonDependencyAccessDenied,
+	}
+}
+
 const (
 	// ChecksumAggregationMethodLinear is a ChecksumAggregationMethod enum value
 	ChecksumAggregationMethodLinear = "LINEAR"
 )
 
+// ChecksumAggregationMethod_Values returns all elements of the ChecksumAggregationMethod enum
+func ChecksumAggregationMethod_Values() []string {
+	return []string{
+		ChecksumAggregationMethodLinear,
+	}
+}
+
 const (
 	// ChecksumAlgorithmSha256 is a ChecksumAlgorithm enum value
 	ChecksumAlgorithmSha256 = "SHA256"
 )
+
+// ChecksumAlgorithm_Values returns all elements of the ChecksumAlgorithm enum
+func ChecksumAlgorithm_Values() []string {
+	return []string{
+		ChecksumAlgorithmSha256,
+	}
+}
 
 const (
 	// RequestThrottledExceptionReasonAccountThrottled is a RequestThrottledExceptionReason enum value
@@ -2291,6 +2313,14 @@ const (
 	RequestThrottledExceptionReasonDependencyRequestThrottled = "DEPENDENCY_REQUEST_THROTTLED"
 )
 
+// RequestThrottledExceptionReason_Values returns all elements of the RequestThrottledExceptionReason enum
+func RequestThrottledExceptionReason_Values() []string {
+	return []string{
+		RequestThrottledExceptionReasonAccountThrottled,
+		RequestThrottledExceptionReasonDependencyRequestThrottled,
+	}
+}
+
 const (
 	// ResourceNotFoundExceptionReasonSnapshotNotFound is a ResourceNotFoundExceptionReason enum value
 	ResourceNotFoundExceptionReasonSnapshotNotFound = "SNAPSHOT_NOT_FOUND"
@@ -2299,10 +2329,25 @@ const (
 	ResourceNotFoundExceptionReasonDependencyResourceNotFound = "DEPENDENCY_RESOURCE_NOT_FOUND"
 )
 
+// ResourceNotFoundExceptionReason_Values returns all elements of the ResourceNotFoundExceptionReason enum
+func ResourceNotFoundExceptionReason_Values() []string {
+	return []string{
+		ResourceNotFoundExceptionReasonSnapshotNotFound,
+		ResourceNotFoundExceptionReasonDependencyResourceNotFound,
+	}
+}
+
 const (
 	// ServiceQuotaExceededExceptionReasonDependencyServiceQuotaExceeded is a ServiceQuotaExceededExceptionReason enum value
 	ServiceQuotaExceededExceptionReasonDependencyServiceQuotaExceeded = "DEPENDENCY_SERVICE_QUOTA_EXCEEDED"
 )
+
+// ServiceQuotaExceededExceptionReason_Values returns all elements of the ServiceQuotaExceededExceptionReason enum
+func ServiceQuotaExceededExceptionReason_Values() []string {
+	return []string{
+		ServiceQuotaExceededExceptionReasonDependencyServiceQuotaExceeded,
+	}
+}
 
 const (
 	// StatusCompleted is a Status enum value
@@ -2314,6 +2359,15 @@ const (
 	// StatusError is a Status enum value
 	StatusError = "error"
 )
+
+// Status_Values returns all elements of the Status enum
+func Status_Values() []string {
+	return []string{
+		StatusCompleted,
+		StatusPending,
+		StatusError,
+	}
+}
 
 const (
 	// ValidationExceptionReasonInvalidCustomerKey is a ValidationExceptionReason enum value
@@ -2349,3 +2403,20 @@ const (
 	// ValidationExceptionReasonInvalidVolumeSize is a ValidationExceptionReason enum value
 	ValidationExceptionReasonInvalidVolumeSize = "INVALID_VOLUME_SIZE"
 )
+
+// ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
+func ValidationExceptionReason_Values() []string {
+	return []string{
+		ValidationExceptionReasonInvalidCustomerKey,
+		ValidationExceptionReasonInvalidPageToken,
+		ValidationExceptionReasonInvalidBlockToken,
+		ValidationExceptionReasonInvalidSnapshotId,
+		ValidationExceptionReasonUnrelatedSnapshots,
+		ValidationExceptionReasonInvalidBlock,
+		ValidationExceptionReasonInvalidContentEncoding,
+		ValidationExceptionReasonInvalidTag,
+		ValidationExceptionReasonInvalidDependencyRequest,
+		ValidationExceptionReasonInvalidParameterValue,
+		ValidationExceptionReasonInvalidVolumeSize,
+	}
+}

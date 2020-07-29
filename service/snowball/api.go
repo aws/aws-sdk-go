@@ -5604,6 +5604,19 @@ const (
 	CapacityNoPreference = "NoPreference"
 )
 
+// Capacity_Values returns all elements of the Capacity enum
+func Capacity_Values() []string {
+	return []string{
+		CapacityT50,
+		CapacityT80,
+		CapacityT100,
+		CapacityT42,
+		CapacityT98,
+		CapacityT8,
+		CapacityNoPreference,
+	}
+}
+
 const (
 	// ClusterStateAwaitingQuorum is a ClusterState enum value
 	ClusterStateAwaitingQuorum = "AwaitingQuorum"
@@ -5620,6 +5633,17 @@ const (
 	// ClusterStateCancelled is a ClusterState enum value
 	ClusterStateCancelled = "Cancelled"
 )
+
+// ClusterState_Values returns all elements of the ClusterState enum
+func ClusterState_Values() []string {
+	return []string{
+		ClusterStateAwaitingQuorum,
+		ClusterStatePending,
+		ClusterStateInUse,
+		ClusterStateComplete,
+		ClusterStateCancelled,
+	}
+}
 
 const (
 	// JobStateNew is a JobState enum value
@@ -5662,6 +5686,25 @@ const (
 	JobStatePending = "Pending"
 )
 
+// JobState_Values returns all elements of the JobState enum
+func JobState_Values() []string {
+	return []string{
+		JobStateNew,
+		JobStatePreparingAppliance,
+		JobStatePreparingShipment,
+		JobStateInTransitToCustomer,
+		JobStateWithCustomer,
+		JobStateInTransitToAws,
+		JobStateWithAwssortingFacility,
+		JobStateWithAws,
+		JobStateInProgress,
+		JobStateComplete,
+		JobStateCancelled,
+		JobStateListing,
+		JobStatePending,
+	}
+}
+
 const (
 	// JobTypeImport is a JobType enum value
 	JobTypeImport = "IMPORT"
@@ -5672,6 +5715,15 @@ const (
 	// JobTypeLocalUse is a JobType enum value
 	JobTypeLocalUse = "LOCAL_USE"
 )
+
+// JobType_Values returns all elements of the JobType enum
+func JobType_Values() []string {
+	return []string{
+		JobTypeImport,
+		JobTypeExport,
+		JobTypeLocalUse,
+	}
+}
 
 const (
 	// ShippingOptionSecondDay is a ShippingOption enum value
@@ -5686,6 +5738,16 @@ const (
 	// ShippingOptionStandard is a ShippingOption enum value
 	ShippingOptionStandard = "STANDARD"
 )
+
+// ShippingOption_Values returns all elements of the ShippingOption enum
+func ShippingOption_Values() []string {
+	return []string{
+		ShippingOptionSecondDay,
+		ShippingOptionNextDay,
+		ShippingOptionExpress,
+		ShippingOptionStandard,
+	}
+}
 
 const (
 	// TypeStandard is a Type enum value
@@ -5706,3 +5768,15 @@ const (
 	// TypeSnc1Hdd is a Type enum value
 	TypeSnc1Hdd = "SNC1_HDD"
 )
+
+// Type_Values returns all elements of the Type enum
+func Type_Values() []string {
+	return []string{
+		TypeStandard,
+		TypeEdge,
+		TypeEdgeC,
+		TypeEdgeCg,
+		TypeEdgeS,
+		TypeSnc1Hdd,
+	}
+}

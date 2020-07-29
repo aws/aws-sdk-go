@@ -2040,3 +2040,16 @@ const (
 	// EventTypeNoAnswer is a EventType enum value
 	EventTypeNoAnswer = "NO_ANSWER"
 )
+
+// EventType_Values returns all elements of the EventType enum
+func EventType_Values() []string {
+	return []string{
+		EventTypeInitiatedCall,
+		EventTypeRinging,
+		EventTypeAnswered,
+		EventTypeCompletedCall,
+		EventTypeBusy,
+		EventTypeFailed,
+		EventTypeNoAnswer,
+	}
+}

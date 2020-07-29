@@ -10141,6 +10141,13 @@ const (
 	AdditionalResultAttributeValueTypeTextWithHighlightsValue = "TEXT_WITH_HIGHLIGHTS_VALUE"
 )
 
+// AdditionalResultAttributeValueType_Values returns all elements of the AdditionalResultAttributeValueType enum
+func AdditionalResultAttributeValueType_Values() []string {
+	return []string{
+		AdditionalResultAttributeValueTypeTextWithHighlightsValue,
+	}
+}
+
 const (
 	// ContentTypePdf is a ContentType enum value
 	ContentTypePdf = "PDF"
@@ -10158,6 +10165,17 @@ const (
 	ContentTypePpt = "PPT"
 )
 
+// ContentType_Values returns all elements of the ContentType enum
+func ContentType_Values() []string {
+	return []string{
+		ContentTypePdf,
+		ContentTypeHtml,
+		ContentTypeMsWord,
+		ContentTypePlainText,
+		ContentTypePpt,
+	}
+}
+
 const (
 	// DataSourceStatusCreating is a DataSourceStatus enum value
 	DataSourceStatusCreating = "CREATING"
@@ -10174,6 +10192,17 @@ const (
 	// DataSourceStatusActive is a DataSourceStatus enum value
 	DataSourceStatusActive = "ACTIVE"
 )
+
+// DataSourceStatus_Values returns all elements of the DataSourceStatus enum
+func DataSourceStatus_Values() []string {
+	return []string{
+		DataSourceStatusCreating,
+		DataSourceStatusDeleting,
+		DataSourceStatusFailed,
+		DataSourceStatusUpdating,
+		DataSourceStatusActive,
+	}
+}
 
 const (
 	// DataSourceSyncJobStatusFailed is a DataSourceSyncJobStatus enum value
@@ -10198,6 +10227,19 @@ const (
 	DataSourceSyncJobStatusSyncingIndexing = "SYNCING_INDEXING"
 )
 
+// DataSourceSyncJobStatus_Values returns all elements of the DataSourceSyncJobStatus enum
+func DataSourceSyncJobStatus_Values() []string {
+	return []string{
+		DataSourceSyncJobStatusFailed,
+		DataSourceSyncJobStatusSucceeded,
+		DataSourceSyncJobStatusSyncing,
+		DataSourceSyncJobStatusIncomplete,
+		DataSourceSyncJobStatusStopping,
+		DataSourceSyncJobStatusAborted,
+		DataSourceSyncJobStatusSyncingIndexing,
+	}
+}
+
 const (
 	// DataSourceTypeS3 is a DataSourceType enum value
 	DataSourceTypeS3 = "S3"
@@ -10218,6 +10260,18 @@ const (
 	DataSourceTypeServicenow = "SERVICENOW"
 )
 
+// DataSourceType_Values returns all elements of the DataSourceType enum
+func DataSourceType_Values() []string {
+	return []string{
+		DataSourceTypeS3,
+		DataSourceTypeSharepoint,
+		DataSourceTypeDatabase,
+		DataSourceTypeSalesforce,
+		DataSourceTypeOnedrive,
+		DataSourceTypeServicenow,
+	}
+}
+
 const (
 	// DatabaseEngineTypeRdsAuroraMysql is a DatabaseEngineType enum value
 	DatabaseEngineTypeRdsAuroraMysql = "RDS_AURORA_MYSQL"
@@ -10231,6 +10285,16 @@ const (
 	// DatabaseEngineTypeRdsPostgresql is a DatabaseEngineType enum value
 	DatabaseEngineTypeRdsPostgresql = "RDS_POSTGRESQL"
 )
+
+// DatabaseEngineType_Values returns all elements of the DatabaseEngineType enum
+func DatabaseEngineType_Values() []string {
+	return []string{
+		DatabaseEngineTypeRdsAuroraMysql,
+		DatabaseEngineTypeRdsAuroraPostgresql,
+		DatabaseEngineTypeRdsMysql,
+		DatabaseEngineTypeRdsPostgresql,
+	}
+}
 
 const (
 	// DocumentAttributeValueTypeStringValue is a DocumentAttributeValueType enum value
@@ -10246,6 +10310,16 @@ const (
 	DocumentAttributeValueTypeDateValue = "DATE_VALUE"
 )
 
+// DocumentAttributeValueType_Values returns all elements of the DocumentAttributeValueType enum
+func DocumentAttributeValueType_Values() []string {
+	return []string{
+		DocumentAttributeValueTypeStringValue,
+		DocumentAttributeValueTypeStringListValue,
+		DocumentAttributeValueTypeLongValue,
+		DocumentAttributeValueTypeDateValue,
+	}
+}
+
 const (
 	// ErrorCodeInternalError is a ErrorCode enum value
 	ErrorCodeInternalError = "InternalError"
@@ -10253,6 +10327,14 @@ const (
 	// ErrorCodeInvalidRequest is a ErrorCode enum value
 	ErrorCodeInvalidRequest = "InvalidRequest"
 )
+
+// ErrorCode_Values returns all elements of the ErrorCode enum
+func ErrorCode_Values() []string {
+	return []string{
+		ErrorCodeInternalError,
+		ErrorCodeInvalidRequest,
+	}
+}
 
 const (
 	// FaqStatusCreating is a FaqStatus enum value
@@ -10271,6 +10353,17 @@ const (
 	FaqStatusFailed = "FAILED"
 )
 
+// FaqStatus_Values returns all elements of the FaqStatus enum
+func FaqStatus_Values() []string {
+	return []string{
+		FaqStatusCreating,
+		FaqStatusUpdating,
+		FaqStatusActive,
+		FaqStatusDeleting,
+		FaqStatusFailed,
+	}
+}
+
 const (
 	// IndexEditionDeveloperEdition is a IndexEdition enum value
 	IndexEditionDeveloperEdition = "DEVELOPER_EDITION"
@@ -10278,6 +10371,14 @@ const (
 	// IndexEditionEnterpriseEdition is a IndexEdition enum value
 	IndexEditionEnterpriseEdition = "ENTERPRISE_EDITION"
 )
+
+// IndexEdition_Values returns all elements of the IndexEdition enum
+func IndexEdition_Values() []string {
+	return []string{
+		IndexEditionDeveloperEdition,
+		IndexEditionEnterpriseEdition,
+	}
+}
 
 const (
 	// IndexStatusCreating is a IndexStatus enum value
@@ -10299,6 +10400,18 @@ const (
 	IndexStatusSystemUpdating = "SYSTEM_UPDATING"
 )
 
+// IndexStatus_Values returns all elements of the IndexStatus enum
+func IndexStatus_Values() []string {
+	return []string{
+		IndexStatusCreating,
+		IndexStatusActive,
+		IndexStatusDeleting,
+		IndexStatusFailed,
+		IndexStatusUpdating,
+		IndexStatusSystemUpdating,
+	}
+}
+
 const (
 	// OrderAscending is a Order enum value
 	OrderAscending = "ASCENDING"
@@ -10306,6 +10419,14 @@ const (
 	// OrderDescending is a Order enum value
 	OrderDescending = "DESCENDING"
 )
+
+// Order_Values returns all elements of the Order enum
+func Order_Values() []string {
+	return []string{
+		OrderAscending,
+		OrderDescending,
+	}
+}
 
 const (
 	// PrincipalTypeUser is a PrincipalType enum value
@@ -10315,6 +10436,14 @@ const (
 	PrincipalTypeGroup = "GROUP"
 )
 
+// PrincipalType_Values returns all elements of the PrincipalType enum
+func PrincipalType_Values() []string {
+	return []string{
+		PrincipalTypeUser,
+		PrincipalTypeGroup,
+	}
+}
+
 const (
 	// QueryIdentifiersEnclosingOptionDoubleQuotes is a QueryIdentifiersEnclosingOption enum value
 	QueryIdentifiersEnclosingOptionDoubleQuotes = "DOUBLE_QUOTES"
@@ -10322,6 +10451,14 @@ const (
 	// QueryIdentifiersEnclosingOptionNone is a QueryIdentifiersEnclosingOption enum value
 	QueryIdentifiersEnclosingOptionNone = "NONE"
 )
+
+// QueryIdentifiersEnclosingOption_Values returns all elements of the QueryIdentifiersEnclosingOption enum
+func QueryIdentifiersEnclosingOption_Values() []string {
+	return []string{
+		QueryIdentifiersEnclosingOptionDoubleQuotes,
+		QueryIdentifiersEnclosingOptionNone,
+	}
+}
 
 const (
 	// QueryResultTypeDocument is a QueryResultType enum value
@@ -10334,6 +10471,15 @@ const (
 	QueryResultTypeAnswer = "ANSWER"
 )
 
+// QueryResultType_Values returns all elements of the QueryResultType enum
+func QueryResultType_Values() []string {
+	return []string{
+		QueryResultTypeDocument,
+		QueryResultTypeQuestionAnswer,
+		QueryResultTypeAnswer,
+	}
+}
+
 const (
 	// ReadAccessTypeAllow is a ReadAccessType enum value
 	ReadAccessTypeAllow = "ALLOW"
@@ -10341,6 +10487,14 @@ const (
 	// ReadAccessTypeDeny is a ReadAccessType enum value
 	ReadAccessTypeDeny = "DENY"
 )
+
+// ReadAccessType_Values returns all elements of the ReadAccessType enum
+func ReadAccessType_Values() []string {
+	return []string{
+		ReadAccessTypeAllow,
+		ReadAccessTypeDeny,
+	}
+}
 
 const (
 	// RelevanceTypeRelevant is a RelevanceType enum value
@@ -10350,6 +10504,14 @@ const (
 	RelevanceTypeNotRelevant = "NOT_RELEVANT"
 )
 
+// RelevanceType_Values returns all elements of the RelevanceType enum
+func RelevanceType_Values() []string {
+	return []string{
+		RelevanceTypeRelevant,
+		RelevanceTypeNotRelevant,
+	}
+}
+
 const (
 	// SalesforceChatterFeedIncludeFilterTypeActiveUser is a SalesforceChatterFeedIncludeFilterType enum value
 	SalesforceChatterFeedIncludeFilterTypeActiveUser = "ACTIVE_USER"
@@ -10357,6 +10519,14 @@ const (
 	// SalesforceChatterFeedIncludeFilterTypeStandardUser is a SalesforceChatterFeedIncludeFilterType enum value
 	SalesforceChatterFeedIncludeFilterTypeStandardUser = "STANDARD_USER"
 )
+
+// SalesforceChatterFeedIncludeFilterType_Values returns all elements of the SalesforceChatterFeedIncludeFilterType enum
+func SalesforceChatterFeedIncludeFilterType_Values() []string {
+	return []string{
+		SalesforceChatterFeedIncludeFilterTypeActiveUser,
+		SalesforceChatterFeedIncludeFilterTypeStandardUser,
+	}
+}
 
 const (
 	// SalesforceKnowledgeArticleStateDraft is a SalesforceKnowledgeArticleState enum value
@@ -10368,6 +10538,15 @@ const (
 	// SalesforceKnowledgeArticleStateArchived is a SalesforceKnowledgeArticleState enum value
 	SalesforceKnowledgeArticleStateArchived = "ARCHIVED"
 )
+
+// SalesforceKnowledgeArticleState_Values returns all elements of the SalesforceKnowledgeArticleState enum
+func SalesforceKnowledgeArticleState_Values() []string {
+	return []string{
+		SalesforceKnowledgeArticleStateDraft,
+		SalesforceKnowledgeArticleStatePublished,
+		SalesforceKnowledgeArticleStateArchived,
+	}
+}
 
 const (
 	// SalesforceStandardObjectNameAccount is a SalesforceStandardObjectName enum value
@@ -10422,6 +10601,29 @@ const (
 	SalesforceStandardObjectNameUser = "USER"
 )
 
+// SalesforceStandardObjectName_Values returns all elements of the SalesforceStandardObjectName enum
+func SalesforceStandardObjectName_Values() []string {
+	return []string{
+		SalesforceStandardObjectNameAccount,
+		SalesforceStandardObjectNameCampaign,
+		SalesforceStandardObjectNameCase,
+		SalesforceStandardObjectNameContact,
+		SalesforceStandardObjectNameContract,
+		SalesforceStandardObjectNameDocument,
+		SalesforceStandardObjectNameGroup,
+		SalesforceStandardObjectNameIdea,
+		SalesforceStandardObjectNameLead,
+		SalesforceStandardObjectNameOpportunity,
+		SalesforceStandardObjectNamePartner,
+		SalesforceStandardObjectNamePricebook,
+		SalesforceStandardObjectNameProduct,
+		SalesforceStandardObjectNameProfile,
+		SalesforceStandardObjectNameSolution,
+		SalesforceStandardObjectNameTask,
+		SalesforceStandardObjectNameUser,
+	}
+}
+
 const (
 	// ServiceNowBuildVersionTypeLondon is a ServiceNowBuildVersionType enum value
 	ServiceNowBuildVersionTypeLondon = "LONDON"
@@ -10430,10 +10632,25 @@ const (
 	ServiceNowBuildVersionTypeOthers = "OTHERS"
 )
 
+// ServiceNowBuildVersionType_Values returns all elements of the ServiceNowBuildVersionType enum
+func ServiceNowBuildVersionType_Values() []string {
+	return []string{
+		ServiceNowBuildVersionTypeLondon,
+		ServiceNowBuildVersionTypeOthers,
+	}
+}
+
 const (
 	// SharePointVersionSharepointOnline is a SharePointVersion enum value
 	SharePointVersionSharepointOnline = "SHAREPOINT_ONLINE"
 )
+
+// SharePointVersion_Values returns all elements of the SharePointVersion enum
+func SharePointVersion_Values() []string {
+	return []string{
+		SharePointVersionSharepointOnline,
+	}
+}
 
 const (
 	// SortOrderDesc is a SortOrder enum value
@@ -10442,3 +10659,11 @@ const (
 	// SortOrderAsc is a SortOrder enum value
 	SortOrderAsc = "ASC"
 )
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderDesc,
+		SortOrderAsc,
+	}
+}

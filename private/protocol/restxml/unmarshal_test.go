@@ -2682,6 +2682,16 @@ const (
 	RESTJSONEnumType1 = "1"
 )
 
+// OutputService14TestShapeRESTJSONEnumType_Values returns all elements of the OutputService14TestShapeRESTJSONEnumType enum
+func OutputService14TestShapeRESTJSONEnumType_Values() []string {
+	return []string{
+		RESTJSONEnumTypeFoo,
+		RESTJSONEnumTypeBar,
+		RESTJSONEnumType0,
+		RESTJSONEnumType1,
+	}
+}
+
 // OutputService15ProtocolTest provides the API operation methods for making requests to
 // . See this package's package overview docs
 // for details on the service.
@@ -2873,6 +2883,15 @@ const (
 	// ItemTypeType3 is a OutputService15TestShapeItemType enum value
 	ItemTypeType3 = "Type3"
 )
+
+// OutputService15TestShapeItemType_Values returns all elements of the OutputService15TestShapeItemType enum
+func OutputService15TestShapeItemType_Values() []string {
+	return []string{
+		ItemTypeType1,
+		ItemTypeType2,
+		ItemTypeType3,
+	}
+}
 
 //
 // Tests begin here

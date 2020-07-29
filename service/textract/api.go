@@ -3217,6 +3217,19 @@ const (
 	BlockTypeSelectionElement = "SELECTION_ELEMENT"
 )
 
+// BlockType_Values returns all elements of the BlockType enum
+func BlockType_Values() []string {
+	return []string{
+		BlockTypeKeyValueSet,
+		BlockTypePage,
+		BlockTypeLine,
+		BlockTypeWord,
+		BlockTypeTable,
+		BlockTypeCell,
+		BlockTypeSelectionElement,
+	}
+}
+
 const (
 	// ContentClassifierFreeOfPersonallyIdentifiableInformation is a ContentClassifier enum value
 	ContentClassifierFreeOfPersonallyIdentifiableInformation = "FreeOfPersonallyIdentifiableInformation"
@@ -3224,6 +3237,14 @@ const (
 	// ContentClassifierFreeOfAdultContent is a ContentClassifier enum value
 	ContentClassifierFreeOfAdultContent = "FreeOfAdultContent"
 )
+
+// ContentClassifier_Values returns all elements of the ContentClassifier enum
+func ContentClassifier_Values() []string {
+	return []string{
+		ContentClassifierFreeOfPersonallyIdentifiableInformation,
+		ContentClassifierFreeOfAdultContent,
+	}
+}
 
 const (
 	// EntityTypeKey is a EntityType enum value
@@ -3233,6 +3254,14 @@ const (
 	EntityTypeValue = "VALUE"
 )
 
+// EntityType_Values returns all elements of the EntityType enum
+func EntityType_Values() []string {
+	return []string{
+		EntityTypeKey,
+		EntityTypeValue,
+	}
+}
+
 const (
 	// FeatureTypeTables is a FeatureType enum value
 	FeatureTypeTables = "TABLES"
@@ -3240,6 +3269,14 @@ const (
 	// FeatureTypeForms is a FeatureType enum value
 	FeatureTypeForms = "FORMS"
 )
+
+// FeatureType_Values returns all elements of the FeatureType enum
+func FeatureType_Values() []string {
+	return []string{
+		FeatureTypeTables,
+		FeatureTypeForms,
+	}
+}
 
 const (
 	// JobStatusInProgress is a JobStatus enum value
@@ -3255,6 +3292,16 @@ const (
 	JobStatusPartialSuccess = "PARTIAL_SUCCESS"
 )
 
+// JobStatus_Values returns all elements of the JobStatus enum
+func JobStatus_Values() []string {
+	return []string{
+		JobStatusInProgress,
+		JobStatusSucceeded,
+		JobStatusFailed,
+		JobStatusPartialSuccess,
+	}
+}
+
 const (
 	// RelationshipTypeValue is a RelationshipType enum value
 	RelationshipTypeValue = "VALUE"
@@ -3263,6 +3310,14 @@ const (
 	RelationshipTypeChild = "CHILD"
 )
 
+// RelationshipType_Values returns all elements of the RelationshipType enum
+func RelationshipType_Values() []string {
+	return []string{
+		RelationshipTypeValue,
+		RelationshipTypeChild,
+	}
+}
+
 const (
 	// SelectionStatusSelected is a SelectionStatus enum value
 	SelectionStatusSelected = "SELECTED"
@@ -3270,3 +3325,11 @@ const (
 	// SelectionStatusNotSelected is a SelectionStatus enum value
 	SelectionStatusNotSelected = "NOT_SELECTED"
 )
+
+// SelectionStatus_Values returns all elements of the SelectionStatus enum
+func SelectionStatus_Values() []string {
+	return []string{
+		SelectionStatusSelected,
+		SelectionStatusNotSelected,
+	}
+}

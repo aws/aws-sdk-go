@@ -2808,6 +2808,14 @@ const (
 	MemberDisabledReasonVolumeUnknown = "VOLUME_UNKNOWN"
 )
 
+// MemberDisabledReason_Values returns all elements of the MemberDisabledReason enum
+func MemberDisabledReason_Values() []string {
+	return []string{
+		MemberDisabledReasonVolumeTooHigh,
+		MemberDisabledReasonVolumeUnknown,
+	}
+}
+
 const (
 	// MemberStatusInvited is a MemberStatus enum value
 	MemberStatusInvited = "INVITED"
@@ -2824,3 +2832,14 @@ const (
 	// MemberStatusAcceptedButDisabled is a MemberStatus enum value
 	MemberStatusAcceptedButDisabled = "ACCEPTED_BUT_DISABLED"
 )
+
+// MemberStatus_Values returns all elements of the MemberStatus enum
+func MemberStatus_Values() []string {
+	return []string{
+		MemberStatusInvited,
+		MemberStatusVerificationInProgress,
+		MemberStatusVerificationFailed,
+		MemberStatusEnabled,
+		MemberStatusAcceptedButDisabled,
+	}
+}

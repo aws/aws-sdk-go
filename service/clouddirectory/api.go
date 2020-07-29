@@ -22282,6 +22282,25 @@ const (
 	BatchReadExceptionTypeInternalServiceException = "InternalServiceException"
 )
 
+// BatchReadExceptionType_Values returns all elements of the BatchReadExceptionType enum
+func BatchReadExceptionType_Values() []string {
+	return []string{
+		BatchReadExceptionTypeValidationException,
+		BatchReadExceptionTypeInvalidArnException,
+		BatchReadExceptionTypeResourceNotFoundException,
+		BatchReadExceptionTypeInvalidNextTokenException,
+		BatchReadExceptionTypeAccessDeniedException,
+		BatchReadExceptionTypeNotNodeException,
+		BatchReadExceptionTypeFacetValidationException,
+		BatchReadExceptionTypeCannotListParentOfRootException,
+		BatchReadExceptionTypeNotIndexException,
+		BatchReadExceptionTypeNotPolicyException,
+		BatchReadExceptionTypeDirectoryNotEnabledException,
+		BatchReadExceptionTypeLimitExceededException,
+		BatchReadExceptionTypeInternalServiceException,
+	}
+}
+
 const (
 	// BatchWriteExceptionTypeInternalServiceException is a BatchWriteExceptionType enum value
 	BatchWriteExceptionTypeInternalServiceException = "InternalServiceException"
@@ -22338,6 +22357,30 @@ const (
 	BatchWriteExceptionTypeUnsupportedIndexTypeException = "UnsupportedIndexTypeException"
 )
 
+// BatchWriteExceptionType_Values returns all elements of the BatchWriteExceptionType enum
+func BatchWriteExceptionType_Values() []string {
+	return []string{
+		BatchWriteExceptionTypeInternalServiceException,
+		BatchWriteExceptionTypeValidationException,
+		BatchWriteExceptionTypeInvalidArnException,
+		BatchWriteExceptionTypeLinkNameAlreadyInUseException,
+		BatchWriteExceptionTypeStillContainsLinksException,
+		BatchWriteExceptionTypeFacetValidationException,
+		BatchWriteExceptionTypeObjectNotDetachedException,
+		BatchWriteExceptionTypeResourceNotFoundException,
+		BatchWriteExceptionTypeAccessDeniedException,
+		BatchWriteExceptionTypeInvalidAttachmentException,
+		BatchWriteExceptionTypeNotIndexException,
+		BatchWriteExceptionTypeNotNodeException,
+		BatchWriteExceptionTypeIndexedAttributeMissingException,
+		BatchWriteExceptionTypeObjectAlreadyDetachedException,
+		BatchWriteExceptionTypeNotPolicyException,
+		BatchWriteExceptionTypeDirectoryNotEnabledException,
+		BatchWriteExceptionTypeLimitExceededException,
+		BatchWriteExceptionTypeUnsupportedIndexTypeException,
+	}
+}
+
 const (
 	// ConsistencyLevelSerializable is a ConsistencyLevel enum value
 	ConsistencyLevelSerializable = "SERIALIZABLE"
@@ -22345,6 +22388,14 @@ const (
 	// ConsistencyLevelEventual is a ConsistencyLevel enum value
 	ConsistencyLevelEventual = "EVENTUAL"
 )
+
+// ConsistencyLevel_Values returns all elements of the ConsistencyLevel enum
+func ConsistencyLevel_Values() []string {
+	return []string{
+		ConsistencyLevelSerializable,
+		ConsistencyLevelEventual,
+	}
+}
 
 const (
 	// DirectoryStateEnabled is a DirectoryState enum value
@@ -22356,6 +22407,15 @@ const (
 	// DirectoryStateDeleted is a DirectoryState enum value
 	DirectoryStateDeleted = "DELETED"
 )
+
+// DirectoryState_Values returns all elements of the DirectoryState enum
+func DirectoryState_Values() []string {
+	return []string{
+		DirectoryStateEnabled,
+		DirectoryStateDisabled,
+		DirectoryStateDeleted,
+	}
+}
 
 const (
 	// FacetAttributeTypeString is a FacetAttributeType enum value
@@ -22377,6 +22437,18 @@ const (
 	FacetAttributeTypeVariant = "VARIANT"
 )
 
+// FacetAttributeType_Values returns all elements of the FacetAttributeType enum
+func FacetAttributeType_Values() []string {
+	return []string{
+		FacetAttributeTypeString,
+		FacetAttributeTypeBinary,
+		FacetAttributeTypeBoolean,
+		FacetAttributeTypeNumber,
+		FacetAttributeTypeDatetime,
+		FacetAttributeTypeVariant,
+	}
+}
+
 const (
 	// FacetStyleStatic is a FacetStyle enum value
 	FacetStyleStatic = "STATIC"
@@ -22384,6 +22456,14 @@ const (
 	// FacetStyleDynamic is a FacetStyle enum value
 	FacetStyleDynamic = "DYNAMIC"
 )
+
+// FacetStyle_Values returns all elements of the FacetStyle enum
+func FacetStyle_Values() []string {
+	return []string{
+		FacetStyleStatic,
+		FacetStyleDynamic,
+	}
+}
 
 const (
 	// ObjectTypeNode is a ObjectType enum value
@@ -22398,6 +22478,16 @@ const (
 	// ObjectTypeIndex is a ObjectType enum value
 	ObjectTypeIndex = "INDEX"
 )
+
+// ObjectType_Values returns all elements of the ObjectType enum
+func ObjectType_Values() []string {
+	return []string{
+		ObjectTypeNode,
+		ObjectTypeLeafNode,
+		ObjectTypePolicy,
+		ObjectTypeIndex,
+	}
+}
 
 const (
 	// RangeModeFirst is a RangeMode enum value
@@ -22416,6 +22506,17 @@ const (
 	RangeModeExclusive = "EXCLUSIVE"
 )
 
+// RangeMode_Values returns all elements of the RangeMode enum
+func RangeMode_Values() []string {
+	return []string{
+		RangeModeFirst,
+		RangeModeLast,
+		RangeModeLastBeforeMissingValues,
+		RangeModeInclusive,
+		RangeModeExclusive,
+	}
+}
+
 const (
 	// RequiredAttributeBehaviorRequiredAlways is a RequiredAttributeBehavior enum value
 	RequiredAttributeBehaviorRequiredAlways = "REQUIRED_ALWAYS"
@@ -22423,6 +22524,14 @@ const (
 	// RequiredAttributeBehaviorNotRequired is a RequiredAttributeBehavior enum value
 	RequiredAttributeBehaviorNotRequired = "NOT_REQUIRED"
 )
+
+// RequiredAttributeBehavior_Values returns all elements of the RequiredAttributeBehavior enum
+func RequiredAttributeBehavior_Values() []string {
+	return []string{
+		RequiredAttributeBehaviorRequiredAlways,
+		RequiredAttributeBehaviorNotRequired,
+	}
+}
 
 const (
 	// RuleTypeBinaryLength is a RuleType enum value
@@ -22438,6 +22547,16 @@ const (
 	RuleTypeStringLength = "STRING_LENGTH"
 )
 
+// RuleType_Values returns all elements of the RuleType enum
+func RuleType_Values() []string {
+	return []string{
+		RuleTypeBinaryLength,
+		RuleTypeNumberComparison,
+		RuleTypeStringFromSet,
+		RuleTypeStringLength,
+	}
+}
+
 const (
 	// UpdateActionTypeCreateOrUpdate is a UpdateActionType enum value
 	UpdateActionTypeCreateOrUpdate = "CREATE_OR_UPDATE"
@@ -22445,3 +22564,11 @@ const (
 	// UpdateActionTypeDelete is a UpdateActionType enum value
 	UpdateActionTypeDelete = "DELETE"
 )
+
+// UpdateActionType_Values returns all elements of the UpdateActionType enum
+func UpdateActionType_Values() []string {
+	return []string{
+		UpdateActionTypeCreateOrUpdate,
+		UpdateActionTypeDelete,
+	}
+}

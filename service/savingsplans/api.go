@@ -2514,6 +2514,14 @@ const (
 	CurrencyCodeUsd = "USD"
 )
 
+// CurrencyCode_Values returns all elements of the CurrencyCode enum
+func CurrencyCode_Values() []string {
+	return []string{
+		CurrencyCodeCny,
+		CurrencyCodeUsd,
+	}
+}
+
 const (
 	// SavingsPlanOfferingFilterAttributeRegion is a SavingsPlanOfferingFilterAttribute enum value
 	SavingsPlanOfferingFilterAttributeRegion = "region"
@@ -2522,6 +2530,14 @@ const (
 	SavingsPlanOfferingFilterAttributeInstanceFamily = "instanceFamily"
 )
 
+// SavingsPlanOfferingFilterAttribute_Values returns all elements of the SavingsPlanOfferingFilterAttribute enum
+func SavingsPlanOfferingFilterAttribute_Values() []string {
+	return []string{
+		SavingsPlanOfferingFilterAttributeRegion,
+		SavingsPlanOfferingFilterAttributeInstanceFamily,
+	}
+}
+
 const (
 	// SavingsPlanOfferingPropertyKeyRegion is a SavingsPlanOfferingPropertyKey enum value
 	SavingsPlanOfferingPropertyKeyRegion = "region"
@@ -2529,6 +2545,14 @@ const (
 	// SavingsPlanOfferingPropertyKeyInstanceFamily is a SavingsPlanOfferingPropertyKey enum value
 	SavingsPlanOfferingPropertyKeyInstanceFamily = "instanceFamily"
 )
+
+// SavingsPlanOfferingPropertyKey_Values returns all elements of the SavingsPlanOfferingPropertyKey enum
+func SavingsPlanOfferingPropertyKey_Values() []string {
+	return []string{
+		SavingsPlanOfferingPropertyKeyRegion,
+		SavingsPlanOfferingPropertyKeyInstanceFamily,
+	}
+}
 
 const (
 	// SavingsPlanPaymentOptionAllUpfront is a SavingsPlanPaymentOption enum value
@@ -2541,6 +2565,15 @@ const (
 	SavingsPlanPaymentOptionNoUpfront = "No Upfront"
 )
 
+// SavingsPlanPaymentOption_Values returns all elements of the SavingsPlanPaymentOption enum
+func SavingsPlanPaymentOption_Values() []string {
+	return []string{
+		SavingsPlanPaymentOptionAllUpfront,
+		SavingsPlanPaymentOptionPartialUpfront,
+		SavingsPlanPaymentOptionNoUpfront,
+	}
+}
+
 const (
 	// SavingsPlanProductTypeEc2 is a SavingsPlanProductType enum value
 	SavingsPlanProductTypeEc2 = "EC2"
@@ -2551,6 +2584,15 @@ const (
 	// SavingsPlanProductTypeLambda is a SavingsPlanProductType enum value
 	SavingsPlanProductTypeLambda = "Lambda"
 )
+
+// SavingsPlanProductType_Values returns all elements of the SavingsPlanProductType enum
+func SavingsPlanProductType_Values() []string {
+	return []string{
+		SavingsPlanProductTypeEc2,
+		SavingsPlanProductTypeFargate,
+		SavingsPlanProductTypeLambda,
+	}
+}
 
 const (
 	// SavingsPlanRateFilterAttributeRegion is a SavingsPlanRateFilterAttribute enum value
@@ -2571,6 +2613,18 @@ const (
 	// SavingsPlanRateFilterAttributeProductId is a SavingsPlanRateFilterAttribute enum value
 	SavingsPlanRateFilterAttributeProductId = "productId"
 )
+
+// SavingsPlanRateFilterAttribute_Values returns all elements of the SavingsPlanRateFilterAttribute enum
+func SavingsPlanRateFilterAttribute_Values() []string {
+	return []string{
+		SavingsPlanRateFilterAttributeRegion,
+		SavingsPlanRateFilterAttributeInstanceFamily,
+		SavingsPlanRateFilterAttributeInstanceType,
+		SavingsPlanRateFilterAttributeProductDescription,
+		SavingsPlanRateFilterAttributeTenancy,
+		SavingsPlanRateFilterAttributeProductId,
+	}
+}
 
 const (
 	// SavingsPlanRateFilterNameRegion is a SavingsPlanRateFilterName enum value
@@ -2598,6 +2652,20 @@ const (
 	SavingsPlanRateFilterNameOperation = "operation"
 )
 
+// SavingsPlanRateFilterName_Values returns all elements of the SavingsPlanRateFilterName enum
+func SavingsPlanRateFilterName_Values() []string {
+	return []string{
+		SavingsPlanRateFilterNameRegion,
+		SavingsPlanRateFilterNameInstanceType,
+		SavingsPlanRateFilterNameProductDescription,
+		SavingsPlanRateFilterNameTenancy,
+		SavingsPlanRateFilterNameProductType,
+		SavingsPlanRateFilterNameServiceCode,
+		SavingsPlanRateFilterNameUsageType,
+		SavingsPlanRateFilterNameOperation,
+	}
+}
+
 const (
 	// SavingsPlanRatePropertyKeyRegion is a SavingsPlanRatePropertyKey enum value
 	SavingsPlanRatePropertyKeyRegion = "region"
@@ -2615,6 +2683,17 @@ const (
 	SavingsPlanRatePropertyKeyTenancy = "tenancy"
 )
 
+// SavingsPlanRatePropertyKey_Values returns all elements of the SavingsPlanRatePropertyKey enum
+func SavingsPlanRatePropertyKey_Values() []string {
+	return []string{
+		SavingsPlanRatePropertyKeyRegion,
+		SavingsPlanRatePropertyKeyInstanceType,
+		SavingsPlanRatePropertyKeyInstanceFamily,
+		SavingsPlanRatePropertyKeyProductDescription,
+		SavingsPlanRatePropertyKeyTenancy,
+	}
+}
+
 const (
 	// SavingsPlanRateServiceCodeAmazonEc2 is a SavingsPlanRateServiceCode enum value
 	SavingsPlanRateServiceCodeAmazonEc2 = "AmazonEC2"
@@ -2629,6 +2708,15 @@ const (
 	SavingsPlanRateServiceCodeAwslambda = "AWSLambda"
 )
 
+// SavingsPlanRateServiceCode_Values returns all elements of the SavingsPlanRateServiceCode enum
+func SavingsPlanRateServiceCode_Values() []string {
+	return []string{
+		SavingsPlanRateServiceCodeAmazonEc2,
+		SavingsPlanRateServiceCodeAmazonEcs,
+		SavingsPlanRateServiceCodeAwslambda,
+	}
+}
+
 const (
 	// SavingsPlanRateUnitHrs is a SavingsPlanRateUnit enum value
 	SavingsPlanRateUnitHrs = "Hrs"
@@ -2639,6 +2727,15 @@ const (
 	// SavingsPlanRateUnitRequest is a SavingsPlanRateUnit enum value
 	SavingsPlanRateUnitRequest = "Request"
 )
+
+// SavingsPlanRateUnit_Values returns all elements of the SavingsPlanRateUnit enum
+func SavingsPlanRateUnit_Values() []string {
+	return []string{
+		SavingsPlanRateUnitHrs,
+		SavingsPlanRateUnitLambdaGbSecond,
+		SavingsPlanRateUnitRequest,
+	}
+}
 
 const (
 	// SavingsPlanStatePaymentPending is a SavingsPlanState enum value
@@ -2654,6 +2751,16 @@ const (
 	SavingsPlanStateRetired = "retired"
 )
 
+// SavingsPlanState_Values returns all elements of the SavingsPlanState enum
+func SavingsPlanState_Values() []string {
+	return []string{
+		SavingsPlanStatePaymentPending,
+		SavingsPlanStatePaymentFailed,
+		SavingsPlanStateActive,
+		SavingsPlanStateRetired,
+	}
+}
+
 const (
 	// SavingsPlanTypeCompute is a SavingsPlanType enum value
 	SavingsPlanTypeCompute = "Compute"
@@ -2661,6 +2768,14 @@ const (
 	// SavingsPlanTypeEc2instance is a SavingsPlanType enum value
 	SavingsPlanTypeEc2instance = "EC2Instance"
 )
+
+// SavingsPlanType_Values returns all elements of the SavingsPlanType enum
+func SavingsPlanType_Values() []string {
+	return []string{
+		SavingsPlanTypeCompute,
+		SavingsPlanTypeEc2instance,
+	}
+}
 
 const (
 	// SavingsPlansFilterNameRegion is a SavingsPlansFilterName enum value
@@ -2690,3 +2805,18 @@ const (
 	// SavingsPlansFilterNameEnd is a SavingsPlansFilterName enum value
 	SavingsPlansFilterNameEnd = "end"
 )
+
+// SavingsPlansFilterName_Values returns all elements of the SavingsPlansFilterName enum
+func SavingsPlansFilterName_Values() []string {
+	return []string{
+		SavingsPlansFilterNameRegion,
+		SavingsPlansFilterNameEc2InstanceFamily,
+		SavingsPlansFilterNameCommitment,
+		SavingsPlansFilterNameUpfront,
+		SavingsPlansFilterNameTerm,
+		SavingsPlansFilterNameSavingsPlanType,
+		SavingsPlansFilterNamePaymentOption,
+		SavingsPlansFilterNameStart,
+		SavingsPlansFilterNameEnd,
+	}
+}

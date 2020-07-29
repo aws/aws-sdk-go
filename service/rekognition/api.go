@@ -16330,6 +16330,14 @@ const (
 	AttributeAll = "ALL"
 )
 
+// Attribute_Values returns all elements of the Attribute enum
+func Attribute_Values() []string {
+	return []string{
+		AttributeDefault,
+		AttributeAll,
+	}
+}
+
 const (
 	// CelebrityRecognitionSortById is a CelebrityRecognitionSortBy enum value
 	CelebrityRecognitionSortById = "ID"
@@ -16337,6 +16345,14 @@ const (
 	// CelebrityRecognitionSortByTimestamp is a CelebrityRecognitionSortBy enum value
 	CelebrityRecognitionSortByTimestamp = "TIMESTAMP"
 )
+
+// CelebrityRecognitionSortBy_Values returns all elements of the CelebrityRecognitionSortBy enum
+func CelebrityRecognitionSortBy_Values() []string {
+	return []string{
+		CelebrityRecognitionSortById,
+		CelebrityRecognitionSortByTimestamp,
+	}
+}
 
 const (
 	// ContentClassifierFreeOfPersonallyIdentifiableInformation is a ContentClassifier enum value
@@ -16346,6 +16362,14 @@ const (
 	ContentClassifierFreeOfAdultContent = "FreeOfAdultContent"
 )
 
+// ContentClassifier_Values returns all elements of the ContentClassifier enum
+func ContentClassifier_Values() []string {
+	return []string{
+		ContentClassifierFreeOfPersonallyIdentifiableInformation,
+		ContentClassifierFreeOfAdultContent,
+	}
+}
+
 const (
 	// ContentModerationSortByName is a ContentModerationSortBy enum value
 	ContentModerationSortByName = "NAME"
@@ -16353,6 +16377,14 @@ const (
 	// ContentModerationSortByTimestamp is a ContentModerationSortBy enum value
 	ContentModerationSortByTimestamp = "TIMESTAMP"
 )
+
+// ContentModerationSortBy_Values returns all elements of the ContentModerationSortBy enum
+func ContentModerationSortBy_Values() []string {
+	return []string{
+		ContentModerationSortByName,
+		ContentModerationSortByTimestamp,
+	}
+}
 
 const (
 	// EmotionNameHappy is a EmotionName enum value
@@ -16383,6 +16415,21 @@ const (
 	EmotionNameFear = "FEAR"
 )
 
+// EmotionName_Values returns all elements of the EmotionName enum
+func EmotionName_Values() []string {
+	return []string{
+		EmotionNameHappy,
+		EmotionNameSad,
+		EmotionNameAngry,
+		EmotionNameConfused,
+		EmotionNameDisgusted,
+		EmotionNameSurprised,
+		EmotionNameCalm,
+		EmotionNameUnknown,
+		EmotionNameFear,
+	}
+}
+
 const (
 	// FaceAttributesDefault is a FaceAttributes enum value
 	FaceAttributesDefault = "DEFAULT"
@@ -16390,6 +16437,14 @@ const (
 	// FaceAttributesAll is a FaceAttributes enum value
 	FaceAttributesAll = "ALL"
 )
+
+// FaceAttributes_Values returns all elements of the FaceAttributes enum
+func FaceAttributes_Values() []string {
+	return []string{
+		FaceAttributesDefault,
+		FaceAttributesAll,
+	}
+}
 
 const (
 	// FaceSearchSortByIndex is a FaceSearchSortBy enum value
@@ -16399,6 +16454,14 @@ const (
 	FaceSearchSortByTimestamp = "TIMESTAMP"
 )
 
+// FaceSearchSortBy_Values returns all elements of the FaceSearchSortBy enum
+func FaceSearchSortBy_Values() []string {
+	return []string{
+		FaceSearchSortByIndex,
+		FaceSearchSortByTimestamp,
+	}
+}
+
 const (
 	// GenderTypeMale is a GenderType enum value
 	GenderTypeMale = "Male"
@@ -16407,6 +16470,14 @@ const (
 	GenderTypeFemale = "Female"
 )
 
+// GenderType_Values returns all elements of the GenderType enum
+func GenderType_Values() []string {
+	return []string{
+		GenderTypeMale,
+		GenderTypeFemale,
+	}
+}
+
 const (
 	// LabelDetectionSortByName is a LabelDetectionSortBy enum value
 	LabelDetectionSortByName = "NAME"
@@ -16414,6 +16485,14 @@ const (
 	// LabelDetectionSortByTimestamp is a LabelDetectionSortBy enum value
 	LabelDetectionSortByTimestamp = "TIMESTAMP"
 )
+
+// LabelDetectionSortBy_Values returns all elements of the LabelDetectionSortBy enum
+func LabelDetectionSortBy_Values() []string {
+	return []string{
+		LabelDetectionSortByName,
+		LabelDetectionSortByTimestamp,
+	}
+}
 
 const (
 	// LandmarkTypeEyeLeft is a LandmarkType enum value
@@ -16507,6 +16586,42 @@ const (
 	LandmarkTypeUpperJawlineRight = "upperJawlineRight"
 )
 
+// LandmarkType_Values returns all elements of the LandmarkType enum
+func LandmarkType_Values() []string {
+	return []string{
+		LandmarkTypeEyeLeft,
+		LandmarkTypeEyeRight,
+		LandmarkTypeNose,
+		LandmarkTypeMouthLeft,
+		LandmarkTypeMouthRight,
+		LandmarkTypeLeftEyeBrowLeft,
+		LandmarkTypeLeftEyeBrowRight,
+		LandmarkTypeLeftEyeBrowUp,
+		LandmarkTypeRightEyeBrowLeft,
+		LandmarkTypeRightEyeBrowRight,
+		LandmarkTypeRightEyeBrowUp,
+		LandmarkTypeLeftEyeLeft,
+		LandmarkTypeLeftEyeRight,
+		LandmarkTypeLeftEyeUp,
+		LandmarkTypeLeftEyeDown,
+		LandmarkTypeRightEyeLeft,
+		LandmarkTypeRightEyeRight,
+		LandmarkTypeRightEyeUp,
+		LandmarkTypeRightEyeDown,
+		LandmarkTypeNoseLeft,
+		LandmarkTypeNoseRight,
+		LandmarkTypeMouthUp,
+		LandmarkTypeMouthDown,
+		LandmarkTypeLeftPupil,
+		LandmarkTypeRightPupil,
+		LandmarkTypeUpperJawlineLeft,
+		LandmarkTypeMidJawlineLeft,
+		LandmarkTypeChinBottom,
+		LandmarkTypeMidJawlineRight,
+		LandmarkTypeUpperJawlineRight,
+	}
+}
+
 const (
 	// OrientationCorrectionRotate0 is a OrientationCorrection enum value
 	OrientationCorrectionRotate0 = "ROTATE_0"
@@ -16521,6 +16636,16 @@ const (
 	OrientationCorrectionRotate270 = "ROTATE_270"
 )
 
+// OrientationCorrection_Values returns all elements of the OrientationCorrection enum
+func OrientationCorrection_Values() []string {
+	return []string{
+		OrientationCorrectionRotate0,
+		OrientationCorrectionRotate90,
+		OrientationCorrectionRotate180,
+		OrientationCorrectionRotate270,
+	}
+}
+
 const (
 	// PersonTrackingSortByIndex is a PersonTrackingSortBy enum value
 	PersonTrackingSortByIndex = "INDEX"
@@ -16528,6 +16653,14 @@ const (
 	// PersonTrackingSortByTimestamp is a PersonTrackingSortBy enum value
 	PersonTrackingSortByTimestamp = "TIMESTAMP"
 )
+
+// PersonTrackingSortBy_Values returns all elements of the PersonTrackingSortBy enum
+func PersonTrackingSortBy_Values() []string {
+	return []string{
+		PersonTrackingSortByIndex,
+		PersonTrackingSortByTimestamp,
+	}
+}
 
 const (
 	// ProjectStatusCreating is a ProjectStatus enum value
@@ -16539,6 +16672,15 @@ const (
 	// ProjectStatusDeleting is a ProjectStatus enum value
 	ProjectStatusDeleting = "DELETING"
 )
+
+// ProjectStatus_Values returns all elements of the ProjectStatus enum
+func ProjectStatus_Values() []string {
+	return []string{
+		ProjectStatusCreating,
+		ProjectStatusCreated,
+		ProjectStatusDeleting,
+	}
+}
 
 const (
 	// ProjectVersionStatusTrainingInProgress is a ProjectVersionStatus enum value
@@ -16569,6 +16711,21 @@ const (
 	ProjectVersionStatusDeleting = "DELETING"
 )
 
+// ProjectVersionStatus_Values returns all elements of the ProjectVersionStatus enum
+func ProjectVersionStatus_Values() []string {
+	return []string{
+		ProjectVersionStatusTrainingInProgress,
+		ProjectVersionStatusTrainingCompleted,
+		ProjectVersionStatusTrainingFailed,
+		ProjectVersionStatusStarting,
+		ProjectVersionStatusRunning,
+		ProjectVersionStatusFailed,
+		ProjectVersionStatusStopping,
+		ProjectVersionStatusStopped,
+		ProjectVersionStatusDeleting,
+	}
+}
+
 const (
 	// QualityFilterNone is a QualityFilter enum value
 	QualityFilterNone = "NONE"
@@ -16585,6 +16742,17 @@ const (
 	// QualityFilterHigh is a QualityFilter enum value
 	QualityFilterHigh = "HIGH"
 )
+
+// QualityFilter_Values returns all elements of the QualityFilter enum
+func QualityFilter_Values() []string {
+	return []string{
+		QualityFilterNone,
+		QualityFilterAuto,
+		QualityFilterLow,
+		QualityFilterMedium,
+		QualityFilterHigh,
+	}
+}
 
 const (
 	// ReasonExceedsMaxFaces is a Reason enum value
@@ -16609,6 +16777,19 @@ const (
 	ReasonLowFaceQuality = "LOW_FACE_QUALITY"
 )
 
+// Reason_Values returns all elements of the Reason enum
+func Reason_Values() []string {
+	return []string{
+		ReasonExceedsMaxFaces,
+		ReasonExtremePose,
+		ReasonLowBrightness,
+		ReasonLowSharpness,
+		ReasonLowConfidence,
+		ReasonSmallBoundingBox,
+		ReasonLowFaceQuality,
+	}
+}
+
 const (
 	// SegmentTypeTechnicalCue is a SegmentType enum value
 	SegmentTypeTechnicalCue = "TECHNICAL_CUE"
@@ -16616,6 +16797,14 @@ const (
 	// SegmentTypeShot is a SegmentType enum value
 	SegmentTypeShot = "SHOT"
 )
+
+// SegmentType_Values returns all elements of the SegmentType enum
+func SegmentType_Values() []string {
+	return []string{
+		SegmentTypeTechnicalCue,
+		SegmentTypeShot,
+	}
+}
 
 const (
 	// StreamProcessorStatusStopped is a StreamProcessorStatus enum value
@@ -16634,6 +16823,17 @@ const (
 	StreamProcessorStatusStopping = "STOPPING"
 )
 
+// StreamProcessorStatus_Values returns all elements of the StreamProcessorStatus enum
+func StreamProcessorStatus_Values() []string {
+	return []string{
+		StreamProcessorStatusStopped,
+		StreamProcessorStatusStarting,
+		StreamProcessorStatusRunning,
+		StreamProcessorStatusFailed,
+		StreamProcessorStatusStopping,
+	}
+}
+
 const (
 	// TechnicalCueTypeColorBars is a TechnicalCueType enum value
 	TechnicalCueTypeColorBars = "ColorBars"
@@ -16645,6 +16845,15 @@ const (
 	TechnicalCueTypeBlackFrames = "BlackFrames"
 )
 
+// TechnicalCueType_Values returns all elements of the TechnicalCueType enum
+func TechnicalCueType_Values() []string {
+	return []string{
+		TechnicalCueTypeColorBars,
+		TechnicalCueTypeEndCredits,
+		TechnicalCueTypeBlackFrames,
+	}
+}
+
 const (
 	// TextTypesLine is a TextTypes enum value
 	TextTypesLine = "LINE"
@@ -16652,6 +16861,14 @@ const (
 	// TextTypesWord is a TextTypes enum value
 	TextTypesWord = "WORD"
 )
+
+// TextTypes_Values returns all elements of the TextTypes enum
+func TextTypes_Values() []string {
+	return []string{
+		TextTypesLine,
+		TextTypesWord,
+	}
+}
 
 const (
 	// VideoJobStatusInProgress is a VideoJobStatus enum value
@@ -16663,3 +16880,12 @@ const (
 	// VideoJobStatusFailed is a VideoJobStatus enum value
 	VideoJobStatusFailed = "FAILED"
 )
+
+// VideoJobStatus_Values returns all elements of the VideoJobStatus enum
+func VideoJobStatus_Values() []string {
+	return []string{
+		VideoJobStatusInProgress,
+		VideoJobStatusSucceeded,
+		VideoJobStatusFailed,
+	}
+}

@@ -14550,6 +14550,14 @@ const (
 	DocumentClassifierModeMultiLabel = "MULTI_LABEL"
 )
 
+// DocumentClassifierMode_Values returns all elements of the DocumentClassifierMode enum
+func DocumentClassifierMode_Values() []string {
+	return []string{
+		DocumentClassifierModeMultiClass,
+		DocumentClassifierModeMultiLabel,
+	}
+}
+
 const (
 	// EndpointStatusCreating is a EndpointStatus enum value
 	EndpointStatusCreating = "CREATING"
@@ -14566,6 +14574,17 @@ const (
 	// EndpointStatusUpdating is a EndpointStatus enum value
 	EndpointStatusUpdating = "UPDATING"
 )
+
+// EndpointStatus_Values returns all elements of the EndpointStatus enum
+func EndpointStatus_Values() []string {
+	return []string{
+		EndpointStatusCreating,
+		EndpointStatusDeleting,
+		EndpointStatusFailed,
+		EndpointStatusInService,
+		EndpointStatusUpdating,
+	}
+}
 
 const (
 	// EntityTypePerson is a EntityType enum value
@@ -14596,6 +14615,21 @@ const (
 	EntityTypeOther = "OTHER"
 )
 
+// EntityType_Values returns all elements of the EntityType enum
+func EntityType_Values() []string {
+	return []string{
+		EntityTypePerson,
+		EntityTypeLocation,
+		EntityTypeOrganization,
+		EntityTypeCommercialItem,
+		EntityTypeEvent,
+		EntityTypeDate,
+		EntityTypeQuantity,
+		EntityTypeTitle,
+		EntityTypeOther,
+	}
+}
+
 const (
 	// InputFormatOneDocPerFile is a InputFormat enum value
 	InputFormatOneDocPerFile = "ONE_DOC_PER_FILE"
@@ -14603,6 +14637,14 @@ const (
 	// InputFormatOneDocPerLine is a InputFormat enum value
 	InputFormatOneDocPerLine = "ONE_DOC_PER_LINE"
 )
+
+// InputFormat_Values returns all elements of the InputFormat enum
+func InputFormat_Values() []string {
+	return []string{
+		InputFormatOneDocPerFile,
+		InputFormatOneDocPerLine,
+	}
+}
 
 const (
 	// JobStatusSubmitted is a JobStatus enum value
@@ -14623,6 +14665,18 @@ const (
 	// JobStatusStopped is a JobStatus enum value
 	JobStatusStopped = "STOPPED"
 )
+
+// JobStatus_Values returns all elements of the JobStatus enum
+func JobStatus_Values() []string {
+	return []string{
+		JobStatusSubmitted,
+		JobStatusInProgress,
+		JobStatusCompleted,
+		JobStatusFailed,
+		JobStatusStopRequested,
+		JobStatusStopped,
+	}
+}
 
 const (
 	// LanguageCodeEn is a LanguageCode enum value
@@ -14662,6 +14716,24 @@ const (
 	LanguageCodeZhTw = "zh-TW"
 )
 
+// LanguageCode_Values returns all elements of the LanguageCode enum
+func LanguageCode_Values() []string {
+	return []string{
+		LanguageCodeEn,
+		LanguageCodeEs,
+		LanguageCodeFr,
+		LanguageCodeDe,
+		LanguageCodeIt,
+		LanguageCodePt,
+		LanguageCodeAr,
+		LanguageCodeHi,
+		LanguageCodeJa,
+		LanguageCodeKo,
+		LanguageCodeZh,
+		LanguageCodeZhTw,
+	}
+}
+
 const (
 	// ModelStatusSubmitted is a ModelStatus enum value
 	ModelStatusSubmitted = "SUBMITTED"
@@ -14684,6 +14756,19 @@ const (
 	// ModelStatusTrained is a ModelStatus enum value
 	ModelStatusTrained = "TRAINED"
 )
+
+// ModelStatus_Values returns all elements of the ModelStatus enum
+func ModelStatus_Values() []string {
+	return []string{
+		ModelStatusSubmitted,
+		ModelStatusTraining,
+		ModelStatusDeleting,
+		ModelStatusStopRequested,
+		ModelStatusStopped,
+		ModelStatusInError,
+		ModelStatusTrained,
+	}
+}
 
 const (
 	// PartOfSpeechTagTypeAdj is a PartOfSpeechTagType enum value
@@ -14741,6 +14826,30 @@ const (
 	PartOfSpeechTagTypeVerb = "VERB"
 )
 
+// PartOfSpeechTagType_Values returns all elements of the PartOfSpeechTagType enum
+func PartOfSpeechTagType_Values() []string {
+	return []string{
+		PartOfSpeechTagTypeAdj,
+		PartOfSpeechTagTypeAdp,
+		PartOfSpeechTagTypeAdv,
+		PartOfSpeechTagTypeAux,
+		PartOfSpeechTagTypeConj,
+		PartOfSpeechTagTypeCconj,
+		PartOfSpeechTagTypeDet,
+		PartOfSpeechTagTypeIntj,
+		PartOfSpeechTagTypeNoun,
+		PartOfSpeechTagTypeNum,
+		PartOfSpeechTagTypeO,
+		PartOfSpeechTagTypePart,
+		PartOfSpeechTagTypePron,
+		PartOfSpeechTagTypePropn,
+		PartOfSpeechTagTypePunct,
+		PartOfSpeechTagTypeSconj,
+		PartOfSpeechTagTypeSym,
+		PartOfSpeechTagTypeVerb,
+	}
+}
+
 const (
 	// SentimentTypePositive is a SentimentType enum value
 	SentimentTypePositive = "POSITIVE"
@@ -14754,6 +14863,16 @@ const (
 	// SentimentTypeMixed is a SentimentType enum value
 	SentimentTypeMixed = "MIXED"
 )
+
+// SentimentType_Values returns all elements of the SentimentType enum
+func SentimentType_Values() []string {
+	return []string{
+		SentimentTypePositive,
+		SentimentTypeNegative,
+		SentimentTypeNeutral,
+		SentimentTypeMixed,
+	}
+}
 
 const (
 	// SyntaxLanguageCodeEn is a SyntaxLanguageCode enum value
@@ -14774,3 +14893,15 @@ const (
 	// SyntaxLanguageCodePt is a SyntaxLanguageCode enum value
 	SyntaxLanguageCodePt = "pt"
 )
+
+// SyntaxLanguageCode_Values returns all elements of the SyntaxLanguageCode enum
+func SyntaxLanguageCode_Values() []string {
+	return []string{
+		SyntaxLanguageCodeEn,
+		SyntaxLanguageCodeEs,
+		SyntaxLanguageCodeFr,
+		SyntaxLanguageCodeDe,
+		SyntaxLanguageCodeIt,
+		SyntaxLanguageCodePt,
+	}
+}

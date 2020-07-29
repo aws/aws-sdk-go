@@ -8424,6 +8424,14 @@ const (
 	AppLaunchConfigurationStatusConfigured = "CONFIGURED"
 )
 
+// AppLaunchConfigurationStatus_Values returns all elements of the AppLaunchConfigurationStatus enum
+func AppLaunchConfigurationStatus_Values() []string {
+	return []string{
+		AppLaunchConfigurationStatusNotConfigured,
+		AppLaunchConfigurationStatusConfigured,
+	}
+}
+
 const (
 	// AppLaunchStatusReadyForConfiguration is a AppLaunchStatus enum value
 	AppLaunchStatusReadyForConfiguration = "READY_FOR_CONFIGURATION"
@@ -8471,6 +8479,27 @@ const (
 	AppLaunchStatusTerminated = "TERMINATED"
 )
 
+// AppLaunchStatus_Values returns all elements of the AppLaunchStatus enum
+func AppLaunchStatus_Values() []string {
+	return []string{
+		AppLaunchStatusReadyForConfiguration,
+		AppLaunchStatusConfigurationInProgress,
+		AppLaunchStatusConfigurationInvalid,
+		AppLaunchStatusReadyForLaunch,
+		AppLaunchStatusValidationInProgress,
+		AppLaunchStatusLaunchPending,
+		AppLaunchStatusLaunchInProgress,
+		AppLaunchStatusLaunched,
+		AppLaunchStatusPartiallyLaunched,
+		AppLaunchStatusDeltaLaunchInProgress,
+		AppLaunchStatusDeltaLaunchFailed,
+		AppLaunchStatusLaunchFailed,
+		AppLaunchStatusTerminateInProgress,
+		AppLaunchStatusTerminateFailed,
+		AppLaunchStatusTerminated,
+	}
+}
+
 const (
 	// AppReplicationConfigurationStatusNotConfigured is a AppReplicationConfigurationStatus enum value
 	AppReplicationConfigurationStatusNotConfigured = "NOT_CONFIGURED"
@@ -8478,6 +8507,14 @@ const (
 	// AppReplicationConfigurationStatusConfigured is a AppReplicationConfigurationStatus enum value
 	AppReplicationConfigurationStatusConfigured = "CONFIGURED"
 )
+
+// AppReplicationConfigurationStatus_Values returns all elements of the AppReplicationConfigurationStatus enum
+func AppReplicationConfigurationStatus_Values() []string {
+	return []string{
+		AppReplicationConfigurationStatusNotConfigured,
+		AppReplicationConfigurationStatusConfigured,
+	}
+}
 
 const (
 	// AppReplicationStatusReadyForConfiguration is a AppReplicationStatus enum value
@@ -8529,6 +8566,28 @@ const (
 	AppReplicationStatusReplicationStopped = "REPLICATION_STOPPED"
 )
 
+// AppReplicationStatus_Values returns all elements of the AppReplicationStatus enum
+func AppReplicationStatus_Values() []string {
+	return []string{
+		AppReplicationStatusReadyForConfiguration,
+		AppReplicationStatusConfigurationInProgress,
+		AppReplicationStatusConfigurationInvalid,
+		AppReplicationStatusReadyForReplication,
+		AppReplicationStatusValidationInProgress,
+		AppReplicationStatusReplicationPending,
+		AppReplicationStatusReplicationInProgress,
+		AppReplicationStatusReplicated,
+		AppReplicationStatusPartiallyReplicated,
+		AppReplicationStatusDeltaReplicationInProgress,
+		AppReplicationStatusDeltaReplicated,
+		AppReplicationStatusDeltaReplicationFailed,
+		AppReplicationStatusReplicationFailed,
+		AppReplicationStatusReplicationStopping,
+		AppReplicationStatusReplicationStopFailed,
+		AppReplicationStatusReplicationStopped,
+	}
+}
+
 const (
 	// AppStatusCreating is a AppStatus enum value
 	AppStatusCreating = "CREATING"
@@ -8549,10 +8608,29 @@ const (
 	AppStatusDeleteFailed = "DELETE_FAILED"
 )
 
+// AppStatus_Values returns all elements of the AppStatus enum
+func AppStatus_Values() []string {
+	return []string{
+		AppStatusCreating,
+		AppStatusActive,
+		AppStatusUpdating,
+		AppStatusDeleting,
+		AppStatusDeleted,
+		AppStatusDeleteFailed,
+	}
+}
+
 const (
 	// AppValidationStrategySsm is a AppValidationStrategy enum value
 	AppValidationStrategySsm = "SSM"
 )
+
+// AppValidationStrategy_Values returns all elements of the AppValidationStrategy enum
+func AppValidationStrategy_Values() []string {
+	return []string{
+		AppValidationStrategySsm,
+	}
+}
 
 const (
 	// ConnectorCapabilityVsphere is a ConnectorCapability enum value
@@ -8571,6 +8649,17 @@ const (
 	ConnectorCapabilitySmsOptimized = "SMS_OPTIMIZED"
 )
 
+// ConnectorCapability_Values returns all elements of the ConnectorCapability enum
+func ConnectorCapability_Values() []string {
+	return []string{
+		ConnectorCapabilityVsphere,
+		ConnectorCapabilityScvmm,
+		ConnectorCapabilityHypervManager,
+		ConnectorCapabilitySnapshotBatching,
+		ConnectorCapabilitySmsOptimized,
+	}
+}
+
 const (
 	// ConnectorStatusHealthy is a ConnectorStatus enum value
 	ConnectorStatusHealthy = "HEALTHY"
@@ -8578,6 +8667,14 @@ const (
 	// ConnectorStatusUnhealthy is a ConnectorStatus enum value
 	ConnectorStatusUnhealthy = "UNHEALTHY"
 )
+
+// ConnectorStatus_Values returns all elements of the ConnectorStatus enum
+func ConnectorStatus_Values() []string {
+	return []string{
+		ConnectorStatusHealthy,
+		ConnectorStatusUnhealthy,
+	}
+}
 
 const (
 	// LicenseTypeAws is a LicenseType enum value
@@ -8587,6 +8684,14 @@ const (
 	LicenseTypeByol = "BYOL"
 )
 
+// LicenseType_Values returns all elements of the LicenseType enum
+func LicenseType_Values() []string {
+	return []string{
+		LicenseTypeAws,
+		LicenseTypeByol,
+	}
+}
+
 const (
 	// OutputFormatJson is a OutputFormat enum value
 	OutputFormatJson = "JSON"
@@ -8594,6 +8699,14 @@ const (
 	// OutputFormatYaml is a OutputFormat enum value
 	OutputFormatYaml = "YAML"
 )
+
+// OutputFormat_Values returns all elements of the OutputFormat enum
+func OutputFormat_Values() []string {
+	return []string{
+		OutputFormatJson,
+		OutputFormatYaml,
+	}
+}
 
 const (
 	// ReplicationJobStatePending is a ReplicationJobState enum value
@@ -8621,6 +8734,20 @@ const (
 	ReplicationJobStateFailing = "FAILING"
 )
 
+// ReplicationJobState_Values returns all elements of the ReplicationJobState enum
+func ReplicationJobState_Values() []string {
+	return []string{
+		ReplicationJobStatePending,
+		ReplicationJobStateActive,
+		ReplicationJobStateFailed,
+		ReplicationJobStateDeleting,
+		ReplicationJobStateDeleted,
+		ReplicationJobStateCompleted,
+		ReplicationJobStatePausedOnFailure,
+		ReplicationJobStateFailing,
+	}
+}
+
 const (
 	// ReplicationRunStatePending is a ReplicationRunState enum value
 	ReplicationRunStatePending = "PENDING"
@@ -8644,6 +8771,19 @@ const (
 	ReplicationRunStateDeleted = "DELETED"
 )
 
+// ReplicationRunState_Values returns all elements of the ReplicationRunState enum
+func ReplicationRunState_Values() []string {
+	return []string{
+		ReplicationRunStatePending,
+		ReplicationRunStateMissed,
+		ReplicationRunStateActive,
+		ReplicationRunStateFailed,
+		ReplicationRunStateCompleted,
+		ReplicationRunStateDeleting,
+		ReplicationRunStateDeleted,
+	}
+}
+
 const (
 	// ReplicationRunTypeOnDemand is a ReplicationRunType enum value
 	ReplicationRunTypeOnDemand = "ON_DEMAND"
@@ -8652,6 +8792,14 @@ const (
 	ReplicationRunTypeAutomatic = "AUTOMATIC"
 )
 
+// ReplicationRunType_Values returns all elements of the ReplicationRunType enum
+func ReplicationRunType_Values() []string {
+	return []string{
+		ReplicationRunTypeOnDemand,
+		ReplicationRunTypeAutomatic,
+	}
+}
+
 const (
 	// ScriptTypeShellScript is a ScriptType enum value
 	ScriptTypeShellScript = "SHELL_SCRIPT"
@@ -8659,6 +8807,14 @@ const (
 	// ScriptTypePowershellScript is a ScriptType enum value
 	ScriptTypePowershellScript = "POWERSHELL_SCRIPT"
 )
+
+// ScriptType_Values returns all elements of the ScriptType enum
+func ScriptType_Values() []string {
+	return []string{
+		ScriptTypeShellScript,
+		ScriptTypePowershellScript,
+	}
+}
 
 const (
 	// ServerCatalogStatusNotImported is a ServerCatalogStatus enum value
@@ -8677,15 +8833,40 @@ const (
 	ServerCatalogStatusExpired = "EXPIRED"
 )
 
+// ServerCatalogStatus_Values returns all elements of the ServerCatalogStatus enum
+func ServerCatalogStatus_Values() []string {
+	return []string{
+		ServerCatalogStatusNotImported,
+		ServerCatalogStatusImporting,
+		ServerCatalogStatusAvailable,
+		ServerCatalogStatusDeleted,
+		ServerCatalogStatusExpired,
+	}
+}
+
 const (
 	// ServerTypeVirtualMachine is a ServerType enum value
 	ServerTypeVirtualMachine = "VIRTUAL_MACHINE"
 )
 
+// ServerType_Values returns all elements of the ServerType enum
+func ServerType_Values() []string {
+	return []string{
+		ServerTypeVirtualMachine,
+	}
+}
+
 const (
 	// ServerValidationStrategyUserdata is a ServerValidationStrategy enum value
 	ServerValidationStrategyUserdata = "USERDATA"
 )
+
+// ServerValidationStrategy_Values returns all elements of the ServerValidationStrategy enum
+func ServerValidationStrategy_Values() []string {
+	return []string{
+		ServerValidationStrategyUserdata,
+	}
+}
 
 const (
 	// ValidationStatusReadyForValidation is a ValidationStatus enum value
@@ -8704,6 +8885,17 @@ const (
 	ValidationStatusFailed = "FAILED"
 )
 
+// ValidationStatus_Values returns all elements of the ValidationStatus enum
+func ValidationStatus_Values() []string {
+	return []string{
+		ValidationStatusReadyForValidation,
+		ValidationStatusPending,
+		ValidationStatusInProgress,
+		ValidationStatusSucceeded,
+		ValidationStatusFailed,
+	}
+}
+
 const (
 	// VmManagerTypeVsphere is a VmManagerType enum value
 	VmManagerTypeVsphere = "VSPHERE"
@@ -8714,3 +8906,12 @@ const (
 	// VmManagerTypeHypervManager is a VmManagerType enum value
 	VmManagerTypeHypervManager = "HYPERV-MANAGER"
 )
+
+// VmManagerType_Values returns all elements of the VmManagerType enum
+func VmManagerType_Values() []string {
+	return []string{
+		VmManagerTypeVsphere,
+		VmManagerTypeScvmm,
+		VmManagerTypeHypervManager,
+	}
+}

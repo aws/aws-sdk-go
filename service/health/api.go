@@ -4368,10 +4368,26 @@ const (
 	EntityStatusCodeUnknown = "UNKNOWN"
 )
 
+// EntityStatusCode_Values returns all elements of the EntityStatusCode enum
+func EntityStatusCode_Values() []string {
+	return []string{
+		EntityStatusCodeImpaired,
+		EntityStatusCodeUnimpaired,
+		EntityStatusCodeUnknown,
+	}
+}
+
 const (
 	// EventAggregateFieldEventTypeCategory is a EventAggregateField enum value
 	EventAggregateFieldEventTypeCategory = "eventTypeCategory"
 )
+
+// EventAggregateField_Values returns all elements of the EventAggregateField enum
+func EventAggregateField_Values() []string {
+	return []string{
+		EventAggregateFieldEventTypeCategory,
+	}
+}
 
 const (
 	// EventScopeCodePublic is a EventScopeCode enum value
@@ -4384,6 +4400,15 @@ const (
 	EventScopeCodeNone = "NONE"
 )
 
+// EventScopeCode_Values returns all elements of the EventScopeCode enum
+func EventScopeCode_Values() []string {
+	return []string{
+		EventScopeCodePublic,
+		EventScopeCodeAccountSpecific,
+		EventScopeCodeNone,
+	}
+}
+
 const (
 	// EventStatusCodeOpen is a EventStatusCode enum value
 	EventStatusCodeOpen = "open"
@@ -4394,6 +4419,15 @@ const (
 	// EventStatusCodeUpcoming is a EventStatusCode enum value
 	EventStatusCodeUpcoming = "upcoming"
 )
+
+// EventStatusCode_Values returns all elements of the EventStatusCode enum
+func EventStatusCode_Values() []string {
+	return []string{
+		EventStatusCodeOpen,
+		EventStatusCodeClosed,
+		EventStatusCodeUpcoming,
+	}
+}
 
 const (
 	// EventTypeCategoryIssue is a EventTypeCategory enum value
@@ -4408,3 +4442,13 @@ const (
 	// EventTypeCategoryInvestigation is a EventTypeCategory enum value
 	EventTypeCategoryInvestigation = "investigation"
 )
+
+// EventTypeCategory_Values returns all elements of the EventTypeCategory enum
+func EventTypeCategory_Values() []string {
+	return []string{
+		EventTypeCategoryIssue,
+		EventTypeCategoryAccountNotification,
+		EventTypeCategoryScheduledChange,
+		EventTypeCategoryInvestigation,
+	}
+}

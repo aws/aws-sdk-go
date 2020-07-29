@@ -3255,6 +3255,13 @@ const (
 	EncryptionKeyTypeKms = "KMS"
 )
 
+// EncryptionKeyType_Values returns all elements of the EncryptionKeyType enum
+func EncryptionKeyType_Values() []string {
+	return []string{
+		EncryptionKeyTypeKms,
+	}
+}
+
 const (
 	// JobStatusSubmitted is a JobStatus enum value
 	JobStatusSubmitted = "SUBMITTED"
@@ -3278,10 +3285,30 @@ const (
 	JobStatusStopped = "STOPPED"
 )
 
+// JobStatus_Values returns all elements of the JobStatus enum
+func JobStatus_Values() []string {
+	return []string{
+		JobStatusSubmitted,
+		JobStatusInProgress,
+		JobStatusCompleted,
+		JobStatusCompletedWithError,
+		JobStatusFailed,
+		JobStatusStopRequested,
+		JobStatusStopped,
+	}
+}
+
 const (
 	// MergeStrategyOverwrite is a MergeStrategy enum value
 	MergeStrategyOverwrite = "OVERWRITE"
 )
+
+// MergeStrategy_Values returns all elements of the MergeStrategy enum
+func MergeStrategy_Values() []string {
+	return []string{
+		MergeStrategyOverwrite,
+	}
+}
 
 const (
 	// TerminologyDataFormatCsv is a TerminologyDataFormat enum value
@@ -3290,3 +3317,11 @@ const (
 	// TerminologyDataFormatTmx is a TerminologyDataFormat enum value
 	TerminologyDataFormatTmx = "TMX"
 )
+
+// TerminologyDataFormat_Values returns all elements of the TerminologyDataFormat enum
+func TerminologyDataFormat_Values() []string {
+	return []string{
+		TerminologyDataFormatCsv,
+		TerminologyDataFormatTmx,
+	}
+}

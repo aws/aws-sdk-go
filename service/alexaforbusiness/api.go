@@ -20862,6 +20862,15 @@ const (
 	BusinessReportFailureCodeInternalFailure = "INTERNAL_FAILURE"
 )
 
+// BusinessReportFailureCode_Values returns all elements of the BusinessReportFailureCode enum
+func BusinessReportFailureCode_Values() []string {
+	return []string{
+		BusinessReportFailureCodeAccessDenied,
+		BusinessReportFailureCodeNoSuchBucket,
+		BusinessReportFailureCodeInternalFailure,
+	}
+}
+
 const (
 	// BusinessReportFormatCsv is a BusinessReportFormat enum value
 	BusinessReportFormatCsv = "CSV"
@@ -20869,6 +20878,14 @@ const (
 	// BusinessReportFormatCsvZip is a BusinessReportFormat enum value
 	BusinessReportFormatCsvZip = "CSV_ZIP"
 )
+
+// BusinessReportFormat_Values returns all elements of the BusinessReportFormat enum
+func BusinessReportFormat_Values() []string {
+	return []string{
+		BusinessReportFormatCsv,
+		BusinessReportFormatCsvZip,
+	}
+}
 
 const (
 	// BusinessReportIntervalOneDay is a BusinessReportInterval enum value
@@ -20881,6 +20898,15 @@ const (
 	BusinessReportIntervalThirtyDays = "THIRTY_DAYS"
 )
 
+// BusinessReportInterval_Values returns all elements of the BusinessReportInterval enum
+func BusinessReportInterval_Values() []string {
+	return []string{
+		BusinessReportIntervalOneDay,
+		BusinessReportIntervalOneWeek,
+		BusinessReportIntervalThirtyDays,
+	}
+}
+
 const (
 	// BusinessReportStatusRunning is a BusinessReportStatus enum value
 	BusinessReportStatusRunning = "RUNNING"
@@ -20892,6 +20918,15 @@ const (
 	BusinessReportStatusFailed = "FAILED"
 )
 
+// BusinessReportStatus_Values returns all elements of the BusinessReportStatus enum
+func BusinessReportStatus_Values() []string {
+	return []string{
+		BusinessReportStatusRunning,
+		BusinessReportStatusSucceeded,
+		BusinessReportStatusFailed,
+	}
+}
+
 const (
 	// CommsProtocolSip is a CommsProtocol enum value
 	CommsProtocolSip = "SIP"
@@ -20902,6 +20937,15 @@ const (
 	// CommsProtocolH323 is a CommsProtocol enum value
 	CommsProtocolH323 = "H323"
 )
+
+// CommsProtocol_Values returns all elements of the CommsProtocol enum
+func CommsProtocol_Values() []string {
+	return []string{
+		CommsProtocolSip,
+		CommsProtocolSips,
+		CommsProtocolH323,
+	}
+}
 
 const (
 	// ConferenceProviderTypeChime is a ConferenceProviderType enum value
@@ -20935,6 +20979,22 @@ const (
 	ConferenceProviderTypeCustom = "CUSTOM"
 )
 
+// ConferenceProviderType_Values returns all elements of the ConferenceProviderType enum
+func ConferenceProviderType_Values() []string {
+	return []string{
+		ConferenceProviderTypeChime,
+		ConferenceProviderTypeBluejeans,
+		ConferenceProviderTypeFuze,
+		ConferenceProviderTypeGoogleHangouts,
+		ConferenceProviderTypePolycom,
+		ConferenceProviderTypeRingcentral,
+		ConferenceProviderTypeSkypeForBusiness,
+		ConferenceProviderTypeWebex,
+		ConferenceProviderTypeZoom,
+		ConferenceProviderTypeCustom,
+	}
+}
+
 const (
 	// ConnectionStatusOnline is a ConnectionStatus enum value
 	ConnectionStatusOnline = "ONLINE"
@@ -20943,6 +21003,14 @@ const (
 	ConnectionStatusOffline = "OFFLINE"
 )
 
+// ConnectionStatus_Values returns all elements of the ConnectionStatus enum
+func ConnectionStatus_Values() []string {
+	return []string{
+		ConnectionStatusOnline,
+		ConnectionStatusOffline,
+	}
+}
+
 const (
 	// DeviceEventTypeConnectionStatus is a DeviceEventType enum value
 	DeviceEventTypeConnectionStatus = "CONNECTION_STATUS"
@@ -20950,6 +21018,14 @@ const (
 	// DeviceEventTypeDeviceStatus is a DeviceEventType enum value
 	DeviceEventTypeDeviceStatus = "DEVICE_STATUS"
 )
+
+// DeviceEventType_Values returns all elements of the DeviceEventType enum
+func DeviceEventType_Values() []string {
+	return []string{
+		DeviceEventTypeConnectionStatus,
+		DeviceEventTypeDeviceStatus,
+	}
+}
 
 const (
 	// DeviceStatusReady is a DeviceStatus enum value
@@ -20967,6 +21043,17 @@ const (
 	// DeviceStatusFailed is a DeviceStatus enum value
 	DeviceStatusFailed = "FAILED"
 )
+
+// DeviceStatus_Values returns all elements of the DeviceStatus enum
+func DeviceStatus_Values() []string {
+	return []string{
+		DeviceStatusReady,
+		DeviceStatusPending,
+		DeviceStatusWasOffline,
+		DeviceStatusDeregistered,
+		DeviceStatusFailed,
+	}
+}
 
 const (
 	// DeviceStatusDetailCodeDeviceSoftwareUpdateNeeded is a DeviceStatusDetailCode enum value
@@ -21021,10 +21108,40 @@ const (
 	DeviceStatusDetailCodeCertificateAuthorityAccessDenied = "CERTIFICATE_AUTHORITY_ACCESS_DENIED"
 )
 
+// DeviceStatusDetailCode_Values returns all elements of the DeviceStatusDetailCode enum
+func DeviceStatusDetailCode_Values() []string {
+	return []string{
+		DeviceStatusDetailCodeDeviceSoftwareUpdateNeeded,
+		DeviceStatusDetailCodeDeviceWasOffline,
+		DeviceStatusDetailCodeCredentialsAccessFailure,
+		DeviceStatusDetailCodeTlsVersionMismatch,
+		DeviceStatusDetailCodeAssociationRejection,
+		DeviceStatusDetailCodeAuthenticationFailure,
+		DeviceStatusDetailCodeDhcpFailure,
+		DeviceStatusDetailCodeInternetUnavailable,
+		DeviceStatusDetailCodeDnsFailure,
+		DeviceStatusDetailCodeUnknownFailure,
+		DeviceStatusDetailCodeCertificateIssuingLimitExceeded,
+		DeviceStatusDetailCodeInvalidCertificateAuthority,
+		DeviceStatusDetailCodeNetworkProfileNotFound,
+		DeviceStatusDetailCodeInvalidPasswordState,
+		DeviceStatusDetailCodePasswordNotFound,
+		DeviceStatusDetailCodePasswordManagerAccessDenied,
+		DeviceStatusDetailCodeCertificateAuthorityAccessDenied,
+	}
+}
+
 const (
 	// DeviceUsageTypeVoice is a DeviceUsageType enum value
 	DeviceUsageTypeVoice = "VOICE"
 )
+
+// DeviceUsageType_Values returns all elements of the DeviceUsageType enum
+func DeviceUsageType_Values() []string {
+	return []string{
+		DeviceUsageTypeVoice,
+	}
+}
 
 const (
 	// DistanceUnitMetric is a DistanceUnit enum value
@@ -21034,6 +21151,14 @@ const (
 	DistanceUnitImperial = "IMPERIAL"
 )
 
+// DistanceUnit_Values returns all elements of the DistanceUnit enum
+func DistanceUnit_Values() []string {
+	return []string{
+		DistanceUnitMetric,
+		DistanceUnitImperial,
+	}
+}
+
 const (
 	// EnablementTypeEnabled is a EnablementType enum value
 	EnablementTypeEnabled = "ENABLED"
@@ -21042,6 +21167,14 @@ const (
 	EnablementTypePending = "PENDING"
 )
 
+// EnablementType_Values returns all elements of the EnablementType enum
+func EnablementType_Values() []string {
+	return []string{
+		EnablementTypeEnabled,
+		EnablementTypePending,
+	}
+}
+
 const (
 	// EnablementTypeFilterEnabled is a EnablementTypeFilter enum value
 	EnablementTypeFilterEnabled = "ENABLED"
@@ -21049,6 +21182,14 @@ const (
 	// EnablementTypeFilterPending is a EnablementTypeFilter enum value
 	EnablementTypeFilterPending = "PENDING"
 )
+
+// EnablementTypeFilter_Values returns all elements of the EnablementTypeFilter enum
+func EnablementTypeFilter_Values() []string {
+	return []string{
+		EnablementTypeFilterEnabled,
+		EnablementTypeFilterPending,
+	}
+}
 
 const (
 	// EndOfMeetingReminderTypeAnnouncementTimeCheck is a EndOfMeetingReminderType enum value
@@ -21063,6 +21204,16 @@ const (
 	// EndOfMeetingReminderTypeKnock is a EndOfMeetingReminderType enum value
 	EndOfMeetingReminderTypeKnock = "KNOCK"
 )
+
+// EndOfMeetingReminderType_Values returns all elements of the EndOfMeetingReminderType enum
+func EndOfMeetingReminderType_Values() []string {
+	return []string{
+		EndOfMeetingReminderTypeAnnouncementTimeCheck,
+		EndOfMeetingReminderTypeAnnouncementVariableTimeLeft,
+		EndOfMeetingReminderTypeChime,
+		EndOfMeetingReminderTypeKnock,
+	}
+}
 
 const (
 	// EnrollmentStatusInitialized is a EnrollmentStatus enum value
@@ -21080,6 +21231,17 @@ const (
 	// EnrollmentStatusDeregistering is a EnrollmentStatus enum value
 	EnrollmentStatusDeregistering = "DEREGISTERING"
 )
+
+// EnrollmentStatus_Values returns all elements of the EnrollmentStatus enum
+func EnrollmentStatus_Values() []string {
+	return []string{
+		EnrollmentStatusInitialized,
+		EnrollmentStatusPending,
+		EnrollmentStatusRegistered,
+		EnrollmentStatusDisassociating,
+		EnrollmentStatusDeregistering,
+	}
+}
 
 const (
 	// FeatureBluetooth is a Feature enum value
@@ -21107,15 +21269,43 @@ const (
 	FeatureAll = "ALL"
 )
 
+// Feature_Values returns all elements of the Feature enum
+func Feature_Values() []string {
+	return []string{
+		FeatureBluetooth,
+		FeatureVolume,
+		FeatureNotifications,
+		FeatureLists,
+		FeatureSkills,
+		FeatureNetworkProfile,
+		FeatureSettings,
+		FeatureAll,
+	}
+}
+
 const (
 	// LocaleEnUs is a Locale enum value
 	LocaleEnUs = "en-US"
 )
 
+// Locale_Values returns all elements of the Locale enum
+func Locale_Values() []string {
+	return []string{
+		LocaleEnUs,
+	}
+}
+
 const (
 	// NetworkEapMethodEapTls is a NetworkEapMethod enum value
 	NetworkEapMethodEapTls = "EAP_TLS"
 )
+
+// NetworkEapMethod_Values returns all elements of the NetworkEapMethod enum
+func NetworkEapMethod_Values() []string {
+	return []string{
+		NetworkEapMethodEapTls,
+	}
+}
 
 const (
 	// NetworkSecurityTypeOpen is a NetworkSecurityType enum value
@@ -21134,6 +21324,17 @@ const (
 	NetworkSecurityTypeWpa2Enterprise = "WPA2_ENTERPRISE"
 )
 
+// NetworkSecurityType_Values returns all elements of the NetworkSecurityType enum
+func NetworkSecurityType_Values() []string {
+	return []string{
+		NetworkSecurityTypeOpen,
+		NetworkSecurityTypeWep,
+		NetworkSecurityTypeWpaPsk,
+		NetworkSecurityTypeWpa2Psk,
+		NetworkSecurityTypeWpa2Enterprise,
+	}
+}
+
 const (
 	// PhoneNumberTypeMobile is a PhoneNumberType enum value
 	PhoneNumberTypeMobile = "MOBILE"
@@ -21144,6 +21345,15 @@ const (
 	// PhoneNumberTypeHome is a PhoneNumberType enum value
 	PhoneNumberTypeHome = "HOME"
 )
+
+// PhoneNumberType_Values returns all elements of the PhoneNumberType enum
+func PhoneNumberType_Values() []string {
+	return []string{
+		PhoneNumberTypeMobile,
+		PhoneNumberTypeWork,
+		PhoneNumberTypeHome,
+	}
+}
 
 const (
 	// RequirePinYes is a RequirePin enum value
@@ -21156,10 +21366,26 @@ const (
 	RequirePinOptional = "OPTIONAL"
 )
 
+// RequirePin_Values returns all elements of the RequirePin enum
+func RequirePin_Values() []string {
+	return []string{
+		RequirePinYes,
+		RequirePinNo,
+		RequirePinOptional,
+	}
+}
+
 const (
 	// SipTypeWork is a SipType enum value
 	SipTypeWork = "WORK"
 )
+
+// SipType_Values returns all elements of the SipType enum
+func SipType_Values() []string {
+	return []string{
+		SipTypeWork,
+	}
+}
 
 const (
 	// SkillTypePublic is a SkillType enum value
@@ -21168,6 +21394,14 @@ const (
 	// SkillTypePrivate is a SkillType enum value
 	SkillTypePrivate = "PRIVATE"
 )
+
+// SkillType_Values returns all elements of the SkillType enum
+func SkillType_Values() []string {
+	return []string{
+		SkillTypePublic,
+		SkillTypePrivate,
+	}
+}
 
 const (
 	// SkillTypeFilterPublic is a SkillTypeFilter enum value
@@ -21180,6 +21414,15 @@ const (
 	SkillTypeFilterAll = "ALL"
 )
 
+// SkillTypeFilter_Values returns all elements of the SkillTypeFilter enum
+func SkillTypeFilter_Values() []string {
+	return []string{
+		SkillTypeFilterPublic,
+		SkillTypeFilterPrivate,
+		SkillTypeFilterAll,
+	}
+}
+
 const (
 	// SortValueAsc is a SortValue enum value
 	SortValueAsc = "ASC"
@@ -21188,6 +21431,14 @@ const (
 	SortValueDesc = "DESC"
 )
 
+// SortValue_Values returns all elements of the SortValue enum
+func SortValue_Values() []string {
+	return []string{
+		SortValueAsc,
+		SortValueDesc,
+	}
+}
+
 const (
 	// TemperatureUnitFahrenheit is a TemperatureUnit enum value
 	TemperatureUnitFahrenheit = "FAHRENHEIT"
@@ -21195,6 +21446,14 @@ const (
 	// TemperatureUnitCelsius is a TemperatureUnit enum value
 	TemperatureUnitCelsius = "CELSIUS"
 )
+
+// TemperatureUnit_Values returns all elements of the TemperatureUnit enum
+func TemperatureUnit_Values() []string {
+	return []string{
+		TemperatureUnitFahrenheit,
+		TemperatureUnitCelsius,
+	}
+}
 
 const (
 	// WakeWordAlexa is a WakeWord enum value
@@ -21209,3 +21468,13 @@ const (
 	// WakeWordComputer is a WakeWord enum value
 	WakeWordComputer = "COMPUTER"
 )
+
+// WakeWord_Values returns all elements of the WakeWord enum
+func WakeWord_Values() []string {
+	return []string{
+		WakeWordAlexa,
+		WakeWordAmazon,
+		WakeWordEcho,
+		WakeWordComputer,
+	}
+}

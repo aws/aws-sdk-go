@@ -8939,6 +8939,14 @@ const (
 	AccountScopeLinked = "LINKED"
 )
 
+// AccountScope_Values returns all elements of the AccountScope enum
+func AccountScope_Values() []string {
+	return []string{
+		AccountScopePayer,
+		AccountScopeLinked,
+	}
+}
+
 const (
 	// ContextCostAndUsage is a Context enum value
 	ContextCostAndUsage = "COST_AND_USAGE"
@@ -8950,11 +8958,27 @@ const (
 	ContextSavingsPlans = "SAVINGS_PLANS"
 )
 
+// Context_Values returns all elements of the Context enum
+func Context_Values() []string {
+	return []string{
+		ContextCostAndUsage,
+		ContextReservations,
+		ContextSavingsPlans,
+	}
+}
+
 // The rule schema version in this particular Cost Category.
 const (
 	// CostCategoryRuleVersionCostCategoryExpressionV1 is a CostCategoryRuleVersion enum value
 	CostCategoryRuleVersionCostCategoryExpressionV1 = "CostCategoryExpression.v1"
 )
+
+// CostCategoryRuleVersion_Values returns all elements of the CostCategoryRuleVersion enum
+func CostCategoryRuleVersion_Values() []string {
+	return []string{
+		CostCategoryRuleVersionCostCategoryExpressionV1,
+	}
+}
 
 const (
 	// DimensionAz is a Dimension enum value
@@ -9045,6 +9069,41 @@ const (
 	DimensionPaymentOption = "PAYMENT_OPTION"
 )
 
+// Dimension_Values returns all elements of the Dimension enum
+func Dimension_Values() []string {
+	return []string{
+		DimensionAz,
+		DimensionInstanceType,
+		DimensionLinkedAccount,
+		DimensionLinkedAccountName,
+		DimensionOperation,
+		DimensionPurchaseType,
+		DimensionRegion,
+		DimensionService,
+		DimensionServiceCode,
+		DimensionUsageType,
+		DimensionUsageTypeGroup,
+		DimensionRecordType,
+		DimensionOperatingSystem,
+		DimensionTenancy,
+		DimensionScope,
+		DimensionPlatform,
+		DimensionSubscriptionId,
+		DimensionLegalEntityName,
+		DimensionDeploymentOption,
+		DimensionDatabaseEngine,
+		DimensionCacheEngine,
+		DimensionInstanceTypeFamily,
+		DimensionBillingEntity,
+		DimensionReservationId,
+		DimensionResourceId,
+		DimensionRightsizingType,
+		DimensionSavingsPlansType,
+		DimensionSavingsPlanArn,
+		DimensionPaymentOption,
+	}
+}
+
 const (
 	// GranularityDaily is a Granularity enum value
 	GranularityDaily = "DAILY"
@@ -9055,6 +9114,15 @@ const (
 	// GranularityHourly is a Granularity enum value
 	GranularityHourly = "HOURLY"
 )
+
+// Granularity_Values returns all elements of the Granularity enum
+func Granularity_Values() []string {
+	return []string{
+		GranularityDaily,
+		GranularityMonthly,
+		GranularityHourly,
+	}
+}
 
 const (
 	// GroupDefinitionTypeDimension is a GroupDefinitionType enum value
@@ -9067,6 +9135,15 @@ const (
 	GroupDefinitionTypeCostCategory = "COST_CATEGORY"
 )
 
+// GroupDefinitionType_Values returns all elements of the GroupDefinitionType enum
+func GroupDefinitionType_Values() []string {
+	return []string{
+		GroupDefinitionTypeDimension,
+		GroupDefinitionTypeTag,
+		GroupDefinitionTypeCostCategory,
+	}
+}
+
 const (
 	// LookbackPeriodInDaysSevenDays is a LookbackPeriodInDays enum value
 	LookbackPeriodInDaysSevenDays = "SEVEN_DAYS"
@@ -9077,6 +9154,15 @@ const (
 	// LookbackPeriodInDaysSixtyDays is a LookbackPeriodInDays enum value
 	LookbackPeriodInDaysSixtyDays = "SIXTY_DAYS"
 )
+
+// LookbackPeriodInDays_Values returns all elements of the LookbackPeriodInDays enum
+func LookbackPeriodInDays_Values() []string {
+	return []string{
+		LookbackPeriodInDaysSevenDays,
+		LookbackPeriodInDaysThirtyDays,
+		LookbackPeriodInDaysSixtyDays,
+	}
+}
 
 const (
 	// MatchOptionEquals is a MatchOption enum value
@@ -9097,6 +9183,18 @@ const (
 	// MatchOptionCaseInsensitive is a MatchOption enum value
 	MatchOptionCaseInsensitive = "CASE_INSENSITIVE"
 )
+
+// MatchOption_Values returns all elements of the MatchOption enum
+func MatchOption_Values() []string {
+	return []string{
+		MatchOptionEquals,
+		MatchOptionStartsWith,
+		MatchOptionEndsWith,
+		MatchOptionContains,
+		MatchOptionCaseSensitive,
+		MatchOptionCaseInsensitive,
+	}
+}
 
 const (
 	// MetricBlendedCost is a Metric enum value
@@ -9121,6 +9219,19 @@ const (
 	MetricNormalizedUsageAmount = "NORMALIZED_USAGE_AMOUNT"
 )
 
+// Metric_Values returns all elements of the Metric enum
+func Metric_Values() []string {
+	return []string{
+		MetricBlendedCost,
+		MetricUnblendedCost,
+		MetricAmortizedCost,
+		MetricNetUnblendedCost,
+		MetricNetAmortizedCost,
+		MetricUsageQuantity,
+		MetricNormalizedUsageAmount,
+	}
+}
+
 const (
 	// OfferingClassStandard is a OfferingClass enum value
 	OfferingClassStandard = "STANDARD"
@@ -9128,6 +9239,14 @@ const (
 	// OfferingClassConvertible is a OfferingClass enum value
 	OfferingClassConvertible = "CONVERTIBLE"
 )
+
+// OfferingClass_Values returns all elements of the OfferingClass enum
+func OfferingClass_Values() []string {
+	return []string{
+		OfferingClassStandard,
+		OfferingClassConvertible,
+	}
+}
 
 const (
 	// PaymentOptionNoUpfront is a PaymentOption enum value
@@ -9149,6 +9268,18 @@ const (
 	PaymentOptionHeavyUtilization = "HEAVY_UTILIZATION"
 )
 
+// PaymentOption_Values returns all elements of the PaymentOption enum
+func PaymentOption_Values() []string {
+	return []string{
+		PaymentOptionNoUpfront,
+		PaymentOptionPartialUpfront,
+		PaymentOptionAllUpfront,
+		PaymentOptionLightUtilization,
+		PaymentOptionMediumUtilization,
+		PaymentOptionHeavyUtilization,
+	}
+}
+
 const (
 	// RecommendationTargetSameInstanceFamily is a RecommendationTarget enum value
 	RecommendationTargetSameInstanceFamily = "SAME_INSTANCE_FAMILY"
@@ -9156,6 +9287,14 @@ const (
 	// RecommendationTargetCrossInstanceFamily is a RecommendationTarget enum value
 	RecommendationTargetCrossInstanceFamily = "CROSS_INSTANCE_FAMILY"
 )
+
+// RecommendationTarget_Values returns all elements of the RecommendationTarget enum
+func RecommendationTarget_Values() []string {
+	return []string{
+		RecommendationTargetSameInstanceFamily,
+		RecommendationTargetCrossInstanceFamily,
+	}
+}
 
 const (
 	// RightsizingTypeTerminate is a RightsizingType enum value
@@ -9165,6 +9304,14 @@ const (
 	RightsizingTypeModify = "MODIFY"
 )
 
+// RightsizingType_Values returns all elements of the RightsizingType enum
+func RightsizingType_Values() []string {
+	return []string{
+		RightsizingTypeTerminate,
+		RightsizingTypeModify,
+	}
+}
+
 const (
 	// SupportedSavingsPlansTypeComputeSp is a SupportedSavingsPlansType enum value
 	SupportedSavingsPlansTypeComputeSp = "COMPUTE_SP"
@@ -9173,6 +9320,14 @@ const (
 	SupportedSavingsPlansTypeEc2InstanceSp = "EC2_INSTANCE_SP"
 )
 
+// SupportedSavingsPlansType_Values returns all elements of the SupportedSavingsPlansType enum
+func SupportedSavingsPlansType_Values() []string {
+	return []string{
+		SupportedSavingsPlansTypeComputeSp,
+		SupportedSavingsPlansTypeEc2InstanceSp,
+	}
+}
+
 const (
 	// TermInYearsOneYear is a TermInYears enum value
 	TermInYearsOneYear = "ONE_YEAR"
@@ -9180,3 +9335,11 @@ const (
 	// TermInYearsThreeYears is a TermInYears enum value
 	TermInYearsThreeYears = "THREE_YEARS"
 )
+
+// TermInYears_Values returns all elements of the TermInYears enum
+func TermInYears_Values() []string {
+	return []string{
+		TermInYearsOneYear,
+		TermInYearsThreeYears,
+	}
+}

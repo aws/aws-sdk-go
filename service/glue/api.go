@@ -37388,6 +37388,14 @@ const (
 	CatalogEncryptionModeSseKms = "SSE-KMS"
 )
 
+// CatalogEncryptionMode_Values returns all elements of the CatalogEncryptionMode enum
+func CatalogEncryptionMode_Values() []string {
+	return []string{
+		CatalogEncryptionModeDisabled,
+		CatalogEncryptionModeSseKms,
+	}
+}
+
 const (
 	// CloudWatchEncryptionModeDisabled is a CloudWatchEncryptionMode enum value
 	CloudWatchEncryptionModeDisabled = "DISABLED"
@@ -37395,6 +37403,14 @@ const (
 	// CloudWatchEncryptionModeSseKms is a CloudWatchEncryptionMode enum value
 	CloudWatchEncryptionModeSseKms = "SSE-KMS"
 )
+
+// CloudWatchEncryptionMode_Values returns all elements of the CloudWatchEncryptionMode enum
+func CloudWatchEncryptionMode_Values() []string {
+	return []string{
+		CloudWatchEncryptionModeDisabled,
+		CloudWatchEncryptionModeSseKms,
+	}
+}
 
 const (
 	// ColumnStatisticsTypeBoolean is a ColumnStatisticsType enum value
@@ -37419,6 +37435,19 @@ const (
 	ColumnStatisticsTypeBinary = "BINARY"
 )
 
+// ColumnStatisticsType_Values returns all elements of the ColumnStatisticsType enum
+func ColumnStatisticsType_Values() []string {
+	return []string{
+		ColumnStatisticsTypeBoolean,
+		ColumnStatisticsTypeDate,
+		ColumnStatisticsTypeDecimal,
+		ColumnStatisticsTypeDouble,
+		ColumnStatisticsTypeLong,
+		ColumnStatisticsTypeString,
+		ColumnStatisticsTypeBinary,
+	}
+}
+
 const (
 	// ComparatorEquals is a Comparator enum value
 	ComparatorEquals = "EQUALS"
@@ -37435,6 +37464,17 @@ const (
 	// ComparatorLessThanEquals is a Comparator enum value
 	ComparatorLessThanEquals = "LESS_THAN_EQUALS"
 )
+
+// Comparator_Values returns all elements of the Comparator enum
+func Comparator_Values() []string {
+	return []string{
+		ComparatorEquals,
+		ComparatorGreaterThan,
+		ComparatorLessThan,
+		ComparatorGreaterThanEquals,
+		ComparatorLessThanEquals,
+	}
+}
 
 const (
 	// ConnectionPropertyKeyHost is a ConnectionPropertyKey enum value
@@ -37501,6 +37541,33 @@ const (
 	ConnectionPropertyKeyKafkaSkipCustomCertValidation = "KAFKA_SKIP_CUSTOM_CERT_VALIDATION"
 )
 
+// ConnectionPropertyKey_Values returns all elements of the ConnectionPropertyKey enum
+func ConnectionPropertyKey_Values() []string {
+	return []string{
+		ConnectionPropertyKeyHost,
+		ConnectionPropertyKeyPort,
+		ConnectionPropertyKeyUsername,
+		ConnectionPropertyKeyPassword,
+		ConnectionPropertyKeyEncryptedPassword,
+		ConnectionPropertyKeyJdbcDriverJarUri,
+		ConnectionPropertyKeyJdbcDriverClassName,
+		ConnectionPropertyKeyJdbcEngine,
+		ConnectionPropertyKeyJdbcEngineVersion,
+		ConnectionPropertyKeyConfigFiles,
+		ConnectionPropertyKeyInstanceId,
+		ConnectionPropertyKeyJdbcConnectionUrl,
+		ConnectionPropertyKeyJdbcEnforceSsl,
+		ConnectionPropertyKeyCustomJdbcCert,
+		ConnectionPropertyKeySkipCustomJdbcCertValidation,
+		ConnectionPropertyKeyCustomJdbcCertString,
+		ConnectionPropertyKeyConnectionUrl,
+		ConnectionPropertyKeyKafkaBootstrapServers,
+		ConnectionPropertyKeyKafkaSslEnabled,
+		ConnectionPropertyKeyKafkaCustomCert,
+		ConnectionPropertyKeyKafkaSkipCustomCertValidation,
+	}
+}
+
 const (
 	// ConnectionTypeJdbc is a ConnectionType enum value
 	ConnectionTypeJdbc = "JDBC"
@@ -37517,6 +37584,17 @@ const (
 	// ConnectionTypeNetwork is a ConnectionType enum value
 	ConnectionTypeNetwork = "NETWORK"
 )
+
+// ConnectionType_Values returns all elements of the ConnectionType enum
+func ConnectionType_Values() []string {
+	return []string{
+		ConnectionTypeJdbc,
+		ConnectionTypeSftp,
+		ConnectionTypeMongodb,
+		ConnectionTypeKafka,
+		ConnectionTypeNetwork,
+	}
+}
 
 const (
 	// CrawlStateRunning is a CrawlState enum value
@@ -37535,6 +37613,17 @@ const (
 	CrawlStateFailed = "FAILED"
 )
 
+// CrawlState_Values returns all elements of the CrawlState enum
+func CrawlState_Values() []string {
+	return []string{
+		CrawlStateRunning,
+		CrawlStateCancelling,
+		CrawlStateCancelled,
+		CrawlStateSucceeded,
+		CrawlStateFailed,
+	}
+}
+
 const (
 	// CrawlerStateReady is a CrawlerState enum value
 	CrawlerStateReady = "READY"
@@ -37545,6 +37634,15 @@ const (
 	// CrawlerStateStopping is a CrawlerState enum value
 	CrawlerStateStopping = "STOPPING"
 )
+
+// CrawlerState_Values returns all elements of the CrawlerState enum
+func CrawlerState_Values() []string {
+	return []string{
+		CrawlerStateReady,
+		CrawlerStateRunning,
+		CrawlerStateStopping,
+	}
+}
 
 const (
 	// CsvHeaderOptionUnknown is a CsvHeaderOption enum value
@@ -37557,6 +37655,15 @@ const (
 	CsvHeaderOptionAbsent = "ABSENT"
 )
 
+// CsvHeaderOption_Values returns all elements of the CsvHeaderOption enum
+func CsvHeaderOption_Values() []string {
+	return []string{
+		CsvHeaderOptionUnknown,
+		CsvHeaderOptionPresent,
+		CsvHeaderOptionAbsent,
+	}
+}
+
 const (
 	// DeleteBehaviorLog is a DeleteBehavior enum value
 	DeleteBehaviorLog = "LOG"
@@ -37568,6 +37675,15 @@ const (
 	DeleteBehaviorDeprecateInDatabase = "DEPRECATE_IN_DATABASE"
 )
 
+// DeleteBehavior_Values returns all elements of the DeleteBehavior enum
+func DeleteBehavior_Values() []string {
+	return []string{
+		DeleteBehaviorLog,
+		DeleteBehaviorDeleteFromDatabase,
+		DeleteBehaviorDeprecateInDatabase,
+	}
+}
+
 const (
 	// EnableHybridValuesTrue is a EnableHybridValues enum value
 	EnableHybridValuesTrue = "TRUE"
@@ -37575,6 +37691,14 @@ const (
 	// EnableHybridValuesFalse is a EnableHybridValues enum value
 	EnableHybridValuesFalse = "FALSE"
 )
+
+// EnableHybridValues_Values returns all elements of the EnableHybridValues enum
+func EnableHybridValues_Values() []string {
+	return []string{
+		EnableHybridValuesTrue,
+		EnableHybridValuesFalse,
+	}
+}
 
 const (
 	// ExistConditionMustExist is a ExistCondition enum value
@@ -37587,6 +37711,15 @@ const (
 	ExistConditionNone = "NONE"
 )
 
+// ExistCondition_Values returns all elements of the ExistCondition enum
+func ExistCondition_Values() []string {
+	return []string{
+		ExistConditionMustExist,
+		ExistConditionNotExist,
+		ExistConditionNone,
+	}
+}
+
 const (
 	// JobBookmarksEncryptionModeDisabled is a JobBookmarksEncryptionMode enum value
 	JobBookmarksEncryptionModeDisabled = "DISABLED"
@@ -37594,6 +37727,14 @@ const (
 	// JobBookmarksEncryptionModeCseKms is a JobBookmarksEncryptionMode enum value
 	JobBookmarksEncryptionModeCseKms = "CSE-KMS"
 )
+
+// JobBookmarksEncryptionMode_Values returns all elements of the JobBookmarksEncryptionMode enum
+func JobBookmarksEncryptionMode_Values() []string {
+	return []string{
+		JobBookmarksEncryptionModeDisabled,
+		JobBookmarksEncryptionModeCseKms,
+	}
+}
 
 const (
 	// JobRunStateStarting is a JobRunState enum value
@@ -37618,6 +37759,19 @@ const (
 	JobRunStateTimeout = "TIMEOUT"
 )
 
+// JobRunState_Values returns all elements of the JobRunState enum
+func JobRunState_Values() []string {
+	return []string{
+		JobRunStateStarting,
+		JobRunStateRunning,
+		JobRunStateStopping,
+		JobRunStateStopped,
+		JobRunStateSucceeded,
+		JobRunStateFailed,
+		JobRunStateTimeout,
+	}
+}
+
 const (
 	// LanguagePython is a Language enum value
 	LanguagePython = "PYTHON"
@@ -37625,6 +37779,14 @@ const (
 	// LanguageScala is a Language enum value
 	LanguageScala = "SCALA"
 )
+
+// Language_Values returns all elements of the Language enum
+func Language_Values() []string {
+	return []string{
+		LanguagePython,
+		LanguageScala,
+	}
+}
 
 const (
 	// LastCrawlStatusSucceeded is a LastCrawlStatus enum value
@@ -37637,6 +37799,15 @@ const (
 	LastCrawlStatusFailed = "FAILED"
 )
 
+// LastCrawlStatus_Values returns all elements of the LastCrawlStatus enum
+func LastCrawlStatus_Values() []string {
+	return []string{
+		LastCrawlStatusSucceeded,
+		LastCrawlStatusCancelled,
+		LastCrawlStatusFailed,
+	}
+}
+
 const (
 	// LogicalAnd is a Logical enum value
 	LogicalAnd = "AND"
@@ -37645,10 +37816,25 @@ const (
 	LogicalAny = "ANY"
 )
 
+// Logical_Values returns all elements of the Logical enum
+func Logical_Values() []string {
+	return []string{
+		LogicalAnd,
+		LogicalAny,
+	}
+}
+
 const (
 	// LogicalOperatorEquals is a LogicalOperator enum value
 	LogicalOperatorEquals = "EQUALS"
 )
+
+// LogicalOperator_Values returns all elements of the LogicalOperator enum
+func LogicalOperator_Values() []string {
+	return []string{
+		LogicalOperatorEquals,
+	}
+}
 
 const (
 	// NodeTypeCrawler is a NodeType enum value
@@ -37660,6 +37846,15 @@ const (
 	// NodeTypeTrigger is a NodeType enum value
 	NodeTypeTrigger = "TRIGGER"
 )
+
+// NodeType_Values returns all elements of the NodeType enum
+func NodeType_Values() []string {
+	return []string{
+		NodeTypeCrawler,
+		NodeTypeJob,
+		NodeTypeTrigger,
+	}
+}
 
 const (
 	// PermissionAll is a Permission enum value
@@ -37690,6 +37885,21 @@ const (
 	PermissionDataLocationAccess = "DATA_LOCATION_ACCESS"
 )
 
+// Permission_Values returns all elements of the Permission enum
+func Permission_Values() []string {
+	return []string{
+		PermissionAll,
+		PermissionSelect,
+		PermissionAlter,
+		PermissionDrop,
+		PermissionDelete,
+		PermissionInsert,
+		PermissionCreateDatabase,
+		PermissionCreateTable,
+		PermissionDataLocationAccess,
+	}
+}
+
 const (
 	// PrincipalTypeUser is a PrincipalType enum value
 	PrincipalTypeUser = "USER"
@@ -37701,6 +37911,15 @@ const (
 	PrincipalTypeGroup = "GROUP"
 )
 
+// PrincipalType_Values returns all elements of the PrincipalType enum
+func PrincipalType_Values() []string {
+	return []string{
+		PrincipalTypeUser,
+		PrincipalTypeRole,
+		PrincipalTypeGroup,
+	}
+}
+
 const (
 	// ResourceShareTypeForeign is a ResourceShareType enum value
 	ResourceShareTypeForeign = "FOREIGN"
@@ -37708,6 +37927,14 @@ const (
 	// ResourceShareTypeAll is a ResourceShareType enum value
 	ResourceShareTypeAll = "ALL"
 )
+
+// ResourceShareType_Values returns all elements of the ResourceShareType enum
+func ResourceShareType_Values() []string {
+	return []string{
+		ResourceShareTypeForeign,
+		ResourceShareTypeAll,
+	}
+}
 
 const (
 	// ResourceTypeJar is a ResourceType enum value
@@ -37720,6 +37947,15 @@ const (
 	ResourceTypeArchive = "ARCHIVE"
 )
 
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeJar,
+		ResourceTypeFile,
+		ResourceTypeArchive,
+	}
+}
+
 const (
 	// S3EncryptionModeDisabled is a S3EncryptionMode enum value
 	S3EncryptionModeDisabled = "DISABLED"
@@ -37730,6 +37966,15 @@ const (
 	// S3EncryptionModeSseS3 is a S3EncryptionMode enum value
 	S3EncryptionModeSseS3 = "SSE-S3"
 )
+
+// S3EncryptionMode_Values returns all elements of the S3EncryptionMode enum
+func S3EncryptionMode_Values() []string {
+	return []string{
+		S3EncryptionModeDisabled,
+		S3EncryptionModeSseKms,
+		S3EncryptionModeSseS3,
+	}
+}
 
 const (
 	// ScheduleStateScheduled is a ScheduleState enum value
@@ -37742,6 +37987,15 @@ const (
 	ScheduleStateTransitioning = "TRANSITIONING"
 )
 
+// ScheduleState_Values returns all elements of the ScheduleState enum
+func ScheduleState_Values() []string {
+	return []string{
+		ScheduleStateScheduled,
+		ScheduleStateNotScheduled,
+		ScheduleStateTransitioning,
+	}
+}
+
 const (
 	// SortAsc is a Sort enum value
 	SortAsc = "ASC"
@@ -37750,6 +38004,14 @@ const (
 	SortDesc = "DESC"
 )
 
+// Sort_Values returns all elements of the Sort enum
+func Sort_Values() []string {
+	return []string{
+		SortAsc,
+		SortDesc,
+	}
+}
+
 const (
 	// SortDirectionTypeDescending is a SortDirectionType enum value
 	SortDirectionTypeDescending = "DESCENDING"
@@ -37757,6 +38019,14 @@ const (
 	// SortDirectionTypeAscending is a SortDirectionType enum value
 	SortDirectionTypeAscending = "ASCENDING"
 )
+
+// SortDirectionType_Values returns all elements of the SortDirectionType enum
+func SortDirectionType_Values() []string {
+	return []string{
+		SortDirectionTypeDescending,
+		SortDirectionTypeAscending,
+	}
+}
 
 const (
 	// TaskRunSortColumnTypeTaskRunType is a TaskRunSortColumnType enum value
@@ -37768,6 +38038,15 @@ const (
 	// TaskRunSortColumnTypeStarted is a TaskRunSortColumnType enum value
 	TaskRunSortColumnTypeStarted = "STARTED"
 )
+
+// TaskRunSortColumnType_Values returns all elements of the TaskRunSortColumnType enum
+func TaskRunSortColumnType_Values() []string {
+	return []string{
+		TaskRunSortColumnTypeTaskRunType,
+		TaskRunSortColumnTypeStatus,
+		TaskRunSortColumnTypeStarted,
+	}
+}
 
 const (
 	// TaskStatusTypeStarting is a TaskStatusType enum value
@@ -37792,6 +38071,19 @@ const (
 	TaskStatusTypeTimeout = "TIMEOUT"
 )
 
+// TaskStatusType_Values returns all elements of the TaskStatusType enum
+func TaskStatusType_Values() []string {
+	return []string{
+		TaskStatusTypeStarting,
+		TaskStatusTypeRunning,
+		TaskStatusTypeStopping,
+		TaskStatusTypeStopped,
+		TaskStatusTypeSucceeded,
+		TaskStatusTypeFailed,
+		TaskStatusTypeTimeout,
+	}
+}
+
 const (
 	// TaskTypeEvaluation is a TaskType enum value
 	TaskTypeEvaluation = "EVALUATION"
@@ -37808,6 +38100,17 @@ const (
 	// TaskTypeFindMatches is a TaskType enum value
 	TaskTypeFindMatches = "FIND_MATCHES"
 )
+
+// TaskType_Values returns all elements of the TaskType enum
+func TaskType_Values() []string {
+	return []string{
+		TaskTypeEvaluation,
+		TaskTypeLabelingSetGeneration,
+		TaskTypeImportLabels,
+		TaskTypeExportLabels,
+		TaskTypeFindMatches,
+	}
+}
 
 const (
 	// TransformSortColumnTypeName is a TransformSortColumnType enum value
@@ -37826,6 +38129,17 @@ const (
 	TransformSortColumnTypeLastModified = "LAST_MODIFIED"
 )
 
+// TransformSortColumnType_Values returns all elements of the TransformSortColumnType enum
+func TransformSortColumnType_Values() []string {
+	return []string{
+		TransformSortColumnTypeName,
+		TransformSortColumnTypeTransformType,
+		TransformSortColumnTypeStatus,
+		TransformSortColumnTypeCreated,
+		TransformSortColumnTypeLastModified,
+	}
+}
+
 const (
 	// TransformStatusTypeNotReady is a TransformStatusType enum value
 	TransformStatusTypeNotReady = "NOT_READY"
@@ -37837,10 +38151,26 @@ const (
 	TransformStatusTypeDeleting = "DELETING"
 )
 
+// TransformStatusType_Values returns all elements of the TransformStatusType enum
+func TransformStatusType_Values() []string {
+	return []string{
+		TransformStatusTypeNotReady,
+		TransformStatusTypeReady,
+		TransformStatusTypeDeleting,
+	}
+}
+
 const (
 	// TransformTypeFindMatches is a TransformType enum value
 	TransformTypeFindMatches = "FIND_MATCHES"
 )
+
+// TransformType_Values returns all elements of the TransformType enum
+func TransformType_Values() []string {
+	return []string{
+		TransformTypeFindMatches,
+	}
+}
 
 const (
 	// TriggerStateCreating is a TriggerState enum value
@@ -37868,6 +38198,20 @@ const (
 	TriggerStateUpdating = "UPDATING"
 )
 
+// TriggerState_Values returns all elements of the TriggerState enum
+func TriggerState_Values() []string {
+	return []string{
+		TriggerStateCreating,
+		TriggerStateCreated,
+		TriggerStateActivating,
+		TriggerStateActivated,
+		TriggerStateDeactivating,
+		TriggerStateDeactivated,
+		TriggerStateDeleting,
+		TriggerStateUpdating,
+	}
+}
+
 const (
 	// TriggerTypeScheduled is a TriggerType enum value
 	TriggerTypeScheduled = "SCHEDULED"
@@ -37879,6 +38223,15 @@ const (
 	TriggerTypeOnDemand = "ON_DEMAND"
 )
 
+// TriggerType_Values returns all elements of the TriggerType enum
+func TriggerType_Values() []string {
+	return []string{
+		TriggerTypeScheduled,
+		TriggerTypeConditional,
+		TriggerTypeOnDemand,
+	}
+}
+
 const (
 	// UpdateBehaviorLog is a UpdateBehavior enum value
 	UpdateBehaviorLog = "LOG"
@@ -37886,6 +38239,14 @@ const (
 	// UpdateBehaviorUpdateInDatabase is a UpdateBehavior enum value
 	UpdateBehaviorUpdateInDatabase = "UPDATE_IN_DATABASE"
 )
+
+// UpdateBehavior_Values returns all elements of the UpdateBehavior enum
+func UpdateBehavior_Values() []string {
+	return []string{
+		UpdateBehaviorLog,
+		UpdateBehaviorUpdateInDatabase,
+	}
+}
 
 const (
 	// WorkerTypeStandard is a WorkerType enum value
@@ -37897,6 +38258,15 @@ const (
 	// WorkerTypeG2x is a WorkerType enum value
 	WorkerTypeG2x = "G.2X"
 )
+
+// WorkerType_Values returns all elements of the WorkerType enum
+func WorkerType_Values() []string {
+	return []string{
+		WorkerTypeStandard,
+		WorkerTypeG1x,
+		WorkerTypeG2x,
+	}
+}
 
 const (
 	// WorkflowRunStatusRunning is a WorkflowRunStatus enum value
@@ -37914,3 +38284,13 @@ const (
 	// WorkflowRunStatusError is a WorkflowRunStatus enum value
 	WorkflowRunStatusError = "ERROR"
 )
+
+// WorkflowRunStatus_Values returns all elements of the WorkflowRunStatus enum
+func WorkflowRunStatus_Values() []string {
+	return []string{
+		WorkflowRunStatusRunning,
+		WorkflowRunStatusCompleted,
+		WorkflowRunStatusStopping,
+		WorkflowRunStatusStopped,
+	}
+}

@@ -29240,6 +29240,16 @@ const (
 	AccountTakeoverEventActionTypeNoAction = "NO_ACTION"
 )
 
+// AccountTakeoverEventActionType_Values returns all elements of the AccountTakeoverEventActionType enum
+func AccountTakeoverEventActionType_Values() []string {
+	return []string{
+		AccountTakeoverEventActionTypeBlock,
+		AccountTakeoverEventActionTypeMfaIfConfigured,
+		AccountTakeoverEventActionTypeMfaRequired,
+		AccountTakeoverEventActionTypeNoAction,
+	}
+}
+
 const (
 	// AdvancedSecurityModeTypeOff is a AdvancedSecurityModeType enum value
 	AdvancedSecurityModeTypeOff = "OFF"
@@ -29251,6 +29261,15 @@ const (
 	AdvancedSecurityModeTypeEnforced = "ENFORCED"
 )
 
+// AdvancedSecurityModeType_Values returns all elements of the AdvancedSecurityModeType enum
+func AdvancedSecurityModeType_Values() []string {
+	return []string{
+		AdvancedSecurityModeTypeOff,
+		AdvancedSecurityModeTypeAudit,
+		AdvancedSecurityModeTypeEnforced,
+	}
+}
+
 const (
 	// AliasAttributeTypePhoneNumber is a AliasAttributeType enum value
 	AliasAttributeTypePhoneNumber = "phone_number"
@@ -29261,6 +29280,15 @@ const (
 	// AliasAttributeTypePreferredUsername is a AliasAttributeType enum value
 	AliasAttributeTypePreferredUsername = "preferred_username"
 )
+
+// AliasAttributeType_Values returns all elements of the AliasAttributeType enum
+func AliasAttributeType_Values() []string {
+	return []string{
+		AliasAttributeTypePhoneNumber,
+		AliasAttributeTypeEmail,
+		AliasAttributeTypePreferredUsername,
+	}
+}
 
 const (
 	// AttributeDataTypeString is a AttributeDataType enum value
@@ -29275,6 +29303,16 @@ const (
 	// AttributeDataTypeBoolean is a AttributeDataType enum value
 	AttributeDataTypeBoolean = "Boolean"
 )
+
+// AttributeDataType_Values returns all elements of the AttributeDataType enum
+func AttributeDataType_Values() []string {
+	return []string{
+		AttributeDataTypeString,
+		AttributeDataTypeNumber,
+		AttributeDataTypeDateTime,
+		AttributeDataTypeBoolean,
+	}
+}
 
 const (
 	// AuthFlowTypeUserSrpAuth is a AuthFlowType enum value
@@ -29299,6 +29337,19 @@ const (
 	AuthFlowTypeAdminUserPasswordAuth = "ADMIN_USER_PASSWORD_AUTH"
 )
 
+// AuthFlowType_Values returns all elements of the AuthFlowType enum
+func AuthFlowType_Values() []string {
+	return []string{
+		AuthFlowTypeUserSrpAuth,
+		AuthFlowTypeRefreshTokenAuth,
+		AuthFlowTypeRefreshToken,
+		AuthFlowTypeCustomAuth,
+		AuthFlowTypeAdminNoSrpAuth,
+		AuthFlowTypeUserPasswordAuth,
+		AuthFlowTypeAdminUserPasswordAuth,
+	}
+}
+
 const (
 	// ChallengeNamePassword is a ChallengeName enum value
 	ChallengeNamePassword = "Password"
@@ -29306,6 +29357,14 @@ const (
 	// ChallengeNameMfa is a ChallengeName enum value
 	ChallengeNameMfa = "Mfa"
 )
+
+// ChallengeName_Values returns all elements of the ChallengeName enum
+func ChallengeName_Values() []string {
+	return []string{
+		ChallengeNamePassword,
+		ChallengeNameMfa,
+	}
+}
 
 const (
 	// ChallengeNameTypeSmsMfa is a ChallengeNameType enum value
@@ -29339,6 +29398,22 @@ const (
 	ChallengeNameTypeNewPasswordRequired = "NEW_PASSWORD_REQUIRED"
 )
 
+// ChallengeNameType_Values returns all elements of the ChallengeNameType enum
+func ChallengeNameType_Values() []string {
+	return []string{
+		ChallengeNameTypeSmsMfa,
+		ChallengeNameTypeSoftwareTokenMfa,
+		ChallengeNameTypeSelectMfaType,
+		ChallengeNameTypeMfaSetup,
+		ChallengeNameTypePasswordVerifier,
+		ChallengeNameTypeCustomChallenge,
+		ChallengeNameTypeDeviceSrpAuth,
+		ChallengeNameTypeDevicePasswordVerifier,
+		ChallengeNameTypeAdminNoSrpAuth,
+		ChallengeNameTypeNewPasswordRequired,
+	}
+}
+
 const (
 	// ChallengeResponseSuccess is a ChallengeResponse enum value
 	ChallengeResponseSuccess = "Success"
@@ -29346,6 +29421,14 @@ const (
 	// ChallengeResponseFailure is a ChallengeResponse enum value
 	ChallengeResponseFailure = "Failure"
 )
+
+// ChallengeResponse_Values returns all elements of the ChallengeResponse enum
+func ChallengeResponse_Values() []string {
+	return []string{
+		ChallengeResponseSuccess,
+		ChallengeResponseFailure,
+	}
+}
 
 const (
 	// CompromisedCredentialsEventActionTypeBlock is a CompromisedCredentialsEventActionType enum value
@@ -29355,6 +29438,14 @@ const (
 	CompromisedCredentialsEventActionTypeNoAction = "NO_ACTION"
 )
 
+// CompromisedCredentialsEventActionType_Values returns all elements of the CompromisedCredentialsEventActionType enum
+func CompromisedCredentialsEventActionType_Values() []string {
+	return []string{
+		CompromisedCredentialsEventActionTypeBlock,
+		CompromisedCredentialsEventActionTypeNoAction,
+	}
+}
+
 const (
 	// DefaultEmailOptionTypeConfirmWithLink is a DefaultEmailOptionType enum value
 	DefaultEmailOptionTypeConfirmWithLink = "CONFIRM_WITH_LINK"
@@ -29362,6 +29453,14 @@ const (
 	// DefaultEmailOptionTypeConfirmWithCode is a DefaultEmailOptionType enum value
 	DefaultEmailOptionTypeConfirmWithCode = "CONFIRM_WITH_CODE"
 )
+
+// DefaultEmailOptionType_Values returns all elements of the DefaultEmailOptionType enum
+func DefaultEmailOptionType_Values() []string {
+	return []string{
+		DefaultEmailOptionTypeConfirmWithLink,
+		DefaultEmailOptionTypeConfirmWithCode,
+	}
+}
 
 const (
 	// DeliveryMediumTypeSms is a DeliveryMediumType enum value
@@ -29371,6 +29470,14 @@ const (
 	DeliveryMediumTypeEmail = "EMAIL"
 )
 
+// DeliveryMediumType_Values returns all elements of the DeliveryMediumType enum
+func DeliveryMediumType_Values() []string {
+	return []string{
+		DeliveryMediumTypeSms,
+		DeliveryMediumTypeEmail,
+	}
+}
+
 const (
 	// DeviceRememberedStatusTypeRemembered is a DeviceRememberedStatusType enum value
 	DeviceRememberedStatusTypeRemembered = "remembered"
@@ -29378,6 +29485,14 @@ const (
 	// DeviceRememberedStatusTypeNotRemembered is a DeviceRememberedStatusType enum value
 	DeviceRememberedStatusTypeNotRemembered = "not_remembered"
 )
+
+// DeviceRememberedStatusType_Values returns all elements of the DeviceRememberedStatusType enum
+func DeviceRememberedStatusType_Values() []string {
+	return []string{
+		DeviceRememberedStatusTypeRemembered,
+		DeviceRememberedStatusTypeNotRemembered,
+	}
+}
 
 const (
 	// DomainStatusTypeCreating is a DomainStatusType enum value
@@ -29396,6 +29511,17 @@ const (
 	DomainStatusTypeFailed = "FAILED"
 )
 
+// DomainStatusType_Values returns all elements of the DomainStatusType enum
+func DomainStatusType_Values() []string {
+	return []string{
+		DomainStatusTypeCreating,
+		DomainStatusTypeDeleting,
+		DomainStatusTypeUpdating,
+		DomainStatusTypeActive,
+		DomainStatusTypeFailed,
+	}
+}
+
 const (
 	// EmailSendingAccountTypeCognitoDefault is a EmailSendingAccountType enum value
 	EmailSendingAccountTypeCognitoDefault = "COGNITO_DEFAULT"
@@ -29403,6 +29529,14 @@ const (
 	// EmailSendingAccountTypeDeveloper is a EmailSendingAccountType enum value
 	EmailSendingAccountTypeDeveloper = "DEVELOPER"
 )
+
+// EmailSendingAccountType_Values returns all elements of the EmailSendingAccountType enum
+func EmailSendingAccountType_Values() []string {
+	return []string{
+		EmailSendingAccountTypeCognitoDefault,
+		EmailSendingAccountTypeDeveloper,
+	}
+}
 
 const (
 	// EventFilterTypeSignIn is a EventFilterType enum value
@@ -29415,6 +29549,15 @@ const (
 	EventFilterTypeSignUp = "SIGN_UP"
 )
 
+// EventFilterType_Values returns all elements of the EventFilterType enum
+func EventFilterType_Values() []string {
+	return []string{
+		EventFilterTypeSignIn,
+		EventFilterTypePasswordChange,
+		EventFilterTypeSignUp,
+	}
+}
+
 const (
 	// EventResponseTypeSuccess is a EventResponseType enum value
 	EventResponseTypeSuccess = "Success"
@@ -29422,6 +29565,14 @@ const (
 	// EventResponseTypeFailure is a EventResponseType enum value
 	EventResponseTypeFailure = "Failure"
 )
+
+// EventResponseType_Values returns all elements of the EventResponseType enum
+func EventResponseType_Values() []string {
+	return []string{
+		EventResponseTypeSuccess,
+		EventResponseTypeFailure,
+	}
+}
 
 const (
 	// EventTypeSignIn is a EventType enum value
@@ -29433,6 +29584,15 @@ const (
 	// EventTypeForgotPassword is a EventType enum value
 	EventTypeForgotPassword = "ForgotPassword"
 )
+
+// EventType_Values returns all elements of the EventType enum
+func EventType_Values() []string {
+	return []string{
+		EventTypeSignIn,
+		EventTypeSignUp,
+		EventTypeForgotPassword,
+	}
+}
 
 const (
 	// ExplicitAuthFlowsTypeAdminNoSrpAuth is a ExplicitAuthFlowsType enum value
@@ -29460,6 +29620,20 @@ const (
 	ExplicitAuthFlowsTypeAllowRefreshTokenAuth = "ALLOW_REFRESH_TOKEN_AUTH"
 )
 
+// ExplicitAuthFlowsType_Values returns all elements of the ExplicitAuthFlowsType enum
+func ExplicitAuthFlowsType_Values() []string {
+	return []string{
+		ExplicitAuthFlowsTypeAdminNoSrpAuth,
+		ExplicitAuthFlowsTypeCustomAuthFlowOnly,
+		ExplicitAuthFlowsTypeUserPasswordAuth,
+		ExplicitAuthFlowsTypeAllowAdminUserPasswordAuth,
+		ExplicitAuthFlowsTypeAllowCustomAuth,
+		ExplicitAuthFlowsTypeAllowUserPasswordAuth,
+		ExplicitAuthFlowsTypeAllowUserSrpAuth,
+		ExplicitAuthFlowsTypeAllowRefreshTokenAuth,
+	}
+}
+
 const (
 	// FeedbackValueTypeValid is a FeedbackValueType enum value
 	FeedbackValueTypeValid = "Valid"
@@ -29467,6 +29641,14 @@ const (
 	// FeedbackValueTypeInvalid is a FeedbackValueType enum value
 	FeedbackValueTypeInvalid = "Invalid"
 )
+
+// FeedbackValueType_Values returns all elements of the FeedbackValueType enum
+func FeedbackValueType_Values() []string {
+	return []string{
+		FeedbackValueTypeValid,
+		FeedbackValueTypeInvalid,
+	}
+}
 
 const (
 	// IdentityProviderTypeTypeSaml is a IdentityProviderTypeType enum value
@@ -29488,6 +29670,18 @@ const (
 	IdentityProviderTypeTypeOidc = "OIDC"
 )
 
+// IdentityProviderTypeType_Values returns all elements of the IdentityProviderTypeType enum
+func IdentityProviderTypeType_Values() []string {
+	return []string{
+		IdentityProviderTypeTypeSaml,
+		IdentityProviderTypeTypeFacebook,
+		IdentityProviderTypeTypeGoogle,
+		IdentityProviderTypeTypeLoginWithAmazon,
+		IdentityProviderTypeTypeSignInWithApple,
+		IdentityProviderTypeTypeOidc,
+	}
+}
+
 const (
 	// MessageActionTypeResend is a MessageActionType enum value
 	MessageActionTypeResend = "RESEND"
@@ -29495,6 +29689,14 @@ const (
 	// MessageActionTypeSuppress is a MessageActionType enum value
 	MessageActionTypeSuppress = "SUPPRESS"
 )
+
+// MessageActionType_Values returns all elements of the MessageActionType enum
+func MessageActionType_Values() []string {
+	return []string{
+		MessageActionTypeResend,
+		MessageActionTypeSuppress,
+	}
+}
 
 const (
 	// OAuthFlowTypeCode is a OAuthFlowType enum value
@@ -29507,6 +29709,15 @@ const (
 	OAuthFlowTypeClientCredentials = "client_credentials"
 )
 
+// OAuthFlowType_Values returns all elements of the OAuthFlowType enum
+func OAuthFlowType_Values() []string {
+	return []string{
+		OAuthFlowTypeCode,
+		OAuthFlowTypeImplicit,
+		OAuthFlowTypeClientCredentials,
+	}
+}
+
 const (
 	// PreventUserExistenceErrorTypesLegacy is a PreventUserExistenceErrorTypes enum value
 	PreventUserExistenceErrorTypesLegacy = "LEGACY"
@@ -29514,6 +29725,14 @@ const (
 	// PreventUserExistenceErrorTypesEnabled is a PreventUserExistenceErrorTypes enum value
 	PreventUserExistenceErrorTypesEnabled = "ENABLED"
 )
+
+// PreventUserExistenceErrorTypes_Values returns all elements of the PreventUserExistenceErrorTypes enum
+func PreventUserExistenceErrorTypes_Values() []string {
+	return []string{
+		PreventUserExistenceErrorTypesLegacy,
+		PreventUserExistenceErrorTypesEnabled,
+	}
+}
 
 const (
 	// RecoveryOptionNameTypeVerifiedEmail is a RecoveryOptionNameType enum value
@@ -29526,6 +29745,15 @@ const (
 	RecoveryOptionNameTypeAdminOnly = "admin_only"
 )
 
+// RecoveryOptionNameType_Values returns all elements of the RecoveryOptionNameType enum
+func RecoveryOptionNameType_Values() []string {
+	return []string{
+		RecoveryOptionNameTypeVerifiedEmail,
+		RecoveryOptionNameTypeVerifiedPhoneNumber,
+		RecoveryOptionNameTypeAdminOnly,
+	}
+}
+
 const (
 	// RiskDecisionTypeNoRisk is a RiskDecisionType enum value
 	RiskDecisionTypeNoRisk = "NoRisk"
@@ -29536,6 +29764,15 @@ const (
 	// RiskDecisionTypeBlock is a RiskDecisionType enum value
 	RiskDecisionTypeBlock = "Block"
 )
+
+// RiskDecisionType_Values returns all elements of the RiskDecisionType enum
+func RiskDecisionType_Values() []string {
+	return []string{
+		RiskDecisionTypeNoRisk,
+		RiskDecisionTypeAccountTakeover,
+		RiskDecisionTypeBlock,
+	}
+}
 
 const (
 	// RiskLevelTypeLow is a RiskLevelType enum value
@@ -29548,6 +29785,15 @@ const (
 	RiskLevelTypeHigh = "High"
 )
 
+// RiskLevelType_Values returns all elements of the RiskLevelType enum
+func RiskLevelType_Values() []string {
+	return []string{
+		RiskLevelTypeLow,
+		RiskLevelTypeMedium,
+		RiskLevelTypeHigh,
+	}
+}
+
 const (
 	// StatusTypeEnabled is a StatusType enum value
 	StatusTypeEnabled = "Enabled"
@@ -29555,6 +29801,14 @@ const (
 	// StatusTypeDisabled is a StatusType enum value
 	StatusTypeDisabled = "Disabled"
 )
+
+// StatusType_Values returns all elements of the StatusType enum
+func StatusType_Values() []string {
+	return []string{
+		StatusTypeEnabled,
+		StatusTypeDisabled,
+	}
+}
 
 const (
 	// UserImportJobStatusTypeCreated is a UserImportJobStatusType enum value
@@ -29582,6 +29836,20 @@ const (
 	UserImportJobStatusTypeSucceeded = "Succeeded"
 )
 
+// UserImportJobStatusType_Values returns all elements of the UserImportJobStatusType enum
+func UserImportJobStatusType_Values() []string {
+	return []string{
+		UserImportJobStatusTypeCreated,
+		UserImportJobStatusTypePending,
+		UserImportJobStatusTypeInProgress,
+		UserImportJobStatusTypeStopping,
+		UserImportJobStatusTypeExpired,
+		UserImportJobStatusTypeStopped,
+		UserImportJobStatusTypeFailed,
+		UserImportJobStatusTypeSucceeded,
+	}
+}
+
 const (
 	// UserPoolMfaTypeOff is a UserPoolMfaType enum value
 	UserPoolMfaTypeOff = "OFF"
@@ -29592,6 +29860,15 @@ const (
 	// UserPoolMfaTypeOptional is a UserPoolMfaType enum value
 	UserPoolMfaTypeOptional = "OPTIONAL"
 )
+
+// UserPoolMfaType_Values returns all elements of the UserPoolMfaType enum
+func UserPoolMfaType_Values() []string {
+	return []string{
+		UserPoolMfaTypeOff,
+		UserPoolMfaTypeOn,
+		UserPoolMfaTypeOptional,
+	}
+}
 
 const (
 	// UserStatusTypeUnconfirmed is a UserStatusType enum value
@@ -29616,6 +29893,19 @@ const (
 	UserStatusTypeForceChangePassword = "FORCE_CHANGE_PASSWORD"
 )
 
+// UserStatusType_Values returns all elements of the UserStatusType enum
+func UserStatusType_Values() []string {
+	return []string{
+		UserStatusTypeUnconfirmed,
+		UserStatusTypeConfirmed,
+		UserStatusTypeArchived,
+		UserStatusTypeCompromised,
+		UserStatusTypeUnknown,
+		UserStatusTypeResetRequired,
+		UserStatusTypeForceChangePassword,
+	}
+}
+
 const (
 	// UsernameAttributeTypePhoneNumber is a UsernameAttributeType enum value
 	UsernameAttributeTypePhoneNumber = "phone_number"
@@ -29623,6 +29913,14 @@ const (
 	// UsernameAttributeTypeEmail is a UsernameAttributeType enum value
 	UsernameAttributeTypeEmail = "email"
 )
+
+// UsernameAttributeType_Values returns all elements of the UsernameAttributeType enum
+func UsernameAttributeType_Values() []string {
+	return []string{
+		UsernameAttributeTypePhoneNumber,
+		UsernameAttributeTypeEmail,
+	}
+}
 
 const (
 	// VerifiedAttributeTypePhoneNumber is a VerifiedAttributeType enum value
@@ -29632,6 +29930,14 @@ const (
 	VerifiedAttributeTypeEmail = "email"
 )
 
+// VerifiedAttributeType_Values returns all elements of the VerifiedAttributeType enum
+func VerifiedAttributeType_Values() []string {
+	return []string{
+		VerifiedAttributeTypePhoneNumber,
+		VerifiedAttributeTypeEmail,
+	}
+}
+
 const (
 	// VerifySoftwareTokenResponseTypeSuccess is a VerifySoftwareTokenResponseType enum value
 	VerifySoftwareTokenResponseTypeSuccess = "SUCCESS"
@@ -29639,3 +29945,11 @@ const (
 	// VerifySoftwareTokenResponseTypeError is a VerifySoftwareTokenResponseType enum value
 	VerifySoftwareTokenResponseTypeError = "ERROR"
 )
+
+// VerifySoftwareTokenResponseType_Values returns all elements of the VerifySoftwareTokenResponseType enum
+func VerifySoftwareTokenResponseType_Values() []string {
+	return []string{
+		VerifySoftwareTokenResponseTypeSuccess,
+		VerifySoftwareTokenResponseTypeError,
+	}
+}

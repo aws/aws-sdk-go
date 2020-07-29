@@ -14165,10 +14165,26 @@ const (
 	EventSourcePositionAtTimestamp = "AT_TIMESTAMP"
 )
 
+// EventSourcePosition_Values returns all elements of the EventSourcePosition enum
+func EventSourcePosition_Values() []string {
+	return []string{
+		EventSourcePositionTrimHorizon,
+		EventSourcePositionLatest,
+		EventSourcePositionAtTimestamp,
+	}
+}
+
 const (
 	// FunctionVersionAll is a FunctionVersion enum value
 	FunctionVersionAll = "ALL"
 )
+
+// FunctionVersion_Values returns all elements of the FunctionVersion enum
+func FunctionVersion_Values() []string {
+	return []string{
+		FunctionVersionAll,
+	}
+}
 
 const (
 	// InvocationTypeEvent is a InvocationType enum value
@@ -14181,6 +14197,15 @@ const (
 	InvocationTypeDryRun = "DryRun"
 )
 
+// InvocationType_Values returns all elements of the InvocationType enum
+func InvocationType_Values() []string {
+	return []string{
+		InvocationTypeEvent,
+		InvocationTypeRequestResponse,
+		InvocationTypeDryRun,
+	}
+}
+
 const (
 	// LastUpdateStatusSuccessful is a LastUpdateStatus enum value
 	LastUpdateStatusSuccessful = "Successful"
@@ -14191,6 +14216,15 @@ const (
 	// LastUpdateStatusInProgress is a LastUpdateStatus enum value
 	LastUpdateStatusInProgress = "InProgress"
 )
+
+// LastUpdateStatus_Values returns all elements of the LastUpdateStatus enum
+func LastUpdateStatus_Values() []string {
+	return []string{
+		LastUpdateStatusSuccessful,
+		LastUpdateStatusFailed,
+		LastUpdateStatusInProgress,
+	}
+}
 
 const (
 	// LastUpdateStatusReasonCodeEniLimitExceeded is a LastUpdateStatusReasonCode enum value
@@ -14215,6 +14249,19 @@ const (
 	LastUpdateStatusReasonCodeInvalidSecurityGroup = "InvalidSecurityGroup"
 )
 
+// LastUpdateStatusReasonCode_Values returns all elements of the LastUpdateStatusReasonCode enum
+func LastUpdateStatusReasonCode_Values() []string {
+	return []string{
+		LastUpdateStatusReasonCodeEniLimitExceeded,
+		LastUpdateStatusReasonCodeInsufficientRolePermissions,
+		LastUpdateStatusReasonCodeInvalidConfiguration,
+		LastUpdateStatusReasonCodeInternalError,
+		LastUpdateStatusReasonCodeSubnetOutOfIpaddresses,
+		LastUpdateStatusReasonCodeInvalidSubnet,
+		LastUpdateStatusReasonCodeInvalidSecurityGroup,
+	}
+}
+
 const (
 	// LogTypeNone is a LogType enum value
 	LogTypeNone = "None"
@@ -14222,6 +14269,14 @@ const (
 	// LogTypeTail is a LogType enum value
 	LogTypeTail = "Tail"
 )
+
+// LogType_Values returns all elements of the LogType enum
+func LogType_Values() []string {
+	return []string{
+		LogTypeNone,
+		LogTypeTail,
+	}
+}
 
 const (
 	// ProvisionedConcurrencyStatusEnumInProgress is a ProvisionedConcurrencyStatusEnum enum value
@@ -14233,6 +14288,15 @@ const (
 	// ProvisionedConcurrencyStatusEnumFailed is a ProvisionedConcurrencyStatusEnum enum value
 	ProvisionedConcurrencyStatusEnumFailed = "FAILED"
 )
+
+// ProvisionedConcurrencyStatusEnum_Values returns all elements of the ProvisionedConcurrencyStatusEnum enum
+func ProvisionedConcurrencyStatusEnum_Values() []string {
+	return []string{
+		ProvisionedConcurrencyStatusEnumInProgress,
+		ProvisionedConcurrencyStatusEnumReady,
+		ProvisionedConcurrencyStatusEnumFailed,
+	}
+}
 
 const (
 	// RuntimeNodejs is a Runtime enum value
@@ -14299,6 +14363,33 @@ const (
 	RuntimeProvided = "provided"
 )
 
+// Runtime_Values returns all elements of the Runtime enum
+func Runtime_Values() []string {
+	return []string{
+		RuntimeNodejs,
+		RuntimeNodejs43,
+		RuntimeNodejs610,
+		RuntimeNodejs810,
+		RuntimeNodejs10X,
+		RuntimeNodejs12X,
+		RuntimeJava8,
+		RuntimeJava11,
+		RuntimePython27,
+		RuntimePython36,
+		RuntimePython37,
+		RuntimePython38,
+		RuntimeDotnetcore10,
+		RuntimeDotnetcore20,
+		RuntimeDotnetcore21,
+		RuntimeDotnetcore31,
+		RuntimeNodejs43Edge,
+		RuntimeGo1X,
+		RuntimeRuby25,
+		RuntimeRuby27,
+		RuntimeProvided,
+	}
+}
+
 const (
 	// StatePending is a State enum value
 	StatePending = "Pending"
@@ -14312,6 +14403,16 @@ const (
 	// StateFailed is a State enum value
 	StateFailed = "Failed"
 )
+
+// State_Values returns all elements of the State enum
+func State_Values() []string {
+	return []string{
+		StatePending,
+		StateActive,
+		StateInactive,
+		StateFailed,
+	}
+}
 
 const (
 	// StateReasonCodeIdle is a StateReasonCode enum value
@@ -14345,6 +14446,22 @@ const (
 	StateReasonCodeInvalidSecurityGroup = "InvalidSecurityGroup"
 )
 
+// StateReasonCode_Values returns all elements of the StateReasonCode enum
+func StateReasonCode_Values() []string {
+	return []string{
+		StateReasonCodeIdle,
+		StateReasonCodeCreating,
+		StateReasonCodeRestoring,
+		StateReasonCodeEniLimitExceeded,
+		StateReasonCodeInsufficientRolePermissions,
+		StateReasonCodeInvalidConfiguration,
+		StateReasonCodeInternalError,
+		StateReasonCodeSubnetOutOfIpaddresses,
+		StateReasonCodeInvalidSubnet,
+		StateReasonCodeInvalidSecurityGroup,
+	}
+}
+
 const (
 	// ThrottleReasonConcurrentInvocationLimitExceeded is a ThrottleReason enum value
 	ThrottleReasonConcurrentInvocationLimitExceeded = "ConcurrentInvocationLimitExceeded"
@@ -14362,6 +14479,17 @@ const (
 	ThrottleReasonCallerRateLimitExceeded = "CallerRateLimitExceeded"
 )
 
+// ThrottleReason_Values returns all elements of the ThrottleReason enum
+func ThrottleReason_Values() []string {
+	return []string{
+		ThrottleReasonConcurrentInvocationLimitExceeded,
+		ThrottleReasonFunctionInvocationRateLimitExceeded,
+		ThrottleReasonReservedFunctionConcurrentInvocationLimitExceeded,
+		ThrottleReasonReservedFunctionInvocationRateLimitExceeded,
+		ThrottleReasonCallerRateLimitExceeded,
+	}
+}
+
 const (
 	// TracingModeActive is a TracingMode enum value
 	TracingModeActive = "Active"
@@ -14369,3 +14497,11 @@ const (
 	// TracingModePassThrough is a TracingMode enum value
 	TracingModePassThrough = "PassThrough"
 )
+
+// TracingMode_Values returns all elements of the TracingMode enum
+func TracingMode_Values() []string {
+	return []string{
+		TracingModeActive,
+		TracingModePassThrough,
+	}
+}
