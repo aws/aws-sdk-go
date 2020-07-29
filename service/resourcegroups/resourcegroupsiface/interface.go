@@ -72,6 +72,10 @@ type ResourceGroupsAPI interface {
 	GetGroupWithContext(aws.Context, *resourcegroups.GetGroupInput, ...request.Option) (*resourcegroups.GetGroupOutput, error)
 	GetGroupRequest(*resourcegroups.GetGroupInput) (*request.Request, *resourcegroups.GetGroupOutput)
 
+	GetGroupConfiguration(*resourcegroups.GetGroupConfigurationInput) (*resourcegroups.GetGroupConfigurationOutput, error)
+	GetGroupConfigurationWithContext(aws.Context, *resourcegroups.GetGroupConfigurationInput, ...request.Option) (*resourcegroups.GetGroupConfigurationOutput, error)
+	GetGroupConfigurationRequest(*resourcegroups.GetGroupConfigurationInput) (*request.Request, *resourcegroups.GetGroupConfigurationOutput)
+
 	GetGroupQuery(*resourcegroups.GetGroupQueryInput) (*resourcegroups.GetGroupQueryOutput, error)
 	GetGroupQueryWithContext(aws.Context, *resourcegroups.GetGroupQueryInput, ...request.Option) (*resourcegroups.GetGroupQueryOutput, error)
 	GetGroupQueryRequest(*resourcegroups.GetGroupQueryInput) (*request.Request, *resourcegroups.GetGroupQueryOutput)
@@ -79,6 +83,10 @@ type ResourceGroupsAPI interface {
 	GetTags(*resourcegroups.GetTagsInput) (*resourcegroups.GetTagsOutput, error)
 	GetTagsWithContext(aws.Context, *resourcegroups.GetTagsInput, ...request.Option) (*resourcegroups.GetTagsOutput, error)
 	GetTagsRequest(*resourcegroups.GetTagsInput) (*request.Request, *resourcegroups.GetTagsOutput)
+
+	GroupResources(*resourcegroups.GroupResourcesInput) (*resourcegroups.GroupResourcesOutput, error)
+	GroupResourcesWithContext(aws.Context, *resourcegroups.GroupResourcesInput, ...request.Option) (*resourcegroups.GroupResourcesOutput, error)
+	GroupResourcesRequest(*resourcegroups.GroupResourcesInput) (*request.Request, *resourcegroups.GroupResourcesOutput)
 
 	ListGroupResources(*resourcegroups.ListGroupResourcesInput) (*resourcegroups.ListGroupResourcesOutput, error)
 	ListGroupResourcesWithContext(aws.Context, *resourcegroups.ListGroupResourcesInput, ...request.Option) (*resourcegroups.ListGroupResourcesOutput, error)
@@ -104,6 +112,10 @@ type ResourceGroupsAPI interface {
 	Tag(*resourcegroups.TagInput) (*resourcegroups.TagOutput, error)
 	TagWithContext(aws.Context, *resourcegroups.TagInput, ...request.Option) (*resourcegroups.TagOutput, error)
 	TagRequest(*resourcegroups.TagInput) (*request.Request, *resourcegroups.TagOutput)
+
+	UngroupResources(*resourcegroups.UngroupResourcesInput) (*resourcegroups.UngroupResourcesOutput, error)
+	UngroupResourcesWithContext(aws.Context, *resourcegroups.UngroupResourcesInput, ...request.Option) (*resourcegroups.UngroupResourcesOutput, error)
+	UngroupResourcesRequest(*resourcegroups.UngroupResourcesInput) (*request.Request, *resourcegroups.UngroupResourcesOutput)
 
 	Untag(*resourcegroups.UntagInput) (*resourcegroups.UntagOutput, error)
 	UntagWithContext(aws.Context, *resourcegroups.UntagInput, ...request.Option) (*resourcegroups.UntagOutput, error)

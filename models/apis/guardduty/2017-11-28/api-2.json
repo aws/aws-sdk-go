@@ -432,6 +432,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "GetMemberDetectors":{
+      "name":"GetMemberDetectors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/member/detector/get",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMemberDetectorsRequest"},
+      "output":{"shape":"GetMemberDetectorsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "GetMembers":{
       "name":"GetMembers",
       "http":{
@@ -735,6 +749,20 @@
       },
       "input":{"shape":"UpdateIPSetRequest"},
       "output":{"shape":"UpdateIPSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "UpdateMemberDetectors":{
+      "name":"UpdateMemberDetectors",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/member/detector/update",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateMemberDetectorsRequest"},
+      "output":{"shape":"UpdateMemberDetectorsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -1071,6 +1099,16 @@
       "max":64,
       "min":0
     },
+    "CloudTrailConfigurationResult":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{
+          "shape":"DataSourceStatus",
+          "locationName":"status"
+        }
+      }
+    },
     "Condition":{
       "type":"structure",
       "members":{
@@ -1164,6 +1202,10 @@
         "FindingPublishingFrequency":{
           "shape":"FindingPublishingFrequency",
           "locationName":"findingPublishingFrequency"
+        },
+        "DataSources":{
+          "shape":"DataSourceConfigurations",
+          "locationName":"dataSources"
         },
         "Tags":{
           "shape":"TagMap",
@@ -1429,6 +1471,61 @@
       "key":{"shape":"String"},
       "value":{"shape":"Condition"}
     },
+    "DNSLogsConfigurationResult":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{
+          "shape":"DataSourceStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "DataSourceConfigurations":{
+      "type":"structure",
+      "members":{
+        "S3Logs":{
+          "shape":"S3LogsConfiguration",
+          "locationName":"s3Logs"
+        }
+      }
+    },
+    "DataSourceConfigurationsResult":{
+      "type":"structure",
+      "required":[
+        "CloudTrail",
+        "DNSLogs",
+        "FlowLogs",
+        "S3Logs"
+      ],
+      "members":{
+        "CloudTrail":{
+          "shape":"CloudTrailConfigurationResult",
+          "locationName":"cloudTrail"
+        },
+        "DNSLogs":{
+          "shape":"DNSLogsConfigurationResult",
+          "locationName":"dnsLogs"
+        },
+        "FlowLogs":{
+          "shape":"FlowLogsConfigurationResult",
+          "locationName":"flowLogs"
+        },
+        "S3Logs":{
+          "shape":"S3LogsConfigurationResult",
+          "locationName":"s3Logs"
+        }
+      }
+    },
+    "DataSourceStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ],
+      "max":300,
+      "min":1
+    },
     "DeclineInvitationsRequest":{
       "type":"structure",
       "required":["AccountIds"],
@@ -1647,6 +1744,10 @@
         "MemberAccountLimitReached":{
           "shape":"Boolean",
           "locationName":"memberAccountLimitReached"
+        },
+        "DataSources":{
+          "shape":"OrganizationDataSourceConfigurationsResult",
+          "locationName":"dataSources"
         }
       }
     },
@@ -2059,6 +2160,16 @@
       "max":50,
       "min":0
     },
+    "FlowLogsConfigurationResult":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{
+          "shape":"DataSourceStatus",
+          "locationName":"status"
+        }
+      }
+    },
     "GeoLocation":{
       "type":"structure",
       "members":{
@@ -2109,6 +2220,10 @@
         "UpdatedAt":{
           "shape":"String",
           "locationName":"updatedAt"
+        },
+        "DataSources":{
+          "shape":"DataSourceConfigurationsResult",
+          "locationName":"dataSources"
         },
         "Tags":{
           "shape":"TagMap",
@@ -2315,6 +2430,41 @@
         "Master":{
           "shape":"Master",
           "locationName":"master"
+        }
+      }
+    },
+    "GetMemberDetectorsRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AccountIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
+        }
+      }
+    },
+    "GetMemberDetectorsResponse":{
+      "type":"structure",
+      "required":[
+        "MemberDataSourceConfigurations",
+        "UnprocessedAccounts"
+      ],
+      "members":{
+        "MemberDataSourceConfigurations":{
+          "shape":"MemberDataSourceConfigurations",
+          "locationName":"members"
+        },
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
         }
       }
     },
@@ -3012,6 +3162,29 @@
         }
       }
     },
+    "MemberDataSourceConfiguration":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "DataSources"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
+        },
+        "DataSources":{
+          "shape":"DataSourceConfigurationsResult",
+          "locationName":"dataSources"
+        }
+      }
+    },
+    "MemberDataSourceConfigurations":{
+      "type":"list",
+      "member":{"shape":"MemberDataSourceConfiguration"},
+      "max":50,
+      "min":1
+    },
     "Members":{
       "type":"list",
       "member":{"shape":"Member"},
@@ -3138,6 +3311,45 @@
         "Org":{
           "shape":"String",
           "locationName":"org"
+        }
+      }
+    },
+    "OrganizationDataSourceConfigurations":{
+      "type":"structure",
+      "members":{
+        "S3Logs":{
+          "shape":"OrganizationS3LogsConfiguration",
+          "locationName":"s3Logs"
+        }
+      }
+    },
+    "OrganizationDataSourceConfigurationsResult":{
+      "type":"structure",
+      "required":["S3Logs"],
+      "members":{
+        "S3Logs":{
+          "shape":"OrganizationS3LogsConfigurationResult",
+          "locationName":"s3Logs"
+        }
+      }
+    },
+    "OrganizationS3LogsConfiguration":{
+      "type":"structure",
+      "required":["AutoEnable"],
+      "members":{
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
+        }
+      }
+    },
+    "OrganizationS3LogsConfigurationResult":{
+      "type":"structure",
+      "required":["AutoEnable"],
+      "members":{
+        "AutoEnable":{
+          "shape":"Boolean",
+          "locationName":"autoEnable"
         }
       }
     },
@@ -3354,6 +3566,26 @@
     "S3BucketDetails":{
       "type":"list",
       "member":{"shape":"S3BucketDetail"}
+    },
+    "S3LogsConfiguration":{
+      "type":"structure",
+      "required":["Enable"],
+      "members":{
+        "Enable":{
+          "shape":"Boolean",
+          "locationName":"enable"
+        }
+      }
+    },
+    "S3LogsConfigurationResult":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{
+          "shape":"DataSourceStatus",
+          "locationName":"status"
+        }
+      }
     },
     "SecurityGroup":{
       "type":"structure",
@@ -3691,6 +3923,10 @@
         "FindingPublishingFrequency":{
           "shape":"FindingPublishingFrequency",
           "locationName":"findingPublishingFrequency"
+        },
+        "DataSources":{
+          "shape":"DataSourceConfigurations",
+          "locationName":"dataSources"
         }
       }
     },
@@ -3812,6 +4048,38 @@
       "members":{
       }
     },
+    "UpdateMemberDetectorsRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "AccountIds"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
+        },
+        "DataSources":{
+          "shape":"DataSourceConfigurations",
+          "locationName":"dataSources"
+        }
+      }
+    },
+    "UpdateMemberDetectorsResponse":{
+      "type":"structure",
+      "required":["UnprocessedAccounts"],
+      "members":{
+        "UnprocessedAccounts":{
+          "shape":"UnprocessedAccounts",
+          "locationName":"unprocessedAccounts"
+        }
+      }
+    },
     "UpdateOrganizationConfigurationRequest":{
       "type":"structure",
       "required":[
@@ -3827,6 +4095,10 @@
         "AutoEnable":{
           "shape":"Boolean",
           "locationName":"autoEnable"
+        },
+        "DataSources":{
+          "shape":"OrganizationDataSourceConfigurations",
+          "locationName":"dataSources"
         }
       }
     },

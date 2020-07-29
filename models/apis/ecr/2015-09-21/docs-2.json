@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>Amazon Elastic Container Registry</fullname> <p>Amazon Elastic Container Registry (Amazon ECR) is a managed Docker registry service. Customers can use the familiar Docker CLI to push, pull, and manage images. Amazon ECR provides a secure, scalable, and reliable registry. Amazon ECR supports private Docker repositories with resource-based permissions using IAM so that specific users or Amazon EC2 instances can access repositories and images. Developers can use the Docker CLI to author and manage images.</p>",
+  "service": "<fullname>Amazon Elastic Container Registry</fullname> <p>Amazon Elastic Container Registry (Amazon ECR) is a managed container image registry service. Customers can use the familiar Docker CLI, or their preferred client, to push, pull, and manage images. Amazon ECR provides a secure, scalable, and reliable registry for your Docker or Open Container Initiative (OCI) images. Amazon ECR supports private repositories with resource-based permissions using IAM so that specific users or Amazon EC2 instances can access repositories and images.</p>",
   "operations": {
     "BatchCheckLayerAvailability": "<p>Checks the availability of one or more image layers in a repository.</p> <p>When an image is pushed to a repository, each image layer is checked to verify if it has been uploaded before. If it has been uploaded, then the image layer is skipped.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "BatchDeleteImage": "<p>Deletes a list of specified images within a repository. Images are specified with either an <code>imageTag</code> or <code>imageDigest</code>.</p> <p>You can remove a tag from an image by specifying the image's tag in your request. When you remove the last tag from an image, the image is deleted from your repository.</p> <p>You can completely delete an image (and all of its tags) by specifying the image's digest in your request.</p>",
@@ -224,6 +224,19 @@
       "refs": {
       }
     },
+    "EncryptionConfiguration": {
+      "base": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p> <p>By default, when no encryption configuration is set or the <code>AES256</code> encryption type is used, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts your data at rest using an AES-256 encryption algorithm. This does not require any action on your part.</p> <p>For more control over the encryption of the contents of your repository, you can use server-side encryption with customer master keys (CMKs) stored in AWS Key Management Service (AWS KMS) to encrypt your images. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html\">Amazon ECR encryption at rest</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+      "refs": {
+        "CreateRepositoryRequest$encryptionConfiguration": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p>",
+        "Repository$encryptionConfiguration": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p>"
+      }
+    },
+    "EncryptionType": {
+      "base": null,
+      "refs": {
+        "EncryptionConfiguration$encryptionType": "<p>The encryption type to use.</p> <p>If you use the <code>KMS</code> encryption type, the contents of the repository will be encrypted using server-side encryption with customer master keys (CMKs) stored in AWS KMS. When you use AWS KMS to encrypt your data, you can either use the default AWS managed CMK for Amazon ECR, or specify your own CMK, which you already created. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">Protecting Data Using Server-Side Encryption with CMKs Stored in AWS Key Management Service (SSE-KMS)</a> in the <i>Amazon Simple Storage Service Console Developer Guide.</i>.</p> <p>If you use the <code>AES256</code> encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES-256 encryption algorithm. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html\">Protecting Data Using Server-Side Encryption with Amazon S3-Managed Encryption Keys (SSE-S3)</a> in the <i>Amazon Simple Storage Service Console Developer Guide.</i>.</p>"
+      }
+    },
     "EvaluationTimestamp": {
       "base": null,
       "refs": {
@@ -243,6 +256,7 @@
         "InvalidLayerPartException$message": "<p>The error message associated with the exception.</p>",
         "InvalidParameterException$message": "<p>The error message associated with the exception.</p>",
         "InvalidTagParameterException$message": null,
+        "KmsException$message": null,
         "LayerAlreadyExistsException$message": "<p>The error message associated with the exception.</p>",
         "LayerInaccessibleException$message": "<p>The error message associated with the exception.</p>",
         "LayerPartTooSmallException$message": "<p>The error message associated with the exception.</p>",
@@ -509,7 +523,7 @@
     "ImageScanningConfiguration": {
       "base": "<p>The image scanning configuration for a repository.</p>",
       "refs": {
-        "CreateRepositoryRequest$imageScanningConfiguration": "<p>The image scanning configuration for the repository. This setting determines whether images are scanned for known vulnerabilities after being pushed to the repository.</p>",
+        "CreateRepositoryRequest$imageScanningConfiguration": "<p>The image scanning configuration for the repository. This determines whether images are scanned for known vulnerabilities after being pushed to the repository.</p>",
         "PutImageScanningConfigurationRequest$imageScanningConfiguration": "<p>The image scanning configuration for the repository. This setting determines whether images are scanned for known vulnerabilities after being pushed to the repository.</p>",
         "PutImageScanningConfigurationResponse$imageScanningConfiguration": "<p>The image scanning configuration setting for the repository.</p>",
         "Repository$imageScanningConfiguration": null
@@ -526,7 +540,7 @@
       "refs": {
         "ImageIdentifier$imageTag": "<p>The tag used for the image.</p>",
         "ImageTagList$member": null,
-        "PutImageRequest$imageTag": "<p>The tag to associate with the image. This parameter is required for images that use the Docker Image Manifest V2 Schema 2 or OCI formats.</p>"
+        "PutImageRequest$imageTag": "<p>The tag to associate with the image. This parameter is required for images that use the Docker Image Manifest V2 Schema 2 or Open Container Initiative (OCI) formats.</p>"
       }
     },
     "ImageTagAlreadyExistsException": {
@@ -578,6 +592,23 @@
     "InvalidTagParameterException": {
       "base": "<p>An invalid parameter has been specified. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
       "refs": {
+      }
+    },
+    "KmsError": {
+      "base": null,
+      "refs": {
+        "KmsException$kmsError": "<p>The error code returned by AWS KMS.</p>"
+      }
+    },
+    "KmsException": {
+      "base": "<p>The operation failed due to a KMS exception.</p>",
+      "refs": {
+      }
+    },
+    "KmsKey": {
+      "base": null,
+      "refs": {
+        "EncryptionConfiguration$kmsKey": "<p>If you use the <code>KMS</code> encryption type, specify the CMK to use for encryption. The alias, key ID, or full ARN of the CMK can be specified. The key must exist in the same Region as the repository. If no key is specified, the default AWS managed CMK for Amazon ECR will be used.</p>"
       }
     },
     "Layer": {
@@ -682,7 +713,7 @@
       }
     },
     "LifecyclePolicyPreviewInProgressException": {
-      "base": "<p>The previous lifecycle policy preview request has not completed. Please try again later.</p>",
+      "base": "<p>The previous lifecycle policy preview request has not completed. Wait and try again.</p>",
       "refs": {
       }
     },
@@ -1193,7 +1224,7 @@
       }
     },
     "UploadNotFoundException": {
-      "base": "<p>The upload could not be found, or the specified upload id is not valid for this repository.</p>",
+      "base": "<p>The upload could not be found, or the specified upload ID is not valid for this repository.</p>",
       "refs": {
       }
     },
@@ -1202,7 +1233,7 @@
       "refs": {
         "GetDownloadUrlForLayerResponse$downloadUrl": "<p>The pre-signed Amazon S3 download URL for the requested layer.</p>",
         "ImageScanFinding$uri": "<p>A link containing additional details about the security vulnerability.</p>",
-        "Repository$repositoryUri": "<p>The URI for the repository. You can use this URI for Docker <code>push</code> or <code>pull</code> operations.</p>"
+        "Repository$repositoryUri": "<p>The URI for the repository. You can use this URI for container image <code>push</code> and <code>pull</code> operations.</p>"
       }
     },
     "VulnerabilitySourceUpdateTimestamp": {

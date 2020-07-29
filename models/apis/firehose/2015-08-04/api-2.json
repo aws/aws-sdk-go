@@ -244,6 +244,13 @@
       },
       "exception":true
     },
+    "ContentEncoding":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "GZIP"
+      ]
+    },
     "CopyCommand":{
       "type":"structure",
       "required":["DataTableName"],
@@ -275,6 +282,7 @@
         "RedshiftDestinationConfiguration":{"shape":"RedshiftDestinationConfiguration"},
         "ElasticsearchDestinationConfiguration":{"shape":"ElasticsearchDestinationConfiguration"},
         "SplunkDestinationConfiguration":{"shape":"SplunkDestinationConfiguration"},
+        "HttpEndpointDestinationConfiguration":{"shape":"HttpEndpointDestinationConfiguration"},
         "Tags":{"shape":"TagDeliveryStreamInputTagList"}
       }
     },
@@ -474,7 +482,8 @@
         "ExtendedS3DestinationDescription":{"shape":"ExtendedS3DestinationDescription"},
         "RedshiftDestinationDescription":{"shape":"RedshiftDestinationDescription"},
         "ElasticsearchDestinationDescription":{"shape":"ElasticsearchDestinationDescription"},
-        "SplunkDestinationDescription":{"shape":"SplunkDestinationDescription"}
+        "SplunkDestinationDescription":{"shape":"SplunkDestinationDescription"},
+        "HttpEndpointDestinationDescription":{"shape":"HttpEndpointDestinationDescription"}
       }
     },
     "DestinationDescriptionList":{
@@ -730,6 +739,161 @@
       "members":{
         "TimestampFormats":{"shape":"ListOfNonEmptyStrings"}
       }
+    },
+    "HttpEndpointAccessKey":{
+      "type":"string",
+      "max":4096,
+      "min":0,
+      "pattern":".*",
+      "sensitive":true
+    },
+    "HttpEndpointAttributeName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^(?!\\s*$).+",
+      "sensitive":true
+    },
+    "HttpEndpointAttributeValue":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*",
+      "sensitive":true
+    },
+    "HttpEndpointBufferingHints":{
+      "type":"structure",
+      "members":{
+        "SizeInMBs":{"shape":"HttpEndpointBufferingSizeInMBs"},
+        "IntervalInSeconds":{"shape":"HttpEndpointBufferingIntervalInSeconds"}
+      }
+    },
+    "HttpEndpointBufferingIntervalInSeconds":{
+      "type":"integer",
+      "max":900,
+      "min":60
+    },
+    "HttpEndpointBufferingSizeInMBs":{
+      "type":"integer",
+      "max":64,
+      "min":1
+    },
+    "HttpEndpointCommonAttribute":{
+      "type":"structure",
+      "required":[
+        "AttributeName",
+        "AttributeValue"
+      ],
+      "members":{
+        "AttributeName":{"shape":"HttpEndpointAttributeName"},
+        "AttributeValue":{"shape":"HttpEndpointAttributeValue"}
+      }
+    },
+    "HttpEndpointCommonAttributesList":{
+      "type":"list",
+      "member":{"shape":"HttpEndpointCommonAttribute"},
+      "max":50,
+      "min":0
+    },
+    "HttpEndpointConfiguration":{
+      "type":"structure",
+      "required":["Url"],
+      "members":{
+        "Url":{"shape":"HttpEndpointUrl"},
+        "Name":{"shape":"HttpEndpointName"},
+        "AccessKey":{"shape":"HttpEndpointAccessKey"}
+      }
+    },
+    "HttpEndpointDescription":{
+      "type":"structure",
+      "members":{
+        "Url":{"shape":"HttpEndpointUrl"},
+        "Name":{"shape":"HttpEndpointName"}
+      }
+    },
+    "HttpEndpointDestinationConfiguration":{
+      "type":"structure",
+      "required":[
+        "EndpointConfiguration",
+        "S3Configuration"
+      ],
+      "members":{
+        "EndpointConfiguration":{"shape":"HttpEndpointConfiguration"},
+        "BufferingHints":{"shape":"HttpEndpointBufferingHints"},
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "RequestConfiguration":{"shape":"HttpEndpointRequestConfiguration"},
+        "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
+        "RoleARN":{"shape":"RoleARN"},
+        "RetryOptions":{"shape":"HttpEndpointRetryOptions"},
+        "S3BackupMode":{"shape":"HttpEndpointS3BackupMode"},
+        "S3Configuration":{"shape":"S3DestinationConfiguration"}
+      }
+    },
+    "HttpEndpointDestinationDescription":{
+      "type":"structure",
+      "members":{
+        "EndpointConfiguration":{"shape":"HttpEndpointDescription"},
+        "BufferingHints":{"shape":"HttpEndpointBufferingHints"},
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "RequestConfiguration":{"shape":"HttpEndpointRequestConfiguration"},
+        "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
+        "RoleARN":{"shape":"RoleARN"},
+        "RetryOptions":{"shape":"HttpEndpointRetryOptions"},
+        "S3BackupMode":{"shape":"HttpEndpointS3BackupMode"},
+        "S3DestinationDescription":{"shape":"S3DestinationDescription"}
+      }
+    },
+    "HttpEndpointDestinationUpdate":{
+      "type":"structure",
+      "members":{
+        "EndpointConfiguration":{"shape":"HttpEndpointConfiguration"},
+        "BufferingHints":{"shape":"HttpEndpointBufferingHints"},
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "RequestConfiguration":{"shape":"HttpEndpointRequestConfiguration"},
+        "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
+        "RoleARN":{"shape":"RoleARN"},
+        "RetryOptions":{"shape":"HttpEndpointRetryOptions"},
+        "S3BackupMode":{"shape":"HttpEndpointS3BackupMode"},
+        "S3Update":{"shape":"S3DestinationUpdate"}
+      }
+    },
+    "HttpEndpointName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^(?!\\s*$).+"
+    },
+    "HttpEndpointRequestConfiguration":{
+      "type":"structure",
+      "members":{
+        "ContentEncoding":{"shape":"ContentEncoding"},
+        "CommonAttributes":{"shape":"HttpEndpointCommonAttributesList"}
+      }
+    },
+    "HttpEndpointRetryDurationInSeconds":{
+      "type":"integer",
+      "max":7200,
+      "min":0
+    },
+    "HttpEndpointRetryOptions":{
+      "type":"structure",
+      "members":{
+        "DurationInSeconds":{"shape":"HttpEndpointRetryDurationInSeconds"}
+      }
+    },
+    "HttpEndpointS3BackupMode":{
+      "type":"string",
+      "enum":[
+        "FailedDataOnly",
+        "AllData"
+      ]
+    },
+    "HttpEndpointUrl":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"https://.*",
+      "sensitive":true
     },
     "InputFormatConfiguration":{
       "type":"structure",
@@ -1505,7 +1669,8 @@
         "ExtendedS3DestinationUpdate":{"shape":"ExtendedS3DestinationUpdate"},
         "RedshiftDestinationUpdate":{"shape":"RedshiftDestinationUpdate"},
         "ElasticsearchDestinationUpdate":{"shape":"ElasticsearchDestinationUpdate"},
-        "SplunkDestinationUpdate":{"shape":"SplunkDestinationUpdate"}
+        "SplunkDestinationUpdate":{"shape":"SplunkDestinationUpdate"},
+        "HttpEndpointDestinationUpdate":{"shape":"HttpEndpointDestinationUpdate"}
       }
     },
     "UpdateDestinationOutput":{
