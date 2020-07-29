@@ -203,16 +203,6 @@ func TestCredentialsGetConcurrent(t *testing.T) {
 	<-done
 }
 
-func newStubProviderRefreshable() *stubProviderRefreshable {
-	return &stubProviderRefreshable{
-		creds: Value{
-			AccessKeyID:     "AKID",
-			SecretAccessKey: "SECRET",
-			SessionToken:    "OLD_SESSION",
-		},
-	}
-}
-
 type stubProviderRefreshable struct {
 	creds        Value
 	expired      bool
