@@ -1904,15 +1904,14 @@
     },
     "DescribeProvisioningParametersInput":{
       "type":"structure",
-      "required":[
-        "ProductId",
-        "ProvisioningArtifactId"
-      ],
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
         "ProductId":{"shape":"Id"},
+        "ProductName":{"shape":"ProductViewName"},
         "ProvisioningArtifactId":{"shape":"Id"},
-        "PathId":{"shape":"Id"}
+        "ProvisioningArtifactName":{"shape":"ProvisioningArtifactName"},
+        "PathId":{"shape":"Id"},
+        "PathName":{"shape":"PortfolioDisplayName"}
       }
     },
     "DescribeProvisioningParametersOutput":{
@@ -1922,7 +1921,8 @@
         "ConstraintSummaries":{"shape":"ConstraintSummaries"},
         "UsageInstructions":{"shape":"UsageInstructions"},
         "TagOptions":{"shape":"TagOptionSummaries"},
-        "ProvisioningArtifactPreferences":{"shape":"ProvisioningArtifactPreferences"}
+        "ProvisioningArtifactPreferences":{"shape":"ProvisioningArtifactPreferences"},
+        "ProvisioningArtifactOutputs":{"shape":"ProvisioningArtifactOutputs"}
       }
     },
     "DescribeRecordInput":{
@@ -2650,6 +2650,10 @@
       "type":"list",
       "member":{"shape":"OrganizationNode"}
     },
+    "OutputDescription":{
+      "type":"string",
+      "max":1024
+    },
     "OutputKey":{"type":"string"},
     "OutputValue":{"type":"string"},
     "PageSize":{
@@ -2866,16 +2870,17 @@
     "ProvisionProductInput":{
       "type":"structure",
       "required":[
-        "ProductId",
-        "ProvisioningArtifactId",
         "ProvisionedProductName",
         "ProvisionToken"
       ],
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
         "ProductId":{"shape":"Id"},
+        "ProductName":{"shape":"ProductViewName"},
         "ProvisioningArtifactId":{"shape":"Id"},
+        "ProvisioningArtifactName":{"shape":"ProvisioningArtifactName"},
         "PathId":{"shape":"Id"},
+        "PathName":{"shape":"PortfolioDisplayName"},
         "ProvisionedProductName":{"shape":"ProvisionedProductName"},
         "ProvisioningParameters":{"shape":"ProvisioningParameters"},
         "ProvisioningPreferences":{"shape":"ProvisioningPreferences"},
@@ -3085,6 +3090,24 @@
     "ProvisioningArtifactName":{
       "type":"string",
       "max":8192
+    },
+    "ProvisioningArtifactOutput":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"ProvisioningArtifactOutputKey"},
+        "Description":{"shape":"OutputDescription"}
+      }
+    },
+    "ProvisioningArtifactOutputKey":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9]*"
+    },
+    "ProvisioningArtifactOutputs":{
+      "type":"list",
+      "member":{"shape":"ProvisioningArtifactOutput"},
+      "max":60
     },
     "ProvisioningArtifactParameter":{
       "type":"structure",
@@ -3858,8 +3881,11 @@
         "ProvisionedProductName":{"shape":"ProvisionedProductNameOrArn"},
         "ProvisionedProductId":{"shape":"Id"},
         "ProductId":{"shape":"Id"},
+        "ProductName":{"shape":"ProductViewName"},
         "ProvisioningArtifactId":{"shape":"Id"},
+        "ProvisioningArtifactName":{"shape":"ProvisioningArtifactName"},
         "PathId":{"shape":"Id"},
+        "PathName":{"shape":"PortfolioDisplayName"},
         "ProvisioningParameters":{"shape":"UpdateProvisioningParameters"},
         "ProvisioningPreferences":{"shape":"UpdateProvisioningPreferences"},
         "Tags":{"shape":"Tags"},

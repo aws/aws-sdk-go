@@ -1,3 +1,23 @@
+Release v1.33.16 (2020-07-30)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service documentation
+  * Documentation updates for CloudFront
+* `service/codebuild`: Updates service API, documentation, and paginators
+  * Adding support for BuildBatch, and CodeCoverage APIs. BuildBatch allows you to model your project environment in source, and helps start multiple builds with a single API call. CodeCoverage allows you to track your code coverage using AWS CodeBuild.
+* `service/ec2`: Updates service API
+  * EC2 On-Demand Capacity Reservations now adds support to bring your own licenses (BYOL) of Windows operating system to launch EC2 instances.
+* `service/guardduty`: Updates service API, documentation, and paginators
+  * GuardDuty can now provide detailed cost metrics broken down by account, data source, and S3 resources, based on the past 30 days of usage.  This new feature also supports viewing cost metrics for all member accounts as a GuardDuty master.
+* `service/kafka`: Updates service API and documentation
+* `service/organizations`: Updates service documentation
+  * Documentation updates for AWS Organizations
+* `service/resource-groups`: Updates service documentation
+* `service/servicecatalog`: Updates service API and documentation
+  * This release adds support for ProvisionProduct, UpdateProvisionedProduct & DescribeProvisioningParameters by product name, provisioning artifact name and path name. In addition DescribeProvisioningParameters now returns a list of provisioning artifact outputs.
+* `service/sesv2`: Updates service API, documentation, and paginators
+
 Release v1.33.15 (2020-07-29)
 ===
 

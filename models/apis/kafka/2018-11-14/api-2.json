@@ -514,6 +514,43 @@
         }
       ]
     },
+    "RebootBroker": {
+      "name": "RebootBroker",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/clusters/{clusterArn}/reboot-broker",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "RebootBrokerRequest"
+      },
+      "output": {
+        "shape": "RebootBrokerResponse"
+      },
+      "errors": [
+        {
+        "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+        "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "TagResource": {
       "name": "TagResource",
       "http": {
@@ -2299,6 +2336,34 @@
         "NodeExporter" : {
           "shape" : "NodeExporterInfo",
           "locationName" : "nodeExporter"
+        }
+      }
+    },
+    "RebootBrokerRequest": {
+      "type": "structure",
+      "members": {
+        "BrokerIds": {
+          "shape": "__listOf__string",
+          "locationName": "brokerIds"
+        },
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        }
+      },
+      "required": [ "ClusterArn", "BrokerIds" ]
+    },
+    "RebootBrokerResponse": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "locationName": "clusterArn"
+        },
+        "ClusterOperationArn": {
+          "shape": "__string",
+          "locationName": "clusterOperationArn"
         }
       }
     },

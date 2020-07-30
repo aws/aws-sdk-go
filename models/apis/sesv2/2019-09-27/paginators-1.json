@@ -10,6 +10,11 @@
       "output_token": "NextToken",
       "limit_key": "PageSize"
     },
+    "ListCustomVerificationEmailTemplates": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "PageSize"
+    },
     "ListDedicatedIpPools": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -26,6 +31,11 @@
       "limit_key": "PageSize"
     },
     "ListEmailIdentities": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "PageSize"
+    },
+    "ListEmailTemplates": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "PageSize"
