@@ -33,6 +33,12 @@ const (
 	// The resource is being modified by another operation or thread.
 	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// If there is already an ongoing account details update under review.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeInvalidNextTokenException for service response error code
 	// "InvalidNextTokenException".
 	//
@@ -82,6 +88,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AlreadyExistsException":             newErrorAlreadyExistsException,
 	"BadRequestException":                newErrorBadRequestException,
 	"ConcurrentModificationException":    newErrorConcurrentModificationException,
+	"ConflictException":                  newErrorConflictException,
 	"InvalidNextTokenException":          newErrorInvalidNextTokenException,
 	"LimitExceededException":             newErrorLimitExceededException,
 	"MailFromDomainNotVerifiedException": newErrorMailFromDomainNotVerifiedException,

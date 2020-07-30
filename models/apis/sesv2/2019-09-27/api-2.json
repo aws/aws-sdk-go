@@ -46,6 +46,22 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "CreateCustomVerificationEmailTemplate":{
+      "name":"CreateCustomVerificationEmailTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/custom-verification-email-templates"
+      },
+      "input":{"shape":"CreateCustomVerificationEmailTemplateRequest"},
+      "output":{"shape":"CreateCustomVerificationEmailTemplateResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "CreateDedicatedIpPool":{
       "name":"CreateDedicatedIpPool",
       "http":{
@@ -98,6 +114,37 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "CreateEmailIdentityPolicy":{
+      "name":"CreateEmailIdentityPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/identities/{EmailIdentity}/policies/{PolicyName}"
+      },
+      "input":{"shape":"CreateEmailIdentityPolicyRequest"},
+      "output":{"shape":"CreateEmailIdentityPolicyResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "CreateEmailTemplate":{
+      "name":"CreateEmailTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/templates"
+      },
+      "input":{"shape":"CreateEmailTemplateRequest"},
+      "output":{"shape":"CreateEmailTemplateResponse"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "DeleteConfigurationSet":{
       "name":"DeleteConfigurationSet",
       "http":{
@@ -121,6 +168,20 @@
       },
       "input":{"shape":"DeleteConfigurationSetEventDestinationRequest"},
       "output":{"shape":"DeleteConfigurationSetEventDestinationResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "DeleteCustomVerificationEmailTemplate":{
+      "name":"DeleteCustomVerificationEmailTemplate",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v2/email/custom-verification-email-templates/{TemplateName}"
+      },
+      "input":{"shape":"DeleteCustomVerificationEmailTemplateRequest"},
+      "output":{"shape":"DeleteCustomVerificationEmailTemplateResponse"},
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
@@ -155,6 +216,34 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
         {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "DeleteEmailIdentityPolicy":{
+      "name":"DeleteEmailIdentityPolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v2/email/identities/{EmailIdentity}/policies/{PolicyName}"
+      },
+      "input":{"shape":"DeleteEmailIdentityPolicyRequest"},
+      "output":{"shape":"DeleteEmailIdentityPolicyResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "DeleteEmailTemplate":{
+      "name":"DeleteEmailTemplate",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v2/email/templates/{TemplateName}"
+      },
+      "input":{"shape":"DeleteEmailTemplateRequest"},
+      "output":{"shape":"DeleteEmailTemplateResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "DeleteSuppressedDestination":{
@@ -220,6 +309,20 @@
       },
       "input":{"shape":"GetConfigurationSetEventDestinationsRequest"},
       "output":{"shape":"GetConfigurationSetEventDestinationsResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "GetCustomVerificationEmailTemplate":{
+      "name":"GetCustomVerificationEmailTemplate",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/custom-verification-email-templates/{TemplateName}"
+      },
+      "input":{"shape":"GetCustomVerificationEmailTemplateRequest"},
+      "output":{"shape":"GetCustomVerificationEmailTemplateResponse"},
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
@@ -324,6 +427,34 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetEmailIdentityPolicies":{
+      "name":"GetEmailIdentityPolicies",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/identities/{EmailIdentity}/policies"
+      },
+      "input":{"shape":"GetEmailIdentityPoliciesRequest"},
+      "output":{"shape":"GetEmailIdentityPoliciesResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "GetEmailTemplate":{
+      "name":"GetEmailTemplate",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/templates/{TemplateName}"
+      },
+      "input":{"shape":"GetEmailTemplateRequest"},
+      "output":{"shape":"GetEmailTemplateResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "GetSuppressedDestination":{
       "name":"GetSuppressedDestination",
       "http":{
@@ -346,6 +477,19 @@
       },
       "input":{"shape":"ListConfigurationSetsRequest"},
       "output":{"shape":"ListConfigurationSetsResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "ListCustomVerificationEmailTemplates":{
+      "name":"ListCustomVerificationEmailTemplates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/custom-verification-email-templates"
+      },
+      "input":{"shape":"ListCustomVerificationEmailTemplatesRequest"},
+      "output":{"shape":"ListCustomVerificationEmailTemplatesResponse"},
       "errors":[
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"}
@@ -405,6 +549,19 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "ListEmailTemplates":{
+      "name":"ListEmailTemplates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/templates"
+      },
+      "input":{"shape":"ListEmailTemplatesRequest"},
+      "output":{"shape":"ListEmailTemplatesResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "ListSuppressedDestinations":{
       "name":"ListSuppressedDestinations",
       "http":{
@@ -444,6 +601,20 @@
       "errors":[
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"}
+      ]
+    },
+    "PutAccountDetails":{
+      "name":"PutAccountDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/account/details"
+      },
+      "input":{"shape":"PutAccountDetailsRequest"},
+      "output":{"shape":"PutAccountDetailsResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"}
       ]
     },
     "PutAccountSendingAttributes":{
@@ -655,6 +826,43 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "SendBulkEmail":{
+      "name":"SendBulkEmail",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/outbound-bulk-emails"
+      },
+      "input":{"shape":"SendBulkEmailRequest"},
+      "output":{"shape":"SendBulkEmailResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"AccountSuspendedException"},
+        {"shape":"SendingPausedException"},
+        {"shape":"MessageRejected"},
+        {"shape":"MailFromDomainNotVerifiedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "SendCustomVerificationEmail":{
+      "name":"SendCustomVerificationEmail",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/outbound-custom-verification-emails"
+      },
+      "input":{"shape":"SendCustomVerificationEmailRequest"},
+      "output":{"shape":"SendCustomVerificationEmailResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"MessageRejected"},
+        {"shape":"SendingPausedException"},
+        {"shape":"MailFromDomainNotVerifiedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "SendEmail":{
       "name":"SendEmail",
       "http":{
@@ -689,6 +897,20 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "TestRenderEmailTemplate":{
+      "name":"TestRenderEmailTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/templates/{TemplateName}/render"
+      },
+      "input":{"shape":"TestRenderEmailTemplateRequest"},
+      "output":{"shape":"TestRenderEmailTemplateResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "UntagResource":{
       "name":"UntagResource",
       "http":{
@@ -717,15 +939,82 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"}
       ]
+    },
+    "UpdateCustomVerificationEmailTemplate":{
+      "name":"UpdateCustomVerificationEmailTemplate",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/custom-verification-email-templates/{TemplateName}"
+      },
+      "input":{"shape":"UpdateCustomVerificationEmailTemplateRequest"},
+      "output":{"shape":"UpdateCustomVerificationEmailTemplateResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "UpdateEmailIdentityPolicy":{
+      "name":"UpdateEmailIdentityPolicy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/identities/{EmailIdentity}/policies/{PolicyName}"
+      },
+      "input":{"shape":"UpdateEmailIdentityPolicyRequest"},
+      "output":{"shape":"UpdateEmailIdentityPolicyResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "UpdateEmailTemplate":{
+      "name":"UpdateEmailTemplate",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/templates/{TemplateName}"
+      },
+      "input":{"shape":"UpdateEmailTemplateRequest"},
+      "output":{"shape":"UpdateEmailTemplateResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
     }
   },
   "shapes":{
+    "AccountDetails":{
+      "type":"structure",
+      "members":{
+        "MailType":{"shape":"MailType"},
+        "WebsiteURL":{"shape":"WebsiteURL"},
+        "ContactLanguage":{"shape":"ContactLanguage"},
+        "UseCaseDescription":{"shape":"UseCaseDescription"},
+        "AdditionalContactEmailAddresses":{"shape":"AdditionalContactEmailAddresses"},
+        "ReviewDetails":{"shape":"ReviewDetails"}
+      }
+    },
     "AccountSuspendedException":{
       "type":"structure",
       "members":{
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "AdditionalContactEmailAddress":{
+      "type":"string",
+      "max":254,
+      "min":6,
+      "pattern":"^(.+)@(.+)$",
+      "sensitive":true
+    },
+    "AdditionalContactEmailAddresses":{
+      "type":"list",
+      "member":{"shape":"AdditionalContactEmailAddress"},
+      "max":4,
+      "min":1,
+      "sensitive":true
     },
     "AlreadyExistsException":{
       "type":"structure",
@@ -779,7 +1068,58 @@
         "Html":{"shape":"Content"}
       }
     },
+    "BulkEmailContent":{
+      "type":"structure",
+      "members":{
+        "Template":{"shape":"Template"}
+      }
+    },
+    "BulkEmailEntry":{
+      "type":"structure",
+      "required":["Destination"],
+      "members":{
+        "Destination":{"shape":"Destination"},
+        "ReplacementTags":{"shape":"MessageTagList"},
+        "ReplacementEmailContent":{"shape":"ReplacementEmailContent"}
+      }
+    },
+    "BulkEmailEntryList":{
+      "type":"list",
+      "member":{"shape":"BulkEmailEntry"}
+    },
+    "BulkEmailEntryResult":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"BulkEmailStatus"},
+        "Error":{"shape":"ErrorMessage"},
+        "MessageId":{"shape":"OutboundMessageId"}
+      }
+    },
+    "BulkEmailEntryResultList":{
+      "type":"list",
+      "member":{"shape":"BulkEmailEntryResult"}
+    },
+    "BulkEmailStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "MESSAGE_REJECTED",
+        "MAIL_FROM_DOMAIN_NOT_VERIFIED",
+        "CONFIGURATION_SET_NOT_FOUND",
+        "TEMPLATE_NOT_FOUND",
+        "ACCOUNT_SUSPENDED",
+        "ACCOUNT_THROTTLED",
+        "ACCOUNT_DAILY_QUOTA_EXCEEDED",
+        "INVALID_SENDING_POOL_NAME",
+        "ACCOUNT_SENDING_PAUSED",
+        "CONFIGURATION_SET_SENDING_PAUSED",
+        "INVALID_PARAMETER",
+        "TRANSIENT_FAILURE",
+        "FAILED"
+      ]
+    },
     "CampaignId":{"type":"string"},
+    "CaseId":{"type":"string"},
     "Charset":{"type":"string"},
     "CloudWatchDestination":{
       "type":"structure",
@@ -810,12 +1150,27 @@
       "members":{
       },
       "error":{"httpStatusCode":500},
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "ConfigurationSetName":{"type":"string"},
     "ConfigurationSetNameList":{
       "type":"list",
       "member":{"shape":"ConfigurationSetName"}
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "ContactLanguage":{
+      "type":"string",
+      "enum":[
+        "EN",
+        "JA"
+      ]
     },
     "Content":{
       "type":"structure",
@@ -865,6 +1220,30 @@
       "members":{
       }
     },
+    "CreateCustomVerificationEmailTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "TemplateName",
+        "FromEmailAddress",
+        "TemplateSubject",
+        "TemplateContent",
+        "SuccessRedirectionURL",
+        "FailureRedirectionURL"
+      ],
+      "members":{
+        "TemplateName":{"shape":"EmailTemplateName"},
+        "FromEmailAddress":{"shape":"EmailAddress"},
+        "TemplateSubject":{"shape":"EmailTemplateSubject"},
+        "TemplateContent":{"shape":"TemplateContent"},
+        "SuccessRedirectionURL":{"shape":"SuccessRedirectionURL"},
+        "FailureRedirectionURL":{"shape":"FailureRedirectionURL"}
+      }
+    },
+    "CreateCustomVerificationEmailTemplateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CreateDedicatedIpPoolRequest":{
       "type":"structure",
       "required":["PoolName"],
@@ -902,6 +1281,32 @@
         "DeliverabilityTestStatus":{"shape":"DeliverabilityTestStatus"}
       }
     },
+    "CreateEmailIdentityPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "EmailIdentity",
+        "PolicyName",
+        "Policy"
+      ],
+      "members":{
+        "EmailIdentity":{
+          "shape":"Identity",
+          "location":"uri",
+          "locationName":"EmailIdentity"
+        },
+        "PolicyName":{
+          "shape":"PolicyName",
+          "location":"uri",
+          "locationName":"PolicyName"
+        },
+        "Policy":{"shape":"Policy"}
+      }
+    },
+    "CreateEmailIdentityPolicyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CreateEmailIdentityRequest":{
       "type":"structure",
       "required":["EmailIdentity"],
@@ -919,7 +1324,37 @@
         "DkimAttributes":{"shape":"DkimAttributes"}
       }
     },
+    "CreateEmailTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "TemplateName",
+        "TemplateContent"
+      ],
+      "members":{
+        "TemplateName":{"shape":"EmailTemplateName"},
+        "TemplateContent":{"shape":"EmailTemplateContent"}
+      }
+    },
+    "CreateEmailTemplateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CustomRedirectDomain":{"type":"string"},
+    "CustomVerificationEmailTemplateMetadata":{
+      "type":"structure",
+      "members":{
+        "TemplateName":{"shape":"EmailTemplateName"},
+        "FromEmailAddress":{"shape":"EmailAddress"},
+        "TemplateSubject":{"shape":"EmailTemplateSubject"},
+        "SuccessRedirectionURL":{"shape":"SuccessRedirectionURL"},
+        "FailureRedirectionURL":{"shape":"FailureRedirectionURL"}
+      }
+    },
+    "CustomVerificationEmailTemplatesList":{
+      "type":"list",
+      "member":{"shape":"CustomVerificationEmailTemplateMetadata"}
+    },
     "DailyVolume":{
       "type":"structure",
       "members":{
@@ -991,6 +1426,22 @@
       "members":{
       }
     },
+    "DeleteCustomVerificationEmailTemplateRequest":{
+      "type":"structure",
+      "required":["TemplateName"],
+      "members":{
+        "TemplateName":{
+          "shape":"EmailTemplateName",
+          "location":"uri",
+          "locationName":"TemplateName"
+        }
+      }
+    },
+    "DeleteCustomVerificationEmailTemplateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteDedicatedIpPoolRequest":{
       "type":"structure",
       "required":["PoolName"],
@@ -1007,6 +1458,30 @@
       "members":{
       }
     },
+    "DeleteEmailIdentityPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "EmailIdentity",
+        "PolicyName"
+      ],
+      "members":{
+        "EmailIdentity":{
+          "shape":"Identity",
+          "location":"uri",
+          "locationName":"EmailIdentity"
+        },
+        "PolicyName":{
+          "shape":"PolicyName",
+          "location":"uri",
+          "locationName":"PolicyName"
+        }
+      }
+    },
+    "DeleteEmailIdentityPolicyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteEmailIdentityRequest":{
       "type":"structure",
       "required":["EmailIdentity"],
@@ -1019,6 +1494,22 @@
       }
     },
     "DeleteEmailIdentityResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteEmailTemplateRequest":{
+      "type":"structure",
+      "required":["TemplateName"],
+      "members":{
+        "TemplateName":{
+          "shape":"EmailTemplateName",
+          "location":"uri",
+          "locationName":"TemplateName"
+        }
+      }
+    },
+    "DeleteEmailTemplateResponse":{
       "type":"structure",
       "members":{
       }
@@ -1199,7 +1690,39 @@
         "Template":{"shape":"Template"}
       }
     },
+    "EmailTemplateContent":{
+      "type":"structure",
+      "members":{
+        "Subject":{"shape":"EmailTemplateSubject"},
+        "Text":{"shape":"EmailTemplateText"},
+        "Html":{"shape":"EmailTemplateHtml"}
+      }
+    },
+    "EmailTemplateData":{
+      "type":"string",
+      "max":262144
+    },
+    "EmailTemplateHtml":{"type":"string"},
+    "EmailTemplateMetadata":{
+      "type":"structure",
+      "members":{
+        "TemplateName":{"shape":"EmailTemplateName"},
+        "CreatedTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "EmailTemplateMetadataList":{
+      "type":"list",
+      "member":{"shape":"EmailTemplateMetadata"}
+    },
+    "EmailTemplateName":{
+      "type":"string",
+      "min":1
+    },
+    "EmailTemplateSubject":{"type":"string"},
+    "EmailTemplateText":{"type":"string"},
     "Enabled":{"type":"boolean"},
+    "EnabledWrapper":{"type":"boolean"},
+    "ErrorMessage":{"type":"string"},
     "Esp":{"type":"string"},
     "Esps":{
       "type":"list",
@@ -1255,6 +1778,7 @@
       "type":"list",
       "member":{"shape":"EventType"}
     },
+    "FailureRedirectionURL":{"type":"string"},
     "FeedbackId":{"type":"string"},
     "GeneralEnforcementStatus":{"type":"string"},
     "GetAccountRequest":{
@@ -1270,7 +1794,8 @@
         "ProductionAccessEnabled":{"shape":"Enabled"},
         "SendQuota":{"shape":"SendQuota"},
         "SendingEnabled":{"shape":"Enabled"},
-        "SuppressionAttributes":{"shape":"SuppressionAttributes"}
+        "SuppressionAttributes":{"shape":"SuppressionAttributes"},
+        "Details":{"shape":"AccountDetails"}
       }
     },
     "GetBlacklistReportsRequest":{
@@ -1329,6 +1854,28 @@
         "SendingOptions":{"shape":"SendingOptions"},
         "Tags":{"shape":"TagList"},
         "SuppressionOptions":{"shape":"SuppressionOptions"}
+      }
+    },
+    "GetCustomVerificationEmailTemplateRequest":{
+      "type":"structure",
+      "required":["TemplateName"],
+      "members":{
+        "TemplateName":{
+          "shape":"EmailTemplateName",
+          "location":"uri",
+          "locationName":"TemplateName"
+        }
+      }
+    },
+    "GetCustomVerificationEmailTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "TemplateName":{"shape":"EmailTemplateName"},
+        "FromEmailAddress":{"shape":"EmailAddress"},
+        "TemplateSubject":{"shape":"EmailTemplateSubject"},
+        "TemplateContent":{"shape":"TemplateContent"},
+        "SuccessRedirectionURL":{"shape":"SuccessRedirectionURL"},
+        "FailureRedirectionURL":{"shape":"FailureRedirectionURL"}
       }
     },
     "GetDedicatedIpRequest":{
@@ -1471,6 +2018,23 @@
         "DailyVolumes":{"shape":"DailyVolumes"}
       }
     },
+    "GetEmailIdentityPoliciesRequest":{
+      "type":"structure",
+      "required":["EmailIdentity"],
+      "members":{
+        "EmailIdentity":{
+          "shape":"Identity",
+          "location":"uri",
+          "locationName":"EmailIdentity"
+        }
+      }
+    },
+    "GetEmailIdentityPoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "Policies":{"shape":"PolicyMap"}
+      }
+    },
     "GetEmailIdentityRequest":{
       "type":"structure",
       "required":["EmailIdentity"],
@@ -1490,7 +2054,30 @@
         "VerifiedForSendingStatus":{"shape":"Enabled"},
         "DkimAttributes":{"shape":"DkimAttributes"},
         "MailFromAttributes":{"shape":"MailFromAttributes"},
+        "Policies":{"shape":"PolicyMap"},
         "Tags":{"shape":"TagList"}
+      }
+    },
+    "GetEmailTemplateRequest":{
+      "type":"structure",
+      "required":["TemplateName"],
+      "members":{
+        "TemplateName":{
+          "shape":"EmailTemplateName",
+          "location":"uri",
+          "locationName":"TemplateName"
+        }
+      }
+    },
+    "GetEmailTemplateResponse":{
+      "type":"structure",
+      "required":[
+        "TemplateName",
+        "TemplateContent"
+      ],
+      "members":{
+        "TemplateName":{"shape":"EmailTemplateName"},
+        "TemplateContent":{"shape":"EmailTemplateContent"}
       }
     },
     "GetSuppressedDestinationRequest":{
@@ -1511,7 +2098,10 @@
         "SuppressedDestination":{"shape":"SuppressedDestination"}
       }
     },
-    "Identity":{"type":"string"},
+    "Identity":{
+      "type":"string",
+      "min":1
+    },
     "IdentityInfo":{
       "type":"structure",
       "members":{
@@ -1606,6 +2196,28 @@
       "type":"structure",
       "members":{
         "ConfigurationSets":{"shape":"ConfigurationSetNameList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListCustomVerificationEmailTemplatesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        }
+      }
+    },
+    "ListCustomVerificationEmailTemplatesResponse":{
+      "type":"structure",
+      "members":{
+        "CustomVerificationEmailTemplates":{"shape":"CustomVerificationEmailTemplatesList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -1719,6 +2331,28 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListEmailTemplatesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        }
+      }
+    },
+    "ListEmailTemplatesResponse":{
+      "type":"structure",
+      "members":{
+        "TemplatesMetadata":{"shape":"EmailTemplateMetadataList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListOfDedicatedIpPools":{
       "type":"list",
       "member":{"shape":"PoolName"}
@@ -1808,6 +2442,13 @@
         "TEMPORARY_FAILURE"
       ]
     },
+    "MailType":{
+      "type":"string",
+      "enum":[
+        "MARKETING",
+        "TRANSACTIONAL"
+      ]
+    },
     "Max24HourSend":{"type":"double"},
     "MaxItems":{"type":"integer"},
     "MaxSendRate":{"type":"double"},
@@ -1883,6 +2524,20 @@
         "DkimPercentage":{"shape":"Percentage"}
       }
     },
+    "Policy":{
+      "type":"string",
+      "min":1
+    },
+    "PolicyMap":{
+      "type":"map",
+      "key":{"shape":"PolicyName"},
+      "value":{"shape":"Policy"}
+    },
+    "PolicyName":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
     "PoolName":{"type":"string"},
     "PrivateKey":{
       "type":"string",
@@ -1898,6 +2553,27 @@
       }
     },
     "PutAccountDedicatedIpWarmupAttributesResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutAccountDetailsRequest":{
+      "type":"structure",
+      "required":[
+        "MailType",
+        "WebsiteURL",
+        "UseCaseDescription"
+      ],
+      "members":{
+        "MailType":{"shape":"MailType"},
+        "WebsiteURL":{"shape":"WebsiteURL"},
+        "ContactLanguage":{"shape":"ContactLanguage"},
+        "UseCaseDescription":{"shape":"UseCaseDescription"},
+        "AdditionalContactEmailAddresses":{"shape":"AdditionalContactEmailAddresses"},
+        "ProductionAccessEnabled":{"shape":"EnabledWrapper"}
+      }
+    },
+    "PutAccountDetailsResponse":{
       "type":"structure",
       "members":{
       }
@@ -2163,6 +2839,19 @@
     },
     "RawMessageData":{"type":"blob"},
     "RblName":{"type":"string"},
+    "RenderedEmailTemplate":{"type":"string"},
+    "ReplacementEmailContent":{
+      "type":"structure",
+      "members":{
+        "ReplacementTemplate":{"shape":"ReplacementTemplate"}
+      }
+    },
+    "ReplacementTemplate":{
+      "type":"structure",
+      "members":{
+        "ReplacementTemplateData":{"shape":"EmailTemplateData"}
+      }
+    },
     "ReportId":{"type":"string"},
     "ReportName":{"type":"string"},
     "ReputationOptions":{
@@ -2172,23 +2861,81 @@
         "LastFreshStart":{"shape":"LastFreshStart"}
       }
     },
+    "ReviewDetails":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ReviewStatus"},
+        "CaseId":{"shape":"CaseId"}
+      }
+    },
+    "ReviewStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "FAILED",
+        "GRANTED",
+        "DENIED"
+      ]
+    },
     "Selector":{
       "type":"string",
       "max":63,
       "min":1,
       "pattern":"^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9]))$"
     },
-    "SendEmailRequest":{
+    "SendBulkEmailRequest":{
       "type":"structure",
       "required":[
-        "Destination",
-        "Content"
+        "DefaultContent",
+        "BulkEmailEntries"
       ],
       "members":{
         "FromEmailAddress":{"shape":"EmailAddress"},
+        "FromEmailAddressIdentityArn":{"shape":"AmazonResourceName"},
+        "ReplyToAddresses":{"shape":"EmailAddressList"},
+        "FeedbackForwardingEmailAddress":{"shape":"EmailAddress"},
+        "FeedbackForwardingEmailAddressIdentityArn":{"shape":"AmazonResourceName"},
+        "DefaultEmailTags":{"shape":"MessageTagList"},
+        "DefaultContent":{"shape":"BulkEmailContent"},
+        "BulkEmailEntries":{"shape":"BulkEmailEntryList"},
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"}
+      }
+    },
+    "SendBulkEmailResponse":{
+      "type":"structure",
+      "required":["BulkEmailEntryResults"],
+      "members":{
+        "BulkEmailEntryResults":{"shape":"BulkEmailEntryResultList"}
+      }
+    },
+    "SendCustomVerificationEmailRequest":{
+      "type":"structure",
+      "required":[
+        "EmailAddress",
+        "TemplateName"
+      ],
+      "members":{
+        "EmailAddress":{"shape":"EmailAddress"},
+        "TemplateName":{"shape":"EmailTemplateName"},
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"}
+      }
+    },
+    "SendCustomVerificationEmailResponse":{
+      "type":"structure",
+      "members":{
+        "MessageId":{"shape":"OutboundMessageId"}
+      }
+    },
+    "SendEmailRequest":{
+      "type":"structure",
+      "required":["Content"],
+      "members":{
+        "FromEmailAddress":{"shape":"EmailAddress"},
+        "FromEmailAddressIdentityArn":{"shape":"AmazonResourceName"},
         "Destination":{"shape":"Destination"},
         "ReplyToAddresses":{"shape":"EmailAddressList"},
         "FeedbackForwardingEmailAddress":{"shape":"EmailAddress"},
+        "FeedbackForwardingEmailAddressIdentityArn":{"shape":"AmazonResourceName"},
         "Content":{"shape":"EmailContent"},
         "EmailTags":{"shape":"MessageTagList"},
         "ConfigurationSetName":{"shape":"ConfigurationSetName"}
@@ -2231,6 +2978,7 @@
       }
     },
     "Subject":{"type":"string"},
+    "SuccessRedirectionURL":{"type":"string"},
     "SuppressedDestination":{
       "type":"structure",
       "required":[
@@ -2332,14 +3080,33 @@
     "Template":{
       "type":"structure",
       "members":{
-        "TemplateArn":{"shape":"TemplateArn"},
-        "TemplateData":{"shape":"TemplateData"}
+        "TemplateName":{"shape":"EmailTemplateName"},
+        "TemplateArn":{"shape":"AmazonResourceName"},
+        "TemplateData":{"shape":"EmailTemplateData"}
       }
     },
-    "TemplateArn":{"type":"string"},
-    "TemplateData":{
-      "type":"string",
-      "max":262144
+    "TemplateContent":{"type":"string"},
+    "TestRenderEmailTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "TemplateName",
+        "TemplateData"
+      ],
+      "members":{
+        "TemplateName":{
+          "shape":"EmailTemplateName",
+          "location":"uri",
+          "locationName":"TemplateName"
+        },
+        "TemplateData":{"shape":"EmailTemplateData"}
+      }
+    },
+    "TestRenderEmailTemplateResponse":{
+      "type":"structure",
+      "required":["RenderedTemplate"],
+      "members":{
+        "RenderedTemplate":{"shape":"RenderedEmailTemplate"}
+      }
     },
     "Timestamp":{"type":"timestamp"},
     "TlsPolicy":{
@@ -2413,6 +3180,86 @@
       "members":{
       }
     },
+    "UpdateCustomVerificationEmailTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "TemplateName",
+        "FromEmailAddress",
+        "TemplateSubject",
+        "TemplateContent",
+        "SuccessRedirectionURL",
+        "FailureRedirectionURL"
+      ],
+      "members":{
+        "TemplateName":{
+          "shape":"EmailTemplateName",
+          "location":"uri",
+          "locationName":"TemplateName"
+        },
+        "FromEmailAddress":{"shape":"EmailAddress"},
+        "TemplateSubject":{"shape":"EmailTemplateSubject"},
+        "TemplateContent":{"shape":"TemplateContent"},
+        "SuccessRedirectionURL":{"shape":"SuccessRedirectionURL"},
+        "FailureRedirectionURL":{"shape":"FailureRedirectionURL"}
+      }
+    },
+    "UpdateCustomVerificationEmailTemplateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateEmailIdentityPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "EmailIdentity",
+        "PolicyName",
+        "Policy"
+      ],
+      "members":{
+        "EmailIdentity":{
+          "shape":"Identity",
+          "location":"uri",
+          "locationName":"EmailIdentity"
+        },
+        "PolicyName":{
+          "shape":"PolicyName",
+          "location":"uri",
+          "locationName":"PolicyName"
+        },
+        "Policy":{"shape":"Policy"}
+      }
+    },
+    "UpdateEmailIdentityPolicyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateEmailTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "TemplateName",
+        "TemplateContent"
+      ],
+      "members":{
+        "TemplateName":{
+          "shape":"EmailTemplateName",
+          "location":"uri",
+          "locationName":"TemplateName"
+        },
+        "TemplateContent":{"shape":"EmailTemplateContent"}
+      }
+    },
+    "UpdateEmailTemplateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UseCaseDescription":{
+      "type":"string",
+      "max":5000,
+      "min":1,
+      "sensitive":true
+    },
     "Volume":{"type":"long"},
     "VolumeStatistics":{
       "type":"structure",
@@ -2429,6 +3276,13 @@
         "IN_PROGRESS",
         "DONE"
       ]
+    },
+    "WebsiteURL":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?",
+      "sensitive":true
     }
   }
 }

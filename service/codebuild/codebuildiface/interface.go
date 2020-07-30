@@ -64,6 +64,10 @@ type CodeBuildAPI interface {
 	BatchDeleteBuildsWithContext(aws.Context, *codebuild.BatchDeleteBuildsInput, ...request.Option) (*codebuild.BatchDeleteBuildsOutput, error)
 	BatchDeleteBuildsRequest(*codebuild.BatchDeleteBuildsInput) (*request.Request, *codebuild.BatchDeleteBuildsOutput)
 
+	BatchGetBuildBatches(*codebuild.BatchGetBuildBatchesInput) (*codebuild.BatchGetBuildBatchesOutput, error)
+	BatchGetBuildBatchesWithContext(aws.Context, *codebuild.BatchGetBuildBatchesInput, ...request.Option) (*codebuild.BatchGetBuildBatchesOutput, error)
+	BatchGetBuildBatchesRequest(*codebuild.BatchGetBuildBatchesInput) (*request.Request, *codebuild.BatchGetBuildBatchesOutput)
+
 	BatchGetBuilds(*codebuild.BatchGetBuildsInput) (*codebuild.BatchGetBuildsOutput, error)
 	BatchGetBuildsWithContext(aws.Context, *codebuild.BatchGetBuildsInput, ...request.Option) (*codebuild.BatchGetBuildsOutput, error)
 	BatchGetBuildsRequest(*codebuild.BatchGetBuildsInput) (*request.Request, *codebuild.BatchGetBuildsOutput)
@@ -92,6 +96,10 @@ type CodeBuildAPI interface {
 	CreateWebhookWithContext(aws.Context, *codebuild.CreateWebhookInput, ...request.Option) (*codebuild.CreateWebhookOutput, error)
 	CreateWebhookRequest(*codebuild.CreateWebhookInput) (*request.Request, *codebuild.CreateWebhookOutput)
 
+	DeleteBuildBatch(*codebuild.DeleteBuildBatchInput) (*codebuild.DeleteBuildBatchOutput, error)
+	DeleteBuildBatchWithContext(aws.Context, *codebuild.DeleteBuildBatchInput, ...request.Option) (*codebuild.DeleteBuildBatchOutput, error)
+	DeleteBuildBatchRequest(*codebuild.DeleteBuildBatchInput) (*request.Request, *codebuild.DeleteBuildBatchOutput)
+
 	DeleteProject(*codebuild.DeleteProjectInput) (*codebuild.DeleteProjectOutput, error)
 	DeleteProjectWithContext(aws.Context, *codebuild.DeleteProjectInput, ...request.Option) (*codebuild.DeleteProjectOutput, error)
 	DeleteProjectRequest(*codebuild.DeleteProjectInput) (*request.Request, *codebuild.DeleteProjectOutput)
@@ -116,6 +124,13 @@ type CodeBuildAPI interface {
 	DeleteWebhookWithContext(aws.Context, *codebuild.DeleteWebhookInput, ...request.Option) (*codebuild.DeleteWebhookOutput, error)
 	DeleteWebhookRequest(*codebuild.DeleteWebhookInput) (*request.Request, *codebuild.DeleteWebhookOutput)
 
+	DescribeCodeCoverages(*codebuild.DescribeCodeCoveragesInput) (*codebuild.DescribeCodeCoveragesOutput, error)
+	DescribeCodeCoveragesWithContext(aws.Context, *codebuild.DescribeCodeCoveragesInput, ...request.Option) (*codebuild.DescribeCodeCoveragesOutput, error)
+	DescribeCodeCoveragesRequest(*codebuild.DescribeCodeCoveragesInput) (*request.Request, *codebuild.DescribeCodeCoveragesOutput)
+
+	DescribeCodeCoveragesPages(*codebuild.DescribeCodeCoveragesInput, func(*codebuild.DescribeCodeCoveragesOutput, bool) bool) error
+	DescribeCodeCoveragesPagesWithContext(aws.Context, *codebuild.DescribeCodeCoveragesInput, func(*codebuild.DescribeCodeCoveragesOutput, bool) bool, ...request.Option) error
+
 	DescribeTestCases(*codebuild.DescribeTestCasesInput) (*codebuild.DescribeTestCasesOutput, error)
 	DescribeTestCasesWithContext(aws.Context, *codebuild.DescribeTestCasesInput, ...request.Option) (*codebuild.DescribeTestCasesOutput, error)
 	DescribeTestCasesRequest(*codebuild.DescribeTestCasesInput) (*request.Request, *codebuild.DescribeTestCasesOutput)
@@ -134,6 +149,20 @@ type CodeBuildAPI interface {
 	InvalidateProjectCache(*codebuild.InvalidateProjectCacheInput) (*codebuild.InvalidateProjectCacheOutput, error)
 	InvalidateProjectCacheWithContext(aws.Context, *codebuild.InvalidateProjectCacheInput, ...request.Option) (*codebuild.InvalidateProjectCacheOutput, error)
 	InvalidateProjectCacheRequest(*codebuild.InvalidateProjectCacheInput) (*request.Request, *codebuild.InvalidateProjectCacheOutput)
+
+	ListBuildBatches(*codebuild.ListBuildBatchesInput) (*codebuild.ListBuildBatchesOutput, error)
+	ListBuildBatchesWithContext(aws.Context, *codebuild.ListBuildBatchesInput, ...request.Option) (*codebuild.ListBuildBatchesOutput, error)
+	ListBuildBatchesRequest(*codebuild.ListBuildBatchesInput) (*request.Request, *codebuild.ListBuildBatchesOutput)
+
+	ListBuildBatchesPages(*codebuild.ListBuildBatchesInput, func(*codebuild.ListBuildBatchesOutput, bool) bool) error
+	ListBuildBatchesPagesWithContext(aws.Context, *codebuild.ListBuildBatchesInput, func(*codebuild.ListBuildBatchesOutput, bool) bool, ...request.Option) error
+
+	ListBuildBatchesForProject(*codebuild.ListBuildBatchesForProjectInput) (*codebuild.ListBuildBatchesForProjectOutput, error)
+	ListBuildBatchesForProjectWithContext(aws.Context, *codebuild.ListBuildBatchesForProjectInput, ...request.Option) (*codebuild.ListBuildBatchesForProjectOutput, error)
+	ListBuildBatchesForProjectRequest(*codebuild.ListBuildBatchesForProjectInput) (*request.Request, *codebuild.ListBuildBatchesForProjectOutput)
+
+	ListBuildBatchesForProjectPages(*codebuild.ListBuildBatchesForProjectInput, func(*codebuild.ListBuildBatchesForProjectOutput, bool) bool) error
+	ListBuildBatchesForProjectPagesWithContext(aws.Context, *codebuild.ListBuildBatchesForProjectInput, func(*codebuild.ListBuildBatchesForProjectOutput, bool) bool, ...request.Option) error
 
 	ListBuilds(*codebuild.ListBuildsInput) (*codebuild.ListBuildsOutput, error)
 	ListBuildsWithContext(aws.Context, *codebuild.ListBuildsInput, ...request.Option) (*codebuild.ListBuildsOutput, error)
@@ -203,13 +232,29 @@ type CodeBuildAPI interface {
 	PutResourcePolicyWithContext(aws.Context, *codebuild.PutResourcePolicyInput, ...request.Option) (*codebuild.PutResourcePolicyOutput, error)
 	PutResourcePolicyRequest(*codebuild.PutResourcePolicyInput) (*request.Request, *codebuild.PutResourcePolicyOutput)
 
+	RetryBuild(*codebuild.RetryBuildInput) (*codebuild.RetryBuildOutput, error)
+	RetryBuildWithContext(aws.Context, *codebuild.RetryBuildInput, ...request.Option) (*codebuild.RetryBuildOutput, error)
+	RetryBuildRequest(*codebuild.RetryBuildInput) (*request.Request, *codebuild.RetryBuildOutput)
+
+	RetryBuildBatch(*codebuild.RetryBuildBatchInput) (*codebuild.RetryBuildBatchOutput, error)
+	RetryBuildBatchWithContext(aws.Context, *codebuild.RetryBuildBatchInput, ...request.Option) (*codebuild.RetryBuildBatchOutput, error)
+	RetryBuildBatchRequest(*codebuild.RetryBuildBatchInput) (*request.Request, *codebuild.RetryBuildBatchOutput)
+
 	StartBuild(*codebuild.StartBuildInput) (*codebuild.StartBuildOutput, error)
 	StartBuildWithContext(aws.Context, *codebuild.StartBuildInput, ...request.Option) (*codebuild.StartBuildOutput, error)
 	StartBuildRequest(*codebuild.StartBuildInput) (*request.Request, *codebuild.StartBuildOutput)
 
+	StartBuildBatch(*codebuild.StartBuildBatchInput) (*codebuild.StartBuildBatchOutput, error)
+	StartBuildBatchWithContext(aws.Context, *codebuild.StartBuildBatchInput, ...request.Option) (*codebuild.StartBuildBatchOutput, error)
+	StartBuildBatchRequest(*codebuild.StartBuildBatchInput) (*request.Request, *codebuild.StartBuildBatchOutput)
+
 	StopBuild(*codebuild.StopBuildInput) (*codebuild.StopBuildOutput, error)
 	StopBuildWithContext(aws.Context, *codebuild.StopBuildInput, ...request.Option) (*codebuild.StopBuildOutput, error)
 	StopBuildRequest(*codebuild.StopBuildInput) (*request.Request, *codebuild.StopBuildOutput)
+
+	StopBuildBatch(*codebuild.StopBuildBatchInput) (*codebuild.StopBuildBatchOutput, error)
+	StopBuildBatchWithContext(aws.Context, *codebuild.StopBuildBatchInput, ...request.Option) (*codebuild.StopBuildBatchOutput, error)
+	StopBuildBatchRequest(*codebuild.StopBuildBatchInput) (*request.Request, *codebuild.StopBuildBatchOutput)
 
 	UpdateProject(*codebuild.UpdateProjectInput) (*codebuild.UpdateProjectOutput, error)
 	UpdateProjectWithContext(aws.Context, *codebuild.UpdateProjectInput, ...request.Option) (*codebuild.UpdateProjectOutput, error)

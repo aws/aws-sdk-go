@@ -1,10 +1,28 @@
 {
   "pagination": {
+    "DescribeCodeCoverages": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "codeCoverages"
+    },
     "DescribeTestCases": {
       "input_token": "nextToken",
       "limit_key": "maxResults",
       "output_token": "nextToken",
       "result_key": "testCases"
+    },
+    "ListBuildBatches": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "ids"
+    },
+    "ListBuildBatchesForProject": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "ids"
     },
     "ListBuilds": {
       "input_token": "nextToken",

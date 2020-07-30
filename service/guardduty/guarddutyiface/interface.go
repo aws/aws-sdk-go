@@ -192,6 +192,13 @@ type GuardDutyAPI interface {
 	GetThreatIntelSetWithContext(aws.Context, *guardduty.GetThreatIntelSetInput, ...request.Option) (*guardduty.GetThreatIntelSetOutput, error)
 	GetThreatIntelSetRequest(*guardduty.GetThreatIntelSetInput) (*request.Request, *guardduty.GetThreatIntelSetOutput)
 
+	GetUsageStatistics(*guardduty.GetUsageStatisticsInput) (*guardduty.GetUsageStatisticsOutput, error)
+	GetUsageStatisticsWithContext(aws.Context, *guardduty.GetUsageStatisticsInput, ...request.Option) (*guardduty.GetUsageStatisticsOutput, error)
+	GetUsageStatisticsRequest(*guardduty.GetUsageStatisticsInput) (*request.Request, *guardduty.GetUsageStatisticsOutput)
+
+	GetUsageStatisticsPages(*guardduty.GetUsageStatisticsInput, func(*guardduty.GetUsageStatisticsOutput, bool) bool) error
+	GetUsageStatisticsPagesWithContext(aws.Context, *guardduty.GetUsageStatisticsInput, func(*guardduty.GetUsageStatisticsOutput, bool) bool, ...request.Option) error
+
 	InviteMembers(*guardduty.InviteMembersInput) (*guardduty.InviteMembersOutput, error)
 	InviteMembersWithContext(aws.Context, *guardduty.InviteMembersInput, ...request.Option) (*guardduty.InviteMembersOutput, error)
 	InviteMembersRequest(*guardduty.InviteMembersInput) (*request.Request, *guardduty.InviteMembersOutput)

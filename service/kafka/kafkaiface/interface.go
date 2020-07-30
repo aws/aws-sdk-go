@@ -142,6 +142,10 @@ type KafkaAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *kafka.ListTagsForResourceInput, ...request.Option) (*kafka.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*kafka.ListTagsForResourceInput) (*request.Request, *kafka.ListTagsForResourceOutput)
 
+	RebootBroker(*kafka.RebootBrokerInput) (*kafka.RebootBrokerOutput, error)
+	RebootBrokerWithContext(aws.Context, *kafka.RebootBrokerInput, ...request.Option) (*kafka.RebootBrokerOutput, error)
+	RebootBrokerRequest(*kafka.RebootBrokerInput) (*request.Request, *kafka.RebootBrokerOutput)
+
 	TagResource(*kafka.TagResourceInput) (*kafka.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *kafka.TagResourceInput, ...request.Option) (*kafka.TagResourceOutput, error)
 	TagResourceRequest(*kafka.TagResourceInput) (*request.Request, *kafka.TagResourceOutput)

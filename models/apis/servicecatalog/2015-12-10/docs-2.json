@@ -13,7 +13,7 @@
     "CopyProduct": "<p>Copies the specified source product to the specified target product or a new product.</p> <p>You can copy a product to the same account or another account. You can copy a product to the same region or another region.</p> <p>This operation is performed asynchronously. To track the progress of the operation, use <a>DescribeCopyProductStatus</a>.</p>",
     "CreateConstraint": "<p>Creates a constraint.</p> <p>A delegated admin is authorized to invoke this command.</p>",
     "CreatePortfolio": "<p>Creates a portfolio.</p> <p>A delegated admin is authorized to invoke this command.</p>",
-    "CreatePortfolioShare": "<p>Shares the specified portfolio with the specified account or organization node. Shares to an organization node can only be created by the master account of an organization or by a delegated administrator. You can share portfolios to an organization, an organizational unit, or a specific account.</p> <p>Note that if a delegated admin is de-registered, they can no longer create portfolio shares.</p> <p> <code>AWSOrganizationsAccess</code> must be enabled in order to create a portfolio share to an organization node.</p>",
+    "CreatePortfolioShare": "<p>Shares the specified portfolio with the specified account or organization node. Shares to an organization node can only be created by the master account of an organization or by a delegated administrator. You can share portfolios to an organization, an organizational unit, or a specific account.</p> <p>Note that if a delegated admin is de-registered, they can no longer create portfolio shares.</p> <p> <code>AWSOrganizationsAccess</code> must be enabled in order to create a portfolio share to an organization node.</p> <p>You can't share a shared resource. This includes portfolios that contain a shared product.</p>",
     "CreateProduct": "<p>Creates a product.</p> <p>A delegated admin is authorized to invoke this command.</p>",
     "CreateProvisionedProductPlan": "<p>Creates a plan. A plan includes the list of resources to be created (when provisioning a new product) or modified (when updating a provisioned product) when the plan is executed.</p> <p>You can create one plan per provisioned product. To create a plan for an existing provisioned product, the product status must be AVAILBLE or TAINTED.</p> <p>To view the resource changes in the change set, use <a>DescribeProvisionedProductPlan</a>. To create or modify the provisioned product, use <a>ExecuteProvisionedProductPlan</a>.</p>",
     "CreateProvisioningArtifact": "<p>Creates a provisioning artifact (also known as a version) for the specified product.</p> <p>You cannot create a provisioning artifact for a product that was shared with you.</p>",
@@ -1045,9 +1045,9 @@
         "DescribeProvisionedProductPlanInput$PlanId": "<p>The plan identifier.</p>",
         "DescribeProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
         "DescribeProvisioningArtifactInput$ProductId": "<p>The product identifier.</p>",
-        "DescribeProvisioningParametersInput$ProductId": "<p>The product identifier.</p>",
-        "DescribeProvisioningParametersInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
-        "DescribeProvisioningParametersInput$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use <a>ListLaunchPaths</a>.</p>",
+        "DescribeProvisioningParametersInput$ProductId": "<p>The product identifier. You must provide the product name or ID, but not both.</p>",
+        "DescribeProvisioningParametersInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. You must provide the name or ID, but not both.</p>",
+        "DescribeProvisioningParametersInput$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use <a>ListLaunchPaths</a>. You must provide the name or ID, but not both.</p>",
         "DescribeRecordInput$Id": "<p>The record identifier of the provisioned product. This identifier is returned by the request operation.</p>",
         "DescribeServiceActionExecutionParametersInput$ProvisionedProductId": "<p>The identifier of the provisioned product.</p>",
         "DescribeServiceActionExecutionParametersInput$ServiceActionId": "<p>The self-service action identifier.</p>",
@@ -1085,9 +1085,9 @@
         "PortfolioDetail$Id": "<p>The portfolio identifier.</p>",
         "ProductViewSummary$Id": "<p>The product view identifier.</p>",
         "ProductViewSummary$ProductId": "<p>The product identifier.</p>",
-        "ProvisionProductInput$ProductId": "<p>The product identifier.</p>",
-        "ProvisionProductInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
-        "ProvisionProductInput$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use <a>ListLaunchPaths</a>.</p>",
+        "ProvisionProductInput$ProductId": "<p>The product identifier. You must provide the name or ID, but not both.</p>",
+        "ProvisionProductInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. You must provide the name or ID, but not both.</p>",
+        "ProvisionProductInput$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use <a>ListLaunchPaths</a>. You must provide the name or ID, but not both.</p>",
         "ProvisionedProductAttribute$Id": "<p>The identifier of the provisioned product.</p>",
         "ProvisionedProductAttribute$LastRecordId": "<p>The record identifier of the last request performed on this provisioned product.</p>",
         "ProvisionedProductAttribute$ProductId": "<p>The product identifier.</p>",
@@ -1120,10 +1120,10 @@
         "UpdateConstraintInput$Id": "<p>The identifier of the constraint.</p>",
         "UpdatePortfolioInput$Id": "<p>The portfolio identifier.</p>",
         "UpdateProductInput$Id": "<p>The product identifier.</p>",
-        "UpdateProvisionedProductInput$ProvisionedProductId": "<p>The identifier of the provisioned product. You cannot specify both <code>ProvisionedProductName</code> and <code>ProvisionedProductId</code>.</p>",
-        "UpdateProvisionedProductInput$ProductId": "<p>The identifier of the product.</p>",
+        "UpdateProvisionedProductInput$ProvisionedProductId": "<p>The identifier of the provisioned product. You must provide the name or ID, but not both.</p>",
+        "UpdateProvisionedProductInput$ProductId": "<p>The identifier of the product. You must provide the name or ID, but not both.</p>",
         "UpdateProvisionedProductInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
-        "UpdateProvisionedProductInput$PathId": "<p>The new path identifier. This value is optional if the product has a default path, and required if the product has more than one path.</p>",
+        "UpdateProvisionedProductInput$PathId": "<p>The path identifier. This value is optional if the product has a default path, and required if the product has more than one path. You must provide the name or ID, but not both.</p>",
         "UpdateProvisionedProductPropertiesInput$ProvisionedProductId": "<p>The identifier of the provisioned product.</p>",
         "UpdateProvisionedProductPropertiesOutput$ProvisionedProductId": "<p>The provisioned product identifier.</p>",
         "UpdateProvisionedProductPropertiesOutput$RecordId": "<p>The identifier of the record.</p>",
@@ -1479,6 +1479,12 @@
         "ListOrganizationPortfolioAccessOutput$OrganizationNodes": "<p>Displays information about the organization nodes.</p>"
       }
     },
+    "OutputDescription": {
+      "base": null,
+      "refs": {
+        "ProvisioningArtifactOutput$Description": "<p>Description of the provisioning artifact output key.</p>"
+      }
+    },
     "OutputKey": {
       "base": null,
       "refs": {
@@ -1644,8 +1650,11 @@
       "base": null,
       "refs": {
         "CreatePortfolioInput$DisplayName": "<p>The name to use for display purposes.</p>",
+        "DescribeProvisioningParametersInput$PathName": "<p>The name of the path. You must provide the name or ID, but not both.</p>",
         "PortfolioDetail$DisplayName": "<p>The name to use for display purposes.</p>",
-        "UpdatePortfolioInput$DisplayName": "<p>The name to use for display purposes.</p>"
+        "ProvisionProductInput$PathName": "<p>The name of the path. You must provide the name or ID, but not both.</p>",
+        "UpdatePortfolioInput$DisplayName": "<p>The name to use for display purposes.</p>",
+        "UpdateProvisionedProductInput$PathName": "<p>The name of the path. You must provide the name or ID, but not both.</p>"
       }
     },
     "PortfolioName": {
@@ -1787,8 +1796,11 @@
         "DescribeProductAsAdminInput$Name": "<p>The product name.</p>",
         "DescribeProductInput$Name": "<p>The product name.</p>",
         "DescribeProvisioningArtifactInput$ProductName": "<p>The product name.</p>",
+        "DescribeProvisioningParametersInput$ProductName": "<p>The name of the product. You must provide the name or ID, but not both.</p>",
         "ProductViewSummary$Name": "<p>The name of the product.</p>",
-        "UpdateProductInput$Name": "<p>The updated product name.</p>"
+        "ProvisionProductInput$ProductName": "<p>The name of the product. You must provide the name or ID, but not both.</p>",
+        "UpdateProductInput$Name": "<p>The updated product name.</p>",
+        "UpdateProvisionedProductInput$ProductName": "<p>The name of the product. You must provide the name or ID, but not both.</p>"
       }
     },
     "ProductViewOwner": {
@@ -2095,12 +2107,33 @@
       "base": null,
       "refs": {
         "DescribeProvisioningArtifactInput$ProvisioningArtifactName": "<p>The provisioning artifact name.</p>",
+        "DescribeProvisioningParametersInput$ProvisioningArtifactName": "<p>The name of the provisioning artifact. You must provide the name or ID, but not both.</p>",
+        "ProvisionProductInput$ProvisioningArtifactName": "<p>The name of the provisioning artifact. You must provide the name or ID, but not both.</p>",
         "ProvisioningArtifact$Name": "<p>The name of the provisioning artifact.</p>",
         "ProvisioningArtifactDetail$Name": "<p>The name of the provisioning artifact.</p>",
         "ProvisioningArtifactDetail$Description": "<p>The description of the provisioning artifact.</p>",
         "ProvisioningArtifactProperties$Name": "<p>The name of the provisioning artifact (for example, v1 v2beta). No spaces are allowed.</p>",
         "ProvisioningArtifactSummary$Name": "<p>The name of the provisioning artifact.</p>",
+        "UpdateProvisionedProductInput$ProvisioningArtifactName": "<p>The name of the provisioning artifact. You must provide the name or ID, but not both.</p>",
         "UpdateProvisioningArtifactInput$Name": "<p>The updated name of the provisioning artifact.</p>"
+      }
+    },
+    "ProvisioningArtifactOutput": {
+      "base": "<p>Provisioning artifact output.</p>",
+      "refs": {
+        "ProvisioningArtifactOutputs$member": null
+      }
+    },
+    "ProvisioningArtifactOutputKey": {
+      "base": null,
+      "refs": {
+        "ProvisioningArtifactOutput$Key": "<p>The provisioning artifact output key.</p>"
+      }
+    },
+    "ProvisioningArtifactOutputs": {
+      "base": null,
+      "refs": {
+        "DescribeProvisioningParametersOutput$ProvisioningArtifactOutputs": "<p>The output of the provisioning artifact.</p>"
       }
     },
     "ProvisioningArtifactParameter": {

@@ -6716,7 +6716,9 @@ type CacheBehavior struct {
 	AllowedMethods *AllowedMethods `type:"structure"`
 
 	// The unique identifier of the cache policy that is attached to this cache
-	// behavior. For more information, see CreateCachePolicy.
+	// behavior. For more information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	CachePolicyId *string `type:"string"`
 
 	// Whether you want CloudFront to automatically compress certain files for this
@@ -6726,7 +6728,10 @@ type CacheBehavior struct {
 	Compress *bool `type:"boolean"`
 
 	// This field is deprecated. We recommend that you use the DefaultTTL field
-	// in CachePolicyConfig instead of this field.
+	// in a cache policy instead of this field. For more information, see Creating
+	// cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// The default amount of time that you want objects to stay in CloudFront caches
 	// before CloudFront forwards another request to your origin to determine whether
@@ -6744,12 +6749,20 @@ type CacheBehavior struct {
 	FieldLevelEncryptionId *string `type:"string"`
 
 	// This field is deprecated. We recommend that you use a cache policy or an
-	// origin request policy instead of this field.
+	// origin request policy instead of this field. For more information, see Working
+	// with policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/working-with-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
-	// If you want to include values in the cache key, use a CachePolicy. See CreateCachePolicy.
+	// If you want to include values in the cache key, use a cache policy. For more
+	// information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// If you want to send values to the origin but not include them in the cache
-	// key, use an OriginRequestPolicy. See CreateOriginRequestPolicy.
+	// key, use an origin request policy. For more information, see Creating origin
+	// request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+	// or Using the managed origin request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// A complex type that specifies how CloudFront handles query strings, cookies,
 	// and HTTP headers.
@@ -6761,8 +6774,11 @@ type CacheBehavior struct {
 	// a cache behavior.
 	LambdaFunctionAssociations *LambdaFunctionAssociations `type:"structure"`
 
-	// This field is deprecated. We recommend that you use the MaxTTL field in CachePolicyConfig
-	// instead of this field.
+	// This field is deprecated. We recommend that you use the MaxTTL field in a
+	// cache policy instead of this field. For more information, see Creating cache
+	// policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// The maximum amount of time that you want objects to stay in CloudFront caches
 	// before CloudFront forwards another request to your origin to determine whether
@@ -6775,8 +6791,11 @@ type CacheBehavior struct {
 	// Deprecated: MaxTTL has been deprecated
 	MaxTTL *int64 `deprecated:"true" type:"long"`
 
-	// This field is deprecated. We recommend that you use the MinTTL field in CachePolicyConfig
-	// instead of this field.
+	// This field is deprecated. We recommend that you use the MinTTL field in a
+	// cache policy instead of this field. For more information, see Creating cache
+	// policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// The minimum amount of time that you want objects to stay in CloudFront caches
 	// before CloudFront forwards another request to your origin to determine whether
@@ -6792,7 +6811,10 @@ type CacheBehavior struct {
 	MinTTL *int64 `deprecated:"true" type:"long"`
 
 	// The unique identifier of the origin request policy that is attached to this
-	// cache behavior. For more information, see CreateOriginRequestPolicy.
+	// cache behavior. For more information, see Creating origin request policies
+	// (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+	// or Using the managed origin request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	OriginRequestPolicyId *string `type:"string"`
 
 	// The pattern (for example, images/*.jpg) that specifies which requests to
@@ -7179,12 +7201,11 @@ type CachePolicyConfig struct {
 	// is the same as the value of MinTTL.
 	DefaultTTL *int64 `type:"long"`
 
-	// The maximum amount of time, in seconds, that you want objects to stay in
-	// the CloudFront cache before CloudFront sends another request to the origin
-	// to see if the object has been updated. CloudFront uses this value only when
-	// the origin sends Cache-Control or Expires headers with the object. For more
-	// information, see Managing How Long Content Stays in an Edge Cache (Expiration)
-	// (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html)
+	// The maximum amount of time, in seconds, that objects stay in the CloudFront
+	// cache before CloudFront sends another request to the origin to see if the
+	// object has been updated. CloudFront uses this value only when the origin
+	// sends Cache-Control or Expires headers with the object. For more information,
+	// see Managing How Long Content Stays in an Edge Cache (Expiration) (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html)
 	// in the Amazon CloudFront Developer Guide.
 	//
 	// The default value for this field is 31536000 seconds (one year). If the value
@@ -7902,11 +7923,14 @@ type CookiePreference struct {
 	// This field is deprecated. We recommend that you use a cache policy or an
 	// origin request policy instead of this field.
 	//
-	// If you want to include cookies in the cache key, use CookiesConfig in a cache
-	// policy. See CreateCachePolicy.
+	// If you want to include cookies in the cache key, use a cache policy. For
+	// more information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// If you want to send cookies to the origin but not include them in the cache
-	// key, use CookiesConfig in an origin request policy. See CreateOriginRequestPolicy.
+	// key, use origin request policy. For more information, see Creating origin
+	// request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// Specifies which cookies to forward to the origin for this cache behavior:
 	// all, none, or the list of cookies specified in the WhitelistedNames complex
@@ -7921,11 +7945,14 @@ type CookiePreference struct {
 	// This field is deprecated. We recommend that you use a cache policy or an
 	// origin request policy instead of this field.
 	//
-	// If you want to include cookies in the cache key, use CookiesConfig in a cache
-	// policy. See CreateCachePolicy.
+	// If you want to include cookies in the cache key, use a cache policy. For
+	// more information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// If you want to send cookies to the origin but not include them in the cache
-	// key, use CookiesConfig in an origin request policy. See CreateOriginRequestPolicy.
+	// key, use an origin request policy. For more information, see Creating origin
+	// request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// Required if you specify whitelist for the value of Forward. A complex type
 	// that specifies how many different cookies you want CloudFront to forward
@@ -9338,7 +9365,9 @@ type DefaultCacheBehavior struct {
 	AllowedMethods *AllowedMethods `type:"structure"`
 
 	// The unique identifier of the cache policy that is attached to the default
-	// cache behavior. For more information, see CachePolicy.
+	// cache behavior. For more information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	CachePolicyId *string `type:"string"`
 
 	// Whether you want CloudFront to automatically compress certain files for this
@@ -9348,7 +9377,10 @@ type DefaultCacheBehavior struct {
 	Compress *bool `type:"boolean"`
 
 	// This field is deprecated. We recommend that you use the DefaultTTL field
-	// in CachePolicyConfig instead of this field.
+	// in a cache policy instead of this field. For more information, see Creating
+	// cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// The default amount of time that you want objects to stay in CloudFront caches
 	// before CloudFront forwards another request to your origin to determine whether
@@ -9367,12 +9399,20 @@ type DefaultCacheBehavior struct {
 	FieldLevelEncryptionId *string `type:"string"`
 
 	// This field is deprecated. We recommend that you use a cache policy or an
-	// origin request policy instead of this field.
+	// origin request policy instead of this field. For more information, see Working
+	// with policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/working-with-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
-	// If you want to include values in the cache key, use a CachePolicy. See CreateCachePolicy.
+	// If you want to include values in the cache key, use a cache policy. For more
+	// information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// If you want to send values to the origin but not include them in the cache
-	// key, use an OriginRequestPolicy. See CreateOriginRequestPolicy.
+	// key, use an origin request policy. For more information, see Creating origin
+	// request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+	// or Using the managed origin request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// A complex type that specifies how CloudFront handles query strings, cookies,
 	// and HTTP headers.
@@ -9384,8 +9424,11 @@ type DefaultCacheBehavior struct {
 	// a cache behavior.
 	LambdaFunctionAssociations *LambdaFunctionAssociations `type:"structure"`
 
-	// This field is deprecated. We recommend that you use the MaxTTL field in CachePolicyConfig
-	// instead of this field.
+	// This field is deprecated. We recommend that you use the MaxTTL field in a
+	// cache policy instead of this field. For more information, see Creating cache
+	// policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// The maximum amount of time that you want objects to stay in CloudFront caches
 	// before CloudFront forwards another request to your origin to determine whether
@@ -9398,8 +9441,11 @@ type DefaultCacheBehavior struct {
 	// Deprecated: MaxTTL has been deprecated
 	MaxTTL *int64 `deprecated:"true" type:"long"`
 
-	// This field is deprecated. We recommend that you use the MinTTL field in CachePolicyConfig
-	// instead of this field.
+	// This field is deprecated. We recommend that you use the MinTTL field in a
+	// cache policy instead of this field. For more information, see Creating cache
+	// policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// The minimum amount of time that you want objects to stay in CloudFront caches
 	// before CloudFront forwards another request to your origin to determine whether
@@ -9415,7 +9461,10 @@ type DefaultCacheBehavior struct {
 	MinTTL *int64 `deprecated:"true" type:"long"`
 
 	// The unique identifier of the origin request policy that is attached to the
-	// default cache behavior. For more information, see OriginRequestPolicy.
+	// default cache behavior. For more information, see Creating origin request
+	// policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+	// or Using the managed origin request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html)
+	// in the Amazon CloudFront Developer Guide.
 	OriginRequestPolicyId *string `type:"string"`
 
 	// Indicates whether you want to distribute media files in the Microsoft Smooth
@@ -11855,10 +11904,14 @@ func (s *FieldPatterns) SetQuantity(v int64) *FieldPatterns {
 // This field is deprecated. We recommend that you use a cache policy or an
 // origin request policy instead of this field.
 //
-// If you want to include values in the cache key, use a CachePolicy. See CreateCachePolicy.
+// If you want to include values in the cache key, use a cache policy. For more
+// information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+// in the Amazon CloudFront Developer Guide.
 //
 // If you want to send values to the origin but not include them in the cache
-// key, use an OriginRequestPolicy. See CreateOriginRequestPolicy.
+// key, use an origin request policy. For more information, see Creating origin
+// request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+// in the Amazon CloudFront Developer Guide.
 //
 // A complex type that specifies how CloudFront handles query strings, cookies,
 // and HTTP headers.
@@ -11868,11 +11921,14 @@ type ForwardedValues struct {
 	// This field is deprecated. We recommend that you use a cache policy or an
 	// origin request policy instead of this field.
 	//
-	// If you want to include cookies in the cache key, use CookiesConfig in a cache
-	// policy. See CreateCachePolicy.
+	// If you want to include cookies in the cache key, use a cache policy. For
+	// more information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// If you want to send cookies to the origin but not include them in the cache
-	// key, use CookiesConfig in an origin request policy. See CreateOriginRequestPolicy.
+	// key, use an origin request policy. For more information, see Creating origin
+	// request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// A complex type that specifies whether you want CloudFront to forward cookies
 	// to the origin and, if so, which ones. For more information about forwarding
@@ -11886,11 +11942,14 @@ type ForwardedValues struct {
 	// This field is deprecated. We recommend that you use a cache policy or an
 	// origin request policy instead of this field.
 	//
-	// If you want to include headers in the cache key, use HeadersConfig in a cache
-	// policy. See CreateCachePolicy.
+	// If you want to include headers in the cache key, use a cache policy. For
+	// more information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// If you want to send headers to the origin but not include them in the cache
-	// key, use HeadersConfig in an origin request policy. See CreateOriginRequestPolicy.
+	// key, use an origin request policy. For more information, see Creating origin
+	// request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// A complex type that specifies the Headers, if any, that you want CloudFront
 	// to forward to the origin for this cache behavior (whitelisted headers). For
@@ -11904,11 +11963,14 @@ type ForwardedValues struct {
 	// This field is deprecated. We recommend that you use a cache policy or an
 	// origin request policy instead of this field.
 	//
-	// If you want to include query strings in the cache key, use QueryStringsConfig
-	// in a cache policy. See CreateCachePolicy.
+	// If you want to include query strings in the cache key, use a cache policy.
+	// For more information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// If you want to send query strings to the origin but not include them in the
-	// cache key, use QueryStringsConfig in an origin request policy. See CreateOriginRequestPolicy.
+	// cache key, use an origin request policy. For more information, see Creating
+	// origin request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// Indicates whether you want CloudFront to forward query strings to the origin
 	// that is associated with this cache behavior and cache based on the query
@@ -11940,11 +12002,14 @@ type ForwardedValues struct {
 	// This field is deprecated. We recommend that you use a cache policy or an
 	// origin request policy instead of this field.
 	//
-	// If you want to include query strings in the cache key, use QueryStringsConfig
-	// in a cache policy. See CreateCachePolicy.
+	// If you want to include query strings in the cache key, use a cache policy.
+	// For more information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// If you want to send query strings to the origin but not include them in the
-	// cache key, use an QueryStringsConfig in an origin request policy. See CreateOriginRequestPolicy.
+	// cache key, use an origin request policy. For more information, see Creating
+	// origin request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy)
+	// in the Amazon CloudFront Developer Guide.
 	//
 	// A complex type that contains information about the query string parameters
 	// that you want CloudFront to use for caching for this cache behavior.

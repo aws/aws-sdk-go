@@ -24,6 +24,18 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "BatchGetBuildBatches":{
+      "name":"BatchGetBuildBatches",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetBuildBatchesInput"},
+      "output":{"shape":"BatchGetBuildBatchesOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "BatchGetBuilds":{
       "name":"BatchGetBuilds",
       "http":{
@@ -115,6 +127,18 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteBuildBatch":{
+      "name":"DeleteBuildBatch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteBuildBatchInput"},
+      "output":{"shape":"DeleteBuildBatchOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "DeleteProject":{
       "name":"DeleteProject",
       "http":{
@@ -190,6 +214,18 @@
         {"shape":"OAuthProviderException"}
       ]
     },
+    "DescribeCodeCoverages":{
+      "name":"DescribeCodeCoverages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCodeCoveragesInput"},
+      "output":{"shape":"DescribeCodeCoveragesOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "DescribeTestCases":{
       "name":"DescribeTestCases",
       "http":{
@@ -238,6 +274,31 @@
       },
       "input":{"shape":"InvalidateProjectCacheInput"},
       "output":{"shape":"InvalidateProjectCacheOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListBuildBatches":{
+      "name":"ListBuildBatches",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListBuildBatchesInput"},
+      "output":{"shape":"ListBuildBatchesOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "ListBuildBatchesForProject":{
+      "name":"ListBuildBatchesForProject",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListBuildBatchesForProjectInput"},
+      "output":{"shape":"ListBuildBatchesForProjectOutput"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"}
@@ -357,7 +418,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListSourceCredentialsInput"},
-      "output":{"shape":"ListSourceCredentialsOutput"}
+      "output":{"shape":"ListSourceCredentialsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
     },
     "PutResourcePolicy":{
       "name":"PutResourcePolicy",
@@ -370,6 +434,33 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidInputException"}
+      ]
+    },
+    "RetryBuild":{
+      "name":"RetryBuild",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RetryBuildInput"},
+      "output":{"shape":"RetryBuildOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccountLimitExceededException"}
+      ]
+    },
+    "RetryBuildBatch":{
+      "name":"RetryBuildBatch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RetryBuildBatchInput"},
+      "output":{"shape":"RetryBuildBatchOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "StartBuild":{
@@ -386,6 +477,19 @@
         {"shape":"AccountLimitExceededException"}
       ]
     },
+    "StartBuildBatch":{
+      "name":"StartBuildBatch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartBuildBatchInput"},
+      "output":{"shape":"StartBuildBatchOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "StopBuild":{
       "name":"StopBuild",
       "http":{
@@ -394,6 +498,19 @@
       },
       "input":{"shape":"StopBuildInput"},
       "output":{"shape":"StopBuildOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "StopBuildBatch":{
+      "name":"StopBuildBatch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopBuildBatchInput"},
+      "output":{"shape":"StopBuildBatchOutput"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"}
@@ -491,6 +608,20 @@
         "buildsNotDeleted":{"shape":"BuildsNotDeleted"}
       }
     },
+    "BatchGetBuildBatchesInput":{
+      "type":"structure",
+      "required":["ids"],
+      "members":{
+        "ids":{"shape":"BuildBatchIds"}
+      }
+    },
+    "BatchGetBuildBatchesOutput":{
+      "type":"structure",
+      "members":{
+        "buildBatches":{"shape":"BuildBatches"},
+        "buildBatchesNotFound":{"shape":"BuildBatchIds"}
+      }
+    },
     "BatchGetBuildsInput":{
       "type":"structure",
       "required":["ids"],
@@ -547,6 +678,13 @@
         "reportsNotFound":{"shape":"ReportArns"}
       }
     },
+    "BatchRestrictions":{
+      "type":"structure",
+      "members":{
+        "maximumBuildsAllowed":{"shape":"WrapperInt"},
+        "computeTypesAllowed":{"shape":"ComputeTypesAllowed"}
+      }
+    },
     "Boolean":{"type":"boolean"},
     "Build":{
       "type":"structure",
@@ -581,7 +719,8 @@
         "exportedEnvironmentVariables":{"shape":"ExportedEnvironmentVariables"},
         "reportArns":{"shape":"BuildReportArns"},
         "fileSystemLocations":{"shape":"ProjectFileSystemLocations"},
-        "debugSession":{"shape":"DebugSession"}
+        "debugSession":{"shape":"DebugSession"},
+        "buildBatchArn":{"shape":"String"}
       }
     },
     "BuildArtifacts":{
@@ -600,6 +739,99 @@
       "member":{"shape":"BuildArtifacts"},
       "max":12,
       "min":0
+    },
+    "BuildBatch":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"NonEmptyString"},
+        "arn":{"shape":"NonEmptyString"},
+        "startTime":{"shape":"Timestamp"},
+        "endTime":{"shape":"Timestamp"},
+        "currentPhase":{"shape":"String"},
+        "buildBatchStatus":{"shape":"StatusType"},
+        "sourceVersion":{"shape":"NonEmptyString"},
+        "resolvedSourceVersion":{"shape":"NonEmptyString"},
+        "projectName":{"shape":"NonEmptyString"},
+        "phases":{"shape":"BuildBatchPhases"},
+        "source":{"shape":"ProjectSource"},
+        "secondarySources":{"shape":"ProjectSources"},
+        "secondarySourceVersions":{"shape":"ProjectSecondarySourceVersions"},
+        "artifacts":{"shape":"BuildArtifacts"},
+        "secondaryArtifacts":{"shape":"BuildArtifactsList"},
+        "cache":{"shape":"ProjectCache"},
+        "environment":{"shape":"ProjectEnvironment"},
+        "serviceRole":{"shape":"NonEmptyString"},
+        "logConfig":{"shape":"LogsConfig"},
+        "buildTimeoutInMinutes":{"shape":"WrapperInt"},
+        "queuedTimeoutInMinutes":{"shape":"WrapperInt"},
+        "complete":{"shape":"Boolean"},
+        "initiator":{"shape":"String"},
+        "vpcConfig":{"shape":"VpcConfig"},
+        "encryptionKey":{"shape":"NonEmptyString"},
+        "buildBatchNumber":{"shape":"WrapperLong"},
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"},
+        "buildBatchConfig":{"shape":"ProjectBuildBatchConfig"},
+        "buildGroups":{"shape":"BuildGroups"}
+      }
+    },
+    "BuildBatchFilter":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"StatusType"}
+      }
+    },
+    "BuildBatchIds":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":0
+    },
+    "BuildBatchPhase":{
+      "type":"structure",
+      "members":{
+        "phaseType":{"shape":"BuildBatchPhaseType"},
+        "phaseStatus":{"shape":"StatusType"},
+        "startTime":{"shape":"Timestamp"},
+        "endTime":{"shape":"Timestamp"},
+        "durationInSeconds":{"shape":"WrapperLong"},
+        "contexts":{"shape":"PhaseContexts"}
+      }
+    },
+    "BuildBatchPhaseType":{
+      "type":"string",
+      "enum":[
+        "SUBMITTED",
+        "DOWNLOAD_BATCHSPEC",
+        "IN_PROGRESS",
+        "COMBINE_ARTIFACTS",
+        "SUCCEEDED",
+        "FAILED",
+        "STOPPED"
+      ]
+    },
+    "BuildBatchPhases":{
+      "type":"list",
+      "member":{"shape":"BuildBatchPhase"}
+    },
+    "BuildBatches":{
+      "type":"list",
+      "member":{"shape":"BuildBatch"},
+      "max":100,
+      "min":0
+    },
+    "BuildGroup":{
+      "type":"structure",
+      "members":{
+        "identifier":{"shape":"String"},
+        "dependsOn":{"shape":"Identifiers"},
+        "ignoreFailure":{"shape":"Boolean"},
+        "currentBuildSummary":{"shape":"BuildSummary"},
+        "priorBuildSummaryList":{"shape":"BuildSummaries"}
+      }
+    },
+    "BuildGroups":{
+      "type":"list",
+      "member":{"shape":"BuildGroup"}
     },
     "BuildIds":{
       "type":"list",
@@ -656,6 +888,20 @@
         "targetUrl":{"shape":"String"}
       }
     },
+    "BuildSummaries":{
+      "type":"list",
+      "member":{"shape":"BuildSummary"}
+    },
+    "BuildSummary":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"String"},
+        "requestedOn":{"shape":"Timestamp"},
+        "buildStatus":{"shape":"StatusType"},
+        "primaryArtifact":{"shape":"ResolvedArtifact"},
+        "secondaryArtifacts":{"shape":"ResolvedSecondaryArtifacts"}
+      }
+    },
     "Builds":{
       "type":"list",
       "member":{"shape":"Build"}
@@ -689,6 +935,36 @@
         "streamName":{"shape":"String"}
       }
     },
+    "CodeCoverage":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"NonEmptyString"},
+        "reportARN":{"shape":"NonEmptyString"},
+        "filePath":{"shape":"NonEmptyString"},
+        "lineCoveragePercentage":{"shape":"Percentage"},
+        "linesCovered":{"shape":"NonNegativeInt"},
+        "linesMissed":{"shape":"NonNegativeInt"},
+        "branchCoveragePercentage":{"shape":"Percentage"},
+        "branchesCovered":{"shape":"NonNegativeInt"},
+        "branchesMissed":{"shape":"NonNegativeInt"},
+        "expired":{"shape":"Timestamp"}
+      }
+    },
+    "CodeCoverageReportSummary":{
+      "type":"structure",
+      "members":{
+        "lineCoveragePercentage":{"shape":"Percentage"},
+        "linesCovered":{"shape":"NonNegativeInt"},
+        "linesMissed":{"shape":"NonNegativeInt"},
+        "branchCoveragePercentage":{"shape":"Percentage"},
+        "branchesCovered":{"shape":"NonNegativeInt"},
+        "branchesMissed":{"shape":"NonNegativeInt"}
+      }
+    },
+    "CodeCoverages":{
+      "type":"list",
+      "member":{"shape":"CodeCoverage"}
+    },
     "ComputeType":{
       "type":"string",
       "enum":[
@@ -697,6 +973,10 @@
         "BUILD_GENERAL1_LARGE",
         "BUILD_GENERAL1_2XLARGE"
       ]
+    },
+    "ComputeTypesAllowed":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"}
     },
     "CreateProjectInput":{
       "type":"structure",
@@ -726,7 +1006,8 @@
         "vpcConfig":{"shape":"VpcConfig"},
         "badgeEnabled":{"shape":"WrapperBoolean"},
         "logsConfig":{"shape":"LogsConfig"},
-        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"},
+        "buildBatchConfig":{"shape":"ProjectBuildBatchConfig"}
       }
     },
     "CreateProjectOutput":{
@@ -761,7 +1042,8 @@
       "members":{
         "projectName":{"shape":"ProjectName"},
         "branchFilter":{"shape":"String"},
-        "filterGroups":{"shape":"FilterGroups"}
+        "filterGroups":{"shape":"FilterGroups"},
+        "buildType":{"shape":"WebhookBuildType"}
       }
     },
     "CreateWebhookOutput":{
@@ -779,6 +1061,21 @@
       "members":{
         "sessionEnabled":{"shape":"WrapperBoolean"},
         "sessionTarget":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteBuildBatchInput":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteBuildBatchOutput":{
+      "type":"structure",
+      "members":{
+        "statusCode":{"shape":"String"},
+        "buildsDeleted":{"shape":"BuildIds"},
+        "buildsNotDeleted":{"shape":"BuildsNotDeleted"}
       }
     },
     "DeleteProjectInput":{
@@ -852,6 +1149,26 @@
     "DeleteWebhookOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DescribeCodeCoveragesInput":{
+      "type":"structure",
+      "required":["reportArn"],
+      "members":{
+        "reportArn":{"shape":"NonEmptyString"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"PageSize"},
+        "sortOrder":{"shape":"SortOrderType"},
+        "sortBy":{"shape":"ReportCodeCoverageSortByType"},
+        "minLineCoveragePercentage":{"shape":"Percentage"},
+        "maxLineCoveragePercentage":{"shape":"Percentage"}
+      }
+    },
+    "DescribeCodeCoveragesOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "codeCoverages":{"shape":"CodeCoverages"}
       }
     },
     "DescribeTestCasesInput":{
@@ -986,6 +1303,10 @@
         "fetchSubmodules":{"shape":"WrapperBoolean"}
       }
     },
+    "Identifiers":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"}
+    },
     "ImagePullCredentialsType":{
       "type":"string",
       "enum":[
@@ -1056,6 +1377,39 @@
         "BASE",
         "PHP"
       ]
+    },
+    "ListBuildBatchesForProjectInput":{
+      "type":"structure",
+      "members":{
+        "projectName":{"shape":"NonEmptyString"},
+        "filter":{"shape":"BuildBatchFilter"},
+        "maxResults":{"shape":"PageSize"},
+        "sortOrder":{"shape":"SortOrderType"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListBuildBatchesForProjectOutput":{
+      "type":"structure",
+      "members":{
+        "ids":{"shape":"BuildBatchIds"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListBuildBatchesInput":{
+      "type":"structure",
+      "members":{
+        "filter":{"shape":"BuildBatchFilter"},
+        "maxResults":{"shape":"PageSize"},
+        "sortOrder":{"shape":"SortOrderType"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListBuildBatchesOutput":{
+      "type":"structure",
+      "members":{
+        "ids":{"shape":"BuildBatchIds"},
+        "nextToken":{"shape":"String"}
+      }
     },
     "ListBuildsForProjectInput":{
       "type":"structure",
@@ -1244,6 +1598,10 @@
       "type":"string",
       "min":1
     },
+    "NonNegativeInt":{
+      "type":"integer",
+      "min":0
+    },
     "OAuthProviderException":{
       "type":"structure",
       "members":{
@@ -1254,6 +1612,11 @@
       "type":"integer",
       "max":100,
       "min":1
+    },
+    "Percentage":{
+      "type":"double",
+      "max":100,
+      "min":0
     },
     "PhaseContext":{
       "type":"structure",
@@ -1300,7 +1663,8 @@
         "vpcConfig":{"shape":"VpcConfig"},
         "badge":{"shape":"ProjectBadge"},
         "logsConfig":{"shape":"LogsConfig"},
-        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"},
+        "buildBatchConfig":{"shape":"ProjectBuildBatchConfig"}
       }
     },
     "ProjectArns":{
@@ -1335,6 +1699,15 @@
       "members":{
         "badgeEnabled":{"shape":"Boolean"},
         "badgeRequestUrl":{"shape":"String"}
+      }
+    },
+    "ProjectBuildBatchConfig":{
+      "type":"structure",
+      "members":{
+        "serviceRole":{"shape":"NonEmptyString"},
+        "combineArtifacts":{"shape":"WrapperBoolean"},
+        "restrictions":{"shape":"BatchRestrictions"},
+        "timeoutInMins":{"shape":"WrapperInt"}
       }
     },
     "ProjectCache":{
@@ -1491,7 +1864,8 @@
         "expired":{"shape":"Timestamp"},
         "exportConfig":{"shape":"ReportExportConfig"},
         "truncated":{"shape":"WrapperBoolean"},
-        "testSummary":{"shape":"TestReportSummary"}
+        "testSummary":{"shape":"TestReportSummary"},
+        "codeCoverageSummary":{"shape":"CodeCoverageReportSummary"}
       }
     },
     "ReportArns":{
@@ -1499,6 +1873,13 @@
       "member":{"shape":"NonEmptyString"},
       "max":100,
       "min":1
+    },
+    "ReportCodeCoverageSortByType":{
+      "type":"string",
+      "enum":[
+        "LINE_COVERAGE_PERCENTAGE",
+        "FILE_PATH"
+      ]
     },
     "ReportExportConfig":{
       "type":"structure",
@@ -1581,13 +1962,28 @@
     },
     "ReportType":{
       "type":"string",
-      "enum":["TEST"]
+      "enum":[
+        "TEST",
+        "CODE_COVERAGE"
+      ]
     },
     "Reports":{
       "type":"list",
       "member":{"shape":"Report"},
       "max":100,
       "min":1
+    },
+    "ResolvedArtifact":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"ArtifactsType"},
+        "location":{"shape":"String"},
+        "identifier":{"shape":"String"}
+      }
+    },
+    "ResolvedSecondaryArtifacts":{
+      "type":"list",
+      "member":{"shape":"ResolvedArtifact"}
     },
     "ResourceAlreadyExistsException":{
       "type":"structure",
@@ -1600,6 +1996,40 @@
       "members":{
       },
       "exception":true
+    },
+    "RetryBuildBatchInput":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"NonEmptyString"},
+        "idempotencyToken":{"shape":"String"},
+        "retryType":{"shape":"RetryBuildBatchType"}
+      }
+    },
+    "RetryBuildBatchOutput":{
+      "type":"structure",
+      "members":{
+        "buildBatch":{"shape":"BuildBatch"}
+      }
+    },
+    "RetryBuildBatchType":{
+      "type":"string",
+      "enum":[
+        "RETRY_ALL_BUILDS",
+        "RETRY_FAILED_BUILDS"
+      ]
+    },
+    "RetryBuildInput":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"NonEmptyString"},
+        "idempotencyToken":{"shape":"String"}
+      }
+    },
+    "RetryBuildOutput":{
+      "type":"structure",
+      "members":{
+        "build":{"shape":"Build"}
+      }
     },
     "S3LogsConfig":{
       "type":"structure",
@@ -1688,6 +2118,48 @@
         "NO_SOURCE"
       ]
     },
+    "StartBuildBatchInput":{
+      "type":"structure",
+      "required":["projectName"],
+      "members":{
+        "projectName":{"shape":"NonEmptyString"},
+        "secondarySourcesOverride":{"shape":"ProjectSources"},
+        "secondarySourcesVersionOverride":{"shape":"ProjectSecondarySourceVersions"},
+        "sourceVersion":{"shape":"String"},
+        "artifactsOverride":{"shape":"ProjectArtifacts"},
+        "secondaryArtifactsOverride":{"shape":"ProjectArtifactsList"},
+        "environmentVariablesOverride":{"shape":"EnvironmentVariables"},
+        "sourceTypeOverride":{"shape":"SourceType"},
+        "sourceLocationOverride":{"shape":"String"},
+        "sourceAuthOverride":{"shape":"SourceAuth"},
+        "gitCloneDepthOverride":{"shape":"GitCloneDepth"},
+        "gitSubmodulesConfigOverride":{"shape":"GitSubmodulesConfig"},
+        "buildspecOverride":{"shape":"String"},
+        "insecureSslOverride":{"shape":"WrapperBoolean"},
+        "reportBuildBatchStatusOverride":{"shape":"WrapperBoolean"},
+        "environmentTypeOverride":{"shape":"EnvironmentType"},
+        "imageOverride":{"shape":"NonEmptyString"},
+        "computeTypeOverride":{"shape":"ComputeType"},
+        "certificateOverride":{"shape":"String"},
+        "cacheOverride":{"shape":"ProjectCache"},
+        "serviceRoleOverride":{"shape":"NonEmptyString"},
+        "privilegedModeOverride":{"shape":"WrapperBoolean"},
+        "buildTimeoutInMinutesOverride":{"shape":"TimeOut"},
+        "queuedTimeoutInMinutesOverride":{"shape":"TimeOut"},
+        "encryptionKeyOverride":{"shape":"NonEmptyString"},
+        "idempotencyToken":{"shape":"String"},
+        "logsConfigOverride":{"shape":"LogsConfig"},
+        "registryCredentialOverride":{"shape":"RegistryCredential"},
+        "imagePullCredentialsTypeOverride":{"shape":"ImagePullCredentialsType"},
+        "buildBatchConfigOverride":{"shape":"ProjectBuildBatchConfig"}
+      }
+    },
+    "StartBuildBatchOutput":{
+      "type":"structure",
+      "members":{
+        "buildBatch":{"shape":"BuildBatch"}
+      }
+    },
     "StartBuildInput":{
       "type":"structure",
       "required":["projectName"],
@@ -1741,6 +2213,19 @@
         "IN_PROGRESS",
         "STOPPED"
       ]
+    },
+    "StopBuildBatchInput":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{"shape":"NonEmptyString"}
+      }
+    },
+    "StopBuildBatchOutput":{
+      "type":"structure",
+      "members":{
+        "buildBatch":{"shape":"BuildBatch"}
+      }
     },
     "StopBuildInput":{
       "type":"structure",
@@ -1838,7 +2323,8 @@
         "vpcConfig":{"shape":"VpcConfig"},
         "badgeEnabled":{"shape":"WrapperBoolean"},
         "logsConfig":{"shape":"LogsConfig"},
-        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"},
+        "buildBatchConfig":{"shape":"ProjectBuildBatchConfig"}
       }
     },
     "UpdateProjectOutput":{
@@ -1869,7 +2355,8 @@
         "projectName":{"shape":"ProjectName"},
         "branchFilter":{"shape":"String"},
         "rotateSecret":{"shape":"Boolean"},
-        "filterGroups":{"shape":"FilterGroups"}
+        "filterGroups":{"shape":"FilterGroups"},
+        "buildType":{"shape":"WebhookBuildType"}
       }
     },
     "UpdateWebhookOutput":{
@@ -1900,8 +2387,16 @@
         "secret":{"shape":"NonEmptyString"},
         "branchFilter":{"shape":"String"},
         "filterGroups":{"shape":"FilterGroups"},
+        "buildType":{"shape":"WebhookBuildType"},
         "lastModifiedSecret":{"shape":"Timestamp"}
       }
+    },
+    "WebhookBuildType":{
+      "type":"string",
+      "enum":[
+        "BUILD",
+        "BUILD_BATCH"
+      ]
     },
     "WebhookFilter":{
       "type":"structure",

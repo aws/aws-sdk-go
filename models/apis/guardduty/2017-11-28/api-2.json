@@ -474,6 +474,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "GetUsageStatistics":{
+      "name":"GetUsageStatistics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/usage/statistics",
+        "responseCode":200
+      },
+      "input":{"shape":"GetUsageStatisticsRequest"},
+      "output":{"shape":"GetUsageStatisticsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "InviteMembers":{
       "name":"InviteMembers",
       "http":{
@@ -1481,6 +1495,15 @@
         }
       }
     },
+    "DataSource":{
+      "type":"string",
+      "enum":[
+        "FLOW_LOGS",
+        "CLOUD_TRAIL",
+        "DNS_LOGS",
+        "S3_LOGS"
+      ]
+    },
     "DataSourceConfigurations":{
       "type":"structure",
       "members":{
@@ -1516,6 +1539,10 @@
           "locationName":"s3Logs"
         }
       }
+    },
+    "DataSourceList":{
+      "type":"list",
+      "member":{"shape":"DataSource"}
     },
     "DataSourceStatus":{
       "type":"string",
@@ -2553,6 +2580,54 @@
         }
       }
     },
+    "GetUsageStatisticsRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "UsageStatisticType",
+        "UsageCriteria"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "UsageStatisticType":{
+          "shape":"UsageStatisticType",
+          "locationName":"usageStatisticsType"
+        },
+        "UsageCriteria":{
+          "shape":"UsageCriteria",
+          "locationName":"usageCriteria"
+        },
+        "Unit":{
+          "shape":"String",
+          "locationName":"unit"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetUsageStatisticsResponse":{
+      "type":"structure",
+      "members":{
+        "UsageStatistics":{
+          "shape":"UsageStatistics",
+          "locationName":"usageStatistics"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "GuardDutyArn":{
       "type":"string",
       "pattern":"^arn:[A-Za-z_.-]{1,20}:guardduty:[A-Za-z0-9_/.-]{0,63}:\\d+:detector/[A-Za-z0-9_/.-]{32,264}$"
@@ -3526,6 +3601,10 @@
         }
       }
     },
+    "ResourceList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "S3BucketDetail":{
       "type":"structure",
       "members":{
@@ -3837,6 +3916,19 @@
       "member":{"shape":"String"}
     },
     "Timestamp":{"type":"timestamp"},
+    "Total":{
+      "type":"structure",
+      "members":{
+        "Amount":{
+          "shape":"String",
+          "locationName":"amount"
+        },
+        "Unit":{
+          "shape":"String",
+          "locationName":"unit"
+        }
+      }
+    },
     "UnarchiveFindingsRequest":{
       "type":"structure",
       "required":[
@@ -4169,6 +4261,105 @@
     "UpdateThreatIntelSetResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UsageAccountResult":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
+        },
+        "Total":{
+          "shape":"Total",
+          "locationName":"total"
+        }
+      }
+    },
+    "UsageAccountResultList":{
+      "type":"list",
+      "member":{"shape":"UsageAccountResult"}
+    },
+    "UsageCriteria":{
+      "type":"structure",
+      "required":["DataSources"],
+      "members":{
+        "AccountIds":{
+          "shape":"AccountIds",
+          "locationName":"accountIds"
+        },
+        "DataSources":{
+          "shape":"DataSourceList",
+          "locationName":"dataSources"
+        },
+        "Resources":{
+          "shape":"ResourceList",
+          "locationName":"resources"
+        }
+      }
+    },
+    "UsageDataSourceResult":{
+      "type":"structure",
+      "members":{
+        "DataSource":{
+          "shape":"DataSource",
+          "locationName":"dataSource"
+        },
+        "Total":{
+          "shape":"Total",
+          "locationName":"total"
+        }
+      }
+    },
+    "UsageDataSourceResultList":{
+      "type":"list",
+      "member":{"shape":"UsageDataSourceResult"}
+    },
+    "UsageResourceResult":{
+      "type":"structure",
+      "members":{
+        "Resource":{
+          "shape":"String",
+          "locationName":"resource"
+        },
+        "Total":{
+          "shape":"Total",
+          "locationName":"total"
+        }
+      }
+    },
+    "UsageResourceResultList":{
+      "type":"list",
+      "member":{"shape":"UsageResourceResult"}
+    },
+    "UsageStatisticType":{
+      "type":"string",
+      "enum":[
+        "SUM_BY_ACCOUNT",
+        "SUM_BY_DATA_SOURCE",
+        "SUM_BY_RESOURCE",
+        "TOP_RESOURCES"
+      ]
+    },
+    "UsageStatistics":{
+      "type":"structure",
+      "members":{
+        "SumByAccount":{
+          "shape":"UsageAccountResultList",
+          "locationName":"sumByAccount"
+        },
+        "SumByDataSource":{
+          "shape":"UsageDataSourceResultList",
+          "locationName":"sumByDataSource"
+        },
+        "SumByResource":{
+          "shape":"UsageResourceResultList",
+          "locationName":"sumByResource"
+        },
+        "TopResources":{
+          "shape":"UsageResourceResultList",
+          "locationName":"topResources"
+        }
       }
     }
   }

@@ -18,6 +18,7 @@
     "ListKafkaVersions" : "<p>Returns a list of Kafka versions.</p>",
     "ListNodes" : "<p>Returns a list of the broker nodes in the cluster.</p>",
     "ListTagsForResource" : "<p>Returns a list of the tags associated with the specified resource.</p>",
+    "RebootBroker" : "<p>Executes a reboot on a broker.</p>",
     "TagResource" : "<p>Adds tags to the specified MSK resource.</p>",
     "UntagResource" : "<p>Removes the tags associated with the keys that are provided in the query.</p>",
     "UpdateBrokerCount" : "<p>Updates the number of broker nodes in the cluster. You can use this operation to increase the number of brokers in an existing cluster. You can't decrease the number of brokers.</p>",
@@ -379,6 +380,14 @@
         "OpenMonitoringInfo$Prometheus" : "<p>Prometheus settings.</p>"
       }
     },
+    "RebootBrokerRequest" : {
+      "base" : "<p>Request body for RebootBrokerNode action.</p>",
+      "refs" : { }
+    },
+    "RebootBrokerResponse" : {
+      "base" : "<p>Response body for RebootBrokers action.</p>",
+      "refs" : { }
+    },
     "S3" : {
       "base" : "<p>The details of the Amazon S3 destination for broker logs.</p>",
       "refs" : {
@@ -571,6 +580,7 @@
         "Configuration$KafkaVersions" : "<p>An array of the versions of Apache Kafka with which you can use this MSK configuration. You can use this configuration for an MSK cluster only if the Apache Kafka version specified for the cluster appears in this array.</p>",
         "CreateConfigurationRequest$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>",
         "DescribeConfigurationResponse$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>",
+        "RebootBrokerRequest$BrokerIds" : "<p>The list of broker ids to be rebooted.</p>",
         "Tls$CertificateAuthorityArnList" : "<p>List of ACM Certificate Authority ARNs.</p>",
         "ZookeeperNodeInfo$Endpoints" : "<p>Endpoints for accessing the ZooKeeper.</p>"
       }
@@ -650,6 +660,8 @@
         "NodeInfo$AddedToClusterTime" : "<p>The start time.</p>",
         "NodeInfo$InstanceType" : "<p>The instance type.</p>",
         "NodeInfo$NodeARN" : "<p>The Amazon Resource Name (ARN) of the node.</p>",
+        "RebootBrokerResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "RebootBrokerResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
         "S3$Bucket" : "<p>The name of the S3 bucket that is the destination for broker logs.</p>",
         "S3$Prefix" : "<p>The S3 prefix that is the destination for broker logs.</p>",
         "StateInfo$Code" : "<p>If the cluster is in an unusable state, this field contains the code that describes the issue.</p>",
