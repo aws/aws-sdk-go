@@ -361,7 +361,7 @@
       "type":"string",
       "max":63,
       "min":3,
-      "pattern":"[\\s\\S]*"
+      "pattern":"[a-z0-9.-]*"
     },
     "S3Location":{"type":"string"},
     "StartReportCreationInput":{
@@ -488,7 +488,7 @@
       "type":"string",
       "max":68,
       "min":6,
-      "pattern":"[\\s\\S]*"
+      "pattern":"[a-zA-Z0-9-]*"
     },
     "TargetIdFilterList":{
       "type":"list",

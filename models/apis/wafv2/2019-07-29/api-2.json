@@ -1823,7 +1823,8 @@
       "members":{
         "ResourceArn":{"shape":"ResourceArn"},
         "LogDestinationConfigs":{"shape":"LogDestinationConfigs"},
-        "RedactedFields":{"shape":"RedactedFields"}
+        "RedactedFields":{"shape":"RedactedFields"},
+        "ManagedByFirewallManager":{"shape":"Boolean"}
       }
     },
     "LoggingConfigurations":{
@@ -2314,7 +2315,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":".*\\S.*"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "TagKeyList":{
       "type":"list",
@@ -2346,7 +2347,7 @@
       "type":"string",
       "max":256,
       "min":0,
-      "pattern":".*"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "TextTransformation":{
       "type":"structure",

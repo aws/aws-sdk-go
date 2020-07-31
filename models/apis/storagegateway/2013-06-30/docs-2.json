@@ -553,6 +553,12 @@
       "refs": {
       }
     },
+    "DeprecationDate": {
+      "base": null,
+      "refs": {
+        "DescribeGatewayInformationOutput$DeprecationDate": "<p>Date after which this gateway will not receive software updates for new features and bug fixes.</p>"
+      }
+    },
     "DescribeAvailabilityMonitorTestInput": {
       "base": null,
       "refs": {
@@ -1684,6 +1690,12 @@
         "CreateSnapshotOutput$SnapshotId": "<p>The snapshot ID that is used to refer to the snapshot in future operations such as describing snapshots (Amazon Elastic Compute Cloud API <code>DescribeSnapshots</code>) or creating a volume from a snapshot (<a>CreateStorediSCSIVolume</a>).</p>",
         "CreateStorediSCSIVolumeInput$SnapshotId": "<p>The snapshot ID (e.g. \"snap-1122aabb\") of the snapshot to restore as the new stored volume. Specify this field if you want to create the iSCSI storage volume from a snapshot; otherwise, do not include this field. To list snapshots for your account use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeSnapshots.html\">DescribeSnapshots</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p>",
         "StorediSCSIVolume$SourceSnapshotId": "<p>If the stored volume was created from a snapshot, this field contains the snapshot ID used, e.g. snap-78e22663. Otherwise, this field is not included.</p>"
+      }
+    },
+    "SoftwareUpdatesEndDate": {
+      "base": null,
+      "refs": {
+        "DescribeGatewayInformationOutput$SoftwareUpdatesEndDate": "<p>Date after which this gateway will not receive software updates for new features.</p>"
       }
     },
     "Squash": {
