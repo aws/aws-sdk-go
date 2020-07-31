@@ -95,6 +95,7 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "LoggingConfiguration$ManagedByFirewallManager": "<p>Indicates whether the logging configuration was created by AWS Firewall Manager, as part of an AWS WAF policy configuration. If true, only Firewall Manager can modify or delete the configuration. </p>",
         "VisibilityConfig$SampledRequestsEnabled": "<p>A boolean indicating whether AWS WAF should store a sampling of the web requests that match the rules. You can view the sampled requests through the AWS WAF console. </p>",
         "VisibilityConfig$CloudWatchMetricsEnabled": "<p>A boolean indicating whether the associated resource sends metrics to CloudWatch. For the list of available metrics, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#waf-metrics\">AWS WAF Metrics</a>.</p>",
         "WebACL$ManagedByFirewallManager": "<p>Indicates whether this web ACL is managed by AWS Firewall Manager. If true, then only AWS Firewall Manager can delete the web ACL or any Firewall Manager rule groups in the web ACL. </p>"
@@ -378,7 +379,7 @@
         "RuleGroup$Name": "<p>The name of the rule group. You cannot change the name of a rule group after you create it.</p>",
         "RuleGroupSummary$Name": "<p>The name of the data type instance. You cannot change the name after you create the instance.</p>",
         "RuleSummary$Name": "<p>The name of the rule. </p>",
-        "SampledHTTPRequest$RuleNameWithinRuleGroup": "<p>The name of the <code>Rule</code> that the request matched. For managed rule groups, the format for this name is <code>&lt;vendor name&gt;#&lt;managed rule group name&gt;#&lt;rule name&gt;</code>. For your own rule groups, the format for this name is <code>&lt;rule group name&gt;#&lt;rule name&gt;</code>. If the rule is not in a rule group, the format is <code>&lt;rule name&gt;</code>. </p>",
+        "SampledHTTPRequest$RuleNameWithinRuleGroup": "<p>The name of the <code>Rule</code> that the request matched. For managed rule groups, the format for this name is <code>&lt;vendor name&gt;#&lt;managed rule group name&gt;#&lt;rule name&gt;</code>. For your own rule groups, the format for this name is <code>&lt;rule group name&gt;#&lt;rule name&gt;</code>. If the rule is not in a rule group, this field is absent. </p>",
         "UpdateIPSetRequest$Name": "<p>The name of the IP set. You cannot change the name of an <code>IPSet</code> after you create it.</p>",
         "UpdateRegexPatternSetRequest$Name": "<p>The name of the set. You cannot change the name after you create the set.</p>",
         "UpdateRuleGroupRequest$Name": "<p>The name of the rule group. You cannot change the name of a rule group after you create it.</p>",
@@ -851,7 +852,7 @@
       "base": null,
       "refs": {
         "GetSampledRequestsRequest$RuleMetricName": "<p>The metric name assigned to the <code>Rule</code> or <code>RuleGroup</code> for which you want a sample of requests.</p>",
-        "VisibilityConfig$MetricName": "<p>A name of the CloudWatch metric. The name can contain only the characters: A-Z, a-z, 0-9, - (hyphen), and _ (underscore). The name can be from one to 128 characters long. It can't contain whitespace or metric names reserved for AWS WAF, for example \"All\" and \"Default_Action.\" You can't change a <code>MetricName</code> after you create a <code>VisibilityConfig</code>.</p>"
+        "VisibilityConfig$MetricName": "<p>A name of the CloudWatch metric. The name can contain only the characters: A-Z, a-z, 0-9, - (hyphen), and _ (underscore). The name can be from one to 128 characters long. It can't contain whitespace or metric names reserved for AWS WAF, for example \"All\" and \"Default_Action.\" </p>"
       }
     },
     "NextMarker": {
@@ -995,7 +996,7 @@
     "RedactedFields": {
       "base": null,
       "refs": {
-        "LoggingConfiguration$RedactedFields": "<p>The parts of the request that you want to keep out of the logs. For example, if you redact the cookie field, the cookie field in the firehose will be <code>xxx</code>. </p>"
+        "LoggingConfiguration$RedactedFields": "<p>The parts of the request that you want to keep out of the logs. For example, if you redact the <code>HEADER</code> field, the <code>HEADER</code> field in the firehose will be <code>xxx</code>. </p> <note> <p>You must use one of the following values: <code>URI</code>, <code>QUERY_STRING</code>, <code>HEADER</code>, or <code>METHOD</code>.</p> </note>"
       }
     },
     "Regex": {

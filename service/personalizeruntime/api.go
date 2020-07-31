@@ -201,7 +201,11 @@ type GetPersonalizedRankingInput struct {
 	// a user's recommendations, such as the user's current location or device type.
 	Context map[string]*string `locationName:"context" type:"map"`
 
-	// A list of items (itemId's) to rank. If an item was not included in the training
+	// The Amazon Resource Name (ARN) of a filter you created to include or exclude
+	// items from recommendations for a given user.
+	FilterArn *string `locationName:"filterArn" type:"string"`
+
+	// A list of items (by itemId) to rank. If an item was not included in the training
 	// dataset, the item is appended to the end of the reranked list. The maximum
 	// is 500.
 	//
@@ -255,6 +259,12 @@ func (s *GetPersonalizedRankingInput) SetContext(v map[string]*string) *GetPerso
 	return s
 }
 
+// SetFilterArn sets the FilterArn field's value.
+func (s *GetPersonalizedRankingInput) SetFilterArn(v string) *GetPersonalizedRankingInput {
+	s.FilterArn = &v
+	return s
+}
+
 // SetInputList sets the InputList field's value.
 func (s *GetPersonalizedRankingInput) SetInputList(v []*string) *GetPersonalizedRankingInput {
 	s.InputList = v
@@ -305,7 +315,9 @@ type GetRecommendationsInput struct {
 	Context map[string]*string `locationName:"context" type:"map"`
 
 	// The ARN of the filter to apply to the returned recommendations. For more
-	// information, see Using Filters with Amazon Personalize.
+	// information, see Using Filters with Amazon Personalize (https://docs.aws.amazon.com/personalize/latest/dg/filters.html).
+	//
+	// When using this parameter, be sure the filter resource is ACTIVE.
 	FilterArn *string `locationName:"filterArn" type:"string"`
 
 	// The item ID to provide recommendations for.

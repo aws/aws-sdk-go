@@ -1701,6 +1701,11 @@
         "VolumeARN":{"shape":"VolumeARN"}
       }
     },
+    "DeprecationDate":{
+      "type":"string",
+      "max":25,
+      "min":1
+    },
     "DescribeAvailabilityMonitorTestInput":{
       "type":"structure",
       "required":["GatewayARN"],
@@ -1801,7 +1806,9 @@
         "VPCEndpoint":{"shape":"string"},
         "CloudWatchLogGroupARN":{"shape":"CloudWatchLogGroupARN"},
         "HostEnvironment":{"shape":"HostEnvironment"},
-        "EndpointType":{"shape":"EndpointType"}
+        "EndpointType":{"shape":"EndpointType"},
+        "SoftwareUpdatesEndDate":{"shape":"SoftwareUpdatesEndDate"},
+        "DeprecationDate":{"shape":"DeprecationDate"}
       }
     },
     "DescribeMaintenanceStartTimeInput":{
@@ -2896,6 +2903,11 @@
     "SnapshotId":{
       "type":"string",
       "pattern":"\\Asnap-([0-9A-Fa-f]{8}|[0-9A-Fa-f]{17})\\z"
+    },
+    "SoftwareUpdatesEndDate":{
+      "type":"string",
+      "max":25,
+      "min":1
     },
     "Squash":{
       "type":"string",

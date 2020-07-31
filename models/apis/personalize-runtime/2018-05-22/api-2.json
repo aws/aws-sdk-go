@@ -75,7 +75,8 @@
         "campaignArn":{"shape":"Arn"},
         "inputList":{"shape":"InputList"},
         "userId":{"shape":"UserID"},
-        "context":{"shape":"Context"}
+        "context":{"shape":"Context"},
+        "filterArn":{"shape":"Arn"}
       }
     },
     "GetPersonalizedRankingResponse":{

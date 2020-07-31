@@ -1,3 +1,16 @@
+Release v1.33.17 (2020-07-31)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API
+  * This release increases the CreateMeetingWithAttendee max attendee limit to 10.
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/resourcegroupstaggingapi`: Updates service API and documentation
+  * Updates to the list of services supported by this API.
+* `service/storagegateway`: Updates service API and documentation
+  * Add support for gateway VM deprecation dates
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.33.16 (2020-07-30)
 ===
 

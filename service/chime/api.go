@@ -26046,6 +26046,9 @@ const (
 	// ErrorCodeThrottled is a ErrorCode enum value
 	ErrorCodeThrottled = "Throttled"
 
+	// ErrorCodeThrottling is a ErrorCode enum value
+	ErrorCodeThrottling = "Throttling"
+
 	// ErrorCodeUnauthorized is a ErrorCode enum value
 	ErrorCodeUnauthorized = "Unauthorized"
 
