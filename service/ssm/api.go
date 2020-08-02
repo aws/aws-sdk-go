@@ -43468,10 +43468,12 @@ type UpdateDocumentInput struct {
 	// supports JSON and YAML documents. JSON is the default format.
 	DocumentFormat *string `type:"string" enum:"DocumentFormat"`
 
-	// (Required) The latest version of the document that you want to update. The
-	// latest document version can be specified using the $LATEST variable or by
-	// the version number. Updating a previous version of a document is not supported.
-	DocumentVersion *string `type:"string"`
+	// The latest version of the document that you want to update. The latest
+	// document version can be specified using the $LATEST variable or by the
+	// version number. Updating a previous version of a document is not supported.
+	//
+	// DocumentVersion is a required field
+	DocumentVersion *string `type:"string" required:"true"`
 
 	// The name of the document that you want to update.
 	//
