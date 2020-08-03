@@ -1,3 +1,10 @@
+Release v1.33.18 (2020-08-03)
+===
+
+### Service Client Updates
+* `service/ssm`: Updates service waiters and paginators
+  * Adds a waiter for CommandExecuted and paginators for various other APIs.
+
 Release v1.33.17 (2020-07-31)
 ===
 
