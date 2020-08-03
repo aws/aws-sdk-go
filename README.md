@@ -481,7 +481,7 @@ Keeping the list of open issues lean will help us respond in a timely manner.
 
 ## Contributing
 
-We work hard to provide a high-quality and useful SDK for our AWS services, and we greatly value feedback and contributions from our community. Please review our [contributing guidelines](./CONTRIBUTING.md) before submitting any issues or pull requests to ensure we have all the necessary information to effectively respond to your bug report or contribution.
+We work hard to provide a high-quality and useful SDK for our AWS services, and we greatly value feedback and contributions from our community. Please review our [contributing guidelines](./CONTRIBUTING.md) before submitting any [issues] or [pull requests][pr] to ensure we have all the necessary information to effectively respond to your bug report or contribution.
 
 ## Resources
 
@@ -511,4 +511,9 @@ features and AWS services.
 [Forum](https://forums.aws.amazon.com/forum.jspa?forumID=293) - Ask questions, get help, and give feedback
 
 [Issues][issues] - Report issues, submit pull requests, and get involved
-  (see [Apache 2.0 License][sdk-license])
+  (see [Apache 2.0 License][license])
+
+
+[issues]: https://github.com/aws/aws-sdk-go/issues
+[pr]: https://github.com/aws/aws-sdk-go/pulls
+[license]: http://aws.amazon.com/apache2.0/
