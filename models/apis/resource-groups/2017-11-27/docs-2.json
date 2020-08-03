@@ -11,7 +11,7 @@
     "GroupResources": "<p>Adds the specified resources to the specified group.</p>",
     "ListGroupResources": "<p>Returns a list of ARNs of the resources that are members of a specified resource group.</p>",
     "ListGroups": "<p>Returns a list of existing resource groups in your account.</p>",
-    "SearchResources": "<p>Returns a list of AWS resource identifiers that matches tne specified query. The query uses the same format as a resource query in a CreateGroup or UpdateGroupQuery operation.</p>",
+    "SearchResources": "<p>Returns a list of AWS resource identifiers that matches the specified query. The query uses the same format as a resource query in a CreateGroup or UpdateGroupQuery operation.</p>",
     "Tag": "<p>Adds tags to a resource group with the specified ARN. Existing tags on a resource group are not changed if they are not specified in the request parameters.</p> <important> <p>Do not store personally identifiable information (PII) or other confidential or sensitive information in tags. We use tags to provide you with billing and administration services. Tags are not intended to be used for private or sensitive data.</p> </important>",
     "UngroupResources": "<p>Removes the specified resources from the specified group.</p>",
     "Untag": "<p>Deletes tags from a specified resource group.</p>",
