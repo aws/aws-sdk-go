@@ -510,5 +510,5 @@ features and AWS services.
 
 [Forum](https://forums.aws.amazon.com/forum.jspa?forumID=293) - Ask questions, get help, and give feedback
 
-[Issues](https://github.com/aws/aws-sdk-go/issues) - Report issues, submit pull requests, and get involved
+[Issues][issues] - Report issues, submit pull requests, and get involved
   (see [Apache 2.0 License][sdk-license])

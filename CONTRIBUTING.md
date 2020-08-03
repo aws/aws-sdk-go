@@ -5,13 +5,12 @@ We work hard to provide a high-quality and useful SDK, and we greatly value
 feedback and contributions from our community. Whether it's a bug report,
 new feature, correction, or additional documentation, we welcome your issues
 and pull requests. Please read through this document before submitting any
-[issues][] or [pull requests][pr] to ensure we have all the necessary information to
+[issues] or [pull requests][pr] to ensure we have all the necessary information to
 effectively respond to your bug report or contribution.
 
 Jump To:
 
 * [Bug Reports](_#Bug-Reports_)
-* [Feature Requests](_#Feature-Requests_)
 * [Code Contributions](_#Code-Contributions_)
 
 ## How to contribute
@@ -68,18 +67,6 @@ guidelines prior to filing a bug report.
    to help us diagnose the problem. Any relevant information should be provided
    as well, like whether this is a persistent issue, or if it only occurs
    some of the time.
-
-## Feature Requests
-
-Open an [issue][issues] with the following:
-
-* A short, descriptive title. Ideally, other community members should be able 
-   to get a good idea of the feature just from reading the title.
-* A detailed description of the the proposed feature. 
-    * Why it should be added to the SDK.
-    *  If possible, example code to illustrate how it should work.
-* Use Markdown to make the request easier to read;
-* If you intend to implement this feature, indicate that you'd like to the issue to be assigned to you.
 
 ## Code Contributions
 
