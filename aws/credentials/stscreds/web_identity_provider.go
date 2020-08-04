@@ -15,8 +15,6 @@ import (
 )
 
 const (
-	defaultWebIdentityDuration = time.Hour
-
 	// ErrCodeWebIdentity will be used as an error code when constructing
 	// a new error to be returned during session creation or retrieval.
 	ErrCodeWebIdentity = "WebIdentityErr"
@@ -54,7 +52,9 @@ type WebIdentityRoleProvider struct {
 	credentials.Expiry
 	PolicyArns []*sts.PolicyDescriptorType
 
-	// Expiry duration of the STS credentials. Defaults to 1hour if not set.
+	// Expiry duration of the STS credentials. Will be truncated to seconds when used to assume the role.
+	// If unset, the assumed role will use AssumeRoleWithWebIdentity's default expiry duration. See
+	// https://docs.aws.amazon.com/sdk-for-go/api/service/sts/#STS.AssumeRoleWithWebIdentity for more information.
 	Duration time.Duration
 
 	client       stsiface.STSAPI
@@ -113,8 +113,9 @@ func (p *WebIdentityRoleProvider) RetrieveWithContext(ctx credentials.Context) (
 		sessionName = strconv.FormatInt(now().UnixNano(), 10)
 	}
 
-	if p.Duration == 0 {
-		p.Duration = defaultWebIdentityDuration
+	var duration *int64
+	if p.Duration != 0 {
+		duration = aws.Int64(int64(p.Duration / time.Second))
 	}
 
 	req, resp := p.client.AssumeRoleWithWebIdentityRequest(&sts.AssumeRoleWithWebIdentityInput{
@@ -122,7 +123,7 @@ func (p *WebIdentityRoleProvider) RetrieveWithContext(ctx credentials.Context) (
 		RoleArn:          &p.roleARN,
 		RoleSessionName:  &sessionName,
 		WebIdentityToken: aws.String(string(b)),
-		DurationSeconds:  aws.Int64(int64(p.Duration / time.Second)),
+		DurationSeconds:  duration,
 	})
 
 	req.SetContext(ctx)
