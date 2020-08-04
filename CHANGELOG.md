@@ -1,3 +1,10 @@
+Release v1.33.19 (2020-08-04)
+===
+
+### Service Client Updates
+* `service/health`: Updates service documentation
+  * Documentation updates for health
+
 Release v1.33.18 (2020-08-03)
 ===
 
