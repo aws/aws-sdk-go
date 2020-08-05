@@ -5,6 +5,7 @@ package stscreds_test
 import (
 	"net/http"
 	"reflect"
+	"strings"
 	"testing"
 	"time"
 
@@ -20,24 +21,26 @@ import (
 
 func TestWebIdentityProviderRetrieve(t *testing.T) {
 	var reqCount int
-	cases := []struct {
-		name              string
+	cases := map[string]struct {
 		onSendReq         func(*testing.T, *request.Request)
 		roleARN           string
 		tokenFilepath     string
 		sessionName       string
-		expectedError     error
+		duration          time.Duration
+		expectedError     string
 		expectedCredValue credentials.Value
 	}{
-		{
-			name:          "session name case",
+		"session name case": {
 			roleARN:       "arn01234567890123456789",
 			tokenFilepath: "testdata/token.jwt",
 			sessionName:   "foo",
 			onSendReq: func(t *testing.T, r *request.Request) {
 				input := r.Params.(*sts.AssumeRoleWithWebIdentityInput)
-				if e, a := "foo", *input.RoleSessionName; !reflect.DeepEqual(e, a) {
+				if e, a := "foo", *input.RoleSessionName; e != a {
 					t.Errorf("expected %v, but received %v", e, a)
+				}
+				if input.DurationSeconds != nil {
+					t.Errorf("expect no duration, got %v", *input.DurationSeconds)
 				}
 
 				data := r.Data.(*sts.AssumeRoleWithWebIdentityOutput)
@@ -57,8 +60,35 @@ func TestWebIdentityProviderRetrieve(t *testing.T) {
 				ProviderName:    stscreds.WebIdentityProviderName,
 			},
 		},
-		{
-			name:          "invalid token retry",
+		"with duration": {
+			roleARN:       "arn01234567890123456789",
+			tokenFilepath: "testdata/token.jwt",
+			sessionName:   "foo",
+			duration:      15 * time.Minute,
+			onSendReq: func(t *testing.T, r *request.Request) {
+				input := r.Params.(*sts.AssumeRoleWithWebIdentityInput)
+				if e, a := int64((15*time.Minute)/time.Second), *input.DurationSeconds; e != a {
+					t.Errorf("expect %v duration, got %v", e, a)
+				}
+
+				data := r.Data.(*sts.AssumeRoleWithWebIdentityOutput)
+				*data = sts.AssumeRoleWithWebIdentityOutput{
+					Credentials: &sts.Credentials{
+						Expiration:      aws.Time(time.Now()),
+						AccessKeyId:     aws.String("access-key-id"),
+						SecretAccessKey: aws.String("secret-access-key"),
+						SessionToken:    aws.String("session-token"),
+					},
+				}
+			},
+			expectedCredValue: credentials.Value{
+				AccessKeyID:     "access-key-id",
+				SecretAccessKey: "secret-access-key",
+				SessionToken:    "session-token",
+				ProviderName:    stscreds.WebIdentityProviderName,
+			},
+		},
+		"invalid token retry": {
 			roleARN:       "arn01234567890123456789",
 			tokenFilepath: "testdata/token.jwt",
 			sessionName:   "foo",
@@ -94,8 +124,8 @@ func TestWebIdentityProviderRetrieve(t *testing.T) {
 		},
 	}
 
-	for _, c := range cases {
-		t.Run(c.name, func(t *testing.T) {
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
 			reqCount = 0
 
 			svc := sts.New(unit.Session, &aws.Config{
@@ -116,9 +146,20 @@ func TestWebIdentityProviderRetrieve(t *testing.T) {
 			svc.Handlers.UnmarshalError.Clear()
 
 			p := stscreds.NewWebIdentityRoleProvider(svc, c.roleARN, c.sessionName, c.tokenFilepath)
+			p.Duration = c.duration
+
 			credValue, err := p.Retrieve()
-			if e, a := c.expectedError, err; !reflect.DeepEqual(e, a) {
-				t.Errorf("expected %v, but received %v", e, a)
+			if len(c.expectedError) != 0 {
+				if err == nil {
+					t.Fatalf("expect error, got none")
+				}
+				if e, a := c.expectedError, err.Error(); !strings.Contains(a, e) {
+					t.Fatalf("expect error to contain %v, got %v", e, a)
+				}
+				return
+			}
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
 			}
 
 			if e, a := c.expectedCredValue, credValue; !reflect.DeepEqual(e, a) {
