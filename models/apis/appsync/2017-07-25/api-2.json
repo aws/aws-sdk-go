@@ -933,7 +933,6 @@
         "apiId",
         "name",
         "dataSourceName",
-        "requestMappingTemplate",
         "functionVersion"
       ],
       "members":{
@@ -984,8 +983,7 @@
       "required":[
         "apiId",
         "typeName",
-        "fieldName",
-        "requestMappingTemplate"
+        "fieldName"
       ],
       "members":{
         "apiId":{
@@ -2156,7 +2154,6 @@
         "name",
         "functionId",
         "dataSourceName",
-        "requestMappingTemplate",
         "functionVersion"
       ],
       "members":{
@@ -2216,8 +2213,7 @@
       "required":[
         "apiId",
         "typeName",
-        "fieldName",
-        "requestMappingTemplate"
+        "fieldName"
       ],
       "members":{
         "apiId":{

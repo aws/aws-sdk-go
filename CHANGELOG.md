@@ -1,3 +1,15 @@
+Release v1.33.20 (2020-08-05)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/fsx`: Updates service documentation
+* `service/resourcegroupstaggingapi`: Updates service documentation
+  * Documentation updates for the Resource Group Tagging API namespace.
+* `service/sns`: Updates service documentation
+  * Documentation updates for SNS.
+* `service/transcribe`: Updates service API, documentation, and paginators
+
 Release v1.33.19 (2020-08-04)
 ===
 

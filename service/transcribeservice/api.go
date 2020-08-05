@@ -13,6 +13,101 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opCreateLanguageModel = "CreateLanguageModel"
+
+// CreateLanguageModelRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLanguageModel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLanguageModel for more information on using the CreateLanguageModel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLanguageModelRequest method.
+//    req, resp := client.CreateLanguageModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateLanguageModel
+func (c *TranscribeService) CreateLanguageModelRequest(input *CreateLanguageModelInput) (req *request.Request, output *CreateLanguageModelOutput) {
+	op := &request.Operation{
+		Name:       opCreateLanguageModel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLanguageModelInput{}
+	}
+
+	output = &CreateLanguageModelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLanguageModel API operation for Amazon Transcribe Service.
+//
+// Creates a new custom language model. Use Amazon S3 prefixes to provide the
+// location of your input files. The time it takes to create your model depends
+// on the size of your training data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation CreateLanguageModel for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+//   * ConflictException
+//   There is already a resource with that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateLanguageModel
+func (c *TranscribeService) CreateLanguageModel(input *CreateLanguageModelInput) (*CreateLanguageModelOutput, error) {
+	req, out := c.CreateLanguageModelRequest(input)
+	return out, req.Send()
+}
+
+// CreateLanguageModelWithContext is the same as CreateLanguageModel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLanguageModel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) CreateLanguageModelWithContext(ctx aws.Context, input *CreateLanguageModelInput, opts ...request.Option) (*CreateLanguageModelOutput, error) {
+	req, out := c.CreateLanguageModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateMedicalVocabulary = "CreateMedicalVocabulary"
 
 // CreateMedicalVocabularyRequest generates a "aws/request.Request" representing the
@@ -70,7 +165,7 @@ func (c *TranscribeService) CreateMedicalVocabularyRequest(input *CreateMedicalV
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -83,7 +178,7 @@ func (c *TranscribeService) CreateMedicalVocabularyRequest(input *CreateMedicalV
 //   again.
 //
 //   * ConflictException
-//   The resource name already exists.
+//   There is already a resource with that name.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateMedicalVocabulary
 func (c *TranscribeService) CreateMedicalVocabulary(input *CreateMedicalVocabularyInput) (*CreateMedicalVocabularyOutput, error) {
@@ -164,7 +259,7 @@ func (c *TranscribeService) CreateVocabularyRequest(input *CreateVocabularyInput
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -177,7 +272,7 @@ func (c *TranscribeService) CreateVocabularyRequest(input *CreateVocabularyInput
 //   again.
 //
 //   * ConflictException
-//   The resource name already exists.
+//   There is already a resource with that name.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateVocabulary
 func (c *TranscribeService) CreateVocabulary(input *CreateVocabularyInput) (*CreateVocabularyOutput, error) {
@@ -258,7 +353,7 @@ func (c *TranscribeService) CreateVocabularyFilterRequest(input *CreateVocabular
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -271,7 +366,7 @@ func (c *TranscribeService) CreateVocabularyFilterRequest(input *CreateVocabular
 //   again.
 //
 //   * ConflictException
-//   The resource name already exists.
+//   There is already a resource with that name.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateVocabularyFilter
 func (c *TranscribeService) CreateVocabularyFilter(input *CreateVocabularyFilterInput) (*CreateVocabularyFilterOutput, error) {
@@ -290,6 +385,97 @@ func (c *TranscribeService) CreateVocabularyFilter(input *CreateVocabularyFilter
 // for more information on using Contexts.
 func (c *TranscribeService) CreateVocabularyFilterWithContext(ctx aws.Context, input *CreateVocabularyFilterInput, opts ...request.Option) (*CreateVocabularyFilterOutput, error) {
 	req, out := c.CreateVocabularyFilterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLanguageModel = "DeleteLanguageModel"
+
+// DeleteLanguageModelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLanguageModel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLanguageModel for more information on using the DeleteLanguageModel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteLanguageModelRequest method.
+//    req, resp := client.DeleteLanguageModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DeleteLanguageModel
+func (c *TranscribeService) DeleteLanguageModelRequest(input *DeleteLanguageModelInput) (req *request.Request, output *DeleteLanguageModelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLanguageModel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteLanguageModelInput{}
+	}
+
+	output = &DeleteLanguageModelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLanguageModel API operation for Amazon Transcribe Service.
+//
+// Deletes a custom language model using its name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation DeleteLanguageModel for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DeleteLanguageModel
+func (c *TranscribeService) DeleteLanguageModel(input *DeleteLanguageModelInput) (*DeleteLanguageModelOutput, error) {
+	req, out := c.DeleteLanguageModelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLanguageModelWithContext is the same as DeleteLanguageModel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLanguageModel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) DeleteLanguageModelWithContext(ctx aws.Context, input *DeleteLanguageModelInput, opts ...request.Option) (*DeleteLanguageModelOutput, error) {
+	req, out := c.DeleteLanguageModelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -357,7 +543,7 @@ func (c *TranscribeService) DeleteMedicalTranscriptionJobRequest(input *DeleteMe
 //
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -452,7 +638,7 @@ func (c *TranscribeService) DeleteMedicalVocabularyRequest(input *DeleteMedicalV
 //
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -544,7 +730,7 @@ func (c *TranscribeService) DeleteTranscriptionJobRequest(input *DeleteTranscrip
 //
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -639,7 +825,7 @@ func (c *TranscribeService) DeleteVocabularyRequest(input *DeleteVocabularyInput
 //
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -734,7 +920,7 @@ func (c *TranscribeService) DeleteVocabularyFilterRequest(input *DeleteVocabular
 //
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -759,6 +945,106 @@ func (c *TranscribeService) DeleteVocabularyFilter(input *DeleteVocabularyFilter
 // for more information on using Contexts.
 func (c *TranscribeService) DeleteVocabularyFilterWithContext(ctx aws.Context, input *DeleteVocabularyFilterInput, opts ...request.Option) (*DeleteVocabularyFilterOutput, error) {
 	req, out := c.DeleteVocabularyFilterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLanguageModel = "DescribeLanguageModel"
+
+// DescribeLanguageModelRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLanguageModel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLanguageModel for more information on using the DescribeLanguageModel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeLanguageModelRequest method.
+//    req, resp := client.DescribeLanguageModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DescribeLanguageModel
+func (c *TranscribeService) DescribeLanguageModelRequest(input *DescribeLanguageModelInput) (req *request.Request, output *DescribeLanguageModelOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLanguageModel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLanguageModelInput{}
+	}
+
+	output = &DescribeLanguageModelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLanguageModel API operation for Amazon Transcribe Service.
+//
+// Gets information about a single custom language model. Use this information
+// to see details about the language model in your AWS account. You can also
+// see whether the base language model used to create your custom language model
+// has been updated. If Amazon Transcribe has updated the base model, you can
+// create a new custom language model using the updated base model. If the language
+// model wasn't created, you can use this operation to understand why Amazon
+// Transcribe couldn't create it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation DescribeLanguageModel for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DescribeLanguageModel
+func (c *TranscribeService) DescribeLanguageModel(input *DescribeLanguageModelInput) (*DescribeLanguageModelOutput, error) {
+	req, out := c.DescribeLanguageModelRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLanguageModelWithContext is the same as DescribeLanguageModel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLanguageModel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) DescribeLanguageModelWithContext(ctx aws.Context, input *DescribeLanguageModelInput, opts ...request.Option) (*DescribeLanguageModelOutput, error) {
+	req, out := c.DescribeLanguageModelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -823,7 +1109,7 @@ func (c *TranscribeService) GetMedicalTranscriptionJobRequest(input *GetMedicalT
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -905,7 +1191,7 @@ func (c *TranscribeService) GetMedicalVocabularyRequest(input *GetMedicalVocabul
 
 // GetMedicalVocabulary API operation for Amazon Transcribe Service.
 //
-// Retrieve information about a medical vocabulary.
+// Retrieves information about a medical vocabulary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -929,7 +1215,7 @@ func (c *TranscribeService) GetMedicalVocabularyRequest(input *GetMedicalVocabul
 //
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -1015,7 +1301,7 @@ func (c *TranscribeService) GetTranscriptionJobRequest(input *GetTranscriptionJo
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -1121,7 +1407,7 @@ func (c *TranscribeService) GetVocabularyRequest(input *GetVocabularyInput) (req
 //
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -1215,7 +1501,7 @@ func (c *TranscribeService) GetVocabularyFilterRequest(input *GetVocabularyFilte
 //
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -1239,6 +1525,156 @@ func (c *TranscribeService) GetVocabularyFilterWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListLanguageModels = "ListLanguageModels"
+
+// ListLanguageModelsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLanguageModels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLanguageModels for more information on using the ListLanguageModels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListLanguageModelsRequest method.
+//    req, resp := client.ListLanguageModelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListLanguageModels
+func (c *TranscribeService) ListLanguageModelsRequest(input *ListLanguageModelsInput) (req *request.Request, output *ListLanguageModelsOutput) {
+	op := &request.Operation{
+		Name:       opListLanguageModels,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLanguageModelsInput{}
+	}
+
+	output = &ListLanguageModelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLanguageModels API operation for Amazon Transcribe Service.
+//
+// Provides more information about the custom language models you've created.
+// You can use the information in this list to find a specific custom language
+// model. You can then use the operation to get more information about it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation ListLanguageModels for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListLanguageModels
+func (c *TranscribeService) ListLanguageModels(input *ListLanguageModelsInput) (*ListLanguageModelsOutput, error) {
+	req, out := c.ListLanguageModelsRequest(input)
+	return out, req.Send()
+}
+
+// ListLanguageModelsWithContext is the same as ListLanguageModels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLanguageModels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) ListLanguageModelsWithContext(ctx aws.Context, input *ListLanguageModelsInput, opts ...request.Option) (*ListLanguageModelsOutput, error) {
+	req, out := c.ListLanguageModelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLanguageModelsPages iterates over the pages of a ListLanguageModels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLanguageModels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListLanguageModels operation.
+//    pageNum := 0
+//    err := client.ListLanguageModelsPages(params,
+//        func(page *transcribeservice.ListLanguageModelsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *TranscribeService) ListLanguageModelsPages(input *ListLanguageModelsInput, fn func(*ListLanguageModelsOutput, bool) bool) error {
+	return c.ListLanguageModelsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLanguageModelsPagesWithContext same as ListLanguageModelsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) ListLanguageModelsPagesWithContext(ctx aws.Context, input *ListLanguageModelsInput, fn func(*ListLanguageModelsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLanguageModelsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLanguageModelsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLanguageModelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListMedicalTranscriptionJobs = "ListMedicalTranscriptionJobs"
@@ -1304,7 +1740,7 @@ func (c *TranscribeService) ListMedicalTranscriptionJobsRequest(input *ListMedic
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -1440,9 +1876,9 @@ func (c *TranscribeService) ListMedicalVocabulariesRequest(input *ListMedicalVoc
 
 // ListMedicalVocabularies API operation for Amazon Transcribe Service.
 //
-// Returns a list of vocabularies that match the specified criteria. You get
-// the entire list of vocabularies if you don't enter a value in any of the
-// request parameters.
+// Returns a list of vocabularies that match the specified criteria. If you
+// don't enter a value in any of the request parameters, returns the entire
+// list of vocabularies.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1454,7 +1890,7 @@ func (c *TranscribeService) ListMedicalVocabulariesRequest(input *ListMedicalVoc
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -1602,7 +2038,7 @@ func (c *TranscribeService) ListTranscriptionJobsRequest(input *ListTranscriptio
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -1751,7 +2187,7 @@ func (c *TranscribeService) ListVocabulariesRequest(input *ListVocabulariesInput
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -1899,7 +2335,7 @@ func (c *TranscribeService) ListVocabularyFiltersRequest(input *ListVocabularyFi
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -2029,7 +2465,7 @@ func (c *TranscribeService) StartMedicalTranscriptionJobRequest(input *StartMedi
 
 // StartMedicalTranscriptionJob API operation for Amazon Transcribe Service.
 //
-// Start a batch job to transcribe medical speech to text.
+// Starts a batch job to transcribe medical speech to text.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2041,7 +2477,7 @@ func (c *TranscribeService) StartMedicalTranscriptionJobRequest(input *StartMedi
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -2054,7 +2490,7 @@ func (c *TranscribeService) StartMedicalTranscriptionJobRequest(input *StartMedi
 //   again.
 //
 //   * ConflictException
-//   The resource name already exists.
+//   There is already a resource with that name.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartMedicalTranscriptionJob
 func (c *TranscribeService) StartMedicalTranscriptionJob(input *StartMedicalTranscriptionJobInput) (*StartMedicalTranscriptionJobOutput, error) {
@@ -2134,7 +2570,7 @@ func (c *TranscribeService) StartTranscriptionJobRequest(input *StartTranscripti
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -2147,7 +2583,7 @@ func (c *TranscribeService) StartTranscriptionJobRequest(input *StartTranscripti
 //   again.
 //
 //   * ConflictException
-//   The resource name already exists.
+//   There is already a resource with that name.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartTranscriptionJob
 func (c *TranscribeService) StartTranscriptionJob(input *StartTranscriptionJobInput) (*StartTranscriptionJobOutput, error) {
@@ -2215,9 +2651,10 @@ func (c *TranscribeService) UpdateMedicalVocabularyRequest(input *UpdateMedicalV
 
 // UpdateMedicalVocabulary API operation for Amazon Transcribe Service.
 //
-// Updates an existing vocabulary with new values in a different text file.
-// The UpdateMedicalVocabulary operation overwrites all of the existing information
-// with the values that you provide in the request.
+// Updates a vocabulary with new values that you provide in a different text
+// file from the one you used to create the vocabulary. The UpdateMedicalVocabulary
+// operation overwrites all of the existing information with the values that
+// you provide in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2229,7 +2666,7 @@ func (c *TranscribeService) UpdateMedicalVocabularyRequest(input *UpdateMedicalV
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -2246,7 +2683,7 @@ func (c *TranscribeService) UpdateMedicalVocabularyRequest(input *UpdateMedicalV
 //   again.
 //
 //   * ConflictException
-//   The resource name already exists.
+//   There is already a resource with that name.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/UpdateMedicalVocabulary
 func (c *TranscribeService) UpdateMedicalVocabulary(input *UpdateMedicalVocabularyInput) (*UpdateMedicalVocabularyOutput, error) {
@@ -2328,7 +2765,7 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -2345,7 +2782,7 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 //   again.
 //
 //   * ConflictException
-//   The resource name already exists.
+//   There is already a resource with that name.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/UpdateVocabulary
 func (c *TranscribeService) UpdateVocabulary(input *UpdateVocabularyInput) (*UpdateVocabularyOutput, error) {
@@ -2425,7 +2862,7 @@ func (c *TranscribeService) UpdateVocabularyFilterRequest(input *UpdateVocabular
 // Returned Error Types:
 //   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
-//   transcription you're trying to delete doesn't exist or if it is in a non-terminal
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
@@ -2464,7 +2901,7 @@ func (c *TranscribeService) UpdateVocabularyFilterWithContext(ctx aws.Context, i
 }
 
 // Your request didn't pass one or more validation tests. For example, if the
-// transcription you're trying to delete doesn't exist or if it is in a non-terminal
+// entity that you're trying to delete doesn't exist or if it is in a non-terminal
 // state (for example, it's "in progress"). See the exception Message field
 // for more information.
 type BadRequestException struct {
@@ -2522,7 +2959,7 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The resource name already exists.
+// There is already a resource with that name.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2638,28 +3075,189 @@ func (s *ContentRedaction) SetRedactionType(v string) *ContentRedaction {
 	return s
 }
 
+type CreateLanguageModelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Transcribe standard language model, or base model used to create
+	// your custom language model.
+	//
+	// If you want to use your custom language model to transcribe audio with a
+	// sample rate of 16 kHz or greater, choose Wideband.
+	//
+	// If you want to use your custom language model to transcribe audio with a
+	// sample rate that is less than 16 kHz, choose Narrowband.
+	//
+	// BaseModelName is a required field
+	BaseModelName *string `type:"string" required:"true" enum:"BaseModelName"`
+
+	// Contains the data access role and the Amazon S3 prefixes to read the required
+	// input files to create a custom language model.
+	//
+	// InputDataConfig is a required field
+	InputDataConfig *InputDataConfig `type:"structure" required:"true"`
+
+	// The language of the input text you're using to train your custom language
+	// model.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"CLMLanguageCode"`
+
+	// The name you choose for your custom language model when you create it.
+	//
+	// ModelName is a required field
+	ModelName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateLanguageModelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateLanguageModelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLanguageModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLanguageModelInput"}
+	if s.BaseModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BaseModelName"))
+	}
+	if s.InputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDataConfig"))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.ModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelName"))
+	}
+	if s.ModelName != nil && len(*s.ModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
+	}
+	if s.InputDataConfig != nil {
+		if err := s.InputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseModelName sets the BaseModelName field's value.
+func (s *CreateLanguageModelInput) SetBaseModelName(v string) *CreateLanguageModelInput {
+	s.BaseModelName = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *CreateLanguageModelInput) SetInputDataConfig(v *InputDataConfig) *CreateLanguageModelInput {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CreateLanguageModelInput) SetLanguageCode(v string) *CreateLanguageModelInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *CreateLanguageModelInput) SetModelName(v string) *CreateLanguageModelInput {
+	s.ModelName = &v
+	return s
+}
+
+type CreateLanguageModelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Transcribe standard language model, or base model you've used
+	// to create a custom language model.
+	BaseModelName *string `type:"string" enum:"BaseModelName"`
+
+	// The data access role and Amazon S3 prefixes you've chosen to create your
+	// custom language model.
+	InputDataConfig *InputDataConfig `type:"structure"`
+
+	// The language code of the text you've used to create a custom language model.
+	LanguageCode *string `type:"string" enum:"CLMLanguageCode"`
+
+	// The name you've chosen for your custom language model.
+	ModelName *string `min:"1" type:"string"`
+
+	// The status of the custom language model. When the status is COMPLETED the
+	// model is ready to use.
+	ModelStatus *string `type:"string" enum:"ModelStatus"`
+}
+
+// String returns the string representation
+func (s CreateLanguageModelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateLanguageModelOutput) GoString() string {
+	return s.String()
+}
+
+// SetBaseModelName sets the BaseModelName field's value.
+func (s *CreateLanguageModelOutput) SetBaseModelName(v string) *CreateLanguageModelOutput {
+	s.BaseModelName = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *CreateLanguageModelOutput) SetInputDataConfig(v *InputDataConfig) *CreateLanguageModelOutput {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CreateLanguageModelOutput) SetLanguageCode(v string) *CreateLanguageModelOutput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *CreateLanguageModelOutput) SetModelName(v string) *CreateLanguageModelOutput {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelStatus sets the ModelStatus field's value.
+func (s *CreateLanguageModelOutput) SetModelStatus(v string) *CreateLanguageModelOutput {
+	s.ModelStatus = &v
+	return s
+}
+
 type CreateMedicalVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language code used for the entries within your custom vocabulary. The
-	// language code of your custom vocabulary must match the language code of your
-	// transcription job. US English (en-US) is the only language code available
+	// The language code for the language used for the entries in your custom vocabulary.
+	// The language code of your custom vocabulary must match the language code
+	// of your transcription job. US English (en-US) is the only language code available
 	// for Amazon Transcribe Medical.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// The Amazon S3 location of the text file you use to define your custom vocabulary.
-	// The URI must be in the same AWS region as the API endpoint you're calling.
-	// Enter information about your VocabularyFileUri in the following format:
+	// The location in Amazon S3 of the text file you use to define your custom
+	// vocabulary. The URI must be in the same AWS Region as the resource that you're
+	// calling. Enter information about your VocabularyFileUri in the following
+	// format:
 	//
 	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
 	//
-	// This is an example of a vocabulary file uri location in Amazon S3:
+	// The following is an example URI for a vocabulary file that is stored in Amazon
+	// S3:
 	//
 	// https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt
 	//
-	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// For more information about Amazon S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	//
 	// For more information about custom vocabularies, see Medical Custom Vocabularies
@@ -2670,7 +3268,7 @@ type CreateMedicalVocabularyInput struct {
 
 	// The name of the custom vocabulary. This case-sensitive name must be unique
 	// within an AWS account. If you try to create a vocabulary with the same name
-	// as a previous vocabulary you will receive a ConflictException error.
+	// as a previous vocabulary, you get a ConflictException error.
 	//
 	// VocabularyName is a required field
 	VocabularyName *string `min:"1" type:"string" required:"true"`
@@ -2736,20 +3334,19 @@ type CreateMedicalVocabularyOutput struct {
 	// why the job failed.
 	FailureReason *string `type:"string"`
 
-	// The language code you chose to describe the entries in your custom vocabulary.
-	// US English (en-US) is the only valid language code for Amazon Transcribe
-	// Medical.
+	// The language code for the entries in your custom vocabulary. US English (en-US)
+	// is the only valid language code for Amazon Transcribe Medical.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
-	// The date and time you created the vocabulary.
+	// The date and time that you created the vocabulary.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
-	// The name of the vocabulary. The name must be unique within an AWS account.
-	// It is also case-sensitive.
+	// The name of the vocabulary. The name must be unique within an AWS account
+	// and is case sensitive.
 	VocabularyName *string `min:"1" type:"string"`
 
 	// The processing state of your custom vocabulary in Amazon Transcribe Medical.
-	// If the state is READY you can use the vocabulary in a StartMedicalTranscriptionJob
+	// If the state is READY, you can use the vocabulary in a StartMedicalTranscriptionJob
 	// request.
 	VocabularyState *string `type:"string" enum:"VocabularyState"`
 }
@@ -2816,8 +3413,8 @@ type CreateVocabularyFilterInput struct {
 	VocabularyFilterFileUri *string `min:"1" type:"string"`
 
 	// The vocabulary filter name. The name must be unique within the account that
-	// contains it.If you try to create a vocabulary filter with the same name as
-	// a previous vocabulary filter you will receive a ConflictException error.
+	// contains it. If you try to create a vocabulary filter with the same name
+	// as another vocabulary filter, you get a ConflictException error.
 	//
 	// VocabularyFilterName is a required field
 	VocabularyFilterName *string `min:"1" type:"string" required:"true"`
@@ -2953,7 +3550,7 @@ type CreateVocabularyInput struct {
 	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary. The name must be unique within an AWS account.
-	// The name is case-sensitive. If you try to create a vocabulary with the same
+	// The name is case sensitive. If you try to create a vocabulary with the same
 	// name as a previous vocabulary you will receive a ConflictException error.
 	//
 	// VocabularyName is a required field
@@ -3077,6 +3674,61 @@ func (s *CreateVocabularyOutput) SetVocabularyState(v string) *CreateVocabularyO
 	return s
 }
 
+type DeleteLanguageModelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the model you're choosing to delete.
+	//
+	// ModelName is a required field
+	ModelName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteLanguageModelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLanguageModelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLanguageModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLanguageModelInput"}
+	if s.ModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelName"))
+	}
+	if s.ModelName != nil && len(*s.ModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *DeleteLanguageModelInput) SetModelName(v string) *DeleteLanguageModelInput {
+	s.ModelName = &v
+	return s
+}
+
+type DeleteLanguageModelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLanguageModelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLanguageModelOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteMedicalTranscriptionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3136,7 +3788,7 @@ func (s DeleteMedicalTranscriptionJobOutput) GoString() string {
 type DeleteMedicalVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the vocabulary you are choosing to delete.
+	// The name of the vocabulary that you want to delete.
 	//
 	// VocabularyName is a required field
 	VocabularyName *string `min:"1" type:"string" required:"true"`
@@ -3353,6 +4005,70 @@ func (s DeleteVocabularyOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeLanguageModelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the custom language model you submit to get more information.
+	//
+	// ModelName is a required field
+	ModelName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeLanguageModelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLanguageModelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLanguageModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLanguageModelInput"}
+	if s.ModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelName"))
+	}
+	if s.ModelName != nil && len(*s.ModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *DescribeLanguageModelInput) SetModelName(v string) *DescribeLanguageModelInput {
+	s.ModelName = &v
+	return s
+}
+
+type DescribeLanguageModelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the custom language model you requested more information about.
+	LanguageModel *LanguageModel `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeLanguageModelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLanguageModelOutput) GoString() string {
+	return s.String()
+}
+
+// SetLanguageModel sets the LanguageModel field's value.
+func (s *DescribeLanguageModelOutput) SetLanguageModel(v *LanguageModel) *DescribeLanguageModelOutput {
+	s.LanguageModel = v
+	return s
+}
+
 type GetMedicalTranscriptionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3420,8 +4136,8 @@ func (s *GetMedicalTranscriptionJobOutput) SetMedicalTranscriptionJob(v *Medical
 type GetMedicalVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the vocabulary you are trying to get information about. The value
-	// you enter for this request is case-sensitive.
+	// The name of the vocabulary that you want information about. The value is
+	// case sensitive.
 	//
 	// VocabularyName is a required field
 	VocabularyName *string `min:"1" type:"string" required:"true"`
@@ -3462,26 +4178,27 @@ func (s *GetMedicalVocabularyInput) SetVocabularyName(v string) *GetMedicalVocab
 type GetMedicalVocabularyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon S3 location where the vocabulary is stored. Use this URI to get
-	// the contents of the vocabulary. You can download your vocabulary from the
-	// URI for a limited time.
+	// The location in Amazon S3 where the vocabulary is stored. Use this URI to
+	// get the contents of the vocabulary. You can download your vocabulary from
+	// the URI for a limited time.
 	DownloadUri *string `min:"1" type:"string"`
 
 	// If the VocabularyState is FAILED, this field contains information about why
 	// the job failed.
 	FailureReason *string `type:"string"`
 
-	// The valid language code returned for your vocabulary entries.
+	// The valid language code for your vocabulary entries.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
-	// The date and time the vocabulary was last modified with a text file different
-	// from what was previously used.
+	// The date and time that the vocabulary was last modified with a text file
+	// different from the one that was previously used.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
-	// The valid name that Amazon Transcribe Medical returns.
+	// The name of the vocabulary returned by Amazon Transcribe Medical.
 	VocabularyName *string `min:"1" type:"string"`
 
-	// The processing state of the vocabulary.
+	// The processing state of the vocabulary. If the VocabularyState is READY then
+	// you can use it in the StartMedicalTranscriptionJob operation.
 	VocabularyState *string `type:"string" enum:"VocabularyState"`
 }
 
@@ -3690,7 +4407,8 @@ func (s *GetVocabularyFilterOutput) SetVocabularyFilterName(v string) *GetVocabu
 type GetVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the vocabulary to return information about. The name is case-sensitive.
+	// The name of the vocabulary to return information about. The name is case
+	// sensitive.
 	//
 	// VocabularyName is a required field
 	VocabularyName *string `min:"1" type:"string" required:"true"`
@@ -3798,6 +4516,82 @@ func (s *GetVocabularyOutput) SetVocabularyState(v string) *GetVocabularyOutput 
 	return s
 }
 
+// The object that contains the Amazon S3 object location and access role required
+// to train and tune your custom language model.
+type InputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that uniquely identifies the permissions you've
+	// given Amazon Transcribe to access your Amazon S3 buckets containing your
+	// media files or text data.
+	//
+	// DataAccessRoleArn is a required field
+	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// The Amazon S3 prefix you specify to access the plain text files that you
+	// use to train your custom language model.
+	//
+	// S3Uri is a required field
+	S3Uri *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon S3 prefix you specify to access the plain text files that you
+	// use to tune your custom language model.
+	TuningDataS3Uri *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InputDataConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputDataConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputDataConfig"}
+	if s.DataAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+	if s.S3Uri != nil && len(*s.S3Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Uri", 1))
+	}
+	if s.TuningDataS3Uri != nil && len(*s.TuningDataS3Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TuningDataS3Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *InputDataConfig) SetDataAccessRoleArn(v string) *InputDataConfig {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *InputDataConfig) SetS3Uri(v string) *InputDataConfig {
+	s.S3Uri = &v
+	return s
+}
+
+// SetTuningDataS3Uri sets the TuningDataS3Uri field's value.
+func (s *InputDataConfig) SetTuningDataS3Uri(v string) *InputDataConfig {
+	s.TuningDataS3Uri = &v
+	return s
+}
+
 // There was an internal error. Check the error message and try your request
 // again.
 type InternalFailureException struct {
@@ -3876,7 +4670,7 @@ type JobExecutionSettings struct {
 	//
 	// If you specify the AllowDeferredExecution field, you must specify the DataAccessRoleArn
 	// field.
-	DataAccessRoleArn *string `type:"string"`
+	DataAccessRoleArn *string `min:"20" type:"string"`
 }
 
 // String returns the string representation
@@ -3889,6 +4683,19 @@ func (s JobExecutionSettings) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobExecutionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobExecutionSettings"}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetAllowDeferredExecution sets the AllowDeferredExecution field's value.
 func (s *JobExecutionSettings) SetAllowDeferredExecution(v bool) *JobExecutionSettings {
 	s.AllowDeferredExecution = &v
@@ -3898,6 +4705,107 @@ func (s *JobExecutionSettings) SetAllowDeferredExecution(v bool) *JobExecutionSe
 // SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
 func (s *JobExecutionSettings) SetDataAccessRoleArn(v string) *JobExecutionSettings {
 	s.DataAccessRoleArn = &v
+	return s
+}
+
+// The structure used to describe a custom language model.
+type LanguageModel struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Transcribe standard language model, or base model used to create
+	// the custom language model.
+	BaseModelName *string `type:"string" enum:"BaseModelName"`
+
+	// The time the custom language model was created.
+	CreateTime *time.Time `type:"timestamp"`
+
+	// The reason why the custom language model couldn't be created.
+	FailureReason *string `type:"string"`
+
+	// The data access role and Amazon S3 prefixes for the input files used to train
+	// the custom language model.
+	InputDataConfig *InputDataConfig `type:"structure"`
+
+	// The language code you used to create your custom language model.
+	LanguageCode *string `type:"string" enum:"CLMLanguageCode"`
+
+	// The most recent time the custom language model was modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the custom language model.
+	ModelName *string `min:"1" type:"string"`
+
+	// The creation status of a custom language model. When the status is COMPLETED
+	// the model is ready for use.
+	ModelStatus *string `type:"string" enum:"ModelStatus"`
+
+	// Whether the base model used for the custom language model is up to date.
+	// If this field is true then you are running the most up-to-date version of
+	// the base model in your custom language model.
+	UpgradeAvailability *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s LanguageModel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LanguageModel) GoString() string {
+	return s.String()
+}
+
+// SetBaseModelName sets the BaseModelName field's value.
+func (s *LanguageModel) SetBaseModelName(v string) *LanguageModel {
+	s.BaseModelName = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *LanguageModel) SetCreateTime(v time.Time) *LanguageModel {
+	s.CreateTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *LanguageModel) SetFailureReason(v string) *LanguageModel {
+	s.FailureReason = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *LanguageModel) SetInputDataConfig(v *InputDataConfig) *LanguageModel {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *LanguageModel) SetLanguageCode(v string) *LanguageModel {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *LanguageModel) SetLastModifiedTime(v time.Time) *LanguageModel {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *LanguageModel) SetModelName(v string) *LanguageModel {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelStatus sets the ModelStatus field's value.
+func (s *LanguageModel) SetModelStatus(v string) *LanguageModel {
+	s.ModelStatus = &v
+	return s
+}
+
+// SetUpgradeAvailability sets the UpgradeAvailability field's value.
+func (s *LanguageModel) SetUpgradeAvailability(v bool) *LanguageModel {
+	s.UpgradeAvailability = &v
 	return s
 }
 
@@ -3956,6 +4864,114 @@ func (s *LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListLanguageModelsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of language models to return in the response. If there
+	// are fewer results in the list, the response contains only the actual results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When specified, the custom language model names returned contain the substring
+	// you've specified.
+	NameContains *string `min:"1" type:"string"`
+
+	// When included, fetches the next set of jobs if the result of the previous
+	// request was truncated.
+	NextToken *string `type:"string"`
+
+	// When specified, returns only custom language models with the specified status.
+	// Language models are ordered by creation date, with the newest models first.
+	// If you don't specify a status, Amazon Transcribe returns all custom language
+	// models ordered by date.
+	StatusEquals *string `type:"string" enum:"ModelStatus"`
+}
+
+// String returns the string representation
+func (s ListLanguageModelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLanguageModelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLanguageModelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLanguageModelsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NameContains != nil && len(*s.NameContains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameContains", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLanguageModelsInput) SetMaxResults(v int64) *ListLanguageModelsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListLanguageModelsInput) SetNameContains(v string) *ListLanguageModelsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLanguageModelsInput) SetNextToken(v string) *ListLanguageModelsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatusEquals sets the StatusEquals field's value.
+func (s *ListLanguageModelsInput) SetStatusEquals(v string) *ListLanguageModelsInput {
+	s.StatusEquals = &v
+	return s
+}
+
+type ListLanguageModelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects containing information about custom language models.
+	Models []*LanguageModel `type:"list"`
+
+	// The operation returns a page of jobs at a time. The maximum size of the list
+	// is set by the MaxResults parameter. If there are more language models in
+	// the list than the page size, Amazon Transcribe returns the NextPage token.
+	// Include the token in the next request to the operation to return the next
+	// page of language models.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListLanguageModelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLanguageModelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetModels sets the Models field's value.
+func (s *ListLanguageModelsOutput) SetModels(v []*LanguageModel) *ListLanguageModelsOutput {
+	s.Models = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLanguageModelsOutput) SetNextToken(v string) *ListLanguageModelsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListMedicalTranscriptionJobsInput struct {
@@ -4082,17 +5098,18 @@ type ListMedicalVocabulariesInput struct {
 	// The maximum number of vocabularies to return in the response.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Returns vocabularies in the list whose name contains the specified string.
-	// The search is case-insensitive, ListMedicalVocabularies returns both "vocabularyname"
-	// and "VocabularyName" in the response list.
+	// Returns vocabularies whose names contain the specified string. The search
+	// is not case sensitive. ListMedicalVocabularies returns both "vocabularyname"
+	// and "VocabularyName".
 	NameContains *string `min:"1" type:"string"`
 
 	// If the result of your previous request to ListMedicalVocabularies was truncated,
-	// include the NextToken to fetch the next set of jobs.
+	// include the NextToken to fetch the next set of vocabularies.
 	NextToken *string `type:"string"`
 
-	// When specified, only returns vocabularies with the VocabularyState equal
-	// to the specified vocabulary state.
+	// When specified, returns only vocabularies with the VocabularyState equal
+	// to the specified vocabulary state. Use this field to see which vocabularies
+	// are ready for your medical transcription jobs.
 	StateEquals *string `type:"string" enum:"VocabularyState"`
 }
 
@@ -4150,17 +5167,17 @@ type ListMedicalVocabulariesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ListMedicalVocabularies operation returns a page of vocabularies at a
-	// time. The maximum size of the page is set by the MaxResults parameter. If
-	// there are more jobs in the list than the page size, Amazon Transcribe Medical
-	// returns the NextPage token. Include the token in the next request to the
-	// ListMedicalVocabularies operation to return the next page of jobs.
+	// time. You set the maximum number of vocabularies to return on a page with
+	// the MaxResults parameter. If there are more jobs in the list will fit on
+	// a page, Amazon Transcribe Medical returns the NextPage token. To return the
+	// next page of vocabularies, include the token in the next request to the ListMedicalVocabularies
+	// operation .
 	NextToken *string `type:"string"`
 
 	// The requested vocabulary state.
 	Status *string `type:"string" enum:"VocabularyState"`
 
-	// A list of objects that describe the vocabularies that match the search criteria
-	// in the request.
+	// A list of objects that describe the vocabularies that match your search criteria.
 	Vocabularies []*VocabularyInfo `type:"list"`
 }
 
@@ -4317,7 +5334,7 @@ type ListVocabulariesInput struct {
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// When specified, the vocabularies returned in the list are limited to vocabularies
-	// whose name contains the specified string. The search is case-insensitive,
+	// whose name contains the specified string. The search is not case sensitive,
 	// ListVocabularies returns both "vocabularyname" and "VocabularyName" in the
 	// response list.
 	NameContains *string `min:"1" type:"string"`
@@ -4385,10 +5402,10 @@ type ListVocabulariesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ListVocabularies operation returns a page of vocabularies at a time.
-	// The maximum size of the page is set by the MaxResults parameter. If there
-	// are more jobs in the list than the page size, Amazon Transcribe returns the
-	// NextPage token. Include the token in the next request to the ListVocabularies
-	// operation to return in the next page of jobs.
+	// The maximum size of the page is set in the MaxResults parameter. If there
+	// are more jobs in the list than will fit on the page, Amazon Transcribe returns
+	// the NextPage token. To return in the next page of jobs, include the token
+	// in the next request to the ListVocabularies operation.
 	NextToken *string `type:"string"`
 
 	// The requested vocabulary state.
@@ -4596,7 +5613,7 @@ func (s *MedicalTranscript) SetTranscriptFileUri(v string) *MedicalTranscript {
 	return s
 }
 
-// The data structure that containts the information for a medical transcription
+// The data structure that contains the information for a medical transcription
 // job.
 type MedicalTranscriptionJob struct {
 	_ struct{} `type:"structure"`
@@ -4632,7 +5649,7 @@ type MedicalTranscriptionJob struct {
 	//
 	//    * Invalid file size: file size too large- The size of your audio file
 	//    is larger than what Amazon Transcribe Medical can process. For more information,
-	//    see Guidlines and Quotas (https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits)
+	//    see Guidelines and Quotas (https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits)
 	//    in the Amazon Transcribe Medical Guide
 	//
 	//    * Invalid number of channels: number of channels too large- Your audio
@@ -4929,7 +5946,7 @@ type MedicalTranscriptionSetting struct {
 	ShowAlternatives *bool `type:"boolean"`
 
 	// Determines whether the transcription job uses speaker recognition to identify
-	// different speakers in the input audio. Speaker recongition labels individual
+	// different speakers in the input audio. Speaker recognition labels individual
 	// speakers in the audio file. If you set the ShowSpeakerLabels field to true,
 	// you must also set the maximum number of speaker labels in the MaxSpeakerLabels
 	// field.
@@ -5005,6 +6022,44 @@ func (s *MedicalTranscriptionSetting) SetShowSpeakerLabels(v bool) *MedicalTrans
 // SetVocabularyName sets the VocabularyName field's value.
 func (s *MedicalTranscriptionSetting) SetVocabularyName(v string) *MedicalTranscriptionSetting {
 	s.VocabularyName = &v
+	return s
+}
+
+// The object used to call your custom language model to your transcription
+// job.
+type ModelSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The name of your custom language model.
+	LanguageModelName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ModelSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelSettings"}
+	if s.LanguageModelName != nil && len(*s.LanguageModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageModelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageModelName sets the LanguageModelName field's value.
+func (s *ModelSettings) SetLanguageModelName(v string) *ModelSettings {
+	s.LanguageModelName = &v
 	return s
 }
 
@@ -5229,7 +6284,7 @@ type StartMedicalTranscriptionJobInput struct {
 	// The name of the medical transcription job. You can't use the strings "."
 	// or ".." by themselves as the job name. The name must also be unique within
 	// an AWS account. If you try to create a medical transcription job with the
-	// same name as a previous medical transcription job you will receive a ConflictException
+	// same name as a previous medical transcription job, you get a ConflictException
 	// error.
 	//
 	// MedicalTranscriptionJobName is a required field
@@ -5468,6 +6523,10 @@ type StartTranscriptionJobInput struct {
 	// field blank and let Amazon Transcribe determine the sample rate.
 	MediaSampleRateHertz *int64 `min:"8000" type:"integer"`
 
+	// Choose the custom language model you use for your transcription job in this
+	// parameter.
+	ModelSettings *ModelSettings `type:"structure"`
+
 	// The location where the transcription is stored.
 	//
 	// If you set the OutputBucketName, Amazon Transcribe puts the transcript in
@@ -5520,10 +6579,10 @@ type StartTranscriptionJobInput struct {
 	// A Settings object that provides optional settings for a transcription job.
 	Settings *Settings `type:"structure"`
 
-	// The name of the job. Note that you can't use the strings "." or ".." by themselves
+	// The name of the job. You can't use the strings "." or ".." by themselves
 	// as the job name. The name must also be unique within an AWS account. If you
 	// try to create a transcription job with the same name as a previous transcription
-	// job you will receive a ConflictException error.
+	// job, you get a ConflictException error.
 	//
 	// TranscriptionJobName is a required field
 	TranscriptionJobName *string `min:"1" type:"string" required:"true"`
@@ -5565,9 +6624,19 @@ func (s *StartTranscriptionJobInput) Validate() error {
 			invalidParams.AddNested("ContentRedaction", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.JobExecutionSettings != nil {
+		if err := s.JobExecutionSettings.Validate(); err != nil {
+			invalidParams.AddNested("JobExecutionSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Media != nil {
 		if err := s.Media.Validate(); err != nil {
 			invalidParams.AddNested("Media", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelSettings != nil {
+		if err := s.ModelSettings.Validate(); err != nil {
+			invalidParams.AddNested("ModelSettings", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Settings != nil {
@@ -5615,6 +6684,12 @@ func (s *StartTranscriptionJobInput) SetMediaFormat(v string) *StartTranscriptio
 // SetMediaSampleRateHertz sets the MediaSampleRateHertz field's value.
 func (s *StartTranscriptionJobInput) SetMediaSampleRateHertz(v int64) *StartTranscriptionJobInput {
 	s.MediaSampleRateHertz = &v
+	return s
+}
+
+// SetModelSettings sets the ModelSettings field's value.
+func (s *StartTranscriptionJobInput) SetModelSettings(v *ModelSettings) *StartTranscriptionJobInput {
+	s.ModelSettings = v
 	return s
 }
 
@@ -5671,13 +6746,13 @@ type Transcript struct {
 
 	// The S3 object location of the redacted transcript.
 	//
-	// Use this URI to access the redacated transcript. If you specified an S3 bucket
+	// Use this URI to access the redacted transcript. If you specified an S3 bucket
 	// in the OutputBucketName field when you created the job, this is the URI of
 	// that bucket. If you chose to store the transcript in Amazon Transcribe, this
 	// is a shareable URL that provides secure access to that location.
 	RedactedTranscriptFileUri *string `min:"1" type:"string"`
 
-	// The S3 object location of the the transcript.
+	// The S3 object location of the transcript.
 	//
 	// Use this URI to access the transcript. If you specified an S3 bucket in the
 	// OutputBucketName field when you created the job, this is the URI of that
@@ -5772,6 +6847,9 @@ type TranscriptionJob struct {
 	// The sample rate, in Hertz, of the audio track in the input media file.
 	MediaSampleRateHertz *int64 `min:"8000" type:"integer"`
 
+	// An object containing the details of your custom language model.
+	ModelSettings *ModelSettings `type:"structure"`
+
 	// Optional settings for the transcription job. Use these settings to turn on
 	// speaker recognition, to set the maximum number of speakers that should be
 	// identified and to specify a custom vocabulary to use when processing the
@@ -5855,6 +6933,12 @@ func (s *TranscriptionJob) SetMediaSampleRateHertz(v int64) *TranscriptionJob {
 	return s
 }
 
+// SetModelSettings sets the ModelSettings field's value.
+func (s *TranscriptionJob) SetModelSettings(v *ModelSettings) *TranscriptionJob {
+	s.ModelSettings = v
+	return s
+}
+
 // SetSettings sets the Settings field's value.
 func (s *TranscriptionJob) SetSettings(v *Settings) *TranscriptionJob {
 	s.Settings = v
@@ -5903,6 +6987,10 @@ type TranscriptionJobSummary struct {
 
 	// The language code for the input speech.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// The object used to call your custom language model to your transcription
+	// job.
+	ModelSettings *ModelSettings `type:"structure"`
 
 	// Indicates the location of the output of the transcription job.
 	//
@@ -5966,6 +7054,12 @@ func (s *TranscriptionJobSummary) SetLanguageCode(v string) *TranscriptionJobSum
 	return s
 }
 
+// SetModelSettings sets the ModelSettings field's value.
+func (s *TranscriptionJobSummary) SetModelSettings(v *ModelSettings) *TranscriptionJobSummary {
+	s.ModelSettings = v
+	return s
+}
+
 // SetOutputLocationType sets the OutputLocationType field's value.
 func (s *TranscriptionJobSummary) SetOutputLocationType(v string) *TranscriptionJobSummary {
 	s.OutputLocationType = &v
@@ -5993,16 +7087,15 @@ func (s *TranscriptionJobSummary) SetTranscriptionJobStatus(v string) *Transcrip
 type UpdateMedicalVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language code of the entries in the updated vocabulary. US English (en-US)
-	// is the only valid language code in Amazon Transcribe Medical.
+	// The language code of the language used for the entries in the updated vocabulary.
+	// US English (en-US) is the only valid language code in Amazon Transcribe Medical.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// The Amazon S3 location of the text file containing the definition of the
-	// custom vocabulary. The URI must be in the same AWS region as the API endpoint
-	// you are calling. You can see the fields you need to enter for you Amazon
-	// S3 location in the example URI here:
+	// The location in Amazon S3 of the text file that contains the you use for
+	// your custom vocabulary. The URI must be in the same AWS Region as the resource
+	// that you are calling. The following is the format for a URI:
 	//
 	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
 	//
@@ -6010,16 +7103,16 @@ type UpdateMedicalVocabularyInput struct {
 	//
 	// https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt
 	//
-	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// For more information about Amazon S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	//
 	// For more information about custom vocabularies in Amazon Transcribe Medical,
 	// see Medical Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
-	// The name of the vocabulary to update. The name is case-sensitive. If you
-	// try to update a vocabulary with the same name as a previous vocabulary you
-	// will receive a ConflictException error.
+	// The name of the vocabulary to update. The name is case sensitive. If you
+	// try to update a vocabulary with the same name as a vocabulary you've already
+	// made, you get a ConflictException error.
 	//
 	// VocabularyName is a required field
 	VocabularyName *string `min:"1" type:"string" required:"true"`
@@ -6078,18 +7171,19 @@ func (s *UpdateMedicalVocabularyInput) SetVocabularyName(v string) *UpdateMedica
 type UpdateMedicalVocabularyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The language code for the text file used to update the custom vocabulary.
-	// US English (en-US) is the only language supported in Amazon Transcribe Medical.
+	// The language code for the language of the text file used to update the custom
+	// vocabulary. US English (en-US) is the only language supported in Amazon Transcribe
+	// Medical.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
-	// The date and time the vocabulary was updated.
+	// The date and time that the vocabulary was updated.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
 	// The name of the updated vocabulary.
 	VocabularyName *string `min:"1" type:"string"`
 
 	// The processing state of the update to the vocabulary. When the VocabularyState
-	// field is READY the vocabulary is ready to be used in a StartMedicalTranscriptionJob
+	// field is READY, the vocabulary is ready to be used in a StartMedicalTranscriptionJob
 	// request.
 	VocabularyState *string `type:"string" enum:"VocabularyState"`
 }
@@ -6143,8 +7237,8 @@ type UpdateVocabularyFilterInput struct {
 	VocabularyFilterFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary filter to update. If you try to update a vocabulary
-	// filter with the same name as a previous vocabulary filter you will receive
-	// a ConflictException error.
+	// filter with the same name as another vocabulary filter, you get a ConflictException
+	// error.
 	//
 	// VocabularyFilterName is a required field
 	VocabularyFilterName *string `min:"1" type:"string" required:"true"`
@@ -6272,7 +7366,7 @@ type UpdateVocabularyInput struct {
 	// For more information about custom vocabularies, see Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
-	// The name of the vocabulary to update. The name is case-sensitive. If you
+	// The name of the vocabulary to update. The name is case sensitive. If you
 	// try to update a vocabulary with the same name as a previous vocabulary you
 	// will receive a ConflictException error.
 	//
@@ -6483,77 +7577,117 @@ func (s *VocabularyInfo) SetVocabularyState(v string) *VocabularyInfo {
 }
 
 const (
-	// LanguageCodeEnUs is a LanguageCode enum value
-	LanguageCodeEnUs = "en-US"
+	// BaseModelNameNarrowBand is a BaseModelName enum value
+	BaseModelNameNarrowBand = "NarrowBand"
 
-	// LanguageCodeEsUs is a LanguageCode enum value
-	LanguageCodeEsUs = "es-US"
+	// BaseModelNameWideBand is a BaseModelName enum value
+	BaseModelNameWideBand = "WideBand"
+)
 
-	// LanguageCodeEnAu is a LanguageCode enum value
-	LanguageCodeEnAu = "en-AU"
+const (
+	// CLMLanguageCodeEnUs is a CLMLanguageCode enum value
+	CLMLanguageCodeEnUs = "en-US"
+)
 
-	// LanguageCodeFrCa is a LanguageCode enum value
-	LanguageCodeFrCa = "fr-CA"
+const (
+	// LanguageCodeAfZa is a LanguageCode enum value
+	LanguageCodeAfZa = "af-ZA"
 
-	// LanguageCodeEnGb is a LanguageCode enum value
-	LanguageCodeEnGb = "en-GB"
-
-	// LanguageCodeDeDe is a LanguageCode enum value
-	LanguageCodeDeDe = "de-DE"
-
-	// LanguageCodePtBr is a LanguageCode enum value
-	LanguageCodePtBr = "pt-BR"
-
-	// LanguageCodeFrFr is a LanguageCode enum value
-	LanguageCodeFrFr = "fr-FR"
-
-	// LanguageCodeItIt is a LanguageCode enum value
-	LanguageCodeItIt = "it-IT"
-
-	// LanguageCodeKoKr is a LanguageCode enum value
-	LanguageCodeKoKr = "ko-KR"
-
-	// LanguageCodeEsEs is a LanguageCode enum value
-	LanguageCodeEsEs = "es-ES"
-
-	// LanguageCodeEnIn is a LanguageCode enum value
-	LanguageCodeEnIn = "en-IN"
-
-	// LanguageCodeHiIn is a LanguageCode enum value
-	LanguageCodeHiIn = "hi-IN"
+	// LanguageCodeArAe is a LanguageCode enum value
+	LanguageCodeArAe = "ar-AE"
 
 	// LanguageCodeArSa is a LanguageCode enum value
 	LanguageCodeArSa = "ar-SA"
 
-	// LanguageCodeRuRu is a LanguageCode enum value
-	LanguageCodeRuRu = "ru-RU"
+	// LanguageCodeCyGb is a LanguageCode enum value
+	LanguageCodeCyGb = "cy-GB"
 
-	// LanguageCodeZhCn is a LanguageCode enum value
-	LanguageCodeZhCn = "zh-CN"
+	// LanguageCodeDaDk is a LanguageCode enum value
+	LanguageCodeDaDk = "da-DK"
 
-	// LanguageCodeNlNl is a LanguageCode enum value
-	LanguageCodeNlNl = "nl-NL"
+	// LanguageCodeDeCh is a LanguageCode enum value
+	LanguageCodeDeCh = "de-CH"
 
-	// LanguageCodeIdId is a LanguageCode enum value
-	LanguageCodeIdId = "id-ID"
-
-	// LanguageCodeTaIn is a LanguageCode enum value
-	LanguageCodeTaIn = "ta-IN"
-
-	// LanguageCodeFaIr is a LanguageCode enum value
-	LanguageCodeFaIr = "fa-IR"
-
-	// LanguageCodeEnIe is a LanguageCode enum value
-	LanguageCodeEnIe = "en-IE"
+	// LanguageCodeDeDe is a LanguageCode enum value
+	LanguageCodeDeDe = "de-DE"
 
 	// LanguageCodeEnAb is a LanguageCode enum value
 	LanguageCodeEnAb = "en-AB"
 
+	// LanguageCodeEnAu is a LanguageCode enum value
+	LanguageCodeEnAu = "en-AU"
+
+	// LanguageCodeEnGb is a LanguageCode enum value
+	LanguageCodeEnGb = "en-GB"
+
+	// LanguageCodeEnIe is a LanguageCode enum value
+	LanguageCodeEnIe = "en-IE"
+
+	// LanguageCodeEnIn is a LanguageCode enum value
+	LanguageCodeEnIn = "en-IN"
+
+	// LanguageCodeEnUs is a LanguageCode enum value
+	LanguageCodeEnUs = "en-US"
+
 	// LanguageCodeEnWl is a LanguageCode enum value
 	LanguageCodeEnWl = "en-WL"
 
+	// LanguageCodeEsEs is a LanguageCode enum value
+	LanguageCodeEsEs = "es-ES"
+
+	// LanguageCodeEsUs is a LanguageCode enum value
+	LanguageCodeEsUs = "es-US"
+
+	// LanguageCodeFaIr is a LanguageCode enum value
+	LanguageCodeFaIr = "fa-IR"
+
+	// LanguageCodeFrCa is a LanguageCode enum value
+	LanguageCodeFrCa = "fr-CA"
+
+	// LanguageCodeFrFr is a LanguageCode enum value
+	LanguageCodeFrFr = "fr-FR"
+
+	// LanguageCodeGaIe is a LanguageCode enum value
+	LanguageCodeGaIe = "ga-IE"
+
+	// LanguageCodeGdGb is a LanguageCode enum value
+	LanguageCodeGdGb = "gd-GB"
+
+	// LanguageCodeHeIl is a LanguageCode enum value
+	LanguageCodeHeIl = "he-IL"
+
+	// LanguageCodeHiIn is a LanguageCode enum value
+	LanguageCodeHiIn = "hi-IN"
+
+	// LanguageCodeIdId is a LanguageCode enum value
+	LanguageCodeIdId = "id-ID"
+
+	// LanguageCodeItIt is a LanguageCode enum value
+	LanguageCodeItIt = "it-IT"
+
+	// LanguageCodeJaJp is a LanguageCode enum value
+	LanguageCodeJaJp = "ja-JP"
+
+	// LanguageCodeKoKr is a LanguageCode enum value
+	LanguageCodeKoKr = "ko-KR"
+
+	// LanguageCodeMsMy is a LanguageCode enum value
+	LanguageCodeMsMy = "ms-MY"
+
+	// LanguageCodeNlNl is a LanguageCode enum value
+	LanguageCodeNlNl = "nl-NL"
+
+	// LanguageCodePtBr is a LanguageCode enum value
+	LanguageCodePtBr = "pt-BR"
+
 	// LanguageCodePtPt is a LanguageCode enum value
 	LanguageCodePtPt = "pt-PT"
+
+	// LanguageCodeRuRu is a LanguageCode enum value
+	LanguageCodeRuRu = "ru-RU"
+
+	// LanguageCodeTaIn is a LanguageCode enum value
+	LanguageCodeTaIn = "ta-IN"
 
 	// LanguageCodeTeIn is a LanguageCode enum value
 	LanguageCodeTeIn = "te-IN"
@@ -6561,20 +7695,8 @@ const (
 	// LanguageCodeTrTr is a LanguageCode enum value
 	LanguageCodeTrTr = "tr-TR"
 
-	// LanguageCodeDeCh is a LanguageCode enum value
-	LanguageCodeDeCh = "de-CH"
-
-	// LanguageCodeHeIl is a LanguageCode enum value
-	LanguageCodeHeIl = "he-IL"
-
-	// LanguageCodeMsMy is a LanguageCode enum value
-	LanguageCodeMsMy = "ms-MY"
-
-	// LanguageCodeJaJp is a LanguageCode enum value
-	LanguageCodeJaJp = "ja-JP"
-
-	// LanguageCodeArAe is a LanguageCode enum value
-	LanguageCodeArAe = "ar-AE"
+	// LanguageCodeZhCn is a LanguageCode enum value
+	LanguageCodeZhCn = "zh-CN"
 )
 
 const (
@@ -6589,6 +7711,17 @@ const (
 
 	// MediaFormatFlac is a MediaFormat enum value
 	MediaFormatFlac = "flac"
+)
+
+const (
+	// ModelStatusInProgress is a ModelStatus enum value
+	ModelStatusInProgress = "IN_PROGRESS"
+
+	// ModelStatusFailed is a ModelStatus enum value
+	ModelStatusFailed = "FAILED"
+
+	// ModelStatusCompleted is a ModelStatus enum value
+	ModelStatusCompleted = "COMPLETED"
 )
 
 const (
