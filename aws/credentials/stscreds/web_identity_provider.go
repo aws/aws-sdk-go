@@ -52,13 +52,20 @@ type WebIdentityRoleProvider struct {
 	credentials.Expiry
 	PolicyArns []*sts.PolicyDescriptorType
 
-	// Expiry duration of the STS credentials. Will be truncated to seconds when used to assume the role.
-	// If unset, the assumed role will use AssumeRoleWithWebIdentity's default expiry duration. See
-	// https://docs.aws.amazon.com/sdk-for-go/api/service/sts/#STS.AssumeRoleWithWebIdentity for more information.
+	// Duration the STS credentials will be valid for. Truncated to seconds.
+	// If unset, the assumed role will use AssumeRoleWithWebIdentity's default
+	// expiry duration. See
+	// https://docs.aws.amazon.com/sdk-for-go/api/service/sts/#STS.AssumeRoleWithWebIdentity
+	// for more information.
 	Duration time.Duration
 
-	client       stsiface.STSAPI
+	// The amount of time the credentials will be refreshed before they expire.
+	// This is useful refresh credentials before they expire to reduce risk of
+	// using credentials as they expire. If unset, will default to no expiry
+	// window.
 	ExpiryWindow time.Duration
+
+	client stsiface.STSAPI
 
 	tokenFetcher    TokenFetcher
 	roleARN         string
