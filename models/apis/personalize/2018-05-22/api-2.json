@@ -167,6 +167,7 @@
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
         {"shape":"ResourceInUseException"}
       ]
     },
@@ -235,7 +236,8 @@
       "input":{"shape":"DeleteFilterRequest"},
       "errors":[
         {"shape":"InvalidInputException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "DeleteSchema":{
@@ -696,10 +698,17 @@
         "numResults":{"shape":"NumBatchResults"},
         "jobInput":{"shape":"BatchInferenceJobInput"},
         "jobOutput":{"shape":"BatchInferenceJobOutput"},
+        "batchInferenceJobConfig":{"shape":"BatchInferenceJobConfig"},
         "roleArn":{"shape":"RoleArn"},
         "status":{"shape":"Status"},
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"}
+      }
+    },
+    "BatchInferenceJobConfig":{
+      "type":"structure",
+      "members":{
+        "itemExplorationConfig":{"shape":"HyperParameters"}
       }
     },
     "BatchInferenceJobInput":{
@@ -741,11 +750,18 @@
         "campaignArn":{"shape":"Arn"},
         "solutionVersionArn":{"shape":"Arn"},
         "minProvisionedTPS":{"shape":"TransactionsPerSecond"},
+        "campaignConfig":{"shape":"CampaignConfig"},
         "status":{"shape":"Status"},
         "failureReason":{"shape":"FailureReason"},
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"},
         "latestCampaignUpdate":{"shape":"CampaignUpdateSummary"}
+      }
+    },
+    "CampaignConfig":{
+      "type":"structure",
+      "members":{
+        "itemExplorationConfig":{"shape":"HyperParameters"}
       }
     },
     "CampaignSummary":{
@@ -764,6 +780,7 @@
       "members":{
         "solutionVersionArn":{"shape":"Arn"},
         "minProvisionedTPS":{"shape":"TransactionsPerSecond"},
+        "campaignConfig":{"shape":"CampaignConfig"},
         "status":{"shape":"Status"},
         "failureReason":{"shape":"FailureReason"},
         "creationDateTime":{"shape":"Date"},
@@ -833,7 +850,8 @@
         "numResults":{"shape":"NumBatchResults"},
         "jobInput":{"shape":"BatchInferenceJobInput"},
         "jobOutput":{"shape":"BatchInferenceJobOutput"},
-        "roleArn":{"shape":"RoleArn"}
+        "roleArn":{"shape":"RoleArn"},
+        "batchInferenceJobConfig":{"shape":"BatchInferenceJobConfig"}
       }
     },
     "CreateBatchInferenceJobResponse":{
@@ -852,7 +870,8 @@
       "members":{
         "name":{"shape":"Name"},
         "solutionVersionArn":{"shape":"Arn"},
-        "minProvisionedTPS":{"shape":"TransactionsPerSecond"}
+        "minProvisionedTPS":{"shape":"TransactionsPerSecond"},
+        "campaignConfig":{"shape":"CampaignConfig"}
       }
     },
     "CreateCampaignResponse":{
@@ -2005,7 +2024,8 @@
       "members":{
         "campaignArn":{"shape":"Arn"},
         "solutionVersionArn":{"shape":"Arn"},
-        "minProvisionedTPS":{"shape":"TransactionsPerSecond"}
+        "minProvisionedTPS":{"shape":"TransactionsPerSecond"},
+        "campaignConfig":{"shape":"CampaignConfig"}
       }
     },
     "UpdateCampaignResponse":{

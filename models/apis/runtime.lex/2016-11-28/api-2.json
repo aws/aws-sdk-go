@@ -133,6 +133,12 @@
     },
     "BotAlias":{"type":"string"},
     "BotName":{"type":"string"},
+    "BotVersion":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[0-9]+|\\$LATEST"
+    },
     "Button":{
       "type":"structure",
       "required":[
@@ -250,6 +256,7 @@
         "Failed"
       ]
     },
+    "Double":{"type":"double"},
     "ErrorMessage":{"type":"string"},
     "FulfillmentState":{
       "type":"string",
@@ -309,6 +316,17 @@
       }
     },
     "HttpContentType":{"type":"string"},
+    "IntentConfidence":{
+      "type":"structure",
+      "members":{
+        "score":{"shape":"Double"}
+      }
+    },
+    "IntentList":{
+      "type":"list",
+      "member":{"shape":"PredictedIntent"},
+      "max":4
+    },
     "IntentName":{"type":"string"},
     "IntentSummary":{
       "type":"structure",
@@ -454,6 +472,18 @@
           "location":"header",
           "locationName":"x-amz-lex-intent-name"
         },
+        "nluIntentConfidence":{
+          "shape":"String",
+          "jsonvalue":true,
+          "location":"header",
+          "locationName":"x-amz-lex-nlu-intent-confidence"
+        },
+        "alternativeIntents":{
+          "shape":"String",
+          "jsonvalue":true,
+          "location":"header",
+          "locationName":"x-amz-lex-alternative-intents"
+        },
         "slots":{
           "shape":"String",
           "jsonvalue":true,
@@ -497,6 +527,11 @@
           "locationName":"x-amz-lex-input-transcript"
         },
         "audioStream":{"shape":"BlobStream"},
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"header",
+          "locationName":"x-amz-lex-bot-version"
+        },
         "sessionId":{
           "shape":"String",
           "location":"header",
@@ -538,6 +573,8 @@
       "type":"structure",
       "members":{
         "intentName":{"shape":"IntentName"},
+        "nluIntentConfidence":{"shape":"IntentConfidence"},
+        "alternativeIntents":{"shape":"IntentList"},
         "slots":{"shape":"StringMap"},
         "sessionAttributes":{"shape":"StringMap"},
         "message":{"shape":"Text"},
@@ -546,7 +583,16 @@
         "dialogState":{"shape":"DialogState"},
         "slotToElicit":{"shape":"String"},
         "responseCard":{"shape":"ResponseCard"},
-        "sessionId":{"shape":"String"}
+        "sessionId":{"shape":"String"},
+        "botVersion":{"shape":"BotVersion"}
+      }
+    },
+    "PredictedIntent":{
+      "type":"structure",
+      "members":{
+        "intentName":{"shape":"IntentName"},
+        "nluIntentConfidence":{"shape":"IntentConfidence"},
+        "slots":{"shape":"StringMap"}
       }
     },
     "PutSessionRequest":{

@@ -815,6 +815,11 @@
         "messageVersion":{"shape":"MessageVersion"}
       }
     },
+    "ConfidenceThreshold":{
+      "type":"double",
+      "max":1,
+      "min":0
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -885,6 +890,7 @@
         "version":{"shape":"Version"},
         "locale":{"shape":"Locale"},
         "childDirected":{"shape":"Boolean"},
+        "enableModelImprovements":{"shape":"Boolean"},
         "detectSentiment":{"shape":"Boolean"}
       }
     },
@@ -1344,6 +1350,8 @@
         "name":{"shape":"BotName"},
         "description":{"shape":"Description"},
         "intents":{"shape":"IntentList"},
+        "enableModelImprovements":{"shape":"Boolean"},
+        "nluIntentConfidenceThreshold":{"shape":"ConfidenceThreshold"},
         "clarificationPrompt":{"shape":"Prompt"},
         "abortStatement":{"shape":"Statement"},
         "status":{"shape":"Status"},
@@ -2123,6 +2131,8 @@
         },
         "description":{"shape":"Description"},
         "intents":{"shape":"IntentList"},
+        "enableModelImprovements":{"shape":"Boolean"},
+        "nluIntentConfidenceThreshold":{"shape":"ConfidenceThreshold"},
         "clarificationPrompt":{"shape":"Prompt"},
         "abortStatement":{"shape":"Statement"},
         "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
@@ -2142,6 +2152,8 @@
         "name":{"shape":"BotName"},
         "description":{"shape":"Description"},
         "intents":{"shape":"IntentList"},
+        "enableModelImprovements":{"shape":"Boolean"},
+        "nluIntentConfidenceThreshold":{"shape":"ConfidenceThreshold"},
         "clarificationPrompt":{"shape":"Prompt"},
         "abortStatement":{"shape":"Statement"},
         "status":{"shape":"Status"},

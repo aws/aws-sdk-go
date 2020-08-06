@@ -24,6 +24,12 @@
       "output_token": "NextToken",
       "result_key": "CapacityReservations"
     },
+    "DescribeCarrierGateways": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "CarrierGateways"
+    },
     "DescribeClassicLinkInstances": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

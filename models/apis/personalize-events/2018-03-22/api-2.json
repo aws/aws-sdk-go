@@ -31,17 +31,20 @@
       "type":"structure",
       "required":[
         "eventType",
-        "properties",
         "sentAt"
       ],
       "members":{
         "eventId":{"shape":"StringType"},
         "eventType":{"shape":"StringType"},
+        "eventValue":{"shape":"FloatType"},
+        "itemId":{"shape":"ItemId"},
         "properties":{
           "shape":"EventPropertiesJSON",
           "jsonvalue":true
         },
-        "sentAt":{"shape":"Date"}
+        "sentAt":{"shape":"Date"},
+        "recommendationId":{"shape":"RecommendationId"},
+        "impression":{"shape":"Impression"}
       }
     },
     "EventList":{
@@ -55,6 +58,13 @@
       "max":1024,
       "min":1
     },
+    "FloatType":{"type":"float"},
+    "Impression":{
+      "type":"list",
+      "member":{"shape":"ItemId"},
+      "max":25,
+      "min":1
+    },
     "InvalidInputException":{
       "type":"structure",
       "members":{
@@ -62,6 +72,11 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "ItemId":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "PutEventsRequest":{
       "type":"structure",
@@ -76,6 +91,11 @@
         "sessionId":{"shape":"StringType"},
         "eventList":{"shape":"EventList"}
       }
+    },
+    "RecommendationId":{
+      "type":"string",
+      "max":40,
+      "min":1
     },
     "StringType":{
       "type":"string",
