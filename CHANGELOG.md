@@ -1,3 +1,15 @@
+Release v1.33.21 (2020-08-06)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release supports Wavelength resources, including carrier gateways, and carrier IP addresses.
+* `service/lex-models`: Updates service API and documentation
+* `service/personalize`: Updates service API and documentation
+* `service/personalize-events`: Updates service API and documentation
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/runtime.lex`: Updates service API and documentation
+
 Release v1.33.20 (2020-08-05)
 ===
 

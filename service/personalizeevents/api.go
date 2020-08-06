@@ -58,7 +58,7 @@ func (c *PersonalizeEvents) PutEventsRequest(input *PutEventsInput) (req *reques
 
 // PutEvents API operation for Amazon Personalize Events.
 //
-// Records user interaction event data.
+// Records user interaction event data. For more information see event-record-api.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -110,28 +110,36 @@ type Event struct {
 	// EventType is a required field
 	EventType *string `locationName:"eventType" min:"1" type:"string" required:"true"`
 
+	// The event value that corresponds to the EVENT_VALUE field of the Interactions
+	// schema.
+	EventValue *float64 `locationName:"eventValue" type:"float"`
+
+	// A list of item IDs that represents the sequence of items you have shown the
+	// user. For example, ["itemId1", "itemId2", "itemId3"].
+	Impression []*string `locationName:"impression" min:"1" type:"list"`
+
+	// The item ID key that corresponds to the ITEM_ID field of the Interactions
+	// schema.
+	ItemId *string `locationName:"itemId" min:"1" type:"string"`
+
 	// A string map of event-specific data that you might choose to record. For
-	// example, if a user rates a movie on your site, you might send the movie ID
-	// and rating, and the number of movie ratings made by the user.
+	// example, if a user rates a movie on your site, other than movie ID (itemId)
+	// and rating (eventValue) , you might also send the number of movie ratings
+	// made by the user.
 	//
 	// Each item in the map consists of a key-value pair. For example,
 	//
-	// {"itemId": "movie1"}
-	//
-	// {"itemId": "movie2", "eventValue": "4.5"}
-	//
-	// {"itemId": "movie3", "eventValue": "3", "numberOfRatings": "12"}
+	// {"numberOfRatings": "12"}
 	//
 	// The keys use camel case names that match the fields in the Interactions schema.
-	// The itemId and eventValue keys correspond to the ITEM_ID and EVENT_VALUE
-	// fields. In the above example, the eventType might be 'MovieRating' with eventValue
-	// being the rating. The numberOfRatings would match the 'NUMBER_OF_RATINGS'
+	// In the above example, the numberOfRatings would match the 'NUMBER_OF_RATINGS'
 	// field defined in the Interactions schema.
-	//
-	// Properties is a required field
-	Properties aws.JSONValue `locationName:"properties" type:"jsonvalue" required:"true"`
+	Properties aws.JSONValue `locationName:"properties" type:"jsonvalue"`
 
-	// The timestamp on the client side when the event occurred.
+	// The ID of the recommendation.
+	RecommendationId *string `locationName:"recommendationId" min:"1" type:"string"`
+
+	// The timestamp (in Unix time) on the client side when the event occurred.
 	//
 	// SentAt is a required field
 	SentAt *time.Time `locationName:"sentAt" type:"timestamp" required:"true"`
@@ -159,8 +167,14 @@ func (s *Event) Validate() error {
 	if s.EventType != nil && len(*s.EventType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EventType", 1))
 	}
-	if s.Properties == nil {
-		invalidParams.Add(request.NewErrParamRequired("Properties"))
+	if s.Impression != nil && len(s.Impression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Impression", 1))
+	}
+	if s.ItemId != nil && len(*s.ItemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ItemId", 1))
+	}
+	if s.RecommendationId != nil && len(*s.RecommendationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecommendationId", 1))
 	}
 	if s.SentAt == nil {
 		invalidParams.Add(request.NewErrParamRequired("SentAt"))
@@ -184,9 +198,33 @@ func (s *Event) SetEventType(v string) *Event {
 	return s
 }
 
+// SetEventValue sets the EventValue field's value.
+func (s *Event) SetEventValue(v float64) *Event {
+	s.EventValue = &v
+	return s
+}
+
+// SetImpression sets the Impression field's value.
+func (s *Event) SetImpression(v []*string) *Event {
+	s.Impression = v
+	return s
+}
+
+// SetItemId sets the ItemId field's value.
+func (s *Event) SetItemId(v string) *Event {
+	s.ItemId = &v
+	return s
+}
+
 // SetProperties sets the Properties field's value.
 func (s *Event) SetProperties(v aws.JSONValue) *Event {
 	s.Properties = v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *Event) SetRecommendationId(v string) *Event {
+	s.RecommendationId = &v
 	return s
 }
 
@@ -260,7 +298,10 @@ type PutEventsInput struct {
 	// EventList is a required field
 	EventList []*Event `locationName:"eventList" min:"1" type:"list" required:"true"`
 
-	// The session ID associated with the user's visit.
+	// The session ID associated with the user's visit. Your application generates
+	// the sessionId when a user first visits your website or uses your application.
+	// Amazon Personalize uses the sessionId to associate events with the user before
+	// they log in. For more information see event-record-api.
 	//
 	// SessionId is a required field
 	SessionId *string `locationName:"sessionId" min:"1" type:"string" required:"true"`

@@ -63,6 +63,13 @@
         "PutSessionRequest$botName": "<p>The name of the bot that contains the session data.</p>"
       }
     },
+    "BotVersion": {
+      "base": null,
+      "refs": {
+        "PostContentResponse$botVersion": "<p>The version of the bot that responded to the conversation. You can use this information to help determine if one version of a bot is performing better than another version.</p> <p>If you have enabled the new natural language understanding (NLU) model, you can use this to determine if the improvement is due to changes to the bot or changes to the NLU.</p> <p>For more information about enabling the new NLU, see the <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements\">enableModelImprovements</a> parameter of the <code>PutBot</code> operation.</p>",
+        "PostTextResponse$botVersion": "<p>The version of the bot that responded to the conversation. You can use this information to help determine if one version of a bot is performing better than another version.</p> <p>If you have enabled the new natural language understanding (NLU) model, you can use this to determine if the improvement is due to changes to the bot or changes to the NLU.</p> <p>For more information about enabling the new NLU, see the <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements\">enableModelImprovements</a> parameter of the <code>PutBot</code> operation.</p>"
+      }
+    },
     "Button": {
       "base": "<p>Represents an option to be shown on the client platform (Facebook, Slack, etc.)</p>",
       "refs": {
@@ -135,6 +142,12 @@
         "PutSessionResponse$dialogState": "<p/> <ul> <li> <p> <code>ConfirmIntent</code> - Amazon Lex is expecting a \"yes\" or \"no\" response to confirm the intent before fulfilling an intent.</p> </li> <li> <p> <code>ElicitIntent</code> - Amazon Lex wants to elicit the user's intent.</p> </li> <li> <p> <code>ElicitSlot</code> - Amazon Lex is expecting the value of a slot for the current intent.</p> </li> <li> <p> <code>Failed</code> - Conveys that the conversation with the user has failed. This can happen for various reasons, including the user does not provide an appropriate response to prompts from the service, or if the Lambda function fails to fulfill the intent.</p> </li> <li> <p> <code>Fulfilled</code> - Conveys that the Lambda function has sucessfully fulfilled the intent.</p> </li> <li> <p> <code>ReadyForFulfillment</code> - Conveys that the client has to fulfill the intent.</p> </li> </ul>"
       }
     },
+    "Double": {
+      "base": null,
+      "refs": {
+        "IntentConfidence$score": "<p>A score that indicates how confident Amazon Lex is that an intent satisfies the user's intent. Ranges between 0.00 and 1.00. Higher scores indicate higher confidence.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
@@ -174,6 +187,19 @@
         "PutSessionResponse$contentType": "<p>Content type as specified in the <code>Accept</code> HTTP header in the request.</p>"
       }
     },
+    "IntentConfidence": {
+      "base": "<p>Provides a score that indicates the confidence that Amazon Lex has that an intent is the one that satisfies the user's intent.</p>",
+      "refs": {
+        "PostTextResponse$nluIntentConfidence": "<p>Provides a score that indicates how confident Amazon Lex is that the returned intent is the one that matches the user's intent. The score is between 0.0 and 1.0. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html\">Confidence Scores</a>.</p> <p>The score is a relative score, not an absolute score. The score may change based on improvements to the Amazon Lex natural language understanding (NLU) model.</p>",
+        "PredictedIntent$nluIntentConfidence": "<p>Indicates how confident Amazon Lex is that an intent satisfies the user's intent.</p>"
+      }
+    },
+    "IntentList": {
+      "base": null,
+      "refs": {
+        "PostTextResponse$alternativeIntents": "<p>One to four alternative intents that may be applicable to the user's intent.</p> <p>Each alternative includes a score that indicates how confident Amazon Lex is that the intent matches the user's intent. The intents are sorted by the confidence score.</p>"
+      }
+    },
     "IntentName": {
       "base": null,
       "refs": {
@@ -181,6 +207,7 @@
         "IntentSummary$intentName": "<p>The name of the intent.</p>",
         "PostContentResponse$intentName": "<p>Current user intent that Amazon Lex is aware of.</p>",
         "PostTextResponse$intentName": "<p>The current user intent that Amazon Lex is aware of.</p>",
+        "PredictedIntent$intentName": "<p>The name of the intent that Amazon Lex suggests satisfies the user's intent.</p>",
         "PutSessionResponse$intentName": "<p>The name of the current intent.</p>"
       }
     },
@@ -258,6 +285,12 @@
       "refs": {
       }
     },
+    "PredictedIntent": {
+      "base": "<p>An intent that Amazon Lex suggests satisfies the user's intent. Includes the name of the intent, the confidence that Amazon Lex has that the user's intent is satisfied, and the slots defined for the intent.</p>",
+      "refs": {
+        "IntentList$member": null
+      }
+    },
     "PutSessionRequest": {
       "base": null,
       "refs": {
@@ -311,9 +344,11 @@
         "LimitExceededException$message": null,
         "NotAcceptableException$message": null,
         "NotFoundException$message": null,
+        "PostContentResponse$nluIntentConfidence": "<p>Provides a score that indicates how confident Amazon Lex is that the returned intent is the one that matches the user's intent. The score is between 0.0 and 1.0.</p> <p>The score is a relative score, not an absolute score. The score may change based on improvements to the Amazon Lex NLU.</p>",
+        "PostContentResponse$alternativeIntents": "<p>One to four alternative intents that may be applicable to the user's intent.</p> <p>Each alternative includes a score that indicates how confident Amazon Lex is that the intent matches the user's intent. The intents are sorted by the confidence score.</p>",
         "PostContentResponse$slots": "<p>Map of zero or more intent slots (name/value pairs) Amazon Lex detected from the user input during the conversation. The field is base-64 encoded.</p> <p>Amazon Lex creates a resolution list containing likely values for a slot. The value that it returns is determined by the <code>valueSelectionStrategy</code> selected when the slot type was created or updated. If <code>valueSelectionStrategy</code> is set to <code>ORIGINAL_VALUE</code>, the value provided by the user is returned, if the user value is similar to the slot values. If <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code> Amazon Lex returns the first value in the resolution list or, if there is no resolution list, null. If you don't specify a <code>valueSelectionStrategy</code>, the default is <code>ORIGINAL_VALUE</code>.</p>",
         "PostContentResponse$sessionAttributes": "<p> Map of key/value pairs representing the session-specific context information. </p>",
-        "PostContentResponse$sentimentResponse": "<p>The sentiment expressed in and utterance.</p> <p>When the bot is configured to send utterances to Amazon Comprehend for sentiment analysis, this field contains the result of the analysis.</p>",
+        "PostContentResponse$sentimentResponse": "<p>The sentiment expressed in an utterance.</p> <p>When the bot is configured to send utterances to Amazon Comprehend for sentiment analysis, this field contains the result of the analysis.</p>",
         "PostContentResponse$slotToElicit": "<p> If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns the name of the slot for which Amazon Lex is eliciting a value. </p>",
         "PostContentResponse$inputTranscript": "<p>The text used to process the request.</p> <p>If the input was an audio stream, the <code>inputTranscript</code> field contains the text extracted from the audio stream. This is the text that is actually processed to recognize intents and slot values. You can use this information to determine if Amazon Lex is correctly processing the audio that you send.</p>",
         "PostContentResponse$sessionId": "<p>The unique identifier for the session.</p>",
@@ -340,6 +375,7 @@
         "PostTextRequest$requestAttributes": "<p>Request-specific information passed between Amazon Lex and a client application.</p> <p>The namespace <code>x-amz-lex:</code> is reserved for special attributes. Don't create any request attributes with the prefix <code>x-amz-lex:</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html#context-mgmt-request-attribs\">Setting Request Attributes</a>.</p>",
         "PostTextResponse$slots": "<p> The intent slots that Amazon Lex detected from the user input in the conversation. </p> <p>Amazon Lex creates a resolution list containing likely values for a slot. The value that it returns is determined by the <code>valueSelectionStrategy</code> selected when the slot type was created or updated. If <code>valueSelectionStrategy</code> is set to <code>ORIGINAL_VALUE</code>, the value provided by the user is returned, if the user value is similar to the slot values. If <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code> Amazon Lex returns the first value in the resolution list or, if there is no resolution list, null. If you don't specify a <code>valueSelectionStrategy</code>, the default is <code>ORIGINAL_VALUE</code>.</p>",
         "PostTextResponse$sessionAttributes": "<p>A map of key-value pairs representing the session-specific context information.</p>",
+        "PredictedIntent$slots": "<p>The slot and slot values associated with the predicted intent.</p>",
         "PutSessionRequest$sessionAttributes": "<p>Map of key/value pairs representing the session-specific context information. It contains application information passed between Amazon Lex and a client application.</p>"
       }
     },

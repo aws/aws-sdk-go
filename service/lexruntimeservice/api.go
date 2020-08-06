@@ -1378,6 +1378,33 @@ func (s *GetSessionOutput) SetSessionId(v string) *GetSessionOutput {
 	return s
 }
 
+// Provides a score that indicates the confidence that Amazon Lex has that an
+// intent is the one that satisfies the user's intent.
+type IntentConfidence struct {
+	_ struct{} `type:"structure"`
+
+	// A score that indicates how confident Amazon Lex is that an intent satisfies
+	// the user's intent. Ranges between 0.00 and 1.00. Higher scores indicate higher
+	// confidence.
+	Score *float64 `locationName:"score" type:"double"`
+}
+
+// String returns the string representation
+func (s IntentConfidence) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IntentConfidence) GoString() string {
+	return s.String()
+}
+
+// SetScore sets the Score field's value.
+func (s *IntentConfidence) SetScore(v float64) *IntentConfidence {
+	s.Score = &v
+	return s
+}
+
 // Provides information about the state of an intent. You can use this information
 // to get the current state of an intent so that you can process the intent,
 // or so that you can return the intent to its previous state.
@@ -2010,6 +2037,13 @@ func (s *PostContentInput) SetUserId(v string) *PostContentInput {
 type PostContentOutput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
+	// One to four alternative intents that may be applicable to the user's intent.
+	//
+	// Each alternative includes a score that indicates how confident Amazon Lex
+	// is that the intent matches the user's intent. The intents are sorted by the
+	// confidence score.
+	AlternativeIntents aws.JSONValue `location:"header" locationName:"x-amz-lex-alternative-intents" type:"jsonvalue"`
+
 	// The prompt (or statement) to convey to the user. This is based on the bot
 	// configuration and context. For example, if Amazon Lex did not understand
 	// the user intent, it sends the clarificationPrompt configured for the bot.
@@ -2018,6 +2052,19 @@ type PostContentOutput struct {
 	// function successfully fulfilled the intent, and sent a message to convey
 	// to the user. Then Amazon Lex sends that message in the response.
 	AudioStream io.ReadCloser `locationName:"audioStream" type:"blob"`
+
+	// The version of the bot that responded to the conversation. You can use this
+	// information to help determine if one version of a bot is performing better
+	// than another version.
+	//
+	// If you have enabled the new natural language understanding (NLU) model, you
+	// can use this to determine if the improvement is due to changes to the bot
+	// or changes to the NLU.
+	//
+	// For more information about enabling the new NLU, see the enableModelImprovements
+	// (https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements)
+	// parameter of the PutBot operation.
+	BotVersion *string `location:"header" locationName:"x-amz-lex-bot-version" min:"1" type:"string"`
 
 	// Content type as specified in the Accept HTTP header in the request.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
@@ -2102,7 +2149,15 @@ type PostContentOutput struct {
 	//    intent was created.
 	MessageFormat *string `location:"header" locationName:"x-amz-lex-message-format" type:"string" enum:"MessageFormatType"`
 
-	// The sentiment expressed in and utterance.
+	// Provides a score that indicates how confident Amazon Lex is that the returned
+	// intent is the one that matches the user's intent. The score is between 0.0
+	// and 1.0.
+	//
+	// The score is a relative score, not an absolute score. The score may change
+	// based on improvements to the Amazon Lex NLU.
+	NluIntentConfidence aws.JSONValue `location:"header" locationName:"x-amz-lex-nlu-intent-confidence" type:"jsonvalue"`
+
+	// The sentiment expressed in an utterance.
 	//
 	// When the bot is configured to send utterances to Amazon Comprehend for sentiment
 	// analysis, this field contains the result of the analysis.
@@ -2142,9 +2197,21 @@ func (s PostContentOutput) GoString() string {
 	return s.String()
 }
 
+// SetAlternativeIntents sets the AlternativeIntents field's value.
+func (s *PostContentOutput) SetAlternativeIntents(v aws.JSONValue) *PostContentOutput {
+	s.AlternativeIntents = v
+	return s
+}
+
 // SetAudioStream sets the AudioStream field's value.
 func (s *PostContentOutput) SetAudioStream(v io.ReadCloser) *PostContentOutput {
 	s.AudioStream = v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *PostContentOutput) SetBotVersion(v string) *PostContentOutput {
+	s.BotVersion = &v
 	return s
 }
 
@@ -2181,6 +2248,12 @@ func (s *PostContentOutput) SetMessage(v string) *PostContentOutput {
 // SetMessageFormat sets the MessageFormat field's value.
 func (s *PostContentOutput) SetMessageFormat(v string) *PostContentOutput {
 	s.MessageFormat = &v
+	return s
+}
+
+// SetNluIntentConfidence sets the NluIntentConfidence field's value.
+func (s *PostContentOutput) SetNluIntentConfidence(v aws.JSONValue) *PostContentOutput {
+	s.NluIntentConfidence = v
 	return s
 }
 
@@ -2356,6 +2429,26 @@ func (s *PostTextInput) SetUserId(v string) *PostTextInput {
 type PostTextOutput struct {
 	_ struct{} `type:"structure"`
 
+	// One to four alternative intents that may be applicable to the user's intent.
+	//
+	// Each alternative includes a score that indicates how confident Amazon Lex
+	// is that the intent matches the user's intent. The intents are sorted by the
+	// confidence score.
+	AlternativeIntents []*PredictedIntent `locationName:"alternativeIntents" type:"list"`
+
+	// The version of the bot that responded to the conversation. You can use this
+	// information to help determine if one version of a bot is performing better
+	// than another version.
+	//
+	// If you have enabled the new natural language understanding (NLU) model, you
+	// can use this to determine if the improvement is due to changes to the bot
+	// or changes to the NLU.
+	//
+	// For more information about enabling the new NLU, see the enableModelImprovements
+	// (https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements)
+	// parameter of the PutBot operation.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
 	// Identifies the current state of the user interaction. Amazon Lex returns
 	// one of the following values as dialogState. The client can optionally use
 	// this information to customize the user interface.
@@ -2429,6 +2522,15 @@ type PostTextOutput struct {
 	//    intent was created.
 	MessageFormat *string `locationName:"messageFormat" type:"string" enum:"MessageFormatType"`
 
+	// Provides a score that indicates how confident Amazon Lex is that the returned
+	// intent is the one that matches the user's intent. The score is between 0.0
+	// and 1.0. For more information, see Confidence Scores (https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html).
+	//
+	// The score is a relative score, not an absolute score. The score may change
+	// based on improvements to the Amazon Lex natural language understanding (NLU)
+	// model.
+	NluIntentConfidence *IntentConfidence `locationName:"nluIntentConfidence" type:"structure"`
+
 	// Represents the options that the user has to respond to the current prompt.
 	// Response Card can come from the bot configuration (in the Amazon Lex console,
 	// choose the settings button next to a slot) or from a code hook (Lambda function).
@@ -2473,6 +2575,18 @@ func (s PostTextOutput) GoString() string {
 	return s.String()
 }
 
+// SetAlternativeIntents sets the AlternativeIntents field's value.
+func (s *PostTextOutput) SetAlternativeIntents(v []*PredictedIntent) *PostTextOutput {
+	s.AlternativeIntents = v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *PostTextOutput) SetBotVersion(v string) *PostTextOutput {
+	s.BotVersion = &v
+	return s
+}
+
 // SetDialogState sets the DialogState field's value.
 func (s *PostTextOutput) SetDialogState(v string) *PostTextOutput {
 	s.DialogState = &v
@@ -2494,6 +2608,12 @@ func (s *PostTextOutput) SetMessage(v string) *PostTextOutput {
 // SetMessageFormat sets the MessageFormat field's value.
 func (s *PostTextOutput) SetMessageFormat(v string) *PostTextOutput {
 	s.MessageFormat = &v
+	return s
+}
+
+// SetNluIntentConfidence sets the NluIntentConfidence field's value.
+func (s *PostTextOutput) SetNluIntentConfidence(v *IntentConfidence) *PostTextOutput {
+	s.NluIntentConfidence = v
 	return s
 }
 
@@ -2529,6 +2649,51 @@ func (s *PostTextOutput) SetSlotToElicit(v string) *PostTextOutput {
 
 // SetSlots sets the Slots field's value.
 func (s *PostTextOutput) SetSlots(v map[string]*string) *PostTextOutput {
+	s.Slots = v
+	return s
+}
+
+// An intent that Amazon Lex suggests satisfies the user's intent. Includes
+// the name of the intent, the confidence that Amazon Lex has that the user's
+// intent is satisfied, and the slots defined for the intent.
+type PredictedIntent struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the intent that Amazon Lex suggests satisfies the user's intent.
+	IntentName *string `locationName:"intentName" type:"string"`
+
+	// Indicates how confident Amazon Lex is that an intent satisfies the user's
+	// intent.
+	NluIntentConfidence *IntentConfidence `locationName:"nluIntentConfidence" type:"structure"`
+
+	// The slot and slot values associated with the predicted intent.
+	Slots map[string]*string `locationName:"slots" type:"map" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s PredictedIntent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PredictedIntent) GoString() string {
+	return s.String()
+}
+
+// SetIntentName sets the IntentName field's value.
+func (s *PredictedIntent) SetIntentName(v string) *PredictedIntent {
+	s.IntentName = &v
+	return s
+}
+
+// SetNluIntentConfidence sets the NluIntentConfidence field's value.
+func (s *PredictedIntent) SetNluIntentConfidence(v *IntentConfidence) *PredictedIntent {
+	s.NluIntentConfidence = v
+	return s
+}
+
+// SetSlots sets the Slots field's value.
+func (s *PredictedIntent) SetSlots(v map[string]*string) *PredictedIntent {
 	s.Slots = v
 	return s
 }
