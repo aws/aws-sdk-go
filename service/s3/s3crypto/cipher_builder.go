@@ -39,3 +39,10 @@ type CipherData struct {
 
 	Padder Padder
 }
+
+// Clone returns a new copy of CipherData
+func (cd CipherData) Clone() (v CipherData) {
+	v = cd
+	v.MaterialDescription = cd.MaterialDescription.Clone()
+	return v
+}

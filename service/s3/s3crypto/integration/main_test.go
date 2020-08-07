@@ -77,9 +77,27 @@ func TestEncryptionV1_WithV2Interop(t *testing.T) {
 	v1DC := s3crypto.NewDecryptionClient(config.Session, func(client *s3crypto.DecryptionClient) {
 		client.S3Client = config.Clients.S3
 	})
-	v2DC := s3crypto.NewDecryptionClientV2(config.Session, func(options *s3crypto.DecryptionClientOptions) {
+
+	cr := s3crypto.NewCryptoRegistry()
+	if err = s3crypto.RegisterKMSWrapWithAnyCMK(cr, config.Clients.KMS); err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+	if err = s3crypto.RegisterKMSContextWrapWithAnyCMK(cr, config.Clients.KMS); err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+	if err = s3crypto.RegisterAESGCMContentCipher(cr); err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+	if err = s3crypto.RegisterAESCBCContentCipher(cr, s3crypto.AESCBCPadder); err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	v2DC, err := s3crypto.NewDecryptionClientV2(config.Session, cr, func(options *s3crypto.DecryptionClientOptions) {
 		options.S3Client = config.Clients.S3
 	})
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
 
 	cases := map[string]s3crypto.ContentCipherBuilder{
 		"AES/GCM/NoPadding":    s3crypto.AESGCMContentCipherBuilder(kmsKeyGenerator),
@@ -102,20 +120,35 @@ func TestEncryptionV1_WithV2Interop(t *testing.T) {
 	}
 }
 
-func TestEncryptionV2(t *testing.T) {
-	kmsKeyGenerator := s3crypto.NewKMSContextKeyGenerator(config.Clients.KMS, config.KMSKeyID)
-	gcmContentCipherBuilder := s3crypto.AESGCMContentCipherBuilder(kmsKeyGenerator)
+func TestEncryptionV2_WithV1Interop(t *testing.T) {
+	kmsKeyGenerator := s3crypto.NewKMSContextKeyGenerator(config.Clients.KMS, config.KMSKeyID, s3crypto.MaterialDescription{})
+	gcmContentCipherBuilder := s3crypto.AESGCMContentCipherBuilderV2(kmsKeyGenerator)
 
 	ec, err := s3crypto.NewEncryptionClientV2(config.Session, gcmContentCipherBuilder, func(options *s3crypto.EncryptionClientOptions) {
 		options.S3Client = config.Clients.S3
 	})
 	if err != nil {
-		t.Fatalf("failed to construct encryption client: %v", err)
+		t.Fatalf("failed to construct encryption decryptionClient: %v", err)
 	}
 
-	dc := s3crypto.NewDecryptionClientV2(config.Session, func(options *s3crypto.DecryptionClientOptions) {
+	decryptionClient := s3crypto.NewDecryptionClient(config.Session, func(client *s3crypto.DecryptionClient) {
+		client.S3Client = config.Clients.S3
+	})
+
+	cr := s3crypto.NewCryptoRegistry()
+	if err = s3crypto.RegisterKMSContextWrapWithAnyCMK(cr, config.Clients.KMS); err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+	if err = s3crypto.RegisterAESGCMContentCipher(cr); err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	decryptionClientV2, err := s3crypto.NewDecryptionClientV2(config.Session, cr, func(options *s3crypto.DecryptionClientOptions) {
 		options.S3Client = config.Clients.S3
 	})
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
 
 	// 1020 is chosen here as it is not cleanly divisible by the AES-256 block size
 	testData := make([]byte, 1020)
@@ -129,8 +162,11 @@ func TestEncryptionV2(t *testing.T) {
 	// Upload V2 Objects with Encryption Client
 	putObject(t, ec, keyId, bytes.NewReader(testData))
 
-	// Verify V2 Object with Decryption Client
-	getObjectAndCompare(t, dc, keyId, testData)
+	// Verify V2 Object with V2 Decryption Client
+	getObjectAndCompare(t, decryptionClientV2, keyId, testData)
+
+	// Verify V2 Object with V1 Decryption Client
+	getObjectAndCompare(t, decryptionClient, keyId, testData)
 }
 
 type Encryptor interface {

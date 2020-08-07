@@ -34,11 +34,14 @@ type Envelope struct {
 	// CipherKey is the randomly generated cipher key.
 	CipherKey string `json:"x-amz-key-v2"`
 	// MaterialDesc is a description to distinguish from other envelopes.
-	MatDesc               string `json:"x-amz-matdesc"`
-	WrapAlg               string `json:"x-amz-wrap-alg"`
-	CEKAlg                string `json:"x-amz-cek-alg"`
-	TagLen                string `json:"x-amz-tag-len"`
-	UnencryptedMD5        string `json:"-"`
+	MatDesc string `json:"x-amz-matdesc"`
+	WrapAlg string `json:"x-amz-wrap-alg"`
+	CEKAlg  string `json:"x-amz-cek-alg"`
+	TagLen  string `json:"x-amz-tag-len"`
+
+	// deprecated: This MD5 hash is no longer populated
+	UnencryptedMD5 string `json:"-"`
+
 	UnencryptedContentLen string `json:"x-amz-unencrypted-content-length"`
 }
 

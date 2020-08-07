@@ -3,6 +3,10 @@ package s3crypto
 import (
 	"bytes"
 	"encoding/hex"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"strings"
 	"testing"
 )
 
@@ -25,5 +29,54 @@ func TestSHA256_Case2(t *testing.T) {
 
 	if !bytes.Equal(expected, b) {
 		t.Errorf("expected equivalent sha values, but received otherwise")
+	}
+}
+
+type mockReader struct {
+	err error
+}
+
+func (m mockReader) Read(p []byte) (int, error) {
+	return len(p), m.err
+}
+
+func TestContentLengthReader(t *testing.T) {
+	cases := []struct {
+		reader      io.Reader
+		expected    int64
+		expectedErr string
+	}{
+		{
+			reader:   bytes.NewReader([]byte("foo bar baz")),
+			expected: 11,
+		},
+		{
+			reader:   bytes.NewReader(nil),
+			expected: 0,
+		},
+		{
+			reader:      mockReader{err: fmt.Errorf("not an EOF error")},
+			expectedErr: "not an EOF error",
+		},
+	}
+
+	for _, tt := range cases {
+		reader := newContentLengthReader(tt.reader)
+		_, err := ioutil.ReadAll(reader)
+		if err != nil {
+			if len(tt.expectedErr) == 0 {
+				t.Errorf("expected no error, got %v", err)
+			} else if !strings.Contains(err.Error(), tt.expectedErr) {
+				t.Errorf("expected error %v, got %v", tt.expectedErr, err.Error())
+			}
+			continue
+		} else if len(tt.expectedErr) > 0 {
+			t.Error("expected error, got none")
+			continue
+		}
+		actual := reader.GetContentLength()
+		if tt.expected != actual {
+			t.Errorf("expected %v, got %v", tt.expected, actual)
+		}
 	}
 }

@@ -70,8 +70,6 @@ func TestGetObjectGCM(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBuffer(b)),
 		}
-		out.Metadata = make(map[string]*string)
-		out.Metadata["x-amz-wrap-alg"] = aws.String(s3crypto.KMSWrap)
 	})
 	err := req.Send()
 	if err != nil {
@@ -139,8 +137,6 @@ func TestGetObjectCBC(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBuffer(b)),
 		}
-		out.Metadata = make(map[string]*string)
-		out.Metadata["x-amz-wrap-alg"] = aws.String(s3crypto.KMSWrap)
 	})
 	err := req.Send()
 	if err != nil {
@@ -204,8 +200,6 @@ func TestGetObjectCBC2(t *testing.T) {
 			},
 			Body: ioutil.NopCloser(bytes.NewBuffer(b)),
 		}
-		out.Metadata = make(map[string]*string)
-		out.Metadata["x-amz-wrap-alg"] = aws.String(s3crypto.KMSWrap)
 	})
 	err := req.Send()
 	if err != nil {
@@ -246,5 +240,58 @@ func TestGetObjectWithContext(t *testing.T) {
 	}
 	if e, a := "canceled", aerr.Message(); !strings.Contains(a, e) {
 		t.Errorf("expected error message to contain %q, but did not %q", e, a)
+	}
+}
+
+func TestDecryptionClient_GetObject_V2Artifact(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, fmt.Sprintf("%s%s%s", `{"KeyId":"test-key-id","Plaintext":"`, "hJUv7S6K2cHF64boS9ixHX0TZAjBZLT4ZpEO4XxkGnY=", `"}`))
+	}))
+	defer ts.Close()
+
+	c := s3crypto.NewDecryptionClient(unit.Session.Copy(&aws.Config{Endpoint: &ts.URL}))
+
+	input := &s3.GetObjectInput{
+		Bucket: aws.String("test"),
+		Key:    aws.String("test"),
+	}
+
+	req, out := c.GetObjectRequest(input)
+	req.Handlers.Send.Clear()
+	req.Handlers.Send.PushBack(func(r *request.Request) {
+		b, err := hex.DecodeString("6b134eb7a353131de92faff64f594b2794e3544e31776cca26fe3bbeeffc68742d1007234f11c6670522602326868e29f37e9d2678f1614ec1a2418009b9772100929aadbed9a21a")
+		if err != nil {
+			t.Errorf("expected no error, but received %v", err)
+		}
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Header: http.Header{
+				http.CanonicalHeaderKey("x-amz-meta-x-amz-key-v2"):   []string{"PsuclPnlo2O0MQoov6kL1TBlaZG6oyNwWuAqmAgq7g8b9ZeeORi3VTMg624FU9jx"},
+				http.CanonicalHeaderKey("x-amz-meta-x-amz-iv"):       []string{"dqqlq2dRVSQ5hFRb"},
+				http.CanonicalHeaderKey("x-amz-meta-x-amz-matdesc"):  []string{`{"aws:x-amz-cek-alg": "AES/GCM/NoPadding"}`},
+				http.CanonicalHeaderKey("x-amz-meta-x-amz-wrap-alg"): []string{s3crypto.KMSContextWrap},
+				http.CanonicalHeaderKey("x-amz-meta-x-amz-cek-alg"):  []string{"AES/GCM/NoPadding"},
+			},
+			Body: ioutil.NopCloser(bytes.NewBuffer(b)),
+		}
+	})
+	err := req.Send()
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	actual, err := ioutil.ReadAll(out.Body)
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	expected, err := hex.DecodeString("af150d7156bf5b3f5c461e5c6ac820acc5a33aab7085d920666c250ff251209d5a4029b3bd78250fab6e11aed52fae948d407056a9519b68")
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	if bytes.Compare(expected, actual) != 0 {
+		t.Fatalf("expected content to match but it did not")
 	}
 }
