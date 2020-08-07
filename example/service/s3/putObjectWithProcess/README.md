@@ -10,5 +10,5 @@ The example uses the bucket name provided, one key for object, and output the pr
 The Object size should larger than 5M or your will not see the progress
 
 ```sh
-AWS_REGION=<region> go run putObjWithProcess.go <credential> <bucket> <key for object> <local file name>
+AWS_REGION=<region> go run -tags example putObjWithProcess.go <bucket> <key for object> <local file name>
 ```

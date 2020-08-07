@@ -3,13 +3,14 @@
 package main
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	"fmt"
 	"log"
 	"os"
 	"sync"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
 
 type CustomReader struct {
@@ -35,7 +36,8 @@ func (r *CustomReader) ReadAt(p []byte, off int64) (int, error) {
 	if _, ok := r.signMap[off]; ok {
 		// Got the length have read( or means has uploaded), and you can construct your message
 		r.read += int64(n)
-		log.Printf("total read:%d    progress:%d%%\n", r.read, int(float32(r.read*100)/float32(r.size)))
+		fmt.Printf("\rtotal read:%d    progress:%d%%", r.read, int(float32(r.read*100)/float32(r.size)))
+		//log.Printf("total read:%d    progress:%d%%\n", r.read, int(float32(r.read*100)/float32(r.size)))
 	} else {
 		r.signMap[off] = struct{}{}
 	}
@@ -49,34 +51,27 @@ func (r *CustomReader) Seek(offset int64, whence int) (int64, error) {
 
 func main() {
 	if len(os.Args) < 4 {
-		log.Println("USAGE ERROR: AWS_REGION=us-east-1 go run putObjWithProcess.go <credential> <bucket> <key for object> <local file name>")
+		log.Println("USAGE ERROR: AWS_REGION=us-west-2 go run -tags example putObjWithProcess.go <bucket> <key for object> <local file name>")
 		return
 	}
 
-	credential := os.Args[1]
-	bucket := os.Args[2]
-	key := os.Args[3]
-	fileName := os.Args[4]
+	bucket := os.Args[1]
+	key := os.Args[2]
+	filename := os.Args[3]
 
-	creds := credentials.NewSharedCredentials(credential, "default")
-	if _, err := creds.Get(); err != nil {
-		log.Println("ERROR:", err)
-		return
-	}
-
-	sess := session.New(&aws.Config{
-		Credentials: creds,
-	})
-
-	file, err := os.Open(fileName)
+	sess, err := session.NewSession()
 	if err != nil {
-		log.Println("ERROR:", err)
-		return
+		log.Fatalf("failed to load session, %v", err)
+	}
+
+	file, err := os.Open(filename)
+	if err != nil {
+		log.Fatalf("failed to open file %v, %v", filename, err)
 	}
 
 	fileInfo, err := file.Stat()
 	if err != nil {
-		log.Println("ERROR:", err)
+		log.Fatalf("failed to stat file %v, %v", filename, err)
 		return
 	}
 
@@ -96,11 +91,11 @@ func main() {
 		Key:    aws.String(key),
 		Body:   reader,
 	})
-
 	if err != nil {
-		log.Println("ERROR:", err)
+		log.Fatalf("failed to put file %v, %v", filename, err)
 		return
 	}
 
+	fmt.Println()
 	log.Println(output.Location)
 }
