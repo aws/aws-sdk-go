@@ -768,6 +768,13 @@ func mockStartStreamTranscriptionWriteEvents() (
 		},
 	}
 
+	var marshalers request.HandlerList
+	marshalers.PushBackNamed(restjson.BuildHandler)
+	payloadMarshaler := protocol.HandlerPayloadMarshal{
+		Marshalers: marshalers,
+	}
+	_ = payloadMarshaler
+
 	eventMsgs := []eventstream.Message{
 		{
 			Headers: eventstream.Headers{
