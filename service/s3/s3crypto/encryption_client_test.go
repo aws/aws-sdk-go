@@ -1,4 +1,4 @@
-package s3crypto_test
+package s3crypto
 
 import (
 	"bytes"
@@ -16,7 +16,6 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3crypto"
 )
 
 func TestDefaultConfigValues(t *testing.T) {
@@ -26,9 +25,9 @@ func TestDefaultConfigValues(t *testing.T) {
 		Region:           aws.String("us-west-2"),
 	})
 	svc := kms.New(sess)
-	handler := s3crypto.NewKMSKeyGenerator(svc, "testid")
+	handler := NewKMSKeyGenerator(svc, "testid")
 
-	c := s3crypto.NewEncryptionClient(sess, s3crypto.AESGCMContentCipherBuilder(handler))
+	c := NewEncryptionClient(sess, AESGCMContentCipherBuilder(handler))
 
 	if c == nil {
 		t.Error("expected non-vil client value")
@@ -52,7 +51,7 @@ func TestPutObject(t *testing.T) {
 		S3ForcePathStyle: aws.Bool(true),
 		Region:           aws.String("us-west-2"),
 	})
-	c := s3crypto.NewEncryptionClient(sess, cb)
+	c := NewEncryptionClient(sess, cb)
 	if c == nil {
 		t.Error("expected non-vil client value")
 	}
@@ -86,7 +85,7 @@ func TestPutObjectWithContext(t *testing.T) {
 	generator := mockGenerator{}
 	cb := mockCipherBuilder{generator}
 
-	c := s3crypto.NewEncryptionClient(unit.Session, cb)
+	c := NewEncryptionClient(unit.Session, cb)
 
 	ctx := &awstesting.FakeContext{DoneCh: make(chan struct{})}
 	ctx.Error = fmt.Errorf("context canceled")
@@ -107,5 +106,53 @@ func TestPutObjectWithContext(t *testing.T) {
 	}
 	if e, a := "canceled", aerr.Message(); !strings.Contains(a, e) {
 		t.Errorf("expected error message to contain %q, but did not %q", e, a)
+	}
+}
+
+func TestEncryptionClient_PutObject_InvalidClientConstruction(t *testing.T) {
+	generator := mockGeneratorV2{}
+	cb := mockCipherBuilderV2{generator: generator}
+
+	c := NewEncryptionClient(unit.Session, cb)
+	if c == nil {
+		t.Errorf("expected client not to be nil")
+	}
+
+	input := s3.PutObjectInput{
+		Bucket: aws.String("test"),
+		Key:    aws.String("test"),
+		Body:   bytes.NewReader([]byte{}),
+	}
+	_, err := c.PutObject(&input)
+	if err == nil {
+		t.Fatalf("expected error, did not get one")
+	}
+	if e, a := "invalid client configuration", err.Error(); !strings.Contains(a, e) {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+	_, err = c.PutObjectWithContext(aws.BackgroundContext(), &input)
+	if err == nil {
+		t.Fatalf("expected error, did not get one")
+	}
+	if e, a := "invalid client configuration", err.Error(); !strings.Contains(a, e) {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+	_, err = c.PutObjectWithContext(aws.BackgroundContext(), &input)
+	if err == nil {
+		t.Fatalf("expected error, did not get one")
+	}
+	if e, a := "invalid client configuration", err.Error(); !strings.Contains(a, e) {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+	req, _ := c.PutObjectRequest(&input)
+	err = req.Send()
+	if err == nil {
+		t.Fatalf("expected error, did not get one")
+	}
+	if e, a := "invalid client configuration", err.Error(); !strings.Contains(a, e) {
+		t.Errorf("expected %v, got %v", e, a)
 	}
 }

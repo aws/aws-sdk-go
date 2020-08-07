@@ -1,6 +1,7 @@
 package s3crypto
 
 import (
+	"fmt"
 	"io"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -11,21 +12,62 @@ const (
 	gcmNonceSize = 12
 )
 
-type gcmContentCipherBuilder struct {
-	generator CipherDataGenerator
+// AESGCMContentCipherBuilder returns a new encryption only AES/GCM mode structure with a specific cipher data generator
+// that will provide keys to be used for content encryption.
+//
+// Note: This uses the Go stdlib AEAD implementation for AES/GCM. Due to this objects to be encrypted or decrypted
+// will be fully loaded into memory before encryption or decryption can occur. Caution must be taken to avoid memory
+// allocation failures.
+//
+// deprecated: This feature is in maintenance mode, no new updates will be released. Please see https://docs.aws.amazon.com/general/latest/gr/aws_sdk_cryptography.html for more information.
+func AESGCMContentCipherBuilder(generator CipherDataGenerator) ContentCipherBuilder {
+	return gcmContentCipherBuilder{generator}
 }
 
-func (builder gcmContentCipherBuilder) isUsingDeprecatedFeatures() error {
-	if feature, ok := builder.generator.(deprecatedFeatures); ok {
-		return feature.isUsingDeprecatedFeatures()
+// AESGCMContentCipherBuilderV2 returns a new encryption only AES/GCM mode structure with a specific cipher data generator
+// that will provide keys to be used for content encryption. This type is compatible with the V2 encryption client.
+//
+// Note: This uses the Go stdlib AEAD implementation for AES/GCM. Due to this objects to be encrypted or decrypted
+// will be fully loaded into memory before encryption or decryption can occur. Caution must be taken to avoid memory
+// allocation failures.
+func AESGCMContentCipherBuilderV2(generator CipherDataGeneratorWithCEKAlg) ContentCipherBuilder {
+	return gcmContentCipherBuilderV2{generator}
+}
+
+// RegisterAESGCMContentCipher registers the AES/GCM content cipher algorithm with the provided CryptoRegistry.
+//
+// Example:
+//	cr := s3crypto.NewCryptoRegistry()
+//	if err := s3crypto.RegisterAESGCMContentCipher(cr); err != nil {
+//		panic(err) // handle error
+//	}
+//
+func RegisterAESGCMContentCipher(registry *CryptoRegistry) error {
+	if registry == nil {
+		return errNilCryptoRegistry
+	}
+
+	err := registry.AddCEK(AESGCMNoPadding, newAESGCMContentCipher)
+	if err != nil {
+		return err
+	}
+
+	// NoPadder is generic but required by this algorithm, so if it is already registered and is the expected implementation
+	// don't error.
+	padderName := NoPadder.Name()
+	if v, ok := registry.GetPadder(padderName); !ok {
+		if err := registry.AddPadder(padderName, NoPadder); err != nil {
+			return err
+		}
+	} else if _, ok := v.(noPadder); !ok {
+		return fmt.Errorf("%s is already registred but does not match expected type %T", padderName, NoPadder)
 	}
 	return nil
 }
 
-// AESGCMContentCipherBuilder returns a new encryption only mode structure with a specific cipher
-// for the master key
-func AESGCMContentCipherBuilder(generator CipherDataGenerator) ContentCipherBuilder {
-	return gcmContentCipherBuilder{generator}
+// gcmContentCipherBuilder is a AES/GCM content cipher to be used with the V1 client CipherDataGenerator interface
+type gcmContentCipherBuilder struct {
+	generator CipherDataGenerator
 }
 
 func (builder gcmContentCipherBuilder) ContentCipher() (ContentCipher, error) {
@@ -37,10 +79,6 @@ func (builder gcmContentCipherBuilder) ContentCipherWithContext(ctx aws.Context)
 	var err error
 
 	switch v := builder.generator.(type) {
-	case CipherDataGeneratorWithCEKAlgWithContext:
-		cd, err = v.GenerateCipherDataWithCEKAlgWithContext(ctx, gcmKeySize, gcmNonceSize, AESGCMNoPadding)
-	case CipherDataGeneratorWithCEKAlg:
-		cd, err = v.GenerateCipherDataWithCEKAlg(gcmKeySize, gcmNonceSize, AESGCMNoPadding)
 	case CipherDataGeneratorWithContext:
 		cd, err = v.GenerateCipherDataWithContext(ctx, gcmKeySize, gcmNonceSize)
 	default:
@@ -51,6 +89,52 @@ func (builder gcmContentCipherBuilder) ContentCipherWithContext(ctx aws.Context)
 	}
 
 	return newAESGCMContentCipher(cd)
+}
+
+// isFixtureEncryptionCompatible will ensure that this type may only be used with the V1 client
+func (builder gcmContentCipherBuilder) isEncryptionVersionCompatible(version clientVersion) error {
+	if version != v1ClientVersion {
+		return errDeprecatedIncompatibleCipherBuilder
+	}
+	return nil
+}
+
+func (builder gcmContentCipherBuilder) isAWSFixture() bool {
+	return true
+}
+
+// gcmContentCipherBuilderV2 return a new builder for encryption content using AES/GCM/NoPadding. This type is meant
+// to be used with key wrapping implementations that allow the cek algorithm to be provided when calling the
+// cipher data generator.
+type gcmContentCipherBuilderV2 struct {
+	generator CipherDataGeneratorWithCEKAlg
+}
+
+func (builder gcmContentCipherBuilderV2) ContentCipher() (ContentCipher, error) {
+	return builder.ContentCipherWithContext(aws.BackgroundContext())
+}
+
+func (builder gcmContentCipherBuilderV2) ContentCipherWithContext(ctx aws.Context) (ContentCipher, error) {
+	cd, err := builder.generator.GenerateCipherDataWithCEKAlg(ctx, gcmKeySize, gcmNonceSize, AESGCMNoPadding)
+	if err != nil {
+		return nil, err
+	}
+
+	return newAESGCMContentCipher(cd)
+}
+
+// isFixtureEncryptionCompatible will ensure that this type may only be used with the V2 client
+func (builder gcmContentCipherBuilderV2) isEncryptionVersionCompatible(version clientVersion) error {
+	if version != v2ClientVersion {
+		return errDeprecatedIncompatibleCipherBuilder
+	}
+	return nil
+}
+
+// isAWSFixture will return whether this type was constructed with an AWS provided CipherDataGenerator
+func (builder gcmContentCipherBuilderV2) isAWSFixture() bool {
+	v, ok := builder.generator.(awsFixture)
+	return ok && v.isAWSFixture()
 }
 
 func newAESGCMContentCipher(cd CipherData) (ContentCipher, error) {
@@ -91,3 +175,25 @@ func (cc *aesGCMContentCipher) DecryptContents(src io.ReadCloser) (io.ReadCloser
 func (cc aesGCMContentCipher) GetCipherData() CipherData {
 	return cc.CipherData
 }
+
+// assert ContentCipherBuilder implementations
+var (
+	_ ContentCipherBuilder = (*gcmContentCipherBuilder)(nil)
+	_ ContentCipherBuilder = (*gcmContentCipherBuilderV2)(nil)
+)
+
+// assert ContentCipherBuilderWithContext implementations
+var (
+	_ ContentCipherBuilderWithContext = (*gcmContentCipherBuilder)(nil)
+	_ ContentCipherBuilderWithContext = (*gcmContentCipherBuilderV2)(nil)
+)
+
+// assert ContentCipher implementations
+var (
+	_ ContentCipher = (*aesGCMContentCipher)(nil)
+)
+
+// assert awsFixture implementations
+var (
+	_ awsFixture = (*gcmContentCipherBuilderV2)(nil)
+)

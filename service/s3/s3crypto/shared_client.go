@@ -13,6 +13,12 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
+// clientConstructionErrorCode is used for operations that can't be completed due to invalid client construction
+const clientConstructionErrorCode = "ClientConstructionError"
+
+// mismatchWrapError is an error returned if a wrapping handler receives an unexpected envelope
+var mismatchWrapError = awserr.New(clientConstructionErrorCode, "wrap algorithm provided did not match handler", nil)
+
 func putObjectRequest(c EncryptionClientOptions, input *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
 	req, out := c.S3Client.PutObjectRequest(input)
 
@@ -45,9 +51,9 @@ func putObjectRequest(c EncryptionClientOptions, input *s3.PutObjectInput) (*req
 			return
 		}
 
-		md5 := newMD5Reader(input.Body)
+		lengthReader := newContentLengthReader(input.Body)
 		sha := newSHA256Writer(dst)
-		reader, err := encryptor.EncryptContents(md5)
+		reader, err := encryptor.EncryptContents(lengthReader)
 		if err != nil {
 			r.Error = err
 			return
@@ -60,7 +66,7 @@ func putObjectRequest(c EncryptionClientOptions, input *s3.PutObjectInput) (*req
 		}
 
 		data := encryptor.GetCipherData()
-		env, err := encodeMeta(md5, data)
+		env, err := encodeMeta(lengthReader, data)
 		if err != nil {
 			r.Error = err
 			return
@@ -101,7 +107,7 @@ func getObjectRequest(options DecryptionClientOptions, input *s3.GetObjectInput)
 			return
 		}
 
-		// If KMS should return the correct CEK algorithm with the proper
+		// If KMS should return the correct cek algorithm with the proper
 		// KMS key provider
 		cipher, err := contentCipherFromEnvelope(options, r.Context(), env)
 		if err != nil {
@@ -143,8 +149,9 @@ func contentCipherFromEnvelope(options DecryptionClientOptions, ctx aws.Context,
 }
 
 func wrapFromEnvelope(options DecryptionClientOptions, env Envelope) (CipherDataDecrypter, error) {
-	f, ok := options.WrapRegistry[env.WrapAlg]
+	f, ok := options.CryptoRegistry.GetWrap(env.WrapAlg)
 	if !ok || f == nil {
+
 		return nil, awserr.New(
 			"InvalidWrapAlgorithmError",
 			"wrap algorithm isn't supported, "+env.WrapAlg,
@@ -155,7 +162,7 @@ func wrapFromEnvelope(options DecryptionClientOptions, env Envelope) (CipherData
 }
 
 func cekFromEnvelope(options DecryptionClientOptions, ctx aws.Context, env Envelope, decrypter CipherDataDecrypter) (ContentCipher, error) {
-	f, ok := options.CEKRegistry[env.CEKAlg]
+	f, ok := options.CryptoRegistry.GetCEK(env.CEKAlg)
 	if !ok || f == nil {
 		return nil, awserr.New(
 			"InvalidCEKAlgorithmError",
@@ -197,11 +204,11 @@ func cekFromEnvelope(options DecryptionClientOptions, ctx aws.Context, env Envel
 // If there wasn't a cek algorithm specific padder, we check the padder itself.
 // We return a no unpadder, if no unpadder was found. This means any customization
 // either contained padding within the cipher implementation, and to maintain
-// backwards compatility we will simply not unpad anything.
+// backwards compatibility we will simply not unpad anything.
 func getPadder(options DecryptionClientOptions, cekAlg string) Padder {
-	padder, ok := options.PadderRegistry[cekAlg]
+	padder, ok := options.CryptoRegistry.GetPadder(cekAlg)
 	if !ok {
-		padder, ok = options.PadderRegistry[cekAlg[strings.LastIndex(cekAlg, "/")+1:]]
+		padder, ok = options.CryptoRegistry.GetPadder(cekAlg[strings.LastIndex(cekAlg, "/")+1:])
 		if !ok {
 			return NoPadder
 		}

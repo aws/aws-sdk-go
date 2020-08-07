@@ -97,6 +97,22 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
+    "DeleteAppValidationConfiguration":{
+      "name":"DeleteAppValidationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAppValidationConfigurationRequest"},
+      "output":{"shape":"DeleteAppValidationConfigurationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InternalError"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
     "DeleteReplicationJob":{
       "name":"DeleteReplicationJob",
       "http":{
@@ -223,6 +239,38 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
+    "GetAppValidationConfiguration":{
+      "name":"GetAppValidationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAppValidationConfigurationRequest"},
+      "output":{"shape":"GetAppValidationConfigurationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InternalError"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
+    "GetAppValidationOutput":{
+      "name":"GetAppValidationOutput",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAppValidationOutputRequest"},
+      "output":{"shape":"GetAppValidationOutputResponse"},
+      "errors":[
+        {"shape":"UnauthorizedOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InternalError"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
     "GetConnectors":{
       "name":"GetConnectors",
       "http":{
@@ -272,7 +320,26 @@
       "input":{"shape":"GetServersRequest"},
       "output":{"shape":"GetServersResponse"},
       "errors":[
-        {"shape":"UnauthorizedOperationException"}
+        {"shape":"UnauthorizedOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InternalError"}
+      ]
+    },
+    "ImportAppCatalog":{
+      "name":"ImportAppCatalog",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportAppCatalogRequest"},
+      "output":{"shape":"ImportAppCatalogResponse"},
+      "errors":[
+        {"shape":"UnauthorizedOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InternalError"},
+        {"shape":"OperationNotPermittedException"}
       ]
     },
     "ImportServerCatalog":{
@@ -323,6 +390,22 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
+    "NotifyAppValidationOutput":{
+      "name":"NotifyAppValidationOutput",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"NotifyAppValidationOutputRequest"},
+      "output":{"shape":"NotifyAppValidationOutputResponse"},
+      "errors":[
+        {"shape":"UnauthorizedOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InternalError"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
     "PutAppLaunchConfiguration":{
       "name":"PutAppLaunchConfiguration",
       "http":{
@@ -355,6 +438,22 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
+    "PutAppValidationConfiguration":{
+      "name":"PutAppValidationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutAppValidationConfigurationRequest"},
+      "output":{"shape":"PutAppValidationConfigurationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InternalError"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
     "StartAppReplication":{
       "name":"StartAppReplication",
       "http":{
@@ -363,6 +462,22 @@
       },
       "input":{"shape":"StartAppReplicationRequest"},
       "output":{"shape":"StartAppReplicationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedOperationException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InternalError"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
+    "StartOnDemandAppReplication":{
+      "name":"StartOnDemandAppReplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartOnDemandAppReplicationRequest"},
+      "output":{"shape":"StartOnDemandAppReplicationResponse"},
       "errors":[
         {"shape":"UnauthorizedOperationException"},
         {"shape":"InvalidParameterException"},
@@ -384,7 +499,8 @@
         {"shape":"MissingRequiredParameterException"},
         {"shape":"UnauthorizedOperationException"},
         {"shape":"OperationNotPermittedException"},
-        {"shape":"ReplicationRunLimitExceededException"}
+        {"shape":"ReplicationRunLimitExceededException"},
+        {"shape":"DryRunOperationException"}
       ]
     },
     "StopAppReplication":{
@@ -459,9 +575,20 @@
     "AmiId":{"type":"string"},
     "AppDescription":{"type":"string"},
     "AppId":{"type":"string"},
+    "AppIdWithValidation":{
+      "type":"string",
+      "pattern":"^app-[0-9a-f]{17}$"
+    },
     "AppIds":{
       "type":"list",
       "member":{"shape":"AppId"}
+    },
+    "AppLaunchConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "NOT_CONFIGURED",
+        "CONFIGURED"
+      ]
     },
     "AppLaunchStatus":{
       "type":"string",
@@ -474,6 +601,7 @@
         "LAUNCH_PENDING",
         "LAUNCH_IN_PROGRESS",
         "LAUNCHED",
+        "PARTIALLY_LAUNCHED",
         "DELTA_LAUNCH_IN_PROGRESS",
         "DELTA_LAUNCH_FAILED",
         "LAUNCH_FAILED",
@@ -484,6 +612,13 @@
     },
     "AppLaunchStatusMessage":{"type":"string"},
     "AppName":{"type":"string"},
+    "AppReplicationConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "NOT_CONFIGURED",
+        "CONFIGURED"
+      ]
+    },
     "AppReplicationStatus":{
       "type":"string",
       "enum":[
@@ -495,6 +630,7 @@
         "REPLICATION_PENDING",
         "REPLICATION_IN_PROGRESS",
         "REPLICATED",
+        "PARTIALLY_REPLICATED",
         "DELTA_REPLICATION_IN_PROGRESS",
         "DELTA_REPLICATED",
         "DELTA_REPLICATION_FAILED",
@@ -521,13 +657,16 @@
       "type":"structure",
       "members":{
         "appId":{"shape":"AppId"},
+        "importedAppId":{"shape":"ImportedAppId"},
         "name":{"shape":"AppName"},
         "description":{"shape":"AppDescription"},
         "status":{"shape":"AppStatus"},
         "statusMessage":{"shape":"AppStatusMessage"},
+        "replicationConfigurationStatus":{"shape":"AppReplicationConfigurationStatus"},
         "replicationStatus":{"shape":"AppReplicationStatus"},
         "replicationStatusMessage":{"shape":"AppReplicationStatusMessage"},
         "latestReplicationTime":{"shape":"Timestamp"},
+        "launchConfigurationStatus":{"shape":"AppLaunchConfigurationStatus"},
         "launchStatus":{"shape":"AppLaunchStatus"},
         "launchStatusMessage":{"shape":"AppLaunchStatusMessage"},
         "launchDetails":{"shape":"LaunchDetails"},
@@ -538,13 +677,42 @@
         "totalServers":{"shape":"TotalServers"}
       }
     },
+    "AppValidationConfiguration":{
+      "type":"structure",
+      "members":{
+        "validationId":{"shape":"ValidationId"},
+        "name":{"shape":"NonEmptyStringWithMaxLen255"},
+        "appValidationStrategy":{"shape":"AppValidationStrategy"},
+        "ssmValidationParameters":{"shape":"SSMValidationParameters"}
+      }
+    },
+    "AppValidationConfigurations":{
+      "type":"list",
+      "member":{"shape":"AppValidationConfiguration"}
+    },
+    "AppValidationOutput":{
+      "type":"structure",
+      "members":{
+        "ssmOutput":{"shape":"SSMOutput"}
+      }
+    },
+    "AppValidationStrategy":{
+      "type":"string",
+      "enum":["SSM"]
+    },
     "Apps":{
       "type":"list",
       "member":{"shape":"AppSummary"}
     },
     "AssociatePublicIpAddress":{"type":"boolean"},
+    "AutoLaunch":{"type":"boolean"},
     "BucketName":{"type":"string"},
     "ClientToken":{"type":"string"},
+    "Command":{
+      "type":"string",
+      "max":64000,
+      "min":1
+    },
     "Connector":{
       "type":"structure",
       "members":{
@@ -566,7 +734,8 @@
         "VSPHERE",
         "SCVMM",
         "HYPERV-MANAGER",
-        "SNAPSHOT_BATCHING"
+        "SNAPSHOT_BATCHING",
+        "SMS_OPTIMIZED"
       ]
     },
     "ConnectorCapabilityList":{
@@ -665,6 +834,18 @@
       "members":{
       }
     },
+    "DeleteAppValidationConfigurationRequest":{
+      "type":"structure",
+      "required":["appId"],
+      "members":{
+        "appId":{"shape":"AppIdWithValidation"}
+      }
+    },
+    "DeleteAppValidationConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteReplicationJobRequest":{
       "type":"structure",
       "required":["replicationJobId"],
@@ -700,9 +881,21 @@
       "members":{
       }
     },
+    "DryRunOperationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "EC2KeyName":{"type":"string"},
     "Encrypted":{"type":"boolean"},
     "ErrorMessage":{"type":"string"},
+    "ExecutionTimeoutSeconds":{
+      "type":"integer",
+      "max":28800,
+      "min":60
+    },
     "ForceStopAppReplication":{"type":"boolean"},
     "ForceTerminateApp":{"type":"boolean"},
     "Frequency":{"type":"integer"},
@@ -743,6 +936,7 @@
       "members":{
         "appId":{"shape":"AppId"},
         "roleName":{"shape":"RoleName"},
+        "autoLaunch":{"shape":"AutoLaunch"},
         "serverGroupLaunchConfigurations":{"shape":"ServerGroupLaunchConfigurations"}
       }
     },
@@ -770,6 +964,33 @@
         "appSummary":{"shape":"AppSummary"},
         "serverGroups":{"shape":"ServerGroups"},
         "tags":{"shape":"Tags"}
+      }
+    },
+    "GetAppValidationConfigurationRequest":{
+      "type":"structure",
+      "required":["appId"],
+      "members":{
+        "appId":{"shape":"AppIdWithValidation"}
+      }
+    },
+    "GetAppValidationConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "appValidationConfigurations":{"shape":"AppValidationConfigurations"},
+        "serverGroupValidationConfigurations":{"shape":"ServerGroupValidationConfigurations"}
+      }
+    },
+    "GetAppValidationOutputRequest":{
+      "type":"structure",
+      "required":["appId"],
+      "members":{
+        "appId":{"shape":"AppIdWithValidation"}
+      }
+    },
+    "GetAppValidationOutputResponse":{
+      "type":"structure",
+      "members":{
+        "validationOutputList":{"shape":"ValidationOutputList"}
       }
     },
     "GetConnectorsRequest":{
@@ -835,6 +1056,17 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ImportAppCatalogRequest":{
+      "type":"structure",
+      "members":{
+        "roleName":{"shape":"RoleName"}
+      }
+    },
+    "ImportAppCatalogResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ImportServerCatalogRequest":{
       "type":"structure",
       "members":{
@@ -844,6 +1076,11 @@
       "type":"structure",
       "members":{
       }
+    },
+    "ImportedAppId":{"type":"string"},
+    "InstanceId":{
+      "type":"string",
+      "pattern":"(^i-(\\w{8}|\\w{17})$)|(^mi-\\w{17}$)"
     },
     "InstanceType":{"type":"string"},
     "InternalError":{
@@ -862,7 +1099,6 @@
       "exception":true
     },
     "IpAddress":{"type":"string"},
-    "KeyName":{"type":"string"},
     "KmsKeyId":{"type":"string"},
     "LaunchAppRequest":{
       "type":"structure",
@@ -924,6 +1160,33 @@
       },
       "exception":true
     },
+    "NonEmptyStringWithMaxLen255":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[\\S]+$"
+    },
+    "NotificationContext":{
+      "type":"structure",
+      "members":{
+        "validationId":{"shape":"ValidationId"},
+        "status":{"shape":"ValidationStatus"},
+        "statusMessage":{"shape":"ValidationStatusMessage"}
+      }
+    },
+    "NotifyAppValidationOutputRequest":{
+      "type":"structure",
+      "required":["appId"],
+      "members":{
+        "appId":{"shape":"AppIdWithValidation"},
+        "notificationContext":{"shape":"NotificationContext"}
+      }
+    },
+    "NotifyAppValidationOutputResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "NumberOfRecentAmisToKeep":{"type":"integer"},
     "OperationNotPermittedException":{
       "type":"structure",
@@ -944,6 +1207,7 @@
       "members":{
         "appId":{"shape":"AppId"},
         "roleName":{"shape":"RoleName"},
+        "autoLaunch":{"shape":"AutoLaunch"},
         "serverGroupLaunchConfigurations":{"shape":"ServerGroupLaunchConfigurations"}
       }
     },
@@ -960,6 +1224,20 @@
       }
     },
     "PutAppReplicationConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutAppValidationConfigurationRequest":{
+      "type":"structure",
+      "required":["appId"],
+      "members":{
+        "appId":{"shape":"AppIdWithValidation"},
+        "appValidationConfigurations":{"shape":"AppValidationConfigurations"},
+        "serverGroupValidationConfigurations":{"shape":"ServerGroupValidationConfigurations"}
+      }
+    },
+    "PutAppValidationConfigurationResponse":{
       "type":"structure",
       "members":{
       }
@@ -1080,12 +1358,45 @@
     },
     "RoleName":{"type":"string"},
     "RunOnce":{"type":"boolean"},
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3
+    },
+    "S3KeyName":{
+      "type":"string",
+      "max":1024
+    },
     "S3Location":{
       "type":"structure",
       "members":{
-        "bucket":{"shape":"BucketName"},
-        "key":{"shape":"KeyName"}
+        "bucket":{"shape":"S3BucketName"},
+        "key":{"shape":"S3KeyName"}
       }
+    },
+    "SSMOutput":{
+      "type":"structure",
+      "members":{
+        "s3Location":{"shape":"S3Location"}
+      }
+    },
+    "SSMValidationParameters":{
+      "type":"structure",
+      "members":{
+        "source":{"shape":"Source"},
+        "instanceId":{"shape":"InstanceId"},
+        "scriptType":{"shape":"ScriptType"},
+        "command":{"shape":"Command"},
+        "executionTimeoutSeconds":{"shape":"ExecutionTimeoutSeconds"},
+        "outputS3BucketName":{"shape":"BucketName"}
+      }
+    },
+    "ScriptType":{
+      "type":"string",
+      "enum":[
+        "SHELL_SCRIPT",
+        "POWERSHELL_SCRIPT"
+      ]
     },
     "SecurityGroup":{"type":"string"},
     "Server":{
@@ -1148,6 +1459,17 @@
       "type":"list",
       "member":{"shape":"ServerGroupReplicationConfiguration"}
     },
+    "ServerGroupValidationConfiguration":{
+      "type":"structure",
+      "members":{
+        "serverGroupId":{"shape":"ServerGroupId"},
+        "serverValidationConfigurations":{"shape":"ServerValidationConfigurations"}
+      }
+    },
+    "ServerGroupValidationConfigurations":{
+      "type":"list",
+      "member":{"shape":"ServerGroupValidationConfiguration"}
+    },
     "ServerGroups":{
       "type":"list",
       "member":{"shape":"ServerGroup"}
@@ -1164,7 +1486,10 @@
         "ec2KeyName":{"shape":"EC2KeyName"},
         "userData":{"shape":"UserData"},
         "instanceType":{"shape":"InstanceType"},
-        "associatePublicIpAddress":{"shape":"AssociatePublicIpAddress"}
+        "associatePublicIpAddress":{"shape":"AssociatePublicIpAddress"},
+        "iamInstanceProfileName":{"shape":"RoleName"},
+        "configureScript":{"shape":"S3Location"},
+        "configureScriptType":{"shape":"ScriptType"}
       }
     },
     "ServerLaunchConfigurations":{
@@ -1202,6 +1527,36 @@
       "type":"string",
       "enum":["VIRTUAL_MACHINE"]
     },
+    "ServerValidationConfiguration":{
+      "type":"structure",
+      "members":{
+        "server":{"shape":"Server"},
+        "validationId":{"shape":"ValidationId"},
+        "name":{"shape":"NonEmptyStringWithMaxLen255"},
+        "serverValidationStrategy":{"shape":"ServerValidationStrategy"},
+        "userDataValidationParameters":{"shape":"UserDataValidationParameters"}
+      }
+    },
+    "ServerValidationConfigurations":{
+      "type":"list",
+      "member":{"shape":"ServerValidationConfiguration"}
+    },
+    "ServerValidationOutput":{
+      "type":"structure",
+      "members":{
+        "server":{"shape":"Server"}
+      }
+    },
+    "ServerValidationStrategy":{
+      "type":"string",
+      "enum":["USERDATA"]
+    },
+    "Source":{
+      "type":"structure",
+      "members":{
+        "s3Location":{"shape":"S3Location"}
+      }
+    },
     "StackId":{"type":"string"},
     "StackName":{"type":"string"},
     "StartAppReplicationRequest":{
@@ -1211,6 +1566,19 @@
       }
     },
     "StartAppReplicationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "StartOnDemandAppReplicationRequest":{
+      "type":"structure",
+      "required":["appId"],
+      "members":{
+        "appId":{"shape":"AppId"},
+        "description":{"shape":"Description"}
+      }
+    },
+    "StartOnDemandAppReplicationResponse":{
       "type":"structure",
       "members":{
       }
@@ -1327,7 +1695,48 @@
         "s3Location":{"shape":"S3Location"}
       }
     },
+    "UserDataValidationParameters":{
+      "type":"structure",
+      "members":{
+        "source":{"shape":"Source"},
+        "scriptType":{"shape":"ScriptType"}
+      }
+    },
     "VPC":{"type":"string"},
+    "ValidationId":{
+      "type":"string",
+      "pattern":"^val-[0-9a-f]{17}$"
+    },
+    "ValidationOutput":{
+      "type":"structure",
+      "members":{
+        "validationId":{"shape":"ValidationId"},
+        "name":{"shape":"NonEmptyStringWithMaxLen255"},
+        "status":{"shape":"ValidationStatus"},
+        "statusMessage":{"shape":"ValidationStatusMessage"},
+        "latestValidationTime":{"shape":"Timestamp"},
+        "appValidationOutput":{"shape":"AppValidationOutput"},
+        "serverValidationOutput":{"shape":"ServerValidationOutput"}
+      }
+    },
+    "ValidationOutputList":{
+      "type":"list",
+      "member":{"shape":"ValidationOutput"}
+    },
+    "ValidationStatus":{
+      "type":"string",
+      "enum":[
+        "READY_FOR_VALIDATION",
+        "PENDING",
+        "IN_PROGRESS",
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
+    "ValidationStatusMessage":{
+      "type":"string",
+      "max":2500
+    },
     "VmId":{"type":"string"},
     "VmManagerId":{"type":"string"},
     "VmManagerName":{"type":"string"},

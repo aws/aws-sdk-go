@@ -14842,6 +14842,9 @@ type CreateAccountStatus struct {
 	//    * ACCOUNT_LIMIT_EXCEEDED: The account could not be created because you
 	//    have reached the limit on the number of accounts in your organization.
 	//
+	//    * CONCURRENT_ACCOUNT_MODIFICATION: You already submitted a request with
+	//    the same information.
+	//
 	//    * EMAIL_ALREADY_EXISTS: The account could not be created because another
 	//    AWS account with that email address already exists.
 	//
@@ -14857,6 +14860,12 @@ type CreateAccountStatus struct {
 	//
 	//    * INTERNAL_FAILURE: The account could not be created because of an internal
 	//    failure. Try again later. If the problem persists, contact Customer Support.
+	//
+	//    * MISSING_BUSINESS_VALIDATION: The AWS account that owns your organization
+	//    has not received Business Validation.
+	//
+	//    * MISSING_PAYMENT_INSTRUMENT: You must configure the master account with
+	//    a valid payment method, such as a credit card.
 	FailureReason *string `type:"string" enum:"CreateAccountFailureReason"`
 
 	// If the account was created successfully, the unique identifier (ID) of the
@@ -22127,6 +22136,12 @@ const (
 
 	// CreateAccountFailureReasonGovcloudAccountAlreadyExists is a CreateAccountFailureReason enum value
 	CreateAccountFailureReasonGovcloudAccountAlreadyExists = "GOVCLOUD_ACCOUNT_ALREADY_EXISTS"
+
+	// CreateAccountFailureReasonMissingBusinessValidation is a CreateAccountFailureReason enum value
+	CreateAccountFailureReasonMissingBusinessValidation = "MISSING_BUSINESS_VALIDATION"
+
+	// CreateAccountFailureReasonMissingPaymentInstrument is a CreateAccountFailureReason enum value
+	CreateAccountFailureReasonMissingPaymentInstrument = "MISSING_PAYMENT_INSTRUMENT"
 )
 
 const (
