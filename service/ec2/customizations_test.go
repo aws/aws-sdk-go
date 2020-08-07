@@ -1,3 +1,5 @@
+// +build go1.7
+
 package ec2_test
 
 import (
