@@ -37,7 +37,6 @@ func (r *CustomReader) ReadAt(p []byte, off int64) (int, error) {
 		// Got the length have read( or means has uploaded), and you can construct your message
 		r.read += int64(n)
 		fmt.Printf("\rtotal read:%d    progress:%d%%", r.read, int(float32(r.read*100)/float32(r.size)))
-		//log.Printf("total read:%d    progress:%d%%\n", r.read, int(float32(r.read*100)/float32(r.size)))
 	} else {
 		r.signMap[off] = struct{}{}
 	}
