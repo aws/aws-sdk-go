@@ -50,11 +50,11 @@ func TestGcmContentCipherBuilder_isFixtureEncryptionCompatible(t *testing.T) {
 	}
 
 	if err := features.isEncryptionVersionCompatible(v1ClientVersion); err != nil {
-		t.Errorf("expected to recieve no error, got %v", err)
+		t.Errorf("expected to receive no error, got %v", err)
 	}
 
 	if err := features.isEncryptionVersionCompatible(v2ClientVersion); err == nil {
-		t.Errorf("expected to recieve error, got nil")
+		t.Errorf("expected to receive error, got nil")
 	}
 }
 
@@ -70,7 +70,7 @@ func TestGcmContentCipherBuilderV2_isFixtureEncryptionCompatible(t *testing.T) {
 	}
 
 	if err := features.isEncryptionVersionCompatible(v2ClientVersion); err != nil {
-		t.Errorf("expected to recieve no error, got %v", err)
+		t.Errorf("expected to receive no error, got %v", err)
 	}
 }
 

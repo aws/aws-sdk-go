@@ -3598,7 +3598,7 @@ func (c *Rekognition) GetSegmentDetectionRequest(input *GetSegmentDetectionInput
 // GetSegmentDetection returns detected segments in an array (Segments) of SegmentDetection
 // objects. Segments is sorted by the segment types specified in the SegmentTypes
 // input parameter of StartSegmentDetection. Each element of the array includes
-// the detected segment, the precentage confidence in the acuracy of the detected
+// the detected segment, the percentage confidence in the accuracy of the detected
 // segment, the type of the segment, and the frame in which the segment was
 // detected.
 //
@@ -3783,8 +3783,8 @@ func (c *Rekognition) GetTextDetectionRequest(input *GetTextDetectionInput) (req
 // GetTextDetection returns an array of detected text (TextDetections) sorted
 // by the time the text was detected, up to 50 words per frame of video.
 //
-// Each element of the array includes the detected text, the precentage confidence
-// in the acuracy of the detected text, the time the text was detected, bounding
+// Each element of the array includes the detected text, the percentage confidence
+// in the accuracy of the detected text, the time the text was detected, bounding
 // box information for where the text was located, and unique identifiers for
 // words and their lines.
 //
@@ -14067,7 +14067,7 @@ type StartCelebrityRecognitionInput struct {
 
 	// Idempotent token used to identify the start request. If you use the same
 	// token with multiple StartCelebrityRecognition requests, the same JobId is
-	// returned. Use ClientRequestToken to prevent the same job from being accidently
+	// returned. Use ClientRequestToken to prevent the same job from being accidentally
 	// started more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
@@ -14180,7 +14180,7 @@ type StartContentModerationInput struct {
 
 	// Idempotent token used to identify the start request. If you use the same
 	// token with multiple StartContentModeration requests, the same JobId is returned.
-	// Use ClientRequestToken to prevent the same job from being accidently started
+	// Use ClientRequestToken to prevent the same job from being accidentally started
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
@@ -14308,7 +14308,7 @@ type StartFaceDetectionInput struct {
 
 	// Idempotent token used to identify the start request. If you use the same
 	// token with multiple StartFaceDetection requests, the same JobId is returned.
-	// Use ClientRequestToken to prevent the same job from being accidently started
+	// Use ClientRequestToken to prevent the same job from being accidentally started
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
@@ -14435,7 +14435,7 @@ type StartFaceSearchInput struct {
 
 	// Idempotent token used to identify the start request. If you use the same
 	// token with multiple StartFaceSearch requests, the same JobId is returned.
-	// Use ClientRequestToken to prevent the same job from being accidently started
+	// Use ClientRequestToken to prevent the same job from being accidentally started
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
@@ -14575,7 +14575,7 @@ type StartLabelDetectionInput struct {
 
 	// Idempotent token used to identify the start request. If you use the same
 	// token with multiple StartLabelDetection requests, the same JobId is returned.
-	// Use ClientRequestToken to prevent the same job from being accidently started
+	// Use ClientRequestToken to prevent the same job from being accidentally started
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
@@ -14704,7 +14704,7 @@ type StartPersonTrackingInput struct {
 
 	// Idempotent token used to identify the start request. If you use the same
 	// token with multiple StartPersonTracking requests, the same JobId is returned.
-	// Use ClientRequestToken to prevent the same job from being accidently started
+	// Use ClientRequestToken to prevent the same job from being accidentally started
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
@@ -14955,7 +14955,7 @@ type StartSegmentDetectionInput struct {
 
 	// Idempotent token used to identify the start request. If you use the same
 	// token with multiple StartSegmentDetection requests, the same JobId is returned.
-	// Use ClientRequestToken to prevent the same job from being accidently started
+	// Use ClientRequestToken to prevent the same job from being accidentally started
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 
@@ -15283,7 +15283,7 @@ type StartTextDetectionInput struct {
 
 	// Idempotent token used to identify the start request. If you use the same
 	// token with multiple StartTextDetection requests, the same JobId is returned.
-	// Use ClientRequestToken to prevent the same job from being accidentaly started
+	// Use ClientRequestToken to prevent the same job from being accidentally started
 	// more than once.
 	ClientRequestToken *string `min:"1" type:"string"`
 

@@ -2856,7 +2856,7 @@ type BatchGetFrameMetricDataOutput struct {
 
 	// List of instances, or time steps, in the time series. For example, if the
 	// period is one day (PT24H)), and the resolution is five minutes (PT5M), then
-	// there are 288 endTimes in the list that are each five minutes appart.
+	// there are 288 endTimes in the list that are each five minutes apart.
 	//
 	// EndTimes is a required field
 	EndTimes []*TimestampStructure `locationName:"endTimes" type:"list" required:"true"`
@@ -3693,7 +3693,7 @@ type GetFindingsReportAccountSummaryOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// The return list of FindingsReportSummary (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_FindingsReportSummary.html)
-	// objects taht contain summaries of analysis results for all profiling groups
+	// objects that contain summaries of analysis results for all profiling groups
 	// in your AWS account.
 	//
 	// ReportSummaries is a required field
@@ -4066,7 +4066,7 @@ type GetRecommendationsInput struct {
 	//
 	//    * ko-KR - Korean, Republic of Korea
 	//
-	//    * pt-BR - Portugese, Brazil
+	//    * pt-BR - Portuguese, Brazil
 	//
 	//    * zh-CN - Chinese, China
 	//
@@ -4861,7 +4861,7 @@ type Metric struct {
 
 	// A type that specifies how a metric for a frame is analyzed. The supported
 	// value AggregatedRelativeTotalTime is an aggregation of the metric value for
-	// one frame that is calculated across the occurences of all frames in a profile.
+	// one frame that is calculated across the occurrences of all frames in a profile.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"MetricType"`

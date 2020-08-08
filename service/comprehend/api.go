@@ -11489,7 +11489,7 @@ type OutputDataConfig struct {
 	// When the topic detection job is finished, the service creates an output file
 	// in a directory specific to the job. The S3Uri field contains the location
 	// of the output file, called output.tar.gz. It is a compressed archive that
-	// contains the ouput of the operation.
+	// contains the output of the operation.
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`

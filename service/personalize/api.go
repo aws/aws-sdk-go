@@ -5536,7 +5536,7 @@ type CreateBatchInferenceJobInput struct {
 	// JobOutput is a required field
 	JobOutput *BatchInferenceJobOutput `locationName:"jobOutput" type:"structure" required:"true"`
 
-	// The number of recommendations to retreive.
+	// The number of recommendations to retrieve.
 	NumResults *int64 `locationName:"numResults" type:"integer"`
 
 	// The ARN of the Amazon Identity and Access Management role that has permissions
@@ -9590,7 +9590,7 @@ type ListBatchInferenceJobsOutput struct {
 	// A list containing information on each job that is returned.
 	BatchInferenceJobs []*BatchInferenceJobSummary `locationName:"batchInferenceJobs" type:"list"`
 
-	// The token to use to retreive the next page of results. The value is null
+	// The token to use to retrieve the next page of results. The value is null
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }

@@ -16178,7 +16178,7 @@ type ResourceAccessPolicy struct {
 	Permission *string `type:"string" enum:"Permission"`
 
 	// The ID of the resource. (This ID is assigned to the resource when you create
-	// the resource definiton.)
+	// the resource definition.)
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`

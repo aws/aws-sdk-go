@@ -37,7 +37,7 @@ const (
 	// ErrCodeEFSIOException for service response error code
 	// "EFSIOException".
 	//
-	// An error occured when reading from or writing to a connected file system.
+	// An error occurred when reading from or writing to a connected file system.
 	ErrCodeEFSIOException = "EFSIOException"
 
 	// ErrCodeEFSMountConnectivityException for service response error code

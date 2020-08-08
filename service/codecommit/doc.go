@@ -128,7 +128,7 @@
 //    states for a specified pull request.
 //
 //    * GetPullRequestOverrideState, which returns information about whether
-//    approval rules have been set aside (overriden) for a pull request, and
+//    approval rules have been set aside (overridden) for a pull request, and
 //    if so, the Amazon Resource Name (ARN) of the user or identity that overrode
 //    the rules and their requirements for the pull request.
 //

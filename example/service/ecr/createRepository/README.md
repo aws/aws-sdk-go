@@ -11,7 +11,7 @@ The example creates the repository name provided in the first parameter on defau
 go run -tags example createRepository.go <repo_name>
 ```
 
-To create a repository in a diferent region, set `AWS_REGION` env var.
+To create a repository in a different region, set `AWS_REGION` env var.
 
 ```sh
 AWS_REGION=us-west-2 go -tags example run createRepository.go <repo_name>

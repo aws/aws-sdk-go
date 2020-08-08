@@ -15023,7 +15023,7 @@ type InputLocation struct {
 
 	// Uniform Resource Identifier - This should be a path to a file accessible
 	// to the Live system (eg. a http:// URI) depending on the output type. For
-	// example, a RTMP destination should have a uri simliar to: "rtmp://fmsserver/live".
+	// example, a RTMP destination should have a uri similar to: "rtmp://fmsserver/live".
 	//
 	// Uri is a required field
 	Uri *string `locationName:"uri" type:"string" required:"true"`

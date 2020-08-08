@@ -1001,7 +1001,7 @@
     "PercentDone": {
       "base": null,
       "refs": {
-        "ProgressDetail$percentDone": "<p>Precentage of the step that is done. This currently only applies to the <code>Downloading/Extracting</code> step of the deployment. It is empty for other steps.</p>"
+        "ProgressDetail$percentDone": "<p>Percentage of the step that is done. This currently only applies to the <code>Downloading/Extracting</code> step of the deployment. It is empty for other steps.</p>"
       }
     },
     "Percentage": {

@@ -11,7 +11,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/ecr"
 )
 
-const DEAFULT_AWS_REGION = "us-east-1"
+const DEFAULT_AWS_REGION = "us-east-1"
 
 // This example deletes an ECR Repository
 //
@@ -30,7 +30,7 @@ func main() {
 		Force:          aws.Bool(false),
 		RepositoryName: aws.String(repoName),
 	}
-	
+
 	output, err := svc.DeleteRepository(input)
 	if err != nil {
 		fmt.Printf("\nError deleting the repo %v in region %v\n%v\n", repoName, aws.StringValue(config.Region), err.Error())
@@ -55,11 +55,11 @@ func getRepoNameArg() string {
 	return firstArg
 }
 
-// Returns the aws region from env var or default region defined in DEAFULT_AWS_REGION constant
+// Returns the aws region from env var or default region defined in DEFAULT_AWS_REGION constant
 func getAwsRegion() string {
 	awsRegion := os.Getenv("AWS_REGION")
 	if awsRegion != "" {
 		return awsRegion
 	}
-	return DEAFULT_AWS_REGION
+	return DEFAULT_AWS_REGION
 }

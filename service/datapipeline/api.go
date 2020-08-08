@@ -1117,7 +1117,7 @@ func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *request
 // If tasks are ready in the work queue, PollForTask returns a response immediately.
 // If no tasks are available in the queue, PollForTask uses long-polling and
 // holds on to a poll connection for up to a 90 seconds, during which time the
-// first newly scheduled task is handed to the task runner. To accomodate this,
+// first newly scheduled task is handed to the task runner. To accommodate this,
 // set the socket timeout in your task runner to 90 seconds. The task runner
 // should not call PollForTask again on the same workerGroup until it receives
 // a response, and this can take up to 90 seconds.
@@ -1842,7 +1842,7 @@ func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *req
 //
 // Task runners call SetTaskStatus to notify AWS Data Pipeline that a task is
 // completed and provide information about the final status. A task runner makes
-// this call regardless of whether the task was sucessful. A task runner does
+// this call regardless of whether the task was successful. A task runner does
 // not need to call SetTaskStatus for tasks that are canceled by the web service
 // during a call to ReportTaskProgress.
 //
@@ -4313,7 +4313,7 @@ func (s *ReportTaskRunnerHeartbeatOutput) SetTerminate(v bool) *ReportTaskRunner
 	return s
 }
 
-// A comparision that is used to determine whether a query should return this
+// A comparison that is used to determine whether a query should return this
 // object.
 type Selector struct {
 	_ struct{} `type:"structure"`

@@ -659,7 +659,7 @@ func (s *DimensionKeyDescription) SetTotal(v float64) *DimensionKeyDescription {
 type GetResourceMetricsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The date and time specifiying the end of the requested time series data.
+	// The date and time specifying the end of the requested time series data.
 	// The value specified is exclusive - data points less than (but not equal to)
 	// EndTime will be returned.
 	//
@@ -1006,7 +1006,7 @@ func (s *InvalidArgumentException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A time-ordered series of data points, correpsonding to a dimension of a Performance
+// A time-ordered series of data points, corresponding to a dimension of a Performance
 // Insights metric.
 type MetricKeyDataPoints struct {
 	_ struct{} `type:"structure"`

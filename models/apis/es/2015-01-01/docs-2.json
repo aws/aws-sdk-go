@@ -451,7 +451,7 @@
       }
     },
     "DisabledOperationException": {
-      "base": "<p>An error occured because the client wanted to access a not supported operation. Gives http status code of 409.</p>",
+      "base": "<p>An error occurred because the client wanted to access a not supported operation. Gives http status code of 409.</p>",
       "refs": {
       }
     },

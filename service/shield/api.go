@@ -83,7 +83,7 @@ func (c *Shield) AssociateDRTLogBucketRequest(input *AssociateDRTLogBucketInput)
 //   occur.
 //
 //   * NoAssociatedRoleException
-//   The ARN of the role that you specifed does not exist.
+//   The ARN of the role that you specified does not exist.
 //
 //   * LimitsExceededException
 //   Exception that indicates that the operation would exceed a limit.
@@ -634,7 +634,7 @@ func (c *Shield) CreateSubscriptionRequest(input *CreateSubscriptionInput) (req 
 //
 // Activates AWS Shield Advanced for an account.
 //
-// When you initally create a subscription, your subscription is set to be automatically
+// When you initially create a subscription, your subscription is set to be automatically
 // renewed at the end of the existing subscription period. You can change this
 // by submitting an UpdateSubscription request.
 //
@@ -1455,7 +1455,7 @@ func (c *Shield) DisassociateDRTLogBucketRequest(input *DisassociateDRTLogBucket
 //   occur.
 //
 //   * NoAssociatedRoleException
-//   The ARN of the role that you specifed does not exist.
+//   The ARN of the role that you specified does not exist.
 //
 //   * AccessDeniedForDependencyException
 //   In order to grant the necessary access to the DDoS Response Team (DRT), the
@@ -4516,7 +4516,7 @@ func (s *Mitigation) SetMitigationName(v string) *Mitigation {
 	return s
 }
 
-// The ARN of the role that you specifed does not exist.
+// The ARN of the role that you specified does not exist.
 type NoAssociatedRoleException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4851,7 +4851,7 @@ type Subscription struct {
 	// If ENABLED, the subscription will be automatically renewed at the end of
 	// the existing subscription period.
 	//
-	// When you initally create a subscription, AutoRenew is set to ENABLED. You
+	// When you initially create a subscription, AutoRenew is set to ENABLED. You
 	// can change this by submitting an UpdateSubscription request. If the UpdateSubscription
 	// request does not included a value for AutoRenew, the existing value for AutoRenew
 	// remains unchanged.
@@ -5132,7 +5132,7 @@ func (s UpdateEmergencyContactSettingsOutput) GoString() string {
 type UpdateSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
-	// When you initally create a subscription, AutoRenew is set to ENABLED. If
+	// When you initially create a subscription, AutoRenew is set to ENABLED. If
 	// ENABLED, the subscription will be automatically renewed at the end of the
 	// existing subscription period. You can change this by submitting an UpdateSubscription
 	// request. If the UpdateSubscription request does not included a value for

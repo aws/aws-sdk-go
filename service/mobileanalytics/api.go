@@ -170,7 +170,7 @@ type Event struct {
 	// This collection can be empty or the attribute object can be omitted.
 	Metrics map[string]*float64 `locationName:"metrics" type:"map"`
 
-	// The session the event occured within.
+	// The session the event occurred within.
 	Session *Session `locationName:"session" type:"structure"`
 
 	// The time the event occurred in ISO 8601 standard date time format. For example,

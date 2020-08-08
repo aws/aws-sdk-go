@@ -407,7 +407,7 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -982,7 +982,7 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -1396,7 +1396,7 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -1724,7 +1724,7 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -2044,7 +2044,7 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -2362,7 +2362,7 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -3427,7 +3427,7 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -4089,7 +4089,7 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -5049,7 +5049,7 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -5398,7 +5398,7 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -5722,7 +5722,7 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -6065,7 +6065,7 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -6623,7 +6623,7 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -7227,7 +7227,7 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -7551,7 +7551,7 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -8852,7 +8852,7 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -9226,7 +9226,7 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -11905,7 +11905,7 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -12244,7 +12244,7 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -12563,7 +12563,7 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -12877,7 +12877,7 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -13364,7 +13364,7 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //
 //      * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //      valid for a limited period of time. You must resubmit the request and
-//      generate a new verfication code.
+//      generate a new verification code.
 //
 //      * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      handshakes that you can send in one day.
@@ -14546,7 +14546,7 @@ func (s *ConcurrentModificationException) RequestID() string {
 //
 //    * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 //    valid for a limited period of time. You must resubmit the request and
-//    generate a new verfication code.
+//    generate a new verification code.
 //
 //    * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 //    handshakes that you can send in one day.

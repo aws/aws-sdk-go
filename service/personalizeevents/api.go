@@ -99,7 +99,7 @@ type Event struct {
 
 	// An ID associated with the event. If an event ID is not provided, Amazon Personalize
 	// generates a unique ID for the event. An event ID is not used as an input
-	// to the model. Amazon Personalize uses the event ID to distinquish unique
+	// to the model. Amazon Personalize uses the event ID to distinguish unique
 	// events. Any subsequent events after the first with the same event ID are
 	// not used in model training.
 	EventId *string `locationName:"eventId" min:"1" type:"string"`

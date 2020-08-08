@@ -1012,7 +1012,7 @@ func (c *ACM) RenewCertificateRequest(input *RenewCertificateInput) (req *reques
 
 // RenewCertificate API operation for AWS Certificate Manager.
 //
-// Renews an eligable ACM certificate. At this time, only exported private certificates
+// Renews an eligible ACM certificate. At this time, only exported private certificates
 // can be renewed with this operation. In order to renew your ACM PCA certificates
 // with ACM, you must first grant the ACM service principal permission to do
 // so (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaPermissions.html).

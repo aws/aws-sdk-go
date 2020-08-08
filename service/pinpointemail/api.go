@@ -5187,7 +5187,7 @@ func (s *CreateEmailIdentityInput) SetTags(v []*Tag) *CreateEmailIdentityInput {
 }
 
 // If the email identity is a domain, this object contains tokens that you can
-// use to create a set of CNAME records. To sucessfully verify your domain,
+// use to create a set of CNAME records. To successfully verify your domain,
 // you have to add these records to the DNS configuration for your domain.
 //
 // If the email identity is an email address, this object is empty.
@@ -6760,7 +6760,7 @@ type GetDedicatedIpInput struct {
 	_ struct{} `type:"structure"`
 
 	// The IP address that you want to obtain more information about. The value
-	// you specify has to be a dedicated IP address that's assocaited with your
+	// you specify has to be a dedicated IP address that's associated with your
 	// Amazon Pinpoint account.
 	//
 	// Ip is a required field

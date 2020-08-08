@@ -7086,7 +7086,7 @@ func (c *ConfigService) PutResourceConfigRequest(input *PutResourceConfigInput) 
 // resource provided in the request. This API does not change or remediate the
 // configuration of the resource.
 //
-// Write-only schema properites are not recorded as part of the published configuration
+// Write-only schema properties are not recorded as part of the published configuration
 // item.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -22657,7 +22657,7 @@ type SsmControls struct {
 
 	// The percentage of errors that are allowed before SSM stops running automations
 	// on non-compliant resources for that specific rule. You can specify a percentage
-	// of errors, for example 10%. If you do not specifiy a percentage, the default
+	// of errors, for example 10%. If you do not specify a percentage, the default
 	// is 50%. For example, if you set the ErrorPercentage to 40% for 10 non-compliant
 	// resources, then SSM stops running the automations when the fifth error is
 	// received.

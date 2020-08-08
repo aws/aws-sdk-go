@@ -2882,7 +2882,7 @@ type PutSessionOutput struct {
 	//    appropriate response to prompts from the service, or if the Lambda function
 	//    fails to fulfill the intent.
 	//
-	//    * Fulfilled - Conveys that the Lambda function has sucessfully fulfilled
+	//    * Fulfilled - Conveys that the Lambda function has successfully fulfilled
 	//    the intent.
 	//
 	//    * ReadyForFulfillment - Conveys that the client has to fulfill the intent.

@@ -1244,7 +1244,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An arbitary key/value pair used to add searchable metadata to secure tunnel
+// An arbitrary key/value pair used to add searchable metadata to secure tunnel
 // resources.
 type Tag struct {
 	_ struct{} `type:"structure"`

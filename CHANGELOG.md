@@ -6255,7 +6255,7 @@ Release v1.14.19 (2018-07-03)
   * Feature 1 - On-demand cluster release version - When Amazon Redshift releases a new cluster version, you can choose to upgrade to that version immediately instead of waiting until your next maintenance window. You can also choose to roll back to a previous version. The two new APIs added for managing cluster release version are - ModifyClusterDbRevision, DescribeClusterDbRevisions. Feature 2 - Upgradeable reserved instance - You can now exchange one Reserved Instance for a new Reserved Instance with no changes to the terms of your existing Reserved Instance (term, payment type, or number of nodes). The two new APIs added for managing these upgrades are - AcceptReservedNodeExchange, GetReservedNodeExchangeOfferings.
 
 ### SDK Enhancements
-* `private/model/api`: Add EventStream support over RPC protocl ([#1998](https://github.com/aws/aws-sdk-go/pull/1998))
+* `private/model/api`: Add EventStream support over RPC protocol ([#1998](https://github.com/aws/aws-sdk-go/pull/1998))
   * Adds support for EventStream over JSON PRC protocol. This adds support for the EventStream's initial-response event, EventStream headers, and EventStream modeled exceptions. Also replaces the hand written tests with generated tests for EventStream usage.
 
 Release v1.14.18 (2018-07-02)
@@ -6465,7 +6465,7 @@ Release v1.14.0 (2018-06-04)
 
 ### SDK Features
 * Add support for EventStream based APIs (S3 SelectObjectContent) ([#1941](https://github.com/aws/aws-sdk-go/pull/1941))
-  * Adds support for EventStream asynchronous APIs such as S3 SelectObjectContents API. This API allows your application to receiving multiple events asynchronously from the API response. Your application recieves these events from a channel on the API response.
+  * Adds support for EventStream asynchronous APIs such as S3 SelectObjectContents API. This API allows your application to receiving multiple events asynchronously from the API response. Your application receives these events from a channel on the API response.
   * See PR [#1941](https://github.com/aws/aws-sdk-go/pull/1941) for example.
   * Fixes [#1895](https://github.com/aws/aws-sdk-go/issues/1895)
 
@@ -9040,7 +9040,7 @@ Release v1.8.8 (2017-04-04)
 
 ### Service Client Updates
 * `service/cloudwatch`: Updates service API, documentation, and paginators
-  * Amazon Web Services announced the immediate availability of two additional alarm configuration rules for Amazon CloudWatch Alarms. The first rule is for configuring missing data treatment. Customers have the options to treat missing data as alarm threshold breached, alarm threshold not breached, maintain alarm state and the current default treatment. The second rule is for alarms based on percentiles metrics that can trigger unnecassarily if the percentile is calculated from a small number of samples. The new rule can treat percentiles with low sample counts as same as missing data. If the first rule is enabled, the same treatment will be applied when an alarm encounters a percentile with low sample counts.
+  * Amazon Web Services announced the immediate availability of two additional alarm configuration rules for Amazon CloudWatch Alarms. The first rule is for configuring missing data treatment. Customers have the options to treat missing data as alarm threshold breached, alarm threshold not breached, maintain alarm state and the current default treatment. The second rule is for alarms based on percentiles metrics that can trigger unnecessarily if the percentile is calculated from a small number of samples. The new rule can treat percentiles with low sample counts as same as missing data. If the first rule is enabled, the same treatment will be applied when an alarm encounters a percentile with low sample counts.
 
 Release v1.8.7 (2017-04-03)
 ===
@@ -9168,7 +9168,7 @@ SDK Features
 SDK Enhancements
 ---
 * `aws/signer/v4`: Adds support for unsigned payload signer config (#1130)
-  * Adds configuration option to the v4.Signer to specify the request's body should not be signed. This will only correclty function on services that support unsigned payload. e.g. S3, Glacier.
+  * Adds configuration option to the v4.Signer to specify the request's body should not be signed. This will only correctly function on services that support unsigned payload. e.g. S3, Glacier.
 
 SDK Bug Fixes
 ---

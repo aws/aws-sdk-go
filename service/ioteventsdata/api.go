@@ -75,7 +75,7 @@ func (c *IoTEventsData) BatchPutMessageRequest(input *BatchPutMessageInput) (req
 //   The request was invalid.
 //
 //   * InternalFailureException
-//   An internal failure occured.
+//   An internal failure occurred.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -164,7 +164,7 @@ func (c *IoTEventsData) BatchUpdateDetectorRequest(input *BatchUpdateDetectorInp
 //   The request was invalid.
 //
 //   * InternalFailureException
-//   An internal failure occured.
+//   An internal failure occurred.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -258,7 +258,7 @@ func (c *IoTEventsData) DescribeDetectorRequest(input *DescribeDetectorInput) (r
 //   The request could not be completed due to throttling.
 //
 //   * InternalFailureException
-//   An internal failure occured.
+//   An internal failure occurred.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -349,7 +349,7 @@ func (c *IoTEventsData) ListDetectorsRequest(input *ListDetectorsInput) (req *re
 //   The request could not be completed due to throttling.
 //
 //   * InternalFailureException
-//   An internal failure occured.
+//   An internal failure occurred.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -494,7 +494,7 @@ func (s *BatchPutMessageOutput) SetBatchPutMessageErrorEntries(v []*BatchPutMess
 	return s
 }
 
-// Information about the error that occured when attempting to update a detector.
+// Information about the error that occurred when attempting to update a detector.
 type BatchUpdateDetectorErrorEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -994,7 +994,7 @@ func (s *DetectorSummary) SetState(v *DetectorStateSummary) *DetectorSummary {
 	return s
 }
 
-// An internal failure occured.
+// An internal failure occurred.
 type InternalFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

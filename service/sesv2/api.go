@@ -10551,7 +10551,7 @@ type GetDedicatedIpInput struct {
 	_ struct{} `type:"structure"`
 
 	// The IP address that you want to obtain more information about. The value
-	// you specify has to be a dedicated IP address that's assocaited with your
+	// you specify has to be a dedicated IP address that's associated with your
 	// AWS account.
 	//
 	// Ip is a required field

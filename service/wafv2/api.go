@@ -4963,7 +4963,7 @@ func (s Body) GoString() string {
 // to web requests. The byte match statement provides the bytes to search for,
 // the location in requests that you want AWS WAF to search, and other settings.
 // The bytes to search for are typically a string that corresponds with ASCII
-// characters. In the AWS WAF console and the developer guide, this is refered
+// characters. In the AWS WAF console and the developer guide, this is referred
 // to as a string match statement.
 type ByteMatchStatement struct {
 	_ struct{} `type:"structure"`
@@ -11760,7 +11760,7 @@ type Statement struct {
 	// to web requests. The byte match statement provides the bytes to search for,
 	// the location in requests that you want AWS WAF to search, and other settings.
 	// The bytes to search for are typically a string that corresponds with ASCII
-	// characters. In the AWS WAF console and the developer guide, this is refered
+	// characters. In the AWS WAF console and the developer guide, this is referred
 	// to as a string match statement.
 	ByteMatchStatement *ByteMatchStatement `type:"structure"`
 

@@ -1463,7 +1463,7 @@ func (c *CloudHSMV2) UntagResourceWithContext(ctx aws.Context, input *UntagResou
 // objects contain the BackupId, BackupState, ClusterId, and CreateTimestamp
 // parameters. Backups that were copied into a destination region additionally
 // contain the CopyTimestamp, SourceBackup, SourceCluster, and SourceRegion
-// paramters. A backup that is pending deletion will include the DeleteTimestamp
+// parameters. A backup that is pending deletion will include the DeleteTimestamp
 // parameter.
 type Backup struct {
 	_ struct{} `type:"structure"`

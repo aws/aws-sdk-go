@@ -43,7 +43,7 @@ Message: second
 	Attempt: 0, Latency: 101.836442ms, Sign: 122.098µs, Send: 101.517516ms, Unmarshal: 191.31µs, WillRetry: false,
 		HTTP: Latency: 101.518147ms, ConnReused: true, GetConn: 38.265µs, WriteRequest: 178.058µs, WaitResponseFirstByte: 101.457147ms, ReadResponseHeader: 60.526µs,
 
-Message: thrid
+Message: third
 2020/07/21 15:39:10 Latency: 32.373919ms, Validate: 2.998µs, Build: 39.136µs, Attempts: 1,
 	Attempt: 0, Latency: 32.295677ms, Sign: 104.978µs, Send: 32.040306ms, Unmarshal: 146.096µs, WillRetry: false,
 		HTTP: Latency: 32.04078ms, ConnReused: true, GetConn: 33.36µs, WriteRequest: 166.508µs, WaitResponseFirstByte: 31.980933ms, ReadResponseHeader: 59.235µs,
