@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"reflect"
 	"strings"
 	"time"
@@ -263,7 +264,9 @@ func (u unmarshaler) unmarshalScalar(value reflect.Value, data interface{}, tag 
 			value.Set(reflect.ValueOf(&d))
 		case *time.Time:
 			// Time unmarshaled from a float64 can only be epoch seconds
-			t := time.Unix(int64(d), 0).UTC()
+			seconds, frac := math.Modf(d)
+			ms := math.Round(frac * math.Pow10(3)) // Convert fraction to milliseconds and the round the value
+			t := time.Unix(int64(seconds), int64(ms*math.Pow10(6))).UTC()
 			value.Set(reflect.ValueOf(&t))
 		default:
 			return fmt.Errorf("unsupported value: %v (%s)", value.Interface(), value.Type())

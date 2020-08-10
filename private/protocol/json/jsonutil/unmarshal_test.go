@@ -1,0 +1,73 @@
+// +build go1.7
+
+package jsonutil_test
+
+import (
+	"bytes"
+	"reflect"
+	"testing"
+	"time"
+
+	"github.com/aws/aws-sdk-go/private/protocol/json/jsonutil"
+)
+
+func TestUnmarshalJSON_Time(t *testing.T) {
+	type input struct {
+		TimeField *time.Time `locationName:"timeField"`
+	}
+
+	cases := map[string]struct {
+		JSON     string
+		Value    input
+		Expected input
+	}{
+		"seconds precision": {
+			JSON: `{"timeField":1597094942}`,
+			Expected: input{
+				TimeField: func() *time.Time {
+					dt := time.Date(2020, 8, 10, 21, 29, 02, 00, time.UTC)
+					return &dt
+				}(),
+			},
+		},
+		"exact milliseconds precision": {
+			JSON: `{"timeField":1597094942.123}`,
+			Expected: input{
+				TimeField: func() *time.Time {
+					dt := time.Date(2020, 8, 10, 21, 29, 02, int(123*time.Millisecond), time.UTC)
+					return &dt
+				}(),
+			},
+		},
+		"milliseconds precision round down": {
+			JSON: `{"timeField":1597094942.1234}`,
+			Expected: input{
+				TimeField: func() *time.Time {
+					dt := time.Date(2020, 8, 10, 21, 29, 02, int(123*time.Millisecond), time.UTC)
+					return &dt
+				}(),
+			},
+		},
+		"milliseconds precision round up": {
+			JSON: `{"timeField":1597094942.1235}`,
+			Expected: input{
+				TimeField: func() *time.Time {
+					dt := time.Date(2020, 8, 10, 21, 29, 02, int(124*time.Millisecond), time.UTC)
+					return &dt
+				}(),
+			},
+		},
+	}
+
+	for name, tt := range cases {
+		t.Run(name, func(t *testing.T) {
+			err := jsonutil.UnmarshalJSON(&tt.Value, bytes.NewReader([]byte(tt.JSON)))
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+			}
+			if e, a := tt.Expected, tt.Value; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
