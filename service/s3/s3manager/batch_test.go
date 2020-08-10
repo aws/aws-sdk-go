@@ -8,6 +8,7 @@ import (
 	"net/http/httptest"
 	"sort"
 	"strings"
+	"sync"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -846,6 +847,7 @@ func TestBatchUploadConcurrently(t *testing.T) {
 		"d",
 	}
 
+	var mutex = &sync.Mutex{}
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		urlParts := strings.Split(r.URL.String(), "/")
 
@@ -854,10 +856,11 @@ func TestBatchUploadConcurrently(t *testing.T) {
 			t.Error(err)
 		}
 
+		mutex.Lock()
 		received = append(received, struct{ bucket, key, reqBody string }{urlParts[1], urlParts[2], string(b)})
 		w.Write([]byte(payload[count]))
-
 		count++
+		mutex.Unlock()
 	}))
 	defer server.Close()
 
