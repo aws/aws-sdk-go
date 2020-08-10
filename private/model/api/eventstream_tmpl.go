@@ -49,6 +49,10 @@ const eventStreamAPITmplDef = `
 {{- $inputStream := $esapi.InputStream }}
 
 // {{ $esapi.Name }} provides the event stream handling for the {{ $.ExportedName }}.
+//
+// For testing and mocking the event stream this type should be initialized via
+// the New{{ $esapi.Name }} constructor function. Using the functional options
+// to pass in nested mock behavior.
 type {{ $esapi.Name }} struct {
 	{{- if $inputStream }}
 
@@ -95,11 +99,46 @@ type {{ $esapi.Name }} struct {
 	err       *eventstreamapi.OnceError
 }
 
-func new{{ $esapi.Name }}() *{{ $esapi.Name }} {
-	return &{{ $esapi.Name }} {
+// New{{ $esapi.Name }} initializes an {{ $esapi.Name }}.
+// This function should only be used for testing and mocking the {{ $esapi.Name }}
+// stream within your application.
+{{- if $inputStream }}
+//
+// The Writer member must be set before writing events to the stream.
+{{- end }}
+{{- if $outputStream }}
+//
+// The Reader member must be set before reading events from the stream.
+{{- end }}
+{{- if $esapi.Legacy }}
+//
+// The StreamCloser member should be set to the underlying io.Closer,
+// (e.g. http.Response.Body), that will be closed when the stream Close method
+// is called.
+{{- end }}
+//
+//   es := New{{ $esapi.Name }}(func(o *{{ $esapi.Name}}{
+{{- if $inputStream }}
+//       es.Writer = myMockStreamWriter
+{{- end }}
+{{- if $outputStream }}
+//       es.Reader = myMockStreamReader
+{{- end }}
+{{- if $esapi.Legacy }}
+//       es.StreamCloser = myMockStreamCloser
+{{- end }}
+//   })
+func New{{ $esapi.Name }}(opts ...func(*{{ $esapi.Name}})) *{{ $esapi.Name }} {
+	es := &{{ $esapi.Name }} {
 		done: make(chan struct{}),
 		err: eventstreamapi.NewOnceError(),
 	}
+
+	for _, fn := range opts {
+		fn(es)
+	}
+
+	return es
 }
 
 {{- if $esapi.Legacy }}
@@ -328,7 +367,7 @@ func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 {{- if $inputStream }}
 //
 // Will close the underlying EventStream writer, and no more events can be
-// sent. 
+// sent.
 {{- end }}
 {{- if $outputStream }}
 //

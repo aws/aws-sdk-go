@@ -222,7 +222,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 				)
 			{{- end }}
 
-			es := new{{ $esapi.Name }}()
+			es := New{{ $esapi.Name }}()
 			{{- if $esapi.Legacy }}
 				req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
 			{{- end }}
