@@ -2622,6 +2622,9 @@ const (
 	// SavingsPlanRateServiceCodeAmazonEcs is a SavingsPlanRateServiceCode enum value
 	SavingsPlanRateServiceCodeAmazonEcs = "AmazonECS"
 
+	// SavingsPlanRateServiceCodeAmazonEks is a SavingsPlanRateServiceCode enum value
+	SavingsPlanRateServiceCodeAmazonEks = "AmazonEKS"
+
 	// SavingsPlanRateServiceCodeAwslambda is a SavingsPlanRateServiceCode enum value
 	SavingsPlanRateServiceCodeAwslambda = "AWSLambda"
 )

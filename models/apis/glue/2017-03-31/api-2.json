@@ -3245,7 +3245,8 @@
         "Name":{"shape":"NameString"},
         "Description":{"shape":"GenericString"},
         "DefaultRunProperties":{"shape":"WorkflowRunProperties"},
-        "Tags":{"shape":"TagsMap"}
+        "Tags":{"shape":"TagsMap"},
+        "MaxConcurrentRuns":{"shape":"NullableInteger"}
       }
     },
     "CreateWorkflowResponse":{
@@ -6757,7 +6758,8 @@
       "members":{
         "Name":{"shape":"NameString"},
         "Description":{"shape":"GenericString"},
-        "DefaultRunProperties":{"shape":"WorkflowRunProperties"}
+        "DefaultRunProperties":{"shape":"WorkflowRunProperties"},
+        "MaxConcurrentRuns":{"shape":"NullableInteger"}
       }
     },
     "UpdateWorkflowResponse":{
@@ -6853,7 +6855,8 @@
         "CreatedOn":{"shape":"TimestampValue"},
         "LastModifiedOn":{"shape":"TimestampValue"},
         "LastRun":{"shape":"WorkflowRun"},
-        "Graph":{"shape":"WorkflowGraph"}
+        "Graph":{"shape":"WorkflowGraph"},
+        "MaxConcurrentRuns":{"shape":"NullableInteger"}
       }
     },
     "WorkflowGraph":{
@@ -6879,6 +6882,7 @@
         "StartedOn":{"shape":"TimestampValue"},
         "CompletedOn":{"shape":"TimestampValue"},
         "Status":{"shape":"WorkflowRunStatus"},
+        "ErrorMessage":{"shape":"ErrorString"},
         "Statistics":{"shape":"WorkflowRunStatistics"},
         "Graph":{"shape":"WorkflowGraph"}
       }
@@ -6905,7 +6909,8 @@
         "RUNNING",
         "COMPLETED",
         "STOPPING",
-        "STOPPED"
+        "STOPPED",
+        "ERROR"
       ]
     },
     "WorkflowRuns":{

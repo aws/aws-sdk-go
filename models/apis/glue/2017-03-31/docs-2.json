@@ -103,7 +103,7 @@
     "PutResourcePolicy": "<p>Sets the Data Catalog resource policy for access control.</p>",
     "PutWorkflowRunProperties": "<p>Puts the specified workflow run properties for the given workflow run. If a property already exists for the specified run, then it overrides the value otherwise adds the property to existing properties.</p>",
     "ResetJobBookmark": "<p>Resets a bookmark entry.</p>",
-    "ResumeWorkflowRun": "<p>Restarts any completed nodes in a workflow run and resumes the run execution.</p>",
+    "ResumeWorkflowRun": "<p>Restarts selected nodes of a previous partially completed workflow run and resumes the workflow run. The selected nodes and all nodes that are downstream from the selected nodes are run.</p>",
     "SearchTables": "<p>Searches a set of tables based on properties in the table metadata as well as on the parent database. You can search against text or filter conditions. </p> <p>You can only get tables that you have access to based on the security policies defined in Lake Formation. You need at least a read-only access to the table for it to be returned. If you do not have access to all the columns in the table, these columns will not be searched against when returning the list of tables back to you. If you have access to the columns but not the data in the columns, those columns and the associated metadata for those columns will be included in the search. </p>",
     "StartCrawler": "<p>Starts a crawl using the specified crawler, regardless of what is scheduled. If the crawler is already running, returns a <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-exceptions.html#aws-glue-api-exceptions-CrawlerRunningException\">CrawlerRunningException</a>.</p>",
     "StartCrawlerSchedule": "<p>Changes the schedule state of the specified crawler to <code>SCHEDULED</code>, unless the crawler is already running or the schedule state is already <code>SCHEDULED</code>.</p>",
@@ -1545,7 +1545,8 @@
     "ErrorString": {
       "base": null,
       "refs": {
-        "JobRun$ErrorMessage": "<p>An error message associated with this job run.</p>"
+        "JobRun$ErrorMessage": "<p>An error message associated with this job run.</p>",
+        "WorkflowRun$ErrorMessage": "<p>This error message describes any error that may have occurred in starting the workflow run. Currently the only error message is \"Concurrent runs exceeded for workflow: <code>foo</code>.\"</p>"
       }
     },
     "EvaluationMetrics": {
@@ -2508,8 +2509,8 @@
     "JobRunState": {
       "base": null,
       "refs": {
-        "Condition$State": "<p>The condition state. Currently, the values supported are <code>SUCCEEDED</code>, <code>STOPPED</code>, <code>TIMEOUT</code>, and <code>FAILED</code>.</p>",
-        "JobRun$JobRunState": "<p>The current state of the job run.</p>"
+        "Condition$State": "<p>The condition state. Currently, the only job states that a trigger can listen for are <code>SUCCEEDED</code>, <code>STOPPED</code>, <code>FAILED</code>, and <code>TIMEOUT</code>. The only crawler states that a trigger can listen for are <code>SUCCEEDED</code>, <code>FAILED</code>, and <code>CANCELLED</code>.</p>",
+        "JobRun$JobRunState": "<p>The current state of the job run. For more information about the statuses of jobs that have terminated abnormally, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/job-run-statuses.html\">AWS Glue Job Run Statuses</a>.</p>"
       }
     },
     "JobUpdate": {
@@ -3047,7 +3048,7 @@
     "NodeIdList": {
       "base": null,
       "refs": {
-        "ResumeWorkflowRunRequest$NodeIds": "<p>A list of the node IDs for the nodes you want to restart. The nodes that are to be restarted must have an execution attempt in the original run.</p>",
+        "ResumeWorkflowRunRequest$NodeIds": "<p>A list of the node IDs for the nodes you want to restart. The nodes that are to be restarted must have a run attempt in the original run.</p>",
         "ResumeWorkflowRunResponse$NodeIds": "<p>A list of the node IDs for the nodes that were actually restarted.</p>"
       }
     },
@@ -3162,6 +3163,7 @@
         "CreateJobRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
         "CreateMLTransformRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when this task runs.</p> <p>If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and vice versa).</p>",
         "CreateMLTransformRequest$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>",
+        "CreateWorkflowRequest$MaxConcurrentRuns": "<p>You can use this parameter to prevent unwanted multiple updates to data, to control costs, or in some cases, to prevent exceeding the maximum number of concurrent runs of any of the component jobs. If you leave this parameter blank, there is no limit to the number of concurrent workflow runs.</p>",
         "DevEndpoint$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated to the development endpoint.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
         "GetMLTransformResponse$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when this task runs.</p>",
         "GetMLTransformResponse$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>",
@@ -3172,7 +3174,9 @@
         "MLTransform$MaxRetries": "<p>The maximum number of times to retry after an <code>MLTaskRun</code> of the machine learning transform fails.</p>",
         "StartJobRunRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
         "UpdateMLTransformRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when this task runs.</p>",
-        "UpdateMLTransformRequest$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>"
+        "UpdateMLTransformRequest$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>",
+        "UpdateWorkflowRequest$MaxConcurrentRuns": "<p>You can use this parameter to prevent unwanted multiple updates to data, to control costs, or in some cases, to prevent exceeding the maximum number of concurrent runs of any of the component jobs. If you leave this parameter blank, there is no limit to the number of concurrent workflow runs.</p>",
+        "Workflow$MaxConcurrentRuns": "<p>You can use this parameter to prevent unwanted multiple updates to data, to control costs, or in some cases, to prevent exceeding the maximum number of concurrent runs of any of the component jobs. If you leave this parameter blank, there is no limit to the number of concurrent workflow runs.</p>"
       }
     },
     "OperationTimeoutException": {
