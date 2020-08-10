@@ -161,7 +161,7 @@
       "base": "<p>Specifies capacity units configured for your index. You can add and remove capacity units to tune an index to your requirements.</p>",
       "refs": {
         "DescribeIndexResponse$CapacityUnits": "<p>For enterprise edtion indexes, you can choose to use additional capacity to meet the needs of your application. This contains the capacity units used for the index. A 0 for the query capacity or the storage capacity indicates that the index is using the default capacity for the index.</p>",
-        "UpdateIndexRequest$CapacityUnits": "<p>Sets the number of addtional storage and query capacity units that should be used by the index. You can change the capacity of the index up to 5 times per day.</p> <p>If you are using extra storage units, you can't reduce the storage capacity below that required to meet the storage needs for your index.</p>"
+        "UpdateIndexRequest$CapacityUnits": "<p>Sets the number of additional storage and query capacity units that should be used by the index. You can change the capacity of the index up to 5 times per day.</p> <p>If you are using extra storage units, you can't reduce the storage capacity below that required to meet the storage needs for your index.</p>"
       }
     },
     "ChangeDetectingColumns": {
@@ -270,7 +270,7 @@
       "refs": {
         "DataSourceToIndexFieldMapping$DataSourceFieldName": "<p>The name of the column or attribute in the data source.</p>",
         "SalesforceChatterFeedConfiguration$DocumentDataFieldName": "<p>The name of the column in the Salesforce FeedItem table that contains the content to index. Typically this is the <code>Body</code> column.</p>",
-        "SalesforceChatterFeedConfiguration$DocumentTitleFieldName": "<p>The name of the column in the Salesforce FeedItem table that contains the title of the document. This is typically the <code>Title</code> collumn.</p>",
+        "SalesforceChatterFeedConfiguration$DocumentTitleFieldName": "<p>The name of the column in the Salesforce FeedItem table that contains the title of the document. This is typically the <code>Title</code> column.</p>",
         "SalesforceCustomKnowledgeArticleTypeConfiguration$DocumentDataFieldName": "<p>The name of the field in the custom knowledge article that contains the document data to index.</p>",
         "SalesforceCustomKnowledgeArticleTypeConfiguration$DocumentTitleFieldName": "<p>The name of the field in the custom knowledge article that contains the document title.</p>",
         "SalesforceStandardKnowledgeArticleTypeConfiguration$DocumentDataFieldName": "<p>The name of the field that contains the document data to index.</p>",
@@ -1238,9 +1238,9 @@
       }
     },
     "SalesforceKnowledgeArticleConfiguration": {
-      "base": "<p>Specifies configuration information for the knowlege article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both </p>",
+      "base": "<p>Specifies configuration information for the knowledge article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both </p>",
       "refs": {
-        "SalesforceConfiguration$KnowledgeArticleConfiguration": "<p>Specifies configuration information for the knowlege article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both.</p>"
+        "SalesforceConfiguration$KnowledgeArticleConfiguration": "<p>Specifies configuration information for the knowledge article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both.</p>"
       }
     },
     "SalesforceKnowledgeArticleState": {

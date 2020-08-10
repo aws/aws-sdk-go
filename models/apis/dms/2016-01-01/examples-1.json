@@ -1066,8 +1066,8 @@
           }
         },
         "description": "Tests the connection between the replication instance and the endpoint.",
-        "id": "test-conection-1481763017636",
-        "title": "Test conection"
+        "id": "test-connection-1481763017636",
+        "title": "Test connection"
       }
     ]
   }

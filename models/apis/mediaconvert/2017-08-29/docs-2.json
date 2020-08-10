@@ -805,9 +805,9 @@
       }
     },
     "DolbyVisionLevel6Mode": {
-      "base": "Use Dolby Vision Mode to choose how the service will handle Dolby Vision MaxCLL and MaxFALL properies.",
+      "base": "Use Dolby Vision Mode to choose how the service will handle Dolby Vision MaxCLL and MaxFALL properties.",
       "refs": {
-        "DolbyVision$L6Mode": "Use Dolby Vision Mode to choose how the service will handle Dolby Vision MaxCLL and MaxFALL properies."
+        "DolbyVision$L6Mode": "Use Dolby Vision Mode to choose how the service will handle Dolby Vision MaxCLL and MaxFALL properties."
       }
     },
     "DolbyVisionProfile": {
@@ -2171,9 +2171,9 @@
       }
     },
     "Mpeg2RateControlMode": {
-      "base": "Use Rate control mode (Mpeg2RateControlMode) to specifiy whether the bitrate is variable (vbr) or constant (cbr).",
+      "base": "Use Rate control mode (Mpeg2RateControlMode) to specify whether the bitrate is variable (vbr) or constant (cbr).",
       "refs": {
-        "Mpeg2Settings$RateControlMode": "Use Rate control mode (Mpeg2RateControlMode) to specifiy whether the bitrate is variable (vbr) or constant (cbr)."
+        "Mpeg2Settings$RateControlMode": "Use Rate control mode (Mpeg2RateControlMode) to specify whether the bitrate is variable (vbr) or constant (cbr)."
       }
     },
     "Mpeg2SceneChangeDetect": {
@@ -2207,9 +2207,9 @@
       }
     },
     "Mpeg2Telecine": {
-      "base": "Only use Telecine (Mpeg2Telecine) when you set Framerate (Framerate) to 29.970. Set Telecine (Mpeg2Telecine) to Hard (hard) to produce a 29.97i output from a 23.976 input. Set it to Soft (soft) to produce 23.976 output and leave converstion to the player.",
+      "base": "Only use Telecine (Mpeg2Telecine) when you set Framerate (Framerate) to 29.970. Set Telecine (Mpeg2Telecine) to Hard (hard) to produce a 29.97i output from a 23.976 input. Set it to Soft (soft) to produce 23.976 output and leave conversion to the player.",
       "refs": {
-        "Mpeg2Settings$Telecine": "Only use Telecine (Mpeg2Telecine) when you set Framerate (Framerate) to 29.970. Set Telecine (Mpeg2Telecine) to Hard (hard) to produce a 29.97i output from a 23.976 input. Set it to Soft (soft) to produce 23.976 output and leave converstion to the player."
+        "Mpeg2Settings$Telecine": "Only use Telecine (Mpeg2Telecine) when you set Framerate (Framerate) to 29.970. Set Telecine (Mpeg2Telecine) to Hard (hard) to produce a 29.97i output from a 23.976 input. Set it to Soft (soft) to produce 23.976 output and leave conversion to the player."
       }
     },
     "Mpeg2TemporalAdaptiveQuantization": {
@@ -2420,9 +2420,9 @@
       }
     },
     "ProresCodecProfile": {
-      "base": "Use Profile (ProResCodecProfile) to specifiy the type of Apple ProRes codec to use for this output.",
+      "base": "Use Profile (ProResCodecProfile) to specify the type of Apple ProRes codec to use for this output.",
       "refs": {
-        "ProresSettings$CodecProfile": "Use Profile (ProResCodecProfile) to specifiy the type of Apple ProRes codec to use for this output."
+        "ProresSettings$CodecProfile": "Use Profile (ProResCodecProfile) to specify the type of Apple ProRes codec to use for this output."
       }
     },
     "ProresFramerateControl": {
@@ -2462,9 +2462,9 @@
       }
     },
     "ProresTelecine": {
-      "base": "Only use Telecine (ProresTelecine) when you set Framerate (Framerate) to 29.970. Set Telecine (ProresTelecine) to Hard (hard) to produce a 29.97i output from a 23.976 input. Set it to Soft (soft) to produce 23.976 output and leave converstion to the player.",
+      "base": "Only use Telecine (ProresTelecine) when you set Framerate (Framerate) to 29.970. Set Telecine (ProresTelecine) to Hard (hard) to produce a 29.97i output from a 23.976 input. Set it to Soft (soft) to produce 23.976 output and leave conversion to the player.",
       "refs": {
-        "ProresSettings$Telecine": "Only use Telecine (ProresTelecine) when you set Framerate (Framerate) to 29.970. Set Telecine (ProresTelecine) to Hard (hard) to produce a 29.97i output from a 23.976 input. Set it to Soft (soft) to produce 23.976 output and leave converstion to the player."
+        "ProresSettings$Telecine": "Only use Telecine (ProresTelecine) when you set Framerate (Framerate) to 29.970. Set Telecine (ProresTelecine) to Hard (hard) to produce a 29.97i output from a 23.976 input. Set it to Soft (soft) to produce 23.976 output and leave conversion to the player."
       }
     },
     "Queue": {
@@ -3396,7 +3396,7 @@
         "ProresSettings$ParDenominator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parDenominator is 33.",
         "ProresSettings$ParNumerator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parNumerator is 40.",
         "TrackSourceSettings$TrackNumber": "Use this setting to select a single captions track from a source. Track numbers correspond to the order in the captions source file. For IMF sources, track numbering is based on the order that the captions appear in the CPL. For example, use 1 to select the captions asset that is listed first in the CPL. To include more than one captions track in your job outputs, create multiple input captions selectors. Specify one track per selector.",
-        "VideoSelector$Pid": "Use PID (Pid) to select specific video data from an input file. Specify this value as an integer; the system automatically converts it to the hexidecimal value. For example, 257 selects PID 0x101. A PID, or packet identifier, is an identifier for a set of data in an MPEG-2 transport stream container.",
+        "VideoSelector$Pid": "Use PID (Pid) to select specific video data from an input file. Specify this value as an integer; the system automatically converts it to the hexadecimal value. For example, 257 selects PID 0x101. A PID, or packet identifier, is an identifier for a set of data in an MPEG-2 transport stream container.",
         "Vp8Settings$FramerateDenominator": "When you use the API for transcode jobs that use frame rate conversion, specify the frame rate as a fraction. For example,  24000 / 1001 = 23.976 fps. Use FramerateDenominator to specify the denominator of this fraction. In this example, use 1001 for the value of FramerateDenominator. When you use the console for transcode jobs that use frame rate conversion, provide the value as a decimal number for Framerate. In this example, specify 23.976.",
         "Vp8Settings$FramerateNumerator": "When you use the API for transcode jobs that use frame rate conversion, specify the frame rate as a fraction. For example,  24000 / 1001 = 23.976 fps. Use FramerateNumerator to specify the numerator of this fraction. In this example, use 24000 for the value of FramerateNumerator. When you use the console for transcode jobs that use frame rate conversion, provide the value as a decimal number for Framerate. In this example, specify 23.976.",
         "Vp8Settings$ParDenominator": "Required when you set Pixel aspect ratio (parControl) to SPECIFIED. On the console, this corresponds to any value other than Follow source. When you specify an output pixel aspect ratio (PAR) that is different from your input video PAR, provide your output PAR as a ratio. For example, for D1/DV NTSC widescreen, you would specify the ratio 40:33. In this example, the value for parDenominator is 33.",
@@ -4020,7 +4020,7 @@
     "__stringMin0": {
       "base": null,
       "refs": {
-        "Output$Preset": "Use Preset (Preset) to specifiy a preset for your transcoding settings. Provide the system or custom preset name. You can specify either Preset (Preset) or Container settings (ContainerSettings), but not both."
+        "Output$Preset": "Use Preset (Preset) to specify a preset for your transcoding settings. Provide the system or custom preset name. You can specify either Preset (Preset) or Container settings (ContainerSettings), but not both."
       }
     },
     "__stringMin1": {
@@ -4171,7 +4171,7 @@
     "__stringPatternAZaZ0932": {
       "base": null,
       "refs": {
-        "StaticKeyProvider$StaticKeyValue": "Relates to DRM implementation. Use a 32-character hexidecimal string to specify Key Value (StaticKeyValue)."
+        "StaticKeyProvider$StaticKeyValue": "Relates to DRM implementation. Use a 32-character hexadecimal string to specify Key Value (StaticKeyValue)."
       }
     },
     "__stringPatternAZaZ23AZaZ": {

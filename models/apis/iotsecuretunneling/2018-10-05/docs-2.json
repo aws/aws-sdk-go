@@ -163,7 +163,7 @@
       }
     },
     "Tag": {
-      "base": "<p>An arbitary key/value pair used to add searchable metadata to secure tunnel resources.</p>",
+      "base": "<p>An arbitrary key/value pair used to add searchable metadata to secure tunnel resources.</p>",
       "refs": {
         "TagList$member": null
       }
