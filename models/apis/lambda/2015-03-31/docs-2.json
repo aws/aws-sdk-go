@@ -318,7 +318,7 @@
       }
     },
     "EFSIOException": {
-      "base": "<p>An error occured when reading from or writing to a connected file system.</p>",
+      "base": "<p>An error occurred when reading from or writing to a connected file system.</p>",
       "refs": {
       }
     },
