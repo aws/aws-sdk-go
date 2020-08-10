@@ -1086,7 +1086,7 @@
       "base": "<p>An IPv4 address.</p>",
       "refs": {
         "DedicatedIp$Ip": "<p>An IPv4 address.</p>",
-        "GetDedicatedIpRequest$Ip": "<p>The IP address that you want to obtain more information about. The value you specify has to be a dedicated IP address that's associated with your AWS account.</p>",
+        "GetDedicatedIpRequest$Ip": "<p>The IP address that you want to obtain more information about. The value you specify has to be a dedicated IP address that's assocaited with your AWS account.</p>",
         "IpList$member": null,
         "PutDedicatedIpInPoolRequest$Ip": "<p>The IP address that you want to move to the dedicated IP pool. The value you specify has to be a dedicated IP address that's associated with your AWS account.</p>",
         "PutDedicatedIpWarmupAttributesRequest$Ip": "<p>The dedicated IP address that you want to update the warm-up attributes for.</p>"

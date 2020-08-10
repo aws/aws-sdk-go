@@ -378,7 +378,7 @@
       }
     },
     "AutoMLCandidate": {
-      "base": "<p>An AutoPilot job will return recommendations, or candidates. Each candidate has further details about the steps involed, and the status.</p>",
+      "base": "<p>An AutoPilot job will return recommendations, or candidates. Each candidate has futher details about the steps involed, and the status.</p>",
       "refs": {
         "AutoMLCandidates$member": null,
         "DescribeAutoMLJobResponse$BestCandidate": "<p>Returns the job's BestCandidate.</p>"
@@ -952,7 +952,7 @@
     "CompilerOptions": {
       "base": null,
       "refs": {
-        "OutputConfig$CompilerOptions": "<p>Specifies additional parameters for compiler options in JSON format. The compiler options are <code>TargetPlatform</code> specific. It is required for NVIDIA accelerators and highly recommended for CPU compilation. For any other cases, it is optional to specify <code>CompilerOptions.</code> </p> <ul> <li> <p> <code>CPU</code>: Compilation for CPU supports the following compiler options.</p> <ul> <li> <p> <code>mcpu</code>: CPU micro-architecture. For example, <code>{'mcpu': 'skylake-avx512'}</code> </p> </li> <li> <p> <code>mattr</code>: CPU flags. For example, <code>{'mattr': ['+neon', '+vfpv4']}</code> </p> </li> </ul> </li> <li> <p> <code>ARM</code>: Details of ARM CPU compilations.</p> <ul> <li> <p> <code>NEON</code>: NEON is an implementation of the Advanced SIMD extension used in ARMv7 processors.</p> <p>For example, add <code>{'mattr': ['+neon']}</code> to the compiler options if compiling for ARM 32-bit platform with the NEON support.</p> </li> </ul> </li> <li> <p> <code>NVIDIA</code>: Compilation for NVIDIA GPU supports the following compiler options.</p> <ul> <li> <p> <code>gpu_code</code>: Specifies the targeted architecture.</p> </li> <li> <p> <code>trt-ver</code>: Specifies the TensorRT versions in x.y.z. format.</p> </li> <li> <p> <code>cuda-ver</code>: Specifies the CUDA version in x.y format.</p> </li> </ul> <p>For example, <code>{'gpu-code': 'sm_72', 'trt-ver': '6.0.1', 'cuda-ver': '10.1'}</code> </p> </li> <li> <p> <code>ANDROID</code>: Compilation for the Android OS supports the following compiler options:</p> <ul> <li> <p> <code>ANDROID_PLATFORM</code>: Specifies the Android API levels. Available levels range from 21 to 29. For example, <code>{'ANDROID_PLATFORM': 28}</code>.</p> </li> <li> <p> <code>mattr</code>: Add <code>{'mattr': ['+neon']}</code> to compiler options if compiling for ARM 32-bit platform with NEON support.</p> </li> </ul> </li> </ul>"
+        "OutputConfig$CompilerOptions": "<p>Specifies additional parameters for compiler options in JSON format. The compiler options are <code>TargetPlatform</code> specific. It is required for NVIDIA accelerators and highly recommended for CPU compliations. For any other cases, it is optional to specify <code>CompilerOptions.</code> </p> <ul> <li> <p> <code>CPU</code>: Compilation for CPU supports the following compiler options.</p> <ul> <li> <p> <code>mcpu</code>: CPU micro-architecture. For example, <code>{'mcpu': 'skylake-avx512'}</code> </p> </li> <li> <p> <code>mattr</code>: CPU flags. For example, <code>{'mattr': ['+neon', '+vfpv4']}</code> </p> </li> </ul> </li> <li> <p> <code>ARM</code>: Details of ARM CPU compilations.</p> <ul> <li> <p> <code>NEON</code>: NEON is an implementation of the Advanced SIMD extension used in ARMv7 processors.</p> <p>For example, add <code>{'mattr': ['+neon']}</code> to the compiler options if compiling for ARM 32-bit platform with the NEON support.</p> </li> </ul> </li> <li> <p> <code>NVIDIA</code>: Compilation for NVIDIA GPU supports the following compiler options.</p> <ul> <li> <p> <code>gpu_code</code>: Specifies the targeted architecture.</p> </li> <li> <p> <code>trt-ver</code>: Specifies the TensorRT versions in x.y.z. format.</p> </li> <li> <p> <code>cuda-ver</code>: Specifies the CUDA version in x.y format.</p> </li> </ul> <p>For example, <code>{'gpu-code': 'sm_72', 'trt-ver': '6.0.1', 'cuda-ver': '10.1'}</code> </p> </li> <li> <p> <code>ANDROID</code>: Compilation for the Android OS supports the following compiler options:</p> <ul> <li> <p> <code>ANDROID_PLATFORM</code>: Specifies the Android API levels. Available levels range from 21 to 29. For example, <code>{'ANDROID_PLATFORM': 28}</code>.</p> </li> <li> <p> <code>mattr</code>: Add <code>{'mattr': ['+neon']}</code> to compiler options if compiling for ARM 32-bit platform with NEON support.</p> </li> </ul> </li> </ul>"
       }
     },
     "CompressionType": {
@@ -2164,7 +2164,7 @@
         "EndpointSummary$EndpointName": "<p>The name of the endpoint.</p>",
         "ListMonitoringExecutionsRequest$EndpointName": "<p>Name of a specific endpoint to fetch jobs for.</p>",
         "ListMonitoringSchedulesRequest$EndpointName": "<p>Name of a specific endpoint to fetch schedules for.</p>",
-        "MonitoringExecutionSummary$EndpointName": "<p>The name of the endpoint used to run the monitoring job.</p>",
+        "MonitoringExecutionSummary$EndpointName": "<p>The name of teh endpoint used to run the monitoring job.</p>",
         "MonitoringScheduleSummary$EndpointName": "<p>The name of the endpoint using the monitoring schedule.</p>",
         "UpdateEndpointInput$EndpointName": "<p>The name of the endpoint whose configuration you want to update.</p>",
         "UpdateEndpointWeightsAndCapacitiesInput$EndpointName": "<p>The name of an existing Amazon SageMaker endpoint.</p>"
@@ -2504,7 +2504,7 @@
       "base": null,
       "refs": {
         "CreateFlowDefinitionResponse$FlowDefinitionArn": "<p>The Amazon Resource Name (ARN) of the flow definition you create.</p>",
-        "DescribeFlowDefinitionResponse$FlowDefinitionArn": "<p>The Amazon Resource Name (ARN) of the flow definition.</p>",
+        "DescribeFlowDefinitionResponse$FlowDefinitionArn": "<p>The Amazon Resource Name (ARN) of the flow defintion.</p>",
         "FlowDefinitionSummary$FlowDefinitionArn": "<p>The Amazon Resource Name (ARN) of the flow definition.</p>"
       }
     },
@@ -2638,7 +2638,7 @@
     "Groups": {
       "base": null,
       "refs": {
-        "OidcMemberDefinition$Groups": "<p>A list of comma separated strings that identifies user groups in your OIDC IdP. Each user group is made up of a group of private workers.</p>"
+        "OidcMemberDefinition$Groups": "<p>A list of comma seperated strings that identifies user groups in your OIDC IdP. Each user group is made up of a group of private workers.</p>"
       }
     },
     "HookParameters": {
@@ -3794,7 +3794,7 @@
       }
     },
     "ModelArtifacts": {
-      "base": "<p>Provides information about the location that is configured for storing model artifacts. </p> <p>Model artifacts are the output that results from training a model, and typically consist of trained parameters, a model definition that desribes how to compute inferences, and other metadata.</p>",
+      "base": "<p>Provides information about the location that is configured for storing model artifacts. </p> <p>Model artifacts are the output that results from training a model, and typically consist of trained parameters, a model defintion that desribes how to compute inferences, and other metadata.</p>",
       "refs": {
         "DescribeCompilationJobResponse$ModelArtifacts": "<p>Information about the location in Amazon S3 that has been configured for storing the model artifacts used in the compilation job.</p>",
         "DescribeTrainingJobResponse$ModelArtifacts": "<p>Information about the Amazon S3 location that is configured for storing model artifacts. </p>",
@@ -4802,7 +4802,7 @@
     "ProcessingS3InputMode": {
       "base": null,
       "refs": {
-        "EndpointInput$S3InputMode": "<p>Whether the <code>Pipe</code> or <code>File</code> is used as the input mode for transferring data for the monitoring job. <code>Pipe</code> mode is recommended for large datasets. <code>File</code> mode is useful for small files that fit in memory. Defaults to <code>File</code>.</p>",
+        "EndpointInput$S3InputMode": "<p>Whether the <code>Pipe</code> or <code>File</code> is used as the input mode for transfering data for the monitoring job. <code>Pipe</code> mode is recommended for large datasets. <code>File</code> mode is useful for small files that fit in memory. Defaults to <code>File</code>.</p>",
         "ProcessingS3Input$S3InputMode": "<p>Whether to use <code>File</code> or <code>Pipe</code> input mode. In <code>File</code> mode, Amazon SageMaker copies the data from the input source onto the local Amazon Elastic Block Store (Amazon EBS) volumes before starting your training algorithm. This is the most commonly used input mode. In <code>Pipe</code> mode, Amazon SageMaker streams input data from the source directly to your algorithm without using the EBS volume.</p>"
       }
     },

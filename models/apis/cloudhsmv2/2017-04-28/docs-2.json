@@ -18,7 +18,7 @@
   },
   "shapes": {
     "Backup": {
-      "base": "<p>Contains information about a backup of an AWS CloudHSM cluster. All backup objects contain the BackupId, BackupState, ClusterId, and CreateTimestamp parameters. Backups that were copied into a destination region additionally contain the CopyTimestamp, SourceBackup, SourceCluster, and SourceRegion parameters. A backup that is pending deletion will include the DeleteTimestamp parameter.</p>",
+      "base": "<p>Contains information about a backup of an AWS CloudHSM cluster. All backup objects contain the BackupId, BackupState, ClusterId, and CreateTimestamp parameters. Backups that were copied into a destination region additionally contain the CopyTimestamp, SourceBackup, SourceCluster, and SourceRegion paramters. A backup that is pending deletion will include the DeleteTimestamp parameter.</p>",
       "refs": {
         "Backups$member": null,
         "DeleteBackupResponse$Backup": "<p>Information on the <code>Backup</code> object deleted.</p>",

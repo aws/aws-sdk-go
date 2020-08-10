@@ -396,7 +396,7 @@
         "GetDeploymentRequest$ApplicationId": "<p>The ID of the application that includes the deployment you want to get. </p>",
         "GetDeploymentRequest$EnvironmentId": "<p>The ID of the environment that includes the deployment you want to get. </p>",
         "GetEnvironmentRequest$ApplicationId": "<p>The ID of the application that includes the environment you want to get.</p>",
-        "GetEnvironmentRequest$EnvironmentId": "<p>The ID of the environment you want to get.</p>",
+        "GetEnvironmentRequest$EnvironmentId": "<p>The ID of the environment you wnat to get.</p>",
         "GetHostedConfigurationVersionRequest$ApplicationId": "<p>The application ID.</p>",
         "GetHostedConfigurationVersionRequest$ConfigurationProfileId": "<p>The configuration profile ID.</p>",
         "HostedConfigurationVersion$ApplicationId": "<p>The application ID.</p>",

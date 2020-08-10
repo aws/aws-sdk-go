@@ -200,7 +200,7 @@
     "EcsParameters": {
       "base": "<p>The custom parameters to be used when the target is an Amazon ECS task.</p>",
       "refs": {
-        "Target$EcsParameters": "<p>Contains the Amazon ECS task definition and task count to be used, if the event target is an Amazon ECS task. For more information about Amazon ECS tasks, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html\">Task Definitions </a> in the <i>Amazon EC2 Container Service Developer Guide</i>.</p>"
+        "Target$EcsParameters": "<p>Contains the Amazon ECS task definition and task count to be used, if the event target is an Amazon ECS task. For more information about Amazon ECS tasks, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html\">Task Definitions </a> in the <i>Amazon EC2 Container Service Developer Guide</i>.</p>"
       }
     },
     "EnableRuleRequest": {

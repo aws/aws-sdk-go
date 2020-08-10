@@ -34,7 +34,7 @@
     "ClientTokenString": {
       "base": null,
       "refs": {
-        "StartTextTranslationJobRequest$ClientToken": "<p>The client token of the EC2 instance calling the request. This token is auto-generated when using the Amazon Translate SDK. Otherwise, use the <a href=\"docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html\">DescribeInstances</a> EC2 operation to retrieve an instance's client token. For more information, see <a href=\"docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html#client-tokens\">Client Tokens</a> in the EC2 User Guide.</p>"
+        "StartTextTranslationJobRequest$ClientToken": "<p>The client token of the EC2 instance calling the request. This token is auto-generated when using the Amazon Translate SDK. Otherwise, use the <a href=\"docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html\">DescribeInstances</a> EC2 operation to retreive an instance's client token. For more information, see <a href=\"docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html#client-tokens\">Client Tokens</a> in the EC2 User Guide.</p>"
       }
     },
     "ContentType": {
@@ -253,7 +253,7 @@
         "ListTerminologiesRequest$NextToken": "<p>If the result of the request to ListTerminologies was truncated, include the NextToken to fetch the next group of custom terminologies. </p>",
         "ListTerminologiesResponse$NextToken": "<p> If the response to the ListTerminologies was truncated, the NextToken fetches the next group of custom terminologies.</p>",
         "ListTextTranslationJobsRequest$NextToken": "<p>The token to request the next page of results.</p>",
-        "ListTextTranslationJobsResponse$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
+        "ListTextTranslationJobsResponse$NextToken": "<p>The token to use to retreive the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
       }
     },
     "OutputDataConfig": {
@@ -457,7 +457,7 @@
     "UnboundedLengthString": {
       "base": null,
       "refs": {
-        "TextTranslationJobProperties$Message": "<p>An explanation of any errors that may have occurred during the translation job.</p>"
+        "TextTranslationJobProperties$Message": "<p>An explanation of any errors that may have occured during the translation job.</p>"
       }
     },
     "UnsupportedLanguagePairException": {

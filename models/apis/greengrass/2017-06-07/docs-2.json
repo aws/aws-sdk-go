@@ -891,7 +891,7 @@
         "ResetDeploymentsResponse$DeploymentId" : "The ID of the deployment.",
         "Resource$Id" : "The resource ID, used to refer to a resource in the Lambda function configuration. Max length is 128 characters with pattern ''[a-zA-Z0-9:_-]+''. This must be unique within a Greengrass group.",
         "Resource$Name" : "The descriptive resource name, which is displayed on the AWS IoT Greengrass console. Max length 128 characters with pattern ''[a-zA-Z0-9:_-]+''. This must be unique within a Greengrass group.",
-        "ResourceAccessPolicy$ResourceId" : "The ID of the resource. (This ID is assigned to the resource when you create the resource definition.)",
+        "ResourceAccessPolicy$ResourceId" : "The ID of the resource. (This ID is assigned to the resource when you create the resource definiton.)",
         "ResourceDownloadOwnerSetting$GroupOwner" : "The group owner of the resource. This is the name of an existing Linux OS group on the system or a GID. The group's permissions are added to the Lambda process.",
         "S3MachineLearningModelResourceData$DestinationPath" : "The absolute local path of the resource inside the Lambda environment.",
         "S3MachineLearningModelResourceData$S3Uri" : "The URI of the source model in an S3 bucket. The model package must be in tar.gz or .zip format.",

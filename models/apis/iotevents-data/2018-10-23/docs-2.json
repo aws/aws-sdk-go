@@ -37,7 +37,7 @@
       }
     },
     "BatchUpdateDetectorErrorEntry": {
-      "base": "<p>Information about the error that occurred when attempting to update a detector.</p>",
+      "base": "<p>Information about the error that occured when attempting to update a detector.</p>",
       "refs": {
         "BatchUpdateDetectorErrorEntries$member": null
       }
@@ -136,7 +136,7 @@
       }
     },
     "InternalFailureException": {
-      "base": "<p>An internal failure occurred.</p>",
+      "base": "<p>An internal failure occured.</p>",
       "refs": {
       }
     },

@@ -3732,7 +3732,7 @@
         "InputDeviceSummary$Name": "A name that you specify for the input device.",
         "InputDeviceSummary$SerialNumber": "The unique serial number of the input device.",
         "InputLocation$PasswordParam": "key used to extract the password from EC2 Parameter store",
-        "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri similar to: \"rtmp://fmsserver/live\".",
+        "InputLocation$Uri": "Uniform Resource Identifier - This should be a path to a file accessible to the Live system (eg. a http:// URI) depending on the output type. For example, a RTMP destination should have a uri simliar to: \"rtmp://fmsserver/live\".",
         "InputLocation$Username": "Username if credentials are required to access a file or publishing point.  This can be either a plaintext username, or a reference to an AWS parameter store name from which the username can be retrieved.  AWS Parameter store format: \"ssm://<parameter name>\"",
         "InputPrepareScheduleActionSettings$InputAttachmentNameReference": "The name of the input attachment that should be prepared by this action. If no name is provided, the action will stop the most recent prepare (if any) when activated.",
         "InputSecurityGroup$Arn": "Unique ARN of Input Security Group",

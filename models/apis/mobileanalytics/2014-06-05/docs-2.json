@@ -62,7 +62,7 @@
     "Session": {
       "base": "<p>Describes the session. Session information is required on ALL events.</p>",
       "refs": {
-        "Event$session": "<p>The session the event occurred within. </p>"
+        "Event$session": "<p>The session the event occured within. </p>"
       }
     },
     "String": {

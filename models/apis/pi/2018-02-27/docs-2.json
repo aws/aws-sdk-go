@@ -83,7 +83,7 @@
         "DescribeDimensionKeysResponse$AlignedStartTime": "<p>The start time for the returned dimension keys, after alignment to a granular boundary (as specified by <code>PeriodInSeconds</code>). <code>AlignedStartTime</code> will be less than or equal to the value of the user-specified <code>StartTime</code>.</p>",
         "DescribeDimensionKeysResponse$AlignedEndTime": "<p>The end time for the returned dimension keys, after alignment to a granular boundary (as specified by <code>PeriodInSeconds</code>). <code>AlignedEndTime</code> will be greater than or equal to the value of the user-specified <code>Endtime</code>.</p>",
         "GetResourceMetricsRequest$StartTime": "<p>The date and time specifying the beginning of the requested time series data. You can't specify a <code>StartTime</code> that's earlier than 7 days ago. The value specified is <i>inclusive</i> - data points equal to or greater than <code>StartTime</code> will be returned.</p> <p>The value for <code>StartTime</code> must be earlier than the value for <code>EndTime</code>.</p>",
-        "GetResourceMetricsRequest$EndTime": "<p>The date and time specifying the end of the requested time series data. The value specified is <i>exclusive</i> - data points less than (but not equal to) <code>EndTime</code> will be returned.</p> <p>The value for <code>EndTime</code> must be later than the value for <code>StartTime</code>.</p>",
+        "GetResourceMetricsRequest$EndTime": "<p>The date and time specifiying the end of the requested time series data. The value specified is <i>exclusive</i> - data points less than (but not equal to) <code>EndTime</code> will be returned.</p> <p>The value for <code>EndTime</code> must be later than the value for <code>StartTime</code>.</p>",
         "GetResourceMetricsResponse$AlignedStartTime": "<p>The start time for the returned metrics, after alignment to a granular boundary (as specified by <code>PeriodInSeconds</code>). <code>AlignedStartTime</code> will be less than or equal to the value of the user-specified <code>StartTime</code>.</p>",
         "GetResourceMetricsResponse$AlignedEndTime": "<p>The end time for the returned metrics, after alignment to a granular boundary (as specified by <code>PeriodInSeconds</code>). <code>AlignedEndTime</code> will be greater than or equal to the value of the user-specified <code>Endtime</code>.</p>"
       }
@@ -119,7 +119,7 @@
       }
     },
     "MetricKeyDataPoints": {
-      "base": "<p>A time-ordered series of data points, corresponding to a dimension of a Performance Insights metric.</p>",
+      "base": "<p>A time-ordered series of data points, correpsonding to a dimension of a Performance Insights metric.</p>",
       "refs": {
         "MetricKeyDataPointsList$member": null
       }

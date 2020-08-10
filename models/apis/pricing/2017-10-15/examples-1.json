@@ -59,7 +59,7 @@
           }
         },
         "description": "This operation returns a list of values available for the given attribute.",
-        "id": "to-retrieve-attribute-values",
+        "id": "to-retreive-attribute-values",
         "title": "To retrieve a list of attribute values"
       }
     ],

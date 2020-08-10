@@ -71,7 +71,7 @@
     "ListUserGroups": "<p>Lists the Amazon QuickSight groups that an Amazon QuickSight user is a member of.</p>",
     "ListUsers": "<p>Returns a list of all of the Amazon QuickSight users belonging to this account. </p>",
     "RegisterUser": "<p>Creates an Amazon QuickSight user, whose identity is associated with the AWS Identity and Access Management (IAM) identity or role specified in the request. </p>",
-    "SearchDashboards": "<p>Searches for dashboards that belong to a user. </p>",
+    "SearchDashboards": "<p>Searchs for dashboards that belong to a user. </p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. QuickSight supports tagging on data set, data source, dashboard, and template. </p> <p>Tagging for QuickSight works in a similar way to tagging for other AWS services, except for the following:</p> <ul> <li> <p>You can't use tags to track AWS costs for QuickSight. This restriction is because QuickSight costs are based on users and SPICE capacity, which aren't taggable resources.</p> </li> <li> <p>QuickSight doesn't currently support the Tag Editor for AWS Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
     "UpdateAccountCustomization": "<p>Updates customizations associated with the QuickSight subscription on your AWS account.</p>",
@@ -842,7 +842,7 @@
       }
     },
     "DataColorPalette": {
-      "base": "<p>The theme colors that are used for data colors in charts. The colors description is a hexadecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. </p>",
+      "base": "<p>The theme colors that are used for data colors in charts. The colors description is a hexidecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. </p>",
       "refs": {
         "ThemeConfiguration$DataColorPalette": "<p>Color properties that apply to chart data colors.</p>"
       }
@@ -2111,7 +2111,7 @@
     "NamespaceError": {
       "base": "<p>Errors that occur during namespace creation.</p>",
       "refs": {
-        "NamespaceInfoV2$NamespaceError": "<p>An error that occurred when the namespace was created.</p>"
+        "NamespaceInfoV2$NamespaceError": "<p>An error that occured when the namespace was created.</p>"
       }
     },
     "NamespaceErrorType": {
@@ -3280,7 +3280,7 @@
       }
     },
     "UIColorPalette": {
-      "base": "<p>The theme colors that apply to UI and to charts, excluding data colors. The colors description is a hexadecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p>",
+      "base": "<p>The theme colors that apply to UI and to charts, excluding data colors. The colors description is a hexidecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p>",
       "refs": {
         "ThemeConfiguration$UIColorPalette": "<p>Color properties that apply to the UI and to charts, excluding the colors that apply to data. </p>"
       }

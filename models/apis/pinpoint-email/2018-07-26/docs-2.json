@@ -239,7 +239,7 @@
       }
     },
     "CreateEmailIdentityResponse": {
-      "base": "<p>If the email identity is a domain, this object contains tokens that you can use to create a set of CNAME records. To successfully verify your domain, you have to add these records to the DNS configuration for your domain.</p> <p>If the email identity is an email address, this object is empty. </p>",
+      "base": "<p>If the email identity is a domain, this object contains tokens that you can use to create a set of CNAME records. To sucessfully verify your domain, you have to add these records to the DNS configuration for your domain.</p> <p>If the email identity is an email address, this object is empty. </p>",
       "refs": {
       }
     },
@@ -721,7 +721,7 @@
       "base": "<p>A dedicated IP address that is associated with your Amazon Pinpoint account.</p>",
       "refs": {
         "DedicatedIp$Ip": "<p>An IP address that is reserved for use by your Amazon Pinpoint account.</p>",
-        "GetDedicatedIpRequest$Ip": "<p>The IP address that you want to obtain more information about. The value you specify has to be a dedicated IP address that's associated with your Amazon Pinpoint account.</p>",
+        "GetDedicatedIpRequest$Ip": "<p>The IP address that you want to obtain more information about. The value you specify has to be a dedicated IP address that's assocaited with your Amazon Pinpoint account.</p>",
         "IpList$member": null,
         "PutDedicatedIpInPoolRequest$Ip": "<p>The IP address that you want to move to the dedicated IP pool. The value you specify has to be a dedicated IP address that's associated with your Amazon Pinpoint account.</p>",
         "PutDedicatedIpWarmupAttributesRequest$Ip": "<p>The dedicated IP address that you want to update the warm-up attributes for.</p>"
