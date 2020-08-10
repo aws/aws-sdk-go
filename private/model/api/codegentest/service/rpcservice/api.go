@@ -61,7 +61,7 @@ func (c *RPCService) EmptyStreamRequest(input *EmptyStreamInput) (req *request.R
 	output = &EmptyStreamOutput{}
 	req = c.newRequest(op, input, output)
 
-	es := newEmptyStreamEventStream()
+	es := NewEmptyStreamEventStream()
 	output.eventStream = es
 
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
@@ -106,6 +106,10 @@ func (c *RPCService) EmptyStreamWithContext(ctx aws.Context, input *EmptyStreamI
 var _ awserr.Error
 
 // EmptyStreamEventStream provides the event stream handling for the EmptyStream.
+//
+// For testing and mocking the event stream this type should be initialized via
+// the NewEmptyStreamEventStream constructor function. Using the functional options
+// to pass in nested mock behavior.
 type EmptyStreamEventStream struct {
 
 	// Reader is the EventStream reader for the EmptyEventStream
@@ -124,11 +128,26 @@ type EmptyStreamEventStream struct {
 	err       *eventstreamapi.OnceError
 }
 
-func newEmptyStreamEventStream() *EmptyStreamEventStream {
-	return &EmptyStreamEventStream{
+// NewEmptyStreamEventStream initializes an EmptyStreamEventStream.
+// This function should only be used for testing and mocking the EmptyStreamEventStream
+// stream within your application.
+//
+// The Reader member must be set before reading events from the stream.
+//
+//   es := NewEmptyStreamEventStream(func(o *EmptyStreamEventStream{
+//       es.Reader = myMockStreamReader
+//   })
+func NewEmptyStreamEventStream(opts ...func(*EmptyStreamEventStream)) *EmptyStreamEventStream {
+	es := &EmptyStreamEventStream{
 		done: make(chan struct{}),
 		err:  eventstreamapi.NewOnceError(),
 	}
+
+	for _, fn := range opts {
+		fn(es)
+	}
+
+	return es
 }
 
 func (es *EmptyStreamEventStream) runOnStreamPartClose(r *request.Request) {
@@ -312,7 +331,7 @@ func (c *RPCService) GetEventStreamRequest(input *GetEventStreamInput) (req *req
 	output = &GetEventStreamOutput{}
 	req = c.newRequest(op, input, output)
 
-	es := newGetEventStreamEventStream()
+	es := NewGetEventStreamEventStream()
 	output.eventStream = es
 
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
@@ -357,6 +376,10 @@ func (c *RPCService) GetEventStreamWithContext(ctx aws.Context, input *GetEventS
 var _ awserr.Error
 
 // GetEventStreamEventStream provides the event stream handling for the GetEventStream.
+//
+// For testing and mocking the event stream this type should be initialized via
+// the NewGetEventStreamEventStream constructor function. Using the functional options
+// to pass in nested mock behavior.
 type GetEventStreamEventStream struct {
 
 	// Reader is the EventStream reader for the EventStream
@@ -375,11 +398,26 @@ type GetEventStreamEventStream struct {
 	err       *eventstreamapi.OnceError
 }
 
-func newGetEventStreamEventStream() *GetEventStreamEventStream {
-	return &GetEventStreamEventStream{
+// NewGetEventStreamEventStream initializes an GetEventStreamEventStream.
+// This function should only be used for testing and mocking the GetEventStreamEventStream
+// stream within your application.
+//
+// The Reader member must be set before reading events from the stream.
+//
+//   es := NewGetEventStreamEventStream(func(o *GetEventStreamEventStream{
+//       es.Reader = myMockStreamReader
+//   })
+func NewGetEventStreamEventStream(opts ...func(*GetEventStreamEventStream)) *GetEventStreamEventStream {
+	es := &GetEventStreamEventStream{
 		done: make(chan struct{}),
 		err:  eventstreamapi.NewOnceError(),
 	}
+
+	for _, fn := range opts {
+		fn(es)
+	}
+
+	return es
 }
 
 func (es *GetEventStreamEventStream) runOnStreamPartClose(r *request.Request) {

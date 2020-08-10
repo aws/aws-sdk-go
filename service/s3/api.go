@@ -9481,7 +9481,7 @@ func (c *S3) SelectObjectContentRequest(input *SelectObjectContentInput) (req *r
 	output = &SelectObjectContentOutput{}
 	req = c.newRequest(op, input, output)
 
-	es := newSelectObjectContentEventStream()
+	es := NewSelectObjectContentEventStream()
 	req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
 	output.EventStream = es
 
@@ -9609,6 +9609,10 @@ func (c *S3) SelectObjectContentWithContext(ctx aws.Context, input *SelectObject
 var _ awserr.Error
 
 // SelectObjectContentEventStream provides the event stream handling for the SelectObjectContent.
+//
+// For testing and mocking the event stream this type should be initialized via
+// the NewSelectObjectContentEventStream constructor function. Using the functional options
+// to pass in nested mock behavior.
 type SelectObjectContentEventStream struct {
 
 	// Reader is the EventStream reader for the SelectObjectContentEventStream
@@ -9631,11 +9635,31 @@ type SelectObjectContentEventStream struct {
 	err       *eventstreamapi.OnceError
 }
 
-func newSelectObjectContentEventStream() *SelectObjectContentEventStream {
-	return &SelectObjectContentEventStream{
+// NewSelectObjectContentEventStream initializes an SelectObjectContentEventStream.
+// This function should only be used for testing and mocking the SelectObjectContentEventStream
+// stream within your application.
+//
+// The Reader member must be set before reading events from the stream.
+//
+// The StreamCloser member should be set to the underlying io.Closer,
+// (e.g. http.Response.Body), that will be closed when the stream Close method
+// is called.
+//
+//   es := NewSelectObjectContentEventStream(func(o *SelectObjectContentEventStream{
+//       es.Reader = myMockStreamReader
+//       es.StreamCloser = myMockStreamCloser
+//   })
+func NewSelectObjectContentEventStream(opts ...func(*SelectObjectContentEventStream)) *SelectObjectContentEventStream {
+	es := &SelectObjectContentEventStream{
 		done: make(chan struct{}),
 		err:  eventstreamapi.NewOnceError(),
 	}
+
+	for _, fn := range opts {
+		fn(es)
+	}
+
+	return es
 }
 
 func (es *SelectObjectContentEventStream) setStreamCloser(r *request.Request) {
