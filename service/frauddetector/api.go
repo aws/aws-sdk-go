@@ -5266,7 +5266,7 @@ type CreateDetectorVersionInput struct {
 	// first to last, stopping at the first matched rule. Amazon Fraud dectector
 	// then provides the outcomes for that single rule.
 	//
-	// If you specify ALL_MATCHED, Amazon Fraud Detector evaluates all rules and
+	// If you specifiy ALL_MATCHED, Amazon Fraud Detector evaluates all rules and
 	// returns the outcomes for all matched rules.
 	//
 	// The default behavior is FIRST_MATCHED.
@@ -10781,7 +10781,7 @@ type UpdateDetectorVersionInput struct {
 	// first to last, stopping at the first matched rule. Amazon Fraud dectector
 	// then provides the outcomes for that single rule.
 	//
-	// If you specify ALL_MATCHED, Amazon Fraud Detector evaluates all rules and
+	// If you specifiy ALL_MATCHED, Amazon Fraud Detector evaluates all rules and
 	// returns the outcomes for all matched rules. You can define and edit the rule
 	// mode at the detector version level, when it is in draft status.
 	//

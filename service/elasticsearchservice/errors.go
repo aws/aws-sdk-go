@@ -31,7 +31,7 @@ const (
 	// ErrCodeDisabledOperationException for service response error code
 	// "DisabledOperationException".
 	//
-	// An error occurred because the client wanted to access a not supported operation.
+	// An error occured because the client wanted to access a not supported operation.
 	// Gives http status code of 409.
 	ErrCodeDisabledOperationException = "DisabledOperationException"
 

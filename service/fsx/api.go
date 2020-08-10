@@ -167,7 +167,7 @@ func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Reques
 //
 //    * a Persistent deployment type
 //
-//    * is not linked to a data repository.
+//    * is not linked to a data respository.
 //
 // For more information about backing up Amazon FSx for Lustre file systems,
 // see Working with FSx for Lustre backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html).
@@ -3645,7 +3645,7 @@ type DataRepositoryConfiguration struct {
 	// store new and changed Lustre file system files in S3.
 	ExportPath *string `min:"3" type:"string"`
 
-	// Provides detailed information about the data repository if its Lifecycle
+	// Provides detailed information about the data respository if its Lifecycle
 	// is set to MISCONFIGURED.
 	FailureDetails *DataRepositoryFailureDetails `type:"structure"`
 
@@ -3731,7 +3731,7 @@ func (s *DataRepositoryConfiguration) SetLifecycle(v string) *DataRepositoryConf
 	return s
 }
 
-// Provides detailed information about the data repository if its Lifecycle
+// Provides detailed information about the data respository if its Lifecycle
 // is set to MISCONFIGURED.
 type DataRepositoryFailureDetails struct {
 	_ struct{} `type:"structure"`

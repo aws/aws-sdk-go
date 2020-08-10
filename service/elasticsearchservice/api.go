@@ -75,7 +75,7 @@ func (c *ElasticsearchService) AcceptInboundCrossClusterSearchConnectionRequest(
 //   Gives http status code of 409.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 func (c *ElasticsearchService) AcceptInboundCrossClusterSearchConnection(input *AcceptInboundCrossClusterSearchConnectionInput) (*AcceptInboundCrossClusterSearchConnectionOutput, error) {
@@ -437,7 +437,7 @@ func (c *ElasticsearchService) CreateElasticsearchDomainRequest(input *CreateEla
 //   An error occurred while processing the request.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * InternalException
@@ -549,7 +549,7 @@ func (c *ElasticsearchService) CreateOutboundCrossClusterSearchConnectionRequest
 //   code of 400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 func (c *ElasticsearchService) CreateOutboundCrossClusterSearchConnection(input *CreateOutboundCrossClusterSearchConnectionInput) (*CreateOutboundCrossClusterSearchConnectionOutput, error) {
@@ -912,7 +912,7 @@ func (c *ElasticsearchService) DeleteInboundCrossClusterSearchConnectionRequest(
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 func (c *ElasticsearchService) DeleteInboundCrossClusterSearchConnection(input *DeleteInboundCrossClusterSearchConnectionInput) (*DeleteInboundCrossClusterSearchConnectionOutput, error) {
@@ -994,7 +994,7 @@ func (c *ElasticsearchService) DeleteOutboundCrossClusterSearchConnectionRequest
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 func (c *ElasticsearchService) DeleteOutboundCrossClusterSearchConnection(input *DeleteOutboundCrossClusterSearchConnectionInput) (*DeleteOutboundCrossClusterSearchConnectionOutput, error) {
@@ -1545,7 +1545,7 @@ func (c *ElasticsearchService) DescribeInboundCrossClusterSearchConnectionsReque
 //   by customer. Returns an HTTP status code of 400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 func (c *ElasticsearchService) DescribeInboundCrossClusterSearchConnections(input *DescribeInboundCrossClusterSearchConnectionsInput) (*DescribeInboundCrossClusterSearchConnectionsOutput, error) {
@@ -1684,7 +1684,7 @@ func (c *ElasticsearchService) DescribeOutboundCrossClusterSearchConnectionsRequ
 //   by customer. Returns an HTTP status code of 400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 func (c *ElasticsearchService) DescribeOutboundCrossClusterSearchConnections(input *DescribeOutboundCrossClusterSearchConnectionsInput) (*DescribeOutboundCrossClusterSearchConnectionsOutput, error) {
@@ -1979,7 +1979,7 @@ func (c *ElasticsearchService) DescribeReservedElasticsearchInstanceOfferingsReq
 //   400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * InternalException
@@ -2132,7 +2132,7 @@ func (c *ElasticsearchService) DescribeReservedElasticsearchInstancesRequest(inp
 //   400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 func (c *ElasticsearchService) DescribeReservedElasticsearchInstances(input *DescribeReservedElasticsearchInstancesInput) (*DescribeReservedElasticsearchInstancesOutput, error) {
@@ -2367,7 +2367,7 @@ func (c *ElasticsearchService) GetCompatibleElasticsearchVersionsRequest(input *
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * ValidationException
@@ -2467,7 +2467,7 @@ func (c *ElasticsearchService) GetUpgradeHistoryRequest(input *GetUpgradeHistory
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * ValidationException
@@ -2613,7 +2613,7 @@ func (c *ElasticsearchService) GetUpgradeStatusRequest(input *GetUpgradeStatusIn
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * ValidationException
@@ -3477,7 +3477,7 @@ func (c *ElasticsearchService) PurchaseReservedElasticsearchInstanceOfferingRequ
 //   Gives http status code of 409.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * ValidationException
@@ -3568,7 +3568,7 @@ func (c *ElasticsearchService) RejectInboundCrossClusterSearchConnectionRequest(
 //   http status code of 400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 func (c *ElasticsearchService) RejectInboundCrossClusterSearchConnection(input *RejectInboundCrossClusterSearchConnectionInput) (*RejectInboundCrossClusterSearchConnectionOutput, error) {
@@ -3930,7 +3930,7 @@ func (c *ElasticsearchService) UpgradeElasticsearchDomainRequest(input *UpgradeE
 //   code of 400.
 //
 //   * DisabledOperationException
-//   An error occurred because the client wanted to access a not supported operation.
+//   An error occured because the client wanted to access a not supported operation.
 //   Gives http status code of 409.
 //
 //   * ValidationException
@@ -6401,7 +6401,7 @@ func (s *DescribeReservedElasticsearchInstancesOutput) SetReservedElasticsearchI
 	return s
 }
 
-// An error occurred because the client wanted to access a not supported operation.
+// An error occured because the client wanted to access a not supported operation.
 // Gives http status code of 409.
 type DisabledOperationException struct {
 	_            struct{}                  `type:"structure"`

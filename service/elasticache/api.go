@@ -6405,7 +6405,7 @@ func (c *ElastiCache) TestFailoverRequest(input *TestFailoverInput) (req *reques
 //    * To determine whether the node replacement is complete you can check
 //    Events using the Amazon ElastiCache console, the AWS CLI, or the ElastiCache
 //    API. Look for the following automatic failover related events, listed
-//    here in order of occurrence: Replication group message: Test Failover
+//    here in order of occurrance: Replication group message: Test Failover
 //    API called for node group <node-group-id> Cache cluster message: Failover
 //    from master node <primary-node-id> to replica node <node-id> completed
 //    Replication group message: Failover from master node <primary-node-id>

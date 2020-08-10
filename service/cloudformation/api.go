@@ -5715,7 +5715,7 @@ type AccountGateResult struct {
 	//    for this account and Region, for one of the following reasons: An account
 	//    gate function has not been specified for the account and Region. AWS CloudFormation
 	//    proceeds with the stack set operation in this account and Region. The
-	//    AWSCloudFormationStackSetExecutionRole of the stack set administration
+	//    AWSCloudFormationStackSetExecutionRole of the stack set adminstration
 	//    account lacks permissions to invoke the function. AWS CloudFormation proceeds
 	//    with the stack set operation in this account and Region. Either no action
 	//    is necessary, or no action is possible, on the stack. AWS CloudFormation
@@ -12742,7 +12742,7 @@ type RollbackConfiguration struct {
 	//    any, don't specify this parameter.
 	//
 	//    * To specify new or updated rollback triggers, you must specify all the
-	//    triggers that you want used for this stack, even triggers you've specified
+	//    triggers that you want used for this stack, even triggers you've specifed
 	//    before (for example, when creating the stack or during a previous stack
 	//    update). Any triggers that you don't include in the updated list of triggers
 	//    are no longer applied to the stack.
@@ -16710,7 +16710,7 @@ type UpdateStackSetInput struct {
 	//    the stack's tags.
 	//
 	//    * If you specify any tags using this parameter, you must specify all the
-	//    tags that you want associated with this stack set, even tags you've specified
+	//    tags that you want associated with this stack set, even tags you've specifed
 	//    before (for example, when creating the stack set or during a previous
 	//    update of the stack set.). Any tags that you don't include in the updated
 	//    list of tags are removed from the stack set, and therefore from the stacks

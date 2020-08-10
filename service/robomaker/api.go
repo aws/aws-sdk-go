@@ -9864,7 +9864,7 @@ type ProgressDetail struct {
 	// empty for other steps.
 	EstimatedTimeRemainingSeconds *int64 `locationName:"estimatedTimeRemainingSeconds" type:"integer"`
 
-	// Percentage of the step that is done. This currently only applies to the Downloading/Extracting
+	// Precentage of the step that is done. This currently only applies to the Downloading/Extracting
 	// step of the deployment. It is empty for other steps.
 	PercentDone *float64 `locationName:"percentDone" type:"float"`
 

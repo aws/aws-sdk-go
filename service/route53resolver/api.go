@@ -564,7 +564,7 @@ func (c *Route53Resolver) DeleteResolverRuleRequest(input *DeleteResolverRuleInp
 //
 // Deletes a resolver rule. Before you can delete a resolver rule, you must
 // disassociate it from all the VPCs that you associated the resolver rule with.
-// For more information, see DisassociateResolverRule.
+// For more infomation, see DisassociateResolverRule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

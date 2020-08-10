@@ -2432,7 +2432,7 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //   system, but the mount operation timed out.
 //
 //   * EFSIOException
-//   An error occurred when reading from or writing to a connected file system.
+//   An error occured when reading from or writing to a connected file system.
 //
 //   * EC2ThrottledException
 //   AWS Lambda was throttled by Amazon EC2 during Lambda function initialization
@@ -7131,7 +7131,7 @@ func (s *EC2UnexpectedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An error occurred when reading from or writing to a connected file system.
+// An error occured when reading from or writing to a connected file system.
 type EFSIOException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

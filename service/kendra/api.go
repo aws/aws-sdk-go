@@ -7736,7 +7736,7 @@ type SalesforceChatterFeedConfiguration struct {
 	DocumentDataFieldName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the column in the Salesforce FeedItem table that contains the
-	// title of the document. This is typically the Title column.
+	// title of the document. This is typically the Title collumn.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
 	// Maps fields from a Salesforce chatter feed into Amazon Kendra index fields.
@@ -7844,7 +7844,7 @@ type SalesforceConfiguration struct {
 	// The regex is applied to the name of the attached file.
 	IncludeAttachmentFilePatterns []*string `type:"list"`
 
-	// Specifies configuration information for the knowledge article types that Amazon
+	// Specifies configuration information for the knowlege article types that Amazon
 	// Kendra indexes. Amazon Kendra indexes standard knowledge articles and the
 	// standard fields of knowledge articles, or the custom fields of custom knowledge
 	// articles, but not both.
@@ -8097,7 +8097,7 @@ func (s *SalesforceCustomKnowledgeArticleTypeConfiguration) SetName(v string) *S
 	return s
 }
 
-// Specifies configuration information for the knowledge article types that Amazon
+// Specifies configuration information for the knowlege article types that Amazon
 // Kendra indexes. Amazon Kendra indexes standard knowledge articles and the
 // standard fields of knowledge articles, or the custom fields of custom knowledge
 // articles, but not both
@@ -9954,7 +9954,7 @@ func (s UpdateDataSourceOutput) GoString() string {
 type UpdateIndexInput struct {
 	_ struct{} `type:"structure"`
 
-	// Sets the number of additional storage and query capacity units that should
+	// Sets the number of addtional storage and query capacity units that should
 	// be used by the index. You can change the capacity of the index up to 5 times
 	// per day.
 	//

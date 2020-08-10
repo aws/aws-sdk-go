@@ -12359,7 +12359,7 @@ type CreateClusterParameterGroupInput struct {
 	//
 	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    * Must be unique within your AWS account.
+	//    * Must be unique withing your AWS account.
 	//
 	// This value is stored as a lower-case string.
 	//
@@ -13924,7 +13924,7 @@ type DataTransferProgress struct {
 	// Describes the data transfer rate in MB's per second.
 	CurrentRateInMegaBytesPerSecond *float64 `type:"double"`
 
-	// Describes the total amount of data that has been transferred in MB's.
+	// Describes the total amount of data that has been transfered in MB's.
 	DataTransferredInMegaBytes *int64 `type:"long"`
 
 	// Describes the number of seconds that have elapsed during the data transfer.
@@ -13937,7 +13937,7 @@ type DataTransferProgress struct {
 	// status is transferringdata.
 	Status *string `type:"string"`
 
-	// Describes the total amount of data to be transferred in megabytes.
+	// Describes the total amount of data to be transfered in megabytes.
 	TotalDataInMegaBytes *int64 `type:"long"`
 }
 
@@ -19144,7 +19144,7 @@ type GetClusterCredentialsOutput struct {
 	// using the password DbPassword. If the specified DbUser exists in the database,
 	// the new user name has the same database privileges as the the user named
 	// in DbUser. By default, the user is added to PUBLIC. If the DbGroups parameter
-	// is specified, DbUser is added to the listed groups for any sessions created
+	// is specifed, DbUser is added to the listed groups for any sessions created
 	// using these credentials.
 	DbUser *string `type:"string"`
 

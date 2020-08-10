@@ -5794,7 +5794,7 @@ type GetEnvironmentInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
 
-	// The ID of the environment you want to get.
+	// The ID of the environment you wnat to get.
 	//
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`

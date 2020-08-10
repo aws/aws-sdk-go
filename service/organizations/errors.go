@@ -149,7 +149,7 @@ const (
 	//
 	//    * EMAIL_VERIFICATION_CODE_EXPIRED: The email verification code is only
 	//    valid for a limited period of time. You must resubmit the request and
-	//    generate a new verification code.
+	//    generate a new verfication code.
 	//
 	//    * HANDSHAKE_RATE_LIMIT_EXCEEDED: You attempted to exceed the number of
 	//    handshakes that you can send in one day.

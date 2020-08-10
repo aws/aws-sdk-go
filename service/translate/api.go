@@ -2010,7 +2010,7 @@ func (s *ListTextTranslationJobsInput) SetNextToken(v string) *ListTextTranslati
 type ListTextTranslationJobsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next page of results. This value is null
+	// The token to use to retreive the next page of results. This value is null
 	// when there are no more results to return.
 	NextToken *string `type:"string"`
 
@@ -2201,7 +2201,7 @@ type StartTextTranslationJobInput struct {
 	// The client token of the EC2 instance calling the request. This token is auto-generated
 	// when using the Amazon Translate SDK. Otherwise, use the DescribeInstances
 	// (docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)
-	// EC2 operation to retrieve an instance's client token. For more information,
+	// EC2 operation to retreive an instance's client token. For more information,
 	// see Client Tokens (docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html#client-tokens)
 	// in the EC2 User Guide.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
@@ -3017,7 +3017,7 @@ type TextTranslationJobProperties struct {
 	// The status of the translation job.
 	JobStatus *string `type:"string" enum:"JobStatus"`
 
-	// An explanation of any errors that may have occurred during the translation
+	// An explanation of any errors that may have occured during the translation
 	// job.
 	Message *string `type:"string"`
 

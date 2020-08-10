@@ -6090,7 +6090,7 @@ type InsightRuleMetricDatapoint struct {
 	// your request.
 	MaxContributorValue *float64 `type:"double"`
 
-	// The maximum value from a single occurrence from a single contributor during
+	// The maximum value from a single occurence from a single contributor during
 	// the time period represented by that data point.
 	//
 	// This statistic is returned only if you included it in the Metrics array in
@@ -8065,7 +8065,7 @@ type PutMetricAlarmInput struct {
 	// a metric that does not have sub-minute resolution, the alarm still attempts
 	// to gather data at the period rate that you specify. In this case, it does
 	// not receive data for the attempts that do not correspond to a one-minute
-	// data resolution, and the alarm might often lapse into INSUFFICIENT_DATA status.
+	// data resolution, and the alarm might often lapse into INSUFFICENT_DATA status.
 	// Specifying 10 or 30 also sets this alarm as a high-resolution alarm, which
 	// has a higher charge than other alarms. For more information about pricing,
 	// see Amazon CloudWatch Pricing (https://aws.amazon.com/cloudwatch/pricing/).

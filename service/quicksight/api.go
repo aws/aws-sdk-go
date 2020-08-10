@@ -7608,7 +7608,7 @@ func (c *QuickSight) SearchDashboardsRequest(input *SearchDashboardsInput) (req 
 
 // SearchDashboards API operation for Amazon QuickSight.
 //
-// Searches for dashboards that belong to a user.
+// Searchs for dashboards that belong to a user.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14046,7 +14046,7 @@ func (s *DashboardVersionSummary) SetVersionNumber(v int64) *DashboardVersionSum
 }
 
 // The theme colors that are used for data colors in charts. The colors description
-// is a hexadecimal color code that consists of six alphanumerical characters,
+// is a hexidecimal color code that consists of six alphanumerical characters,
 // prefixed with #, for example #37BFF5.
 type DataColorPalette struct {
 	_ struct{} `type:"structure"`
@@ -23030,7 +23030,7 @@ type NamespaceInfoV2 struct {
 	// The name of the error.
 	Name *string `type:"string"`
 
-	// An error that occurred when the namespace was created.
+	// An error that occured when the namespace was created.
 	NamespaceError *NamespaceError `type:"structure"`
 }
 
@@ -26681,7 +26681,7 @@ func (s *TwitterParameters) SetQuery(v string) *TwitterParameters {
 }
 
 // The theme colors that apply to UI and to charts, excluding data colors. The
-// colors description is a hexadecimal color code that consists of six alphanumerical
+// colors description is a hexidecimal color code that consists of six alphanumerical
 // characters, prefixed with #, for example #37BFF5. For more information, see
 // Using Themes in Amazon QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html)
 // in the Amazon QuickSight User Guide.

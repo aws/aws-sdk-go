@@ -6961,7 +6961,7 @@ type DolbyVision struct {
 	L6Metadata *DolbyVisionLevel6Metadata `locationName:"l6Metadata" type:"structure"`
 
 	// Use Dolby Vision Mode to choose how the service will handle Dolby Vision
-	// MaxCLL and MaxFALL properties.
+	// MaxCLL and MaxFALL properies.
 	L6Mode *string `locationName:"l6Mode" type:"string" enum:"DolbyVisionLevel6Mode"`
 
 	// In the current MediaConvert implementation, the Dolby Vision profile is always
@@ -14537,7 +14537,7 @@ type Mpeg2Settings struct {
 	// is faster, lower quality, single-pass encoding.
 	QualityTuningLevel *string `locationName:"qualityTuningLevel" type:"string" enum:"Mpeg2QualityTuningLevel"`
 
-	// Use Rate control mode (Mpeg2RateControlMode) to specify whether the bitrate
+	// Use Rate control mode (Mpeg2RateControlMode) to specifiy whether the bitrate
 	// is variable (vbr) or constant (cbr).
 	RateControlMode *string `locationName:"rateControlMode" type:"string" enum:"Mpeg2RateControlMode"`
 
@@ -14563,7 +14563,7 @@ type Mpeg2Settings struct {
 	// Only use Telecine (Mpeg2Telecine) when you set Framerate (Framerate) to 29.970.
 	// Set Telecine (Mpeg2Telecine) to Hard (hard) to produce a 29.97i output from
 	// a 23.976 input. Set it to Soft (soft) to produce 23.976 output and leave
-	// conversion to the player.
+	// converstion to the player.
 	Telecine *string `locationName:"telecine" type:"string" enum:"Mpeg2Telecine"`
 
 	// Adjust quantization within each frame based on temporal variation of content
@@ -15547,7 +15547,7 @@ type Output struct {
 	// Specific settings for this type of output.
 	OutputSettings *OutputSettings `locationName:"outputSettings" type:"structure"`
 
-	// Use Preset (Preset) to specify a preset for your transcoding settings. Provide
+	// Use Preset (Preset) to specifiy a preset for your transcoding settings. Provide
 	// the system or custom preset name. You can specify either Preset (Preset)
 	// or Container settings (ContainerSettings), but not both.
 	Preset *string `locationName:"preset" type:"string"`
@@ -16189,7 +16189,7 @@ func (s *PresetSettings) SetVideoDescription(v *VideoDescription) *PresetSetting
 type ProresSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Use Profile (ProResCodecProfile) to specify the type of Apple ProRes codec
+	// Use Profile (ProResCodecProfile) to specifiy the type of Apple ProRes codec
 	// to use for this output.
 	CodecProfile *string `locationName:"codecProfile" type:"string" enum:"ProresCodecProfile"`
 
@@ -16264,7 +16264,7 @@ type ProresSettings struct {
 	// Only use Telecine (ProresTelecine) when you set Framerate (Framerate) to
 	// 29.970. Set Telecine (ProresTelecine) to Hard (hard) to produce a 29.97i
 	// output from a 23.976 input. Set it to Soft (soft) to produce 23.976 output
-	// and leave conversion to the player.
+	// and leave converstion to the player.
 	Telecine *string `locationName:"telecine" type:"string" enum:"ProresTelecine"`
 }
 
@@ -17146,7 +17146,7 @@ type StaticKeyProvider struct {
 	// or a slash delimited list of version values (1/2/3).
 	KeyFormatVersions *string `locationName:"keyFormatVersions" type:"string"`
 
-	// Relates to DRM implementation. Use a 32-character hexadecimal string to specify
+	// Relates to DRM implementation. Use a 32-character hexidecimal string to specify
 	// Key Value (StaticKeyValue).
 	StaticKeyValue *string `locationName:"staticKeyValue" type:"string"`
 
@@ -18754,7 +18754,7 @@ type VideoSelector struct {
 	Hdr10Metadata *Hdr10Metadata `locationName:"hdr10Metadata" type:"structure"`
 
 	// Use PID (Pid) to select specific video data from an input file. Specify this
-	// value as an integer; the system automatically converts it to the hexadecimal
+	// value as an integer; the system automatically converts it to the hexidecimal
 	// value. For example, 257 selects PID 0x101. A PID, or packet identifier, is
 	// an identifier for a set of data in an MPEG-2 transport stream container.
 	Pid *int64 `locationName:"pid" min:"1" type:"integer"`
@@ -20502,7 +20502,7 @@ const (
 )
 
 // Use Dolby Vision Mode to choose how the service will handle Dolby Vision
-// MaxCLL and MaxFALL properties.
+// MaxCLL and MaxFALL properies.
 const (
 	// DolbyVisionLevel6ModePassthrough is a DolbyVisionLevel6Mode enum value
 	DolbyVisionLevel6ModePassthrough = "PASSTHROUGH"
@@ -23206,7 +23206,7 @@ const (
 	Mpeg2QualityTuningLevelMultiPass = "MULTI_PASS"
 )
 
-// Use Rate control mode (Mpeg2RateControlMode) to specify whether the bitrate
+// Use Rate control mode (Mpeg2RateControlMode) to specifiy whether the bitrate
 // is variable (vbr) or constant (cbr).
 const (
 	// Mpeg2RateControlModeVbr is a Mpeg2RateControlMode enum value
@@ -23258,7 +23258,7 @@ const (
 // Only use Telecine (Mpeg2Telecine) when you set Framerate (Framerate) to 29.970.
 // Set Telecine (Mpeg2Telecine) to Hard (hard) to produce a 29.97i output from
 // a 23.976 input. Set it to Soft (soft) to produce 23.976 output and leave
-// conversion to the player.
+// converstion to the player.
 const (
 	// Mpeg2TelecineNone is a Mpeg2Telecine enum value
 	Mpeg2TelecineNone = "NONE"
@@ -23441,7 +23441,7 @@ const (
 	PricingPlanReserved = "RESERVED"
 )
 
-// Use Profile (ProResCodecProfile) to specify the type of Apple ProRes codec
+// Use Profile (ProResCodecProfile) to specifiy the type of Apple ProRes codec
 // to use for this output.
 const (
 	// ProresCodecProfileAppleProres422 is a ProresCodecProfile enum value
@@ -23542,7 +23542,7 @@ const (
 // Only use Telecine (ProresTelecine) when you set Framerate (Framerate) to
 // 29.970. Set Telecine (ProresTelecine) to Hard (hard) to produce a 29.97i
 // output from a 23.976 input. Set it to Soft (soft) to produce 23.976 output
-// and leave conversion to the player.
+// and leave converstion to the player.
 const (
 	// ProresTelecineNone is a ProresTelecine enum value
 	ProresTelecineNone = "NONE"

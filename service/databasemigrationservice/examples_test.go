@@ -1238,7 +1238,7 @@ func ExampleDatabaseMigrationService_StopReplicationTask_shared00() {
 	fmt.Println(result)
 }
 
-// Test connection
+// Test conection
 //
 // Tests the connection between the replication instance and the endpoint.
 func ExampleDatabaseMigrationService_TestConnection_shared00() {

@@ -14425,7 +14425,7 @@ func (s *AssociateTrialComponentOutput) SetTrialComponentArn(v string) *Associat
 }
 
 // An AutoPilot job will return recommendations, or candidates. Each candidate
-// has further details about the steps involed, and the status.
+// has futher details about the steps involed, and the status.
 type AutoMLCandidate struct {
 	_ struct{} `type:"structure"`
 
@@ -24366,7 +24366,7 @@ type DescribeFlowDefinitionOutput struct {
 	// The reason your flow definition failed.
 	FailureReason *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the flow definition.
+	// The Amazon Resource Name (ARN) of the flow defintion.
 	//
 	// FlowDefinitionArn is a required field
 	FlowDefinitionArn *string `type:"string" required:"true"`
@@ -27943,7 +27943,7 @@ type EndpointInput struct {
 	// by an S3 key. Defauts to FullyReplicated
 	S3DataDistributionType *string `type:"string" enum:"ProcessingS3DataDistributionType"`
 
-	// Whether the Pipe or File is used as the input mode for transferring data for
+	// Whether the Pipe or File is used as the input mode for transfering data for
 	// the monitoring job. Pipe mode is recommended for large datasets. File mode
 	// is useful for small files that fit in memory. Defaults to File.
 	S3InputMode *string `type:"string" enum:"ProcessingS3InputMode"`
@@ -37235,7 +37235,7 @@ func (s *MetricDefinition) SetRegex(v string) *MetricDefinition {
 // artifacts.
 //
 // Model artifacts are the output that results from training a model, and typically
-// consist of trained parameters, a model definition that desribes how to compute
+// consist of trained parameters, a model defintion that desribes how to compute
 // inferences, and other metadata.
 type ModelArtifacts struct {
 	_ struct{} `type:"structure"`
@@ -37971,7 +37971,7 @@ type MonitoringExecutionSummary struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
-	// The name of the endpoint used to run the monitoring job.
+	// The name of teh endpoint used to run the monitoring job.
 	EndpointName *string `type:"string"`
 
 	// Contains the reason a monitoring job failed, if it failed.
@@ -39388,7 +39388,7 @@ func (s *OidcConfigForResponse) SetUserInfoEndpoint(v string) *OidcConfigForResp
 type OidcMemberDefinition struct {
 	_ struct{} `type:"structure"`
 
-	// A list of comma separated strings that identifies user groups in your OIDC
+	// A list of comma seperated strings that identifies user groups in your OIDC
 	// IdP. Each user group is made up of a group of private workers.
 	//
 	// Groups is a required field
@@ -39439,7 +39439,7 @@ type OutputConfig struct {
 
 	// Specifies additional parameters for compiler options in JSON format. The
 	// compiler options are TargetPlatform specific. It is required for NVIDIA accelerators
-	// and highly recommended for CPU compilation. For any other cases, it is optional
+	// and highly recommended for CPU compliations. For any other cases, it is optional
 	// to specify CompilerOptions.
 	//
 	//    * CPU: Compilation for CPU supports the following compiler options. mcpu:

@@ -14920,11 +14920,11 @@ type CreateCommitOutput struct {
 	// The files deleted as part of the committed file changes.
 	FilesDeleted []*FileMetadata `locationName:"filesDeleted" type:"list"`
 
-	// The files updated as part of the committed file changes.
+	// The files updated as part of the commited file changes.
 	FilesUpdated []*FileMetadata `locationName:"filesUpdated" type:"list"`
 
 	// The full SHA-1 pointer of the tree information for the commit that contains
-	// the committed file changes.
+	// the commited file changes.
 	TreeId *string `locationName:"treeId" type:"string"`
 }
 
@@ -32734,7 +32734,7 @@ func (s UpdateRepositoryNameOutput) GoString() string {
 type UserInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The date when the specified commit was committed, in timestamp format with
+	// The date when the specified commit was commited, in timestamp format with
 	// GMT offset.
 	Date *string `locationName:"date" type:"string"`
 
