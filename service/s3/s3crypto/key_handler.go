@@ -24,16 +24,7 @@ type CipherDataGeneratorWithContext interface {
 // content cipher. CipherDataGenerator will also encrypt the key and store it in
 // the CipherData.
 type CipherDataGeneratorWithCEKAlg interface {
-	GenerateCipherDataWithCEKAlg(int, int, string) (CipherData, error)
-
-	CipherDataGenerator // backwards comparability to plug into older interface
-}
-
-// CipherDataGeneratorWithCEKAlgWithContext handles generating proper key and IVs of
-// proper size for the content cipher. CipherDataGenerator will also encrypt
-// the key and store it in the CipherData.
-type CipherDataGeneratorWithCEKAlgWithContext interface {
-	GenerateCipherDataWithCEKAlgWithContext(aws.Context, int, int, string) (CipherData, error)
+	GenerateCipherDataWithCEKAlg(ctx aws.Context, keySize, ivSize int, cekAlgorithm string) (CipherData, error)
 }
 
 // CipherDataDecrypter is a handler to decrypt keys from the envelope.

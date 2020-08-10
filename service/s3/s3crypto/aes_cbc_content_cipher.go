@@ -2,7 +2,6 @@ package s3crypto
 
 import (
 	"io"
-	"strings"
 )
 
 const (
@@ -15,16 +14,36 @@ type cbcContentCipherBuilder struct {
 	padder    Padder
 }
 
-func (cbcContentCipherBuilder) isUsingDeprecatedFeatures() error {
-	return errDeprecatedCipherBuilder
-}
-
-// AESCBCContentCipherBuilder returns a new encryption only mode structure with a specific cipher
-// for the master key
+// AESCBCContentCipherBuilder returns a new encryption only AES/CBC mode structure using the provided padder. The provided cipher data generator
+// will be used to provide keys for content encryption.
 //
-// deprecated: This content cipher builder has been deprecated. Users should migrate to AESGCMContentCipherBuilder
+// deprecated: This feature is in maintenance mode, no new updates will be released. Please see https://docs.aws.amazon.com/general/latest/gr/aws_sdk_cryptography.html for more information.
 func AESCBCContentCipherBuilder(generator CipherDataGenerator, padder Padder) ContentCipherBuilder {
 	return cbcContentCipherBuilder{generator: generator, padder: padder}
+}
+
+// RegisterAESCBCContentCipher registers the AES/CBC cipher and padder with the provided CryptoRegistry.
+//
+// Example:
+//	cr := s3crypto.NewCryptoRegistry()
+//	if err := s3crypto.RegisterAESCBCContentCipher(cr, s3crypto.AESCBCPadder); err != nil {
+//		panic(err) // handle error
+//	}
+//
+// deprecated: This feature is in maintenance mode, no new updates will be released. Please see https://docs.aws.amazon.com/general/latest/gr/aws_sdk_cryptography.html for more information.
+func RegisterAESCBCContentCipher(registry *CryptoRegistry, padder Padder) error {
+	if registry == nil {
+		return errNilCryptoRegistry
+	}
+	name := AESCBC + "/" + padder.Name()
+	err := registry.AddCEK(name, newAESCBCContentCipher)
+	if err != nil {
+		return err
+	}
+	if err := registry.AddPadder(name, padder); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (builder cbcContentCipherBuilder) ContentCipher() (ContentCipher, error) {
@@ -37,11 +56,22 @@ func (builder cbcContentCipherBuilder) ContentCipher() (ContentCipher, error) {
 	return newAESCBCContentCipher(cd)
 }
 
+func (builder cbcContentCipherBuilder) isAWSFixture() bool {
+	return true
+}
+
+func (cbcContentCipherBuilder) isEncryptionVersionCompatible(version clientVersion) error {
+	if version != v1ClientVersion {
+		return errDeprecatedIncompatibleCipherBuilder
+	}
+	return nil
+}
+
 // newAESCBCContentCipher will create a new aes cbc content cipher. If the cipher data's
-// will set the CEK algorithm if it hasn't been set.
+// will set the cek algorithm if it hasn't been set.
 func newAESCBCContentCipher(cd CipherData) (ContentCipher, error) {
 	if len(cd.CEKAlgorithm) == 0 {
-		cd.CEKAlgorithm = strings.Join([]string{AESCBC, cd.Padder.Name()}, "/")
+		cd.CEKAlgorithm = AESCBC + "/" + cd.Padder.Name()
 	}
 	cipher, err := newAESCBC(cd, cd.Padder)
 	if err != nil {
@@ -77,3 +107,11 @@ func (cc *aesCBCContentCipher) DecryptContents(src io.ReadCloser) (io.ReadCloser
 func (cc aesCBCContentCipher) GetCipherData() CipherData {
 	return cc.CipherData
 }
+
+var (
+	_ ContentCipherBuilder        = (*cbcContentCipherBuilder)(nil)
+	_ compatibleEncryptionFixture = (*cbcContentCipherBuilder)(nil)
+	_ awsFixture                  = (*cbcContentCipherBuilder)(nil)
+
+	_ ContentCipher = (*aesCBCContentCipher)(nil)
+)

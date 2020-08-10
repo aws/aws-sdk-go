@@ -15,14 +15,13 @@ import (
 
 func TestWrapFactory(t *testing.T) {
 	o := DecryptionClientOptions{
-		WrapRegistry: map[string]WrapEntry{
+		CryptoRegistry: initCryptoRegistryFrom(map[string]WrapEntry{
 			KMSWrap: (kmsKeyHandler{
 				kms: kms.New(unit.Session),
 			}).decryptHandler,
-		},
-		CEKRegistry: map[string]CEKEntry{
+		}, map[string]CEKEntry{
 			AESGCMNoPadding: newAESGCMContentCipher,
-		},
+		}, map[string]Padder{}),
 	}
 	env := Envelope{
 		WrapAlg: KMSWrap,
@@ -43,14 +42,13 @@ func TestWrapFactory(t *testing.T) {
 }
 func TestWrapFactoryErrorNoWrap(t *testing.T) {
 	o := DecryptionClientOptions{
-		WrapRegistry: map[string]WrapEntry{
+		CryptoRegistry: initCryptoRegistryFrom(map[string]WrapEntry{
 			KMSWrap: (kmsKeyHandler{
 				kms: kms.New(unit.Session),
 			}).decryptHandler,
-		},
-		CEKRegistry: map[string]CEKEntry{
+		}, map[string]CEKEntry{
 			AESGCMNoPadding: newAESGCMContentCipher,
-		},
+		}, map[string]Padder{}),
 	}
 	env := Envelope{
 		WrapAlg: "none",
@@ -68,14 +66,13 @@ func TestWrapFactoryErrorNoWrap(t *testing.T) {
 
 func TestWrapFactoryCustomEntry(t *testing.T) {
 	o := DecryptionClientOptions{
-		WrapRegistry: map[string]WrapEntry{
+		CryptoRegistry: initCryptoRegistryFrom(map[string]WrapEntry{
 			"custom": (kmsKeyHandler{
 				kms: kms.New(unit.Session),
 			}).decryptHandler,
-		},
-		CEKRegistry: map[string]CEKEntry{
+		}, map[string]CEKEntry{
 			AESGCMNoPadding: newAESGCMContentCipher,
-		},
+		}, map[string]Padder{}),
 	}
 	env := Envelope{
 		WrapAlg: "custom",
@@ -108,17 +105,15 @@ func TestCEKFactory(t *testing.T) {
 	})
 
 	o := DecryptionClientOptions{
-		WrapRegistry: map[string]WrapEntry{
+		CryptoRegistry: initCryptoRegistryFrom(map[string]WrapEntry{
 			KMSWrap: (kmsKeyHandler{
 				kms: kms.New(sess),
 			}).decryptHandler,
-		},
-		CEKRegistry: map[string]CEKEntry{
+		}, map[string]CEKEntry{
 			AESGCMNoPadding: newAESGCMContentCipher,
-		},
-		PadderRegistry: map[string]Padder{
+		}, map[string]Padder{
 			NoPadder.Name(): NoPadder,
-		},
+		}),
 	}
 	iv, err := hex.DecodeString("0d18e06c7c725ac9e362e1ce")
 	if err != nil {
@@ -167,17 +162,18 @@ func TestCEKFactoryNoCEK(t *testing.T) {
 	})
 
 	o := DecryptionClientOptions{
-		WrapRegistry: map[string]WrapEntry{
-			KMSWrap: (kmsKeyHandler{
-				kms: kms.New(sess),
-			}).decryptHandler,
-		},
-		CEKRegistry: map[string]CEKEntry{
-			AESGCMNoPadding: newAESGCMContentCipher,
-		},
-		PadderRegistry: map[string]Padder{
-			NoPadder.Name(): NoPadder,
-		},
+		CryptoRegistry: initCryptoRegistryFrom(
+			map[string]WrapEntry{
+				KMSWrap: (kmsKeyHandler{
+					kms: kms.New(sess),
+				}).decryptHandler,
+			},
+			map[string]CEKEntry{
+				AESGCMNoPadding: newAESGCMContentCipher,
+			},
+			map[string]Padder{
+				NoPadder.Name(): NoPadder,
+			}),
 	}
 	iv, err := hex.DecodeString("0d18e06c7c725ac9e362e1ce")
 	if err != nil {
@@ -226,15 +222,14 @@ func TestCEKFactoryCustomEntry(t *testing.T) {
 	})
 
 	o := DecryptionClientOptions{
-		WrapRegistry: map[string]WrapEntry{
-			KMSWrap: (kmsKeyHandler{
-				kms: kms.New(sess),
-			}).decryptHandler,
-		},
-		CEKRegistry: map[string]CEKEntry{
-			"custom": newAESGCMContentCipher,
-		},
-		PadderRegistry: map[string]Padder{},
+		CryptoRegistry: initCryptoRegistryFrom(
+			map[string]WrapEntry{
+				KMSWrap: (kmsKeyHandler{
+					kms: kms.New(sess),
+				}).decryptHandler,
+			}, map[string]CEKEntry{
+				"custom": newAESGCMContentCipher,
+			}, map[string]Padder{}),
 	}
 	iv, err := hex.DecodeString("0d18e06c7c725ac9e362e1ce")
 	if err != nil {

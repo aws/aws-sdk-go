@@ -16459,6 +16459,9 @@ type ConnectionInput struct {
 	//
 	//    * MONGODB - Designates a connection to a MongoDB document database.
 	//
+	//    * NETWORK - Designates a network connection to a data source within an
+	//    Amazon Virtual Private Cloud environment (Amazon VPC).
+	//
 	// SFTP is not supported.
 	//
 	// ConnectionType is a required field
@@ -31277,6 +31280,10 @@ func (s *S3Encryption) SetS3EncryptionMode(v string) *S3Encryption {
 type S3Target struct {
 	_ struct{} `type:"structure"`
 
+	// The name of a connection which allows a job or crawler to access data in
+	// Amazon S3 within an Amazon Virtual Private Cloud environment (Amazon VPC).
+	ConnectionName *string `type:"string"`
+
 	// A list of glob patterns used to exclude from the crawl. For more information,
 	// see Catalog Tables with a Crawler (https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html).
 	Exclusions []*string `type:"list"`
@@ -31293,6 +31300,12 @@ func (s S3Target) String() string {
 // GoString returns the string representation
 func (s S3Target) GoString() string {
 	return s.String()
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *S3Target) SetConnectionName(v string) *S3Target {
+	s.ConnectionName = &v
+	return s
 }
 
 // SetExclusions sets the Exclusions field's value.
@@ -37449,6 +37462,9 @@ const (
 
 	// ConnectionTypeKafka is a ConnectionType enum value
 	ConnectionTypeKafka = "KAFKA"
+
+	// ConnectionTypeNetwork is a ConnectionType enum value
+	ConnectionTypeNetwork = "NETWORK"
 )
 
 const (

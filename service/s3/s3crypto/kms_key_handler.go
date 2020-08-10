@@ -1,8 +1,6 @@
 package s3crypto
 
 import (
-	"fmt"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/kms"
@@ -12,16 +10,15 @@ import (
 const (
 	// KMSWrap is a constant used during decryption to build a KMS key handler.
 	KMSWrap = "kms"
-
-	// KMSContextWrap is a constant used during decryption to build a kms+context key handler
-	KMSContextWrap = "kms+context"
 )
 
 // kmsKeyHandler will make calls to KMS to get the masterkey
 type kmsKeyHandler struct {
-	kms         kmsiface.KMSAPI
-	cmkID       *string
-	withContext bool
+	kms   kmsiface.KMSAPI
+	cmkID *string
+
+	// useProvidedCMK is toggled when using `kms` key wrapper with V2 client
+	useProvidedCMK bool
 
 	CipherData
 }
@@ -30,48 +27,32 @@ type kmsKeyHandler struct {
 // description.
 //
 // Example:
-//	sess := session.New(&aws.Config{})
+//	sess := session.Must(session.NewSession())
 //	cmkID := "arn to key"
 //	matdesc := s3crypto.MaterialDescription{}
 //	handler := s3crypto.NewKMSKeyGenerator(kms.New(sess), cmkID)
 //
-// deprecated: See NewKMSContextKeyGenerator
+// deprecated: This feature is in maintenance mode, no new updates will be released. Please see https://docs.aws.amazon.com/general/latest/gr/aws_sdk_cryptography.html for more information.
 func NewKMSKeyGenerator(kmsClient kmsiface.KMSAPI, cmkID string) CipherDataGenerator {
 	return NewKMSKeyGeneratorWithMatDesc(kmsClient, cmkID, MaterialDescription{})
 }
 
-// NewKMSContextKeyGenerator builds a new kms+context key provider using the customer key ID and material
-// description.
-//
-// Example:
-//	sess := session.New(&aws.Config{})
-//	cmkID := "arn to key"
-//	matdesc := s3crypto.MaterialDescription{}
-//	handler := s3crypto.NewKMSContextKeyGenerator(kms.New(sess), cmkID)
-func NewKMSContextKeyGenerator(client kmsiface.KMSAPI, cmkID string) CipherDataGeneratorWithCEKAlg {
-	return NewKMSContextKeyGeneratorWithMatDesc(client, cmkID, MaterialDescription{})
-}
-
-func newKMSKeyHandler(client kmsiface.KMSAPI, cmkID string, withContext bool, matdesc MaterialDescription) *kmsKeyHandler {
+func newKMSKeyHandler(client kmsiface.KMSAPI, cmkID string, matdesc MaterialDescription) *kmsKeyHandler {
 	// These values are read only making them thread safe
 	kp := &kmsKeyHandler{
-		kms:         client,
-		cmkID:       &cmkID,
-		withContext: withContext,
+		kms:   client,
+		cmkID: &cmkID,
 	}
 
 	if matdesc == nil {
 		matdesc = MaterialDescription{}
 	}
 
-	// These values are read only making them thread safe
-	if kp.withContext {
-		kp.CipherData.WrapAlgorithm = KMSContextWrap
-	} else {
-		matdesc["kms_cmk_id"] = &cmkID
-		kp.CipherData.WrapAlgorithm = KMSWrap
-	}
+	matdesc["kms_cmk_id"] = &cmkID
+
+	kp.CipherData.WrapAlgorithm = KMSWrap
 	kp.CipherData.MaterialDescription = matdesc
+
 	return kp
 }
 
@@ -79,32 +60,20 @@ func newKMSKeyHandler(client kmsiface.KMSAPI, cmkID string, withContext bool, ma
 // description.
 //
 // Example:
-//	sess := session.New(&aws.Config{})
+//	sess := session.Must(session.NewSession())
 //	cmkID := "arn to key"
 //	matdesc := s3crypto.MaterialDescription{}
 //	handler := s3crypto.NewKMSKeyGeneratorWithMatDesc(kms.New(sess), cmkID, matdesc)
 //
-// deprecated: See NewKMSContextKeyGeneratorWithMatDesc
+// deprecated: This feature is in maintenance mode, no new updates will be released. Please see https://docs.aws.amazon.com/general/latest/gr/aws_sdk_cryptography.html for more information.
 func NewKMSKeyGeneratorWithMatDesc(kmsClient kmsiface.KMSAPI, cmkID string, matdesc MaterialDescription) CipherDataGenerator {
-	return newKMSKeyHandler(kmsClient, cmkID, false, matdesc)
-}
-
-// NewKMSContextKeyGeneratorWithMatDesc builds a new kms+context key provider using the customer key ID and material
-// description.
-//
-// Example:
-//	sess := session.New(&aws.Config{})
-//	cmkID := "arn to key"
-//	matdesc := s3crypto.MaterialDescription{}
-//	handler := s3crypto.NewKMSKeyGeneratorWithMatDesc(kms.New(sess), cmkID, matdesc)
-func NewKMSContextKeyGeneratorWithMatDesc(kmsClient kmsiface.KMSAPI, cmkID string, matdesc MaterialDescription) CipherDataGeneratorWithCEKAlg {
-	return newKMSKeyHandler(kmsClient, cmkID, true, matdesc)
+	return newKMSKeyHandler(kmsClient, cmkID, matdesc)
 }
 
 // NewKMSWrapEntry builds returns a new KMS key provider and its decrypt handler.
 //
 // Example:
-//	sess := session.New(&aws.Config{})
+//	sess := session.Must(session.NewSession())
 //	customKMSClient := kms.New(sess)
 //	decryptHandler := s3crypto.NewKMSWrapEntry(customKMSClient)
 //
@@ -112,34 +81,64 @@ func NewKMSContextKeyGeneratorWithMatDesc(kmsClient kmsiface.KMSAPI, cmkID strin
 //		svc.WrapRegistry[s3crypto.KMSWrap] = decryptHandler
 //	}))
 //
-// deprecated: See NewKMSContextWrapEntry
+// deprecated: This feature is in maintenance mode, no new updates will be released. Please see https://docs.aws.amazon.com/general/latest/gr/aws_sdk_cryptography.html for more information.
 func NewKMSWrapEntry(kmsClient kmsiface.KMSAPI) WrapEntry {
+	kp := newKMSWrapEntry(kmsClient)
+	return kp.decryptHandler
+}
+
+// RegisterKMSWrapWithCMK registers the `kms` wrapping algorithm to the given WrapRegistry. The wrapper will be
+// configured to call KMS Decrypt with the provided CMK.
+//
+// Example:
+//	sess := session.Must(session.NewSession())
+//	cr := s3crypto.NewCryptoRegistry()
+//	if err := s3crypto.RegisterKMSWrapWithCMK(cr, kms.New(sess), "cmkId"); err != nil {
+//		panic(err) // handle error
+//	}
+//
+// deprecated: This feature is in maintenance mode, no new updates will be released. Please see https://docs.aws.amazon.com/general/latest/gr/aws_sdk_cryptography.html for more information.
+func RegisterKMSWrapWithCMK(registry *CryptoRegistry, client kmsiface.KMSAPI, cmkID string) error {
+	if registry == nil {
+		return errNilCryptoRegistry
+	}
+	return registry.AddWrap(KMSWrap, newKMSWrapEntryWithCMK(client, cmkID))
+}
+
+// RegisterKMSWrapWithAnyCMK registers the `kms` wrapping algorithm to the given WrapRegistry. The wrapper will be
+// configured to call KMS Decrypt without providing a CMK.
+//
+// Example:
+//	sess := session.Must(session.NewSession())
+//	cr := s3crypto.NewCryptoRegistry()
+//	if err := s3crypto.RegisterKMSWrapWithAnyCMK(cr, kms.New(sess)); err != nil {
+//		panic(err) // handle error
+//	}
+//
+// deprecated: This feature is in maintenance mode, no new updates will be released. Please see https://docs.aws.amazon.com/general/latest/gr/aws_sdk_cryptography.html for more information.
+func RegisterKMSWrapWithAnyCMK(registry *CryptoRegistry, client kmsiface.KMSAPI) error {
+	if registry == nil {
+		return errNilCryptoRegistry
+	}
+	return registry.AddWrap(KMSWrap, NewKMSWrapEntry(client))
+}
+
+// newKMSWrapEntryWithCMK builds returns a new KMS key provider and its decrypt handler. The wrap entry will be configured
+// to only attempt to decrypt the data key using the provided CMK.
+func newKMSWrapEntryWithCMK(kmsClient kmsiface.KMSAPI, cmkID string) WrapEntry {
+	kp := newKMSWrapEntry(kmsClient)
+	kp.useProvidedCMK = true
+	kp.cmkID = &cmkID
+	return kp.decryptHandler
+}
+
+func newKMSWrapEntry(kmsClient kmsiface.KMSAPI) *kmsKeyHandler {
 	// These values are read only making them thread safe
 	kp := &kmsKeyHandler{
 		kms: kmsClient,
 	}
 
-	return kp.decryptHandler
-}
-
-// NewKMSContextWrapEntry builds returns a new KMS key provider and its decrypt handler.
-//
-// Example:
-//	sess := session.New(&aws.Config{})
-//	customKMSClient := kms.New(sess)
-//	decryptHandler := s3crypto.NewKMSContextWrapEntry(customKMSClient)
-//
-//	svc := s3crypto.NewDecryptionClient(sess, func(svc *s3crypto.DecryptionClient) {
-//		svc.WrapRegistry[s3crypto.KMSContextWrap] = decryptHandler
-//	}))
-func NewKMSContextWrapEntry(kmsClient kmsiface.KMSAPI) WrapEntry {
-	// These values are read only making them thread safe
-	kp := &kmsKeyHandler{
-		kms:         kmsClient,
-		withContext: true,
-	}
-
-	return kp.decryptHandler
+	return kp
 }
 
 // decryptHandler initializes a KMS keyprovider with a material description. This
@@ -151,17 +150,14 @@ func (kp kmsKeyHandler) decryptHandler(env Envelope) (CipherDataDecrypter, error
 		return nil, err
 	}
 
-	cmkID, ok := m["kms_cmk_id"]
-	if !kp.withContext && !ok {
+	_, ok := m["kms_cmk_id"]
+	if !ok {
 		return nil, awserr.New("MissingCMKIDError", "Material description is missing CMK ID", nil)
 	}
 
 	kp.CipherData.MaterialDescription = m
-	kp.cmkID = cmkID
 	kp.WrapAlgorithm = KMSWrap
-	if kp.withContext {
-		kp.WrapAlgorithm = KMSContextWrap
-	}
+
 	return &kp, nil
 }
 
@@ -172,12 +168,18 @@ func (kp *kmsKeyHandler) DecryptKey(key []byte) ([]byte, error) {
 
 // DecryptKeyWithContext makes a call to KMS to decrypt the key with request context.
 func (kp *kmsKeyHandler) DecryptKeyWithContext(ctx aws.Context, key []byte) ([]byte, error) {
-	out, err := kp.kms.DecryptWithContext(ctx,
-		&kms.DecryptInput{
-			EncryptionContext: kp.CipherData.MaterialDescription,
-			CiphertextBlob:    key,
-			GrantTokens:       []*string{},
-		})
+	in := &kms.DecryptInput{
+		EncryptionContext: kp.MaterialDescription,
+		CiphertextBlob:    key,
+		GrantTokens:       []*string{},
+	}
+
+	// useProvidedCMK will be true if a constructor was used with the new V2 client
+	if kp.useProvidedCMK {
+		in.KeyId = kp.cmkID
+	}
+
+	out, err := kp.kms.DecryptWithContext(ctx, in)
 	if err != nil {
 		return nil, err
 	}
@@ -190,31 +192,14 @@ func (kp *kmsKeyHandler) GenerateCipherData(keySize, ivSize int) (CipherData, er
 	return kp.GenerateCipherDataWithContext(aws.BackgroundContext(), keySize, ivSize)
 }
 
-func (kp kmsKeyHandler) GenerateCipherDataWithCEKAlg(keySize, ivSize int, cekAlgorithm string) (CipherData, error) {
-	return kp.GenerateCipherDataWithCEKAlgWithContext(aws.BackgroundContext(), keySize, ivSize, cekAlgorithm)
-}
-
 // GenerateCipherDataWithContext makes a call to KMS to generate a data key,
 // Upon making the call, it also sets the encrypted key.
 func (kp *kmsKeyHandler) GenerateCipherDataWithContext(ctx aws.Context, keySize, ivSize int) (CipherData, error) {
-	return kp.GenerateCipherDataWithCEKAlgWithContext(ctx, keySize, ivSize, "")
-}
-
-func (kp kmsKeyHandler) GenerateCipherDataWithCEKAlgWithContext(ctx aws.Context, keySize int, ivSize int, cekAlgorithm string) (CipherData, error) {
-	md := kp.CipherData.MaterialDescription
-
-	wrapAlgorithm := KMSWrap
-	if kp.withContext {
-		wrapAlgorithm = KMSContextWrap
-		if len(cekAlgorithm) == 0 {
-			return CipherData{}, fmt.Errorf("CEK algorithm identifier must not be empty")
-		}
-		md["aws:"+cekAlgorithmHeader] = &cekAlgorithm
-	}
+	cd := kp.CipherData.Clone()
 
 	out, err := kp.kms.GenerateDataKeyWithContext(ctx,
 		&kms.GenerateDataKeyInput{
-			EncryptionContext: md,
+			EncryptionContext: cd.MaterialDescription,
 			KeyId:             kp.cmkID,
 			KeySpec:           aws.String("AES_256"),
 		})
@@ -227,19 +212,21 @@ func (kp kmsKeyHandler) GenerateCipherDataWithCEKAlgWithContext(ctx aws.Context,
 		return CipherData{}, err
 	}
 
-	cd := CipherData{
-		Key:                 out.Plaintext,
-		IV:                  iv,
-		WrapAlgorithm:       wrapAlgorithm,
-		MaterialDescription: md,
-		EncryptedKey:        out.CiphertextBlob,
-	}
+	cd.Key = out.Plaintext
+	cd.IV = iv
+	cd.EncryptedKey = out.CiphertextBlob
+
 	return cd, nil
 }
 
-func (kp *kmsKeyHandler) isUsingDeprecatedFeatures() error {
-	if !kp.withContext {
-		return errDeprecatedCipherDataGenerator
-	}
-	return nil
+func (kp kmsKeyHandler) isAWSFixture() bool {
+	return true
 }
+
+var (
+	_ CipherDataGenerator            = (*kmsKeyHandler)(nil)
+	_ CipherDataGeneratorWithContext = (*kmsKeyHandler)(nil)
+	_ CipherDataDecrypter            = (*kmsKeyHandler)(nil)
+	_ CipherDataDecrypterWithContext = (*kmsKeyHandler)(nil)
+	_ awsFixture                     = (*kmsKeyHandler)(nil)
+)

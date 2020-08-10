@@ -1,17 +1,36 @@
 package s3crypto
 
 import (
-	"crypto/md5"
 	"crypto/sha256"
 	"hash"
 	"io"
 )
 
-// hashReader is used for calculating SHA256 when following the sigv4 specification.
-// Additionally this used for calculating the unencrypted MD5.
-type hashReader interface {
-	GetValue() []byte
+// lengthReader returns the content length
+type lengthReader interface {
 	GetContentLength() int64
+}
+
+type contentLengthReader struct {
+	contentLength int64
+	body          io.Reader
+}
+
+func newContentLengthReader(f io.Reader) *contentLengthReader {
+	return &contentLengthReader{body: f}
+}
+
+func (r *contentLengthReader) Read(b []byte) (int, error) {
+	n, err := r.body.Read(b)
+	if err != nil && err != io.EOF {
+		return n, err
+	}
+	r.contentLength += int64(n)
+	return n, err
+}
+
+func (r *contentLengthReader) GetContentLength() int64 {
+	return r.contentLength
 }
 
 type sha256Writer struct {
@@ -30,32 +49,4 @@ func (r *sha256Writer) Write(b []byte) (int, error) {
 
 func (r *sha256Writer) GetValue() []byte {
 	return r.hash.Sum(nil)
-}
-
-type md5Reader struct {
-	contentLength int64
-	hash          hash.Hash
-	body          io.Reader
-}
-
-func newMD5Reader(body io.Reader) *md5Reader {
-	return &md5Reader{hash: md5.New(), body: body}
-}
-
-func (w *md5Reader) Read(b []byte) (int, error) {
-	n, err := w.body.Read(b)
-	if err != nil && err != io.EOF {
-		return n, err
-	}
-	w.contentLength += int64(n)
-	w.hash.Write(b[:n])
-	return n, err
-}
-
-func (w *md5Reader) GetValue() []byte {
-	return w.hash.Sum(nil)
-}
-
-func (w *md5Reader) GetContentLength() int64 {
-	return w.contentLength
 }
