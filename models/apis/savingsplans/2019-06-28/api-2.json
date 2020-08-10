@@ -596,6 +596,7 @@
       "enum":[
         "AmazonEC2",
         "AmazonECS",
+        "AmazonEKS",
         "AWSLambda"
       ]
     },

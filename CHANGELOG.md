@@ -1,3 +1,22 @@
+Release v1.34.1 (2020-08-10)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Remove CoIP Auto-Assign feature references.
+* `service/glue`: Updates service API and documentation
+  * Starting today, you can further control orchestration of your ETL workloads in AWS Glue by specifying the maximum number of concurrent runs for a Glue workflow.
+* `service/savingsplans`: Updates service API
+
+### SDK Enhancements
+* `aws/credentials/stscreds`: Add optional expiry duration to WebIdentityRoleProvider ([#3356](https://github.com/aws/aws-sdk-go/pull/3356))
+  * Adds a new optional field to the WebIdentityRoleProvider that allows you to specify the duration the assumed role credentials will be valid for.
+* `example/service/s3/putObjectWithProgress`: Fix example for file upload with progress ([#3377](https://github.com/aws/aws-sdk-go/pull/3377))
+  * Fixes [#2468](https://github.com/aws/aws-sdk-go/issues/2468) by ignoring the first read of the progress reader wrapper. Since the first read is used for signing the request, not upload progress.
+  * Updated the example to write progress inline instead of newlines.
+* `service/dynamodb/dynamodbattribute`: Fix typo in package docs ([#3446](https://github.com/aws/aws-sdk-go/pull/3446))
+  * Fixes typo in dynamodbattribute package docs.
+
 Release v1.34.0 (2020-08-07)
 ===
 

@@ -21181,9 +21181,7 @@
         "SubnetId":{
           "shape":"SubnetId",
           "locationName":"subnetId"
-        },
-        "MapCustomerOwnedIpOnLaunch":{"shape":"AttributeBooleanValue"},
-        "CustomerOwnedIpv4Pool":{"shape":"CoipPoolId"}
+        }
       }
     },
     "ModifyTrafficMirrorFilterNetworkServicesRequest":{
