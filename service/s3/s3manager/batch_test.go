@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"sort"
 	"strings"
 	"testing"
 
@@ -782,6 +783,125 @@ func TestBatchUpload(t *testing.T) {
 	if err := svc.UploadWithIterator(aws.BackgroundContext(), iter); err != nil {
 		panic(err)
 	}
+
+	if count != len(objects) {
+		t.Errorf("Expected %d, but received %d", len(objects), count)
+	}
+
+	if len(expected) != len(received) {
+		t.Errorf("Expected %d, but received %d", len(expected), len(received))
+	}
+
+	for i := 0; i < len(expected); i++ {
+		if expected[i].key != received[i].key {
+			t.Errorf("Expected %q, but received %q", expected[i].key, received[i].key)
+		}
+
+		if expected[i].bucket != received[i].bucket {
+			t.Errorf("Expected %q, but received %q", expected[i].bucket, received[i].bucket)
+		}
+
+		if expected[i].reqBody != received[i].reqBody {
+			t.Errorf("Expected %q, but received %q", expected[i].reqBody, received[i].reqBody)
+		}
+	}
+}
+
+func TestBatchUploadConcurrently(t *testing.T) {
+	count := 0
+	expected := []struct {
+		bucket, key string
+		reqBody     string
+	}{
+		{
+			key:     "1",
+			bucket:  "bucket1",
+			reqBody: "1",
+		},
+		{
+			key:     "2",
+			bucket:  "bucket2",
+			reqBody: "2",
+		},
+		{
+			key:     "3",
+			bucket:  "bucket3",
+			reqBody: "3",
+		},
+		{
+			key:     "4",
+			bucket:  "bucket4",
+			reqBody: "4",
+		},
+	}
+
+	received := []struct {
+		bucket, key, reqBody string
+	}{}
+
+	payload := []string{
+		"a",
+		"b",
+		"c",
+		"d",
+	}
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		urlParts := strings.Split(r.URL.String(), "/")
+
+		b, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			t.Error(err)
+		}
+
+		received = append(received, struct{ bucket, key, reqBody string }{urlParts[1], urlParts[2], string(b)})
+		w.Write([]byte(payload[count]))
+
+		count++
+	}))
+	defer server.Close()
+
+	svc := NewUploaderWithClient(buildS3SvcClient(server.URL))
+
+	objects := []BatchUploadObject{
+		{
+			Object: &UploadInput{
+				Key:    aws.String("1"),
+				Bucket: aws.String("bucket1"),
+				Body:   bytes.NewBuffer([]byte("1")),
+			},
+		},
+		{
+			Object: &UploadInput{
+				Key:    aws.String("2"),
+				Bucket: aws.String("bucket2"),
+				Body:   bytes.NewBuffer([]byte("2")),
+			},
+		},
+		{
+			Object: &UploadInput{
+				Key:    aws.String("3"),
+				Bucket: aws.String("bucket3"),
+				Body:   bytes.NewBuffer([]byte("3")),
+			},
+		},
+		{
+			Object: &UploadInput{
+				Key:    aws.String("4"),
+				Bucket: aws.String("bucket4"),
+				Body:   bytes.NewBuffer([]byte("4")),
+			},
+		},
+	}
+
+	iter := &UploadObjectsIterator{Objects: objects}
+	if err := svc.UploadConcurrently(aws.BackgroundContext(), iter); err != nil {
+		panic(err)
+	}
+	// Sort the received array to simplify verification.
+	sort.SliceStable(received, func(i, j int) bool {
+		return received[i].key < received[j].key
+	})
 
 	if count != len(objects) {
 		t.Errorf("Expected %d, but received %d", len(objects), count)

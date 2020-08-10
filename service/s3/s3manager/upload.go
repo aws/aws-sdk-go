@@ -318,28 +318,9 @@ func (u Uploader) UploadWithIterator(ctx aws.Context, iter BatchUploadIterator, 
 	var errs []Error
 	for iter.Next() {
 		object := iter.UploadObject()
-		if _, err := u.UploadWithContext(ctx, object.Object, opts...); err != nil {
-			s3Err := Error{
-				OrigErr: err,
-				Bucket:  object.Object.Bucket,
-				Key:     object.Object.Key,
-			}
-
-			errs = append(errs, s3Err)
-		}
-
-		if object.After == nil {
-			continue
-		}
-
-		if err := object.After(); err != nil {
-			s3Err := Error{
-				OrigErr: err,
-				Bucket:  object.Object.Bucket,
-				Key:     object.Object.Key,
-			}
-
-			errs = append(errs, s3Err)
+		err := u.uploadObject(ctx, object)
+		if err != nil {
+			errs = append(errs, *err)
 		}
 	}
 
@@ -347,6 +328,91 @@ func (u Uploader) UploadWithIterator(ctx aws.Context, iter BatchUploadIterator, 
 		return NewBatchError("BatchedUploadIncomplete", "some objects have failed to upload.", errs)
 	}
 	return nil
+}
+
+func (u Uploader) uploadObject(ctx aws.Context, object BatchUploadObject) *Error {
+	if _, err := u.UploadWithContext(ctx, object.Object); err != nil {
+		s3Err := Error{
+			OrigErr: err,
+			Bucket:  object.Object.Bucket,
+			Key:     object.Object.Key,
+		}
+		return &s3Err
+	}
+
+	if object.After == nil {
+		return nil
+	}
+
+	if err := object.After(); err != nil {
+		s3Err := Error{
+			OrigErr: err,
+			Bucket:  object.Object.Bucket,
+			Key:     object.Object.Key,
+		}
+		return &s3Err
+	}
+	return nil
+}
+
+// UploadConcurrently will upload a batched amount of objects to S3. This operation uses
+// the iterator pattern to know which object to upload next. Since this is an interface this
+// allows for custom defined functionality.
+//
+// Example:
+//	svc:= s3manager.NewUploader(sess)
+//
+//	objects := []BatchUploadObject{
+//		{
+//			Object:	&s3manager.UploadInput {
+//				Key: aws.String("key"),
+//				Bucket: aws.String("bucket"),
+//			},
+//		},
+//	}
+//
+//	iter := &s3manager.UploadObjectsIterator{Objects: objects}
+//	if err := svc.UploadConcurrently(aws.BackgroundContext(), iter); err != nil {
+//		return err
+//	}
+func (u Uploader) UploadConcurrently(ctx aws.Context, iter BatchUploadIterator, opts ...func(*Uploader)) error {
+	var errs []Error
+	var wg sync.WaitGroup
+	objects := make(chan BatchUploadObject, u.Concurrency)
+	errors := make(chan Error, u.Concurrency)
+	for w := 0; w < u.Concurrency; w++ {
+		go u.uploadWorker(ctx, &wg, objects, errors)
+		wg.Add(1)
+	}
+
+	go func() {
+		for iter.Next() {
+			object := iter.UploadObject()
+			objects <- object
+		}
+		close(objects)
+	}()
+	go func() {
+		for err := range errors {
+			errs = append(errs, err)
+		}
+	}()
+	wg.Wait()
+	close(errors)
+	if len(errs) > 0 {
+		return NewBatchError("BatchedUploadIncomplete", "some objects have failed to upload.", errs)
+	}
+	return nil
+}
+
+func (u Uploader) uploadWorker(ctx aws.Context, wg *sync.WaitGroup, objects <-chan BatchUploadObject, errors chan<- Error) {
+	defer wg.Done()
+	for o := range objects {
+		err := u.uploadObject(ctx, o)
+		if err != nil {
+			errors <- *err
+		}
+	}
 }
 
 // internal structure to manage an upload to S3.
