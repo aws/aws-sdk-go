@@ -201,6 +201,13 @@ var eventStreamWriterTestTmpl = template.Must(
 			{{- end }}
 		}
 
+		var marshalers request.HandlerList
+		marshalers.PushBackNamed({{ $.API.ProtocolPackage }}.BuildHandler)
+		payloadMarshaler := protocol.HandlerPayloadMarshal{
+			Marshalers: marshalers,
+		}
+		_ = payloadMarshaler
+
 		eventMsgs := []eventstream.Message{
 			{{- range $idx, $event := $.InputStream.Events }}
 				{{- template "set event message" Map "idx" $idx "parentShape" $event.Shape "eventName" $event.Name }}
