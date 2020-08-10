@@ -2713,6 +2713,7 @@ func SavingsPlanRateServiceCode_Values() []string {
 	return []string{
 		SavingsPlanRateServiceCodeAmazonEc2,
 		SavingsPlanRateServiceCodeAmazonEcs,
+		SavingsPlanRateServiceCodeAmazonEks,
 		SavingsPlanRateServiceCodeAwslambda,
 	}
 }

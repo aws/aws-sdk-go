@@ -38292,5 +38292,6 @@ func WorkflowRunStatus_Values() []string {
 		WorkflowRunStatusCompleted,
 		WorkflowRunStatusStopping,
 		WorkflowRunStatusStopped,
+		WorkflowRunStatusError,
 	}
 }

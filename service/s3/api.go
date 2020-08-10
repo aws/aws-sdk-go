@@ -30355,17 +30355,31 @@ const (
 // BucketLocationConstraint_Values returns all elements of the BucketLocationConstraint enum
 func BucketLocationConstraint_Values() []string {
 	return []string{
-		BucketLocationConstraintEu,
-		BucketLocationConstraintEuWest1,
-		BucketLocationConstraintUsWest1,
-		BucketLocationConstraintUsWest2,
+		BucketLocationConstraintAfSouth1,
+		BucketLocationConstraintApEast1,
+		BucketLocationConstraintApNortheast1,
+		BucketLocationConstraintApNortheast2,
+		BucketLocationConstraintApNortheast3,
 		BucketLocationConstraintApSouth1,
 		BucketLocationConstraintApSoutheast1,
 		BucketLocationConstraintApSoutheast2,
-		BucketLocationConstraintApNortheast1,
-		BucketLocationConstraintSaEast1,
+		BucketLocationConstraintCaCentral1,
 		BucketLocationConstraintCnNorth1,
+		BucketLocationConstraintCnNorthwest1,
+		BucketLocationConstraintEu,
 		BucketLocationConstraintEuCentral1,
+		BucketLocationConstraintEuNorth1,
+		BucketLocationConstraintEuSouth1,
+		BucketLocationConstraintEuWest1,
+		BucketLocationConstraintEuWest2,
+		BucketLocationConstraintEuWest3,
+		BucketLocationConstraintMeSouth1,
+		BucketLocationConstraintSaEast1,
+		BucketLocationConstraintUsEast2,
+		BucketLocationConstraintUsGovEast1,
+		BucketLocationConstraintUsGovWest1,
+		BucketLocationConstraintUsWest1,
+		BucketLocationConstraintUsWest2,
 	}
 }
 
