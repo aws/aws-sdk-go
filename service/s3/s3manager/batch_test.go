@@ -808,6 +808,14 @@ func TestBatchUpload(t *testing.T) {
 	}
 }
 
+type receivedRequests []struct {
+	bucket, key, reqBody string
+}
+
+func (v receivedRequests) Len() int           { return len(v) }
+func (v receivedRequests) Swap(i, j int)      { v[i], v[j] = v[j], v[i] }
+func (v receivedRequests) Less(i, j int) bool { return v[i].key < v[j].key }
+
 func TestBatchUploadConcurrently(t *testing.T) {
 	count := 0
 	expected := []struct {
@@ -836,9 +844,7 @@ func TestBatchUploadConcurrently(t *testing.T) {
 		},
 	}
 
-	received := []struct {
-		bucket, key, reqBody string
-	}{}
+	received := receivedRequests{}
 
 	payload := []string{
 		"a",
@@ -902,9 +908,7 @@ func TestBatchUploadConcurrently(t *testing.T) {
 		panic(err)
 	}
 	// Sort the received array to simplify verification.
-	sort.SliceStable(received, func(i, j int) bool {
-		return received[i].key < received[j].key
-	})
+	sort.Sort(received)
 
 	if count != len(objects) {
 		t.Errorf("Expected %d, but received %d", len(objects), count)
