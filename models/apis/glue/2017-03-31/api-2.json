@@ -2772,7 +2772,8 @@
         "JDBC",
         "SFTP",
         "MONGODB",
-        "KAFKA"
+        "KAFKA",
+        "NETWORK"
       ]
     },
     "ConnectionsList":{
@@ -5679,7 +5680,8 @@
       "type":"structure",
       "members":{
         "Path":{"shape":"Path"},
-        "Exclusions":{"shape":"PathList"}
+        "Exclusions":{"shape":"PathList"},
+        "ConnectionName":{"shape":"ConnectionName"}
       }
     },
     "S3TargetList":{

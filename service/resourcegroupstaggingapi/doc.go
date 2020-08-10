@@ -168,8 +168,6 @@
 //
 //    * AWS Firewall Manager (https://docs.aws.amazon.com/firewall-manager)
 //
-//    * Amazon Fraud Detector (https://docs.aws.amazon.com/frauddetector)
-//
 //    * Amazon FSx (https://docs.aws.amazon.com/fsx)
 //
 //    * Amazon S3 Glacier (https://docs.aws.amazon.com/s3/?id=docs_gateway#amazon-s3-glacier)

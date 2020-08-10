@@ -384,6 +384,15 @@
       "input":{"shape":"CreateCapacityReservationRequest"},
       "output":{"shape":"CreateCapacityReservationResult"}
     },
+    "CreateCarrierGateway":{
+      "name":"CreateCarrierGateway",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCarrierGatewayRequest"},
+      "output":{"shape":"CreateCarrierGatewayResult"}
+    },
     "CreateClientVpnEndpoint":{
       "name":"CreateClientVpnEndpoint",
       "http":{
@@ -857,6 +866,15 @@
       },
       "input":{"shape":"CreateVpnGatewayRequest"},
       "output":{"shape":"CreateVpnGatewayResult"}
+    },
+    "DeleteCarrierGateway":{
+      "name":"DeleteCarrierGateway",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCarrierGatewayRequest"},
+      "output":{"shape":"DeleteCarrierGatewayResult"}
     },
     "DeleteClientVpnEndpoint":{
       "name":"DeleteClientVpnEndpoint",
@@ -1376,6 +1394,15 @@
       },
       "input":{"shape":"DescribeCapacityReservationsRequest"},
       "output":{"shape":"DescribeCapacityReservationsResult"}
+    },
+    "DescribeCarrierGateways":{
+      "name":"DescribeCarrierGateways",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCarrierGatewaysRequest"},
+      "output":{"shape":"DescribeCarrierGatewaysResult"}
     },
     "DescribeClassicLinkInstances":{
       "name":"DescribeClassicLinkInstances",
@@ -3912,6 +3939,10 @@
         "CustomerOwnedIpv4Pool":{
           "shape":"String",
           "locationName":"customerOwnedIpv4Pool"
+        },
+        "CarrierIp":{
+          "shape":"String",
+          "locationName":"carrierIp"
         }
       }
     },
@@ -3990,6 +4021,10 @@
         "CustomerOwnedIpv4Pool":{
           "shape":"String",
           "locationName":"customerOwnedIpv4Pool"
+        },
+        "CarrierIp":{
+          "shape":"String",
+          "locationName":"carrierIp"
         }
       }
     },
@@ -5605,6 +5640,57 @@
         "dedicated"
       ]
     },
+    "CarrierGateway":{
+      "type":"structure",
+      "members":{
+        "CarrierGatewayId":{
+          "shape":"CarrierGatewayId",
+          "locationName":"carrierGatewayId"
+        },
+        "VpcId":{
+          "shape":"VpcId",
+          "locationName":"vpcId"
+        },
+        "State":{
+          "shape":"CarrierGatewayState",
+          "locationName":"state"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "CarrierGatewayId":{"type":"string"},
+    "CarrierGatewayIdSet":{
+      "type":"list",
+      "member":{"shape":"CarrierGatewayId"}
+    },
+    "CarrierGatewayMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
+    "CarrierGatewaySet":{
+      "type":"list",
+      "member":{
+        "shape":"CarrierGateway",
+        "locationName":"item"
+      }
+    },
+    "CarrierGatewayState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "available",
+        "deleting",
+        "deleted"
+      ]
+    },
     "CertificateAuthentication":{
       "type":"structure",
       "members":{
@@ -6492,6 +6578,31 @@
         "CapacityReservation":{
           "shape":"CapacityReservation",
           "locationName":"capacityReservation"
+        }
+      }
+    },
+    "CreateCarrierGatewayRequest":{
+      "type":"structure",
+      "required":["VpcId"],
+      "members":{
+        "VpcId":{"shape":"VpcId"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "DryRun":{"shape":"Boolean"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateCarrierGatewayResult":{
+      "type":"structure",
+      "members":{
+        "CarrierGateway":{
+          "shape":"CarrierGateway",
+          "locationName":"carrierGateway"
         }
       }
     },
@@ -7419,6 +7530,7 @@
         },
         "TransitGatewayId":{"shape":"TransitGatewayId"},
         "LocalGatewayId":{"shape":"LocalGatewayId"},
+        "CarrierGatewayId":{"shape":"CarrierGatewayId"},
         "NetworkInterfaceId":{
           "shape":"NetworkInterfaceId",
           "locationName":"networkInterfaceId"
@@ -8320,6 +8432,23 @@
       ]
     },
     "DefaultingDhcpOptionsId":{"type":"string"},
+    "DeleteCarrierGatewayRequest":{
+      "type":"structure",
+      "required":["CarrierGatewayId"],
+      "members":{
+        "CarrierGatewayId":{"shape":"CarrierGatewayId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DeleteCarrierGatewayResult":{
+      "type":"structure",
+      "members":{
+        "CarrierGateway":{
+          "shape":"CarrierGateway",
+          "locationName":"carrierGateway"
+        }
+      }
+    },
     "DeleteClientVpnEndpointRequest":{
       "type":"structure",
       "required":["ClientVpnEndpointId"],
@@ -9546,6 +9675,35 @@
         "CapacityReservations":{
           "shape":"CapacityReservationSet",
           "locationName":"capacityReservationSet"
+        }
+      }
+    },
+    "DescribeCarrierGatewaysRequest":{
+      "type":"structure",
+      "members":{
+        "CarrierGatewayIds":{
+          "shape":"CarrierGatewayIdSet",
+          "locationName":"CarrierGatewayId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"CarrierGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeCarrierGatewaysResult":{
+      "type":"structure",
+      "members":{
+        "CarrierGateways":{
+          "shape":"CarrierGatewaySet",
+          "locationName":"carrierGatewaySet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -17892,6 +18050,10 @@
     "InstanceNetworkInterfaceAssociation":{
       "type":"structure",
       "members":{
+        "CarrierIp":{
+          "shape":"String",
+          "locationName":"carrierIp"
+        },
         "IpOwnerId":{
           "shape":"String",
           "locationName":"ipOwnerId"
@@ -17991,6 +18153,7 @@
           "shape":"String",
           "locationName":"subnetId"
         },
+        "AssociateCarrierIpAddress":{"shape":"Boolean"},
         "InterfaceType":{"shape":"String"}
       }
     },
@@ -19518,6 +19681,10 @@
     "LaunchTemplateInstanceNetworkInterfaceSpecification":{
       "type":"structure",
       "members":{
+        "AssociateCarrierIpAddress":{
+          "shape":"Boolean",
+          "locationName":"associateCarrierIpAddress"
+        },
         "AssociatePublicIpAddress":{
           "shape":"Boolean",
           "locationName":"associatePublicIpAddress"
@@ -19582,6 +19749,7 @@
     "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest":{
       "type":"structure",
       "members":{
+        "AssociateCarrierIpAddress":{"shape":"Boolean"},
         "AssociatePublicIpAddress":{"shape":"Boolean"},
         "DeleteOnTermination":{"shape":"Boolean"},
         "Description":{"shape":"String"},
@@ -21895,6 +22063,10 @@
         "PublicIp":{
           "shape":"String",
           "locationName":"publicIp"
+        },
+        "CarrierIp":{
+          "shape":"String",
+          "locationName":"carrierIp"
         }
       }
     },
@@ -23762,6 +23934,7 @@
         },
         "TransitGatewayId":{"shape":"TransitGatewayId"},
         "LocalGatewayId":{"shape":"LocalGatewayId"},
+        "CarrierGatewayId":{"shape":"CarrierGatewayId"},
         "NetworkInterfaceId":{
           "shape":"NetworkInterfaceId",
           "locationName":"networkInterfaceId"
@@ -25091,6 +25264,10 @@
         "LocalGatewayId":{
           "shape":"String",
           "locationName":"localGatewayId"
+        },
+        "CarrierGatewayId":{
+          "shape":"CarrierGatewayId",
+          "locationName":"carrierGatewayId"
         },
         "NetworkInterfaceId":{
           "shape":"String",

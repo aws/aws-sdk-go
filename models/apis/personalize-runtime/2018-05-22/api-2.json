@@ -82,7 +82,8 @@
     "GetPersonalizedRankingResponse":{
       "type":"structure",
       "members":{
-        "personalizedRanking":{"shape":"ItemList"}
+        "personalizedRanking":{"shape":"ItemList"},
+        "recommendationId":{"shape":"RecommendationID"}
       }
     },
     "GetRecommendationsRequest":{
@@ -100,7 +101,8 @@
     "GetRecommendationsResponse":{
       "type":"structure",
       "members":{
-        "itemList":{"shape":"ItemList"}
+        "itemList":{"shape":"ItemList"},
+        "recommendationId":{"shape":"RecommendationID"}
       }
     },
     "InputList":{
@@ -134,6 +136,7 @@
         "score":{"shape":"Score"}
       }
     },
+    "RecommendationID":{"type":"string"},
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{

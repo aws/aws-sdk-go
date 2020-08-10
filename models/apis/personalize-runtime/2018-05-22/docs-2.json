@@ -99,6 +99,13 @@
         "ItemList$member": null
       }
     },
+    "RecommendationID": {
+      "base": null,
+      "refs": {
+        "GetPersonalizedRankingResponse$recommendationId": "<p>The ID of the recommendation.</p>",
+        "GetRecommendationsResponse$recommendationId": "<p>The ID of the recommendation.</p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>The specified resource does not exist.</p>",
       "refs": {

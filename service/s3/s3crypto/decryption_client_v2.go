@@ -1,12 +1,9 @@
 package s3crypto
 
 import (
-	"strings"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
@@ -33,58 +30,61 @@ type DecryptionClientOptions struct {
 	// Defaults to our default load strategy.
 	LoadStrategy LoadStrategy
 
-	WrapRegistry   map[string]WrapEntry
-	CEKRegistry    map[string]CEKEntry
-	PadderRegistry map[string]Padder
+	CryptoRegistry *CryptoRegistry
 }
 
-// NewDecryptionClientV2 instantiates a new V2 S3 crypto client. The returned DecryptionClientV2 will be able to decrypt
-// object encrypted by both the V1 and V2 clients.
+// NewDecryptionClientV2 instantiates a new DecryptionClientV2. The NewDecryptionClientV2 must be configured with the
+// desired key wrapping and content encryption algorithms that are required to be read by the client. These algorithms
+// are registered by providing the client a CryptoRegistry that has been constructed with the desired configuration.
+// NewDecryptionClientV2 will return an error if no key wrapping or content encryption algorithms have been provided.
 //
 // Example:
 //	sess := session.Must(session.NewSession())
-//	svc := s3crypto.NewDecryptionClientV2(sess, func(svc *s3crypto.DecryptionClientOptions{
+//	cr := s3crypto.NewCryptoRegistry()
+// 	if err := s3crypto.RegisterKMSContextWrapWithAnyCMK(cr, kms.New(sess)); err != nil {
+//		panic(err) // handle error
+//	}
+//	if err := s3crypto.RegisterAESGCMContentCipher(cr); err != nil {
+//		panic(err) // handle error
+//	}
+//	svc, err := s3crypto.NewDecryptionClientV2(sess, cr, func(o *s3crypto.DecryptionClientOptions) {
 //		// Custom client options here
-//	}))
-func NewDecryptionClientV2(prov client.ConfigProvider, options ...func(clientOptions *DecryptionClientOptions)) *DecryptionClientV2 {
+//	})
+//	if err != nil {
+//		panic(err) // handle error
+//	}
+func NewDecryptionClientV2(
+	prov client.ConfigProvider, cryptoRegistry *CryptoRegistry,
+	options ...func(clientOptions *DecryptionClientOptions),
+) (*DecryptionClientV2, error) {
 	s3client := s3.New(prov)
 
 	s3client.Handlers.Build.PushBack(func(r *request.Request) {
 		request.AddToUserAgent(r, "S3CryptoV2")
 	})
 
-	kmsClient := kms.New(prov)
 	clientOptions := &DecryptionClientOptions{
 		S3Client: s3client,
 		LoadStrategy: defaultV2LoadStrategy{
 			client: s3client,
 		},
-		WrapRegistry: map[string]WrapEntry{
-			KMSWrap:        NewKMSWrapEntry(kmsClient),
-			KMSContextWrap: NewKMSContextWrapEntry(kmsClient),
-		},
-		CEKRegistry: map[string]CEKEntry{
-			AESGCMNoPadding: newAESGCMContentCipher,
-			strings.Join([]string{AESCBC, AESCBCPadder.Name()}, "/"): newAESCBCContentCipher,
-		},
-		PadderRegistry: map[string]Padder{
-			strings.Join([]string{AESCBC, AESCBCPadder.Name()}, "/"): AESCBCPadder,
-			"NoPadding": NoPadder,
-		},
+		CryptoRegistry: cryptoRegistry,
 	}
 	for _, option := range options {
 		option(clientOptions)
 	}
 
-	return &DecryptionClientV2{options: *clientOptions}
+	if err := cryptoRegistry.valid(); err != nil {
+		return nil, err
+	}
+
+	return &DecryptionClientV2{options: *clientOptions}, nil
 }
 
 // GetObjectRequest will make a request to s3 and retrieve the object. In this process
 // decryption will be done. The SDK only supports V2 reads of KMS and GCM.
 //
 // Example:
-//  sess := session.Must(session.NewSession())
-//	svc := s3crypto.NewDecryptionClientV2(sess)
 //	req, out := svc.GetObjectRequest(&s3.GetObjectInput {
 //	  Key: aws.String("testKey"),
 //	  Bucket: aws.String("testBucket"),

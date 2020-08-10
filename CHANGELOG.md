@@ -1,3 +1,43 @@
+Release v1.34.0 (2020-08-07)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * AWS Glue now adds support for Network connection type enabling you to access resources inside your VPC using Glue crawlers and Glue ETL jobs.
+* `service/organizations`: Updates service API and documentation
+  * Documentation updates for some new error reasons.
+* `service/s3`: Updates service documentation and examples
+  * Updates Amazon S3 API reference documentation.
+* `service/sms`: Updates service API and documentation
+  * In this release, AWS Server Migration Service (SMS) has added new features: 1. APIs to work with application and instance level validation 2. Import application catalog from AWS Application Discovery Service 3. For an application you can start on-demand replication
+
+### SDK Features
+* `service/s3/s3crypto`: Updates to the Amazon S3 Encryption Client - This change includes fixes for issues that were reported by Sophie Schmieg from the Google ISE team, and for issues that were discovered by AWS Cryptography.
+
+Release v1.33.21 (2020-08-06)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release supports Wavelength resources, including carrier gateways, and carrier IP addresses.
+* `service/lex-models`: Updates service API and documentation
+* `service/personalize`: Updates service API and documentation
+* `service/personalize-events`: Updates service API and documentation
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/runtime.lex`: Updates service API and documentation
+
+Release v1.33.20 (2020-08-05)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/fsx`: Updates service documentation
+* `service/resourcegroupstaggingapi`: Updates service documentation
+  * Documentation updates for the Resource Group Tagging API namespace.
+* `service/sns`: Updates service documentation
+  * Documentation updates for SNS.
+* `service/transcribe`: Updates service API, documentation, and paginators
+
 Release v1.33.19 (2020-08-04)
 ===
 

@@ -283,6 +283,9 @@ type GetPersonalizedRankingOutput struct {
 	// A list of items in order of most likely interest to the user. The maximum
 	// is 500.
 	PersonalizedRanking []*PredictedItem `locationName:"personalizedRanking" type:"list"`
+
+	// The ID of the recommendation.
+	RecommendationId *string `locationName:"recommendationId" type:"string"`
 }
 
 // String returns the string representation
@@ -298,6 +301,12 @@ func (s GetPersonalizedRankingOutput) GoString() string {
 // SetPersonalizedRanking sets the PersonalizedRanking field's value.
 func (s *GetPersonalizedRankingOutput) SetPersonalizedRanking(v []*PredictedItem) *GetPersonalizedRankingOutput {
 	s.PersonalizedRanking = v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *GetPersonalizedRankingOutput) SetRecommendationId(v string) *GetPersonalizedRankingOutput {
+	s.RecommendationId = &v
 	return s
 }
 
@@ -399,6 +408,9 @@ type GetRecommendationsOutput struct {
 	// A list of recommendations sorted in ascending order by prediction score.
 	// There can be a maximum of 500 items in the list.
 	ItemList []*PredictedItem `locationName:"itemList" type:"list"`
+
+	// The ID of the recommendation.
+	RecommendationId *string `locationName:"recommendationId" type:"string"`
 }
 
 // String returns the string representation
@@ -414,6 +426,12 @@ func (s GetRecommendationsOutput) GoString() string {
 // SetItemList sets the ItemList field's value.
 func (s *GetRecommendationsOutput) SetItemList(v []*PredictedItem) *GetRecommendationsOutput {
 	s.ItemList = v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *GetRecommendationsOutput) SetRecommendationId(v string) *GetRecommendationsOutput {
+	s.RecommendationId = &v
 	return s
 }
 
