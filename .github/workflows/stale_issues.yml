@@ -14,8 +14,8 @@ jobs:
       with:
         # Setting messages to an empty string will cause the automation to skip
         # that category
-        ancient-issue-message: We have noticed this issue has not recieved attention in 3 years. We will close this issue for now. If you think this is in error, please feel free to comment and reopen the issue.
-        stale-issue-message: This issue has not recieved a response in 1 week. If you want to keep this issue open, please just leave a comment below and auto-close will be canceled.
+        ancient-issue-message: We have noticed this issue has not received attention in 3 years. We will close this issue for now. If you think this is in error, please feel free to comment and reopen the issue.
+        stale-issue-message: This issue has not received a response in 1 week. If you want to keep this issue open, please just leave a comment below and auto-close will be canceled.
 
         # These labels are required
         stale-issue-label: closing-soon

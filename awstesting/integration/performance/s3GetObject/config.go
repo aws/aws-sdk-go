@@ -30,7 +30,7 @@ func (c *Config) SetupFlags(prefix string, flagset *flag.FlagSet) {
 	flagset.DurationVar(&c.RequestDelay, "delay", 0,
 		"The detail between sequential requests.")
 	flagset.StringVar(&c.Endpoint, prefix+"endpoint", "",
-		"Optional overriden endpoint S3 client will connect to.")
+		"Optional overridden endpoint S3 client will connect to.")
 	flagset.StringVar(&c.Bucket, "bucket", "",
 		"The S3 bucket `name` to request the object from.")
 	flagset.StringVar(&c.Key, "key", "",

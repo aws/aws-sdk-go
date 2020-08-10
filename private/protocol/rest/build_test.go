@@ -37,7 +37,7 @@ func TestMarshalPath(t *testing.T) {
 
 	req := &request.Request{
 		HTTPRequest: &http.Request{
-			URL: &url.URL{Scheme: "https", Host: "exmaple.com", Path: "/{bucket}/{key+}"},
+			URL: &url.URL{Scheme: "https", Host: "example.com", Path: "/{bucket}/{key+}"},
 		},
 		Params: &in,
 	}

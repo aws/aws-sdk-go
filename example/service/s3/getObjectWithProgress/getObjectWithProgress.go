@@ -129,5 +129,5 @@ func main() {
 	}
 
 	fmt.Println()
-	log.Println("File downloaded! Avaliable at:", filename)
+	log.Println("File downloaded! Available at:", filename)
 }
