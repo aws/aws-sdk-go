@@ -284,8 +284,8 @@ func (u unmarshaler) unmarshalScalar(value reflect.Value, data interface{}, tag 
 				return fmt.Errorf("unsupported float time representation: %v", d.String())
 			}
 			float = float.Mul(float, millisecondsFloat)
-			ns, _ := float.Int64()
-			t := time.Unix(0, ns*1e6).UTC()
+			ms, _ := float.Int64()
+			t := time.Unix(0, ms*1e6).UTC()
 			value.Set(reflect.ValueOf(&t))
 		default:
 			return fmt.Errorf("unsupported value: %v (%s)", value.Interface(), value.Type())
