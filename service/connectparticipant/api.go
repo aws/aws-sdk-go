@@ -1544,6 +1544,15 @@ const (
 	ChatItemTypeConnectionAck = "CONNECTION_ACK"
 )
 
+// ChatItemType_Values returns all elements of the ChatItemType enum
+func ChatItemType_Values() []string {
+	return []string{
+		ChatItemTypeMessage,
+		ChatItemTypeEvent,
+		ChatItemTypeConnectionAck,
+	}
+}
+
 const (
 	// ConnectionTypeWebsocket is a ConnectionType enum value
 	ConnectionTypeWebsocket = "WEBSOCKET"
@@ -1551,6 +1560,14 @@ const (
 	// ConnectionTypeConnectionCredentials is a ConnectionType enum value
 	ConnectionTypeConnectionCredentials = "CONNECTION_CREDENTIALS"
 )
+
+// ConnectionType_Values returns all elements of the ConnectionType enum
+func ConnectionType_Values() []string {
+	return []string{
+		ConnectionTypeWebsocket,
+		ConnectionTypeConnectionCredentials,
+	}
+}
 
 const (
 	// ParticipantRoleAgent is a ParticipantRole enum value
@@ -1563,6 +1580,15 @@ const (
 	ParticipantRoleSystem = "SYSTEM"
 )
 
+// ParticipantRole_Values returns all elements of the ParticipantRole enum
+func ParticipantRole_Values() []string {
+	return []string{
+		ParticipantRoleAgent,
+		ParticipantRoleCustomer,
+		ParticipantRoleSystem,
+	}
+}
+
 const (
 	// ScanDirectionForward is a ScanDirection enum value
 	ScanDirectionForward = "FORWARD"
@@ -1571,6 +1597,14 @@ const (
 	ScanDirectionBackward = "BACKWARD"
 )
 
+// ScanDirection_Values returns all elements of the ScanDirection enum
+func ScanDirection_Values() []string {
+	return []string{
+		ScanDirectionForward,
+		ScanDirectionBackward,
+	}
+}
+
 const (
 	// SortKeyDescending is a SortKey enum value
 	SortKeyDescending = "DESCENDING"
@@ -1578,3 +1612,11 @@ const (
 	// SortKeyAscending is a SortKey enum value
 	SortKeyAscending = "ASCENDING"
 )
+
+// SortKey_Values returns all elements of the SortKey enum
+func SortKey_Values() []string {
+	return []string{
+		SortKeyDescending,
+		SortKeyAscending,
+	}
+}

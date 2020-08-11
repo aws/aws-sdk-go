@@ -1333,6 +1333,14 @@ const (
 	JSONEnumTypeBar = "bar"
 )
 
+// OutputService7TestShapeJSONEnumType_Values returns all elements of the OutputService7TestShapeJSONEnumType enum
+func OutputService7TestShapeJSONEnumType_Values() []string {
+	return []string{
+		JSONEnumTypeFoo,
+		JSONEnumTypeBar,
+	}
+}
+
 // OutputService8ProtocolTest provides the API operation methods for making requests to
 // . See this package's package overview docs
 // for details on the service.

@@ -3206,10 +3206,26 @@ const (
 	ConfirmationStatusDenied = "Denied"
 )
 
+// ConfirmationStatus_Values returns all elements of the ConfirmationStatus enum
+func ConfirmationStatus_Values() []string {
+	return []string{
+		ConfirmationStatusNone,
+		ConfirmationStatusConfirmed,
+		ConfirmationStatusDenied,
+	}
+}
+
 const (
 	// ContentTypeApplicationVndAmazonawsCardGeneric is a ContentType enum value
 	ContentTypeApplicationVndAmazonawsCardGeneric = "application/vnd.amazonaws.card.generic"
 )
+
+// ContentType_Values returns all elements of the ContentType enum
+func ContentType_Values() []string {
+	return []string{
+		ContentTypeApplicationVndAmazonawsCardGeneric,
+	}
+}
 
 const (
 	// DialogActionTypeElicitIntent is a DialogActionType enum value
@@ -3227,6 +3243,17 @@ const (
 	// DialogActionTypeDelegate is a DialogActionType enum value
 	DialogActionTypeDelegate = "Delegate"
 )
+
+// DialogActionType_Values returns all elements of the DialogActionType enum
+func DialogActionType_Values() []string {
+	return []string{
+		DialogActionTypeElicitIntent,
+		DialogActionTypeConfirmIntent,
+		DialogActionTypeElicitSlot,
+		DialogActionTypeClose,
+		DialogActionTypeDelegate,
+	}
+}
 
 const (
 	// DialogStateElicitIntent is a DialogState enum value
@@ -3248,6 +3275,18 @@ const (
 	DialogStateFailed = "Failed"
 )
 
+// DialogState_Values returns all elements of the DialogState enum
+func DialogState_Values() []string {
+	return []string{
+		DialogStateElicitIntent,
+		DialogStateConfirmIntent,
+		DialogStateElicitSlot,
+		DialogStateFulfilled,
+		DialogStateReadyForFulfillment,
+		DialogStateFailed,
+	}
+}
+
 const (
 	// FulfillmentStateFulfilled is a FulfillmentState enum value
 	FulfillmentStateFulfilled = "Fulfilled"
@@ -3258,6 +3297,15 @@ const (
 	// FulfillmentStateReadyForFulfillment is a FulfillmentState enum value
 	FulfillmentStateReadyForFulfillment = "ReadyForFulfillment"
 )
+
+// FulfillmentState_Values returns all elements of the FulfillmentState enum
+func FulfillmentState_Values() []string {
+	return []string{
+		FulfillmentStateFulfilled,
+		FulfillmentStateFailed,
+		FulfillmentStateReadyForFulfillment,
+	}
+}
 
 const (
 	// MessageFormatTypePlainText is a MessageFormatType enum value
@@ -3272,3 +3320,13 @@ const (
 	// MessageFormatTypeComposite is a MessageFormatType enum value
 	MessageFormatTypeComposite = "Composite"
 )
+
+// MessageFormatType_Values returns all elements of the MessageFormatType enum
+func MessageFormatType_Values() []string {
+	return []string{
+		MessageFormatTypePlainText,
+		MessageFormatTypeCustomPayload,
+		MessageFormatTypeSsml,
+		MessageFormatTypeComposite,
+	}
+}

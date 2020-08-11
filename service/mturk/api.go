@@ -9691,6 +9691,15 @@ const (
 	AssignmentStatusRejected = "Rejected"
 )
 
+// AssignmentStatus_Values returns all elements of the AssignmentStatus enum
+func AssignmentStatus_Values() []string {
+	return []string{
+		AssignmentStatusSubmitted,
+		AssignmentStatusApproved,
+		AssignmentStatusRejected,
+	}
+}
+
 const (
 	// ComparatorLessThan is a Comparator enum value
 	ComparatorLessThan = "LessThan"
@@ -9722,6 +9731,22 @@ const (
 	// ComparatorNotIn is a Comparator enum value
 	ComparatorNotIn = "NotIn"
 )
+
+// Comparator_Values returns all elements of the Comparator enum
+func Comparator_Values() []string {
+	return []string{
+		ComparatorLessThan,
+		ComparatorLessThanOrEqualTo,
+		ComparatorGreaterThan,
+		ComparatorGreaterThanOrEqualTo,
+		ComparatorEqualTo,
+		ComparatorNotEqualTo,
+		ComparatorExists,
+		ComparatorDoesNotExist,
+		ComparatorIn,
+		ComparatorNotIn,
+	}
+}
 
 const (
 	// EventTypeAssignmentAccepted is a EventType enum value
@@ -9761,6 +9786,24 @@ const (
 	EventTypePing = "Ping"
 )
 
+// EventType_Values returns all elements of the EventType enum
+func EventType_Values() []string {
+	return []string{
+		EventTypeAssignmentAccepted,
+		EventTypeAssignmentAbandoned,
+		EventTypeAssignmentReturned,
+		EventTypeAssignmentSubmitted,
+		EventTypeAssignmentRejected,
+		EventTypeAssignmentApproved,
+		EventTypeHitcreated,
+		EventTypeHitexpired,
+		EventTypeHitreviewable,
+		EventTypeHitextended,
+		EventTypeHitdisposed,
+		EventTypePing,
+	}
+}
+
 const (
 	// HITAccessActionsAccept is a HITAccessActions enum value
 	HITAccessActionsAccept = "Accept"
@@ -9771,6 +9814,15 @@ const (
 	// HITAccessActionsDiscoverPreviewAndAccept is a HITAccessActions enum value
 	HITAccessActionsDiscoverPreviewAndAccept = "DiscoverPreviewAndAccept"
 )
+
+// HITAccessActions_Values returns all elements of the HITAccessActions enum
+func HITAccessActions_Values() []string {
+	return []string{
+		HITAccessActionsAccept,
+		HITAccessActionsPreviewAndAccept,
+		HITAccessActionsDiscoverPreviewAndAccept,
+	}
+}
 
 const (
 	// HITReviewStatusNotReviewed is a HITReviewStatus enum value
@@ -9785,6 +9837,16 @@ const (
 	// HITReviewStatusReviewedInappropriate is a HITReviewStatus enum value
 	HITReviewStatusReviewedInappropriate = "ReviewedInappropriate"
 )
+
+// HITReviewStatus_Values returns all elements of the HITReviewStatus enum
+func HITReviewStatus_Values() []string {
+	return []string{
+		HITReviewStatusNotReviewed,
+		HITReviewStatusMarkedForReview,
+		HITReviewStatusReviewedAppropriate,
+		HITReviewStatusReviewedInappropriate,
+	}
+}
 
 const (
 	// HITStatusAssignable is a HITStatus enum value
@@ -9803,6 +9865,17 @@ const (
 	HITStatusDisposed = "Disposed"
 )
 
+// HITStatus_Values returns all elements of the HITStatus enum
+func HITStatus_Values() []string {
+	return []string{
+		HITStatusAssignable,
+		HITStatusUnassignable,
+		HITStatusReviewable,
+		HITStatusReviewing,
+		HITStatusDisposed,
+	}
+}
+
 const (
 	// NotificationTransportEmail is a NotificationTransport enum value
 	NotificationTransportEmail = "Email"
@@ -9814,6 +9887,15 @@ const (
 	NotificationTransportSns = "SNS"
 )
 
+// NotificationTransport_Values returns all elements of the NotificationTransport enum
+func NotificationTransport_Values() []string {
+	return []string{
+		NotificationTransportEmail,
+		NotificationTransportSqs,
+		NotificationTransportSns,
+	}
+}
+
 const (
 	// NotifyWorkersFailureCodeSoftFailure is a NotifyWorkersFailureCode enum value
 	NotifyWorkersFailureCodeSoftFailure = "SoftFailure"
@@ -9821,6 +9903,14 @@ const (
 	// NotifyWorkersFailureCodeHardFailure is a NotifyWorkersFailureCode enum value
 	NotifyWorkersFailureCodeHardFailure = "HardFailure"
 )
+
+// NotifyWorkersFailureCode_Values returns all elements of the NotifyWorkersFailureCode enum
+func NotifyWorkersFailureCode_Values() []string {
+	return []string{
+		NotifyWorkersFailureCodeSoftFailure,
+		NotifyWorkersFailureCodeHardFailure,
+	}
+}
 
 const (
 	// QualificationStatusGranted is a QualificationStatus enum value
@@ -9830,6 +9920,14 @@ const (
 	QualificationStatusRevoked = "Revoked"
 )
 
+// QualificationStatus_Values returns all elements of the QualificationStatus enum
+func QualificationStatus_Values() []string {
+	return []string{
+		QualificationStatusGranted,
+		QualificationStatusRevoked,
+	}
+}
+
 const (
 	// QualificationTypeStatusActive is a QualificationTypeStatus enum value
 	QualificationTypeStatusActive = "Active"
@@ -9837,6 +9935,14 @@ const (
 	// QualificationTypeStatusInactive is a QualificationTypeStatus enum value
 	QualificationTypeStatusInactive = "Inactive"
 )
+
+// QualificationTypeStatus_Values returns all elements of the QualificationTypeStatus enum
+func QualificationTypeStatus_Values() []string {
+	return []string{
+		QualificationTypeStatusActive,
+		QualificationTypeStatusInactive,
+	}
+}
 
 const (
 	// ReviewActionStatusIntended is a ReviewActionStatus enum value
@@ -9852,6 +9958,16 @@ const (
 	ReviewActionStatusCancelled = "Cancelled"
 )
 
+// ReviewActionStatus_Values returns all elements of the ReviewActionStatus enum
+func ReviewActionStatus_Values() []string {
+	return []string{
+		ReviewActionStatusIntended,
+		ReviewActionStatusSucceeded,
+		ReviewActionStatusFailed,
+		ReviewActionStatusCancelled,
+	}
+}
+
 const (
 	// ReviewPolicyLevelAssignment is a ReviewPolicyLevel enum value
 	ReviewPolicyLevelAssignment = "Assignment"
@@ -9860,6 +9976,14 @@ const (
 	ReviewPolicyLevelHit = "HIT"
 )
 
+// ReviewPolicyLevel_Values returns all elements of the ReviewPolicyLevel enum
+func ReviewPolicyLevel_Values() []string {
+	return []string{
+		ReviewPolicyLevelAssignment,
+		ReviewPolicyLevelHit,
+	}
+}
+
 const (
 	// ReviewableHITStatusReviewable is a ReviewableHITStatus enum value
 	ReviewableHITStatusReviewable = "Reviewable"
@@ -9867,3 +9991,11 @@ const (
 	// ReviewableHITStatusReviewing is a ReviewableHITStatus enum value
 	ReviewableHITStatusReviewing = "Reviewing"
 )
+
+// ReviewableHITStatus_Values returns all elements of the ReviewableHITStatus enum
+func ReviewableHITStatus_Values() []string {
+	return []string{
+		ReviewableHITStatusReviewable,
+		ReviewableHITStatusReviewing,
+	}
+}

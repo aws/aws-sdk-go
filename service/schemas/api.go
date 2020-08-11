@@ -6521,6 +6521,15 @@ const (
 	CodeGenerationStatusCreateFailed = "CREATE_FAILED"
 )
 
+// CodeGenerationStatus_Values returns all elements of the CodeGenerationStatus enum
+func CodeGenerationStatus_Values() []string {
+	return []string{
+		CodeGenerationStatusCreateInProgress,
+		CodeGenerationStatusCreateComplete,
+		CodeGenerationStatusCreateFailed,
+	}
+}
+
 const (
 	// DiscovererStateStarted is a DiscovererState enum value
 	DiscovererStateStarted = "STARTED"
@@ -6529,7 +6538,22 @@ const (
 	DiscovererStateStopped = "STOPPED"
 )
 
+// DiscovererState_Values returns all elements of the DiscovererState enum
+func DiscovererState_Values() []string {
+	return []string{
+		DiscovererStateStarted,
+		DiscovererStateStopped,
+	}
+}
+
 const (
 	// TypeOpenApi3 is a Type enum value
 	TypeOpenApi3 = "OpenApi3"
 )
+
+// Type_Values returns all elements of the Type enum
+func Type_Values() []string {
+	return []string{
+		TypeOpenApi3,
+	}
+}

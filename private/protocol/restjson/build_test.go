@@ -4998,6 +4998,16 @@ const (
 	EnumType1 = "1"
 )
 
+// InputService22TestShapeEnumType_Values returns all elements of the InputService22TestShapeEnumType enum
+func InputService22TestShapeEnumType_Values() []string {
+	return []string{
+		EnumTypeFoo,
+		EnumTypeBar,
+		EnumType0,
+		EnumType1,
+	}
+}
+
 // InputService23ProtocolTest provides the API operation methods for making requests to
 // . See this package's package overview docs
 // for details on the service.

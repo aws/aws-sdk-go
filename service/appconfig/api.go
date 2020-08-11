@@ -8570,6 +8570,13 @@ const (
 	BytesMeasureKilobytes = "KILOBYTES"
 )
 
+// BytesMeasure_Values returns all elements of the BytesMeasure enum
+func BytesMeasure_Values() []string {
+	return []string{
+		BytesMeasureKilobytes,
+	}
+}
+
 const (
 	// DeploymentEventTypePercentageUpdated is a DeploymentEventType enum value
 	DeploymentEventTypePercentageUpdated = "PERCENTAGE_UPDATED"
@@ -8589,6 +8596,18 @@ const (
 	// DeploymentEventTypeDeploymentCompleted is a DeploymentEventType enum value
 	DeploymentEventTypeDeploymentCompleted = "DEPLOYMENT_COMPLETED"
 )
+
+// DeploymentEventType_Values returns all elements of the DeploymentEventType enum
+func DeploymentEventType_Values() []string {
+	return []string{
+		DeploymentEventTypePercentageUpdated,
+		DeploymentEventTypeRollbackStarted,
+		DeploymentEventTypeRollbackCompleted,
+		DeploymentEventTypeBakeTimeStarted,
+		DeploymentEventTypeDeploymentStarted,
+		DeploymentEventTypeDeploymentCompleted,
+	}
+}
 
 const (
 	// DeploymentStateBaking is a DeploymentState enum value
@@ -8610,6 +8629,18 @@ const (
 	DeploymentStateRolledBack = "ROLLED_BACK"
 )
 
+// DeploymentState_Values returns all elements of the DeploymentState enum
+func DeploymentState_Values() []string {
+	return []string{
+		DeploymentStateBaking,
+		DeploymentStateValidating,
+		DeploymentStateDeploying,
+		DeploymentStateComplete,
+		DeploymentStateRollingBack,
+		DeploymentStateRolledBack,
+	}
+}
+
 const (
 	// EnvironmentStateReadyForDeployment is a EnvironmentState enum value
 	EnvironmentStateReadyForDeployment = "READY_FOR_DEPLOYMENT"
@@ -8624,6 +8655,16 @@ const (
 	EnvironmentStateRolledBack = "ROLLED_BACK"
 )
 
+// EnvironmentState_Values returns all elements of the EnvironmentState enum
+func EnvironmentState_Values() []string {
+	return []string{
+		EnvironmentStateReadyForDeployment,
+		EnvironmentStateDeploying,
+		EnvironmentStateRollingBack,
+		EnvironmentStateRolledBack,
+	}
+}
+
 const (
 	// GrowthTypeLinear is a GrowthType enum value
 	GrowthTypeLinear = "LINEAR"
@@ -8632,6 +8673,14 @@ const (
 	GrowthTypeExponential = "EXPONENTIAL"
 )
 
+// GrowthType_Values returns all elements of the GrowthType enum
+func GrowthType_Values() []string {
+	return []string{
+		GrowthTypeLinear,
+		GrowthTypeExponential,
+	}
+}
+
 const (
 	// ReplicateToNone is a ReplicateTo enum value
 	ReplicateToNone = "NONE"
@@ -8639,6 +8688,14 @@ const (
 	// ReplicateToSsmDocument is a ReplicateTo enum value
 	ReplicateToSsmDocument = "SSM_DOCUMENT"
 )
+
+// ReplicateTo_Values returns all elements of the ReplicateTo enum
+func ReplicateTo_Values() []string {
+	return []string{
+		ReplicateToNone,
+		ReplicateToSsmDocument,
+	}
+}
 
 const (
 	// TriggeredByUser is a TriggeredBy enum value
@@ -8654,6 +8711,16 @@ const (
 	TriggeredByInternalError = "INTERNAL_ERROR"
 )
 
+// TriggeredBy_Values returns all elements of the TriggeredBy enum
+func TriggeredBy_Values() []string {
+	return []string{
+		TriggeredByUser,
+		TriggeredByAppconfig,
+		TriggeredByCloudwatchAlarm,
+		TriggeredByInternalError,
+	}
+}
+
 const (
 	// ValidatorTypeJsonSchema is a ValidatorType enum value
 	ValidatorTypeJsonSchema = "JSON_SCHEMA"
@@ -8661,3 +8728,11 @@ const (
 	// ValidatorTypeLambda is a ValidatorType enum value
 	ValidatorTypeLambda = "LAMBDA"
 )
+
+// ValidatorType_Values returns all elements of the ValidatorType enum
+func ValidatorType_Values() []string {
+	return []string{
+		ValidatorTypeJsonSchema,
+		ValidatorTypeLambda,
+	}
+}

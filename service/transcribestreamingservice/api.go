@@ -1535,6 +1535,14 @@ const (
 	ItemTypePunctuation = "punctuation"
 )
 
+// ItemType_Values returns all elements of the ItemType enum
+func ItemType_Values() []string {
+	return []string{
+		ItemTypePronunciation,
+		ItemTypePunctuation,
+	}
+}
+
 const (
 	// LanguageCodeEnUs is a LanguageCode enum value
 	LanguageCodeEnUs = "en-US"
@@ -1555,10 +1563,29 @@ const (
 	LanguageCodeEnAu = "en-AU"
 )
 
+// LanguageCode_Values returns all elements of the LanguageCode enum
+func LanguageCode_Values() []string {
+	return []string{
+		LanguageCodeEnUs,
+		LanguageCodeEnGb,
+		LanguageCodeEsUs,
+		LanguageCodeFrCa,
+		LanguageCodeFrFr,
+		LanguageCodeEnAu,
+	}
+}
+
 const (
 	// MediaEncodingPcm is a MediaEncoding enum value
 	MediaEncodingPcm = "pcm"
 )
+
+// MediaEncoding_Values returns all elements of the MediaEncoding enum
+func MediaEncoding_Values() []string {
+	return []string{
+		MediaEncodingPcm,
+	}
+}
 
 const (
 	// VocabularyFilterMethodRemove is a VocabularyFilterMethod enum value
@@ -1570,3 +1597,12 @@ const (
 	// VocabularyFilterMethodTag is a VocabularyFilterMethod enum value
 	VocabularyFilterMethodTag = "tag"
 )
+
+// VocabularyFilterMethod_Values returns all elements of the VocabularyFilterMethod enum
+func VocabularyFilterMethod_Values() []string {
+	return []string{
+		VocabularyFilterMethodRemove,
+		VocabularyFilterMethodMask,
+		VocabularyFilterMethodTag,
+	}
+}

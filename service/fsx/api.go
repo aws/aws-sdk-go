@@ -7277,6 +7277,16 @@ const (
 	ActiveDirectoryErrorTypeInvalidDomainStage = "INVALID_DOMAIN_STAGE"
 )
 
+// ActiveDirectoryErrorType_Values returns all elements of the ActiveDirectoryErrorType enum
+func ActiveDirectoryErrorType_Values() []string {
+	return []string{
+		ActiveDirectoryErrorTypeDomainNotFound,
+		ActiveDirectoryErrorTypeIncompatibleDomainMode,
+		ActiveDirectoryErrorTypeWrongVpc,
+		ActiveDirectoryErrorTypeInvalidDomainStage,
+	}
+}
+
 // Describes the type of administrative action, as follows:
 //
 //    * FILE_SYSTEM_UPDATE - A file system update administrative action initiated
@@ -7298,6 +7308,14 @@ const (
 	AdministrativeActionTypeStorageOptimization = "STORAGE_OPTIMIZATION"
 )
 
+// AdministrativeActionType_Values returns all elements of the AdministrativeActionType enum
+func AdministrativeActionType_Values() []string {
+	return []string{
+		AdministrativeActionTypeFileSystemUpdate,
+		AdministrativeActionTypeStorageOptimization,
+	}
+}
+
 const (
 	// AutoImportPolicyTypeNone is a AutoImportPolicyType enum value
 	AutoImportPolicyTypeNone = "NONE"
@@ -7308,6 +7326,15 @@ const (
 	// AutoImportPolicyTypeNewChanged is a AutoImportPolicyType enum value
 	AutoImportPolicyTypeNewChanged = "NEW_CHANGED"
 )
+
+// AutoImportPolicyType_Values returns all elements of the AutoImportPolicyType enum
+func AutoImportPolicyType_Values() []string {
+	return []string{
+		AutoImportPolicyTypeNone,
+		AutoImportPolicyTypeNew,
+		AutoImportPolicyTypeNewChanged,
+	}
+}
 
 // The lifecycle status of the backup.
 const (
@@ -7324,6 +7351,16 @@ const (
 	BackupLifecycleFailed = "FAILED"
 )
 
+// BackupLifecycle_Values returns all elements of the BackupLifecycle enum
+func BackupLifecycle_Values() []string {
+	return []string{
+		BackupLifecycleAvailable,
+		BackupLifecycleCreating,
+		BackupLifecycleDeleted,
+		BackupLifecycleFailed,
+	}
+}
+
 // The type of the backup.
 const (
 	// BackupTypeAutomatic is a BackupType enum value
@@ -7332,6 +7369,14 @@ const (
 	// BackupTypeUserInitiated is a BackupType enum value
 	BackupTypeUserInitiated = "USER_INITIATED"
 )
+
+// BackupType_Values returns all elements of the BackupType enum
+func BackupType_Values() []string {
+	return []string{
+		BackupTypeAutomatic,
+		BackupTypeUserInitiated,
+	}
+}
 
 const (
 	// DataRepositoryLifecycleCreating is a DataRepositoryLifecycle enum value
@@ -7350,6 +7395,17 @@ const (
 	DataRepositoryLifecycleDeleting = "DELETING"
 )
 
+// DataRepositoryLifecycle_Values returns all elements of the DataRepositoryLifecycle enum
+func DataRepositoryLifecycle_Values() []string {
+	return []string{
+		DataRepositoryLifecycleCreating,
+		DataRepositoryLifecycleAvailable,
+		DataRepositoryLifecycleMisconfigured,
+		DataRepositoryLifecycleUpdating,
+		DataRepositoryLifecycleDeleting,
+	}
+}
+
 const (
 	// DataRepositoryTaskFilterNameFileSystemId is a DataRepositoryTaskFilterName enum value
 	DataRepositoryTaskFilterNameFileSystemId = "file-system-id"
@@ -7357,6 +7413,14 @@ const (
 	// DataRepositoryTaskFilterNameTaskLifecycle is a DataRepositoryTaskFilterName enum value
 	DataRepositoryTaskFilterNameTaskLifecycle = "task-lifecycle"
 )
+
+// DataRepositoryTaskFilterName_Values returns all elements of the DataRepositoryTaskFilterName enum
+func DataRepositoryTaskFilterName_Values() []string {
+	return []string{
+		DataRepositoryTaskFilterNameFileSystemId,
+		DataRepositoryTaskFilterNameTaskLifecycle,
+	}
+}
 
 const (
 	// DataRepositoryTaskLifecyclePending is a DataRepositoryTaskLifecycle enum value
@@ -7378,10 +7442,29 @@ const (
 	DataRepositoryTaskLifecycleCanceling = "CANCELING"
 )
 
+// DataRepositoryTaskLifecycle_Values returns all elements of the DataRepositoryTaskLifecycle enum
+func DataRepositoryTaskLifecycle_Values() []string {
+	return []string{
+		DataRepositoryTaskLifecyclePending,
+		DataRepositoryTaskLifecycleExecuting,
+		DataRepositoryTaskLifecycleFailed,
+		DataRepositoryTaskLifecycleSucceeded,
+		DataRepositoryTaskLifecycleCanceled,
+		DataRepositoryTaskLifecycleCanceling,
+	}
+}
+
 const (
 	// DataRepositoryTaskTypeExportToRepository is a DataRepositoryTaskType enum value
 	DataRepositoryTaskTypeExportToRepository = "EXPORT_TO_REPOSITORY"
 )
+
+// DataRepositoryTaskType_Values returns all elements of the DataRepositoryTaskType enum
+func DataRepositoryTaskType_Values() []string {
+	return []string{
+		DataRepositoryTaskTypeExportToRepository,
+	}
+}
 
 // The lifecycle status of the file system.
 const (
@@ -7404,6 +7487,18 @@ const (
 	FileSystemLifecycleUpdating = "UPDATING"
 )
 
+// FileSystemLifecycle_Values returns all elements of the FileSystemLifecycle enum
+func FileSystemLifecycle_Values() []string {
+	return []string{
+		FileSystemLifecycleAvailable,
+		FileSystemLifecycleCreating,
+		FileSystemLifecycleFailed,
+		FileSystemLifecycleDeleting,
+		FileSystemLifecycleMisconfigured,
+		FileSystemLifecycleUpdating,
+	}
+}
+
 // An enumeration specifying the currently ongoing maintenance operation.
 const (
 	// FileSystemMaintenanceOperationPatching is a FileSystemMaintenanceOperation enum value
@@ -7413,6 +7508,14 @@ const (
 	FileSystemMaintenanceOperationBackingUp = "BACKING_UP"
 )
 
+// FileSystemMaintenanceOperation_Values returns all elements of the FileSystemMaintenanceOperation enum
+func FileSystemMaintenanceOperation_Values() []string {
+	return []string{
+		FileSystemMaintenanceOperationPatching,
+		FileSystemMaintenanceOperationBackingUp,
+	}
+}
+
 // The type of file system.
 const (
 	// FileSystemTypeWindows is a FileSystemType enum value
@@ -7421,6 +7524,14 @@ const (
 	// FileSystemTypeLustre is a FileSystemType enum value
 	FileSystemTypeLustre = "LUSTRE"
 )
+
+// FileSystemType_Values returns all elements of the FileSystemType enum
+func FileSystemType_Values() []string {
+	return []string{
+		FileSystemTypeWindows,
+		FileSystemTypeLustre,
+	}
+}
 
 // The name for a filter.
 const (
@@ -7434,6 +7545,15 @@ const (
 	FilterNameFileSystemType = "file-system-type"
 )
 
+// FilterName_Values returns all elements of the FilterName enum
+func FilterName_Values() []string {
+	return []string{
+		FilterNameFileSystemId,
+		FilterNameBackupType,
+		FilterNameFileSystemType,
+	}
+}
+
 const (
 	// LustreDeploymentTypeScratch1 is a LustreDeploymentType enum value
 	LustreDeploymentTypeScratch1 = "SCRATCH_1"
@@ -7445,15 +7565,38 @@ const (
 	LustreDeploymentTypePersistent1 = "PERSISTENT_1"
 )
 
+// LustreDeploymentType_Values returns all elements of the LustreDeploymentType enum
+func LustreDeploymentType_Values() []string {
+	return []string{
+		LustreDeploymentTypeScratch1,
+		LustreDeploymentTypeScratch2,
+		LustreDeploymentTypePersistent1,
+	}
+}
+
 const (
 	// ReportFormatReportCsv20191124 is a ReportFormat enum value
 	ReportFormatReportCsv20191124 = "REPORT_CSV_20191124"
 )
 
+// ReportFormat_Values returns all elements of the ReportFormat enum
+func ReportFormat_Values() []string {
+	return []string{
+		ReportFormatReportCsv20191124,
+	}
+}
+
 const (
 	// ReportScopeFailedFilesOnly is a ReportScope enum value
 	ReportScopeFailedFilesOnly = "FAILED_FILES_ONLY"
 )
+
+// ReportScope_Values returns all elements of the ReportScope enum
+func ReportScope_Values() []string {
+	return []string{
+		ReportScopeFailedFilesOnly,
+	}
+}
 
 // The types of limits on your service utilization. Limits include file system
 // count, total throughput capacity, total storage, and total user-initiated
@@ -7473,6 +7616,16 @@ const (
 	ServiceLimitTotalUserInitiatedBackups = "TOTAL_USER_INITIATED_BACKUPS"
 )
 
+// ServiceLimit_Values returns all elements of the ServiceLimit enum
+func ServiceLimit_Values() []string {
+	return []string{
+		ServiceLimitFileSystemCount,
+		ServiceLimitTotalThroughputCapacity,
+		ServiceLimitTotalStorage,
+		ServiceLimitTotalUserInitiatedBackups,
+	}
+}
+
 const (
 	// StatusFailed is a Status enum value
 	StatusFailed = "FAILED"
@@ -7490,6 +7643,17 @@ const (
 	StatusUpdatedOptimizing = "UPDATED_OPTIMIZING"
 )
 
+// Status_Values returns all elements of the Status enum
+func Status_Values() []string {
+	return []string{
+		StatusFailed,
+		StatusInProgress,
+		StatusPending,
+		StatusCompleted,
+		StatusUpdatedOptimizing,
+	}
+}
+
 // The storage type for your Amazon FSx file system.
 const (
 	// StorageTypeSsd is a StorageType enum value
@@ -7498,6 +7662,14 @@ const (
 	// StorageTypeHdd is a StorageType enum value
 	StorageTypeHdd = "HDD"
 )
+
+// StorageType_Values returns all elements of the StorageType enum
+func StorageType_Values() []string {
+	return []string{
+		StorageTypeSsd,
+		StorageTypeHdd,
+	}
+}
 
 const (
 	// WindowsDeploymentTypeMultiAz1 is a WindowsDeploymentType enum value
@@ -7509,3 +7681,12 @@ const (
 	// WindowsDeploymentTypeSingleAz2 is a WindowsDeploymentType enum value
 	WindowsDeploymentTypeSingleAz2 = "SINGLE_AZ_2"
 )
+
+// WindowsDeploymentType_Values returns all elements of the WindowsDeploymentType enum
+func WindowsDeploymentType_Values() []string {
+	return []string{
+		WindowsDeploymentTypeMultiAz1,
+		WindowsDeploymentTypeSingleAz1,
+		WindowsDeploymentTypeSingleAz2,
+	}
+}

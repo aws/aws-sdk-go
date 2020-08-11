@@ -1684,6 +1684,14 @@ const (
 	ConnectionStatusDisconnected = "DISCONNECTED"
 )
 
+// ConnectionStatus_Values returns all elements of the ConnectionStatus enum
+func ConnectionStatus_Values() []string {
+	return []string{
+		ConnectionStatusConnected,
+		ConnectionStatusDisconnected,
+	}
+}
+
 const (
 	// TunnelStatusOpen is a TunnelStatus enum value
 	TunnelStatusOpen = "OPEN"
@@ -1691,3 +1699,11 @@ const (
 	// TunnelStatusClosed is a TunnelStatus enum value
 	TunnelStatusClosed = "CLOSED"
 )
+
+// TunnelStatus_Values returns all elements of the TunnelStatus enum
+func TunnelStatus_Values() []string {
+	return []string{
+		TunnelStatusOpen,
+		TunnelStatusClosed,
+	}
+}

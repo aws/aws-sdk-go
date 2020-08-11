@@ -2450,6 +2450,19 @@ const (
 	PlatformJavascript = "JAVASCRIPT"
 )
 
+// Platform_Values returns all elements of the Platform enum
+func Platform_Values() []string {
+	return []string{
+		PlatformOsx,
+		PlatformWindows,
+		PlatformLinux,
+		PlatformObjc,
+		PlatformSwift,
+		PlatformAndroid,
+		PlatformJavascript,
+	}
+}
+
 // Synchronization state for a project.
 const (
 	// ProjectStateNormal is a ProjectState enum value
@@ -2461,3 +2474,12 @@ const (
 	// ProjectStateImporting is a ProjectState enum value
 	ProjectStateImporting = "IMPORTING"
 )
+
+// ProjectState_Values returns all elements of the ProjectState enum
+func ProjectState_Values() []string {
+	return []string{
+		ProjectStateNormal,
+		ProjectStateSyncing,
+		ProjectStateImporting,
+	}
+}

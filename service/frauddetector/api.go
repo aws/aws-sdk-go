@@ -11970,6 +11970,15 @@ const (
 	DataSourceExternalModelScore = "EXTERNAL_MODEL_SCORE"
 )
 
+// DataSource_Values returns all elements of the DataSource enum
+func DataSource_Values() []string {
+	return []string{
+		DataSourceEvent,
+		DataSourceModelScore,
+		DataSourceExternalModelScore,
+	}
+}
+
 const (
 	// DataTypeString is a DataType enum value
 	DataTypeString = "STRING"
@@ -11984,6 +11993,16 @@ const (
 	DataTypeBoolean = "BOOLEAN"
 )
 
+// DataType_Values returns all elements of the DataType enum
+func DataType_Values() []string {
+	return []string{
+		DataTypeString,
+		DataTypeInteger,
+		DataTypeFloat,
+		DataTypeBoolean,
+	}
+}
+
 const (
 	// DetectorVersionStatusDraft is a DetectorVersionStatus enum value
 	DetectorVersionStatusDraft = "DRAFT"
@@ -11995,10 +12014,26 @@ const (
 	DetectorVersionStatusInactive = "INACTIVE"
 )
 
+// DetectorVersionStatus_Values returns all elements of the DetectorVersionStatus enum
+func DetectorVersionStatus_Values() []string {
+	return []string{
+		DetectorVersionStatusDraft,
+		DetectorVersionStatusActive,
+		DetectorVersionStatusInactive,
+	}
+}
+
 const (
 	// LanguageDetectorpl is a Language enum value
 	LanguageDetectorpl = "DETECTORPL"
 )
+
+// Language_Values returns all elements of the Language enum
+func Language_Values() []string {
+	return []string{
+		LanguageDetectorpl,
+	}
+}
 
 const (
 	// ModelEndpointStatusAssociated is a ModelEndpointStatus enum value
@@ -12008,6 +12043,14 @@ const (
 	ModelEndpointStatusDissociated = "DISSOCIATED"
 )
 
+// ModelEndpointStatus_Values returns all elements of the ModelEndpointStatus enum
+func ModelEndpointStatus_Values() []string {
+	return []string{
+		ModelEndpointStatusAssociated,
+		ModelEndpointStatusDissociated,
+	}
+}
+
 const (
 	// ModelInputDataFormatTextCsv is a ModelInputDataFormat enum value
 	ModelInputDataFormatTextCsv = "TEXT_CSV"
@@ -12015,6 +12058,14 @@ const (
 	// ModelInputDataFormatApplicationJson is a ModelInputDataFormat enum value
 	ModelInputDataFormatApplicationJson = "APPLICATION_JSON"
 )
+
+// ModelInputDataFormat_Values returns all elements of the ModelInputDataFormat enum
+func ModelInputDataFormat_Values() []string {
+	return []string{
+		ModelInputDataFormatTextCsv,
+		ModelInputDataFormatApplicationJson,
+	}
+}
 
 const (
 	// ModelOutputDataFormatTextCsv is a ModelOutputDataFormat enum value
@@ -12024,15 +12075,37 @@ const (
 	ModelOutputDataFormatApplicationJsonlines = "APPLICATION_JSONLINES"
 )
 
+// ModelOutputDataFormat_Values returns all elements of the ModelOutputDataFormat enum
+func ModelOutputDataFormat_Values() []string {
+	return []string{
+		ModelOutputDataFormatTextCsv,
+		ModelOutputDataFormatApplicationJsonlines,
+	}
+}
+
 const (
 	// ModelSourceSagemaker is a ModelSource enum value
 	ModelSourceSagemaker = "SAGEMAKER"
 )
 
+// ModelSource_Values returns all elements of the ModelSource enum
+func ModelSource_Values() []string {
+	return []string{
+		ModelSourceSagemaker,
+	}
+}
+
 const (
 	// ModelTypeEnumOnlineFraudInsights is a ModelTypeEnum enum value
 	ModelTypeEnumOnlineFraudInsights = "ONLINE_FRAUD_INSIGHTS"
 )
+
+// ModelTypeEnum_Values returns all elements of the ModelTypeEnum enum
+func ModelTypeEnum_Values() []string {
+	return []string{
+		ModelTypeEnumOnlineFraudInsights,
+	}
+}
 
 const (
 	// ModelVersionStatusActive is a ModelVersionStatus enum value
@@ -12042,6 +12115,14 @@ const (
 	ModelVersionStatusInactive = "INACTIVE"
 )
 
+// ModelVersionStatus_Values returns all elements of the ModelVersionStatus enum
+func ModelVersionStatus_Values() []string {
+	return []string{
+		ModelVersionStatusActive,
+		ModelVersionStatusInactive,
+	}
+}
+
 const (
 	// RuleExecutionModeAllMatched is a RuleExecutionMode enum value
 	RuleExecutionModeAllMatched = "ALL_MATCHED"
@@ -12050,7 +12131,22 @@ const (
 	RuleExecutionModeFirstMatched = "FIRST_MATCHED"
 )
 
+// RuleExecutionMode_Values returns all elements of the RuleExecutionMode enum
+func RuleExecutionMode_Values() []string {
+	return []string{
+		RuleExecutionModeAllMatched,
+		RuleExecutionModeFirstMatched,
+	}
+}
+
 const (
 	// TrainingDataSourceEnumExternalEvents is a TrainingDataSourceEnum enum value
 	TrainingDataSourceEnumExternalEvents = "EXTERNAL_EVENTS"
 )
+
+// TrainingDataSourceEnum_Values returns all elements of the TrainingDataSourceEnum enum
+func TrainingDataSourceEnum_Values() []string {
+	return []string{
+		TrainingDataSourceEnumExternalEvents,
+	}
+}

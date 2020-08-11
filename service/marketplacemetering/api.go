@@ -1888,3 +1888,12 @@ const (
 	// UsageRecordResultStatusDuplicateRecord is a UsageRecordResultStatus enum value
 	UsageRecordResultStatusDuplicateRecord = "DuplicateRecord"
 )
+
+// UsageRecordResultStatus_Values returns all elements of the UsageRecordResultStatus enum
+func UsageRecordResultStatus_Values() []string {
+	return []string{
+		UsageRecordResultStatusSuccess,
+		UsageRecordResultStatusCustomerNotSubscribed,
+		UsageRecordResultStatusDuplicateRecord,
+	}
+}

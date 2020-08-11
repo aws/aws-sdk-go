@@ -1255,3 +1255,10 @@ const (
 	// ServiceTypeRds is a ServiceType enum value
 	ServiceTypeRds = "RDS"
 )
+
+// ServiceType_Values returns all elements of the ServiceType enum
+func ServiceType_Values() []string {
+	return []string{
+		ServiceTypeRds,
+	}
+}

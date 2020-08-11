@@ -2588,6 +2588,16 @@ const (
 	RESTJSONEnumType1 = "1"
 )
 
+// OutputService14TestShapeRESTJSONEnumType_Values returns all elements of the OutputService14TestShapeRESTJSONEnumType enum
+func OutputService14TestShapeRESTJSONEnumType_Values() []string {
+	return []string{
+		RESTJSONEnumTypeFoo,
+		RESTJSONEnumTypeBar,
+		RESTJSONEnumType0,
+		RESTJSONEnumType1,
+	}
+}
+
 //
 // Tests begin here
 //

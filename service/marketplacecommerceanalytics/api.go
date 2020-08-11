@@ -735,6 +735,37 @@ const (
 	DataSetTypeUsSalesAndUseTaxRecords = "us_sales_and_use_tax_records"
 )
 
+// DataSetType_Values returns all elements of the DataSetType enum
+func DataSetType_Values() []string {
+	return []string{
+		DataSetTypeCustomerSubscriberHourlyMonthlySubscriptions,
+		DataSetTypeCustomerSubscriberAnnualSubscriptions,
+		DataSetTypeDailyBusinessUsageByInstanceType,
+		DataSetTypeDailyBusinessFees,
+		DataSetTypeDailyBusinessFreeTrialConversions,
+		DataSetTypeDailyBusinessNewInstances,
+		DataSetTypeDailyBusinessNewProductSubscribers,
+		DataSetTypeDailyBusinessCanceledProductSubscribers,
+		DataSetTypeMonthlyRevenueBillingAndRevenueData,
+		DataSetTypeMonthlyRevenueAnnualSubscriptions,
+		DataSetTypeMonthlyRevenueFieldDemonstrationUsage,
+		DataSetTypeMonthlyRevenueFlexiblePaymentSchedule,
+		DataSetTypeDisbursedAmountByProduct,
+		DataSetTypeDisbursedAmountByProductWithUncollectedFunds,
+		DataSetTypeDisbursedAmountByInstanceHours,
+		DataSetTypeDisbursedAmountByCustomerGeo,
+		DataSetTypeDisbursedAmountByAgeOfUncollectedFunds,
+		DataSetTypeDisbursedAmountByAgeOfDisbursedFunds,
+		DataSetTypeDisbursedAmountByAgeOfPastDueFunds,
+		DataSetTypeDisbursedAmountByUncollectedFundsBreakdown,
+		DataSetTypeCustomerProfileByIndustry,
+		DataSetTypeCustomerProfileByRevenue,
+		DataSetTypeCustomerProfileByGeography,
+		DataSetTypeSalesCompensationBilledRevenue,
+		DataSetTypeUsSalesAndUseTaxRecords,
+	}
+}
+
 const (
 	// SupportDataSetTypeCustomerSupportContactsData is a SupportDataSetType enum value
 	SupportDataSetTypeCustomerSupportContactsData = "customer_support_contacts_data"
@@ -742,3 +773,11 @@ const (
 	// SupportDataSetTypeTestCustomerSupportContactsData is a SupportDataSetType enum value
 	SupportDataSetTypeTestCustomerSupportContactsData = "test_customer_support_contacts_data"
 )
+
+// SupportDataSetType_Values returns all elements of the SupportDataSetType enum
+func SupportDataSetType_Values() []string {
+	return []string{
+		SupportDataSetTypeCustomerSupportContactsData,
+		SupportDataSetTypeTestCustomerSupportContactsData,
+	}
+}

@@ -11536,6 +11536,45 @@ const (
 	ActivityTypeFolderMoved = "FOLDER_MOVED"
 )
 
+// ActivityType_Values returns all elements of the ActivityType enum
+func ActivityType_Values() []string {
+	return []string{
+		ActivityTypeDocumentCheckedIn,
+		ActivityTypeDocumentCheckedOut,
+		ActivityTypeDocumentRenamed,
+		ActivityTypeDocumentVersionUploaded,
+		ActivityTypeDocumentVersionDeleted,
+		ActivityTypeDocumentVersionViewed,
+		ActivityTypeDocumentVersionDownloaded,
+		ActivityTypeDocumentRecycled,
+		ActivityTypeDocumentRestored,
+		ActivityTypeDocumentReverted,
+		ActivityTypeDocumentShared,
+		ActivityTypeDocumentUnshared,
+		ActivityTypeDocumentSharePermissionChanged,
+		ActivityTypeDocumentShareableLinkCreated,
+		ActivityTypeDocumentShareableLinkRemoved,
+		ActivityTypeDocumentShareableLinkPermissionChanged,
+		ActivityTypeDocumentMoved,
+		ActivityTypeDocumentCommentAdded,
+		ActivityTypeDocumentCommentDeleted,
+		ActivityTypeDocumentAnnotationAdded,
+		ActivityTypeDocumentAnnotationDeleted,
+		ActivityTypeFolderCreated,
+		ActivityTypeFolderDeleted,
+		ActivityTypeFolderRenamed,
+		ActivityTypeFolderRecycled,
+		ActivityTypeFolderRestored,
+		ActivityTypeFolderShared,
+		ActivityTypeFolderUnshared,
+		ActivityTypeFolderSharePermissionChanged,
+		ActivityTypeFolderShareableLinkCreated,
+		ActivityTypeFolderShareableLinkRemoved,
+		ActivityTypeFolderShareableLinkPermissionChanged,
+		ActivityTypeFolderMoved,
+	}
+}
+
 const (
 	// BooleanEnumTypeTrue is a BooleanEnumType enum value
 	BooleanEnumTypeTrue = "TRUE"
@@ -11543,6 +11582,14 @@ const (
 	// BooleanEnumTypeFalse is a BooleanEnumType enum value
 	BooleanEnumTypeFalse = "FALSE"
 )
+
+// BooleanEnumType_Values returns all elements of the BooleanEnumType enum
+func BooleanEnumType_Values() []string {
+	return []string{
+		BooleanEnumTypeTrue,
+		BooleanEnumTypeFalse,
+	}
+}
 
 const (
 	// CommentStatusTypeDraft is a CommentStatusType enum value
@@ -11555,6 +11602,15 @@ const (
 	CommentStatusTypeDeleted = "DELETED"
 )
 
+// CommentStatusType_Values returns all elements of the CommentStatusType enum
+func CommentStatusType_Values() []string {
+	return []string{
+		CommentStatusTypeDraft,
+		CommentStatusTypePublished,
+		CommentStatusTypeDeleted,
+	}
+}
+
 const (
 	// CommentVisibilityTypePublic is a CommentVisibilityType enum value
 	CommentVisibilityTypePublic = "PUBLIC"
@@ -11562,6 +11618,14 @@ const (
 	// CommentVisibilityTypePrivate is a CommentVisibilityType enum value
 	CommentVisibilityTypePrivate = "PRIVATE"
 )
+
+// CommentVisibilityType_Values returns all elements of the CommentVisibilityType enum
+func CommentVisibilityType_Values() []string {
+	return []string{
+		CommentVisibilityTypePublic,
+		CommentVisibilityTypePrivate,
+	}
+}
 
 const (
 	// DocumentSourceTypeOriginal is a DocumentSourceType enum value
@@ -11571,6 +11635,14 @@ const (
 	DocumentSourceTypeWithComments = "WITH_COMMENTS"
 )
 
+// DocumentSourceType_Values returns all elements of the DocumentSourceType enum
+func DocumentSourceType_Values() []string {
+	return []string{
+		DocumentSourceTypeOriginal,
+		DocumentSourceTypeWithComments,
+	}
+}
+
 const (
 	// DocumentStatusTypeInitialized is a DocumentStatusType enum value
 	DocumentStatusTypeInitialized = "INITIALIZED"
@@ -11578,6 +11650,14 @@ const (
 	// DocumentStatusTypeActive is a DocumentStatusType enum value
 	DocumentStatusTypeActive = "ACTIVE"
 )
+
+// DocumentStatusType_Values returns all elements of the DocumentStatusType enum
+func DocumentStatusType_Values() []string {
+	return []string{
+		DocumentStatusTypeInitialized,
+		DocumentStatusTypeActive,
+	}
+}
 
 const (
 	// DocumentThumbnailTypeSmall is a DocumentThumbnailType enum value
@@ -11590,10 +11670,26 @@ const (
 	DocumentThumbnailTypeLarge = "LARGE"
 )
 
+// DocumentThumbnailType_Values returns all elements of the DocumentThumbnailType enum
+func DocumentThumbnailType_Values() []string {
+	return []string{
+		DocumentThumbnailTypeSmall,
+		DocumentThumbnailTypeSmallHq,
+		DocumentThumbnailTypeLarge,
+	}
+}
+
 const (
 	// DocumentVersionStatusActive is a DocumentVersionStatus enum value
 	DocumentVersionStatusActive = "ACTIVE"
 )
+
+// DocumentVersionStatus_Values returns all elements of the DocumentVersionStatus enum
+func DocumentVersionStatus_Values() []string {
+	return []string{
+		DocumentVersionStatusActive,
+	}
+}
 
 const (
 	// FolderContentTypeAll is a FolderContentType enum value
@@ -11605,6 +11701,15 @@ const (
 	// FolderContentTypeFolder is a FolderContentType enum value
 	FolderContentTypeFolder = "FOLDER"
 )
+
+// FolderContentType_Values returns all elements of the FolderContentType enum
+func FolderContentType_Values() []string {
+	return []string{
+		FolderContentTypeAll,
+		FolderContentTypeDocument,
+		FolderContentTypeFolder,
+	}
+}
 
 const (
 	// LocaleTypeEn is a LocaleType enum value
@@ -11641,6 +11746,23 @@ const (
 	LocaleTypeDefault = "default"
 )
 
+// LocaleType_Values returns all elements of the LocaleType enum
+func LocaleType_Values() []string {
+	return []string{
+		LocaleTypeEn,
+		LocaleTypeFr,
+		LocaleTypeKo,
+		LocaleTypeDe,
+		LocaleTypeEs,
+		LocaleTypeJa,
+		LocaleTypeRu,
+		LocaleTypeZhCn,
+		LocaleTypeZhTw,
+		LocaleTypePtBr,
+		LocaleTypeDefault,
+	}
+}
+
 const (
 	// OrderTypeAscending is a OrderType enum value
 	OrderTypeAscending = "ASCENDING"
@@ -11648,6 +11770,14 @@ const (
 	// OrderTypeDescending is a OrderType enum value
 	OrderTypeDescending = "DESCENDING"
 )
+
+// OrderType_Values returns all elements of the OrderType enum
+func OrderType_Values() []string {
+	return []string{
+		OrderTypeAscending,
+		OrderTypeDescending,
+	}
+}
 
 const (
 	// PrincipalTypeUser is a PrincipalType enum value
@@ -11666,10 +11796,28 @@ const (
 	PrincipalTypeOrganization = "ORGANIZATION"
 )
 
+// PrincipalType_Values returns all elements of the PrincipalType enum
+func PrincipalType_Values() []string {
+	return []string{
+		PrincipalTypeUser,
+		PrincipalTypeGroup,
+		PrincipalTypeInvite,
+		PrincipalTypeAnonymous,
+		PrincipalTypeOrganization,
+	}
+}
+
 const (
 	// ResourceCollectionTypeSharedWithMe is a ResourceCollectionType enum value
 	ResourceCollectionTypeSharedWithMe = "SHARED_WITH_ME"
 )
+
+// ResourceCollectionType_Values returns all elements of the ResourceCollectionType enum
+func ResourceCollectionType_Values() []string {
+	return []string{
+		ResourceCollectionTypeSharedWithMe,
+	}
+}
 
 const (
 	// ResourceSortTypeDate is a ResourceSortType enum value
@@ -11678,6 +11826,14 @@ const (
 	// ResourceSortTypeName is a ResourceSortType enum value
 	ResourceSortTypeName = "NAME"
 )
+
+// ResourceSortType_Values returns all elements of the ResourceSortType enum
+func ResourceSortType_Values() []string {
+	return []string{
+		ResourceSortTypeDate,
+		ResourceSortTypeName,
+	}
+}
 
 const (
 	// ResourceStateTypeActive is a ResourceStateType enum value
@@ -11693,6 +11849,16 @@ const (
 	ResourceStateTypeRecycled = "RECYCLED"
 )
 
+// ResourceStateType_Values returns all elements of the ResourceStateType enum
+func ResourceStateType_Values() []string {
+	return []string{
+		ResourceStateTypeActive,
+		ResourceStateTypeRestoring,
+		ResourceStateTypeRecycling,
+		ResourceStateTypeRecycled,
+	}
+}
+
 const (
 	// ResourceTypeFolder is a ResourceType enum value
 	ResourceTypeFolder = "FOLDER"
@@ -11701,6 +11867,14 @@ const (
 	ResourceTypeDocument = "DOCUMENT"
 )
 
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeFolder,
+		ResourceTypeDocument,
+	}
+}
+
 const (
 	// RolePermissionTypeDirect is a RolePermissionType enum value
 	RolePermissionTypeDirect = "DIRECT"
@@ -11708,6 +11882,14 @@ const (
 	// RolePermissionTypeInherited is a RolePermissionType enum value
 	RolePermissionTypeInherited = "INHERITED"
 )
+
+// RolePermissionType_Values returns all elements of the RolePermissionType enum
+func RolePermissionType_Values() []string {
+	return []string{
+		RolePermissionTypeDirect,
+		RolePermissionTypeInherited,
+	}
+}
 
 const (
 	// RoleTypeViewer is a RoleType enum value
@@ -11723,6 +11905,16 @@ const (
 	RoleTypeCoowner = "COOWNER"
 )
 
+// RoleType_Values returns all elements of the RoleType enum
+func RoleType_Values() []string {
+	return []string{
+		RoleTypeViewer,
+		RoleTypeContributor,
+		RoleTypeOwner,
+		RoleTypeCoowner,
+	}
+}
+
 const (
 	// ShareStatusTypeSuccess is a ShareStatusType enum value
 	ShareStatusTypeSuccess = "SUCCESS"
@@ -11730,6 +11922,14 @@ const (
 	// ShareStatusTypeFailure is a ShareStatusType enum value
 	ShareStatusTypeFailure = "FAILURE"
 )
+
+// ShareStatusType_Values returns all elements of the ShareStatusType enum
+func ShareStatusType_Values() []string {
+	return []string{
+		ShareStatusTypeSuccess,
+		ShareStatusTypeFailure,
+	}
+}
 
 const (
 	// StorageTypeUnlimited is a StorageType enum value
@@ -11739,15 +11939,37 @@ const (
 	StorageTypeQuota = "QUOTA"
 )
 
+// StorageType_Values returns all elements of the StorageType enum
+func StorageType_Values() []string {
+	return []string{
+		StorageTypeUnlimited,
+		StorageTypeQuota,
+	}
+}
+
 const (
 	// SubscriptionProtocolTypeHttps is a SubscriptionProtocolType enum value
 	SubscriptionProtocolTypeHttps = "HTTPS"
 )
 
+// SubscriptionProtocolType_Values returns all elements of the SubscriptionProtocolType enum
+func SubscriptionProtocolType_Values() []string {
+	return []string{
+		SubscriptionProtocolTypeHttps,
+	}
+}
+
 const (
 	// SubscriptionTypeAll is a SubscriptionType enum value
 	SubscriptionTypeAll = "ALL"
 )
+
+// SubscriptionType_Values returns all elements of the SubscriptionType enum
+func SubscriptionType_Values() []string {
+	return []string{
+		SubscriptionTypeAll,
+	}
+}
 
 const (
 	// UserFilterTypeAll is a UserFilterType enum value
@@ -11756,6 +11978,14 @@ const (
 	// UserFilterTypeActivePending is a UserFilterType enum value
 	UserFilterTypeActivePending = "ACTIVE_PENDING"
 )
+
+// UserFilterType_Values returns all elements of the UserFilterType enum
+func UserFilterType_Values() []string {
+	return []string{
+		UserFilterTypeAll,
+		UserFilterTypeActivePending,
+	}
+}
 
 const (
 	// UserSortTypeUserName is a UserSortType enum value
@@ -11774,6 +12004,17 @@ const (
 	UserSortTypeStorageUsed = "STORAGE_USED"
 )
 
+// UserSortType_Values returns all elements of the UserSortType enum
+func UserSortType_Values() []string {
+	return []string{
+		UserSortTypeUserName,
+		UserSortTypeFullName,
+		UserSortTypeStorageLimit,
+		UserSortTypeUserStatus,
+		UserSortTypeStorageUsed,
+	}
+}
+
 const (
 	// UserStatusTypeActive is a UserStatusType enum value
 	UserStatusTypeActive = "ACTIVE"
@@ -11784,6 +12025,15 @@ const (
 	// UserStatusTypePending is a UserStatusType enum value
 	UserStatusTypePending = "PENDING"
 )
+
+// UserStatusType_Values returns all elements of the UserStatusType enum
+func UserStatusType_Values() []string {
+	return []string{
+		UserStatusTypeActive,
+		UserStatusTypeInactive,
+		UserStatusTypePending,
+	}
+}
 
 const (
 	// UserTypeUser is a UserType enum value
@@ -11801,3 +12051,14 @@ const (
 	// UserTypeWorkspacesuser is a UserType enum value
 	UserTypeWorkspacesuser = "WORKSPACESUSER"
 )
+
+// UserType_Values returns all elements of the UserType enum
+func UserType_Values() []string {
+	return []string{
+		UserTypeUser,
+		UserTypeAdmin,
+		UserTypePoweruser,
+		UserTypeMinimaluser,
+		UserTypeWorkspacesuser,
+	}
+}

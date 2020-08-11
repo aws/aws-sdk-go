@@ -1761,3 +1761,14 @@ const (
 	// ErrorCodeThrottlingException is a ErrorCode enum value
 	ErrorCodeThrottlingException = "ThrottlingException"
 )
+
+// ErrorCode_Values returns all elements of the ErrorCode enum
+func ErrorCode_Values() []string {
+	return []string{
+		ErrorCodeResourceNotFoundException,
+		ErrorCodeInvalidRequestException,
+		ErrorCodeInternalFailureException,
+		ErrorCodeServiceUnavailableException,
+		ErrorCodeThrottlingException,
+	}
+}

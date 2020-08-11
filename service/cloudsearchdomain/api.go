@@ -1551,6 +1551,14 @@ const (
 	ContentTypeApplicationXml = "application/xml"
 )
 
+// ContentType_Values returns all elements of the ContentType enum
+func ContentType_Values() []string {
+	return []string{
+		ContentTypeApplicationJson,
+		ContentTypeApplicationXml,
+	}
+}
+
 const (
 	// QueryParserSimple is a QueryParser enum value
 	QueryParserSimple = "simple"
@@ -1564,3 +1572,13 @@ const (
 	// QueryParserDismax is a QueryParser enum value
 	QueryParserDismax = "dismax"
 )
+
+// QueryParser_Values returns all elements of the QueryParser enum
+func QueryParser_Values() []string {
+	return []string{
+		QueryParserSimple,
+		QueryParserStructured,
+		QueryParserLucene,
+		QueryParserDismax,
+	}
+}

@@ -5694,6 +5694,16 @@ const (
 	AttributeNameNegation = "NEGATION"
 )
 
+// AttributeName_Values returns all elements of the AttributeName enum
+func AttributeName_Values() []string {
+	return []string{
+		AttributeNameSign,
+		AttributeNameSymptom,
+		AttributeNameDiagnosis,
+		AttributeNameNegation,
+	}
+}
+
 const (
 	// EntitySubTypeName is a EntitySubType enum value
 	EntitySubTypeName = "NAME"
@@ -5798,6 +5808,46 @@ const (
 	EntitySubTypeTimeToTreatmentName = "TIME_TO_TREATMENT_NAME"
 )
 
+// EntitySubType_Values returns all elements of the EntitySubType enum
+func EntitySubType_Values() []string {
+	return []string{
+		EntitySubTypeName,
+		EntitySubTypeDosage,
+		EntitySubTypeRouteOrMode,
+		EntitySubTypeForm,
+		EntitySubTypeFrequency,
+		EntitySubTypeDuration,
+		EntitySubTypeGenericName,
+		EntitySubTypeBrandName,
+		EntitySubTypeStrength,
+		EntitySubTypeRate,
+		EntitySubTypeAcuity,
+		EntitySubTypeTestName,
+		EntitySubTypeTestValue,
+		EntitySubTypeTestUnits,
+		EntitySubTypeProcedureName,
+		EntitySubTypeTreatmentName,
+		EntitySubTypeDate,
+		EntitySubTypeAge,
+		EntitySubTypeContactPoint,
+		EntitySubTypeEmail,
+		EntitySubTypeIdentifier,
+		EntitySubTypeUrl,
+		EntitySubTypeAddress,
+		EntitySubTypeProfession,
+		EntitySubTypeSystemOrganSite,
+		EntitySubTypeDirection,
+		EntitySubTypeQuality,
+		EntitySubTypeQuantity,
+		EntitySubTypeTimeExpression,
+		EntitySubTypeTimeToMedicationName,
+		EntitySubTypeTimeToDxName,
+		EntitySubTypeTimeToTestName,
+		EntitySubTypeTimeToProcedureName,
+		EntitySubTypeTimeToTreatmentName,
+	}
+}
+
 const (
 	// EntityTypeMedication is a EntityType enum value
 	EntityTypeMedication = "MEDICATION"
@@ -5818,6 +5868,18 @@ const (
 	EntityTypeTimeExpression = "TIME_EXPRESSION"
 )
 
+// EntityType_Values returns all elements of the EntityType enum
+func EntityType_Values() []string {
+	return []string{
+		EntityTypeMedication,
+		EntityTypeMedicalCondition,
+		EntityTypeProtectedHealthInformation,
+		EntityTypeTestTreatmentProcedure,
+		EntityTypeAnatomy,
+		EntityTypeTimeExpression,
+	}
+}
+
 const (
 	// ICD10CMAttributeTypeAcuity is a ICD10CMAttributeType enum value
 	ICD10CMAttributeTypeAcuity = "ACUITY"
@@ -5835,15 +5897,40 @@ const (
 	ICD10CMAttributeTypeQuantity = "QUANTITY"
 )
 
+// ICD10CMAttributeType_Values returns all elements of the ICD10CMAttributeType enum
+func ICD10CMAttributeType_Values() []string {
+	return []string{
+		ICD10CMAttributeTypeAcuity,
+		ICD10CMAttributeTypeDirection,
+		ICD10CMAttributeTypeSystemOrganSite,
+		ICD10CMAttributeTypeQuality,
+		ICD10CMAttributeTypeQuantity,
+	}
+}
+
 const (
 	// ICD10CMEntityCategoryMedicalCondition is a ICD10CMEntityCategory enum value
 	ICD10CMEntityCategoryMedicalCondition = "MEDICAL_CONDITION"
 )
 
+// ICD10CMEntityCategory_Values returns all elements of the ICD10CMEntityCategory enum
+func ICD10CMEntityCategory_Values() []string {
+	return []string{
+		ICD10CMEntityCategoryMedicalCondition,
+	}
+}
+
 const (
 	// ICD10CMEntityTypeDxName is a ICD10CMEntityType enum value
 	ICD10CMEntityTypeDxName = "DX_NAME"
 )
+
+// ICD10CMEntityType_Values returns all elements of the ICD10CMEntityType enum
+func ICD10CMEntityType_Values() []string {
+	return []string{
+		ICD10CMEntityTypeDxName,
+	}
+}
 
 const (
 	// ICD10CMTraitNameNegation is a ICD10CMTraitName enum value
@@ -5858,6 +5945,16 @@ const (
 	// ICD10CMTraitNameSymptom is a ICD10CMTraitName enum value
 	ICD10CMTraitNameSymptom = "SYMPTOM"
 )
+
+// ICD10CMTraitName_Values returns all elements of the ICD10CMTraitName enum
+func ICD10CMTraitName_Values() []string {
+	return []string{
+		ICD10CMTraitNameNegation,
+		ICD10CMTraitNameDiagnosis,
+		ICD10CMTraitNameSign,
+		ICD10CMTraitNameSymptom,
+	}
+}
 
 const (
 	// JobStatusSubmitted is a JobStatus enum value
@@ -5882,10 +5979,30 @@ const (
 	JobStatusStopped = "STOPPED"
 )
 
+// JobStatus_Values returns all elements of the JobStatus enum
+func JobStatus_Values() []string {
+	return []string{
+		JobStatusSubmitted,
+		JobStatusInProgress,
+		JobStatusCompleted,
+		JobStatusPartialSuccess,
+		JobStatusFailed,
+		JobStatusStopRequested,
+		JobStatusStopped,
+	}
+}
+
 const (
 	// LanguageCodeEn is a LanguageCode enum value
 	LanguageCodeEn = "en"
 )
+
+// LanguageCode_Values returns all elements of the LanguageCode enum
+func LanguageCode_Values() []string {
+	return []string{
+		LanguageCodeEn,
+	}
+}
 
 const (
 	// RelationshipTypeEvery is a RelationshipType enum value
@@ -5943,6 +6060,30 @@ const (
 	RelationshipTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
 )
 
+// RelationshipType_Values returns all elements of the RelationshipType enum
+func RelationshipType_Values() []string {
+	return []string{
+		RelationshipTypeEvery,
+		RelationshipTypeWithDosage,
+		RelationshipTypeAdministeredVia,
+		RelationshipTypeFor,
+		RelationshipTypeNegative,
+		RelationshipTypeOverlap,
+		RelationshipTypeDosage,
+		RelationshipTypeRouteOrMode,
+		RelationshipTypeForm,
+		RelationshipTypeFrequency,
+		RelationshipTypeDuration,
+		RelationshipTypeStrength,
+		RelationshipTypeRate,
+		RelationshipTypeAcuity,
+		RelationshipTypeTestValue,
+		RelationshipTypeTestUnits,
+		RelationshipTypeDirection,
+		RelationshipTypeSystemOrganSite,
+	}
+}
+
 const (
 	// RxNormAttributeTypeDosage is a RxNormAttributeType enum value
 	RxNormAttributeTypeDosage = "DOSAGE"
@@ -5966,10 +6107,30 @@ const (
 	RxNormAttributeTypeStrength = "STRENGTH"
 )
 
+// RxNormAttributeType_Values returns all elements of the RxNormAttributeType enum
+func RxNormAttributeType_Values() []string {
+	return []string{
+		RxNormAttributeTypeDosage,
+		RxNormAttributeTypeDuration,
+		RxNormAttributeTypeForm,
+		RxNormAttributeTypeFrequency,
+		RxNormAttributeTypeRate,
+		RxNormAttributeTypeRouteOrMode,
+		RxNormAttributeTypeStrength,
+	}
+}
+
 const (
 	// RxNormEntityCategoryMedication is a RxNormEntityCategory enum value
 	RxNormEntityCategoryMedication = "MEDICATION"
 )
+
+// RxNormEntityCategory_Values returns all elements of the RxNormEntityCategory enum
+func RxNormEntityCategory_Values() []string {
+	return []string{
+		RxNormEntityCategoryMedication,
+	}
+}
 
 const (
 	// RxNormEntityTypeBrandName is a RxNormEntityType enum value
@@ -5979,7 +6140,22 @@ const (
 	RxNormEntityTypeGenericName = "GENERIC_NAME"
 )
 
+// RxNormEntityType_Values returns all elements of the RxNormEntityType enum
+func RxNormEntityType_Values() []string {
+	return []string{
+		RxNormEntityTypeBrandName,
+		RxNormEntityTypeGenericName,
+	}
+}
+
 const (
 	// RxNormTraitNameNegation is a RxNormTraitName enum value
 	RxNormTraitNameNegation = "NEGATION"
 )
+
+// RxNormTraitName_Values returns all elements of the RxNormTraitName enum
+func RxNormTraitName_Values() []string {
+	return []string{
+		RxNormTraitNameNegation,
+	}
+}

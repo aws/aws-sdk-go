@@ -25977,10 +25977,27 @@ const (
 	AccountTypeEnterpriseOidc = "EnterpriseOIDC"
 )
 
+// AccountType_Values returns all elements of the AccountType enum
+func AccountType_Values() []string {
+	return []string{
+		AccountTypeTeam,
+		AccountTypeEnterpriseDirectory,
+		AccountTypeEnterpriseLwa,
+		AccountTypeEnterpriseOidc,
+	}
+}
+
 const (
 	// BotTypeChatBot is a BotType enum value
 	BotTypeChatBot = "ChatBot"
 )
+
+// BotType_Values returns all elements of the BotType enum
+func BotType_Values() []string {
+	return []string{
+		BotTypeChatBot,
+	}
+}
 
 const (
 	// CallingNameStatusUnassigned is a CallingNameStatus enum value
@@ -25996,6 +26013,16 @@ const (
 	CallingNameStatusUpdateFailed = "UpdateFailed"
 )
 
+// CallingNameStatus_Values returns all elements of the CallingNameStatus enum
+func CallingNameStatus_Values() []string {
+	return []string{
+		CallingNameStatusUnassigned,
+		CallingNameStatusUpdateInProgress,
+		CallingNameStatusUpdateSucceeded,
+		CallingNameStatusUpdateFailed,
+	}
+}
+
 const (
 	// CapabilityVoice is a Capability enum value
 	CapabilityVoice = "Voice"
@@ -26003,6 +26030,14 @@ const (
 	// CapabilitySms is a Capability enum value
 	CapabilitySms = "SMS"
 )
+
+// Capability_Values returns all elements of the Capability enum
+func Capability_Values() []string {
+	return []string{
+		CapabilityVoice,
+		CapabilitySms,
+	}
+}
 
 const (
 	// EmailStatusNotSent is a EmailStatus enum value
@@ -26014,6 +26049,15 @@ const (
 	// EmailStatusFailed is a EmailStatus enum value
 	EmailStatusFailed = "Failed"
 )
+
+// EmailStatus_Values returns all elements of the EmailStatus enum
+func EmailStatus_Values() []string {
+	return []string{
+		EmailStatusNotSent,
+		EmailStatusSent,
+		EmailStatusFailed,
+	}
+}
 
 const (
 	// ErrorCodeBadRequest is a ErrorCode enum value
@@ -26062,6 +26106,27 @@ const (
 	ErrorCodePhoneNumberAssociationsExist = "PhoneNumberAssociationsExist"
 )
 
+// ErrorCode_Values returns all elements of the ErrorCode enum
+func ErrorCode_Values() []string {
+	return []string{
+		ErrorCodeBadRequest,
+		ErrorCodeConflict,
+		ErrorCodeForbidden,
+		ErrorCodeNotFound,
+		ErrorCodePreconditionFailed,
+		ErrorCodeResourceLimitExceeded,
+		ErrorCodeServiceFailure,
+		ErrorCodeAccessDenied,
+		ErrorCodeServiceUnavailable,
+		ErrorCodeThrottled,
+		ErrorCodeThrottling,
+		ErrorCodeUnauthorized,
+		ErrorCodeUnprocessable,
+		ErrorCodeVoiceConnectorGroupAssociationsExist,
+		ErrorCodePhoneNumberAssociationsExist,
+	}
+}
+
 const (
 	// GeoMatchLevelCountry is a GeoMatchLevel enum value
 	GeoMatchLevelCountry = "Country"
@@ -26069,6 +26134,14 @@ const (
 	// GeoMatchLevelAreaCode is a GeoMatchLevel enum value
 	GeoMatchLevelAreaCode = "AreaCode"
 )
+
+// GeoMatchLevel_Values returns all elements of the GeoMatchLevel enum
+func GeoMatchLevel_Values() []string {
+	return []string{
+		GeoMatchLevelCountry,
+		GeoMatchLevelAreaCode,
+	}
+}
 
 const (
 	// InviteStatusPending is a InviteStatus enum value
@@ -26080,6 +26153,15 @@ const (
 	// InviteStatusFailed is a InviteStatus enum value
 	InviteStatusFailed = "Failed"
 )
+
+// InviteStatus_Values returns all elements of the InviteStatus enum
+func InviteStatus_Values() []string {
+	return []string{
+		InviteStatusPending,
+		InviteStatusAccepted,
+		InviteStatusFailed,
+	}
+}
 
 const (
 	// LicenseBasic is a License enum value
@@ -26095,6 +26177,16 @@ const (
 	LicenseProTrial = "ProTrial"
 )
 
+// License_Values returns all elements of the License enum
+func License_Values() []string {
+	return []string{
+		LicenseBasic,
+		LicensePlus,
+		LicensePro,
+		LicenseProTrial,
+	}
+}
+
 const (
 	// MemberTypeUser is a MemberType enum value
 	MemberTypeUser = "User"
@@ -26105,6 +26197,15 @@ const (
 	// MemberTypeWebhook is a MemberType enum value
 	MemberTypeWebhook = "Webhook"
 )
+
+// MemberType_Values returns all elements of the MemberType enum
+func MemberType_Values() []string {
+	return []string{
+		MemberTypeUser,
+		MemberTypeBot,
+		MemberTypeWebhook,
+	}
+}
 
 const (
 	// NotificationTargetEventBridge is a NotificationTarget enum value
@@ -26117,6 +26218,15 @@ const (
 	NotificationTargetSqs = "SQS"
 )
 
+// NotificationTarget_Values returns all elements of the NotificationTarget enum
+func NotificationTarget_Values() []string {
+	return []string{
+		NotificationTargetEventBridge,
+		NotificationTargetSns,
+		NotificationTargetSqs,
+	}
+}
+
 const (
 	// NumberSelectionBehaviorPreferSticky is a NumberSelectionBehavior enum value
 	NumberSelectionBehaviorPreferSticky = "PreferSticky"
@@ -26124,6 +26234,14 @@ const (
 	// NumberSelectionBehaviorAvoidSticky is a NumberSelectionBehavior enum value
 	NumberSelectionBehaviorAvoidSticky = "AvoidSticky"
 )
+
+// NumberSelectionBehavior_Values returns all elements of the NumberSelectionBehavior enum
+func NumberSelectionBehavior_Values() []string {
+	return []string{
+		NumberSelectionBehaviorPreferSticky,
+		NumberSelectionBehaviorAvoidSticky,
+	}
+}
 
 const (
 	// OrderedPhoneNumberStatusProcessing is a OrderedPhoneNumberStatus enum value
@@ -26136,6 +26254,15 @@ const (
 	OrderedPhoneNumberStatusFailed = "Failed"
 )
 
+// OrderedPhoneNumberStatus_Values returns all elements of the OrderedPhoneNumberStatus enum
+func OrderedPhoneNumberStatus_Values() []string {
+	return []string{
+		OrderedPhoneNumberStatusProcessing,
+		OrderedPhoneNumberStatusAcquired,
+		OrderedPhoneNumberStatusFailed,
+	}
+}
+
 const (
 	// OriginationRouteProtocolTcp is a OriginationRouteProtocol enum value
 	OriginationRouteProtocolTcp = "TCP"
@@ -26143,6 +26270,14 @@ const (
 	// OriginationRouteProtocolUdp is a OriginationRouteProtocol enum value
 	OriginationRouteProtocolUdp = "UDP"
 )
+
+// OriginationRouteProtocol_Values returns all elements of the OriginationRouteProtocol enum
+func OriginationRouteProtocol_Values() []string {
+	return []string{
+		OriginationRouteProtocolTcp,
+		OriginationRouteProtocolUdp,
+	}
+}
 
 const (
 	// PhoneNumberAssociationNameAccountId is a PhoneNumberAssociationName enum value
@@ -26158,6 +26293,16 @@ const (
 	PhoneNumberAssociationNameVoiceConnectorGroupId = "VoiceConnectorGroupId"
 )
 
+// PhoneNumberAssociationName_Values returns all elements of the PhoneNumberAssociationName enum
+func PhoneNumberAssociationName_Values() []string {
+	return []string{
+		PhoneNumberAssociationNameAccountId,
+		PhoneNumberAssociationNameUserId,
+		PhoneNumberAssociationNameVoiceConnectorId,
+		PhoneNumberAssociationNameVoiceConnectorGroupId,
+	}
+}
+
 const (
 	// PhoneNumberOrderStatusProcessing is a PhoneNumberOrderStatus enum value
 	PhoneNumberOrderStatusProcessing = "Processing"
@@ -26172,6 +26317,16 @@ const (
 	PhoneNumberOrderStatusPartial = "Partial"
 )
 
+// PhoneNumberOrderStatus_Values returns all elements of the PhoneNumberOrderStatus enum
+func PhoneNumberOrderStatus_Values() []string {
+	return []string{
+		PhoneNumberOrderStatusProcessing,
+		PhoneNumberOrderStatusSuccessful,
+		PhoneNumberOrderStatusFailed,
+		PhoneNumberOrderStatusPartial,
+	}
+}
+
 const (
 	// PhoneNumberProductTypeBusinessCalling is a PhoneNumberProductType enum value
 	PhoneNumberProductTypeBusinessCalling = "BusinessCalling"
@@ -26179,6 +26334,14 @@ const (
 	// PhoneNumberProductTypeVoiceConnector is a PhoneNumberProductType enum value
 	PhoneNumberProductTypeVoiceConnector = "VoiceConnector"
 )
+
+// PhoneNumberProductType_Values returns all elements of the PhoneNumberProductType enum
+func PhoneNumberProductType_Values() []string {
+	return []string{
+		PhoneNumberProductTypeBusinessCalling,
+		PhoneNumberProductTypeVoiceConnector,
+	}
+}
 
 const (
 	// PhoneNumberStatusAcquireInProgress is a PhoneNumberStatus enum value
@@ -26206,6 +26369,20 @@ const (
 	PhoneNumberStatusDeleteFailed = "DeleteFailed"
 )
 
+// PhoneNumberStatus_Values returns all elements of the PhoneNumberStatus enum
+func PhoneNumberStatus_Values() []string {
+	return []string{
+		PhoneNumberStatusAcquireInProgress,
+		PhoneNumberStatusAcquireFailed,
+		PhoneNumberStatusUnassigned,
+		PhoneNumberStatusAssigned,
+		PhoneNumberStatusReleaseInProgress,
+		PhoneNumberStatusDeleteInProgress,
+		PhoneNumberStatusReleaseFailed,
+		PhoneNumberStatusDeleteFailed,
+	}
+}
+
 const (
 	// PhoneNumberTypeLocal is a PhoneNumberType enum value
 	PhoneNumberTypeLocal = "Local"
@@ -26213,6 +26390,14 @@ const (
 	// PhoneNumberTypeTollFree is a PhoneNumberType enum value
 	PhoneNumberTypeTollFree = "TollFree"
 )
+
+// PhoneNumberType_Values returns all elements of the PhoneNumberType enum
+func PhoneNumberType_Values() []string {
+	return []string{
+		PhoneNumberTypeLocal,
+		PhoneNumberTypeTollFree,
+	}
+}
 
 const (
 	// ProxySessionStatusOpen is a ProxySessionStatus enum value
@@ -26225,6 +26410,15 @@ const (
 	ProxySessionStatusClosed = "Closed"
 )
 
+// ProxySessionStatus_Values returns all elements of the ProxySessionStatus enum
+func ProxySessionStatus_Values() []string {
+	return []string{
+		ProxySessionStatusOpen,
+		ProxySessionStatusInProgress,
+		ProxySessionStatusClosed,
+	}
+}
+
 const (
 	// RegistrationStatusUnregistered is a RegistrationStatus enum value
 	RegistrationStatusUnregistered = "Unregistered"
@@ -26236,6 +26430,15 @@ const (
 	RegistrationStatusSuspended = "Suspended"
 )
 
+// RegistrationStatus_Values returns all elements of the RegistrationStatus enum
+func RegistrationStatus_Values() []string {
+	return []string{
+		RegistrationStatusUnregistered,
+		RegistrationStatusRegistered,
+		RegistrationStatusSuspended,
+	}
+}
+
 const (
 	// RoomMembershipRoleAdministrator is a RoomMembershipRole enum value
 	RoomMembershipRoleAdministrator = "Administrator"
@@ -26243,6 +26446,14 @@ const (
 	// RoomMembershipRoleMember is a RoomMembershipRole enum value
 	RoomMembershipRoleMember = "Member"
 )
+
+// RoomMembershipRole_Values returns all elements of the RoomMembershipRole enum
+func RoomMembershipRole_Values() []string {
+	return []string{
+		RoomMembershipRoleAdministrator,
+		RoomMembershipRoleMember,
+	}
+}
 
 const (
 	// UserTypePrivateUser is a UserType enum value
@@ -26252,6 +26463,14 @@ const (
 	UserTypeSharedDevice = "SharedDevice"
 )
 
+// UserType_Values returns all elements of the UserType enum
+func UserType_Values() []string {
+	return []string{
+		UserTypePrivateUser,
+		UserTypeSharedDevice,
+	}
+}
+
 const (
 	// VoiceConnectorAwsRegionUsEast1 is a VoiceConnectorAwsRegion enum value
 	VoiceConnectorAwsRegionUsEast1 = "us-east-1"
@@ -26259,3 +26478,11 @@ const (
 	// VoiceConnectorAwsRegionUsWest2 is a VoiceConnectorAwsRegion enum value
 	VoiceConnectorAwsRegionUsWest2 = "us-west-2"
 )
+
+// VoiceConnectorAwsRegion_Values returns all elements of the VoiceConnectorAwsRegion enum
+func VoiceConnectorAwsRegion_Values() []string {
+	return []string{
+		VoiceConnectorAwsRegionUsEast1,
+		VoiceConnectorAwsRegionUsWest2,
+	}
+}

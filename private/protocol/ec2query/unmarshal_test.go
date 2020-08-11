@@ -1792,6 +1792,14 @@ const (
 	EC2EnumTypeBar = "bar"
 )
 
+// OutputService11TestShapeEC2EnumType_Values returns all elements of the OutputService11TestShapeEC2EnumType enum
+func OutputService11TestShapeEC2EnumType_Values() []string {
+	return []string{
+		EC2EnumTypeFoo,
+		EC2EnumTypeBar,
+	}
+}
+
 //
 // Tests begin here
 //

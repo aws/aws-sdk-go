@@ -3478,6 +3478,14 @@ const (
 	EngineNeural = "neural"
 )
 
+// Engine_Values returns all elements of the Engine enum
+func Engine_Values() []string {
+	return []string{
+		EngineStandard,
+		EngineNeural,
+	}
+}
+
 const (
 	// GenderFemale is a Gender enum value
 	GenderFemale = "Female"
@@ -3485,6 +3493,14 @@ const (
 	// GenderMale is a Gender enum value
 	GenderMale = "Male"
 )
+
+// Gender_Values returns all elements of the Gender enum
+func Gender_Values() []string {
+	return []string{
+		GenderFemale,
+		GenderMale,
+	}
+}
 
 const (
 	// LanguageCodeArb is a LanguageCode enum value
@@ -3575,6 +3591,41 @@ const (
 	LanguageCodeTrTr = "tr-TR"
 )
 
+// LanguageCode_Values returns all elements of the LanguageCode enum
+func LanguageCode_Values() []string {
+	return []string{
+		LanguageCodeArb,
+		LanguageCodeCmnCn,
+		LanguageCodeCyGb,
+		LanguageCodeDaDk,
+		LanguageCodeDeDe,
+		LanguageCodeEnAu,
+		LanguageCodeEnGb,
+		LanguageCodeEnGbWls,
+		LanguageCodeEnIn,
+		LanguageCodeEnUs,
+		LanguageCodeEsEs,
+		LanguageCodeEsMx,
+		LanguageCodeEsUs,
+		LanguageCodeFrCa,
+		LanguageCodeFrFr,
+		LanguageCodeIsIs,
+		LanguageCodeItIt,
+		LanguageCodeJaJp,
+		LanguageCodeHiIn,
+		LanguageCodeKoKr,
+		LanguageCodeNbNo,
+		LanguageCodeNlNl,
+		LanguageCodePlPl,
+		LanguageCodePtBr,
+		LanguageCodePtPt,
+		LanguageCodeRoRo,
+		LanguageCodeRuRu,
+		LanguageCodeSvSe,
+		LanguageCodeTrTr,
+	}
+}
+
 const (
 	// OutputFormatJson is a OutputFormat enum value
 	OutputFormatJson = "json"
@@ -3588,6 +3639,16 @@ const (
 	// OutputFormatPcm is a OutputFormat enum value
 	OutputFormatPcm = "pcm"
 )
+
+// OutputFormat_Values returns all elements of the OutputFormat enum
+func OutputFormat_Values() []string {
+	return []string{
+		OutputFormatJson,
+		OutputFormatMp3,
+		OutputFormatOggVorbis,
+		OutputFormatPcm,
+	}
+}
 
 const (
 	// SpeechMarkTypeSentence is a SpeechMarkType enum value
@@ -3603,6 +3664,16 @@ const (
 	SpeechMarkTypeWord = "word"
 )
 
+// SpeechMarkType_Values returns all elements of the SpeechMarkType enum
+func SpeechMarkType_Values() []string {
+	return []string{
+		SpeechMarkTypeSentence,
+		SpeechMarkTypeSsml,
+		SpeechMarkTypeViseme,
+		SpeechMarkTypeWord,
+	}
+}
+
 const (
 	// TaskStatusScheduled is a TaskStatus enum value
 	TaskStatusScheduled = "scheduled"
@@ -3617,6 +3688,16 @@ const (
 	TaskStatusFailed = "failed"
 )
 
+// TaskStatus_Values returns all elements of the TaskStatus enum
+func TaskStatus_Values() []string {
+	return []string{
+		TaskStatusScheduled,
+		TaskStatusInProgress,
+		TaskStatusCompleted,
+		TaskStatusFailed,
+	}
+}
+
 const (
 	// TextTypeSsml is a TextType enum value
 	TextTypeSsml = "ssml"
@@ -3624,6 +3705,14 @@ const (
 	// TextTypeText is a TextType enum value
 	TextTypeText = "text"
 )
+
+// TextType_Values returns all elements of the TextType enum
+func TextType_Values() []string {
+	return []string{
+		TextTypeSsml,
+		TextTypeText,
+	}
+}
 
 const (
 	// VoiceIdAditi is a VoiceId enum value
@@ -3809,3 +3898,70 @@ const (
 	// VoiceIdZhiyu is a VoiceId enum value
 	VoiceIdZhiyu = "Zhiyu"
 )
+
+// VoiceId_Values returns all elements of the VoiceId enum
+func VoiceId_Values() []string {
+	return []string{
+		VoiceIdAditi,
+		VoiceIdAmy,
+		VoiceIdAstrid,
+		VoiceIdBianca,
+		VoiceIdBrian,
+		VoiceIdCamila,
+		VoiceIdCarla,
+		VoiceIdCarmen,
+		VoiceIdCeline,
+		VoiceIdChantal,
+		VoiceIdConchita,
+		VoiceIdCristiano,
+		VoiceIdDora,
+		VoiceIdEmma,
+		VoiceIdEnrique,
+		VoiceIdEwa,
+		VoiceIdFiliz,
+		VoiceIdGeraint,
+		VoiceIdGiorgio,
+		VoiceIdGwyneth,
+		VoiceIdHans,
+		VoiceIdInes,
+		VoiceIdIvy,
+		VoiceIdJacek,
+		VoiceIdJan,
+		VoiceIdJoanna,
+		VoiceIdJoey,
+		VoiceIdJustin,
+		VoiceIdKarl,
+		VoiceIdKendra,
+		VoiceIdKevin,
+		VoiceIdKimberly,
+		VoiceIdLea,
+		VoiceIdLiv,
+		VoiceIdLotte,
+		VoiceIdLucia,
+		VoiceIdLupe,
+		VoiceIdMads,
+		VoiceIdMaja,
+		VoiceIdMarlene,
+		VoiceIdMathieu,
+		VoiceIdMatthew,
+		VoiceIdMaxim,
+		VoiceIdMia,
+		VoiceIdMiguel,
+		VoiceIdMizuki,
+		VoiceIdNaja,
+		VoiceIdNicole,
+		VoiceIdPenelope,
+		VoiceIdRaveena,
+		VoiceIdRicardo,
+		VoiceIdRuben,
+		VoiceIdRussell,
+		VoiceIdSalli,
+		VoiceIdSeoyeon,
+		VoiceIdTakumi,
+		VoiceIdTatyana,
+		VoiceIdVicki,
+		VoiceIdVitoria,
+		VoiceIdZeina,
+		VoiceIdZhiyu,
+	}
+}

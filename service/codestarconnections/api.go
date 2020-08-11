@@ -2411,6 +2411,15 @@ const (
 	ConnectionStatusError = "ERROR"
 )
 
+// ConnectionStatus_Values returns all elements of the ConnectionStatus enum
+func ConnectionStatus_Values() []string {
+	return []string{
+		ConnectionStatusPending,
+		ConnectionStatusAvailable,
+		ConnectionStatusError,
+	}
+}
+
 const (
 	// ProviderTypeBitbucket is a ProviderType enum value
 	ProviderTypeBitbucket = "Bitbucket"
@@ -2418,3 +2427,11 @@ const (
 	// ProviderTypeGitHubEnterpriseServer is a ProviderType enum value
 	ProviderTypeGitHubEnterpriseServer = "GitHubEnterpriseServer"
 )
+
+// ProviderType_Values returns all elements of the ProviderType enum
+func ProviderType_Values() []string {
+	return []string{
+		ProviderTypeBitbucket,
+		ProviderTypeGitHubEnterpriseServer,
+	}
+}

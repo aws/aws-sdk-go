@@ -3476,6 +3476,14 @@ const (
 	EnumTypeBar = "bar"
 )
 
+// InputService15TestShapeEnumType_Values returns all elements of the InputService15TestShapeEnumType enum
+func InputService15TestShapeEnumType_Values() []string {
+	return []string{
+		EnumTypeFoo,
+		EnumTypeBar,
+	}
+}
+
 // InputService16ProtocolTest provides the API operation methods for making requests to
 // . See this package's package overview docs
 // for details on the service.

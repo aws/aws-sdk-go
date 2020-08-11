@@ -49752,6 +49752,13 @@ const (
 	AbortActionCancel = "CANCEL"
 )
 
+// AbortAction_Values returns all elements of the AbortAction enum
+func AbortAction_Values() []string {
+	return []string{
+		AbortActionCancel,
+	}
+}
+
 const (
 	// ActionTypePublish is a ActionType enum value
 	ActionTypePublish = "PUBLISH"
@@ -49766,11 +49773,28 @@ const (
 	ActionTypeConnect = "CONNECT"
 )
 
+// ActionType_Values returns all elements of the ActionType enum
+func ActionType_Values() []string {
+	return []string{
+		ActionTypePublish,
+		ActionTypeSubscribe,
+		ActionTypeReceive,
+		ActionTypeConnect,
+	}
+}
+
 // The type of alert target: one of "SNS".
 const (
 	// AlertTargetTypeSns is a AlertTargetType enum value
 	AlertTargetTypeSns = "SNS"
 )
+
+// AlertTargetType_Values returns all elements of the AlertTargetType enum
+func AlertTargetType_Values() []string {
+	return []string{
+		AlertTargetTypeSns,
+	}
+}
 
 const (
 	// AuditCheckRunStatusInProgress is a AuditCheckRunStatus enum value
@@ -49792,6 +49816,18 @@ const (
 	AuditCheckRunStatusFailed = "FAILED"
 )
 
+// AuditCheckRunStatus_Values returns all elements of the AuditCheckRunStatus enum
+func AuditCheckRunStatus_Values() []string {
+	return []string{
+		AuditCheckRunStatusInProgress,
+		AuditCheckRunStatusWaitingForDataCollection,
+		AuditCheckRunStatusCanceled,
+		AuditCheckRunStatusCompletedCompliant,
+		AuditCheckRunStatusCompletedNonCompliant,
+		AuditCheckRunStatusFailed,
+	}
+}
+
 const (
 	// AuditFindingSeverityCritical is a AuditFindingSeverity enum value
 	AuditFindingSeverityCritical = "CRITICAL"
@@ -49806,6 +49842,16 @@ const (
 	AuditFindingSeverityLow = "LOW"
 )
 
+// AuditFindingSeverity_Values returns all elements of the AuditFindingSeverity enum
+func AuditFindingSeverity_Values() []string {
+	return []string{
+		AuditFindingSeverityCritical,
+		AuditFindingSeverityHigh,
+		AuditFindingSeverityMedium,
+		AuditFindingSeverityLow,
+	}
+}
+
 const (
 	// AuditFrequencyDaily is a AuditFrequency enum value
 	AuditFrequencyDaily = "DAILY"
@@ -49819,6 +49865,16 @@ const (
 	// AuditFrequencyMonthly is a AuditFrequency enum value
 	AuditFrequencyMonthly = "MONTHLY"
 )
+
+// AuditFrequency_Values returns all elements of the AuditFrequency enum
+func AuditFrequency_Values() []string {
+	return []string{
+		AuditFrequencyDaily,
+		AuditFrequencyWeekly,
+		AuditFrequencyBiweekly,
+		AuditFrequencyMonthly,
+	}
+}
 
 const (
 	// AuditMitigationActionsExecutionStatusInProgress is a AuditMitigationActionsExecutionStatus enum value
@@ -49840,6 +49896,18 @@ const (
 	AuditMitigationActionsExecutionStatusPending = "PENDING"
 )
 
+// AuditMitigationActionsExecutionStatus_Values returns all elements of the AuditMitigationActionsExecutionStatus enum
+func AuditMitigationActionsExecutionStatus_Values() []string {
+	return []string{
+		AuditMitigationActionsExecutionStatusInProgress,
+		AuditMitigationActionsExecutionStatusCompleted,
+		AuditMitigationActionsExecutionStatusFailed,
+		AuditMitigationActionsExecutionStatusCanceled,
+		AuditMitigationActionsExecutionStatusSkipped,
+		AuditMitigationActionsExecutionStatusPending,
+	}
+}
+
 const (
 	// AuditMitigationActionsTaskStatusInProgress is a AuditMitigationActionsTaskStatus enum value
 	AuditMitigationActionsTaskStatusInProgress = "IN_PROGRESS"
@@ -49854,10 +49922,27 @@ const (
 	AuditMitigationActionsTaskStatusCanceled = "CANCELED"
 )
 
+// AuditMitigationActionsTaskStatus_Values returns all elements of the AuditMitigationActionsTaskStatus enum
+func AuditMitigationActionsTaskStatus_Values() []string {
+	return []string{
+		AuditMitigationActionsTaskStatusInProgress,
+		AuditMitigationActionsTaskStatusCompleted,
+		AuditMitigationActionsTaskStatusFailed,
+		AuditMitigationActionsTaskStatusCanceled,
+	}
+}
+
 const (
 	// AuditNotificationTypeSns is a AuditNotificationType enum value
 	AuditNotificationTypeSns = "SNS"
 )
+
+// AuditNotificationType_Values returns all elements of the AuditNotificationType enum
+func AuditNotificationType_Values() []string {
+	return []string{
+		AuditNotificationTypeSns,
+	}
+}
 
 const (
 	// AuditTaskStatusInProgress is a AuditTaskStatus enum value
@@ -49873,6 +49958,16 @@ const (
 	AuditTaskStatusCanceled = "CANCELED"
 )
 
+// AuditTaskStatus_Values returns all elements of the AuditTaskStatus enum
+func AuditTaskStatus_Values() []string {
+	return []string{
+		AuditTaskStatusInProgress,
+		AuditTaskStatusCompleted,
+		AuditTaskStatusFailed,
+		AuditTaskStatusCanceled,
+	}
+}
+
 const (
 	// AuditTaskTypeOnDemandAuditTask is a AuditTaskType enum value
 	AuditTaskTypeOnDemandAuditTask = "ON_DEMAND_AUDIT_TASK"
@@ -49880,6 +49975,14 @@ const (
 	// AuditTaskTypeScheduledAuditTask is a AuditTaskType enum value
 	AuditTaskTypeScheduledAuditTask = "SCHEDULED_AUDIT_TASK"
 )
+
+// AuditTaskType_Values returns all elements of the AuditTaskType enum
+func AuditTaskType_Values() []string {
+	return []string{
+		AuditTaskTypeOnDemandAuditTask,
+		AuditTaskTypeScheduledAuditTask,
+	}
+}
 
 const (
 	// AuthDecisionAllowed is a AuthDecision enum value
@@ -49892,6 +49995,15 @@ const (
 	AuthDecisionImplicitDeny = "IMPLICIT_DENY"
 )
 
+// AuthDecision_Values returns all elements of the AuthDecision enum
+func AuthDecision_Values() []string {
+	return []string{
+		AuthDecisionAllowed,
+		AuthDecisionExplicitDeny,
+		AuthDecisionImplicitDeny,
+	}
+}
+
 const (
 	// AuthorizerStatusActive is a AuthorizerStatus enum value
 	AuthorizerStatusActive = "ACTIVE"
@@ -49899,6 +50011,14 @@ const (
 	// AuthorizerStatusInactive is a AuthorizerStatus enum value
 	AuthorizerStatusInactive = "INACTIVE"
 )
+
+// AuthorizerStatus_Values returns all elements of the AuthorizerStatus enum
+func AuthorizerStatus_Values() []string {
+	return []string{
+		AuthorizerStatusActive,
+		AuthorizerStatusInactive,
+	}
+}
 
 const (
 	// AutoRegistrationStatusEnable is a AutoRegistrationStatus enum value
@@ -49908,10 +50028,25 @@ const (
 	AutoRegistrationStatusDisable = "DISABLE"
 )
 
+// AutoRegistrationStatus_Values returns all elements of the AutoRegistrationStatus enum
+func AutoRegistrationStatus_Values() []string {
+	return []string{
+		AutoRegistrationStatusEnable,
+		AutoRegistrationStatusDisable,
+	}
+}
+
 const (
 	// AwsJobAbortCriteriaAbortActionCancel is a AwsJobAbortCriteriaAbortAction enum value
 	AwsJobAbortCriteriaAbortActionCancel = "CANCEL"
 )
+
+// AwsJobAbortCriteriaAbortAction_Values returns all elements of the AwsJobAbortCriteriaAbortAction enum
+func AwsJobAbortCriteriaAbortAction_Values() []string {
+	return []string{
+		AwsJobAbortCriteriaAbortActionCancel,
+	}
+}
 
 const (
 	// AwsJobAbortCriteriaFailureTypeFailed is a AwsJobAbortCriteriaFailureType enum value
@@ -49927,6 +50062,16 @@ const (
 	AwsJobAbortCriteriaFailureTypeAll = "ALL"
 )
 
+// AwsJobAbortCriteriaFailureType_Values returns all elements of the AwsJobAbortCriteriaFailureType enum
+func AwsJobAbortCriteriaFailureType_Values() []string {
+	return []string{
+		AwsJobAbortCriteriaFailureTypeFailed,
+		AwsJobAbortCriteriaFailureTypeRejected,
+		AwsJobAbortCriteriaFailureTypeTimedOut,
+		AwsJobAbortCriteriaFailureTypeAll,
+	}
+}
+
 const (
 	// CACertificateStatusActive is a CACertificateStatus enum value
 	CACertificateStatusActive = "ACTIVE"
@@ -49935,10 +50080,25 @@ const (
 	CACertificateStatusInactive = "INACTIVE"
 )
 
+// CACertificateStatus_Values returns all elements of the CACertificateStatus enum
+func CACertificateStatus_Values() []string {
+	return []string{
+		CACertificateStatusActive,
+		CACertificateStatusInactive,
+	}
+}
+
 const (
 	// CACertificateUpdateActionDeactivate is a CACertificateUpdateAction enum value
 	CACertificateUpdateActionDeactivate = "DEACTIVATE"
 )
+
+// CACertificateUpdateAction_Values returns all elements of the CACertificateUpdateAction enum
+func CACertificateUpdateAction_Values() []string {
+	return []string{
+		CACertificateUpdateActionDeactivate,
+	}
+}
 
 const (
 	// CannedAccessControlListPrivate is a CannedAccessControlList enum value
@@ -49966,6 +50126,20 @@ const (
 	CannedAccessControlListLogDeliveryWrite = "log-delivery-write"
 )
 
+// CannedAccessControlList_Values returns all elements of the CannedAccessControlList enum
+func CannedAccessControlList_Values() []string {
+	return []string{
+		CannedAccessControlListPrivate,
+		CannedAccessControlListPublicRead,
+		CannedAccessControlListPublicReadWrite,
+		CannedAccessControlListAwsExecRead,
+		CannedAccessControlListAuthenticatedRead,
+		CannedAccessControlListBucketOwnerRead,
+		CannedAccessControlListBucketOwnerFullControl,
+		CannedAccessControlListLogDeliveryWrite,
+	}
+}
+
 const (
 	// CertificateModeDefault is a CertificateMode enum value
 	CertificateModeDefault = "DEFAULT"
@@ -49973,6 +50147,14 @@ const (
 	// CertificateModeSniOnly is a CertificateMode enum value
 	CertificateModeSniOnly = "SNI_ONLY"
 )
+
+// CertificateMode_Values returns all elements of the CertificateMode enum
+func CertificateMode_Values() []string {
+	return []string{
+		CertificateModeDefault,
+		CertificateModeSniOnly,
+	}
+}
 
 const (
 	// CertificateStatusActive is a CertificateStatus enum value
@@ -49993,6 +50175,18 @@ const (
 	// CertificateStatusPendingActivation is a CertificateStatus enum value
 	CertificateStatusPendingActivation = "PENDING_ACTIVATION"
 )
+
+// CertificateStatus_Values returns all elements of the CertificateStatus enum
+func CertificateStatus_Values() []string {
+	return []string{
+		CertificateStatusActive,
+		CertificateStatusInactive,
+		CertificateStatusRevoked,
+		CertificateStatusPendingTransfer,
+		CertificateStatusRegisterInactive,
+		CertificateStatusPendingActivation,
+	}
+}
 
 const (
 	// ComparisonOperatorLessThan is a ComparisonOperator enum value
@@ -50020,6 +50214,20 @@ const (
 	ComparisonOperatorNotInPortSet = "not-in-port-set"
 )
 
+// ComparisonOperator_Values returns all elements of the ComparisonOperator enum
+func ComparisonOperator_Values() []string {
+	return []string{
+		ComparisonOperatorLessThan,
+		ComparisonOperatorLessThanEquals,
+		ComparisonOperatorGreaterThan,
+		ComparisonOperatorGreaterThanEquals,
+		ComparisonOperatorInCidrSet,
+		ComparisonOperatorNotInCidrSet,
+		ComparisonOperatorInPortSet,
+		ComparisonOperatorNotInPortSet,
+	}
+}
+
 const (
 	// DayOfWeekSun is a DayOfWeek enum value
 	DayOfWeekSun = "SUN"
@@ -50043,15 +50251,42 @@ const (
 	DayOfWeekSat = "SAT"
 )
 
+// DayOfWeek_Values returns all elements of the DayOfWeek enum
+func DayOfWeek_Values() []string {
+	return []string{
+		DayOfWeekSun,
+		DayOfWeekMon,
+		DayOfWeekTue,
+		DayOfWeekWed,
+		DayOfWeekThu,
+		DayOfWeekFri,
+		DayOfWeekSat,
+	}
+}
+
 const (
 	// DeviceCertificateUpdateActionDeactivate is a DeviceCertificateUpdateAction enum value
 	DeviceCertificateUpdateActionDeactivate = "DEACTIVATE"
 )
 
+// DeviceCertificateUpdateAction_Values returns all elements of the DeviceCertificateUpdateAction enum
+func DeviceCertificateUpdateAction_Values() []string {
+	return []string{
+		DeviceCertificateUpdateActionDeactivate,
+	}
+}
+
 const (
 	// DimensionTypeTopicFilter is a DimensionType enum value
 	DimensionTypeTopicFilter = "TOPIC_FILTER"
 )
+
+// DimensionType_Values returns all elements of the DimensionType enum
+func DimensionType_Values() []string {
+	return []string{
+		DimensionTypeTopicFilter,
+	}
+}
 
 const (
 	// DimensionValueOperatorIn is a DimensionValueOperator enum value
@@ -50061,6 +50296,14 @@ const (
 	DimensionValueOperatorNotIn = "NOT_IN"
 )
 
+// DimensionValueOperator_Values returns all elements of the DimensionValueOperator enum
+func DimensionValueOperator_Values() []string {
+	return []string{
+		DimensionValueOperatorIn,
+		DimensionValueOperatorNotIn,
+	}
+}
+
 const (
 	// DomainConfigurationStatusEnabled is a DomainConfigurationStatus enum value
 	DomainConfigurationStatusEnabled = "ENABLED"
@@ -50068,6 +50311,14 @@ const (
 	// DomainConfigurationStatusDisabled is a DomainConfigurationStatus enum value
 	DomainConfigurationStatusDisabled = "DISABLED"
 )
+
+// DomainConfigurationStatus_Values returns all elements of the DomainConfigurationStatus enum
+func DomainConfigurationStatus_Values() []string {
+	return []string{
+		DomainConfigurationStatusEnabled,
+		DomainConfigurationStatusDisabled,
+	}
+}
 
 const (
 	// DomainTypeEndpoint is a DomainType enum value
@@ -50080,6 +50331,15 @@ const (
 	DomainTypeCustomerManaged = "CUSTOMER_MANAGED"
 )
 
+// DomainType_Values returns all elements of the DomainType enum
+func DomainType_Values() []string {
+	return []string{
+		DomainTypeEndpoint,
+		DomainTypeAwsManaged,
+		DomainTypeCustomerManaged,
+	}
+}
+
 const (
 	// DynamicGroupStatusActive is a DynamicGroupStatus enum value
 	DynamicGroupStatusActive = "ACTIVE"
@@ -50091,6 +50351,15 @@ const (
 	DynamicGroupStatusRebuilding = "REBUILDING"
 )
 
+// DynamicGroupStatus_Values returns all elements of the DynamicGroupStatus enum
+func DynamicGroupStatus_Values() []string {
+	return []string{
+		DynamicGroupStatusActive,
+		DynamicGroupStatusBuilding,
+		DynamicGroupStatusRebuilding,
+	}
+}
+
 const (
 	// DynamoKeyTypeString is a DynamoKeyType enum value
 	DynamoKeyTypeString = "STRING"
@@ -50098,6 +50367,14 @@ const (
 	// DynamoKeyTypeNumber is a DynamoKeyType enum value
 	DynamoKeyTypeNumber = "NUMBER"
 )
+
+// DynamoKeyType_Values returns all elements of the DynamoKeyType enum
+func DynamoKeyType_Values() []string {
+	return []string{
+		DynamoKeyTypeString,
+		DynamoKeyTypeNumber,
+	}
+}
 
 const (
 	// EventTypeThing is a EventType enum value
@@ -50134,6 +50411,23 @@ const (
 	EventTypeCaCertificate = "CA_CERTIFICATE"
 )
 
+// EventType_Values returns all elements of the EventType enum
+func EventType_Values() []string {
+	return []string{
+		EventTypeThing,
+		EventTypeThingGroup,
+		EventTypeThingType,
+		EventTypeThingGroupMembership,
+		EventTypeThingGroupHierarchy,
+		EventTypeThingTypeAssociation,
+		EventTypeJob,
+		EventTypeJobExecution,
+		EventTypePolicy,
+		EventTypeCertificate,
+		EventTypeCaCertificate,
+	}
+}
+
 const (
 	// FieldTypeNumber is a FieldType enum value
 	FieldTypeNumber = "Number"
@@ -50145,6 +50439,15 @@ const (
 	FieldTypeBoolean = "Boolean"
 )
 
+// FieldType_Values returns all elements of the FieldType enum
+func FieldType_Values() []string {
+	return []string{
+		FieldTypeNumber,
+		FieldTypeString,
+		FieldTypeBoolean,
+	}
+}
+
 const (
 	// IndexStatusActive is a IndexStatus enum value
 	IndexStatusActive = "ACTIVE"
@@ -50155,6 +50458,15 @@ const (
 	// IndexStatusRebuilding is a IndexStatus enum value
 	IndexStatusRebuilding = "REBUILDING"
 )
+
+// IndexStatus_Values returns all elements of the IndexStatus enum
+func IndexStatus_Values() []string {
+	return []string{
+		IndexStatusActive,
+		IndexStatusBuilding,
+		IndexStatusRebuilding,
+	}
+}
 
 const (
 	// JobExecutionFailureTypeFailed is a JobExecutionFailureType enum value
@@ -50169,6 +50481,16 @@ const (
 	// JobExecutionFailureTypeAll is a JobExecutionFailureType enum value
 	JobExecutionFailureTypeAll = "ALL"
 )
+
+// JobExecutionFailureType_Values returns all elements of the JobExecutionFailureType enum
+func JobExecutionFailureType_Values() []string {
+	return []string{
+		JobExecutionFailureTypeFailed,
+		JobExecutionFailureTypeRejected,
+		JobExecutionFailureTypeTimedOut,
+		JobExecutionFailureTypeAll,
+	}
+}
 
 const (
 	// JobExecutionStatusQueued is a JobExecutionStatus enum value
@@ -50196,6 +50518,20 @@ const (
 	JobExecutionStatusCanceled = "CANCELED"
 )
 
+// JobExecutionStatus_Values returns all elements of the JobExecutionStatus enum
+func JobExecutionStatus_Values() []string {
+	return []string{
+		JobExecutionStatusQueued,
+		JobExecutionStatusInProgress,
+		JobExecutionStatusSucceeded,
+		JobExecutionStatusFailed,
+		JobExecutionStatusTimedOut,
+		JobExecutionStatusRejected,
+		JobExecutionStatusRemoved,
+		JobExecutionStatusCanceled,
+	}
+}
+
 const (
 	// JobStatusInProgress is a JobStatus enum value
 	JobStatusInProgress = "IN_PROGRESS"
@@ -50209,6 +50545,16 @@ const (
 	// JobStatusDeletionInProgress is a JobStatus enum value
 	JobStatusDeletionInProgress = "DELETION_IN_PROGRESS"
 )
+
+// JobStatus_Values returns all elements of the JobStatus enum
+func JobStatus_Values() []string {
+	return []string{
+		JobStatusInProgress,
+		JobStatusCanceled,
+		JobStatusCompleted,
+		JobStatusDeletionInProgress,
+	}
+}
 
 const (
 	// LogLevelDebug is a LogLevel enum value
@@ -50227,6 +50573,17 @@ const (
 	LogLevelDisabled = "DISABLED"
 )
 
+// LogLevel_Values returns all elements of the LogLevel enum
+func LogLevel_Values() []string {
+	return []string{
+		LogLevelDebug,
+		LogLevelInfo,
+		LogLevelError,
+		LogLevelWarn,
+		LogLevelDisabled,
+	}
+}
+
 const (
 	// LogTargetTypeDefault is a LogTargetType enum value
 	LogTargetTypeDefault = "DEFAULT"
@@ -50235,6 +50592,14 @@ const (
 	LogTargetTypeThingGroup = "THING_GROUP"
 )
 
+// LogTargetType_Values returns all elements of the LogTargetType enum
+func LogTargetType_Values() []string {
+	return []string{
+		LogTargetTypeDefault,
+		LogTargetTypeThingGroup,
+	}
+}
+
 const (
 	// MessageFormatRaw is a MessageFormat enum value
 	MessageFormatRaw = "RAW"
@@ -50242,6 +50607,14 @@ const (
 	// MessageFormatJson is a MessageFormat enum value
 	MessageFormatJson = "JSON"
 )
+
+// MessageFormat_Values returns all elements of the MessageFormat enum
+func MessageFormat_Values() []string {
+	return []string{
+		MessageFormatRaw,
+		MessageFormatJson,
+	}
+}
 
 const (
 	// MitigationActionTypeUpdateDeviceCertificate is a MitigationActionType enum value
@@ -50263,6 +50636,18 @@ const (
 	MitigationActionTypePublishFindingToSns = "PUBLISH_FINDING_TO_SNS"
 )
 
+// MitigationActionType_Values returns all elements of the MitigationActionType enum
+func MitigationActionType_Values() []string {
+	return []string{
+		MitigationActionTypeUpdateDeviceCertificate,
+		MitigationActionTypeUpdateCaCertificate,
+		MitigationActionTypeAddThingsToThingGroup,
+		MitigationActionTypeReplaceDefaultPolicyVersion,
+		MitigationActionTypeEnableIotLogging,
+		MitigationActionTypePublishFindingToSns,
+	}
+}
+
 const (
 	// OTAUpdateStatusCreatePending is a OTAUpdateStatus enum value
 	OTAUpdateStatusCreatePending = "CREATE_PENDING"
@@ -50277,10 +50662,27 @@ const (
 	OTAUpdateStatusCreateFailed = "CREATE_FAILED"
 )
 
+// OTAUpdateStatus_Values returns all elements of the OTAUpdateStatus enum
+func OTAUpdateStatus_Values() []string {
+	return []string{
+		OTAUpdateStatusCreatePending,
+		OTAUpdateStatusCreateInProgress,
+		OTAUpdateStatusCreateComplete,
+		OTAUpdateStatusCreateFailed,
+	}
+}
+
 const (
 	// PolicyTemplateNameBlankPolicy is a PolicyTemplateName enum value
 	PolicyTemplateNameBlankPolicy = "BLANK_POLICY"
 )
+
+// PolicyTemplateName_Values returns all elements of the PolicyTemplateName enum
+func PolicyTemplateName_Values() []string {
+	return []string{
+		PolicyTemplateNameBlankPolicy,
+	}
+}
 
 const (
 	// ProtocolMqtt is a Protocol enum value
@@ -50290,6 +50692,14 @@ const (
 	ProtocolHttp = "HTTP"
 )
 
+// Protocol_Values returns all elements of the Protocol enum
+func Protocol_Values() []string {
+	return []string{
+		ProtocolMqtt,
+		ProtocolHttp,
+	}
+}
+
 const (
 	// ReportTypeErrors is a ReportType enum value
 	ReportTypeErrors = "ERRORS"
@@ -50297,6 +50707,14 @@ const (
 	// ReportTypeResults is a ReportType enum value
 	ReportTypeResults = "RESULTS"
 )
+
+// ReportType_Values returns all elements of the ReportType enum
+func ReportType_Values() []string {
+	return []string{
+		ReportTypeErrors,
+		ReportTypeResults,
+	}
+}
 
 const (
 	// ResourceTypeDeviceCertificate is a ResourceType enum value
@@ -50324,6 +50742,20 @@ const (
 	ResourceTypeIamRole = "IAM_ROLE"
 )
 
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeDeviceCertificate,
+		ResourceTypeCaCertificate,
+		ResourceTypeIotPolicy,
+		ResourceTypeCognitoIdentityPool,
+		ResourceTypeClientId,
+		ResourceTypeAccountSettings,
+		ResourceTypeRoleAlias,
+		ResourceTypeIamRole,
+	}
+}
+
 const (
 	// ServerCertificateStatusInvalid is a ServerCertificateStatus enum value
 	ServerCertificateStatusInvalid = "INVALID"
@@ -50331,6 +50763,14 @@ const (
 	// ServerCertificateStatusValid is a ServerCertificateStatus enum value
 	ServerCertificateStatusValid = "VALID"
 )
+
+// ServerCertificateStatus_Values returns all elements of the ServerCertificateStatus enum
+func ServerCertificateStatus_Values() []string {
+	return []string{
+		ServerCertificateStatusInvalid,
+		ServerCertificateStatusValid,
+	}
+}
 
 const (
 	// ServiceTypeData is a ServiceType enum value
@@ -50342,6 +50782,15 @@ const (
 	// ServiceTypeJobs is a ServiceType enum value
 	ServiceTypeJobs = "JOBS"
 )
+
+// ServiceType_Values returns all elements of the ServiceType enum
+func ServiceType_Values() []string {
+	return []string{
+		ServiceTypeData,
+		ServiceTypeCredentialProvider,
+		ServiceTypeJobs,
+	}
+}
 
 const (
 	// StatusInProgress is a Status enum value
@@ -50360,6 +50809,17 @@ const (
 	StatusCancelling = "Cancelling"
 )
 
+// Status_Values returns all elements of the Status enum
+func Status_Values() []string {
+	return []string{
+		StatusInProgress,
+		StatusCompleted,
+		StatusFailed,
+		StatusCancelled,
+		StatusCancelling,
+	}
+}
+
 const (
 	// TargetSelectionContinuous is a TargetSelection enum value
 	TargetSelectionContinuous = "CONTINUOUS"
@@ -50367,6 +50827,14 @@ const (
 	// TargetSelectionSnapshot is a TargetSelection enum value
 	TargetSelectionSnapshot = "SNAPSHOT"
 )
+
+// TargetSelection_Values returns all elements of the TargetSelection enum
+func TargetSelection_Values() []string {
+	return []string{
+		TargetSelectionContinuous,
+		TargetSelectionSnapshot,
+	}
+}
 
 const (
 	// ThingConnectivityIndexingModeOff is a ThingConnectivityIndexingMode enum value
@@ -50376,6 +50844,14 @@ const (
 	ThingConnectivityIndexingModeStatus = "STATUS"
 )
 
+// ThingConnectivityIndexingMode_Values returns all elements of the ThingConnectivityIndexingMode enum
+func ThingConnectivityIndexingMode_Values() []string {
+	return []string{
+		ThingConnectivityIndexingModeOff,
+		ThingConnectivityIndexingModeStatus,
+	}
+}
+
 const (
 	// ThingGroupIndexingModeOff is a ThingGroupIndexingMode enum value
 	ThingGroupIndexingModeOff = "OFF"
@@ -50383,6 +50859,14 @@ const (
 	// ThingGroupIndexingModeOn is a ThingGroupIndexingMode enum value
 	ThingGroupIndexingModeOn = "ON"
 )
+
+// ThingGroupIndexingMode_Values returns all elements of the ThingGroupIndexingMode enum
+func ThingGroupIndexingMode_Values() []string {
+	return []string{
+		ThingGroupIndexingModeOff,
+		ThingGroupIndexingModeOn,
+	}
+}
 
 const (
 	// ThingIndexingModeOff is a ThingIndexingMode enum value
@@ -50394,6 +50878,15 @@ const (
 	// ThingIndexingModeRegistryAndShadow is a ThingIndexingMode enum value
 	ThingIndexingModeRegistryAndShadow = "REGISTRY_AND_SHADOW"
 )
+
+// ThingIndexingMode_Values returns all elements of the ThingIndexingMode enum
+func ThingIndexingMode_Values() []string {
+	return []string{
+		ThingIndexingModeOff,
+		ThingIndexingModeRegistry,
+		ThingIndexingModeRegistryAndShadow,
+	}
+}
 
 const (
 	// TopicRuleDestinationStatusEnabled is a TopicRuleDestinationStatus enum value
@@ -50409,6 +50902,16 @@ const (
 	TopicRuleDestinationStatusError = "ERROR"
 )
 
+// TopicRuleDestinationStatus_Values returns all elements of the TopicRuleDestinationStatus enum
+func TopicRuleDestinationStatus_Values() []string {
+	return []string{
+		TopicRuleDestinationStatusEnabled,
+		TopicRuleDestinationStatusInProgress,
+		TopicRuleDestinationStatusDisabled,
+		TopicRuleDestinationStatusError,
+	}
+}
+
 const (
 	// ViolationEventTypeInAlarm is a ViolationEventType enum value
 	ViolationEventTypeInAlarm = "in-alarm"
@@ -50419,3 +50922,12 @@ const (
 	// ViolationEventTypeAlarmInvalidated is a ViolationEventType enum value
 	ViolationEventTypeAlarmInvalidated = "alarm-invalidated"
 )
+
+// ViolationEventType_Values returns all elements of the ViolationEventType enum
+func ViolationEventType_Values() []string {
+	return []string{
+		ViolationEventTypeInAlarm,
+		ViolationEventTypeAlarmCleared,
+		ViolationEventTypeAlarmInvalidated,
+	}
+}

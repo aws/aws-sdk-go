@@ -1499,3 +1499,17 @@ const (
 	// JobExecutionStatusCanceled is a JobExecutionStatus enum value
 	JobExecutionStatusCanceled = "CANCELED"
 )
+
+// JobExecutionStatus_Values returns all elements of the JobExecutionStatus enum
+func JobExecutionStatus_Values() []string {
+	return []string{
+		JobExecutionStatusQueued,
+		JobExecutionStatusInProgress,
+		JobExecutionStatusSucceeded,
+		JobExecutionStatusFailed,
+		JobExecutionStatusTimedOut,
+		JobExecutionStatusRejected,
+		JobExecutionStatusRemoved,
+		JobExecutionStatusCanceled,
+	}
+}

@@ -811,3 +811,10 @@ const (
 	// ServiceTurn is a Service enum value
 	ServiceTurn = "TURN"
 )
+
+// Service_Values returns all elements of the Service enum
+func Service_Values() []string {
+	return []string{
+		ServiceTurn,
+	}
+}

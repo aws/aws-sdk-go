@@ -16349,6 +16349,14 @@ const (
 	BehaviorOnMxFailureRejectMessage = "REJECT_MESSAGE"
 )
 
+// BehaviorOnMxFailure_Values returns all elements of the BehaviorOnMxFailure enum
+func BehaviorOnMxFailure_Values() []string {
+	return []string{
+		BehaviorOnMxFailureUseDefaultValue,
+		BehaviorOnMxFailureRejectMessage,
+	}
+}
+
 const (
 	// BulkEmailStatusSuccess is a BulkEmailStatus enum value
 	BulkEmailStatusSuccess = "SUCCESS"
@@ -16393,6 +16401,26 @@ const (
 	BulkEmailStatusFailed = "FAILED"
 )
 
+// BulkEmailStatus_Values returns all elements of the BulkEmailStatus enum
+func BulkEmailStatus_Values() []string {
+	return []string{
+		BulkEmailStatusSuccess,
+		BulkEmailStatusMessageRejected,
+		BulkEmailStatusMailFromDomainNotVerified,
+		BulkEmailStatusConfigurationSetNotFound,
+		BulkEmailStatusTemplateNotFound,
+		BulkEmailStatusAccountSuspended,
+		BulkEmailStatusAccountThrottled,
+		BulkEmailStatusAccountDailyQuotaExceeded,
+		BulkEmailStatusInvalidSendingPoolName,
+		BulkEmailStatusAccountSendingPaused,
+		BulkEmailStatusConfigurationSetSendingPaused,
+		BulkEmailStatusInvalidParameter,
+		BulkEmailStatusTransientFailure,
+		BulkEmailStatusFailed,
+	}
+}
+
 const (
 	// ContactLanguageEn is a ContactLanguage enum value
 	ContactLanguageEn = "EN"
@@ -16400,6 +16428,14 @@ const (
 	// ContactLanguageJa is a ContactLanguage enum value
 	ContactLanguageJa = "JA"
 )
+
+// ContactLanguage_Values returns all elements of the ContactLanguage enum
+func ContactLanguage_Values() []string {
+	return []string{
+		ContactLanguageEn,
+		ContactLanguageJa,
+	}
+}
 
 // The current status of your Deliverability dashboard subscription. If this
 // value is PENDING_EXPIRATION, your subscription is scheduled to expire at
@@ -16415,6 +16451,15 @@ const (
 	DeliverabilityDashboardAccountStatusDisabled = "DISABLED"
 )
 
+// DeliverabilityDashboardAccountStatus_Values returns all elements of the DeliverabilityDashboardAccountStatus enum
+func DeliverabilityDashboardAccountStatus_Values() []string {
+	return []string{
+		DeliverabilityDashboardAccountStatusActive,
+		DeliverabilityDashboardAccountStatusPendingExpiration,
+		DeliverabilityDashboardAccountStatusDisabled,
+	}
+}
+
 // The status of a predictive inbox placement test. If the status is IN_PROGRESS,
 // then the predictive inbox placement test is currently running. Predictive
 // inbox placement tests are usually complete within 24 hours of creating the
@@ -16427,6 +16472,14 @@ const (
 	// DeliverabilityTestStatusCompleted is a DeliverabilityTestStatus enum value
 	DeliverabilityTestStatusCompleted = "COMPLETED"
 )
+
+// DeliverabilityTestStatus_Values returns all elements of the DeliverabilityTestStatus enum
+func DeliverabilityTestStatus_Values() []string {
+	return []string{
+		DeliverabilityTestStatusInProgress,
+		DeliverabilityTestStatusCompleted,
+	}
+}
 
 // The location where the Amazon SES API v2 finds the value of a dimension to
 // publish to Amazon CloudWatch. If you want to use the message tags that you
@@ -16444,6 +16497,15 @@ const (
 	DimensionValueSourceLinkTag = "LINK_TAG"
 )
 
+// DimensionValueSource_Values returns all elements of the DimensionValueSource enum
+func DimensionValueSource_Values() []string {
+	return []string{
+		DimensionValueSourceMessageTag,
+		DimensionValueSourceEmailHeader,
+		DimensionValueSourceLinkTag,
+	}
+}
+
 const (
 	// DkimSigningAttributesOriginAwsSes is a DkimSigningAttributesOrigin enum value
 	DkimSigningAttributesOriginAwsSes = "AWS_SES"
@@ -16451,6 +16513,14 @@ const (
 	// DkimSigningAttributesOriginExternal is a DkimSigningAttributesOrigin enum value
 	DkimSigningAttributesOriginExternal = "EXTERNAL"
 )
+
+// DkimSigningAttributesOrigin_Values returns all elements of the DkimSigningAttributesOrigin enum
+func DkimSigningAttributesOrigin_Values() []string {
+	return []string{
+		DkimSigningAttributesOriginAwsSes,
+		DkimSigningAttributesOriginExternal,
+	}
+}
 
 // The DKIM authentication status of the identity. The status can be one of
 // the following:
@@ -16486,6 +16556,17 @@ const (
 	DkimStatusNotStarted = "NOT_STARTED"
 )
 
+// DkimStatus_Values returns all elements of the DkimStatus enum
+func DkimStatus_Values() []string {
+	return []string{
+		DkimStatusPending,
+		DkimStatusSuccess,
+		DkimStatusFailed,
+		DkimStatusTemporaryFailure,
+		DkimStatusNotStarted,
+	}
+}
+
 // An email sending event type. For example, email sends, opens, and bounces
 // are all email events.
 const (
@@ -16517,6 +16598,21 @@ const (
 	EventTypeDeliveryDelay = "DELIVERY_DELAY"
 )
 
+// EventType_Values returns all elements of the EventType enum
+func EventType_Values() []string {
+	return []string{
+		EventTypeSend,
+		EventTypeReject,
+		EventTypeBounce,
+		EventTypeComplaint,
+		EventTypeDelivery,
+		EventTypeOpen,
+		EventTypeClick,
+		EventTypeRenderingFailure,
+		EventTypeDeliveryDelay,
+	}
+}
+
 // The email identity type. The identity type can be one of the following:
 //
 //    * EMAIL_ADDRESS – The identity is an email address.
@@ -16532,6 +16628,15 @@ const (
 	// IdentityTypeManagedDomain is a IdentityType enum value
 	IdentityTypeManagedDomain = "MANAGED_DOMAIN"
 )
+
+// IdentityType_Values returns all elements of the IdentityType enum
+func IdentityType_Values() []string {
+	return []string{
+		IdentityTypeEmailAddress,
+		IdentityTypeDomain,
+		IdentityTypeManagedDomain,
+	}
+}
 
 // The status of the MAIL FROM domain. This status can have the following values:
 //
@@ -16559,6 +16664,16 @@ const (
 	MailFromDomainStatusTemporaryFailure = "TEMPORARY_FAILURE"
 )
 
+// MailFromDomainStatus_Values returns all elements of the MailFromDomainStatus enum
+func MailFromDomainStatus_Values() []string {
+	return []string{
+		MailFromDomainStatusPending,
+		MailFromDomainStatusSuccess,
+		MailFromDomainStatusFailed,
+		MailFromDomainStatusTemporaryFailure,
+	}
+}
+
 const (
 	// MailTypeMarketing is a MailType enum value
 	MailTypeMarketing = "MARKETING"
@@ -16566,6 +16681,14 @@ const (
 	// MailTypeTransactional is a MailType enum value
 	MailTypeTransactional = "TRANSACTIONAL"
 )
+
+// MailType_Values returns all elements of the MailType enum
+func MailType_Values() []string {
+	return []string{
+		MailTypeMarketing,
+		MailTypeTransactional,
+	}
+}
 
 const (
 	// ReviewStatusPending is a ReviewStatus enum value
@@ -16580,6 +16703,16 @@ const (
 	// ReviewStatusDenied is a ReviewStatus enum value
 	ReviewStatusDenied = "DENIED"
 )
+
+// ReviewStatus_Values returns all elements of the ReviewStatus enum
+func ReviewStatus_Values() []string {
+	return []string{
+		ReviewStatusPending,
+		ReviewStatusFailed,
+		ReviewStatusGranted,
+		ReviewStatusDenied,
+	}
+}
 
 // The reason that the address was added to the suppression list for your account.
 // The value can be one of the following:
@@ -16598,6 +16731,14 @@ const (
 	SuppressionListReasonComplaint = "COMPLAINT"
 )
 
+// SuppressionListReason_Values returns all elements of the SuppressionListReason enum
+func SuppressionListReason_Values() []string {
+	return []string{
+		SuppressionListReasonBounce,
+		SuppressionListReasonComplaint,
+	}
+}
+
 // Specifies whether messages that use the configuration set are required to
 // use Transport Layer Security (TLS). If the value is Require, messages are
 // only delivered if a TLS connection can be established. If the value is Optional,
@@ -16610,6 +16751,14 @@ const (
 	TlsPolicyOptional = "OPTIONAL"
 )
 
+// TlsPolicy_Values returns all elements of the TlsPolicy enum
+func TlsPolicy_Values() []string {
+	return []string{
+		TlsPolicyRequire,
+		TlsPolicyOptional,
+	}
+}
+
 // The warmup status of a dedicated IP.
 const (
 	// WarmupStatusInProgress is a WarmupStatus enum value
@@ -16618,3 +16767,11 @@ const (
 	// WarmupStatusDone is a WarmupStatus enum value
 	WarmupStatusDone = "DONE"
 )
+
+// WarmupStatus_Values returns all elements of the WarmupStatus enum
+func WarmupStatus_Values() []string {
+	return []string{
+		WarmupStatusInProgress,
+		WarmupStatusDone,
+	}
+}
