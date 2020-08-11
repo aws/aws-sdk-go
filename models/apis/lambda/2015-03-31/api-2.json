@@ -1043,7 +1043,8 @@
         "DestinationConfig":{"shape":"DestinationConfig"},
         "MaximumRecordAgeInSeconds":{"shape":"MaximumRecordAgeInSeconds"},
         "BisectBatchOnFunctionError":{"shape":"BisectBatchOnFunctionError"},
-        "MaximumRetryAttempts":{"shape":"MaximumRetryAttemptsEventSourceMapping"}
+        "MaximumRetryAttempts":{"shape":"MaximumRetryAttemptsEventSourceMapping"},
+        "Topics":{"shape":"Topics"}
       }
     },
     "CreateFunctionRequest":{
@@ -1334,6 +1335,7 @@
         "State":{"shape":"String"},
         "StateTransitionReason":{"shape":"String"},
         "DestinationConfig":{"shape":"DestinationConfig"},
+        "Topics":{"shape":"Topics"},
         "MaximumRecordAgeInSeconds":{"shape":"MaximumRecordAgeInSeconds"},
         "BisectBatchOnFunctionError":{"shape":"BisectBatchOnFunctionError"},
         "MaximumRetryAttempts":{"shape":"MaximumRetryAttemptsEventSourceMapping"}
@@ -2310,7 +2312,7 @@
     "MaximumRecordAgeInSeconds":{
       "type":"integer",
       "max":604800,
-      "min":60
+      "min":-1
     },
     "MaximumRetryAttempts":{
       "type":"integer",
@@ -2320,7 +2322,7 @@
     "MaximumRetryAttemptsEventSourceMapping":{
       "type":"integer",
       "max":10000,
-      "min":0
+      "min":-1
     },
     "MemorySize":{
       "type":"integer",
@@ -2827,6 +2829,18 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "Topic":{
+      "type":"string",
+      "max":249,
+      "min":1,
+      "pattern":"^[^.]([a-zA-Z0-9\\-_.]+)"
+    },
+    "Topics":{
+      "type":"list",
+      "member":{"shape":"Topic"},
+      "max":1,
+      "min":1
     },
     "TracingConfig":{
       "type":"structure",
