@@ -3549,6 +3549,45 @@ const (
 	ExportableAutoScalingGroupFieldLastRefreshTimestamp = "LastRefreshTimestamp"
 )
 
+// ExportableAutoScalingGroupField_Values returns all elements of the ExportableAutoScalingGroupField enum
+func ExportableAutoScalingGroupField_Values() []string {
+	return []string{
+		ExportableAutoScalingGroupFieldAccountId,
+		ExportableAutoScalingGroupFieldAutoScalingGroupArn,
+		ExportableAutoScalingGroupFieldAutoScalingGroupName,
+		ExportableAutoScalingGroupFieldFinding,
+		ExportableAutoScalingGroupFieldUtilizationMetricsCpuMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsMemoryMaximum,
+		ExportableAutoScalingGroupFieldLookbackPeriodInDays,
+		ExportableAutoScalingGroupFieldCurrentConfigurationInstanceType,
+		ExportableAutoScalingGroupFieldCurrentConfigurationDesiredCapacity,
+		ExportableAutoScalingGroupFieldCurrentConfigurationMinSize,
+		ExportableAutoScalingGroupFieldCurrentConfigurationMaxSize,
+		ExportableAutoScalingGroupFieldCurrentOnDemandPrice,
+		ExportableAutoScalingGroupFieldCurrentStandardOneYearNoUpfrontReservedPrice,
+		ExportableAutoScalingGroupFieldCurrentStandardThreeYearNoUpfrontReservedPrice,
+		ExportableAutoScalingGroupFieldCurrentVcpus,
+		ExportableAutoScalingGroupFieldCurrentMemory,
+		ExportableAutoScalingGroupFieldCurrentStorage,
+		ExportableAutoScalingGroupFieldCurrentNetwork,
+		ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationInstanceType,
+		ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationDesiredCapacity,
+		ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationMinSize,
+		ExportableAutoScalingGroupFieldRecommendationOptionsConfigurationMaxSize,
+		ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum,
+		ExportableAutoScalingGroupFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum,
+		ExportableAutoScalingGroupFieldRecommendationOptionsPerformanceRisk,
+		ExportableAutoScalingGroupFieldRecommendationOptionsOnDemandPrice,
+		ExportableAutoScalingGroupFieldRecommendationOptionsStandardOneYearNoUpfrontReservedPrice,
+		ExportableAutoScalingGroupFieldRecommendationOptionsStandardThreeYearNoUpfrontReservedPrice,
+		ExportableAutoScalingGroupFieldRecommendationOptionsVcpus,
+		ExportableAutoScalingGroupFieldRecommendationOptionsMemory,
+		ExportableAutoScalingGroupFieldRecommendationOptionsStorage,
+		ExportableAutoScalingGroupFieldRecommendationOptionsNetwork,
+		ExportableAutoScalingGroupFieldLastRefreshTimestamp,
+	}
+}
+
 const (
 	// ExportableInstanceFieldAccountId is a ExportableInstanceField enum value
 	ExportableInstanceFieldAccountId = "AccountId"
@@ -3638,10 +3677,52 @@ const (
 	ExportableInstanceFieldLastRefreshTimestamp = "LastRefreshTimestamp"
 )
 
+// ExportableInstanceField_Values returns all elements of the ExportableInstanceField enum
+func ExportableInstanceField_Values() []string {
+	return []string{
+		ExportableInstanceFieldAccountId,
+		ExportableInstanceFieldInstanceArn,
+		ExportableInstanceFieldInstanceName,
+		ExportableInstanceFieldFinding,
+		ExportableInstanceFieldLookbackPeriodInDays,
+		ExportableInstanceFieldCurrentInstanceType,
+		ExportableInstanceFieldUtilizationMetricsCpuMaximum,
+		ExportableInstanceFieldUtilizationMetricsMemoryMaximum,
+		ExportableInstanceFieldCurrentOnDemandPrice,
+		ExportableInstanceFieldCurrentStandardOneYearNoUpfrontReservedPrice,
+		ExportableInstanceFieldCurrentStandardThreeYearNoUpfrontReservedPrice,
+		ExportableInstanceFieldCurrentVcpus,
+		ExportableInstanceFieldCurrentMemory,
+		ExportableInstanceFieldCurrentStorage,
+		ExportableInstanceFieldCurrentNetwork,
+		ExportableInstanceFieldRecommendationOptionsInstanceType,
+		ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum,
+		ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum,
+		ExportableInstanceFieldRecommendationOptionsPerformanceRisk,
+		ExportableInstanceFieldRecommendationOptionsVcpus,
+		ExportableInstanceFieldRecommendationOptionsMemory,
+		ExportableInstanceFieldRecommendationOptionsStorage,
+		ExportableInstanceFieldRecommendationOptionsNetwork,
+		ExportableInstanceFieldRecommendationOptionsOnDemandPrice,
+		ExportableInstanceFieldRecommendationOptionsStandardOneYearNoUpfrontReservedPrice,
+		ExportableInstanceFieldRecommendationOptionsStandardThreeYearNoUpfrontReservedPrice,
+		ExportableInstanceFieldRecommendationsSourcesRecommendationSourceArn,
+		ExportableInstanceFieldRecommendationsSourcesRecommendationSourceType,
+		ExportableInstanceFieldLastRefreshTimestamp,
+	}
+}
+
 const (
 	// FileFormatCsv is a FileFormat enum value
 	FileFormatCsv = "Csv"
 )
+
+// FileFormat_Values returns all elements of the FileFormat enum
+func FileFormat_Values() []string {
+	return []string{
+		FileFormatCsv,
+	}
+}
 
 const (
 	// FilterNameFinding is a FilterName enum value
@@ -3650,6 +3731,14 @@ const (
 	// FilterNameRecommendationSourceType is a FilterName enum value
 	FilterNameRecommendationSourceType = "RecommendationSourceType"
 )
+
+// FilterName_Values returns all elements of the FilterName enum
+func FilterName_Values() []string {
+	return []string{
+		FilterNameFinding,
+		FilterNameRecommendationSourceType,
+	}
+}
 
 const (
 	// FindingUnderprovisioned is a Finding enum value
@@ -3665,6 +3754,16 @@ const (
 	FindingNotOptimized = "NotOptimized"
 )
 
+// Finding_Values returns all elements of the Finding enum
+func Finding_Values() []string {
+	return []string{
+		FindingUnderprovisioned,
+		FindingOverprovisioned,
+		FindingOptimized,
+		FindingNotOptimized,
+	}
+}
+
 const (
 	// JobFilterNameResourceType is a JobFilterName enum value
 	JobFilterNameResourceType = "ResourceType"
@@ -3672,6 +3771,14 @@ const (
 	// JobFilterNameJobStatus is a JobFilterName enum value
 	JobFilterNameJobStatus = "JobStatus"
 )
+
+// JobFilterName_Values returns all elements of the JobFilterName enum
+func JobFilterName_Values() []string {
+	return []string{
+		JobFilterNameResourceType,
+		JobFilterNameJobStatus,
+	}
+}
 
 const (
 	// JobStatusQueued is a JobStatus enum value
@@ -3687,6 +3794,16 @@ const (
 	JobStatusFailed = "Failed"
 )
 
+// JobStatus_Values returns all elements of the JobStatus enum
+func JobStatus_Values() []string {
+	return []string{
+		JobStatusQueued,
+		JobStatusInProgress,
+		JobStatusComplete,
+		JobStatusFailed,
+	}
+}
+
 const (
 	// MetricNameCpu is a MetricName enum value
 	MetricNameCpu = "Cpu"
@@ -3694,6 +3811,14 @@ const (
 	// MetricNameMemory is a MetricName enum value
 	MetricNameMemory = "Memory"
 )
+
+// MetricName_Values returns all elements of the MetricName enum
+func MetricName_Values() []string {
+	return []string{
+		MetricNameCpu,
+		MetricNameMemory,
+	}
+}
 
 const (
 	// MetricStatisticMaximum is a MetricStatistic enum value
@@ -3703,6 +3828,14 @@ const (
 	MetricStatisticAverage = "Average"
 )
 
+// MetricStatistic_Values returns all elements of the MetricStatistic enum
+func MetricStatistic_Values() []string {
+	return []string{
+		MetricStatisticMaximum,
+		MetricStatisticAverage,
+	}
+}
+
 const (
 	// RecommendationSourceTypeEc2instance is a RecommendationSourceType enum value
 	RecommendationSourceTypeEc2instance = "Ec2Instance"
@@ -3711,6 +3844,14 @@ const (
 	RecommendationSourceTypeAutoScalingGroup = "AutoScalingGroup"
 )
 
+// RecommendationSourceType_Values returns all elements of the RecommendationSourceType enum
+func RecommendationSourceType_Values() []string {
+	return []string{
+		RecommendationSourceTypeEc2instance,
+		RecommendationSourceTypeAutoScalingGroup,
+	}
+}
+
 const (
 	// ResourceTypeEc2instance is a ResourceType enum value
 	ResourceTypeEc2instance = "Ec2Instance"
@@ -3718,6 +3859,14 @@ const (
 	// ResourceTypeAutoScalingGroup is a ResourceType enum value
 	ResourceTypeAutoScalingGroup = "AutoScalingGroup"
 )
+
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeEc2instance,
+		ResourceTypeAutoScalingGroup,
+	}
+}
 
 const (
 	// StatusActive is a Status enum value
@@ -3732,3 +3881,13 @@ const (
 	// StatusFailed is a Status enum value
 	StatusFailed = "Failed"
 )
+
+// Status_Values returns all elements of the Status enum
+func Status_Values() []string {
+	return []string{
+		StatusActive,
+		StatusInactive,
+		StatusPending,
+		StatusFailed,
+	}
+}

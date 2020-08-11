@@ -7584,10 +7584,25 @@ const (
 	BaseModelNameWideBand = "WideBand"
 )
 
+// BaseModelName_Values returns all elements of the BaseModelName enum
+func BaseModelName_Values() []string {
+	return []string{
+		BaseModelNameNarrowBand,
+		BaseModelNameWideBand,
+	}
+}
+
 const (
 	// CLMLanguageCodeEnUs is a CLMLanguageCode enum value
 	CLMLanguageCodeEnUs = "en-US"
 )
+
+// CLMLanguageCode_Values returns all elements of the CLMLanguageCode enum
+func CLMLanguageCode_Values() []string {
+	return []string{
+		CLMLanguageCodeEnUs,
+	}
+}
 
 const (
 	// LanguageCodeAfZa is a LanguageCode enum value
@@ -7699,6 +7714,48 @@ const (
 	LanguageCodeZhCn = "zh-CN"
 )
 
+// LanguageCode_Values returns all elements of the LanguageCode enum
+func LanguageCode_Values() []string {
+	return []string{
+		LanguageCodeAfZa,
+		LanguageCodeArAe,
+		LanguageCodeArSa,
+		LanguageCodeCyGb,
+		LanguageCodeDaDk,
+		LanguageCodeDeCh,
+		LanguageCodeDeDe,
+		LanguageCodeEnAb,
+		LanguageCodeEnAu,
+		LanguageCodeEnGb,
+		LanguageCodeEnIe,
+		LanguageCodeEnIn,
+		LanguageCodeEnUs,
+		LanguageCodeEnWl,
+		LanguageCodeEsEs,
+		LanguageCodeEsUs,
+		LanguageCodeFaIr,
+		LanguageCodeFrCa,
+		LanguageCodeFrFr,
+		LanguageCodeGaIe,
+		LanguageCodeGdGb,
+		LanguageCodeHeIl,
+		LanguageCodeHiIn,
+		LanguageCodeIdId,
+		LanguageCodeItIt,
+		LanguageCodeJaJp,
+		LanguageCodeKoKr,
+		LanguageCodeMsMy,
+		LanguageCodeNlNl,
+		LanguageCodePtBr,
+		LanguageCodePtPt,
+		LanguageCodeRuRu,
+		LanguageCodeTaIn,
+		LanguageCodeTeIn,
+		LanguageCodeTrTr,
+		LanguageCodeZhCn,
+	}
+}
+
 const (
 	// MediaFormatMp3 is a MediaFormat enum value
 	MediaFormatMp3 = "mp3"
@@ -7713,6 +7770,16 @@ const (
 	MediaFormatFlac = "flac"
 )
 
+// MediaFormat_Values returns all elements of the MediaFormat enum
+func MediaFormat_Values() []string {
+	return []string{
+		MediaFormatMp3,
+		MediaFormatMp4,
+		MediaFormatWav,
+		MediaFormatFlac,
+	}
+}
+
 const (
 	// ModelStatusInProgress is a ModelStatus enum value
 	ModelStatusInProgress = "IN_PROGRESS"
@@ -7724,6 +7791,15 @@ const (
 	ModelStatusCompleted = "COMPLETED"
 )
 
+// ModelStatus_Values returns all elements of the ModelStatus enum
+func ModelStatus_Values() []string {
+	return []string{
+		ModelStatusInProgress,
+		ModelStatusFailed,
+		ModelStatusCompleted,
+	}
+}
+
 const (
 	// OutputLocationTypeCustomerBucket is a OutputLocationType enum value
 	OutputLocationTypeCustomerBucket = "CUSTOMER_BUCKET"
@@ -7731,6 +7807,14 @@ const (
 	// OutputLocationTypeServiceBucket is a OutputLocationType enum value
 	OutputLocationTypeServiceBucket = "SERVICE_BUCKET"
 )
+
+// OutputLocationType_Values returns all elements of the OutputLocationType enum
+func OutputLocationType_Values() []string {
+	return []string{
+		OutputLocationTypeCustomerBucket,
+		OutputLocationTypeServiceBucket,
+	}
+}
 
 const (
 	// RedactionOutputRedacted is a RedactionOutput enum value
@@ -7740,15 +7824,37 @@ const (
 	RedactionOutputRedactedAndUnredacted = "redacted_and_unredacted"
 )
 
+// RedactionOutput_Values returns all elements of the RedactionOutput enum
+func RedactionOutput_Values() []string {
+	return []string{
+		RedactionOutputRedacted,
+		RedactionOutputRedactedAndUnredacted,
+	}
+}
+
 const (
 	// RedactionTypePii is a RedactionType enum value
 	RedactionTypePii = "PII"
 )
 
+// RedactionType_Values returns all elements of the RedactionType enum
+func RedactionType_Values() []string {
+	return []string{
+		RedactionTypePii,
+	}
+}
+
 const (
 	// SpecialtyPrimarycare is a Specialty enum value
 	SpecialtyPrimarycare = "PRIMARYCARE"
 )
+
+// Specialty_Values returns all elements of the Specialty enum
+func Specialty_Values() []string {
+	return []string{
+		SpecialtyPrimarycare,
+	}
+}
 
 const (
 	// TranscriptionJobStatusQueued is a TranscriptionJobStatus enum value
@@ -7764,6 +7870,16 @@ const (
 	TranscriptionJobStatusCompleted = "COMPLETED"
 )
 
+// TranscriptionJobStatus_Values returns all elements of the TranscriptionJobStatus enum
+func TranscriptionJobStatus_Values() []string {
+	return []string{
+		TranscriptionJobStatusQueued,
+		TranscriptionJobStatusInProgress,
+		TranscriptionJobStatusFailed,
+		TranscriptionJobStatusCompleted,
+	}
+}
+
 const (
 	// TypeConversation is a Type enum value
 	TypeConversation = "CONVERSATION"
@@ -7772,6 +7888,14 @@ const (
 	TypeDictation = "DICTATION"
 )
 
+// Type_Values returns all elements of the Type enum
+func Type_Values() []string {
+	return []string{
+		TypeConversation,
+		TypeDictation,
+	}
+}
+
 const (
 	// VocabularyFilterMethodRemove is a VocabularyFilterMethod enum value
 	VocabularyFilterMethodRemove = "remove"
@@ -7779,6 +7903,14 @@ const (
 	// VocabularyFilterMethodMask is a VocabularyFilterMethod enum value
 	VocabularyFilterMethodMask = "mask"
 )
+
+// VocabularyFilterMethod_Values returns all elements of the VocabularyFilterMethod enum
+func VocabularyFilterMethod_Values() []string {
+	return []string{
+		VocabularyFilterMethodRemove,
+		VocabularyFilterMethodMask,
+	}
+}
 
 const (
 	// VocabularyStatePending is a VocabularyState enum value
@@ -7790,3 +7922,12 @@ const (
 	// VocabularyStateFailed is a VocabularyState enum value
 	VocabularyStateFailed = "FAILED"
 )
+
+// VocabularyState_Values returns all elements of the VocabularyState enum
+func VocabularyState_Values() []string {
+	return []string{
+		VocabularyStatePending,
+		VocabularyStateReady,
+		VocabularyStateFailed,
+	}
+}

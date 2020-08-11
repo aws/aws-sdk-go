@@ -7900,6 +7900,13 @@ const (
 	DefinitionLanguageGraphql = "GRAPHQL"
 )
 
+// DefinitionLanguage_Values returns all elements of the DefinitionLanguage enum
+func DefinitionLanguage_Values() []string {
+	return []string{
+		DefinitionLanguageGraphql,
+	}
+}
+
 const (
 	// DeploymentTargetGreengrass is a DeploymentTarget enum value
 	DeploymentTargetGreengrass = "GREENGRASS"
@@ -7907,6 +7914,14 @@ const (
 	// DeploymentTargetCloud is a DeploymentTarget enum value
 	DeploymentTargetCloud = "CLOUD"
 )
+
+// DeploymentTarget_Values returns all elements of the DeploymentTarget enum
+func DeploymentTarget_Values() []string {
+	return []string{
+		DeploymentTargetGreengrass,
+		DeploymentTargetCloud,
+	}
+}
 
 const (
 	// EntityFilterNameName is a EntityFilterName enum value
@@ -7921,6 +7936,16 @@ const (
 	// EntityFilterNameReferencedEntityId is a EntityFilterName enum value
 	EntityFilterNameReferencedEntityId = "REFERENCED_ENTITY_ID"
 )
+
+// EntityFilterName_Values returns all elements of the EntityFilterName enum
+func EntityFilterName_Values() []string {
+	return []string{
+		EntityFilterNameName,
+		EntityFilterNameNamespace,
+		EntityFilterNameSemanticTypePath,
+		EntityFilterNameReferencedEntityId,
+	}
+}
 
 const (
 	// EntityTypeDevice is a EntityType enum value
@@ -7953,6 +7978,22 @@ const (
 	// EntityTypeEnum is a EntityType enum value
 	EntityTypeEnum = "ENUM"
 )
+
+// EntityType_Values returns all elements of the EntityType enum
+func EntityType_Values() []string {
+	return []string{
+		EntityTypeDevice,
+		EntityTypeService,
+		EntityTypeDeviceModel,
+		EntityTypeCapability,
+		EntityTypeState,
+		EntityTypeAction,
+		EntityTypeEvent,
+		EntityTypeProperty,
+		EntityTypeMapping,
+		EntityTypeEnum,
+	}
+}
 
 const (
 	// FlowExecutionEventTypeExecutionStarted is a FlowExecutionEventType enum value
@@ -8007,6 +8048,29 @@ const (
 	FlowExecutionEventTypeAcknowledgeTaskMessage = "ACKNOWLEDGE_TASK_MESSAGE"
 )
 
+// FlowExecutionEventType_Values returns all elements of the FlowExecutionEventType enum
+func FlowExecutionEventType_Values() []string {
+	return []string{
+		FlowExecutionEventTypeExecutionStarted,
+		FlowExecutionEventTypeExecutionFailed,
+		FlowExecutionEventTypeExecutionAborted,
+		FlowExecutionEventTypeExecutionSucceeded,
+		FlowExecutionEventTypeStepStarted,
+		FlowExecutionEventTypeStepFailed,
+		FlowExecutionEventTypeStepSucceeded,
+		FlowExecutionEventTypeActivityScheduled,
+		FlowExecutionEventTypeActivityStarted,
+		FlowExecutionEventTypeActivityFailed,
+		FlowExecutionEventTypeActivitySucceeded,
+		FlowExecutionEventTypeStartFlowExecutionTask,
+		FlowExecutionEventTypeScheduleNextReadyStepsTask,
+		FlowExecutionEventTypeThingActionTask,
+		FlowExecutionEventTypeThingActionTaskFailed,
+		FlowExecutionEventTypeThingActionTaskSucceeded,
+		FlowExecutionEventTypeAcknowledgeTaskMessage,
+	}
+}
+
 const (
 	// FlowExecutionStatusRunning is a FlowExecutionStatus enum value
 	FlowExecutionStatusRunning = "RUNNING"
@@ -8021,10 +8085,27 @@ const (
 	FlowExecutionStatusFailed = "FAILED"
 )
 
+// FlowExecutionStatus_Values returns all elements of the FlowExecutionStatus enum
+func FlowExecutionStatus_Values() []string {
+	return []string{
+		FlowExecutionStatusRunning,
+		FlowExecutionStatusAborted,
+		FlowExecutionStatusSucceeded,
+		FlowExecutionStatusFailed,
+	}
+}
+
 const (
 	// FlowTemplateFilterNameDeviceModelId is a FlowTemplateFilterName enum value
 	FlowTemplateFilterNameDeviceModelId = "DEVICE_MODEL_ID"
 )
+
+// FlowTemplateFilterName_Values returns all elements of the FlowTemplateFilterName enum
+func FlowTemplateFilterName_Values() []string {
+	return []string{
+		FlowTemplateFilterNameDeviceModelId,
+	}
+}
 
 const (
 	// NamespaceDeletionStatusInProgress is a NamespaceDeletionStatus enum value
@@ -8037,10 +8118,26 @@ const (
 	NamespaceDeletionStatusFailed = "FAILED"
 )
 
+// NamespaceDeletionStatus_Values returns all elements of the NamespaceDeletionStatus enum
+func NamespaceDeletionStatus_Values() []string {
+	return []string{
+		NamespaceDeletionStatusInProgress,
+		NamespaceDeletionStatusSucceeded,
+		NamespaceDeletionStatusFailed,
+	}
+}
+
 const (
 	// NamespaceDeletionStatusErrorCodesValidationFailed is a NamespaceDeletionStatusErrorCodes enum value
 	NamespaceDeletionStatusErrorCodesValidationFailed = "VALIDATION_FAILED"
 )
+
+// NamespaceDeletionStatusErrorCodes_Values returns all elements of the NamespaceDeletionStatusErrorCodes enum
+func NamespaceDeletionStatusErrorCodes_Values() []string {
+	return []string{
+		NamespaceDeletionStatusErrorCodesValidationFailed,
+	}
+}
 
 const (
 	// SystemInstanceDeploymentStatusNotDeployed is a SystemInstanceDeploymentStatus enum value
@@ -8068,6 +8165,20 @@ const (
 	SystemInstanceDeploymentStatusDeletedInTarget = "DELETED_IN_TARGET"
 )
 
+// SystemInstanceDeploymentStatus_Values returns all elements of the SystemInstanceDeploymentStatus enum
+func SystemInstanceDeploymentStatus_Values() []string {
+	return []string{
+		SystemInstanceDeploymentStatusNotDeployed,
+		SystemInstanceDeploymentStatusBootstrap,
+		SystemInstanceDeploymentStatusDeployInProgress,
+		SystemInstanceDeploymentStatusDeployedInTarget,
+		SystemInstanceDeploymentStatusUndeployInProgress,
+		SystemInstanceDeploymentStatusFailed,
+		SystemInstanceDeploymentStatusPendingDelete,
+		SystemInstanceDeploymentStatusDeletedInTarget,
+	}
+}
+
 const (
 	// SystemInstanceFilterNameSystemTemplateId is a SystemInstanceFilterName enum value
 	SystemInstanceFilterNameSystemTemplateId = "SYSTEM_TEMPLATE_ID"
@@ -8079,10 +8190,26 @@ const (
 	SystemInstanceFilterNameGreengrassGroupName = "GREENGRASS_GROUP_NAME"
 )
 
+// SystemInstanceFilterName_Values returns all elements of the SystemInstanceFilterName enum
+func SystemInstanceFilterName_Values() []string {
+	return []string{
+		SystemInstanceFilterNameSystemTemplateId,
+		SystemInstanceFilterNameStatus,
+		SystemInstanceFilterNameGreengrassGroupName,
+	}
+}
+
 const (
 	// SystemTemplateFilterNameFlowTemplateId is a SystemTemplateFilterName enum value
 	SystemTemplateFilterNameFlowTemplateId = "FLOW_TEMPLATE_ID"
 )
+
+// SystemTemplateFilterName_Values returns all elements of the SystemTemplateFilterName enum
+func SystemTemplateFilterName_Values() []string {
+	return []string{
+		SystemTemplateFilterNameFlowTemplateId,
+	}
+}
 
 const (
 	// UploadStatusInProgress is a UploadStatus enum value
@@ -8094,3 +8221,12 @@ const (
 	// UploadStatusFailed is a UploadStatus enum value
 	UploadStatusFailed = "FAILED"
 )
+
+// UploadStatus_Values returns all elements of the UploadStatus enum
+func UploadStatus_Values() []string {
+	return []string{
+		UploadStatusInProgress,
+		UploadStatusSucceeded,
+		UploadStatusFailed,
+	}
+}

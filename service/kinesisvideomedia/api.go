@@ -766,3 +766,15 @@ const (
 	// StartSelectorTypeContinuationToken is a StartSelectorType enum value
 	StartSelectorTypeContinuationToken = "CONTINUATION_TOKEN"
 )
+
+// StartSelectorType_Values returns all elements of the StartSelectorType enum
+func StartSelectorType_Values() []string {
+	return []string{
+		StartSelectorTypeFragmentNumber,
+		StartSelectorTypeServerTimestamp,
+		StartSelectorTypeProducerTimestamp,
+		StartSelectorTypeNow,
+		StartSelectorTypeEarliest,
+		StartSelectorTypeContinuationToken,
+	}
+}

@@ -3121,6 +3121,17 @@ const (
 	EnvironmentLifecycleStatusDeleteFailed = "DELETE_FAILED"
 )
 
+// EnvironmentLifecycleStatus_Values returns all elements of the EnvironmentLifecycleStatus enum
+func EnvironmentLifecycleStatus_Values() []string {
+	return []string{
+		EnvironmentLifecycleStatusCreating,
+		EnvironmentLifecycleStatusCreated,
+		EnvironmentLifecycleStatusCreateFailed,
+		EnvironmentLifecycleStatusDeleting,
+		EnvironmentLifecycleStatusDeleteFailed,
+	}
+}
+
 const (
 	// EnvironmentStatusError is a EnvironmentStatus enum value
 	EnvironmentStatusError = "error"
@@ -3144,6 +3155,19 @@ const (
 	EnvironmentStatusDeleting = "deleting"
 )
 
+// EnvironmentStatus_Values returns all elements of the EnvironmentStatus enum
+func EnvironmentStatus_Values() []string {
+	return []string{
+		EnvironmentStatusError,
+		EnvironmentStatusCreating,
+		EnvironmentStatusConnecting,
+		EnvironmentStatusReady,
+		EnvironmentStatusStopping,
+		EnvironmentStatusStopped,
+		EnvironmentStatusDeleting,
+	}
+}
+
 const (
 	// EnvironmentTypeSsh is a EnvironmentType enum value
 	EnvironmentTypeSsh = "ssh"
@@ -3152,6 +3176,14 @@ const (
 	EnvironmentTypeEc2 = "ec2"
 )
 
+// EnvironmentType_Values returns all elements of the EnvironmentType enum
+func EnvironmentType_Values() []string {
+	return []string{
+		EnvironmentTypeSsh,
+		EnvironmentTypeEc2,
+	}
+}
+
 const (
 	// MemberPermissionsReadWrite is a MemberPermissions enum value
 	MemberPermissionsReadWrite = "read-write"
@@ -3159,6 +3191,14 @@ const (
 	// MemberPermissionsReadOnly is a MemberPermissions enum value
 	MemberPermissionsReadOnly = "read-only"
 )
+
+// MemberPermissions_Values returns all elements of the MemberPermissions enum
+func MemberPermissions_Values() []string {
+	return []string{
+		MemberPermissionsReadWrite,
+		MemberPermissionsReadOnly,
+	}
+}
 
 const (
 	// PermissionsOwner is a Permissions enum value
@@ -3170,3 +3210,12 @@ const (
 	// PermissionsReadOnly is a Permissions enum value
 	PermissionsReadOnly = "read-only"
 )
+
+// Permissions_Values returns all elements of the Permissions enum
+func Permissions_Values() []string {
+	return []string{
+		PermissionsOwner,
+		PermissionsReadWrite,
+		PermissionsReadOnly,
+	}
+}

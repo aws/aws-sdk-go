@@ -11,7 +11,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/ecr"
 )
 
-const DEAFULT_AWS_REGION = "us-east-1"
+const DEFAULT_AWS_REGION = "us-east-1"
 
 // This example creates a new ECR Repository
 //
@@ -54,11 +54,11 @@ func getRepoNameArg() string {
 	return firstArg
 }
 
-// Returns the aws region from env var or default region defined in DEAFULT_AWS_REGION constant
+// Returns the aws region from env var or default region defined in DEFAULT_AWS_REGION constant
 func getAwsRegion() string {
 	awsRegion := os.Getenv("AWS_REGION")
 	if awsRegion != "" {
 		return awsRegion
 	}
-	return DEAFULT_AWS_REGION
+	return DEFAULT_AWS_REGION
 }

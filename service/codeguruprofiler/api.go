@@ -6317,6 +6317,13 @@ const (
 	ActionGroupAgentPermissions = "agentPermissions"
 )
 
+// ActionGroup_Values returns all elements of the ActionGroup enum
+func ActionGroup_Values() []string {
+	return []string{
+		ActionGroupAgentPermissions,
+	}
+}
+
 const (
 	// AgentParameterFieldMaxStackDepth is a AgentParameterField enum value
 	AgentParameterFieldMaxStackDepth = "MaxStackDepth"
@@ -6334,6 +6341,17 @@ const (
 	AgentParameterFieldSamplingIntervalInMilliseconds = "SamplingIntervalInMilliseconds"
 )
 
+// AgentParameterField_Values returns all elements of the AgentParameterField enum
+func AgentParameterField_Values() []string {
+	return []string{
+		AgentParameterFieldMaxStackDepth,
+		AgentParameterFieldMemoryUsageLimitPercent,
+		AgentParameterFieldMinimumTimeForReportingInMilliseconds,
+		AgentParameterFieldReportingIntervalInMilliseconds,
+		AgentParameterFieldSamplingIntervalInMilliseconds,
+	}
+}
+
 const (
 	// AggregationPeriodP1d is a AggregationPeriod enum value
 	AggregationPeriodP1d = "P1D"
@@ -6345,6 +6363,15 @@ const (
 	AggregationPeriodPt5m = "PT5M"
 )
 
+// AggregationPeriod_Values returns all elements of the AggregationPeriod enum
+func AggregationPeriod_Values() []string {
+	return []string{
+		AggregationPeriodP1d,
+		AggregationPeriodPt1h,
+		AggregationPeriodPt5m,
+	}
+}
+
 const (
 	// ComputePlatformAwslambda is a ComputePlatform enum value
 	ComputePlatformAwslambda = "AWSLambda"
@@ -6353,10 +6380,25 @@ const (
 	ComputePlatformDefault = "Default"
 )
 
+// ComputePlatform_Values returns all elements of the ComputePlatform enum
+func ComputePlatform_Values() []string {
+	return []string{
+		ComputePlatformAwslambda,
+		ComputePlatformDefault,
+	}
+}
+
 const (
 	// EventPublisherAnomalyDetection is a EventPublisher enum value
 	EventPublisherAnomalyDetection = "AnomalyDetection"
 )
+
+// EventPublisher_Values returns all elements of the EventPublisher enum
+func EventPublisher_Values() []string {
+	return []string{
+		EventPublisherAnomalyDetection,
+	}
+}
 
 const (
 	// FeedbackTypeNegative is a FeedbackType enum value
@@ -6365,6 +6407,14 @@ const (
 	// FeedbackTypePositive is a FeedbackType enum value
 	FeedbackTypePositive = "Positive"
 )
+
+// FeedbackType_Values returns all elements of the FeedbackType enum
+func FeedbackType_Values() []string {
+	return []string{
+		FeedbackTypeNegative,
+		FeedbackTypePositive,
+	}
+}
 
 const (
 	// MetadataFieldAgentId is a MetadataField enum value
@@ -6395,10 +6445,32 @@ const (
 	MetadataFieldLambdaTimeGapBetweenInvokesInMilliseconds = "LambdaTimeGapBetweenInvokesInMilliseconds"
 )
 
+// MetadataField_Values returns all elements of the MetadataField enum
+func MetadataField_Values() []string {
+	return []string{
+		MetadataFieldAgentId,
+		MetadataFieldAwsRequestId,
+		MetadataFieldComputePlatform,
+		MetadataFieldExecutionEnvironment,
+		MetadataFieldLambdaFunctionArn,
+		MetadataFieldLambdaMemoryLimitInMb,
+		MetadataFieldLambdaPreviousExecutionTimeInMilliseconds,
+		MetadataFieldLambdaRemainingTimeInMilliseconds,
+		MetadataFieldLambdaTimeGapBetweenInvokesInMilliseconds,
+	}
+}
+
 const (
 	// MetricTypeAggregatedRelativeTotalTime is a MetricType enum value
 	MetricTypeAggregatedRelativeTotalTime = "AggregatedRelativeTotalTime"
 )
+
+// MetricType_Values returns all elements of the MetricType enum
+func MetricType_Values() []string {
+	return []string{
+		MetricTypeAggregatedRelativeTotalTime,
+	}
+}
 
 const (
 	// OrderByTimestampAscending is a OrderBy enum value
@@ -6407,3 +6479,11 @@ const (
 	// OrderByTimestampDescending is a OrderBy enum value
 	OrderByTimestampDescending = "TimestampDescending"
 )
+
+// OrderBy_Values returns all elements of the OrderBy enum
+func OrderBy_Values() []string {
+	return []string{
+		OrderByTimestampAscending,
+		OrderByTimestampDescending,
+	}
+}

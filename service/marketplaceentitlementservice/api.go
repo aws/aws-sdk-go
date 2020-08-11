@@ -516,3 +516,11 @@ const (
 	// GetEntitlementFilterNameDimension is a GetEntitlementFilterName enum value
 	GetEntitlementFilterNameDimension = "DIMENSION"
 )
+
+// GetEntitlementFilterName_Values returns all elements of the GetEntitlementFilterName enum
+func GetEntitlementFilterName_Values() []string {
+	return []string{
+		GetEntitlementFilterNameCustomerIdentifier,
+		GetEntitlementFilterNameDimension,
+	}
+}

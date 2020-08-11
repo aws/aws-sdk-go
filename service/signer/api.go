@@ -3648,6 +3648,13 @@ const (
 	CategoryAwsioT = "AWSIoT"
 )
 
+// Category_Values returns all elements of the Category enum
+func Category_Values() []string {
+	return []string{
+		CategoryAwsioT,
+	}
+}
+
 const (
 	// EncryptionAlgorithmRsa is a EncryptionAlgorithm enum value
 	EncryptionAlgorithmRsa = "RSA"
@@ -3656,6 +3663,14 @@ const (
 	EncryptionAlgorithmEcdsa = "ECDSA"
 )
 
+// EncryptionAlgorithm_Values returns all elements of the EncryptionAlgorithm enum
+func EncryptionAlgorithm_Values() []string {
+	return []string{
+		EncryptionAlgorithmRsa,
+		EncryptionAlgorithmEcdsa,
+	}
+}
+
 const (
 	// HashAlgorithmSha1 is a HashAlgorithm enum value
 	HashAlgorithmSha1 = "SHA1"
@@ -3663,6 +3678,14 @@ const (
 	// HashAlgorithmSha256 is a HashAlgorithm enum value
 	HashAlgorithmSha256 = "SHA256"
 )
+
+// HashAlgorithm_Values returns all elements of the HashAlgorithm enum
+func HashAlgorithm_Values() []string {
+	return []string{
+		HashAlgorithmSha1,
+		HashAlgorithmSha256,
+	}
+}
 
 const (
 	// ImageFormatJson is a ImageFormat enum value
@@ -3675,6 +3698,15 @@ const (
 	ImageFormatJsondetached = "JSONDetached"
 )
 
+// ImageFormat_Values returns all elements of the ImageFormat enum
+func ImageFormat_Values() []string {
+	return []string{
+		ImageFormatJson,
+		ImageFormatJsonembedded,
+		ImageFormatJsondetached,
+	}
+}
+
 const (
 	// SigningProfileStatusActive is a SigningProfileStatus enum value
 	SigningProfileStatusActive = "Active"
@@ -3682,6 +3714,14 @@ const (
 	// SigningProfileStatusCanceled is a SigningProfileStatus enum value
 	SigningProfileStatusCanceled = "Canceled"
 )
+
+// SigningProfileStatus_Values returns all elements of the SigningProfileStatus enum
+func SigningProfileStatus_Values() []string {
+	return []string{
+		SigningProfileStatusActive,
+		SigningProfileStatusCanceled,
+	}
+}
 
 const (
 	// SigningStatusInProgress is a SigningStatus enum value
@@ -3693,3 +3733,12 @@ const (
 	// SigningStatusSucceeded is a SigningStatus enum value
 	SigningStatusSucceeded = "Succeeded"
 )
+
+// SigningStatus_Values returns all elements of the SigningStatus enum
+func SigningStatus_Values() []string {
+	return []string{
+		SigningStatusInProgress,
+		SigningStatusFailed,
+		SigningStatusSucceeded,
+	}
+}

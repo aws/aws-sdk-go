@@ -65,7 +65,7 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 		protocol.RequireHTTPMinProtocol{Major: 2}.Handler,
 	)
 
-	es := newStartStreamTranscriptionEventStream()
+	es := NewStartStreamTranscriptionEventStream()
 	output.eventStream = es
 
 	req.Handlers.Sign.PushFront(es.setupInputPipe)
@@ -154,6 +154,10 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionWithContext(ctx aws
 var _ awserr.Error
 
 // StartStreamTranscriptionEventStream provides the event stream handling for the StartStreamTranscription.
+//
+// For testing and mocking the event stream this type should be initialized via
+// the NewStartStreamTranscriptionEventStream constructor function. Using the functional options
+// to pass in nested mock behavior.
 type StartStreamTranscriptionEventStream struct {
 
 	// Writer is the EventStream writer for the AudioStream
@@ -181,11 +185,29 @@ type StartStreamTranscriptionEventStream struct {
 	err       *eventstreamapi.OnceError
 }
 
-func newStartStreamTranscriptionEventStream() *StartStreamTranscriptionEventStream {
-	return &StartStreamTranscriptionEventStream{
+// NewStartStreamTranscriptionEventStream initializes an StartStreamTranscriptionEventStream.
+// This function should only be used for testing and mocking the StartStreamTranscriptionEventStream
+// stream within your application.
+//
+// The Writer member must be set before writing events to the stream.
+//
+// The Reader member must be set before reading events from the stream.
+//
+//   es := NewStartStreamTranscriptionEventStream(func(o *StartStreamTranscriptionEventStream{
+//       es.Writer = myMockStreamWriter
+//       es.Reader = myMockStreamReader
+//   })
+func NewStartStreamTranscriptionEventStream(opts ...func(*StartStreamTranscriptionEventStream)) *StartStreamTranscriptionEventStream {
+	es := &StartStreamTranscriptionEventStream{
 		done: make(chan struct{}),
 		err:  eventstreamapi.NewOnceError(),
 	}
+
+	for _, fn := range opts {
+		fn(es)
+	}
+
+	return es
 }
 
 func (es *StartStreamTranscriptionEventStream) runOnStreamPartClose(r *request.Request) {
@@ -1535,6 +1557,14 @@ const (
 	ItemTypePunctuation = "punctuation"
 )
 
+// ItemType_Values returns all elements of the ItemType enum
+func ItemType_Values() []string {
+	return []string{
+		ItemTypePronunciation,
+		ItemTypePunctuation,
+	}
+}
+
 const (
 	// LanguageCodeEnUs is a LanguageCode enum value
 	LanguageCodeEnUs = "en-US"
@@ -1555,10 +1585,29 @@ const (
 	LanguageCodeEnAu = "en-AU"
 )
 
+// LanguageCode_Values returns all elements of the LanguageCode enum
+func LanguageCode_Values() []string {
+	return []string{
+		LanguageCodeEnUs,
+		LanguageCodeEnGb,
+		LanguageCodeEsUs,
+		LanguageCodeFrCa,
+		LanguageCodeFrFr,
+		LanguageCodeEnAu,
+	}
+}
+
 const (
 	// MediaEncodingPcm is a MediaEncoding enum value
 	MediaEncodingPcm = "pcm"
 )
+
+// MediaEncoding_Values returns all elements of the MediaEncoding enum
+func MediaEncoding_Values() []string {
+	return []string{
+		MediaEncodingPcm,
+	}
+}
 
 const (
 	// VocabularyFilterMethodRemove is a VocabularyFilterMethod enum value
@@ -1570,3 +1619,12 @@ const (
 	// VocabularyFilterMethodTag is a VocabularyFilterMethod enum value
 	VocabularyFilterMethodTag = "tag"
 )
+
+// VocabularyFilterMethod_Values returns all elements of the VocabularyFilterMethod enum
+func VocabularyFilterMethod_Values() []string {
+	return []string{
+		VocabularyFilterMethodRemove,
+		VocabularyFilterMethodMask,
+		VocabularyFilterMethodTag,
+	}
+}

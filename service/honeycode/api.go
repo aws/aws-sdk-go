@@ -1314,3 +1314,20 @@ const (
 	// FormatRowlink is a Format enum value
 	FormatRowlink = "ROWLINK"
 )
+
+// Format_Values returns all elements of the Format enum
+func Format_Values() []string {
+	return []string{
+		FormatAuto,
+		FormatNumber,
+		FormatCurrency,
+		FormatDate,
+		FormatTime,
+		FormatDateTime,
+		FormatPercentage,
+		FormatText,
+		FormatAccounting,
+		FormatContact,
+		FormatRowlink,
+	}
+}

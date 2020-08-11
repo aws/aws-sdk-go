@@ -1624,6 +1624,14 @@ const (
 	KeyTypeRange = "RANGE"
 )
 
+// KeyType_Values returns all elements of the KeyType enum
+func KeyType_Values() []string {
+	return []string{
+		KeyTypeHash,
+		KeyTypeRange,
+	}
+}
+
 const (
 	// OperationTypeInsert is a OperationType enum value
 	OperationTypeInsert = "INSERT"
@@ -1634,6 +1642,15 @@ const (
 	// OperationTypeRemove is a OperationType enum value
 	OperationTypeRemove = "REMOVE"
 )
+
+// OperationType_Values returns all elements of the OperationType enum
+func OperationType_Values() []string {
+	return []string{
+		OperationTypeInsert,
+		OperationTypeModify,
+		OperationTypeRemove,
+	}
+}
 
 const (
 	// ShardIteratorTypeTrimHorizon is a ShardIteratorType enum value
@@ -1649,6 +1666,16 @@ const (
 	ShardIteratorTypeAfterSequenceNumber = "AFTER_SEQUENCE_NUMBER"
 )
 
+// ShardIteratorType_Values returns all elements of the ShardIteratorType enum
+func ShardIteratorType_Values() []string {
+	return []string{
+		ShardIteratorTypeTrimHorizon,
+		ShardIteratorTypeLatest,
+		ShardIteratorTypeAtSequenceNumber,
+		ShardIteratorTypeAfterSequenceNumber,
+	}
+}
+
 const (
 	// StreamStatusEnabling is a StreamStatus enum value
 	StreamStatusEnabling = "ENABLING"
@@ -1663,6 +1690,16 @@ const (
 	StreamStatusDisabled = "DISABLED"
 )
 
+// StreamStatus_Values returns all elements of the StreamStatus enum
+func StreamStatus_Values() []string {
+	return []string{
+		StreamStatusEnabling,
+		StreamStatusEnabled,
+		StreamStatusDisabling,
+		StreamStatusDisabled,
+	}
+}
+
 const (
 	// StreamViewTypeNewImage is a StreamViewType enum value
 	StreamViewTypeNewImage = "NEW_IMAGE"
@@ -1676,3 +1713,13 @@ const (
 	// StreamViewTypeKeysOnly is a StreamViewType enum value
 	StreamViewTypeKeysOnly = "KEYS_ONLY"
 )
+
+// StreamViewType_Values returns all elements of the StreamViewType enum
+func StreamViewType_Values() []string {
+	return []string{
+		StreamViewTypeNewImage,
+		StreamViewTypeOldImage,
+		StreamViewTypeNewAndOldImages,
+		StreamViewTypeKeysOnly,
+	}
+}

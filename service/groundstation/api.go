@@ -6914,6 +6914,14 @@ const (
 	AngleUnitsRadian = "RADIAN"
 )
 
+// AngleUnits_Values returns all elements of the AngleUnits enum
+func AngleUnits_Values() []string {
+	return []string{
+		AngleUnitsDegreeAngle,
+		AngleUnitsRadian,
+	}
+}
+
 const (
 	// BandwidthUnitsGhz is a BandwidthUnits enum value
 	BandwidthUnitsGhz = "GHz"
@@ -6924,6 +6932,15 @@ const (
 	// BandwidthUnitsKHz is a BandwidthUnits enum value
 	BandwidthUnitsKHz = "kHz"
 )
+
+// BandwidthUnits_Values returns all elements of the BandwidthUnits enum
+func BandwidthUnits_Values() []string {
+	return []string{
+		BandwidthUnitsGhz,
+		BandwidthUnitsMhz,
+		BandwidthUnitsKHz,
+	}
+}
 
 const (
 	// ConfigCapabilityTypeAntennaDownlink is a ConfigCapabilityType enum value
@@ -6944,6 +6961,18 @@ const (
 	// ConfigCapabilityTypeUplinkEcho is a ConfigCapabilityType enum value
 	ConfigCapabilityTypeUplinkEcho = "uplink-echo"
 )
+
+// ConfigCapabilityType_Values returns all elements of the ConfigCapabilityType enum
+func ConfigCapabilityType_Values() []string {
+	return []string{
+		ConfigCapabilityTypeAntennaDownlink,
+		ConfigCapabilityTypeAntennaDownlinkDemodDecode,
+		ConfigCapabilityTypeAntennaUplink,
+		ConfigCapabilityTypeDataflowEndpoint,
+		ConfigCapabilityTypeTracking,
+		ConfigCapabilityTypeUplinkEcho,
+	}
+}
 
 const (
 	// ContactStatusAvailable is a ContactStatus enum value
@@ -6983,6 +7012,24 @@ const (
 	ContactStatusScheduling = "SCHEDULING"
 )
 
+// ContactStatus_Values returns all elements of the ContactStatus enum
+func ContactStatus_Values() []string {
+	return []string{
+		ContactStatusAvailable,
+		ContactStatusAwsCancelled,
+		ContactStatusCancelled,
+		ContactStatusCancelling,
+		ContactStatusCompleted,
+		ContactStatusFailed,
+		ContactStatusFailedToSchedule,
+		ContactStatusPass,
+		ContactStatusPostpass,
+		ContactStatusPrepass,
+		ContactStatusScheduled,
+		ContactStatusScheduling,
+	}
+}
+
 const (
 	// CriticalityPreferred is a Criticality enum value
 	CriticalityPreferred = "PREFERRED"
@@ -6994,10 +7041,26 @@ const (
 	CriticalityRequired = "REQUIRED"
 )
 
+// Criticality_Values returns all elements of the Criticality enum
+func Criticality_Values() []string {
+	return []string{
+		CriticalityPreferred,
+		CriticalityRemoved,
+		CriticalityRequired,
+	}
+}
+
 const (
 	// EirpUnitsDBw is a EirpUnits enum value
 	EirpUnitsDBw = "dBW"
 )
+
+// EirpUnits_Values returns all elements of the EirpUnits enum
+func EirpUnits_Values() []string {
+	return []string{
+		EirpUnitsDBw,
+	}
+}
 
 const (
 	// EndpointStatusCreated is a EndpointStatus enum value
@@ -7016,6 +7079,17 @@ const (
 	EndpointStatusFailed = "failed"
 )
 
+// EndpointStatus_Values returns all elements of the EndpointStatus enum
+func EndpointStatus_Values() []string {
+	return []string{
+		EndpointStatusCreated,
+		EndpointStatusCreating,
+		EndpointStatusDeleted,
+		EndpointStatusDeleting,
+		EndpointStatusFailed,
+	}
+}
+
 const (
 	// FrequencyUnitsGhz is a FrequencyUnits enum value
 	FrequencyUnitsGhz = "GHz"
@@ -7027,6 +7101,15 @@ const (
 	FrequencyUnitsKHz = "kHz"
 )
 
+// FrequencyUnits_Values returns all elements of the FrequencyUnits enum
+func FrequencyUnits_Values() []string {
+	return []string{
+		FrequencyUnitsGhz,
+		FrequencyUnitsMhz,
+		FrequencyUnitsKHz,
+	}
+}
+
 const (
 	// PolarizationLeftHand is a Polarization enum value
 	PolarizationLeftHand = "LEFT_HAND"
@@ -7037,3 +7120,12 @@ const (
 	// PolarizationRightHand is a Polarization enum value
 	PolarizationRightHand = "RIGHT_HAND"
 )
+
+// Polarization_Values returns all elements of the Polarization enum
+func Polarization_Values() []string {
+	return []string{
+		PolarizationLeftHand,
+		PolarizationNone,
+		PolarizationRightHand,
+	}
+}

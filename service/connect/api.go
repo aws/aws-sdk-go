@@ -9169,10 +9169,25 @@ const (
 	ChannelChat = "CHAT"
 )
 
+// Channel_Values returns all elements of the Channel enum
+func Channel_Values() []string {
+	return []string{
+		ChannelVoice,
+		ChannelChat,
+	}
+}
+
 const (
 	// ComparisonLt is a Comparison enum value
 	ComparisonLt = "LT"
 )
+
+// Comparison_Values returns all elements of the Comparison enum
+func Comparison_Values() []string {
+	return []string{
+		ComparisonLt,
+	}
+}
 
 const (
 	// ContactFlowTypeContactFlow is a ContactFlowType enum value
@@ -9202,6 +9217,21 @@ const (
 	// ContactFlowTypeQueueTransfer is a ContactFlowType enum value
 	ContactFlowTypeQueueTransfer = "QUEUE_TRANSFER"
 )
+
+// ContactFlowType_Values returns all elements of the ContactFlowType enum
+func ContactFlowType_Values() []string {
+	return []string{
+		ContactFlowTypeContactFlow,
+		ContactFlowTypeCustomerQueue,
+		ContactFlowTypeCustomerHold,
+		ContactFlowTypeCustomerWhisper,
+		ContactFlowTypeAgentHold,
+		ContactFlowTypeAgentWhisper,
+		ContactFlowTypeOutboundWhisper,
+		ContactFlowTypeAgentTransfer,
+		ContactFlowTypeQueueTransfer,
+	}
+}
 
 // The current metric names.
 const (
@@ -9245,6 +9275,25 @@ const (
 	CurrentMetricNameSlotsAvailable = "SLOTS_AVAILABLE"
 )
 
+// CurrentMetricName_Values returns all elements of the CurrentMetricName enum
+func CurrentMetricName_Values() []string {
+	return []string{
+		CurrentMetricNameAgentsOnline,
+		CurrentMetricNameAgentsAvailable,
+		CurrentMetricNameAgentsOnCall,
+		CurrentMetricNameAgentsNonProductive,
+		CurrentMetricNameAgentsAfterContactWork,
+		CurrentMetricNameAgentsError,
+		CurrentMetricNameAgentsStaffed,
+		CurrentMetricNameContactsInQueue,
+		CurrentMetricNameOldestContactAge,
+		CurrentMetricNameContactsScheduled,
+		CurrentMetricNameAgentsOnContact,
+		CurrentMetricNameSlotsActive,
+		CurrentMetricNameSlotsAvailable,
+	}
+}
+
 const (
 	// GroupingQueue is a Grouping enum value
 	GroupingQueue = "QUEUE"
@@ -9252,6 +9301,14 @@ const (
 	// GroupingChannel is a Grouping enum value
 	GroupingChannel = "CHANNEL"
 )
+
+// Grouping_Values returns all elements of the Grouping enum
+func Grouping_Values() []string {
+	return []string{
+		GroupingQueue,
+		GroupingChannel,
+	}
+}
 
 // The historical metric names.
 const (
@@ -9330,6 +9387,37 @@ const (
 	// HistoricalMetricNameServiceLevel is a HistoricalMetricName enum value
 	HistoricalMetricNameServiceLevel = "SERVICE_LEVEL"
 )
+
+// HistoricalMetricName_Values returns all elements of the HistoricalMetricName enum
+func HistoricalMetricName_Values() []string {
+	return []string{
+		HistoricalMetricNameContactsQueued,
+		HistoricalMetricNameContactsHandled,
+		HistoricalMetricNameContactsAbandoned,
+		HistoricalMetricNameContactsConsulted,
+		HistoricalMetricNameContactsAgentHungUpFirst,
+		HistoricalMetricNameContactsHandledIncoming,
+		HistoricalMetricNameContactsHandledOutbound,
+		HistoricalMetricNameContactsHoldAbandons,
+		HistoricalMetricNameContactsTransferredIn,
+		HistoricalMetricNameContactsTransferredOut,
+		HistoricalMetricNameContactsTransferredInFromQueue,
+		HistoricalMetricNameContactsTransferredOutFromQueue,
+		HistoricalMetricNameContactsMissed,
+		HistoricalMetricNameCallbackContactsHandled,
+		HistoricalMetricNameApiContactsHandled,
+		HistoricalMetricNameOccupancy,
+		HistoricalMetricNameHandleTime,
+		HistoricalMetricNameAfterContactWorkTime,
+		HistoricalMetricNameQueuedTime,
+		HistoricalMetricNameAbandonTime,
+		HistoricalMetricNameQueueAnswerTime,
+		HistoricalMetricNameHoldTime,
+		HistoricalMetricNameInteractionTime,
+		HistoricalMetricNameInteractionAndHoldTime,
+		HistoricalMetricNameServiceLevel,
+	}
+}
 
 const (
 	// PhoneNumberCountryCodeAf is a PhoneNumberCountryCode enum value
@@ -10044,6 +10132,249 @@ const (
 	PhoneNumberCountryCodeZw = "ZW"
 )
 
+// PhoneNumberCountryCode_Values returns all elements of the PhoneNumberCountryCode enum
+func PhoneNumberCountryCode_Values() []string {
+	return []string{
+		PhoneNumberCountryCodeAf,
+		PhoneNumberCountryCodeAl,
+		PhoneNumberCountryCodeDz,
+		PhoneNumberCountryCodeAs,
+		PhoneNumberCountryCodeAd,
+		PhoneNumberCountryCodeAo,
+		PhoneNumberCountryCodeAi,
+		PhoneNumberCountryCodeAq,
+		PhoneNumberCountryCodeAg,
+		PhoneNumberCountryCodeAr,
+		PhoneNumberCountryCodeAm,
+		PhoneNumberCountryCodeAw,
+		PhoneNumberCountryCodeAu,
+		PhoneNumberCountryCodeAt,
+		PhoneNumberCountryCodeAz,
+		PhoneNumberCountryCodeBs,
+		PhoneNumberCountryCodeBh,
+		PhoneNumberCountryCodeBd,
+		PhoneNumberCountryCodeBb,
+		PhoneNumberCountryCodeBy,
+		PhoneNumberCountryCodeBe,
+		PhoneNumberCountryCodeBz,
+		PhoneNumberCountryCodeBj,
+		PhoneNumberCountryCodeBm,
+		PhoneNumberCountryCodeBt,
+		PhoneNumberCountryCodeBo,
+		PhoneNumberCountryCodeBa,
+		PhoneNumberCountryCodeBw,
+		PhoneNumberCountryCodeBr,
+		PhoneNumberCountryCodeIo,
+		PhoneNumberCountryCodeVg,
+		PhoneNumberCountryCodeBn,
+		PhoneNumberCountryCodeBg,
+		PhoneNumberCountryCodeBf,
+		PhoneNumberCountryCodeBi,
+		PhoneNumberCountryCodeKh,
+		PhoneNumberCountryCodeCm,
+		PhoneNumberCountryCodeCa,
+		PhoneNumberCountryCodeCv,
+		PhoneNumberCountryCodeKy,
+		PhoneNumberCountryCodeCf,
+		PhoneNumberCountryCodeTd,
+		PhoneNumberCountryCodeCl,
+		PhoneNumberCountryCodeCn,
+		PhoneNumberCountryCodeCx,
+		PhoneNumberCountryCodeCc,
+		PhoneNumberCountryCodeCo,
+		PhoneNumberCountryCodeKm,
+		PhoneNumberCountryCodeCk,
+		PhoneNumberCountryCodeCr,
+		PhoneNumberCountryCodeHr,
+		PhoneNumberCountryCodeCu,
+		PhoneNumberCountryCodeCw,
+		PhoneNumberCountryCodeCy,
+		PhoneNumberCountryCodeCz,
+		PhoneNumberCountryCodeCd,
+		PhoneNumberCountryCodeDk,
+		PhoneNumberCountryCodeDj,
+		PhoneNumberCountryCodeDm,
+		PhoneNumberCountryCodeDo,
+		PhoneNumberCountryCodeTl,
+		PhoneNumberCountryCodeEc,
+		PhoneNumberCountryCodeEg,
+		PhoneNumberCountryCodeSv,
+		PhoneNumberCountryCodeGq,
+		PhoneNumberCountryCodeEr,
+		PhoneNumberCountryCodeEe,
+		PhoneNumberCountryCodeEt,
+		PhoneNumberCountryCodeFk,
+		PhoneNumberCountryCodeFo,
+		PhoneNumberCountryCodeFj,
+		PhoneNumberCountryCodeFi,
+		PhoneNumberCountryCodeFr,
+		PhoneNumberCountryCodePf,
+		PhoneNumberCountryCodeGa,
+		PhoneNumberCountryCodeGm,
+		PhoneNumberCountryCodeGe,
+		PhoneNumberCountryCodeDe,
+		PhoneNumberCountryCodeGh,
+		PhoneNumberCountryCodeGi,
+		PhoneNumberCountryCodeGr,
+		PhoneNumberCountryCodeGl,
+		PhoneNumberCountryCodeGd,
+		PhoneNumberCountryCodeGu,
+		PhoneNumberCountryCodeGt,
+		PhoneNumberCountryCodeGg,
+		PhoneNumberCountryCodeGn,
+		PhoneNumberCountryCodeGw,
+		PhoneNumberCountryCodeGy,
+		PhoneNumberCountryCodeHt,
+		PhoneNumberCountryCodeHn,
+		PhoneNumberCountryCodeHk,
+		PhoneNumberCountryCodeHu,
+		PhoneNumberCountryCodeIs,
+		PhoneNumberCountryCodeIn,
+		PhoneNumberCountryCodeId,
+		PhoneNumberCountryCodeIr,
+		PhoneNumberCountryCodeIq,
+		PhoneNumberCountryCodeIe,
+		PhoneNumberCountryCodeIm,
+		PhoneNumberCountryCodeIl,
+		PhoneNumberCountryCodeIt,
+		PhoneNumberCountryCodeCi,
+		PhoneNumberCountryCodeJm,
+		PhoneNumberCountryCodeJp,
+		PhoneNumberCountryCodeJe,
+		PhoneNumberCountryCodeJo,
+		PhoneNumberCountryCodeKz,
+		PhoneNumberCountryCodeKe,
+		PhoneNumberCountryCodeKi,
+		PhoneNumberCountryCodeKw,
+		PhoneNumberCountryCodeKg,
+		PhoneNumberCountryCodeLa,
+		PhoneNumberCountryCodeLv,
+		PhoneNumberCountryCodeLb,
+		PhoneNumberCountryCodeLs,
+		PhoneNumberCountryCodeLr,
+		PhoneNumberCountryCodeLy,
+		PhoneNumberCountryCodeLi,
+		PhoneNumberCountryCodeLt,
+		PhoneNumberCountryCodeLu,
+		PhoneNumberCountryCodeMo,
+		PhoneNumberCountryCodeMk,
+		PhoneNumberCountryCodeMg,
+		PhoneNumberCountryCodeMw,
+		PhoneNumberCountryCodeMy,
+		PhoneNumberCountryCodeMv,
+		PhoneNumberCountryCodeMl,
+		PhoneNumberCountryCodeMt,
+		PhoneNumberCountryCodeMh,
+		PhoneNumberCountryCodeMr,
+		PhoneNumberCountryCodeMu,
+		PhoneNumberCountryCodeYt,
+		PhoneNumberCountryCodeMx,
+		PhoneNumberCountryCodeFm,
+		PhoneNumberCountryCodeMd,
+		PhoneNumberCountryCodeMc,
+		PhoneNumberCountryCodeMn,
+		PhoneNumberCountryCodeMe,
+		PhoneNumberCountryCodeMs,
+		PhoneNumberCountryCodeMa,
+		PhoneNumberCountryCodeMz,
+		PhoneNumberCountryCodeMm,
+		PhoneNumberCountryCodeNa,
+		PhoneNumberCountryCodeNr,
+		PhoneNumberCountryCodeNp,
+		PhoneNumberCountryCodeNl,
+		PhoneNumberCountryCodeAn,
+		PhoneNumberCountryCodeNc,
+		PhoneNumberCountryCodeNz,
+		PhoneNumberCountryCodeNi,
+		PhoneNumberCountryCodeNe,
+		PhoneNumberCountryCodeNg,
+		PhoneNumberCountryCodeNu,
+		PhoneNumberCountryCodeKp,
+		PhoneNumberCountryCodeMp,
+		PhoneNumberCountryCodeNo,
+		PhoneNumberCountryCodeOm,
+		PhoneNumberCountryCodePk,
+		PhoneNumberCountryCodePw,
+		PhoneNumberCountryCodePa,
+		PhoneNumberCountryCodePg,
+		PhoneNumberCountryCodePy,
+		PhoneNumberCountryCodePe,
+		PhoneNumberCountryCodePh,
+		PhoneNumberCountryCodePn,
+		PhoneNumberCountryCodePl,
+		PhoneNumberCountryCodePt,
+		PhoneNumberCountryCodePr,
+		PhoneNumberCountryCodeQa,
+		PhoneNumberCountryCodeCg,
+		PhoneNumberCountryCodeRe,
+		PhoneNumberCountryCodeRo,
+		PhoneNumberCountryCodeRu,
+		PhoneNumberCountryCodeRw,
+		PhoneNumberCountryCodeBl,
+		PhoneNumberCountryCodeSh,
+		PhoneNumberCountryCodeKn,
+		PhoneNumberCountryCodeLc,
+		PhoneNumberCountryCodeMf,
+		PhoneNumberCountryCodePm,
+		PhoneNumberCountryCodeVc,
+		PhoneNumberCountryCodeWs,
+		PhoneNumberCountryCodeSm,
+		PhoneNumberCountryCodeSt,
+		PhoneNumberCountryCodeSa,
+		PhoneNumberCountryCodeSn,
+		PhoneNumberCountryCodeRs,
+		PhoneNumberCountryCodeSc,
+		PhoneNumberCountryCodeSl,
+		PhoneNumberCountryCodeSg,
+		PhoneNumberCountryCodeSx,
+		PhoneNumberCountryCodeSk,
+		PhoneNumberCountryCodeSi,
+		PhoneNumberCountryCodeSb,
+		PhoneNumberCountryCodeSo,
+		PhoneNumberCountryCodeZa,
+		PhoneNumberCountryCodeKr,
+		PhoneNumberCountryCodeEs,
+		PhoneNumberCountryCodeLk,
+		PhoneNumberCountryCodeSd,
+		PhoneNumberCountryCodeSr,
+		PhoneNumberCountryCodeSj,
+		PhoneNumberCountryCodeSz,
+		PhoneNumberCountryCodeSe,
+		PhoneNumberCountryCodeCh,
+		PhoneNumberCountryCodeSy,
+		PhoneNumberCountryCodeTw,
+		PhoneNumberCountryCodeTj,
+		PhoneNumberCountryCodeTz,
+		PhoneNumberCountryCodeTh,
+		PhoneNumberCountryCodeTg,
+		PhoneNumberCountryCodeTk,
+		PhoneNumberCountryCodeTo,
+		PhoneNumberCountryCodeTt,
+		PhoneNumberCountryCodeTn,
+		PhoneNumberCountryCodeTr,
+		PhoneNumberCountryCodeTm,
+		PhoneNumberCountryCodeTc,
+		PhoneNumberCountryCodeTv,
+		PhoneNumberCountryCodeVi,
+		PhoneNumberCountryCodeUg,
+		PhoneNumberCountryCodeUa,
+		PhoneNumberCountryCodeAe,
+		PhoneNumberCountryCodeGb,
+		PhoneNumberCountryCodeUs,
+		PhoneNumberCountryCodeUy,
+		PhoneNumberCountryCodeUz,
+		PhoneNumberCountryCodeVu,
+		PhoneNumberCountryCodeVa,
+		PhoneNumberCountryCodeVe,
+		PhoneNumberCountryCodeVn,
+		PhoneNumberCountryCodeWf,
+		PhoneNumberCountryCodeEh,
+		PhoneNumberCountryCodeYe,
+		PhoneNumberCountryCodeZm,
+		PhoneNumberCountryCodeZw,
+	}
+}
+
 const (
 	// PhoneNumberTypeTollFree is a PhoneNumberType enum value
 	PhoneNumberTypeTollFree = "TOLL_FREE"
@@ -10051,6 +10382,14 @@ const (
 	// PhoneNumberTypeDid is a PhoneNumberType enum value
 	PhoneNumberTypeDid = "DID"
 )
+
+// PhoneNumberType_Values returns all elements of the PhoneNumberType enum
+func PhoneNumberType_Values() []string {
+	return []string{
+		PhoneNumberTypeTollFree,
+		PhoneNumberTypeDid,
+	}
+}
 
 const (
 	// PhoneTypeSoftPhone is a PhoneType enum value
@@ -10060,6 +10399,14 @@ const (
 	PhoneTypeDeskPhone = "DESK_PHONE"
 )
 
+// PhoneType_Values returns all elements of the PhoneType enum
+func PhoneType_Values() []string {
+	return []string{
+		PhoneTypeSoftPhone,
+		PhoneTypeDeskPhone,
+	}
+}
+
 const (
 	// QueueTypeStandard is a QueueType enum value
 	QueueTypeStandard = "STANDARD"
@@ -10067,6 +10414,14 @@ const (
 	// QueueTypeAgent is a QueueType enum value
 	QueueTypeAgent = "AGENT"
 )
+
+// QueueType_Values returns all elements of the QueueType enum
+func QueueType_Values() []string {
+	return []string{
+		QueueTypeStandard,
+		QueueTypeAgent,
+	}
+}
 
 const (
 	// StatisticSum is a Statistic enum value
@@ -10079,6 +10434,15 @@ const (
 	StatisticAvg = "AVG"
 )
 
+// Statistic_Values returns all elements of the Statistic enum
+func Statistic_Values() []string {
+	return []string{
+		StatisticSum,
+		StatisticMax,
+		StatisticAvg,
+	}
+}
+
 const (
 	// UnitSeconds is a Unit enum value
 	UnitSeconds = "SECONDS"
@@ -10090,6 +10454,15 @@ const (
 	UnitPercent = "PERCENT"
 )
 
+// Unit_Values returns all elements of the Unit enum
+func Unit_Values() []string {
+	return []string{
+		UnitSeconds,
+		UnitCount,
+		UnitPercent,
+	}
+}
+
 const (
 	// VoiceRecordingTrackFromAgent is a VoiceRecordingTrack enum value
 	VoiceRecordingTrackFromAgent = "FROM_AGENT"
@@ -10100,3 +10473,12 @@ const (
 	// VoiceRecordingTrackAll is a VoiceRecordingTrack enum value
 	VoiceRecordingTrackAll = "ALL"
 )
+
+// VoiceRecordingTrack_Values returns all elements of the VoiceRecordingTrack enum
+func VoiceRecordingTrack_Values() []string {
+	return []string{
+		VoiceRecordingTrackFromAgent,
+		VoiceRecordingTrackToAgent,
+		VoiceRecordingTrackAll,
+	}
+}

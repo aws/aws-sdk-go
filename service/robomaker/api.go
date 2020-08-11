@@ -12788,6 +12788,15 @@ const (
 	ArchitectureArmhf = "ARMHF"
 )
 
+// Architecture_Values returns all elements of the Architecture enum
+func Architecture_Values() []string {
+	return []string{
+		ArchitectureX8664,
+		ArchitectureArm64,
+		ArchitectureArmhf,
+	}
+}
+
 const (
 	// DeploymentJobErrorCodeResourceNotFound is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeResourceNotFound = "ResourceNotFound"
@@ -12850,6 +12859,32 @@ const (
 	DeploymentJobErrorCodeInternalServerError = "InternalServerError"
 )
 
+// DeploymentJobErrorCode_Values returns all elements of the DeploymentJobErrorCode enum
+func DeploymentJobErrorCode_Values() []string {
+	return []string{
+		DeploymentJobErrorCodeResourceNotFound,
+		DeploymentJobErrorCodeEnvironmentSetupError,
+		DeploymentJobErrorCodeEtagMismatch,
+		DeploymentJobErrorCodeFailureThresholdBreached,
+		DeploymentJobErrorCodeRobotDeploymentAborted,
+		DeploymentJobErrorCodeRobotDeploymentNoResponse,
+		DeploymentJobErrorCodeRobotAgentConnectionTimeout,
+		DeploymentJobErrorCodeGreengrassDeploymentFailed,
+		DeploymentJobErrorCodeInvalidGreengrassGroup,
+		DeploymentJobErrorCodeMissingRobotArchitecture,
+		DeploymentJobErrorCodeMissingRobotApplicationArchitecture,
+		DeploymentJobErrorCodeMissingRobotDeploymentResource,
+		DeploymentJobErrorCodeGreengrassGroupVersionDoesNotExist,
+		DeploymentJobErrorCodeLambdaDeleted,
+		DeploymentJobErrorCodeExtractingBundleFailure,
+		DeploymentJobErrorCodePreLaunchFileFailure,
+		DeploymentJobErrorCodePostLaunchFileFailure,
+		DeploymentJobErrorCodeBadPermissionError,
+		DeploymentJobErrorCodeDownloadConditionFailed,
+		DeploymentJobErrorCodeInternalServerError,
+	}
+}
+
 const (
 	// DeploymentStatusPending is a DeploymentStatus enum value
 	DeploymentStatusPending = "Pending"
@@ -12870,6 +12905,18 @@ const (
 	DeploymentStatusCanceled = "Canceled"
 )
 
+// DeploymentStatus_Values returns all elements of the DeploymentStatus enum
+func DeploymentStatus_Values() []string {
+	return []string{
+		DeploymentStatusPending,
+		DeploymentStatusPreparing,
+		DeploymentStatusInProgress,
+		DeploymentStatusFailed,
+		DeploymentStatusSucceeded,
+		DeploymentStatusCanceled,
+	}
+}
+
 const (
 	// FailureBehaviorFail is a FailureBehavior enum value
 	FailureBehaviorFail = "Fail"
@@ -12878,10 +12925,25 @@ const (
 	FailureBehaviorContinue = "Continue"
 )
 
+// FailureBehavior_Values returns all elements of the FailureBehavior enum
+func FailureBehavior_Values() []string {
+	return []string{
+		FailureBehaviorFail,
+		FailureBehaviorContinue,
+	}
+}
+
 const (
 	// RenderingEngineTypeOgre is a RenderingEngineType enum value
 	RenderingEngineTypeOgre = "OGRE"
 )
+
+// RenderingEngineType_Values returns all elements of the RenderingEngineType enum
+func RenderingEngineType_Values() []string {
+	return []string{
+		RenderingEngineTypeOgre,
+	}
+}
 
 const (
 	// RobotDeploymentStepValidating is a RobotDeploymentStep enum value
@@ -12906,6 +12968,19 @@ const (
 	RobotDeploymentStepFinished = "Finished"
 )
 
+// RobotDeploymentStep_Values returns all elements of the RobotDeploymentStep enum
+func RobotDeploymentStep_Values() []string {
+	return []string{
+		RobotDeploymentStepValidating,
+		RobotDeploymentStepDownloadingExtracting,
+		RobotDeploymentStepExecutingDownloadCondition,
+		RobotDeploymentStepExecutingPreLaunch,
+		RobotDeploymentStepLaunching,
+		RobotDeploymentStepExecutingPostLaunch,
+		RobotDeploymentStepFinished,
+	}
+}
+
 const (
 	// RobotSoftwareSuiteTypeRos is a RobotSoftwareSuiteType enum value
 	RobotSoftwareSuiteTypeRos = "ROS"
@@ -12913,6 +12988,14 @@ const (
 	// RobotSoftwareSuiteTypeRos2 is a RobotSoftwareSuiteType enum value
 	RobotSoftwareSuiteTypeRos2 = "ROS2"
 )
+
+// RobotSoftwareSuiteType_Values returns all elements of the RobotSoftwareSuiteType enum
+func RobotSoftwareSuiteType_Values() []string {
+	return []string{
+		RobotSoftwareSuiteTypeRos,
+		RobotSoftwareSuiteTypeRos2,
+	}
+}
 
 const (
 	// RobotSoftwareSuiteVersionTypeKinetic is a RobotSoftwareSuiteVersionType enum value
@@ -12924,6 +13007,15 @@ const (
 	// RobotSoftwareSuiteVersionTypeDashing is a RobotSoftwareSuiteVersionType enum value
 	RobotSoftwareSuiteVersionTypeDashing = "Dashing"
 )
+
+// RobotSoftwareSuiteVersionType_Values returns all elements of the RobotSoftwareSuiteVersionType enum
+func RobotSoftwareSuiteVersionType_Values() []string {
+	return []string{
+		RobotSoftwareSuiteVersionTypeKinetic,
+		RobotSoftwareSuiteVersionTypeMelodic,
+		RobotSoftwareSuiteVersionTypeDashing,
+	}
+}
 
 const (
 	// RobotStatusAvailable is a RobotStatus enum value
@@ -12948,10 +13040,30 @@ const (
 	RobotStatusNoResponse = "NoResponse"
 )
 
+// RobotStatus_Values returns all elements of the RobotStatus enum
+func RobotStatus_Values() []string {
+	return []string{
+		RobotStatusAvailable,
+		RobotStatusRegistered,
+		RobotStatusPendingNewDeployment,
+		RobotStatusDeploying,
+		RobotStatusFailed,
+		RobotStatusInSync,
+		RobotStatusNoResponse,
+	}
+}
+
 const (
 	// SimulationJobBatchErrorCodeInternalServiceError is a SimulationJobBatchErrorCode enum value
 	SimulationJobBatchErrorCodeInternalServiceError = "InternalServiceError"
 )
+
+// SimulationJobBatchErrorCode_Values returns all elements of the SimulationJobBatchErrorCode enum
+func SimulationJobBatchErrorCode_Values() []string {
+	return []string{
+		SimulationJobBatchErrorCodeInternalServiceError,
+	}
+}
 
 const (
 	// SimulationJobBatchStatusPending is a SimulationJobBatchStatus enum value
@@ -12981,6 +13093,21 @@ const (
 	// SimulationJobBatchStatusTimedOut is a SimulationJobBatchStatus enum value
 	SimulationJobBatchStatusTimedOut = "TimedOut"
 )
+
+// SimulationJobBatchStatus_Values returns all elements of the SimulationJobBatchStatus enum
+func SimulationJobBatchStatus_Values() []string {
+	return []string{
+		SimulationJobBatchStatusPending,
+		SimulationJobBatchStatusInProgress,
+		SimulationJobBatchStatusFailed,
+		SimulationJobBatchStatusCompleted,
+		SimulationJobBatchStatusCanceled,
+		SimulationJobBatchStatusCanceling,
+		SimulationJobBatchStatusCompleting,
+		SimulationJobBatchStatusTimingOut,
+		SimulationJobBatchStatusTimedOut,
+	}
+}
 
 const (
 	// SimulationJobErrorCodeInternalServiceError is a SimulationJobErrorCode enum value
@@ -13065,6 +13192,39 @@ const (
 	SimulationJobErrorCodeWrongRegionSimulationApplication = "WrongRegionSimulationApplication"
 )
 
+// SimulationJobErrorCode_Values returns all elements of the SimulationJobErrorCode enum
+func SimulationJobErrorCode_Values() []string {
+	return []string{
+		SimulationJobErrorCodeInternalServiceError,
+		SimulationJobErrorCodeRobotApplicationCrash,
+		SimulationJobErrorCodeSimulationApplicationCrash,
+		SimulationJobErrorCodeBadPermissionsRobotApplication,
+		SimulationJobErrorCodeBadPermissionsSimulationApplication,
+		SimulationJobErrorCodeBadPermissionsS3object,
+		SimulationJobErrorCodeBadPermissionsS3output,
+		SimulationJobErrorCodeBadPermissionsCloudwatchLogs,
+		SimulationJobErrorCodeSubnetIpLimitExceeded,
+		SimulationJobErrorCodeEnilimitExceeded,
+		SimulationJobErrorCodeBadPermissionsUserCredentials,
+		SimulationJobErrorCodeInvalidBundleRobotApplication,
+		SimulationJobErrorCodeInvalidBundleSimulationApplication,
+		SimulationJobErrorCodeInvalidS3resource,
+		SimulationJobErrorCodeLimitExceeded,
+		SimulationJobErrorCodeMismatchedEtag,
+		SimulationJobErrorCodeRobotApplicationVersionMismatchedEtag,
+		SimulationJobErrorCodeSimulationApplicationVersionMismatchedEtag,
+		SimulationJobErrorCodeResourceNotFound,
+		SimulationJobErrorCodeRequestThrottled,
+		SimulationJobErrorCodeBatchTimedOut,
+		SimulationJobErrorCodeBatchCanceled,
+		SimulationJobErrorCodeInvalidInput,
+		SimulationJobErrorCodeWrongRegionS3bucket,
+		SimulationJobErrorCodeWrongRegionS3output,
+		SimulationJobErrorCodeWrongRegionRobotApplication,
+		SimulationJobErrorCodeWrongRegionSimulationApplication,
+	}
+}
+
 const (
 	// SimulationJobStatusPending is a SimulationJobStatus enum value
 	SimulationJobStatusPending = "Pending"
@@ -13097,6 +13257,22 @@ const (
 	SimulationJobStatusCanceled = "Canceled"
 )
 
+// SimulationJobStatus_Values returns all elements of the SimulationJobStatus enum
+func SimulationJobStatus_Values() []string {
+	return []string{
+		SimulationJobStatusPending,
+		SimulationJobStatusPreparing,
+		SimulationJobStatusRunning,
+		SimulationJobStatusRestarting,
+		SimulationJobStatusCompleted,
+		SimulationJobStatusFailed,
+		SimulationJobStatusRunningFailed,
+		SimulationJobStatusTerminating,
+		SimulationJobStatusTerminated,
+		SimulationJobStatusCanceled,
+	}
+}
+
 const (
 	// SimulationSoftwareSuiteTypeGazebo is a SimulationSoftwareSuiteType enum value
 	SimulationSoftwareSuiteTypeGazebo = "Gazebo"
@@ -13104,3 +13280,11 @@ const (
 	// SimulationSoftwareSuiteTypeRosbagPlay is a SimulationSoftwareSuiteType enum value
 	SimulationSoftwareSuiteTypeRosbagPlay = "RosbagPlay"
 )
+
+// SimulationSoftwareSuiteType_Values returns all elements of the SimulationSoftwareSuiteType enum
+func SimulationSoftwareSuiteType_Values() []string {
+	return []string{
+		SimulationSoftwareSuiteTypeGazebo,
+		SimulationSoftwareSuiteTypeRosbagPlay,
+	}
+}

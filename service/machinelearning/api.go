@@ -9240,6 +9240,13 @@ const (
 	AlgorithmSgd = "sgd"
 )
 
+// Algorithm_Values returns all elements of the Algorithm enum
+func Algorithm_Values() []string {
+	return []string{
+		AlgorithmSgd,
+	}
+}
+
 // A list of the variables to use in searching or filtering BatchPrediction.
 //
 //    * CreatedAt - Sets the search criteria to BatchPrediction creation date.
@@ -9285,6 +9292,20 @@ const (
 	BatchPredictionFilterVariableDataUri = "DataURI"
 )
 
+// BatchPredictionFilterVariable_Values returns all elements of the BatchPredictionFilterVariable enum
+func BatchPredictionFilterVariable_Values() []string {
+	return []string{
+		BatchPredictionFilterVariableCreatedAt,
+		BatchPredictionFilterVariableLastUpdatedAt,
+		BatchPredictionFilterVariableStatus,
+		BatchPredictionFilterVariableName,
+		BatchPredictionFilterVariableIamuser,
+		BatchPredictionFilterVariableMlmodelId,
+		BatchPredictionFilterVariableDataSourceId,
+		BatchPredictionFilterVariableDataUri,
+	}
+}
+
 // A list of the variables to use in searching or filtering DataSource.
 //
 //    * CreatedAt - Sets the search criteria to DataSource creation date.
@@ -9321,6 +9342,18 @@ const (
 	DataSourceFilterVariableIamuser = "IAMUser"
 )
 
+// DataSourceFilterVariable_Values returns all elements of the DataSourceFilterVariable enum
+func DataSourceFilterVariable_Values() []string {
+	return []string{
+		DataSourceFilterVariableCreatedAt,
+		DataSourceFilterVariableLastUpdatedAt,
+		DataSourceFilterVariableStatus,
+		DataSourceFilterVariableName,
+		DataSourceFilterVariableDataLocationS3,
+		DataSourceFilterVariableIamuser,
+	}
+}
+
 // Contains the key values of
 //    DetailsMap
 // :
@@ -9339,6 +9372,14 @@ const (
 	// DetailsAttributesAlgorithm is a DetailsAttributes enum value
 	DetailsAttributesAlgorithm = "Algorithm"
 )
+
+// DetailsAttributes_Values returns all elements of the DetailsAttributes enum
+func DetailsAttributes_Values() []string {
+	return []string{
+		DetailsAttributesPredictiveModelType,
+		DetailsAttributesAlgorithm,
+	}
+}
 
 // Object status with the following possible values:
 //
@@ -9367,6 +9408,17 @@ const (
 	// EntityStatusDeleted is a EntityStatus enum value
 	EntityStatusDeleted = "DELETED"
 )
+
+// EntityStatus_Values returns all elements of the EntityStatus enum
+func EntityStatus_Values() []string {
+	return []string{
+		EntityStatusPending,
+		EntityStatusInprogress,
+		EntityStatusFailed,
+		EntityStatusCompleted,
+		EntityStatusDeleted,
+	}
+}
 
 // A list of the variables to use in searching or filtering Evaluation.
 //
@@ -9412,6 +9464,20 @@ const (
 	EvaluationFilterVariableDataUri = "DataURI"
 )
 
+// EvaluationFilterVariable_Values returns all elements of the EvaluationFilterVariable enum
+func EvaluationFilterVariable_Values() []string {
+	return []string{
+		EvaluationFilterVariableCreatedAt,
+		EvaluationFilterVariableLastUpdatedAt,
+		EvaluationFilterVariableStatus,
+		EvaluationFilterVariableName,
+		EvaluationFilterVariableIamuser,
+		EvaluationFilterVariableMlmodelId,
+		EvaluationFilterVariableDataSourceId,
+		EvaluationFilterVariableDataUri,
+	}
+}
+
 const (
 	// MLModelFilterVariableCreatedAt is a MLModelFilterVariable enum value
 	MLModelFilterVariableCreatedAt = "CreatedAt"
@@ -9444,6 +9510,22 @@ const (
 	MLModelFilterVariableTrainingDataUri = "TrainingDataURI"
 )
 
+// MLModelFilterVariable_Values returns all elements of the MLModelFilterVariable enum
+func MLModelFilterVariable_Values() []string {
+	return []string{
+		MLModelFilterVariableCreatedAt,
+		MLModelFilterVariableLastUpdatedAt,
+		MLModelFilterVariableStatus,
+		MLModelFilterVariableName,
+		MLModelFilterVariableIamuser,
+		MLModelFilterVariableTrainingDataSourceId,
+		MLModelFilterVariableRealtimeEndpointStatus,
+		MLModelFilterVariableMlmodelType,
+		MLModelFilterVariableAlgorithm,
+		MLModelFilterVariableTrainingDataUri,
+	}
+}
+
 const (
 	// MLModelTypeRegression is a MLModelType enum value
 	MLModelTypeRegression = "REGRESSION"
@@ -9454,6 +9536,15 @@ const (
 	// MLModelTypeMulticlass is a MLModelType enum value
 	MLModelTypeMulticlass = "MULTICLASS"
 )
+
+// MLModelType_Values returns all elements of the MLModelType enum
+func MLModelType_Values() []string {
+	return []string{
+		MLModelTypeRegression,
+		MLModelTypeBinary,
+		MLModelTypeMulticlass,
+	}
+}
 
 const (
 	// RealtimeEndpointStatusNone is a RealtimeEndpointStatus enum value
@@ -9469,6 +9560,16 @@ const (
 	RealtimeEndpointStatusFailed = "FAILED"
 )
 
+// RealtimeEndpointStatus_Values returns all elements of the RealtimeEndpointStatus enum
+func RealtimeEndpointStatus_Values() []string {
+	return []string{
+		RealtimeEndpointStatusNone,
+		RealtimeEndpointStatusReady,
+		RealtimeEndpointStatusUpdating,
+		RealtimeEndpointStatusFailed,
+	}
+}
+
 // The sort order specified in a listing condition. Possible values include
 // the following:
 //
@@ -9483,6 +9584,14 @@ const (
 	SortOrderDsc = "dsc"
 )
 
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAsc,
+		SortOrderDsc,
+	}
+}
+
 const (
 	// TaggableResourceTypeBatchPrediction is a TaggableResourceType enum value
 	TaggableResourceTypeBatchPrediction = "BatchPrediction"
@@ -9496,3 +9605,13 @@ const (
 	// TaggableResourceTypeMlmodel is a TaggableResourceType enum value
 	TaggableResourceTypeMlmodel = "MLModel"
 )
+
+// TaggableResourceType_Values returns all elements of the TaggableResourceType enum
+func TaggableResourceType_Values() []string {
+	return []string{
+		TaggableResourceTypeBatchPrediction,
+		TaggableResourceTypeDataSource,
+		TaggableResourceTypeEvaluation,
+		TaggableResourceTypeMlmodel,
+	}
+}

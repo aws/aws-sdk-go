@@ -6637,6 +6637,14 @@ const (
 	AMITypesAl2X8664Gpu = "AL2_x86_64_GPU"
 )
 
+// AMITypes_Values returns all elements of the AMITypes enum
+func AMITypes_Values() []string {
+	return []string{
+		AMITypesAl2X8664,
+		AMITypesAl2X8664Gpu,
+	}
+}
+
 const (
 	// ClusterStatusCreating is a ClusterStatus enum value
 	ClusterStatusCreating = "CREATING"
@@ -6653,6 +6661,17 @@ const (
 	// ClusterStatusUpdating is a ClusterStatus enum value
 	ClusterStatusUpdating = "UPDATING"
 )
+
+// ClusterStatus_Values returns all elements of the ClusterStatus enum
+func ClusterStatus_Values() []string {
+	return []string{
+		ClusterStatusCreating,
+		ClusterStatusActive,
+		ClusterStatusDeleting,
+		ClusterStatusFailed,
+		ClusterStatusUpdating,
+	}
+}
 
 const (
 	// ErrorCodeSubnetNotFound is a ErrorCode enum value
@@ -6689,6 +6708,23 @@ const (
 	ErrorCodeInsufficientFreeAddresses = "InsufficientFreeAddresses"
 )
 
+// ErrorCode_Values returns all elements of the ErrorCode enum
+func ErrorCode_Values() []string {
+	return []string{
+		ErrorCodeSubnetNotFound,
+		ErrorCodeSecurityGroupNotFound,
+		ErrorCodeEniLimitReached,
+		ErrorCodeIpNotAvailable,
+		ErrorCodeAccessDenied,
+		ErrorCodeOperationNotPermitted,
+		ErrorCodeVpcIdNotFound,
+		ErrorCodeUnknown,
+		ErrorCodeNodeCreationFailure,
+		ErrorCodePodEvictionFailure,
+		ErrorCodeInsufficientFreeAddresses,
+	}
+}
+
 const (
 	// FargateProfileStatusCreating is a FargateProfileStatus enum value
 	FargateProfileStatusCreating = "CREATING"
@@ -6706,6 +6742,17 @@ const (
 	FargateProfileStatusDeleteFailed = "DELETE_FAILED"
 )
 
+// FargateProfileStatus_Values returns all elements of the FargateProfileStatus enum
+func FargateProfileStatus_Values() []string {
+	return []string{
+		FargateProfileStatusCreating,
+		FargateProfileStatusActive,
+		FargateProfileStatusDeleting,
+		FargateProfileStatusCreateFailed,
+		FargateProfileStatusDeleteFailed,
+	}
+}
+
 const (
 	// LogTypeApi is a LogType enum value
 	LogTypeApi = "api"
@@ -6722,6 +6769,17 @@ const (
 	// LogTypeScheduler is a LogType enum value
 	LogTypeScheduler = "scheduler"
 )
+
+// LogType_Values returns all elements of the LogType enum
+func LogType_Values() []string {
+	return []string{
+		LogTypeApi,
+		LogTypeAudit,
+		LogTypeAuthenticator,
+		LogTypeControllerManager,
+		LogTypeScheduler,
+	}
+}
 
 const (
 	// NodegroupIssueCodeAutoScalingGroupNotFound is a NodegroupIssueCode enum value
@@ -6776,6 +6834,29 @@ const (
 	NodegroupIssueCodeInternalFailure = "InternalFailure"
 )
 
+// NodegroupIssueCode_Values returns all elements of the NodegroupIssueCode enum
+func NodegroupIssueCode_Values() []string {
+	return []string{
+		NodegroupIssueCodeAutoScalingGroupNotFound,
+		NodegroupIssueCodeAutoScalingGroupInvalidConfiguration,
+		NodegroupIssueCodeEc2securityGroupNotFound,
+		NodegroupIssueCodeEc2securityGroupDeletionFailure,
+		NodegroupIssueCodeEc2launchTemplateNotFound,
+		NodegroupIssueCodeEc2launchTemplateVersionMismatch,
+		NodegroupIssueCodeEc2subnetNotFound,
+		NodegroupIssueCodeEc2subnetInvalidConfiguration,
+		NodegroupIssueCodeIamInstanceProfileNotFound,
+		NodegroupIssueCodeIamLimitExceeded,
+		NodegroupIssueCodeIamNodeRoleNotFound,
+		NodegroupIssueCodeNodeCreationFailure,
+		NodegroupIssueCodeAsgInstanceLaunchFailures,
+		NodegroupIssueCodeInstanceLimitExceeded,
+		NodegroupIssueCodeInsufficientFreeAddresses,
+		NodegroupIssueCodeAccessDenied,
+		NodegroupIssueCodeInternalFailure,
+	}
+}
+
 const (
 	// NodegroupStatusCreating is a NodegroupStatus enum value
 	NodegroupStatusCreating = "CREATING"
@@ -6798,6 +6879,19 @@ const (
 	// NodegroupStatusDegraded is a NodegroupStatus enum value
 	NodegroupStatusDegraded = "DEGRADED"
 )
+
+// NodegroupStatus_Values returns all elements of the NodegroupStatus enum
+func NodegroupStatus_Values() []string {
+	return []string{
+		NodegroupStatusCreating,
+		NodegroupStatusActive,
+		NodegroupStatusUpdating,
+		NodegroupStatusDeleting,
+		NodegroupStatusCreateFailed,
+		NodegroupStatusDeleteFailed,
+		NodegroupStatusDegraded,
+	}
+}
 
 const (
 	// UpdateParamTypeVersion is a UpdateParamType enum value
@@ -6837,6 +6931,24 @@ const (
 	UpdateParamTypePublicAccessCidrs = "PublicAccessCidrs"
 )
 
+// UpdateParamType_Values returns all elements of the UpdateParamType enum
+func UpdateParamType_Values() []string {
+	return []string{
+		UpdateParamTypeVersion,
+		UpdateParamTypePlatformVersion,
+		UpdateParamTypeEndpointPrivateAccess,
+		UpdateParamTypeEndpointPublicAccess,
+		UpdateParamTypeClusterLogging,
+		UpdateParamTypeDesiredSize,
+		UpdateParamTypeLabelsToAdd,
+		UpdateParamTypeLabelsToRemove,
+		UpdateParamTypeMaxSize,
+		UpdateParamTypeMinSize,
+		UpdateParamTypeReleaseVersion,
+		UpdateParamTypePublicAccessCidrs,
+	}
+}
+
 const (
 	// UpdateStatusInProgress is a UpdateStatus enum value
 	UpdateStatusInProgress = "InProgress"
@@ -6851,6 +6963,16 @@ const (
 	UpdateStatusSuccessful = "Successful"
 )
 
+// UpdateStatus_Values returns all elements of the UpdateStatus enum
+func UpdateStatus_Values() []string {
+	return []string{
+		UpdateStatusInProgress,
+		UpdateStatusFailed,
+		UpdateStatusCancelled,
+		UpdateStatusSuccessful,
+	}
+}
+
 const (
 	// UpdateTypeVersionUpdate is a UpdateType enum value
 	UpdateTypeVersionUpdate = "VersionUpdate"
@@ -6864,3 +6986,13 @@ const (
 	// UpdateTypeConfigUpdate is a UpdateType enum value
 	UpdateTypeConfigUpdate = "ConfigUpdate"
 )
+
+// UpdateType_Values returns all elements of the UpdateType enum
+func UpdateType_Values() []string {
+	return []string{
+		UpdateTypeVersionUpdate,
+		UpdateTypeEndpointAccessUpdate,
+		UpdateTypeLoggingUpdate,
+		UpdateTypeConfigUpdate,
+	}
+}

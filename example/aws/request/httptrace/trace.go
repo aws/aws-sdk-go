@@ -58,7 +58,7 @@ type HTTPLatency struct {
 	ReadBody              time.Duration
 }
 
-// RequestTrace provides the strucutre to store SDK request attempt latencies.
+// RequestTrace provides the structure to store SDK request attempt latencies.
 // Use TraceRequest as a API operation request option to capture trace metrics
 // for the individual request.
 type RequestTrace struct {

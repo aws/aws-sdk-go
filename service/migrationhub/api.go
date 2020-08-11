@@ -4905,6 +4905,15 @@ const (
 	ApplicationStatusCompleted = "COMPLETED"
 )
 
+// ApplicationStatus_Values returns all elements of the ApplicationStatus enum
+func ApplicationStatus_Values() []string {
+	return []string{
+		ApplicationStatusNotStarted,
+		ApplicationStatusInProgress,
+		ApplicationStatusCompleted,
+	}
+}
+
 const (
 	// ResourceAttributeTypeIpv4Address is a ResourceAttributeType enum value
 	ResourceAttributeTypeIpv4Address = "IPV4_ADDRESS"
@@ -4937,6 +4946,22 @@ const (
 	ResourceAttributeTypeMotherboardSerialNumber = "MOTHERBOARD_SERIAL_NUMBER"
 )
 
+// ResourceAttributeType_Values returns all elements of the ResourceAttributeType enum
+func ResourceAttributeType_Values() []string {
+	return []string{
+		ResourceAttributeTypeIpv4Address,
+		ResourceAttributeTypeIpv6Address,
+		ResourceAttributeTypeMacAddress,
+		ResourceAttributeTypeFqdn,
+		ResourceAttributeTypeVmManagerId,
+		ResourceAttributeTypeVmManagedObjectReference,
+		ResourceAttributeTypeVmName,
+		ResourceAttributeTypeVmPath,
+		ResourceAttributeTypeBiosId,
+		ResourceAttributeTypeMotherboardSerialNumber,
+	}
+}
+
 const (
 	// StatusNotStarted is a Status enum value
 	StatusNotStarted = "NOT_STARTED"
@@ -4950,3 +4975,13 @@ const (
 	// StatusCompleted is a Status enum value
 	StatusCompleted = "COMPLETED"
 )
+
+// Status_Values returns all elements of the Status enum
+func Status_Values() []string {
+	return []string{
+		StatusNotStarted,
+		StatusInProgress,
+		StatusFailed,
+		StatusCompleted,
+	}
+}

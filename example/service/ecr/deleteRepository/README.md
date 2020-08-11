@@ -11,7 +11,7 @@ The example deletes the repository name provided in the first parameter from def
 go run -tags example deleteRepository.go <repo_name>
 ```
 
-To delete a repository from a diferent region, set `AWS_REGION` env var.
+To delete a repository from a different region, set `AWS_REGION` env var.
 
 ```sh
 AWS_REGION=us-west-2 go run -tags example deleteRepository.go <repo_name>

@@ -5415,6 +5415,15 @@ const (
 	EndpointTypeVpcEndpoint = "VPC_ENDPOINT"
 )
 
+// EndpointType_Values returns all elements of the EndpointType enum
+func EndpointType_Values() []string {
+	return []string{
+		EndpointTypePublic,
+		EndpointTypeVpc,
+		EndpointTypeVpcEndpoint,
+	}
+}
+
 const (
 	// HomeDirectoryTypePath is a HomeDirectoryType enum value
 	HomeDirectoryTypePath = "PATH"
@@ -5422,6 +5431,14 @@ const (
 	// HomeDirectoryTypeLogical is a HomeDirectoryType enum value
 	HomeDirectoryTypeLogical = "LOGICAL"
 )
+
+// HomeDirectoryType_Values returns all elements of the HomeDirectoryType enum
+func HomeDirectoryType_Values() []string {
+	return []string{
+		HomeDirectoryTypePath,
+		HomeDirectoryTypeLogical,
+	}
+}
 
 // Returns information related to the type of user authentication that is in
 // use for a file transfer protocol-enabled server's users. For SERVICE_MANAGED
@@ -5437,6 +5454,14 @@ const (
 	IdentityProviderTypeApiGateway = "API_GATEWAY"
 )
 
+// IdentityProviderType_Values returns all elements of the IdentityProviderType enum
+func IdentityProviderType_Values() []string {
+	return []string{
+		IdentityProviderTypeServiceManaged,
+		IdentityProviderTypeApiGateway,
+	}
+}
+
 const (
 	// ProtocolSftp is a Protocol enum value
 	ProtocolSftp = "SFTP"
@@ -5447,6 +5472,15 @@ const (
 	// ProtocolFtps is a Protocol enum value
 	ProtocolFtps = "FTPS"
 )
+
+// Protocol_Values returns all elements of the Protocol enum
+func Protocol_Values() []string {
+	return []string{
+		ProtocolSftp,
+		ProtocolFtp,
+		ProtocolFtps,
+	}
+}
 
 // Describes the condition of a file transfer protocol-enabled server with respect
 // to its ability to perform file operations. There are six possible states:
@@ -5477,3 +5511,15 @@ const (
 	// StateStopFailed is a State enum value
 	StateStopFailed = "STOP_FAILED"
 )
+
+// State_Values returns all elements of the State enum
+func State_Values() []string {
+	return []string{
+		StateOffline,
+		StateOnline,
+		StateStarting,
+		StateStopping,
+		StateStartFailed,
+		StateStopFailed,
+	}
+}

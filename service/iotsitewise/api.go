@@ -15962,10 +15962,29 @@ const (
 	AggregateTypeStandardDeviation = "STANDARD_DEVIATION"
 )
 
+// AggregateType_Values returns all elements of the AggregateType enum
+func AggregateType_Values() []string {
+	return []string{
+		AggregateTypeAverage,
+		AggregateTypeCount,
+		AggregateTypeMaximum,
+		AggregateTypeMinimum,
+		AggregateTypeSum,
+		AggregateTypeStandardDeviation,
+	}
+}
+
 const (
 	// AssetErrorCodeInternalFailure is a AssetErrorCode enum value
 	AssetErrorCodeInternalFailure = "INTERNAL_FAILURE"
 )
+
+// AssetErrorCode_Values returns all elements of the AssetErrorCode enum
+func AssetErrorCode_Values() []string {
+	return []string{
+		AssetErrorCodeInternalFailure,
+	}
+}
 
 const (
 	// AssetModelStateCreating is a AssetModelState enum value
@@ -15987,6 +16006,18 @@ const (
 	AssetModelStateFailed = "FAILED"
 )
 
+// AssetModelState_Values returns all elements of the AssetModelState enum
+func AssetModelState_Values() []string {
+	return []string{
+		AssetModelStateCreating,
+		AssetModelStateActive,
+		AssetModelStateUpdating,
+		AssetModelStatePropagating,
+		AssetModelStateDeleting,
+		AssetModelStateFailed,
+	}
+}
+
 const (
 	// AssetStateCreating is a AssetState enum value
 	AssetStateCreating = "CREATING"
@@ -16003,6 +16034,17 @@ const (
 	// AssetStateFailed is a AssetState enum value
 	AssetStateFailed = "FAILED"
 )
+
+// AssetState_Values returns all elements of the AssetState enum
+func AssetState_Values() []string {
+	return []string{
+		AssetStateCreating,
+		AssetStateActive,
+		AssetStateUpdating,
+		AssetStateDeleting,
+		AssetStateFailed,
+	}
+}
 
 const (
 	// BatchPutAssetPropertyValueErrorCodeResourceNotFoundException is a BatchPutAssetPropertyValueErrorCode enum value
@@ -16033,6 +16075,21 @@ const (
 	BatchPutAssetPropertyValueErrorCodeAccessDeniedException = "AccessDeniedException"
 )
 
+// BatchPutAssetPropertyValueErrorCode_Values returns all elements of the BatchPutAssetPropertyValueErrorCode enum
+func BatchPutAssetPropertyValueErrorCode_Values() []string {
+	return []string{
+		BatchPutAssetPropertyValueErrorCodeResourceNotFoundException,
+		BatchPutAssetPropertyValueErrorCodeInvalidRequestException,
+		BatchPutAssetPropertyValueErrorCodeInternalFailureException,
+		BatchPutAssetPropertyValueErrorCodeServiceUnavailableException,
+		BatchPutAssetPropertyValueErrorCodeThrottlingException,
+		BatchPutAssetPropertyValueErrorCodeLimitExceededException,
+		BatchPutAssetPropertyValueErrorCodeConflictingOperationException,
+		BatchPutAssetPropertyValueErrorCodeTimestampOutOfRangeException,
+		BatchPutAssetPropertyValueErrorCodeAccessDeniedException,
+	}
+}
+
 const (
 	// CapabilitySyncStatusInSync is a CapabilitySyncStatus enum value
 	CapabilitySyncStatusInSync = "IN_SYNC"
@@ -16044,6 +16101,15 @@ const (
 	CapabilitySyncStatusSyncFailed = "SYNC_FAILED"
 )
 
+// CapabilitySyncStatus_Values returns all elements of the CapabilitySyncStatus enum
+func CapabilitySyncStatus_Values() []string {
+	return []string{
+		CapabilitySyncStatusInSync,
+		CapabilitySyncStatusOutOfSync,
+		CapabilitySyncStatusSyncFailed,
+	}
+}
+
 const (
 	// ErrorCodeValidationError is a ErrorCode enum value
 	ErrorCodeValidationError = "VALIDATION_ERROR"
@@ -16051,6 +16117,14 @@ const (
 	// ErrorCodeInternalFailure is a ErrorCode enum value
 	ErrorCodeInternalFailure = "INTERNAL_FAILURE"
 )
+
+// ErrorCode_Values returns all elements of the ErrorCode enum
+func ErrorCode_Values() []string {
+	return []string{
+		ErrorCodeValidationError,
+		ErrorCodeInternalFailure,
+	}
+}
 
 const (
 	// IdentityTypeUser is a IdentityType enum value
@@ -16060,10 +16134,25 @@ const (
 	IdentityTypeGroup = "GROUP"
 )
 
+// IdentityType_Values returns all elements of the IdentityType enum
+func IdentityType_Values() []string {
+	return []string{
+		IdentityTypeUser,
+		IdentityTypeGroup,
+	}
+}
+
 const (
 	// ImageFileTypePng is a ImageFileType enum value
 	ImageFileTypePng = "PNG"
 )
+
+// ImageFileType_Values returns all elements of the ImageFileType enum
+func ImageFileType_Values() []string {
+	return []string{
+		ImageFileTypePng,
+	}
+}
 
 const (
 	// ListAssetsFilterAll is a ListAssetsFilter enum value
@@ -16072,6 +16161,14 @@ const (
 	// ListAssetsFilterTopLevel is a ListAssetsFilter enum value
 	ListAssetsFilterTopLevel = "TOP_LEVEL"
 )
+
+// ListAssetsFilter_Values returns all elements of the ListAssetsFilter enum
+func ListAssetsFilter_Values() []string {
+	return []string{
+		ListAssetsFilterAll,
+		ListAssetsFilterTopLevel,
+	}
+}
 
 const (
 	// LoggingLevelError is a LoggingLevel enum value
@@ -16084,10 +16181,26 @@ const (
 	LoggingLevelOff = "OFF"
 )
 
+// LoggingLevel_Values returns all elements of the LoggingLevel enum
+func LoggingLevel_Values() []string {
+	return []string{
+		LoggingLevelError,
+		LoggingLevelInfo,
+		LoggingLevelOff,
+	}
+}
+
 const (
 	// MonitorErrorCodeInternalFailure is a MonitorErrorCode enum value
 	MonitorErrorCodeInternalFailure = "INTERNAL_FAILURE"
 )
+
+// MonitorErrorCode_Values returns all elements of the MonitorErrorCode enum
+func MonitorErrorCode_Values() []string {
+	return []string{
+		MonitorErrorCodeInternalFailure,
+	}
+}
 
 const (
 	// PermissionAdministrator is a Permission enum value
@@ -16096,6 +16209,14 @@ const (
 	// PermissionViewer is a Permission enum value
 	PermissionViewer = "VIEWER"
 )
+
+// Permission_Values returns all elements of the Permission enum
+func Permission_Values() []string {
+	return []string{
+		PermissionAdministrator,
+		PermissionViewer,
+	}
+}
 
 const (
 	// PortalStateCreating is a PortalState enum value
@@ -16114,6 +16235,17 @@ const (
 	PortalStateFailed = "FAILED"
 )
 
+// PortalState_Values returns all elements of the PortalState enum
+func PortalState_Values() []string {
+	return []string{
+		PortalStateCreating,
+		PortalStateUpdating,
+		PortalStateDeleting,
+		PortalStateActive,
+		PortalStateFailed,
+	}
+}
+
 const (
 	// PropertyDataTypeString is a PropertyDataType enum value
 	PropertyDataTypeString = "STRING"
@@ -16128,6 +16260,16 @@ const (
 	PropertyDataTypeBoolean = "BOOLEAN"
 )
 
+// PropertyDataType_Values returns all elements of the PropertyDataType enum
+func PropertyDataType_Values() []string {
+	return []string{
+		PropertyDataTypeString,
+		PropertyDataTypeInteger,
+		PropertyDataTypeDouble,
+		PropertyDataTypeBoolean,
+	}
+}
+
 const (
 	// PropertyNotificationStateEnabled is a PropertyNotificationState enum value
 	PropertyNotificationStateEnabled = "ENABLED"
@@ -16135,6 +16277,14 @@ const (
 	// PropertyNotificationStateDisabled is a PropertyNotificationState enum value
 	PropertyNotificationStateDisabled = "DISABLED"
 )
+
+// PropertyNotificationState_Values returns all elements of the PropertyNotificationState enum
+func PropertyNotificationState_Values() []string {
+	return []string{
+		PropertyNotificationStateEnabled,
+		PropertyNotificationStateDisabled,
+	}
+}
 
 const (
 	// QualityGood is a Quality enum value
@@ -16147,6 +16297,15 @@ const (
 	QualityUncertain = "UNCERTAIN"
 )
 
+// Quality_Values returns all elements of the Quality enum
+func Quality_Values() []string {
+	return []string{
+		QualityGood,
+		QualityBad,
+		QualityUncertain,
+	}
+}
+
 const (
 	// ResourceTypePortal is a ResourceType enum value
 	ResourceTypePortal = "PORTAL"
@@ -16155,6 +16314,14 @@ const (
 	ResourceTypeProject = "PROJECT"
 )
 
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypePortal,
+		ResourceTypeProject,
+	}
+}
+
 const (
 	// TimeOrderingAscending is a TimeOrdering enum value
 	TimeOrderingAscending = "ASCENDING"
@@ -16162,3 +16329,11 @@ const (
 	// TimeOrderingDescending is a TimeOrdering enum value
 	TimeOrderingDescending = "DESCENDING"
 )
+
+// TimeOrdering_Values returns all elements of the TimeOrdering enum
+func TimeOrdering_Values() []string {
+	return []string{
+		TimeOrderingAscending,
+		TimeOrderingDescending,
+	}
+}

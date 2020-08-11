@@ -126,7 +126,7 @@ func TestNewEncryptionClientV2_NonDefaults(t *testing.T) {
 }
 
 // cdgWithStaticTestIV is a test structure that wraps a CipherDataGeneratorWithCEKAlg and stubs in a static IV
-// so that encryption tests can be guranteed to be consistent.
+// so that encryption tests can be guaranteed to be consistent.
 type cdgWithStaticTestIV struct {
 	IV []byte
 	CipherDataGeneratorWithCEKAlg

@@ -14046,12 +14046,27 @@ const (
 	AdminStatusDisablingInProgress = "DISABLING_IN_PROGRESS"
 )
 
+// AdminStatus_Values returns all elements of the AdminStatus enum
+func AdminStatus_Values() []string {
+	return []string{
+		AdminStatusEnabled,
+		AdminStatusDisablingInProgress,
+	}
+}
+
 // The type of currency that data for a usage metric is reported in. Possible
 // values are:
 const (
 	// CurrencyUsd is a Currency enum value
 	CurrencyUsd = "USD"
 )
+
+// Currency_Values returns all elements of the Currency enum
+func Currency_Values() []string {
+	return []string{
+		CurrencyUsd,
+	}
+}
 
 const (
 	// DayOfWeekSunday is a DayOfWeek enum value
@@ -14076,6 +14091,19 @@ const (
 	DayOfWeekSaturday = "SATURDAY"
 )
 
+// DayOfWeek_Values returns all elements of the DayOfWeek enum
+func DayOfWeek_Values() []string {
+	return []string{
+		DayOfWeekSunday,
+		DayOfWeekMonday,
+		DayOfWeekTuesday,
+		DayOfWeekWednesday,
+		DayOfWeekThursday,
+		DayOfWeekFriday,
+		DayOfWeekSaturday,
+	}
+}
+
 const (
 	// EffectivePermissionPublic is a EffectivePermission enum value
 	EffectivePermissionPublic = "PUBLIC"
@@ -14083,6 +14111,14 @@ const (
 	// EffectivePermissionNotPublic is a EffectivePermission enum value
 	EffectivePermissionNotPublic = "NOT_PUBLIC"
 )
+
+// EffectivePermission_Values returns all elements of the EffectivePermission enum
+func EffectivePermission_Values() []string {
+	return []string{
+		EffectivePermissionPublic,
+		EffectivePermissionNotPublic,
+	}
+}
 
 // The type of server-side encryption that's used to encrypt objects in the
 // S3 bucket. Valid values are:
@@ -14100,6 +14136,16 @@ const (
 	EncryptionTypeUnknown = "UNKNOWN"
 )
 
+// EncryptionType_Values returns all elements of the EncryptionType enum
+func EncryptionType_Values() []string {
+	return []string{
+		EncryptionTypeNone,
+		EncryptionTypeAes256,
+		EncryptionTypeAwsKms,
+		EncryptionTypeUnknown,
+	}
+}
+
 // The source of an error, issue, or delay. Possible values are:
 const (
 	// ErrorCodeClientError is a ErrorCode enum value
@@ -14109,12 +14155,27 @@ const (
 	ErrorCodeInternalError = "InternalError"
 )
 
+// ErrorCode_Values returns all elements of the ErrorCode enum
+func ErrorCode_Values() []string {
+	return []string{
+		ErrorCodeClientError,
+		ErrorCodeInternalError,
+	}
+}
+
 // The type of action that occurred for the resource and produced the policy
 // finding:
 const (
 	// FindingActionTypeAwsApiCall is a FindingActionType enum value
 	FindingActionTypeAwsApiCall = "AWS_API_CALL"
 )
+
+// FindingActionType_Values returns all elements of the FindingActionType enum
+func FindingActionType_Values() []string {
+	return []string{
+		FindingActionTypeAwsApiCall,
+	}
+}
 
 // The category of the finding. Valid values are:
 const (
@@ -14124,6 +14185,14 @@ const (
 	// FindingCategoryPolicy is a FindingCategory enum value
 	FindingCategoryPolicy = "POLICY"
 )
+
+// FindingCategory_Values returns all elements of the FindingCategory enum
+func FindingCategory_Values() []string {
+	return []string{
+		FindingCategoryClassification,
+		FindingCategoryPolicy,
+	}
+}
 
 // The frequency with which Amazon Macie publishes updates to policy findings
 // for an account. This includes publishing updates to AWS Security Hub and
@@ -14140,6 +14209,15 @@ const (
 	FindingPublishingFrequencySixHours = "SIX_HOURS"
 )
 
+// FindingPublishingFrequency_Values returns all elements of the FindingPublishingFrequency enum
+func FindingPublishingFrequency_Values() []string {
+	return []string{
+		FindingPublishingFrequencyFifteenMinutes,
+		FindingPublishingFrequencyOneHour,
+		FindingPublishingFrequencySixHours,
+	}
+}
+
 // The grouping to sort the results by. Valid values are:
 const (
 	// FindingStatisticsSortAttributeNameGroupKey is a FindingStatisticsSortAttributeName enum value
@@ -14148,6 +14226,14 @@ const (
 	// FindingStatisticsSortAttributeNameCount is a FindingStatisticsSortAttributeName enum value
 	FindingStatisticsSortAttributeNameCount = "count"
 )
+
+// FindingStatisticsSortAttributeName_Values returns all elements of the FindingStatisticsSortAttributeName enum
+func FindingStatisticsSortAttributeName_Values() []string {
+	return []string{
+		FindingStatisticsSortAttributeNameGroupKey,
+		FindingStatisticsSortAttributeNameCount,
+	}
+}
 
 // The type of finding. Valid values are:
 const (
@@ -14182,6 +14268,22 @@ const (
 	FindingTypePolicyIamuserS3blockPublicAccessDisabled = "Policy:IAMUser/S3BlockPublicAccessDisabled"
 )
 
+// FindingType_Values returns all elements of the FindingType enum
+func FindingType_Values() []string {
+	return []string{
+		FindingTypeSensitiveDataS3objectMultiple,
+		FindingTypeSensitiveDataS3objectFinancial,
+		FindingTypeSensitiveDataS3objectPersonal,
+		FindingTypeSensitiveDataS3objectCredentials,
+		FindingTypeSensitiveDataS3objectCustomIdentifier,
+		FindingTypePolicyIamuserS3bucketPublic,
+		FindingTypePolicyIamuserS3bucketSharedExternally,
+		FindingTypePolicyIamuserS3bucketReplicatedExternally,
+		FindingTypePolicyIamuserS3bucketEncryptionDisabled,
+		FindingTypePolicyIamuserS3blockPublicAccessDisabled,
+	}
+}
+
 // The action to perform on findings that meet the filter criteria. To suppress
 // (automatically archive) findings that meet the criteria, set this value to
 // ARCHIVE. Valid values are:
@@ -14192,6 +14294,14 @@ const (
 	// FindingsFilterActionNoop is a FindingsFilterAction enum value
 	FindingsFilterActionNoop = "NOOP"
 )
+
+// FindingsFilterAction_Values returns all elements of the FindingsFilterAction enum
+func FindingsFilterAction_Values() []string {
+	return []string{
+		FindingsFilterActionArchive,
+		FindingsFilterActionNoop,
+	}
+}
 
 const (
 	// GroupByResourcesAffectedS3bucketName is a GroupBy enum value
@@ -14206,6 +14316,16 @@ const (
 	// GroupBySeverityDescription is a GroupBy enum value
 	GroupBySeverityDescription = "severity.description"
 )
+
+// GroupBy_Values returns all elements of the GroupBy enum
+func GroupBy_Values() []string {
+	return []string{
+		GroupByResourcesAffectedS3bucketName,
+		GroupByType,
+		GroupByClassificationDetailsJobId,
+		GroupBySeverityDescription,
+	}
+}
 
 // The operator to use in a condition. Valid values are:
 const (
@@ -14231,6 +14351,19 @@ const (
 	JobComparatorContains = "CONTAINS"
 )
 
+// JobComparator_Values returns all elements of the JobComparator enum
+func JobComparator_Values() []string {
+	return []string{
+		JobComparatorEq,
+		JobComparatorGt,
+		JobComparatorGte,
+		JobComparatorLt,
+		JobComparatorLte,
+		JobComparatorNe,
+		JobComparatorContains,
+	}
+}
+
 // The current status of a classification job. Possible values are:
 const (
 	// JobStatusRunning is a JobStatus enum value
@@ -14249,6 +14382,17 @@ const (
 	JobStatusIdle = "IDLE"
 )
 
+// JobStatus_Values returns all elements of the JobStatus enum
+func JobStatus_Values() []string {
+	return []string{
+		JobStatusRunning,
+		JobStatusPaused,
+		JobStatusCancelled,
+		JobStatusComplete,
+		JobStatusIdle,
+	}
+}
+
 // The schedule for running a classification job. Valid values are:
 const (
 	// JobTypeOneTime is a JobType enum value
@@ -14257,6 +14401,14 @@ const (
 	// JobTypeScheduled is a JobType enum value
 	JobTypeScheduled = "SCHEDULED"
 )
+
+// JobType_Values returns all elements of the JobType enum
+func JobType_Values() []string {
+	return []string{
+		JobTypeOneTime,
+		JobTypeScheduled,
+	}
+}
 
 // The property to use to filter the results. Valid values are:
 const (
@@ -14273,6 +14425,16 @@ const (
 	ListJobsFilterKeyName = "name"
 )
 
+// ListJobsFilterKey_Values returns all elements of the ListJobsFilterKey enum
+func ListJobsFilterKey_Values() []string {
+	return []string{
+		ListJobsFilterKeyJobType,
+		ListJobsFilterKeyJobStatus,
+		ListJobsFilterKeyCreatedAt,
+		ListJobsFilterKeyName,
+	}
+}
+
 // The property to sort the results by. Valid values are:
 const (
 	// ListJobsSortAttributeNameCreatedAt is a ListJobsSortAttributeName enum value
@@ -14288,6 +14450,16 @@ const (
 	ListJobsSortAttributeNameJobType = "jobType"
 )
 
+// ListJobsSortAttributeName_Values returns all elements of the ListJobsSortAttributeName enum
+func ListJobsSortAttributeName_Values() []string {
+	return []string{
+		ListJobsSortAttributeNameCreatedAt,
+		ListJobsSortAttributeNameJobStatus,
+		ListJobsSortAttributeNameName,
+		ListJobsSortAttributeNameJobType,
+	}
+}
+
 // The status of an Amazon Macie account. Valid values are:
 const (
 	// MacieStatusPaused is a MacieStatus enum value
@@ -14297,6 +14469,14 @@ const (
 	MacieStatusEnabled = "ENABLED"
 )
 
+// MacieStatus_Values returns all elements of the MacieStatus enum
+func MacieStatus_Values() []string {
+	return []string{
+		MacieStatusPaused,
+		MacieStatusEnabled,
+	}
+}
+
 const (
 	// OrderByAsc is a OrderBy enum value
 	OrderByAsc = "ASC"
@@ -14304,6 +14484,14 @@ const (
 	// OrderByDesc is a OrderBy enum value
 	OrderByDesc = "DESC"
 )
+
+// OrderBy_Values returns all elements of the OrderBy enum
+func OrderBy_Values() []string {
+	return []string{
+		OrderByAsc,
+		OrderByDesc,
+	}
+}
 
 // The current status of the relationship between an account and an associated
 // Amazon Macie master account (inviter account). Possible values are:
@@ -14339,6 +14527,22 @@ const (
 	RelationshipStatusAccountSuspended = "AccountSuspended"
 )
 
+// RelationshipStatus_Values returns all elements of the RelationshipStatus enum
+func RelationshipStatus_Values() []string {
+	return []string{
+		RelationshipStatusEnabled,
+		RelationshipStatusPaused,
+		RelationshipStatusInvited,
+		RelationshipStatusCreated,
+		RelationshipStatusRemoved,
+		RelationshipStatusResigned,
+		RelationshipStatusEmailVerificationInProgress,
+		RelationshipStatusEmailVerificationFailed,
+		RelationshipStatusRegionDisabled,
+		RelationshipStatusAccountSuspended,
+	}
+}
+
 // The property to use in a condition that determines which objects are analyzed
 // by a classification job. Valid values are:
 const (
@@ -14358,6 +14562,17 @@ const (
 	ScopeFilterKeyTag = "TAG"
 )
 
+// ScopeFilterKey_Values returns all elements of the ScopeFilterKey enum
+func ScopeFilterKey_Values() []string {
+	return []string{
+		ScopeFilterKeyBucketCreationDate,
+		ScopeFilterKeyObjectExtension,
+		ScopeFilterKeyObjectLastModifiedDate,
+		ScopeFilterKeyObjectSize,
+		ScopeFilterKeyTag,
+	}
+}
+
 // The category of sensitive data that was detected and produced the finding.
 // Possible values are:
 const (
@@ -14374,6 +14589,16 @@ const (
 	SensitiveDataItemCategoryCustomIdentifier = "CUSTOM_IDENTIFIER"
 )
 
+// SensitiveDataItemCategory_Values returns all elements of the SensitiveDataItemCategory enum
+func SensitiveDataItemCategory_Values() []string {
+	return []string{
+		SensitiveDataItemCategoryFinancialInformation,
+		SensitiveDataItemCategoryPersonalInformation,
+		SensitiveDataItemCategoryCredentials,
+		SensitiveDataItemCategoryCustomIdentifier,
+	}
+}
+
 // The textual representation of the finding's severity. Possible values are:
 const (
 	// SeverityDescriptionLow is a SeverityDescription enum value
@@ -14386,6 +14611,15 @@ const (
 	SeverityDescriptionHigh = "High"
 )
 
+// SeverityDescription_Values returns all elements of the SeverityDescription enum
+func SeverityDescription_Values() []string {
+	return []string{
+		SeverityDescriptionLow,
+		SeverityDescriptionMedium,
+		SeverityDescriptionHigh,
+	}
+}
+
 const (
 	// SharedAccessExternal is a SharedAccess enum value
 	SharedAccessExternal = "EXTERNAL"
@@ -14396,6 +14630,15 @@ const (
 	// SharedAccessNotShared is a SharedAccess enum value
 	SharedAccessNotShared = "NOT_SHARED"
 )
+
+// SharedAccess_Values returns all elements of the SharedAccess enum
+func SharedAccess_Values() []string {
+	return []string{
+		SharedAccessExternal,
+		SharedAccessInternal,
+		SharedAccessNotShared,
+	}
+}
 
 // The storage class of the S3 bucket or object. Possible values are:
 const (
@@ -14421,16 +14664,43 @@ const (
 	StorageClassGlacier = "GLACIER"
 )
 
+// StorageClass_Values returns all elements of the StorageClass enum
+func StorageClass_Values() []string {
+	return []string{
+		StorageClassStandard,
+		StorageClassReducedRedundancy,
+		StorageClassStandardIa,
+		StorageClassIntelligentTiering,
+		StorageClassDeepArchive,
+		StorageClassOnezoneIa,
+		StorageClassGlacier,
+	}
+}
+
 // The type of object to apply a tag-based condition to. Valid values are:
 const (
 	// TagTargetS3Object is a TagTarget enum value
 	TagTargetS3Object = "S3_OBJECT"
 )
 
+// TagTarget_Values returns all elements of the TagTarget enum
+func TagTarget_Values() []string {
+	return []string{
+		TagTargetS3Object,
+	}
+}
+
 const (
 	// UnitTerabytes is a Unit enum value
 	UnitTerabytes = "TERABYTES"
 )
+
+// Unit_Values returns all elements of the Unit enum
+func Unit_Values() []string {
+	return []string{
+		UnitTerabytes,
+	}
+}
 
 // The operator to use in a condition that filters the results of a query for
 // account quotas and usage data. Valid values are:
@@ -14457,6 +14727,19 @@ const (
 	UsageStatisticsFilterComparatorContains = "CONTAINS"
 )
 
+// UsageStatisticsFilterComparator_Values returns all elements of the UsageStatisticsFilterComparator enum
+func UsageStatisticsFilterComparator_Values() []string {
+	return []string{
+		UsageStatisticsFilterComparatorGt,
+		UsageStatisticsFilterComparatorGte,
+		UsageStatisticsFilterComparatorLt,
+		UsageStatisticsFilterComparatorLte,
+		UsageStatisticsFilterComparatorEq,
+		UsageStatisticsFilterComparatorNe,
+		UsageStatisticsFilterComparatorContains,
+	}
+}
+
 // The field to use in a condition that filters the results of a query for account
 // quotas and usage data. Valid values are:
 const (
@@ -14472,6 +14755,16 @@ const (
 	// UsageStatisticsFilterKeyTotal is a UsageStatisticsFilterKey enum value
 	UsageStatisticsFilterKeyTotal = "total"
 )
+
+// UsageStatisticsFilterKey_Values returns all elements of the UsageStatisticsFilterKey enum
+func UsageStatisticsFilterKey_Values() []string {
+	return []string{
+		UsageStatisticsFilterKeyAccountId,
+		UsageStatisticsFilterKeyServiceLimit,
+		UsageStatisticsFilterKeyFreeTrialStartDate,
+		UsageStatisticsFilterKeyTotal,
+	}
+}
 
 // The field to use to sort the results of a query for account quotas and usage
 // data. Valid values are:
@@ -14489,6 +14782,16 @@ const (
 	UsageStatisticsSortKeyFreeTrialStartDate = "freeTrialStartDate"
 )
 
+// UsageStatisticsSortKey_Values returns all elements of the UsageStatisticsSortKey enum
+func UsageStatisticsSortKey_Values() []string {
+	return []string{
+		UsageStatisticsSortKeyAccountId,
+		UsageStatisticsSortKeyTotal,
+		UsageStatisticsSortKeyServiceLimitValue,
+		UsageStatisticsSortKeyFreeTrialStartDate,
+	}
+}
+
 // The name of a usage metric for an account. Possible values are:
 const (
 	// UsageTypeDataInventoryEvaluation is a UsageType enum value
@@ -14497,6 +14800,14 @@ const (
 	// UsageTypeSensitiveDataDiscovery is a UsageType enum value
 	UsageTypeSensitiveDataDiscovery = "SENSITIVE_DATA_DISCOVERY"
 )
+
+// UsageType_Values returns all elements of the UsageType enum
+func UsageType_Values() []string {
+	return []string{
+		UsageTypeDataInventoryEvaluation,
+		UsageTypeSensitiveDataDiscovery,
+	}
+}
 
 // The type of entity that performed the action on the affected resource. Possible
 // values are:
@@ -14519,3 +14830,15 @@ const (
 	// UserIdentityTypeAwsservice is a UserIdentityType enum value
 	UserIdentityTypeAwsservice = "AWSService"
 )
+
+// UserIdentityType_Values returns all elements of the UserIdentityType enum
+func UserIdentityType_Values() []string {
+	return []string{
+		UserIdentityTypeAssumedRole,
+		UserIdentityTypeIamuser,
+		UserIdentityTypeFederatedUser,
+		UserIdentityTypeRoot,
+		UserIdentityTypeAwsaccount,
+		UserIdentityTypeAwsservice,
+	}
+}

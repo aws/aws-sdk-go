@@ -1476,3 +1476,12 @@ const (
 	// LocationTypeAvailabilityZoneId is a LocationType enum value
 	LocationTypeAvailabilityZoneId = "availability-zone-id"
 )
+
+// LocationType_Values returns all elements of the LocationType enum
+func LocationType_Values() []string {
+	return []string{
+		LocationTypeRegion,
+		LocationTypeAvailabilityZone,
+		LocationTypeAvailabilityZoneId,
+	}
+}

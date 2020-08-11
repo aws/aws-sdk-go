@@ -1837,6 +1837,14 @@ const (
 	ModeBehindLiveEdge = "BEHIND_LIVE_EDGE"
 )
 
+// Mode_Values returns all elements of the Mode enum
+func Mode_Values() []string {
+	return []string{
+		ModeOff,
+		ModeBehindLiveEdge,
+	}
+}
+
 const (
 	// OriginManifestTypeSinglePeriod is a OriginManifestType enum value
 	OriginManifestTypeSinglePeriod = "SINGLE_PERIOD"
@@ -1844,3 +1852,11 @@ const (
 	// OriginManifestTypeMultiPeriod is a OriginManifestType enum value
 	OriginManifestTypeMultiPeriod = "MULTI_PERIOD"
 )
+
+// OriginManifestType_Values returns all elements of the OriginManifestType enum
+func OriginManifestType_Values() []string {
+	return []string{
+		OriginManifestTypeSinglePeriod,
+		OriginManifestTypeMultiPeriod,
+	}
+}

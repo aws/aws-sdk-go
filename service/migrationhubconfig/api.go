@@ -1072,3 +1072,10 @@ const (
 	// TargetTypeAccount is a TargetType enum value
 	TargetTypeAccount = "ACCOUNT"
 )
+
+// TargetType_Values returns all elements of the TargetType enum
+func TargetType_Values() []string {
+	return []string{
+		TargetTypeAccount,
+	}
+}

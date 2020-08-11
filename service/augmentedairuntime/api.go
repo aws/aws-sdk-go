@@ -1533,6 +1533,14 @@ const (
 	ContentClassifierFreeOfAdultContent = "FreeOfAdultContent"
 )
 
+// ContentClassifier_Values returns all elements of the ContentClassifier enum
+func ContentClassifier_Values() []string {
+	return []string{
+		ContentClassifierFreeOfPersonallyIdentifiableInformation,
+		ContentClassifierFreeOfAdultContent,
+	}
+}
+
 const (
 	// HumanLoopStatusInProgress is a HumanLoopStatus enum value
 	HumanLoopStatusInProgress = "InProgress"
@@ -1550,6 +1558,17 @@ const (
 	HumanLoopStatusStopping = "Stopping"
 )
 
+// HumanLoopStatus_Values returns all elements of the HumanLoopStatus enum
+func HumanLoopStatus_Values() []string {
+	return []string{
+		HumanLoopStatusInProgress,
+		HumanLoopStatusFailed,
+		HumanLoopStatusCompleted,
+		HumanLoopStatusStopped,
+		HumanLoopStatusStopping,
+	}
+}
+
 const (
 	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "Ascending"
@@ -1557,3 +1576,11 @@ const (
 	// SortOrderDescending is a SortOrder enum value
 	SortOrderDescending = "Descending"
 )
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
+	}
+}

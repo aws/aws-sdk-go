@@ -2907,6 +2907,14 @@ const (
 	ClipFragmentSelectorTypeServerTimestamp = "SERVER_TIMESTAMP"
 )
 
+// ClipFragmentSelectorType_Values returns all elements of the ClipFragmentSelectorType enum
+func ClipFragmentSelectorType_Values() []string {
+	return []string{
+		ClipFragmentSelectorTypeProducerTimestamp,
+		ClipFragmentSelectorTypeServerTimestamp,
+	}
+}
+
 const (
 	// ContainerFormatFragmentedMp4 is a ContainerFormat enum value
 	ContainerFormatFragmentedMp4 = "FRAGMENTED_MP4"
@@ -2914,6 +2922,14 @@ const (
 	// ContainerFormatMpegTs is a ContainerFormat enum value
 	ContainerFormatMpegTs = "MPEG_TS"
 )
+
+// ContainerFormat_Values returns all elements of the ContainerFormat enum
+func ContainerFormat_Values() []string {
+	return []string{
+		ContainerFormatFragmentedMp4,
+		ContainerFormatMpegTs,
+	}
+}
 
 const (
 	// DASHDisplayFragmentNumberAlways is a DASHDisplayFragmentNumber enum value
@@ -2923,6 +2939,14 @@ const (
 	DASHDisplayFragmentNumberNever = "NEVER"
 )
 
+// DASHDisplayFragmentNumber_Values returns all elements of the DASHDisplayFragmentNumber enum
+func DASHDisplayFragmentNumber_Values() []string {
+	return []string{
+		DASHDisplayFragmentNumberAlways,
+		DASHDisplayFragmentNumberNever,
+	}
+}
+
 const (
 	// DASHDisplayFragmentTimestampAlways is a DASHDisplayFragmentTimestamp enum value
 	DASHDisplayFragmentTimestampAlways = "ALWAYS"
@@ -2931,6 +2955,14 @@ const (
 	DASHDisplayFragmentTimestampNever = "NEVER"
 )
 
+// DASHDisplayFragmentTimestamp_Values returns all elements of the DASHDisplayFragmentTimestamp enum
+func DASHDisplayFragmentTimestamp_Values() []string {
+	return []string{
+		DASHDisplayFragmentTimestampAlways,
+		DASHDisplayFragmentTimestampNever,
+	}
+}
+
 const (
 	// DASHFragmentSelectorTypeProducerTimestamp is a DASHFragmentSelectorType enum value
 	DASHFragmentSelectorTypeProducerTimestamp = "PRODUCER_TIMESTAMP"
@@ -2938,6 +2970,14 @@ const (
 	// DASHFragmentSelectorTypeServerTimestamp is a DASHFragmentSelectorType enum value
 	DASHFragmentSelectorTypeServerTimestamp = "SERVER_TIMESTAMP"
 )
+
+// DASHFragmentSelectorType_Values returns all elements of the DASHFragmentSelectorType enum
+func DASHFragmentSelectorType_Values() []string {
+	return []string{
+		DASHFragmentSelectorTypeProducerTimestamp,
+		DASHFragmentSelectorTypeServerTimestamp,
+	}
+}
 
 const (
 	// DASHPlaybackModeLive is a DASHPlaybackMode enum value
@@ -2950,6 +2990,15 @@ const (
 	DASHPlaybackModeOnDemand = "ON_DEMAND"
 )
 
+// DASHPlaybackMode_Values returns all elements of the DASHPlaybackMode enum
+func DASHPlaybackMode_Values() []string {
+	return []string{
+		DASHPlaybackModeLive,
+		DASHPlaybackModeLiveReplay,
+		DASHPlaybackModeOnDemand,
+	}
+}
+
 const (
 	// FragmentSelectorTypeProducerTimestamp is a FragmentSelectorType enum value
 	FragmentSelectorTypeProducerTimestamp = "PRODUCER_TIMESTAMP"
@@ -2957,6 +3006,14 @@ const (
 	// FragmentSelectorTypeServerTimestamp is a FragmentSelectorType enum value
 	FragmentSelectorTypeServerTimestamp = "SERVER_TIMESTAMP"
 )
+
+// FragmentSelectorType_Values returns all elements of the FragmentSelectorType enum
+func FragmentSelectorType_Values() []string {
+	return []string{
+		FragmentSelectorTypeProducerTimestamp,
+		FragmentSelectorTypeServerTimestamp,
+	}
+}
 
 const (
 	// HLSDiscontinuityModeAlways is a HLSDiscontinuityMode enum value
@@ -2969,6 +3026,15 @@ const (
 	HLSDiscontinuityModeOnDiscontinuity = "ON_DISCONTINUITY"
 )
 
+// HLSDiscontinuityMode_Values returns all elements of the HLSDiscontinuityMode enum
+func HLSDiscontinuityMode_Values() []string {
+	return []string{
+		HLSDiscontinuityModeAlways,
+		HLSDiscontinuityModeNever,
+		HLSDiscontinuityModeOnDiscontinuity,
+	}
+}
+
 const (
 	// HLSDisplayFragmentTimestampAlways is a HLSDisplayFragmentTimestamp enum value
 	HLSDisplayFragmentTimestampAlways = "ALWAYS"
@@ -2977,6 +3043,14 @@ const (
 	HLSDisplayFragmentTimestampNever = "NEVER"
 )
 
+// HLSDisplayFragmentTimestamp_Values returns all elements of the HLSDisplayFragmentTimestamp enum
+func HLSDisplayFragmentTimestamp_Values() []string {
+	return []string{
+		HLSDisplayFragmentTimestampAlways,
+		HLSDisplayFragmentTimestampNever,
+	}
+}
+
 const (
 	// HLSFragmentSelectorTypeProducerTimestamp is a HLSFragmentSelectorType enum value
 	HLSFragmentSelectorTypeProducerTimestamp = "PRODUCER_TIMESTAMP"
@@ -2984,6 +3058,14 @@ const (
 	// HLSFragmentSelectorTypeServerTimestamp is a HLSFragmentSelectorType enum value
 	HLSFragmentSelectorTypeServerTimestamp = "SERVER_TIMESTAMP"
 )
+
+// HLSFragmentSelectorType_Values returns all elements of the HLSFragmentSelectorType enum
+func HLSFragmentSelectorType_Values() []string {
+	return []string{
+		HLSFragmentSelectorTypeProducerTimestamp,
+		HLSFragmentSelectorTypeServerTimestamp,
+	}
+}
 
 const (
 	// HLSPlaybackModeLive is a HLSPlaybackMode enum value
@@ -2995,3 +3077,12 @@ const (
 	// HLSPlaybackModeOnDemand is a HLSPlaybackMode enum value
 	HLSPlaybackModeOnDemand = "ON_DEMAND"
 )
+
+// HLSPlaybackMode_Values returns all elements of the HLSPlaybackMode enum
+func HLSPlaybackMode_Values() []string {
+	return []string{
+		HLSPlaybackModeLive,
+		HLSPlaybackModeLiveReplay,
+		HLSPlaybackModeOnDemand,
+	}
+}

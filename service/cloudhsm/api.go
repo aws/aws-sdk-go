@@ -3943,6 +3943,14 @@ const (
 	ClientVersion53 = "5.3"
 )
 
+// ClientVersion_Values returns all elements of the ClientVersion enum
+func ClientVersion_Values() []string {
+	return []string{
+		ClientVersion51,
+		ClientVersion53,
+	}
+}
+
 const (
 	// CloudHsmObjectStateReady is a CloudHsmObjectState enum value
 	CloudHsmObjectStateReady = "READY"
@@ -3953,6 +3961,15 @@ const (
 	// CloudHsmObjectStateDegraded is a CloudHsmObjectState enum value
 	CloudHsmObjectStateDegraded = "DEGRADED"
 )
+
+// CloudHsmObjectState_Values returns all elements of the CloudHsmObjectState enum
+func CloudHsmObjectState_Values() []string {
+	return []string{
+		CloudHsmObjectStateReady,
+		CloudHsmObjectStateUpdating,
+		CloudHsmObjectStateDegraded,
+	}
+}
 
 const (
 	// HsmStatusPending is a HsmStatus enum value
@@ -3977,6 +3994,19 @@ const (
 	HsmStatusDegraded = "DEGRADED"
 )
 
+// HsmStatus_Values returns all elements of the HsmStatus enum
+func HsmStatus_Values() []string {
+	return []string{
+		HsmStatusPending,
+		HsmStatusRunning,
+		HsmStatusUpdating,
+		HsmStatusSuspended,
+		HsmStatusTerminating,
+		HsmStatusTerminated,
+		HsmStatusDegraded,
+	}
+}
+
 // Specifies the type of subscription for the HSM.
 //
 //    * PRODUCTION - The HSM is being used in a production environment.
@@ -3986,3 +4016,10 @@ const (
 	// SubscriptionTypeProduction is a SubscriptionType enum value
 	SubscriptionTypeProduction = "PRODUCTION"
 )
+
+// SubscriptionType_Values returns all elements of the SubscriptionType enum
+func SubscriptionType_Values() []string {
+	return []string{
+		SubscriptionTypeProduction,
+	}
+}

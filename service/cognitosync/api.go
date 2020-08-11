@@ -4688,6 +4688,16 @@ const (
 	BulkPublishStatusSucceeded = "SUCCEEDED"
 )
 
+// BulkPublishStatus_Values returns all elements of the BulkPublishStatus enum
+func BulkPublishStatus_Values() []string {
+	return []string{
+		BulkPublishStatusNotStarted,
+		BulkPublishStatusInProgress,
+		BulkPublishStatusFailed,
+		BulkPublishStatusSucceeded,
+	}
+}
+
 const (
 	// OperationReplace is a Operation enum value
 	OperationReplace = "replace"
@@ -4695,6 +4705,14 @@ const (
 	// OperationRemove is a Operation enum value
 	OperationRemove = "remove"
 )
+
+// Operation_Values returns all elements of the Operation enum
+func Operation_Values() []string {
+	return []string{
+		OperationReplace,
+		OperationRemove,
+	}
+}
 
 const (
 	// PlatformApns is a Platform enum value
@@ -4710,6 +4728,16 @@ const (
 	PlatformAdm = "ADM"
 )
 
+// Platform_Values returns all elements of the Platform enum
+func Platform_Values() []string {
+	return []string{
+		PlatformApns,
+		PlatformApnsSandbox,
+		PlatformGcm,
+		PlatformAdm,
+	}
+}
+
 const (
 	// StreamingStatusEnabled is a StreamingStatus enum value
 	StreamingStatusEnabled = "ENABLED"
@@ -4717,3 +4745,11 @@ const (
 	// StreamingStatusDisabled is a StreamingStatus enum value
 	StreamingStatusDisabled = "DISABLED"
 )
+
+// StreamingStatus_Values returns all elements of the StreamingStatus enum
+func StreamingStatus_Values() []string {
+	return []string{
+		StreamingStatusEnabled,
+		StreamingStatusDisabled,
+	}
+}

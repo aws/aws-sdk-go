@@ -4522,6 +4522,15 @@ const (
 	AdMarkersPassthrough = "PASSTHROUGH"
 )
 
+// AdMarkers_Values returns all elements of the AdMarkers enum
+func AdMarkers_Values() []string {
+	return []string{
+		AdMarkersNone,
+		AdMarkersScte35Enhanced,
+		AdMarkersPassthrough,
+	}
+}
+
 const (
 	// EncryptionMethodAes128 is a EncryptionMethod enum value
 	EncryptionMethodAes128 = "AES_128"
@@ -4529,6 +4538,14 @@ const (
 	// EncryptionMethodSampleAes is a EncryptionMethod enum value
 	EncryptionMethodSampleAes = "SAMPLE_AES"
 )
+
+// EncryptionMethod_Values returns all elements of the EncryptionMethod enum
+func EncryptionMethod_Values() []string {
+	return []string{
+		EncryptionMethodAes128,
+		EncryptionMethodSampleAes,
+	}
+}
 
 const (
 	// ManifestLayoutFull is a ManifestLayout enum value
@@ -4538,10 +4555,25 @@ const (
 	ManifestLayoutCompact = "COMPACT"
 )
 
+// ManifestLayout_Values returns all elements of the ManifestLayout enum
+func ManifestLayout_Values() []string {
+	return []string{
+		ManifestLayoutFull,
+		ManifestLayoutCompact,
+	}
+}
+
 const (
 	// PeriodTriggersElementAds is a PeriodTriggersElement enum value
 	PeriodTriggersElementAds = "ADS"
 )
+
+// PeriodTriggersElement_Values returns all elements of the PeriodTriggersElement enum
+func PeriodTriggersElement_Values() []string {
+	return []string{
+		PeriodTriggersElementAds,
+	}
+}
 
 const (
 	// ProfileNone is a Profile enum value
@@ -4550,6 +4582,14 @@ const (
 	// ProfileHbbtv15 is a Profile enum value
 	ProfileHbbtv15 = "HBBTV_1_5"
 )
+
+// Profile_Values returns all elements of the Profile enum
+func Profile_Values() []string {
+	return []string{
+		ProfileNone,
+		ProfileHbbtv15,
+	}
+}
 
 const (
 	// SegmentTemplateFormatNumberWithTimeline is a SegmentTemplateFormat enum value
@@ -4562,6 +4602,15 @@ const (
 	SegmentTemplateFormatNumberWithDuration = "NUMBER_WITH_DURATION"
 )
 
+// SegmentTemplateFormat_Values returns all elements of the SegmentTemplateFormat enum
+func SegmentTemplateFormat_Values() []string {
+	return []string{
+		SegmentTemplateFormatNumberWithTimeline,
+		SegmentTemplateFormatTimeWithTimeline,
+		SegmentTemplateFormatNumberWithDuration,
+	}
+}
+
 const (
 	// StreamOrderOriginal is a StreamOrder enum value
 	StreamOrderOriginal = "ORIGINAL"
@@ -4572,3 +4621,12 @@ const (
 	// StreamOrderVideoBitrateDescending is a StreamOrder enum value
 	StreamOrderVideoBitrateDescending = "VIDEO_BITRATE_DESCENDING"
 )
+
+// StreamOrder_Values returns all elements of the StreamOrder enum
+func StreamOrder_Values() []string {
+	return []string{
+		StreamOrderOriginal,
+		StreamOrderVideoBitrateAscending,
+		StreamOrderVideoBitrateDescending,
+	}
+}

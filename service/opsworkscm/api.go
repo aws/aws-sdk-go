@@ -5119,6 +5119,16 @@ const (
 	BackupStatusDeleting = "DELETING"
 )
 
+// BackupStatus_Values returns all elements of the BackupStatus enum
+func BackupStatus_Values() []string {
+	return []string{
+		BackupStatusInProgress,
+		BackupStatusOk,
+		BackupStatusFailed,
+		BackupStatusDeleting,
+	}
+}
+
 const (
 	// BackupTypeAutomated is a BackupType enum value
 	BackupTypeAutomated = "AUTOMATED"
@@ -5127,6 +5137,14 @@ const (
 	BackupTypeManual = "MANUAL"
 )
 
+// BackupType_Values returns all elements of the BackupType enum
+func BackupType_Values() []string {
+	return []string{
+		BackupTypeAutomated,
+		BackupTypeManual,
+	}
+}
+
 const (
 	// MaintenanceStatusSuccess is a MaintenanceStatus enum value
 	MaintenanceStatusSuccess = "SUCCESS"
@@ -5134,6 +5152,14 @@ const (
 	// MaintenanceStatusFailed is a MaintenanceStatus enum value
 	MaintenanceStatusFailed = "FAILED"
 )
+
+// MaintenanceStatus_Values returns all elements of the MaintenanceStatus enum
+func MaintenanceStatus_Values() []string {
+	return []string{
+		MaintenanceStatusSuccess,
+		MaintenanceStatusFailed,
+	}
+}
 
 // The status of the association or disassociation request.
 //
@@ -5154,6 +5180,15 @@ const (
 	// NodeAssociationStatusInProgress is a NodeAssociationStatus enum value
 	NodeAssociationStatusInProgress = "IN_PROGRESS"
 )
+
+// NodeAssociationStatus_Values returns all elements of the NodeAssociationStatus enum
+func NodeAssociationStatus_Values() []string {
+	return []string{
+		NodeAssociationStatusSuccess,
+		NodeAssociationStatusFailed,
+		NodeAssociationStatusInProgress,
+	}
+}
 
 const (
 	// ServerStatusBackingUp is a ServerStatus enum value
@@ -5195,3 +5230,22 @@ const (
 	// ServerStatusTerminated is a ServerStatus enum value
 	ServerStatusTerminated = "TERMINATED"
 )
+
+// ServerStatus_Values returns all elements of the ServerStatus enum
+func ServerStatus_Values() []string {
+	return []string{
+		ServerStatusBackingUp,
+		ServerStatusConnectionLost,
+		ServerStatusCreating,
+		ServerStatusDeleting,
+		ServerStatusModifying,
+		ServerStatusFailed,
+		ServerStatusHealthy,
+		ServerStatusRunning,
+		ServerStatusRestoring,
+		ServerStatusSetup,
+		ServerStatusUnderMaintenance,
+		ServerStatusUnhealthy,
+		ServerStatusTerminated,
+	}
+}

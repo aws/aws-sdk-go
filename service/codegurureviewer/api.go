@@ -3660,6 +3660,16 @@ const (
 	JobStateDeleting = "Deleting"
 )
 
+// JobState_Values returns all elements of the JobState enum
+func JobState_Values() []string {
+	return []string{
+		JobStateCompleted,
+		JobStatePending,
+		JobStateFailed,
+		JobStateDeleting,
+	}
+}
+
 const (
 	// ProviderTypeCodeCommit is a ProviderType enum value
 	ProviderTypeCodeCommit = "CodeCommit"
@@ -3674,6 +3684,16 @@ const (
 	ProviderTypeGitHubEnterpriseServer = "GitHubEnterpriseServer"
 )
 
+// ProviderType_Values returns all elements of the ProviderType enum
+func ProviderType_Values() []string {
+	return []string{
+		ProviderTypeCodeCommit,
+		ProviderTypeGitHub,
+		ProviderTypeBitbucket,
+		ProviderTypeGitHubEnterpriseServer,
+	}
+}
+
 const (
 	// ReactionThumbsUp is a Reaction enum value
 	ReactionThumbsUp = "ThumbsUp"
@@ -3681,6 +3701,14 @@ const (
 	// ReactionThumbsDown is a Reaction enum value
 	ReactionThumbsDown = "ThumbsDown"
 )
+
+// Reaction_Values returns all elements of the Reaction enum
+func Reaction_Values() []string {
+	return []string{
+		ReactionThumbsUp,
+		ReactionThumbsDown,
+	}
+}
 
 const (
 	// RepositoryAssociationStateAssociated is a RepositoryAssociationState enum value
@@ -3696,7 +3724,24 @@ const (
 	RepositoryAssociationStateDisassociating = "Disassociating"
 )
 
+// RepositoryAssociationState_Values returns all elements of the RepositoryAssociationState enum
+func RepositoryAssociationState_Values() []string {
+	return []string{
+		RepositoryAssociationStateAssociated,
+		RepositoryAssociationStateAssociating,
+		RepositoryAssociationStateFailed,
+		RepositoryAssociationStateDisassociating,
+	}
+}
+
 const (
 	// TypePullRequest is a Type enum value
 	TypePullRequest = "PullRequest"
 )
+
+// Type_Values returns all elements of the Type enum
+func Type_Values() []string {
+	return []string{
+		TypePullRequest,
+	}
+}

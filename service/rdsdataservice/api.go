@@ -2371,6 +2371,14 @@ const (
 	DecimalReturnTypeString = "STRING"
 )
 
+// DecimalReturnType_Values returns all elements of the DecimalReturnType enum
+func DecimalReturnType_Values() []string {
+	return []string{
+		DecimalReturnTypeDoubleOrLong,
+		DecimalReturnTypeString,
+	}
+}
+
 const (
 	// TypeHintDate is a TypeHint enum value
 	TypeHintDate = "DATE"
@@ -2384,3 +2392,13 @@ const (
 	// TypeHintTimestamp is a TypeHint enum value
 	TypeHintTimestamp = "TIMESTAMP"
 )
+
+// TypeHint_Values returns all elements of the TypeHint enum
+func TypeHint_Values() []string {
+	return []string{
+		TypeHintDate,
+		TypeHintDecimal,
+		TypeHintTime,
+		TypeHintTimestamp,
+	}
+}

@@ -118,7 +118,7 @@ func TestShouldRetry(t *testing.T) {
 	}
 	origError := awserr.New("ErrorTestShouldRetry", "Test should retry when error received", &urlError).OrigErr()
 	if e, a := true, shouldRetryError(origError); e != a {
-		t.Errorf("Expected to return %v to retry when error occured, got %v instead", e, a)
+		t.Errorf("Expected to return %v to retry when error occurred, got %v instead", e, a)
 	}
 
 }

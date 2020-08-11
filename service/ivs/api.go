@@ -4091,6 +4091,14 @@ const (
 	ChannelLatencyModeLow = "LOW"
 )
 
+// ChannelLatencyMode_Values returns all elements of the ChannelLatencyMode enum
+func ChannelLatencyMode_Values() []string {
+	return []string{
+		ChannelLatencyModeNormal,
+		ChannelLatencyModeLow,
+	}
+}
+
 const (
 	// ChannelTypeBasic is a ChannelType enum value
 	ChannelTypeBasic = "BASIC"
@@ -4098,6 +4106,14 @@ const (
 	// ChannelTypeStandard is a ChannelType enum value
 	ChannelTypeStandard = "STANDARD"
 )
+
+// ChannelType_Values returns all elements of the ChannelType enum
+func ChannelType_Values() []string {
+	return []string{
+		ChannelTypeBasic,
+		ChannelTypeStandard,
+	}
+}
 
 const (
 	// StreamHealthHealthy is a StreamHealth enum value
@@ -4110,6 +4126,15 @@ const (
 	StreamHealthUnknown = "UNKNOWN"
 )
 
+// StreamHealth_Values returns all elements of the StreamHealth enum
+func StreamHealth_Values() []string {
+	return []string{
+		StreamHealthHealthy,
+		StreamHealthStarving,
+		StreamHealthUnknown,
+	}
+}
+
 const (
 	// StreamStateLive is a StreamState enum value
 	StreamStateLive = "LIVE"
@@ -4117,3 +4142,11 @@ const (
 	// StreamStateOffline is a StreamState enum value
 	StreamStateOffline = "OFFLINE"
 )
+
+// StreamState_Values returns all elements of the StreamState enum
+func StreamState_Values() []string {
+	return []string{
+		StreamStateLive,
+		StreamStateOffline,
+	}
+}
