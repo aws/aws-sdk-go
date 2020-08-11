@@ -64,6 +64,9 @@ var (
 
 	// Generic connection reset error
 	errConnectionResetStub = errors.New("connection reset")
+
+	// use of closed network connection error
+	errUseOfClosedConnectionStub = errors.New("use of closed network connection")
 )
 
 type testData struct {
