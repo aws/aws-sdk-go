@@ -60,6 +60,33 @@ func TestUnmarshalJSON_JSONNumber(t *testing.T) {
 				}(),
 			},
 		},
+		"milliseconds precision as small exponent": {
+			JSON: `{"timeField":1.597094942123e9}`,
+			Expected: input{
+				TimeField: func() *time.Time {
+					dt := time.Date(2020, 8, 10, 21, 29, 02, int(123*time.Millisecond), time.UTC)
+					return &dt
+				}(),
+			},
+		},
+		"milliseconds precision as large exponent": {
+			JSON: `{"timeField":1.597094942123E9}`,
+			Expected: input{
+				TimeField: func() *time.Time {
+					dt := time.Date(2020, 8, 10, 21, 29, 02, int(123*time.Millisecond), time.UTC)
+					return &dt
+				}(),
+			},
+		},
+		"milliseconds precision as exponent with sign": {
+			JSON: `{"timeField":1.597094942123e+9}`,
+			Expected: input{
+				TimeField: func() *time.Time {
+					dt := time.Date(2020, 8, 10, 21, 29, 02, int(123*time.Millisecond), time.UTC)
+					return &dt
+				}(),
+			},
+		},
 		"integer field": {
 			JSON: `{"intField":123456789}`,
 			Expected: input{

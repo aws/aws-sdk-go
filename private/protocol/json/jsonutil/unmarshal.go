@@ -265,7 +265,7 @@ func (u unmarshaler) unmarshalScalar(value reflect.Value, data interface{}, tag 
 		switch value.Interface().(type) {
 		case *int64:
 			// Retain the old behavior where we would just truncate the float64
-			// calling d.Int64() here would cause an invalid sytnax error due to the usage of strconv.ParseInt
+			// calling d.Int64() here could cause an invalid syntax error due to the usage of strconv.ParseInt
 			f, err := d.Float64()
 			if err != nil {
 				return err
@@ -281,7 +281,7 @@ func (u unmarshaler) unmarshalScalar(value reflect.Value, data interface{}, tag 
 		case *time.Time:
 			float, ok := new(big.Float).SetString(d.String())
 			if !ok {
-				return fmt.Errorf("unsupported time value: %v (%s)", value.Interface(), value.Type())
+				return fmt.Errorf("unsupported float time representation: %v", d.String())
 			}
 			float = float.Mul(float, millisecondsFloat)
 			ns, _ := float.Int64()
