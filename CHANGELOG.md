@@ -1,3 +1,16 @@
+Release v1.34.2 (2020-08-11)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * This release rolls back the EC2 On-Demand Capacity Reservations (ODCRs) release 1.11.831 published on 2020-07-30, which was deployed in error.
+* `service/lambda`: Updates service API, documentation, and examples
+  * Support Managed Streaming for Kafka as an Event Source. Support retry until record expiration for Kinesis and Dynamodb streams event source mappings.
+* `service/organizations`: Updates service documentation
+  * Minor documentation update for AWS Organizations
+* `service/s3`: Updates service API, documentation, and examples
+  * Add support for in-region CopyObject and UploadPartCopy through S3 Access Points
+
 Release v1.34.1 (2020-08-10)
 ===
 
