@@ -1,3 +1,37 @@
+Release v1.34.3 (2020-08-12)
+===
+
+### Service Client Updates
+* `service/cloud9`: Updates service API and documentation
+  * Add ConnectionType input parameter to CreateEnvironmentEC2 endpoint. New parameter enables creation of environments with SSM connection.
+* `service/comprehend`: Updates service documentation
+* `service/ec2`: Updates service API and documentation
+  * Introduces support for IPv6-in-IPv4 IPsec tunnels. A user can now send traffic from their on-premise IPv6 network to AWS VPCs that have IPv6 support enabled.
+* `service/fsx`: Updates service API and documentation
+* `service/iot`: Updates service API, documentation, and paginators
+  * Audit finding suppressions: Device Defender enables customers to turn off non-compliant findings for specific resources on a per check basis.
+* `service/lambda`: Updates service API and examples
+  * Support for creating Lambda Functions using 'java8.al2' and 'provided.al2'
+* `service/transfer`: Updates service API, documentation, and paginators
+  * Adds security policies to control cryptographic algorithms advertised by your server, additional characters in usernames and length increase, and FIPS compliant endpoints in the US and Canada regions.
+* `service/workspaces`: Updates service API and documentation
+  * Adds optional EnableWorkDocs property to WorkspaceCreationProperties in the ModifyWorkspaceCreationProperties API
+
+### SDK Enhancements
+* `codegen`: Add XXX_Values functions for getting slice of API enums by type.
+  * Fixes [#3441](https://github.com/aws/aws-sdk-go/issues/3441) by adding a new XXX_Values function for each API enum type that returns a slice of enum values, e.g `DomainStatus_Values`.
+* `aws/request`: Update default retry to retry "use of closed network connection" errors ([#3476](https://github.com/aws/aws-sdk-go/pull/3476))
+  * Fixes [#3406](https://github.com/aws/aws-sdk-go/issues/3406)
+
+### SDK Bugs
+* `private/protocol/json/jsonutil`: Fixes a bug that truncated millisecond precision time in API response to seconds. ([#3474](https://github.com/aws/aws-sdk-go/pull/3474))
+  * Fixes [#3464](https://github.com/aws/aws-sdk-go/issues/3464)
+  * Fixes [#3410](https://github.com/aws/aws-sdk-go/issues/3410)
+* `codegen`: Export event stream constructor for easier mocking ([#3473](https://github.com/aws/aws-sdk-go/pull/3473))
+  * Fixes [#3412](https://github.com/aws/aws-sdk-go/issues/3412) by exporting the operation's EventStream type's constructor function so it can be used to fully initialize fully when mocking out behavior for API operations with event streams.
+* `service/ec2`: Fix max retries with client customizations ([#3465](https://github.com/aws/aws-sdk-go/pull/3465))
+  * Fixes [#3374](https://github.com/aws/aws-sdk-go/issues/3374) by correcting the EC2 API client's customization for ModifyNetworkInterfaceAttribute and AssignPrivateIpAddresses operations to use the aws.Config.MaxRetries value if set. Previously the API client's customizations would ignore MaxRetries specified in the SDK's aws.Config.MaxRetries field.
+
 Release v1.34.2 (2020-08-11)
 ===
 

@@ -80,6 +80,10 @@ type TransferAPI interface {
 	DeleteUserWithContext(aws.Context, *transfer.DeleteUserInput, ...request.Option) (*transfer.DeleteUserOutput, error)
 	DeleteUserRequest(*transfer.DeleteUserInput) (*request.Request, *transfer.DeleteUserOutput)
 
+	DescribeSecurityPolicy(*transfer.DescribeSecurityPolicyInput) (*transfer.DescribeSecurityPolicyOutput, error)
+	DescribeSecurityPolicyWithContext(aws.Context, *transfer.DescribeSecurityPolicyInput, ...request.Option) (*transfer.DescribeSecurityPolicyOutput, error)
+	DescribeSecurityPolicyRequest(*transfer.DescribeSecurityPolicyInput) (*request.Request, *transfer.DescribeSecurityPolicyOutput)
+
 	DescribeServer(*transfer.DescribeServerInput) (*transfer.DescribeServerOutput, error)
 	DescribeServerWithContext(aws.Context, *transfer.DescribeServerInput, ...request.Option) (*transfer.DescribeServerOutput, error)
 	DescribeServerRequest(*transfer.DescribeServerInput) (*request.Request, *transfer.DescribeServerOutput)
@@ -91,6 +95,13 @@ type TransferAPI interface {
 	ImportSshPublicKey(*transfer.ImportSshPublicKeyInput) (*transfer.ImportSshPublicKeyOutput, error)
 	ImportSshPublicKeyWithContext(aws.Context, *transfer.ImportSshPublicKeyInput, ...request.Option) (*transfer.ImportSshPublicKeyOutput, error)
 	ImportSshPublicKeyRequest(*transfer.ImportSshPublicKeyInput) (*request.Request, *transfer.ImportSshPublicKeyOutput)
+
+	ListSecurityPolicies(*transfer.ListSecurityPoliciesInput) (*transfer.ListSecurityPoliciesOutput, error)
+	ListSecurityPoliciesWithContext(aws.Context, *transfer.ListSecurityPoliciesInput, ...request.Option) (*transfer.ListSecurityPoliciesOutput, error)
+	ListSecurityPoliciesRequest(*transfer.ListSecurityPoliciesInput) (*request.Request, *transfer.ListSecurityPoliciesOutput)
+
+	ListSecurityPoliciesPages(*transfer.ListSecurityPoliciesInput, func(*transfer.ListSecurityPoliciesOutput, bool) bool) error
+	ListSecurityPoliciesPagesWithContext(aws.Context, *transfer.ListSecurityPoliciesInput, func(*transfer.ListSecurityPoliciesOutput, bool) bool, ...request.Option) error
 
 	ListServers(*transfer.ListServersInput) (*transfer.ListServersOutput, error)
 	ListServersWithContext(aws.Context, *transfer.ListServersInput, ...request.Option) (*transfer.ListServersOutput, error)

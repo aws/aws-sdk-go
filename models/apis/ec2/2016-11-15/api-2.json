@@ -21558,6 +21558,7 @@
       "type":"structure",
       "members":{
         "TunnelInsideCidr":{"shape":"String"},
+        "TunnelInsideIpv6Cidr":{"shape":"String"},
         "PreSharedKey":{"shape":"String"},
         "Phase1LifetimeSeconds":{"shape":"Integer"},
         "Phase2LifetimeSeconds":{"shape":"Integer"},
@@ -28914,6 +28915,13 @@
         "udp"
       ]
     },
+    "TunnelInsideIpVersion":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "ipv6"
+      ]
+    },
     "TunnelOption":{
       "type":"structure",
       "members":{
@@ -28924,6 +28932,10 @@
         "TunnelInsideCidr":{
           "shape":"String",
           "locationName":"tunnelInsideCidr"
+        },
+        "TunnelInsideIpv6Cidr":{
+          "shape":"String",
+          "locationName":"tunnelInsideIpv6Cidr"
         },
         "PreSharedKey":{
           "shape":"String",
@@ -30389,6 +30401,10 @@
           "shape":"Boolean",
           "locationName":"staticRoutesOnly"
         },
+        "TunnelInsideIpVersion":{
+          "shape":"TunnelInsideIpVersion",
+          "locationName":"tunnelInsideIpVersion"
+        },
         "TunnelOptions":{
           "shape":"TunnelOptionsList",
           "locationName":"tunnelOptionSet"
@@ -30403,6 +30419,7 @@
           "shape":"Boolean",
           "locationName":"staticRoutesOnly"
         },
+        "TunnelInsideIpVersion":{"shape":"TunnelInsideIpVersion"},
         "TunnelOptions":{"shape":"VpnTunnelOptionsSpecificationsList"}
       }
     },
@@ -30506,6 +30523,7 @@
       "type":"structure",
       "members":{
         "TunnelInsideCidr":{"shape":"String"},
+        "TunnelInsideIpv6Cidr":{"shape":"String"},
         "PreSharedKey":{"shape":"String"},
         "Phase1LifetimeSeconds":{"shape":"Integer"},
         "Phase2LifetimeSeconds":{"shape":"Integer"},

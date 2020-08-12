@@ -341,7 +341,7 @@
     },
     "AutomaticBackupRetentionDays":{
       "type":"integer",
-      "max":35,
+      "max":90,
       "min":0
     },
     "Backup":{
@@ -396,6 +396,7 @@
       "enum":[
         "AVAILABLE",
         "CREATING",
+        "TRANSFERRING",
         "DELETED",
         "FAILED"
       ]
@@ -545,7 +546,8 @@
         "PerUnitStorageThroughput":{"shape":"PerUnitStorageThroughput"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
-        "CopyTagsToBackups":{"shape":"Flag"}
+        "CopyTagsToBackups":{"shape":"Flag"},
+        "DriveCacheType":{"shape":"DriveCacheType"}
       }
     },
     "CreateFileSystemRequest":{
@@ -894,6 +896,13 @@
       "max":2,
       "min":1
     },
+    "DriveCacheType":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "READ"
+      ]
+    },
     "EndTime":{"type":"timestamp"},
     "ErrorMessage":{
       "type":"string",
@@ -1115,7 +1124,8 @@
         "MountName":{"shape":"LustreFileSystemMountName"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
-        "CopyTagsToBackups":{"shape":"Flag"}
+        "CopyTagsToBackups":{"shape":"Flag"},
+        "DriveCacheType":{"shape":"DriveCacheType"}
       }
     },
     "LustreFileSystemMountName":{
@@ -1185,7 +1195,7 @@
     "PerUnitStorageThroughput":{
       "type":"integer",
       "max":200,
-      "min":50
+      "min":12
     },
     "ProgressPercent":{
       "type":"integer",

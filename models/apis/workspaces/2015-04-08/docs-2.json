@@ -128,6 +128,7 @@
         "UpdateWorkspaceImagePermissionRequest$AllowCopyImage": "<p>The permission to copy the image. This permission can be revoked only after an image has been shared.</p>",
         "Workspace$UserVolumeEncryptionEnabled": "<p>Indicates whether the data stored on the user volume is encrypted.</p>",
         "Workspace$RootVolumeEncryptionEnabled": "<p>Indicates whether the data stored on the root volume is encrypted.</p>",
+        "WorkspaceCreationProperties$EnableWorkDocs": "<p>Indicates whether Amazon WorkDocs is enabled for your WorkSpaces.</p> <note> <p>If WorkDocs is already enabled for a WorkSpaces directory and you disable it, new WorkSpaces launched in the directory will not have WorkDocs enabled. However, WorkDocs remains enabled for any existing WorkSpaces, unless you either disable users' access to WorkDocs or you delete the WorkDocs site. To disable users' access to WorkDocs, see <a href=\"https://docs.aws.amazon.com/workdocs/latest/adminguide/inactive-user.html\">Disabling Users</a> in the <i>Amazon WorkDocs Administration Guide</i>. To delete a WorkDocs site, see <a href=\"https://docs.aws.amazon.com/workdocs/latest/adminguide/manage-sites.html\">Deleting a Site</a> in the <i>Amazon WorkDocs Administration Guide</i>.</p> <p>If you enable WorkDocs on a directory that already has existing WorkSpaces, the existing WorkSpaces and any new WorkSpaces that are launched in the directory will have WorkDocs enabled.</p> </note>",
         "WorkspaceCreationProperties$EnableInternetAccess": "<p>Indicates whether internet access is enabled for your WorkSpaces.</p>",
         "WorkspaceCreationProperties$UserEnabledAsLocalAdministrator": "<p>Indicates whether users are local administrators of their WorkSpaces.</p>",
         "WorkspaceCreationProperties$EnableMaintenanceMode": "<p>Indicates whether maintenance mode is enabled for your WorkSpaces. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/workspace-maintenance.html\">WorkSpace Maintenance</a>. </p>",
@@ -200,7 +201,7 @@
     "ComputerName": {
       "base": null,
       "refs": {
-        "Workspace$ComputerName": "<p>The name of the WorkSpace, as seen by the operating system.</p>"
+        "Workspace$ComputerName": "<p>The name of the WorkSpace, as seen by the operating system. The format of this name varies. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/launch-workspaces-tutorials.html\"> Launch a WorkSpace</a>. </p>"
       }
     },
     "ConnectionState": {
