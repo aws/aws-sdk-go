@@ -56,6 +56,10 @@ func TestSerializationErrConnectionReset_accept(t *testing.T) {
 			Err:            errConnectionResetStub,
 			ExpectAttempts: 6,
 		},
+		"use of closed network connection": {
+			Err:            errUseOfClosedConnectionStub,
+			ExpectAttempts: 6,
+		},
 	}
 
 	for name, c := range cases {
