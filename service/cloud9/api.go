@@ -1063,6 +1063,9 @@ func (c *Cloud9) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 //   * BadRequestException
 //   The target request is invalid.
 //
+//   * ConcurrentAccessException
+//   A concurrent access issue occurred.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/TagResource
 func (c *Cloud9) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
@@ -1148,6 +1151,9 @@ func (c *Cloud9) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 //
 //   * BadRequestException
 //   The target request is invalid.
+//
+//   * ConcurrentAccessException
+//   A concurrent access issue occurred.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloud9-2017-09-23/UntagResource
 func (c *Cloud9) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1423,6 +1429,62 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A concurrent access issue occurred.
+type ConcurrentAccessException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConcurrentAccessException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConcurrentAccessException) GoString() string {
+	return s.String()
+}
+
+func newErrorConcurrentAccessException(v protocol.ResponseMetadata) error {
+	return &ConcurrentAccessException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConcurrentAccessException) Code() string {
+	return "ConcurrentAccessException"
+}
+
+// Message returns the exception's message.
+func (s *ConcurrentAccessException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConcurrentAccessException) OrigErr() error {
+	return nil
+}
+
+func (s *ConcurrentAccessException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConcurrentAccessException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConcurrentAccessException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // A conflict occurred.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -1492,6 +1554,9 @@ type CreateEnvironmentEC2Input struct {
 	// For more information, see Client Tokens (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
 	// in the Amazon EC2 API Reference.
 	ClientRequestToken *string `locationName:"clientRequestToken" type:"string"`
+
+	// The connection type used for connecting to an Amazon EC2 environment.
+	ConnectionType *string `locationName:"connectionType" type:"string" enum:"ConnectionType"`
 
 	// The description of the environment to create.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
@@ -1576,6 +1641,12 @@ func (s *CreateEnvironmentEC2Input) SetAutomaticStopTimeMinutes(v int64) *Create
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateEnvironmentEC2Input) SetClientRequestToken(v string) *CreateEnvironmentEC2Input {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetConnectionType sets the ConnectionType field's value.
+func (s *CreateEnvironmentEC2Input) SetConnectionType(v string) *CreateEnvironmentEC2Input {
+	s.ConnectionType = &v
 	return s
 }
 
@@ -2117,6 +2188,9 @@ type Environment struct {
 	// The Amazon Resource Name (ARN) of the environment.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The connection type used for connecting to an Amazon EC2 environment.
+	ConnectionType *string `locationName:"connectionType" type:"string" enum:"ConnectionType"`
+
 	// The description for the environment.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
@@ -2154,6 +2228,12 @@ func (s Environment) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *Environment) SetArn(v string) *Environment {
 	s.Arn = &v
+	return s
+}
+
+// SetConnectionType sets the ConnectionType field's value.
+func (s *Environment) SetConnectionType(v string) *Environment {
+	s.ConnectionType = &v
 	return s
 }
 
@@ -3102,6 +3182,22 @@ func (s UpdateEnvironmentOutput) String() string {
 // GoString returns the string representation
 func (s UpdateEnvironmentOutput) GoString() string {
 	return s.String()
+}
+
+const (
+	// ConnectionTypeConnectSsh is a ConnectionType enum value
+	ConnectionTypeConnectSsh = "CONNECT_SSH"
+
+	// ConnectionTypeConnectSsm is a ConnectionType enum value
+	ConnectionTypeConnectSsm = "CONNECT_SSM"
+)
+
+// ConnectionType_Values returns all elements of the ConnectionType enum
+func ConnectionType_Values() []string {
+	return []string{
+		ConnectionTypeConnectSsh,
+		ConnectionTypeConnectSsm,
+	}
 }
 
 const (

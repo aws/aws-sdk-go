@@ -95,7 +95,7 @@
     "CreateVpcEndpointConnectionNotification": "<p>Creates a connection notification for a specified VPC endpoint or VPC endpoint service. A connection notification notifies you of specific endpoint events. You must create an SNS topic to receive notifications. For more information, see <a href=\"https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html\">Create a Topic</a> in the <i>Amazon Simple Notification Service Developer Guide</i>.</p> <p>You can create a connection notification for interface endpoints only.</p>",
     "CreateVpcEndpointServiceConfiguration": "<p>Creates a VPC endpoint service configuration to which service consumers (AWS accounts, IAM users, and IAM roles) can connect. Service consumers can create an interface VPC endpoint to connect to your service.</p> <p>To create an endpoint service configuration, you must first create a Network Load Balancer for your service. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html\">VPC Endpoint Services</a> in the <i>Amazon Virtual Private Cloud User Guide</i>. </p> <p>If you set the private DNS name, you must prove that you own the private DNS domain name. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-services-dns-validation.html\">VPC Endpoint Service Private DNS Name Verification</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateVpcPeeringConnection": "<p>Requests a VPC peering connection between two VPCs: a requester VPC that you own and an accepter VPC with which to create the connection. The accepter VPC can belong to another AWS account and can be in a different Region to the requester VPC. The requester VPC and accepter VPC cannot have overlapping CIDR blocks.</p> <note> <p>Limitations and rules apply to a VPC peering connection. For more information, see the <a href=\"https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-basics.html#vpc-peering-limitations\">limitations</a> section in the <i>VPC Peering Guide</i>.</p> </note> <p>The owner of the accepter VPC must accept the peering request to activate the peering connection. The VPC peering connection request expires after 7 days, after which it cannot be accepted or rejected.</p> <p>If you create a VPC peering connection request between VPCs with overlapping CIDR blocks, the VPC peering connection has a status of <code>failed</code>.</p>",
-    "CreateVpnConnection": "<p>Creates a VPN connection between an existing virtual private gateway and a VPN customer gateway. The supported connection type is <code>ipsec.1</code>.</p> <p>The response includes information that you need to give to your network administrator to configure your customer gateway.</p> <important> <p>We strongly recommend that you use HTTPS when calling this operation because the response contains sensitive cryptographic information for configuring your customer gateway.</p> </important> <p>If you decide to shut down your VPN connection for any reason and later create a new VPN connection, you must reconfigure your customer gateway with the new information returned from this call.</p> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p>",
+    "CreateVpnConnection": "<p>Creates a VPN connection between an existing virtual private gateway or transit gateway and a customer gateway. The supported connection type is <code>ipsec.1</code>.</p> <p>The response includes information that you need to give to your network administrator to configure your customer gateway.</p> <important> <p>We strongly recommend that you use HTTPS when calling this operation because the response contains sensitive cryptographic information for configuring your customer gateway device.</p> </important> <p>If you decide to shut down your VPN connection for any reason and later create a new VPN connection, you must reconfigure your customer gateway with the new information returned from this call.</p> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p>",
     "CreateVpnConnectionRoute": "<p>Creates a static route associated with a VPN connection between an existing virtual private gateway and a VPN customer gateway. The static route allows traffic to be routed from the virtual private gateway to the VPN customer gateway.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p>",
     "CreateVpnGateway": "<p>Creates a virtual private gateway. A virtual private gateway is the endpoint on the VPC side of your VPN connection. You can create a virtual private gateway before creating the VPC itself.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html\">AWS Site-to-Site VPN</a> in the <i>AWS Site-to-Site VPN User Guide</i>.</p>",
     "DeleteCarrierGateway": "<p>Deletes a carrier gateway.</p> <important> <p>If you do not delete the route that contains the carrier gateway as the Target, the route is a blackhole route. For information about how to delete a route, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteRoute.html\">DeleteRoute</a>.</p> </important>",
@@ -10167,8 +10167,8 @@
     "Phase1DHGroupNumbersRequestList": {
       "base": null,
       "refs": {
-        "ModifyVpnTunnelOptionsSpecification$Phase1DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>",
-        "VpnTunnelOptionsSpecification$Phase1DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>"
+        "ModifyVpnTunnelOptionsSpecification$Phase1DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>19</code> | <code>20</code> | <code>21</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase1DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>19</code> | <code>20</code> | <code>21</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>"
       }
     },
     "Phase1DHGroupNumbersRequestListValue": {
@@ -10192,8 +10192,8 @@
     "Phase1EncryptionAlgorithmsRequestList": {
       "base": null,
       "refs": {
-        "ModifyVpnTunnelOptionsSpecification$Phase1EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> </p>",
-        "VpnTunnelOptionsSpecification$Phase1EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> </p>"
+        "ModifyVpnTunnelOptionsSpecification$Phase1EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> | <code>AES128-GCM-16</code> | <code>AES256-GCM-16</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase1EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> | <code>AES128-GCM-16</code> | <code>AES256-GCM-16</code> </p>"
       }
     },
     "Phase1EncryptionAlgorithmsRequestListValue": {
@@ -10217,8 +10217,8 @@
     "Phase1IntegrityAlgorithmsRequestList": {
       "base": null,
       "refs": {
-        "ModifyVpnTunnelOptionsSpecification$Phase1IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> </p>",
-        "VpnTunnelOptionsSpecification$Phase1IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> </p>"
+        "ModifyVpnTunnelOptionsSpecification$Phase1IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> | <code>SHA2-384</code> | <code>SHA2-512</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase1IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 1 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> | <code>SHA2-384</code> | <code>SHA2-512</code> </p>"
       }
     },
     "Phase1IntegrityAlgorithmsRequestListValue": {
@@ -10242,8 +10242,8 @@
     "Phase2DHGroupNumbersRequestList": {
       "base": null,
       "refs": {
-        "ModifyVpnTunnelOptionsSpecification$Phase2DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>5</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>",
-        "VpnTunnelOptionsSpecification$Phase2DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>5</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>"
+        "ModifyVpnTunnelOptionsSpecification$Phase2DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>5</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>19</code> | <code>20</code> | <code>21</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase2DHGroupNumbers": "<p>One or more Diffie-Hellman group numbers that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>2</code> | <code>5</code> | <code>14</code> | <code>15</code> | <code>16</code> | <code>17</code> | <code>18</code> | <code>19</code> | <code>20</code> | <code>21</code> | <code>22</code> | <code>23</code> | <code>24</code> </p>"
       }
     },
     "Phase2DHGroupNumbersRequestListValue": {
@@ -10267,8 +10267,8 @@
     "Phase2EncryptionAlgorithmsRequestList": {
       "base": null,
       "refs": {
-        "ModifyVpnTunnelOptionsSpecification$Phase2EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> </p>",
-        "VpnTunnelOptionsSpecification$Phase2EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> </p>"
+        "ModifyVpnTunnelOptionsSpecification$Phase2EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> | <code>AES128-GCM-16</code> | <code>AES256-GCM-16</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase2EncryptionAlgorithms": "<p>One or more encryption algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>AES128</code> | <code>AES256</code> | <code>AES128-GCM-16</code> | <code>AES256-GCM-16</code> </p>"
       }
     },
     "Phase2EncryptionAlgorithmsRequestListValue": {
@@ -10292,8 +10292,8 @@
     "Phase2IntegrityAlgorithmsRequestList": {
       "base": null,
       "refs": {
-        "ModifyVpnTunnelOptionsSpecification$Phase2IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> </p>",
-        "VpnTunnelOptionsSpecification$Phase2IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> </p>"
+        "ModifyVpnTunnelOptionsSpecification$Phase2IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> | <code>SHA2-384</code> | <code>SHA2-512</code> </p>",
+        "VpnTunnelOptionsSpecification$Phase2IntegrityAlgorithms": "<p>One or more integrity algorithms that are permitted for the VPN tunnel for phase 2 IKE negotiations.</p> <p>Valid values: <code>SHA1</code> | <code>SHA2-256</code> | <code>SHA2-384</code> | <code>SHA2-512</code> </p>"
       }
     },
     "Phase2IntegrityAlgorithmsRequestListValue": {
@@ -13219,7 +13219,8 @@
         "ModifyVpcEndpointServiceConfigurationRequest$PrivateDnsName": "<p>The private DNS name to assign to the endpoint service.</p>",
         "ModifyVpnTunnelCertificateRequest$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
         "ModifyVpnTunnelOptionsRequest$VpnTunnelOutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
-        "ModifyVpnTunnelOptionsSpecification$TunnelInsideCidr": "<p>The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p> <p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p> <ul> <li> <p> <code>169.254.0.0/30</code> </p> </li> <li> <p> <code>169.254.1.0/30</code> </p> </li> <li> <p> <code>169.254.2.0/30</code> </p> </li> <li> <p> <code>169.254.3.0/30</code> </p> </li> <li> <p> <code>169.254.4.0/30</code> </p> </li> <li> <p> <code>169.254.5.0/30</code> </p> </li> <li> <p> <code>169.254.169.252/30</code> </p> </li> </ul>",
+        "ModifyVpnTunnelOptionsSpecification$TunnelInsideCidr": "<p>The range of inside IPv4 addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p> <p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p> <ul> <li> <p> <code>169.254.0.0/30</code> </p> </li> <li> <p> <code>169.254.1.0/30</code> </p> </li> <li> <p> <code>169.254.2.0/30</code> </p> </li> <li> <p> <code>169.254.3.0/30</code> </p> </li> <li> <p> <code>169.254.4.0/30</code> </p> </li> <li> <p> <code>169.254.5.0/30</code> </p> </li> <li> <p> <code>169.254.169.252/30</code> </p> </li> </ul>",
+        "ModifyVpnTunnelOptionsSpecification$TunnelInsideIpv6Cidr": "<p>The range of inside IPv6 addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same transit gateway.</p> <p>Constraints: A size /126 CIDR block from the local <code>fd00::/8</code> range.</p>",
         "ModifyVpnTunnelOptionsSpecification$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and the customer gateway.</p> <p>Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0).</p>",
         "MoveAddressToVpcRequest$PublicIp": "<p>The Elastic IP address.</p>",
         "MoveAddressToVpcResult$AllocationId": "<p>The allocation ID for the Elastic IP address.</p>",
@@ -13676,7 +13677,8 @@
         "TransitGatewayVpcAttachment$VpcId": "<p>The ID of the VPC.</p>",
         "TransitGatewayVpcAttachment$VpcOwnerId": "<p>The ID of the AWS account that owns the VPC.</p>",
         "TunnelOption$OutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
-        "TunnelOption$TunnelInsideCidr": "<p>The range of inside IP addresses for the tunnel.</p>",
+        "TunnelOption$TunnelInsideCidr": "<p>The range of inside IPv4 addresses for the tunnel.</p>",
+        "TunnelOption$TunnelInsideIpv6Cidr": "<p>The range of inside IPv6 addresses for the tunnel.</p>",
         "TunnelOption$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and the customer gateway.</p>",
         "UnassignIpv6AddressesResult$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "UnsuccessfulInstanceCreditSpecificationItem$InstanceId": "<p>The ID of the instance.</p>",
@@ -13765,7 +13767,8 @@
         "VpnGateway$AvailabilityZone": "<p>The Availability Zone where the virtual private gateway was created, if applicable. This field may be empty or not returned.</p>",
         "VpnGateway$VpnGatewayId": "<p>The ID of the virtual private gateway.</p>",
         "VpnStaticRoute$DestinationCidrBlock": "<p>The CIDR block associated with the local subnet of the customer data center.</p>",
-        "VpnTunnelOptionsSpecification$TunnelInsideCidr": "<p>The range of inside IP addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p> <p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p> <ul> <li> <p> <code>169.254.0.0/30</code> </p> </li> <li> <p> <code>169.254.1.0/30</code> </p> </li> <li> <p> <code>169.254.2.0/30</code> </p> </li> <li> <p> <code>169.254.3.0/30</code> </p> </li> <li> <p> <code>169.254.4.0/30</code> </p> </li> <li> <p> <code>169.254.5.0/30</code> </p> </li> <li> <p> <code>169.254.169.252/30</code> </p> </li> </ul>",
+        "VpnTunnelOptionsSpecification$TunnelInsideCidr": "<p>The range of inside IPv4 addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same virtual private gateway. </p> <p>Constraints: A size /30 CIDR block from the <code>169.254.0.0/16</code> range. The following CIDR blocks are reserved and cannot be used:</p> <ul> <li> <p> <code>169.254.0.0/30</code> </p> </li> <li> <p> <code>169.254.1.0/30</code> </p> </li> <li> <p> <code>169.254.2.0/30</code> </p> </li> <li> <p> <code>169.254.3.0/30</code> </p> </li> <li> <p> <code>169.254.4.0/30</code> </p> </li> <li> <p> <code>169.254.5.0/30</code> </p> </li> <li> <p> <code>169.254.169.252/30</code> </p> </li> </ul>",
+        "VpnTunnelOptionsSpecification$TunnelInsideIpv6Cidr": "<p>The range of inside IPv6 addresses for the tunnel. Any specified CIDR blocks must be unique across all VPN connections that use the same transit gateway.</p> <p>Constraints: A size /126 CIDR block from the local <code>fd00::/8</code> range.</p>",
         "VpnTunnelOptionsSpecification$PreSharedKey": "<p>The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway.</p> <p>Constraints: Allowed characters are alphanumeric characters, periods (.), and underscores (_). Must be between 8 and 64 characters in length and cannot start with zero (0).</p>",
         "WithdrawByoipCidrRequest$Cidr": "<p>The address range, in CIDR notation.</p>",
         "ZoneIdStringList$member": null,
@@ -14866,6 +14869,13 @@
       "refs": {
         "ClientVpnEndpoint$TransportProtocol": "<p>The transport protocol used by the Client VPN endpoint.</p>",
         "CreateClientVpnEndpointRequest$TransportProtocol": "<p>The transport protocol to be used by the VPN session.</p> <p>Default value: <code>udp</code> </p>"
+      }
+    },
+    "TunnelInsideIpVersion": {
+      "base": null,
+      "refs": {
+        "VpnConnectionOptions$TunnelInsideIpVersion": "<p>Indicates whether the VPN tunnels process IPv4 or IPv6 traffic.</p>",
+        "VpnConnectionOptionsSpecification$TunnelInsideIpVersion": "<p>Indicate whether the VPN tunnels process IPv4 or IPv6 traffic.</p> <p>Default: <code>ipv4</code> </p>"
       }
     },
     "TunnelOption": {

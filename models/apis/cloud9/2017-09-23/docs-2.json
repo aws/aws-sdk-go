@@ -40,9 +40,21 @@
         "CreateEnvironmentEC2Request$clientRequestToken": "<p>A unique, case-sensitive string that helps AWS Cloud9 to ensure this operation completes no more than one time.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Client Tokens</a> in the <i>Amazon EC2 API Reference</i>.</p>"
       }
     },
+    "ConcurrentAccessException": {
+      "base": "<p>A concurrent access issue occurred.</p>",
+      "refs": {
+      }
+    },
     "ConflictException": {
       "base": "<p>A conflict occurred.</p>",
       "refs": {
+      }
+    },
+    "ConnectionType": {
+      "base": null,
+      "refs": {
+        "CreateEnvironmentEC2Request$connectionType": "<p>The connection type used for connecting to an Amazon EC2 environment.</p>",
+        "Environment$connectionType": "<p>The connection type used for connecting to an Amazon EC2 environment.</p>"
       }
     },
     "CreateEnvironmentEC2Request": {

@@ -2879,6 +2879,9 @@ func (c *WorkSpaces) ModifyWorkspaceCreationPropertiesRequest(input *ModifyWorks
 //   * ResourceNotFoundException
 //   The resource could not be found.
 //
+//   * OperationNotSupportedException
+//   This operation is not supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyWorkspaceCreationProperties
 func (c *WorkSpaces) ModifyWorkspaceCreationProperties(input *ModifyWorkspaceCreationPropertiesInput) (*ModifyWorkspaceCreationPropertiesOutput, error) {
 	req, out := c.ModifyWorkspaceCreationPropertiesRequest(input)
@@ -8966,7 +8969,8 @@ type Workspace struct {
 	// The identifier of the bundle used to create the WorkSpace.
 	BundleId *string `type:"string"`
 
-	// The name of the WorkSpace, as seen by the operating system.
+	// The name of the WorkSpace, as seen by the operating system. The format of
+	// this name varies. For more information, see Launch a WorkSpace (https://docs.aws.amazon.com/workspaces/latest/adminguide/launch-workspaces-tutorials.html).
 	ComputerName *string `type:"string"`
 
 	// The identifier of the AWS Directory Service directory for the WorkSpace.
@@ -9363,6 +9367,22 @@ type WorkspaceCreationProperties struct {
 	// information, see WorkSpace Maintenance (https://docs.aws.amazon.com/workspaces/latest/adminguide/workspace-maintenance.html).
 	EnableMaintenanceMode *bool `type:"boolean"`
 
+	// Indicates whether Amazon WorkDocs is enabled for your WorkSpaces.
+	//
+	// If WorkDocs is already enabled for a WorkSpaces directory and you disable
+	// it, new WorkSpaces launched in the directory will not have WorkDocs enabled.
+	// However, WorkDocs remains enabled for any existing WorkSpaces, unless you
+	// either disable users' access to WorkDocs or you delete the WorkDocs site.
+	// To disable users' access to WorkDocs, see Disabling Users (https://docs.aws.amazon.com/workdocs/latest/adminguide/inactive-user.html)
+	// in the Amazon WorkDocs Administration Guide. To delete a WorkDocs site, see
+	// Deleting a Site (https://docs.aws.amazon.com/workdocs/latest/adminguide/manage-sites.html)
+	// in the Amazon WorkDocs Administration Guide.
+	//
+	// If you enable WorkDocs on a directory that already has existing WorkSpaces,
+	// the existing WorkSpaces and any new WorkSpaces that are launched in the directory
+	// will have WorkDocs enabled.
+	EnableWorkDocs *bool `type:"boolean"`
+
 	// Indicates whether users are local administrators of their WorkSpaces.
 	UserEnabledAsLocalAdministrator *bool `type:"boolean"`
 }
@@ -9411,6 +9431,12 @@ func (s *WorkspaceCreationProperties) SetEnableInternetAccess(v bool) *Workspace
 // SetEnableMaintenanceMode sets the EnableMaintenanceMode field's value.
 func (s *WorkspaceCreationProperties) SetEnableMaintenanceMode(v bool) *WorkspaceCreationProperties {
 	s.EnableMaintenanceMode = &v
+	return s
+}
+
+// SetEnableWorkDocs sets the EnableWorkDocs field's value.
+func (s *WorkspaceCreationProperties) SetEnableWorkDocs(v bool) *WorkspaceCreationProperties {
+	s.EnableWorkDocs = &v
 	return s
 }
 

@@ -14320,6 +14320,9 @@ const (
 	// RuntimeJava8 is a Runtime enum value
 	RuntimeJava8 = "java8"
 
+	// RuntimeJava8Al2 is a Runtime enum value
+	RuntimeJava8Al2 = "java8.al2"
+
 	// RuntimeJava11 is a Runtime enum value
 	RuntimeJava11 = "java11"
 
@@ -14361,6 +14364,9 @@ const (
 
 	// RuntimeProvided is a Runtime enum value
 	RuntimeProvided = "provided"
+
+	// RuntimeProvidedAl2 is a Runtime enum value
+	RuntimeProvidedAl2 = "provided.al2"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -14373,6 +14379,7 @@ func Runtime_Values() []string {
 		RuntimeNodejs10X,
 		RuntimeNodejs12X,
 		RuntimeJava8,
+		RuntimeJava8Al2,
 		RuntimeJava11,
 		RuntimePython27,
 		RuntimePython36,
@@ -14387,6 +14394,7 @@ func Runtime_Values() []string {
 		RuntimeRuby25,
 		RuntimeRuby27,
 		RuntimeProvided,
+		RuntimeProvidedAl2,
 	}
 }
 

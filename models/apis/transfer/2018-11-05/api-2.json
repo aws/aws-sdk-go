@@ -91,6 +91,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeSecurityPolicy":{
+      "name":"DescribeSecurityPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSecurityPolicyRequest"},
+      "output":{"shape":"DescribeSecurityPolicyResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DescribeServer":{
       "name":"DescribeServer",
       "http":{
@@ -136,6 +151,21 @@
         {"shape":"ResourceExistsException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListSecurityPolicies":{
+      "name":"ListSecurityPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSecurityPoliciesRequest"},
+      "output":{"shape":"ListSecurityPoliciesResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListServers":{
@@ -336,6 +366,7 @@
         "IdentityProviderType":{"shape":"IdentityProviderType"},
         "LoggingRole":{"shape":"Role"},
         "Protocols":{"shape":"Protocols"},
+        "SecurityPolicyName":{"shape":"SecurityPolicyName"},
         "Tags":{"shape":"Tags"}
       }
     },
@@ -408,6 +439,20 @@
         "UserName":{"shape":"UserName"}
       }
     },
+    "DescribeSecurityPolicyRequest":{
+      "type":"structure",
+      "required":["SecurityPolicyName"],
+      "members":{
+        "SecurityPolicyName":{"shape":"SecurityPolicyName"}
+      }
+    },
+    "DescribeSecurityPolicyResponse":{
+      "type":"structure",
+      "required":["SecurityPolicy"],
+      "members":{
+        "SecurityPolicy":{"shape":"DescribedSecurityPolicy"}
+      }
+    },
     "DescribeServerRequest":{
       "type":"structure",
       "required":["ServerId"],
@@ -444,6 +489,18 @@
         "User":{"shape":"DescribedUser"}
       }
     },
+    "DescribedSecurityPolicy":{
+      "type":"structure",
+      "required":["SecurityPolicyName"],
+      "members":{
+        "Fips":{"shape":"Fips"},
+        "SecurityPolicyName":{"shape":"SecurityPolicyName"},
+        "SshCiphers":{"shape":"SecurityPolicyOptions"},
+        "SshKexs":{"shape":"SecurityPolicyOptions"},
+        "SshMacs":{"shape":"SecurityPolicyOptions"},
+        "TlsCiphers":{"shape":"SecurityPolicyOptions"}
+      }
+    },
     "DescribedServer":{
       "type":"structure",
       "required":["Arn"],
@@ -457,6 +514,7 @@
         "IdentityProviderType":{"shape":"IdentityProviderType"},
         "LoggingRole":{"shape":"Role"},
         "Protocols":{"shape":"Protocols"},
+        "SecurityPolicyName":{"shape":"SecurityPolicyName"},
         "ServerId":{"shape":"ServerId"},
         "State":{"shape":"State"},
         "Tags":{"shape":"Tags"},
@@ -495,6 +553,7 @@
         "VPC_ENDPOINT"
       ]
     },
+    "Fips":{"type":"boolean"},
     "HomeDirectory":{
       "type":"string",
       "max":1024,
@@ -594,6 +653,21 @@
         "Message":{"shape":"Message"}
       },
       "exception":true
+    },
+    "ListSecurityPoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListSecurityPoliciesResponse":{
+      "type":"structure",
+      "required":["SecurityPolicyNames"],
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "SecurityPolicyNames":{"shape":"SecurityPolicyNames"}
+      }
     },
     "ListServersRequest":{
       "type":"structure",
@@ -762,6 +836,23 @@
       "max":2048,
       "min":20,
       "pattern":"arn:.*role/.*"
+    },
+    "SecurityPolicyName":{
+      "type":"string",
+      "max":100,
+      "pattern":"TransferSecurityPolicy-.+"
+    },
+    "SecurityPolicyNames":{
+      "type":"list",
+      "member":{"shape":"SecurityPolicyName"}
+    },
+    "SecurityPolicyOption":{
+      "type":"string",
+      "max":50
+    },
+    "SecurityPolicyOptions":{
+      "type":"list",
+      "member":{"shape":"SecurityPolicyOption"}
     },
     "ServerId":{
       "type":"string",
@@ -943,6 +1034,7 @@
         "IdentityProviderDetails":{"shape":"IdentityProviderDetails"},
         "LoggingRole":{"shape":"NullableRole"},
         "Protocols":{"shape":"Protocols"},
+        "SecurityPolicyName":{"shape":"SecurityPolicyName"},
         "ServerId":{"shape":"ServerId"}
       }
     },
@@ -987,9 +1079,9 @@
     "UserCount":{"type":"integer"},
     "UserName":{
       "type":"string",
-      "max":32,
+      "max":100,
       "min":3,
-      "pattern":"^[a-zA-Z0-9_][a-zA-Z0-9_-]{2,31}$"
+      "pattern":"^[\\w][\\w@.-]{2,99}$"
     },
     "UserPassword":{
       "type":"string",

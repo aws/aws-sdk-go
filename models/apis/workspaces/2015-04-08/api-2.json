@@ -446,7 +446,8 @@
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"InvalidParameterValuesException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "ModifyWorkspaceProperties":{
@@ -1913,6 +1914,7 @@
     "WorkspaceCreationProperties":{
       "type":"structure",
       "members":{
+        "EnableWorkDocs":{"shape":"BooleanObject"},
         "EnableInternetAccess":{"shape":"BooleanObject"},
         "DefaultOu":{"shape":"DefaultOu"},
         "CustomSecurityGroupId":{"shape":"SecurityGroupId"},

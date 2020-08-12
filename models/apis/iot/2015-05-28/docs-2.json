@@ -17,6 +17,7 @@
     "CancelJobExecution": "<p>Cancels the execution of a job for a given thing.</p>",
     "ClearDefaultAuthorizer": "<p>Clears the default authorizer.</p>",
     "ConfirmTopicRuleDestination": "<p>Confirms a topic rule destination. When you create a rule requiring a destination, AWS IoT sends a confirmation message to the endpoint or base address you specify. The message includes a token which you pass back when calling <code>ConfirmTopicRuleDestination</code> to confirm that you own or have access to the endpoint.</p>",
+    "CreateAuditSuppression": "<p> Creates a Device Defender audit suppression. </p>",
     "CreateAuthorizer": "<p>Creates an authorizer.</p>",
     "CreateBillingGroup": "<p>Creates a billing group.</p>",
     "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p> <b>Note:</b> The CSR must include a public key that is either an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr AWS CLI command to create a certificate for the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
@@ -25,7 +26,7 @@
     "CreateDynamicThingGroup": "<p>Creates a dynamic thing group.</p>",
     "CreateJob": "<p>Creates a job.</p>",
     "CreateKeysAndCertificate": "<p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device, for more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api\">Provisioning MQTT API</a>.</p> <p> <b>Note</b> This is the only time AWS IoT issues the private key for this certificate, so it is important to keep it in a secure location.</p>",
-    "CreateMitigationAction": "<p>Defines an action that can be applied to audit findings by using StartAuditMitigationActionsTask. Each mitigation action can apply only one type of change.</p>",
+    "CreateMitigationAction": "<p>Defines an action that can be applied to audit findings by using StartAuditMitigationActionsTask. Only certain types of mitigation actions can be applied to specific check names. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-mitigation-actions.html\">Mitigation actions</a>. Each mitigation action can apply only one type of change.</p>",
     "CreateOTAUpdate": "<p>Creates an AWS IoT OTAUpdate on a target group of things or groups.</p>",
     "CreatePolicy": "<p>Creates an AWS IoT policy.</p> <p>The created policy is the default version for the policy. This operation creates a policy version with a version identifier of <b>1</b> and sets <b>1</b> as the policy's default version.</p>",
     "CreatePolicyVersion": "<p>Creates a new version of the specified AWS IoT policy. To update a policy, create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must use <a>DeletePolicyVersion</a> to delete an existing version before you create a new one.</p> <p>Optionally, you can set the new version as the policy's default version. The default version is the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p>",
@@ -42,6 +43,7 @@
     "CreateTopicRule": "<p>Creates a rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
     "CreateTopicRuleDestination": "<p>Creates a topic rule destination. The destination must be confirmed prior to use.</p>",
     "DeleteAccountAuditConfiguration": "<p>Restores the default settings for Device Defender audits for this account. Any configuration data you entered is deleted and all audit checks are reset to disabled. </p>",
+    "DeleteAuditSuppression": "<p> Deletes a Device Defender audit suppression. </p>",
     "DeleteAuthorizer": "<p>Deletes an authorizer.</p>",
     "DeleteBillingGroup": "<p>Deletes the billing group.</p>",
     "DeleteCACertificate": "<p>Deletes a registered CA certificate.</p>",
@@ -72,6 +74,7 @@
     "DescribeAccountAuditConfiguration": "<p>Gets information about the Device Defender audit settings for this account. Settings include how audit notifications are sent and which audit checks are enabled or disabled.</p>",
     "DescribeAuditFinding": "<p>Gets information about a single audit finding. Properties include the reason for noncompliance, the severity of the issue, and when the audit that returned the finding was started.</p>",
     "DescribeAuditMitigationActionsTask": "<p>Gets information about an audit mitigation task that is used to apply mitigation actions to a set of audit findings. Properties include the actions being applied, the audit checks to which they're being applied, the task status, and aggregated task statistics.</p>",
+    "DescribeAuditSuppression": "<p> Gets information about a Device Defender audit suppression. </p>",
     "DescribeAuditTask": "<p>Gets information about a Device Defender audit.</p>",
     "DescribeAuthorizer": "<p>Describes an authorizer.</p>",
     "DescribeBillingGroup": "<p>Returns information about a billing group.</p>",
@@ -121,6 +124,7 @@
     "ListAuditFindings": "<p>Lists the findings (results) of a Device Defender audit or of the audits performed during a specified time period. (Findings are retained for 180 days.)</p>",
     "ListAuditMitigationActionsExecutions": "<p>Gets the status of audit mitigation action tasks that were executed.</p>",
     "ListAuditMitigationActionsTasks": "<p>Gets a list of audit mitigation action tasks that match the specified filters.</p>",
+    "ListAuditSuppressions": "<p> Lists your Device Defender audit listings. </p>",
     "ListAuditTasks": "<p>Lists the Device Defender audits that have been performed during a given time period.</p>",
     "ListAuthorizers": "<p>Lists the authorizers registered in your account.</p>",
     "ListBillingGroups": "<p>Lists the billing groups you have created.</p>",
@@ -157,7 +161,7 @@
     "ListThingRegistrationTaskReports": "<p>Information about the thing registration tasks.</p>",
     "ListThingRegistrationTasks": "<p>List bulk thing provisioning tasks.</p>",
     "ListThingTypes": "<p>Lists the existing thing types.</p>",
-    "ListThings": "<p>Lists your things. Use the <b>attributeName</b> and <b>attributeValue</b> parameters to filter your things. For example, calling <code>ListThings</code> with attributeName=Color and attributeValue=Red retrieves all things in the registry that contain an attribute <b>Color</b> with the value <b>Red</b>. </p>",
+    "ListThings": "<p>Lists your things. Use the <b>attributeName</b> and <b>attributeValue</b> parameters to filter your things. For example, calling <code>ListThings</code> with attributeName=Color and attributeValue=Red retrieves all things in the registry that contain an attribute <b>Color</b> with the value <b>Red</b>. </p> <note> <p>You will not be charged for calling this API if an <code>Access denied</code> error is returned. You will also not be charged if no attributes or pagination token was provided in request and no pagination token and no results were returned.</p> </note>",
     "ListThingsInBillingGroup": "<p>Lists the things you have added to the given billing group.</p>",
     "ListThingsInThingGroup": "<p>Lists the things in the specified group.</p>",
     "ListTopicRuleDestinations": "<p>Lists all the topic rule destinations in your AWS account.</p>",
@@ -188,10 +192,11 @@
     "TransferCertificate": "<p>Transfers the specified certificate to the specified AWS account.</p> <p>You can cancel the transfer until it is acknowledged by the recipient.</p> <p>No notification is sent to the transfer destination's account. It is up to the caller to notify the transfer target.</p> <p>The certificate being transferred must not be in the ACTIVE state. You can use the UpdateCertificate API to deactivate it.</p> <p>The certificate must not have any policies attached to it. You can use the DetachPrincipalPolicy API to detach them.</p>",
     "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p>",
     "UpdateAccountAuditConfiguration": "<p>Configures or reconfigures the Device Defender audit settings for this account. Settings include how audit notifications are sent and which audit checks are enabled or disabled.</p>",
+    "UpdateAuditSuppression": "<p> Updates a Device Defender audit suppression. </p>",
     "UpdateAuthorizer": "<p>Updates an authorizer.</p>",
     "UpdateBillingGroup": "<p>Updates information about the billing group.</p>",
     "UpdateCACertificate": "<p>Updates a registered CA certificate.</p>",
-    "UpdateCertificate": "<p>Updates the status of the specified certificate. This operation is idempotent.</p> <p>Moving a certificate from the ACTIVE state (including REVOKED) will not disconnect currently connected devices, but these devices will be unable to reconnect.</p> <p>The ACTIVE state is required to authenticate devices connecting to AWS IoT using a certificate.</p>",
+    "UpdateCertificate": "<p>Updates the status of the specified certificate. This operation is idempotent.</p> <p>Certificates must be in the ACTIVE state to authenticate devices that use a certificate to connect to AWS IoT.</p> <p>Within a few minutes of updating a certificate from the ACTIVE state to any other state, AWS IoT disconnects all devices that used that certificate to connect. Devices cannot use a certificate that is not in the ACTIVE state to reconnect.</p>",
     "UpdateDimension": "<p>Updates the definition for a dimension. You cannot change the type of a dimension after it is created (you can delete it and re-create it).</p>",
     "UpdateDomainConfiguration": "<p>Updates values stored in the domain configuration. Domain configurations for default endpoints can't be updated.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "UpdateDynamicThingGroup": "<p>Updates a dynamic thing group.</p>",
@@ -408,6 +413,7 @@
     "AscendingOrder": {
       "base": null,
       "refs": {
+        "ListAuditSuppressionsRequest$ascendingOrder": "<p> Determines whether suppressions are listed in ascending order by expiration date or not. If parameter isn't provided, <code>ascendingOrder=true</code>. </p>",
         "ListAuthorizersRequest$ascendingOrder": "<p>Return the list of authorizers in ascending alphabetical order.</p>",
         "ListCACertificatesRequest$ascendingOrder": "<p>Determines the order of the results.</p>",
         "ListCertificatesByCARequest$ascendingOrder": "<p>Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.</p>",
@@ -624,8 +630,15 @@
         "AuditDetails$key": null,
         "AuditFinding$checkName": "<p>The audit check that generated this result.</p>",
         "AuditMitigationActionsTaskStatistics$key": null,
+        "AuditSuppression$checkName": null,
+        "CreateAuditSuppressionRequest$checkName": null,
+        "DeleteAuditSuppressionRequest$checkName": null,
+        "DescribeAuditSuppressionRequest$checkName": null,
+        "DescribeAuditSuppressionResponse$checkName": null,
         "ListAuditFindingsRequest$checkName": "<p>A filter to limit results to the findings for the specified audit check.</p>",
-        "TargetAuditCheckNames$member": null
+        "ListAuditSuppressionsRequest$checkName": null,
+        "TargetAuditCheckNames$member": null,
+        "UpdateAuditSuppressionRequest$checkName": null
       }
     },
     "AuditCheckRunStatus": {
@@ -645,6 +658,15 @@
       "base": null,
       "refs": {
         "AuditMitigationActionsTaskTarget$auditCheckToReasonCodeFilter": "<p>Specifies a filter in the form of an audit check and set of reason codes that identify the findings from the audit to which the audit mitigation actions task apply.</p>"
+      }
+    },
+    "AuditDescription": {
+      "base": null,
+      "refs": {
+        "AuditSuppression$description": "<p> The description of the audit suppression. </p>",
+        "CreateAuditSuppressionRequest$description": "<p> The description of the audit suppression. </p>",
+        "DescribeAuditSuppressionResponse$description": "<p> The description of the audit suppression. </p>",
+        "UpdateAuditSuppressionRequest$description": "<p> The description of the audit suppression. </p>"
       }
     },
     "AuditDetails": {
@@ -762,6 +784,18 @@
       "base": null,
       "refs": {
         "AuditNotificationTargetConfigurations$key": null
+      }
+    },
+    "AuditSuppression": {
+      "base": "<p> Filters out specific findings of a Device Defender audit. </p>",
+      "refs": {
+        "AuditSuppressionList$member": null
+      }
+    },
+    "AuditSuppressionList": {
+      "base": null,
+      "refs": {
+        "ListAuditSuppressionsResponse$suppressions": "<p> List of audit suppressions. </p>"
       }
     },
     "AuditTaskId": {
@@ -1482,6 +1516,7 @@
     "ClientRequestToken": {
       "base": null,
       "refs": {
+        "CreateAuditSuppressionRequest$clientRequestToken": "<p> The epoch timestamp in seconds at which this suppression expires. </p>",
         "CreateDimensionRequest$clientRequestToken": "<p>Each dimension must have a unique client request token. If you try to create a new dimension with the same token as a dimension that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request.</p>",
         "StartAuditMitigationActionsTaskRequest$clientRequestToken": "<p>Each audit mitigation task must have a unique client request token. If you try to start a new task with the same token as a task that already exists, an exception occurs. If you omit this value, a unique client request token is generated automatically.</p>"
       }
@@ -1608,6 +1643,16 @@
         "DescribeThingRegistrationTaskResponse$failureCount": "<p>The number of things that failed to be provisioned.</p>",
         "GetCardinalityResponse$cardinality": "<p>The approximate count of unique values that match the query.</p>",
         "Statistics$count": "<p>The count of things that match the query.</p>"
+      }
+    },
+    "CreateAuditSuppressionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAuditSuppressionResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateAuthorizerRequest": {
@@ -1974,6 +2019,16 @@
         "UpdateSecurityProfileRequest$deleteAlertTargets": "<p>If true, delete all <code>alertTargets</code> defined for this security profile. If any <code>alertTargets</code> are defined in the current invocation, an exception occurs.</p>"
       }
     },
+    "DeleteAuditSuppressionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAuditSuppressionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteAuthorizerRequest": {
       "base": null,
       "refs": {
@@ -2276,6 +2331,16 @@
       }
     },
     "DescribeAuditMitigationActionsTaskResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAuditSuppressionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAuditSuppressionResponse": {
       "base": null,
       "refs": {
       }
@@ -3467,6 +3532,12 @@
         "TopicRulePayload$ruleDisabled": "<p>Specifies whether the rule is disabled.</p>"
       }
     },
+    "IsSuppressed": {
+      "base": null,
+      "refs": {
+        "AuditFinding$isSuppressed": "<p> Indicates whether the audit finding was suppressed or not during reporting. </p>"
+      }
+    },
     "Job": {
       "base": "<p>The <code>Job</code> object contains details about a job.</p>",
       "refs": {
@@ -3744,6 +3815,16 @@
       "refs": {
       }
     },
+    "ListAuditSuppressionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAuditSuppressionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListAuditTasksRequest": {
       "base": null,
       "refs": {
@@ -4014,6 +4095,12 @@
       "refs": {
       }
     },
+    "ListSuppressedFindings": {
+      "base": null,
+      "refs": {
+        "ListAuditFindingsRequest$listSuppressedFindings": "<p> Boolean flag indicating whether only the suppressed findings or the unsuppressed findings should be listed. If this parameter isn't provided, the response will list both suppressed and unsuppressed findings. </p>"
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -4279,6 +4366,7 @@
         "ListAuditFindingsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListAuditMitigationActionsExecutionsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListAuditMitigationActionsTasksRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
+        "ListAuditSuppressionsRequest$maxResults": "<p> The maximum number of results to return at one time. The default is 25. </p>",
         "ListAuditTasksRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListDimensionsRequest$maxResults": "<p>The maximum number of results to retrieve at one time.</p>",
         "ListMitigationActionsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
@@ -4486,6 +4574,8 @@
         "ListAuditMitigationActionsExecutionsResponse$nextToken": "<p>The token for the next set of results.</p>",
         "ListAuditMitigationActionsTasksRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListAuditMitigationActionsTasksResponse$nextToken": "<p>The token for the next set of results.</p>",
+        "ListAuditSuppressionsRequest$nextToken": "<p> The token for the next set of results. </p>",
+        "ListAuditSuppressionsResponse$nextToken": "<p> A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results. </p>",
         "ListAuditTasksRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListAuditTasksResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListBillingGroupsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
@@ -4525,19 +4615,19 @@
         "ListThingGroupsForThingRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListThingGroupsForThingResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListThingGroupsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
-        "ListThingGroupsResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListThingGroupsResponse$nextToken": "<p>The token used to get the next set of results. Will not be returned if operation has returned all results.</p>",
         "ListThingRegistrationTaskReportsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListThingRegistrationTaskReportsResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListThingRegistrationTasksRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListThingRegistrationTasksResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListThingTypesRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
-        "ListThingTypesResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListThingTypesResponse$nextToken": "<p>The token for the next set of results. Will not be returned if operation has returned all results.</p>",
         "ListThingsInBillingGroupRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
-        "ListThingsInBillingGroupResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListThingsInBillingGroupResponse$nextToken": "<p>The token used to get the next set of results. Will not be returned if operation has returned all results.</p>",
         "ListThingsInThingGroupRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListThingsInThingGroupResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListThingsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
-        "ListThingsResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListThingsResponse$nextToken": "<p>The token used to get the next set of results. Will not be returned if operation has returned all results.</p>",
         "ListTopicRuleDestinationsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListTopicRuleDestinationsResponse$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListTopicRulesRequest$nextToken": "<p>A token used to retrieve the next value.</p>",
@@ -4867,7 +4957,7 @@
       "refs": {
         "AttachPolicyRequest$target": "<p>The <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html\">identity</a> to which the policy is attached.</p>",
         "DetachPolicyRequest$target": "<p>The target from which the policy will be detached.</p>",
-        "ListAttachedPoliciesRequest$target": "<p>The group or principal for which the policies will be listed.</p>",
+        "ListAttachedPoliciesRequest$target": "<p>The group or principal for which the policies will be listed. Valid principals are CertificateArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>), thingGroupArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).</p>",
         "PolicyTargets$member": null
       }
     },
@@ -4946,12 +5036,12 @@
       "refs": {
         "AttachPrincipalPolicyRequest$principal": "<p>The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID.</p>",
         "AttachThingPrincipalRequest$principal": "<p>The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID.</p>",
-        "DetachPrincipalPolicyRequest$principal": "<p>The principal.</p> <p>If the principal is a certificate, specify the certificate ARN. If the principal is an Amazon Cognito identity, specify the identity ID.</p>",
+        "DetachPrincipalPolicyRequest$principal": "<p>The principal.</p> <p>Valid principals are CertificateArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>), thingGroupArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).</p>",
         "DetachThingPrincipalRequest$principal": "<p>If the principal is a certificate, this value must be ARN of the certificate. If the principal is an Amazon Cognito identity, this value must be the ID of the Amazon Cognito identity.</p>",
-        "GetEffectivePoliciesRequest$principal": "<p>The principal.</p>",
-        "ListPrincipalPoliciesRequest$principal": "<p>The principal.</p>",
+        "GetEffectivePoliciesRequest$principal": "<p>The principal. Valid principals are CertificateArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>), thingGroupArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).</p>",
+        "ListPrincipalPoliciesRequest$principal": "<p>The principal. Valid principals are CertificateArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>), thingGroupArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).</p>",
         "ListPrincipalThingsRequest$principal": "<p>The principal.</p>",
-        "TestAuthorizationRequest$principal": "<p>The principal.</p>"
+        "TestAuthorizationRequest$principal": "<p>The principal. Valid principals are CertificateArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>), thingGroupArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).</p>"
       }
     },
     "PrincipalArn": {
@@ -5407,9 +5497,16 @@
     "ResourceIdentifier": {
       "base": "<p>Information that identifies the noncompliant resource.</p>",
       "refs": {
+        "AuditSuppression$resourceIdentifier": null,
+        "CreateAuditSuppressionRequest$resourceIdentifier": null,
+        "DeleteAuditSuppressionRequest$resourceIdentifier": null,
+        "DescribeAuditSuppressionRequest$resourceIdentifier": null,
+        "DescribeAuditSuppressionResponse$resourceIdentifier": null,
         "ListAuditFindingsRequest$resourceIdentifier": "<p>Information identifying the noncompliant resource.</p>",
+        "ListAuditSuppressionsRequest$resourceIdentifier": null,
         "NonCompliantResource$resourceIdentifier": "<p>Information that identifies the noncompliant resource.</p>",
-        "RelatedResource$resourceIdentifier": "<p>Information that identifies the resource.</p>"
+        "RelatedResource$resourceIdentifier": "<p>Information that identifies the resource.</p>",
+        "UpdateAuditSuppressionRequest$resourceIdentifier": null
       }
     },
     "ResourceLogicalId": {
@@ -6159,6 +6256,21 @@
         "Statistics$sumOfSquares": "<p>The sum of the squares of the aggregated field values.</p>"
       }
     },
+    "SuppressIndefinitely": {
+      "base": null,
+      "refs": {
+        "AuditSuppression$suppressIndefinitely": "<p> Indicates whether a suppression should exist indefinitely or not. </p>",
+        "CreateAuditSuppressionRequest$suppressIndefinitely": "<p> Indicates whether a suppression should exist indefinitely or not. </p>",
+        "DescribeAuditSuppressionResponse$suppressIndefinitely": "<p> Indicates whether a suppression should exist indefinitely or not. </p>",
+        "UpdateAuditSuppressionRequest$suppressIndefinitely": "<p> Indicates whether a suppression should exist indefinitely or not. </p>"
+      }
+    },
+    "SuppressedNonCompliantResourcesCount": {
+      "base": null,
+      "refs": {
+        "AuditCheckDetails$suppressedNonCompliantResourcesCount": "<p> Describes how many of the non-compliant resources created during the evaluation of an audit check were marked as suppressed. </p>"
+      }
+    },
     "TableName": {
       "base": null,
       "refs": {
@@ -6711,8 +6823,11 @@
         "AuditMitigationActionExecutionMetadata$startTime": "<p>The date and time when the task was started.</p>",
         "AuditMitigationActionExecutionMetadata$endTime": "<p>The date and time when the task was completed or canceled. Blank if the task is still running.</p>",
         "AuditMitigationActionsTaskMetadata$startTime": "<p>The time at which the audit mitigation actions task was started.</p>",
+        "AuditSuppression$expirationDate": "<p> The expiration date (epoch timestamp in seconds) that you want the suppression to adhere to. </p>",
+        "CreateAuditSuppressionRequest$expirationDate": "<p> The epoch timestamp in seconds at which this suppression expires. </p>",
         "DescribeAuditMitigationActionsTaskResponse$startTime": "<p>The date and time when the task was started.</p>",
         "DescribeAuditMitigationActionsTaskResponse$endTime": "<p>The date and time when the task was completed or canceled.</p>",
+        "DescribeAuditSuppressionResponse$expirationDate": "<p> The epoch timestamp in seconds at which this suppression expires. </p>",
         "DescribeAuditTaskResponse$taskStartTime": "<p>The time the audit started.</p>",
         "DescribeDimensionResponse$creationDate": "<p>The date the dimension was created.</p>",
         "DescribeDimensionResponse$lastModifiedDate": "<p>The date the dimension was last modified.</p>",
@@ -6729,6 +6844,7 @@
         "ListViolationEventsRequest$startTime": "<p>The start time for the alerts to be listed.</p>",
         "ListViolationEventsRequest$endTime": "<p>The end time for the alerts to be listed.</p>",
         "MitigationActionIdentifier$creationDate": "<p>The date when this mitigation action was created.</p>",
+        "UpdateAuditSuppressionRequest$expirationDate": "<p> The expiration date (epoch timestamp in seconds) that you want the suppression to adhere to. </p>",
         "UpdateDimensionResponse$creationDate": "<p>The date and time, in milliseconds since epoch, when the dimension was initially created.</p>",
         "UpdateDimensionResponse$lastModifiedDate": "<p>The date and time, in milliseconds since epoch, when the dimension was most recently updated.</p>",
         "UpdateSecurityProfileResponse$creationDate": "<p>The time the security profile was created.</p>",
@@ -6922,6 +7038,16 @@
       }
     },
     "UpdateAccountAuditConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAuditSuppressionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAuditSuppressionResponse": {
       "base": null,
       "refs": {
       }

@@ -120,6 +120,10 @@ type IoTAPI interface {
 	ConfirmTopicRuleDestinationWithContext(aws.Context, *iot.ConfirmTopicRuleDestinationInput, ...request.Option) (*iot.ConfirmTopicRuleDestinationOutput, error)
 	ConfirmTopicRuleDestinationRequest(*iot.ConfirmTopicRuleDestinationInput) (*request.Request, *iot.ConfirmTopicRuleDestinationOutput)
 
+	CreateAuditSuppression(*iot.CreateAuditSuppressionInput) (*iot.CreateAuditSuppressionOutput, error)
+	CreateAuditSuppressionWithContext(aws.Context, *iot.CreateAuditSuppressionInput, ...request.Option) (*iot.CreateAuditSuppressionOutput, error)
+	CreateAuditSuppressionRequest(*iot.CreateAuditSuppressionInput) (*request.Request, *iot.CreateAuditSuppressionOutput)
+
 	CreateAuthorizer(*iot.CreateAuthorizerInput) (*iot.CreateAuthorizerOutput, error)
 	CreateAuthorizerWithContext(aws.Context, *iot.CreateAuthorizerInput, ...request.Option) (*iot.CreateAuthorizerOutput, error)
 	CreateAuthorizerRequest(*iot.CreateAuthorizerInput) (*request.Request, *iot.CreateAuthorizerOutput)
@@ -219,6 +223,10 @@ type IoTAPI interface {
 	DeleteAccountAuditConfiguration(*iot.DeleteAccountAuditConfigurationInput) (*iot.DeleteAccountAuditConfigurationOutput, error)
 	DeleteAccountAuditConfigurationWithContext(aws.Context, *iot.DeleteAccountAuditConfigurationInput, ...request.Option) (*iot.DeleteAccountAuditConfigurationOutput, error)
 	DeleteAccountAuditConfigurationRequest(*iot.DeleteAccountAuditConfigurationInput) (*request.Request, *iot.DeleteAccountAuditConfigurationOutput)
+
+	DeleteAuditSuppression(*iot.DeleteAuditSuppressionInput) (*iot.DeleteAuditSuppressionOutput, error)
+	DeleteAuditSuppressionWithContext(aws.Context, *iot.DeleteAuditSuppressionInput, ...request.Option) (*iot.DeleteAuditSuppressionOutput, error)
+	DeleteAuditSuppressionRequest(*iot.DeleteAuditSuppressionInput) (*request.Request, *iot.DeleteAuditSuppressionOutput)
 
 	DeleteAuthorizer(*iot.DeleteAuthorizerInput) (*iot.DeleteAuthorizerOutput, error)
 	DeleteAuthorizerWithContext(aws.Context, *iot.DeleteAuthorizerInput, ...request.Option) (*iot.DeleteAuthorizerOutput, error)
@@ -339,6 +347,10 @@ type IoTAPI interface {
 	DescribeAuditMitigationActionsTask(*iot.DescribeAuditMitigationActionsTaskInput) (*iot.DescribeAuditMitigationActionsTaskOutput, error)
 	DescribeAuditMitigationActionsTaskWithContext(aws.Context, *iot.DescribeAuditMitigationActionsTaskInput, ...request.Option) (*iot.DescribeAuditMitigationActionsTaskOutput, error)
 	DescribeAuditMitigationActionsTaskRequest(*iot.DescribeAuditMitigationActionsTaskInput) (*request.Request, *iot.DescribeAuditMitigationActionsTaskOutput)
+
+	DescribeAuditSuppression(*iot.DescribeAuditSuppressionInput) (*iot.DescribeAuditSuppressionOutput, error)
+	DescribeAuditSuppressionWithContext(aws.Context, *iot.DescribeAuditSuppressionInput, ...request.Option) (*iot.DescribeAuditSuppressionOutput, error)
+	DescribeAuditSuppressionRequest(*iot.DescribeAuditSuppressionInput) (*request.Request, *iot.DescribeAuditSuppressionOutput)
 
 	DescribeAuditTask(*iot.DescribeAuditTaskInput) (*iot.DescribeAuditTaskOutput, error)
 	DescribeAuditTaskWithContext(aws.Context, *iot.DescribeAuditTaskInput, ...request.Option) (*iot.DescribeAuditTaskOutput, error)
@@ -520,89 +532,162 @@ type IoTAPI interface {
 	ListActiveViolationsWithContext(aws.Context, *iot.ListActiveViolationsInput, ...request.Option) (*iot.ListActiveViolationsOutput, error)
 	ListActiveViolationsRequest(*iot.ListActiveViolationsInput) (*request.Request, *iot.ListActiveViolationsOutput)
 
+	ListActiveViolationsPages(*iot.ListActiveViolationsInput, func(*iot.ListActiveViolationsOutput, bool) bool) error
+	ListActiveViolationsPagesWithContext(aws.Context, *iot.ListActiveViolationsInput, func(*iot.ListActiveViolationsOutput, bool) bool, ...request.Option) error
+
 	ListAttachedPolicies(*iot.ListAttachedPoliciesInput) (*iot.ListAttachedPoliciesOutput, error)
 	ListAttachedPoliciesWithContext(aws.Context, *iot.ListAttachedPoliciesInput, ...request.Option) (*iot.ListAttachedPoliciesOutput, error)
 	ListAttachedPoliciesRequest(*iot.ListAttachedPoliciesInput) (*request.Request, *iot.ListAttachedPoliciesOutput)
+
+	ListAttachedPoliciesPages(*iot.ListAttachedPoliciesInput, func(*iot.ListAttachedPoliciesOutput, bool) bool) error
+	ListAttachedPoliciesPagesWithContext(aws.Context, *iot.ListAttachedPoliciesInput, func(*iot.ListAttachedPoliciesOutput, bool) bool, ...request.Option) error
 
 	ListAuditFindings(*iot.ListAuditFindingsInput) (*iot.ListAuditFindingsOutput, error)
 	ListAuditFindingsWithContext(aws.Context, *iot.ListAuditFindingsInput, ...request.Option) (*iot.ListAuditFindingsOutput, error)
 	ListAuditFindingsRequest(*iot.ListAuditFindingsInput) (*request.Request, *iot.ListAuditFindingsOutput)
 
+	ListAuditFindingsPages(*iot.ListAuditFindingsInput, func(*iot.ListAuditFindingsOutput, bool) bool) error
+	ListAuditFindingsPagesWithContext(aws.Context, *iot.ListAuditFindingsInput, func(*iot.ListAuditFindingsOutput, bool) bool, ...request.Option) error
+
 	ListAuditMitigationActionsExecutions(*iot.ListAuditMitigationActionsExecutionsInput) (*iot.ListAuditMitigationActionsExecutionsOutput, error)
 	ListAuditMitigationActionsExecutionsWithContext(aws.Context, *iot.ListAuditMitigationActionsExecutionsInput, ...request.Option) (*iot.ListAuditMitigationActionsExecutionsOutput, error)
 	ListAuditMitigationActionsExecutionsRequest(*iot.ListAuditMitigationActionsExecutionsInput) (*request.Request, *iot.ListAuditMitigationActionsExecutionsOutput)
+
+	ListAuditMitigationActionsExecutionsPages(*iot.ListAuditMitigationActionsExecutionsInput, func(*iot.ListAuditMitigationActionsExecutionsOutput, bool) bool) error
+	ListAuditMitigationActionsExecutionsPagesWithContext(aws.Context, *iot.ListAuditMitigationActionsExecutionsInput, func(*iot.ListAuditMitigationActionsExecutionsOutput, bool) bool, ...request.Option) error
 
 	ListAuditMitigationActionsTasks(*iot.ListAuditMitigationActionsTasksInput) (*iot.ListAuditMitigationActionsTasksOutput, error)
 	ListAuditMitigationActionsTasksWithContext(aws.Context, *iot.ListAuditMitigationActionsTasksInput, ...request.Option) (*iot.ListAuditMitigationActionsTasksOutput, error)
 	ListAuditMitigationActionsTasksRequest(*iot.ListAuditMitigationActionsTasksInput) (*request.Request, *iot.ListAuditMitigationActionsTasksOutput)
 
+	ListAuditMitigationActionsTasksPages(*iot.ListAuditMitigationActionsTasksInput, func(*iot.ListAuditMitigationActionsTasksOutput, bool) bool) error
+	ListAuditMitigationActionsTasksPagesWithContext(aws.Context, *iot.ListAuditMitigationActionsTasksInput, func(*iot.ListAuditMitigationActionsTasksOutput, bool) bool, ...request.Option) error
+
+	ListAuditSuppressions(*iot.ListAuditSuppressionsInput) (*iot.ListAuditSuppressionsOutput, error)
+	ListAuditSuppressionsWithContext(aws.Context, *iot.ListAuditSuppressionsInput, ...request.Option) (*iot.ListAuditSuppressionsOutput, error)
+	ListAuditSuppressionsRequest(*iot.ListAuditSuppressionsInput) (*request.Request, *iot.ListAuditSuppressionsOutput)
+
+	ListAuditSuppressionsPages(*iot.ListAuditSuppressionsInput, func(*iot.ListAuditSuppressionsOutput, bool) bool) error
+	ListAuditSuppressionsPagesWithContext(aws.Context, *iot.ListAuditSuppressionsInput, func(*iot.ListAuditSuppressionsOutput, bool) bool, ...request.Option) error
+
 	ListAuditTasks(*iot.ListAuditTasksInput) (*iot.ListAuditTasksOutput, error)
 	ListAuditTasksWithContext(aws.Context, *iot.ListAuditTasksInput, ...request.Option) (*iot.ListAuditTasksOutput, error)
 	ListAuditTasksRequest(*iot.ListAuditTasksInput) (*request.Request, *iot.ListAuditTasksOutput)
+
+	ListAuditTasksPages(*iot.ListAuditTasksInput, func(*iot.ListAuditTasksOutput, bool) bool) error
+	ListAuditTasksPagesWithContext(aws.Context, *iot.ListAuditTasksInput, func(*iot.ListAuditTasksOutput, bool) bool, ...request.Option) error
 
 	ListAuthorizers(*iot.ListAuthorizersInput) (*iot.ListAuthorizersOutput, error)
 	ListAuthorizersWithContext(aws.Context, *iot.ListAuthorizersInput, ...request.Option) (*iot.ListAuthorizersOutput, error)
 	ListAuthorizersRequest(*iot.ListAuthorizersInput) (*request.Request, *iot.ListAuthorizersOutput)
 
+	ListAuthorizersPages(*iot.ListAuthorizersInput, func(*iot.ListAuthorizersOutput, bool) bool) error
+	ListAuthorizersPagesWithContext(aws.Context, *iot.ListAuthorizersInput, func(*iot.ListAuthorizersOutput, bool) bool, ...request.Option) error
+
 	ListBillingGroups(*iot.ListBillingGroupsInput) (*iot.ListBillingGroupsOutput, error)
 	ListBillingGroupsWithContext(aws.Context, *iot.ListBillingGroupsInput, ...request.Option) (*iot.ListBillingGroupsOutput, error)
 	ListBillingGroupsRequest(*iot.ListBillingGroupsInput) (*request.Request, *iot.ListBillingGroupsOutput)
+
+	ListBillingGroupsPages(*iot.ListBillingGroupsInput, func(*iot.ListBillingGroupsOutput, bool) bool) error
+	ListBillingGroupsPagesWithContext(aws.Context, *iot.ListBillingGroupsInput, func(*iot.ListBillingGroupsOutput, bool) bool, ...request.Option) error
 
 	ListCACertificates(*iot.ListCACertificatesInput) (*iot.ListCACertificatesOutput, error)
 	ListCACertificatesWithContext(aws.Context, *iot.ListCACertificatesInput, ...request.Option) (*iot.ListCACertificatesOutput, error)
 	ListCACertificatesRequest(*iot.ListCACertificatesInput) (*request.Request, *iot.ListCACertificatesOutput)
 
+	ListCACertificatesPages(*iot.ListCACertificatesInput, func(*iot.ListCACertificatesOutput, bool) bool) error
+	ListCACertificatesPagesWithContext(aws.Context, *iot.ListCACertificatesInput, func(*iot.ListCACertificatesOutput, bool) bool, ...request.Option) error
+
 	ListCertificates(*iot.ListCertificatesInput) (*iot.ListCertificatesOutput, error)
 	ListCertificatesWithContext(aws.Context, *iot.ListCertificatesInput, ...request.Option) (*iot.ListCertificatesOutput, error)
 	ListCertificatesRequest(*iot.ListCertificatesInput) (*request.Request, *iot.ListCertificatesOutput)
+
+	ListCertificatesPages(*iot.ListCertificatesInput, func(*iot.ListCertificatesOutput, bool) bool) error
+	ListCertificatesPagesWithContext(aws.Context, *iot.ListCertificatesInput, func(*iot.ListCertificatesOutput, bool) bool, ...request.Option) error
 
 	ListCertificatesByCA(*iot.ListCertificatesByCAInput) (*iot.ListCertificatesByCAOutput, error)
 	ListCertificatesByCAWithContext(aws.Context, *iot.ListCertificatesByCAInput, ...request.Option) (*iot.ListCertificatesByCAOutput, error)
 	ListCertificatesByCARequest(*iot.ListCertificatesByCAInput) (*request.Request, *iot.ListCertificatesByCAOutput)
 
+	ListCertificatesByCAPages(*iot.ListCertificatesByCAInput, func(*iot.ListCertificatesByCAOutput, bool) bool) error
+	ListCertificatesByCAPagesWithContext(aws.Context, *iot.ListCertificatesByCAInput, func(*iot.ListCertificatesByCAOutput, bool) bool, ...request.Option) error
+
 	ListDimensions(*iot.ListDimensionsInput) (*iot.ListDimensionsOutput, error)
 	ListDimensionsWithContext(aws.Context, *iot.ListDimensionsInput, ...request.Option) (*iot.ListDimensionsOutput, error)
 	ListDimensionsRequest(*iot.ListDimensionsInput) (*request.Request, *iot.ListDimensionsOutput)
+
+	ListDimensionsPages(*iot.ListDimensionsInput, func(*iot.ListDimensionsOutput, bool) bool) error
+	ListDimensionsPagesWithContext(aws.Context, *iot.ListDimensionsInput, func(*iot.ListDimensionsOutput, bool) bool, ...request.Option) error
 
 	ListDomainConfigurations(*iot.ListDomainConfigurationsInput) (*iot.ListDomainConfigurationsOutput, error)
 	ListDomainConfigurationsWithContext(aws.Context, *iot.ListDomainConfigurationsInput, ...request.Option) (*iot.ListDomainConfigurationsOutput, error)
 	ListDomainConfigurationsRequest(*iot.ListDomainConfigurationsInput) (*request.Request, *iot.ListDomainConfigurationsOutput)
 
+	ListDomainConfigurationsPages(*iot.ListDomainConfigurationsInput, func(*iot.ListDomainConfigurationsOutput, bool) bool) error
+	ListDomainConfigurationsPagesWithContext(aws.Context, *iot.ListDomainConfigurationsInput, func(*iot.ListDomainConfigurationsOutput, bool) bool, ...request.Option) error
+
 	ListIndices(*iot.ListIndicesInput) (*iot.ListIndicesOutput, error)
 	ListIndicesWithContext(aws.Context, *iot.ListIndicesInput, ...request.Option) (*iot.ListIndicesOutput, error)
 	ListIndicesRequest(*iot.ListIndicesInput) (*request.Request, *iot.ListIndicesOutput)
+
+	ListIndicesPages(*iot.ListIndicesInput, func(*iot.ListIndicesOutput, bool) bool) error
+	ListIndicesPagesWithContext(aws.Context, *iot.ListIndicesInput, func(*iot.ListIndicesOutput, bool) bool, ...request.Option) error
 
 	ListJobExecutionsForJob(*iot.ListJobExecutionsForJobInput) (*iot.ListJobExecutionsForJobOutput, error)
 	ListJobExecutionsForJobWithContext(aws.Context, *iot.ListJobExecutionsForJobInput, ...request.Option) (*iot.ListJobExecutionsForJobOutput, error)
 	ListJobExecutionsForJobRequest(*iot.ListJobExecutionsForJobInput) (*request.Request, *iot.ListJobExecutionsForJobOutput)
 
+	ListJobExecutionsForJobPages(*iot.ListJobExecutionsForJobInput, func(*iot.ListJobExecutionsForJobOutput, bool) bool) error
+	ListJobExecutionsForJobPagesWithContext(aws.Context, *iot.ListJobExecutionsForJobInput, func(*iot.ListJobExecutionsForJobOutput, bool) bool, ...request.Option) error
+
 	ListJobExecutionsForThing(*iot.ListJobExecutionsForThingInput) (*iot.ListJobExecutionsForThingOutput, error)
 	ListJobExecutionsForThingWithContext(aws.Context, *iot.ListJobExecutionsForThingInput, ...request.Option) (*iot.ListJobExecutionsForThingOutput, error)
 	ListJobExecutionsForThingRequest(*iot.ListJobExecutionsForThingInput) (*request.Request, *iot.ListJobExecutionsForThingOutput)
+
+	ListJobExecutionsForThingPages(*iot.ListJobExecutionsForThingInput, func(*iot.ListJobExecutionsForThingOutput, bool) bool) error
+	ListJobExecutionsForThingPagesWithContext(aws.Context, *iot.ListJobExecutionsForThingInput, func(*iot.ListJobExecutionsForThingOutput, bool) bool, ...request.Option) error
 
 	ListJobs(*iot.ListJobsInput) (*iot.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *iot.ListJobsInput, ...request.Option) (*iot.ListJobsOutput, error)
 	ListJobsRequest(*iot.ListJobsInput) (*request.Request, *iot.ListJobsOutput)
 
+	ListJobsPages(*iot.ListJobsInput, func(*iot.ListJobsOutput, bool) bool) error
+	ListJobsPagesWithContext(aws.Context, *iot.ListJobsInput, func(*iot.ListJobsOutput, bool) bool, ...request.Option) error
+
 	ListMitigationActions(*iot.ListMitigationActionsInput) (*iot.ListMitigationActionsOutput, error)
 	ListMitigationActionsWithContext(aws.Context, *iot.ListMitigationActionsInput, ...request.Option) (*iot.ListMitigationActionsOutput, error)
 	ListMitigationActionsRequest(*iot.ListMitigationActionsInput) (*request.Request, *iot.ListMitigationActionsOutput)
+
+	ListMitigationActionsPages(*iot.ListMitigationActionsInput, func(*iot.ListMitigationActionsOutput, bool) bool) error
+	ListMitigationActionsPagesWithContext(aws.Context, *iot.ListMitigationActionsInput, func(*iot.ListMitigationActionsOutput, bool) bool, ...request.Option) error
 
 	ListOTAUpdates(*iot.ListOTAUpdatesInput) (*iot.ListOTAUpdatesOutput, error)
 	ListOTAUpdatesWithContext(aws.Context, *iot.ListOTAUpdatesInput, ...request.Option) (*iot.ListOTAUpdatesOutput, error)
 	ListOTAUpdatesRequest(*iot.ListOTAUpdatesInput) (*request.Request, *iot.ListOTAUpdatesOutput)
 
+	ListOTAUpdatesPages(*iot.ListOTAUpdatesInput, func(*iot.ListOTAUpdatesOutput, bool) bool) error
+	ListOTAUpdatesPagesWithContext(aws.Context, *iot.ListOTAUpdatesInput, func(*iot.ListOTAUpdatesOutput, bool) bool, ...request.Option) error
+
 	ListOutgoingCertificates(*iot.ListOutgoingCertificatesInput) (*iot.ListOutgoingCertificatesOutput, error)
 	ListOutgoingCertificatesWithContext(aws.Context, *iot.ListOutgoingCertificatesInput, ...request.Option) (*iot.ListOutgoingCertificatesOutput, error)
 	ListOutgoingCertificatesRequest(*iot.ListOutgoingCertificatesInput) (*request.Request, *iot.ListOutgoingCertificatesOutput)
+
+	ListOutgoingCertificatesPages(*iot.ListOutgoingCertificatesInput, func(*iot.ListOutgoingCertificatesOutput, bool) bool) error
+	ListOutgoingCertificatesPagesWithContext(aws.Context, *iot.ListOutgoingCertificatesInput, func(*iot.ListOutgoingCertificatesOutput, bool) bool, ...request.Option) error
 
 	ListPolicies(*iot.ListPoliciesInput) (*iot.ListPoliciesOutput, error)
 	ListPoliciesWithContext(aws.Context, *iot.ListPoliciesInput, ...request.Option) (*iot.ListPoliciesOutput, error)
 	ListPoliciesRequest(*iot.ListPoliciesInput) (*request.Request, *iot.ListPoliciesOutput)
 
+	ListPoliciesPages(*iot.ListPoliciesInput, func(*iot.ListPoliciesOutput, bool) bool) error
+	ListPoliciesPagesWithContext(aws.Context, *iot.ListPoliciesInput, func(*iot.ListPoliciesOutput, bool) bool, ...request.Option) error
+
 	ListPolicyPrincipals(*iot.ListPolicyPrincipalsInput) (*iot.ListPolicyPrincipalsOutput, error)
 	ListPolicyPrincipalsWithContext(aws.Context, *iot.ListPolicyPrincipalsInput, ...request.Option) (*iot.ListPolicyPrincipalsOutput, error)
 	ListPolicyPrincipalsRequest(*iot.ListPolicyPrincipalsInput) (*request.Request, *iot.ListPolicyPrincipalsOutput)
+
+	ListPolicyPrincipalsPages(*iot.ListPolicyPrincipalsInput, func(*iot.ListPolicyPrincipalsOutput, bool) bool) error
+	ListPolicyPrincipalsPagesWithContext(aws.Context, *iot.ListPolicyPrincipalsInput, func(*iot.ListPolicyPrincipalsOutput, bool) bool, ...request.Option) error
 
 	ListPolicyVersions(*iot.ListPolicyVersionsInput) (*iot.ListPolicyVersionsOutput, error)
 	ListPolicyVersionsWithContext(aws.Context, *iot.ListPolicyVersionsInput, ...request.Option) (*iot.ListPolicyVersionsOutput, error)
@@ -612,57 +697,99 @@ type IoTAPI interface {
 	ListPrincipalPoliciesWithContext(aws.Context, *iot.ListPrincipalPoliciesInput, ...request.Option) (*iot.ListPrincipalPoliciesOutput, error)
 	ListPrincipalPoliciesRequest(*iot.ListPrincipalPoliciesInput) (*request.Request, *iot.ListPrincipalPoliciesOutput)
 
+	ListPrincipalPoliciesPages(*iot.ListPrincipalPoliciesInput, func(*iot.ListPrincipalPoliciesOutput, bool) bool) error
+	ListPrincipalPoliciesPagesWithContext(aws.Context, *iot.ListPrincipalPoliciesInput, func(*iot.ListPrincipalPoliciesOutput, bool) bool, ...request.Option) error
+
 	ListPrincipalThings(*iot.ListPrincipalThingsInput) (*iot.ListPrincipalThingsOutput, error)
 	ListPrincipalThingsWithContext(aws.Context, *iot.ListPrincipalThingsInput, ...request.Option) (*iot.ListPrincipalThingsOutput, error)
 	ListPrincipalThingsRequest(*iot.ListPrincipalThingsInput) (*request.Request, *iot.ListPrincipalThingsOutput)
+
+	ListPrincipalThingsPages(*iot.ListPrincipalThingsInput, func(*iot.ListPrincipalThingsOutput, bool) bool) error
+	ListPrincipalThingsPagesWithContext(aws.Context, *iot.ListPrincipalThingsInput, func(*iot.ListPrincipalThingsOutput, bool) bool, ...request.Option) error
 
 	ListProvisioningTemplateVersions(*iot.ListProvisioningTemplateVersionsInput) (*iot.ListProvisioningTemplateVersionsOutput, error)
 	ListProvisioningTemplateVersionsWithContext(aws.Context, *iot.ListProvisioningTemplateVersionsInput, ...request.Option) (*iot.ListProvisioningTemplateVersionsOutput, error)
 	ListProvisioningTemplateVersionsRequest(*iot.ListProvisioningTemplateVersionsInput) (*request.Request, *iot.ListProvisioningTemplateVersionsOutput)
 
+	ListProvisioningTemplateVersionsPages(*iot.ListProvisioningTemplateVersionsInput, func(*iot.ListProvisioningTemplateVersionsOutput, bool) bool) error
+	ListProvisioningTemplateVersionsPagesWithContext(aws.Context, *iot.ListProvisioningTemplateVersionsInput, func(*iot.ListProvisioningTemplateVersionsOutput, bool) bool, ...request.Option) error
+
 	ListProvisioningTemplates(*iot.ListProvisioningTemplatesInput) (*iot.ListProvisioningTemplatesOutput, error)
 	ListProvisioningTemplatesWithContext(aws.Context, *iot.ListProvisioningTemplatesInput, ...request.Option) (*iot.ListProvisioningTemplatesOutput, error)
 	ListProvisioningTemplatesRequest(*iot.ListProvisioningTemplatesInput) (*request.Request, *iot.ListProvisioningTemplatesOutput)
+
+	ListProvisioningTemplatesPages(*iot.ListProvisioningTemplatesInput, func(*iot.ListProvisioningTemplatesOutput, bool) bool) error
+	ListProvisioningTemplatesPagesWithContext(aws.Context, *iot.ListProvisioningTemplatesInput, func(*iot.ListProvisioningTemplatesOutput, bool) bool, ...request.Option) error
 
 	ListRoleAliases(*iot.ListRoleAliasesInput) (*iot.ListRoleAliasesOutput, error)
 	ListRoleAliasesWithContext(aws.Context, *iot.ListRoleAliasesInput, ...request.Option) (*iot.ListRoleAliasesOutput, error)
 	ListRoleAliasesRequest(*iot.ListRoleAliasesInput) (*request.Request, *iot.ListRoleAliasesOutput)
 
+	ListRoleAliasesPages(*iot.ListRoleAliasesInput, func(*iot.ListRoleAliasesOutput, bool) bool) error
+	ListRoleAliasesPagesWithContext(aws.Context, *iot.ListRoleAliasesInput, func(*iot.ListRoleAliasesOutput, bool) bool, ...request.Option) error
+
 	ListScheduledAudits(*iot.ListScheduledAuditsInput) (*iot.ListScheduledAuditsOutput, error)
 	ListScheduledAuditsWithContext(aws.Context, *iot.ListScheduledAuditsInput, ...request.Option) (*iot.ListScheduledAuditsOutput, error)
 	ListScheduledAuditsRequest(*iot.ListScheduledAuditsInput) (*request.Request, *iot.ListScheduledAuditsOutput)
+
+	ListScheduledAuditsPages(*iot.ListScheduledAuditsInput, func(*iot.ListScheduledAuditsOutput, bool) bool) error
+	ListScheduledAuditsPagesWithContext(aws.Context, *iot.ListScheduledAuditsInput, func(*iot.ListScheduledAuditsOutput, bool) bool, ...request.Option) error
 
 	ListSecurityProfiles(*iot.ListSecurityProfilesInput) (*iot.ListSecurityProfilesOutput, error)
 	ListSecurityProfilesWithContext(aws.Context, *iot.ListSecurityProfilesInput, ...request.Option) (*iot.ListSecurityProfilesOutput, error)
 	ListSecurityProfilesRequest(*iot.ListSecurityProfilesInput) (*request.Request, *iot.ListSecurityProfilesOutput)
 
+	ListSecurityProfilesPages(*iot.ListSecurityProfilesInput, func(*iot.ListSecurityProfilesOutput, bool) bool) error
+	ListSecurityProfilesPagesWithContext(aws.Context, *iot.ListSecurityProfilesInput, func(*iot.ListSecurityProfilesOutput, bool) bool, ...request.Option) error
+
 	ListSecurityProfilesForTarget(*iot.ListSecurityProfilesForTargetInput) (*iot.ListSecurityProfilesForTargetOutput, error)
 	ListSecurityProfilesForTargetWithContext(aws.Context, *iot.ListSecurityProfilesForTargetInput, ...request.Option) (*iot.ListSecurityProfilesForTargetOutput, error)
 	ListSecurityProfilesForTargetRequest(*iot.ListSecurityProfilesForTargetInput) (*request.Request, *iot.ListSecurityProfilesForTargetOutput)
+
+	ListSecurityProfilesForTargetPages(*iot.ListSecurityProfilesForTargetInput, func(*iot.ListSecurityProfilesForTargetOutput, bool) bool) error
+	ListSecurityProfilesForTargetPagesWithContext(aws.Context, *iot.ListSecurityProfilesForTargetInput, func(*iot.ListSecurityProfilesForTargetOutput, bool) bool, ...request.Option) error
 
 	ListStreams(*iot.ListStreamsInput) (*iot.ListStreamsOutput, error)
 	ListStreamsWithContext(aws.Context, *iot.ListStreamsInput, ...request.Option) (*iot.ListStreamsOutput, error)
 	ListStreamsRequest(*iot.ListStreamsInput) (*request.Request, *iot.ListStreamsOutput)
 
+	ListStreamsPages(*iot.ListStreamsInput, func(*iot.ListStreamsOutput, bool) bool) error
+	ListStreamsPagesWithContext(aws.Context, *iot.ListStreamsInput, func(*iot.ListStreamsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*iot.ListTagsForResourceInput) (*iot.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *iot.ListTagsForResourceInput, ...request.Option) (*iot.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*iot.ListTagsForResourceInput) (*request.Request, *iot.ListTagsForResourceOutput)
+
+	ListTagsForResourcePages(*iot.ListTagsForResourceInput, func(*iot.ListTagsForResourceOutput, bool) bool) error
+	ListTagsForResourcePagesWithContext(aws.Context, *iot.ListTagsForResourceInput, func(*iot.ListTagsForResourceOutput, bool) bool, ...request.Option) error
 
 	ListTargetsForPolicy(*iot.ListTargetsForPolicyInput) (*iot.ListTargetsForPolicyOutput, error)
 	ListTargetsForPolicyWithContext(aws.Context, *iot.ListTargetsForPolicyInput, ...request.Option) (*iot.ListTargetsForPolicyOutput, error)
 	ListTargetsForPolicyRequest(*iot.ListTargetsForPolicyInput) (*request.Request, *iot.ListTargetsForPolicyOutput)
 
+	ListTargetsForPolicyPages(*iot.ListTargetsForPolicyInput, func(*iot.ListTargetsForPolicyOutput, bool) bool) error
+	ListTargetsForPolicyPagesWithContext(aws.Context, *iot.ListTargetsForPolicyInput, func(*iot.ListTargetsForPolicyOutput, bool) bool, ...request.Option) error
+
 	ListTargetsForSecurityProfile(*iot.ListTargetsForSecurityProfileInput) (*iot.ListTargetsForSecurityProfileOutput, error)
 	ListTargetsForSecurityProfileWithContext(aws.Context, *iot.ListTargetsForSecurityProfileInput, ...request.Option) (*iot.ListTargetsForSecurityProfileOutput, error)
 	ListTargetsForSecurityProfileRequest(*iot.ListTargetsForSecurityProfileInput) (*request.Request, *iot.ListTargetsForSecurityProfileOutput)
+
+	ListTargetsForSecurityProfilePages(*iot.ListTargetsForSecurityProfileInput, func(*iot.ListTargetsForSecurityProfileOutput, bool) bool) error
+	ListTargetsForSecurityProfilePagesWithContext(aws.Context, *iot.ListTargetsForSecurityProfileInput, func(*iot.ListTargetsForSecurityProfileOutput, bool) bool, ...request.Option) error
 
 	ListThingGroups(*iot.ListThingGroupsInput) (*iot.ListThingGroupsOutput, error)
 	ListThingGroupsWithContext(aws.Context, *iot.ListThingGroupsInput, ...request.Option) (*iot.ListThingGroupsOutput, error)
 	ListThingGroupsRequest(*iot.ListThingGroupsInput) (*request.Request, *iot.ListThingGroupsOutput)
 
+	ListThingGroupsPages(*iot.ListThingGroupsInput, func(*iot.ListThingGroupsOutput, bool) bool) error
+	ListThingGroupsPagesWithContext(aws.Context, *iot.ListThingGroupsInput, func(*iot.ListThingGroupsOutput, bool) bool, ...request.Option) error
+
 	ListThingGroupsForThing(*iot.ListThingGroupsForThingInput) (*iot.ListThingGroupsForThingOutput, error)
 	ListThingGroupsForThingWithContext(aws.Context, *iot.ListThingGroupsForThingInput, ...request.Option) (*iot.ListThingGroupsForThingOutput, error)
 	ListThingGroupsForThingRequest(*iot.ListThingGroupsForThingInput) (*request.Request, *iot.ListThingGroupsForThingOutput)
+
+	ListThingGroupsForThingPages(*iot.ListThingGroupsForThingInput, func(*iot.ListThingGroupsForThingOutput, bool) bool) error
+	ListThingGroupsForThingPagesWithContext(aws.Context, *iot.ListThingGroupsForThingInput, func(*iot.ListThingGroupsForThingOutput, bool) bool, ...request.Option) error
 
 	ListThingPrincipals(*iot.ListThingPrincipalsInput) (*iot.ListThingPrincipalsOutput, error)
 	ListThingPrincipalsWithContext(aws.Context, *iot.ListThingPrincipalsInput, ...request.Option) (*iot.ListThingPrincipalsOutput, error)
@@ -672,41 +799,71 @@ type IoTAPI interface {
 	ListThingRegistrationTaskReportsWithContext(aws.Context, *iot.ListThingRegistrationTaskReportsInput, ...request.Option) (*iot.ListThingRegistrationTaskReportsOutput, error)
 	ListThingRegistrationTaskReportsRequest(*iot.ListThingRegistrationTaskReportsInput) (*request.Request, *iot.ListThingRegistrationTaskReportsOutput)
 
+	ListThingRegistrationTaskReportsPages(*iot.ListThingRegistrationTaskReportsInput, func(*iot.ListThingRegistrationTaskReportsOutput, bool) bool) error
+	ListThingRegistrationTaskReportsPagesWithContext(aws.Context, *iot.ListThingRegistrationTaskReportsInput, func(*iot.ListThingRegistrationTaskReportsOutput, bool) bool, ...request.Option) error
+
 	ListThingRegistrationTasks(*iot.ListThingRegistrationTasksInput) (*iot.ListThingRegistrationTasksOutput, error)
 	ListThingRegistrationTasksWithContext(aws.Context, *iot.ListThingRegistrationTasksInput, ...request.Option) (*iot.ListThingRegistrationTasksOutput, error)
 	ListThingRegistrationTasksRequest(*iot.ListThingRegistrationTasksInput) (*request.Request, *iot.ListThingRegistrationTasksOutput)
+
+	ListThingRegistrationTasksPages(*iot.ListThingRegistrationTasksInput, func(*iot.ListThingRegistrationTasksOutput, bool) bool) error
+	ListThingRegistrationTasksPagesWithContext(aws.Context, *iot.ListThingRegistrationTasksInput, func(*iot.ListThingRegistrationTasksOutput, bool) bool, ...request.Option) error
 
 	ListThingTypes(*iot.ListThingTypesInput) (*iot.ListThingTypesOutput, error)
 	ListThingTypesWithContext(aws.Context, *iot.ListThingTypesInput, ...request.Option) (*iot.ListThingTypesOutput, error)
 	ListThingTypesRequest(*iot.ListThingTypesInput) (*request.Request, *iot.ListThingTypesOutput)
 
+	ListThingTypesPages(*iot.ListThingTypesInput, func(*iot.ListThingTypesOutput, bool) bool) error
+	ListThingTypesPagesWithContext(aws.Context, *iot.ListThingTypesInput, func(*iot.ListThingTypesOutput, bool) bool, ...request.Option) error
+
 	ListThings(*iot.ListThingsInput) (*iot.ListThingsOutput, error)
 	ListThingsWithContext(aws.Context, *iot.ListThingsInput, ...request.Option) (*iot.ListThingsOutput, error)
 	ListThingsRequest(*iot.ListThingsInput) (*request.Request, *iot.ListThingsOutput)
+
+	ListThingsPages(*iot.ListThingsInput, func(*iot.ListThingsOutput, bool) bool) error
+	ListThingsPagesWithContext(aws.Context, *iot.ListThingsInput, func(*iot.ListThingsOutput, bool) bool, ...request.Option) error
 
 	ListThingsInBillingGroup(*iot.ListThingsInBillingGroupInput) (*iot.ListThingsInBillingGroupOutput, error)
 	ListThingsInBillingGroupWithContext(aws.Context, *iot.ListThingsInBillingGroupInput, ...request.Option) (*iot.ListThingsInBillingGroupOutput, error)
 	ListThingsInBillingGroupRequest(*iot.ListThingsInBillingGroupInput) (*request.Request, *iot.ListThingsInBillingGroupOutput)
 
+	ListThingsInBillingGroupPages(*iot.ListThingsInBillingGroupInput, func(*iot.ListThingsInBillingGroupOutput, bool) bool) error
+	ListThingsInBillingGroupPagesWithContext(aws.Context, *iot.ListThingsInBillingGroupInput, func(*iot.ListThingsInBillingGroupOutput, bool) bool, ...request.Option) error
+
 	ListThingsInThingGroup(*iot.ListThingsInThingGroupInput) (*iot.ListThingsInThingGroupOutput, error)
 	ListThingsInThingGroupWithContext(aws.Context, *iot.ListThingsInThingGroupInput, ...request.Option) (*iot.ListThingsInThingGroupOutput, error)
 	ListThingsInThingGroupRequest(*iot.ListThingsInThingGroupInput) (*request.Request, *iot.ListThingsInThingGroupOutput)
+
+	ListThingsInThingGroupPages(*iot.ListThingsInThingGroupInput, func(*iot.ListThingsInThingGroupOutput, bool) bool) error
+	ListThingsInThingGroupPagesWithContext(aws.Context, *iot.ListThingsInThingGroupInput, func(*iot.ListThingsInThingGroupOutput, bool) bool, ...request.Option) error
 
 	ListTopicRuleDestinations(*iot.ListTopicRuleDestinationsInput) (*iot.ListTopicRuleDestinationsOutput, error)
 	ListTopicRuleDestinationsWithContext(aws.Context, *iot.ListTopicRuleDestinationsInput, ...request.Option) (*iot.ListTopicRuleDestinationsOutput, error)
 	ListTopicRuleDestinationsRequest(*iot.ListTopicRuleDestinationsInput) (*request.Request, *iot.ListTopicRuleDestinationsOutput)
 
+	ListTopicRuleDestinationsPages(*iot.ListTopicRuleDestinationsInput, func(*iot.ListTopicRuleDestinationsOutput, bool) bool) error
+	ListTopicRuleDestinationsPagesWithContext(aws.Context, *iot.ListTopicRuleDestinationsInput, func(*iot.ListTopicRuleDestinationsOutput, bool) bool, ...request.Option) error
+
 	ListTopicRules(*iot.ListTopicRulesInput) (*iot.ListTopicRulesOutput, error)
 	ListTopicRulesWithContext(aws.Context, *iot.ListTopicRulesInput, ...request.Option) (*iot.ListTopicRulesOutput, error)
 	ListTopicRulesRequest(*iot.ListTopicRulesInput) (*request.Request, *iot.ListTopicRulesOutput)
+
+	ListTopicRulesPages(*iot.ListTopicRulesInput, func(*iot.ListTopicRulesOutput, bool) bool) error
+	ListTopicRulesPagesWithContext(aws.Context, *iot.ListTopicRulesInput, func(*iot.ListTopicRulesOutput, bool) bool, ...request.Option) error
 
 	ListV2LoggingLevels(*iot.ListV2LoggingLevelsInput) (*iot.ListV2LoggingLevelsOutput, error)
 	ListV2LoggingLevelsWithContext(aws.Context, *iot.ListV2LoggingLevelsInput, ...request.Option) (*iot.ListV2LoggingLevelsOutput, error)
 	ListV2LoggingLevelsRequest(*iot.ListV2LoggingLevelsInput) (*request.Request, *iot.ListV2LoggingLevelsOutput)
 
+	ListV2LoggingLevelsPages(*iot.ListV2LoggingLevelsInput, func(*iot.ListV2LoggingLevelsOutput, bool) bool) error
+	ListV2LoggingLevelsPagesWithContext(aws.Context, *iot.ListV2LoggingLevelsInput, func(*iot.ListV2LoggingLevelsOutput, bool) bool, ...request.Option) error
+
 	ListViolationEvents(*iot.ListViolationEventsInput) (*iot.ListViolationEventsOutput, error)
 	ListViolationEventsWithContext(aws.Context, *iot.ListViolationEventsInput, ...request.Option) (*iot.ListViolationEventsOutput, error)
 	ListViolationEventsRequest(*iot.ListViolationEventsInput) (*request.Request, *iot.ListViolationEventsOutput)
+
+	ListViolationEventsPages(*iot.ListViolationEventsInput, func(*iot.ListViolationEventsOutput, bool) bool) error
+	ListViolationEventsPagesWithContext(aws.Context, *iot.ListViolationEventsInput, func(*iot.ListViolationEventsOutput, bool) bool, ...request.Option) error
 
 	RegisterCACertificate(*iot.RegisterCACertificateInput) (*iot.RegisterCACertificateOutput, error)
 	RegisterCACertificateWithContext(aws.Context, *iot.RegisterCACertificateInput, ...request.Option) (*iot.RegisterCACertificateOutput, error)
@@ -803,6 +960,10 @@ type IoTAPI interface {
 	UpdateAccountAuditConfiguration(*iot.UpdateAccountAuditConfigurationInput) (*iot.UpdateAccountAuditConfigurationOutput, error)
 	UpdateAccountAuditConfigurationWithContext(aws.Context, *iot.UpdateAccountAuditConfigurationInput, ...request.Option) (*iot.UpdateAccountAuditConfigurationOutput, error)
 	UpdateAccountAuditConfigurationRequest(*iot.UpdateAccountAuditConfigurationInput) (*request.Request, *iot.UpdateAccountAuditConfigurationOutput)
+
+	UpdateAuditSuppression(*iot.UpdateAuditSuppressionInput) (*iot.UpdateAuditSuppressionOutput, error)
+	UpdateAuditSuppressionWithContext(aws.Context, *iot.UpdateAuditSuppressionInput, ...request.Option) (*iot.UpdateAuditSuppressionOutput, error)
+	UpdateAuditSuppressionRequest(*iot.UpdateAuditSuppressionInput) (*request.Request, *iot.UpdateAuditSuppressionOutput)
 
 	UpdateAuthorizer(*iot.UpdateAuthorizerInput) (*iot.UpdateAuthorizerOutput, error)
 	UpdateAuthorizerWithContext(aws.Context, *iot.UpdateAuthorizerInput, ...request.Option) (*iot.UpdateAuthorizerOutput, error)
