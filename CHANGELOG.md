@@ -1,3 +1,17 @@
+Release v1.34.4 (2020-08-13)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service documentation
+* `service/braket`: Adds new service
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Added MapCustomerOwnedIpOnLaunch and CustomerOwnedIpv4Pool to ModifySubnetAttribute to allow CoIP auto assign. Fields are returned in DescribeSubnets and DescribeNetworkInterfaces responses.
+* `service/eks`: Updates service API and documentation
+* `service/macie2`: Updates service documentation
+* `service/rds`: Updates service API and documentation
+  * This release allows customers to specify a replica mode when creating or modifying a Read Replica, for DB engines which support this feature.
+
 Release v1.34.3 (2020-08-12)
 ===
 

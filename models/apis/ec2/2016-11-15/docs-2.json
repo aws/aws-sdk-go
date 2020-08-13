@@ -883,6 +883,7 @@
         "ModifyNetworkInterfaceAttributeRequest$SourceDestCheck": "<p>Indicates whether source/destination checking is enabled. A value of <code>true</code> means checking is enabled, and <code>false</code> means checking is disabled. This value must be <code>false</code> for a NAT instance to perform NAT. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html\">NAT Instances</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
         "ModifySubnetAttributeRequest$AssignIpv6AddressOnCreation": "<p>Specify <code>true</code> to indicate that network interfaces created in the specified subnet should be assigned an IPv6 address. This includes a network interface that's created when launching an instance into the subnet (the instance therefore receives an IPv6 address). </p> <p>If you enable the IPv6 addressing feature for your subnet, your network interface or instance only receives an IPv6 address if it's created using version <code>2016-11-15</code> or later of the Amazon EC2 API.</p>",
         "ModifySubnetAttributeRequest$MapPublicIpOnLaunch": "<p>Specify <code>true</code> to indicate that network interfaces attached to instances created in the specified subnet should be assigned a public IPv4 address.</p>",
+        "ModifySubnetAttributeRequest$MapCustomerOwnedIpOnLaunch": "<p>Specify <code>true</code> to indicate that network interfaces attached to instances created in the specified subnet should be assigned a customer-owned IPv4 address.</p> <p>When this value is <code>true</code>, you must specify the customer-owned IP pool using <code>CustomerOwnedIpv4Pool</code>.</p>",
         "ModifyVolumeAttributeRequest$AutoEnableIO": "<p>Indicates whether the volume should be auto-enabled for I/O operations.</p>",
         "ModifyVpcAttributeRequest$EnableDnsHostnames": "<p>Indicates whether the instances launched in the VPC get DNS hostnames. If enabled, instances in the VPC get DNS hostnames; otherwise, they do not.</p> <p>You cannot modify the DNS resolution and DNS hostnames attributes in the same request. Use separate requests for each attribute. You can only enable DNS hostnames if you've enabled DNS support.</p>",
         "ModifyVpcAttributeRequest$EnableDnsSupport": "<p>Indicates whether the DNS resolution is supported for the VPC. If enabled, queries to the Amazon provided DNS server at the 169.254.169.253 IP address, or the reserved IP address at the base of the VPC network range \"plus two\" succeed. If disabled, the Amazon provided DNS service in the VPC that resolves public DNS hostnames to IP addresses is not enabled.</p> <p>You cannot modify the DNS resolution and DNS hostnames attributes in the same request. Use separate requests for each attribute.</p>"
@@ -2323,6 +2324,7 @@
         "CoipPool$PoolId": "<p>The ID of the address pool.</p>",
         "CoipPoolIdSet$member": null,
         "GetCoipPoolUsageRequest$PoolId": "<p>The ID of the address pool.</p>",
+        "ModifySubnetAttributeRequest$CustomerOwnedIpv4Pool": "<p>The customer-owned IPv4 address pool associated with the subnet.</p> <p>You must set this value when you specify <code>true</code> for <code>MapCustomerOwnedIpOnLaunch</code>.</p>",
         "Subnet$CustomerOwnedIpv4Pool": "<p>The customer-owned IPv4 address pool associated with the subnet.</p>"
       }
     },
@@ -13259,6 +13261,7 @@
         "NetworkInterfaceAssociation$IpOwnerId": "<p>The ID of the Elastic IP address owner.</p>",
         "NetworkInterfaceAssociation$PublicDnsName": "<p>The public DNS name.</p>",
         "NetworkInterfaceAssociation$PublicIp": "<p>The address of the Elastic IP address or Carrier IP address bound to the network interface.</p>",
+        "NetworkInterfaceAssociation$CustomerOwnedIp": "<p>The customer-owned IP address associated with the network interface.</p>",
         "NetworkInterfaceAssociation$CarrierIp": "<p>The carrier IP address associated with the network interface.</p> <p>This option is only available when the network interface is in a subnet which is associated with a Wavelength Zone.</p>",
         "NetworkInterfaceAttachment$AttachmentId": "<p>The ID of the network interface attachment.</p>",
         "NetworkInterfaceAttachment$InstanceId": "<p>The ID of the instance.</p>",
