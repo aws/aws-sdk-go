@@ -194,7 +194,7 @@
     "CachingKeys": {
       "base": null,
       "refs": {
-        "CachingConfig$cachingKeys": "<p>The caching keys for a resolver that has caching enabled.</p> <p>Valid values are entries from the <code>$context.identity</code> and <code>$context.arguments</code> maps.</p>"
+        "CachingConfig$cachingKeys": "<p>The caching keys for a resolver that has caching enabled.</p> <p>Valid values are entries from the <code>$context.arguments</code>, <code>$context.source</code>, and <code>$context.identity</code> maps.</p>"
       }
     },
     "CognitoUserPoolConfig": {
@@ -703,7 +703,7 @@
       "refs": {
         "CreateFunctionRequest$requestMappingTemplate": "<p>The <code>Function</code> request mapping template. Functions support only the 2018-05-29 version of the request mapping template.</p>",
         "CreateFunctionRequest$responseMappingTemplate": "<p>The <code>Function</code> response mapping template. </p>",
-        "CreateResolverRequest$requestMappingTemplate": "<p>The mapping template to be used for requests.</p> <p>A resolver uses a request mapping template to convert a GraphQL expression into a format that a data source can understand. Mapping templates are written in Apache Velocity Template Language (VTL).</p>",
+        "CreateResolverRequest$requestMappingTemplate": "<p>The mapping template to be used for requests.</p> <p>A resolver uses a request mapping template to convert a GraphQL expression into a format that a data source can understand. Mapping templates are written in Apache Velocity Template Language (VTL).</p> <p>VTL request mapping templates are optional when using a Lambda data source. For all other data sources, VTL request and response mapping templates are required.</p>",
         "CreateResolverRequest$responseMappingTemplate": "<p>The mapping template to be used for responses from the data source.</p>",
         "FunctionConfiguration$requestMappingTemplate": "<p>The <code>Function</code> request mapping template. Functions support only the 2018-05-29 version of the request mapping template.</p>",
         "FunctionConfiguration$responseMappingTemplate": "<p>The <code>Function</code> response mapping template.</p>",
@@ -711,7 +711,7 @@
         "Resolver$responseMappingTemplate": "<p>The response mapping template.</p>",
         "UpdateFunctionRequest$requestMappingTemplate": "<p>The <code>Function</code> request mapping template. Functions support only the 2018-05-29 version of the request mapping template.</p>",
         "UpdateFunctionRequest$responseMappingTemplate": "<p>The <code>Function</code> request mapping template. </p>",
-        "UpdateResolverRequest$requestMappingTemplate": "<p>The new request mapping template.</p>",
+        "UpdateResolverRequest$requestMappingTemplate": "<p>The new request mapping template.</p> <p>A resolver uses a request mapping template to convert a GraphQL expression into a format that a data source can understand. Mapping templates are written in Apache Velocity Template Language (VTL).</p> <p>VTL request mapping templates are optional when using a Lambda data source. For all other data sources, VTL request and response mapping templates are required.</p>",
         "UpdateResolverRequest$responseMappingTemplate": "<p>The new response mapping template.</p>"
       }
     },

@@ -987,10 +987,10 @@
     "TagMap" : {
       "base" : "<p>A string-to-string map of key-value pairs that specifies the tags (keys and values) for a classification job, custom data identifier, findings filter, or member account.</p>",
       "refs" : {
-        "CreateClassificationJobRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the job.</p> <p>A job can have a maximum of 50 tags. Each tag consists of a required tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
-        "CreateCustomDataIdentifierRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the custom data identifier.</p> <p>A custom data identifier can have a maximum of 50 tags. Each tag consists of a required tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
-        "CreateFindingsFilterRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the filter.</p> <p>A findings filter can have a maximum of 50 tags. Each tag consists of a required tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
-        "CreateMemberRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the account in Amazon Macie.</p> <p>An account can have a maximum of 50 tags. Each tag consists of a required tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
+        "CreateClassificationJobRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the job.</p> <p>A job can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
+        "CreateCustomDataIdentifierRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the custom data identifier.</p> <p>A custom data identifier can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
+        "CreateFindingsFilterRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the filter.</p> <p>A findings filter can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
+        "CreateMemberRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the account in Amazon Macie.</p> <p>An account can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
         "DescribeClassificationJobResponse$Tags" : "<p>A map of key-value pairs that identifies the tags (keys and values) that are associated with the classification job.</p>",
         "FindingsFilterListItem$Tags" : "<p>A map of key-value pairs that identifies the tags (keys and values) that are associated with the filter.</p>",
         "GetCustomDataIdentifierResponse$Tags" : "<p>A map of key-value pairs that identifies the tags (keys and values) that are associated with the custom data identifier.</p>",
@@ -998,7 +998,7 @@
         "GetMemberResponse$Tags" : "<p>A map of key-value pairs that identifies the tags (keys and values) that are associated with the member account in Amazon Macie.</p>",
         "ListTagsForResourceResponse$Tags" : "<p>A map of key-value pairs that identifies the tags (keys and values) that are associated with the resource.</p>",
         "Member$Tags" : "<p>A map of key-value pairs that identifies the tags (keys and values) that are associated with the account in Amazon Macie.</p>",
-        "TagResourceRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the resource.</p> <p>A resource can have a maximum of 50 tags. Each tag consists of a required tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>"
+        "TagResourceRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the resource.</p> <p>A resource can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>"
       }
     },
     "TagResourceRequest" : {
@@ -1012,7 +1012,7 @@
     "TagScopeTerm" : {
       "base" : "<p>Specifies a tag-based condition that determines whether an object is included or excluded from a classification job.</p>",
       "refs" : {
-        "JobScopeTerm$TagScopeTerm" : "<p>A tag-based condition that defines the operator and a tag key or tag keys and values for including or excluding an object from the job.</p>"
+        "JobScopeTerm$TagScopeTerm" : " <p>A tag-based condition that defines an operator and a tag key and value for including or excluding an object from the job.</p>"
       }
     },
     "TagTarget" : {
@@ -1203,11 +1203,11 @@
     "__integer" : {
       "base" : null,
       "refs" : {
-        "CreateClassificationJobRequest$SamplingPercentage" : "<p>The sampling depth, as a percentage, to apply when processing objects. This value determines the percentage of eligible objects that the job analyzes. If the value is less than 100, Amazon Macie randomly selects the objects to analyze, up to the specified percentage.</p>",
+        "CreateClassificationJobRequest$SamplingPercentage" : "<p>The sampling depth, as a percentage, to apply when processing objects. This value determines the percentage of eligible objects that the job analyzes. If this value is less than 100, Amazon Macie selects the objects to analyze at random, up to the specified percentage, and analyzes all the data in those objects.</p>",
         "CreateCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 50.</p>",
         "CreateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>",
         "DescribeBucketsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response. The default value is 50.</p>",
-        "DescribeClassificationJobResponse$SamplingPercentage" : "<p>The sampling depth, as a percentage, that the job applies when it processes objects.</p>",
+        "DescribeClassificationJobResponse$SamplingPercentage" : "<p>The sampling depth, as a percentage, that determines the number of objects that the job processes.</p>",
         "GetCustomDataIdentifierResponse$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern.</p>",
         "GetFindingStatisticsRequest$Size" : "<p>The maximum number of items to include in each page of the response.</p>",
         "GetFindingsFilterResponse$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>",
@@ -1359,24 +1359,24 @@
         "BucketCriteriaAdditionalProperties$Eq" : "<p>An equal to condition to apply to a specified attribute value for buckets.</p>",
         "BucketCriteriaAdditionalProperties$Neq" : "<p>A not equal to condition to apply to a specified attribute value for buckets.</p>",
         "CreateClassificationJobRequest$CustomDataIdentifierIds" : "<p>The custom data identifiers to use for data analysis and classification.</p>",
-        "CreateCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters.</p>",
-        "CreateCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters.</p>",
+        "CreateCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters. Ignore words are case sensitive.</p>",
+        "CreateCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters. Keywords aren't case sensitive.</p>",
         "CreateInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account to send the invitation to.</p>",
         "CriterionAdditionalProperties$Eq" : "<p>An equal to condition to apply to a specified property value for findings.</p>",
         "CriterionAdditionalProperties$Neq" : "<p>A not equal to condition to apply to a specified property value for findings.</p>",
         "DeclineInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account that sent an invitation to decline.</p>",
         "DeleteInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account that sent an invitation to delete.</p>",
         "DescribeClassificationJobResponse$CustomDataIdentifierIds" : "<p>The custom data identifiers that the job uses to analyze data.</p>",
-        "GetCustomDataIdentifierResponse$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it.</p>",
-        "GetCustomDataIdentifierResponse$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match.</p>",
+        "GetCustomDataIdentifierResponse$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. Ignore words are case sensitive.</p>",
+        "GetCustomDataIdentifierResponse$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. Keywords aren't case sensitive.</p>",
         "GetFindingsRequest$FindingIds" : "<p>An array of strings that lists the unique identifiers for the findings to retrieve information about.</p>",
         "ListFindingsResponse$FindingIds" : "<p>An array of strings, where each string is the unique identifier for a finding that meets the filter criteria specified in the request.</p>",
         "ListJobsFilterTerm$Values" : "<p>An array that lists one or more values to use to filter the results.</p>",
         "ReplicationDetails$ReplicationAccounts" : "<p>An array of AWS account IDs, one for each AWS account that the bucket is configured to replicate one or more objects to.</p>",
         "S3BucketDefinitionForJob$Buckets" : "<p>An array that lists the names of the buckets.</p>",
         "SimpleScopeTerm$Values" : "<p>An array that lists one or more values to use in the condition.</p>",
-        "TestCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters.</p>",
-        "TestCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters.</p>",
+        "TestCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters. Ignore words are case sensitive.</p>",
+        "TestCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters. Keywords aren't case sensitive.</p>",
         "UsageStatisticsFilter$Values" : "<p>An array that lists values to use in the condition, based on the value for the field specified by the key property. If the value for the key property is accountId, this array can specify multiple values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported field are:</p> <ul><li><p>accountId - The unique identifier for an AWS account.</p></li></ul> <ul><li><p>freeTrialStartDate - The date and time, in UTC and extended ISO 8601 format, when the free trial started for an account.</p></li></ul> <ul><li><p>serviceLimit - A Boolean (true or false) value that indicates whether an account has reached its monthly quota.</p></li></ul> <ul><li><p>total - A string that represents the current, estimated month-to-date cost for an account.</p></li></ul>"
       }
     },

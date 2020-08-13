@@ -4471,8 +4471,8 @@ type CachingConfig struct {
 
 	// The caching keys for a resolver that has caching enabled.
 	//
-	// Valid values are entries from the $context.identity and $context.arguments
-	// maps.
+	// Valid values are entries from the $context.arguments, $context.source, and
+	// $context.identity maps.
 	CachingKeys []*string `locationName:"cachingKeys" type:"list"`
 
 	// The TTL in seconds for a resolver that has caching enabled.
@@ -5398,6 +5398,10 @@ type CreateResolverInput struct {
 	// A resolver uses a request mapping template to convert a GraphQL expression
 	// into a format that a data source can understand. Mapping templates are written
 	// in Apache Velocity Template Language (VTL).
+	//
+	// VTL request mapping templates are optional when using a Lambda data source.
+	// For all other data sources, VTL request and response mapping templates are
+	// required.
 	RequestMappingTemplate *string `locationName:"requestMappingTemplate" min:"1" type:"string"`
 
 	// The mapping template to be used for responses from the data source.
@@ -9996,6 +10000,14 @@ type UpdateResolverInput struct {
 	PipelineConfig *PipelineConfig `locationName:"pipelineConfig" type:"structure"`
 
 	// The new request mapping template.
+	//
+	// A resolver uses a request mapping template to convert a GraphQL expression
+	// into a format that a data source can understand. Mapping templates are written
+	// in Apache Velocity Template Language (VTL).
+	//
+	// VTL request mapping templates are optional when using a Lambda data source.
+	// For all other data sources, VTL request and response mapping templates are
+	// required.
 	RequestMappingTemplate *string `locationName:"requestMappingTemplate" min:"1" type:"string"`
 
 	// The new response mapping template.

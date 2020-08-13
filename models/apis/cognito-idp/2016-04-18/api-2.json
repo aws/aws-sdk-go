@@ -536,6 +536,7 @@
       "input":{"shape":"AssociateSoftwareTokenRequest"},
       "output":{"shape":"AssociateSoftwareTokenResponse"},
       "errors":[
+        {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidParameterException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"ResourceNotFoundException"},
@@ -1890,6 +1891,11 @@
   },
   "shapes":{
     "AWSAccountIdType":{"type":"string"},
+    "AccessTokenValidityType":{
+      "type":"integer",
+      "max":86400,
+      "min":1
+    },
     "AccountRecoverySettingType":{
       "type":"structure",
       "members":{
@@ -2961,6 +2967,9 @@
         "ClientName":{"shape":"ClientNameType"},
         "GenerateSecret":{"shape":"GenerateSecret"},
         "RefreshTokenValidity":{"shape":"RefreshTokenValidityType"},
+        "AccessTokenValidity":{"shape":"AccessTokenValidityType"},
+        "IdTokenValidity":{"shape":"IdTokenValidityType"},
+        "TokenValidityUnits":{"shape":"TokenValidityUnitsType"},
         "ReadAttributes":{"shape":"ClientPermissionListType"},
         "WriteAttributes":{"shape":"ClientPermissionListType"},
         "ExplicitAuthFlows":{"shape":"ExplicitAuthFlowsListType"},
@@ -3753,6 +3762,11 @@
       "type":"list",
       "member":{"shape":"HttpHeader"}
     },
+    "IdTokenValidityType":{
+      "type":"integer",
+      "max":86400,
+      "min":1
+    },
     "IdentityProviderType":{
       "type":"structure",
       "members":{
@@ -4336,7 +4350,7 @@
     },
     "RefreshTokenValidityType":{
       "type":"integer",
-      "max":3650,
+      "max":315360000,
       "min":0
     },
     "ResendConfirmationCodeRequest":{
@@ -4819,10 +4833,27 @@
       "max":365,
       "min":0
     },
+    "TimeUnitsType":{
+      "type":"string",
+      "enum":[
+        "seconds",
+        "minutes",
+        "hours",
+        "days"
+      ]
+    },
     "TokenModelType":{
       "type":"string",
       "pattern":"[A-Za-z0-9-_=.]+",
       "sensitive":true
+    },
+    "TokenValidityUnitsType":{
+      "type":"structure",
+      "members":{
+        "AccessToken":{"shape":"TimeUnitsType"},
+        "IdToken":{"shape":"TimeUnitsType"},
+        "RefreshToken":{"shape":"TimeUnitsType"}
+      }
     },
     "TooManyFailedAttemptsException":{
       "type":"structure",
@@ -5017,6 +5048,9 @@
         "ClientId":{"shape":"ClientIdType"},
         "ClientName":{"shape":"ClientNameType"},
         "RefreshTokenValidity":{"shape":"RefreshTokenValidityType"},
+        "AccessTokenValidity":{"shape":"AccessTokenValidityType"},
+        "IdTokenValidity":{"shape":"IdTokenValidityType"},
+        "TokenValidityUnits":{"shape":"TokenValidityUnitsType"},
         "ReadAttributes":{"shape":"ClientPermissionListType"},
         "WriteAttributes":{"shape":"ClientPermissionListType"},
         "ExplicitAuthFlows":{"shape":"ExplicitAuthFlowsListType"},
@@ -5211,6 +5245,9 @@
         "LastModifiedDate":{"shape":"DateType"},
         "CreationDate":{"shape":"DateType"},
         "RefreshTokenValidity":{"shape":"RefreshTokenValidityType"},
+        "AccessTokenValidity":{"shape":"AccessTokenValidityType"},
+        "IdTokenValidity":{"shape":"IdTokenValidityType"},
+        "TokenValidityUnits":{"shape":"TokenValidityUnitsType"},
         "ReadAttributes":{"shape":"ClientPermissionListType"},
         "WriteAttributes":{"shape":"ClientPermissionListType"},
         "ExplicitAuthFlows":{"shape":"ExplicitAuthFlowsListType"},
