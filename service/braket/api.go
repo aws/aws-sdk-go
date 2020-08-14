@@ -2185,34 +2185,34 @@ func CancellationStatus_Values() []string {
 }
 
 const (
-	// DeviceStatusQpu is a DeviceStatus enum value
-	DeviceStatusQpu = "QPU"
+	// DeviceStatusOffline is a DeviceStatus enum value
+	DeviceStatusOffline = "OFFLINE"
 
-	// DeviceStatusSimulator is a DeviceStatus enum value
-	DeviceStatusSimulator = "SIMULATOR"
+	// DeviceStatusOnline is a DeviceStatus enum value
+	DeviceStatusOnline = "ONLINE"
 )
 
 // DeviceStatus_Values returns all elements of the DeviceStatus enum
 func DeviceStatus_Values() []string {
 	return []string{
-		DeviceStatusQpu,
-		DeviceStatusSimulator,
+		DeviceStatusOffline,
+		DeviceStatusOnline,
 	}
 }
 
 const (
-	// DeviceTypeOffline is a DeviceType enum value
-	DeviceTypeOffline = "OFFLINE"
+	// DeviceTypeQpu is a DeviceType enum value
+	DeviceTypeQpu = "QPU"
 
-	// DeviceTypeOnline is a DeviceType enum value
-	DeviceTypeOnline = "ONLINE"
+	// DeviceTypeSimulator is a DeviceType enum value
+	DeviceTypeSimulator = "SIMULATOR"
 )
 
 // DeviceType_Values returns all elements of the DeviceType enum
 func DeviceType_Values() []string {
 	return []string{
-		DeviceTypeOffline,
-		DeviceTypeOnline,
+		DeviceTypeQpu,
+		DeviceTypeSimulator,
 	}
 }
 

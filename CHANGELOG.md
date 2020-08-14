@@ -1,3 +1,16 @@
+Release v1.34.5 (2020-08-14)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Adds support for the Desktop View feature
+* `service/braket`: Updates service API
+* `service/ec2`: Updates service API
+  * New C5ad instances featuring AMD's 2nd Generation EPYC processors, offering up to 96 vCPUs, 192 GiB of instance memory, 3.8 TB of NVMe based SSD instance storage, and 20 Gbps in Network bandwidth
+* `service/license-manager`: Updates service documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker now supports 1) creating real-time inference endpoints using model container images from Docker registries in customers' VPC 2) AUC(Area under the curve) as AutoPilot objective metric
+
 Release v1.34.4 (2020-08-13)
 ===
 
