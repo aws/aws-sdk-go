@@ -6,7 +6,7 @@
     "AssociateTrialComponent": "<p>Associates a trial component with a trial. A trial component can be associated with multiple trials. To disassociate a trial component from a trial, call the <a>DisassociateTrialComponent</a> API.</p>",
     "CreateAlgorithm": "<p>Create a machine learning algorithm that you can use in Amazon SageMaker and list in the AWS Marketplace.</p>",
     "CreateApp": "<p>Creates a running App for the specified UserProfile. Supported Apps are JupyterServer and KernelGateway. This operation is automatically invoked by Amazon SageMaker Studio upon access to the associated Domain, and when new kernel configurations are selected by the user. A user may have multiple Apps active simultaneously.</p>",
-    "CreateAutoMLJob": "<p>Creates an AutoPilot job.</p> <p>After you run an AutoPilot job, you can find the best performing model by calling , and then deploy that model by following the steps described in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html\">Step 6.1: Deploy the Model to Amazon SageMaker Hosting Services</a>.</p> <p>For information about how to use AutoPilot, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html\">Use AutoPilot to Automate Model Development</a>.</p>",
+    "CreateAutoMLJob": "<p>Creates an Autopilot job.</p> <p>Find the best performing model after you run an Autopilot job by calling . Deploy that model by following the steps described in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html\">Step 6.1: Deploy the Model to Amazon SageMaker Hosting Services</a>.</p> <p>For information about how to use Autopilot, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html\"> Automate Model Development with Amazon SageMaker Autopilot</a>.</p>",
     "CreateCodeRepository": "<p>Creates a Git repository as a resource in your Amazon SageMaker account. You can associate the repository with notebook instances so that you can use Git source control for the notebooks you create. The Git repository is a resource in your Amazon SageMaker account, so it can be associated with more than one notebook instance, and it persists independently from the lifecycle of any notebook instances it is associated with.</p> <p>The repository can be hosted either in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository.</p>",
     "CreateCompilationJob": "<p>Starts a model compilation job. After the model has been compiled, Amazon SageMaker saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon S3) bucket that you specify. </p> <p>If you choose to host your model using Amazon SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts with AWS IoT Greengrass. In that case, deploy them as an ML resource.</p> <p>In the request body, you provide the following:</p> <ul> <li> <p>A name for the compilation job</p> </li> <li> <p> Information about the input model artifacts </p> </li> <li> <p>The output location for the compiled model and the device (target) that the model runs on </p> </li> <li> <p>The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform the model compilation job. </p> </li> </ul> <p>You can also provide a <code>Tag</code> to track the model compilation job's resource use and costs. The response body contains the <code>CompilationJobArn</code> for the compiled job.</p> <p>To stop a model compilation job, use <a>StopCompilationJob</a>. To get information about a particular model compilation job, use <a>DescribeCompilationJob</a>. To get information about multiple model compilation jobs, use <a>ListCompilationJobs</a>.</p>",
     "CreateDomain": "<p>Creates a <code>Domain</code> used by SageMaker Studio. A domain consists of an associated directory, a list of authorized users, and a variety of security, application, policy, and Amazon Virtual Private Cloud (VPC) configurations. An AWS account is limited to one domain per region. Users within a domain can share notebook files and other artifacts with each other.</p> <p>When a domain is created, an Amazon Elastic File System (EFS) volume is also created for use by all of the users within the domain. Each user receives a private home directory within the EFS for notebooks, Git repositories, and data files.</p> <p>All traffic between the domain and the EFS volume is communicated through the specified subnet IDs. All other traffic goes over the Internet through an Amazon SageMaker system VPC. The EFS traffic uses the NFS/TCP protocol over port 2049.</p> <important> <p>NFS traffic over TCP on port 2049 needs to be allowed in both inbound and outbound rules in order to launch a SageMaker Studio app successfully.</p> </important>",
@@ -30,7 +30,7 @@
     "CreateTrial": "<p>Creates an Amazon SageMaker <i>trial</i>. A trial is a set of steps called <i>trial components</i> that produce a machine learning model. A trial is part of a single Amazon SageMaker <i>experiment</i>.</p> <p>When you use Amazon SageMaker Studio or the Amazon SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the AWS SDK for Python (Boto), you must use the logging APIs provided by the SDK.</p> <p>You can add tags to a trial and then use the <a>Search</a> API to search for the tags.</p> <p>To get a list of all your trials, call the <a>ListTrials</a> API. To view a trial's properties, call the <a>DescribeTrial</a> API. To create a trial component, call the <a>CreateTrialComponent</a> API.</p>",
     "CreateTrialComponent": "<p>Creates a <i>trial component</i>, which is a stage of a machine learning <i>trial</i>. A trial is composed of one or more trial components. A trial component can be used in multiple trials.</p> <p>Trial components include pre-processing jobs, training jobs, and batch transform jobs.</p> <p>When you use Amazon SageMaker Studio or the Amazon SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the AWS SDK for Python (Boto), you must use the logging APIs provided by the SDK.</p> <p>You can add tags to a trial component and then use the <a>Search</a> API to search for the tags.</p> <note> <p> <code>CreateTrialComponent</code> can only be invoked from within an Amazon SageMaker managed environment. This includes Amazon SageMaker training jobs, processing jobs, transform jobs, and Amazon SageMaker notebooks. A call to <code>CreateTrialComponent</code> from outside one of these environments results in an error.</p> </note>",
     "CreateUserProfile": "<p>Creates a user profile. A user profile represents a single user within a domain, and is the main way to reference a \"person\" for the purposes of sharing, reporting, and other user-oriented features. This entity is created when a user onboards to Amazon SageMaker Studio. If an administrator invites a person by email or imports them from SSO, a user profile is automatically created. A user profile is the primary holder of settings for an individual user and has a reference to the user's private Amazon Elastic File System (EFS) home directory. </p>",
-    "CreateWorkforce": "<p>Use this operation to create a workforce. This operation will return an error if a workforce already exists in the AWS Region that you specify. You can only create one workforce in each AWS Region.</p> <p>If you want to create a new workforce in an AWS Region where the a workforce already exists, use the API operation to delete the existing workforce and then use this operation to create a new workforce.</p> <p>To create a private workforce using Amazon Cognito, you must specify a Cognito user pool in <code>CognitoConfig</code>. You can also create an Amazon Cognito workforce using the Amazon SageMaker console. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html\"> Create a Private Workforce (Amazon Cognito)</a>.</p> <p>To create a private workforce using your own OIDC Identity Provider (IdP), specify your IdP configuration in <code>OidcConfig</code>. You must create a OIDC IdP workforce using this API operation. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private-oidc.html\"> Create a Private Workforce (OIDC IdP)</a>.</p>",
+    "CreateWorkforce": "<p>Use this operation to create a workforce. This operation will return an error if a workforce already exists in the AWS Region that you specify. You can only create one workforce in each AWS Region per AWS account.</p> <p>If you want to create a new workforce in an AWS Region where a workforce already exists, use the API operation to delete the existing workforce and then use <code>CreateWorkforce</code> to create a new workforce.</p> <p>To create a private workforce using Amazon Cognito, you must specify a Cognito user pool in <code>CognitoConfig</code>. You can also create an Amazon Cognito workforce using the Amazon SageMaker console. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html\"> Create a Private Workforce (Amazon Cognito)</a>.</p> <p>To create a private workforce using your own OIDC Identity Provider (IdP), specify your IdP configuration in <code>OidcConfig</code>. Your OIDC IdP must support <i>groups</i> because groups are used by Ground Truth and Amazon A2I to create work teams. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private-oidc.html\"> Create a Private Workforce (OIDC IdP)</a>.</p>",
     "CreateWorkteam": "<p>Creates a new work team for labeling your data. A work team is defined by one or more Amazon Cognito user pools. You must first create the user pools before you can create a work team.</p> <p>You cannot create more than 25 work teams in an account and region.</p>",
     "DeleteAlgorithm": "<p>Removes the specified algorithm from your account.</p>",
     "DeleteApp": "<p>Used to stop and delete an app.</p>",
@@ -50,7 +50,7 @@
     "DeleteTrial": "<p>Deletes the specified trial. All trial components that make up the trial must be deleted first. Use the <a>DescribeTrialComponent</a> API to get the list of trial components.</p>",
     "DeleteTrialComponent": "<p>Deletes the specified trial component. A trial component must be disassociated from all trials before the trial component can be deleted. To disassociate a trial component from a trial, call the <a>DisassociateTrialComponent</a> API.</p>",
     "DeleteUserProfile": "<p>Deletes a user profile. When a user profile is deleted, the user loses access to their EFS volume, including data, notebooks, and other artifacts.</p>",
-    "DeleteWorkforce": "<p>Use this operation to delete a workforce.</p> <p>If you want to create a new workforce in an AWS Region where the a workforce already exists, use this operation to delete the existing workforce and then use to create a new workforce.</p>",
+    "DeleteWorkforce": "<p>Use this operation to delete a workforce.</p> <p>If you want to create a new workforce in an AWS Region where a workforce already exists, use this operation to delete the existing workforce and then use to create a new workforce.</p> <important> <p>If a private workforce contains one or more work teams, you must use the operation to delete all work teams before you delete the workforce. If you try to delete a workforce that contains one or more work teams, you will recieve a <code>ResourceInUse</code> error.</p> </important>",
     "DeleteWorkteam": "<p>Deletes an existing work team. This operation can't be undone.</p>",
     "DescribeAlgorithm": "<p>Returns a description of the specified algorithm that is in your account.</p>",
     "DescribeApp": "<p>Describes the app.</p>",
@@ -112,7 +112,7 @@
     "ListTrials": "<p>Lists the trials in your account. Specify an experiment name to limit the list to the trials that are part of that experiment. Specify a trial component name to limit the list to the trials that associated with that trial component. The list can be filtered to show only trials that were created in a specific time range. The list can be sorted by trial name or creation time.</p>",
     "ListUserProfiles": "<p>Lists user profiles.</p>",
     "ListWorkforces": "<p>Use this operation to list all private and vendor workforces in an AWS Region. Note that you can only have one private workforce per AWS Region.</p>",
-    "ListWorkteams": "<p>Gets a list of work teams that you have defined in a region. The list may be empty if no work team satisfies the filter specified in the <code>NameContains</code> parameter.</p>",
+    "ListWorkteams": "<p>Gets a list of private work teams that you have defined in a region. The list may be empty if no work team satisfies the filter specified in the <code>NameContains</code> parameter.</p>",
     "RenderUiTemplate": "<p>Renders the UI template so that you can preview the worker's experience. </p>",
     "Search": "<p>Finds Amazon SageMaker resources that match a search query. Matching resources are returned as a list of <code>SearchRecord</code> objects in the response. You can sort the search results by any resource property in a ascending or descending order.</p> <p>You can query against the following value types: numeric, text, Boolean, and timestamp.</p>",
     "StartMonitoringSchedule": "<p>Starts a previously stopped monitoring schedule.</p> <note> <p>New monitoring schedules are immediately started after creation.</p> </note>",
@@ -137,7 +137,7 @@
     "UpdateTrial": "<p>Updates the display name of a trial.</p>",
     "UpdateTrialComponent": "<p>Updates one or more properties of a trial component.</p>",
     "UpdateUserProfile": "<p>Updates a user profile.</p>",
-    "UpdateWorkforce": "<p>Restricts access to tasks assigned to workers in the specified workforce to those within specific ranges of IP addresses. You specify allowed IP addresses by creating a list of up to ten <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">CIDRs</a>.</p> <p>By default, a workforce isn't restricted to specific IP addresses. If you specify a range of IP addresses, workers who attempt to access tasks using any IP address outside the specified range are denied access and get a <code>Not Found</code> error message on the worker portal. After restricting access with this operation, you can see the allowed IP values for a private workforce with the operation.</p> <important> <p>This operation applies only to private workforces.</p> </important>",
+    "UpdateWorkforce": "<p>Use this operation to update your workforce. You can use this operation to require that workers use specific IP addresses to work on tasks and to update your OpenID Connect (OIDC) Identity Provider (IdP) workforce configuration.</p> <p> Use <code>SourceIpConfig</code> to restrict worker access to tasks to a specific range of IP addresses. You specify allowed IP addresses by creating a list of up to ten <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">CIDRs</a>. By default, a workforce isn't restricted to specific IP addresses. If you specify a range of IP addresses, workers who attempt to access tasks using any IP address outside the specified range are denied and get a <code>Not Found</code> error message on the worker portal.</p> <p>Use <code>OidcConfig</code> to update the configuration of a workforce created using your own OIDC IdP. </p> <important> <p>You can only update your OIDC IdP configuration when there are no work teams associated with your workforce. You can delete work teams using the operation.</p> </important> <p>After restricting access to a range of IP addresses or updating your OIDC IdP configuration with this operation, you can view details about your update workforce using the operation.</p> <important> <p>This operation only applies to private workforces.</p> </important>",
     "UpdateWorkteam": "<p>Updates an existing work team with new member definitions or description.</p>"
   },
   "shapes": {
@@ -378,7 +378,7 @@
       }
     },
     "AutoMLCandidate": {
-      "base": "<p>An AutoPilot job will return recommendations, or candidates. Each candidate has futher details about the steps involed, and the status.</p>",
+      "base": "<p>An Autopilot job returns recommendations, or candidates. Each candidate has futher details about the steps involed, and the status.</p>",
       "refs": {
         "AutoMLCandidates$member": null,
         "DescribeAutoMLJobResponse$BestCandidate": "<p>Returns the job's BestCandidate.</p>"
@@ -415,7 +415,7 @@
       }
     },
     "AutoMLDataSource": {
-      "base": "<p>The data source for the AutoPilot job.</p>",
+      "base": "<p>The data source for the Autopilot job.</p>",
       "refs": {
         "AutoMLChannel$DataSource": "<p>The data source.</p>"
       }
@@ -424,7 +424,7 @@
       "base": null,
       "refs": {
         "AutoMLCandidate$FailureReason": "<p>The failure reason.</p>",
-        "AutoMLJobSummary$FailureReason": "<p>The failure reason.</p>",
+        "AutoMLJobSummary$FailureReason": "<p>The failure reason of a job.</p>",
         "DescribeAutoMLJobResponse$FailureReason": "<p>Returns the job's FailureReason.</p>"
       }
     },
@@ -473,7 +473,7 @@
       "base": null,
       "refs": {
         "AutoMLJobSummary$AutoMLJobName": "<p>The name of the object you are requesting.</p>",
-        "CreateAutoMLJobRequest$AutoMLJobName": "<p>Identifies an AutoPilot job. Must be unique to your account and is case-insensitive.</p>",
+        "CreateAutoMLJobRequest$AutoMLJobName": "<p>Identifies an Autopilot job. Must be unique to your account and is case-insensitive.</p>",
         "DescribeAutoMLJobRequest$AutoMLJobName": "<p>Request information about a job using that job's unique name.</p>",
         "DescribeAutoMLJobResponse$AutoMLJobName": "<p>Returns the name of a job.</p>",
         "ListCandidatesForAutoMLJobRequest$AutoMLJobName": "<p>List the Candidates created for the job by providing the job's name.</p>",
@@ -481,9 +481,9 @@
       }
     },
     "AutoMLJobObjective": {
-      "base": "<p>Applies a metric to minimize or maximize for the job's objective.</p>",
+      "base": "<p>Specifies a metric to minimize or maximize as the objective of a job.</p>",
       "refs": {
-        "CreateAutoMLJobRequest$AutoMLJobObjective": "<p>Defines the job's objective. You provide a MetricName and AutoML will infer minimize or maximize. If this is not provided, the most commonly used ObjectiveMetric for problem type will be selected.</p>",
+        "CreateAutoMLJobRequest$AutoMLJobObjective": "<p>Defines the objective of a an AutoML job. You provide a <a>AutoMLJobObjective$MetricName</a> and Autopilot infers whether to minimize or maximize it. If a metric is not specified, the most commonly used ObjectiveMetric for problem type is automaically selected.</p>",
         "DescribeAutoMLJobResponse$AutoMLJobObjective": "<p>Returns the job's objective.</p>",
         "ResolvedAttributes$AutoMLJobObjective": null
       }
@@ -491,7 +491,7 @@
     "AutoMLJobObjectiveType": {
       "base": null,
       "refs": {
-        "FinalAutoMLJobObjectiveMetric$Type": "<p>The metric type used.</p>"
+        "FinalAutoMLJobObjectiveMetric$Type": "<p>The type of metric with the best result.</p>"
       }
     },
     "AutoMLJobSecondaryStatus": {
@@ -531,8 +531,8 @@
     "AutoMLMetricEnum": {
       "base": null,
       "refs": {
-        "AutoMLJobObjective$MetricName": "<p>The name of the metric.</p>",
-        "FinalAutoMLJobObjectiveMetric$MetricName": "<p>The name of the metric.</p>"
+        "AutoMLJobObjective$MetricName": "<p>The name of the objective metric used to measure the predictive quality of a machine learning system. This metric is optimized during training to provide the best estimate for model parameter values from data.</p> <p>Here are the options:</p> <ul> <li> <p> <code>MSE</code>: The mean squared error (MSE) is the average of the squared differences between the predicted and actual values. It is used for regression. MSE values are always positive, the better a model is at predicting the actual values the smaller the MSE value. When the data contains outliers, they tend to dominate the MSE which might cause subpar prediction performance.</p> </li> <li> <p> <code>Accuracy</code>: The ratio of the number correctly classified items to the total number (correctly and incorrectly) classified. It is used for binary and multiclass classification. Measures how close the predicted class values are to the actual values. Accuracy values vary between zero and one, one being perfect accuracy and zero perfect inaccuracy.</p> </li> <li> <p> <code>F1</code>: The F1 score is the harmonic mean of the precision and recall. It is used for binary classification into classes traditionally referred to as positive and negative. Predictions are said to be true when they match their actual (correct) class; false when they do not. Precision is the ratio of the true positive predictions to all positive predictions (including the false positives) in a data set and measures the quality of the prediction when it predicts the positive class. Recall (or sensitivity) is the ratio of the true positive predictions to all actual positive instances and measures how completely a model predicts the actual class members in a data set. The standard F1 score weighs precision and recall equally. But which metric is paramount typically depends on specific aspects of a problem. F1 scores vary between zero and one, one being the best possible performance and zero the worst.</p> </li> <li> <p> <code>AUC</code>: The area under the curve (AUC) metric is used to compare and evaluate binary classification by algorithms such as logistic regression that return probabilities. A threshold is needed to map the probabilities into classifications. The relevant curve is the receiver operating characteristic curve that plots the true positive rate (TPR) of predictions (or recall) against the false positive rate (FPR) as a function of the threshold value, above which a prediction is considered positive. Increasing the threshold results in fewer false positives but more false negatives. AUC is the area under this receiver operating characteristic curve and so provides an aggregated measure of the model performance across all possible classification thresholds. The AUC score can also be interpreted as the probability that a randomly selected positive data point is more likely to be predicted positive than a randomly selected negative example. AUC scores vary between zero and one, one being perfect accuracy and one half not better than a random classifier. Values less that one half predict worse than a random predictor and such consistently bad predictors can be inverted to obtain better than random predictors.</p> </li> <li> <p> <code>F1macro</code>: The F1macro score applies F1 scoring to multiclass classification. In this context, you have multiple classes to predict. You just calculate the precision and recall for each class as you did for the positive class in binary classification. Then used these values to calculate the F1 score for each class and average them to obtain the F1macro score. F1macro scores vary between zero and one, one being the best possible performance and zero the worst.</p> </li> </ul> <p>If you do not specify a metric explicitly, the default behavior is to automatically use:</p> <ul> <li> <p> <code>MSE</code>: for regression.</p> </li> <li> <p> <code>F1</code>: for binary classification</p> </li> <li> <p> <code>Accuracy</code>: for multiclass classification.</p> </li> </ul>",
+        "FinalAutoMLJobObjectiveMetric$MetricName": "<p>The name of the metric with the best result. For a description of the possible objective metrics, see <a>AutoMLJobObjective$MetricName</a>.</p>"
       }
     },
     "AutoMLNameContains": {
@@ -2476,7 +2476,7 @@
       }
     },
     "FinalAutoMLJobObjectiveMetric": {
-      "base": "<p>The candidate result from a job.</p>",
+      "base": "<p>The best candidate result from an AutoML training job.</p>",
       "refs": {
         "AutoMLCandidate$FinalAutoMLJobObjectiveMetric": null
       }
@@ -2595,7 +2595,7 @@
     "GenerateCandidateDefinitionsOnly": {
       "base": null,
       "refs": {
-        "CreateAutoMLJobRequest$GenerateCandidateDefinitionsOnly": "<p>This will generate possible candidates without training a model. A candidate is a combination of data preprocessors, algorithms, and algorithm parameter settings.</p>",
+        "CreateAutoMLJobRequest$GenerateCandidateDefinitionsOnly": "<p>Generates possible candidates without training a model. A candidate is a combination of data preprocessors, algorithms, and algorithm parameter settings.</p>",
         "DescribeAutoMLJobResponse$GenerateCandidateDefinitionsOnly": "<p>Returns the job's output from GenerateCandidateDefinitionsOnly.</p>"
       }
     },
@@ -2899,6 +2899,12 @@
       "base": null,
       "refs": {
         "ResourceSpec$SageMakerImageArn": "<p>The Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p>"
+      }
+    },
+    "ImageConfig": {
+      "base": "<p>Specifies whether the model container is in Amazon ECR or a private Docker registry in your Amazon Virtual Private Cloud (VPC).</p>",
+      "refs": {
+        "ContainerDefinition$ImageConfig": "<p>Specifies whether the model container is in Amazon ECR or a private Docker registry in your Amazon Virtual Private Cloud (VPC). For information about storing containers in a private Docker registry, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-containers-inference-private.html\">Use a Private Docker Registry for Real-Time Inference Containers</a> </p>"
       }
     },
     "ImageDigest": {
@@ -3727,7 +3733,7 @@
       }
     },
     "MemberDefinition": {
-      "base": "<p>Defines the Amazon Cognito user group that is part of a work team.</p>",
+      "base": "<p>Defines an Amazon Cognito or your own OIDC IdP user group that is part of a work team.</p>",
       "refs": {
         "MemberDefinitions$member": null
       }
@@ -3735,9 +3741,9 @@
     "MemberDefinitions": {
       "base": null,
       "refs": {
-        "CreateWorkteamRequest$MemberDefinitions": "<p>A list of <code>MemberDefinition</code> objects that contains objects that identify the Amazon Cognito user pool that makes up the work team. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html\">Amazon Cognito User Pools</a>.</p> <p>All of the <code>CognitoMemberDefinition</code> objects that make up the member definition must have the same <code>ClientId</code> and <code>UserPool</code> values.</p>",
-        "UpdateWorkteamRequest$MemberDefinitions": "<p>A list of <code>MemberDefinition</code> objects that contain the updated work team members.</p>",
-        "Workteam$MemberDefinitions": "<p>The Amazon Cognito user groups that make up the work team.</p>"
+        "CreateWorkteamRequest$MemberDefinitions": "<p>A list of <code>MemberDefinition</code> objects that contains objects that identify the workers that make up the work team. </p> <p>Workforces can be created using Amazon Cognito or your own OIDC Identity Provider (IdP). For private workforces created using Amazon Cognito use <code>CognitoMemberDefinition</code>. For workforces created using your own OIDC identity provider (IdP) use <code>OidcMemberDefinition</code>. Do not provide input for both of these parameters in a single request.</p> <p>For workforces created using Amazon Cognito, private work teams correspond to Amazon Cognito <i>user groups</i> within the user pool used to create a workforce. All of the <code>CognitoMemberDefinition</code> objects that make up the member definition must have the same <code>ClientId</code> and <code>UserPool</code> values. To add a Amazon Cognito user group to an existing worker pool, see <a href=\"\">Adding groups to a User Pool</a>. For more information about user pools, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html\">Amazon Cognito User Pools</a>.</p> <p>For workforces created using your own OIDC IdP, specify the user groups that you want to include in your private work team in <code>OidcMemberDefinition</code> by listing those groups in <code>Groups</code>.</p>",
+        "UpdateWorkteamRequest$MemberDefinitions": "<p>A list of <code>MemberDefinition</code> objects that contains objects that identify the workers that make up the work team. </p> <p>Workforces can be created using Amazon Cognito or your own OIDC Identity Provider (IdP). For private workforces created using Amazon Cognito use <code>CognitoMemberDefinition</code>. For workforces created using your own OIDC identity provider (IdP) use <code>OidcMemberDefinition</code>. You should not provide input for both of these parameters in a single request.</p> <p>For workforces created using Amazon Cognito, private work teams correspond to Amazon Cognito <i>user groups</i> within the user pool used to create a workforce. All of the <code>CognitoMemberDefinition</code> objects that make up the member definition must have the same <code>ClientId</code> and <code>UserPool</code> values. To add a Amazon Cognito user group to an existing worker pool, see <a href=\"\">Adding groups to a User Pool</a>. For more information about user pools, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html\">Amazon Cognito User Pools</a>.</p> <p>For workforces created using your own OIDC IdP, specify the user groups that you want to include in your private work team in <code>OidcMemberDefinition</code> by listing those groups in <code>Groups</code>. Be aware that user groups that are already in the work team must also be listed in <code>Groups</code> when you make this request to remain on the work team. If you do not include these user groups, they will no longer be associated with the work team you update. </p>",
+        "Workteam$MemberDefinitions": "<p>A list of <code>MemberDefinition</code> objects that contains objects that identify the workers that make up the work team. </p> <p>Workforces can be created using Amazon Cognito or your own OIDC Identity Provider (IdP). For private workforces created using Amazon Cognito use <code>CognitoMemberDefinition</code>. For workforces created using your own OIDC identity provider (IdP) use <code>OidcMemberDefinition</code>.</p>"
       }
     },
     "MetricData": {
@@ -3779,7 +3785,7 @@
     "MetricValue": {
       "base": null,
       "refs": {
-        "FinalAutoMLJobObjectiveMetric$Value": "<p>The value of the metric.</p>",
+        "FinalAutoMLJobObjectiveMetric$Value": "<p>The value of the metric with the best result.</p>",
         "FinalHyperParameterTuningJobObjectiveMetric$Value": "<p>The value of the objective metric.</p>"
       }
     },
@@ -4156,10 +4162,10 @@
         "ListAlgorithmsOutput$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of algorithms, use it in the subsequent request.</p>",
         "ListAppsRequest$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
         "ListAppsResponse$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
-        "ListAutoMLJobsRequest$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
-        "ListAutoMLJobsResponse$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
-        "ListCandidatesForAutoMLJobRequest$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
-        "ListCandidatesForAutoMLJobResponse$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListAutoMLJobsRequest$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListAutoMLJobsResponse$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListCandidatesForAutoMLJobRequest$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListCandidatesForAutoMLJobResponse$NextToken": "<p>If the previous response was truncated, you receive this token. Use it in your next request to receive the next set of results.</p>",
         "ListCodeRepositoriesInput$NextToken": "<p>If the result of a <code>ListCodeRepositoriesOutput</code> request was truncated, the response includes a <code>NextToken</code>. To get the next set of Git repositories, use the token in the next request.</p>",
         "ListCodeRepositoriesOutput$NextToken": "<p>If the result of a <code>ListCodeRepositoriesOutput</code> request was truncated, the response includes a <code>NextToken</code>. To get the next set of Git repositories, use the token in the next request.</p>",
         "ListCompilationJobsRequest$NextToken": "<p>If the result of the previous <code>ListCompilationJobs</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of model compilation jobs, use the token in the next request.</p>",
@@ -4433,12 +4439,12 @@
     "OidcConfig": {
       "base": "<p>Use this parameter to configure your OIDC Identity Provider (IdP).</p>",
       "refs": {
-        "CreateWorkforceRequest$OidcConfig": "<p>Use this parameter to configure a private workforce using your own OIDC Identity Provider. Do not use <code>CognitoConfig</code> if you specify values for <code>OidcConfig</code>.</p>",
+        "CreateWorkforceRequest$OidcConfig": "<p>Use this parameter to configure a private workforce using your own OIDC Identity Provider.</p> <p>Do not use <code>CognitoConfig</code> if you specify values for <code>OidcConfig</code>.</p>",
         "UpdateWorkforceRequest$OidcConfig": "<p>Use this parameter to update your OIDC Identity Provider (IdP) configuration for a workforce made using your own IdP.</p>"
       }
     },
     "OidcConfigForResponse": {
-      "base": "<p>Your Amazon Cognito workforce configuration.</p>",
+      "base": "<p>Your OIDC IdP workforce configuration.</p>",
       "refs": {
         "Workforce$OidcConfig": "<p>The configuration of an OIDC Identity Provider (IdP) private workforce.</p>"
       }
@@ -4461,7 +4467,7 @@
       }
     },
     "OidcMemberDefinition": {
-      "base": "<p>A list user groups that exist in your OIDC Identity Provider (IdP). One to ten groups can be used to create a single private work team. When you add a user group to the list of <code>Groups</code>, you can add that user group to one or more private work teams. If you add a user group to a private work team, all workers in that user group are added to the work team.</p>",
+      "base": "<p>A list of user groups that exist in your OIDC Identity Provider (IdP). One to ten groups can be used to create a single private work team. When you add a user group to the list of <code>Groups</code>, you can add that user group to one or more private work teams. If you add a user group to a private work team, all workers in that user group are added to the work team.</p>",
       "refs": {
         "MemberDefinition$OidcMemberDefinition": "<p>A list user groups that exist in your OIDC Identity Provider (IdP). One to ten groups can be used to create a single private work team. When you add a user group to the list of <code>Groups</code>, you can add that user group to one or more private work teams. If you add a user group to a private work team, all workers in that user group are added to the work team.</p>"
       }
@@ -4956,6 +4962,12 @@
         "RenderUiTemplateResponse$Errors": "<p>A list of one or more <code>RenderingError</code> objects if any were encountered while rendering the template. If there were no errors, the list is empty.</p>"
       }
     },
+    "RepositoryAccessMode": {
+      "base": null,
+      "refs": {
+        "ImageConfig$RepositoryAccessMode": "<p>Set this to one of the following values:</p> <ul> <li> <p> <code>Platform</code> - The model image is hosted in Amazon ECR.</p> </li> <li> <p> <code>VPC</code> - The model image is hosted in a private Docker registry in your VPC.</p> </li> </ul>"
+      }
+    },
     "ResolvedAttributes": {
       "base": "<p>The resolved attributes.</p>",
       "refs": {
@@ -5062,7 +5074,7 @@
       "base": null,
       "refs": {
         "AlgorithmValidationSpecification$ValidationRole": "<p>The IAM roles that Amazon SageMaker uses to run the training jobs.</p>",
-        "CreateAutoMLJobRequest$RoleArn": "<p>The ARN of the role that will be used to access the data.</p>",
+        "CreateAutoMLJobRequest$RoleArn": "<p>The ARN of the role that is used to access the data.</p>",
         "CreateCompilationJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf. </p> <p>During model compilation, Amazon SageMaker needs your permission to:</p> <ul> <li> <p>Read input data from an S3 bucket</p> </li> <li> <p>Write model artifacts to an S3 bucket</p> </li> <li> <p>Write logs to Amazon CloudWatch Logs</p> </li> <li> <p>Publish metrics to Amazon CloudWatch</p> </li> </ul> <p>You grant permissions for all of these tasks to an IAM role. To pass this role to Amazon SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html\">Amazon SageMaker Roles.</a> </p>",
         "CreateFlowDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the role needed to call other services on your behalf. For example, <code>arn:aws:iam::1234567890:role/service-role/AmazonSageMaker-ExecutionRole-20180111T151298</code>.</p>",
         "CreateLabelingJobRequest$RoleArn": "<p>The Amazon Resource Number (ARN) that Amazon SageMaker assumes to perform tasks on your behalf during data labeling. You must grant this role the necessary permissions so that Amazon SageMaker can successfully complete data labeling.</p>",
@@ -5237,7 +5249,7 @@
     "SecondaryStatus": {
       "base": null,
       "refs": {
-        "DescribeTrainingJobResponse$SecondaryStatus": "<p> Provides detailed information about the state of the training job. For detailed information on the secondary status of the training job, see <code>StatusMessage</code> under <a>SecondaryStatusTransition</a>.</p> <p>Amazon SageMaker provides primary statuses and secondary statuses that apply to each of them:</p> <dl> <dt>InProgress</dt> <dd> <ul> <li> <p> <code>Starting</code> - Starting the training job.</p> </li> <li> <p> <code>Downloading</code> - An optional stage for algorithms that support <code>File</code> training input mode. It indicates that data is being downloaded to the ML storage volumes.</p> </li> <li> <p> <code>Training</code> - Training is in progress.</p> </li> <li> <p> <code>Interrupted</code> - The job stopped because the managed spot training instances were interrupted. </p> </li> <li> <p> <code>Uploading</code> - Training is complete and the model artifacts are being uploaded to the S3 location.</p> </li> </ul> </dd> <dt>Completed</dt> <dd> <ul> <li> <p> <code>Completed</code> - The training job has completed.</p> </li> </ul> </dd> <dt>Failed</dt> <dd> <ul> <li> <p> <code>Failed</code> - The training job has failed. The reason for the failure is returned in the <code>FailureReason</code> field of <code>DescribeTrainingJobResponse</code>.</p> </li> </ul> </dd> <dt>Stopped</dt> <dd> <ul> <li> <p> <code>MaxRuntimeExceeded</code> - The job stopped because it exceeded the maximum allowed runtime.</p> </li> <li> <p> <code>MaxWaitTmeExceeded</code> - The job stopped because it exceeded the maximum allowed wait time.</p> </li> <li> <p> <code>Stopped</code> - The training job has stopped.</p> </li> </ul> </dd> <dt>Stopping</dt> <dd> <ul> <li> <p> <code>Stopping</code> - Stopping the training job.</p> </li> </ul> </dd> </dl> <important> <p>Valid values for <code>SecondaryStatus</code> are subject to change. </p> </important> <p>We no longer support the following secondary statuses:</p> <ul> <li> <p> <code>LaunchingMLInstances</code> </p> </li> <li> <p> <code>PreparingTrainingStack</code> </p> </li> <li> <p> <code>DownloadingTrainingImage</code> </p> </li> </ul>",
+        "DescribeTrainingJobResponse$SecondaryStatus": "<p> Provides detailed information about the state of the training job. For detailed information on the secondary status of the training job, see <code>StatusMessage</code> under <a>SecondaryStatusTransition</a>.</p> <p>Amazon SageMaker provides primary statuses and secondary statuses that apply to each of them:</p> <dl> <dt>InProgress</dt> <dd> <ul> <li> <p> <code>Starting</code> - Starting the training job.</p> </li> <li> <p> <code>Downloading</code> - An optional stage for algorithms that support <code>File</code> training input mode. It indicates that data is being downloaded to the ML storage volumes.</p> </li> <li> <p> <code>Training</code> - Training is in progress.</p> </li> <li> <p> <code>Interrupted</code> - The job stopped because the managed spot training instances were interrupted. </p> </li> <li> <p> <code>Uploading</code> - Training is complete and the model artifacts are being uploaded to the S3 location.</p> </li> </ul> </dd> <dt>Completed</dt> <dd> <ul> <li> <p> <code>Completed</code> - The training job has completed.</p> </li> </ul> </dd> <dt>Failed</dt> <dd> <ul> <li> <p> <code>Failed</code> - The training job has failed. The reason for the failure is returned in the <code>FailureReason</code> field of <code>DescribeTrainingJobResponse</code>.</p> </li> </ul> </dd> <dt>Stopped</dt> <dd> <ul> <li> <p> <code>MaxRuntimeExceeded</code> - The job stopped because it exceeded the maximum allowed runtime.</p> </li> <li> <p> <code>MaxWaitTimeExceeded</code> - The job stopped because it exceeded the maximum allowed wait time.</p> </li> <li> <p> <code>Stopped</code> - The training job has stopped.</p> </li> </ul> </dd> <dt>Stopping</dt> <dd> <ul> <li> <p> <code>Stopping</code> - Stopping the training job.</p> </li> </ul> </dd> </dl> <important> <p>Valid values for <code>SecondaryStatus</code> are subject to change. </p> </important> <p>We no longer support the following secondary statuses:</p> <ul> <li> <p> <code>LaunchingMLInstances</code> </p> </li> <li> <p> <code>PreparingTrainingStack</code> </p> </li> <li> <p> <code>DownloadingTrainingImage</code> </p> </li> </ul>",
         "SecondaryStatusTransition$Status": "<p>Contains a secondary status information from a training job.</p> <p>Status might be one of the following secondary statuses:</p> <dl> <dt>InProgress</dt> <dd> <ul> <li> <p> <code>Starting</code> - Starting the training job.</p> </li> <li> <p> <code>Downloading</code> - An optional stage for algorithms that support <code>File</code> training input mode. It indicates that data is being downloaded to the ML storage volumes.</p> </li> <li> <p> <code>Training</code> - Training is in progress.</p> </li> <li> <p> <code>Uploading</code> - Training is complete and the model artifacts are being uploaded to the S3 location.</p> </li> </ul> </dd> <dt>Completed</dt> <dd> <ul> <li> <p> <code>Completed</code> - The training job has completed.</p> </li> </ul> </dd> <dt>Failed</dt> <dd> <ul> <li> <p> <code>Failed</code> - The training job has failed. The reason for the failure is returned in the <code>FailureReason</code> field of <code>DescribeTrainingJobResponse</code>.</p> </li> </ul> </dd> <dt>Stopped</dt> <dd> <ul> <li> <p> <code>MaxRuntimeExceeded</code> - The job stopped because it exceeded the maximum allowed runtime.</p> </li> <li> <p> <code>Stopped</code> - The training job has stopped.</p> </li> </ul> </dd> <dt>Stopping</dt> <dd> <ul> <li> <p> <code>Stopping</code> - Stopping the training job.</p> </li> </ul> </dd> </dl> <p>We no longer support the following secondary statuses:</p> <ul> <li> <p> <code>LaunchingMLInstances</code> </p> </li> <li> <p> <code>PreparingTrainingStack</code> </p> </li> <li> <p> <code>DownloadingTrainingImage</code> </p> </li> </ul>",
         "TrainingJob$SecondaryStatus": "<p> Provides detailed information about the state of the training job. For detailed information about the secondary status of the training job, see <code>StatusMessage</code> under <a>SecondaryStatusTransition</a>.</p> <p>Amazon SageMaker provides primary statuses and secondary statuses that apply to each of them:</p> <dl> <dt>InProgress</dt> <dd> <ul> <li> <p> <code>Starting</code> - Starting the training job.</p> </li> <li> <p> <code>Downloading</code> - An optional stage for algorithms that support <code>File</code> training input mode. It indicates that data is being downloaded to the ML storage volumes.</p> </li> <li> <p> <code>Training</code> - Training is in progress.</p> </li> <li> <p> <code>Uploading</code> - Training is complete and the model artifacts are being uploaded to the S3 location.</p> </li> </ul> </dd> <dt>Completed</dt> <dd> <ul> <li> <p> <code>Completed</code> - The training job has completed.</p> </li> </ul> </dd> <dt>Failed</dt> <dd> <ul> <li> <p> <code>Failed</code> - The training job has failed. The reason for the failure is returned in the <code>FailureReason</code> field of <code>DescribeTrainingJobResponse</code>.</p> </li> </ul> </dd> <dt>Stopped</dt> <dd> <ul> <li> <p> <code>MaxRuntimeExceeded</code> - The job stopped because it exceeded the maximum allowed runtime.</p> </li> <li> <p> <code>Stopped</code> - The training job has stopped.</p> </li> </ul> </dd> <dt>Stopping</dt> <dd> <ul> <li> <p> <code>Stopping</code> - Stopping the training job.</p> </li> </ul> </dd> </dl> <important> <p>Valid values for <code>SecondaryStatus</code> are subject to change. </p> </important> <p>We no longer support the following secondary statuses:</p> <ul> <li> <p> <code>LaunchingMLInstances</code> </p> </li> <li> <p> <code>PreparingTrainingStack</code> </p> </li> <li> <p> <code>DownloadingTrainingImage</code> </p> </li> </ul>"
       }
@@ -5382,11 +5394,11 @@
       }
     },
     "SourceIpConfig": {
-      "base": "<p>A list of IP address ranges (<a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">CIDRs</a>). Used to create an allow list of IP addresses for a private workforce. For more information, see .</p>",
+      "base": "<p>A list of IP address ranges (<a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">CIDRs</a>). Used to create an allow list of IP addresses for a private workforce. Workers will only be able to login to their worker portal from an IP address within this range. By default, a workforce isn't restricted to specific IP addresses.</p>",
       "refs": {
         "CreateWorkforceRequest$SourceIpConfig": null,
         "UpdateWorkforceRequest$SourceIpConfig": "<p>A list of one to ten worker IP address ranges (<a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">CIDRs</a>) that can be used to access tasks assigned to this workforce.</p> <p>Maximum: Ten CIDR values</p>",
-        "Workforce$SourceIpConfig": "<p>A list of one to ten IP address ranges (<a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">CIDRs</a>) to be added to the workforce allow list.</p>"
+        "Workforce$SourceIpConfig": "<p>A list of one to ten IP address ranges (<a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\">CIDRs</a>) to be added to the workforce allow list. By default, a workforce isn't restricted to specific IP addresses.</p>"
       }
     },
     "SourceType": {
@@ -5400,7 +5412,7 @@
     "SplitType": {
       "base": null,
       "refs": {
-        "TransformInput$SplitType": "<p>The method to use to split the transform job's data files into smaller batches. Splitting is necessary when the total size of each object is too large to fit in a single request. You can also use data splitting to improve performance by processing multiple concurrent mini-batches. The default value for <code>SplitType</code> is <code>None</code>, which indicates that input data files are not split, and request payloads contain the entire contents of an input object. Set the value of this parameter to <code>Line</code> to split records on a newline character boundary. <code>SplitType</code> also supports a number of record-oriented binary data formats.</p> <p>When splitting is enabled, the size of a mini-batch depends on the values of the <code>BatchStrategy</code> and <code>MaxPayloadInMB</code> parameters. When the value of <code>BatchStrategy</code> is <code>MultiRecord</code>, Amazon SageMaker sends the maximum number of records in each request, up to the <code>MaxPayloadInMB</code> limit. If the value of <code>BatchStrategy</code> is <code>SingleRecord</code>, Amazon SageMaker sends individual records in each request.</p> <note> <p>Some data formats represent a record as a binary payload wrapped with extra padding bytes. When splitting is applied to a binary data format, padding is removed if the value of <code>BatchStrategy</code> is set to <code>SingleRecord</code>. Padding is not removed if the value of <code>BatchStrategy</code> is set to <code>MultiRecord</code>.</p> <p>For more information about <code>RecordIO</code>, see <a href=\"https://mxnet.apache.org/api/faq/recordio\">Create a Dataset Using RecordIO</a> in the MXNet documentation. For more information about <code>TFRecord</code>, see <a href=\"https://www.tensorflow.org/guide/datasets#consuming_tfrecord_data\">Consuming TFRecord data</a> in the TensorFlow documentation.</p> </note>"
+        "TransformInput$SplitType": "<p>The method to use to split the transform job's data files into smaller batches. Splitting is necessary when the total size of each object is too large to fit in a single request. You can also use data splitting to improve performance by processing multiple concurrent mini-batches. The default value for <code>SplitType</code> is <code>None</code>, which indicates that input data files are not split, and request payloads contain the entire contents of an input object. Set the value of this parameter to <code>Line</code> to split records on a newline character boundary. <code>SplitType</code> also supports a number of record-oriented binary data formats. Currently, the supported record formats are:</p> <ul> <li> <p>RecordIO</p> </li> <li> <p>TFRecord</p> </li> </ul> <p>When splitting is enabled, the size of a mini-batch depends on the values of the <code>BatchStrategy</code> and <code>MaxPayloadInMB</code> parameters. When the value of <code>BatchStrategy</code> is <code>MultiRecord</code>, Amazon SageMaker sends the maximum number of records in each request, up to the <code>MaxPayloadInMB</code> limit. If the value of <code>BatchStrategy</code> is <code>SingleRecord</code>, Amazon SageMaker sends individual records in each request.</p> <note> <p>Some data formats represent a record as a binary payload wrapped with extra padding bytes. When splitting is applied to a binary data format, padding is removed if the value of <code>BatchStrategy</code> is set to <code>SingleRecord</code>. Padding is not removed if the value of <code>BatchStrategy</code> is set to <code>MultiRecord</code>.</p> <p>For more information about <code>RecordIO</code>, see <a href=\"https://mxnet.apache.org/api/faq/recordio\">Create a Dataset Using RecordIO</a> in the MXNet documentation. For more information about <code>TFRecord</code>, see <a href=\"https://www.tensorflow.org/guide/datasets#consuming_tfrecord_data\">Consuming TFRecord data</a> in the TensorFlow documentation.</p> </note>"
       }
     },
     "StartMonitoringScheduleRequest": {
@@ -5654,7 +5666,7 @@
     "TargetObjectiveMetricValue": {
       "base": null,
       "refs": {
-        "TuningJobCompletionCriteria$TargetObjectiveMetricValue": "<p>The objective metric's value.</p>"
+        "TuningJobCompletionCriteria$TargetObjectiveMetricValue": "<p>The value of the objective metric.</p>"
       }
     },
     "TargetPlatform": {
@@ -5780,7 +5792,7 @@
         "AutoMLCandidate$EndTime": "<p>The end time.</p>",
         "AutoMLCandidate$LastModifiedTime": "<p>The last modified time.</p>",
         "AutoMLJobSummary$CreationTime": "<p>When the job was created.</p>",
-        "AutoMLJobSummary$EndTime": "<p>The end time.</p>",
+        "AutoMLJobSummary$EndTime": "<p>The end time of an AutoML job.</p>",
         "AutoMLJobSummary$LastModifiedTime": "<p>When the job was last modified.</p>",
         "CompilationJobSummary$CompilationStartTime": "<p>The time when the model compilation job started.</p>",
         "CompilationJobSummary$CompilationEndTime": "<p>The time when the model compilation job completed.</p>",
@@ -6741,7 +6753,7 @@
       "base": "<p>A single private workforce, which is automatically created when you create your first private work team. You can create one private work force in each AWS Region. By default, any workforce-related API operation used in a specific region will apply to the workforce created in that region. To learn how to create a private workforce, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html\">Create a Private Workforce</a>.</p>",
       "refs": {
         "DescribeWorkforceResponse$Workforce": "<p>A single private workforce, which is automatically created when you create your first private work team. You can create one private work force in each AWS Region. By default, any workforce-related API operation used in a specific region will apply to the workforce created in that region. To learn how to create a private workforce, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html\">Create a Private Workforce</a>.</p>",
-        "UpdateWorkforceResponse$Workforce": "<p>A single private workforce, which is automatically created when you create your first private work team. You can create one private work force in each AWS Region. By default, any workforce-related API operation used in a specific region will apply to the workforce created in that region. To learn how to create a private workforce, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html\">Create a Private Workforce</a>.</p>",
+        "UpdateWorkforceResponse$Workforce": "<p>A single private workforce. You can create one private work force in each AWS Region. By default, any workforce-related API operation used in a specific region will apply to the workforce created in that region. To learn how to create a private workforce, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html\">Create a Private Workforce</a>.</p>",
         "Workforces$member": null
       }
     },
@@ -6761,7 +6773,7 @@
         "DeleteWorkforceRequest$WorkforceName": "<p>The name of the workforce.</p>",
         "DescribeWorkforceRequest$WorkforceName": "<p>The name of the private workforce whose access you want to restrict. <code>WorkforceName</code> is automatically set to <code>default</code> when a workforce is created and cannot be modified. </p>",
         "ListWorkforcesRequest$NameContains": "<p>A filter you can use to search for workforces using part of the workforce name.</p>",
-        "UpdateWorkforceRequest$WorkforceName": "<p>The name of the private workforce whose access you want to restrict. <code>WorkforceName</code> is automatically set to <code>default</code> when a workforce is created and cannot be modified. </p>",
+        "UpdateWorkforceRequest$WorkforceName": "<p>The name of the private workforce that you want to update. You can find your workforce name by using the operation.</p>",
         "Workforce$WorkforceName": "<p>The name of the private workforce.</p>"
       }
     },

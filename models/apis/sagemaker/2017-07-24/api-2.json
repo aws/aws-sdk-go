@@ -1977,7 +1977,8 @@
         "Accuracy",
         "MSE",
         "F1",
-        "F1macro"
+        "F1macro",
+        "AUC"
       ]
     },
     "AutoMLNameContains":{
@@ -2467,6 +2468,7 @@
       "members":{
         "ContainerHostname":{"shape":"ContainerHostname"},
         "Image":{"shape":"ContainerImage"},
+        "ImageConfig":{"shape":"ImageConfig"},
         "Mode":{"shape":"ContainerMode"},
         "ModelDataUrl":{"shape":"Url"},
         "Environment":{"shape":"EnvironmentMap"},
@@ -5245,6 +5247,13 @@
       "max":256,
       "pattern":"^arn:aws(-[\\w]+)*:sagemaker:.+:[0-9]{12}:image/[a-z0-9]([-.]?[a-z0-9])*$"
     },
+    "ImageConfig":{
+      "type":"structure",
+      "required":["RepositoryAccessMode"],
+      "members":{
+        "RepositoryAccessMode":{"shape":"RepositoryAccessMode"}
+      }
+    },
     "ImageDigest":{
       "type":"string",
       "max":72,
@@ -7744,6 +7753,13 @@
     "RenderingErrorList":{
       "type":"list",
       "member":{"shape":"RenderingError"}
+    },
+    "RepositoryAccessMode":{
+      "type":"string",
+      "enum":[
+        "Platform",
+        "Vpc"
+      ]
     },
     "ResolvedAttributes":{
       "type":"structure",
