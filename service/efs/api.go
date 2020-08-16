@@ -3243,7 +3243,7 @@ type BackupPolicy struct {
 	//
 	//    * DISABLED - automatic back ups are turned off for the file system.
 	//
-	//    * DISABLED - EFS is turning off automatic backups for the file system.
+	//    * DISABLING - EFS is turning off automatic backups for the file system.
 	//
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"Status"`
