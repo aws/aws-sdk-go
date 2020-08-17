@@ -26,12 +26,17 @@ func TestFormatTime(t *testing.T) {
 		"ISO8601Test1": {
 			formatName:     ISO8601TimeFormatName,
 			expectedOutput: "2000-01-02T20:34:56Z",
-			input:          time.Date(2000, time.January, 2, 20, 34, 56, .123e9, time.UTC),
+			input:          time.Date(2000, time.January, 2, 20, 34, 56, 0, time.UTC),
 		},
 		"RFC822Test1": {
 			formatName:     RFC822TimeFormatName,
 			expectedOutput: "Sun, 02 Jan 2000 20:34:56 GMT",
 			input:          time.Date(2000, time.January, 2, 20, 34, 56, 0, time.UTC),
+		},
+		"ISO8601Test2": {
+			formatName:     ISO8601TimeFormatName,
+			expectedOutput: "2000-01-02T20:34:56.123Z",
+			input:          time.Date(2000, time.January, 2, 20, 34, 56, .123e9, time.UTC),
 		},
 	}
 
