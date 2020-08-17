@@ -228,6 +228,44 @@ func mockSubscribeToShardReadEvents() (
 	expectEvents := []SubscribeToShardEventStreamEvent{
 		&SubscribeToShardOutput{},
 		&SubscribeToShardEvent{
+			ChildShards: []*ChildShard{
+				{
+					HashKeyRange: &HashKeyRange{
+						EndingHashKey:   aws.String("string value goes here"),
+						StartingHashKey: aws.String("string value goes here"),
+					},
+					ParentShards: []*string{
+						aws.String("string value goes here"),
+						aws.String("string value goes here"),
+						aws.String("string value goes here"),
+					},
+					ShardId: aws.String("string value goes here"),
+				},
+				{
+					HashKeyRange: &HashKeyRange{
+						EndingHashKey:   aws.String("string value goes here"),
+						StartingHashKey: aws.String("string value goes here"),
+					},
+					ParentShards: []*string{
+						aws.String("string value goes here"),
+						aws.String("string value goes here"),
+						aws.String("string value goes here"),
+					},
+					ShardId: aws.String("string value goes here"),
+				},
+				{
+					HashKeyRange: &HashKeyRange{
+						EndingHashKey:   aws.String("string value goes here"),
+						StartingHashKey: aws.String("string value goes here"),
+					},
+					ParentShards: []*string{
+						aws.String("string value goes here"),
+						aws.String("string value goes here"),
+						aws.String("string value goes here"),
+					},
+					ShardId: aws.String("string value goes here"),
+				},
+			},
 			ContinuationSequenceNumber: aws.String("string value goes here"),
 			MillisBehindLatest:         aws.Int64(1234),
 			Records: []*Record{

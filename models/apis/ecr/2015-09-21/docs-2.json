@@ -820,7 +820,9 @@
     "MediaType": {
       "base": null,
       "refs": {
-        "Image$imageManifestMediaType": "<p>The media type associated with the image manifest.</p>",
+        "Image$imageManifestMediaType": "<p>The manifest media type of the image.</p>",
+        "ImageDetail$imageManifestMediaType": "<p>The media type of the image manifest.</p>",
+        "ImageDetail$artifactMediaType": "<p>The artifact media type of the image.</p>",
         "Layer$mediaType": "<p>The media type of the layer, such as <code>application/vnd.docker.image.rootfs.diff.tar.gzip</code> or <code>application/vnd.oci.image.layer.v1.tar+gzip</code>.</p>",
         "MediaTypeList$member": null,
         "PutImageRequest$imageManifestMediaType": "<p>The media type of the image manifest. If you push an image manifest that does not contain the <code>mediaType</code> field, you must specify the <code>imageManifestMediaType</code> in the request.</p>"

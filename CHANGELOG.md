@@ -1,3 +1,20 @@
+Release v1.34.6 (2020-08-17)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API
+  * ACM provides support for the new Private CA feature Cross-account CA sharing. ACM users can issue certificates signed by a private CA belonging to another account where the CA was shared with them.
+* `service/acm-pca`: Updates service API and documentation
+* `service/ecr`: Updates service API and documentation
+  * This feature adds support for pushing and pulling Open Container Initiative (OCI) artifacts.
+* `service/elasticloadbalancing`: Updates service documentation
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/kinesis`: Updates service API and documentation
+  * Introducing ShardFilter for ListShards API to filter the shards using a position in the stream, and ChildShards support for GetRecords and SubscribeToShard API to discover children shards on shard end
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * Amazon QuickSight now supports programmatic creation and management of analyses with new APIs.
+* `service/robomaker`: Updates service API, documentation, and paginators
+
 Release v1.34.5 (2020-08-14)
 ===
 
