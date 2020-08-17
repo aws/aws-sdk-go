@@ -68,6 +68,10 @@ type QuickSightAPI interface {
 	CreateAccountCustomizationWithContext(aws.Context, *quicksight.CreateAccountCustomizationInput, ...request.Option) (*quicksight.CreateAccountCustomizationOutput, error)
 	CreateAccountCustomizationRequest(*quicksight.CreateAccountCustomizationInput) (*request.Request, *quicksight.CreateAccountCustomizationOutput)
 
+	CreateAnalysis(*quicksight.CreateAnalysisInput) (*quicksight.CreateAnalysisOutput, error)
+	CreateAnalysisWithContext(aws.Context, *quicksight.CreateAnalysisInput, ...request.Option) (*quicksight.CreateAnalysisOutput, error)
+	CreateAnalysisRequest(*quicksight.CreateAnalysisInput) (*request.Request, *quicksight.CreateAnalysisOutput)
+
 	CreateDashboard(*quicksight.CreateDashboardInput) (*quicksight.CreateDashboardOutput, error)
 	CreateDashboardWithContext(aws.Context, *quicksight.CreateDashboardInput, ...request.Option) (*quicksight.CreateDashboardOutput, error)
 	CreateDashboardRequest(*quicksight.CreateDashboardInput) (*request.Request, *quicksight.CreateDashboardOutput)
@@ -119,6 +123,10 @@ type QuickSightAPI interface {
 	DeleteAccountCustomization(*quicksight.DeleteAccountCustomizationInput) (*quicksight.DeleteAccountCustomizationOutput, error)
 	DeleteAccountCustomizationWithContext(aws.Context, *quicksight.DeleteAccountCustomizationInput, ...request.Option) (*quicksight.DeleteAccountCustomizationOutput, error)
 	DeleteAccountCustomizationRequest(*quicksight.DeleteAccountCustomizationInput) (*request.Request, *quicksight.DeleteAccountCustomizationOutput)
+
+	DeleteAnalysis(*quicksight.DeleteAnalysisInput) (*quicksight.DeleteAnalysisOutput, error)
+	DeleteAnalysisWithContext(aws.Context, *quicksight.DeleteAnalysisInput, ...request.Option) (*quicksight.DeleteAnalysisOutput, error)
+	DeleteAnalysisRequest(*quicksight.DeleteAnalysisInput) (*request.Request, *quicksight.DeleteAnalysisOutput)
 
 	DeleteDashboard(*quicksight.DeleteDashboardInput) (*quicksight.DeleteDashboardOutput, error)
 	DeleteDashboardWithContext(aws.Context, *quicksight.DeleteDashboardInput, ...request.Option) (*quicksight.DeleteDashboardOutput, error)
@@ -179,6 +187,14 @@ type QuickSightAPI interface {
 	DescribeAccountSettings(*quicksight.DescribeAccountSettingsInput) (*quicksight.DescribeAccountSettingsOutput, error)
 	DescribeAccountSettingsWithContext(aws.Context, *quicksight.DescribeAccountSettingsInput, ...request.Option) (*quicksight.DescribeAccountSettingsOutput, error)
 	DescribeAccountSettingsRequest(*quicksight.DescribeAccountSettingsInput) (*request.Request, *quicksight.DescribeAccountSettingsOutput)
+
+	DescribeAnalysis(*quicksight.DescribeAnalysisInput) (*quicksight.DescribeAnalysisOutput, error)
+	DescribeAnalysisWithContext(aws.Context, *quicksight.DescribeAnalysisInput, ...request.Option) (*quicksight.DescribeAnalysisOutput, error)
+	DescribeAnalysisRequest(*quicksight.DescribeAnalysisInput) (*request.Request, *quicksight.DescribeAnalysisOutput)
+
+	DescribeAnalysisPermissions(*quicksight.DescribeAnalysisPermissionsInput) (*quicksight.DescribeAnalysisPermissionsOutput, error)
+	DescribeAnalysisPermissionsWithContext(aws.Context, *quicksight.DescribeAnalysisPermissionsInput, ...request.Option) (*quicksight.DescribeAnalysisPermissionsOutput, error)
+	DescribeAnalysisPermissionsRequest(*quicksight.DescribeAnalysisPermissionsInput) (*request.Request, *quicksight.DescribeAnalysisPermissionsOutput)
 
 	DescribeDashboard(*quicksight.DescribeDashboardInput) (*quicksight.DescribeDashboardOutput, error)
 	DescribeDashboardWithContext(aws.Context, *quicksight.DescribeDashboardInput, ...request.Option) (*quicksight.DescribeDashboardOutput, error)
@@ -255,6 +271,13 @@ type QuickSightAPI interface {
 	GetSessionEmbedUrl(*quicksight.GetSessionEmbedUrlInput) (*quicksight.GetSessionEmbedUrlOutput, error)
 	GetSessionEmbedUrlWithContext(aws.Context, *quicksight.GetSessionEmbedUrlInput, ...request.Option) (*quicksight.GetSessionEmbedUrlOutput, error)
 	GetSessionEmbedUrlRequest(*quicksight.GetSessionEmbedUrlInput) (*request.Request, *quicksight.GetSessionEmbedUrlOutput)
+
+	ListAnalyses(*quicksight.ListAnalysesInput) (*quicksight.ListAnalysesOutput, error)
+	ListAnalysesWithContext(aws.Context, *quicksight.ListAnalysesInput, ...request.Option) (*quicksight.ListAnalysesOutput, error)
+	ListAnalysesRequest(*quicksight.ListAnalysesInput) (*request.Request, *quicksight.ListAnalysesOutput)
+
+	ListAnalysesPages(*quicksight.ListAnalysesInput, func(*quicksight.ListAnalysesOutput, bool) bool) error
+	ListAnalysesPagesWithContext(aws.Context, *quicksight.ListAnalysesInput, func(*quicksight.ListAnalysesOutput, bool) bool, ...request.Option) error
 
 	ListDashboardVersions(*quicksight.ListDashboardVersionsInput) (*quicksight.ListDashboardVersionsOutput, error)
 	ListDashboardVersionsWithContext(aws.Context, *quicksight.ListDashboardVersionsInput, ...request.Option) (*quicksight.ListDashboardVersionsOutput, error)
@@ -363,6 +386,17 @@ type QuickSightAPI interface {
 	RegisterUserWithContext(aws.Context, *quicksight.RegisterUserInput, ...request.Option) (*quicksight.RegisterUserOutput, error)
 	RegisterUserRequest(*quicksight.RegisterUserInput) (*request.Request, *quicksight.RegisterUserOutput)
 
+	RestoreAnalysis(*quicksight.RestoreAnalysisInput) (*quicksight.RestoreAnalysisOutput, error)
+	RestoreAnalysisWithContext(aws.Context, *quicksight.RestoreAnalysisInput, ...request.Option) (*quicksight.RestoreAnalysisOutput, error)
+	RestoreAnalysisRequest(*quicksight.RestoreAnalysisInput) (*request.Request, *quicksight.RestoreAnalysisOutput)
+
+	SearchAnalyses(*quicksight.SearchAnalysesInput) (*quicksight.SearchAnalysesOutput, error)
+	SearchAnalysesWithContext(aws.Context, *quicksight.SearchAnalysesInput, ...request.Option) (*quicksight.SearchAnalysesOutput, error)
+	SearchAnalysesRequest(*quicksight.SearchAnalysesInput) (*request.Request, *quicksight.SearchAnalysesOutput)
+
+	SearchAnalysesPages(*quicksight.SearchAnalysesInput, func(*quicksight.SearchAnalysesOutput, bool) bool) error
+	SearchAnalysesPagesWithContext(aws.Context, *quicksight.SearchAnalysesInput, func(*quicksight.SearchAnalysesOutput, bool) bool, ...request.Option) error
+
 	SearchDashboards(*quicksight.SearchDashboardsInput) (*quicksight.SearchDashboardsOutput, error)
 	SearchDashboardsWithContext(aws.Context, *quicksight.SearchDashboardsInput, ...request.Option) (*quicksight.SearchDashboardsOutput, error)
 	SearchDashboardsRequest(*quicksight.SearchDashboardsInput) (*request.Request, *quicksight.SearchDashboardsOutput)
@@ -385,6 +419,14 @@ type QuickSightAPI interface {
 	UpdateAccountSettings(*quicksight.UpdateAccountSettingsInput) (*quicksight.UpdateAccountSettingsOutput, error)
 	UpdateAccountSettingsWithContext(aws.Context, *quicksight.UpdateAccountSettingsInput, ...request.Option) (*quicksight.UpdateAccountSettingsOutput, error)
 	UpdateAccountSettingsRequest(*quicksight.UpdateAccountSettingsInput) (*request.Request, *quicksight.UpdateAccountSettingsOutput)
+
+	UpdateAnalysis(*quicksight.UpdateAnalysisInput) (*quicksight.UpdateAnalysisOutput, error)
+	UpdateAnalysisWithContext(aws.Context, *quicksight.UpdateAnalysisInput, ...request.Option) (*quicksight.UpdateAnalysisOutput, error)
+	UpdateAnalysisRequest(*quicksight.UpdateAnalysisInput) (*request.Request, *quicksight.UpdateAnalysisOutput)
+
+	UpdateAnalysisPermissions(*quicksight.UpdateAnalysisPermissionsInput) (*quicksight.UpdateAnalysisPermissionsOutput, error)
+	UpdateAnalysisPermissionsWithContext(aws.Context, *quicksight.UpdateAnalysisPermissionsInput, ...request.Option) (*quicksight.UpdateAnalysisPermissionsOutput, error)
+	UpdateAnalysisPermissionsRequest(*quicksight.UpdateAnalysisPermissionsInput) (*request.Request, *quicksight.UpdateAnalysisPermissionsOutput)
 
 	UpdateDashboard(*quicksight.UpdateDashboardInput) (*quicksight.UpdateDashboardOutput, error)
 	UpdateDashboardWithContext(aws.Context, *quicksight.UpdateDashboardInput, ...request.Option) (*quicksight.UpdateDashboardOutput, error)

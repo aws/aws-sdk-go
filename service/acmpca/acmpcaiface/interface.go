@@ -80,6 +80,10 @@ type ACMPCAAPI interface {
 	DeletePermissionWithContext(aws.Context, *acmpca.DeletePermissionInput, ...request.Option) (*acmpca.DeletePermissionOutput, error)
 	DeletePermissionRequest(*acmpca.DeletePermissionInput) (*request.Request, *acmpca.DeletePermissionOutput)
 
+	DeletePolicy(*acmpca.DeletePolicyInput) (*acmpca.DeletePolicyOutput, error)
+	DeletePolicyWithContext(aws.Context, *acmpca.DeletePolicyInput, ...request.Option) (*acmpca.DeletePolicyOutput, error)
+	DeletePolicyRequest(*acmpca.DeletePolicyInput) (*request.Request, *acmpca.DeletePolicyOutput)
+
 	DescribeCertificateAuthority(*acmpca.DescribeCertificateAuthorityInput) (*acmpca.DescribeCertificateAuthorityOutput, error)
 	DescribeCertificateAuthorityWithContext(aws.Context, *acmpca.DescribeCertificateAuthorityInput, ...request.Option) (*acmpca.DescribeCertificateAuthorityOutput, error)
 	DescribeCertificateAuthorityRequest(*acmpca.DescribeCertificateAuthorityInput) (*request.Request, *acmpca.DescribeCertificateAuthorityOutput)
@@ -99,6 +103,10 @@ type ACMPCAAPI interface {
 	GetCertificateAuthorityCsr(*acmpca.GetCertificateAuthorityCsrInput) (*acmpca.GetCertificateAuthorityCsrOutput, error)
 	GetCertificateAuthorityCsrWithContext(aws.Context, *acmpca.GetCertificateAuthorityCsrInput, ...request.Option) (*acmpca.GetCertificateAuthorityCsrOutput, error)
 	GetCertificateAuthorityCsrRequest(*acmpca.GetCertificateAuthorityCsrInput) (*request.Request, *acmpca.GetCertificateAuthorityCsrOutput)
+
+	GetPolicy(*acmpca.GetPolicyInput) (*acmpca.GetPolicyOutput, error)
+	GetPolicyWithContext(aws.Context, *acmpca.GetPolicyInput, ...request.Option) (*acmpca.GetPolicyOutput, error)
+	GetPolicyRequest(*acmpca.GetPolicyInput) (*request.Request, *acmpca.GetPolicyOutput)
 
 	ImportCertificateAuthorityCertificate(*acmpca.ImportCertificateAuthorityCertificateInput) (*acmpca.ImportCertificateAuthorityCertificateOutput, error)
 	ImportCertificateAuthorityCertificateWithContext(aws.Context, *acmpca.ImportCertificateAuthorityCertificateInput, ...request.Option) (*acmpca.ImportCertificateAuthorityCertificateOutput, error)
@@ -128,6 +136,10 @@ type ACMPCAAPI interface {
 
 	ListTagsPages(*acmpca.ListTagsInput, func(*acmpca.ListTagsOutput, bool) bool) error
 	ListTagsPagesWithContext(aws.Context, *acmpca.ListTagsInput, func(*acmpca.ListTagsOutput, bool) bool, ...request.Option) error
+
+	PutPolicy(*acmpca.PutPolicyInput) (*acmpca.PutPolicyOutput, error)
+	PutPolicyWithContext(aws.Context, *acmpca.PutPolicyInput, ...request.Option) (*acmpca.PutPolicyOutput, error)
+	PutPolicyRequest(*acmpca.PutPolicyInput) (*request.Request, *acmpca.PutPolicyOutput)
 
 	RestoreCertificateAuthority(*acmpca.RestoreCertificateAuthorityInput) (*acmpca.RestoreCertificateAuthorityOutput, error)
 	RestoreCertificateAuthorityWithContext(aws.Context, *acmpca.RestoreCertificateAuthorityInput, ...request.Option) (*acmpca.RestoreCertificateAuthorityOutput, error)

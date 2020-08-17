@@ -445,6 +445,23 @@
       }
     },
     "BooleanObject":{"type":"boolean"},
+    "ChildShard":{
+      "type":"structure",
+      "required":[
+        "ShardId",
+        "ParentShards",
+        "HashKeyRange"
+      ],
+      "members":{
+        "ShardId":{"shape":"ShardId"},
+        "ParentShards":{"shape":"ShardIdList"},
+        "HashKeyRange":{"shape":"HashKeyRange"}
+      }
+    },
+    "ChildShardList":{
+      "type":"list",
+      "member":{"shape":"ChildShard"}
+    },
     "Consumer":{
       "type":"structure",
       "required":[
@@ -697,7 +714,8 @@
       "members":{
         "Records":{"shape":"RecordList"},
         "NextShardIterator":{"shape":"ShardIterator"},
-        "MillisBehindLatest":{"shape":"MillisBehindLatest"}
+        "MillisBehindLatest":{"shape":"MillisBehindLatest"},
+        "ChildShards":{"shape":"ChildShardList"}
       }
     },
     "GetShardIteratorInput":{
@@ -823,7 +841,8 @@
         "NextToken":{"shape":"NextToken"},
         "ExclusiveStartShardId":{"shape":"ShardId"},
         "MaxResults":{"shape":"ListShardsInputLimit"},
-        "StreamCreationTimestamp":{"shape":"Timestamp"}
+        "StreamCreationTimestamp":{"shape":"Timestamp"},
+        "ShardFilter":{"shape":"ShardFilter"}
       }
     },
     "ListShardsInputLimit":{
@@ -956,7 +975,6 @@
     },
     "PositiveIntegerObject":{
       "type":"integer",
-      "max":100000,
       "min":1
     },
     "ProvisionedThroughputExceededException":{
@@ -1108,11 +1126,7 @@
       },
       "exception":true
     },
-    "RetentionPeriodHours":{
-      "type":"integer",
-      "max":168,
-      "min":1
-    },
+    "RetentionPeriodHours":{"type":"integer"},
     "ScalingType":{
       "type":"string",
       "enum":["UNIFORM_SCALING"]
@@ -1149,11 +1163,35 @@
       "max":1000000,
       "min":0
     },
+    "ShardFilter":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"ShardFilterType"},
+        "ShardId":{"shape":"ShardId"},
+        "Timestamp":{"shape":"Timestamp"}
+      }
+    },
+    "ShardFilterType":{
+      "type":"string",
+      "enum":[
+        "AFTER_SHARD_ID",
+        "AT_TRIM_HORIZON",
+        "FROM_TRIM_HORIZON",
+        "AT_LATEST",
+        "AT_TIMESTAMP",
+        "FROM_TIMESTAMP"
+      ]
+    },
     "ShardId":{
       "type":"string",
       "max":128,
       "min":1,
       "pattern":"[a-zA-Z0-9_.-]+"
+    },
+    "ShardIdList":{
+      "type":"list",
+      "member":{"shape":"ShardId"}
     },
     "ShardIterator":{
       "type":"string",
@@ -1226,7 +1264,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"arn:aws.*:kinesis:.*:\\d{12}:stream/.*"
+      "pattern":"arn:aws.*:kinesis:.*:\\d{12}:stream/.+"
     },
     "StreamDescription":{
       "type":"structure",
@@ -1268,7 +1306,7 @@
         "StreamName":{"shape":"StreamName"},
         "StreamARN":{"shape":"StreamARN"},
         "StreamStatus":{"shape":"StreamStatus"},
-        "RetentionPeriodHours":{"shape":"PositiveIntegerObject"},
+        "RetentionPeriodHours":{"shape":"RetentionPeriodHours"},
         "StreamCreationTimestamp":{"shape":"Timestamp"},
         "EnhancedMonitoring":{"shape":"EnhancedMonitoringList"},
         "EncryptionType":{"shape":"EncryptionType"},
@@ -1306,7 +1344,8 @@
       "members":{
         "Records":{"shape":"RecordList"},
         "ContinuationSequenceNumber":{"shape":"SequenceNumber"},
-        "MillisBehindLatest":{"shape":"MillisBehindLatest"}
+        "MillisBehindLatest":{"shape":"MillisBehindLatest"},
+        "ChildShards":{"shape":"ChildShardList"}
       },
       "event":true
     },
@@ -1369,13 +1408,14 @@
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"},
+      "max":200,
       "min":0
     },
     "TagMap":{
       "type":"map",
       "key":{"shape":"TagKey"},
       "value":{"shape":"TagValue"},
-      "max":50,
+      "max":200,
       "min":1
     },
     "TagValue":{

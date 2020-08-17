@@ -2,10 +2,13 @@
   "version": "2.0",
   "service": "<p>This section provides documentation for the AWS RoboMaker API operations.</p>",
   "operations": {
+    "BatchDeleteWorlds": "<p>Deletes one or more worlds in a batch operation.</p>",
     "BatchDescribeSimulationJob": "<p>Describes one or more simulation jobs.</p>",
     "CancelDeploymentJob": "<p>Cancels the specified deployment job.</p>",
     "CancelSimulationJob": "<p>Cancels the specified simulation job.</p>",
     "CancelSimulationJobBatch": "<p>Cancels a simulation job batch. When you cancel a simulation job batch, you are also cancelling all of the active simulation jobs created as part of the batch. </p>",
+    "CancelWorldExportJob": "<p>Cancels the specified export job.</p>",
+    "CancelWorldGenerationJob": "<p>Cancels the specified world generator job.</p>",
     "CreateDeploymentJob": "<p>Deploys a specific version of a robot application to robots in a fleet.</p> <p>The robot application must have a numbered <code>applicationVersion</code> for consistency reasons. To create a new version, use <code>CreateRobotApplicationVersion</code> or see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/create-robot-application-version.html\">Creating a Robot Application Version</a>. </p> <note> <p>After 90 days, deployment jobs expire and will be deleted. They will no longer be accessible. </p> </note>",
     "CreateFleet": "<p>Creates a fleet, a logical group of robots running the same robot application.</p>",
     "CreateRobot": "<p>Creates a robot.</p>",
@@ -14,10 +17,14 @@
     "CreateSimulationApplication": "<p>Creates a simulation application.</p>",
     "CreateSimulationApplicationVersion": "<p>Creates a simulation application with a specific revision id.</p>",
     "CreateSimulationJob": "<p>Creates a simulation job.</p> <note> <p>After 90 days, simulation jobs expire and will be deleted. They will no longer be accessible. </p> </note>",
+    "CreateWorldExportJob": "<p>Creates a world export job.</p>",
+    "CreateWorldGenerationJob": "<p>Creates worlds using the specified template.</p>",
+    "CreateWorldTemplate": "<p>Creates a world template.</p>",
     "DeleteFleet": "<p>Deletes a fleet.</p>",
     "DeleteRobot": "<p>Deletes a robot.</p>",
     "DeleteRobotApplication": "<p>Deletes a robot application.</p>",
     "DeleteSimulationApplication": "<p>Deletes a simulation application.</p>",
+    "DeleteWorldTemplate": "<p>Deletes a world template.</p>",
     "DeregisterRobot": "<p>Deregisters a robot.</p>",
     "DescribeDeploymentJob": "<p>Describes a deployment job.</p>",
     "DescribeFleet": "<p>Describes a fleet.</p>",
@@ -26,6 +33,11 @@
     "DescribeSimulationApplication": "<p>Describes a simulation application.</p>",
     "DescribeSimulationJob": "<p>Describes a simulation job.</p>",
     "DescribeSimulationJobBatch": "<p>Describes a simulation job batch.</p>",
+    "DescribeWorld": "<p>Describes a world.</p>",
+    "DescribeWorldExportJob": "<p>Describes a world export job.</p>",
+    "DescribeWorldGenerationJob": "<p>Describes a world generation job.</p>",
+    "DescribeWorldTemplate": "<p>Describes a world template.</p>",
+    "GetWorldTemplateBody": "<p>Gets the world template body.</p>",
     "ListDeploymentJobs": "<p>Returns a list of deployment jobs for a fleet. You can optionally provide filters to retrieve specific deployment jobs. </p>",
     "ListFleets": "<p>Returns a list of fleets. You can optionally provide filters to retrieve specific fleets. </p>",
     "ListRobotApplications": "<p>Returns a list of robot application. You can optionally provide filters to retrieve specific robot applications.</p>",
@@ -34,6 +46,10 @@
     "ListSimulationJobBatches": "<p>Returns a list simulation job batches. You can optionally provide filters to retrieve specific simulation batch jobs. </p>",
     "ListSimulationJobs": "<p>Returns a list of simulation jobs. You can optionally provide filters to retrieve specific simulation jobs. </p>",
     "ListTagsForResource": "<p>Lists all tags on a AWS RoboMaker resource.</p>",
+    "ListWorldExportJobs": "<p>Lists world export jobs.</p>",
+    "ListWorldGenerationJobs": "<p>Lists world generator jobs.</p>",
+    "ListWorldTemplates": "<p>Lists world templates.</p>",
+    "ListWorlds": "<p>Lists worlds.</p>",
     "RegisterRobot": "<p>Registers a robot with a fleet.</p>",
     "RestartSimulationJob": "<p>Restarts a running simulation job.</p>",
     "StartSimulationJobBatch": "<p>Starts a new simulation job batch. The batch is defined using one or more <code>SimulationJobRequest</code> objects. </p>",
@@ -41,7 +57,8 @@
     "TagResource": "<p>Adds or edits tags for a AWS RoboMaker resource.</p> <p>Each tag consists of a tag key and a tag value. Tag keys and tag values are both required, but tag values can be empty strings. </p> <p>For information about the rules that apply to tag keys and tag values, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html\">User-Defined Tag Restrictions</a> in the <i>AWS Billing and Cost Management User Guide</i>. </p>",
     "UntagResource": "<p>Removes the specified tags from the specified AWS RoboMaker resource.</p> <p>To remove a tag, specify the tag key. To change the tag value of an existing tag key, use <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/API_TagResource.html\"> <code>TagResource</code> </a>. </p>",
     "UpdateRobotApplication": "<p>Updates a robot application.</p>",
-    "UpdateSimulationApplication": "<p>Updates a simulation application.</p>"
+    "UpdateSimulationApplication": "<p>Updates a simulation application.</p>",
+    "UpdateWorldTemplate": "<p>Updates a world template.</p>"
   },
   "shapes": {
     "Architecture": {
@@ -62,6 +79,8 @@
         "CancelDeploymentJobRequest$job": "<p>The deployment job ARN to cancel.</p>",
         "CancelSimulationJobBatchRequest$batch": "<p>The id of the batch to cancel.</p>",
         "CancelSimulationJobRequest$job": "<p>The simulation job ARN to cancel.</p>",
+        "CancelWorldExportJobRequest$job": "<p>The Amazon Resource Name (arn) of the world export job to cancel.</p>",
+        "CancelWorldGenerationJobRequest$job": "<p>The Amazon Resource Name (arn) of the world generator job to cancel.</p>",
         "CreateDeploymentJobRequest$fleet": "<p>The Amazon Resource Name (ARN) of the fleet to deploy.</p>",
         "CreateDeploymentJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the deployment job.</p>",
         "CreateDeploymentJobResponse$fleet": "<p>The target fleet for the deployment job.</p>",
@@ -74,10 +93,16 @@
         "CreateSimulationApplicationVersionRequest$application": "<p>The application information for the simulation application.</p>",
         "CreateSimulationApplicationVersionResponse$arn": "<p>The Amazon Resource Name (ARN) of the simulation application.</p>",
         "CreateSimulationJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the simulation job.</p>",
+        "CreateWorldExportJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the world export job.</p>",
+        "CreateWorldGenerationJobRequest$template": "<p>The Amazon Resource Name (arn) of the world template describing the worlds you want to create.</p>",
+        "CreateWorldGenerationJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the world generator job.</p>",
+        "CreateWorldGenerationJobResponse$template": "<p>The Amazon Resource Name (arn) of the world template.</p>",
+        "CreateWorldTemplateResponse$arn": "<p>The Amazon Resource Name (ARN) of the world template.</p>",
         "DeleteFleetRequest$fleet": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
         "DeleteRobotApplicationRequest$application": "<p>The Amazon Resource Name (ARN) of the the robot application.</p>",
         "DeleteRobotRequest$robot": "<p>The Amazon Resource Name (ARN) of the robot.</p>",
         "DeleteSimulationApplicationRequest$application": "<p>The application information for the simulation application to delete.</p>",
+        "DeleteWorldTemplateRequest$template": "<p>The Amazon Resource Name (arn) of the world template you want to delete.</p>",
         "DeploymentApplicationConfig$application": "<p>The Amazon Resource Name (ARN) of the robot application.</p>",
         "DeploymentJob$arn": "<p>The Amazon Resource Name (ARN) of the deployment job.</p>",
         "DeploymentJob$fleet": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
@@ -103,8 +128,21 @@
         "DescribeSimulationJobBatchResponse$arn": "<p>The Amazon Resource Name (ARN) of the batch.</p>",
         "DescribeSimulationJobRequest$job": "<p>The Amazon Resource Name (ARN) of the simulation job to be described.</p>",
         "DescribeSimulationJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the simulation job.</p>",
+        "DescribeWorldExportJobRequest$job": "<p>The Amazon Resource Name (arn) of the world export job to describe.</p>",
+        "DescribeWorldExportJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the world export job.</p>",
+        "DescribeWorldGenerationJobRequest$job": "<p>The Amazon Resource Name (arn) of the world generation job to describe.</p>",
+        "DescribeWorldGenerationJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the world generation job.</p>",
+        "DescribeWorldGenerationJobResponse$template": "<p>The Amazon Resource Name (arn) of the world template.</p>",
+        "DescribeWorldRequest$world": "<p>The Amazon Resource Name (arn) of the world you want to describe.</p>",
+        "DescribeWorldResponse$arn": "<p>The Amazon Resource Name (arn) of the world.</p>",
+        "DescribeWorldResponse$generationJob": "<p>The Amazon Resource Name (arn) of the world generation job that generated the world.</p>",
+        "DescribeWorldResponse$template": "<p>The world template.</p>",
+        "DescribeWorldTemplateRequest$template": "<p>The Amazon Resource Name (arn) of the world template you want to describe.</p>",
+        "DescribeWorldTemplateResponse$arn": "<p>The Amazon Resource Name (ARN) of the world template.</p>",
         "Fleet$arn": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
         "Fleet$lastDeploymentJob": "<p>The Amazon Resource Name (ARN) of the last deployment job.</p>",
+        "GetWorldTemplateBodyRequest$template": "<p>The Amazon Resource Name (arn) of the world template.</p>",
+        "GetWorldTemplateBodyRequest$generationJob": "<p>The Amazon Resource Name (arn) of the world generator job.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The AWS RoboMaker Amazon Resource Name (ARN) with tags to be listed.</p>",
         "RegisterRobotRequest$fleet": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
         "RegisterRobotRequest$robot": "<p>The Amazon Resource Name (ARN) of the robot.</p>",
@@ -127,18 +165,44 @@
         "SyncDeploymentJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the synchronization request.</p>",
         "SyncDeploymentJobResponse$fleet": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the AWS RoboMaker resource you are tagging.</p>",
+        "TemplateSummary$arn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the AWS RoboMaker resource you are removing tags.</p>",
         "UpdateRobotApplicationRequest$application": "<p>The application information for the robot application.</p>",
         "UpdateRobotApplicationResponse$arn": "<p>The Amazon Resource Name (ARN) of the updated robot application.</p>",
         "UpdateSimulationApplicationRequest$application": "<p>The application information for the simulation application.</p>",
-        "UpdateSimulationApplicationResponse$arn": "<p>The Amazon Resource Name (ARN) of the updated simulation application.</p>"
+        "UpdateSimulationApplicationResponse$arn": "<p>The Amazon Resource Name (ARN) of the updated simulation application.</p>",
+        "UpdateWorldTemplateRequest$template": "<p>The Amazon Resource Name (arn) of the world template to update.</p>",
+        "UpdateWorldTemplateResponse$arn": "<p>The Amazon Resource Name (arn) of the world template.</p>",
+        "WorldConfig$world": "<p>The world generated by Simulation WorldForge.</p>",
+        "WorldExportJobSummary$arn": "<p>The Amazon Resource Name (ARN) of the world export job.</p>",
+        "WorldGenerationJobSummary$arn": "<p>The Amazon Resource Name (ARN) of the world generator job.</p>",
+        "WorldGenerationJobSummary$template": "<p>The Amazon Resource Name (arn) of the world template.</p>",
+        "WorldSummary$arn": "<p>The Amazon Resource Name (ARN) of the world.</p>",
+        "WorldSummary$generationJob": "<p>The Amazon Resource Name (arn) of the world generation job.</p>",
+        "WorldSummary$template": "<p>The Amazon Resource Name (arn) of the world template.</p>"
       }
     },
     "Arns": {
       "base": null,
       "refs": {
+        "BatchDeleteWorldsRequest$worlds": "<p>A list of Amazon Resource Names (arns) that correspond to worlds to delete.</p>",
+        "BatchDeleteWorldsResponse$unprocessedWorlds": "<p>A list of unprocessed worlds associated with the call. These worlds were not deleted.</p>",
         "BatchDescribeSimulationJobRequest$jobs": "<p>A list of Amazon Resource Names (ARNs) of simulation jobs to describe.</p>",
-        "BatchDescribeSimulationJobResponse$unprocessedJobs": "<p>A list of unprocessed simulation job Amazon Resource Names (ARNs).</p>"
+        "BatchDescribeSimulationJobResponse$unprocessedJobs": "<p>A list of unprocessed simulation job Amazon Resource Names (ARNs).</p>",
+        "CreateWorldExportJobRequest$worlds": "<p>A list of Amazon Resource Names (arns) that correspond to worlds to export.</p>",
+        "DescribeWorldExportJobResponse$worlds": "<p>A list of Amazon Resource Names (arns) that correspond to worlds to be exported.</p>",
+        "FinishedWorldsSummary$succeededWorlds": "<p>A list of worlds that succeeded.</p>",
+        "WorldExportJobSummary$worlds": "<p>A list of worlds.</p>"
+      }
+    },
+    "BatchDeleteWorldsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteWorldsResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "BatchDescribeSimulationJobRequest": {
@@ -211,14 +275,43 @@
       "refs": {
       }
     },
+    "CancelWorldExportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelWorldExportJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelWorldGenerationJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelWorldGenerationJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ClientRequestToken": {
       "base": null,
       "refs": {
         "CreateDeploymentJobRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateSimulationJobRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateSimulationJobResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateWorldExportJobRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateWorldExportJobResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateWorldGenerationJobRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateWorldGenerationJobResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateWorldTemplateRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateWorldTemplateResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "DescribeSimulationJobBatchResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "DescribeSimulationJobResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "DescribeWorldExportJobResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "DescribeWorldGenerationJobResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "DescribeWorldTemplateResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "SimulationJob$clientRequestToken": "<p>A unique identifier for this <code>SimulationJob</code> request.</p>",
         "StartSimulationJobBatchRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "StartSimulationJobBatchResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
@@ -342,12 +435,45 @@
       "refs": {
       }
     },
+    "CreateWorldExportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorldExportJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorldGenerationJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorldGenerationJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorldTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorldTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreatedAt": {
       "base": null,
       "refs": {
         "CreateDeploymentJobResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the fleet was created.</p>",
         "CreateFleetResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the fleet was created.</p>",
         "CreateRobotResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the robot was created.</p>",
+        "CreateWorldExportJobResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the world export job was created.</p>",
+        "CreateWorldGenerationJobResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the world generator job was created.</p>",
+        "CreateWorldTemplateResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the world template was created.</p>",
         "DeploymentJob$createdAt": "<p>The time, in milliseconds since the epoch, when the deployment job was created.</p>",
         "DescribeDeploymentJobResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the deployment job was created.</p>",
         "DescribeFleetResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the fleet was created.</p>",
@@ -355,6 +481,10 @@
         "DescribeRobotResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the robot was created.</p>",
         "DescribeRobotResponse$lastDeploymentTime": "<p>The time of the last deployment job.</p>",
         "DescribeSimulationJobBatchResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch was created.</p>",
+        "DescribeWorldExportJobResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the world export job was created.</p>",
+        "DescribeWorldGenerationJobResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the world generation job was created.</p>",
+        "DescribeWorldResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the world was created.</p>",
+        "DescribeWorldTemplateResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the world template was created.</p>",
         "Fleet$createdAt": "<p>The time, in milliseconds since the epoch, when the fleet was created.</p>",
         "Fleet$lastDeploymentTime": "<p>The time of the last deployment.</p>",
         "Robot$createdAt": "<p>The time, in milliseconds since the epoch, when the robot was created.</p>",
@@ -363,7 +493,12 @@
         "RobotDeployment$deploymentFinishTime": "<p>The time, in milliseconds since the epoch, when the deployment finished.</p>",
         "SimulationJobBatchSummary$createdAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch was created.</p>",
         "StartSimulationJobBatchResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch was created.</p>",
-        "SyncDeploymentJobResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the fleet was created.</p>"
+        "SyncDeploymentJobResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the fleet was created.</p>",
+        "TemplateSummary$createdAt": "<p>The time, in milliseconds since the epoch, when the template was created.</p>",
+        "UpdateWorldTemplateResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the world template was created.</p>",
+        "WorldExportJobSummary$createdAt": "<p>The time, in milliseconds since the epoch, when the world export job was created.</p>",
+        "WorldGenerationJobSummary$createdAt": "<p>The time, in milliseconds since the epoch, when the world generator job was created.</p>",
+        "WorldSummary$createdAt": "<p>The time, in milliseconds since the epoch, when the world was created.</p>"
       }
     },
     "DataSource": {
@@ -435,6 +570,16 @@
       }
     },
     "DeleteSimulationApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorldTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorldTemplateResponse": {
       "base": null,
       "refs": {
       }
@@ -596,6 +741,46 @@
       "refs": {
       }
     },
+    "DescribeWorldExportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorldExportJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorldGenerationJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorldGenerationJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorldRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorldResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorldTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeWorldTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "EnvironmentVariableKey": {
       "base": null,
       "refs": {
@@ -644,6 +829,12 @@
         "SimulationJobRequest$failureBehavior": "<p>The failure behavior the simulation job.</p> <dl> <dt>Continue</dt> <dd> <p>Restart the simulation job in the same host instance.</p> </dd> <dt>Fail</dt> <dd> <p>Stop the simulation job and terminate the instance.</p> </dd> </dl>"
       }
     },
+    "FailureSummary": {
+      "base": "<p>Information about worlds that failed.</p>",
+      "refs": {
+        "FinishedWorldsSummary$failureSummary": "<p>Information about worlds that failed.</p>"
+      }
+    },
     "Filter": {
       "base": "<p>Information about a filter.</p>",
       "refs": {
@@ -665,7 +856,16 @@
         "ListRobotsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter names <code>status</code> and <code>fleetName</code> are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status <code>Registered</code> or the status <code>Available</code>.</p>",
         "ListSimulationApplicationsRequest$filters": "<p>Optional list of filters to limit results.</p> <p>The filter name <code>name</code> is supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters.</p>",
         "ListSimulationJobBatchesRequest$filters": "<p>Optional filters to limit results.</p>",
-        "ListSimulationJobsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter names <code>status</code> and <code>simulationApplicationName</code> and <code>robotApplicationName</code> are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status <code>Preparing</code> or the status <code>Running</code>.</p>"
+        "ListSimulationJobsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter names <code>status</code> and <code>simulationApplicationName</code> and <code>robotApplicationName</code> are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status <code>Preparing</code> or the status <code>Running</code>.</p>",
+        "ListWorldExportJobsRequest$filters": "<p>Optional filters to limit results. You can use <code>generationJobId</code> and <code>templateId</code>.</p>",
+        "ListWorldGenerationJobsRequest$filters": "<p>Optional filters to limit results. You can use <code>status</code> and <code>templateId</code>.</p>",
+        "ListWorldsRequest$filters": "<p>Optional filters to limit results. You can use <code>status</code>.</p>"
+      }
+    },
+    "FinishedWorldsSummary": {
+      "base": "<p>Information about worlds that finished.</p>",
+      "refs": {
+        "DescribeWorldGenerationJobResponse$finishedWorldsSummary": "<p>Summary information about finished worlds.</p>"
       }
     },
     "Fleet": {
@@ -678,6 +878,12 @@
       "base": null,
       "refs": {
         "ListFleetsResponse$fleetDetails": "<p>A list of fleet details meeting the request criteria.</p>"
+      }
+    },
+    "FloorplanCount": {
+      "base": null,
+      "refs": {
+        "WorldCount$floorplanCount": "<p>The number of unique floorplans.</p>"
       }
     },
     "GenericInteger": {
@@ -694,6 +900,8 @@
         "DescribeDeploymentJobResponse$failureReason": "<p>A short description of the reason why the deployment job failed.</p>",
         "DescribeSimulationJobBatchResponse$failureReason": "<p>The reason the simulation job batch failed.</p>",
         "DescribeSimulationJobResponse$failureReason": "<p>Details about why the simulation job failed. For more information about troubleshooting, see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/troubleshooting.html\">Troubleshooting</a>.</p>",
+        "DescribeWorldExportJobResponse$failureReason": "<p>The reason why the world export job failed.</p>",
+        "DescribeWorldGenerationJobResponse$failureReason": "<p>The reason why the world generation job failed.</p>",
         "FailedCreateSimulationJobRequest$failureReason": "<p>The failure reason of the simulation job request.</p>",
         "NetworkInterface$networkInterfaceId": "<p>The ID of the network interface.</p>",
         "NetworkInterface$privateIpAddress": "<p>The IPv4 address of the network interface within the subnet.</p>",
@@ -703,7 +911,18 @@
         "SimulationJob$failureReason": "<p>The reason why the simulation job failed.</p>",
         "StartSimulationJobBatchResponse$failureReason": "<p>The reason the simulation job batch failed.</p>",
         "SyncDeploymentJobResponse$failureReason": "<p>The failure reason if the job fails.</p>",
-        "VPCConfigResponse$vpcId": "<p>The VPC ID associated with your simulation job.</p>"
+        "VPCConfigResponse$vpcId": "<p>The VPC ID associated with your simulation job.</p>",
+        "WorldFailure$sampleFailureReason": "<p>The sample reason why the world failed. World errors are aggregated. A sample is used as the <code>sampleFailureReason</code>. </p>"
+      }
+    },
+    "GetWorldTemplateBodyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetWorldTemplateBodyResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "IamRole": {
@@ -711,7 +930,10 @@
       "refs": {
         "CreateSimulationJobRequest$iamRole": "<p>The IAM role name that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job. </p>",
         "CreateSimulationJobResponse$iamRole": "<p>The IAM role that allows the simulation job to call the AWS APIs that are specified in its associated policies on your behalf.</p>",
+        "CreateWorldExportJobRequest$iamRole": "<p>The IAM role that the world export process uses to access the Amazon S3 bucket and put the export.</p>",
+        "CreateWorldExportJobResponse$iamRole": "<p>The IAM role that the world export process uses to access the Amazon S3 bucket and put the export. </p>",
         "DescribeSimulationJobResponse$iamRole": "<p>The IAM role that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf.</p>",
+        "DescribeWorldExportJobResponse$iamRole": "<p>The IAM role that the world export process uses to access the Amazon S3 bucket and put the export.</p>",
         "SimulationJob$iamRole": "<p>The IAM role that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job. </p>",
         "SimulationJobRequest$iamRole": "<p>The IAM role name that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job. </p>"
       }
@@ -733,9 +955,20 @@
     "Integer": {
       "base": null,
       "refs": {
+        "FailureSummary$totalFailureCount": "<p>The total number of failures.</p>",
+        "FinishedWorldsSummary$finishedCount": "<p>The total number of finished worlds.</p>",
         "SimulationJobBatchSummary$failedRequestCount": "<p>The number of failed simulation job requests.</p>",
         "SimulationJobBatchSummary$pendingRequestCount": "<p>The number of pending simulation job requests.</p>",
-        "SimulationJobBatchSummary$createdRequestCount": "<p>The number of created simulation job requests.</p>"
+        "SimulationJobBatchSummary$createdRequestCount": "<p>The number of created simulation job requests.</p>",
+        "WorldFailure$failureCount": "<p>The number of failed worlds.</p>",
+        "WorldGenerationJobSummary$succeededWorldCount": "<p>The number of worlds that were generated.</p>",
+        "WorldGenerationJobSummary$failedWorldCount": "<p>The number of worlds that failed.</p>"
+      }
+    },
+    "InteriorCountPerFloorplan": {
+      "base": null,
+      "refs": {
+        "WorldCount$interiorCountPerFloorplan": "<p>The number of unique interiors per floorplan.</p>"
       }
     },
     "InternalServerException": {
@@ -758,6 +991,14 @@
         "SimulationJobRequest$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds. The value must be 8 days (691,200 seconds) or less.</p>"
       }
     },
+    "Json": {
+      "base": null,
+      "refs": {
+        "CreateWorldTemplateRequest$templateBody": "<p>The world template body.</p>",
+        "GetWorldTemplateBodyResponse$templateBody": "<p>The world template body.</p>",
+        "UpdateWorldTemplateRequest$templateBody": "<p>The world template body.</p>"
+      }
+    },
     "LastStartedAt": {
       "base": null,
       "refs": {
@@ -778,13 +1019,16 @@
         "DescribeSimulationApplicationResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation application was last updated.</p>",
         "DescribeSimulationJobBatchResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch was last updated.</p>",
         "DescribeSimulationJobResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job was last updated.</p>",
+        "DescribeWorldTemplateResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the world template was last updated.</p>",
         "RobotApplicationSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the robot application was last updated.</p>",
         "SimulationApplicationSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation application was last updated.</p>",
         "SimulationJob$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job was last updated.</p>",
         "SimulationJobBatchSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch was last updated.</p>",
         "SimulationJobSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job was last updated.</p>",
+        "TemplateSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the template was last updated.</p>",
         "UpdateRobotApplicationResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the robot application was last updated.</p>",
-        "UpdateSimulationApplicationResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation application was last updated.</p>"
+        "UpdateSimulationApplicationResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation application was last updated.</p>",
+        "UpdateWorldTemplateResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the world template was last updated.</p>"
       }
     },
     "LaunchConfig": {
@@ -879,6 +1123,46 @@
       "refs": {
       }
     },
+    "ListWorldExportJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorldExportJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorldGenerationJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorldGenerationJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorldTemplatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorldTemplatesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorldsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListWorldsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "LoggingConfig": {
       "base": "<p>The logging configuration.</p>",
       "refs": {
@@ -904,7 +1188,11 @@
         "ListRobotsRequest$maxResults": "<p>When this parameter is used, <code>ListRobots</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListRobots</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 200. If this parameter is not used, then <code>ListRobots</code> returns up to 200 results and a <code>nextToken</code> value if applicable. </p>",
         "ListSimulationApplicationsRequest$maxResults": "<p>When this parameter is used, <code>ListSimulationApplications</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationApplications</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListSimulationApplications</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
         "ListSimulationJobBatchesRequest$maxResults": "<p>When this parameter is used, <code>ListSimulationJobBatches</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationJobBatches</code> request with the returned <code>nextToken</code> value. </p>",
-        "ListSimulationJobsRequest$maxResults": "<p>When this parameter is used, <code>ListSimulationJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>ListSimulationJobs</code> returns up to 1000 results and a <code>nextToken</code> value if applicable. </p>"
+        "ListSimulationJobsRequest$maxResults": "<p>When this parameter is used, <code>ListSimulationJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>ListSimulationJobs</code> returns up to 1000 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListWorldExportJobsRequest$maxResults": "<p>When this parameter is used, <code>ListWorldExportJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListWorldExportJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListWorldExportJobs</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListWorldGenerationJobsRequest$maxResults": "<p>When this parameter is used, <code>ListWorldGeneratorJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListWorldGeneratorJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListWorldGeneratorJobs</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListWorldTemplatesRequest$maxResults": "<p>When this parameter is used, <code>ListWorldTemplates</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListWorldTemplates</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListWorldTemplates</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListWorldsRequest$maxResults": "<p>When this parameter is used, <code>ListWorlds</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListWorlds</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListWorlds</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>"
       }
     },
     "Name": {
@@ -967,7 +1255,10 @@
       "refs": {
         "CreateSimulationJobRequest$outputLocation": "<p>Location for output files generated by the simulation job.</p>",
         "CreateSimulationJobResponse$outputLocation": "<p>Simulation job output files location.</p>",
+        "CreateWorldExportJobRequest$outputLocation": null,
+        "CreateWorldExportJobResponse$outputLocation": null,
         "DescribeSimulationJobResponse$outputLocation": "<p>Location for output files generated by the simulation job.</p>",
+        "DescribeWorldExportJobResponse$outputLocation": null,
         "SimulationJob$outputLocation": "<p>Location for output files generated by the simulation job.</p>",
         "SimulationJobRequest$outputLocation": null
       }
@@ -975,20 +1266,28 @@
     "PaginationToken": {
       "base": null,
       "refs": {
-        "ListDeploymentJobsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListDeploymentJobs</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p>",
-        "ListDeploymentJobsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListDeploymentJobs</code> request. When the results of a <code>ListDeploymentJobs</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
-        "ListFleetsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListFleets</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
-        "ListFleetsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListDeploymentJobs</code> request. When the results of a <code>ListFleets</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
-        "ListRobotApplicationsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListRobotApplications</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p>",
-        "ListRobotApplicationsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListRobotApplications</code> request. When the results of a <code>ListRobotApplications</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
-        "ListRobotsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListRobots</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p>",
-        "ListRobotsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListRobots</code> request. When the results of a <code>ListRobot</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
-        "ListSimulationApplicationsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListSimulationApplications</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p>",
-        "ListSimulationApplicationsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListSimulationApplications</code> request. When the results of a <code>ListRobot</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
-        "ListSimulationJobBatchesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListSimulationJobBatches</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p>",
-        "ListSimulationJobBatchesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListSimulationJobBatches</code> request. When the results of a <code>ListSimulationJobBatches</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
-        "ListSimulationJobsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListSimulationJobs</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
-        "ListSimulationJobsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListSimulationJobs</code> request. When the results of a <code>ListRobot</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>"
+        "ListDeploymentJobsRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListDeploymentJobs</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListDeploymentJobsResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListDeploymentJobs</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListFleetsRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListFleets</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
+        "ListFleetsResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListFleets</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListRobotApplicationsRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListRobotApplications</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListRobotApplicationsResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListRobotApplications</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListRobotsRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListRobots</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListRobotsResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListRobots</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListSimulationApplicationsRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListSimulationApplications</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListSimulationApplicationsResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListSimulationApplications</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListSimulationJobBatchesRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListSimulationJobBatches</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListSimulationJobBatchesResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListSimulationJobBatches</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListSimulationJobsRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListSimulationJobs</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListSimulationJobsResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListSimulationJobs</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListWorldExportJobsRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListWorldExportJobs</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListWorldExportJobsResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListWorldExportJobsRequest</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListWorldGenerationJobsRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListWorldGenerationJobsRequest</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListWorldGenerationJobsResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListWorldGeneratorJobsRequest</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListWorldTemplatesRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListWorldTemplates</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListWorldTemplatesResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListWorldTemplates</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListWorldsRequest$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListWorlds</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>",
+        "ListWorldsResponse$nextToken": "<p>If the previous paginated request did not return all of the remaining results, the response object's <code>nextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListWorlds</code> again and assign that token to the request object's <code>nextToken</code> parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null. </p>"
       }
     },
     "Path": {
@@ -1223,7 +1522,8 @@
         "OutputLocation$s3Bucket": "<p>The S3 bucket for output.</p>",
         "S3Object$bucket": "<p>The bucket containing the object.</p>",
         "Source$s3Bucket": "<p>The s3 bucket name.</p>",
-        "SourceConfig$s3Bucket": "<p>The Amazon S3 bucket name.</p>"
+        "SourceConfig$s3Bucket": "<p>The Amazon S3 bucket name.</p>",
+        "TemplateLocation$s3Bucket": "<p>The Amazon S3 bucket name.</p>"
       }
     },
     "S3Etag": {
@@ -1242,7 +1542,8 @@
         "S3Keys$member": null,
         "S3Object$key": "<p>The key of the object.</p>",
         "Source$s3Key": "<p>The s3 object key.</p>",
-        "SourceConfig$s3Key": "<p>The s3 object key.</p>"
+        "SourceConfig$s3Key": "<p>The s3 object key.</p>",
+        "TemplateLocation$s3Key": "<p>The list of S3 keys identifying the data source files.</p>"
       }
     },
     "S3KeyOutput": {
@@ -1428,8 +1729,8 @@
     "SimulationUnit": {
       "base": null,
       "refs": {
-        "Compute$simulationUnitLimit": "<p>The simulation unit limit. Your simulation is allocated CPU and memory proportional to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB of memory. You are only billed for the SU utilization you consume up to the maximim value provided. </p>",
-        "ComputeResponse$simulationUnitLimit": "<p>The simulation unit limit. Your simulation is allocated CPU and memory proportional to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB of memory. You are only billed for the SU utilization you consume up to the maximim value provided. </p>"
+        "Compute$simulationUnitLimit": "<p>The simulation unit limit. Your simulation is allocated CPU and memory proportional to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB of memory. You are only billed for the SU utilization you consume up to the maximim value provided. The default is 15. </p>",
+        "ComputeResponse$simulationUnitLimit": "<p>The simulation unit limit. Your simulation is allocated CPU and memory proportional to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB of memory. You are only billed for the SU utilization you consume up to the maximim value provided. The default is 15. </p>"
       }
     },
     "Source": {
@@ -1521,6 +1822,12 @@
         "CreateSimulationApplicationResponse$tags": "<p>The list of all tags added to the simulation application.</p>",
         "CreateSimulationJobRequest$tags": "<p>A map that contains tag keys and tag values that are attached to the simulation job.</p>",
         "CreateSimulationJobResponse$tags": "<p>The list of all tags added to the simulation job.</p>",
+        "CreateWorldExportJobRequest$tags": "<p>A map that contains tag keys and tag values that are attached to the world export job.</p>",
+        "CreateWorldExportJobResponse$tags": "<p>A map that contains tag keys and tag values that are attached to the world export job.</p>",
+        "CreateWorldGenerationJobRequest$tags": "<p>A map that contains tag keys and tag values that are attached to the world generator job.</p>",
+        "CreateWorldGenerationJobResponse$tags": "<p>A map that contains tag keys and tag values that are attached to the world generator job.</p>",
+        "CreateWorldTemplateRequest$tags": "<p>A map that contains tag keys and tag values that are attached to the world template.</p>",
+        "CreateWorldTemplateResponse$tags": "<p>A map that contains tag keys and tag values that are attached to the world template.</p>",
         "DescribeDeploymentJobResponse$tags": "<p>The list of all tags added to the specified deployment job.</p>",
         "DescribeFleetResponse$tags": "<p>The list of all tags added to the specified fleet.</p>",
         "DescribeRobotApplicationResponse$tags": "<p>The list of all tags added to the specified robot application.</p>",
@@ -1528,6 +1835,10 @@
         "DescribeSimulationApplicationResponse$tags": "<p>The list of all tags added to the specified simulation application.</p>",
         "DescribeSimulationJobBatchResponse$tags": "<p>A map that contains tag keys and tag values that are attached to the simulation job batch.</p>",
         "DescribeSimulationJobResponse$tags": "<p>The list of all tags added to the specified simulation job.</p>",
+        "DescribeWorldExportJobResponse$tags": "<p>A map that contains tag keys and tag values that are attached to the world export job.</p>",
+        "DescribeWorldGenerationJobResponse$tags": "<p>A map that contains tag keys and tag values that are attached to the world generation job.</p>",
+        "DescribeWorldResponse$tags": "<p>A map that contains tag keys and tag values that are attached to the world.</p>",
+        "DescribeWorldTemplateResponse$tags": "<p>A map that contains tag keys and tag values that are attached to the world template.</p>",
         "ListTagsForResourceResponse$tags": "<p>The list of all tags added to the specified resource.</p>",
         "SimulationJob$tags": "<p>A map that contains tag keys and tag values that are attached to the simulation job.</p>",
         "SimulationJobRequest$tags": "<p>A map that contains tag keys and tag values that are attached to the simulation job request.</p>",
@@ -1550,6 +1861,36 @@
       "base": null,
       "refs": {
         "TagMap$value": null
+      }
+    },
+    "TemplateLocation": {
+      "base": "<p>Information about a template location.</p>",
+      "refs": {
+        "CreateWorldTemplateRequest$templateLocation": "<p>The location of the world template.</p>",
+        "UpdateWorldTemplateRequest$templateLocation": "<p>The location of the world template.</p>"
+      }
+    },
+    "TemplateName": {
+      "base": null,
+      "refs": {
+        "CreateWorldTemplateRequest$name": "<p>The name of the world template.</p>",
+        "CreateWorldTemplateResponse$name": "<p>The name of the world template.</p>",
+        "DescribeWorldTemplateResponse$name": "<p>The name of the world template.</p>",
+        "TemplateSummary$name": "<p>The name of the template.</p>",
+        "UpdateWorldTemplateRequest$name": "<p>The name of the template.</p>",
+        "UpdateWorldTemplateResponse$name": "<p>The name of the world template.</p>"
+      }
+    },
+    "TemplateSummaries": {
+      "base": null,
+      "refs": {
+        "ListWorldTemplatesResponse$templateSummaries": "<p>Summary information for templates.</p>"
+      }
+    },
+    "TemplateSummary": {
+      "base": "<p>Summary information for a template.</p>",
+      "refs": {
+        "TemplateSummaries$member": null
       }
     },
     "ThrottlingException": {
@@ -1583,6 +1924,16 @@
       }
     },
     "UpdateSimulationApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorldTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorldTemplateResponse": {
       "base": null,
       "refs": {
       }
@@ -1628,6 +1979,106 @@
       "refs": {
         "ListRobotApplicationsRequest$versionQualifier": "<p>The version qualifier of the robot application.</p>",
         "ListSimulationApplicationsRequest$versionQualifier": "<p>The version qualifier of the simulation application.</p>"
+      }
+    },
+    "WorldConfig": {
+      "base": "<p>Configuration information for a world.</p>",
+      "refs": {
+        "WorldConfigs$member": null
+      }
+    },
+    "WorldConfigs": {
+      "base": null,
+      "refs": {
+        "SimulationApplicationConfig$worldConfigs": "<p>A list of world configurations.</p>"
+      }
+    },
+    "WorldCount": {
+      "base": "<p>The number of worlds that will be created. You can configure the number of unique floorplans and the number of unique interiors for each floor plan. For example, if you want 1 world with 20 unique interiors, you set <code>floorplanCount = 1</code> and <code>interiorCountPerFloorplan = 20</code>. This will result in 20 worlds (<code>floorplanCount</code> * <code>interiorCountPerFloorplan)</code>. </p> <p>If you set <code>floorplanCount = 4</code> and <code>interiorCountPerFloorplan = 5</code>, there will be 20 worlds with 5 unique floor plans. </p>",
+      "refs": {
+        "CreateWorldGenerationJobRequest$worldCount": "<p>Information about the world count.</p>",
+        "CreateWorldGenerationJobResponse$worldCount": "<p>Information about the world count. </p>",
+        "DescribeWorldGenerationJobResponse$worldCount": "<p>Information about the world count.</p>",
+        "WorldGenerationJobSummary$worldCount": "<p>Information about the world count.</p>"
+      }
+    },
+    "WorldExportJobErrorCode": {
+      "base": null,
+      "refs": {
+        "CreateWorldExportJobResponse$failureCode": "<p>The failure code of the world export job if it failed:</p> <dl> <dt>InternalServiceError</dt> <dd> <p>Internal service error.</p> </dd> <dt>LimitExceeded</dt> <dd> <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p> </dd> <dt>ResourceNotFound</dt> <dd> <p>The specified resource could not be found. </p> </dd> <dt>RequestThrottled</dt> <dd> <p>The request was throttled.</p> </dd> <dt>InvalidInput</dt> <dd> <p>An input parameter in the request is not valid.</p> </dd> </dl>",
+        "DescribeWorldExportJobResponse$failureCode": "<p>The failure code of the world export job if it failed:</p> <dl> <dt>InternalServiceError</dt> <dd> <p>Internal service error.</p> </dd> <dt>LimitExceeded</dt> <dd> <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p> </dd> <dt>ResourceNotFound</dt> <dd> <p>The specified resource could not be found. </p> </dd> <dt>RequestThrottled</dt> <dd> <p>The request was throttled.</p> </dd> <dt>InvalidInput</dt> <dd> <p>An input parameter in the request is not valid.</p> </dd> </dl>"
+      }
+    },
+    "WorldExportJobStatus": {
+      "base": null,
+      "refs": {
+        "CreateWorldExportJobResponse$status": "<p>The status of the world export job.</p> <dl> <dt>Pending</dt> <dd> <p>The world export job request is pending.</p> </dd> <dt>Running</dt> <dd> <p>The world export job is running. </p> </dd> <dt>Completed</dt> <dd> <p>The world export job completed. </p> </dd> <dt>Failed</dt> <dd> <p>The world export job failed. See <code>failureCode</code> for more information. </p> </dd> <dt>Canceled</dt> <dd> <p>The world export job was cancelled.</p> </dd> <dt>Canceling</dt> <dd> <p>The world export job is being cancelled.</p> </dd> </dl>",
+        "DescribeWorldExportJobResponse$status": "<p>The status of the world export job.</p> <dl> <dt>Pending</dt> <dd> <p>The world export job request is pending.</p> </dd> <dt>Running</dt> <dd> <p>The world export job is running. </p> </dd> <dt>Completed</dt> <dd> <p>The world export job completed. </p> </dd> <dt>Failed</dt> <dd> <p>The world export job failed. See <code>failureCode</code> and <code>failureReason</code> for more information. </p> </dd> <dt>Canceled</dt> <dd> <p>The world export job was cancelled.</p> </dd> <dt>Canceling</dt> <dd> <p>The world export job is being cancelled.</p> </dd> </dl>",
+        "WorldExportJobSummary$status": "<p>The status of the world export job.</p> <dl> <dt>Pending</dt> <dd> <p>The world export job request is pending.</p> </dd> <dt>Running</dt> <dd> <p>The world export job is running. </p> </dd> <dt>Completed</dt> <dd> <p>The world export job completed. </p> </dd> <dt>Failed</dt> <dd> <p>The world export job failed. See <code>failureCode</code> for more information. </p> </dd> <dt>Canceled</dt> <dd> <p>The world export job was cancelled.</p> </dd> <dt>Canceling</dt> <dd> <p>The world export job is being cancelled.</p> </dd> </dl>"
+      }
+    },
+    "WorldExportJobSummaries": {
+      "base": null,
+      "refs": {
+        "ListWorldExportJobsResponse$worldExportJobSummaries": "<p>Summary information for world export jobs.</p>"
+      }
+    },
+    "WorldExportJobSummary": {
+      "base": "<p>Information about a world export job.</p>",
+      "refs": {
+        "WorldExportJobSummaries$member": null
+      }
+    },
+    "WorldFailure": {
+      "base": "<p>Information about a failed world.</p>",
+      "refs": {
+        "WorldFailures$member": null
+      }
+    },
+    "WorldFailures": {
+      "base": null,
+      "refs": {
+        "FailureSummary$failures": "<p>The worlds that failed.</p>"
+      }
+    },
+    "WorldGenerationJobErrorCode": {
+      "base": null,
+      "refs": {
+        "CreateWorldGenerationJobResponse$failureCode": "<p>The failure code of the world generator job if it failed:</p> <dl> <dt>InternalServiceError</dt> <dd> <p>Internal service error.</p> </dd> <dt>LimitExceeded</dt> <dd> <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p> </dd> <dt>ResourceNotFound</dt> <dd> <p>The specified resource could not be found. </p> </dd> <dt>RequestThrottled</dt> <dd> <p>The request was throttled.</p> </dd> <dt>InvalidInput</dt> <dd> <p>An input parameter in the request is not valid.</p> </dd> </dl>",
+        "DescribeWorldGenerationJobResponse$failureCode": "<p>The failure code of the world generation job if it failed:</p> <dl> <dt>InternalServiceError</dt> <dd> <p>Internal service error.</p> </dd> <dt>LimitExceeded</dt> <dd> <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p> </dd> <dt>ResourceNotFound</dt> <dd> <p>The specified resource could not be found. </p> </dd> <dt>RequestThrottled</dt> <dd> <p>The request was throttled.</p> </dd> <dt>InvalidInput</dt> <dd> <p>An input parameter in the request is not valid.</p> </dd> </dl>",
+        "WorldFailure$failureCode": "<p>The failure code of the world export job if it failed:</p> <dl> <dt>InternalServiceError</dt> <dd> <p>Internal service error.</p> </dd> <dt>LimitExceeded</dt> <dd> <p>The requested resource exceeds the maximum number allowed, or the number of concurrent stream requests exceeds the maximum number allowed. </p> </dd> <dt>ResourceNotFound</dt> <dd> <p>The specified resource could not be found. </p> </dd> <dt>RequestThrottled</dt> <dd> <p>The request was throttled.</p> </dd> <dt>InvalidInput</dt> <dd> <p>An input parameter in the request is not valid.</p> </dd> </dl>"
+      }
+    },
+    "WorldGenerationJobStatus": {
+      "base": null,
+      "refs": {
+        "CreateWorldGenerationJobResponse$status": "<p>The status of the world generator job.</p> <dl> <dt>Pending</dt> <dd> <p>The world generator job request is pending.</p> </dd> <dt>Running</dt> <dd> <p>The world generator job is running. </p> </dd> <dt>Completed</dt> <dd> <p>The world generator job completed. </p> </dd> <dt>Failed</dt> <dd> <p>The world generator job failed. See <code>failureCode</code> for more information. </p> </dd> <dt>PartialFailed</dt> <dd> <p>Some worlds did not generate.</p> </dd> <dt>Canceled</dt> <dd> <p>The world generator job was cancelled.</p> </dd> <dt>Canceling</dt> <dd> <p>The world generator job is being cancelled.</p> </dd> </dl>",
+        "DescribeWorldGenerationJobResponse$status": "<p>The status of the world generation job:</p> <dl> <dt>Pending</dt> <dd> <p>The world generation job request is pending.</p> </dd> <dt>Running</dt> <dd> <p>The world generation job is running. </p> </dd> <dt>Completed</dt> <dd> <p>The world generation job completed. </p> </dd> <dt>Failed</dt> <dd> <p>The world generation job failed. See <code>failureCode</code> for more information. </p> </dd> <dt>PartialFailed</dt> <dd> <p>Some worlds did not generate.</p> </dd> <dt>Canceled</dt> <dd> <p>The world generation job was cancelled.</p> </dd> <dt>Canceling</dt> <dd> <p>The world generation job is being cancelled.</p> </dd> </dl>",
+        "WorldGenerationJobSummary$status": "<p>The status of the world generator job:</p> <dl> <dt>Pending</dt> <dd> <p>The world generator job request is pending.</p> </dd> <dt>Running</dt> <dd> <p>The world generator job is running. </p> </dd> <dt>Completed</dt> <dd> <p>The world generator job completed. </p> </dd> <dt>Failed</dt> <dd> <p>The world generator job failed. See <code>failureCode</code> for more information. </p> </dd> <dt>PartialFailed</dt> <dd> <p>Some worlds did not generate.</p> </dd> <dt>Canceled</dt> <dd> <p>The world generator job was cancelled.</p> </dd> <dt>Canceling</dt> <dd> <p>The world generator job is being cancelled.</p> </dd> </dl>"
+      }
+    },
+    "WorldGenerationJobSummaries": {
+      "base": null,
+      "refs": {
+        "ListWorldGenerationJobsResponse$worldGenerationJobSummaries": "<p>Summary information for world generator jobs.</p>"
+      }
+    },
+    "WorldGenerationJobSummary": {
+      "base": "<p>Information about a world generator job.</p>",
+      "refs": {
+        "WorldGenerationJobSummaries$member": null
+      }
+    },
+    "WorldSummaries": {
+      "base": null,
+      "refs": {
+        "ListWorldsResponse$worldSummaries": "<p>Summary information for worlds.</p>"
+      }
+    },
+    "WorldSummary": {
+      "base": "<p>Information about a world.</p>",
+      "refs": {
+        "WorldSummaries$member": null
       }
     },
     "errorMessage": {

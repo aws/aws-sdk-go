@@ -902,7 +902,9 @@
         "imageSizeInBytes":{"shape":"ImageSizeInBytes"},
         "imagePushedAt":{"shape":"PushTimestamp"},
         "imageScanStatus":{"shape":"ImageScanStatus"},
-        "imageScanFindingsSummary":{"shape":"ImageScanFindingsSummary"}
+        "imageScanFindingsSummary":{"shape":"ImageScanFindingsSummary"},
+        "imageManifestMediaType":{"shape":"MediaType"},
+        "artifactMediaType":{"shape":"MediaType"}
       }
     },
     "ImageDetailList":{
