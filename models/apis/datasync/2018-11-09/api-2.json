@@ -924,6 +924,12 @@
         "FIPS"
       ]
     },
+    "FilterAttributeValue":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z_\\ \\-\\:\\*\\.\\\\/\\?-]*$"
+    },
     "FilterList":{
       "type":"list",
       "member":{"shape":"FilterRule"},
@@ -947,6 +953,10 @@
       "type":"string",
       "max":409600,
       "pattern":"^[^\\x00]+$"
+    },
+    "FilterValues":{
+      "type":"list",
+      "member":{"shape":"FilterAttributeValue"}
     },
     "FsxFilesystemArn":{
       "type":"string",
@@ -1013,7 +1023,8 @@
       "type":"structure",
       "members":{
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "Filters":{"shape":"LocationFilters"}
       }
     },
     "ListLocationsResponse":{
@@ -1058,7 +1069,8 @@
       "type":"structure",
       "members":{
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "Filters":{"shape":"TaskFilters"}
       }
     },
     "ListTasksResponse":{
@@ -1072,6 +1084,31 @@
       "type":"string",
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):datasync:[a-z\\-0-9]+:[0-9]{12}:location/loc-[0-9a-z]{17}$"
+    },
+    "LocationFilter":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Values",
+        "Operator"
+      ],
+      "members":{
+        "Name":{"shape":"LocationFilterName"},
+        "Values":{"shape":"FilterValues"},
+        "Operator":{"shape":"Operator"}
+      }
+    },
+    "LocationFilterName":{
+      "type":"string",
+      "enum":[
+        "LocationUri",
+        "LocationType",
+        "CreationTime"
+      ]
+    },
+    "LocationFilters":{
+      "type":"list",
+      "member":{"shape":"LocationFilter"}
     },
     "LocationList":{
       "type":"list",
@@ -1182,6 +1219,21 @@
       "members":{
         "AgentArns":{"shape":"AgentArnList"}
       }
+    },
+    "Operator":{
+      "type":"string",
+      "enum":[
+        "Equals",
+        "NotEquals",
+        "In",
+        "LessThanOrEqual",
+        "LessThan",
+        "GreaterThanOrEqual",
+        "GreaterThan",
+        "Contains",
+        "NotContains",
+        "BeginsWith"
+      ]
     },
     "Options":{
       "type":"structure",
@@ -1449,6 +1501,30 @@
         "SUCCESS",
         "ERROR"
       ]
+    },
+    "TaskFilter":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Values",
+        "Operator"
+      ],
+      "members":{
+        "Name":{"shape":"TaskFilterName"},
+        "Values":{"shape":"FilterValues"},
+        "Operator":{"shape":"Operator"}
+      }
+    },
+    "TaskFilterName":{
+      "type":"string",
+      "enum":[
+        "LocationId",
+        "CreationTime"
+      ]
+    },
+    "TaskFilters":{
+      "type":"list",
+      "member":{"shape":"TaskFilter"}
     },
     "TaskList":{
       "type":"list",

@@ -1,3 +1,15 @@
+Release v1.34.7 (2020-08-18)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service documentation
+  * Documentation updates for codebuild
+* `service/cognito-idp`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/identitystore`: Adds new service
+* `service/securityhub`: Updates service API and documentation
+* `service/sesv2`: Updates service API, documentation, and paginators
+
 Release v1.34.6 (2020-08-17)
 ===
 

@@ -10,6 +10,7 @@
     "CreateEmailIdentity": "<p>Starts the process of verifying an email identity. An <i>identity</i> is an email address or domain that you use when you send email. Before you can use an identity to send email, you first have to verify it. By verifying an identity, you demonstrate that you're the owner of the identity, and that you've given Amazon SES API v2 permission to send email from the identity.</p> <p>When you verify an email address, Amazon SES sends an email to the address. Your email address is verified as soon as you follow the link in the verification email. </p> <p>When you verify a domain without specifying the <code>DkimSigningAttributes</code> object, this operation provides a set of DKIM tokens. You can convert these tokens into CNAME records, which you then add to the DNS configuration for your domain. Your domain is verified when Amazon SES detects these records in the DNS configuration for your domain. This verification method is known as <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html\">Easy DKIM</a>.</p> <p>Alternatively, you can perform the verification process by providing your own public-private key pair. This verification method is known as Bring Your Own DKIM (BYODKIM). To use BYODKIM, your call to the <code>CreateEmailIdentity</code> operation has to include the <code>DkimSigningAttributes</code> object. When you specify this object, you provide a selector (a component of the DNS record name that identifies the public key that you want to use for DKIM authentication) and a private key.</p>",
     "CreateEmailIdentityPolicy": "<p>Creates the specified sending authorization policy for the given identity (an email address or a domain).</p> <note> <p>This API is for the identity owner only. If you have not verified the identity, this API will return an error.</p> </note> <p>Sending authorization is a feature that enables an identity owner to authorize other senders to use its identities. For information about using sending authorization, see the <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>",
     "CreateEmailTemplate": "<p>Creates an email template. Email templates enable you to send personalized email to one or more destinations in a single API operation. For more information, see the <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>",
+    "CreateImportJob": "<p>Creates an import job for a data destination.</p>",
     "DeleteConfigurationSet": "<p>Delete an existing configuration set.</p> <p> <i>Configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
     "DeleteConfigurationSetEventDestination": "<p>Delete an event destination.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p>",
     "DeleteCustomVerificationEmailTemplate": "<p>Deletes an existing custom verification email template.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/es/latest/DeveloperGuide/send-email-verify-address-custom.html\">Using Custom Verification Email Templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
@@ -32,6 +33,7 @@
     "GetEmailIdentity": "<p>Provides information about a specific identity, including the identity's verification status, sending authorization policies, its DKIM authentication status, and its custom Mail-From settings.</p>",
     "GetEmailIdentityPolicies": "<p>Returns the requested sending authorization policies for the given identity (an email address or a domain). The policies are returned as a map of policy names to policy contents. You can retrieve a maximum of 20 policies at a time.</p> <note> <p>This API is for the identity owner only. If you have not verified the identity, this API will return an error.</p> </note> <p>Sending authorization is a feature that enables an identity owner to authorize other senders to use its identities. For information about using sending authorization, see the <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>",
     "GetEmailTemplate": "<p>Displays the template object (which includes the subject line, HTML part and text part) for the template you specify.</p> <p>You can execute this operation no more than once per second.</p>",
+    "GetImportJob": "<p>Provides information about an import job.</p>",
     "GetSuppressedDestination": "<p>Retrieves information about a specific email address that's on the suppression list for your account.</p>",
     "ListConfigurationSets": "<p>List all of the configuration sets associated with your account in the current region.</p> <p> <i>Configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
     "ListCustomVerificationEmailTemplates": "<p>Lists the existing custom verification email templates for your account in the current AWS Region.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html\">Using Custom Verification Email Templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
@@ -40,6 +42,7 @@
     "ListDomainDeliverabilityCampaigns": "<p>Retrieve deliverability data for all the campaigns that used a specific domain to send email during a specified time range. This data is available for a domain only if you enabled the Deliverability dashboard for the domain.</p>",
     "ListEmailIdentities": "<p>Returns a list of all of the email identities that are associated with your AWS account. An identity can be either an email address or a domain. This operation returns identities that are verified as well as those that aren't. This operation returns identities that are associated with Amazon SES and Amazon Pinpoint.</p>",
     "ListEmailTemplates": "<p>Lists the email templates present in your Amazon SES account in the current AWS Region.</p> <p>You can execute this operation no more than once per second.</p>",
+    "ListImportJobs": "<p>Lists all of the import jobs.</p>",
     "ListSuppressedDestinations": "<p>Retrieves a list of email addresses that are on the suppression list for your account.</p>",
     "ListTagsForResource": "<p>Retrieve a list of the tags (keys and values) that are associated with a specified resource. A <i>tag</i> is a label that you optionally define and associate with a resource. Each tag consists of a required <i>tag key</i> and an optional associated <i>tag value</i>. A tag key is a general label that acts as a category for more specific tag values. A tag value acts as a descriptor within a tag key.</p>",
     "PutAccountDedicatedIpWarmupAttributes": "<p>Enable or disable the automatic warm-up feature for dedicated IP addresses.</p>",
@@ -379,6 +382,16 @@
       "refs": {
       }
     },
+    "CreateImportJobRequest": {
+      "base": "<p>Represents a request to create an import job from a data source for a data destination.</p>",
+      "refs": {
+      }
+    },
+    "CreateImportJobResponse": {
+      "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
     "CustomRedirectDomain": {
       "base": "<p>The domain that you want to use for tracking open and click events.</p>",
       "refs": {
@@ -408,6 +421,12 @@
       "base": null,
       "refs": {
         "GetDomainStatisticsReportResponse$DailyVolumes": "<p>An object that contains deliverability metrics for the domain that you specified. This object contains data for each day, starting on the <code>StartDate</code> and ending on the <code>EndDate</code>.</p>"
+      }
+    },
+    "DataFormat": {
+      "base": "<p>The data format of the import job's data source.</p>",
+      "refs": {
+        "ImportDataSource$DataFormat": "<p>The data format of the import job's data source.</p>"
       }
     },
     "DedicatedIp": {
@@ -799,7 +818,8 @@
     "ErrorMessage": {
       "base": null,
       "refs": {
-        "BulkEmailEntryResult$Error": "<p>A description of an error that prevented a message being sent using the <code>SendBulkTemplatedEmail</code> operation.</p>"
+        "BulkEmailEntryResult$Error": "<p>A description of an error that prevented a message being sent using the <code>SendBulkTemplatedEmail</code> operation.</p>",
+        "FailureInfo$ErrorMessage": "<p>A message about why the import job failed.</p>"
       }
     },
     "Esp": {
@@ -853,6 +873,24 @@
       "refs": {
         "EventDestination$MatchingEventTypes": "<p>The types of events that Amazon SES sends to the specified event destinations.</p>",
         "EventDestinationDefinition$MatchingEventTypes": "<p>An array that specifies which events the Amazon SES API v2 should send to the destinations in this <code>EventDestinationDefinition</code>.</p>"
+      }
+    },
+    "FailedRecordsCount": {
+      "base": null,
+      "refs": {
+        "GetImportJobResponse$FailedRecordsCount": "<p>The number of records that failed processing because of invalid input or other reasons.</p>"
+      }
+    },
+    "FailedRecordsS3Url": {
+      "base": null,
+      "refs": {
+        "FailureInfo$FailedRecordsS3Url": "<p>An Amazon S3 presigned URL that contains all the failed records and related information.</p>"
+      }
+    },
+    "FailureInfo": {
+      "base": "<p>An object that contains the failure details about an import job.</p>",
+      "refs": {
+        "GetImportJobResponse$FailureInfo": "<p>The failure details about an import job.</p>"
       }
     },
     "FailureRedirectionURL": {
@@ -1016,6 +1054,16 @@
       "refs": {
       }
     },
+    "GetImportJobRequest": {
+      "base": "<p>Represents a request for information about an import job using the import job ID.</p>",
+      "refs": {
+      }
+    },
+    "GetImportJobResponse": {
+      "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
     "GetSuppressedDestinationRequest": {
       "base": "<p>A request to retrieve information about an email address that's on the suppression list for your account.</p>",
       "refs": {
@@ -1071,6 +1119,39 @@
         "DomainDeliverabilityCampaign$ImageUrl": "<p>The URL of an image that contains a snapshot of the email message that was sent.</p>"
       }
     },
+    "ImportDataSource": {
+      "base": "<p>An object that contains details about the data source of the import job.</p>",
+      "refs": {
+        "CreateImportJobRequest$ImportDataSource": "<p>The data source for the import job.</p>",
+        "GetImportJobResponse$ImportDataSource": "<p>The data source of the import job.</p>"
+      }
+    },
+    "ImportDestination": {
+      "base": "<p>An object that contains details about the resource destination the import job is going to target.</p>",
+      "refs": {
+        "CreateImportJobRequest$ImportDestination": "<p>The destination for the import job.</p>",
+        "GetImportJobResponse$ImportDestination": "<p>The destination of the import job.</p>",
+        "ImportJobSummary$ImportDestination": null
+      }
+    },
+    "ImportDestinationType": {
+      "base": "<p>The destination of the import job, which can be used to list import jobs that have a certain <code>ImportDestinationType</code>.</p>",
+      "refs": {
+        "ListImportJobsRequest$ImportDestinationType": "<p>The destination of the import job, which can be used to list import jobs that have a certain <code>ImportDestinationType</code>.</p>"
+      }
+    },
+    "ImportJobSummary": {
+      "base": "<p>A summary of the import job.</p>",
+      "refs": {
+        "ImportJobSummaryList$member": null
+      }
+    },
+    "ImportJobSummaryList": {
+      "base": "<p>A list of the import job summaries.</p>",
+      "refs": {
+        "ListImportJobsResponse$ImportJobs": "<p>A list of the import job summaries.</p>"
+      }
+    },
     "InboxPlacementTrackingOption": {
       "base": "<p>An object that contains information about the inbox placement data settings for a verified domain that’s associated with your AWS account. This data is available only if you enabled the Deliverability dashboard for the domain.</p>",
       "refs": {
@@ -1122,6 +1203,22 @@
       "base": null,
       "refs": {
         "GetDeliverabilityTestReportResponse$IspPlacements": "<p>An object that describes how the test email was handled by several email providers, including Gmail, Hotmail, Yahoo, AOL, and others.</p>"
+      }
+    },
+    "JobId": {
+      "base": "<p>A string that represents the import job ID.</p>",
+      "refs": {
+        "CreateImportJobResponse$JobId": "<p>A string that represents the import job ID.</p>",
+        "GetImportJobRequest$JobId": "<p>The ID of the import job.</p>",
+        "GetImportJobResponse$JobId": "<p>A string that represents the import job ID.</p>",
+        "ImportJobSummary$JobId": null
+      }
+    },
+    "JobStatus": {
+      "base": "<p>The status of the import job.</p>",
+      "refs": {
+        "GetImportJobResponse$JobStatus": "<p>The status of the import job.</p>",
+        "ImportJobSummary$JobStatus": null
       }
     },
     "KinesisFirehoseDestination": {
@@ -1212,6 +1309,16 @@
       "refs": {
       }
     },
+    "ListImportJobsRequest": {
+      "base": "<p>Represents a request to list all of the import jobs for a data destination within the specified maximum number of import jobs.</p>",
+      "refs": {
+      }
+    },
+    "ListImportJobsResponse": {
+      "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
     "ListOfDedicatedIpPools": {
       "base": "<p>A list of dedicated IP pools that are associated with your AWS account.</p>",
       "refs": {
@@ -1286,6 +1393,7 @@
         "ListDomainDeliverabilityCampaignsRequest$PageSize": "<p>The maximum number of results to include in response to a single call to the <code>ListDomainDeliverabilityCampaigns</code> operation. If the number of results is larger than the number that you specify in this parameter, the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>",
         "ListEmailIdentitiesRequest$PageSize": "<p>The number of results to show in a single call to <code>ListEmailIdentities</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 0, and can be no more than 1000.</p>",
         "ListEmailTemplatesRequest$PageSize": "<p>The number of results to show in a single call to <code>ListEmailTemplates</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 1, and can be no more than 10.</p>",
+        "ListImportJobsRequest$PageSize": "<p>Maximum number of import jobs to return at once. Use this parameter to paginate results. If additional import jobs exist beyond the specified limit, the <code>NextToken</code> element is sent in the response. Use the <code>NextToken</code> value in subsequent requests to retrieve additional addresses.</p>",
         "ListSuppressedDestinationsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListSuppressedDestinations</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>"
       }
     },
@@ -1363,6 +1471,8 @@
         "ListEmailIdentitiesResponse$NextToken": "<p>A token that indicates that there are additional configuration sets to list. To view additional configuration sets, issue another request to <code>ListEmailIdentities</code>, and pass this token in the <code>NextToken</code> parameter.</p>",
         "ListEmailTemplatesRequest$NextToken": "<p>A token returned from a previous call to <code>ListEmailTemplates</code> to indicate the position in the list of email templates.</p>",
         "ListEmailTemplatesResponse$NextToken": "<p>A token indicating that there are additional email templates available to be listed. Pass this token to a subsequent <code>ListEmailTemplates</code> call to retrieve the next 10 email templates.</p>",
+        "ListImportJobsRequest$NextToken": "<p>A string token indicating that there might be additional import jobs available to be listed. Copy this token to a subsequent call to <code>ListImportJobs</code> with the same parameters to retrieve the next page of import jobs.</p>",
+        "ListImportJobsResponse$NextToken": "<p>A string token indicating that there might be additional import jobs available to be listed. Copy this token to a subsequent call to <code>ListImportJobs</code> with the same parameters to retrieve the next page of import jobs.</p>",
         "ListSuppressedDestinationsRequest$NextToken": "<p>A token returned from a previous call to <code>ListSuppressedDestinations</code> to indicate the position in the list of suppressed email addresses.</p>",
         "ListSuppressedDestinationsResponse$NextToken": "<p>A token that indicates that there are additional email addresses on the suppression list for your account. To view additional suppressed addresses, issue another request to <code>ListSuppressedDestinations</code>, and pass this token in the <code>NextToken</code> parameter.</p>"
       }
@@ -1464,6 +1574,12 @@
       "base": null,
       "refs": {
         "DkimSigningAttributes$DomainSigningPrivateKey": "<p>A private key that's used to generate a DKIM signature.</p> <p>The private key must use 1024-bit RSA encryption, and must be encoded using base64 encoding.</p>"
+      }
+    },
+    "ProcessedRecordsCount": {
+      "base": null,
+      "refs": {
+        "GetImportJobResponse$ProcessedRecordsCount": "<p>The current number of records processed.</p>"
       }
     },
     "PutAccountDedicatedIpWarmupAttributesRequest": {
@@ -1706,6 +1822,12 @@
         "ReviewDetails$Status": "<p>The status of the latest review of your account. The status can be one of the following:</p> <ul> <li> <p> <code>PENDING</code> – We have received your appeal and are in the process of reviewing it.</p> </li> <li> <p> <code>GRANTED</code> – Your appeal has been reviewed and your production access has been granted.</p> </li> <li> <p> <code>DENIED</code> – Your appeal has been reviewed and your production access has been denied.</p> </li> <li> <p> <code>FAILED</code> – An internal error occurred and we didn't receive your appeal. You can submit your appeal again.</p> </li> </ul>"
       }
     },
+    "S3Url": {
+      "base": "<p>An Amazon S3 URL in the format s3://<i>&lt;bucket_name&gt;</i>/<i>&lt;object&gt;</i>.</p>",
+      "refs": {
+        "ImportDataSource$S3Url": "<p>An Amazon S3 URL in the format s3://<i>&lt;bucket_name&gt;</i>/<i>&lt;object&gt;</i>.</p>"
+      }
+    },
     "Selector": {
       "base": null,
       "refs": {
@@ -1824,6 +1946,18 @@
         "GetAccountResponse$SuppressionAttributes": "<p>An object that contains information about the email address suppression preferences for your account in the current AWS Region.</p>"
       }
     },
+    "SuppressionListDestination": {
+      "base": "<p>An object that contains details about the action of suppression list.</p>",
+      "refs": {
+        "ImportDestination$SuppressionListDestination": "<p>An object that contains the action of the import job towards suppression list.</p>"
+      }
+    },
+    "SuppressionListImportAction": {
+      "base": "<p>The type of action that you want to perform on the address. Acceptable values:</p> <ul> <li> <p>PUT: add the addresses to the suppression list.</p> </li> <li> <p>DELETE: remove the address from the suppression list.</p> </li> </ul>",
+      "refs": {
+        "SuppressionListDestination$SuppressionListImportAction": "<p>The type of action that you want to perform on the address. Acceptable values:</p> <ul> <li> <p>PUT: add the addresses to the suppression list. If the record already exists, it will override it with the new value.</p> </li> <li> <p>DELETE: remove the addresses from the suppression list.</p> </li> </ul>"
+      }
+    },
     "SuppressionListReason": {
       "base": "<p>The reason that the address was added to the suppression list for your account. The value can be one of the following:</p> <ul> <li> <p> <code>COMPLAINT</code> – Amazon SES added an email address to the suppression list for your account because a message sent to that address results in a complaint.</p> </li> <li> <p> <code>BOUNCE</code> – Amazon SES added an email address to the suppression list for your account because a message sent to that address results in a hard bounce.</p> </li> </ul>",
       "refs": {
@@ -1937,6 +2071,9 @@
         "GetDeliverabilityDashboardOptionsResponse$SubscriptionExpiryDate": "<p>The date, in Unix time format, when your current subscription to the Deliverability dashboard is scheduled to expire, if your subscription is scheduled to expire at the end of the current calendar month. This value is null if you have an active subscription that isn’t due to expire at the end of the month.</p>",
         "GetDomainStatisticsReportRequest$StartDate": "<p>The first day (in Unix time) that you want to obtain domain deliverability metrics for.</p>",
         "GetDomainStatisticsReportRequest$EndDate": "<p>The last day (in Unix time) that you want to obtain domain deliverability metrics for. The <code>EndDate</code> that you specify has to be less than or equal to 30 days after the <code>StartDate</code>.</p>",
+        "GetImportJobResponse$CreatedTimestamp": "<p>The time stamp of when the import job was created.</p>",
+        "GetImportJobResponse$CompletedTimestamp": "<p>The time stamp of when the import job was completed.</p>",
+        "ImportJobSummary$CreatedTimestamp": null,
         "ListDomainDeliverabilityCampaignsRequest$StartDate": "<p>The first day, in Unix time format, that you want to obtain deliverability data for.</p>",
         "ListDomainDeliverabilityCampaignsRequest$EndDate": "<p>The last day, in Unix time format, that you want to obtain deliverability data for. This value has to be less than or equal to 30 days after the value of the <code>StartDate</code> parameter.</p>",
         "ListSuppressedDestinationsRequest$StartDate": "<p>Used to filter the list of suppressed email destinations so that it only includes addresses that were added to the list after a specific date. The date that you specify should be in Unix time format.</p>",

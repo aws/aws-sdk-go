@@ -191,6 +191,137 @@
         "AwsCodeBuildProjectDetails$VpcConfig": "<p>Information about the VPC configuration that AWS CodeBuild accesses.</p>"
       }
     },
+    "AwsDynamoDbTableAttributeDefinition": {
+      "base": "<p>Contains a definition of an attribute for the table.</p>",
+      "refs": {
+        "AwsDynamoDbTableAttributeDefinitionList$member": null
+      }
+    },
+    "AwsDynamoDbTableAttributeDefinitionList": {
+      "base": null,
+      "refs": {
+        "AwsDynamoDbTableDetails$AttributeDefinitions": "<p>A list of attribute definitions for the table.</p>"
+      }
+    },
+    "AwsDynamoDbTableBillingModeSummary": {
+      "base": "<p>Provides information about the billing for read/write capacity on the table.</p>",
+      "refs": {
+        "AwsDynamoDbTableDetails$BillingModeSummary": "<p>Information about the billing for read/write capacity on the table.</p>"
+      }
+    },
+    "AwsDynamoDbTableDetails": {
+      "base": "<p>Provides details about a DynamoDB table.</p>",
+      "refs": {
+        "ResourceDetails$AwsDynamoDbTable": "<p>Details about a DynamoDB table.</p>"
+      }
+    },
+    "AwsDynamoDbTableGlobalSecondaryIndex": {
+      "base": "<p>Information abut a global secondary index for the table.</p>",
+      "refs": {
+        "AwsDynamoDbTableGlobalSecondaryIndexList$member": null
+      }
+    },
+    "AwsDynamoDbTableGlobalSecondaryIndexList": {
+      "base": null,
+      "refs": {
+        "AwsDynamoDbTableDetails$GlobalSecondaryIndexes": "<p>List of global secondary indexes for the table.</p>"
+      }
+    },
+    "AwsDynamoDbTableKeySchema": {
+      "base": "<p>A component of the key schema for the DynamoDB table, a global secondary index, or a local secondary index.</p>",
+      "refs": {
+        "AwsDynamoDbTableKeySchemaList$member": null
+      }
+    },
+    "AwsDynamoDbTableKeySchemaList": {
+      "base": null,
+      "refs": {
+        "AwsDynamoDbTableDetails$KeySchema": "<p>The primary key structure for the table.</p>",
+        "AwsDynamoDbTableGlobalSecondaryIndex$KeySchema": "<p>The key schema for the index.</p>",
+        "AwsDynamoDbTableLocalSecondaryIndex$KeySchema": "<p>The complete key schema for the index.</p>"
+      }
+    },
+    "AwsDynamoDbTableLocalSecondaryIndex": {
+      "base": "<p>Information about a local secondary index for a DynamoDB table.</p>",
+      "refs": {
+        "AwsDynamoDbTableLocalSecondaryIndexList$member": null
+      }
+    },
+    "AwsDynamoDbTableLocalSecondaryIndexList": {
+      "base": null,
+      "refs": {
+        "AwsDynamoDbTableDetails$LocalSecondaryIndexes": "<p>The list of local secondary indexes for the table.</p>"
+      }
+    },
+    "AwsDynamoDbTableProjection": {
+      "base": "<p>For global and local secondary indexes, identifies the attributes that are copied from the table into the index.</p>",
+      "refs": {
+        "AwsDynamoDbTableGlobalSecondaryIndex$Projection": "<p>Attributes that are copied from the table into an index.</p>",
+        "AwsDynamoDbTableLocalSecondaryIndex$Projection": "<p>Attributes that are copied from the table into the index. These are in addition to the primary key attributes and index key attributes, which are automatically projected.</p>"
+      }
+    },
+    "AwsDynamoDbTableProvisionedThroughput": {
+      "base": "<p>Information about the provisioned throughput for the table or for a global secondary index.</p>",
+      "refs": {
+        "AwsDynamoDbTableDetails$ProvisionedThroughput": "<p>Information about the provisioned throughput for the table.</p>",
+        "AwsDynamoDbTableGlobalSecondaryIndex$ProvisionedThroughput": "<p>Information about the provisioned throughput settings for the indexes.</p>"
+      }
+    },
+    "AwsDynamoDbTableProvisionedThroughputOverride": {
+      "base": "<p>Replica-specific configuration for the provisioned throughput.</p>",
+      "refs": {
+        "AwsDynamoDbTableReplica$ProvisionedThroughputOverride": "<p>Replica-specific configuration for the provisioned throughput.</p>",
+        "AwsDynamoDbTableReplicaGlobalSecondaryIndex$ProvisionedThroughputOverride": "<p>Replica-specific configuration for the provisioned throughput for the index.</p>"
+      }
+    },
+    "AwsDynamoDbTableReplica": {
+      "base": "<p>Information about a replica of a DynamoDB table.</p>",
+      "refs": {
+        "AwsDynamoDbTableReplicaList$member": null
+      }
+    },
+    "AwsDynamoDbTableReplicaGlobalSecondaryIndex": {
+      "base": "<p>Information about a global secondary index for a DynamoDB table replica.</p>",
+      "refs": {
+        "AwsDynamoDbTableReplicaGlobalSecondaryIndexList$member": null
+      }
+    },
+    "AwsDynamoDbTableReplicaGlobalSecondaryIndexList": {
+      "base": null,
+      "refs": {
+        "AwsDynamoDbTableReplica$GlobalSecondaryIndexes": "<p>List of global secondary indexes for the replica.</p>"
+      }
+    },
+    "AwsDynamoDbTableReplicaList": {
+      "base": null,
+      "refs": {
+        "AwsDynamoDbTableDetails$Replicas": "<p>The list of replicas of this table.</p>"
+      }
+    },
+    "AwsDynamoDbTableRestoreSummary": {
+      "base": "<p>Information about the restore for the table.</p>",
+      "refs": {
+        "AwsDynamoDbTableDetails$RestoreSummary": "<p>Information about the restore for the table.</p>"
+      }
+    },
+    "AwsDynamoDbTableSseDescription": {
+      "base": "<p>Information about the server-side encryption for the table.</p>",
+      "refs": {
+        "AwsDynamoDbTableDetails$SseDescription": "<p>Information about the server-side encryption for the table.</p>"
+      }
+    },
+    "AwsDynamoDbTableStreamSpecification": {
+      "base": "<p>The current DynamoDB Streams configuration for the table.</p>",
+      "refs": {
+        "AwsDynamoDbTableDetails$StreamSpecification": "<p>The current DynamoDB Streams configuration for the table.</p>"
+      }
+    },
+    "AwsEc2EipDetails": {
+      "base": "<p>Information about an Elastic IP address.</p>",
+      "refs": {
+        "ResourceDetails$AwsEc2Eip": "<p>Details about an Elastic IP address.</p>"
+      }
+    },
     "AwsEc2InstanceDetails": {
       "base": "<p>The details of an Amazon EC2 instance.</p>",
       "refs": {
@@ -360,6 +491,42 @@
         "AwsIamAccessKeyDetails$Status": "<p>The status of the IAM access key related to a finding.</p>"
       }
     },
+    "AwsIamAttachedManagedPolicy": {
+      "base": "<p>A managed policy that is attached to an IAM user.</p>",
+      "refs": {
+        "AwsIamAttachedManagedPolicyList$member": null
+      }
+    },
+    "AwsIamAttachedManagedPolicyList": {
+      "base": null,
+      "refs": {
+        "AwsIamUserDetails$AttachedManagedPolicies": "<p>A list of the managed policies that are attached to the user.</p>"
+      }
+    },
+    "AwsIamPermissionsBoundary": {
+      "base": "<p>Information about the policy used to set the permissions boundary for an IAM user.</p>",
+      "refs": {
+        "AwsIamUserDetails$PermissionsBoundary": "<p>The permissions boundary for the user.</p>"
+      }
+    },
+    "AwsIamPolicyDetails": {
+      "base": "<p>Represents an IAM permissions policy.</p>",
+      "refs": {
+        "ResourceDetails$AwsIamPolicy": "<p>Details about an IAM permissions policy.</p>"
+      }
+    },
+    "AwsIamPolicyVersion": {
+      "base": "<p>A version of an IAM policy.</p>",
+      "refs": {
+        "AwsIamPolicyVersionList$member": null
+      }
+    },
+    "AwsIamPolicyVersionList": {
+      "base": null,
+      "refs": {
+        "AwsIamPolicyDetails$PolicyVersionList": "<p>List of versions of the policy.</p>"
+      }
+    },
     "AwsIamRoleAssumeRolePolicyDocument": {
       "base": null,
       "refs": {
@@ -370,6 +537,24 @@
       "base": "<p>Contains information about an IAM role, including all of the role's policies.</p>",
       "refs": {
         "ResourceDetails$AwsIamRole": "<p>Details about an IAM role.</p>"
+      }
+    },
+    "AwsIamUserDetails": {
+      "base": "<p>Information about an IAM user.</p>",
+      "refs": {
+        "ResourceDetails$AwsIamUser": "<p>Details about an IAM user.</p>"
+      }
+    },
+    "AwsIamUserPolicy": {
+      "base": "<p>Information about an inline policy that is embedded in the user.</p>",
+      "refs": {
+        "AwsIamUserPolicyList$member": null
+      }
+    },
+    "AwsIamUserPolicyList": {
+      "base": null,
+      "refs": {
+        "AwsIamUserDetails$UserPolicyList": "<p>The list of inline policies that are embedded in the user.</p>"
       }
     },
     "AwsKmsKeyDetails": {
@@ -444,6 +629,67 @@
         "AwsLambdaLayerVersionDetails$Version": "<p>The version number.</p>"
       }
     },
+    "AwsRdsDbClusterAssociatedRole": {
+      "base": "<p>An IAM role that is associated with the Amazon RDS DB cluster.</p>",
+      "refs": {
+        "AwsRdsDbClusterAssociatedRoles$member": null
+      }
+    },
+    "AwsRdsDbClusterAssociatedRoles": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbClusterDetails$AssociatedRoles": "<p>A list of the IAM roles that are associated with the DB cluster.</p>"
+      }
+    },
+    "AwsRdsDbClusterDetails": {
+      "base": "<p>Information about an Amazon RDS DB cluster.</p>",
+      "refs": {
+        "ResourceDetails$AwsRdsDbCluster": "<p>Details about an Amazon RDS database cluster.</p>"
+      }
+    },
+    "AwsRdsDbClusterMember": {
+      "base": "<p>Information about an instance in the DB cluster.</p>",
+      "refs": {
+        "AwsRdsDbClusterMembers$member": null
+      }
+    },
+    "AwsRdsDbClusterMembers": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbClusterDetails$DbClusterMembers": "<p>The list of instances that make up the DB cluster.</p>"
+      }
+    },
+    "AwsRdsDbClusterOptionGroupMembership": {
+      "base": "<p>Information about an option group membership for a DB cluster.</p>",
+      "refs": {
+        "AwsRdsDbClusterOptionGroupMemberships$member": null
+      }
+    },
+    "AwsRdsDbClusterOptionGroupMemberships": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbClusterDetails$DbClusterOptionGroupMemberships": "<p>The list of option group memberships for this DB cluster.</p>"
+      }
+    },
+    "AwsRdsDbClusterSnapshotDetails": {
+      "base": "<p>Information about an Amazon RDS DB cluster snapshot.</p>",
+      "refs": {
+        "ResourceDetails$AwsRdsDbClusterSnapshot": "<p>Details about an Amazon RDS database cluster snapshot.</p>"
+      }
+    },
+    "AwsRdsDbDomainMembership": {
+      "base": "<p>Information about an Active Directory domain membership record associated with the DB instance.</p>",
+      "refs": {
+        "AwsRdsDbDomainMemberships$member": null
+      }
+    },
+    "AwsRdsDbDomainMemberships": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbClusterDetails$DomainMemberships": "<p>The Active Directory domain membership records that are associated with the DB cluster.</p>",
+        "AwsRdsDbInstanceDetails$DomainMemberships": "<p>The Active Directory domain membership records associated with the DB instance.</p>"
+      }
+    },
     "AwsRdsDbInstanceAssociatedRole": {
       "base": "<p>An AWS Identity and Access Management (IAM) role associated with the DB instance.</p>",
       "refs": {
@@ -459,13 +705,14 @@
     "AwsRdsDbInstanceDetails": {
       "base": "<p>Contains the details of an Amazon RDS DB instance.</p>",
       "refs": {
-        "ResourceDetails$AwsRdsDbInstance": "<p>Details for an Amazon RDS database instance.</p>"
+        "ResourceDetails$AwsRdsDbInstance": "<p>Details about an Amazon RDS database instance.</p>"
       }
     },
     "AwsRdsDbInstanceEndpoint": {
       "base": "<p>Specifies the connection endpoint.</p>",
       "refs": {
-        "AwsRdsDbInstanceDetails$Endpoint": "<p>Specifies the connection endpoint.</p>"
+        "AwsRdsDbInstanceDetails$Endpoint": "<p>Specifies the connection endpoint.</p>",
+        "AwsRdsDbInstanceDetails$ListenerEndpoint": null
       }
     },
     "AwsRdsDbInstanceVpcSecurityGroup": {
@@ -477,7 +724,100 @@
     "AwsRdsDbInstanceVpcSecurityGroups": {
       "base": null,
       "refs": {
+        "AwsRdsDbClusterDetails$VpcSecurityGroups": "<p>A list of VPC security groups that the DB cluster belongs to.</p>",
         "AwsRdsDbInstanceDetails$VpcSecurityGroups": "<p>A list of VPC security groups that the DB instance belongs to.</p>"
+      }
+    },
+    "AwsRdsDbOptionGroupMembership": {
+      "base": "<p/>",
+      "refs": {
+        "AwsRdsDbOptionGroupMemberships$member": null
+      }
+    },
+    "AwsRdsDbOptionGroupMemberships": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbInstanceDetails$OptionGroupMemberships": "<p>The list of option group memberships for this DB instance.</p>"
+      }
+    },
+    "AwsRdsDbParameterGroup": {
+      "base": "<p/>",
+      "refs": {
+        "AwsRdsDbParameterGroups$member": null
+      }
+    },
+    "AwsRdsDbParameterGroups": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbInstanceDetails$DbParameterGroups": "<p>A list of the DB parameter groups to assign to the DB instance.</p>"
+      }
+    },
+    "AwsRdsDbPendingModifiedValues": {
+      "base": "<p/>",
+      "refs": {
+        "AwsRdsDbInstanceDetails$PendingModifiedValues": "<p>Changes to the DB instance that are currently pending.</p>"
+      }
+    },
+    "AwsRdsDbProcessorFeature": {
+      "base": "<p/>",
+      "refs": {
+        "AwsRdsDbProcessorFeatures$member": null
+      }
+    },
+    "AwsRdsDbProcessorFeatures": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbInstanceDetails$ProcessorFeatures": "<p>The number of CPU cores and the number of threads per core for the DB instance class of the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$ProcessorFeatures": "<p/>",
+        "AwsRdsDbSnapshotDetails$ProcessorFeatures": "<p/>"
+      }
+    },
+    "AwsRdsDbSnapshotDetails": {
+      "base": "<p/>",
+      "refs": {
+        "ResourceDetails$AwsRdsDbSnapshot": "<p>Details about an Amazon RDS database snapshot.</p>"
+      }
+    },
+    "AwsRdsDbStatusInfo": {
+      "base": "<p>Information about the status of a read replica.</p>",
+      "refs": {
+        "AwsRdsDbStatusInfos$member": null
+      }
+    },
+    "AwsRdsDbStatusInfos": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbInstanceDetails$StatusInfos": "<p>The status of a read replica. If the instance isn't a read replica, this is empty.</p>"
+      }
+    },
+    "AwsRdsDbSubnetGroup": {
+      "base": "<p>Information about the subnet group for the database instance.</p>",
+      "refs": {
+        "AwsRdsDbInstanceDetails$DbSubnetGroup": "<p>Information about the subnet group that is associated with the DB instance.</p>"
+      }
+    },
+    "AwsRdsDbSubnetGroupSubnet": {
+      "base": "<p>Information about a subnet in a subnet group.</p>",
+      "refs": {
+        "AwsRdsDbSubnetGroupSubnets$member": null
+      }
+    },
+    "AwsRdsDbSubnetGroupSubnetAvailabilityZone": {
+      "base": "<p>An Availability Zone for a subnet in a subnet group.</p>",
+      "refs": {
+        "AwsRdsDbSubnetGroupSubnet$SubnetAvailabilityZone": "<p>Information about the Availability Zone for a subnet in the subnet group.</p>"
+      }
+    },
+    "AwsRdsDbSubnetGroupSubnets": {
+      "base": null,
+      "refs": {
+        "AwsRdsDbSubnetGroup$Subnets": "<p>A list of subnets in the subnet group.</p>"
+      }
+    },
+    "AwsRdsPendingCloudWatchLogsExports": {
+      "base": "<p>Identifies the log types to enable and disable.</p>",
+      "refs": {
+        "AwsRdsDbPendingModifiedValues$PendingCloudWatchLogsExports": "<p/>"
       }
     },
     "AwsS3BucketDetails": {
@@ -514,6 +854,18 @@
       "base": "<p>Details about an Amazon S3 object.</p>",
       "refs": {
         "ResourceDetails$AwsS3Object": "<p>Details about an Amazon S3 object related to a finding.</p>"
+      }
+    },
+    "AwsSecretsManagerSecretDetails": {
+      "base": "<p>Details about an AWS Secrets Manager secret.</p>",
+      "refs": {
+        "ResourceDetails$AwsSecretsManagerSecret": "<p>Details about a Secrets Manager secret.</p>"
+      }
+    },
+    "AwsSecretsManagerSecretRotationRules": {
+      "base": "<p>Defines the rotation schedule for the secret.</p>",
+      "refs": {
+        "AwsSecretsManagerSecretDetails$RotationRules": "<p>Defines the rotation schedule for the secret.</p>"
       }
     },
     "AwsSecurityFinding": {
@@ -653,6 +1005,9 @@
         "AwsCloudFrontDistributionLogging$Enabled": "<p>With this field, you can enable or disable the selected distribution.</p>",
         "AwsCloudFrontDistributionLogging$IncludeCookies": "<p>Specifies whether you want CloudFront to include cookies in access logs.</p>",
         "AwsCodeBuildProjectSource$InsecureSsl": "<p>Whether to ignore SSL warnings while connecting to the project source code.</p>",
+        "AwsDynamoDbTableGlobalSecondaryIndex$Backfilling": "<p>Whether the index is currently backfilling.</p>",
+        "AwsDynamoDbTableRestoreSummary$RestoreInProgress": "<p>Whether a restore is currently in progress.</p>",
+        "AwsDynamoDbTableStreamSpecification$StreamEnabled": "<p>Indicates whether DynamoDB Streams is enabled on the table.</p>",
         "AwsEc2NetworkInterfaceAttachment$DeleteOnTermination": "<p>Indicates whether the network interface is deleted when the instance is terminated.</p>",
         "AwsEc2NetworkInterfaceDetails$SourceDestCheck": "<p>Indicates whether traffic to or from the instance is validated.</p>",
         "AwsEc2VolumeAttachment$DeleteOnTermination": "<p>Whether the EBS volume is deleted when the EC2 instance is terminated.</p>",
@@ -660,10 +1015,33 @@
         "AwsElasticsearchDomainDomainEndpointOptions$EnforceHTTPS": "<p>Whether to require that all traffic to the domain arrive over HTTPS.</p>",
         "AwsElasticsearchDomainEncryptionAtRestOptions$Enabled": "<p>Whether encryption at rest is enabled.</p>",
         "AwsElasticsearchDomainNodeToNodeEncryptionOptions$Enabled": "<p>Whether node-to-node encryption is enabled.</p>",
+        "AwsIamPolicyDetails$IsAttachable": "<p>Whether the policy can be attached to a user, group, or role.</p>",
+        "AwsIamPolicyVersion$IsDefaultVersion": "<p>Whether the version is the default version.</p>",
+        "AwsRdsDbClusterDetails$MultiAz": "<p>Whether the DB cluster has instances in multiple Availability Zones.</p>",
+        "AwsRdsDbClusterDetails$StorageEncrypted": "<p>Whether the DB cluster is encrypted.</p>",
+        "AwsRdsDbClusterDetails$DeletionProtection": "<p>Whether the DB cluster has deletion protection enabled.</p>",
+        "AwsRdsDbClusterDetails$HttpEndpointEnabled": "<p>Whether the HTTP endpoint for an Aurora Serverless DB cluster is enabled.</p>",
+        "AwsRdsDbClusterDetails$CopyTagsToSnapshot": "<p>Whether tags are copied from the DB cluster to snapshots of the DB cluster.</p>",
+        "AwsRdsDbClusterDetails$CrossAccountClone": "<p>Whether the DB cluster is a clone of a DB cluster owned by a different AWS account.</p>",
+        "AwsRdsDbClusterDetails$IamDatabaseAuthenticationEnabled": "<p>Whether the mapping of IAM accounts to database accounts is enabled.</p>",
+        "AwsRdsDbClusterMember$IsClusterWriter": "<p>Whether the cluster member is the primary instance for the DB cluster.</p>",
+        "AwsRdsDbClusterSnapshotDetails$StorageEncrypted": "<p>Whether the DB cluster is encrypted.</p>",
+        "AwsRdsDbClusterSnapshotDetails$IamDatabaseAuthenticationEnabled": "<p>Whether mapping of IAM accounts to database accounts is enabled.</p>",
         "AwsRdsDbInstanceDetails$DeletionProtection": "<p>Indicates whether the DB instance has deletion protection enabled.</p> <p>When deletion protection is enabled, the database cannot be deleted.</p>",
         "AwsRdsDbInstanceDetails$IAMDatabaseAuthenticationEnabled": "<p>True if mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false.</p> <p>IAM database authentication can be enabled for the following database engines.</p> <ul> <li> <p>For MySQL 5.6, minor version 5.6.34 or higher</p> </li> <li> <p>For MySQL 5.7, minor version 5.7.16 or higher</p> </li> <li> <p>Aurora 5.6 or higher</p> </li> </ul>",
         "AwsRdsDbInstanceDetails$PubliclyAccessible": "<p>Specifies the accessibility options for the DB instance.</p> <p>A value of true specifies an Internet-facing instance with a publicly resolvable DNS name, which resolves to a public IP address.</p> <p>A value of false specifies an internal instance with a DNS name that resolves to a private IP address. </p>",
         "AwsRdsDbInstanceDetails$StorageEncrypted": "<p>Specifies whether the DB instance is encrypted.</p>",
+        "AwsRdsDbInstanceDetails$MultiAz": "<p>Whether the DB instance is a multiple Availability Zone deployment.</p>",
+        "AwsRdsDbInstanceDetails$AutoMinorVersionUpgrade": "<p>Indicates whether minor version patches are applied automatically.</p>",
+        "AwsRdsDbInstanceDetails$CopyTagsToSnapshot": "<p>Whether to copy resource tags to snapshots of the DB instance.</p>",
+        "AwsRdsDbInstanceDetails$PerformanceInsightsEnabled": "<p>Indicates whether Performance Insights is enabled for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$MultiAZ": "<p/>",
+        "AwsRdsDbSnapshotDetails$Encrypted": "<p/>",
+        "AwsRdsDbSnapshotDetails$IamDatabaseAuthenticationEnabled": "<p/>",
+        "AwsRdsDbStatusInfo$Normal": "<p>Whether the read replica instance is operating normally.</p>",
+        "AwsSecretsManagerSecretDetails$RotationOccurredWithinFrequency": "<p>Whether the rotation occurred within the specified rotation frequency.</p>",
+        "AwsSecretsManagerSecretDetails$RotationEnabled": "<p>Whether rotation is enabled.</p>",
+        "AwsSecretsManagerSecretDetails$Deleted": "<p>Whether the secret is deleted.</p>",
         "DescribeHubResponse$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>If set to <code>true</code>, then new controls for enabled standards are enabled automatically. If set to <code>false</code>, then new controls are not enabled.</p>",
         "EnableSecurityHubRequest$EnableDefaultStandards": "<p>Whether to enable the security standards that Security Hub has designated as automatically enabled. If you do not provide a value for <code>EnableDefaultStandards</code>, it is set to <code>true</code>. To not enable the automatically enabled standards, set <code>EnableDefaultStandards</code> to <code>false</code>.</p>",
         "ListMembersRequest$OnlyAssociated": "<p>Specifies which member accounts to include in the response based on their relationship status with the master account. The default value is <code>TRUE</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>TRUE</code>, the response includes member accounts whose relationship status with the master is set to <code>ENABLED</code> or <code>DISABLED</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>FALSE</code>, the response includes all existing member accounts. </p>",
@@ -933,7 +1311,7 @@
     "Double": {
       "base": null,
       "refs": {
-        "AwsKmsKeyDetails$CreationDate": "<p>The date and time when the CMK was created.</p>",
+        "AwsKmsKeyDetails$CreationDate": "<p>Indicates when the CMK was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "Cvss$BaseScore": "<p>The base CVSS score.</p>",
         "NumberFilter$Gte": "<p>The greater-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Lte": "<p>The less-than-equal condition to be applied to a single field when querying for findings. </p>",
@@ -1091,16 +1469,47 @@
       "refs": {
         "AwsAutoScalingAutoScalingGroupDetails$HealthCheckGracePeriod": "<p>The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before it checks the health status of an EC2 instance that has come into service.</p>",
         "AwsCodeBuildProjectSource$GitCloneDepth": "<p>Information about the Git clone depth for the build project.</p>",
+        "AwsDynamoDbTableDetails$ItemCount": "<p>The number of items in the table.</p>",
+        "AwsDynamoDbTableGlobalSecondaryIndex$ItemCount": "<p>The number of items in the index.</p>",
+        "AwsDynamoDbTableProvisionedThroughput$NumberOfDecreasesToday": "<p>The number of times during the current UTC calendar day that the provisioned throughput was decreased.</p>",
+        "AwsDynamoDbTableProvisionedThroughput$ReadCapacityUnits": "<p>The maximum number of strongly consistent reads consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p>",
+        "AwsDynamoDbTableProvisionedThroughput$WriteCapacityUnits": "<p>The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p>",
+        "AwsDynamoDbTableProvisionedThroughputOverride$ReadCapacityUnits": "<p>The read capacity units for the replica.</p>",
         "AwsEc2NetworkInterfaceAttachment$DeviceIndex": "<p>The device index of the network interface attachment on the instance.</p>",
         "AwsEc2SecurityGroupIpPermission$FromPort": "<p>The start of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number.</p> <p>A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes. </p>",
         "AwsEc2SecurityGroupIpPermission$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code.</p> <p>A value of -1 indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>",
         "AwsEc2VolumeDetails$Size": "<p>The size of the volume, in GiBs.</p>",
+        "AwsIamPolicyDetails$AttachmentCount": "<p>The number of users, groups, and roles that the policy is attached to.</p>",
+        "AwsIamPolicyDetails$PermissionsBoundaryUsageCount": "<p>The number of users and roles that use the policy to set the permissions boundary.</p>",
         "AwsIamRoleDetails$MaxSessionDuration": "<p>The maximum session duration (in seconds) that you want to set for the specified role.</p>",
         "AwsLambdaFunctionDetails$MemorySize": "<p>The memory that's allocated to the function.</p>",
         "AwsLambdaFunctionDetails$Timeout": "<p>The amount of time that Lambda allows a function to run before stopping it.</p>",
         "AwsLambdaFunctionLayer$CodeSize": "<p>The size of the layer archive in bytes.</p>",
+        "AwsRdsDbClusterDetails$AllocatedStorage": "<p>For all database engines except Aurora, specifies the allocated storage size in gibibytes (GiB).</p>",
+        "AwsRdsDbClusterDetails$BackupRetentionPeriod": "<p>The number of days for which automated backups are retained.</p>",
+        "AwsRdsDbClusterDetails$Port": "<p>The port number on which the DB instances in the DB cluster accept connections.</p>",
+        "AwsRdsDbClusterMember$PromotionTier": "<p>Specifies the order in which an Aurora replica is promoted to the primary instance when the existing primary instance fails.</p>",
+        "AwsRdsDbClusterSnapshotDetails$AllocatedStorage": "<p>Specifies the allocated storage size in gibibytes (GiB).</p>",
+        "AwsRdsDbClusterSnapshotDetails$Port": "<p>The port number on which the DB instances in the DB cluster accept connections.</p>",
+        "AwsRdsDbClusterSnapshotDetails$PercentProgress": "<p>Specifies the percentage of the estimated data that has been transferred.</p>",
         "AwsRdsDbInstanceDetails$DbInstancePort": "<p>Specifies the port that the DB instance listens on. If the DB instance is part of a DB cluster, this can be a different port than the DB cluster port.</p>",
+        "AwsRdsDbInstanceDetails$AllocatedStorage": "<p>The amount of storage (in gigabytes) to initially allocate for the DB instance.</p>",
+        "AwsRdsDbInstanceDetails$BackupRetentionPeriod": "<p>The number of days for which to retain automated backups.</p>",
+        "AwsRdsDbInstanceDetails$Iops": "<p>Specifies the provisioned IOPS (I/O operations per second) for this DB instance.</p>",
+        "AwsRdsDbInstanceDetails$MonitoringInterval": "<p>The interval, in seconds, between points when enhanced monitoring metrics are collected for the DB instance.</p>",
+        "AwsRdsDbInstanceDetails$PromotionTier": "<p>The order in which to promote an Aurora replica to the primary instance after a failure of the existing primary instance.</p>",
+        "AwsRdsDbInstanceDetails$PerformanceInsightsRetentionPeriod": "<p>The number of days to retain Performance Insights data.</p>",
+        "AwsRdsDbInstanceDetails$MaxAllocatedStorage": "<p>The upper limit to which Amazon RDS can automatically scale the storage of the DB instance.</p>",
         "AwsRdsDbInstanceEndpoint$Port": "<p>Specifies the port that the database engine is listening on.</p>",
+        "AwsRdsDbPendingModifiedValues$AllocatedStorage": "<p/>",
+        "AwsRdsDbPendingModifiedValues$Port": "<p/>",
+        "AwsRdsDbPendingModifiedValues$BackupRetentionPeriod": "<p/>",
+        "AwsRdsDbPendingModifiedValues$Iops": "<p/>",
+        "AwsRdsDbSnapshotDetails$AllocatedStorage": "<p/>",
+        "AwsRdsDbSnapshotDetails$Port": "<p/>",
+        "AwsRdsDbSnapshotDetails$Iops": "<p/>",
+        "AwsRdsDbSnapshotDetails$PercentProgress": "<p/>",
+        "AwsSecretsManagerSecretRotationRules$AutomaticallyAfterDays": "<p>The number of days after the previous rotation to rotate the secret.</p>",
         "AwsSecurityFinding$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "AwsSecurityFinding$Criticality": "<p>The level of importance assigned to the resources associated with the finding.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources.</p>",
         "AwsSqsQueueDetails$KmsDataKeyReusePeriodSeconds": "<p>The length of time, in seconds, for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again.</p>",
@@ -1286,7 +1695,7 @@
       }
     },
     "MapFilter": {
-      "base": "<p>The map filter for querying findings.</p>",
+      "base": "<p>A map filter for querying findings. Each map filter provides the field to check, the value to look for, and the comparison operator.</p>",
       "refs": {
         "MapFilterList$member": null
       }
@@ -1294,7 +1703,7 @@
     "MapFilterComparison": {
       "base": null,
       "refs": {
-        "MapFilter$Comparison": "<p>The condition to apply to a key value when querying for findings with a map filter.</p>"
+        "MapFilter$Comparison": "<p>The condition to apply to the key value when querying for findings with a map filter.</p> <p>To search for values that exactly match the filter value, use <code>EQUALS</code>. For example, for the <code>ResourceTags</code> field, the filter <code>Department EQUALS Security</code> matches findings that have the value <code>Security</code> for the tag <code>Department</code>.</p> <p>To search for values other than the filter value, use <code>NOT_EQUALS</code>. For example, for the <code>ResourceTags</code> field, the filter <code>Department NOT_EQUALS Finance</code> matches findings that do not have the value <code>Finance</code> for the tag <code>Department</code>.</p> <p> <code>EQUALS</code> filters on the same field are joined by <code>OR</code>. A finding matches if it matches any one of those filters.</p> <p> <code>NOT_EQUALS</code> filters on the same field are joined by <code>AND</code>. A finding matches only if it matches all of those filters.</p> <p>You cannot have both an <code>EQUALS</code> filter and a <code>NOT_EQUALS</code> filter on the same field.</p>"
       }
     },
     "MapFilterList": {
@@ -1412,10 +1821,10 @@
         "AvailabilityZone$SubnetId": "<p>The ID of the subnet. You can specify one subnet per Availability Zone.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$LaunchConfigurationName": "<p>The name of the launch configuration.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$HealthCheckType": "<p>The service to use for the health checks.</p>",
-        "AwsAutoScalingAutoScalingGroupDetails$CreatedTime": "<p>The datetime when the auto scaling group was created.</p>",
+        "AwsAutoScalingAutoScalingGroupDetails$CreatedTime": "<p>Indicates when the auto scaling group was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsCloudFrontDistributionDetails$DomainName": "<p>The domain name corresponding to the distribution.</p>",
         "AwsCloudFrontDistributionDetails$ETag": "<p>The entity tag is a hash of the object.</p>",
-        "AwsCloudFrontDistributionDetails$LastModifiedTime": "<p>The date and time that the distribution was last modified.</p>",
+        "AwsCloudFrontDistributionDetails$LastModifiedTime": "<p>Indicates when that the distribution was last modified.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsCloudFrontDistributionDetails$Status": "<p>Indicates the current status of the distribution.</p>",
         "AwsCloudFrontDistributionDetails$WebAclId": "<p>A unique identifier that specifies the AWS WAF web ACL, if any, to associate with this distribution.</p>",
         "AwsCloudFrontDistributionLogging$Bucket": "<p>The Amazon S3 bucket to store the access logs in.</p>",
@@ -1434,14 +1843,58 @@
         "AwsCodeBuildProjectSource$Type": "<p>The type of repository that contains the source code to be built. Valid values are:</p> <ul> <li> <p> <code>BITBUCKET</code> - The source code is in a Bitbucket repository.</p> </li> <li> <p> <code>CODECOMMIT</code> - The source code is in an AWS CodeCommit repository.</p> </li> <li> <p> <code>CODEPIPELINE</code> - The source code settings are specified in the source action of a pipeline in AWS CodePipeline.</p> </li> <li> <p> <code>GITHUB</code> - The source code is in a GitHub repository.</p> </li> <li> <p> <code>GITHUB_ENTERPRISE</code> - The source code is in a GitHub Enterprise repository.</p> </li> <li> <p> <code>NO_SOURCE</code> - The project does not have input source code.</p> </li> <li> <p> <code>S3</code> - The source code is in an S3 input bucket. </p> </li> </ul>",
         "AwsCodeBuildProjectSource$Location": "<p>Information about the location of the source code to be built.</p> <p>Valid values include:</p> <ul> <li> <p>For source code settings that are specified in the source action of a pipeline in AWS CodePipeline, location should not be specified. If it is specified, AWS CodePipeline ignores it. This is because AWS CodePipeline uses the settings in a pipeline's source action instead of this value.</p> </li> <li> <p>For source code in an AWS CodeCommit repository, the HTTPS clone URL to the repository that contains the source code and the build spec file (for example, <code>https://git-codecommit.region-ID.amazonaws.com/v1/repos/repo-name</code> ).</p> </li> <li> <p>For source code in an S3 input bucket, one of the following.</p> <ul> <li> <p>The path to the ZIP file that contains the source code (for example, <code>bucket-name/path/to/object-name.zip</code>).</p> </li> <li> <p> The path to the folder that contains the source code (for example, <code>bucket-name/path/to/source-code/folder/</code>).</p> </li> </ul> </li> <li> <p>For source code in a GitHub repository, the HTTPS clone URL to the repository that contains the source and the build spec file.</p> </li> <li> <p>For source code in a Bitbucket repository, the HTTPS clone URL to the repository that contains the source and the build spec file. </p> </li> </ul>",
         "AwsCodeBuildProjectVpcConfig$VpcId": "<p>The ID of the VPC.</p>",
+        "AwsDynamoDbTableAttributeDefinition$AttributeName": "<p>The name of the attribute.</p>",
+        "AwsDynamoDbTableAttributeDefinition$AttributeType": "<p>The type of the attribute.</p>",
+        "AwsDynamoDbTableBillingModeSummary$BillingMode": "<p>The method used to charge for read and write throughput and to manage capacity.</p>",
+        "AwsDynamoDbTableBillingModeSummary$LastUpdateToPayPerRequestDateTime": "<p>If the billing mode is <code>PAY_PER_REQUEST</code>, indicates when the billing mode was set to that value.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsDynamoDbTableDetails$CreationDateTime": "<p>Indicates when the table was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsDynamoDbTableDetails$GlobalTableVersion": "<p>The version of global tables being used.</p>",
+        "AwsDynamoDbTableDetails$LatestStreamArn": "<p>The ARN of the latest stream for the table.</p>",
+        "AwsDynamoDbTableDetails$LatestStreamLabel": "<p>The label of the latest stream. The label is not a unique identifier.</p>",
+        "AwsDynamoDbTableDetails$TableId": "<p>The identifier of the table.</p>",
+        "AwsDynamoDbTableDetails$TableName": "<p>The name of the table.</p>",
+        "AwsDynamoDbTableDetails$TableStatus": "<p>The current status of the table.</p>",
+        "AwsDynamoDbTableGlobalSecondaryIndex$IndexArn": "<p>The ARN of the index.</p>",
+        "AwsDynamoDbTableGlobalSecondaryIndex$IndexName": "<p>The name of the index.</p>",
+        "AwsDynamoDbTableGlobalSecondaryIndex$IndexStatus": "<p>The current status of the index.</p>",
+        "AwsDynamoDbTableKeySchema$AttributeName": "<p>The name of the key schema attribute.</p>",
+        "AwsDynamoDbTableKeySchema$KeyType": "<p>The type of key used for the key schema attribute.</p>",
+        "AwsDynamoDbTableLocalSecondaryIndex$IndexArn": "<p>The ARN of the index.</p>",
+        "AwsDynamoDbTableLocalSecondaryIndex$IndexName": "<p>The name of the index.</p>",
+        "AwsDynamoDbTableProjection$ProjectionType": "<p>The types of attributes that are projected into the index.</p>",
+        "AwsDynamoDbTableProvisionedThroughput$LastDecreaseDateTime": "<p>Indicates when the provisioned throughput was last decreased.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsDynamoDbTableProvisionedThroughput$LastIncreaseDateTime": "<p>Indicates when the provisioned throughput was last increased.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsDynamoDbTableReplica$KmsMasterKeyId": "<p>The identifier of the AWS KMS customer master key (CMK) that will be used for AWS KMS encryption for the replica.</p>",
+        "AwsDynamoDbTableReplica$RegionName": "<p>The name of the Region where the replica is located.</p>",
+        "AwsDynamoDbTableReplica$ReplicaStatus": "<p>The current status of the replica.</p>",
+        "AwsDynamoDbTableReplica$ReplicaStatusDescription": "<p>Detailed information about the replica status.</p>",
+        "AwsDynamoDbTableReplicaGlobalSecondaryIndex$IndexName": "<p>The name of the index.</p>",
+        "AwsDynamoDbTableRestoreSummary$SourceBackupArn": "<p>The ARN of the source backup from which the table was restored.</p>",
+        "AwsDynamoDbTableRestoreSummary$SourceTableArn": "<p>The ARN of the source table for the backup.</p>",
+        "AwsDynamoDbTableRestoreSummary$RestoreDateTime": "<p>Indicates the point in time that the table was restored to.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsDynamoDbTableSseDescription$InaccessibleEncryptionDateTime": "<p>If the key is inaccessible, the date and time when DynamoDB detected that the key was inaccessible.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsDynamoDbTableSseDescription$Status": "<p>The status of the server-side encryption.</p>",
+        "AwsDynamoDbTableSseDescription$SseType": "<p>The type of server-side encryption.</p>",
+        "AwsDynamoDbTableSseDescription$KmsMasterKeyArn": "<p>The ARN of the AWS KMS customer master key (CMK) that is used for the AWS KMS encryption.</p>",
+        "AwsDynamoDbTableStreamSpecification$StreamViewType": "<p>Determines the information that is written to the table.</p>",
+        "AwsEc2EipDetails$InstanceId": "<p>The identifier of the EC2 instance.</p>",
+        "AwsEc2EipDetails$PublicIp": "<p>A public IP address that is associated with the EC2 instance.</p>",
+        "AwsEc2EipDetails$AllocationId": "<p>The identifier that AWS assigns to represent the allocation of the Elastic IP address for use with Amazon VPC.</p>",
+        "AwsEc2EipDetails$AssociationId": "<p>The identifier that represents the association of the Elastic IP address with an EC2 instance.</p>",
+        "AwsEc2EipDetails$Domain": "<p>The domain in which to allocate the address.</p> <p>If the address is for use with EC2 instances in a VPC, then <code>Domain</code> is <code>vpc</code>. Otherwise, <code>Domain</code> is <code>standard</code>. </p>",
+        "AwsEc2EipDetails$PublicIpv4Pool": "<p>The identifier of an IP address pool. This parameter allows Amazon EC2 to select an IP address from the address pool.</p>",
+        "AwsEc2EipDetails$NetworkBorderGroup": "<p>The name of the location from which the Elastic IP address is advertised.</p>",
+        "AwsEc2EipDetails$NetworkInterfaceId": "<p>The identifier of the network interface.</p>",
+        "AwsEc2EipDetails$NetworkInterfaceOwnerId": "<p>The AWS account ID of the owner of the network interface.</p>",
+        "AwsEc2EipDetails$PrivateIpAddress": "<p>The private IP address that is associated with the Elastic IP address.</p>",
         "AwsEc2InstanceDetails$Type": "<p>The instance type of the instance. </p>",
         "AwsEc2InstanceDetails$ImageId": "<p>The Amazon Machine Image (AMI) ID of the instance.</p>",
         "AwsEc2InstanceDetails$KeyName": "<p>The key name associated with the instance.</p>",
         "AwsEc2InstanceDetails$IamInstanceProfileArn": "<p>The IAM profile ARN of the instance.</p>",
         "AwsEc2InstanceDetails$VpcId": "<p>The identifier of the VPC that the instance was launched in.</p>",
         "AwsEc2InstanceDetails$SubnetId": "<p>The identifier of the subnet that the instance was launched in.</p>",
-        "AwsEc2InstanceDetails$LaunchedAt": "<p>The date/time the instance was launched.</p>",
-        "AwsEc2NetworkInterfaceAttachment$AttachTime": "<p>The timestamp indicating when the attachment initiated.</p>",
+        "AwsEc2InstanceDetails$LaunchedAt": "<p>Indicates when the instance was launched.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsEc2NetworkInterfaceAttachment$AttachTime": "<p>Indicates when the attachment initiated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsEc2NetworkInterfaceAttachment$AttachmentId": "<p>The identifier of the network interface attachment</p>",
         "AwsEc2NetworkInterfaceAttachment$InstanceId": "<p>The ID of the instance.</p>",
         "AwsEc2NetworkInterfaceAttachment$InstanceOwnerId": "<p>The AWS account ID of the owner of the instance.</p>",
@@ -1466,7 +1919,7 @@
         "AwsEc2VolumeAttachment$AttachTime": "<p>The datetime when the attachment initiated.</p>",
         "AwsEc2VolumeAttachment$InstanceId": "<p>The identifier of the EC2 instance.</p>",
         "AwsEc2VolumeAttachment$Status": "<p>The attachment state of the volume.</p>",
-        "AwsEc2VolumeDetails$CreateTime": "<p>The datetime when the volume was created.</p>",
+        "AwsEc2VolumeDetails$CreateTime": "<p>Indicates when the volume was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsEc2VolumeDetails$SnapshotId": "<p>The snapshot from which the volume was created.</p>",
         "AwsEc2VolumeDetails$Status": "<p>The volume state.</p>",
         "AwsEc2VolumeDetails$KmsKeyId": "<p>The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to protect the volume encryption key for the volume.</p>",
@@ -1481,26 +1934,45 @@
         "AwsElasticsearchDomainEncryptionAtRestOptions$KmsKeyId": "<p>The KMS key ID. Takes the form 1a2a3a4-1a2a-3a4a-5a6a-1a2a3a4a5a6a.</p>",
         "AwsElasticsearchDomainVPCOptions$VPCId": "<p>ID for the VPC.</p>",
         "AwsElbv2LoadBalancerDetails$CanonicalHostedZoneId": "<p>The ID of the Amazon Route 53 hosted zone associated with the load balancer.</p>",
-        "AwsElbv2LoadBalancerDetails$CreatedTime": "<p>The date and time the load balancer was created.</p>",
+        "AwsElbv2LoadBalancerDetails$CreatedTime": "<p>Indicates when the load balancer was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsElbv2LoadBalancerDetails$DNSName": "<p>The public DNS name of the load balancer.</p>",
         "AwsElbv2LoadBalancerDetails$IpAddressType": "<p>The type of IP addresses used by the subnets for your load balancer. The possible values are <code>ipv4</code> (for IPv4 addresses) and <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>",
         "AwsElbv2LoadBalancerDetails$Scheme": "<p>The nodes of an Internet-facing load balancer have public IP addresses.</p>",
         "AwsElbv2LoadBalancerDetails$Type": "<p>The type of load balancer.</p>",
         "AwsElbv2LoadBalancerDetails$VpcId": "<p>The ID of the VPC for the load balancer.</p>",
         "AwsIamAccessKeyDetails$UserName": "<p>The user associated with the IAM access key related to a finding.</p> <p>The <code>UserName</code> parameter has been replaced with the <code>PrincipalName</code> parameter because access keys can also be assigned to principals that are not IAM users.</p>",
-        "AwsIamAccessKeyDetails$CreatedAt": "<p>The creation date/time of the IAM access key related to a finding.</p>",
+        "AwsIamAccessKeyDetails$CreatedAt": "<p>Indicates when the IAM access key was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsIamAccessKeyDetails$PrincipalId": "<p>The ID of the principal associated with an access key.</p>",
         "AwsIamAccessKeyDetails$PrincipalType": "<p>The type of principal associated with an access key.</p>",
         "AwsIamAccessKeyDetails$PrincipalName": "<p>The name of the principal.</p>",
-        "AwsIamRoleDetails$CreateDate": "<p>The date and time, in ISO 8601 date-time format, when the role was created.</p>",
+        "AwsIamAttachedManagedPolicy$PolicyName": "<p>The name of the policy.</p>",
+        "AwsIamAttachedManagedPolicy$PolicyArn": "<p>The ARN of the policy.</p>",
+        "AwsIamPermissionsBoundary$PermissionsBoundaryArn": "<p>The ARN of the policy used to set the permissions boundary for the user.</p>",
+        "AwsIamPermissionsBoundary$PermissionsBoundaryType": "<p>The usage type for the permissions boundary.</p>",
+        "AwsIamPolicyDetails$CreateDate": "<p>When the policy was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsIamPolicyDetails$DefaultVersionId": "<p>The identifier of the default version of the policy.</p>",
+        "AwsIamPolicyDetails$Description": "<p>A description of the policy.</p>",
+        "AwsIamPolicyDetails$Path": "<p>The path to the policy.</p>",
+        "AwsIamPolicyDetails$PolicyId": "<p>The unique identifier of the policy.</p>",
+        "AwsIamPolicyDetails$PolicyName": "<p>The name of the policy.</p>",
+        "AwsIamPolicyDetails$UpdateDate": "<p>When the policy was most recently updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsIamPolicyVersion$VersionId": "<p>The identifier of the policy version.</p>",
+        "AwsIamPolicyVersion$CreateDate": "<p>Indicates when the version was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsIamRoleDetails$CreateDate": "<p>Indicates when the role was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsIamRoleDetails$RoleId": "<p>The stable and unique string identifying the role.</p>",
         "AwsIamRoleDetails$RoleName": "<p>The friendly name that identifies the role.</p>",
         "AwsIamRoleDetails$Path": "<p>The path to the role.</p>",
+        "AwsIamUserDetails$CreateDate": "<p>Indicates when the user was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsIamUserDetails$Path": "<p>The path to the user.</p>",
+        "AwsIamUserDetails$UserId": "<p>The unique identifier for the user.</p>",
+        "AwsIamUserDetails$UserName": "<p>The name of the user.</p>",
+        "AwsIamUserPolicy$PolicyName": "<p>The name of the policy.</p>",
         "AwsKmsKeyDetails$AWSAccountId": "<p>The twelve-digit account ID of the AWS account that owns the CMK.</p>",
         "AwsKmsKeyDetails$KeyId": "<p>The globally unique identifier for the CMK.</p>",
         "AwsKmsKeyDetails$KeyManager": "<p>The manager of the CMK. CMKs in your AWS account are either customer managed or AWS managed.</p>",
         "AwsKmsKeyDetails$KeyState": "<p>The state of the CMK.</p>",
         "AwsKmsKeyDetails$Origin": "<p>The source of the CMK's key material.</p> <p>When this value is <code>AWS_KMS</code>, AWS KMS created the key material.</p> <p>When this value is <code>EXTERNAL</code>, the key material was imported from your existing key management infrastructure or the CMK lacks key material.</p> <p>When this value is <code>AWS_CLOUDHSM</code>, the key material was created in the AWS CloudHSM cluster associated with a custom key store.</p>",
+        "AwsKmsKeyDetails$Description": "<p>A description of the key.</p>",
         "AwsLambdaFunctionCode$S3Bucket": "<p>An Amazon S3 bucket in the same AWS Region as your function. The bucket can be in a different AWS account.</p>",
         "AwsLambdaFunctionCode$S3Key": "<p>The Amazon S3 key of the deployment package.</p>",
         "AwsLambdaFunctionCode$S3ObjectVersion": "<p>For versioned objects, the version of the deployment package object to use.</p>",
@@ -1510,7 +1982,7 @@
         "AwsLambdaFunctionDetails$FunctionName": "<p>The name of the function.</p>",
         "AwsLambdaFunctionDetails$Handler": "<p>The function that Lambda calls to begin executing your function.</p>",
         "AwsLambdaFunctionDetails$KmsKeyArn": "<p>The KMS key that's used to encrypt the function's environment variables. This key is only returned if you've configured a customer managed CMK.</p>",
-        "AwsLambdaFunctionDetails$LastModified": "<p>The date and time that the function was last updated, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).</p>",
+        "AwsLambdaFunctionDetails$LastModified": "<p>Indicates when the function was last updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsLambdaFunctionDetails$MasterArn": "<p>For Lambda@Edge functions, the ARN of the master function.</p>",
         "AwsLambdaFunctionDetails$RevisionId": "<p>The latest updated revision of the function or alias.</p>",
         "AwsLambdaFunctionDetails$Role": "<p>The function's execution role.</p>",
@@ -1521,7 +1993,47 @@
         "AwsLambdaFunctionLayer$Arn": "<p>The Amazon Resource Name (ARN) of the function layer.</p>",
         "AwsLambdaFunctionTracingConfig$Mode": "<p>The tracing mode.</p>",
         "AwsLambdaFunctionVpcConfig$VpcId": "<p>The ID of the VPC.</p>",
-        "AwsLambdaLayerVersionDetails$CreatedDate": "<p>The date that the version was created, in ISO 8601 format. For example, 2018-11-27T15:10:45.123+0000. </p>",
+        "AwsLambdaLayerVersionDetails$CreatedDate": "<p>Indicates when the version was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRdsDbClusterAssociatedRole$RoleArn": "<p>The ARN of the IAM role.</p>",
+        "AwsRdsDbClusterAssociatedRole$Status": "<p>The status of the association between the IAM role and the DB cluster.</p>",
+        "AwsRdsDbClusterDetails$DatabaseName": "<p>The name of the database.</p>",
+        "AwsRdsDbClusterDetails$Status": "<p>The current status of this DB cluster.</p>",
+        "AwsRdsDbClusterDetails$Endpoint": "<p>The connection endpoint for the primary instance of the DB cluster.</p>",
+        "AwsRdsDbClusterDetails$ReaderEndpoint": "<p>The reader endpoint for the DB cluster.</p>",
+        "AwsRdsDbClusterDetails$Engine": "<p>The name of the database engine to use for this DB cluster.</p>",
+        "AwsRdsDbClusterDetails$EngineVersion": "<p>The version number of the database engine to use.</p>",
+        "AwsRdsDbClusterDetails$MasterUsername": "<p>The name of the master user for the DB cluster.</p>",
+        "AwsRdsDbClusterDetails$PreferredBackupWindow": "<p>The range of time each day when automated backups are created, if automated backups are enabled.</p> <p>Uses the format <code>HH:MM-HH:MM</code>. For example, <code>04:52-05:22</code>.</p>",
+        "AwsRdsDbClusterDetails$PreferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p> <p>Uses the format <code>&lt;day&gt;:HH:MM-&lt;day&gt;:HH:MM</code>.</p> <p>For the day values, use <code>mon</code>|<code>tue</code>|<code>wed</code>|<code>thu</code>|<code>fri</code>|<code>sat</code>|<code>sun</code>.</p> <p>For example, <code>sun:09:32-sun:10:02</code>.</p>",
+        "AwsRdsDbClusterDetails$HostedZoneId": "<p>Specifies the identifier that Amazon Route 53 assigns when you create a hosted zone.</p>",
+        "AwsRdsDbClusterDetails$KmsKeyId": "<p>The ARN of the AWS KMS master key that is used to encrypt the database instances in the DB cluster.</p>",
+        "AwsRdsDbClusterDetails$DbClusterResourceId": "<p>The identifier of the DB cluster. The identifier must be unique within each AWS Region and is immutable.</p>",
+        "AwsRdsDbClusterDetails$ClusterCreateTime": "<p>Indicates when the DB cluster was created, in Universal Coordinated Time (UTC).</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRdsDbClusterDetails$EngineMode": "<p>The database engine mode of the DB cluster.</p>",
+        "AwsRdsDbClusterDetails$ActivityStreamStatus": "<p>The status of the database activity stream.</p>",
+        "AwsRdsDbClusterDetails$DbClusterParameterGroup": "<p>The name of the DB cluster parameter group for the DB cluster.</p>",
+        "AwsRdsDbClusterDetails$DbSubnetGroup": "<p>The subnet group that is associated with the DB cluster, including the name, description, and subnets in the subnet group.</p>",
+        "AwsRdsDbClusterDetails$DbClusterIdentifier": "<p>The DB cluster identifier that the user assigned to the cluster. This identifier is the unique key that identifies a DB cluster.</p>",
+        "AwsRdsDbClusterMember$DbInstanceIdentifier": "<p>The instance identifier for this member of the DB cluster.</p>",
+        "AwsRdsDbClusterMember$DbClusterParameterGroupStatus": "<p>The status of the DB cluster parameter group for this member of the DB cluster.</p>",
+        "AwsRdsDbClusterOptionGroupMembership$DbClusterOptionGroupName": "<p>The name of the DB cluster option group.</p>",
+        "AwsRdsDbClusterOptionGroupMembership$Status": "<p>The status of the DB cluster option group.</p>",
+        "AwsRdsDbClusterSnapshotDetails$SnapshotCreateTime": "<p>Indicates when the snapshot was taken.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRdsDbClusterSnapshotDetails$Engine": "<p/>",
+        "AwsRdsDbClusterSnapshotDetails$Status": "<p>The status of this DB cluster snapshot.</p>",
+        "AwsRdsDbClusterSnapshotDetails$VpcId": "<p>The VPC ID that is associated with the DB cluster snapshot.</p>",
+        "AwsRdsDbClusterSnapshotDetails$ClusterCreateTime": "<p>Indicates when the DB cluster was created, in Universal Coordinated Time (UTC).</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRdsDbClusterSnapshotDetails$MasterUsername": "<p>The name of the master user for the DB cluster.</p>",
+        "AwsRdsDbClusterSnapshotDetails$EngineVersion": "<p>The version of the database engine to use.</p>",
+        "AwsRdsDbClusterSnapshotDetails$LicenseModel": "<p>The license model information for this DB cluster snapshot.</p>",
+        "AwsRdsDbClusterSnapshotDetails$SnapshotType": "<p>The type of DB cluster snapshot.</p>",
+        "AwsRdsDbClusterSnapshotDetails$KmsKeyId": "<p>The ARN of the AWS KMS master key that is used to encrypt the database instances in the DB cluster.</p>",
+        "AwsRdsDbClusterSnapshotDetails$DbClusterIdentifier": "<p>The DB cluster identifier.</p>",
+        "AwsRdsDbClusterSnapshotDetails$DbClusterSnapshotIdentifier": "<p>The identifier of the DB cluster snapshot.</p>",
+        "AwsRdsDbDomainMembership$Domain": "<p>The identifier of the Active Directory domain.</p>",
+        "AwsRdsDbDomainMembership$Status": "<p>The status of the Active Directory Domain membership for the DB instance.</p>",
+        "AwsRdsDbDomainMembership$Fqdn": "<p>The fully qualified domain name of the Active Directory domain.</p>",
+        "AwsRdsDbDomainMembership$IamRoleName": "<p>The name of the IAM role to use when making API calls to the Directory Service.</p>",
         "AwsRdsDbInstanceAssociatedRole$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that is associated with the DB instance.</p>",
         "AwsRdsDbInstanceAssociatedRole$FeatureName": "<p>The name of the feature associated with the IAM)role.</p>",
         "AwsRdsDbInstanceAssociatedRole$Status": "<p>Describes the state of the association between the IAM role and the DB instance. The <code>Status</code> property returns one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The IAM role ARN is associated with the DB instance and can be used to access other AWS services on your behalf.</p> </li> <li> <p> <code>PENDING</code> - The IAM role ARN is being associated with the DB instance.</p> </li> <li> <p> <code>INVALID</code> - The IAM role ARN is associated with the DB instance. But the DB instance is unable to assume the IAM role in order to access other AWS services on your behalf. </p> </li> </ul>",
@@ -1533,33 +2045,97 @@
         "AwsRdsDbInstanceDetails$DBName": "<p>The meaning of this parameter differs according to the database engine you use.</p> <p> <b>MySQL, MariaDB, SQL Server, PostgreSQL</b> </p> <p>Contains the name of the initial database of this instance that was provided at create time, if one was specified when the DB instance was created. This same name is returned for the life of the DB instance.</p> <p> <b>Oracle</b> </p> <p>Contains the Oracle System ID (SID) of the created DB instance. Not shown when the returned parameters do not apply to an Oracle DB instance. </p>",
         "AwsRdsDbInstanceDetails$Engine": "<p>Provides the name of the database engine to use for this DB instance.</p>",
         "AwsRdsDbInstanceDetails$EngineVersion": "<p>Indicates the database engine version.</p>",
-        "AwsRdsDbInstanceDetails$InstanceCreateTime": "<p>Provides the date and time the DB instance was created.</p>",
+        "AwsRdsDbInstanceDetails$InstanceCreateTime": "<p>Indicates when the DB instance was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsRdsDbInstanceDetails$KmsKeyId": "<p>If <code>StorageEncrypted</code> is true, the AWS KMS key identifier for the encrypted DB instance.</p>",
         "AwsRdsDbInstanceDetails$TdeCredentialArn": "<p>The ARN from the key store with which the instance is associated for TDE encryption.</p>",
+        "AwsRdsDbInstanceDetails$EnhancedMonitoringResourceArn": "<p>The ARN of the CloudWatch Logs log stream that receives the enhanced monitoring metrics data for the DB instance.</p>",
+        "AwsRdsDbInstanceDetails$DbInstanceStatus": "<p>The current status of the DB instance.</p>",
+        "AwsRdsDbInstanceDetails$MasterUsername": "<p>The master user name of the DB instance.</p>",
+        "AwsRdsDbInstanceDetails$PreferredBackupWindow": "<p>The range of time each day when automated backups are created, if automated backups are enabled.</p> <p>Uses the format <code>HH:MM-HH:MM</code>. For example, <code>04:52-05:22</code>.</p>",
+        "AwsRdsDbInstanceDetails$AvailabilityZone": "<p>The Availability Zone where the DB instance will be created.</p>",
+        "AwsRdsDbInstanceDetails$PreferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p> <p>Uses the format <code>&lt;day&gt;:HH:MM-&lt;day&gt;:HH:MM</code>.</p> <p>For the day values, use <code>mon</code>|<code>tue</code>|<code>wed</code>|<code>thu</code>|<code>fri</code>|<code>sat</code>|<code>sun</code>.</p> <p>For example, <code>sun:09:32-sun:10:02</code>.</p>",
+        "AwsRdsDbInstanceDetails$LatestRestorableTime": "<p>Specifies the latest time to which a database can be restored with point-in-time restore.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRdsDbInstanceDetails$ReadReplicaSourceDBInstanceIdentifier": "<p>If this DB instance is a read replica, contains the identifier of the source DB instance.</p>",
+        "AwsRdsDbInstanceDetails$LicenseModel": "<p>License model information for this DB instance.</p>",
+        "AwsRdsDbInstanceDetails$CharacterSetName": "<p>The name of the character set that this DB instance is associated with.</p>",
+        "AwsRdsDbInstanceDetails$SecondaryAvailabilityZone": "<p>For a DB instance with multi-Availability Zone support, the name of the secondary Availability Zone.</p>",
+        "AwsRdsDbInstanceDetails$StorageType": "<p>The storage type for the DB instance.</p>",
+        "AwsRdsDbInstanceDetails$MonitoringRoleArn": "<p>The ARN for the IAM role that permits Amazon RDS to send enhanced monitoring metrics to CloudWatch Logs.</p>",
+        "AwsRdsDbInstanceDetails$Timezone": "<p>The time zone of the DB instance.</p>",
+        "AwsRdsDbInstanceDetails$PerformanceInsightsKmsKeyId": "<p>The identifier of the AWS KMS key used to encrypt the Performance Insights data.</p>",
         "AwsRdsDbInstanceEndpoint$Address": "<p>Specifies the DNS address of the DB instance.</p>",
         "AwsRdsDbInstanceEndpoint$HostedZoneId": "<p>Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.</p>",
         "AwsRdsDbInstanceVpcSecurityGroup$VpcSecurityGroupId": "<p>The name of the VPC security group.</p>",
         "AwsRdsDbInstanceVpcSecurityGroup$Status": "<p>The status of the VPC security group.</p>",
+        "AwsRdsDbOptionGroupMembership$OptionGroupName": "<p/>",
+        "AwsRdsDbOptionGroupMembership$Status": "<p/>",
+        "AwsRdsDbParameterGroup$DbParameterGroupName": "<p/>",
+        "AwsRdsDbParameterGroup$ParameterApplyStatus": "<p/>",
+        "AwsRdsDbPendingModifiedValues$DbInstanceClass": "<p/>",
+        "AwsRdsDbPendingModifiedValues$MasterUserPassword": "<p/>",
+        "AwsRdsDbPendingModifiedValues$EngineVersion": "<p/>",
+        "AwsRdsDbPendingModifiedValues$LicenseModel": "<p/>",
+        "AwsRdsDbPendingModifiedValues$DbInstanceIdentifier": "<p/>",
+        "AwsRdsDbPendingModifiedValues$StorageType": "<p/>",
+        "AwsRdsDbPendingModifiedValues$CaCertificateIdentifier": "<p/>",
+        "AwsRdsDbPendingModifiedValues$DbSubnetGroupName": "<p/>",
+        "AwsRdsDbProcessorFeature$Name": "<p/>",
+        "AwsRdsDbProcessorFeature$Value": "<p/>",
+        "AwsRdsDbSnapshotDetails$DbSnapshotIdentifier": "<p/>",
+        "AwsRdsDbSnapshotDetails$DbInstanceIdentifier": "<p/>",
+        "AwsRdsDbSnapshotDetails$SnapshotCreateTime": "<p/>",
+        "AwsRdsDbSnapshotDetails$Engine": "<p/>",
+        "AwsRdsDbSnapshotDetails$Status": "<p/>",
+        "AwsRdsDbSnapshotDetails$AvailabilityZone": "<p/>",
+        "AwsRdsDbSnapshotDetails$VpcId": "<p/>",
+        "AwsRdsDbSnapshotDetails$InstanceCreateTime": "<p/>",
+        "AwsRdsDbSnapshotDetails$MasterUsername": "<p/>",
+        "AwsRdsDbSnapshotDetails$EngineVersion": "<p/>",
+        "AwsRdsDbSnapshotDetails$LicenseModel": "<p/>",
+        "AwsRdsDbSnapshotDetails$SnapshotType": "<p/>",
+        "AwsRdsDbSnapshotDetails$OptionGroupName": "<p/>",
+        "AwsRdsDbSnapshotDetails$SourceRegion": "<p/>",
+        "AwsRdsDbSnapshotDetails$SourceDbSnapshotIdentifier": "<p/>",
+        "AwsRdsDbSnapshotDetails$StorageType": "<p/>",
+        "AwsRdsDbSnapshotDetails$TdeCredentialArn": "<p/>",
+        "AwsRdsDbSnapshotDetails$KmsKeyId": "<p/>",
+        "AwsRdsDbSnapshotDetails$Timezone": "<p/>",
+        "AwsRdsDbSnapshotDetails$DbiResourceId": "<p/>",
+        "AwsRdsDbStatusInfo$StatusType": "<p>The type of status. For a read replica, the status type is read replication.</p>",
+        "AwsRdsDbStatusInfo$Status": "<p>The status of the read replica instance.</p>",
+        "AwsRdsDbStatusInfo$Message": "<p>If the read replica is currently in an error state, provides the error details.</p>",
+        "AwsRdsDbSubnetGroup$DbSubnetGroupName": "<p>The name of the subnet group.</p>",
+        "AwsRdsDbSubnetGroup$DbSubnetGroupDescription": "<p>The description of the subnet group.</p>",
+        "AwsRdsDbSubnetGroup$VpcId": "<p>The VPC ID of the subnet group.</p>",
+        "AwsRdsDbSubnetGroup$SubnetGroupStatus": "<p>The status of the subnet group.</p>",
+        "AwsRdsDbSubnetGroup$DbSubnetGroupArn": "<p>The ARN of the subnet group.</p>",
+        "AwsRdsDbSubnetGroupSubnet$SubnetIdentifier": "<p>The identifier of a subnet in the subnet group.</p>",
+        "AwsRdsDbSubnetGroupSubnet$SubnetStatus": "<p>The status of a subnet in the subnet group.</p>",
+        "AwsRdsDbSubnetGroupSubnetAvailabilityZone$Name": "<p>The name of the Availability Zone for a subnet in the subnet group.</p>",
         "AwsS3BucketDetails$OwnerId": "<p>The canonical user ID of the owner of the S3 bucket.</p>",
         "AwsS3BucketDetails$OwnerName": "<p>The display name of the owner of the S3 bucket.</p>",
-        "AwsS3BucketDetails$CreatedAt": "<p>The date and time when the S3 bucket was created.</p>",
+        "AwsS3BucketDetails$CreatedAt": "<p>Indicates when the S3 bucket was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsS3BucketServerSideEncryptionByDefault$SSEAlgorithm": "<p>Server-side encryption algorithm to use for the default encryption.</p>",
         "AwsS3BucketServerSideEncryptionByDefault$KMSMasterKeyID": "<p>AWS KMS customer master key (CMK) ID to use for the default encryption.</p>",
-        "AwsS3ObjectDetails$LastModified": "<p>The date and time when the object was last modified.</p>",
+        "AwsS3ObjectDetails$LastModified": "<p>Indicates when the object was last modified.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsS3ObjectDetails$ETag": "<p>The opaque identifier assigned by a web server to a specific version of a resource found at a URL.</p>",
         "AwsS3ObjectDetails$VersionId": "<p>The version of the object.</p>",
         "AwsS3ObjectDetails$ContentType": "<p>A standard MIME type describing the format of the object data.</p>",
         "AwsS3ObjectDetails$ServerSideEncryption": "<p>If the object is stored using server-side encryption, the value of the server-side encryption algorithm used when storing this object in Amazon S3.</p>",
         "AwsS3ObjectDetails$SSEKMSKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) symmetric customer managed customer master key (CMK) that was used for the object.</p>",
+        "AwsSecretsManagerSecretDetails$KmsKeyId": "<p>The ARN, Key ID, or alias of the AWS KMS customer master key (CMK) used to encrypt the <code>SecretString</code> or <code>SecretBinary</code> values for versions of this secret.</p>",
+        "AwsSecretsManagerSecretDetails$RotationLambdaArn": "<p>The ARN of the Lambda function that rotates the secret.</p>",
+        "AwsSecretsManagerSecretDetails$Name": "<p>The name of the secret.</p>",
+        "AwsSecretsManagerSecretDetails$Description": "<p>The user-provided description of the secret.</p>",
         "AwsSecurityFinding$SchemaVersion": "<p>The schema version that a finding is formatted for.</p>",
         "AwsSecurityFinding$Id": "<p>The security findings provider-specific identifier for a finding.</p>",
         "AwsSecurityFinding$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
         "AwsSecurityFinding$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security-findings providers' solutions, this generator can be called a rule, a check, a detector, a plugin, etc. </p>",
         "AwsSecurityFinding$AwsAccountId": "<p>The AWS account ID that a finding is generated in.</p>",
-        "AwsSecurityFinding$FirstObservedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider first observed the potential security issue that a finding captured.</p>",
-        "AwsSecurityFinding$LastObservedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider most recently observed the potential security issue that a finding captured.</p>",
-        "AwsSecurityFinding$CreatedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider created the potential security issue that a finding captured.</p>",
-        "AwsSecurityFinding$UpdatedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider last updated the finding record. </p>",
+        "AwsSecurityFinding$FirstObservedAt": "<p>Indicates when the security-findings provider first observed the potential security issue that a finding captured.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsSecurityFinding$LastObservedAt": "<p>Indicates when the security-findings provider most recently observed the potential security issue that a finding captured.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsSecurityFinding$CreatedAt": "<p>Indicates when the security-findings provider created the potential security issue that a finding captured.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsSecurityFinding$UpdatedAt": "<p>Indicates when the security-findings provider last updated the finding record.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsSecurityFinding$Title": "<p>A finding's title.</p> <note> <p>In this release, <code>Title</code> is a required property.</p> </note>",
         "AwsSecurityFinding$Description": "<p>A finding's description.</p> <note> <p>In this release, <code>Description</code> is a required property.</p> </note>",
         "AwsSecurityFinding$SourceUrl": "<p>A URL that links to a page about the current finding in the security-findings provider's solution.</p>",
@@ -1587,7 +2163,7 @@
         "ContainerDetails$Name": "<p>The name of the container related to a finding.</p>",
         "ContainerDetails$ImageId": "<p>The identifier of the image related to a finding.</p>",
         "ContainerDetails$ImageName": "<p>The name of the image related to a finding.</p>",
-        "ContainerDetails$LaunchedAt": "<p>The date and time when the container started.</p>",
+        "ContainerDetails$LaunchedAt": "<p>Indicates when the container started.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "CreateActionTargetRequest$Name": "<p>The name of the custom action target.</p>",
         "CreateActionTargetRequest$Description": "<p>The description for the custom action target.</p>",
         "CreateActionTargetRequest$Id": "<p>The ID for the custom action target.</p>",
@@ -1643,8 +2219,8 @@
         "LoadBalancerState$Reason": "<p>A description of the state.</p>",
         "Malware$Name": "<p>The name of the malware that was observed.</p>",
         "Malware$Path": "<p>The file system path of the malware that was observed.</p>",
-        "MapFilter$Key": "<p>The key of the map filter.</p>",
-        "MapFilter$Value": "<p>The value for the key in the map filter.</p>",
+        "MapFilter$Key": "<p>The key of the map filter. For example, for <code>ResourceTags</code>, <code>Key</code> identifies the name of the tag. For <code>UserDefinedFields</code>, <code>Key</code> is the name of the field.</p>",
+        "MapFilter$Value": "<p>The value for the key in the map filter. Filter values are case sensitive. For example, one of the values for a tag called <code>Department</code> might be <code>Security</code>. If you provide <code>security</code> as the filter value, then there is no match.</p>",
         "Member$Email": "<p>The email address of the member account.</p>",
         "Member$MasterId": "<p>The AWS account ID of the Security Hub master account associated with this member account.</p>",
         "Member$MemberStatus": "<p>The status of the relationship between the member account and its master account. </p>",
@@ -1662,13 +2238,13 @@
         "NonEmptyStringList$member": null,
         "Note$Text": "<p>The text of a note.</p>",
         "Note$UpdatedBy": "<p>The principal that created a note.</p>",
-        "Note$UpdatedAt": "<p>The timestamp of when the note was updated.</p>",
+        "Note$UpdatedAt": "<p>The timestamp of when the note was updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "NoteUpdate$Text": "<p>The updated note text.</p>",
         "NoteUpdate$UpdatedBy": "<p>The principal that updated the note.</p>",
         "ProcessDetails$Name": "<p>The name of the process.</p>",
         "ProcessDetails$Path": "<p>The path to the process executable.</p>",
-        "ProcessDetails$LaunchedAt": "<p>The date/time that the process was launched.</p>",
-        "ProcessDetails$TerminatedAt": "<p>The date and time when the process was terminated.</p>",
+        "ProcessDetails$LaunchedAt": "<p>Indicates when the process was launched.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "ProcessDetails$TerminatedAt": "<p>Indicates when the process was terminated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "Product$ProductArn": "<p>The ARN assigned to the product.</p>",
         "Product$ProductName": "<p>The name of the product.</p>",
         "Product$CompanyName": "<p>The name of the company that provides the product.</p>",
@@ -1715,10 +2291,10 @@
         "StandardsSubscriptionRequest$StandardsArn": "<p>The ARN of the standard that you want to enable. To view the list of available standards and their ARNs, use the <code> <a>DescribeStandards</a> </code> operation.</p>",
         "StatusReason$ReasonCode": "<p>A code that represents a reason for the control status. For the list of status reason codes and their meanings, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-results.html#securityhub-standards-results-asff\">Standards-related information in the ASFF</a> in the <i>AWS Security Hub User Guide</i>. </p>",
         "StatusReason$Description": "<p>The corresponding description for the status reason code.</p>",
-        "StringFilter$Value": "<p>The string filter value.</p>",
+        "StringFilter$Value": "<p>The string filter value. Filter values are case sensitive. For example, the product name for control-based findings is <code>Security Hub</code>. If you provide <code>security hub</code> as the filter text, then there is no match.</p>",
         "StringList$member": null,
         "ThreatIntelIndicator$Value": "<p>The value of a threat intelligence indicator.</p>",
-        "ThreatIntelIndicator$LastObservedAt": "<p>The date and time when the most recent instance of a threat intelligence indicator was observed.</p>",
+        "ThreatIntelIndicator$LastObservedAt": "<p>Indicates when the most recent instance of a threat intelligence indicator was observed.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "ThreatIntelIndicator$Source": "<p>The source of the threat intelligence indicator.</p>",
         "ThreatIntelIndicator$SourceUrl": "<p>The URL to the page or site where you can get more information about the threat intelligence indicator.</p>",
         "TypeList$member": null,
@@ -1734,8 +2310,8 @@
         "VulnerabilityVendor$Name": "<p>The name of the vendor.</p>",
         "VulnerabilityVendor$Url": "<p>The URL of the vulnerability advisory.</p>",
         "VulnerabilityVendor$VendorSeverity": "<p>The severity that the vendor assigned to the vulnerability.</p>",
-        "VulnerabilityVendor$VendorCreatedAt": "<p>The datetime when the vulnerability advisory was created.</p>",
-        "VulnerabilityVendor$VendorUpdatedAt": "<p>The datetime when the vulnerability advisory was last updated.</p>",
+        "VulnerabilityVendor$VendorCreatedAt": "<p>Indicates when the vulnerability advisory was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "VulnerabilityVendor$VendorUpdatedAt": "<p>Indicates when the vulnerability advisory was last updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "WafAction$Type": "<p>Specifies how you want AWS WAF to respond to requests that match the settings in a rule.</p> <p>Valid settings include the following:</p> <ul> <li> <p> <code>ALLOW</code> - AWS WAF allows requests</p> </li> <li> <p> <code>BLOCK</code> - AWS WAF blocks requests</p> </li> <li> <p> <code>COUNT</code> - AWS WAF increments a counter of the requests that match all of the conditions in the rule. AWS WAF then continues to inspect the web request based on the remaining rules in the web ACL. You can't specify <code>COUNT</code> for the default action for a WebACL.</p> </li> </ul>",
         "WafExcludedRule$RuleId": "<p>The unique identifier for the rule to exclude from the rule group.</p>",
         "WafOverrideAction$Type": "<p> <code>COUNT</code> overrides the action specified by the individual rule within a <code>RuleGroup</code> .</p> <p>If set to <code>NONE</code>, the rule's action takes place.</p>"
@@ -1960,6 +2536,13 @@
         "BatchUpdateFindingsRequest$Severity": "<p>Used to update the finding severity.</p>"
       }
     },
+    "SizeBytes": {
+      "base": null,
+      "refs": {
+        "AwsDynamoDbTableDetails$TableSizeBytes": "<p>The total size of the table in bytes.</p>",
+        "AwsDynamoDbTableGlobalSecondaryIndex$IndexSizeBytes": "<p>The total size in bytes of the index.</p>"
+      }
+    },
     "SoftwarePackage": {
       "base": "<p>Information about a software package.</p>",
       "refs": {
@@ -2081,7 +2664,7 @@
     "StringFilterComparison": {
       "base": null,
       "refs": {
-        "StringFilter$Comparison": "<p>The condition to be applied to a string value when querying for findings. </p>"
+        "StringFilter$Comparison": "<p>The condition to apply to a string value when querying for findings. To search for values that contain the filter criteria value, use one of the following comparison operators:</p> <ul> <li> <p>To search for values that exactly match the filter value, use <code>EQUALS</code>.</p> <p>For example, the filter <code>ResourceType EQUALS AwsEc2SecurityGroup</code> only matches findings that have a resource type of <code>AwsEc2SecurityGroup</code>.</p> </li> <li> <p>To search for values that start with the filter value, use <code>PREFIX</code>.</p> <p>For example, the filter <code>ResourceType PREFIX AwsIam</code> matches findings that have a resource type that starts with <code>AwsIam</code>. Findings with a resource type of <code>AwsIamPolicy</code>, <code>AwsIamRole</code>, or <code>AwsIamUser</code> would all match.</p> </li> </ul> <p> <code>EQUALS</code> and <code>PREFIX</code> filters on the same field are joined by <code>OR</code>. A finding matches if it matches any one of those filters.</p> <p>To search for values that do not contain the filter criteria value, use one of the following comparison operators:</p> <ul> <li> <p>To search for values that do not exactly match the filter value, use <code>NOT_EQUALS</code>.</p> <p>For example, the filter <code>ResourceType NOT_EQUALS AwsIamPolicy</code> matches findings that have a resource type other than <code>AwsIamPolicy</code>.</p> </li> <li> <p>To search for values that do not start with the filter value, use <code>PREFIX_NOT_EQUALS</code>.</p> <p>For example, the filter <code>ResourceType PREFIX_NOT_EQUALS AwsIam</code> matches findings that have a resource type that does not start with <code>AwsIam</code>. Findings with a resource type of <code>AwsIamPolicy</code>, <code>AwsIamRole</code>, or <code>AwsIamUser</code> would all be excluded from the results.</p> </li> </ul> <p> <code>NOT_EQUALS</code> and <code>PREFIX_NOT_EQUALS</code> filters on the same field are joined by <code>AND</code>. A finding matches only if it matches all of those filters.</p> <p>For filters on the same field, you cannot provide both an <code>EQUALS</code> filter and a <code>NOT_EQUALS</code> or <code>PREFIX_NOT_EQUALS</code> filter. Combining filters in this way always returns an error, even if the provided filter values would return valid results.</p> <p>You can combine <code>PREFIX</code> filters with <code>NOT_EQUALS</code> or <code>PREFIX_NOT_EQUALS</code> filters for the same field. Security Hub first processes the <code>PREFIX</code> filters, then the <code>NOT_EQUALS</code> or <code>PREFIX_NOT_EQUALS</code> filters.</p> <p> For example, for the following filter, Security Hub first identifies findings that have resource types that start with either <code>AwsIAM</code> or <code>AwsEc2</code>. It then excludes findings that have a resource type of <code>AwsIamPolicy</code> and findings that have a resource type of <code>AwsEc2NetworkInterface</code>.</p> <ul> <li> <p> <code>ResourceType PREFIX AwsIam</code> </p> </li> <li> <p> <code>ResourceType PREFIX AwsEc2</code> </p> </li> <li> <p> <code>ResourceType NOT_EQUALS AwsIamPolicy</code> </p> </li> <li> <p> <code>ResourceType NOT_EQUALS AwsEc2NetworkInterface</code> </p> </li> </ul>"
       }
     },
     "StringFilterList": {
@@ -2147,8 +2730,21 @@
       "base": null,
       "refs": {
         "AwsAutoScalingAutoScalingGroupDetails$LoadBalancerNames": "<p>The list of load balancers associated with the group.</p>",
+        "AwsDynamoDbTableProjection$NonKeyAttributes": "<p>The nonkey attributes that are projected into the index. For each attribute, provide the attribute name.</p>",
         "AwsEc2InstanceDetails$IpV4Addresses": "<p>The IPv4 addresses associated with the instance.</p>",
         "AwsEc2InstanceDetails$IpV6Addresses": "<p>The IPv6 addresses associated with the instance.</p>",
+        "AwsIamUserDetails$GroupList": "<p>A list of IAM groups that the user belongs to.</p>",
+        "AwsRdsDbClusterDetails$AvailabilityZones": "<p>A list of Availability Zones (AZs) where instances in the DB cluster can be created.</p>",
+        "AwsRdsDbClusterDetails$CustomEndpoints": "<p>A list of custom endpoints for the DB cluster.</p>",
+        "AwsRdsDbClusterDetails$ReadReplicaIdentifiers": "<p>The identifiers of the read replicas that are associated with this DB cluster.</p>",
+        "AwsRdsDbClusterDetails$EnabledCloudWatchLogsExports": "<p>A list of log types that this DB cluster is configured to export to CloudWatch Logs.</p>",
+        "AwsRdsDbClusterSnapshotDetails$AvailabilityZones": "<p>A list of Availability Zones where instances in the DB cluster can be created.</p>",
+        "AwsRdsDbInstanceDetails$DbSecurityGroups": "<p>A list of the DB security groups to assign to the DB instance.</p>",
+        "AwsRdsDbInstanceDetails$ReadReplicaDBInstanceIdentifiers": "<p>List of identifiers of the read replicas associated with this DB instance.</p>",
+        "AwsRdsDbInstanceDetails$ReadReplicaDBClusterIdentifiers": "<p>List of identifiers of Aurora DB clusters to which the RDS DB instance is replicated as a read replica.</p>",
+        "AwsRdsDbInstanceDetails$EnabledCloudWatchLogsExports": "<p>A list of log types that this DB instance is configured to export to CloudWatch Logs.</p>",
+        "AwsRdsPendingCloudWatchLogsExports$LogTypesToEnable": "<p>A list of log types that are being enabled.</p>",
+        "AwsRdsPendingCloudWatchLogsExports$LogTypesToDisable": "<p>A list of log types that are being disabled.</p>",
         "NetworkPathComponentDetails$Address": "<p>The IP addresses of the destination.</p>",
         "Vulnerability$RelatedVulnerabilities": "<p>List of vulnerabilities that are related to this vulnerability.</p>",
         "Vulnerability$ReferenceUrls": "<p>A list of URLs that provide additional information about the vulnerability.</p>"

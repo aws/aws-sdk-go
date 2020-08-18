@@ -145,6 +145,20 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "CreateImportJob":{
+      "name":"CreateImportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/import-jobs"
+      },
+      "input":{"shape":"CreateImportJobRequest"},
+      "output":{"shape":"CreateImportJobResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "DeleteConfigurationSet":{
       "name":"DeleteConfigurationSet",
       "http":{
@@ -455,6 +469,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetImportJob":{
+      "name":"GetImportJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/import-jobs/{JobId}"
+      },
+      "input":{"shape":"GetImportJobRequest"},
+      "output":{"shape":"GetImportJobResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "GetSuppressedDestination":{
       "name":"GetSuppressedDestination",
       "http":{
@@ -557,6 +585,19 @@
       },
       "input":{"shape":"ListEmailTemplatesRequest"},
       "output":{"shape":"ListEmailTemplatesResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "ListImportJobs":{
+      "name":"ListImportJobs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/import-jobs"
+      },
+      "input":{"shape":"ListImportJobsRequest"},
+      "output":{"shape":"ListImportJobsResponse"},
       "errors":[
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"}
@@ -1340,6 +1381,23 @@
       "members":{
       }
     },
+    "CreateImportJobRequest":{
+      "type":"structure",
+      "required":[
+        "ImportDestination",
+        "ImportDataSource"
+      ],
+      "members":{
+        "ImportDestination":{"shape":"ImportDestination"},
+        "ImportDataSource":{"shape":"ImportDataSource"}
+      }
+    },
+    "CreateImportJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
     "CustomRedirectDomain":{"type":"string"},
     "CustomVerificationEmailTemplateMetadata":{
       "type":"structure",
@@ -1366,6 +1424,13 @@
     "DailyVolumes":{
       "type":"list",
       "member":{"shape":"DailyVolume"}
+    },
+    "DataFormat":{
+      "type":"string",
+      "enum":[
+        "CSV",
+        "JSON"
+      ]
     },
     "DedicatedIp":{
       "type":"structure",
@@ -1778,6 +1843,15 @@
       "type":"list",
       "member":{"shape":"EventType"}
     },
+    "FailedRecordsCount":{"type":"integer"},
+    "FailedRecordsS3Url":{"type":"string"},
+    "FailureInfo":{
+      "type":"structure",
+      "members":{
+        "FailedRecordsS3Url":{"shape":"FailedRecordsS3Url"},
+        "ErrorMessage":{"shape":"ErrorMessage"}
+      }
+    },
     "FailureRedirectionURL":{"type":"string"},
     "FeedbackId":{"type":"string"},
     "GeneralEnforcementStatus":{"type":"string"},
@@ -2080,6 +2154,31 @@
         "TemplateContent":{"shape":"EmailTemplateContent"}
       }
     },
+    "GetImportJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"JobId"
+        }
+      }
+    },
+    "GetImportJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "ImportDestination":{"shape":"ImportDestination"},
+        "ImportDataSource":{"shape":"ImportDataSource"},
+        "FailureInfo":{"shape":"FailureInfo"},
+        "JobStatus":{"shape":"JobStatus"},
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "CompletedTimestamp":{"shape":"Timestamp"},
+        "ProcessedRecordsCount":{"shape":"ProcessedRecordsCount"},
+        "FailedRecordsCount":{"shape":"FailedRecordsCount"}
+      }
+    },
     "GetSuppressedDestinationRequest":{
       "type":"structure",
       "required":["EmailAddress"],
@@ -2123,6 +2222,41 @@
       ]
     },
     "ImageUrl":{"type":"string"},
+    "ImportDataSource":{
+      "type":"structure",
+      "required":[
+        "S3Url",
+        "DataFormat"
+      ],
+      "members":{
+        "S3Url":{"shape":"S3Url"},
+        "DataFormat":{"shape":"DataFormat"}
+      }
+    },
+    "ImportDestination":{
+      "type":"structure",
+      "required":["SuppressionListDestination"],
+      "members":{
+        "SuppressionListDestination":{"shape":"SuppressionListDestination"}
+      }
+    },
+    "ImportDestinationType":{
+      "type":"string",
+      "enum":["SUPPRESSION_LIST"]
+    },
+    "ImportJobSummary":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "ImportDestination":{"shape":"ImportDestination"},
+        "JobStatus":{"shape":"JobStatus"},
+        "CreatedTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "ImportJobSummaryList":{
+      "type":"list",
+      "member":{"shape":"ImportJobSummary"}
+    },
     "InboxPlacementTrackingOption":{
       "type":"structure",
       "members":{
@@ -2157,6 +2291,19 @@
     "IspPlacements":{
       "type":"list",
       "member":{"shape":"IspPlacement"}
+    },
+    "JobId":{
+      "type":"string",
+      "min":1
+    },
+    "JobStatus":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "PROCESSING",
+        "COMPLETED",
+        "FAILED"
+      ]
     },
     "KinesisFirehoseDestination":{
       "type":"structure",
@@ -2353,6 +2500,29 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListImportJobsRequest":{
+      "type":"structure",
+      "members":{
+        "ImportDestinationType":{"shape":"ImportDestinationType"},
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        }
+      }
+    },
+    "ListImportJobsResponse":{
+      "type":"structure",
+      "members":{
+        "ImportJobs":{"shape":"ImportJobSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListOfDedicatedIpPools":{
       "type":"list",
       "member":{"shape":"PoolName"}
@@ -2546,6 +2716,7 @@
       "pattern":"^[a-zA-Z0-9+\\/]+={0,2}$",
       "sensitive":true
     },
+    "ProcessedRecordsCount":{"type":"integer"},
     "PutAccountDedicatedIpWarmupAttributesRequest":{
       "type":"structure",
       "members":{
@@ -2877,6 +3048,10 @@
         "DENIED"
       ]
     },
+    "S3Url":{
+      "type":"string",
+      "pattern":"^s3:\\/\\/([^\\/]+)\\/(.*?([^\\/]+)\\/?)$"
+    },
     "Selector":{
       "type":"string",
       "max":63,
@@ -3022,6 +3197,20 @@
       "members":{
         "SuppressedReasons":{"shape":"SuppressionListReasons"}
       }
+    },
+    "SuppressionListDestination":{
+      "type":"structure",
+      "required":["SuppressionListImportAction"],
+      "members":{
+        "SuppressionListImportAction":{"shape":"SuppressionListImportAction"}
+      }
+    },
+    "SuppressionListImportAction":{
+      "type":"string",
+      "enum":[
+        "DELETE",
+        "PUT"
+      ]
     },
     "SuppressionListReason":{
       "type":"string",

@@ -2477,13 +2477,9 @@
     },
     "AnalyticsConfigurationType":{
       "type":"structure",
-      "required":[
-        "ApplicationId",
-        "RoleArn",
-        "ExternalId"
-      ],
       "members":{
         "ApplicationId":{"shape":"HexStringType"},
+        "ApplicationArn":{"shape":"ArnType"},
         "RoleArn":{"shape":"ArnType"},
         "ExternalId":{"shape":"StringType"},
         "UserDataShared":{"shape":"BooleanType"}

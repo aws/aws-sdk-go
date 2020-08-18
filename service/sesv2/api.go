@@ -826,6 +826,91 @@ func (c *SESV2) CreateEmailTemplateWithContext(ctx aws.Context, input *CreateEma
 	return out, req.Send()
 }
 
+const opCreateImportJob = "CreateImportJob"
+
+// CreateImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateImportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateImportJob for more information on using the CreateImportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateImportJobRequest method.
+//    req, resp := client.CreateImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateImportJob
+func (c *SESV2) CreateImportJobRequest(input *CreateImportJobInput) (req *request.Request, output *CreateImportJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateImportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/email/import-jobs",
+	}
+
+	if input == nil {
+		input = &CreateImportJobInput{}
+	}
+
+	output = &CreateImportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateImportJob API operation for Amazon Simple Email Service.
+//
+// Creates an import job for a data destination.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CreateImportJob for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * LimitExceededException
+//   There are too many instances of the specified resource type.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateImportJob
+func (c *SESV2) CreateImportJob(input *CreateImportJobInput) (*CreateImportJobOutput, error) {
+	req, out := c.CreateImportJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateImportJobWithContext is the same as CreateImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) CreateImportJobWithContext(ctx aws.Context, input *CreateImportJobInput, opts ...request.Option) (*CreateImportJobOutput, error) {
+	req, out := c.CreateImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteConfigurationSet = "DeleteConfigurationSet"
 
 // DeleteConfigurationSetRequest generates a "aws/request.Request" representing the
@@ -2855,6 +2940,91 @@ func (c *SESV2) GetEmailTemplateWithContext(ctx aws.Context, input *GetEmailTemp
 	return out, req.Send()
 }
 
+const opGetImportJob = "GetImportJob"
+
+// GetImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the GetImportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetImportJob for more information on using the GetImportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetImportJobRequest method.
+//    req, resp := client.GetImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetImportJob
+func (c *SESV2) GetImportJobRequest(input *GetImportJobInput) (req *request.Request, output *GetImportJobOutput) {
+	op := &request.Operation{
+		Name:       opGetImportJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/import-jobs/{JobId}",
+	}
+
+	if input == nil {
+		input = &GetImportJobInput{}
+	}
+
+	output = &GetImportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetImportJob API operation for Amazon Simple Email Service.
+//
+// Provides information about an import job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetImportJob for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetImportJob
+func (c *SESV2) GetImportJob(input *GetImportJobInput) (*GetImportJobOutput, error) {
+	req, out := c.GetImportJobRequest(input)
+	return out, req.Send()
+}
+
+// GetImportJobWithContext is the same as GetImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) GetImportJobWithContext(ctx aws.Context, input *GetImportJobInput, opts ...request.Option) (*GetImportJobOutput, error) {
+	req, out := c.GetImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetSuppressedDestination = "GetSuppressedDestination"
 
 // GetSuppressedDestinationRequest generates a "aws/request.Request" representing the
@@ -3947,6 +4117,146 @@ func (c *SESV2) ListEmailTemplatesPagesWithContext(ctx aws.Context, input *ListE
 
 	for p.Next() {
 		if !fn(p.Page().(*ListEmailTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListImportJobs = "ListImportJobs"
+
+// ListImportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListImportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListImportJobs for more information on using the ListImportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListImportJobsRequest method.
+//    req, resp := client.ListImportJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListImportJobs
+func (c *SESV2) ListImportJobsRequest(input *ListImportJobsInput) (req *request.Request, output *ListImportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListImportJobs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/import-jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "PageSize",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListImportJobsInput{}
+	}
+
+	output = &ListImportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListImportJobs API operation for Amazon Simple Email Service.
+//
+// Lists all of the import jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListImportJobs for usage and error information.
+//
+// Returned Error Types:
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListImportJobs
+func (c *SESV2) ListImportJobs(input *ListImportJobsInput) (*ListImportJobsOutput, error) {
+	req, out := c.ListImportJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListImportJobsWithContext is the same as ListImportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListImportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListImportJobsWithContext(ctx aws.Context, input *ListImportJobsInput, opts ...request.Option) (*ListImportJobsOutput, error) {
+	req, out := c.ListImportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListImportJobsPages iterates over the pages of a ListImportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListImportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListImportJobs operation.
+//    pageNum := 0
+//    err := client.ListImportJobsPages(params,
+//        func(page *sesv2.ListImportJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SESV2) ListImportJobsPages(input *ListImportJobsInput, fn func(*ListImportJobsOutput, bool) bool) error {
+	return c.ListImportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListImportJobsPagesWithContext same as ListImportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListImportJobsPagesWithContext(ctx aws.Context, input *ListImportJobsInput, fn func(*ListImportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListImportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListImportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListImportJobsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -8385,6 +8695,95 @@ func (s CreateEmailTemplateOutput) GoString() string {
 	return s.String()
 }
 
+// Represents a request to create an import job from a data source for a data
+// destination.
+type CreateImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The data source for the import job.
+	//
+	// ImportDataSource is a required field
+	ImportDataSource *ImportDataSource `type:"structure" required:"true"`
+
+	// The destination for the import job.
+	//
+	// ImportDestination is a required field
+	ImportDestination *ImportDestination `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateImportJobInput"}
+	if s.ImportDataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportDataSource"))
+	}
+	if s.ImportDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportDestination"))
+	}
+	if s.ImportDataSource != nil {
+		if err := s.ImportDataSource.Validate(); err != nil {
+			invalidParams.AddNested("ImportDataSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ImportDestination != nil {
+		if err := s.ImportDestination.Validate(); err != nil {
+			invalidParams.AddNested("ImportDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImportDataSource sets the ImportDataSource field's value.
+func (s *CreateImportJobInput) SetImportDataSource(v *ImportDataSource) *CreateImportJobInput {
+	s.ImportDataSource = v
+	return s
+}
+
+// SetImportDestination sets the ImportDestination field's value.
+func (s *CreateImportJobInput) SetImportDestination(v *ImportDestination) *CreateImportJobInput {
+	s.ImportDestination = v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type CreateImportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A string that represents the import job ID.
+	JobId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateImportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *CreateImportJobOutput) SetJobId(v string) *CreateImportJobOutput {
+	s.JobId = &v
+	return s
+}
+
 // Contains information about a custom verification email template.
 type CustomVerificationEmailTemplateMetadata struct {
 	_ struct{} `type:"structure"`
@@ -10045,6 +10444,40 @@ func (s *EventDestinationDefinition) SetSnsDestination(v *SnsDestination) *Event
 	return s
 }
 
+// An object that contains the failure details about an import job.
+type FailureInfo struct {
+	_ struct{} `type:"structure"`
+
+	// A message about why the import job failed.
+	ErrorMessage *string `type:"string"`
+
+	// An Amazon S3 presigned URL that contains all the failed records and related
+	// information.
+	FailedRecordsS3Url *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FailureInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailureInfo) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FailureInfo) SetErrorMessage(v string) *FailureInfo {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetFailedRecordsS3Url sets the FailedRecordsS3Url field's value.
+func (s *FailureInfo) SetFailedRecordsS3Url(v string) *FailureInfo {
+	s.FailedRecordsS3Url = &v
+	return s
+}
+
 // A request to obtain information about the email-sending capabilities of your
 // Amazon SES account.
 type GetAccountInput struct {
@@ -11373,6 +11806,147 @@ func (s *GetEmailTemplateOutput) SetTemplateName(v string) *GetEmailTemplateOutp
 	return s
 }
 
+// Represents a request for information about an import job using the import
+// job ID.
+type GetImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the import job.
+	//
+	// JobId is a required field
+	JobId *string `location:"uri" locationName:"JobId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetImportJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetImportJobInput) SetJobId(v string) *GetImportJobInput {
+	s.JobId = &v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type GetImportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time stamp of when the import job was completed.
+	CompletedTimestamp *time.Time `type:"timestamp"`
+
+	// The time stamp of when the import job was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The number of records that failed processing because of invalid input or
+	// other reasons.
+	FailedRecordsCount *int64 `type:"integer"`
+
+	// The failure details about an import job.
+	FailureInfo *FailureInfo `type:"structure"`
+
+	// The data source of the import job.
+	ImportDataSource *ImportDataSource `type:"structure"`
+
+	// The destination of the import job.
+	ImportDestination *ImportDestination `type:"structure"`
+
+	// A string that represents the import job ID.
+	JobId *string `min:"1" type:"string"`
+
+	// The status of the import job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// The current number of records processed.
+	ProcessedRecordsCount *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s GetImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetImportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetCompletedTimestamp sets the CompletedTimestamp field's value.
+func (s *GetImportJobOutput) SetCompletedTimestamp(v time.Time) *GetImportJobOutput {
+	s.CompletedTimestamp = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *GetImportJobOutput) SetCreatedTimestamp(v time.Time) *GetImportJobOutput {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetFailedRecordsCount sets the FailedRecordsCount field's value.
+func (s *GetImportJobOutput) SetFailedRecordsCount(v int64) *GetImportJobOutput {
+	s.FailedRecordsCount = &v
+	return s
+}
+
+// SetFailureInfo sets the FailureInfo field's value.
+func (s *GetImportJobOutput) SetFailureInfo(v *FailureInfo) *GetImportJobOutput {
+	s.FailureInfo = v
+	return s
+}
+
+// SetImportDataSource sets the ImportDataSource field's value.
+func (s *GetImportJobOutput) SetImportDataSource(v *ImportDataSource) *GetImportJobOutput {
+	s.ImportDataSource = v
+	return s
+}
+
+// SetImportDestination sets the ImportDestination field's value.
+func (s *GetImportJobOutput) SetImportDestination(v *ImportDestination) *GetImportJobOutput {
+	s.ImportDestination = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetImportJobOutput) SetJobId(v string) *GetImportJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *GetImportJobOutput) SetJobStatus(v string) *GetImportJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetProcessedRecordsCount sets the ProcessedRecordsCount field's value.
+func (s *GetImportJobOutput) SetProcessedRecordsCount(v int64) *GetImportJobOutput {
+	s.ProcessedRecordsCount = &v
+	return s
+}
+
 // A request to retrieve information about an email address that's on the suppression
 // list for your account.
 type GetSuppressedDestinationInput struct {
@@ -11491,6 +12065,156 @@ func (s *IdentityInfo) SetIdentityType(v string) *IdentityInfo {
 // SetSendingEnabled sets the SendingEnabled field's value.
 func (s *IdentityInfo) SetSendingEnabled(v bool) *IdentityInfo {
 	s.SendingEnabled = &v
+	return s
+}
+
+// An object that contains details about the data source of the import job.
+type ImportDataSource struct {
+	_ struct{} `type:"structure"`
+
+	// The data format of the import job's data source.
+	//
+	// DataFormat is a required field
+	DataFormat *string `type:"string" required:"true" enum:"DataFormat"`
+
+	// An Amazon S3 URL in the format s3://<bucket_name>/<object>.
+	//
+	// S3Url is a required field
+	S3Url *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ImportDataSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportDataSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportDataSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportDataSource"}
+	if s.DataFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataFormat"))
+	}
+	if s.S3Url == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Url"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataFormat sets the DataFormat field's value.
+func (s *ImportDataSource) SetDataFormat(v string) *ImportDataSource {
+	s.DataFormat = &v
+	return s
+}
+
+// SetS3Url sets the S3Url field's value.
+func (s *ImportDataSource) SetS3Url(v string) *ImportDataSource {
+	s.S3Url = &v
+	return s
+}
+
+// An object that contains details about the resource destination the import
+// job is going to target.
+type ImportDestination struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains the action of the import job towards suppression
+	// list.
+	//
+	// SuppressionListDestination is a required field
+	SuppressionListDestination *SuppressionListDestination `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ImportDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportDestination"}
+	if s.SuppressionListDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("SuppressionListDestination"))
+	}
+	if s.SuppressionListDestination != nil {
+		if err := s.SuppressionListDestination.Validate(); err != nil {
+			invalidParams.AddNested("SuppressionListDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSuppressionListDestination sets the SuppressionListDestination field's value.
+func (s *ImportDestination) SetSuppressionListDestination(v *SuppressionListDestination) *ImportDestination {
+	s.SuppressionListDestination = v
+	return s
+}
+
+// A summary of the import job.
+type ImportJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// An object that contains details about the resource destination the import
+	// job is going to target.
+	ImportDestination *ImportDestination `type:"structure"`
+
+	// A string that represents the import job ID.
+	JobId *string `min:"1" type:"string"`
+
+	// The status of the import job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+}
+
+// String returns the string representation
+func (s ImportJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *ImportJobSummary) SetCreatedTimestamp(v time.Time) *ImportJobSummary {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetImportDestination sets the ImportDestination field's value.
+func (s *ImportJobSummary) SetImportDestination(v *ImportDestination) *ImportJobSummary {
+	s.ImportDestination = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ImportJobSummary) SetJobId(v string) *ImportJobSummary {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *ImportJobSummary) SetJobStatus(v string) *ImportJobSummary {
+	s.JobStatus = &v
 	return s
 }
 
@@ -12328,6 +13052,91 @@ func (s *ListEmailTemplatesOutput) SetNextToken(v string) *ListEmailTemplatesOut
 // SetTemplatesMetadata sets the TemplatesMetadata field's value.
 func (s *ListEmailTemplatesOutput) SetTemplatesMetadata(v []*EmailTemplateMetadata) *ListEmailTemplatesOutput {
 	s.TemplatesMetadata = v
+	return s
+}
+
+// Represents a request to list all of the import jobs for a data destination
+// within the specified maximum number of import jobs.
+type ListImportJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The destination of the import job, which can be used to list import jobs
+	// that have a certain ImportDestinationType.
+	ImportDestinationType *string `type:"string" enum:"ImportDestinationType"`
+
+	// A string token indicating that there might be additional import jobs available
+	// to be listed. Copy this token to a subsequent call to ListImportJobs with
+	// the same parameters to retrieve the next page of import jobs.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// Maximum number of import jobs to return at once. Use this parameter to paginate
+	// results. If additional import jobs exist beyond the specified limit, the
+	// NextToken element is sent in the response. Use the NextToken value in subsequent
+	// requests to retrieve additional addresses.
+	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListImportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListImportJobsInput) GoString() string {
+	return s.String()
+}
+
+// SetImportDestinationType sets the ImportDestinationType field's value.
+func (s *ListImportJobsInput) SetImportDestinationType(v string) *ListImportJobsInput {
+	s.ImportDestinationType = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportJobsInput) SetNextToken(v string) *ListImportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *ListImportJobsInput) SetPageSize(v int64) *ListImportJobsInput {
+	s.PageSize = &v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type ListImportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the import job summaries.
+	ImportJobs []*ImportJobSummary `type:"list"`
+
+	// A string token indicating that there might be additional import jobs available
+	// to be listed. Copy this token to a subsequent call to ListImportJobs with
+	// the same parameters to retrieve the next page of import jobs.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListImportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListImportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetImportJobs sets the ImportJobs field's value.
+func (s *ListImportJobsOutput) SetImportJobs(v []*ImportJobSummary) *ListImportJobsOutput {
+	s.ImportJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportJobsOutput) SetNextToken(v string) *ListImportJobsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -15351,6 +16160,50 @@ func (s *SuppressionAttributes) SetSuppressedReasons(v []*string) *SuppressionAt
 	return s
 }
 
+// An object that contains details about the action of suppression list.
+type SuppressionListDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The type of action that you want to perform on the address. Acceptable values:
+	//
+	//    * PUT: add the addresses to the suppression list. If the record already
+	//    exists, it will override it with the new value.
+	//
+	//    * DELETE: remove the addresses from the suppression list.
+	//
+	// SuppressionListImportAction is a required field
+	SuppressionListImportAction *string `type:"string" required:"true" enum:"SuppressionListImportAction"`
+}
+
+// String returns the string representation
+func (s SuppressionListDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuppressionListDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SuppressionListDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SuppressionListDestination"}
+	if s.SuppressionListImportAction == nil {
+		invalidParams.Add(request.NewErrParamRequired("SuppressionListImportAction"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSuppressionListImportAction sets the SuppressionListImportAction field's value.
+func (s *SuppressionListDestination) SetSuppressionListImportAction(v string) *SuppressionListDestination {
+	s.SuppressionListImportAction = &v
+	return s
+}
+
 // An object that contains information about the suppression list preferences
 // for your account.
 type SuppressionOptions struct {
@@ -16437,6 +17290,23 @@ func ContactLanguage_Values() []string {
 	}
 }
 
+// The data format of the import job's data source.
+const (
+	// DataFormatCsv is a DataFormat enum value
+	DataFormatCsv = "CSV"
+
+	// DataFormatJson is a DataFormat enum value
+	DataFormatJson = "JSON"
+)
+
+// DataFormat_Values returns all elements of the DataFormat enum
+func DataFormat_Values() []string {
+	return []string{
+		DataFormatCsv,
+		DataFormatJson,
+	}
+}
+
 // The current status of your Deliverability dashboard subscription. If this
 // value is PENDING_EXPIRATION, your subscription is scheduled to expire at
 // the end of the current calendar month.
@@ -16638,6 +17508,45 @@ func IdentityType_Values() []string {
 	}
 }
 
+// The destination of the import job, which can be used to list import jobs
+// that have a certain ImportDestinationType.
+const (
+	// ImportDestinationTypeSuppressionList is a ImportDestinationType enum value
+	ImportDestinationTypeSuppressionList = "SUPPRESSION_LIST"
+)
+
+// ImportDestinationType_Values returns all elements of the ImportDestinationType enum
+func ImportDestinationType_Values() []string {
+	return []string{
+		ImportDestinationTypeSuppressionList,
+	}
+}
+
+// The status of the import job.
+const (
+	// JobStatusCreated is a JobStatus enum value
+	JobStatusCreated = "CREATED"
+
+	// JobStatusProcessing is a JobStatus enum value
+	JobStatusProcessing = "PROCESSING"
+
+	// JobStatusCompleted is a JobStatus enum value
+	JobStatusCompleted = "COMPLETED"
+
+	// JobStatusFailed is a JobStatus enum value
+	JobStatusFailed = "FAILED"
+)
+
+// JobStatus_Values returns all elements of the JobStatus enum
+func JobStatus_Values() []string {
+	return []string{
+		JobStatusCreated,
+		JobStatusProcessing,
+		JobStatusCompleted,
+		JobStatusFailed,
+	}
+}
+
 // The status of the MAIL FROM domain. This status can have the following values:
 //
 //    * PENDING – Amazon SES hasn't started searching for the MX record yet.
@@ -16711,6 +17620,27 @@ func ReviewStatus_Values() []string {
 		ReviewStatusFailed,
 		ReviewStatusGranted,
 		ReviewStatusDenied,
+	}
+}
+
+// The type of action that you want to perform on the address. Acceptable values:
+//
+//    * PUT: add the addresses to the suppression list.
+//
+//    * DELETE: remove the address from the suppression list.
+const (
+	// SuppressionListImportActionDelete is a SuppressionListImportAction enum value
+	SuppressionListImportActionDelete = "DELETE"
+
+	// SuppressionListImportActionPut is a SuppressionListImportAction enum value
+	SuppressionListImportActionPut = "PUT"
+)
+
+// SuppressionListImportAction_Values returns all elements of the SuppressionListImportAction enum
+func SuppressionListImportAction_Values() []string {
+	return []string{
+		SuppressionListImportActionDelete,
+		SuppressionListImportActionPut,
 	}
 }
 
