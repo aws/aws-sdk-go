@@ -372,6 +372,12 @@
         "DescribeAgentResponse$EndpointType": "<p>The type of endpoint that your agent is connected to. If the endpoint is a VPC endpoint, the agent is not accessible over the public internet. </p>"
       }
     },
+    "FilterAttributeValue": {
+      "base": null,
+      "refs": {
+        "FilterValues$member": null
+      }
+    },
     "FilterList": {
       "base": null,
       "refs": {
@@ -399,6 +405,13 @@
       "base": null,
       "refs": {
         "FilterRule$Value": "<p>A single filter string that consists of the patterns to include or exclude. The patterns are delimited by \"|\" (that is, a pipe), for example: <code>/folder1|/folder2</code> </p> <p> </p>"
+      }
+    },
+    "FilterValues": {
+      "base": null,
+      "refs": {
+        "LocationFilter$Values": null,
+        "TaskFilter$Values": null
       }
     },
     "FsxFilesystemArn": {
@@ -526,6 +539,24 @@
         "DescribeTaskResponse$SourceLocationArn": "<p>The Amazon Resource Name (ARN) of the source file system's location.</p>",
         "DescribeTaskResponse$DestinationLocationArn": "<p>The Amazon Resource Name (ARN) of the AWS storage resource's location.</p>",
         "LocationListEntry$LocationArn": "<p>The Amazon Resource Name (ARN) of the location. For Network File System (NFS) or Amazon EFS, the location is the export path. For Amazon S3, the location is the prefix path that you want to mount and use as the root of the location.</p>"
+      }
+    },
+    "LocationFilter": {
+      "base": null,
+      "refs": {
+        "LocationFilters$member": null
+      }
+    },
+    "LocationFilterName": {
+      "base": null,
+      "refs": {
+        "LocationFilter$Name": null
+      }
+    },
+    "LocationFilters": {
+      "base": null,
+      "refs": {
+        "ListLocationsRequest$Filters": null
       }
     },
     "LocationList": {
@@ -661,6 +692,13 @@
       "refs": {
         "CreateLocationNfsRequest$OnPremConfig": "<p>Contains a list of Amazon Resource Names (ARNs) of agents that are used to connect to an NFS server. </p> <p>If you are copying data to or from your AWS Snowcone device, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone\">NFS Server on AWS Snowcone</a> for more information.</p>",
         "DescribeLocationNfsResponse$OnPremConfig": null
+      }
+    },
+    "Operator": {
+      "base": null,
+      "refs": {
+        "LocationFilter$Operator": null,
+        "TaskFilter$Operator": null
       }
     },
     "Options": {
@@ -931,6 +969,24 @@
       "refs": {
         "DescribeTaskExecutionResponse$Status": "<p>The status of the task execution. </p> <p>For detailed information about task execution statuses, see Understanding Task Statuses in the <i>AWS DataSync User Guide.</i> </p>",
         "TaskExecutionListEntry$Status": "<p>The status of a task execution.</p>"
+      }
+    },
+    "TaskFilter": {
+      "base": null,
+      "refs": {
+        "TaskFilters$member": null
+      }
+    },
+    "TaskFilterName": {
+      "base": null,
+      "refs": {
+        "TaskFilter$Name": null
+      }
+    },
+    "TaskFilters": {
+      "base": null,
+      "refs": {
+        "ListTasksRequest$Filters": null
       }
     },
     "TaskList": {

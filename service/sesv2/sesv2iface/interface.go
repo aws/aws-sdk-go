@@ -92,6 +92,10 @@ type SESV2API interface {
 	CreateEmailTemplateWithContext(aws.Context, *sesv2.CreateEmailTemplateInput, ...request.Option) (*sesv2.CreateEmailTemplateOutput, error)
 	CreateEmailTemplateRequest(*sesv2.CreateEmailTemplateInput) (*request.Request, *sesv2.CreateEmailTemplateOutput)
 
+	CreateImportJob(*sesv2.CreateImportJobInput) (*sesv2.CreateImportJobOutput, error)
+	CreateImportJobWithContext(aws.Context, *sesv2.CreateImportJobInput, ...request.Option) (*sesv2.CreateImportJobOutput, error)
+	CreateImportJobRequest(*sesv2.CreateImportJobInput) (*request.Request, *sesv2.CreateImportJobOutput)
+
 	DeleteConfigurationSet(*sesv2.DeleteConfigurationSetInput) (*sesv2.DeleteConfigurationSetOutput, error)
 	DeleteConfigurationSetWithContext(aws.Context, *sesv2.DeleteConfigurationSetInput, ...request.Option) (*sesv2.DeleteConfigurationSetOutput, error)
 	DeleteConfigurationSetRequest(*sesv2.DeleteConfigurationSetInput) (*request.Request, *sesv2.DeleteConfigurationSetOutput)
@@ -183,6 +187,10 @@ type SESV2API interface {
 	GetEmailTemplateWithContext(aws.Context, *sesv2.GetEmailTemplateInput, ...request.Option) (*sesv2.GetEmailTemplateOutput, error)
 	GetEmailTemplateRequest(*sesv2.GetEmailTemplateInput) (*request.Request, *sesv2.GetEmailTemplateOutput)
 
+	GetImportJob(*sesv2.GetImportJobInput) (*sesv2.GetImportJobOutput, error)
+	GetImportJobWithContext(aws.Context, *sesv2.GetImportJobInput, ...request.Option) (*sesv2.GetImportJobOutput, error)
+	GetImportJobRequest(*sesv2.GetImportJobInput) (*request.Request, *sesv2.GetImportJobOutput)
+
 	GetSuppressedDestination(*sesv2.GetSuppressedDestinationInput) (*sesv2.GetSuppressedDestinationOutput, error)
 	GetSuppressedDestinationWithContext(aws.Context, *sesv2.GetSuppressedDestinationInput, ...request.Option) (*sesv2.GetSuppressedDestinationOutput, error)
 	GetSuppressedDestinationRequest(*sesv2.GetSuppressedDestinationInput) (*request.Request, *sesv2.GetSuppressedDestinationOutput)
@@ -235,6 +243,13 @@ type SESV2API interface {
 
 	ListEmailTemplatesPages(*sesv2.ListEmailTemplatesInput, func(*sesv2.ListEmailTemplatesOutput, bool) bool) error
 	ListEmailTemplatesPagesWithContext(aws.Context, *sesv2.ListEmailTemplatesInput, func(*sesv2.ListEmailTemplatesOutput, bool) bool, ...request.Option) error
+
+	ListImportJobs(*sesv2.ListImportJobsInput) (*sesv2.ListImportJobsOutput, error)
+	ListImportJobsWithContext(aws.Context, *sesv2.ListImportJobsInput, ...request.Option) (*sesv2.ListImportJobsOutput, error)
+	ListImportJobsRequest(*sesv2.ListImportJobsInput) (*request.Request, *sesv2.ListImportJobsOutput)
+
+	ListImportJobsPages(*sesv2.ListImportJobsInput, func(*sesv2.ListImportJobsOutput, bool) bool) error
+	ListImportJobsPagesWithContext(aws.Context, *sesv2.ListImportJobsInput, func(*sesv2.ListImportJobsOutput, bool) bool, ...request.Option) error
 
 	ListSuppressedDestinations(*sesv2.ListSuppressedDestinationsInput) (*sesv2.ListSuppressedDestinationsOutput, error)
 	ListSuppressedDestinationsWithContext(aws.Context, *sesv2.ListSuppressedDestinationsInput, ...request.Option) (*sesv2.ListSuppressedDestinationsOutput, error)
