@@ -1090,8 +1090,12 @@
         "ProvisionProductInput$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use <a>ListLaunchPaths</a>. You must provide the name or ID, but not both.</p>",
         "ProvisionedProductAttribute$Id": "<p>The identifier of the provisioned product.</p>",
         "ProvisionedProductAttribute$LastRecordId": "<p>The record identifier of the last request performed on this provisioned product.</p>",
+        "ProvisionedProductAttribute$LastProvisioningRecordId": "<p>The record identifier of the last request performed on this provisioned product of the following types:</p> <ul> <li> <p> ProvisionedProduct </p> </li> <li> <p> UpdateProvisionedProduct </p> </li> <li> <p> ExecuteProvisionedProductPlan </p> </li> <li> <p> TerminateProvisionedProduct </p> </li> </ul>",
+        "ProvisionedProductAttribute$LastSuccessfulProvisioningRecordId": "<p>The record identifier of the last successful request performed on this provisioned product of the following types:</p> <ul> <li> <p> ProvisionedProduct </p> </li> <li> <p> UpdateProvisionedProduct </p> </li> <li> <p> ExecuteProvisionedProductPlan </p> </li> <li> <p> TerminateProvisionedProduct </p> </li> </ul>",
         "ProvisionedProductAttribute$ProductId": "<p>The product identifier.</p>",
         "ProvisionedProductAttribute$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
+        "ProvisionedProductDetail$LastProvisioningRecordId": "<p>The record identifier of the last request performed on this provisioned product of the following types:</p> <ul> <li> <p> ProvisionedProduct </p> </li> <li> <p> UpdateProvisionedProduct </p> </li> <li> <p> ExecuteProvisionedProductPlan </p> </li> <li> <p> TerminateProvisionedProduct </p> </li> </ul>",
+        "ProvisionedProductDetail$LastSuccessfulProvisioningRecordId": "<p>The record identifier of the last successful request performed on this provisioned product of the following types:</p> <ul> <li> <p> ProvisionedProduct </p> </li> <li> <p> UpdateProvisionedProduct </p> </li> <li> <p> ExecuteProvisionedProductPlan </p> </li> <li> <p> TerminateProvisionedProduct </p> </li> </ul>",
         "ProvisionedProductDetail$ProductId": "<p>The product identifier. For example, <code>prod-abcdzk7xy33qa</code>.</p>",
         "ProvisionedProductDetail$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. For example, <code>pa-4abcdjnxjj6ne</code>.</p>",
         "ProvisionedProductPlanDetails$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use <a>ListLaunchPaths</a>.</p>",
@@ -1799,6 +1803,7 @@
         "DescribeProvisioningParametersInput$ProductName": "<p>The name of the product. You must provide the name or ID, but not both.</p>",
         "ProductViewSummary$Name": "<p>The name of the product.</p>",
         "ProvisionProductInput$ProductName": "<p>The name of the product. You must provide the name or ID, but not both.</p>",
+        "ProvisionedProductAttribute$ProductName": "<p>The name of the product.</p>",
         "UpdateProductInput$Name": "<p>The updated product name.</p>",
         "UpdateProvisionedProductInput$ProductName": "<p>The name of the product. You must provide the name or ID, but not both.</p>"
       }
@@ -1908,7 +1913,7 @@
     "ProvisionedProductFilters": {
       "base": null,
       "refs": {
-        "SearchProvisionedProductsInput$Filters": "<p>The search filters.</p> <p>When the key is <code>SearchQuery</code>, the searchable fields are <code>arn</code>, <code>createdTime</code>, <code>id</code>, <code>lastRecordId</code>, <code>idempotencyToken</code>, <code>name</code>, <code>physicalId</code>, <code>productId</code>, <code>provisioningArtifact</code>, <code>type</code>, <code>status</code>, <code>tags</code>, <code>userArn</code>, and <code>userArnSession</code>.</p> <p>Example: <code>\"SearchQuery\":[\"status:AVAILABLE\"]</code> </p>"
+        "SearchProvisionedProductsInput$Filters": "<p>The search filters.</p> <p>When the key is <code>SearchQuery</code>, the searchable fields are <code>arn</code>, <code>createdTime</code>, <code>id</code>, <code>lastRecordId</code>, <code>idempotencyToken</code>, <code>name</code>, <code>physicalId</code>, <code>productId</code>, <code>provisioningArtifact</code>, <code>type</code>, <code>status</code>, <code>tags</code>, <code>userArn</code>, <code>userArnSession</code>, <code>lastProvisioningRecordId</code>, <code>lastSuccessfulProvisioningRecordId</code>, <code>productName</code>, and <code>provisioningArtifactName</code>.</p> <p>Example: <code>\"SearchQuery\":[\"status:AVAILABLE\"]</code> </p>"
       }
     },
     "ProvisionedProductId": {
@@ -2109,6 +2114,7 @@
         "DescribeProvisioningArtifactInput$ProvisioningArtifactName": "<p>The provisioning artifact name.</p>",
         "DescribeProvisioningParametersInput$ProvisioningArtifactName": "<p>The name of the provisioning artifact. You must provide the name or ID, but not both.</p>",
         "ProvisionProductInput$ProvisioningArtifactName": "<p>The name of the provisioning artifact. You must provide the name or ID, but not both.</p>",
+        "ProvisionedProductAttribute$ProvisioningArtifactName": "<p>The name of the provisioning artifact.</p>",
         "ProvisioningArtifact$Name": "<p>The name of the provisioning artifact.</p>",
         "ProvisioningArtifactDetail$Name": "<p>The name of the provisioning artifact.</p>",
         "ProvisioningArtifactDetail$Description": "<p>The description of the provisioning artifact.</p>",

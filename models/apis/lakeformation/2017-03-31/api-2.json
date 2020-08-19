@@ -386,6 +386,12 @@
       "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
+    "DetailsMap":{
+      "type":"structure",
+      "members":{
+        "ResourceShare":{"shape":"ResourceShareList"}
+      }
+    },
     "EntityNotFoundException":{
       "type":"structure",
       "members":{
@@ -589,7 +595,8 @@
         "Principal":{"shape":"DataLakePrincipal"},
         "Resource":{"shape":"Resource"},
         "Permissions":{"shape":"PermissionList"},
-        "PermissionsWithGrantOption":{"shape":"PermissionList"}
+        "PermissionsWithGrantOption":{"shape":"PermissionList"},
+        "AdditionalDetails":{"shape":"DetailsMap"}
       }
     },
     "PrincipalResourcePermissionsList":{
@@ -609,6 +616,7 @@
       "members":{
       }
     },
+    "RAMResourceShareArn":{"type":"string"},
     "RegisterResourceRequest":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -645,6 +653,10 @@
     "ResourceInfoList":{
       "type":"list",
       "member":{"shape":"ResourceInfo"}
+    },
+    "ResourceShareList":{
+      "type":"list",
+      "member":{"shape":"RAMResourceShareArn"}
     },
     "RevokePermissionsRequest":{
       "type":"structure",

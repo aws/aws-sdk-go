@@ -2910,10 +2910,14 @@
         "CreatedTime":{"shape":"CreatedTime"},
         "IdempotencyToken":{"shape":"IdempotencyToken"},
         "LastRecordId":{"shape":"Id"},
+        "LastProvisioningRecordId":{"shape":"Id"},
+        "LastSuccessfulProvisioningRecordId":{"shape":"Id"},
         "Tags":{"shape":"Tags"},
         "PhysicalId":{"shape":"PhysicalId"},
         "ProductId":{"shape":"Id"},
+        "ProductName":{"shape":"ProductViewName"},
         "ProvisioningArtifactId":{"shape":"Id"},
+        "ProvisioningArtifactName":{"shape":"ProvisioningArtifactName"},
         "UserArn":{"shape":"UserArn"},
         "UserArnSession":{"shape":"UserArnSession"}
       }
@@ -2934,6 +2938,8 @@
         "CreatedTime":{"shape":"CreatedTime"},
         "IdempotencyToken":{"shape":"IdempotencyToken"},
         "LastRecordId":{"shape":"LastRequestId"},
+        "LastProvisioningRecordId":{"shape":"Id"},
+        "LastSuccessfulProvisioningRecordId":{"shape":"Id"},
         "ProductId":{"shape":"Id"},
         "ProvisioningArtifactId":{"shape":"Id"}
       }

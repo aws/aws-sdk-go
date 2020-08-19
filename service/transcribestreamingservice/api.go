@@ -798,6 +798,10 @@ type Item struct {
 	// that resulted in the item.
 	EndTime *float64 `type:"double"`
 
+	// If speaker identification is enabled, shows the speakers identified in the
+	// real-time stream.
+	Speaker *string `type:"string"`
+
 	// The offset from the beginning of the audio stream to the beginning of the
 	// audio that resulted in the item.
 	StartTime *float64 `type:"double"`
@@ -832,6 +836,12 @@ func (s *Item) SetContent(v string) *Item {
 // SetEndTime sets the EndTime field's value.
 func (s *Item) SetEndTime(v float64) *Item {
 	s.EndTime = &v
+	return s
+}
+
+// SetSpeaker sets the Speaker field's value.
+func (s *Item) SetSpeaker(v string) *Item {
+	s.Speaker = &v
 	return s
 }
 
@@ -1102,7 +1112,7 @@ type StartStreamTranscriptionInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" required:"true" enum:"LanguageCode"`
 
-	// The encoding used for the input audio.
+	// The encoding used for the input audio. pcm is the only valid value.
 	//
 	// MediaEncoding is a required field
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" required:"true" enum:"MediaEncoding"`
@@ -1118,6 +1128,9 @@ type StartStreamTranscriptionInput struct {
 	// will generate one for you and return it in the response.
 	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" type:"string"`
 
+	// When true, enables speaker identification in your real-time stream.
+	ShowSpeakerLabel *bool `location:"header" locationName:"x-amzn-transcribe-show-speaker-label" type:"boolean"`
+
 	// The manner in which you use your vocabulary filter to filter words in your
 	// transcript. Remove removes filtered words from your transcription results.
 	// Mask masks those words with a *** in your transcription results. Tag keeps
@@ -1126,7 +1139,7 @@ type StartStreamTranscriptionInput struct {
 	VocabularyFilterMethod *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-method" type:"string" enum:"VocabularyFilterMethod"`
 
 	// The name of the vocabulary filter you've created that is unique to your AWS
-	// accountf. Provide the name in this field to successfully use it in a stream.
+	// account. Provide the name in this field to successfully use it in a stream.
 	VocabularyFilterName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-name" min:"1" type:"string"`
 
 	// The name of the vocabulary to use when processing the transcription job.
@@ -1195,6 +1208,12 @@ func (s *StartStreamTranscriptionInput) SetSessionId(v string) *StartStreamTrans
 	return s
 }
 
+// SetShowSpeakerLabel sets the ShowSpeakerLabel field's value.
+func (s *StartStreamTranscriptionInput) SetShowSpeakerLabel(v bool) *StartStreamTranscriptionInput {
+	s.ShowSpeakerLabel = &v
+	return s
+}
+
 // SetVocabularyFilterMethod sets the VocabularyFilterMethod field's value.
 func (s *StartStreamTranscriptionInput) SetVocabularyFilterMethod(v string) *StartStreamTranscriptionInput {
 	s.VocabularyFilterMethod = &v
@@ -1233,6 +1252,9 @@ type StartStreamTranscriptionOutput struct {
 
 	// An identifier for a specific transcription session.
 	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" type:"string"`
+
+	// Shows whether speaker identification was enabled in the stream.
+	ShowSpeakerLabel *bool `location:"header" locationName:"x-amzn-transcribe-show-speaker-label" type:"boolean"`
 
 	// The vocabulary filtering method used in the real-time stream.
 	VocabularyFilterMethod *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-method" type:"string" enum:"VocabularyFilterMethod"`
@@ -1281,6 +1303,12 @@ func (s *StartStreamTranscriptionOutput) SetRequestId(v string) *StartStreamTran
 // SetSessionId sets the SessionId field's value.
 func (s *StartStreamTranscriptionOutput) SetSessionId(v string) *StartStreamTranscriptionOutput {
 	s.SessionId = &v
+	return s
+}
+
+// SetShowSpeakerLabel sets the ShowSpeakerLabel field's value.
+func (s *StartStreamTranscriptionOutput) SetShowSpeakerLabel(v bool) *StartStreamTranscriptionOutput {
+	s.ShowSpeakerLabel = &v
 	return s
 }
 

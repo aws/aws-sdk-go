@@ -192,6 +192,12 @@
         "ErrorDetail$ErrorMessage": "<p>A message describing the error.</p>"
       }
     },
+    "DetailsMap": {
+      "base": "<p>A structure containing the additional details to be returned in the <code>AdditionalDetails</code> attribute of <code>PrincipalResourcePermissions</code>.</p> <p>If a catalog resource is shared through AWS Resource Access Manager (AWS RAM), then there will exist a corresponding RAM share resource ARN.</p>",
+      "refs": {
+        "PrincipalResourcePermissions$AdditionalDetails": "<p>This attribute can be used to return any additional details of <code>PrincipalResourcePermissions</code>. Currently returns only as a RAM share resource ARN.</p>"
+      }
+    },
     "EntityNotFoundException": {
       "base": "<p>A specified entity does not exist</p>",
       "refs": {
@@ -399,6 +405,12 @@
       "refs": {
       }
     },
+    "RAMResourceShareArn": {
+      "base": null,
+      "refs": {
+        "ResourceShareList$member": null
+      }
+    },
     "RegisterResourceRequest": {
       "base": null,
       "refs": {
@@ -442,6 +454,12 @@
       "base": null,
       "refs": {
         "ListResourcesResponse$ResourceInfoList": "<p>A summary of the data lake resources.</p>"
+      }
+    },
+    "ResourceShareList": {
+      "base": null,
+      "refs": {
+        "DetailsMap$ResourceShare": "<p>A share resource ARN for a catalog resource shared through AWS Resource Access Manager (AWS RAM).</p>"
       }
     },
     "RevokePermissionsRequest": {

@@ -93,7 +93,8 @@
         "EndTime":{"shape":"Double"},
         "Type":{"shape":"ItemType"},
         "Content":{"shape":"String"},
-        "VocabularyFilterMatch":{"shape":"Boolean"}
+        "VocabularyFilterMatch":{"shape":"Boolean"},
+        "Speaker":{"shape":"String"}
       }
     },
     "ItemList":{
@@ -206,6 +207,11 @@
           "shape":"VocabularyFilterMethod",
           "location":"header",
           "locationName":"x-amzn-transcribe-vocabulary-filter-method"
+        },
+        "ShowSpeakerLabel":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-show-speaker-label"
         }
       },
       "payload":"AudioStream"
@@ -253,6 +259,11 @@
           "shape":"VocabularyFilterMethod",
           "location":"header",
           "locationName":"x-amzn-transcribe-vocabulary-filter-method"
+        },
+        "ShowSpeakerLabel":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-show-speaker-label"
         }
       },
       "payload":"TranscriptResultStream"

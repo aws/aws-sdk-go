@@ -61,6 +61,11 @@
 //    endpoints for more information. Treat the stream key like a secret, since
 //    it allows anyone to stream to the channel.
 //
+//    * Playback key pair — Video playback may be restricted using playback-authorization
+//    tokens, which use public-key encryption. A playback key pair is the public-private
+//    pair of keys used to sign and validate the playback-authorization token.
+//    See the PlaybackKeyPair endpoints for more information.
+//
 // Tagging
 //
 // A tag is a metadata label that you assign to an AWS resource. A tag comprises
@@ -73,12 +78,10 @@
 // related. You can also use tags to manage access (see Access Tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html)).
 //
 // The Amazon IVS API has these tag-related endpoints: TagResource, UntagResource,
-// and ListTagsForResource. The following resources support tagging: Channels
-// and Stream Keys.
+// and ListTagsForResource. The following resources support tagging: Channels,
+// Stream Keys, and Playback Key Pairs.
 //
-// API Endpoints
-//
-// Channel:
+// Channel Endpoints
 //
 //    * CreateChannel — Creates a new channel and an associated stream key
 //    to start streaming.
@@ -98,7 +101,7 @@
 //
 //    * DeleteChannel — Deletes the specified channel.
 //
-// StreamKey:
+// StreamKey Endpoints
 //
 //    * CreateStreamKey — Creates a stream key, used to initiate a stream,
 //    for the specified channel ARN.
@@ -113,7 +116,7 @@
 //    * DeleteStreamKey — Deletes the stream key for the specified ARN, so
 //    it can no longer be used to stream.
 //
-// Stream:
+// Stream Endpoints
 //
 //    * GetStream — Gets information about the active (live) stream on a specified
 //    channel.
@@ -129,7 +132,26 @@
 //    channel. A maximum of 5 requests per second per channel is allowed, each
 //    with a maximum 1KB payload.
 //
-//  AWS Tags (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html):
+// PlaybackKeyPair Endpoints
+//
+//    * ImportPlaybackKeyPair — Imports the public portion of a new key pair
+//    and returns its arn and fingerprint. The privateKey can then be used to
+//    generate viewer authorization tokens, to grant viewers access to authorized
+//    channels.
+//
+//    * GetPlaybackKeyPair — Gets a specified playback authorization key pair
+//    and returns the arn and fingerprint. The privateKey held by the caller
+//    can be used to generate viewer authorization tokens, to grant viewers
+//    access to authorized channels.
+//
+//    * ListPlaybackKeyPairs — Gets summary information about playback key
+//    pairs.
+//
+//    * DeletePlaybackKeyPair — Deletes a specified authorization key pair.
+//    This invalidates future viewer tokens generated using the key pair’s
+//    privateKey.
+//
+// AWS Tags Endpoints
 //
 //    * TagResource — Adds or updates tags for the AWS resource with the specified
 //    ARN.

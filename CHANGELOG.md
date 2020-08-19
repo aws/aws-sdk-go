@@ -1,3 +1,17 @@
+Release v1.34.8 (2020-08-19)
+===
+
+### Service Client Updates
+* `service/ivs`: Updates service API, documentation, and paginators
+* `service/lakeformation`: Updates service API and documentation
+* `service/organizations`: Updates service documentation
+  * Minor documentation updates for AWS Organizations
+* `service/servicecatalog`: Updates service API and documentation
+  * Enhance SearchProvisionedProducts API to allow queries using productName and provisioningArtifactName. Added lastProvisioningRecordId and lastSuccessfulRecordId to Read ProvisionedProduct APIs
+* `service/storagegateway`: Updates service API and documentation
+  * Added WORM, tape retention lock, and custom pool features for virtual tapes.
+* `service/transcribe-streaming`: Updates service API and documentation
+
 Release v1.34.7 (2020-08-18)
 ===
 
