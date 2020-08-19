@@ -80,6 +80,10 @@ type IVSAPI interface {
 	DeleteChannelWithContext(aws.Context, *ivs.DeleteChannelInput, ...request.Option) (*ivs.DeleteChannelOutput, error)
 	DeleteChannelRequest(*ivs.DeleteChannelInput) (*request.Request, *ivs.DeleteChannelOutput)
 
+	DeletePlaybackKeyPair(*ivs.DeletePlaybackKeyPairInput) (*ivs.DeletePlaybackKeyPairOutput, error)
+	DeletePlaybackKeyPairWithContext(aws.Context, *ivs.DeletePlaybackKeyPairInput, ...request.Option) (*ivs.DeletePlaybackKeyPairOutput, error)
+	DeletePlaybackKeyPairRequest(*ivs.DeletePlaybackKeyPairInput) (*request.Request, *ivs.DeletePlaybackKeyPairOutput)
+
 	DeleteStreamKey(*ivs.DeleteStreamKeyInput) (*ivs.DeleteStreamKeyOutput, error)
 	DeleteStreamKeyWithContext(aws.Context, *ivs.DeleteStreamKeyInput, ...request.Option) (*ivs.DeleteStreamKeyOutput, error)
 	DeleteStreamKeyRequest(*ivs.DeleteStreamKeyInput) (*request.Request, *ivs.DeleteStreamKeyOutput)
@@ -87,6 +91,10 @@ type IVSAPI interface {
 	GetChannel(*ivs.GetChannelInput) (*ivs.GetChannelOutput, error)
 	GetChannelWithContext(aws.Context, *ivs.GetChannelInput, ...request.Option) (*ivs.GetChannelOutput, error)
 	GetChannelRequest(*ivs.GetChannelInput) (*request.Request, *ivs.GetChannelOutput)
+
+	GetPlaybackKeyPair(*ivs.GetPlaybackKeyPairInput) (*ivs.GetPlaybackKeyPairOutput, error)
+	GetPlaybackKeyPairWithContext(aws.Context, *ivs.GetPlaybackKeyPairInput, ...request.Option) (*ivs.GetPlaybackKeyPairOutput, error)
+	GetPlaybackKeyPairRequest(*ivs.GetPlaybackKeyPairInput) (*request.Request, *ivs.GetPlaybackKeyPairOutput)
 
 	GetStream(*ivs.GetStreamInput) (*ivs.GetStreamOutput, error)
 	GetStreamWithContext(aws.Context, *ivs.GetStreamInput, ...request.Option) (*ivs.GetStreamOutput, error)
@@ -96,12 +104,23 @@ type IVSAPI interface {
 	GetStreamKeyWithContext(aws.Context, *ivs.GetStreamKeyInput, ...request.Option) (*ivs.GetStreamKeyOutput, error)
 	GetStreamKeyRequest(*ivs.GetStreamKeyInput) (*request.Request, *ivs.GetStreamKeyOutput)
 
+	ImportPlaybackKeyPair(*ivs.ImportPlaybackKeyPairInput) (*ivs.ImportPlaybackKeyPairOutput, error)
+	ImportPlaybackKeyPairWithContext(aws.Context, *ivs.ImportPlaybackKeyPairInput, ...request.Option) (*ivs.ImportPlaybackKeyPairOutput, error)
+	ImportPlaybackKeyPairRequest(*ivs.ImportPlaybackKeyPairInput) (*request.Request, *ivs.ImportPlaybackKeyPairOutput)
+
 	ListChannels(*ivs.ListChannelsInput) (*ivs.ListChannelsOutput, error)
 	ListChannelsWithContext(aws.Context, *ivs.ListChannelsInput, ...request.Option) (*ivs.ListChannelsOutput, error)
 	ListChannelsRequest(*ivs.ListChannelsInput) (*request.Request, *ivs.ListChannelsOutput)
 
 	ListChannelsPages(*ivs.ListChannelsInput, func(*ivs.ListChannelsOutput, bool) bool) error
 	ListChannelsPagesWithContext(aws.Context, *ivs.ListChannelsInput, func(*ivs.ListChannelsOutput, bool) bool, ...request.Option) error
+
+	ListPlaybackKeyPairs(*ivs.ListPlaybackKeyPairsInput) (*ivs.ListPlaybackKeyPairsOutput, error)
+	ListPlaybackKeyPairsWithContext(aws.Context, *ivs.ListPlaybackKeyPairsInput, ...request.Option) (*ivs.ListPlaybackKeyPairsOutput, error)
+	ListPlaybackKeyPairsRequest(*ivs.ListPlaybackKeyPairsInput) (*request.Request, *ivs.ListPlaybackKeyPairsOutput)
+
+	ListPlaybackKeyPairsPages(*ivs.ListPlaybackKeyPairsInput, func(*ivs.ListPlaybackKeyPairsOutput, bool) bool) error
+	ListPlaybackKeyPairsPagesWithContext(aws.Context, *ivs.ListPlaybackKeyPairsInput, func(*ivs.ListPlaybackKeyPairsOutput, bool) bool, ...request.Option) error
 
 	ListStreamKeys(*ivs.ListStreamKeysInput) (*ivs.ListStreamKeysOutput, error)
 	ListStreamKeysWithContext(aws.Context, *ivs.ListStreamKeysInput, ...request.Option) (*ivs.ListStreamKeysOutput, error)

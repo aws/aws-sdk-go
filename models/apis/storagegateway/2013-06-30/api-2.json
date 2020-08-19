@@ -209,6 +209,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "CreateTapePool":{
+      "name":"CreateTapePool",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTapePoolInput"},
+      "output":{"shape":"CreateTapePoolOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "CreateTapeWithBarcode":{
       "name":"CreateTapeWithBarcode",
       "http":{
@@ -334,6 +347,19 @@
       },
       "input":{"shape":"DeleteTapeArchiveInput"},
       "output":{"shape":"DeleteTapeArchiveOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "DeleteTapePool":{
+      "name":"DeleteTapePool",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTapePoolInput"},
+      "output":{"shape":"DeleteTapePoolOutput"},
       "errors":[
         {"shape":"InvalidGatewayRequestException"},
         {"shape":"InternalServerError"}
@@ -685,6 +711,19 @@
       },
       "input":{"shape":"ListTagsForResourceInput"},
       "output":{"shape":"ListTagsForResourceOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "ListTapePools":{
+      "name":"ListTapePools",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTapePoolsInput"},
+      "output":{"shape":"ListTapePoolsOutput"},
       "errors":[
         {"shape":"InvalidGatewayRequestException"},
         {"shape":"InternalServerError"}
@@ -1148,7 +1187,8 @@
       ],
       "members":{
         "TapeARN":{"shape":"TapeARN"},
-        "PoolId":{"shape":"PoolId"}
+        "PoolId":{"shape":"PoolId"},
+        "BypassGovernanceRetention":{"shape":"boolean"}
       }
     },
     "AssignTapePoolOutput":{
@@ -1211,7 +1251,8 @@
         "TapeBarcodePrefix":{"shape":"TapeBarcodePrefix"},
         "PoolId":{"shape":"PoolId"},
         "TapeSizeInBytes":{"shape":"TapeSize"},
-        "MinimumNumTapes":{"shape":"MinimumNumTapes"}
+        "MinimumNumTapes":{"shape":"MinimumNumTapes"},
+        "Worm":{"shape":"boolean"}
       }
     },
     "AutomaticTapeCreationRules":{
@@ -1509,6 +1550,26 @@
         "TargetARN":{"shape":"TargetARN"}
       }
     },
+    "CreateTapePoolInput":{
+      "type":"structure",
+      "required":[
+        "PoolName",
+        "StorageClass"
+      ],
+      "members":{
+        "PoolName":{"shape":"PoolName"},
+        "StorageClass":{"shape":"TapeStorageClass"},
+        "RetentionLockType":{"shape":"RetentionLockType"},
+        "RetentionLockTimeInDays":{"shape":"RetentionLockTimeInDays"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateTapePoolOutput":{
+      "type":"structure",
+      "members":{
+        "PoolARN":{"shape":"PoolARN"}
+      }
+    },
     "CreateTapeWithBarcodeInput":{
       "type":"structure",
       "required":[
@@ -1523,6 +1584,7 @@
         "KMSEncrypted":{"shape":"Boolean"},
         "KMSKey":{"shape":"KMSKey"},
         "PoolId":{"shape":"PoolId"},
+        "Worm":{"shape":"boolean"},
         "Tags":{"shape":"Tags"}
       }
     },
@@ -1550,6 +1612,7 @@
         "KMSEncrypted":{"shape":"Boolean"},
         "KMSKey":{"shape":"KMSKey"},
         "PoolId":{"shape":"PoolId"},
+        "Worm":{"shape":"boolean"},
         "Tags":{"shape":"Tags"}
       }
     },
@@ -1662,7 +1725,8 @@
       "type":"structure",
       "required":["TapeARN"],
       "members":{
-        "TapeARN":{"shape":"TapeARN"}
+        "TapeARN":{"shape":"TapeARN"},
+        "BypassGovernanceRetention":{"shape":"boolean"}
       }
     },
     "DeleteTapeArchiveOutput":{
@@ -1679,13 +1743,27 @@
       ],
       "members":{
         "GatewayARN":{"shape":"GatewayARN"},
-        "TapeARN":{"shape":"TapeARN"}
+        "TapeARN":{"shape":"TapeARN"},
+        "BypassGovernanceRetention":{"shape":"boolean"}
       }
     },
     "DeleteTapeOutput":{
       "type":"structure",
       "members":{
         "TapeARN":{"shape":"TapeARN"}
+      }
+    },
+    "DeleteTapePoolInput":{
+      "type":"structure",
+      "required":["PoolARN"],
+      "members":{
+        "PoolARN":{"shape":"PoolARN"}
+      }
+    },
+    "DeleteTapePoolOutput":{
+      "type":"structure",
+      "members":{
+        "PoolARN":{"shape":"PoolARN"}
       }
     },
     "DeleteVolumeInput":{
@@ -2484,6 +2562,21 @@
         "Tags":{"shape":"Tags"}
       }
     },
+    "ListTapePoolsInput":{
+      "type":"structure",
+      "members":{
+        "PoolARNs":{"shape":"PoolARNs"},
+        "Marker":{"shape":"Marker"},
+        "Limit":{"shape":"PositiveIntObject"}
+      }
+    },
+    "ListTapePoolsOutput":{
+      "type":"structure",
+      "members":{
+        "PoolInfos":{"shape":"PoolInfos"},
+        "Marker":{"shape":"Marker"}
+      }
+    },
     "ListTapesInput":{
       "type":"structure",
       "members":{
@@ -2682,10 +2775,47 @@
       "min":1,
       "pattern":"^[0-7]{4}$"
     },
+    "PoolARN":{
+      "type":"string",
+      "max":500,
+      "min":50
+    },
+    "PoolARNs":{
+      "type":"list",
+      "member":{"shape":"PoolARN"}
+    },
     "PoolId":{
       "type":"string",
       "max":100,
       "min":1
+    },
+    "PoolInfo":{
+      "type":"structure",
+      "members":{
+        "PoolARN":{"shape":"PoolARN"},
+        "PoolName":{"shape":"PoolName"},
+        "StorageClass":{"shape":"TapeStorageClass"},
+        "RetentionLockType":{"shape":"RetentionLockType"},
+        "RetentionLockTimeInDays":{"shape":"RetentionLockTimeInDays"},
+        "PoolStatus":{"shape":"PoolStatus"}
+      }
+    },
+    "PoolInfos":{
+      "type":"list",
+      "member":{"shape":"PoolInfo"}
+    },
+    "PoolName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[ -\\.0-\\[\\]-~]*[!-\\.0-\\[\\]-~][ -\\.0-\\[\\]-~]*$"
+    },
+    "PoolStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "DELETED"
+      ]
     },
     "PositiveIntObject":{
       "type":"integer",
@@ -2751,6 +2881,19 @@
       "type":"string",
       "max":500,
       "min":50
+    },
+    "RetentionLockTimeInDays":{
+      "type":"integer",
+      "max":36500,
+      "min":0
+    },
+    "RetentionLockType":{
+      "type":"string",
+      "enum":[
+        "COMPLIANCE",
+        "GOVERNANCE",
+        "NONE"
+      ]
     },
     "RetrieveTapeArchiveInput":{
       "type":"structure",
@@ -3017,7 +3160,10 @@
         "Progress":{"shape":"DoubleObject"},
         "TapeUsedInBytes":{"shape":"TapeUsage"},
         "KMSKey":{"shape":"KMSKey"},
-        "PoolId":{"shape":"PoolId"}
+        "PoolId":{"shape":"PoolId"},
+        "Worm":{"shape":"boolean"},
+        "RetentionStartDate":{"shape":"Time"},
+        "PoolEntryDate":{"shape":"Time"}
       }
     },
     "TapeARN":{
@@ -3042,7 +3188,10 @@
         "TapeStatus":{"shape":"TapeArchiveStatus"},
         "TapeUsedInBytes":{"shape":"TapeUsage"},
         "KMSKey":{"shape":"KMSKey"},
-        "PoolId":{"shape":"PoolId"}
+        "PoolId":{"shape":"PoolId"},
+        "Worm":{"shape":"boolean"},
+        "RetentionStartDate":{"shape":"Time"},
+        "PoolEntryDate":{"shape":"Time"}
       }
     },
     "TapeArchiveStatus":{"type":"string"},
@@ -3075,7 +3224,9 @@
         "TapeSizeInBytes":{"shape":"TapeSize"},
         "TapeStatus":{"shape":"TapeStatus"},
         "GatewayARN":{"shape":"GatewayARN"},
-        "PoolId":{"shape":"PoolId"}
+        "PoolId":{"shape":"PoolId"},
+        "RetentionStartDate":{"shape":"Time"},
+        "PoolEntryDate":{"shape":"Time"}
       }
     },
     "TapeInfos":{
@@ -3098,6 +3249,13 @@
     "TapeRecoveryPointStatus":{"type":"string"},
     "TapeSize":{"type":"long"},
     "TapeStatus":{"type":"string"},
+    "TapeStorageClass":{
+      "type":"string",
+      "enum":[
+        "DEEP_ARCHIVE",
+        "GLACIER"
+      ]
+    },
     "TapeUsage":{"type":"long"},
     "Tapes":{
       "type":"list",

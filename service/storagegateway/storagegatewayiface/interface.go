@@ -120,6 +120,10 @@ type StorageGatewayAPI interface {
 	CreateStorediSCSIVolumeWithContext(aws.Context, *storagegateway.CreateStorediSCSIVolumeInput, ...request.Option) (*storagegateway.CreateStorediSCSIVolumeOutput, error)
 	CreateStorediSCSIVolumeRequest(*storagegateway.CreateStorediSCSIVolumeInput) (*request.Request, *storagegateway.CreateStorediSCSIVolumeOutput)
 
+	CreateTapePool(*storagegateway.CreateTapePoolInput) (*storagegateway.CreateTapePoolOutput, error)
+	CreateTapePoolWithContext(aws.Context, *storagegateway.CreateTapePoolInput, ...request.Option) (*storagegateway.CreateTapePoolOutput, error)
+	CreateTapePoolRequest(*storagegateway.CreateTapePoolInput) (*request.Request, *storagegateway.CreateTapePoolOutput)
+
 	CreateTapeWithBarcode(*storagegateway.CreateTapeWithBarcodeInput) (*storagegateway.CreateTapeWithBarcodeOutput, error)
 	CreateTapeWithBarcodeWithContext(aws.Context, *storagegateway.CreateTapeWithBarcodeInput, ...request.Option) (*storagegateway.CreateTapeWithBarcodeOutput, error)
 	CreateTapeWithBarcodeRequest(*storagegateway.CreateTapeWithBarcodeInput) (*request.Request, *storagegateway.CreateTapeWithBarcodeOutput)
@@ -159,6 +163,10 @@ type StorageGatewayAPI interface {
 	DeleteTapeArchive(*storagegateway.DeleteTapeArchiveInput) (*storagegateway.DeleteTapeArchiveOutput, error)
 	DeleteTapeArchiveWithContext(aws.Context, *storagegateway.DeleteTapeArchiveInput, ...request.Option) (*storagegateway.DeleteTapeArchiveOutput, error)
 	DeleteTapeArchiveRequest(*storagegateway.DeleteTapeArchiveInput) (*request.Request, *storagegateway.DeleteTapeArchiveOutput)
+
+	DeleteTapePool(*storagegateway.DeleteTapePoolInput) (*storagegateway.DeleteTapePoolOutput, error)
+	DeleteTapePoolWithContext(aws.Context, *storagegateway.DeleteTapePoolInput, ...request.Option) (*storagegateway.DeleteTapePoolOutput, error)
+	DeleteTapePoolRequest(*storagegateway.DeleteTapePoolInput) (*request.Request, *storagegateway.DeleteTapePoolOutput)
 
 	DeleteVolume(*storagegateway.DeleteVolumeInput) (*storagegateway.DeleteVolumeOutput, error)
 	DeleteVolumeWithContext(aws.Context, *storagegateway.DeleteVolumeInput, ...request.Option) (*storagegateway.DeleteVolumeOutput, error)
@@ -288,6 +296,10 @@ type StorageGatewayAPI interface {
 
 	ListTagsForResourcePages(*storagegateway.ListTagsForResourceInput, func(*storagegateway.ListTagsForResourceOutput, bool) bool) error
 	ListTagsForResourcePagesWithContext(aws.Context, *storagegateway.ListTagsForResourceInput, func(*storagegateway.ListTagsForResourceOutput, bool) bool, ...request.Option) error
+
+	ListTapePools(*storagegateway.ListTapePoolsInput) (*storagegateway.ListTapePoolsOutput, error)
+	ListTapePoolsWithContext(aws.Context, *storagegateway.ListTapePoolsInput, ...request.Option) (*storagegateway.ListTapePoolsOutput, error)
+	ListTapePoolsRequest(*storagegateway.ListTapePoolsInput) (*request.Request, *storagegateway.ListTapePoolsOutput)
 
 	ListTapes(*storagegateway.ListTapesInput) (*storagegateway.ListTapesOutput, error)
 	ListTapesWithContext(aws.Context, *storagegateway.ListTapesInput, ...request.Option) (*storagegateway.ListTapesOutput, error)

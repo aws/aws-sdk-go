@@ -76,6 +76,21 @@
         {"shape":"PendingVerification"}
       ]
     },
+    "DeletePlaybackKeyPair":{
+      "name":"DeletePlaybackKeyPair",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeletePlaybackKeyPair"
+      },
+      "input":{"shape":"DeletePlaybackKeyPairRequest"},
+      "output":{"shape":"DeletePlaybackKeyPairResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"PendingVerification"}
+      ]
+    },
     "DeleteStreamKey":{
       "name":"DeleteStreamKey",
       "http":{
@@ -98,6 +113,20 @@
       },
       "input":{"shape":"GetChannelRequest"},
       "output":{"shape":"GetChannelResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetPlaybackKeyPair":{
+      "name":"GetPlaybackKeyPair",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetPlaybackKeyPair"
+      },
+      "input":{"shape":"GetPlaybackKeyPairRequest"},
+      "output":{"shape":"GetPlaybackKeyPairResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
@@ -133,6 +162,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "ImportPlaybackKeyPair":{
+      "name":"ImportPlaybackKeyPair",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ImportPlaybackKeyPair"
+      },
+      "input":{"shape":"ImportPlaybackKeyPairRequest"},
+      "output":{"shape":"ImportPlaybackKeyPairResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"PendingVerification"}
+      ]
+    },
     "ListChannels":{
       "name":"ListChannels",
       "http":{
@@ -141,6 +186,19 @@
       },
       "input":{"shape":"ListChannelsRequest"},
       "output":{"shape":"ListChannelsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListPlaybackKeyPairs":{
+      "name":"ListPlaybackKeyPairs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListPlaybackKeyPairs"
+      },
+      "input":{"shape":"ListPlaybackKeyPairsRequest"},
+      "output":{"shape":"ListPlaybackKeyPairsResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
@@ -311,6 +369,7 @@
         "errors":{"shape":"BatchErrors"}
       }
     },
+    "Boolean":{"type":"boolean"},
     "Channel":{
       "type":"structure",
       "members":{
@@ -320,6 +379,7 @@
         "type":{"shape":"ChannelType"},
         "ingestEndpoint":{"shape":"IngestEndpoint"},
         "playbackUrl":{"shape":"PlaybackURL"},
+        "authorized":{"shape":"IsAuthorized"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -366,6 +426,7 @@
         "arn":{"shape":"ChannelArn"},
         "name":{"shape":"ChannelName"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
+        "authorized":{"shape":"IsAuthorized"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -394,6 +455,7 @@
         "name":{"shape":"ChannelName"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "type":{"shape":"ChannelType"},
+        "authorized":{"shape":"Boolean"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -425,6 +487,18 @@
         "arn":{"shape":"ChannelArn"}
       }
     },
+    "DeletePlaybackKeyPairRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"PlaybackKeyPairArn"}
+      }
+    },
+    "DeletePlaybackKeyPairResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteStreamKeyRequest":{
       "type":"structure",
       "required":["arn"],
@@ -443,6 +517,19 @@
       "type":"structure",
       "members":{
         "channel":{"shape":"Channel"}
+      }
+    },
+    "GetPlaybackKeyPairRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"PlaybackKeyPairArn"}
+      }
+    },
+    "GetPlaybackKeyPairResponse":{
+      "type":"structure",
+      "members":{
+        "keyPair":{"shape":"PlaybackKeyPair"}
       }
     },
     "GetStreamKeyRequest":{
@@ -471,6 +558,21 @@
         "stream":{"shape":"Stream"}
       }
     },
+    "ImportPlaybackKeyPairRequest":{
+      "type":"structure",
+      "required":["publicKeyMaterial"],
+      "members":{
+        "publicKeyMaterial":{"shape":"PlaybackPublicKeyMaterial"},
+        "name":{"shape":"PlaybackKeyPairName"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "ImportPlaybackKeyPairResponse":{
+      "type":"structure",
+      "members":{
+        "keyPair":{"shape":"PlaybackKeyPair"}
+      }
+    },
     "IngestEndpoint":{"type":"string"},
     "InternalServerException":{
       "type":"structure",
@@ -480,6 +582,7 @@
       "error":{"httpStatusCode":500},
       "exception":true
     },
+    "IsAuthorized":{"type":"boolean"},
     "ListChannelsRequest":{
       "type":"structure",
       "members":{
@@ -493,6 +596,21 @@
       "required":["channels"],
       "members":{
         "channels":{"shape":"ChannelList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListPlaybackKeyPairsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"MaxPlaybackKeyPairResults"}
+      }
+    },
+    "ListPlaybackKeyPairsResponse":{
+      "type":"structure",
+      "required":["keyPairs"],
+      "members":{
+        "keyPairs":{"shape":"PlaybackKeyPairList"},
         "nextToken":{"shape":"PaginationToken"}
       }
     },
@@ -554,6 +672,11 @@
       "max":50,
       "min":1
     },
+    "MaxPlaybackKeyPairResults":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
     "MaxStreamKeyResults":{
       "type":"integer",
       "max":50,
@@ -582,6 +705,41 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "PlaybackKeyPair":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"PlaybackKeyPairArn"},
+        "name":{"shape":"PlaybackKeyPairName"},
+        "fingerprint":{"shape":"PlaybackKeyPairFingerprint"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "PlaybackKeyPairArn":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:playback-key/[a-zA-Z0-9-]+$"
+    },
+    "PlaybackKeyPairFingerprint":{"type":"string"},
+    "PlaybackKeyPairList":{
+      "type":"list",
+      "member":{"shape":"PlaybackKeyPairSummary"}
+    },
+    "PlaybackKeyPairName":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9-_]*$"
+    },
+    "PlaybackKeyPairSummary":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"PlaybackKeyPairArn"},
+        "name":{"shape":"PlaybackKeyPairName"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "PlaybackPublicKeyMaterial":{"type":"string"},
     "PlaybackURL":{"type":"string"},
     "PutMetadataRequest":{
       "type":"structure",
@@ -799,7 +957,8 @@
         "arn":{"shape":"ChannelArn"},
         "name":{"shape":"ChannelName"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
-        "type":{"shape":"ChannelType"}
+        "type":{"shape":"ChannelType"},
+        "authorized":{"shape":"Boolean"}
       }
     },
     "UpdateChannelResponse":{

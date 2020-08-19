@@ -424,6 +424,92 @@ func (c *IVS) DeleteChannelWithContext(ctx aws.Context, input *DeleteChannelInpu
 	return out, req.Send()
 }
 
+const opDeletePlaybackKeyPair = "DeletePlaybackKeyPair"
+
+// DeletePlaybackKeyPairRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePlaybackKeyPair operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePlaybackKeyPair for more information on using the DeletePlaybackKeyPair
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeletePlaybackKeyPairRequest method.
+//    req, resp := client.DeletePlaybackKeyPairRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeletePlaybackKeyPair
+func (c *IVS) DeletePlaybackKeyPairRequest(input *DeletePlaybackKeyPairInput) (req *request.Request, output *DeletePlaybackKeyPairOutput) {
+	op := &request.Operation{
+		Name:       opDeletePlaybackKeyPair,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeletePlaybackKeyPair",
+	}
+
+	if input == nil {
+		input = &DeletePlaybackKeyPairInput{}
+	}
+
+	output = &DeletePlaybackKeyPairOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePlaybackKeyPair API operation for Amazon Interactive Video Service.
+//
+// Deletes a specified authorization key pair. This invalidates future viewer
+// tokens generated using the key pair’s privateKey.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation DeletePlaybackKeyPair for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * AccessDeniedException
+//
+//   * ResourceNotFoundException
+//
+//   * PendingVerification
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeletePlaybackKeyPair
+func (c *IVS) DeletePlaybackKeyPair(input *DeletePlaybackKeyPairInput) (*DeletePlaybackKeyPairOutput, error) {
+	req, out := c.DeletePlaybackKeyPairRequest(input)
+	return out, req.Send()
+}
+
+// DeletePlaybackKeyPairWithContext is the same as DeletePlaybackKeyPair with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePlaybackKeyPair for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) DeletePlaybackKeyPairWithContext(ctx aws.Context, input *DeletePlaybackKeyPairInput, opts ...request.Option) (*DeletePlaybackKeyPairOutput, error) {
+	req, out := c.DeletePlaybackKeyPairRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteStreamKey = "DeleteStreamKey"
 
 // DeleteStreamKeyRequest generates a "aws/request.Request" representing the
@@ -587,6 +673,90 @@ func (c *IVS) GetChannel(input *GetChannelInput) (*GetChannelOutput, error) {
 // for more information on using Contexts.
 func (c *IVS) GetChannelWithContext(ctx aws.Context, input *GetChannelInput, opts ...request.Option) (*GetChannelOutput, error) {
 	req, out := c.GetChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPlaybackKeyPair = "GetPlaybackKeyPair"
+
+// GetPlaybackKeyPairRequest generates a "aws/request.Request" representing the
+// client's request for the GetPlaybackKeyPair operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPlaybackKeyPair for more information on using the GetPlaybackKeyPair
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetPlaybackKeyPairRequest method.
+//    req, resp := client.GetPlaybackKeyPairRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetPlaybackKeyPair
+func (c *IVS) GetPlaybackKeyPairRequest(input *GetPlaybackKeyPairInput) (req *request.Request, output *GetPlaybackKeyPairOutput) {
+	op := &request.Operation{
+		Name:       opGetPlaybackKeyPair,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetPlaybackKeyPair",
+	}
+
+	if input == nil {
+		input = &GetPlaybackKeyPairInput{}
+	}
+
+	output = &GetPlaybackKeyPairOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPlaybackKeyPair API operation for Amazon Interactive Video Service.
+//
+// Gets a specified playback authorization key pair and returns the arn and
+// fingerprint. The privateKey held by the caller can be used to generate viewer
+// authorization tokens, to grant viewers access to authorized channels.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation GetPlaybackKeyPair for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * AccessDeniedException
+//
+//   * ResourceNotFoundException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetPlaybackKeyPair
+func (c *IVS) GetPlaybackKeyPair(input *GetPlaybackKeyPairInput) (*GetPlaybackKeyPairOutput, error) {
+	req, out := c.GetPlaybackKeyPairRequest(input)
+	return out, req.Send()
+}
+
+// GetPlaybackKeyPairWithContext is the same as GetPlaybackKeyPair with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPlaybackKeyPair for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) GetPlaybackKeyPairWithContext(ctx aws.Context, input *GetPlaybackKeyPairInput, opts ...request.Option) (*GetPlaybackKeyPairOutput, error) {
+	req, out := c.GetPlaybackKeyPairRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -758,6 +928,94 @@ func (c *IVS) GetStreamKeyWithContext(ctx aws.Context, input *GetStreamKeyInput,
 	return out, req.Send()
 }
 
+const opImportPlaybackKeyPair = "ImportPlaybackKeyPair"
+
+// ImportPlaybackKeyPairRequest generates a "aws/request.Request" representing the
+// client's request for the ImportPlaybackKeyPair operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportPlaybackKeyPair for more information on using the ImportPlaybackKeyPair
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ImportPlaybackKeyPairRequest method.
+//    req, resp := client.ImportPlaybackKeyPairRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ImportPlaybackKeyPair
+func (c *IVS) ImportPlaybackKeyPairRequest(input *ImportPlaybackKeyPairInput) (req *request.Request, output *ImportPlaybackKeyPairOutput) {
+	op := &request.Operation{
+		Name:       opImportPlaybackKeyPair,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ImportPlaybackKeyPair",
+	}
+
+	if input == nil {
+		input = &ImportPlaybackKeyPairInput{}
+	}
+
+	output = &ImportPlaybackKeyPairOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportPlaybackKeyPair API operation for Amazon Interactive Video Service.
+//
+// Imports the public portion of a new key pair and returns its arn and fingerprint.
+// The privateKey can then be used to generate viewer authorization tokens,
+// to grant viewers access to authorized channels.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation ImportPlaybackKeyPair for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * AccessDeniedException
+//
+//   * ServiceQuotaExceededException
+//
+//   * PendingVerification
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ImportPlaybackKeyPair
+func (c *IVS) ImportPlaybackKeyPair(input *ImportPlaybackKeyPairInput) (*ImportPlaybackKeyPairOutput, error) {
+	req, out := c.ImportPlaybackKeyPairRequest(input)
+	return out, req.Send()
+}
+
+// ImportPlaybackKeyPairWithContext is the same as ImportPlaybackKeyPair with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportPlaybackKeyPair for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) ImportPlaybackKeyPairWithContext(ctx aws.Context, input *ImportPlaybackKeyPairInput, opts ...request.Option) (*ImportPlaybackKeyPairOutput, error) {
+	req, out := c.ImportPlaybackKeyPairRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListChannels = "ListChannels"
 
 // ListChannelsRequest generates a "aws/request.Request" representing the
@@ -891,6 +1149,144 @@ func (c *IVS) ListChannelsPagesWithContext(ctx aws.Context, input *ListChannelsI
 
 	for p.Next() {
 		if !fn(p.Page().(*ListChannelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListPlaybackKeyPairs = "ListPlaybackKeyPairs"
+
+// ListPlaybackKeyPairsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPlaybackKeyPairs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPlaybackKeyPairs for more information on using the ListPlaybackKeyPairs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPlaybackKeyPairsRequest method.
+//    req, resp := client.ListPlaybackKeyPairsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListPlaybackKeyPairs
+func (c *IVS) ListPlaybackKeyPairsRequest(input *ListPlaybackKeyPairsInput) (req *request.Request, output *ListPlaybackKeyPairsOutput) {
+	op := &request.Operation{
+		Name:       opListPlaybackKeyPairs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListPlaybackKeyPairs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPlaybackKeyPairsInput{}
+	}
+
+	output = &ListPlaybackKeyPairsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPlaybackKeyPairs API operation for Amazon Interactive Video Service.
+//
+// Gets summary information about playback key pairs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation ListPlaybackKeyPairs for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * AccessDeniedException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListPlaybackKeyPairs
+func (c *IVS) ListPlaybackKeyPairs(input *ListPlaybackKeyPairsInput) (*ListPlaybackKeyPairsOutput, error) {
+	req, out := c.ListPlaybackKeyPairsRequest(input)
+	return out, req.Send()
+}
+
+// ListPlaybackKeyPairsWithContext is the same as ListPlaybackKeyPairs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPlaybackKeyPairs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) ListPlaybackKeyPairsWithContext(ctx aws.Context, input *ListPlaybackKeyPairsInput, opts ...request.Option) (*ListPlaybackKeyPairsOutput, error) {
+	req, out := c.ListPlaybackKeyPairsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPlaybackKeyPairsPages iterates over the pages of a ListPlaybackKeyPairs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPlaybackKeyPairs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPlaybackKeyPairs operation.
+//    pageNum := 0
+//    err := client.ListPlaybackKeyPairsPages(params,
+//        func(page *ivs.ListPlaybackKeyPairsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IVS) ListPlaybackKeyPairsPages(input *ListPlaybackKeyPairsInput, fn func(*ListPlaybackKeyPairsOutput, bool) bool) error {
+	return c.ListPlaybackKeyPairsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPlaybackKeyPairsPagesWithContext same as ListPlaybackKeyPairsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) ListPlaybackKeyPairsPagesWithContext(ctx aws.Context, input *ListPlaybackKeyPairsInput, fn func(*ListPlaybackKeyPairsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPlaybackKeyPairsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPlaybackKeyPairsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPlaybackKeyPairsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2000,6 +2396,9 @@ type Channel struct {
 	// Channel ARN.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// Whether the channel is authorized.
+	Authorized *bool `locationName:"authorized" type:"boolean"`
+
 	// Channel ingest endpoint, part of the definition of an ingest server, used
 	// when you set up streaming software.
 	IngestEndpoint *string `locationName:"ingestEndpoint" type:"string"`
@@ -2046,6 +2445,12 @@ func (s Channel) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *Channel) SetArn(v string) *Channel {
 	s.Arn = &v
+	return s
+}
+
+// SetAuthorized sets the Authorized field's value.
+func (s *Channel) SetAuthorized(v bool) *Channel {
+	s.Authorized = &v
 	return s
 }
 
@@ -2150,6 +2555,9 @@ type ChannelSummary struct {
 	// Channel ARN.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// Whether the channel is authorized.
+	Authorized *bool `locationName:"authorized" type:"boolean"`
+
 	// Channel latency mode. Default: LOW.
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
@@ -2173,6 +2581,12 @@ func (s ChannelSummary) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *ChannelSummary) SetArn(v string) *ChannelSummary {
 	s.Arn = &v
+	return s
+}
+
+// SetAuthorized sets the Authorized field's value.
+func (s *ChannelSummary) SetAuthorized(v bool) *ChannelSummary {
+	s.Authorized = &v
 	return s
 }
 
@@ -2255,6 +2669,9 @@ func (s *ConflictException) RequestID() string {
 type CreateChannelInput struct {
 	_ struct{} `type:"structure"`
 
+	// Whether the channel is authorized. Default: false.
+	Authorized *bool `locationName:"authorized" type:"boolean"`
+
 	// Channel latency mode. Default: LOW.
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
@@ -2289,6 +2706,12 @@ func (s CreateChannelInput) String() string {
 // GoString returns the string representation
 func (s CreateChannelInput) GoString() string {
 	return s.String()
+}
+
+// SetAuthorized sets the Authorized field's value.
+func (s *CreateChannelInput) SetAuthorized(v bool) *CreateChannelInput {
+	s.Authorized = &v
+	return s
 }
 
 // SetLatencyMode sets the LatencyMode field's value.
@@ -2475,6 +2898,61 @@ func (s DeleteChannelOutput) GoString() string {
 	return s.String()
 }
 
+type DeletePlaybackKeyPairInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the key pair to be deleted.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeletePlaybackKeyPairInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeletePlaybackKeyPairInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePlaybackKeyPairInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePlaybackKeyPairInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeletePlaybackKeyPairInput) SetArn(v string) *DeletePlaybackKeyPairInput {
+	s.Arn = &v
+	return s
+}
+
+type DeletePlaybackKeyPairOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePlaybackKeyPairOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeletePlaybackKeyPairOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteStreamKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2591,6 +3069,70 @@ func (s GetChannelOutput) GoString() string {
 // SetChannel sets the Channel field's value.
 func (s *GetChannelOutput) SetChannel(v *Channel) *GetChannelOutput {
 	s.Channel = v
+	return s
+}
+
+type GetPlaybackKeyPairInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the key pair to be returned.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetPlaybackKeyPairInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPlaybackKeyPairInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPlaybackKeyPairInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPlaybackKeyPairInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetPlaybackKeyPairInput) SetArn(v string) *GetPlaybackKeyPairInput {
+	s.Arn = &v
+	return s
+}
+
+type GetPlaybackKeyPairOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A key pair used to sign and validate a playback authorization token.
+	KeyPair *PlaybackKeyPair `locationName:"keyPair" type:"structure"`
+}
+
+// String returns the string representation
+func (s GetPlaybackKeyPairOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPlaybackKeyPairOutput) GoString() string {
+	return s.String()
+}
+
+// SetKeyPair sets the KeyPair field's value.
+func (s *GetPlaybackKeyPairOutput) SetKeyPair(v *PlaybackKeyPair) *GetPlaybackKeyPairOutput {
+	s.KeyPair = v
 	return s
 }
 
@@ -2719,6 +3261,86 @@ func (s GetStreamOutput) GoString() string {
 // SetStream sets the Stream field's value.
 func (s *GetStreamOutput) SetStream(v *Stream) *GetStreamOutput {
 	s.Stream = v
+	return s
+}
+
+type ImportPlaybackKeyPairInput struct {
+	_ struct{} `type:"structure"`
+
+	// An arbitrary string (a nickname) assigned to a playback key pair that helps
+	// the customer identify that resource. The value does not need to be unique.
+	Name *string `locationName:"name" type:"string"`
+
+	// The public portion of a customer-generated key pair.
+	//
+	// PublicKeyMaterial is a required field
+	PublicKeyMaterial *string `locationName:"publicKeyMaterial" type:"string" required:"true"`
+
+	// Any tags provided with the request are added to the playback key pair tags.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s ImportPlaybackKeyPairInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportPlaybackKeyPairInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportPlaybackKeyPairInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportPlaybackKeyPairInput"}
+	if s.PublicKeyMaterial == nil {
+		invalidParams.Add(request.NewErrParamRequired("PublicKeyMaterial"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ImportPlaybackKeyPairInput) SetName(v string) *ImportPlaybackKeyPairInput {
+	s.Name = &v
+	return s
+}
+
+// SetPublicKeyMaterial sets the PublicKeyMaterial field's value.
+func (s *ImportPlaybackKeyPairInput) SetPublicKeyMaterial(v string) *ImportPlaybackKeyPairInput {
+	s.PublicKeyMaterial = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ImportPlaybackKeyPairInput) SetTags(v map[string]*string) *ImportPlaybackKeyPairInput {
+	s.Tags = v
+	return s
+}
+
+type ImportPlaybackKeyPairOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A key pair used to sign and validate a playback authorization token.
+	KeyPair *PlaybackKeyPair `locationName:"keyPair" type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportPlaybackKeyPairOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportPlaybackKeyPairOutput) GoString() string {
+	return s.String()
+}
+
+// SetKeyPair sets the KeyPair field's value.
+func (s *ImportPlaybackKeyPairOutput) SetKeyPair(v *PlaybackKeyPair) *ImportPlaybackKeyPairOutput {
+	s.KeyPair = v
 	return s
 }
 
@@ -2866,6 +3488,87 @@ func (s *ListChannelsOutput) SetChannels(v []*ChannelSummary) *ListChannelsOutpu
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPlaybackKeyPairsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The first key pair to retrieve. This is used for pagination; see the nextToken
+	// response field.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// Maximum number of key pairs to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListPlaybackKeyPairsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPlaybackKeyPairsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPlaybackKeyPairsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPlaybackKeyPairsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPlaybackKeyPairsInput) SetMaxResults(v int64) *ListPlaybackKeyPairsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPlaybackKeyPairsInput) SetNextToken(v string) *ListPlaybackKeyPairsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPlaybackKeyPairsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of key pairs.
+	//
+	// KeyPairs is a required field
+	KeyPairs []*PlaybackKeyPairSummary `locationName:"keyPairs" type:"list" required:"true"`
+
+	// If there are more key pairs than maxResults, use nextToken in the request
+	// to get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListPlaybackKeyPairsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPlaybackKeyPairsOutput) GoString() string {
+	return s.String()
+}
+
+// SetKeyPairs sets the KeyPairs field's value.
+func (s *ListPlaybackKeyPairsOutput) SetKeyPairs(v []*PlaybackKeyPairSummary) *ListPlaybackKeyPairsOutput {
+	s.KeyPairs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPlaybackKeyPairsOutput) SetNextToken(v string) *ListPlaybackKeyPairsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -3203,6 +3906,99 @@ func (s *PendingVerification) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A key pair used to sign and validate a playback authorization token.
+type PlaybackKeyPair struct {
+	_ struct{} `type:"structure"`
+
+	// Key-pair ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// Key-pair identifier.
+	Fingerprint *string `locationName:"fingerprint" type:"string"`
+
+	// Key-pair name.
+	Name *string `locationName:"name" type:"string"`
+
+	// Array of 1-50 maps, each of the form string:string (key:value).
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s PlaybackKeyPair) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PlaybackKeyPair) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PlaybackKeyPair) SetArn(v string) *PlaybackKeyPair {
+	s.Arn = &v
+	return s
+}
+
+// SetFingerprint sets the Fingerprint field's value.
+func (s *PlaybackKeyPair) SetFingerprint(v string) *PlaybackKeyPair {
+	s.Fingerprint = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PlaybackKeyPair) SetName(v string) *PlaybackKeyPair {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PlaybackKeyPair) SetTags(v map[string]*string) *PlaybackKeyPair {
+	s.Tags = v
+	return s
+}
+
+// Summary information about a playback key pair.
+type PlaybackKeyPairSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Key-pair ARN.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// Key-pair name.
+	Name *string `locationName:"name" type:"string"`
+
+	// Array of 1-50 maps, each of the form string:string (key:value)
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s PlaybackKeyPairSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PlaybackKeyPairSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PlaybackKeyPairSummary) SetArn(v string) *PlaybackKeyPairSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PlaybackKeyPairSummary) SetName(v string) *PlaybackKeyPairSummary {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PlaybackKeyPairSummary) SetTags(v map[string]*string) *PlaybackKeyPairSummary {
+	s.Tags = v
+	return s
+}
+
 type PutMetadataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3524,7 +4320,7 @@ type StreamKey struct {
 	// Channel ARN for the stream.
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value)
+	// Array of 1-50 maps, each of the form string:string (key:value).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Stream-key value.
@@ -3575,7 +4371,7 @@ type StreamKeySummary struct {
 	// Channel ARN for the stream.
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value)
+	// Array of 1-50 maps, each of the form string:string (key:value).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3929,6 +4725,9 @@ type UpdateChannelInput struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
+	// Whether the channel is authorized. Default: false.
+	Authorized *bool `locationName:"authorized" type:"boolean"`
+
 	// Channel latency mode. Default: LOW.
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
@@ -3981,6 +4780,12 @@ func (s *UpdateChannelInput) Validate() error {
 // SetArn sets the Arn field's value.
 func (s *UpdateChannelInput) SetArn(v string) *UpdateChannelInput {
 	s.Arn = &v
+	return s
+}
+
+// SetAuthorized sets the Authorized field's value.
+func (s *UpdateChannelInput) SetAuthorized(v bool) *UpdateChannelInput {
+	s.Authorized = &v
 	return s
 }
 
