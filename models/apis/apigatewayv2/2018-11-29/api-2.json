@@ -1487,6 +1487,10 @@
           "shape" : "__string",
           "locationName" : "apiEndpoint"
         },
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ApiId" : {
           "shape" : "Id",
           "locationName" : "apiId"
@@ -1920,6 +1924,10 @@
           "shape" : "__string",
           "locationName" : "apiEndpoint"
         },
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ApiId" : {
           "shape" : "Id",
           "locationName" : "apiId"
@@ -2241,6 +2249,10 @@
           "shape" : "StringWithLengthBetween1And64",
           "locationName" : "integrationMethod"
         },
+        "IntegrationSubtype" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "integrationSubtype"
+        },
         "IntegrationType" : {
           "shape" : "IntegrationType",
           "locationName" : "integrationType"
@@ -2311,6 +2323,10 @@
         "IntegrationMethod" : {
           "shape" : "StringWithLengthBetween1And64",
           "locationName" : "integrationMethod"
+        },
+        "IntegrationSubtype" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "integrationSubtype"
         },
         "IntegrationType" : {
           "shape" : "IntegrationType",
@@ -2389,6 +2405,10 @@
         "IntegrationResponseSelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "integrationResponseSelectionExpression"
+        },
+        "IntegrationSubtype" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "integrationSubtype"
         },
         "IntegrationType" : {
           "shape" : "IntegrationType",
@@ -3612,6 +3632,10 @@
           "shape" : "__string",
           "locationName" : "apiEndpoint"
         },
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ApiId" : {
           "shape" : "Id",
           "locationName" : "apiId"
@@ -3978,6 +4002,10 @@
         "IntegrationResponseSelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "integrationResponseSelectionExpression"
+        },
+        "IntegrationSubtype" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "integrationSubtype"
         },
         "IntegrationType" : {
           "shape" : "IntegrationType",
@@ -4689,6 +4717,10 @@
           "shape" : "__string",
           "locationName" : "apiEndpoint"
         },
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ApiId" : {
           "shape" : "Id",
           "locationName" : "apiId"
@@ -4796,6 +4828,10 @@
         "IntegrationResponseSelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "integrationResponseSelectionExpression"
+        },
+        "IntegrationSubtype" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "integrationSubtype"
         },
         "IntegrationType" : {
           "shape" : "IntegrationType",
@@ -5051,6 +5087,10 @@
         "ApiEndpoint" : {
           "shape" : "__string",
           "locationName" : "apiEndpoint"
+        },
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
         },
         "ApiId" : {
           "shape" : "Id",
@@ -5676,6 +5716,10 @@
           "shape" : "__string",
           "locationName" : "apiEndpoint"
         },
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ApiId" : {
           "shape" : "Id",
           "locationName" : "apiId"
@@ -5986,6 +6030,10 @@
           "shape" : "StringWithLengthBetween1And64",
           "locationName" : "integrationMethod"
         },
+        "IntegrationSubtype" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "integrationSubtype"
+        },
         "IntegrationType" : {
           "shape" : "IntegrationType",
           "locationName" : "integrationType"
@@ -6060,6 +6108,10 @@
         "IntegrationMethod" : {
           "shape" : "StringWithLengthBetween1And64",
           "locationName" : "integrationMethod"
+        },
+        "IntegrationSubtype" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "integrationSubtype"
         },
         "IntegrationType" : {
           "shape" : "IntegrationType",
@@ -6138,6 +6190,10 @@
         "IntegrationResponseSelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "integrationResponseSelectionExpression"
+        },
+        "IntegrationSubtype" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "integrationSubtype"
         },
         "IntegrationType" : {
           "shape" : "IntegrationType",
