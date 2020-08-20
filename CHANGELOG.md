@@ -1,3 +1,16 @@
+Release v1.34.9 (2020-08-20)
+===
+
+### Service Client Updates
+* `service/apigatewayv2`: Updates service API and documentation
+  * Customers can now create Amazon API Gateway HTTP APIs that route requests to AWS AppConfig, Amazon EventBridge, Amazon Kinesis Data Streams, Amazon SQS, and AWS Step Functions.
+* `service/chime`: Updates service documentation
+  * Documentation updates for chime
+* `service/fsx`: Updates service documentation
+
+### SDK Enhancements
+* `private/protocol`: The SDK now supports the serialization of ISO8601 date-time formats with fractional seconds precision. ([#3489](https://github.com/aws/aws-sdk-go/pull/3489))
+
 Release v1.34.8 (2020-08-19)
 ===
 
