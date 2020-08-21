@@ -113,10 +113,15 @@ func (t *RequestTrace) TraceRequest(r *request.Request) {
 		attempt.SignDone = time.Now()
 	})
 
+	// Ensure that the http trace added to the request always uses the original
+	// context instead of each following attempt's context to prevent conflict
+	// with previous http traces used.
+	origContext := r.Context()
+
 	// Send
 	r.Handlers.Send.PushFront(func(rr *request.Request) {
 		attempt.SendStart = time.Now()
-		attempt.HTTPTrace = NewHTTPTrace(rr.Context())
+		attempt.HTTPTrace = NewHTTPTrace(origContext)
 		rr.SetContext(attempt.HTTPTrace)
 	})
 	r.Handlers.Send.PushBack(func(rr *request.Request) {
@@ -398,7 +403,7 @@ func (t *HTTPTrace) wroteRequest(info httptrace.WroteRequestInfo) {
 }
 
 func safeTimeDelta(start, end time.Time) time.Duration {
-	if start.IsZero() || end.IsZero() {
+	if start.IsZero() || end.IsZero() || start.After(end) {
 		return 0
 	}
 

@@ -55,7 +55,7 @@ func main() {
 	for scanner.Scan() {
 		trace, err := publishMessage(ctx, svc, topicARN, scanner.Text())
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "failed to publish message, %v", err)
+			fmt.Fprintf(os.Stderr, "failed to publish message, %v\n", err)
 		}
 		log.Println(trace)
 
@@ -77,7 +77,7 @@ func publishMessage(ctx context.Context, svc *sns.SNS, topic, msg string) (*Requ
 		Message:  &msg,
 	}, trace.TraceRequest)
 	if err != nil {
-		return nil, err
+		return trace, err
 	}
 
 	return trace, nil
