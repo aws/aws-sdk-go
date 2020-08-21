@@ -485,7 +485,7 @@ We work hard to provide a high-quality and useful SDK for our AWS services, and 
 
 ## Resources
 
-[Developer guide](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/welcome.html/) - This document
+[Developer guide](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/welcome.html) - This document
 is a general introduction on how to configure and make requests with the SDK.
 If this is your first time using the SDK, this documentation and the API
 documentation will help you get started. This document focuses on the syntax
