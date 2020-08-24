@@ -663,3 +663,65 @@ func TestSession_RegionalEndpoints(t *testing.T) {
 		})
 	}
 }
+
+func TestSession_ClientConfig_ResolveEndpoint(t *testing.T) {
+	cases := map[string]struct {
+		Service        string
+		Region         string
+		Env            map[string]string
+		Options        Options
+		ExpectEndpoint string
+	}{
+		"IMDS custom endpoint from env": {
+			Service: ec2MetadataServiceID,
+			Region:  "ignored",
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT": "http://example.aws",
+			},
+			ExpectEndpoint: "http://example.aws",
+		},
+		"IMDS custom endpoint from aws.Config": {
+			Service: ec2MetadataServiceID,
+			Region:  "ignored",
+			Options: Options{
+				EC2IMDSEndpoint: "http://example.aws",
+			},
+			ExpectEndpoint: "http://example.aws",
+		},
+		"IMDS custom endpoint from aws.Config and env": {
+			Service: ec2MetadataServiceID,
+			Region:  "ignored",
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT": "http://wrong.example.aws",
+			},
+			Options: Options{
+				EC2IMDSEndpoint: "http://correct.example.aws",
+			},
+			ExpectEndpoint: "http://correct.example.aws",
+		},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			restoreEnvFn := initSessionTestEnv()
+			defer restoreEnvFn()
+
+			for k, v := range c.Env {
+				os.Setenv(k, v)
+			}
+
+			s, err := NewSessionWithOptions(c.Options)
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+
+			clientCfg := s.ClientConfig(c.Service, &aws.Config{
+				Region: aws.String(c.Region),
+			})
+
+			if e, a := c.ExpectEndpoint, clientCfg.Endpoint; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
