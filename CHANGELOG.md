@@ -1,3 +1,20 @@
+Release v1.34.10 (2020-08-24)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API and documentation
+  * Added new endpoint settings to include columns with Null and Empty value when using Kinesis and Kafka as target. Added a new endpoint setting to set maximum message size when using Kafka as target.
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release enables customers to use VPC prefix lists in their transit gateway route tables, and it adds support for Provisioned IOPS SSD (io2) EBS volumes.
+* `service/iotsitewise`: Updates service API and documentation
+* `service/kafka`: Updates service API and documentation
+* `service/logs`: Updates service documentation
+  * Documentation updates for CloudWatch Logs
+* `service/ssm`: Updates service API and documentation
+  * Add string length constraints to OpsDataAttributeName and OpsFilterValue.
+* `service/xray`: Updates service API and documentation
+  * AWS X-Ray now supports tagging on sampling rules and groups.
+
 Release v1.34.9 (2020-08-20)
 ===
 

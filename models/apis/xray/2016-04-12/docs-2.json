@@ -17,9 +17,12 @@
     "GetTimeSeriesServiceStatistics": "<p>Get an aggregation of service statistics defined by a specific time range.</p>",
     "GetTraceGraph": "<p>Retrieves a service graph for one or more specific trace IDs.</p>",
     "GetTraceSummaries": "<p>Retrieves IDs and annotations for traces available for a specified time frame using an optional filter. To get the full traces, pass the trace IDs to <code>BatchGetTraces</code>.</p> <p>A filter expression can target traced requests that hit specific service nodes or edges, have errors, or come from a known user. For example, the following filter expression targets traces that pass through <code>api.example.com</code>:</p> <p> <code>service(\"api.example.com\")</code> </p> <p>This filter expression finds traces that have an annotation named <code>account</code> with the value <code>12345</code>:</p> <p> <code>annotation.account = \"12345\"</code> </p> <p>For a full list of indexed fields and keywords that you can use in filter expressions, see <a href=\"https://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html\">Using Filter Expressions</a> in the <i>AWS X-Ray Developer Guide</i>.</p>",
+    "ListTagsForResource": null,
     "PutEncryptionConfig": "<p>Updates the encryption configuration for X-Ray data.</p>",
     "PutTelemetryRecords": "<p>Used by the AWS X-Ray daemon to upload telemetry.</p>",
     "PutTraceSegments": "<p>Uploads segment documents to AWS X-Ray. The <a href=\"https://docs.aws.amazon.com/xray/index.html\">X-Ray SDK</a> generates segment documents and sends them to the X-Ray daemon, which uploads them in batches. A segment document can be a completed segment, an in-progress segment, or an array of subsegments.</p> <p>Segments must include the following fields. For the full segment document schema, see <a href=\"https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html\">AWS X-Ray Segment Documents</a> in the <i>AWS X-Ray Developer Guide</i>.</p> <p class=\"title\"> <b>Required Segment Document Fields</b> </p> <ul> <li> <p> <code>name</code> - The name of the service that handled the request.</p> </li> <li> <p> <code>id</code> - A 64-bit identifier for the segment, unique among segments in the same trace, in 16 hexadecimal digits.</p> </li> <li> <p> <code>trace_id</code> - A unique identifier that connects all segments and subsegments originating from a single client request.</p> </li> <li> <p> <code>start_time</code> - Time the segment or subsegment was created, in floating point seconds in epoch time, accurate to milliseconds. For example, <code>1480615200.010</code> or <code>1.480615200010E9</code>.</p> </li> <li> <p> <code>end_time</code> - Time the segment or subsegment was closed. For example, <code>1480615200.090</code> or <code>1.480615200090E9</code>. Specify either an <code>end_time</code> or <code>in_progress</code>.</p> </li> <li> <p> <code>in_progress</code> - Set to <code>true</code> instead of specifying an <code>end_time</code> to record that a segment has been started, but is not complete. Send an in progress segment when your application receives a request that will take a long time to serve, to trace the fact that the request was received. When the response is sent, send the complete segment to overwrite the in-progress segment.</p> </li> </ul> <p>A <code>trace_id</code> consists of three numbers separated by hyphens. For example, 1-58406520-a006649127e371903a2de979. This includes:</p> <p class=\"title\"> <b>Trace ID Format</b> </p> <ul> <li> <p>The version number, i.e. <code>1</code>.</p> </li> <li> <p>The time of the original request, in Unix epoch time, in 8 hexadecimal digits. For example, 10:00AM December 2nd, 2016 PST in epoch time is <code>1480615200</code> seconds, or <code>58406520</code> in hexadecimal.</p> </li> <li> <p>A 96-bit identifier for the trace, globally unique, in 24 hexadecimal digits.</p> </li> </ul>",
+    "TagResource": null,
+    "UntagResource": null,
     "UpdateGroup": "<p>Updates a group resource.</p>",
     "UpdateSamplingRule": "<p>Modifies a sampling rule's configuration.</p>"
   },
@@ -40,6 +43,16 @@
       "base": null,
       "refs": {
         "Alias$Names": "<p>A list of names for the alias, including the canonical name.</p>"
+      }
+    },
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceARN": null,
+        "ResourceNotFoundException$ResourceName": null,
+        "TagResourceRequest$ResourceARN": null,
+        "TooManyTagsException$ResourceName": null,
+        "UntagResourceRequest$ResourceARN": null
       }
     },
     "AnnotationKey": {
@@ -228,8 +241,10 @@
       "base": null,
       "refs": {
         "InvalidRequestException$Message": null,
+        "ResourceNotFoundException$Message": null,
         "RuleLimitExceededException$Message": null,
-        "ThrottledException$Message": null
+        "ThrottledException$Message": null,
+        "TooManyTagsException$Message": null
       }
     },
     "ErrorRootCause": {
@@ -541,6 +556,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "NullableBoolean": {
       "base": null,
       "refs": {
@@ -674,6 +699,11 @@
       "base": "<p>A list of resources ARNs corresponding to the segments in a trace.</p>",
       "refs": {
         "TraceResourceARNs$member": null
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": null,
+      "refs": {
       }
     },
     "ResponseTimeRootCause": {
@@ -948,6 +978,8 @@
         "Http$UserAgent": "<p>The request's user agent string.</p>",
         "Http$ClientIp": "<p>The IP address of the requestor.</p>",
         "InstanceIdDetail$Id": "<p>The ID of a corresponding EC2 instance.</p>",
+        "ListTagsForResourceRequest$NextToken": null,
+        "ListTagsForResourceResponse$NextToken": null,
         "ResourceARNDetail$ARN": "<p>The ARN of a corresponding resource.</p>",
         "ResponseTimeRootCauseEntity$Name": "<p>The name of the entity.</p>",
         "ResponseTimeRootCauseService$Name": "<p>The service name.</p>",
@@ -974,6 +1006,50 @@
         "UnprocessedTraceSegment$Id": "<p>The segment's ID.</p>",
         "UnprocessedTraceSegment$ErrorCode": "<p>The error that caused processing to fail.</p>",
         "UnprocessedTraceSegment$Message": "<p>The error message.</p>"
+      }
+    },
+    "Tag": {
+      "base": null,
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": null,
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": null
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateGroupRequest$Tags": null,
+        "CreateSamplingRuleRequest$Tags": null,
+        "ListTagsForResourceResponse$Tags": null,
+        "TagResourceRequest$Tags": null
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": null
       }
     },
     "TelemetryRecord": {
@@ -1036,6 +1112,11 @@
         "TelemetryRecord$Timestamp": "<p/>",
         "TimeSeriesServiceStatistics$Timestamp": "<p>Timestamp of the window for which statistics are aggregated.</p>",
         "TraceSummary$MatchedEventTime": "<p>The matched time stamp of a defined event.</p>"
+      }
+    },
+    "TooManyTagsException": {
+      "base": null,
+      "refs": {
       }
     },
     "Trace": {
@@ -1155,6 +1236,16 @@
       "base": null,
       "refs": {
         "PutTraceSegmentsResult$UnprocessedTraceSegments": "<p>Segments that failed processing.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateGroupRequest": {

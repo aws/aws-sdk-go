@@ -5,6 +5,7 @@
     "CreateCluster" : "<p>Creates a new MSK cluster.</p>",
     "CreateConfiguration" : "<p>Creates a new MSK configuration.</p>",
     "DeleteCluster" : "<p>Deletes the MSK cluster specified by the Amazon Resource Name (ARN) in the request.</p>",
+    "DeleteConfiguration" : "<p>Deletes the specified MSK configuration. The configuration must be in the ACTIVE or DELETE_FAILED state.</p>",
     "DescribeCluster" : "<p>Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.</p>",
     "DescribeClusterOperation" : "<p>Returns a description of the cluster operation specified by the ARN.</p>",
     "DescribeConfiguration" : "<p>Returns a description of this MSK configuration.</p>",
@@ -23,6 +24,7 @@
     "UntagResource" : "<p>Removes the tags associated with the keys that are provided in the query.</p>",
     "UpdateBrokerCount" : "<p>Updates the number of broker nodes in the cluster. You can use this operation to increase the number of brokers in an existing cluster. You can't decrease the number of brokers.</p>",
     "UpdateBrokerStorage" : "<p>Updates the EBS storage associated with MSK brokers.</p>",
+    "UpdateConfiguration" : "<p>Updates an existing MSK configuration. The configuration must be in the Active state.</p>",
     "UpdateClusterConfiguration" : "<p>Updates the cluster with the configuration that is specified in the request body.</p>",
     "UpdateClusterKafkaVersion" : "<p>Updates the Apache Kafka version for the cluster.</p>",
     "UpdateMonitoring" : "<p>Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.</p>"
@@ -149,7 +151,16 @@
         "Configuration$LatestRevision" : "<p>Latest revision of the configuration.</p>",
         "CreateConfigurationResponse$LatestRevision" : "<p>Latest revision of the configuration.</p>",
         "DescribeConfigurationResponse$LatestRevision" : "<p>Latest revision of the configuration.</p>",
+        "UpdateConfigurationResponse$LatestRevision" : "<p>Latest revision of the configuration.</p>",
         "__listOfConfigurationRevision$member" : null
+      }
+    },
+    "ConfigurationState" : {
+      "base" : "<p>The state of a configuration.</p>",
+      "refs" : {
+        "DescribeConfigurationResponse$State" : "<p>The state of the configuration. The possible states are ACTIVE, DELETING and DELETE_FAILED.</p>",
+        "CreateConfigurationResponse$State" : "<p>The state of the configuration. The possible states are ACTIVE, DELETING and DELETE_FAILED.</p>",
+        "DeleteConfigurationResponse$State" : "<p>The state of the configuration. The possible states are ACTIVE, DELETING and DELETE_FAILED.</p>"
       }
     },
     "ConflictException" : {
@@ -174,6 +185,14 @@
     },
     "DeleteClusterResponse" : {
       "base" : "<p>Returns information about the deleted cluster.</p>",
+      "refs" : { }
+    },
+    "DeleteConfigurationRequest" : {
+      "base" : "<p>Request body for DeleteConfiguration.</p>",
+      "refs" : { }
+    },
+    "DeleteConfigurationResponse" : {
+      "base" : "<p>Response body for DeleteConfiguration.</p>",
       "refs" : { }
     },
     "DescribeClusterOperationResponse" : {
@@ -444,6 +463,14 @@
       "base" : "<p>Response body for UpdateBrokerStorage.</p>",
       "refs" : { }
     },
+    "UpdateConfigurationRequest" : {
+      "base" : "<p>Request body for UpdateConfiguration.</p>",
+      "refs" : { }
+    },
+    "UpdateConfigurationResponse" : {
+      "base" : "<p>Response body for UpdateConfiguration.</p>",
+      "refs" : { }
+    },
     "UpdateClusterConfigurationRequest" : {
       "base" : "<p>Request body for UpdateClusterConfiguration.</p>",
       "refs" : { }
@@ -637,6 +664,8 @@
         "CreateConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "CreateConfigurationResponse$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
         "DeleteClusterResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "DeleteConfigurationRequest$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "DeleteConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "DescribeConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "DescribeConfigurationResponse$Description" : "<p>The description of the configuration.</p>",
         "DescribeConfigurationResponse$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
@@ -672,6 +701,9 @@
         "UpdateBrokerStorageRequest$CurrentVersion" : "<p>The version of cluster to update from. A successful operation will then generate a new version.</p>",
         "UpdateBrokerStorageResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateBrokerStorageResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "UpdateConfigurationRequest$Description" : "<p>The description of the configuration.</p>",
+        "UpdateConfigurationRequest$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "UpdateConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "UpdateClusterConfigurationRequest$CurrentVersion" : "<p>The version of the cluster that you want to update.</p>",
         "UpdateClusterConfigurationResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateClusterConfigurationResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",

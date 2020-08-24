@@ -62,7 +62,7 @@ func (c *IoTSiteWise) AssociateAssetsRequest(input *AssociateAssetsInput) (req *
 //
 // Associates a child asset with the given parent asset through a hierarchy
 // defined in the parent asset's model. For more information, see Associating
-// Assets (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/add-associated-assets.html)
+// assets (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/add-associated-assets.html)
 // in the AWS IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -374,7 +374,7 @@ func (c *IoTSiteWise) BatchPutAssetPropertyValueRequest(input *BatchPutAssetProp
 //
 // Sends a list of asset property values to AWS IoT SiteWise. Each value is
 // a timestamp-quality-value (TQV) data point. For more information, see Ingesting
-// Data Using the API (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/ingest-api.html)
+// data using the API (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/ingest-api.html)
 // in the AWS IoT SiteWise User Guide.
 //
 // To identify an asset property, you must specify one of the following:
@@ -394,6 +394,11 @@ func (c *IoTSiteWise) BatchPutAssetPropertyValueRequest(input *BatchPutAssetProp
 // timestamps unless the newer TQV has a different quality. For example, if
 // you store a TQV {T1, GOOD, V1}, then storing {T1, GOOD, V2} replaces the
 // existing TQV.
+//
+// AWS IoT SiteWise authorizes access to each BatchPutAssetPropertyValue entry
+// individually. For more information, see BatchPutAssetPropertyValue authorization
+// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-batchputassetpropertyvalue-action)
+// in the AWS IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -611,7 +616,7 @@ func (c *IoTSiteWise) CreateAssetRequest(input *CreateAssetInput) (req *request.
 // CreateAsset API operation for AWS IoT SiteWise.
 //
 // Creates an asset from an existing asset model. For more information, see
-// Creating Assets (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-assets.html)
+// Creating assets (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-assets.html)
 // in the AWS IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -727,7 +732,7 @@ func (c *IoTSiteWise) CreateAssetModelRequest(input *CreateAssetModelInput) (req
 // You create assets from asset models. With asset models, you can easily create
 // assets of the same type that have standardized definitions. Each asset created
 // from a model inherits the asset model's property and hierarchy definitions.
-// For more information, see Defining Asset Models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/define-models.html)
+// For more information, see Defining asset models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/define-models.html)
 // in the AWS IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1051,14 +1056,14 @@ func (c *IoTSiteWise) CreatePortalRequest(input *CreatePortalInput) (req *reques
 // CreatePortal API operation for AWS IoT SiteWise.
 //
 // Creates a portal, which can contain projects and dashboards. Before you can
-// create a portal, you must configure AWS Single Sign-On in the current Region.
-// AWS IoT SiteWise Monitor uses AWS SSO to manage user permissions. For more
-// information, see Enabling AWS SSO (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso)
+// create a portal, you must enable AWS Single Sign-On. AWS IoT SiteWise Monitor
+// uses AWS SSO to manage user permissions. For more information, see Enabling
+// AWS SSO (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso)
 // in the AWS IoT SiteWise User Guide.
 //
 // Before you can sign in to a new portal, you must add at least one AWS SSO
-// user or group to that portal. For more information, see Adding or Removing
-// Portal Administrators (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins)
+// user or group to that portal. For more information, see Adding or removing
+// portal administrators (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins)
 // in the AWS IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1367,7 +1372,7 @@ func (c *IoTSiteWise) DeleteAssetRequest(input *DeleteAssetInput) (req *request.
 // DeleteAsset API operation for AWS IoT SiteWise.
 //
 // Deletes an asset. This action can't be undone. For more information, see
-// Deleting Assets and Models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html)
+// Deleting assets and models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html)
 // in the AWS IoT SiteWise User Guide.
 //
 // You can't delete an asset that's associated to another asset. For more information,
@@ -1475,7 +1480,7 @@ func (c *IoTSiteWise) DeleteAssetModelRequest(input *DeleteAssetModelInput) (req
 // assets created from an asset model before you can delete the model. Also,
 // you can't delete an asset model if a parent asset model exists that contains
 // a property formula expression that depends on the asset model that you want
-// to delete. For more information, see Deleting Assets and Models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html)
+// to delete. For more information, see Deleting assets and models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html)
 // in the AWS IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2259,7 +2264,15 @@ func (c *IoTSiteWise) DescribeAssetPropertyRequest(input *DescribeAssetPropertyI
 
 // DescribeAssetProperty API operation for AWS IoT SiteWise.
 //
-// Retrieves information about an asset's property.
+// Retrieves information about an asset property.
+//
+// When you call this operation for an attribute property, this response includes
+// the default attribute value that you define in the asset model. If you update
+// the default value in the model, this operation's response includes the new
+// default value.
+//
+// This operation doesn't return the value of the asset property. To get the
+// value of an asset property, use GetAssetPropertyValue (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_GetAssetPropertyValue.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3045,7 +3058,7 @@ func (c *IoTSiteWise) GetAssetPropertyAggregatesRequest(input *GetAssetPropertyA
 // GetAssetPropertyAggregates API operation for AWS IoT SiteWise.
 //
 // Gets aggregated values for an asset property. For more information, see Querying
-// Aggregated Property Values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#aggregates)
+// aggregates (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#aggregates)
 // in the AWS IoT SiteWise User Guide.
 //
 // To identify an asset property, you must specify one of the following:
@@ -3205,7 +3218,7 @@ func (c *IoTSiteWise) GetAssetPropertyValueRequest(input *GetAssetPropertyValueI
 // GetAssetPropertyValue API operation for AWS IoT SiteWise.
 //
 // Gets an asset property's current value. For more information, see Querying
-// Current Property Values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#current-values)
+// current values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#current-values)
 // in the AWS IoT SiteWise User Guide.
 //
 // To identify an asset property, you must specify one of the following:
@@ -3319,7 +3332,7 @@ func (c *IoTSiteWise) GetAssetPropertyValueHistoryRequest(input *GetAssetPropert
 // GetAssetPropertyValueHistory API operation for AWS IoT SiteWise.
 //
 // Gets the history of an asset property's values. For more information, see
-// Querying Historical Property Values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#historical-values)
+// Querying historical values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#historical-values)
 // in the AWS IoT SiteWise User Guide.
 //
 // To identify an asset property, you must specify one of the following:
@@ -3952,8 +3965,14 @@ func (c *IoTSiteWise) ListAssociatedAssetsRequest(input *ListAssociatedAssetsInp
 
 // ListAssociatedAssets API operation for AWS IoT SiteWise.
 //
-// Retrieves a paginated list of the assets associated to a parent asset (assetId)
-// by a given hierarchy (hierarchyId).
+// Retrieves a paginated list of associated assets.
+//
+// You can use this operation to do the following:
+//
+//    * List child assets associated to a parent asset by a hierarchy that you
+//    specify.
+//
+//    * List an asset's parent asset.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5347,7 +5366,7 @@ func (c *IoTSiteWise) UpdateAssetRequest(input *UpdateAssetInput) (req *request.
 
 // UpdateAsset API operation for AWS IoT SiteWise.
 //
-// Updates an asset's name. For more information, see Updating Assets and Models
+// Updates an asset's name. For more information, see Updating assets and models
 // (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html)
 // in the AWS IoT SiteWise User Guide.
 //
@@ -5454,8 +5473,8 @@ func (c *IoTSiteWise) UpdateAssetModelRequest(input *UpdateAssetModelInput) (req
 //
 // Updates an asset model and all of the assets that were created from the model.
 // Each asset created from the model inherits the updated asset model's property
-// and hierarchy definitions. For more information, see Updating Assets and
-// Models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html)
+// and hierarchy definitions. For more information, see Updating assets and
+// models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html)
 // in the AWS IoT SiteWise User Guide.
 //
 // This operation overwrites the existing model with the provided model. To
@@ -6754,7 +6773,7 @@ func (s *AssetModelPropertyDefinition) SetUnit(v string) *AssetModelPropertyDefi
 }
 
 // Contains current status information for an asset model. For more information,
-// see Asset and Model States (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-and-model-states.html)
+// see Asset and model states (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-and-model-states.html)
 // in the AWS IoT SiteWise User Guide.
 type AssetModelStatus struct {
 	_ struct{} `type:"structure"`
@@ -6891,7 +6910,7 @@ type AssetProperty struct {
 
 	// The property alias that identifies the property, such as an OPC-UA server
 	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping Industrial Data Streams to Asset Properties
+	// For more information, see Mapping industrial data streams to asset properties
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
 	// in the AWS IoT SiteWise User Guide.
 	Alias *string `locationName:"alias" min:"1" type:"string"`
@@ -6912,7 +6931,7 @@ type AssetProperty struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The asset property's notification topic and state. For more information,
-	// see UpdateAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html)
+	// see UpdateAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html).
 	Notification *PropertyNotification `locationName:"notification" type:"structure"`
 
 	// The unit (such as Newtons or RPM) of the asset property.
@@ -7038,7 +7057,7 @@ func (s *AssetPropertyValue) SetValue(v *Variant) *AssetPropertyValue {
 }
 
 // Contains information about the current status of an asset. For more information,
-// see Asset and Model States (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-and-model-states.html)
+// see Asset and model states (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-and-model-states.html)
 // in the AWS IoT SiteWise User Guide.
 type AssetStatus struct {
 	_ struct{} `type:"structure"`
@@ -7201,7 +7220,7 @@ type AssociateAssetsInput struct {
 
 	// The ID of a hierarchy in the parent asset's model. Hierarchies allow different
 	// groupings of assets to be formed that all come from the same asset model.
-	// For more information, see Asset Hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
+	// For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
 	// HierarchyId is a required field
@@ -7403,7 +7422,7 @@ type Attribute struct {
 	// The default value of the asset model property attribute. All assets that
 	// you create from the asset model contain this attribute value. You can update
 	// an attribute's value after you create an asset. For more information, see
-	// Updating Attribute Values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-attribute-values.html)
+	// Updating attribute values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-attribute-values.html)
 	// in the AWS IoT SiteWise User Guide.
 	DefaultValue *string `locationName:"defaultValue" min:"1" type:"string"`
 }
@@ -8096,7 +8115,7 @@ type CreateAssetModelInput struct {
 
 	// The hierarchy definitions of the asset model. Each hierarchy specifies an
 	// asset model whose assets can be children of any other assets created from
-	// this asset model. For more information, see Asset Hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
+	// this asset model. For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
 	// You can specify up to 10 hierarchies per asset model. For more information,
@@ -8110,7 +8129,7 @@ type CreateAssetModelInput struct {
 	AssetModelName *string `locationName:"assetModelName" min:"1" type:"string" required:"true"`
 
 	// The property definitions of the asset model. For more information, see Asset
-	// Properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html)
+	// properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
 	// You can specify up to 200 properties per asset model. For more information,
@@ -8333,7 +8352,7 @@ type CreateDashboardInput struct {
 	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
 
 	// The dashboard definition specified in a JSON literal. For detailed information,
-	// see Creating Dashboards (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html)
+	// see Creating dashboards (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
 	// DashboardDefinition is a required field
@@ -10133,7 +10152,7 @@ type DescribeDashboardOutput struct {
 	DashboardCreationDate *time.Time `locationName:"dashboardCreationDate" type:"timestamp" required:"true"`
 
 	// The dashboard's definition JSON literal. For detailed information, see Creating
-	// Dashboards (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html)
+	// dashboards (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
 	// DashboardDefinition is a required field
@@ -10867,7 +10886,7 @@ type DisassociateAssetsInput struct {
 	// The ID of a hierarchy in the parent asset's model. Hierarchies allow different
 	// groupings of assets to be formed that all come from the same asset model.
 	// You can use the hierarchy ID to identify the correct asset to disassociate.
-	// For more information, see Asset Hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
+	// For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
 	// HierarchyId is a required field
@@ -11231,6 +11250,8 @@ type GetAssetPropertyAggregatesInput struct {
 	EndDate *time.Time `location:"querystring" locationName:"endDate" type:"timestamp" required:"true"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 100
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -11238,7 +11259,7 @@ type GetAssetPropertyAggregatesInput struct {
 
 	// The property alias that identifies the property, such as an OPC-UA server
 	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping Industrial Data Streams to Asset Properties
+	// For more information, see Mapping industrial data streams to asset properties
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
 	// in the AWS IoT SiteWise User Guide.
 	PropertyAlias *string `location:"querystring" locationName:"propertyAlias" min:"1" type:"string"`
@@ -11261,6 +11282,8 @@ type GetAssetPropertyAggregatesInput struct {
 	StartDate *time.Time `location:"querystring" locationName:"startDate" type:"timestamp" required:"true"`
 
 	// The chronological sorting order of the requested information.
+	//
+	// Default: ASCENDING
 	TimeOrdering *string `location:"querystring" locationName:"timeOrdering" type:"string" enum:"TimeOrdering"`
 }
 
@@ -11432,6 +11455,8 @@ type GetAssetPropertyValueHistoryInput struct {
 	EndDate *time.Time `location:"querystring" locationName:"endDate" type:"timestamp"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 100
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -11439,7 +11464,7 @@ type GetAssetPropertyValueHistoryInput struct {
 
 	// The property alias that identifies the property, such as an OPC-UA server
 	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping Industrial Data Streams to Asset Properties
+	// For more information, see Mapping industrial data streams to asset properties
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
 	// in the AWS IoT SiteWise User Guide.
 	PropertyAlias *string `location:"querystring" locationName:"propertyAlias" min:"1" type:"string"`
@@ -11455,6 +11480,8 @@ type GetAssetPropertyValueHistoryInput struct {
 	StartDate *time.Time `location:"querystring" locationName:"startDate" type:"timestamp"`
 
 	// The chronological sorting order of the requested information.
+	//
+	// Default: ASCENDING
 	TimeOrdering *string `location:"querystring" locationName:"timeOrdering" type:"string" enum:"TimeOrdering"`
 }
 
@@ -11593,7 +11620,7 @@ type GetAssetPropertyValueInput struct {
 
 	// The property alias that identifies the property, such as an OPC-UA server
 	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping Industrial Data Streams to Asset Properties
+	// For more information, see Mapping industrial data streams to asset properties
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
 	// in the AWS IoT SiteWise User Guide.
 	PropertyAlias *string `location:"querystring" locationName:"propertyAlias" min:"1" type:"string"`
@@ -12161,6 +12188,8 @@ type ListAccessPoliciesInput struct {
 	IdentityType *string `location:"querystring" locationName:"identityType" type:"string" enum:"IdentityType"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -12281,6 +12310,8 @@ type ListAssetModelsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -12368,16 +12399,20 @@ type ListAssetsInput struct {
 	AssetModelId *string `location:"querystring" locationName:"assetModelId" min:"36" type:"string"`
 
 	// The filter for the requested list of assets. Choose one of the following
-	// options. Defaults to ALL.
+	// options:
 	//
 	//    * ALL – The list includes all assets for a given asset model ID. The
 	//    assetModelId parameter is required if you filter by ALL.
 	//
 	//    * TOP_LEVEL – The list includes only top-level assets in the asset hierarchy
 	//    tree.
+	//
+	// Default: ALL
 	Filter *string `location:"querystring" locationName:"filter" type:"string" enum:"ListAssetsFilter"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -12475,27 +12510,37 @@ func (s *ListAssetsOutput) SetNextToken(v string) *ListAssetsOutput {
 type ListAssociatedAssetsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the parent asset.
+	// The ID of the asset to query.
 	//
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"assetId" min:"36" type:"string" required:"true"`
 
-	// The hierarchy ID (of the parent asset model) whose associated assets are
-	// returned. To find a hierarchy ID, use the DescribeAsset (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAsset.html)
+	// The ID of the hierarchy by which child assets are associated to the asset.
+	// To find a hierarchy ID, use the DescribeAsset (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAsset.html)
 	// or DescribeAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html)
-	// actions.
+	// operations. This parameter is required if you choose CHILD for traversalDirection.
 	//
-	// For more information, see Asset Hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
+	// For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
 	// in the AWS IoT SiteWise User Guide.
-	//
-	// HierarchyId is a required field
-	HierarchyId *string `location:"querystring" locationName:"hierarchyId" min:"36" type:"string" required:"true"`
+	HierarchyId *string `location:"querystring" locationName:"hierarchyId" min:"36" type:"string"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The direction to list associated assets. Choose one of the following options:
+	//
+	//    * CHILD – The list includes all child assets associated to the asset.
+	//    The hierarchyId parameter is required if you choose CHILD.
+	//
+	//    * PARENT – The list includes the asset's parent asset.
+	//
+	// Default: CHILD
+	TraversalDirection *string `location:"querystring" locationName:"traversalDirection" type:"string" enum:"TraversalDirection"`
 }
 
 // String returns the string representation
@@ -12516,9 +12561,6 @@ func (s *ListAssociatedAssetsInput) Validate() error {
 	}
 	if s.AssetId != nil && len(*s.AssetId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
-	}
-	if s.HierarchyId == nil {
-		invalidParams.Add(request.NewErrParamRequired("HierarchyId"))
 	}
 	if s.HierarchyId != nil && len(*s.HierarchyId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("HierarchyId", 36))
@@ -12557,6 +12599,12 @@ func (s *ListAssociatedAssetsInput) SetMaxResults(v int64) *ListAssociatedAssets
 // SetNextToken sets the NextToken field's value.
 func (s *ListAssociatedAssetsInput) SetNextToken(v string) *ListAssociatedAssetsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetTraversalDirection sets the TraversalDirection field's value.
+func (s *ListAssociatedAssetsInput) SetTraversalDirection(v string) *ListAssociatedAssetsInput {
+	s.TraversalDirection = &v
 	return s
 }
 
@@ -12599,6 +12647,8 @@ type ListDashboardsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -12699,6 +12749,8 @@ type ListGatewaysInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -12782,6 +12834,8 @@ type ListPortalsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -12863,6 +12917,8 @@ type ListProjectAssetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -12963,6 +13019,8 @@ type ListProjectsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of results to be returned per paginated request.
+	//
+	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -13470,6 +13528,11 @@ type PortalSummary struct {
 	//
 	// StartUrl is a required field
 	StartUrl *string `locationName:"startUrl" min:"1" type:"string" required:"true"`
+
+	// Contains information about the current status of a portal.
+	//
+	// Status is a required field
+	Status *PortalStatus `locationName:"status" type:"structure" required:"true"`
 }
 
 // String returns the string representation
@@ -13521,6 +13584,12 @@ func (s *PortalSummary) SetRoleArn(v string) *PortalSummary {
 // SetStartUrl sets the StartUrl field's value.
 func (s *PortalSummary) SetStartUrl(v string) *PortalSummary {
 	s.StartUrl = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PortalSummary) SetStatus(v *PortalStatus) *PortalSummary {
+	s.Status = v
 	return s
 }
 
@@ -13636,7 +13705,7 @@ type Property struct {
 
 	// The property alias that identifies the property, such as an OPC-UA server
 	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping Industrial Data Streams to Asset Properties
+	// For more information, see Mapping industrial data streams to asset properties
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
 	// in the AWS IoT SiteWise User Guide.
 	Alias *string `locationName:"alias" min:"1" type:"string"`
@@ -13657,7 +13726,7 @@ type Property struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The asset property's notification topic and state. For more information,
-	// see UpdateAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html)
+	// see UpdateAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html).
 	Notification *PropertyNotification `locationName:"notification" type:"structure"`
 
 	// The property type (see PropertyType). A property contains one type.
@@ -13721,7 +13790,7 @@ func (s *Property) SetUnit(v string) *Property {
 
 // Contains asset property value notification information. When the notification
 // state is enabled, AWS IoT SiteWise publishes property value updates to a
-// unique MQTT topic. For more information, see Interacting with Other Services
+// unique MQTT topic. For more information, see Interacting with other services
 // (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html)
 // in the AWS IoT SiteWise User Guide.
 type PropertyNotification struct {
@@ -13864,7 +13933,7 @@ type PutAssetPropertyValueEntry struct {
 
 	// The property alias that identifies the property, such as an OPC-UA server
 	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping Industrial Data Streams to Asset Properties
+	// For more information, see Mapping industrial data streams to asset properties
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
 	// in the AWS IoT SiteWise User Guide.
 	PropertyAlias *string `locationName:"propertyAlias" min:"1" type:"string"`
@@ -14899,7 +14968,7 @@ type UpdateAssetModelInput struct {
 
 	// The updated hierarchy definitions of the asset model. Each hierarchy specifies
 	// an asset model whose assets can be children of any other assets created from
-	// this asset model. For more information, see Asset Hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
+	// this asset model. For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
 	// You can specify up to 10 hierarchies per asset model. For more information,
@@ -14918,7 +14987,7 @@ type UpdateAssetModelInput struct {
 	AssetModelName *string `locationName:"assetModelName" min:"1" type:"string" required:"true"`
 
 	// The updated property definitions of the asset model. For more information,
-	// see Asset Properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html)
+	// see Asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
 	// You can specify up to 200 properties per asset model. For more information,
@@ -15093,7 +15162,7 @@ type UpdateAssetPropertyInput struct {
 
 	// The property alias that identifies the property, such as an OPC-UA server
 	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping Industrial Data Streams to Asset Properties
+	// For more information, see Mapping industrial data streams to asset properties
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
@@ -15108,7 +15177,7 @@ type UpdateAssetPropertyInput struct {
 	// The MQTT notification state (enabled or disabled) for this asset property.
 	// When the notification state is enabled, AWS IoT SiteWise publishes property
 	// value updates to a unique MQTT topic. For more information, see Interacting
-	// with Other Services (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html)
+	// with other services (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
 	// If you omit this parameter, the notification state is set to DISABLED.
@@ -15206,7 +15275,7 @@ type UpdateDashboardInput struct {
 	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
 
 	// The new dashboard definition, as specified in a JSON literal. For detailed
-	// information, see Creating Dashboards (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html)
+	// information, see Creating dashboards (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html)
 	// in the AWS IoT SiteWise User Guide.
 	//
 	// DashboardDefinition is a required field
@@ -15826,7 +15895,7 @@ type VariableValue struct {
 	// You use a hierarchy ID instead of a model ID because you can have several
 	// hierarchies using the same model and therefore the same propertyId. For example,
 	// you might have separately grouped assets that come from the same asset model.
-	// For more information, see Asset Hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
+	// For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
 	// in the AWS IoT SiteWise User Guide.
 	HierarchyId *string `locationName:"hierarchyId" min:"1" type:"string"`
 
@@ -16193,12 +16262,20 @@ func LoggingLevel_Values() []string {
 const (
 	// MonitorErrorCodeInternalFailure is a MonitorErrorCode enum value
 	MonitorErrorCodeInternalFailure = "INTERNAL_FAILURE"
+
+	// MonitorErrorCodeValidationError is a MonitorErrorCode enum value
+	MonitorErrorCodeValidationError = "VALIDATION_ERROR"
+
+	// MonitorErrorCodeLimitExceeded is a MonitorErrorCode enum value
+	MonitorErrorCodeLimitExceeded = "LIMIT_EXCEEDED"
 )
 
 // MonitorErrorCode_Values returns all elements of the MonitorErrorCode enum
 func MonitorErrorCode_Values() []string {
 	return []string{
 		MonitorErrorCodeInternalFailure,
+		MonitorErrorCodeValidationError,
+		MonitorErrorCodeLimitExceeded,
 	}
 }
 
@@ -16335,5 +16412,21 @@ func TimeOrdering_Values() []string {
 	return []string{
 		TimeOrderingAscending,
 		TimeOrderingDescending,
+	}
+}
+
+const (
+	// TraversalDirectionParent is a TraversalDirection enum value
+	TraversalDirectionParent = "PARENT"
+
+	// TraversalDirectionChild is a TraversalDirection enum value
+	TraversalDirectionChild = "CHILD"
+)
+
+// TraversalDirection_Values returns all elements of the TraversalDirection enum
+func TraversalDirection_Values() []string {
+	return []string{
+		TraversalDirectionParent,
+		TraversalDirectionChild,
 	}
 }

@@ -560,6 +560,12 @@
       "output_token": "NextToken",
       "result_key": "MulticastDomainAssociations"
     },
+    "GetTransitGatewayPrefixListReferences": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TransitGatewayPrefixListReferences"
+    },
     "GetTransitGatewayRouteTableAssociations": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
