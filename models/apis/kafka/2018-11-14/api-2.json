@@ -114,6 +114,34 @@
         }
       ]
     },
+    "DeleteConfiguration": {
+      "name": "DeleteConfiguration",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/configurations/{arn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteConfigurationRequest"
+      },
+      "output": {
+        "shape": "DeleteConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
     "DescribeCluster": {
       "name": "DescribeCluster",
       "http": {
@@ -657,6 +685,37 @@
         }
       ]
     },
+    "UpdateConfiguration": {
+      "name": "UpdateConfiguration",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/configurations/{arn}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateConfigurationRequest"
+      },
+      "output": {
+        "shape": "UpdateConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
     "UpdateClusterConfiguration": {
       "name": "UpdateClusterConfiguration",
       "http": {
@@ -1107,6 +1166,10 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "State": {
+          "shape": "ConfigurationState",
+          "locationName": "state"
         }
       },
       "required": [
@@ -1115,7 +1178,8 @@
         "CreationTime",
         "KafkaVersions",
         "Arn",
-        "Name"
+        "Name",
+        "State"
       ]
     },
     "ConfigurationInfo": {
@@ -1154,6 +1218,14 @@
       "required": [
         "Revision",
         "CreationTime"
+      ]
+    },
+    "ConfigurationState": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DELETING",
+        "DELETE_FAILED"
       ]
     },
     "ConflictException": {
@@ -1288,6 +1360,10 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "State": {
+          "shape": "ConfigurationState",
+          "locationName": "state"
         }
       }
     },
@@ -1318,6 +1394,32 @@
         },
         "State": {
           "shape": "ClusterState",
+          "locationName": "state"
+        }
+      }
+    },
+    "DeleteConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "arn"
+        }
+      },
+      "required": [
+        "Arn"
+      ]
+    },
+    "DeleteConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "State": {
+          "shape": "ConfigurationState",
           "locationName": "state"
         }
       }
@@ -1405,6 +1507,10 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "State": {
+          "shape": "ConfigurationState",
+          "locationName": "state"
         }
       }
     },
@@ -2225,6 +2331,41 @@
         "ClusterOperationArn" : {
           "shape" : "__string",
           "locationName" : "clusterOperationArn"
+        }
+      }
+    },
+    "UpdateConfigurationRequest" : {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "arn"
+        },
+        "Description": {
+          "shape": "__string",
+          "locationName": "description"
+        },
+        "ServerProperties": {
+          "shape": "__blob",
+          "locationName": "serverProperties"
+        }
+      },
+      "required": [
+        "Arn",
+        "ServerProperties"
+      ]
+    },
+    "UpdateConfigurationResponse" : {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "LatestRevision": {
+          "shape": "ConfigurationRevision",
+          "locationName": "latestRevision"
         }
       }
     },

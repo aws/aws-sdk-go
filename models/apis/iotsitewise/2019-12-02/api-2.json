@@ -2662,10 +2662,7 @@
     },
     "ListAssociatedAssetsRequest":{
       "type":"structure",
-      "required":[
-        "assetId",
-        "hierarchyId"
-      ],
+      "required":["assetId"],
       "members":{
         "assetId":{
           "shape":"ID",
@@ -2676,6 +2673,11 @@
           "shape":"ID",
           "location":"querystring",
           "locationName":"hierarchyId"
+        },
+        "traversalDirection":{
+          "shape":"TraversalDirection",
+          "location":"querystring",
+          "locationName":"traversalDirection"
         },
         "nextToken":{
           "shape":"NextToken",
@@ -2898,7 +2900,11 @@
     },
     "MonitorErrorCode":{
       "type":"string",
-      "enum":["INTERNAL_FAILURE"]
+      "enum":[
+        "INTERNAL_FAILURE",
+        "VALIDATION_ERROR",
+        "LIMIT_EXCEEDED"
+      ]
     },
     "MonitorErrorDetails":{
       "type":"structure",
@@ -2972,7 +2978,8 @@
       "required":[
         "id",
         "name",
-        "startUrl"
+        "startUrl",
+        "status"
       ],
       "members":{
         "id":{"shape":"ID"},
@@ -2981,7 +2988,8 @@
         "startUrl":{"shape":"Url"},
         "creationDate":{"shape":"Timestamp"},
         "lastUpdateDate":{"shape":"Timestamp"},
-        "roleArn":{"shape":"ARN"}
+        "roleArn":{"shape":"ARN"},
+        "status":{"shape":"PortalStatus"}
       }
     },
     "ProjectResource":{
@@ -3028,7 +3036,6 @@
     },
     "PropertyAlias":{
       "type":"string",
-      "max":2048,
       "min":1,
       "pattern":"[^\\u0000-\\u001F\\u007F]+"
     },
@@ -3286,6 +3293,13 @@
         "expression":{"shape":"Expression"},
         "variables":{"shape":"ExpressionVariables"}
       }
+    },
+    "TraversalDirection":{
+      "type":"string",
+      "enum":[
+        "PARENT",
+        "CHILD"
+      ]
     },
     "TumblingWindow":{
       "type":"structure",

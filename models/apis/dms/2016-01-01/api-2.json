@@ -1748,7 +1748,9 @@
         "IncludePartitionValue":{"shape":"BooleanOptional"},
         "PartitionIncludeSchemaTable":{"shape":"BooleanOptional"},
         "IncludeTableAlterOperations":{"shape":"BooleanOptional"},
-        "IncludeControlDetails":{"shape":"BooleanOptional"}
+        "IncludeControlDetails":{"shape":"BooleanOptional"},
+        "MessageMaxBytes":{"shape":"IntegerOptional"},
+        "IncludeNullAndEmpty":{"shape":"BooleanOptional"}
       }
     },
     "KeyList":{
@@ -1765,7 +1767,8 @@
         "IncludePartitionValue":{"shape":"BooleanOptional"},
         "PartitionIncludeSchemaTable":{"shape":"BooleanOptional"},
         "IncludeTableAlterOperations":{"shape":"BooleanOptional"},
-        "IncludeControlDetails":{"shape":"BooleanOptional"}
+        "IncludeControlDetails":{"shape":"BooleanOptional"},
+        "IncludeNullAndEmpty":{"shape":"BooleanOptional"}
       }
     },
     "ListTagsForResourceMessage":{

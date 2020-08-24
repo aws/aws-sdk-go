@@ -3237,7 +3237,7 @@
         "SchemaDeleteOption":{"shape":"InventorySchemaDeleteOption"},
         "DryRun":{"shape":"DryRun"},
         "ClientToken":{
-          "shape":"ClientToken",
+          "shape":"UUID",
           "idempotencyToken":true
         }
       }
@@ -3245,7 +3245,7 @@
     "DeleteInventoryResult":{
       "type":"structure",
       "members":{
-        "DeletionId":{"shape":"InventoryDeletionId"},
+        "DeletionId":{"shape":"UUID"},
         "TypeName":{"shape":"InventoryItemTypeName"},
         "DeletionSummary":{"shape":"InventoryDeletionSummary"}
       }
@@ -3713,7 +3713,7 @@
     "DescribeInventoryDeletionsRequest":{
       "type":"structure",
       "members":{
-        "DeletionId":{"shape":"InventoryDeletionId"},
+        "DeletionId":{"shape":"UUID"},
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{
           "shape":"MaxResults",
@@ -5581,7 +5581,6 @@
         "number"
       ]
     },
-    "InventoryDeletionId":{"type":"string"},
     "InventoryDeletionLastStatusMessage":{"type":"string"},
     "InventoryDeletionLastStatusUpdateTime":{"type":"timestamp"},
     "InventoryDeletionStartTime":{"type":"timestamp"},
@@ -5595,7 +5594,7 @@
     "InventoryDeletionStatusItem":{
       "type":"structure",
       "members":{
-        "DeletionId":{"shape":"InventoryDeletionId"},
+        "DeletionId":{"shape":"UUID"},
         "TypeName":{"shape":"InventoryItemTypeName"},
         "DeletionStartTime":{"shape":"InventoryDeletionStartTime"},
         "LastStatus":{"shape":"InventoryDeletionStatus"},
@@ -6693,7 +6692,11 @@
       "max":5,
       "min":0
     },
-    "OpsDataAttributeName":{"type":"string"},
+    "OpsDataAttributeName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "OpsDataTypeName":{
       "type":"string",
       "max":100,
@@ -6776,7 +6779,11 @@
         "Exists"
       ]
     },
-    "OpsFilterValue":{"type":"string"},
+    "OpsFilterValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "OpsFilterValueList":{
       "type":"list",
       "member":{"shape":"OpsFilterValue"},
@@ -8887,6 +8894,10 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "UUID":{
+      "type":"string",
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
     },
     "UnsupportedCalendarException":{
       "type":"structure",

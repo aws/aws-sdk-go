@@ -144,6 +144,10 @@ type XRayAPI interface {
 	GetTraceSummariesPages(*xray.GetTraceSummariesInput, func(*xray.GetTraceSummariesOutput, bool) bool) error
 	GetTraceSummariesPagesWithContext(aws.Context, *xray.GetTraceSummariesInput, func(*xray.GetTraceSummariesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*xray.ListTagsForResourceInput) (*xray.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *xray.ListTagsForResourceInput, ...request.Option) (*xray.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*xray.ListTagsForResourceInput) (*request.Request, *xray.ListTagsForResourceOutput)
+
 	PutEncryptionConfig(*xray.PutEncryptionConfigInput) (*xray.PutEncryptionConfigOutput, error)
 	PutEncryptionConfigWithContext(aws.Context, *xray.PutEncryptionConfigInput, ...request.Option) (*xray.PutEncryptionConfigOutput, error)
 	PutEncryptionConfigRequest(*xray.PutEncryptionConfigInput) (*request.Request, *xray.PutEncryptionConfigOutput)
@@ -155,6 +159,14 @@ type XRayAPI interface {
 	PutTraceSegments(*xray.PutTraceSegmentsInput) (*xray.PutTraceSegmentsOutput, error)
 	PutTraceSegmentsWithContext(aws.Context, *xray.PutTraceSegmentsInput, ...request.Option) (*xray.PutTraceSegmentsOutput, error)
 	PutTraceSegmentsRequest(*xray.PutTraceSegmentsInput) (*request.Request, *xray.PutTraceSegmentsOutput)
+
+	TagResource(*xray.TagResourceInput) (*xray.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *xray.TagResourceInput, ...request.Option) (*xray.TagResourceOutput, error)
+	TagResourceRequest(*xray.TagResourceInput) (*request.Request, *xray.TagResourceOutput)
+
+	UntagResource(*xray.UntagResourceInput) (*xray.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *xray.UntagResourceInput, ...request.Option) (*xray.UntagResourceOutput, error)
+	UntagResourceRequest(*xray.UntagResourceInput) (*request.Request, *xray.UntagResourceOutput)
 
 	UpdateGroup(*xray.UpdateGroupInput) (*xray.UpdateGroupOutput, error)
 	UpdateGroupWithContext(aws.Context, *xray.UpdateGroupInput, ...request.Option) (*xray.UpdateGroupOutput, error)
