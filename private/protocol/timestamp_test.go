@@ -38,6 +38,11 @@ func TestFormatTime(t *testing.T) {
 			expectedOutput: "2000-01-02T20:34:56.123Z",
 			input:          time.Date(2000, time.January, 2, 20, 34, 56, .123e9, time.UTC),
 		},
+		"ISO8601Test3": {
+			formatName:     ISO8601TimeFormatName,
+			expectedOutput: "2000-01-02T20:34:56.123Z",
+			input:          time.Date(2000, time.January, 2, 20, 34, 56, .123456e9, time.UTC),
+		},
 	}
 
 	for name, c := range cases {
