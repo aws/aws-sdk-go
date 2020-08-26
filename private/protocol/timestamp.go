@@ -27,8 +27,8 @@ const (
 	// RFC3339 a subset of the ISO8601 timestamp format. e.g 2014-04-29T18:30:38Z
 	ISO8601TimeFormat = "2006-01-02T15:04:05.999999999Z"
 
-	// This format is used for output time without seconds precision
-	ISO8601OutputTimeFormat = "2006-01-02T15:04:05.999999999Z"
+	// This format is used for output time with fractional second precision up milliseconds
+	ISO8601OutputTimeFormat = "2006-01-02T15:04:05.999Z"
 )
 
 // IsKnownTimestampFormat returns if the timestamp format name
