@@ -64,6 +64,10 @@ type Route53ResolverAPI interface {
 	AssociateResolverEndpointIpAddressWithContext(aws.Context, *route53resolver.AssociateResolverEndpointIpAddressInput, ...request.Option) (*route53resolver.AssociateResolverEndpointIpAddressOutput, error)
 	AssociateResolverEndpointIpAddressRequest(*route53resolver.AssociateResolverEndpointIpAddressInput) (*request.Request, *route53resolver.AssociateResolverEndpointIpAddressOutput)
 
+	AssociateResolverQueryLogConfig(*route53resolver.AssociateResolverQueryLogConfigInput) (*route53resolver.AssociateResolverQueryLogConfigOutput, error)
+	AssociateResolverQueryLogConfigWithContext(aws.Context, *route53resolver.AssociateResolverQueryLogConfigInput, ...request.Option) (*route53resolver.AssociateResolverQueryLogConfigOutput, error)
+	AssociateResolverQueryLogConfigRequest(*route53resolver.AssociateResolverQueryLogConfigInput) (*request.Request, *route53resolver.AssociateResolverQueryLogConfigOutput)
+
 	AssociateResolverRule(*route53resolver.AssociateResolverRuleInput) (*route53resolver.AssociateResolverRuleOutput, error)
 	AssociateResolverRuleWithContext(aws.Context, *route53resolver.AssociateResolverRuleInput, ...request.Option) (*route53resolver.AssociateResolverRuleOutput, error)
 	AssociateResolverRuleRequest(*route53resolver.AssociateResolverRuleInput) (*request.Request, *route53resolver.AssociateResolverRuleOutput)
@@ -71,6 +75,10 @@ type Route53ResolverAPI interface {
 	CreateResolverEndpoint(*route53resolver.CreateResolverEndpointInput) (*route53resolver.CreateResolverEndpointOutput, error)
 	CreateResolverEndpointWithContext(aws.Context, *route53resolver.CreateResolverEndpointInput, ...request.Option) (*route53resolver.CreateResolverEndpointOutput, error)
 	CreateResolverEndpointRequest(*route53resolver.CreateResolverEndpointInput) (*request.Request, *route53resolver.CreateResolverEndpointOutput)
+
+	CreateResolverQueryLogConfig(*route53resolver.CreateResolverQueryLogConfigInput) (*route53resolver.CreateResolverQueryLogConfigOutput, error)
+	CreateResolverQueryLogConfigWithContext(aws.Context, *route53resolver.CreateResolverQueryLogConfigInput, ...request.Option) (*route53resolver.CreateResolverQueryLogConfigOutput, error)
+	CreateResolverQueryLogConfigRequest(*route53resolver.CreateResolverQueryLogConfigInput) (*request.Request, *route53resolver.CreateResolverQueryLogConfigOutput)
 
 	CreateResolverRule(*route53resolver.CreateResolverRuleInput) (*route53resolver.CreateResolverRuleOutput, error)
 	CreateResolverRuleWithContext(aws.Context, *route53resolver.CreateResolverRuleInput, ...request.Option) (*route53resolver.CreateResolverRuleOutput, error)
@@ -80,6 +88,10 @@ type Route53ResolverAPI interface {
 	DeleteResolverEndpointWithContext(aws.Context, *route53resolver.DeleteResolverEndpointInput, ...request.Option) (*route53resolver.DeleteResolverEndpointOutput, error)
 	DeleteResolverEndpointRequest(*route53resolver.DeleteResolverEndpointInput) (*request.Request, *route53resolver.DeleteResolverEndpointOutput)
 
+	DeleteResolverQueryLogConfig(*route53resolver.DeleteResolverQueryLogConfigInput) (*route53resolver.DeleteResolverQueryLogConfigOutput, error)
+	DeleteResolverQueryLogConfigWithContext(aws.Context, *route53resolver.DeleteResolverQueryLogConfigInput, ...request.Option) (*route53resolver.DeleteResolverQueryLogConfigOutput, error)
+	DeleteResolverQueryLogConfigRequest(*route53resolver.DeleteResolverQueryLogConfigInput) (*request.Request, *route53resolver.DeleteResolverQueryLogConfigOutput)
+
 	DeleteResolverRule(*route53resolver.DeleteResolverRuleInput) (*route53resolver.DeleteResolverRuleOutput, error)
 	DeleteResolverRuleWithContext(aws.Context, *route53resolver.DeleteResolverRuleInput, ...request.Option) (*route53resolver.DeleteResolverRuleOutput, error)
 	DeleteResolverRuleRequest(*route53resolver.DeleteResolverRuleInput) (*request.Request, *route53resolver.DeleteResolverRuleOutput)
@@ -88,6 +100,10 @@ type Route53ResolverAPI interface {
 	DisassociateResolverEndpointIpAddressWithContext(aws.Context, *route53resolver.DisassociateResolverEndpointIpAddressInput, ...request.Option) (*route53resolver.DisassociateResolverEndpointIpAddressOutput, error)
 	DisassociateResolverEndpointIpAddressRequest(*route53resolver.DisassociateResolverEndpointIpAddressInput) (*request.Request, *route53resolver.DisassociateResolverEndpointIpAddressOutput)
 
+	DisassociateResolverQueryLogConfig(*route53resolver.DisassociateResolverQueryLogConfigInput) (*route53resolver.DisassociateResolverQueryLogConfigOutput, error)
+	DisassociateResolverQueryLogConfigWithContext(aws.Context, *route53resolver.DisassociateResolverQueryLogConfigInput, ...request.Option) (*route53resolver.DisassociateResolverQueryLogConfigOutput, error)
+	DisassociateResolverQueryLogConfigRequest(*route53resolver.DisassociateResolverQueryLogConfigInput) (*request.Request, *route53resolver.DisassociateResolverQueryLogConfigOutput)
+
 	DisassociateResolverRule(*route53resolver.DisassociateResolverRuleInput) (*route53resolver.DisassociateResolverRuleOutput, error)
 	DisassociateResolverRuleWithContext(aws.Context, *route53resolver.DisassociateResolverRuleInput, ...request.Option) (*route53resolver.DisassociateResolverRuleOutput, error)
 	DisassociateResolverRuleRequest(*route53resolver.DisassociateResolverRuleInput) (*request.Request, *route53resolver.DisassociateResolverRuleOutput)
@@ -95,6 +111,18 @@ type Route53ResolverAPI interface {
 	GetResolverEndpoint(*route53resolver.GetResolverEndpointInput) (*route53resolver.GetResolverEndpointOutput, error)
 	GetResolverEndpointWithContext(aws.Context, *route53resolver.GetResolverEndpointInput, ...request.Option) (*route53resolver.GetResolverEndpointOutput, error)
 	GetResolverEndpointRequest(*route53resolver.GetResolverEndpointInput) (*request.Request, *route53resolver.GetResolverEndpointOutput)
+
+	GetResolverQueryLogConfig(*route53resolver.GetResolverQueryLogConfigInput) (*route53resolver.GetResolverQueryLogConfigOutput, error)
+	GetResolverQueryLogConfigWithContext(aws.Context, *route53resolver.GetResolverQueryLogConfigInput, ...request.Option) (*route53resolver.GetResolverQueryLogConfigOutput, error)
+	GetResolverQueryLogConfigRequest(*route53resolver.GetResolverQueryLogConfigInput) (*request.Request, *route53resolver.GetResolverQueryLogConfigOutput)
+
+	GetResolverQueryLogConfigAssociation(*route53resolver.GetResolverQueryLogConfigAssociationInput) (*route53resolver.GetResolverQueryLogConfigAssociationOutput, error)
+	GetResolverQueryLogConfigAssociationWithContext(aws.Context, *route53resolver.GetResolverQueryLogConfigAssociationInput, ...request.Option) (*route53resolver.GetResolverQueryLogConfigAssociationOutput, error)
+	GetResolverQueryLogConfigAssociationRequest(*route53resolver.GetResolverQueryLogConfigAssociationInput) (*request.Request, *route53resolver.GetResolverQueryLogConfigAssociationOutput)
+
+	GetResolverQueryLogConfigPolicy(*route53resolver.GetResolverQueryLogConfigPolicyInput) (*route53resolver.GetResolverQueryLogConfigPolicyOutput, error)
+	GetResolverQueryLogConfigPolicyWithContext(aws.Context, *route53resolver.GetResolverQueryLogConfigPolicyInput, ...request.Option) (*route53resolver.GetResolverQueryLogConfigPolicyOutput, error)
+	GetResolverQueryLogConfigPolicyRequest(*route53resolver.GetResolverQueryLogConfigPolicyInput) (*request.Request, *route53resolver.GetResolverQueryLogConfigPolicyOutput)
 
 	GetResolverRule(*route53resolver.GetResolverRuleInput) (*route53resolver.GetResolverRuleOutput, error)
 	GetResolverRuleWithContext(aws.Context, *route53resolver.GetResolverRuleInput, ...request.Option) (*route53resolver.GetResolverRuleOutput, error)
@@ -122,6 +150,20 @@ type Route53ResolverAPI interface {
 	ListResolverEndpointsPages(*route53resolver.ListResolverEndpointsInput, func(*route53resolver.ListResolverEndpointsOutput, bool) bool) error
 	ListResolverEndpointsPagesWithContext(aws.Context, *route53resolver.ListResolverEndpointsInput, func(*route53resolver.ListResolverEndpointsOutput, bool) bool, ...request.Option) error
 
+	ListResolverQueryLogConfigAssociations(*route53resolver.ListResolverQueryLogConfigAssociationsInput) (*route53resolver.ListResolverQueryLogConfigAssociationsOutput, error)
+	ListResolverQueryLogConfigAssociationsWithContext(aws.Context, *route53resolver.ListResolverQueryLogConfigAssociationsInput, ...request.Option) (*route53resolver.ListResolverQueryLogConfigAssociationsOutput, error)
+	ListResolverQueryLogConfigAssociationsRequest(*route53resolver.ListResolverQueryLogConfigAssociationsInput) (*request.Request, *route53resolver.ListResolverQueryLogConfigAssociationsOutput)
+
+	ListResolverQueryLogConfigAssociationsPages(*route53resolver.ListResolverQueryLogConfigAssociationsInput, func(*route53resolver.ListResolverQueryLogConfigAssociationsOutput, bool) bool) error
+	ListResolverQueryLogConfigAssociationsPagesWithContext(aws.Context, *route53resolver.ListResolverQueryLogConfigAssociationsInput, func(*route53resolver.ListResolverQueryLogConfigAssociationsOutput, bool) bool, ...request.Option) error
+
+	ListResolverQueryLogConfigs(*route53resolver.ListResolverQueryLogConfigsInput) (*route53resolver.ListResolverQueryLogConfigsOutput, error)
+	ListResolverQueryLogConfigsWithContext(aws.Context, *route53resolver.ListResolverQueryLogConfigsInput, ...request.Option) (*route53resolver.ListResolverQueryLogConfigsOutput, error)
+	ListResolverQueryLogConfigsRequest(*route53resolver.ListResolverQueryLogConfigsInput) (*request.Request, *route53resolver.ListResolverQueryLogConfigsOutput)
+
+	ListResolverQueryLogConfigsPages(*route53resolver.ListResolverQueryLogConfigsInput, func(*route53resolver.ListResolverQueryLogConfigsOutput, bool) bool) error
+	ListResolverQueryLogConfigsPagesWithContext(aws.Context, *route53resolver.ListResolverQueryLogConfigsInput, func(*route53resolver.ListResolverQueryLogConfigsOutput, bool) bool, ...request.Option) error
+
 	ListResolverRuleAssociations(*route53resolver.ListResolverRuleAssociationsInput) (*route53resolver.ListResolverRuleAssociationsOutput, error)
 	ListResolverRuleAssociationsWithContext(aws.Context, *route53resolver.ListResolverRuleAssociationsInput, ...request.Option) (*route53resolver.ListResolverRuleAssociationsOutput, error)
 	ListResolverRuleAssociationsRequest(*route53resolver.ListResolverRuleAssociationsInput) (*request.Request, *route53resolver.ListResolverRuleAssociationsOutput)
@@ -139,6 +181,13 @@ type Route53ResolverAPI interface {
 	ListTagsForResource(*route53resolver.ListTagsForResourceInput) (*route53resolver.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *route53resolver.ListTagsForResourceInput, ...request.Option) (*route53resolver.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*route53resolver.ListTagsForResourceInput) (*request.Request, *route53resolver.ListTagsForResourceOutput)
+
+	ListTagsForResourcePages(*route53resolver.ListTagsForResourceInput, func(*route53resolver.ListTagsForResourceOutput, bool) bool) error
+	ListTagsForResourcePagesWithContext(aws.Context, *route53resolver.ListTagsForResourceInput, func(*route53resolver.ListTagsForResourceOutput, bool) bool, ...request.Option) error
+
+	PutResolverQueryLogConfigPolicy(*route53resolver.PutResolverQueryLogConfigPolicyInput) (*route53resolver.PutResolverQueryLogConfigPolicyOutput, error)
+	PutResolverQueryLogConfigPolicyWithContext(aws.Context, *route53resolver.PutResolverQueryLogConfigPolicyInput, ...request.Option) (*route53resolver.PutResolverQueryLogConfigPolicyOutput, error)
+	PutResolverQueryLogConfigPolicyRequest(*route53resolver.PutResolverQueryLogConfigPolicyInput) (*request.Request, *route53resolver.PutResolverQueryLogConfigPolicyOutput)
 
 	PutResolverRulePolicy(*route53resolver.PutResolverRulePolicyInput) (*route53resolver.PutResolverRulePolicyOutput, error)
 	PutResolverRulePolicyWithContext(aws.Context, *route53resolver.PutResolverRulePolicyInput, ...request.Option) (*route53resolver.PutResolverRulePolicyOutput, error)
