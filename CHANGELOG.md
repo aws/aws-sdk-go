@@ -1,3 +1,10 @@
+Release v1.34.11 (2020-08-26)
+===
+
+### Service Client Updates
+* `service/appflow`: Adds new service
+* `service/route53resolver`: Updates service API, documentation, and paginators
+
 Release v1.34.10 (2020-08-24)
 ===
 

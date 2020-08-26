@@ -31,6 +31,25 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "AssociateResolverQueryLogConfig":{
+      "name":"AssociateResolverQueryLogConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateResolverQueryLogConfigRequest"},
+      "output":{"shape":"AssociateResolverQueryLogConfigResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "AssociateResolverRule":{
       "name":"AssociateResolverRule",
       "http":{
@@ -42,6 +61,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceUnavailableException"},
         {"shape":"ResourceExistsException"},
@@ -65,6 +85,25 @@
         {"shape":"LimitExceededException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "CreateResolverQueryLogConfig":{
+      "name":"CreateResolverQueryLogConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateResolverQueryLogConfigRequest"},
+      "output":{"shape":"CreateResolverQueryLogConfigResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "CreateResolverRule":{
@@ -102,6 +141,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DeleteResolverQueryLogConfig":{
+      "name":"DeleteResolverQueryLogConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResolverQueryLogConfigRequest"},
+      "output":{"shape":"DeleteResolverQueryLogConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "DeleteResolverRule":{
       "name":"DeleteResolverRule",
       "http":{
@@ -135,6 +191,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DisassociateResolverQueryLogConfig":{
+      "name":"DisassociateResolverQueryLogConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateResolverQueryLogConfigRequest"},
+      "output":{"shape":"DisassociateResolverQueryLogConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "DisassociateResolverRule":{
       "name":"DisassociateResolverRule",
       "http":{
@@ -163,6 +236,56 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetResolverQueryLogConfig":{
+      "name":"GetResolverQueryLogConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResolverQueryLogConfigRequest"},
+      "output":{"shape":"GetResolverQueryLogConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetResolverQueryLogConfigAssociation":{
+      "name":"GetResolverQueryLogConfigAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResolverQueryLogConfigAssociationRequest"},
+      "output":{"shape":"GetResolverQueryLogConfigAssociationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetResolverQueryLogConfigPolicy":{
+      "name":"GetResolverQueryLogConfigPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResolverQueryLogConfigPolicyRequest"},
+      "output":{"shape":"GetResolverQueryLogConfigPolicyResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"UnknownResourceException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "GetResolverRule":{
@@ -241,6 +364,40 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListResolverQueryLogConfigAssociations":{
+      "name":"ListResolverQueryLogConfigAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResolverQueryLogConfigAssociationsRequest"},
+      "output":{"shape":"ListResolverQueryLogConfigAssociationsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListResolverQueryLogConfigs":{
+      "name":"ListResolverQueryLogConfigs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResolverQueryLogConfigsRequest"},
+      "output":{"shape":"ListResolverQueryLogConfigsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "ListResolverRuleAssociations":{
       "name":"ListResolverRuleAssociations",
       "http":{
@@ -290,6 +447,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "PutResolverQueryLogConfigPolicy":{
+      "name":"PutResolverQueryLogConfigPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResolverQueryLogConfigPolicyRequest"},
+      "output":{"shape":"PutResolverQueryLogConfigPolicyResponse"},
+      "errors":[
+        {"shape":"InvalidPolicyDocument"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"UnknownResourceException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "PutResolverRulePolicy":{
       "name":"PutResolverRulePolicy",
       "http":{
@@ -317,6 +491,7 @@
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"InvalidTagException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
@@ -333,6 +508,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
       ]
@@ -373,6 +549,13 @@
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "AccountId":{
       "type":"string",
       "max":32,
@@ -400,6 +583,23 @@
         "ResolverEndpoint":{"shape":"ResolverEndpoint"}
       }
     },
+    "AssociateResolverQueryLogConfigRequest":{
+      "type":"structure",
+      "required":[
+        "ResolverQueryLogConfigId",
+        "ResourceId"
+      ],
+      "members":{
+        "ResolverQueryLogConfigId":{"shape":"ResourceId"},
+        "ResourceId":{"shape":"ResourceId"}
+      }
+    },
+    "AssociateResolverQueryLogConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverQueryLogConfigAssociation":{"shape":"ResolverQueryLogConfigAssociation"}
+      }
+    },
     "AssociateResolverRuleRequest":{
       "type":"structure",
       "required":[
@@ -419,6 +619,7 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "Count":{"type":"integer"},
     "CreateResolverEndpointRequest":{
       "type":"structure",
       "required":[
@@ -446,6 +647,32 @@
       "type":"structure",
       "members":{
         "ResolverEndpoint":{"shape":"ResolverEndpoint"}
+      }
+    },
+    "CreateResolverQueryLogConfigRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "DestinationArn",
+        "CreatorRequestId"
+      ],
+      "members":{
+        "Name":{"shape":"ResolverQueryLogConfigName"},
+        "DestinationArn":{"shape":"DestinationArn"},
+        "CreatorRequestId":{
+          "shape":"CreatorRequestId",
+          "idempotencyToken":true
+        },
+        "Tags":{
+          "shape":"TagList",
+          "box":true
+        }
+      }
+    },
+    "CreateResolverQueryLogConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverQueryLogConfig":{"shape":"ResolverQueryLogConfig"}
       }
     },
     "CreateResolverRuleRequest":{
@@ -498,6 +725,19 @@
         "ResolverEndpoint":{"shape":"ResolverEndpoint"}
       }
     },
+    "DeleteResolverQueryLogConfigRequest":{
+      "type":"structure",
+      "required":["ResolverQueryLogConfigId"],
+      "members":{
+        "ResolverQueryLogConfigId":{"shape":"ResourceId"}
+      }
+    },
+    "DeleteResolverQueryLogConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverQueryLogConfig":{"shape":"ResolverQueryLogConfig"}
+      }
+    },
     "DeleteResolverRuleRequest":{
       "type":"structure",
       "required":["ResolverRuleId"],
@@ -510,6 +750,11 @@
       "members":{
         "ResolverRule":{"shape":"ResolverRule"}
       }
+    },
+    "DestinationArn":{
+      "type":"string",
+      "max":600,
+      "min":1
     },
     "DisassociateResolverEndpointIpAddressRequest":{
       "type":"structure",
@@ -526,6 +771,23 @@
       "type":"structure",
       "members":{
         "ResolverEndpoint":{"shape":"ResolverEndpoint"}
+      }
+    },
+    "DisassociateResolverQueryLogConfigRequest":{
+      "type":"structure",
+      "required":[
+        "ResolverQueryLogConfigId",
+        "ResourceId"
+      ],
+      "members":{
+        "ResolverQueryLogConfigId":{"shape":"ResourceId"},
+        "ResourceId":{"shape":"ResourceId"}
+      }
+    },
+    "DisassociateResolverQueryLogConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverQueryLogConfigAssociation":{"shape":"ResolverQueryLogConfigAssociation"}
       }
     },
     "DisassociateResolverRuleRequest":{
@@ -565,7 +827,7 @@
     },
     "FilterValue":{
       "type":"string",
-      "max":64,
+      "max":600,
       "min":1
     },
     "FilterValues":{
@@ -587,6 +849,45 @@
       "type":"structure",
       "members":{
         "ResolverEndpoint":{"shape":"ResolverEndpoint"}
+      }
+    },
+    "GetResolverQueryLogConfigAssociationRequest":{
+      "type":"structure",
+      "required":["ResolverQueryLogConfigAssociationId"],
+      "members":{
+        "ResolverQueryLogConfigAssociationId":{"shape":"ResourceId"}
+      }
+    },
+    "GetResolverQueryLogConfigAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverQueryLogConfigAssociation":{"shape":"ResolverQueryLogConfigAssociation"}
+      }
+    },
+    "GetResolverQueryLogConfigPolicyRequest":{
+      "type":"structure",
+      "required":["Arn"],
+      "members":{
+        "Arn":{"shape":"Arn"}
+      }
+    },
+    "GetResolverQueryLogConfigPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverQueryLogConfigPolicy":{"shape":"ResolverQueryLogConfigPolicy"}
+      }
+    },
+    "GetResolverQueryLogConfigRequest":{
+      "type":"structure",
+      "required":["ResolverQueryLogConfigId"],
+      "members":{
+        "ResolverQueryLogConfigId":{"shape":"ResourceId"}
+      }
+    },
+    "GetResolverQueryLogConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverQueryLogConfig":{"shape":"ResolverQueryLogConfig"}
       }
     },
     "GetResolverRuleAssociationRequest":{
@@ -799,6 +1100,53 @@
         "ResolverEndpoints":{"shape":"ResolverEndpoints"}
       }
     },
+    "ListResolverQueryLogConfigAssociationsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "Filters":{"shape":"Filters"},
+        "SortBy":{"shape":"SortByKey"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "ListResolverQueryLogConfigAssociationsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "TotalCount":{"shape":"Count"},
+        "TotalFilteredCount":{"shape":"Count"},
+        "ResolverQueryLogConfigAssociations":{"shape":"ResolverQueryLogConfigAssociationList"}
+      }
+    },
+    "ListResolverQueryLogConfigsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "box":true
+        },
+        "Filters":{
+          "shape":"Filters",
+          "box":true
+        },
+        "SortBy":{"shape":"SortByKey"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "ListResolverQueryLogConfigsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "TotalCount":{"shape":"Count"},
+        "TotalFilteredCount":{"shape":"Count"},
+        "ResolverQueryLogConfigs":{"shape":"ResolverQueryLogConfigList"}
+      }
+    },
     "ListResolverRuleAssociationsRequest":{
       "type":"structure",
       "members":{
@@ -879,13 +1227,30 @@
     "Name":{
       "type":"string",
       "max":64,
-      "pattern":"(?!^[0-9]+$)([a-zA-Z0-9-_' ']+)"
+      "pattern":"(?!^[0-9]+$)([a-zA-Z0-9\\-_' ']+)"
     },
     "NextToken":{"type":"string"},
     "Port":{
       "type":"integer",
       "max":65535,
       "min":0
+    },
+    "PutResolverQueryLogConfigPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "ResolverQueryLogConfigPolicy"
+      ],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "ResolverQueryLogConfigPolicy":{"shape":"ResolverQueryLogConfigPolicy"}
+      }
+    },
+    "PutResolverQueryLogConfigPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "ReturnValue":{"shape":"Boolean"}
+      }
     },
     "PutResolverRulePolicyRequest":{
       "type":"structure",
@@ -943,6 +1308,80 @@
       "type":"list",
       "member":{"shape":"ResolverEndpoint"}
     },
+    "ResolverQueryLogConfig":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ResourceId"},
+        "OwnerId":{"shape":"AccountId"},
+        "Status":{"shape":"ResolverQueryLogConfigStatus"},
+        "ShareStatus":{"shape":"ShareStatus"},
+        "AssociationCount":{"shape":"Count"},
+        "Arn":{"shape":"Arn"},
+        "Name":{"shape":"ResolverQueryLogConfigName"},
+        "DestinationArn":{"shape":"DestinationArn"},
+        "CreatorRequestId":{"shape":"CreatorRequestId"},
+        "CreationTime":{"shape":"Rfc3339TimeString"}
+      }
+    },
+    "ResolverQueryLogConfigAssociation":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ResourceId"},
+        "ResolverQueryLogConfigId":{"shape":"ResourceId"},
+        "ResourceId":{"shape":"ResourceId"},
+        "Status":{"shape":"ResolverQueryLogConfigAssociationStatus"},
+        "Error":{"shape":"ResolverQueryLogConfigAssociationError"},
+        "ErrorMessage":{"shape":"ResolverQueryLogConfigAssociationErrorMessage"},
+        "CreationTime":{"shape":"Rfc3339TimeString"}
+      }
+    },
+    "ResolverQueryLogConfigAssociationError":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "DESTINATION_NOT_FOUND",
+        "ACCESS_DENIED",
+        "INTERNAL_SERVICE_ERROR"
+      ]
+    },
+    "ResolverQueryLogConfigAssociationErrorMessage":{"type":"string"},
+    "ResolverQueryLogConfigAssociationList":{
+      "type":"list",
+      "member":{"shape":"ResolverQueryLogConfigAssociation"}
+    },
+    "ResolverQueryLogConfigAssociationStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "ACTION_NEEDED",
+        "DELETING",
+        "FAILED"
+      ]
+    },
+    "ResolverQueryLogConfigList":{
+      "type":"list",
+      "member":{"shape":"ResolverQueryLogConfig"}
+    },
+    "ResolverQueryLogConfigName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"(?!^[0-9]+$)([a-zA-Z0-9\\-_' ']+)"
+    },
+    "ResolverQueryLogConfigPolicy":{
+      "type":"string",
+      "max":5000
+    },
+    "ResolverQueryLogConfigStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATED",
+        "DELETING",
+        "FAILED"
+      ]
+    },
     "ResolverRule":{
       "type":"structure",
       "members":{
@@ -957,7 +1396,9 @@
         "TargetIps":{"shape":"TargetList"},
         "ResolverEndpointId":{"shape":"ResourceId"},
         "OwnerId":{"shape":"AccountId"},
-        "ShareStatus":{"shape":"ShareStatus"}
+        "ShareStatus":{"shape":"ShareStatus"},
+        "CreationTime":{"shape":"Rfc3339TimeString"},
+        "ModificationTime":{"shape":"Rfc3339TimeString"}
       }
     },
     "ResolverRuleAssociation":{
@@ -1072,6 +1513,18 @@
         "SHARED_BY_ME"
       ]
     },
+    "SortByKey":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
+    },
     "StatusMessage":{
       "type":"string",
       "max":255
@@ -1084,19 +1537,29 @@
     },
     "Tag":{
       "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
       "members":{
         "Key":{"shape":"TagKey"},
         "Value":{"shape":"TagValue"}
       }
     },
-    "TagKey":{"type":"string"},
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "TagKeyList":{
       "type":"list",
-      "member":{"shape":"TagKey"}
+      "member":{"shape":"TagKey"},
+      "max":200
     },
     "TagList":{
       "type":"list",
-      "member":{"shape":"Tag"}
+      "member":{"shape":"Tag"},
+      "max":200
     },
     "TagResourceRequest":{
       "type":"structure",
@@ -1114,7 +1577,11 @@
       "members":{
       }
     },
-    "TagValue":{"type":"string"},
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "TargetAddress":{
       "type":"structure",
       "required":["Ip"],
