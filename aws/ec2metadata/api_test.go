@@ -107,22 +107,22 @@ func newTestServer(t *testing.T, testType testType, testServer *testServer) *htt
 	switch testType {
 	case SecureTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.secureGetTokenHandler))
-		mux.HandleFunc("/latest/", testServer.secureGetLatestHandler)
+		mux.HandleFunc("/", testServer.secureGetLatestHandler)
 	case InsecureTestType:
 		mux.HandleFunc("/latest/api/token", testServer.insecureGetTokenHandler)
-		mux.HandleFunc("/latest/", testServer.insecureGetLatestHandler)
+		mux.HandleFunc("/", testServer.insecureGetLatestHandler)
 	case BadRequestTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.badRequestGetTokenHandler))
-		mux.HandleFunc("/latest/", testServer.badRequestGetLatestHandler)
+		mux.HandleFunc("/", testServer.badRequestGetLatestHandler)
 	case ServerErrorForTokenTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.serverErrorGetTokenHandler))
-		mux.HandleFunc("/latest/", testServer.insecureGetLatestHandler)
+		mux.HandleFunc("/", testServer.insecureGetLatestHandler)
 	case pageNotFoundForTokenTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.pageNotFoundGetTokenHandler))
-		mux.HandleFunc("/latest/", testServer.insecureGetLatestHandler)
+		mux.HandleFunc("/", testServer.insecureGetLatestHandler)
 	case pageNotFoundWith401TestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.pageNotFoundGetTokenHandler))
-		mux.HandleFunc("/latest/", testServer.unauthorizedGetLatestHandler)
+		mux.HandleFunc("/", testServer.unauthorizedGetLatestHandler)
 
 	}
 
@@ -863,7 +863,7 @@ func TestRequestOnMetadata(t *testing.T) {
 	req := c.NewRequest(&request.Operation{
 		Name:            "Ec2Metadata request",
 		HTTPMethod:      "GET",
-		HTTPPath:        "/latest",
+		HTTPPath:        "/latest/foo",
 		Paginator:       nil,
 		BeforePresignFn: nil,
 	}, nil, nil)
