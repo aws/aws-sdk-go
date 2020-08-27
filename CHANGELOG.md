@@ -1,3 +1,16 @@
+Release v1.34.12 (2020-08-27)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Introduces support to initiate Internet Key Exchange (IKE) negotiations for VPN connections from AWS. A user can now send the initial IKE message to their Customer Gateway (CGW) from VPN endpoints.
+* `service/gamelift`: Updates service API, documentation, and paginators
+  * GameLift FleetIQ as a standalone feature is now generally available. FleetIQ makes low-cost Spot instances viable for game hosting. Use GameLift FleetIQ with your EC2 Auto Scaling groups.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for WebM DASH outputs as well as H.264 4:2:2 10-bit output in MOV and MP4.
+* `service/redshift`: Updates service documentation
+  * Documentation updates for Amazon Redshift.
+
 Release v1.34.11 (2020-08-26)
 ===
 

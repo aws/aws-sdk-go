@@ -3232,6 +3232,15 @@
       "input":{"shape":"ModifyVpnConnectionRequest"},
       "output":{"shape":"ModifyVpnConnectionResult"}
     },
+    "ModifyVpnConnectionOptions":{
+      "name":"ModifyVpnConnectionOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyVpnConnectionOptionsRequest"},
+      "output":{"shape":"ModifyVpnConnectionOptionsResult"}
+    },
     "ModifyVpnTunnelCertificate":{
       "name":"ModifyVpnTunnelCertificate",
       "http":{
@@ -21670,6 +21679,27 @@
         }
       }
     },
+    "ModifyVpnConnectionOptionsRequest":{
+      "type":"structure",
+      "required":["VpnConnectionId"],
+      "members":{
+        "VpnConnectionId":{"shape":"VpnConnectionId"},
+        "LocalIpv4NetworkCidr":{"shape":"String"},
+        "RemoteIpv4NetworkCidr":{"shape":"String"},
+        "LocalIpv6NetworkCidr":{"shape":"String"},
+        "RemoteIpv6NetworkCidr":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyVpnConnectionOptionsResult":{
+      "type":"structure",
+      "members":{
+        "VpnConnection":{
+          "shape":"VpnConnection",
+          "locationName":"vpnConnection"
+        }
+      }
+    },
     "ModifyVpnConnectionRequest":{
       "type":"structure",
       "required":["VpnConnectionId"],
@@ -21746,6 +21776,7 @@
         "RekeyFuzzPercentage":{"shape":"Integer"},
         "ReplayWindowSize":{"shape":"Integer"},
         "DPDTimeoutSeconds":{"shape":"Integer"},
+        "DPDTimeoutAction":{"shape":"String"},
         "Phase1EncryptionAlgorithms":{
           "shape":"Phase1EncryptionAlgorithmsRequestList",
           "locationName":"Phase1EncryptionAlgorithm"
@@ -21773,7 +21804,8 @@
         "IKEVersions":{
           "shape":"IKEVersionsRequestList",
           "locationName":"IKEVersion"
-        }
+        },
+        "StartupAction":{"shape":"String"}
       }
     },
     "MonitorInstancesRequest":{
@@ -29215,6 +29247,10 @@
           "shape":"Integer",
           "locationName":"dpdTimeoutSeconds"
         },
+        "DpdTimeoutAction":{
+          "shape":"String",
+          "locationName":"dpdTimeoutAction"
+        },
         "Phase1EncryptionAlgorithms":{
           "shape":"Phase1EncryptionAlgorithmsList",
           "locationName":"phase1EncryptionAlgorithmSet"
@@ -29242,6 +29278,10 @@
         "IkeVersions":{
           "shape":"IKEVersionsList",
           "locationName":"ikeVersionSet"
+        },
+        "StartupAction":{
+          "shape":"String",
+          "locationName":"startupAction"
         }
       }
     },
@@ -30652,6 +30692,22 @@
           "shape":"Boolean",
           "locationName":"staticRoutesOnly"
         },
+        "LocalIpv4NetworkCidr":{
+          "shape":"String",
+          "locationName":"localIpv4NetworkCidr"
+        },
+        "RemoteIpv4NetworkCidr":{
+          "shape":"String",
+          "locationName":"remoteIpv4NetworkCidr"
+        },
+        "LocalIpv6NetworkCidr":{
+          "shape":"String",
+          "locationName":"localIpv6NetworkCidr"
+        },
+        "RemoteIpv6NetworkCidr":{
+          "shape":"String",
+          "locationName":"remoteIpv6NetworkCidr"
+        },
         "TunnelInsideIpVersion":{
           "shape":"TunnelInsideIpVersion",
           "locationName":"tunnelInsideIpVersion"
@@ -30671,7 +30727,11 @@
           "locationName":"staticRoutesOnly"
         },
         "TunnelInsideIpVersion":{"shape":"TunnelInsideIpVersion"},
-        "TunnelOptions":{"shape":"VpnTunnelOptionsSpecificationsList"}
+        "TunnelOptions":{"shape":"VpnTunnelOptionsSpecificationsList"},
+        "LocalIpv4NetworkCidr":{"shape":"String"},
+        "RemoteIpv4NetworkCidr":{"shape":"String"},
+        "LocalIpv6NetworkCidr":{"shape":"String"},
+        "RemoteIpv6NetworkCidr":{"shape":"String"}
       }
     },
     "VpnEcmpSupportValue":{
@@ -30782,6 +30842,7 @@
         "RekeyFuzzPercentage":{"shape":"Integer"},
         "ReplayWindowSize":{"shape":"Integer"},
         "DPDTimeoutSeconds":{"shape":"Integer"},
+        "DPDTimeoutAction":{"shape":"String"},
         "Phase1EncryptionAlgorithms":{
           "shape":"Phase1EncryptionAlgorithmsRequestList",
           "locationName":"Phase1EncryptionAlgorithm"
@@ -30809,7 +30870,8 @@
         "IKEVersions":{
           "shape":"IKEVersionsRequestList",
           "locationName":"IKEVersion"
-        }
+        },
+        "StartupAction":{"shape":"String"}
       }
     },
     "VpnTunnelOptionsSpecificationsList":{

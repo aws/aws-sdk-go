@@ -184,13 +184,22 @@ type GameLiftAPI interface {
 	DescribeFleetAttributesWithContext(aws.Context, *gamelift.DescribeFleetAttributesInput, ...request.Option) (*gamelift.DescribeFleetAttributesOutput, error)
 	DescribeFleetAttributesRequest(*gamelift.DescribeFleetAttributesInput) (*request.Request, *gamelift.DescribeFleetAttributesOutput)
 
+	DescribeFleetAttributesPages(*gamelift.DescribeFleetAttributesInput, func(*gamelift.DescribeFleetAttributesOutput, bool) bool) error
+	DescribeFleetAttributesPagesWithContext(aws.Context, *gamelift.DescribeFleetAttributesInput, func(*gamelift.DescribeFleetAttributesOutput, bool) bool, ...request.Option) error
+
 	DescribeFleetCapacity(*gamelift.DescribeFleetCapacityInput) (*gamelift.DescribeFleetCapacityOutput, error)
 	DescribeFleetCapacityWithContext(aws.Context, *gamelift.DescribeFleetCapacityInput, ...request.Option) (*gamelift.DescribeFleetCapacityOutput, error)
 	DescribeFleetCapacityRequest(*gamelift.DescribeFleetCapacityInput) (*request.Request, *gamelift.DescribeFleetCapacityOutput)
 
+	DescribeFleetCapacityPages(*gamelift.DescribeFleetCapacityInput, func(*gamelift.DescribeFleetCapacityOutput, bool) bool) error
+	DescribeFleetCapacityPagesWithContext(aws.Context, *gamelift.DescribeFleetCapacityInput, func(*gamelift.DescribeFleetCapacityOutput, bool) bool, ...request.Option) error
+
 	DescribeFleetEvents(*gamelift.DescribeFleetEventsInput) (*gamelift.DescribeFleetEventsOutput, error)
 	DescribeFleetEventsWithContext(aws.Context, *gamelift.DescribeFleetEventsInput, ...request.Option) (*gamelift.DescribeFleetEventsOutput, error)
 	DescribeFleetEventsRequest(*gamelift.DescribeFleetEventsInput) (*request.Request, *gamelift.DescribeFleetEventsOutput)
+
+	DescribeFleetEventsPages(*gamelift.DescribeFleetEventsInput, func(*gamelift.DescribeFleetEventsOutput, bool) bool) error
+	DescribeFleetEventsPagesWithContext(aws.Context, *gamelift.DescribeFleetEventsInput, func(*gamelift.DescribeFleetEventsOutput, bool) bool, ...request.Option) error
 
 	DescribeFleetPortSettings(*gamelift.DescribeFleetPortSettingsInput) (*gamelift.DescribeFleetPortSettingsOutput, error)
 	DescribeFleetPortSettingsWithContext(aws.Context, *gamelift.DescribeFleetPortSettingsInput, ...request.Option) (*gamelift.DescribeFleetPortSettingsOutput, error)
@@ -200,6 +209,9 @@ type GameLiftAPI interface {
 	DescribeFleetUtilizationWithContext(aws.Context, *gamelift.DescribeFleetUtilizationInput, ...request.Option) (*gamelift.DescribeFleetUtilizationOutput, error)
 	DescribeFleetUtilizationRequest(*gamelift.DescribeFleetUtilizationInput) (*request.Request, *gamelift.DescribeFleetUtilizationOutput)
 
+	DescribeFleetUtilizationPages(*gamelift.DescribeFleetUtilizationInput, func(*gamelift.DescribeFleetUtilizationOutput, bool) bool) error
+	DescribeFleetUtilizationPagesWithContext(aws.Context, *gamelift.DescribeFleetUtilizationInput, func(*gamelift.DescribeFleetUtilizationOutput, bool) bool, ...request.Option) error
+
 	DescribeGameServer(*gamelift.DescribeGameServerInput) (*gamelift.DescribeGameServerOutput, error)
 	DescribeGameServerWithContext(aws.Context, *gamelift.DescribeGameServerInput, ...request.Option) (*gamelift.DescribeGameServerOutput, error)
 	DescribeGameServerRequest(*gamelift.DescribeGameServerInput) (*request.Request, *gamelift.DescribeGameServerOutput)
@@ -208,9 +220,19 @@ type GameLiftAPI interface {
 	DescribeGameServerGroupWithContext(aws.Context, *gamelift.DescribeGameServerGroupInput, ...request.Option) (*gamelift.DescribeGameServerGroupOutput, error)
 	DescribeGameServerGroupRequest(*gamelift.DescribeGameServerGroupInput) (*request.Request, *gamelift.DescribeGameServerGroupOutput)
 
+	DescribeGameServerInstances(*gamelift.DescribeGameServerInstancesInput) (*gamelift.DescribeGameServerInstancesOutput, error)
+	DescribeGameServerInstancesWithContext(aws.Context, *gamelift.DescribeGameServerInstancesInput, ...request.Option) (*gamelift.DescribeGameServerInstancesOutput, error)
+	DescribeGameServerInstancesRequest(*gamelift.DescribeGameServerInstancesInput) (*request.Request, *gamelift.DescribeGameServerInstancesOutput)
+
+	DescribeGameServerInstancesPages(*gamelift.DescribeGameServerInstancesInput, func(*gamelift.DescribeGameServerInstancesOutput, bool) bool) error
+	DescribeGameServerInstancesPagesWithContext(aws.Context, *gamelift.DescribeGameServerInstancesInput, func(*gamelift.DescribeGameServerInstancesOutput, bool) bool, ...request.Option) error
+
 	DescribeGameSessionDetails(*gamelift.DescribeGameSessionDetailsInput) (*gamelift.DescribeGameSessionDetailsOutput, error)
 	DescribeGameSessionDetailsWithContext(aws.Context, *gamelift.DescribeGameSessionDetailsInput, ...request.Option) (*gamelift.DescribeGameSessionDetailsOutput, error)
 	DescribeGameSessionDetailsRequest(*gamelift.DescribeGameSessionDetailsInput) (*request.Request, *gamelift.DescribeGameSessionDetailsOutput)
+
+	DescribeGameSessionDetailsPages(*gamelift.DescribeGameSessionDetailsInput, func(*gamelift.DescribeGameSessionDetailsOutput, bool) bool) error
+	DescribeGameSessionDetailsPagesWithContext(aws.Context, *gamelift.DescribeGameSessionDetailsInput, func(*gamelift.DescribeGameSessionDetailsOutput, bool) bool, ...request.Option) error
 
 	DescribeGameSessionPlacement(*gamelift.DescribeGameSessionPlacementInput) (*gamelift.DescribeGameSessionPlacementOutput, error)
 	DescribeGameSessionPlacementWithContext(aws.Context, *gamelift.DescribeGameSessionPlacementInput, ...request.Option) (*gamelift.DescribeGameSessionPlacementOutput, error)
@@ -220,13 +242,22 @@ type GameLiftAPI interface {
 	DescribeGameSessionQueuesWithContext(aws.Context, *gamelift.DescribeGameSessionQueuesInput, ...request.Option) (*gamelift.DescribeGameSessionQueuesOutput, error)
 	DescribeGameSessionQueuesRequest(*gamelift.DescribeGameSessionQueuesInput) (*request.Request, *gamelift.DescribeGameSessionQueuesOutput)
 
+	DescribeGameSessionQueuesPages(*gamelift.DescribeGameSessionQueuesInput, func(*gamelift.DescribeGameSessionQueuesOutput, bool) bool) error
+	DescribeGameSessionQueuesPagesWithContext(aws.Context, *gamelift.DescribeGameSessionQueuesInput, func(*gamelift.DescribeGameSessionQueuesOutput, bool) bool, ...request.Option) error
+
 	DescribeGameSessions(*gamelift.DescribeGameSessionsInput) (*gamelift.DescribeGameSessionsOutput, error)
 	DescribeGameSessionsWithContext(aws.Context, *gamelift.DescribeGameSessionsInput, ...request.Option) (*gamelift.DescribeGameSessionsOutput, error)
 	DescribeGameSessionsRequest(*gamelift.DescribeGameSessionsInput) (*request.Request, *gamelift.DescribeGameSessionsOutput)
 
+	DescribeGameSessionsPages(*gamelift.DescribeGameSessionsInput, func(*gamelift.DescribeGameSessionsOutput, bool) bool) error
+	DescribeGameSessionsPagesWithContext(aws.Context, *gamelift.DescribeGameSessionsInput, func(*gamelift.DescribeGameSessionsOutput, bool) bool, ...request.Option) error
+
 	DescribeInstances(*gamelift.DescribeInstancesInput) (*gamelift.DescribeInstancesOutput, error)
 	DescribeInstancesWithContext(aws.Context, *gamelift.DescribeInstancesInput, ...request.Option) (*gamelift.DescribeInstancesOutput, error)
 	DescribeInstancesRequest(*gamelift.DescribeInstancesInput) (*request.Request, *gamelift.DescribeInstancesOutput)
+
+	DescribeInstancesPages(*gamelift.DescribeInstancesInput, func(*gamelift.DescribeInstancesOutput, bool) bool) error
+	DescribeInstancesPagesWithContext(aws.Context, *gamelift.DescribeInstancesInput, func(*gamelift.DescribeInstancesOutput, bool) bool, ...request.Option) error
 
 	DescribeMatchmaking(*gamelift.DescribeMatchmakingInput) (*gamelift.DescribeMatchmakingOutput, error)
 	DescribeMatchmakingWithContext(aws.Context, *gamelift.DescribeMatchmakingInput, ...request.Option) (*gamelift.DescribeMatchmakingOutput, error)
@@ -236,13 +267,22 @@ type GameLiftAPI interface {
 	DescribeMatchmakingConfigurationsWithContext(aws.Context, *gamelift.DescribeMatchmakingConfigurationsInput, ...request.Option) (*gamelift.DescribeMatchmakingConfigurationsOutput, error)
 	DescribeMatchmakingConfigurationsRequest(*gamelift.DescribeMatchmakingConfigurationsInput) (*request.Request, *gamelift.DescribeMatchmakingConfigurationsOutput)
 
+	DescribeMatchmakingConfigurationsPages(*gamelift.DescribeMatchmakingConfigurationsInput, func(*gamelift.DescribeMatchmakingConfigurationsOutput, bool) bool) error
+	DescribeMatchmakingConfigurationsPagesWithContext(aws.Context, *gamelift.DescribeMatchmakingConfigurationsInput, func(*gamelift.DescribeMatchmakingConfigurationsOutput, bool) bool, ...request.Option) error
+
 	DescribeMatchmakingRuleSets(*gamelift.DescribeMatchmakingRuleSetsInput) (*gamelift.DescribeMatchmakingRuleSetsOutput, error)
 	DescribeMatchmakingRuleSetsWithContext(aws.Context, *gamelift.DescribeMatchmakingRuleSetsInput, ...request.Option) (*gamelift.DescribeMatchmakingRuleSetsOutput, error)
 	DescribeMatchmakingRuleSetsRequest(*gamelift.DescribeMatchmakingRuleSetsInput) (*request.Request, *gamelift.DescribeMatchmakingRuleSetsOutput)
 
+	DescribeMatchmakingRuleSetsPages(*gamelift.DescribeMatchmakingRuleSetsInput, func(*gamelift.DescribeMatchmakingRuleSetsOutput, bool) bool) error
+	DescribeMatchmakingRuleSetsPagesWithContext(aws.Context, *gamelift.DescribeMatchmakingRuleSetsInput, func(*gamelift.DescribeMatchmakingRuleSetsOutput, bool) bool, ...request.Option) error
+
 	DescribePlayerSessions(*gamelift.DescribePlayerSessionsInput) (*gamelift.DescribePlayerSessionsOutput, error)
 	DescribePlayerSessionsWithContext(aws.Context, *gamelift.DescribePlayerSessionsInput, ...request.Option) (*gamelift.DescribePlayerSessionsOutput, error)
 	DescribePlayerSessionsRequest(*gamelift.DescribePlayerSessionsInput) (*request.Request, *gamelift.DescribePlayerSessionsOutput)
+
+	DescribePlayerSessionsPages(*gamelift.DescribePlayerSessionsInput, func(*gamelift.DescribePlayerSessionsOutput, bool) bool) error
+	DescribePlayerSessionsPagesWithContext(aws.Context, *gamelift.DescribePlayerSessionsInput, func(*gamelift.DescribePlayerSessionsOutput, bool) bool, ...request.Option) error
 
 	DescribeRuntimeConfiguration(*gamelift.DescribeRuntimeConfigurationInput) (*gamelift.DescribeRuntimeConfigurationOutput, error)
 	DescribeRuntimeConfigurationWithContext(aws.Context, *gamelift.DescribeRuntimeConfigurationInput, ...request.Option) (*gamelift.DescribeRuntimeConfigurationOutput, error)
@@ -251,6 +291,9 @@ type GameLiftAPI interface {
 	DescribeScalingPolicies(*gamelift.DescribeScalingPoliciesInput) (*gamelift.DescribeScalingPoliciesOutput, error)
 	DescribeScalingPoliciesWithContext(aws.Context, *gamelift.DescribeScalingPoliciesInput, ...request.Option) (*gamelift.DescribeScalingPoliciesOutput, error)
 	DescribeScalingPoliciesRequest(*gamelift.DescribeScalingPoliciesInput) (*request.Request, *gamelift.DescribeScalingPoliciesOutput)
+
+	DescribeScalingPoliciesPages(*gamelift.DescribeScalingPoliciesInput, func(*gamelift.DescribeScalingPoliciesOutput, bool) bool) error
+	DescribeScalingPoliciesPagesWithContext(aws.Context, *gamelift.DescribeScalingPoliciesInput, func(*gamelift.DescribeScalingPoliciesOutput, bool) bool, ...request.Option) error
 
 	DescribeScript(*gamelift.DescribeScriptInput) (*gamelift.DescribeScriptOutput, error)
 	DescribeScriptWithContext(aws.Context, *gamelift.DescribeScriptInput, ...request.Option) (*gamelift.DescribeScriptOutput, error)
@@ -276,25 +319,43 @@ type GameLiftAPI interface {
 	ListAliasesWithContext(aws.Context, *gamelift.ListAliasesInput, ...request.Option) (*gamelift.ListAliasesOutput, error)
 	ListAliasesRequest(*gamelift.ListAliasesInput) (*request.Request, *gamelift.ListAliasesOutput)
 
+	ListAliasesPages(*gamelift.ListAliasesInput, func(*gamelift.ListAliasesOutput, bool) bool) error
+	ListAliasesPagesWithContext(aws.Context, *gamelift.ListAliasesInput, func(*gamelift.ListAliasesOutput, bool) bool, ...request.Option) error
+
 	ListBuilds(*gamelift.ListBuildsInput) (*gamelift.ListBuildsOutput, error)
 	ListBuildsWithContext(aws.Context, *gamelift.ListBuildsInput, ...request.Option) (*gamelift.ListBuildsOutput, error)
 	ListBuildsRequest(*gamelift.ListBuildsInput) (*request.Request, *gamelift.ListBuildsOutput)
+
+	ListBuildsPages(*gamelift.ListBuildsInput, func(*gamelift.ListBuildsOutput, bool) bool) error
+	ListBuildsPagesWithContext(aws.Context, *gamelift.ListBuildsInput, func(*gamelift.ListBuildsOutput, bool) bool, ...request.Option) error
 
 	ListFleets(*gamelift.ListFleetsInput) (*gamelift.ListFleetsOutput, error)
 	ListFleetsWithContext(aws.Context, *gamelift.ListFleetsInput, ...request.Option) (*gamelift.ListFleetsOutput, error)
 	ListFleetsRequest(*gamelift.ListFleetsInput) (*request.Request, *gamelift.ListFleetsOutput)
 
+	ListFleetsPages(*gamelift.ListFleetsInput, func(*gamelift.ListFleetsOutput, bool) bool) error
+	ListFleetsPagesWithContext(aws.Context, *gamelift.ListFleetsInput, func(*gamelift.ListFleetsOutput, bool) bool, ...request.Option) error
+
 	ListGameServerGroups(*gamelift.ListGameServerGroupsInput) (*gamelift.ListGameServerGroupsOutput, error)
 	ListGameServerGroupsWithContext(aws.Context, *gamelift.ListGameServerGroupsInput, ...request.Option) (*gamelift.ListGameServerGroupsOutput, error)
 	ListGameServerGroupsRequest(*gamelift.ListGameServerGroupsInput) (*request.Request, *gamelift.ListGameServerGroupsOutput)
+
+	ListGameServerGroupsPages(*gamelift.ListGameServerGroupsInput, func(*gamelift.ListGameServerGroupsOutput, bool) bool) error
+	ListGameServerGroupsPagesWithContext(aws.Context, *gamelift.ListGameServerGroupsInput, func(*gamelift.ListGameServerGroupsOutput, bool) bool, ...request.Option) error
 
 	ListGameServers(*gamelift.ListGameServersInput) (*gamelift.ListGameServersOutput, error)
 	ListGameServersWithContext(aws.Context, *gamelift.ListGameServersInput, ...request.Option) (*gamelift.ListGameServersOutput, error)
 	ListGameServersRequest(*gamelift.ListGameServersInput) (*request.Request, *gamelift.ListGameServersOutput)
 
+	ListGameServersPages(*gamelift.ListGameServersInput, func(*gamelift.ListGameServersOutput, bool) bool) error
+	ListGameServersPagesWithContext(aws.Context, *gamelift.ListGameServersInput, func(*gamelift.ListGameServersOutput, bool) bool, ...request.Option) error
+
 	ListScripts(*gamelift.ListScriptsInput) (*gamelift.ListScriptsOutput, error)
 	ListScriptsWithContext(aws.Context, *gamelift.ListScriptsInput, ...request.Option) (*gamelift.ListScriptsOutput, error)
 	ListScriptsRequest(*gamelift.ListScriptsInput) (*request.Request, *gamelift.ListScriptsOutput)
+
+	ListScriptsPages(*gamelift.ListScriptsInput, func(*gamelift.ListScriptsOutput, bool) bool) error
+	ListScriptsPagesWithContext(aws.Context, *gamelift.ListScriptsInput, func(*gamelift.ListScriptsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*gamelift.ListTagsForResourceInput) (*gamelift.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *gamelift.ListTagsForResourceInput, ...request.Option) (*gamelift.ListTagsForResourceOutput, error)
@@ -323,6 +384,9 @@ type GameLiftAPI interface {
 	SearchGameSessions(*gamelift.SearchGameSessionsInput) (*gamelift.SearchGameSessionsOutput, error)
 	SearchGameSessionsWithContext(aws.Context, *gamelift.SearchGameSessionsInput, ...request.Option) (*gamelift.SearchGameSessionsOutput, error)
 	SearchGameSessionsRequest(*gamelift.SearchGameSessionsInput) (*request.Request, *gamelift.SearchGameSessionsOutput)
+
+	SearchGameSessionsPages(*gamelift.SearchGameSessionsInput, func(*gamelift.SearchGameSessionsOutput, bool) bool) error
+	SearchGameSessionsPagesWithContext(aws.Context, *gamelift.SearchGameSessionsInput, func(*gamelift.SearchGameSessionsOutput, bool) bool, ...request.Option) error
 
 	StartFleetActions(*gamelift.StartFleetActionsInput) (*gamelift.StartFleetActionsOutput, error)
 	StartFleetActionsWithContext(aws.Context, *gamelift.StartFleetActionsInput, ...request.Option) (*gamelift.StartFleetActionsOutput, error)

@@ -593,6 +593,21 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "DescribeGameServerInstances":{
+      "name":"DescribeGameServerInstances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeGameServerInstancesInput"},
+      "output":{"shape":"DescribeGameServerInstancesOutput"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "DescribeGameSessionDetails":{
       "name":"DescribeGameSessionDetails",
       "http":{
@@ -1482,7 +1497,8 @@
       "type":"string",
       "enum":[
         "SPOT_ONLY",
-        "SPOT_PREFERRED"
+        "SPOT_PREFERRED",
+        "ON_DEMAND_ONLY"
       ]
     },
     "BooleanModel":{"type":"boolean"},
@@ -2120,6 +2136,23 @@
         "GameServerId":{"shape":"GameServerId"}
       }
     },
+    "DescribeGameServerInstancesInput":{
+      "type":"structure",
+      "required":["GameServerGroupName"],
+      "members":{
+        "GameServerGroupName":{"shape":"GameServerGroupNameOrArn"},
+        "InstanceIds":{"shape":"GameServerInstanceIds"},
+        "Limit":{"shape":"PositiveInteger"},
+        "NextToken":{"shape":"NonZeroAndMaxString"}
+      }
+    },
+    "DescribeGameServerInstancesOutput":{
+      "type":"structure",
+      "members":{
+        "GameServerInstances":{"shape":"GameServerInstances"},
+        "NextToken":{"shape":"NonZeroAndMaxString"}
+      }
+    },
     "DescribeGameServerOutput":{
       "type":"structure",
       "members":{
@@ -2643,7 +2676,6 @@
         "InstanceId":{"shape":"GameServerInstanceId"},
         "ConnectionInfo":{"shape":"GameServerConnectionInfo"},
         "GameServerData":{"shape":"GameServerData"},
-        "CustomSortKey":{"shape":"GameServerSortKey"},
         "ClaimStatus":{"shape":"GameServerClaimStatus"},
         "UtilizationStatus":{"shape":"GameServerUtilizationStatus"},
         "RegistrationTime":{"shape":"Timestamp"},
@@ -2799,11 +2831,38 @@
       "min":3,
       "pattern":"[a-zA-Z0-9-\\.]+"
     },
+    "GameServerInstance":{
+      "type":"structure",
+      "members":{
+        "GameServerGroupName":{"shape":"GameServerGroupName"},
+        "GameServerGroupArn":{"shape":"GameServerGroupArn"},
+        "InstanceId":{"shape":"GameServerInstanceId"},
+        "InstanceStatus":{"shape":"GameServerInstanceStatus"}
+      }
+    },
     "GameServerInstanceId":{
       "type":"string",
       "max":19,
       "min":19,
       "pattern":"^i-[0-9a-zA-Z]{17}$"
+    },
+    "GameServerInstanceIds":{
+      "type":"list",
+      "member":{"shape":"GameServerInstanceId"},
+      "max":20,
+      "min":1
+    },
+    "GameServerInstanceStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "DRAINING",
+        "SPOT_TERMINATING"
+      ]
+    },
+    "GameServerInstances":{
+      "type":"list",
+      "member":{"shape":"GameServerInstance"}
     },
     "GameServerProtectionPolicy":{
       "type":"string",
@@ -2811,12 +2870,6 @@
         "NO_PROTECTION",
         "FULL_PROTECTION"
       ]
-    },
-    "GameServerSortKey":{
-      "type":"string",
-      "max":64,
-      "min":1,
-      "pattern":"[a-zA-Z0-9-\\.]+"
     },
     "GameServerUtilizationStatus":{
       "type":"string",
@@ -3689,9 +3742,7 @@
         "GameServerId":{"shape":"GameServerId"},
         "InstanceId":{"shape":"GameServerInstanceId"},
         "ConnectionInfo":{"shape":"GameServerConnectionInfo"},
-        "GameServerData":{"shape":"GameServerData"},
-        "CustomSortKey":{"shape":"GameServerSortKey"},
-        "Tags":{"shape":"TagList"}
+        "GameServerData":{"shape":"GameServerData"}
       }
     },
     "RegisterGameServerOutput":{
@@ -4272,7 +4323,6 @@
         "GameServerGroupName":{"shape":"GameServerGroupNameOrArn"},
         "GameServerId":{"shape":"GameServerId"},
         "GameServerData":{"shape":"GameServerData"},
-        "CustomSortKey":{"shape":"GameServerSortKey"},
         "UtilizationStatus":{"shape":"GameServerUtilizationStatus"},
         "HealthCheck":{"shape":"GameServerHealthCheck"}
       }
@@ -4427,9 +4477,9 @@
     },
     "VpcSubnet":{
       "type":"string",
-      "max":15,
+      "max":24,
       "min":15,
-      "pattern":"^subnet-[0-9a-z]{8}$"
+      "pattern":"^subnet-[0-9a-z]+$"
     },
     "VpcSubnets":{
       "type":"list",
