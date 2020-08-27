@@ -87,7 +87,7 @@
     "PurchaseReservedNodeOffering": "<p>Allows you to purchase reserved nodes. Amazon Redshift offers a predefined set of reserved node offerings. You can purchase one or more of the offerings. You can call the <a>DescribeReservedNodeOfferings</a> API to obtain the available reserved node offerings. You can call this API by providing a specific reserved node offering and the number of nodes you want to reserve. </p> <p> For more information about reserved node offerings, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "RebootCluster": "<p>Reboots a cluster. This action is taken as soon as possible. It results in a momentary outage to the cluster, during which the cluster status is set to <code>rebooting</code>. A cluster event is created when the reboot is completed. Any pending cluster modifications (see <a>ModifyCluster</a>) are applied at this reboot. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
     "ResetClusterParameterGroup": "<p>Sets one or more parameters of the specified parameter group to their default values and sets the source values of the parameters to \"engine-default\". To reset the entire parameter group specify the <i>ResetAllParameters</i> parameter. For parameter changes to take effect you must reboot any associated clusters. </p>",
-    "ResizeCluster": "<p>Changes the size of the cluster. You can change the cluster's type, or change the number or type of nodes. The default behavior is to use the elastic resize method. With an elastic resize, your cluster is available for read and write operations more quickly than with the classic resize method. </p> <p>Elastic resize operations have the following restrictions:</p> <ul> <li> <p>You can only resize clusters of the following types:</p> <ul> <li> <p>dc2.large</p> </li> <li> <p>dc2.8xlarge</p> </li> <li> <p>ds2.xlarge</p> </li> <li> <p>ds2.8xlarge</p> </li> <li> <p>ra3.4xlarge</p> </li> <li> <p>ra3.16xlarge</p> </li> </ul> </li> <li> <p>The type of nodes that you add must match the node type for the cluster.</p> </li> </ul>",
+    "ResizeCluster": "<p>Changes the size of the cluster. You can change the cluster's type, or change the number or type of nodes. The default behavior is to use the elastic resize method. With an elastic resize, your cluster is available for read and write operations more quickly than with the classic resize method. </p> <p>Elastic resize operations have the following restrictions:</p> <ul> <li> <p>You can only resize clusters of the following types:</p> <ul> <li> <p>dc1.large (if your cluster is in a VPC)</p> </li> <li> <p>dc1.8xlarge (if your cluster is in a VPC)</p> </li> <li> <p>dc2.large</p> </li> <li> <p>dc2.8xlarge</p> </li> <li> <p>ds2.xlarge</p> </li> <li> <p>ds2.8xlarge</p> </li> <li> <p>ra3.4xlarge</p> </li> <li> <p>ra3.16xlarge</p> </li> </ul> </li> <li> <p>The type of nodes that you add must match the node type for the cluster.</p> </li> </ul>",
     "RestoreFromClusterSnapshot": "<p>Creates a new cluster from a snapshot. By default, Amazon Redshift creates the resulting cluster with the same configuration as the original cluster from which the snapshot was created, except that the new cluster is created with the default cluster security and parameter groups. After Amazon Redshift creates the cluster, you can use the <a>ModifyCluster</a> API to associate a different security group and different parameter group with the restored cluster. If you are using a DS node type, you can also choose to change to another DS node type of the same size during restore.</p> <p>If you restore a cluster into a VPC, you must provide a cluster subnet group where you want the cluster restored.</p> <p> For more information about working with snapshots, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html\">Amazon Redshift Snapshots</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "RestoreTableFromClusterSnapshot": "<p>Creates a new table from a table in an Amazon Redshift cluster snapshot. You must create the new table within the Amazon Redshift cluster that the snapshot was taken from.</p> <p>You cannot use <code>RestoreTableFromClusterSnapshot</code> to restore a table with the same name as an existing table in an Amazon Redshift cluster. That is, you cannot overwrite an existing table in a cluster with a restored table. If you want to replace your original table with a new, restored table, then rename or drop your original table before you call <code>RestoreTableFromClusterSnapshot</code>. When you have renamed your original table, then you can pass the original name of the table as the <code>NewTableName</code> parameter value in the call to <code>RestoreTableFromClusterSnapshot</code>. This way, you can replace the original table with the table created from the snapshot.</p>",
     "ResumeCluster": "<p>Resumes a paused cluster.</p>",
@@ -298,7 +298,7 @@
         "ModifyClusterMessage$AllowVersionUpgrade": "<p>If <code>true</code>, major version upgrades will be applied automatically to the cluster during the maintenance window. </p> <p>Default: <code>false</code> </p>",
         "ModifyClusterMessage$PubliclyAccessible": "<p>If <code>true</code>, the cluster can be accessed from a public network. Only clusters in VPCs can be set to be publicly available.</p>",
         "ModifyClusterMessage$EnhancedVpcRouting": "<p>An option that specifies whether to create the cluster with enhanced VPC routing enabled. To create a cluster that uses enhanced VPC routing, the cluster must be in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html\">Enhanced VPC Routing</a> in the Amazon Redshift Cluster Management Guide.</p> <p>If this option is <code>true</code>, enhanced VPC routing is enabled. </p> <p>Default: false</p>",
-        "ModifyClusterMessage$Encrypted": "<p>Indicates whether the cluster is encrypted. If the value is encrypted (true) and you provide a value for the <code>KmsKeyId</code> parameter, we encrypt the cluster with the provided <code>KmsKeyId</code>. If you don't provide a <code>KmsKeyId</code>, we encrypt with the default key. In the China region we use legacy encryption if you specify that the cluster is encrypted.</p> <p>If the value is not encrypted (false), then the cluster is decrypted. </p>",
+        "ModifyClusterMessage$Encrypted": "<p>Indicates whether the cluster is encrypted. If the value is encrypted (true) and you provide a value for the <code>KmsKeyId</code> parameter, we encrypt the cluster with the provided <code>KmsKeyId</code>. If you don't provide a <code>KmsKeyId</code>, we encrypt with the default key. </p> <p>If the value is not encrypted (false), then the cluster is decrypted. </p>",
         "ModifyClusterSnapshotScheduleMessage$DisassociateSchedule": "<p>A boolean to indicate whether to remove the assoiciation between the cluster and the schedule.</p>",
         "ModifyEventSubscriptionMessage$Enabled": "<p>A Boolean value indicating if the subscription is enabled. <code>true</code> indicates the subscription is enabled </p>",
         "ModifyScheduledActionMessage$Enable": "<p>A modified enable flag of the scheduled action. If true, the scheduled action is active. If false, the scheduled action is disabled. </p>",
@@ -1344,7 +1344,7 @@
         "ReservedNode$Duration": "<p>The duration of the node reservation in seconds.</p>",
         "ReservedNode$NodeCount": "<p>The number of reserved compute nodes.</p>",
         "ReservedNodeOffering$Duration": "<p>The duration, in seconds, for which the offering will reserve the node.</p>",
-        "ResizeClusterMessage$NumberOfNodes": "<p>The new number of nodes for the cluster.</p>",
+        "ResizeClusterMessage$NumberOfNodes": "<p>The new number of nodes for the cluster. If not specified, the cluster's current number of nodes is used.</p>",
         "Snapshot$Port": "<p>The port that the cluster is listening on.</p>",
         "Snapshot$NumberOfNodes": "<p>The number of nodes in the cluster.</p>"
       }
@@ -1621,7 +1621,7 @@
       }
     },
     "ModifyClusterParameterGroupMessage": {
-      "base": "<p/>",
+      "base": "<p>Describes a modify cluster parameter group operation. </p>",
       "refs": {
       }
     },
@@ -1786,7 +1786,7 @@
       }
     },
     "PauseClusterMessage": {
-      "base": null,
+      "base": "<p>Describes a pause cluster operation. For example, a scheduled action to run the <code>PauseCluster</code> API operation. </p>",
       "refs": {
         "ScheduledActionType$PauseCluster": "<p>An action that runs a <code>PauseCluster</code> API operation. </p>"
       }
@@ -1916,7 +1916,7 @@
       }
     },
     "ResizeClusterMessage": {
-      "base": null,
+      "base": "<p>Describes a resize cluster operation. For example, a scheduled action to run the <code>ResizeCluster</code> API operation. </p>",
       "refs": {
         "ScheduledActionType$ResizeCluster": "<p>An action that runs a <code>ResizeCluster</code> API operation. </p>"
       }
@@ -1980,7 +1980,7 @@
       }
     },
     "ResumeClusterMessage": {
-      "base": null,
+      "base": "<p>Describes a resume cluster operation. For example, a scheduled action to run the <code>ResumeCluster</code> API operation. </p>",
       "refs": {
         "ScheduledActionType$ResumeCluster": "<p>An action that runs a <code>ResumeCluster</code> API operation. </p>"
       }
@@ -2650,7 +2650,7 @@
         "PendingModifiedValues$ClusterVersion": "<p>The pending or in-progress change of the service version.</p>",
         "PendingModifiedValues$ClusterIdentifier": "<p>The pending or in-progress change of the new identifier for the cluster.</p>",
         "PendingModifiedValues$MaintenanceTrackName": "<p>The name of the maintenance track that the cluster will change to during the next maintenance window.</p>",
-        "PendingModifiedValues$EncryptionType": "<p>The encryption type for a cluster. Possible values are: KMS and None. For the China region the possible values are None, and Legacy. </p>",
+        "PendingModifiedValues$EncryptionType": "<p>The encryption type for a cluster. Possible values are: KMS and None. </p>",
         "PurchaseReservedNodeOfferingMessage$ReservedNodeOfferingId": "<p>The unique identifier of the reserved node offering you want to purchase.</p>",
         "RebootClusterMessage$ClusterIdentifier": "<p>The cluster identifier.</p>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency at which the recurring charge amount is applied.</p>",
@@ -2676,7 +2676,7 @@
         "ResizeProgressMessage$Status": "<p>The status of the resize operation.</p> <p>Valid Values: <code>NONE</code> | <code>IN_PROGRESS</code> | <code>FAILED</code> | <code>SUCCEEDED</code> | <code>CANCELLING</code> </p>",
         "ResizeProgressMessage$ResizeType": "<p>An enum with possible values of <code>ClassicResize</code> and <code>ElasticResize</code>. These values describe the type of resize operation being performed. </p>",
         "ResizeProgressMessage$Message": "<p>An optional string to provide additional details about the resize action.</p>",
-        "ResizeProgressMessage$TargetEncryptionType": "<p>The type of encryption for the cluster after the resize is complete.</p> <p>Possible values are <code>KMS</code> and <code>None</code>. In the China region possible values are: <code>Legacy</code> and <code>None</code>.</p>",
+        "ResizeProgressMessage$TargetEncryptionType": "<p>The type of encryption for the cluster after the resize is complete.</p> <p>Possible values are <code>KMS</code> and <code>None</code>. </p>",
         "RestorableNodeTypeList$member": null,
         "RestoreFromClusterSnapshotMessage$ClusterIdentifier": "<p>The identifier of the cluster that will be created from restoring the snapshot.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>Alphabetic characters must be lowercase.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> <li> <p>Must be unique for all clusters within an AWS account.</p> </li> </ul>",
         "RestoreFromClusterSnapshotMessage$SnapshotIdentifier": "<p>The name of the snapshot from which to create the new cluster. This parameter isn't case sensitive.</p> <p>Example: <code>my-snapshot-id</code> </p>",
