@@ -27,7 +27,7 @@ func main() {
 	dbUser := os.Args[2]
 	dbName := os.Args[3]
 	dbEndpoint := os.Args[4]
-	awsCreds := stscreds.NewCredentials(session.New(&aws.Config{Region: &awsRegion}), os.Args[5])
+	awsCreds := stscreds.NewCredentials(session.Must(NewSession(&aws.Config{Region: &awsRegion})), os.Args[5])
 	authToken, err := rdsutils.BuildAuthToken(dbEndpoint, awsRegion, dbUser, awsCreds)
 
 	// Create the MySQL DNS string for the DB connection

@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 
 func ExamplePricing_DescribeServices_shared00() {
-	svc := pricing.New(session.New())
+	svc := pricing.New(session.Must(session.NewSession()))
 	input := &pricing.DescribeServicesInput{
 		FormatVersion: aws.String("aws_v1"),
 		MaxResults:    aws.Int64(1),
@@ -68,7 +68,7 @@ func ExamplePricing_DescribeServices_shared00() {
 //
 // This operation returns a list of values available for the given attribute.
 func ExamplePricing_GetAttributeValues_shared00() {
-	svc := pricing.New(session.New())
+	svc := pricing.New(session.Must(session.NewSession()))
 	input := &pricing.GetAttributeValuesInput{
 		AttributeName: aws.String("volumeType"),
 		MaxResults:    aws.Int64(2),
@@ -107,7 +107,7 @@ func ExamplePricing_GetAttributeValues_shared00() {
 //
 // This operation returns a list of products that match the given criteria.
 func ExamplePricing_GetProducts_shared00() {
-	svc := pricing.New(session.New())
+	svc := pricing.New(session.Must(session.NewSession()))
 	input := &pricing.GetProductsInput{
 		Filters: []*pricing.Filter{
 			{

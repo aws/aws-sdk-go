@@ -30,7 +30,7 @@ import (
 //    }
 //
 //    func main() {
-//        sess := session.New()
+//        sess := session.Must(session.NewSession())
 //        svc := pricing.New(sess)
 //
 //        myFunc(svc)

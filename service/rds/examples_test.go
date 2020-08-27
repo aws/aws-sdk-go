@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // This example add a source identifier to an event notification subscription.
 func ExampleRDS_AddSourceIdentifierToSubscription_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.AddSourceIdentifierToSubscriptionInput{
 		SourceIdentifier: aws.String("mymysqlinstance"),
 		SubscriptionName: aws.String("mymysqleventsubscription"),
@@ -61,7 +61,7 @@ func ExampleRDS_AddSourceIdentifierToSubscription_shared00() {
 //
 // This example adds a tag to an option group.
 func ExampleRDS_AddTagsToResource_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.AddTagsToResourceInput{
 		ResourceName: aws.String("arn:aws:rds:us-east-1:992648334831:og:mymysqloptiongroup"),
 		Tags: []*rds.Tag{
@@ -104,7 +104,7 @@ func ExampleRDS_AddTagsToResource_shared00() {
 //
 // This example immediately applies a pending system update to a DB instance.
 func ExampleRDS_ApplyPendingMaintenanceAction_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ApplyPendingMaintenanceActionInput{
 		ApplyAction:        aws.String("system-update"),
 		OptInType:          aws.String("immediate"),
@@ -140,7 +140,7 @@ func ExampleRDS_ApplyPendingMaintenanceAction_shared00() {
 // This example authorizes access to the specified security group by the specified CIDR
 // block.
 func ExampleRDS_AuthorizeDBSecurityGroupIngress_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.AuthorizeDBSecurityGroupIngressInput{
 		CIDRIP:              aws.String("203.0.113.5/32"),
 		DBSecurityGroupName: aws.String("mydbsecuritygroup"),
@@ -176,7 +176,7 @@ func ExampleRDS_AuthorizeDBSecurityGroupIngress_shared00() {
 //
 // This example copies a DB cluster parameter group.
 func ExampleRDS_CopyDBClusterParameterGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CopyDBClusterParameterGroupInput{
 		SourceDBClusterParameterGroupIdentifier:  aws.String("mydbclusterparametergroup"),
 		TargetDBClusterParameterGroupDescription: aws.String("My DB cluster parameter group copy"),
@@ -212,7 +212,7 @@ func ExampleRDS_CopyDBClusterParameterGroup_shared00() {
 // The following example copies an automated snapshot of a DB cluster to a new DB cluster
 // snapshot.
 func ExampleRDS_CopyDBClusterSnapshot_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CopyDBClusterSnapshotInput{
 		SourceDBClusterSnapshotIdentifier: aws.String("rds:sample-cluster-2016-09-14-10-38"),
 		TargetDBClusterSnapshotIdentifier: aws.String("cluster-snapshot-copy-1"),
@@ -252,7 +252,7 @@ func ExampleRDS_CopyDBClusterSnapshot_shared00() {
 //
 // This example copies a DB parameter group.
 func ExampleRDS_CopyDBParameterGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CopyDBParameterGroupInput{
 		SourceDBParameterGroupIdentifier:  aws.String("mymysqlparametergroup"),
 		TargetDBParameterGroupDescription: aws.String("My MySQL parameter group copy"),
@@ -287,7 +287,7 @@ func ExampleRDS_CopyDBParameterGroup_shared00() {
 //
 // This example copies a DB snapshot.
 func ExampleRDS_CopyDBSnapshot_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CopyDBSnapshotInput{
 		SourceDBSnapshotIdentifier: aws.String("mydbsnapshot"),
 		TargetDBSnapshotIdentifier: aws.String("mydbsnapshot-copy"),
@@ -325,7 +325,7 @@ func ExampleRDS_CopyDBSnapshot_shared00() {
 //
 // This example copies an option group.
 func ExampleRDS_CopyOptionGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CopyOptionGroupInput{
 		SourceOptionGroupIdentifier:  aws.String("mymysqloptiongroup"),
 		TargetOptionGroupDescription: aws.String("My MySQL option group copy"),
@@ -360,7 +360,7 @@ func ExampleRDS_CopyOptionGroup_shared00() {
 //
 // This example creates a DB cluster.
 func ExampleRDS_CreateDBCluster_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateDBClusterInput{
 		AvailabilityZones: []*string{
 			aws.String("us-east-1a"),
@@ -435,7 +435,7 @@ func ExampleRDS_CreateDBCluster_shared00() {
 //
 // This example creates a DB cluster parameter group.
 func ExampleRDS_CreateDBClusterParameterGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateDBClusterParameterGroupInput{
 		DBClusterParameterGroupName: aws.String("mydbclusterparametergroup"),
 		DBParameterGroupFamily:      aws.String("aurora5.6"),
@@ -468,7 +468,7 @@ func ExampleRDS_CreateDBClusterParameterGroup_shared00() {
 //
 // This example creates a DB cluster snapshot.
 func ExampleRDS_CreateDBClusterSnapshot_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateDBClusterSnapshotInput{
 		DBClusterIdentifier:         aws.String("mydbcluster"),
 		DBClusterSnapshotIdentifier: aws.String("mydbclustersnapshot"),
@@ -506,7 +506,7 @@ func ExampleRDS_CreateDBClusterSnapshot_shared00() {
 //
 // This example creates a DB instance.
 func ExampleRDS_CreateDBInstance_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateDBInstanceInput{
 		AllocatedStorage:     aws.Int64(5),
 		DBInstanceClass:      aws.String("db.t2.micro"),
@@ -576,7 +576,7 @@ func ExampleRDS_CreateDBInstance_shared00() {
 //
 // This example creates a DB instance read replica.
 func ExampleRDS_CreateDBInstanceReadReplica_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateDBInstanceReadReplicaInput{
 		AvailabilityZone:           aws.String("us-east-1a"),
 		CopyTagsToSnapshot:         aws.Bool(true),
@@ -653,7 +653,7 @@ func ExampleRDS_CreateDBInstanceReadReplica_shared00() {
 //
 // This example creates a DB parameter group.
 func ExampleRDS_CreateDBParameterGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateDBParameterGroupInput{
 		DBParameterGroupFamily: aws.String("mysql5.6"),
 		DBParameterGroupName:   aws.String("mymysqlparametergroup"),
@@ -686,7 +686,7 @@ func ExampleRDS_CreateDBParameterGroup_shared00() {
 //
 // This example creates a DB security group.
 func ExampleRDS_CreateDBSecurityGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateDBSecurityGroupInput{
 		DBSecurityGroupDescription: aws.String("My DB security group"),
 		DBSecurityGroupName:        aws.String("mydbsecuritygroup"),
@@ -720,7 +720,7 @@ func ExampleRDS_CreateDBSecurityGroup_shared00() {
 //
 // This example creates a DB snapshot.
 func ExampleRDS_CreateDBSnapshot_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateDBSnapshotInput{
 		DBInstanceIdentifier: aws.String("mymysqlinstance"),
 		DBSnapshotIdentifier: aws.String("mydbsnapshot"),
@@ -756,7 +756,7 @@ func ExampleRDS_CreateDBSnapshot_shared00() {
 //
 // This example creates a DB subnet group.
 func ExampleRDS_CreateDBSubnetGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateDBSubnetGroupInput{
 		DBSubnetGroupDescription: aws.String("My DB subnet group"),
 		DBSubnetGroupName:        aws.String("mydbsubnetgroup"),
@@ -798,7 +798,7 @@ func ExampleRDS_CreateDBSubnetGroup_shared00() {
 //
 // This example creates an event notification subscription.
 func ExampleRDS_CreateEventSubscription_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateEventSubscriptionInput{
 		Enabled: aws.Bool(true),
 		EventCategories: []*string{
@@ -848,7 +848,7 @@ func ExampleRDS_CreateEventSubscription_shared00() {
 //
 // This example creates an option group.
 func ExampleRDS_CreateOptionGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.CreateOptionGroupInput{
 		EngineName:             aws.String("MySQL"),
 		MajorEngineVersion:     aws.String("5.6"),
@@ -882,7 +882,7 @@ func ExampleRDS_CreateOptionGroup_shared00() {
 //
 // This example deletes the specified DB cluster.
 func ExampleRDS_DeleteDBCluster_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DeleteDBClusterInput{
 		DBClusterIdentifier: aws.String("mydbcluster"),
 		SkipFinalSnapshot:   aws.Bool(true),
@@ -920,7 +920,7 @@ func ExampleRDS_DeleteDBCluster_shared00() {
 //
 // This example deletes the specified DB cluster parameter group.
 func ExampleRDS_DeleteDBClusterParameterGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DeleteDBClusterParameterGroupInput{
 		DBClusterParameterGroupName: aws.String("mydbclusterparametergroup"),
 	}
@@ -951,7 +951,7 @@ func ExampleRDS_DeleteDBClusterParameterGroup_shared00() {
 //
 // This example deletes the specified DB cluster snapshot.
 func ExampleRDS_DeleteDBClusterSnapshot_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DeleteDBClusterSnapshotInput{
 		DBClusterSnapshotIdentifier: aws.String("mydbclustersnapshot"),
 	}
@@ -982,7 +982,7 @@ func ExampleRDS_DeleteDBClusterSnapshot_shared00() {
 //
 // This example deletes the specified DB instance.
 func ExampleRDS_DeleteDBInstance_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DeleteDBInstanceInput{
 		DBInstanceIdentifier: aws.String("mymysqlinstance"),
 		SkipFinalSnapshot:    aws.Bool(true),
@@ -1022,7 +1022,7 @@ func ExampleRDS_DeleteDBInstance_shared00() {
 //
 // The following example deletes a DB parameter group.
 func ExampleRDS_DeleteDBParameterGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DeleteDBParameterGroupInput{
 		DBParameterGroupName: aws.String("mydbparamgroup3"),
 	}
@@ -1053,7 +1053,7 @@ func ExampleRDS_DeleteDBParameterGroup_shared00() {
 //
 // The following example deletes a DB security group.
 func ExampleRDS_DeleteDBSecurityGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DeleteDBSecurityGroupInput{
 		DBSecurityGroupName: aws.String("mysecgroup"),
 	}
@@ -1084,7 +1084,7 @@ func ExampleRDS_DeleteDBSecurityGroup_shared00() {
 //
 // This example deletes the specified DB snapshot.
 func ExampleRDS_DeleteDBSnapshot_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DeleteDBSnapshotInput{
 		DBSnapshotIdentifier: aws.String("mydbsnapshot"),
 	}
@@ -1115,7 +1115,7 @@ func ExampleRDS_DeleteDBSnapshot_shared00() {
 //
 // This example deletes the specified DB subnetgroup.
 func ExampleRDS_DeleteDBSubnetGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DeleteDBSubnetGroupInput{
 		DBSubnetGroupName: aws.String("mydbsubnetgroup"),
 	}
@@ -1148,7 +1148,7 @@ func ExampleRDS_DeleteDBSubnetGroup_shared00() {
 //
 // This example deletes the specified DB event subscription.
 func ExampleRDS_DeleteEventSubscription_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DeleteEventSubscriptionInput{
 		SubscriptionName: aws.String("myeventsubscription"),
 	}
@@ -1179,7 +1179,7 @@ func ExampleRDS_DeleteEventSubscription_shared00() {
 //
 // This example deletes the specified option group.
 func ExampleRDS_DeleteOptionGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DeleteOptionGroupInput{
 		OptionGroupName: aws.String("mydboptiongroup"),
 	}
@@ -1210,7 +1210,7 @@ func ExampleRDS_DeleteOptionGroup_shared00() {
 //
 // This example lists account attributes.
 func ExampleRDS_DescribeAccountAttributes_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeAccountAttributesInput{}
 
 	result, err := svc.DescribeAccountAttributes(input)
@@ -1235,7 +1235,7 @@ func ExampleRDS_DescribeAccountAttributes_shared00() {
 //
 // This example lists up to 20 certificates for the specified certificate identifier.
 func ExampleRDS_DescribeCertificates_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeCertificatesInput{
 		CertificateIdentifier: aws.String("rds-ca-2015"),
 		MaxRecords:            aws.Int64(20),
@@ -1265,7 +1265,7 @@ func ExampleRDS_DescribeCertificates_shared00() {
 //
 // This example lists settings for the specified DB cluster parameter group.
 func ExampleRDS_DescribeDBClusterParameterGroups_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBClusterParameterGroupsInput{
 		DBClusterParameterGroupName: aws.String("mydbclusterparametergroup"),
 	}
@@ -1294,7 +1294,7 @@ func ExampleRDS_DescribeDBClusterParameterGroups_shared00() {
 //
 // This example lists system parameters for the specified DB cluster parameter group.
 func ExampleRDS_DescribeDBClusterParameters_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBClusterParametersInput{
 		DBClusterParameterGroupName: aws.String("mydbclusterparametergroup"),
 		Source:                      aws.String("system"),
@@ -1324,7 +1324,7 @@ func ExampleRDS_DescribeDBClusterParameters_shared00() {
 //
 // This example lists attributes for the specified DB cluster snapshot.
 func ExampleRDS_DescribeDBClusterSnapshotAttributes_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBClusterSnapshotAttributesInput{
 		DBClusterSnapshotIdentifier: aws.String("mydbclustersnapshot"),
 	}
@@ -1353,7 +1353,7 @@ func ExampleRDS_DescribeDBClusterSnapshotAttributes_shared00() {
 //
 // This example lists settings for the specified, manually-created cluster snapshot.
 func ExampleRDS_DescribeDBClusterSnapshots_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBClusterSnapshotsInput{
 		DBClusterSnapshotIdentifier: aws.String("mydbclustersnapshot"),
 		SnapshotType:                aws.String("manual"),
@@ -1383,7 +1383,7 @@ func ExampleRDS_DescribeDBClusterSnapshots_shared00() {
 //
 // This example lists settings for the specified DB cluster.
 func ExampleRDS_DescribeDBClusters_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBClustersInput{
 		DBClusterIdentifier: aws.String("mynewdbcluster"),
 	}
@@ -1412,7 +1412,7 @@ func ExampleRDS_DescribeDBClusters_shared00() {
 //
 // This example lists settings for the specified DB engine version.
 func ExampleRDS_DescribeDBEngineVersions_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBEngineVersionsInput{
 		DBParameterGroupFamily:     aws.String("mysql5.6"),
 		DefaultOnly:                aws.Bool(true),
@@ -1443,7 +1443,7 @@ func ExampleRDS_DescribeDBEngineVersions_shared00() {
 //
 // This example lists settings for the specified DB instance.
 func ExampleRDS_DescribeDBInstances_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBInstancesInput{
 		DBInstanceIdentifier: aws.String("mymysqlinstance"),
 	}
@@ -1473,7 +1473,7 @@ func ExampleRDS_DescribeDBInstances_shared00() {
 // This example lists matching log file names for the specified DB instance, file name
 // pattern, last write date in POSIX time with milleseconds, and minimum file size.
 func ExampleRDS_DescribeDBLogFiles_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBLogFilesInput{
 		DBInstanceIdentifier: aws.String("mymysqlinstance"),
 		FileLastWritten:      aws.Int64(1470873600000),
@@ -1505,7 +1505,7 @@ func ExampleRDS_DescribeDBLogFiles_shared00() {
 //
 // This example lists information about the specified DB parameter group.
 func ExampleRDS_DescribeDBParameterGroups_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBParameterGroupsInput{
 		DBParameterGroupName: aws.String("mymysqlparametergroup"),
 	}
@@ -1535,7 +1535,7 @@ func ExampleRDS_DescribeDBParameterGroups_shared00() {
 // This example lists information for up to the first 20 system parameters for the specified
 // DB parameter group.
 func ExampleRDS_DescribeDBParameters_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBParametersInput{
 		DBParameterGroupName: aws.String("mymysqlparametergroup"),
 		MaxRecords:           aws.Int64(20),
@@ -1566,7 +1566,7 @@ func ExampleRDS_DescribeDBParameters_shared00() {
 //
 // This example lists settings for the specified security group.
 func ExampleRDS_DescribeDBSecurityGroups_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBSecurityGroupsInput{
 		DBSecurityGroupName: aws.String("mydbsecuritygroup"),
 	}
@@ -1595,7 +1595,7 @@ func ExampleRDS_DescribeDBSecurityGroups_shared00() {
 //
 // This example lists attributes for the specified DB snapshot.
 func ExampleRDS_DescribeDBSnapshotAttributes_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBSnapshotAttributesInput{
 		DBSnapshotIdentifier: aws.String("mydbsnapshot"),
 	}
@@ -1624,7 +1624,7 @@ func ExampleRDS_DescribeDBSnapshotAttributes_shared00() {
 //
 // This example lists all manually-created, shared snapshots for the specified DB instance.
 func ExampleRDS_DescribeDBSnapshots_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBSnapshotsInput{
 		DBInstanceIdentifier: aws.String("mymysqlinstance"),
 		IncludePublic:        aws.Bool(false),
@@ -1656,7 +1656,7 @@ func ExampleRDS_DescribeDBSnapshots_shared00() {
 //
 // This example lists information about the specified DB subnet group.
 func ExampleRDS_DescribeDBSubnetGroups_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeDBSubnetGroupsInput{
 		DBSubnetGroupName: aws.String("mydbsubnetgroup"),
 	}
@@ -1685,7 +1685,7 @@ func ExampleRDS_DescribeDBSubnetGroups_shared00() {
 //
 // This example lists default parameters for the specified DB cluster engine.
 func ExampleRDS_DescribeEngineDefaultClusterParameters_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeEngineDefaultClusterParametersInput{
 		DBParameterGroupFamily: aws.String("aurora5.6"),
 	}
@@ -1712,7 +1712,7 @@ func ExampleRDS_DescribeEngineDefaultClusterParameters_shared00() {
 //
 // This example lists default parameters for the specified DB engine.
 func ExampleRDS_DescribeEngineDefaultParameters_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeEngineDefaultParametersInput{
 		DBParameterGroupFamily: aws.String("mysql5.6"),
 	}
@@ -1739,7 +1739,7 @@ func ExampleRDS_DescribeEngineDefaultParameters_shared00() {
 //
 // This example lists all DB instance event categories.
 func ExampleRDS_DescribeEventCategories_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeEventCategoriesInput{
 		SourceType: aws.String("db-instance"),
 	}
@@ -1766,7 +1766,7 @@ func ExampleRDS_DescribeEventCategories_shared00() {
 //
 // This example lists information for the specified DB event notification subscription.
 func ExampleRDS_DescribeEventSubscriptions_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeEventSubscriptionsInput{
 		SubscriptionName: aws.String("mymysqleventsubscription"),
 	}
@@ -1796,7 +1796,7 @@ func ExampleRDS_DescribeEventSubscriptions_shared00() {
 // This example lists information for all backup-related events for the specified DB
 // instance for the past 7 days (7 days * 24 hours * 60 minutes = 10,080 minutes).
 func ExampleRDS_DescribeEvents_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeEventsInput{
 		Duration: aws.Int64(10080),
 		EventCategories: []*string{
@@ -1829,7 +1829,7 @@ func ExampleRDS_DescribeEvents_shared00() {
 // This example lists information for all option group options for the specified DB
 // engine.
 func ExampleRDS_DescribeOptionGroupOptions_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeOptionGroupOptionsInput{
 		EngineName:         aws.String("mysql"),
 		MajorEngineVersion: aws.String("5.6"),
@@ -1857,7 +1857,7 @@ func ExampleRDS_DescribeOptionGroupOptions_shared00() {
 //
 // This example lists information for all option groups for the specified DB engine.
 func ExampleRDS_DescribeOptionGroups_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeOptionGroupsInput{
 		EngineName:         aws.String("mysql"),
 		MajorEngineVersion: aws.String("5.6"),
@@ -1888,7 +1888,7 @@ func ExampleRDS_DescribeOptionGroups_shared00() {
 // This example lists information for all orderable DB instance options for the specified
 // DB engine, engine version, DB instance class, license model, and VPC settings.
 func ExampleRDS_DescribeOrderableDBInstanceOptions_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeOrderableDBInstanceOptionsInput{
 		DBInstanceClass: aws.String("db.t2.micro"),
 		Engine:          aws.String("mysql"),
@@ -1920,7 +1920,7 @@ func ExampleRDS_DescribeOrderableDBInstanceOptions_shared00() {
 // This example lists information for all pending maintenance actions for the specified
 // DB instance.
 func ExampleRDS_DescribePendingMaintenanceActions_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribePendingMaintenanceActionsInput{
 		ResourceIdentifier: aws.String("arn:aws:rds:us-east-1:992648334831:db:mymysqlinstance"),
 	}
@@ -1950,7 +1950,7 @@ func ExampleRDS_DescribePendingMaintenanceActions_shared00() {
 // This example lists information for all reserved DB instances for the specified DB
 // instance class, duration, product, offering type, and availability zone settings.
 func ExampleRDS_DescribeReservedDBInstances_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeReservedDBInstancesInput{
 		DBInstanceClass:    aws.String("db.t2.micro"),
 		Duration:           aws.String("1y"),
@@ -1984,7 +1984,7 @@ func ExampleRDS_DescribeReservedDBInstances_shared00() {
 // This example lists information for all reserved DB instance offerings for the specified
 // DB instance class, duration, product, offering type, and availability zone settings.
 func ExampleRDS_DescribeReservedDBInstancesOfferings_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeReservedDBInstancesOfferingsInput{
 		DBInstanceClass:    aws.String("db.t2.micro"),
 		Duration:           aws.String("1y"),
@@ -2017,7 +2017,7 @@ func ExampleRDS_DescribeReservedDBInstancesOfferings_shared00() {
 //
 // To list the AWS regions where a Read Replica can be created.
 func ExampleRDS_DescribeSourceRegions_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DescribeSourceRegionsInput{}
 
 	result, err := svc.DescribeSourceRegions(input)
@@ -2042,7 +2042,7 @@ func ExampleRDS_DescribeSourceRegions_shared00() {
 //
 // This example lists information for the specified log file for the specified DB instance.
 func ExampleRDS_DownloadDBLogFilePortion_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.DownloadDBLogFilePortionInput{
 		DBInstanceIdentifier: aws.String("mymysqlinstance"),
 		LogFileName:          aws.String("mysqlUpgrade"),
@@ -2075,7 +2075,7 @@ func ExampleRDS_DownloadDBLogFilePortion_shared00() {
 // This example performs a failover for the specified DB cluster to the specified DB
 // instance.
 func ExampleRDS_FailoverDBCluster_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.FailoverDBClusterInput{
 		DBClusterIdentifier:        aws.String("myaurorainstance-cluster"),
 		TargetDBInstanceIdentifier: aws.String("myaurorareplica"),
@@ -2110,7 +2110,7 @@ func ExampleRDS_FailoverDBCluster_shared00() {
 // This example lists information about all tags associated with the specified DB option
 // group.
 func ExampleRDS_ListTagsForResource_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ListTagsForResourceInput{
 		ResourceName: aws.String("arn:aws:rds:us-east-1:992648334831:og:mymysqloptiongroup"),
 	}
@@ -2147,7 +2147,7 @@ func ExampleRDS_ListTagsForResource_shared00() {
 //
 // This example changes the specified settings for the specified DB cluster.
 func ExampleRDS_ModifyDBCluster_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ModifyDBClusterInput{
 		ApplyImmediately:           aws.Bool(true),
 		DBClusterIdentifier:        aws.String("mydbcluster"),
@@ -2204,7 +2204,7 @@ func ExampleRDS_ModifyDBCluster_shared00() {
 // This example immediately changes the specified setting for the specified DB cluster
 // parameter group.
 func ExampleRDS_ModifyDBClusterParameterGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ModifyDBClusterParameterGroupInput{
 		DBClusterParameterGroupName: aws.String("mydbclusterparametergroup"),
 		Parameters: []*rds.Parameter{
@@ -2243,7 +2243,7 @@ func ExampleRDS_ModifyDBClusterParameterGroup_shared00() {
 // The following example gives two AWS accounts access to a manual DB cluster snapshot
 // and ensures that the DB cluster snapshot is private by removing the value "all".
 func ExampleRDS_ModifyDBClusterSnapshotAttribute_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ModifyDBClusterSnapshotAttributeInput{
 		AttributeName:               aws.String("restore"),
 		DBClusterSnapshotIdentifier: aws.String("manual-cluster-snapshot1"),
@@ -2284,7 +2284,7 @@ func ExampleRDS_ModifyDBClusterSnapshotAttribute_shared00() {
 //
 // This example immediately changes the specified settings for the specified DB instance.
 func ExampleRDS_ModifyDBInstance_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ModifyDBInstanceInput{
 		AllocatedStorage:           aws.Int64(10),
 		ApplyImmediately:           aws.Bool(true),
@@ -2357,7 +2357,7 @@ func ExampleRDS_ModifyDBInstance_shared00() {
 // This example immediately changes the specified setting for the specified DB parameter
 // group.
 func ExampleRDS_ModifyDBParameterGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ModifyDBParameterGroupInput{
 		DBParameterGroupName: aws.String("mymysqlparametergroup"),
 		Parameters: []*rds.Parameter{
@@ -2395,7 +2395,7 @@ func ExampleRDS_ModifyDBParameterGroup_shared00() {
 //
 // This example adds the specified attribute for the specified DB snapshot.
 func ExampleRDS_ModifyDBSnapshotAttribute_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ModifyDBSnapshotAttributeInput{
 		AttributeName:        aws.String("restore"),
 		DBSnapshotIdentifier: aws.String("mydbsnapshot"),
@@ -2432,7 +2432,7 @@ func ExampleRDS_ModifyDBSnapshotAttribute_shared00() {
 //
 // This example changes the specified setting for the specified DB subnet group.
 func ExampleRDS_ModifyDBSubnetGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ModifyDBSubnetGroupInput{
 		DBSubnetGroupName: aws.String("mydbsubnetgroup"),
 		SubnetIds: []*string{
@@ -2473,7 +2473,7 @@ func ExampleRDS_ModifyDBSubnetGroup_shared00() {
 //
 // This example changes the specified setting for the specified event notification subscription.
 func ExampleRDS_ModifyEventSubscription_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ModifyEventSubscriptionInput{
 		Enabled: aws.Bool(true),
 		EventCategories: []*string{
@@ -2518,7 +2518,7 @@ func ExampleRDS_ModifyEventSubscription_shared00() {
 //
 // The following example adds an option to an option group.
 func ExampleRDS_ModifyOptionGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ModifyOptionGroupInput{
 		ApplyImmediately: aws.Bool(true),
 		OptionGroupName:  aws.String("myawsuser-og02"),
@@ -2559,7 +2559,7 @@ func ExampleRDS_ModifyOptionGroup_shared00() {
 // This example promotes the specified read replica and sets its backup retention period
 // and preferred backup window.
 func ExampleRDS_PromoteReadReplica_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.PromoteReadReplicaInput{
 		BackupRetentionPeriod: aws.Int64(1),
 		DBInstanceIdentifier:  aws.String("mydbreadreplica"),
@@ -2593,7 +2593,7 @@ func ExampleRDS_PromoteReadReplica_shared00() {
 // This example purchases a reserved DB instance offering that matches the specified
 // settings.
 func ExampleRDS_PurchaseReservedDBInstancesOffering_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.PurchaseReservedDBInstancesOfferingInput{
 		ReservedDBInstanceId:          aws.String("myreservationid"),
 		ReservedDBInstancesOfferingId: aws.String("fb29428a-646d-4390-850e-5fe89926e727"),
@@ -2627,7 +2627,7 @@ func ExampleRDS_PurchaseReservedDBInstancesOffering_shared00() {
 //
 // This example reboots the specified DB instance without forcing a failover.
 func ExampleRDS_RebootDBInstance_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.RebootDBInstanceInput{
 		DBInstanceIdentifier: aws.String("mymysqlinstance"),
 		ForceFailover:        aws.Bool(false),
@@ -2660,7 +2660,7 @@ func ExampleRDS_RebootDBInstance_shared00() {
 // This example removes the specified source identifier from the specified DB event
 // subscription.
 func ExampleRDS_RemoveSourceIdentifierFromSubscription_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.RemoveSourceIdentifierFromSubscriptionInput{
 		SourceIdentifier: aws.String("mymysqlinstance"),
 		SubscriptionName: aws.String("myeventsubscription"),
@@ -2692,7 +2692,7 @@ func ExampleRDS_RemoveSourceIdentifierFromSubscription_shared00() {
 //
 // This example removes the specified tag associated with the specified DB option group.
 func ExampleRDS_RemoveTagsFromResource_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.RemoveTagsFromResourceInput{
 		ResourceName: aws.String("arn:aws:rds:us-east-1:992648334831:og:mydboptiongroup"),
 		TagKeys: []*string{
@@ -2733,7 +2733,7 @@ func ExampleRDS_RemoveTagsFromResource_shared00() {
 // This example resets all parameters for the specified DB cluster parameter group to
 // their default values.
 func ExampleRDS_ResetDBClusterParameterGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ResetDBClusterParameterGroupInput{
 		DBClusterParameterGroupName: aws.String("mydbclusterparametergroup"),
 		ResetAllParameters:          aws.Bool(true),
@@ -2766,7 +2766,7 @@ func ExampleRDS_ResetDBClusterParameterGroup_shared00() {
 // This example resets all parameters for the specified DB parameter group to their
 // default values.
 func ExampleRDS_ResetDBParameterGroup_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.ResetDBParameterGroupInput{
 		DBParameterGroupName: aws.String("mydbparametergroup"),
 		ResetAllParameters:   aws.Bool(true),
@@ -2798,7 +2798,7 @@ func ExampleRDS_ResetDBParameterGroup_shared00() {
 //
 // The following example restores an Amazon Aurora DB cluster from a DB cluster snapshot.
 func ExampleRDS_RestoreDBClusterFromSnapshot_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.RestoreDBClusterFromSnapshotInput{
 		DBClusterIdentifier: aws.String("restored-cluster1"),
 		Engine:              aws.String("aurora"),
@@ -2862,7 +2862,7 @@ func ExampleRDS_RestoreDBClusterFromSnapshot_shared00() {
 // The following example restores a DB cluster to a new DB cluster at a point in time
 // from the source DB cluster.
 func ExampleRDS_RestoreDBClusterToPointInTime_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.RestoreDBClusterToPointInTimeInput{
 		DBClusterIdentifier:       aws.String("sample-restored-cluster1"),
 		RestoreToTime:             parseTime("2006-01-02T15:04:05.999999999Z", "2016-09-13T18:45:00Z"),
@@ -2927,7 +2927,7 @@ func ExampleRDS_RestoreDBClusterToPointInTime_shared00() {
 //
 // The following example restores a DB instance from a DB snapshot.
 func ExampleRDS_RestoreDBInstanceFromDBSnapshot_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.RestoreDBInstanceFromDBSnapshotInput{
 		DBInstanceIdentifier: aws.String("mysqldb-restored"),
 		DBSnapshotIdentifier: aws.String("rds:mysqldb-2014-04-22-08-15"),
@@ -2996,7 +2996,7 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot_shared00() {
 // The following example restores a DB instance to a new DB instance at a point in time
 // from the source DB instance.
 func ExampleRDS_RestoreDBInstanceToPointInTime_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.RestoreDBInstanceToPointInTimeInput{
 		RestoreTime:                parseTime("2006-01-02T15:04:05.999999999Z", "2016-09-13T18:45:00Z"),
 		SourceDBInstanceIdentifier: aws.String("mysql-sample"),
@@ -3070,7 +3070,7 @@ func ExampleRDS_RestoreDBInstanceToPointInTime_shared00() {
 // This example revokes ingress for the specified CIDR block associated with the specified
 // DB security group.
 func ExampleRDS_RevokeDBSecurityGroupIngress_shared00() {
-	svc := rds.New(session.New())
+	svc := rds.New(session.Must(session.NewSession()))
 	input := &rds.RevokeDBSecurityGroupIngressInput{
 		CIDRIP:              aws.String("203.0.113.5/32"),
 		DBSecurityGroupName: aws.String("mydbsecuritygroup"),

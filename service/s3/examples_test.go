@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // The following example aborts a multipart upload.
 func ExampleS3_AbortMultipartUpload_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.AbortMultipartUploadInput{
 		Bucket:   aws.String("examplebucket"),
 		Key:      aws.String("bigobject"),
@@ -60,7 +60,7 @@ func ExampleS3_AbortMultipartUpload_shared00() {
 //
 // The following example completes a multipart upload.
 func ExampleS3_CompleteMultipartUpload_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.CompleteMultipartUploadInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("bigobject"),
@@ -101,7 +101,7 @@ func ExampleS3_CompleteMultipartUpload_shared00() {
 //
 // The following example copies an object from one bucket to another.
 func ExampleS3_CopyObject_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.CopyObjectInput{
 		Bucket:     aws.String("destinationbucket"),
 		CopySource: aws.String("/sourcebucket/HappyFacejpg"),
@@ -132,7 +132,7 @@ func ExampleS3_CopyObject_shared00() {
 //
 // The following example creates a bucket.
 func ExampleS3_CreateBucket_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.CreateBucketInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -164,7 +164,7 @@ func ExampleS3_CreateBucket_shared00() {
 // The following example creates a bucket. The request specifies an AWS region where
 // to create the bucket.
 func ExampleS3_CreateBucket_shared01() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.CreateBucketInput{
 		Bucket: aws.String("examplebucket"),
 		CreateBucketConfiguration: &s3.CreateBucketConfiguration{
@@ -198,7 +198,7 @@ func ExampleS3_CreateBucket_shared01() {
 //
 // The following example initiates a multipart upload.
 func ExampleS3_CreateMultipartUpload_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.CreateMultipartUploadInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("largeobject"),
@@ -226,7 +226,7 @@ func ExampleS3_CreateMultipartUpload_shared00() {
 //
 // The following example deletes the specified bucket.
 func ExampleS3_DeleteBucket_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteBucketInput{
 		Bucket: aws.String("forrandall2"),
 	}
@@ -253,7 +253,7 @@ func ExampleS3_DeleteBucket_shared00() {
 //
 // The following example deletes CORS configuration on a bucket.
 func ExampleS3_DeleteBucketCors_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteBucketCorsInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -280,7 +280,7 @@ func ExampleS3_DeleteBucketCors_shared00() {
 //
 // The following example deletes lifecycle configuration on a bucket.
 func ExampleS3_DeleteBucketLifecycle_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteBucketLifecycleInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -307,7 +307,7 @@ func ExampleS3_DeleteBucketLifecycle_shared00() {
 //
 // The following example deletes bucket policy on the specified bucket.
 func ExampleS3_DeleteBucketPolicy_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteBucketPolicyInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -334,7 +334,7 @@ func ExampleS3_DeleteBucketPolicy_shared00() {
 //
 // The following example deletes replication configuration set on bucket.
 func ExampleS3_DeleteBucketReplication_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteBucketReplicationInput{
 		Bucket: aws.String("example"),
 	}
@@ -361,7 +361,7 @@ func ExampleS3_DeleteBucketReplication_shared00() {
 //
 // The following example deletes bucket tags.
 func ExampleS3_DeleteBucketTagging_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteBucketTaggingInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -388,7 +388,7 @@ func ExampleS3_DeleteBucketTagging_shared00() {
 //
 // The following example deletes bucket website configuration.
 func ExampleS3_DeleteBucketWebsite_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteBucketWebsiteInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -415,7 +415,7 @@ func ExampleS3_DeleteBucketWebsite_shared00() {
 //
 // The following example deletes an object from a non-versioned bucket.
 func ExampleS3_DeleteObject_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteObjectInput{
 		Bucket: aws.String("ExampleBucket"),
 		Key:    aws.String("HappyFace.jpg"),
@@ -443,7 +443,7 @@ func ExampleS3_DeleteObject_shared00() {
 //
 // The following example deletes an object from an S3 bucket.
 func ExampleS3_DeleteObject_shared01() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteObjectInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("objectkey.jpg"),
@@ -473,7 +473,7 @@ func ExampleS3_DeleteObject_shared01() {
 // bucket is versioning enabled, the operation removes tag set from the latest object
 // version.
 func ExampleS3_DeleteObjectTagging_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteObjectTaggingInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("HappyFace.jpg"),
@@ -502,7 +502,7 @@ func ExampleS3_DeleteObjectTagging_shared00() {
 // The following example removes tag set associated with the specified object version.
 // The request specifies both the object key and object version.
 func ExampleS3_DeleteObjectTagging_shared01() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteObjectTaggingInput{
 		Bucket:    aws.String("examplebucket"),
 		Key:       aws.String("HappyFace.jpg"),
@@ -533,7 +533,7 @@ func ExampleS3_DeleteObjectTagging_shared01() {
 // the request does not specify the object version to delete. In this case, all versions
 // remain in the bucket and S3 adds a delete marker.
 func ExampleS3_DeleteObjects_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteObjectsInput{
 		Bucket: aws.String("examplebucket"),
 		Delete: &s3.Delete{
@@ -573,7 +573,7 @@ func ExampleS3_DeleteObjects_shared00() {
 // versions. S3 deletes specific object versions and returns the key and versions of
 // deleted objects in the response.
 func ExampleS3_DeleteObjects_shared01() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.DeleteObjectsInput{
 		Bucket: aws.String("examplebucket"),
 		Delete: &s3.Delete{
@@ -614,7 +614,7 @@ func ExampleS3_DeleteObjects_shared01() {
 // The following example returns cross-origin resource sharing (CORS) configuration
 // set on a bucket.
 func ExampleS3_GetBucketCors_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketCorsInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -641,7 +641,7 @@ func ExampleS3_GetBucketCors_shared00() {
 //
 // The following example gets ACL on the specified bucket.
 func ExampleS3_GetBucketLifecycle_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketLifecycleInput{
 		Bucket: aws.String("acl1"),
 	}
@@ -668,7 +668,7 @@ func ExampleS3_GetBucketLifecycle_shared00() {
 //
 // The following example retrieves lifecycle configuration on set on a bucket.
 func ExampleS3_GetBucketLifecycleConfiguration_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketLifecycleConfigurationInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -695,7 +695,7 @@ func ExampleS3_GetBucketLifecycleConfiguration_shared00() {
 //
 // The following example returns bucket location.
 func ExampleS3_GetBucketLocation_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketLocationInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -722,7 +722,7 @@ func ExampleS3_GetBucketLocation_shared00() {
 //
 // The following example returns notification configuration set on a bucket.
 func ExampleS3_GetBucketNotification_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketNotificationConfigurationRequest{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -749,7 +749,7 @@ func ExampleS3_GetBucketNotification_shared00() {
 //
 // The following example returns notification configuration set on a bucket.
 func ExampleS3_GetBucketNotification_shared01() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketNotificationConfigurationRequest{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -776,7 +776,7 @@ func ExampleS3_GetBucketNotification_shared01() {
 //
 // The following example returns bucket policy associated with a bucket.
 func ExampleS3_GetBucketPolicy_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketPolicyInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -803,7 +803,7 @@ func ExampleS3_GetBucketPolicy_shared00() {
 //
 // The following example returns replication configuration set on a bucket.
 func ExampleS3_GetBucketReplication_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketReplicationInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -830,7 +830,7 @@ func ExampleS3_GetBucketReplication_shared00() {
 //
 // The following example retrieves bucket versioning configuration.
 func ExampleS3_GetBucketRequestPayment_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketRequestPaymentInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -857,7 +857,7 @@ func ExampleS3_GetBucketRequestPayment_shared00() {
 //
 // The following example returns tag set associated with a bucket
 func ExampleS3_GetBucketTagging_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketTaggingInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -884,7 +884,7 @@ func ExampleS3_GetBucketTagging_shared00() {
 //
 // The following example retrieves bucket versioning configuration.
 func ExampleS3_GetBucketVersioning_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketVersioningInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -911,7 +911,7 @@ func ExampleS3_GetBucketVersioning_shared00() {
 //
 // The following example retrieves website configuration of a bucket.
 func ExampleS3_GetBucketWebsite_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetBucketWebsiteInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -938,7 +938,7 @@ func ExampleS3_GetBucketWebsite_shared00() {
 //
 // The following example retrieves an object for an S3 bucket.
 func ExampleS3_GetObject_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetObjectInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("HappyFace.jpg"),
@@ -969,7 +969,7 @@ func ExampleS3_GetObject_shared00() {
 // The following example retrieves an object for an S3 bucket. The request specifies
 // the range header to retrieve a specific byte range.
 func ExampleS3_GetObject_shared01() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetObjectInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("SampleFile.txt"),
@@ -1000,7 +1000,7 @@ func ExampleS3_GetObject_shared01() {
 //
 // The following example retrieves access control list (ACL) of an object.
 func ExampleS3_GetObjectAcl_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetObjectAclInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("HappyFace.jpg"),
@@ -1031,7 +1031,7 @@ func ExampleS3_GetObjectAcl_shared00() {
 // The following example retrieves tag set of an object. The request specifies object
 // version.
 func ExampleS3_GetObjectTagging_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetObjectTaggingInput{
 		Bucket:    aws.String("examplebucket"),
 		Key:       aws.String("exampleobject"),
@@ -1060,7 +1060,7 @@ func ExampleS3_GetObjectTagging_shared00() {
 //
 // The following example retrieves tag set of an object.
 func ExampleS3_GetObjectTagging_shared01() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetObjectTaggingInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("HappyFace.jpg"),
@@ -1088,7 +1088,7 @@ func ExampleS3_GetObjectTagging_shared01() {
 //
 // The following example retrieves torrent files of an object.
 func ExampleS3_GetObjectTorrent_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.GetObjectTorrentInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("HappyFace.jpg"),
@@ -1116,7 +1116,7 @@ func ExampleS3_GetObjectTorrent_shared00() {
 //
 // This operation checks to see if a bucket exists.
 func ExampleS3_HeadBucket_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.HeadBucketInput{
 		Bucket: aws.String("acl1"),
 	}
@@ -1145,7 +1145,7 @@ func ExampleS3_HeadBucket_shared00() {
 //
 // The following example retrieves an object metadata.
 func ExampleS3_HeadObject_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.HeadObjectInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("HappyFace.jpg"),
@@ -1176,7 +1176,7 @@ func ExampleS3_HeadObject_shared00() {
 // two object version, S3 returns NextToken in the response. You can specify this token
 // value in your next request to fetch next set of object versions.
 func ExampleS3_ListBuckets_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.ListBucketsInput{}
 
 	result, err := svc.ListBuckets(input)
@@ -1202,7 +1202,7 @@ func ExampleS3_ListBuckets_shared00() {
 // The following example specifies the upload-id-marker and key-marker from previous
 // truncated response to retrieve next setup of multipart uploads.
 func ExampleS3_ListMultipartUploads_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.ListMultipartUploadsInput{
 		Bucket:         aws.String("examplebucket"),
 		KeyMarker:      aws.String("nextkeyfrompreviousresponse"),
@@ -1232,7 +1232,7 @@ func ExampleS3_ListMultipartUploads_shared00() {
 //
 // The following example lists in-progress multipart uploads on a specific bucket.
 func ExampleS3_ListMultipartUploads_shared01() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.ListMultipartUploadsInput{
 		Bucket: aws.String("examplebucket"),
 	}
@@ -1262,7 +1262,7 @@ func ExampleS3_ListMultipartUploads_shared01() {
 // two object version, S3 returns NextToken in the response. You can specify this token
 // value in your next request to fetch next set of object versions.
 func ExampleS3_ListObjectVersions_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.ListObjectVersionsInput{
 		Bucket: aws.String("examplebucket"),
 		Prefix: aws.String("HappyFace.jpg"),
@@ -1290,7 +1290,7 @@ func ExampleS3_ListObjectVersions_shared00() {
 //
 // The following example list two objects in a bucket.
 func ExampleS3_ListObjects_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.ListObjectsInput{
 		Bucket:  aws.String("examplebucket"),
 		MaxKeys: aws.Int64(2),
@@ -1321,7 +1321,7 @@ func ExampleS3_ListObjects_shared00() {
 // The following example retrieves object list. The request specifies max keys to limit
 // response to include only 2 object keys.
 func ExampleS3_ListObjectsV2_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.ListObjectsV2Input{
 		Bucket:  aws.String("examplebucket"),
 		MaxKeys: aws.Int64(2),
@@ -1351,7 +1351,7 @@ func ExampleS3_ListObjectsV2_shared00() {
 //
 // The following example lists parts uploaded for a specific multipart upload.
 func ExampleS3_ListParts_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.ListPartsInput{
 		Bucket:   aws.String("examplebucket"),
 		Key:      aws.String("bigobject"),
@@ -1383,7 +1383,7 @@ func ExampleS3_ListParts_shared00() {
 // Because this is a replace operation, you must specify all the grants in your request.
 // To incrementally add or remove ACL grants, you might use the console.
 func ExampleS3_PutBucketAcl_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketAclInput{
 		Bucket:           aws.String("examplebucket"),
 		GrantFullControl: aws.String("id=examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484"),
@@ -1413,7 +1413,7 @@ func ExampleS3_PutBucketAcl_shared00() {
 // The following example enables PUT, POST, and DELETE requests from www.example.com,
 // and enables GET requests from any domain.
 func ExampleS3_PutBucketCors_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketCorsInput{
 		Bucket: aws.String(""),
 		CORSConfiguration: &s3.CORSConfiguration{
@@ -1474,7 +1474,7 @@ func ExampleS3_PutBucketCors_shared00() {
 // The following example replaces existing lifecycle configuration, if any, on the specified
 // bucket.
 func ExampleS3_PutBucketLifecycleConfiguration_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketLifecycleConfigurationInput{
 		Bucket: aws.String("examplebucket"),
 		LifecycleConfiguration: &s3.BucketLifecycleConfiguration{
@@ -1523,7 +1523,7 @@ func ExampleS3_PutBucketLifecycleConfiguration_shared00() {
 // to deliver logs to the destination bucket, it needs permission for the READ_ACP action
 // which the policy grants.
 func ExampleS3_PutBucketLogging_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketLoggingInput{
 		Bucket: aws.String("sourcebucket"),
 		BucketLoggingStatus: &s3.BucketLoggingStatus{
@@ -1566,7 +1566,7 @@ func ExampleS3_PutBucketLogging_shared00() {
 // The following example sets notification configuration on a bucket to publish the
 // object created events to an SNS topic.
 func ExampleS3_PutBucketNotificationConfiguration_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketNotificationConfigurationInput{
 		Bucket: aws.String("examplebucket"),
 		NotificationConfiguration: &s3.NotificationConfiguration{
@@ -1603,7 +1603,7 @@ func ExampleS3_PutBucketNotificationConfiguration_shared00() {
 //
 // The following example sets a permission policy on a bucket.
 func ExampleS3_PutBucketPolicy_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketPolicyInput{
 		Bucket: aws.String("examplebucket"),
 		Policy: aws.String("{\"Version\": \"2012-10-17\", \"Statement\": [{ \"Sid\": \"id-1\",\"Effect\": \"Allow\",\"Principal\": {\"AWS\": \"arn:aws:iam::123456789012:root\"}, \"Action\": [ \"s3:PutObject\",\"s3:PutObjectAcl\"], \"Resource\": [\"arn:aws:s3:::acl3/*\" ] } ]}"),
@@ -1631,7 +1631,7 @@ func ExampleS3_PutBucketPolicy_shared00() {
 //
 // The following example sets replication configuration on a bucket.
 func ExampleS3_PutBucketReplication_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketReplicationInput{
 		Bucket: aws.String("examplebucket"),
 		ReplicationConfiguration: &s3.ReplicationConfiguration{
@@ -1672,7 +1672,7 @@ func ExampleS3_PutBucketReplication_shared00() {
 // The following example sets request payment configuration on a bucket so that person
 // requesting the download is charged.
 func ExampleS3_PutBucketRequestPayment_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketRequestPaymentInput{
 		Bucket: aws.String("examplebucket"),
 		RequestPaymentConfiguration: &s3.RequestPaymentConfiguration{
@@ -1702,7 +1702,7 @@ func ExampleS3_PutBucketRequestPayment_shared00() {
 //
 // The following example sets tags on a bucket. Any existing tags are replaced.
 func ExampleS3_PutBucketTagging_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketTaggingInput{
 		Bucket: aws.String("examplebucket"),
 		Tagging: &s3.Tagging{
@@ -1742,7 +1742,7 @@ func ExampleS3_PutBucketTagging_shared00() {
 // The following example sets versioning configuration on bucket. The configuration
 // enables versioning on the bucket.
 func ExampleS3_PutBucketVersioning_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketVersioningInput{
 		Bucket: aws.String("examplebucket"),
 		VersioningConfiguration: &s3.VersioningConfiguration{
@@ -1773,7 +1773,7 @@ func ExampleS3_PutBucketVersioning_shared00() {
 //
 // The following example adds website configuration to a bucket.
 func ExampleS3_PutBucketWebsite_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutBucketWebsiteInput{
 		Bucket: aws.String("examplebucket"),
 		WebsiteConfiguration: &s3.WebsiteConfiguration{
@@ -1810,7 +1810,7 @@ func ExampleS3_PutBucketWebsite_shared00() {
 // (access control list) to all READ access to authenticated users. If the bucket is
 // versioning enabled, S3 returns version ID in response.
 func ExampleS3_PutObject_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutObjectInput{
 		ACL:    aws.String("authenticated-read"),
 		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
@@ -1842,7 +1842,7 @@ func ExampleS3_PutObject_shared00() {
 // file is specified using Windows file syntax. S3 returns VersionId of the newly created
 // object.
 func ExampleS3_PutObject_shared01() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutObjectInput{
 		Body:   aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
 		Bucket: aws.String("examplebucket"),
@@ -1872,7 +1872,7 @@ func ExampleS3_PutObject_shared01() {
 // The following example creates an object. If the bucket is versioning enabled, S3
 // returns version ID in response.
 func ExampleS3_PutObject_shared02() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutObjectInput{
 		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
 		Bucket: aws.String("examplebucket"),
@@ -1902,7 +1902,7 @@ func ExampleS3_PutObject_shared02() {
 // The following example uploads an object. The request specifies optional object tags.
 // The bucket is versioned, therefore S3 returns version ID of the newly created object.
 func ExampleS3_PutObject_shared03() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutObjectInput{
 		Body:    aws.ReadSeekCloser(strings.NewReader("c:\\HappyFace.jpg")),
 		Bucket:  aws.String("examplebucket"),
@@ -1933,7 +1933,7 @@ func ExampleS3_PutObject_shared03() {
 // The following example uploads an object. The request specifies optional request headers
 // to directs S3 to use specific storage class and use server-side encryption.
 func ExampleS3_PutObject_shared04() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutObjectInput{
 		Body:                 aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
 		Bucket:               aws.String("examplebucket"),
@@ -1965,7 +1965,7 @@ func ExampleS3_PutObject_shared04() {
 // The following example creates an object. The request also specifies optional metadata.
 // If the bucket is versioning enabled, S3 returns version ID in response.
 func ExampleS3_PutObject_shared05() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutObjectInput{
 		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
 		Bucket: aws.String("examplebucket"),
@@ -2000,7 +2000,7 @@ func ExampleS3_PutObject_shared05() {
 // encryption option. The request also specifies optional object tags. If the bucket
 // is versioning enabled, S3 returns version ID in response.
 func ExampleS3_PutObject_shared06() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutObjectInput{
 		Body:                 aws.ReadSeekCloser(strings.NewReader("filetoupload")),
 		Bucket:               aws.String("examplebucket"),
@@ -2032,7 +2032,7 @@ func ExampleS3_PutObject_shared06() {
 // The following example adds grants to an object ACL. The first permission grants user1
 // and user2 FULL_CONTROL and the AllUsers group READ permission.
 func ExampleS3_PutObjectAcl_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutObjectAclInput{
 		AccessControlPolicy: &s3.AccessControlPolicy{},
 		Bucket:              aws.String("examplebucket"),
@@ -2065,7 +2065,7 @@ func ExampleS3_PutObjectAcl_shared00() {
 //
 // The following example adds tags to an existing object.
 func ExampleS3_PutObjectTagging_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.PutObjectTaggingInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("HappyFace.jpg"),
@@ -2106,7 +2106,7 @@ func ExampleS3_PutObjectTagging_shared00() {
 // The following example restores for one day an archived copy of an object back into
 // Amazon S3 bucket.
 func ExampleS3_RestoreObject_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.RestoreObjectInput{
 		Bucket: aws.String("examplebucket"),
 		Key:    aws.String("archivedobjectkey"),
@@ -2144,7 +2144,7 @@ func ExampleS3_RestoreObject_shared00() {
 // a file name for the part data. The Upload ID is same that is returned by the initiate
 // multipart upload.
 func ExampleS3_UploadPart_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.UploadPartInput{
 		Body:       aws.ReadSeekCloser(strings.NewReader("fileToUpload")),
 		Bucket:     aws.String("examplebucket"),
@@ -2176,7 +2176,7 @@ func ExampleS3_UploadPart_shared00() {
 // The following example uploads a part of a multipart upload by copying data from an
 // existing object as data source.
 func ExampleS3_UploadPartCopy_shared00() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.UploadPartCopyInput{
 		Bucket:     aws.String("examplebucket"),
 		CopySource: aws.String("/bucketname/sourceobjectkey"),
@@ -2208,7 +2208,7 @@ func ExampleS3_UploadPartCopy_shared00() {
 // The following example uploads a part of a multipart upload by copying a specified
 // byte range from an existing object as data source.
 func ExampleS3_UploadPartCopy_shared01() {
-	svc := s3.New(session.New())
+	svc := s3.New(session.Must(session.NewSession()))
 	input := &s3.UploadPartCopyInput{
 		Bucket:          aws.String("examplebucket"),
 		CopySource:      aws.String("/bucketname/sourceobjectkey"),

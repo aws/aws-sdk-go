@@ -30,7 +30,7 @@ func parseTime(layout, value string) *time.Time {
 // Assigns attributes (key and value pairs) to the findings that are specified by the
 // ARNs of the findings.
 func ExampleInspector_AddAttributesToFindings_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.AddAttributesToFindingsInput{
 		Attributes: []*inspector.Attribute{
 			{
@@ -77,7 +77,7 @@ func ExampleInspector_AddAttributesToFindings_shared00() {
 // by CreateResourceGroup. You can create up to 50 assessment targets per AWS account.
 // You can run up to 500 concurrent agents per AWS account.
 func ExampleInspector_CreateAssessmentTarget_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.CreateAssessmentTargetInput{
 		AssessmentTargetName: aws.String("ExampleAssessmentTarget"),
 		ResourceGroupArn:     aws.String("arn:aws:inspector:us-west-2:123456789012:resourcegroup/0-AB6DMKnv"),
@@ -120,7 +120,7 @@ func ExampleInspector_CreateAssessmentTarget_shared00() {
 // Creates an assessment template for the assessment target that is specified by the
 // ARN of the assessment target.
 func ExampleInspector_CreateAssessmentTemplate_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.CreateAssessmentTemplateInput{
 		AssessmentTargetArn:    aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-nvgVhaxX"),
 		AssessmentTemplateName: aws.String("ExampleAssessmentTemplate"),
@@ -173,7 +173,7 @@ func ExampleInspector_CreateAssessmentTemplate_shared00() {
 // target. The created resource group is then used to create an Amazon Inspector assessment
 // target.
 func ExampleInspector_CreateResourceGroup_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.CreateResourceGroupInput{
 		ResourceGroupTags: []*inspector.ResourceGroupTag{
 			{
@@ -215,7 +215,7 @@ func ExampleInspector_CreateResourceGroup_shared00() {
 //
 // Deletes the assessment run that is specified by the ARN of the assessment run.
 func ExampleInspector_DeleteAssessmentRun_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.DeleteAssessmentRunInput{
 		AssessmentRunArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-nvgVhaxX/template/0-it5r2S4T/run/0-11LMTAVe"),
 	}
@@ -254,7 +254,7 @@ func ExampleInspector_DeleteAssessmentRun_shared00() {
 //
 // Deletes the assessment target that is specified by the ARN of the assessment target.
 func ExampleInspector_DeleteAssessmentTarget_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.DeleteAssessmentTargetInput{
 		AssessmentTargetArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq"),
 	}
@@ -293,7 +293,7 @@ func ExampleInspector_DeleteAssessmentTarget_shared00() {
 //
 // Deletes the assessment template that is specified by the ARN of the assessment template.
 func ExampleInspector_DeleteAssessmentTemplate_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.DeleteAssessmentTemplateInput{
 		AssessmentTemplateArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-nvgVhaxX/template/0-it5r2S4T"),
 	}
@@ -332,7 +332,7 @@ func ExampleInspector_DeleteAssessmentTemplate_shared00() {
 //
 // Describes the assessment runs that are specified by the ARNs of the assessment runs.
 func ExampleInspector_DescribeAssessmentRuns_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.DescribeAssessmentRunsInput{
 		AssessmentRunArns: []*string{
 			aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq/template/0-4r1V2mAw/run/0-MKkpXXPE"),
@@ -366,7 +366,7 @@ func ExampleInspector_DescribeAssessmentRuns_shared00() {
 // Describes the assessment targets that are specified by the ARNs of the assessment
 // targets.
 func ExampleInspector_DescribeAssessmentTargets_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.DescribeAssessmentTargetsInput{
 		AssessmentTargetArns: []*string{
 			aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq"),
@@ -400,7 +400,7 @@ func ExampleInspector_DescribeAssessmentTargets_shared00() {
 // Describes the assessment templates that are specified by the ARNs of the assessment
 // templates.
 func ExampleInspector_DescribeAssessmentTemplates_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.DescribeAssessmentTemplatesInput{
 		AssessmentTemplateArns: []*string{
 			aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq/template/0-4r1V2mAw"),
@@ -433,7 +433,7 @@ func ExampleInspector_DescribeAssessmentTemplates_shared00() {
 //
 // Describes the IAM role that enables Amazon Inspector to access your AWS account.
 func ExampleInspector_DescribeCrossAccountAccessRole_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.DescribeCrossAccountAccessRoleInput{}
 
 	result, err := svc.DescribeCrossAccountAccessRole(input)
@@ -460,7 +460,7 @@ func ExampleInspector_DescribeCrossAccountAccessRole_shared00() {
 //
 // Describes the findings that are specified by the ARNs of the findings.
 func ExampleInspector_DescribeFindings_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.DescribeFindingsInput{
 		FindingArns: []*string{
 			aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq/template/0-4r1V2mAw/run/0-MKkpXXPE/finding/0-HwPnsDm4"),
@@ -493,7 +493,7 @@ func ExampleInspector_DescribeFindings_shared00() {
 //
 // Describes the resource groups that are specified by the ARNs of the resource groups.
 func ExampleInspector_DescribeResourceGroups_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.DescribeResourceGroupsInput{
 		ResourceGroupArns: []*string{
 			aws.String("arn:aws:inspector:us-west-2:123456789012:resourcegroup/0-PyGXopAI"),
@@ -526,7 +526,7 @@ func ExampleInspector_DescribeResourceGroups_shared00() {
 //
 // Describes the rules packages that are specified by the ARNs of the rules packages.
 func ExampleInspector_DescribeRulesPackages_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.DescribeRulesPackagesInput{
 		RulesPackageArns: []*string{
 			aws.String("arn:aws:inspector:us-west-2:758058086616:rulespackage/0-JJOtZiqQ"),
@@ -559,7 +559,7 @@ func ExampleInspector_DescribeRulesPackages_shared00() {
 //
 // Information about the data that is collected for the specified assessment run.
 func ExampleInspector_GetTelemetryMetadata_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.GetTelemetryMetadataInput{
 		AssessmentRunArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq/template/0-4r1V2mAw/run/0-MKkpXXPE"),
 	}
@@ -595,7 +595,7 @@ func ExampleInspector_GetTelemetryMetadata_shared00() {
 // Lists the agents of the assessment runs that are specified by the ARNs of the assessment
 // runs.
 func ExampleInspector_ListAssessmentRunAgents_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.ListAssessmentRunAgentsInput{
 		AssessmentRunArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq/template/0-4r1V2mAw/run/0-MKkpXXPE"),
 		MaxResults:       aws.Int64(123),
@@ -632,7 +632,7 @@ func ExampleInspector_ListAssessmentRunAgents_shared00() {
 // Lists the assessment runs that correspond to the assessment templates that are specified
 // by the ARNs of the assessment templates.
 func ExampleInspector_ListAssessmentRuns_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.ListAssessmentRunsInput{
 		AssessmentTemplateArns: []*string{
 			aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq/template/0-4r1V2mAw"),
@@ -670,7 +670,7 @@ func ExampleInspector_ListAssessmentRuns_shared00() {
 //
 // Lists the ARNs of the assessment targets within this AWS account.
 func ExampleInspector_ListAssessmentTargets_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.ListAssessmentTargetsInput{
 		MaxResults: aws.Int64(123),
 	}
@@ -704,7 +704,7 @@ func ExampleInspector_ListAssessmentTargets_shared00() {
 // Lists the assessment templates that correspond to the assessment targets that are
 // specified by the ARNs of the assessment targets.
 func ExampleInspector_ListAssessmentTemplates_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.ListAssessmentTemplatesInput{
 		AssessmentTargetArns: []*string{
 			aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq"),
@@ -743,7 +743,7 @@ func ExampleInspector_ListAssessmentTemplates_shared00() {
 // Lists all the event subscriptions for the assessment template that is specified by
 // the ARN of the assessment template.
 func ExampleInspector_ListEventSubscriptions_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.ListEventSubscriptionsInput{
 		MaxResults:  aws.Int64(123),
 		ResourceArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-nvgVhaxX/template/0-7sbz2Kz0"),
@@ -780,7 +780,7 @@ func ExampleInspector_ListEventSubscriptions_shared00() {
 // Lists findings that are generated by the assessment runs that are specified by the
 // ARNs of the assessment runs.
 func ExampleInspector_ListFindings_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.ListFindingsInput{
 		AssessmentRunArns: []*string{
 			aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq/template/0-4r1V2mAw/run/0-MKkpXXPE"),
@@ -818,7 +818,7 @@ func ExampleInspector_ListFindings_shared00() {
 //
 // Lists all available Amazon Inspector rules packages.
 func ExampleInspector_ListRulesPackages_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.ListRulesPackagesInput{
 		MaxResults: aws.Int64(123),
 	}
@@ -851,7 +851,7 @@ func ExampleInspector_ListRulesPackages_shared00() {
 //
 // Lists all tags associated with an assessment template.
 func ExampleInspector_ListTagsForResource_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.ListTagsForResourceInput{
 		ResourceArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq/template/0-gcwFliYu"),
 	}
@@ -887,7 +887,7 @@ func ExampleInspector_ListTagsForResource_shared00() {
 // Previews the agents installed on the EC2 instances that are part of the specified
 // assessment target.
 func ExampleInspector_PreviewAgents_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.PreviewAgentsInput{
 		MaxResults:       aws.Int64(123),
 		PreviewAgentsArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-0kFIPusq"),
@@ -926,7 +926,7 @@ func ExampleInspector_PreviewAgents_shared00() {
 // Registers the IAM role that Amazon Inspector uses to list your EC2 instances at the
 // start of the assessment run or when you call the PreviewAgents action.
 func ExampleInspector_RegisterCrossAccountAccessRole_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.RegisterCrossAccountAccessRoleInput{
 		RoleArn: aws.String("arn:aws:iam::123456789012:role/inspector"),
 	}
@@ -964,7 +964,7 @@ func ExampleInspector_RegisterCrossAccountAccessRole_shared00() {
 // Removes entire attributes (key and value pairs) from the findings that are specified
 // by the ARNs of the findings where an attribute with the specified key exists.
 func ExampleInspector_RemoveAttributesFromFindings_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.RemoveAttributesFromFindingsInput{
 		AttributeKeys: []*string{
 			aws.String("key=Example,value=example"),
@@ -1007,7 +1007,7 @@ func ExampleInspector_RemoveAttributesFromFindings_shared00() {
 // Sets tags (key and value pairs) to the assessment template that is specified by the
 // ARN of the assessment template.
 func ExampleInspector_SetTagsForResource_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.SetTagsForResourceInput{
 		ResourceArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-nvgVhaxX/template/0-7sbz2Kz0"),
 		Tags: []*inspector.Tag{
@@ -1052,7 +1052,7 @@ func ExampleInspector_SetTagsForResource_shared00() {
 // API to function properly, you must not exceed the limit of running up to 500 concurrent
 // agents per AWS account.
 func ExampleInspector_StartAssessmentRun_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.StartAssessmentRunInput{
 		AssessmentRunName:     aws.String("examplerun"),
 		AssessmentTemplateArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-nvgVhaxX/template/0-it5r2S4T"),
@@ -1096,7 +1096,7 @@ func ExampleInspector_StartAssessmentRun_shared00() {
 //
 // Stops the assessment run that is specified by the ARN of the assessment run.
 func ExampleInspector_StopAssessmentRun_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.StopAssessmentRunInput{
 		AssessmentRunArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-nvgVhaxX/template/0-it5r2S4T/run/0-11LMTAVe"),
 	}
@@ -1134,7 +1134,7 @@ func ExampleInspector_StopAssessmentRun_shared00() {
 // Enables the process of sending Amazon Simple Notification Service (SNS) notifications
 // about a specified event to a specified SNS topic.
 func ExampleInspector_SubscribeToEvent_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.SubscribeToEventInput{
 		Event:       aws.String("ASSESSMENT_RUN_COMPLETED"),
 		ResourceArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-nvgVhaxX/template/0-7sbz2Kz0"),
@@ -1176,7 +1176,7 @@ func ExampleInspector_SubscribeToEvent_shared00() {
 // Disables the process of sending Amazon Simple Notification Service (SNS) notifications
 // about a specified event to a specified SNS topic.
 func ExampleInspector_UnsubscribeFromEvent_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.UnsubscribeFromEventInput{
 		Event:       aws.String("ASSESSMENT_RUN_COMPLETED"),
 		ResourceArn: aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-nvgVhaxX/template/0-7sbz2Kz0"),
@@ -1215,7 +1215,7 @@ func ExampleInspector_UnsubscribeFromEvent_shared00() {
 //
 // Updates the assessment target that is specified by the ARN of the assessment target.
 func ExampleInspector_UpdateAssessmentTarget_shared00() {
-	svc := inspector.New(session.New())
+	svc := inspector.New(session.Must(session.NewSession()))
 	input := &inspector.UpdateAssessmentTargetInput{
 		AssessmentTargetArn:  aws.String("arn:aws:inspector:us-west-2:123456789012:target/0-nvgVhaxX"),
 		AssessmentTargetName: aws.String("Example"),

@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 
 func ExampleCloud9_CreateEnvironmentEC2_shared00() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.CreateEnvironmentEC2Input{
 		AutomaticStopTimeMinutes: aws.Int64(60),
 		Description:              aws.String("This is my demonstration environment."),
@@ -75,7 +75,7 @@ func ExampleCloud9_CreateEnvironmentEC2_shared00() {
 //
 
 func ExampleCloud9_CreateEnvironmentMembership_shared00() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.CreateEnvironmentMembershipInput{
 		EnvironmentId: aws.String("8d9967e2f0624182b74e7690ad69ebEX"),
 		Permissions:   aws.String("read-write"),
@@ -118,7 +118,7 @@ func ExampleCloud9_CreateEnvironmentMembership_shared00() {
 //
 
 func ExampleCloud9_DeleteEnvironment_shared00() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.DeleteEnvironmentInput{
 		EnvironmentId: aws.String("8d9967e2f0624182b74e7690ad69ebEX"),
 	}
@@ -159,7 +159,7 @@ func ExampleCloud9_DeleteEnvironment_shared00() {
 //
 
 func ExampleCloud9_DeleteEnvironmentMembership_shared00() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.DeleteEnvironmentMembershipInput{
 		EnvironmentId: aws.String("8d9967e2f0624182b74e7690ad69ebEX"),
 		UserArn:       aws.String("arn:aws:iam::123456789012:user/AnotherDemoUser"),
@@ -202,7 +202,7 @@ func ExampleCloud9_DeleteEnvironmentMembership_shared00() {
 // The following example gets information about all of the environment members for the
 // specified AWS Cloud9 development environment.
 func ExampleCloud9_DescribeEnvironmentMemberships_shared00() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.DescribeEnvironmentMembershipsInput{
 		EnvironmentId: aws.String("8d9967e2f0624182b74e7690ad69ebEX"),
 	}
@@ -244,7 +244,7 @@ func ExampleCloud9_DescribeEnvironmentMemberships_shared00() {
 // The following example gets information about the owner of the specified AWS Cloud9
 // development environment.
 func ExampleCloud9_DescribeEnvironmentMemberships_shared01() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.DescribeEnvironmentMembershipsInput{
 		EnvironmentId: aws.String("8d9967e2f0624182b74e7690ad69ebEX"),
 		Permissions: []*string{
@@ -289,7 +289,7 @@ func ExampleCloud9_DescribeEnvironmentMemberships_shared01() {
 // The following example gets AWS Cloud9 development environment membership information
 // for the specified user.
 func ExampleCloud9_DescribeEnvironmentMemberships_shared02() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.DescribeEnvironmentMembershipsInput{
 		UserArn: aws.String("arn:aws:iam::123456789012:user/MyDemoUser"),
 	}
@@ -330,7 +330,7 @@ func ExampleCloud9_DescribeEnvironmentMemberships_shared02() {
 //
 
 func ExampleCloud9_DescribeEnvironmentStatus_shared00() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.DescribeEnvironmentStatusInput{
 		EnvironmentId: aws.String("8d9967e2f0624182b74e7690ad69ebEX"),
 	}
@@ -371,7 +371,7 @@ func ExampleCloud9_DescribeEnvironmentStatus_shared00() {
 //
 
 func ExampleCloud9_DescribeEnvironments_shared00() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.DescribeEnvironmentsInput{
 		EnvironmentIds: []*string{
 			aws.String("8d9967e2f0624182b74e7690ad69ebEX"),
@@ -415,7 +415,7 @@ func ExampleCloud9_DescribeEnvironments_shared00() {
 //
 
 func ExampleCloud9_ListEnvironments_shared00() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.ListEnvironmentsInput{}
 
 	result, err := svc.ListEnvironments(input)
@@ -454,7 +454,7 @@ func ExampleCloud9_ListEnvironments_shared00() {
 //
 
 func ExampleCloud9_UpdateEnvironment_shared00() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.UpdateEnvironmentInput{
 		Description:   aws.String("This is my changed demonstration environment."),
 		EnvironmentId: aws.String("8d9967e2f0624182b74e7690ad69ebEX"),
@@ -497,7 +497,7 @@ func ExampleCloud9_UpdateEnvironment_shared00() {
 //
 
 func ExampleCloud9_UpdateEnvironmentMembership_shared00() {
-	svc := cloud9.New(session.New())
+	svc := cloud9.New(session.Must(session.NewSession()))
 	input := &cloud9.UpdateEnvironmentMembershipInput{
 		EnvironmentId: aws.String("8d9967e2f0624182b74e7690ad69ebEX"),
 		Permissions:   aws.String("read-only"),

@@ -31,7 +31,7 @@ func parseTime(layout, value string) *time.Time {
 // the RotationEnabled field to false and cancels all scheduled rotations. To resume
 // scheduled rotations, you must re-enable rotation by calling the rotate-secret operation.
 func ExampleSecretsManager_CancelRotateSecret_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.CancelRotateSecretInput{
 		SecretId: aws.String("MyTestDatabaseSecret"),
 	}
@@ -67,7 +67,7 @@ func ExampleSecretsManager_CancelRotateSecret_shared00() {
 // The following example shows how to create a secret. The credentials stored in the
 // encrypted secret value are retrieved from a file on disk named mycreds.json.
 func ExampleSecretsManager_CreateSecret_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.CreateSecretInput{
 		ClientRequestToken: aws.String("EXAMPLE1-90ab-cdef-fedc-ba987SECRET1"),
 		Description:        aws.String("My test database secret created with the CLI"),
@@ -116,7 +116,7 @@ func ExampleSecretsManager_CreateSecret_shared00() {
 // The following example shows how to delete the resource-based policy that is attached
 // to a secret.
 func ExampleSecretsManager_DeleteResourcePolicy_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.DeleteResourcePolicyInput{
 		SecretId: aws.String("MyTestDatabaseSecret"),
 	}
@@ -152,7 +152,7 @@ func ExampleSecretsManager_DeleteResourcePolicy_shared00() {
 // date and time in the DeletionDate response field has passed, you can no longer recover
 // this secret with restore-secret.
 func ExampleSecretsManager_DeleteSecret_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.DeleteSecretInput{
 		RecoveryWindowInDays: aws.Int64(7),
 		SecretId:             aws.String("MyTestDatabaseSecret1"),
@@ -188,7 +188,7 @@ func ExampleSecretsManager_DeleteSecret_shared00() {
 //
 // The following example shows how to get the details about a secret.
 func ExampleSecretsManager_DescribeSecret_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.DescribeSecretInput{
 		SecretId: aws.String("MyTestDatabaseSecret"),
 	}
@@ -221,7 +221,7 @@ func ExampleSecretsManager_DescribeSecret_shared00() {
 // includes the optional flags to require spaces and at least one character of each
 // included type. It specifies a length of 20 characters.
 func ExampleSecretsManager_GetRandomPassword_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.GetRandomPasswordInput{
 		IncludeSpace:            aws.Bool(true),
 		PasswordLength:          aws.Int64(20),
@@ -257,7 +257,7 @@ func ExampleSecretsManager_GetRandomPassword_shared00() {
 // The following example shows how to retrieve the resource-based policy that is attached
 // to a secret.
 func ExampleSecretsManager_GetResourcePolicy_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.GetResourcePolicyInput{
 		SecretId: aws.String("MyTestDatabaseSecret"),
 	}
@@ -293,7 +293,7 @@ func ExampleSecretsManager_GetResourcePolicy_shared00() {
 // the AWSCURRENT version of the secret, then you can omit the VersionStage parameter
 // because it defaults to AWSCURRENT.
 func ExampleSecretsManager_GetSecretValue_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.GetSecretValueInput{
 		SecretId:     aws.String("MyTestDatabaseSecret"),
 		VersionStage: aws.String("AWSPREVIOUS"),
@@ -332,7 +332,7 @@ func ExampleSecretsManager_GetSecretValue_shared00() {
 // The following example shows how to retrieve a list of all of the versions of a secret,
 // including those without any staging labels.
 func ExampleSecretsManager_ListSecretVersionIds_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.ListSecretVersionIdsInput{
 		IncludeDeprecated: aws.Bool(true),
 		SecretId:          aws.String("MyTestDatabaseSecret"),
@@ -366,7 +366,7 @@ func ExampleSecretsManager_ListSecretVersionIds_shared00() {
 //
 // The following example shows how to list all of the secrets in your account.
 func ExampleSecretsManager_ListSecrets_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.ListSecretsInput{}
 
 	result, err := svc.ListSecrets(input)
@@ -397,7 +397,7 @@ func ExampleSecretsManager_ListSecrets_shared00() {
 //
 // The following example shows how to add a resource-based policy to a secret.
 func ExampleSecretsManager_PutResourcePolicy_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.PutResourcePolicyInput{
 		ResourcePolicy: aws.String("{\n\"Version\":\"2012-10-17\",\n\"Statement\":[{\n\"Effect\":\"Allow\",\n\"Principal\":{\n\"AWS\":\"arn:aws:iam::123456789012:root\"\n},\n\"Action\":\"secretsmanager:GetSecretValue\",\n\"Resource\":\"*\"\n}]\n}"),
 		SecretId:       aws.String("MyTestDatabaseSecret"),
@@ -438,7 +438,7 @@ func ExampleSecretsManager_PutResourcePolicy_shared00() {
 // The following example shows how to create a new version of the secret. Alternatively,
 // you can use the update-secret command.
 func ExampleSecretsManager_PutSecretValue_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.PutSecretValueInput{
 		ClientRequestToken: aws.String("EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE"),
 		SecretId:           aws.String("MyTestDatabaseSecret"),
@@ -482,7 +482,7 @@ func ExampleSecretsManager_PutSecretValue_shared00() {
 // The following example shows how to restore a secret that you previously scheduled
 // for deletion.
 func ExampleSecretsManager_RestoreSecret_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.RestoreSecretInput{
 		SecretId: aws.String("MyTestDatabaseSecret"),
 	}
@@ -520,7 +520,7 @@ func ExampleSecretsManager_RestoreSecret_shared00() {
 // rotation. The first rotation happens immediately upon completion of this command.
 // The rotation function runs asynchronously in the background.
 func ExampleSecretsManager_RotateSecret_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.RotateSecretInput{
 		RotationLambdaARN: aws.String("arn:aws:lambda:us-west-2:123456789012:function:MyTestDatabaseRotationLambda"),
 		RotationRules: &secretsmanager.RotationRulesType{
@@ -561,7 +561,7 @@ func ExampleSecretsManager_RotateSecret_shared00() {
 // function. It assumes that the specified secret already has rotation configured. The
 // rotation function runs asynchronously in the background.
 func ExampleSecretsManager_RotateSecret_shared01() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.RotateSecretInput{
 		SecretId: aws.String("MyTestDatabaseSecret"),
 	}
@@ -598,7 +598,7 @@ func ExampleSecretsManager_RotateSecret_shared01() {
 // secret. There is no output from this API. To see the result, use the DescribeSecret
 // operation.
 func ExampleSecretsManager_TagResource_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.TagResourceInput{
 		SecretId: aws.String("MyExampleSecret"),
 		Tags: []*secretsmanager.Tag{
@@ -645,7 +645,7 @@ func ExampleSecretsManager_TagResource_shared00() {
 // each, both the tag and the associated value are removed. There is no output from
 // this API. To see the result, use the DescribeSecret operation.
 func ExampleSecretsManager_UntagResource_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.UntagResourceInput{
 		SecretId: aws.String("MyTestDatabaseSecret"),
 		TagKeys: []*string{
@@ -684,7 +684,7 @@ func ExampleSecretsManager_UntagResource_shared00() {
 //
 // The following example shows how to modify the description of a secret.
 func ExampleSecretsManager_UpdateSecret_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.UpdateSecretInput{
 		ClientRequestToken: aws.String("EXAMPLE1-90ab-cdef-fedc-ba987EXAMPLE"),
 		Description:        aws.String("This is a new description for the secret."),
@@ -732,7 +732,7 @@ func ExampleSecretsManager_UpdateSecret_shared00() {
 // This example shows how to update the KMS customer managed key (CMK) used to encrypt
 // the secret value. The KMS CMK must be in the same region as the secret.
 func ExampleSecretsManager_UpdateSecret_shared01() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.UpdateSecretInput{
 		KmsKeyId: aws.String("arn:aws:kms:us-west-2:123456789012:key/EXAMPLE2-90ab-cdef-fedc-ba987EXAMPLE"),
 		SecretId: aws.String("MyTestDatabaseSecret"),
@@ -779,7 +779,7 @@ func ExampleSecretsManager_UpdateSecret_shared01() {
 // The following example shows how to create a new version of the secret by updating
 // the SecretString field. Alternatively, you can use the put-secret-value operation.
 func ExampleSecretsManager_UpdateSecret_shared02() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.UpdateSecretInput{
 		SecretId:     aws.String("MyTestDatabaseSecret"),
 		SecretString: aws.String("{JSON STRING WITH CREDENTIALS}"),
@@ -827,7 +827,7 @@ func ExampleSecretsManager_UpdateSecret_shared02() {
 // You can review the results by running the operation ListSecretVersionIds and viewing
 // the VersionStages response field for the affected version.
 func ExampleSecretsManager_UpdateSecretVersionStage_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.UpdateSecretVersionStageInput{
 		MoveToVersionId: aws.String("EXAMPLE1-90ab-cdef-fedc-ba987SECRET1"),
 		SecretId:        aws.String("MyTestDatabaseSecret"),
@@ -868,7 +868,7 @@ func ExampleSecretsManager_UpdateSecretVersionStage_shared00() {
 // a version of a secret. You can review the results by running the operation ListSecretVersionIds
 // and viewing the VersionStages response field for the affected version.
 func ExampleSecretsManager_UpdateSecretVersionStage_shared01() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.UpdateSecretVersionStageInput{
 		RemoveFromVersionId: aws.String("EXAMPLE1-90ab-cdef-fedc-ba987SECRET1"),
 		SecretId:            aws.String("MyTestDatabaseSecret"),
@@ -910,7 +910,7 @@ func ExampleSecretsManager_UpdateSecretVersionStage_shared01() {
 // the operation ListSecretVersionIds and viewing the VersionStages response field for
 // the affected version.
 func ExampleSecretsManager_UpdateSecretVersionStage_shared02() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.UpdateSecretVersionStageInput{
 		MoveToVersionId:     aws.String("EXAMPLE2-90ab-cdef-fedc-ba987SECRET2"),
 		RemoveFromVersionId: aws.String("EXAMPLE1-90ab-cdef-fedc-ba987SECRET1"),
@@ -950,7 +950,7 @@ func ExampleSecretsManager_UpdateSecretVersionStage_shared02() {
 //
 // The following example shows how to validate a resource-based policy to a secret.
 func ExampleSecretsManager_ValidateResourcePolicy_shared00() {
-	svc := secretsmanager.New(session.New())
+	svc := secretsmanager.New(session.Must(session.NewSession()))
 	input := &secretsmanager.ValidateResourcePolicyInput{
 		ResourcePolicy: aws.String("{\n\"Version\":\"2012-10-17\",\n\"Statement\":[{\n\"Effect\":\"Allow\",\n\"Principal\":{\n\"AWS\":\"arn:aws:iam::123456789012:root\"\n},\n\"Action\":\"secretsmanager:GetSecretValue\",\n\"Resource\":\"*\"\n}]\n}"),
 		SecretId:       aws.String("MyTestDatabaseSecret"),

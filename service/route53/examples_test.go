@@ -30,7 +30,7 @@ func parseTime(layout, value string) *time.Time {
 // The following example associates the VPC with ID vpc-1a2b3c4d with the hosted zone
 // with ID Z3M3LMPEXAMPLE.
 func ExampleRoute53_AssociateVPCWithHostedZone_shared00() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.AssociateVPCWithHostedZoneInput{
 		Comment:      aws.String(""),
 		HostedZoneId: aws.String("Z3M3LMPEXAMPLE"),
@@ -79,7 +79,7 @@ func ExampleRoute53_AssociateVPCWithHostedZone_shared00() {
 // The following example creates a resource record set that routes Internet traffic
 // to a resource with an IP address of 192.0.2.44.
 func ExampleRoute53_ChangeResourceRecordSets_shared00() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
@@ -136,7 +136,7 @@ func ExampleRoute53_ChangeResourceRecordSets_shared00() {
 // a Weight of 100 will get 1/3rd of traffic (100/100+200), and the other resource will
 // get the rest of the traffic for example.com.
 func ExampleRoute53_ChangeResourceRecordSets_shared01() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
@@ -211,7 +211,7 @@ func ExampleRoute53_ChangeResourceRecordSets_shared01() {
 // The following example creates an alias resource record set that routes traffic to
 // a CloudFront distribution.
 func ExampleRoute53_ChangeResourceRecordSets_shared02() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
@@ -268,7 +268,7 @@ func ExampleRoute53_ChangeResourceRecordSets_shared02() {
 // traffic (100/100+200), and the other resource will get the rest of the traffic for
 // example.com.
 func ExampleRoute53_ChangeResourceRecordSets_shared03() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
@@ -340,7 +340,7 @@ func ExampleRoute53_ChangeResourceRecordSets_shared03() {
 // to EC2 instances. Traffic for example.com is routed either to the Ohio region or
 // the Oregon region, depending on the latency between the user and those regions.
 func ExampleRoute53_ChangeResourceRecordSets_shared04() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
@@ -416,7 +416,7 @@ func ExampleRoute53_ChangeResourceRecordSets_shared04() {
 // for example.com to ELB load balancers. Requests are routed either to the Ohio region
 // or the Oregon region, depending on the latency between the user and those regions.
 func ExampleRoute53_ChangeResourceRecordSets_shared05() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
@@ -489,7 +489,7 @@ func ExampleRoute53_ChangeResourceRecordSets_shared05() {
 // in the Ohio region. If that resource is unavailable, traffic is routed to the secondary
 // resource, in the Oregon region.
 func ExampleRoute53_ChangeResourceRecordSets_shared06() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
@@ -566,7 +566,7 @@ func ExampleRoute53_ChangeResourceRecordSets_shared06() {
 // primary resource, in the Ohio region. If that resource is unavailable, traffic is
 // routed to the secondary resource, in the Oregon region.
 func ExampleRoute53_ChangeResourceRecordSets_shared07() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
@@ -639,7 +639,7 @@ func ExampleRoute53_ChangeResourceRecordSets_shared07() {
 // Traffic is routed to one of four IP addresses, for North America (NA), for South
 // America (SA), for Europe (EU), and for all other locations (*).
 func ExampleRoute53_ChangeResourceRecordSets_shared08() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
@@ -752,7 +752,7 @@ func ExampleRoute53_ChangeResourceRecordSets_shared08() {
 // North America (NA), for South America (SA), for Europe (EU), and for all other locations
 // (*).
 func ExampleRoute53_ChangeResourceRecordSets_shared09() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
@@ -859,7 +859,7 @@ func ExampleRoute53_ChangeResourceRecordSets_shared09() {
 // The following example adds two tags and removes one tag from the hosted zone with
 // ID Z3M3LMPEXAMPLE.
 func ExampleRoute53_ChangeTagsForResource_shared00() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.ChangeTagsForResourceInput{
 		AddTags: []*route53.Tag{
 			{
@@ -910,7 +910,7 @@ func ExampleRoute53_ChangeTagsForResource_shared00() {
 //
 // The following example gets information about the Z3M3LMPEXAMPLE hosted zone.
 func ExampleRoute53_GetHostedZone_shared00() {
-	svc := route53.New(session.New())
+	svc := route53.New(session.Must(session.NewSession()))
 	input := &route53.GetHostedZoneInput{
 		Id: aws.String("Z3M3LMPEXAMPLE"),
 	}

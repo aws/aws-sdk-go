@@ -30,7 +30,7 @@ func parseTime(layout, value string) *time.Time {
 // This example deletes a scaling policy for the Amazon ECS service called web-app,
 // which is running in the default cluster.
 func ExampleApplicationAutoScaling_DeleteScalingPolicy_shared00() {
-	svc := applicationautoscaling.New(session.New())
+	svc := applicationautoscaling.New(session.Must(session.NewSession()))
 	input := &applicationautoscaling.DeleteScalingPolicyInput{
 		PolicyName:        aws.String("web-app-cpu-lt-25"),
 		ResourceId:        aws.String("service/default/web-app"),
@@ -69,7 +69,7 @@ func ExampleApplicationAutoScaling_DeleteScalingPolicy_shared00() {
 // This example deregisters a scalable target for an Amazon ECS service called web-app
 // that is running in the default cluster.
 func ExampleApplicationAutoScaling_DeregisterScalableTarget_shared00() {
-	svc := applicationautoscaling.New(session.New())
+	svc := applicationautoscaling.New(session.Must(session.NewSession()))
 	input := &applicationautoscaling.DeregisterScalableTargetInput{
 		ResourceId:        aws.String("service/default/web-app"),
 		ScalableDimension: aws.String("ecs:service:DesiredCount"),
@@ -106,7 +106,7 @@ func ExampleApplicationAutoScaling_DeregisterScalableTarget_shared00() {
 //
 // This example describes the scalable targets for the ECS service namespace.
 func ExampleApplicationAutoScaling_DescribeScalableTargets_shared00() {
-	svc := applicationautoscaling.New(session.New())
+	svc := applicationautoscaling.New(session.Must(session.NewSession()))
 	input := &applicationautoscaling.DescribeScalableTargetsInput{
 		ServiceNamespace: aws.String("ecs"),
 	}
@@ -142,7 +142,7 @@ func ExampleApplicationAutoScaling_DescribeScalableTargets_shared00() {
 // This example describes the scaling activities for an Amazon ECS service called web-app
 // that is running in the default cluster.
 func ExampleApplicationAutoScaling_DescribeScalingActivities_shared00() {
-	svc := applicationautoscaling.New(session.New())
+	svc := applicationautoscaling.New(session.Must(session.NewSession()))
 	input := &applicationautoscaling.DescribeScalingActivitiesInput{
 		ResourceId:        aws.String("service/default/web-app"),
 		ScalableDimension: aws.String("ecs:service:DesiredCount"),
@@ -179,7 +179,7 @@ func ExampleApplicationAutoScaling_DescribeScalingActivities_shared00() {
 //
 // This example describes the scaling policies for the ECS service namespace.
 func ExampleApplicationAutoScaling_DescribeScalingPolicies_shared00() {
-	svc := applicationautoscaling.New(session.New())
+	svc := applicationautoscaling.New(session.Must(session.NewSession()))
 	input := &applicationautoscaling.DescribeScalingPoliciesInput{
 		ServiceNamespace: aws.String("ecs"),
 	}
@@ -219,7 +219,7 @@ func ExampleApplicationAutoScaling_DescribeScalingPolicies_shared00() {
 // The policy keeps the average CPU utilization of the service at 75 percent, with scale-out
 // and scale-in cooldown periods of 60 seconds.
 func ExampleApplicationAutoScaling_PutScalingPolicy_shared00() {
-	svc := applicationautoscaling.New(session.New())
+	svc := applicationautoscaling.New(session.Must(session.NewSession()))
 	input := &applicationautoscaling.PutScalingPolicyInput{
 		PolicyName:        aws.String("cpu75-target-tracking-scaling-policy"),
 		PolicyType:        aws.String("TargetTrackingScaling"),
@@ -272,7 +272,7 @@ func ExampleApplicationAutoScaling_PutScalingPolicy_shared00() {
 // that is running on the default cluster, with a minimum desired count of 1 task and
 // a maximum desired count of 10 tasks.
 func ExampleApplicationAutoScaling_RegisterScalableTarget_shared00() {
-	svc := applicationautoscaling.New(session.New())
+	svc := applicationautoscaling.New(session.Must(session.NewSession()))
 	input := &applicationautoscaling.RegisterScalableTargetInput{
 		MaxCapacity:       aws.Int64(10),
 		MinCapacity:       aws.Int64(1),

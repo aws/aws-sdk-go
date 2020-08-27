@@ -30,7 +30,7 @@ func parseTime(layout, value string) *time.Time {
 // The following example grants permission for the account 223456789012 to use version
 // 1 of a layer named my-layer.
 func ExampleLambda_AddLayerVersionPermission_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.AddLayerVersionPermissionInput{
 		Action:        aws.String("lambda:GetLayerVersion"),
 		LayerName:     aws.String("my-layer"),
@@ -77,7 +77,7 @@ func ExampleLambda_AddLayerVersionPermission_shared00() {
 // my-function for notifications from a bucket named my-bucket-1xpuxmplzrlbh in account
 // 123456789012.
 func ExampleLambda_AddPermission_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.AddPermissionInput{
 		Action:        aws.String("lambda:InvokeFunction"),
 		FunctionName:  aws.String("my-function"),
@@ -124,7 +124,7 @@ func ExampleLambda_AddPermission_shared00() {
 // The following example adds permission for account 223456789012 invoke a Lambda function
 // named my-function.
 func ExampleLambda_AddPermission_shared01() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.AddPermissionInput{
 		Action:       aws.String("lambda:InvokeFunction"),
 		FunctionName: aws.String("my-function"),
@@ -169,7 +169,7 @@ func ExampleLambda_AddPermission_shared01() {
 // The following example creates an alias named LIVE that points to version 1 of the
 // my-function Lambda function.
 func ExampleLambda_CreateAlias_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.CreateAliasInput{
 		Description:     aws.String("alias for live version of function"),
 		FunctionName:    aws.String("my-function"),
@@ -210,7 +210,7 @@ func ExampleLambda_CreateAlias_shared00() {
 // The following example creates a mapping between an SQS queue and the my-function
 // Lambda function.
 func ExampleLambda_CreateEventSourceMapping_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.CreateEventSourceMappingInput{
 		BatchSize:      aws.Int64(5),
 		EventSourceArn: aws.String("arn:aws:sqs:us-west-2:123456789012:my-queue"),
@@ -250,7 +250,7 @@ func ExampleLambda_CreateEventSourceMapping_shared00() {
 // The following example creates a function with a deployment package in Amazon S3 and
 // enables X-Ray tracing and environment variable encryption.
 func ExampleLambda_CreateFunction_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.CreateFunctionInput{
 		Code: &lambda.FunctionCode{
 			S3Bucket: aws.String("my-bucket-1xpuxmplzrlbh"),
@@ -313,7 +313,7 @@ func ExampleLambda_CreateFunction_shared00() {
 //
 // The following example deletes an alias named BLUE from a function named my-function
 func ExampleLambda_DeleteAlias_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.DeleteAliasInput{
 		FunctionName: aws.String("my-function"),
 		Name:         aws.String("BLUE"),
@@ -350,7 +350,7 @@ func ExampleLambda_DeleteAlias_shared00() {
 // The following example deletes an event source mapping. To get a mapping's UUID, use
 // ListEventSourceMappings.
 func ExampleLambda_DeleteEventSourceMapping_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.DeleteEventSourceMappingInput{
 		UUID: aws.String("14e0db71-xmpl-4eb5-b481-8945cf9d10c2"),
 	}
@@ -387,7 +387,7 @@ func ExampleLambda_DeleteEventSourceMapping_shared00() {
 //
 // The following example deletes version 1 of a Lambda function named my-function.
 func ExampleLambda_DeleteFunction_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.DeleteFunctionInput{
 		FunctionName: aws.String("my-function"),
 		Qualifier:    aws.String("1"),
@@ -426,7 +426,7 @@ func ExampleLambda_DeleteFunction_shared00() {
 // The following example deletes the reserved concurrent execution limit from a function
 // named my-function.
 func ExampleLambda_DeleteFunctionConcurrency_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.DeleteFunctionConcurrencyInput{
 		FunctionName: aws.String("my-function"),
 	}
@@ -464,7 +464,7 @@ func ExampleLambda_DeleteFunctionConcurrency_shared00() {
 // The following example deletes the asynchronous invocation configuration for the GREEN
 // alias of a function named my-function.
 func ExampleLambda_DeleteFunctionEventInvokeConfig_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.DeleteFunctionEventInvokeConfigInput{
 		FunctionName: aws.String("my-function"),
 		Qualifier:    aws.String("GREEN"),
@@ -500,7 +500,7 @@ func ExampleLambda_DeleteFunctionEventInvokeConfig_shared00() {
 //
 // The following example deletes version 2 of a layer named my-layer.
 func ExampleLambda_DeleteLayerVersion_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.DeleteLayerVersionInput{
 		LayerName:     aws.String("my-layer"),
 		VersionNumber: aws.Int64(2),
@@ -533,7 +533,7 @@ func ExampleLambda_DeleteLayerVersion_shared00() {
 // The following example deletes the provisioned concurrency configuration for the GREEN
 // alias of a function named my-function.
 func ExampleLambda_DeleteProvisionedConcurrencyConfig_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.DeleteProvisionedConcurrencyConfigInput{
 		FunctionName: aws.String("my-function"),
 		Qualifier:    aws.String("GREEN"),
@@ -572,7 +572,7 @@ func ExampleLambda_DeleteProvisionedConcurrencyConfig_shared00() {
 // This operation takes no parameters and returns details about storage and concurrency
 // quotas in the current Region.
 func ExampleLambda_GetAccountSettings_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetAccountSettingsInput{}
 
 	result, err := svc.GetAccountSettings(input)
@@ -602,7 +602,7 @@ func ExampleLambda_GetAccountSettings_shared00() {
 // The following example returns details about an alias named BLUE for a function named
 // my-function
 func ExampleLambda_GetAlias_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetAliasInput{
 		FunctionName: aws.String("my-function"),
 		Name:         aws.String("BLUE"),
@@ -639,7 +639,7 @@ func ExampleLambda_GetAlias_shared00() {
 // The following example returns details about an event source mapping. To get a mapping's
 // UUID, use ListEventSourceMappings.
 func ExampleLambda_GetEventSourceMapping_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetEventSourceMappingInput{
 		UUID: aws.String("14e0db71-xmpl-4eb5-b481-8945cf9d10c2"),
 	}
@@ -675,7 +675,7 @@ func ExampleLambda_GetEventSourceMapping_shared00() {
 // The following example returns code and configuration details for version 1 of a function
 // named my-function.
 func ExampleLambda_GetFunction_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetFunctionInput{
 		FunctionName: aws.String("my-function"),
 		Qualifier:    aws.String("1"),
@@ -712,7 +712,7 @@ func ExampleLambda_GetFunction_shared00() {
 // The following example returns the reserved concurrency setting for a function named
 // my-function.
 func ExampleLambda_GetFunctionConcurrency_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetFunctionConcurrencyInput{
 		FunctionName: aws.String("my-function"),
 	}
@@ -748,7 +748,7 @@ func ExampleLambda_GetFunctionConcurrency_shared00() {
 // The following example returns and configuration details for version 1 of a function
 // named my-function.
 func ExampleLambda_GetFunctionConfiguration_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetFunctionConfigurationInput{
 		FunctionName: aws.String("my-function"),
 		Qualifier:    aws.String("1"),
@@ -785,7 +785,7 @@ func ExampleLambda_GetFunctionConfiguration_shared00() {
 // The following example returns the asynchronous invocation configuration for the BLUE
 // alias of a function named my-function.
 func ExampleLambda_GetFunctionEventInvokeConfig_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetFunctionEventInvokeConfigInput{
 		FunctionName: aws.String("my-function"),
 		Qualifier:    aws.String("BLUE"),
@@ -821,7 +821,7 @@ func ExampleLambda_GetFunctionEventInvokeConfig_shared00() {
 //
 // The following example returns information for version 1 of a layer named my-layer.
 func ExampleLambda_GetLayerVersion_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetLayerVersionInput{
 		LayerName:     aws.String("my-layer"),
 		VersionNumber: aws.Int64(1),
@@ -858,7 +858,7 @@ func ExampleLambda_GetLayerVersion_shared00() {
 // The following example returns information about the layer version with the specified
 // Amazon Resource Name (ARN).
 func ExampleLambda_GetLayerVersionByArn_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetLayerVersionByArnInput{
 		Arn: aws.String("arn:aws:lambda:ca-central-1:123456789012:layer:blank-python-lib:3"),
 	}
@@ -894,7 +894,7 @@ func ExampleLambda_GetLayerVersionByArn_shared00() {
 // The following example returns the resource-based policy for version 1 of a Lambda
 // function named my-function.
 func ExampleLambda_GetPolicy_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetPolicyInput{
 		FunctionName: aws.String("my-function"),
 		Qualifier:    aws.String("1"),
@@ -931,7 +931,7 @@ func ExampleLambda_GetPolicy_shared00() {
 // The following example displays details for the provisioned concurrency configuration
 // for the BLUE alias of the specified function.
 func ExampleLambda_GetProvisionedConcurrencyConfig_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetProvisionedConcurrencyConfigInput{
 		FunctionName: aws.String("my-function"),
 		Qualifier:    aws.String("BLUE"),
@@ -970,7 +970,7 @@ func ExampleLambda_GetProvisionedConcurrencyConfig_shared00() {
 // The following example returns details for the provisioned concurrency configuration
 // for the BLUE alias of the specified function.
 func ExampleLambda_GetProvisionedConcurrencyConfig_shared01() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.GetProvisionedConcurrencyConfigInput{
 		FunctionName: aws.String("my-function"),
 		Qualifier:    aws.String("BLUE"),
@@ -1009,7 +1009,7 @@ func ExampleLambda_GetProvisionedConcurrencyConfig_shared01() {
 // The following example invokes version 1 of a function named my-function with an empty
 // event payload.
 func ExampleLambda_Invoke_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.InvokeInput{
 		FunctionName: aws.String("my-function"),
 		Payload:      []byte("{}"),
@@ -1090,7 +1090,7 @@ func ExampleLambda_Invoke_shared00() {
 //
 // The following example invokes version 1 of a function named my-function asynchronously.
 func ExampleLambda_Invoke_shared01() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.InvokeInput{
 		FunctionName:   aws.String("my-function"),
 		InvocationType: aws.String("Event"),
@@ -1172,7 +1172,7 @@ func ExampleLambda_Invoke_shared01() {
 //
 // The following example invokes a Lambda function asynchronously
 func ExampleLambda_InvokeAsync_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.InvokeAsyncInput{
 		FunctionName: aws.String("my-function"),
 		InvokeArgs:   aws.ReadSeekCloser(strings.NewReader("{}")),
@@ -1210,7 +1210,7 @@ func ExampleLambda_InvokeAsync_shared00() {
 //
 // The following example returns a list of aliases for a function named my-function.
 func ExampleLambda_ListAliases_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.ListAliasesInput{
 		FunctionName: aws.String("my-function"),
 	}
@@ -1246,7 +1246,7 @@ func ExampleLambda_ListAliases_shared00() {
 // The following example returns a list of the event source mappings for a function
 // named my-function.
 func ExampleLambda_ListEventSourceMappings_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.ListEventSourceMappingsInput{
 		FunctionName: aws.String("my-function"),
 	}
@@ -1282,7 +1282,7 @@ func ExampleLambda_ListEventSourceMappings_shared00() {
 // The following example returns a list of asynchronous invocation configurations for
 // a function named my-function.
 func ExampleLambda_ListFunctionEventInvokeConfigs_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.ListFunctionEventInvokeConfigsInput{
 		FunctionName: aws.String("my-function"),
 	}
@@ -1317,7 +1317,7 @@ func ExampleLambda_ListFunctionEventInvokeConfigs_shared00() {
 //
 // This operation returns a list of Lambda functions.
 func ExampleLambda_ListFunctions_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.ListFunctionsInput{}
 
 	result, err := svc.ListFunctions(input)
@@ -1349,7 +1349,7 @@ func ExampleLambda_ListFunctions_shared00() {
 // The following example displays information about the versions for the layer named
 // blank-java-lib
 func ExampleLambda_ListLayerVersions_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.ListLayerVersionsInput{
 		LayerName: aws.String("blank-java-lib"),
 	}
@@ -1385,7 +1385,7 @@ func ExampleLambda_ListLayerVersions_shared00() {
 // The following example returns information about layers that are compatible with the
 // Python 3.7 runtime.
 func ExampleLambda_ListLayers_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.ListLayersInput{
 		CompatibleRuntime: aws.String("python3.7"),
 	}
@@ -1419,7 +1419,7 @@ func ExampleLambda_ListLayers_shared00() {
 // The following example returns a list of provisioned concurrency configurations for
 // a function named my-function.
 func ExampleLambda_ListProvisionedConcurrencyConfigs_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.ListProvisionedConcurrencyConfigsInput{
 		FunctionName: aws.String("my-function"),
 	}
@@ -1454,7 +1454,7 @@ func ExampleLambda_ListProvisionedConcurrencyConfigs_shared00() {
 //
 // The following example displays the tags attached to the my-function Lambda function.
 func ExampleLambda_ListTags_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.ListTagsInput{
 		Resource: aws.String("arn:aws:lambda:us-west-2:123456789012:function:my-function"),
 	}
@@ -1489,7 +1489,7 @@ func ExampleLambda_ListTags_shared00() {
 //
 // The following example returns a list of versions of a function named my-function
 func ExampleLambda_ListVersionsByFunction_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.ListVersionsByFunctionInput{
 		FunctionName: aws.String("my-function"),
 	}
@@ -1525,7 +1525,7 @@ func ExampleLambda_ListVersionsByFunction_shared00() {
 // The following example creates a new Python library layer version. The command retrieves
 // the layer content a file named layer.zip in the specified S3 bucket.
 func ExampleLambda_PublishLayerVersion_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.PublishLayerVersionInput{
 		CompatibleRuntimes: []*string{
 			aws.String("python3.6"),
@@ -1572,7 +1572,7 @@ func ExampleLambda_PublishLayerVersion_shared00() {
 //
 // This operation publishes a version of a Lambda function
 func ExampleLambda_PublishVersion_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.PublishVersionInput{
 		CodeSha256:   aws.String(""),
 		Description:  aws.String(""),
@@ -1616,7 +1616,7 @@ func ExampleLambda_PublishVersion_shared00() {
 // The following example configures 100 reserved concurrent executions for the my-function
 // function.
 func ExampleLambda_PutFunctionConcurrency_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.PutFunctionConcurrencyInput{
 		FunctionName:                 aws.String("my-function"),
 		ReservedConcurrentExecutions: aws.Int64(100),
@@ -1655,7 +1655,7 @@ func ExampleLambda_PutFunctionConcurrency_shared00() {
 // The following example sets a maximum event age of one hour and disables retries for
 // the specified function.
 func ExampleLambda_PutFunctionEventInvokeConfig_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.PutFunctionEventInvokeConfigInput{
 		FunctionName:             aws.String("my-function"),
 		MaximumEventAgeInSeconds: aws.Int64(3600),
@@ -1693,7 +1693,7 @@ func ExampleLambda_PutFunctionEventInvokeConfig_shared00() {
 // The following example allocates 100 provisioned concurrency for the BLUE alias of
 // the specified function.
 func ExampleLambda_PutProvisionedConcurrencyConfig_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.PutProvisionedConcurrencyConfigInput{
 		FunctionName:                    aws.String("my-function"),
 		ProvisionedConcurrentExecutions: aws.Int64(100),
@@ -1732,7 +1732,7 @@ func ExampleLambda_PutProvisionedConcurrencyConfig_shared00() {
 //
 // The following example deletes permission for an account to configure a layer version.
 func ExampleLambda_RemoveLayerVersionPermission_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.RemoveLayerVersionPermissionInput{
 		LayerName:     aws.String("my-layer"),
 		StatementId:   aws.String("xaccount"),
@@ -1772,7 +1772,7 @@ func ExampleLambda_RemoveLayerVersionPermission_shared00() {
 // The following example removes a permissions statement named xaccount from the PROD
 // alias of a function named my-function.
 func ExampleLambda_RemovePermission_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.RemovePermissionInput{
 		FunctionName: aws.String("my-function"),
 		Qualifier:    aws.String("PROD"),
@@ -1812,7 +1812,7 @@ func ExampleLambda_RemovePermission_shared00() {
 // The following example adds a tag with the key name DEPARTMENT and a value of 'Department
 // A' to the specified Lambda function.
 func ExampleLambda_TagResource_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.TagResourceInput{
 		Resource: aws.String("arn:aws:lambda:us-west-2:123456789012:function:my-function"),
 		Tags: map[string]*string{
@@ -1853,7 +1853,7 @@ func ExampleLambda_TagResource_shared00() {
 // The following example removes the tag with the key name DEPARTMENT tag from the my-function
 // Lambda function.
 func ExampleLambda_UntagResource_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.UntagResourceInput{
 		Resource: aws.String("arn:aws:lambda:us-west-2:123456789012:function:my-function"),
 		TagKeys: []*string{
@@ -1894,7 +1894,7 @@ func ExampleLambda_UntagResource_shared00() {
 // The following example updates the alias named BLUE to send 30% of traffic to version
 // 2 and 70% to version 1.
 func ExampleLambda_UpdateAlias_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.UpdateAliasInput{
 		FunctionName:    aws.String("my-function"),
 		FunctionVersion: aws.String("2"),
@@ -1940,7 +1940,7 @@ func ExampleLambda_UpdateAlias_shared00() {
 //
 // This operation updates a Lambda function event source mapping
 func ExampleLambda_UpdateEventSourceMapping_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.UpdateEventSourceMappingInput{
 		BatchSize:    aws.Int64(123),
 		Enabled:      aws.Bool(true),
@@ -1984,7 +1984,7 @@ func ExampleLambda_UpdateEventSourceMapping_shared00() {
 // function named my-function with the contents of the specified zip file in Amazon
 // S3.
 func ExampleLambda_UpdateFunctionCode_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.UpdateFunctionCodeInput{
 		FunctionName: aws.String("my-function"),
 		S3Bucket:     aws.String("my-bucket-1xpuxmplzrlbh"),
@@ -2028,7 +2028,7 @@ func ExampleLambda_UpdateFunctionCode_shared00() {
 // The following example modifies the memory size to be 256 MB for the unpublished ($LATEST)
 // version of a function named my-function.
 func ExampleLambda_UpdateFunctionConfiguration_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.UpdateFunctionConfigurationInput{
 		FunctionName: aws.String("my-function"),
 		MemorySize:   aws.Int64(256),
@@ -2069,7 +2069,7 @@ func ExampleLambda_UpdateFunctionConfiguration_shared00() {
 // The following example adds an on-failure destination to the existing asynchronous
 // invocation configuration for a function named my-function.
 func ExampleLambda_UpdateFunctionEventInvokeConfig_shared00() {
-	svc := lambda.New(session.New())
+	svc := lambda.New(session.Must(session.NewSession()))
 	input := &lambda.UpdateFunctionEventInvokeConfigInput{
 		DestinationConfig: &lambda.DestinationConfig{
 			OnFailure: &lambda.OnFailure{

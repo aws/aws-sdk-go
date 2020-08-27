@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 
 func ExampleSTS_AssumeRole_shared00() {
-	svc := sts.New(session.New())
+	svc := sts.New(session.Must(session.NewSession()))
 	input := &sts.AssumeRoleInput{
 		ExternalId:      aws.String("123ABC"),
 		Policy:          aws.String("{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"Stmt1\",\"Effect\":\"Allow\",\"Action\":\"s3:ListAllMyBuckets\",\"Resource\":\"*\"}]}"),
@@ -83,7 +83,7 @@ func ExampleSTS_AssumeRole_shared00() {
 //
 
 func ExampleSTS_AssumeRoleWithSAML_shared00() {
-	svc := sts.New(session.New())
+	svc := sts.New(session.Must(session.NewSession()))
 	input := &sts.AssumeRoleWithSAMLInput{
 		DurationSeconds: aws.Int64(3600),
 		PrincipalArn:    aws.String("arn:aws:iam::123456789012:saml-provider/SAML-test"),
@@ -125,7 +125,7 @@ func ExampleSTS_AssumeRoleWithSAML_shared00() {
 //
 
 func ExampleSTS_AssumeRoleWithWebIdentity_shared00() {
-	svc := sts.New(session.New())
+	svc := sts.New(session.Must(session.NewSession()))
 	input := &sts.AssumeRoleWithWebIdentityInput{
 		DurationSeconds:  aws.Int64(3600),
 		Policy:           aws.String("{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"Stmt1\",\"Effect\":\"Allow\",\"Action\":\"s3:ListAllMyBuckets\",\"Resource\":\"*\"}]}"),
@@ -171,7 +171,7 @@ func ExampleSTS_AssumeRoleWithWebIdentity_shared00() {
 //
 
 func ExampleSTS_DecodeAuthorizationMessage_shared00() {
-	svc := sts.New(session.New())
+	svc := sts.New(session.Must(session.NewSession()))
 	input := &sts.DecodeAuthorizationMessageInput{
 		EncodedMessage: aws.String("<encoded-message>"),
 	}
@@ -201,7 +201,7 @@ func ExampleSTS_DecodeAuthorizationMessage_shared00() {
 // This example shows a request and response made with the credentials for a user named
 // Alice in the AWS account 123456789012.
 func ExampleSTS_GetCallerIdentity_shared00() {
-	svc := sts.New(session.New())
+	svc := sts.New(session.Must(session.NewSession()))
 	input := &sts.GetCallerIdentityInput{}
 
 	result, err := svc.GetCallerIdentity(input)
@@ -228,7 +228,7 @@ func ExampleSTS_GetCallerIdentity_shared00() {
 // by AssumeRole. The name of the assumed role is my-role-name, and the RoleSessionName
 // is set to my-role-session-name.
 func ExampleSTS_GetCallerIdentity_shared01() {
-	svc := sts.New(session.New())
+	svc := sts.New(session.Must(session.NewSession()))
 	input := &sts.GetCallerIdentityInput{}
 
 	result, err := svc.GetCallerIdentity(input)
@@ -254,7 +254,7 @@ func ExampleSTS_GetCallerIdentity_shared01() {
 // This example shows a request and response made with temporary credentials created
 // by using GetFederationToken. The Name parameter is set to my-federated-user-name.
 func ExampleSTS_GetCallerIdentity_shared02() {
-	svc := sts.New(session.New())
+	svc := sts.New(session.Must(session.NewSession()))
 	input := &sts.GetCallerIdentityInput{}
 
 	result, err := svc.GetCallerIdentity(input)
@@ -279,7 +279,7 @@ func ExampleSTS_GetCallerIdentity_shared02() {
 //
 
 func ExampleSTS_GetFederationToken_shared00() {
-	svc := sts.New(session.New())
+	svc := sts.New(session.Must(session.NewSession()))
 	input := &sts.GetFederationTokenInput{
 		DurationSeconds: aws.Int64(3600),
 		Name:            aws.String("testFedUserSession"),
@@ -324,7 +324,7 @@ func ExampleSTS_GetFederationToken_shared00() {
 //
 
 func ExampleSTS_GetSessionToken_shared00() {
-	svc := sts.New(session.New())
+	svc := sts.New(session.Must(session.NewSession()))
 	input := &sts.GetSessionTokenInput{
 		DurationSeconds: aws.Int64(3600),
 		SerialNumber:    aws.String("YourMFASerialNumber"),

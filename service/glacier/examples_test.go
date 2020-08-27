@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // The example deletes an in-progress multipart upload to a vault named my-vault:
 func ExampleGlacier_AbortMultipartUpload_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.AbortMultipartUploadInput{
 		AccountId: aws.String("-"),
 		UploadId:  aws.String("19gaRezEXAMPLES6Ry5YYdqthHOC_kGRCT03L9yetr220UmPtBYKk-OssZtLqyFu7sY1_lR7vgFuJV6NtcV5zpsJ"),
@@ -67,7 +67,7 @@ func ExampleGlacier_AbortMultipartUpload_shared00() {
 // The example aborts the vault locking process if the vault lock is not in the Locked
 // state for the vault named examplevault.
 func ExampleGlacier_AbortVaultLock_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.AbortVaultLockInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("examplevault"),
@@ -103,7 +103,7 @@ func ExampleGlacier_AbortVaultLock_shared00() {
 //
 // The example adds two tags to a my-vault.
 func ExampleGlacier_AddTagsToVault_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.AddTagsToVaultInput{
 		Tags: map[string]*string{
 			"examplekey1": aws.String("examplevalue1"),
@@ -145,7 +145,7 @@ func ExampleGlacier_AddTagsToVault_shared00() {
 //
 // The example completes a multipart upload for a 3 MiB archive.
 func ExampleGlacier_CompleteMultipartUpload_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.CompleteMultipartUploadInput{
 		AccountId:   aws.String("-"),
 		ArchiveSize: aws.String("3145728"),
@@ -185,7 +185,7 @@ func ExampleGlacier_CompleteMultipartUpload_shared00() {
 // The example completes the vault locking process by transitioning the vault lock from
 // the InProgress state to the Locked state.
 func ExampleGlacier_CompleteVaultLock_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.CompleteVaultLockInput{
 		AccountId: aws.String("-"),
 		LockId:    aws.String("AE863rKkWZU53SLW5be4DUcW"),
@@ -222,7 +222,7 @@ func ExampleGlacier_CompleteVaultLock_shared00() {
 //
 // The following example creates a new vault named my-vault.
 func ExampleGlacier_CreateVault_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.CreateVaultInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("my-vault"),
@@ -258,7 +258,7 @@ func ExampleGlacier_CreateVault_shared00() {
 //
 // The example deletes the archive specified by the archive ID.
 func ExampleGlacier_DeleteArchive_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.DeleteArchiveInput{
 		AccountId: aws.String("-"),
 		ArchiveId: aws.String("NkbByEejwEggmBz2fTHgJrg0XBoDfjP4q6iu87-TjhqG6eGoOY9Z8i1_AUyUsuhPAdTqLHy8pTl5nfCFJmDl2yEZONi5L26Omw12vcs01MNGntHEQL8MBfGlqrEXAMPLEArchiveId"),
@@ -295,7 +295,7 @@ func ExampleGlacier_DeleteArchive_shared00() {
 //
 // The example deletes a vault named my-vault:
 func ExampleGlacier_DeleteVault_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.DeleteVaultInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("my-vault"),
@@ -331,7 +331,7 @@ func ExampleGlacier_DeleteVault_shared00() {
 //
 // The example deletes the access policy associated with the vault named examplevault.
 func ExampleGlacier_DeleteVaultAccessPolicy_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.DeleteVaultAccessPolicyInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("examplevault"),
@@ -367,7 +367,7 @@ func ExampleGlacier_DeleteVaultAccessPolicy_shared00() {
 //
 // The example deletes the notification configuration set for the vault named examplevault.
 func ExampleGlacier_DeleteVaultNotifications_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.DeleteVaultNotificationsInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("examplevault"),
@@ -404,7 +404,7 @@ func ExampleGlacier_DeleteVaultNotifications_shared00() {
 // The example returns information about the previously initiated job specified by the
 // job ID.
 func ExampleGlacier_DescribeJob_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.DescribeJobInput{
 		AccountId: aws.String("-"),
 		JobId:     aws.String("zbxcm3Z_3z5UkoroF7SuZKrxgGoDc3RloGduS7Eg-RO47Yc6FxsdGBgf_Q2DK5Ejh18CnTS5XW4_XqlNHS61dsO4Cn"),
@@ -441,7 +441,7 @@ func ExampleGlacier_DescribeJob_shared00() {
 //
 // The example retrieves data about a vault named my-vault.
 func ExampleGlacier_DescribeVault_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.DescribeVaultInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("my-vault"),
@@ -477,7 +477,7 @@ func ExampleGlacier_DescribeVault_shared00() {
 //
 // The example returns the current data retrieval policy for the account.
 func ExampleGlacier_GetDataRetrievalPolicy_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.GetDataRetrievalPolicyInput{
 		AccountId: aws.String("-"),
 	}
@@ -511,7 +511,7 @@ func ExampleGlacier_GetDataRetrievalPolicy_shared00() {
 // The example downloads the output of a previously initiated inventory retrieval job
 // that is identified by the job ID.
 func ExampleGlacier_GetJobOutput_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.GetJobOutputInput{
 		AccountId: aws.String("-"),
 		JobId:     aws.String("zbxcm3Z_3z5UkoroF7SuZKrxgGoDc3RloGduS7Eg-RO47Yc6FxsdGBgf_Q2DK5Ejh18CnTS5XW4_XqlNHS61dsO4CnMW"),
@@ -549,7 +549,7 @@ func ExampleGlacier_GetJobOutput_shared00() {
 //
 // The example retrieves the access-policy set on the vault named example-vault.
 func ExampleGlacier_GetVaultAccessPolicy_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.GetVaultAccessPolicyInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("example-vault"),
@@ -586,7 +586,7 @@ func ExampleGlacier_GetVaultAccessPolicy_shared00() {
 // The example retrieves the attributes from the lock-policy subresource set on the
 // vault named examplevault.
 func ExampleGlacier_GetVaultLock_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.GetVaultLockInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("examplevault"),
@@ -622,7 +622,7 @@ func ExampleGlacier_GetVaultLock_shared00() {
 //
 // The example retrieves the notification-configuration for the vault named my-vault.
 func ExampleGlacier_GetVaultNotifications_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.GetVaultNotificationsInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("my-vault"),
@@ -658,7 +658,7 @@ func ExampleGlacier_GetVaultNotifications_shared00() {
 //
 // The example initiates an inventory-retrieval job for the vault named examplevault.
 func ExampleGlacier_InitiateJob_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.InitiateJobInput{
 		AccountId: aws.String("-"),
 		JobParameters: &glacier.JobParameters{
@@ -705,7 +705,7 @@ func ExampleGlacier_InitiateJob_shared00() {
 // The example initiates a multipart upload to a vault named my-vault with a part size
 // of 1 MiB (1024 x 1024 bytes) per file.
 func ExampleGlacier_InitiateMultipartUpload_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.InitiateMultipartUploadInput{
 		AccountId: aws.String("-"),
 		PartSize:  aws.String("1048576"),
@@ -742,7 +742,7 @@ func ExampleGlacier_InitiateMultipartUpload_shared00() {
 //
 // The example initiates the vault locking process for the vault named my-vault.
 func ExampleGlacier_InitiateVaultLock_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.InitiateVaultLockInput{
 		AccountId: aws.String("-"),
 		Policy: &glacier.VaultLockPolicy{
@@ -781,7 +781,7 @@ func ExampleGlacier_InitiateVaultLock_shared00() {
 //
 // The example lists jobs for the vault named my-vault.
 func ExampleGlacier_ListJobs_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.ListJobsInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("my-vault"),
@@ -817,7 +817,7 @@ func ExampleGlacier_ListJobs_shared00() {
 //
 // The example lists all the in-progress multipart uploads for the vault named examplevault.
 func ExampleGlacier_ListMultipartUploads_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.ListMultipartUploadsInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("examplevault"),
@@ -853,7 +853,7 @@ func ExampleGlacier_ListMultipartUploads_shared00() {
 //
 // The example lists all the parts of a multipart upload.
 func ExampleGlacier_ListParts_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.ListPartsInput{
 		AccountId: aws.String("-"),
 		UploadId:  aws.String("OW2fM5iVylEpFEMM9_HpKowRapC3vn5sSL39_396UW9zLFUWVrnRHaPjUJddQ5OxSHVXjYtrN47NBZ-khxOjyEXAMPLE"),
@@ -890,7 +890,7 @@ func ExampleGlacier_ListParts_shared00() {
 //
 // The example lists the provisioned capacity units for an account.
 func ExampleGlacier_ListProvisionedCapacity_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.ListProvisionedCapacityInput{
 		AccountId: aws.String("-"),
 	}
@@ -923,7 +923,7 @@ func ExampleGlacier_ListProvisionedCapacity_shared00() {
 //
 // The example lists all the tags attached to the vault examplevault.
 func ExampleGlacier_ListTagsForVault_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.ListTagsForVaultInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("examplevault"),
@@ -959,7 +959,7 @@ func ExampleGlacier_ListTagsForVault_shared00() {
 //
 // The example lists all vaults owned by the specified AWS account.
 func ExampleGlacier_ListVaults_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.ListVaultsInput{
 		AccountId: aws.String("-"),
 		Limit:     aws.String(""),
@@ -996,7 +996,7 @@ func ExampleGlacier_ListVaults_shared00() {
 //
 // The example purchases provisioned capacity unit for an AWS account.
 func ExampleGlacier_PurchaseProvisionedCapacity_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.PurchaseProvisionedCapacityInput{
 		AccountId: aws.String("-"),
 	}
@@ -1031,7 +1031,7 @@ func ExampleGlacier_PurchaseProvisionedCapacity_shared00() {
 //
 // The example removes two tags from the vault named examplevault.
 func ExampleGlacier_RemoveTagsFromVault_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.RemoveTagsFromVaultInput{
 		TagKeys: []*string{
 			aws.String("examplekey1"),
@@ -1071,7 +1071,7 @@ func ExampleGlacier_RemoveTagsFromVault_shared00() {
 //
 // The example sets and then enacts a data retrieval policy.
 func ExampleGlacier_SetDataRetrievalPolicy_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.SetDataRetrievalPolicyInput{
 		Policy: &glacier.DataRetrievalPolicy{
 			Rules: []*glacier.DataRetrievalRule{
@@ -1112,7 +1112,7 @@ func ExampleGlacier_SetDataRetrievalPolicy_shared00() {
 //
 // The example configures an access policy for the vault named examplevault.
 func ExampleGlacier_SetVaultAccessPolicy_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.SetVaultAccessPolicyInput{
 		AccountId: aws.String("-"),
 		Policy: &glacier.VaultAccessPolicy{
@@ -1151,7 +1151,7 @@ func ExampleGlacier_SetVaultAccessPolicy_shared00() {
 //
 // The example sets the examplevault notification configuration.
 func ExampleGlacier_SetVaultNotifications_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.SetVaultNotificationsInput{
 		AccountId: aws.String("-"),
 		VaultName: aws.String("examplevault"),
@@ -1194,7 +1194,7 @@ func ExampleGlacier_SetVaultNotifications_shared00() {
 //
 // The example adds an archive to a vault.
 func ExampleGlacier_UploadArchive_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.UploadArchiveInput{
 		AccountId:          aws.String("-"),
 		ArchiveDescription: aws.String(""),
@@ -1235,7 +1235,7 @@ func ExampleGlacier_UploadArchive_shared00() {
 //
 // The example uploads the first 1 MiB (1024 x 1024 bytes) part of an archive.
 func ExampleGlacier_UploadMultipartPart_shared00() {
-	svc := glacier.New(session.New())
+	svc := glacier.New(session.Must(session.NewSession()))
 	input := &glacier.UploadMultipartPartInput{
 		AccountId: aws.String("-"),
 		Body:      aws.ReadSeekCloser(strings.NewReader("part1")),

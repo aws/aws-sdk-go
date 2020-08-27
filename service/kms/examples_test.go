@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // The following example cancels deletion of the specified CMK.
 func ExampleKMS_CancelKeyDeletion_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.CancelKeyDeletionInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -66,7 +66,7 @@ func ExampleKMS_CancelKeyDeletion_shared00() {
 //
 // The following example creates an alias for the specified customer master key (CMK).
 func ExampleKMS_CreateAlias_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.CreateAliasInput{
 		AliasName:   aws.String("alias/ExampleAlias"),
 		TargetKeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
@@ -109,7 +109,7 @@ func ExampleKMS_CreateAlias_shared00() {
 // The following example creates a grant that allows the specified IAM role to encrypt
 // data with the specified customer master key (CMK).
 func ExampleKMS_CreateGrant_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.CreateGrantInput{
 		GranteePrincipal: aws.String("arn:aws:iam::111122223333:role/ExampleRole"),
 		KeyId:            aws.String("arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab"),
@@ -157,7 +157,7 @@ func ExampleKMS_CreateGrant_shared00() {
 //
 // The following example creates a CMK.
 func ExampleKMS_CreateKey_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.CreateKeyInput{
 		Tags: []*kms.Tag{
 			{
@@ -210,7 +210,7 @@ func ExampleKMS_CreateKey_shared00() {
 // The following example decrypts data that was encrypted with a customer master key
 // (CMK) in AWS KMS.
 func ExampleKMS_Decrypt_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.DecryptInput{
 		CiphertextBlob: []byte("<binary data>"),
 	}
@@ -257,7 +257,7 @@ func ExampleKMS_Decrypt_shared00() {
 //
 // The following example deletes the specified alias.
 func ExampleKMS_DeleteAlias_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.DeleteAliasInput{
 		AliasName: aws.String("alias/ExampleAlias"),
 	}
@@ -293,7 +293,7 @@ func ExampleKMS_DeleteAlias_shared00() {
 // The following example deletes the imported key material from the specified customer
 // master key (CMK).
 func ExampleKMS_DeleteImportedKeyMaterial_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.DeleteImportedKeyMaterialInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -332,7 +332,7 @@ func ExampleKMS_DeleteImportedKeyMaterial_shared00() {
 //
 // The following example returns information (metadata) about the specified CMK.
 func ExampleKMS_DescribeKey_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.DescribeKeyInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -367,7 +367,7 @@ func ExampleKMS_DescribeKey_shared00() {
 //
 // The following example disables the specified CMK.
 func ExampleKMS_DisableKey_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.DisableKeyInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -405,7 +405,7 @@ func ExampleKMS_DisableKey_shared00() {
 // The following example disables automatic annual rotation of the key material for
 // the specified CMK.
 func ExampleKMS_DisableKeyRotation_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.DisableKeyRotationInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -446,7 +446,7 @@ func ExampleKMS_DisableKeyRotation_shared00() {
 //
 // The following example enables the specified CMK.
 func ExampleKMS_EnableKey_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.EnableKeyInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -486,7 +486,7 @@ func ExampleKMS_EnableKey_shared00() {
 // The following example enables automatic annual rotation of the key material for the
 // specified CMK.
 func ExampleKMS_EnableKeyRotation_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.EnableKeyRotationInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -527,7 +527,7 @@ func ExampleKMS_EnableKeyRotation_shared00() {
 //
 // The following example encrypts data with the specified customer master key (CMK).
 func ExampleKMS_Encrypt_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.EncryptInput{
 		KeyId:     aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 		Plaintext: []byte("<binary data>"),
@@ -573,7 +573,7 @@ func ExampleKMS_Encrypt_shared00() {
 // in two formats. One is the unencrypted (plainext) data key, and the other is the
 // data key encrypted with the specified customer master key (CMK).
 func ExampleKMS_GenerateDataKey_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.GenerateDataKeyInput{
 		KeyId:   aws.String("alias/ExampleAlias"),
 		KeySpec: aws.String("AES_256"),
@@ -619,7 +619,7 @@ func ExampleKMS_GenerateDataKey_shared00() {
 // key (data key). The data key is encrypted with the specified customer master key
 // (CMK).
 func ExampleKMS_GenerateDataKeyWithoutPlaintext_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.GenerateDataKeyWithoutPlaintextInput{
 		KeyId:   aws.String("alias/ExampleAlias"),
 		KeySpec: aws.String("AES_256"),
@@ -663,7 +663,7 @@ func ExampleKMS_GenerateDataKeyWithoutPlaintext_shared00() {
 //
 // The following example uses AWS KMS to generate 32 bytes of random data.
 func ExampleKMS_GenerateRandom_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.GenerateRandomInput{
 		NumberOfBytes: aws.Int64(32),
 	}
@@ -699,7 +699,7 @@ func ExampleKMS_GenerateRandom_shared00() {
 // The following example retrieves the key policy for the specified customer master
 // key (CMK).
 func ExampleKMS_GetKeyPolicy_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.GetKeyPolicyInput{
 		KeyId:      aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 		PolicyName: aws.String("default"),
@@ -738,7 +738,7 @@ func ExampleKMS_GetKeyPolicy_shared00() {
 // The following example retrieves the status of automatic annual rotation of the key
 // material for the specified CMK.
 func ExampleKMS_GetKeyRotationStatus_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.GetKeyRotationStatusInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -778,7 +778,7 @@ func ExampleKMS_GetKeyRotationStatus_shared00() {
 // The following example retrieves the public key and import token for the specified
 // CMK.
 func ExampleKMS_GetParametersForImport_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.GetParametersForImportInput{
 		KeyId:             aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 		WrappingAlgorithm: aws.String("RSAES_OAEP_SHA_1"),
@@ -819,7 +819,7 @@ func ExampleKMS_GetParametersForImport_shared00() {
 //
 // The following example imports key material into the specified CMK.
 func ExampleKMS_ImportKeyMaterial_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.ImportKeyMaterialInput{
 		EncryptedKeyMaterial: []byte("<binary data>"),
 		ExpirationModel:      aws.String("KEY_MATERIAL_DOES_NOT_EXPIRE"),
@@ -869,7 +869,7 @@ func ExampleKMS_ImportKeyMaterial_shared00() {
 //
 // The following example lists aliases.
 func ExampleKMS_ListAliases_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.ListAliasesInput{}
 
 	result, err := svc.ListAliases(input)
@@ -904,7 +904,7 @@ func ExampleKMS_ListAliases_shared00() {
 //
 // The following example lists grants for the specified CMK.
 func ExampleKMS_ListGrants_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.ListGrantsInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -943,7 +943,7 @@ func ExampleKMS_ListGrants_shared00() {
 //
 // The following example lists key policies for the specified CMK.
 func ExampleKMS_ListKeyPolicies_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.ListKeyPoliciesInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -980,7 +980,7 @@ func ExampleKMS_ListKeyPolicies_shared00() {
 //
 // The following example lists CMKs.
 func ExampleKMS_ListKeys_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.ListKeysInput{}
 
 	result, err := svc.ListKeys(input)
@@ -1011,7 +1011,7 @@ func ExampleKMS_ListKeys_shared00() {
 //
 // The following example lists tags for a CMK.
 func ExampleKMS_ListResourceTags_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.ListResourceTagsInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
@@ -1047,7 +1047,7 @@ func ExampleKMS_ListResourceTags_shared00() {
 // The following example lists the grants that the specified principal (identity) can
 // retire.
 func ExampleKMS_ListRetirableGrants_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.ListRetirableGrantsInput{
 		RetiringPrincipal: aws.String("arn:aws:iam::111122223333:role/ExampleRole"),
 	}
@@ -1084,7 +1084,7 @@ func ExampleKMS_ListRetirableGrants_shared00() {
 //
 // The following example attaches a key policy to the specified CMK.
 func ExampleKMS_PutKeyPolicy_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.PutKeyPolicyInput{
 		KeyId:      aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 		Policy:     aws.String("{\n    \"Version\": \"2012-10-17\",\n    \"Id\": \"custom-policy-2016-12-07\",\n    \"Statement\": [\n        {\n            \"Sid\": \"Enable IAM User Permissions\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"AWS\": \"arn:aws:iam::111122223333:root\"\n            },\n            \"Action\": \"kms:*\",\n            \"Resource\": \"*\"\n        },\n        {\n            \"Sid\": \"Allow access for Key Administrators\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"AWS\": [\n                    \"arn:aws:iam::111122223333:user/ExampleAdminUser\",\n                    \"arn:aws:iam::111122223333:role/ExampleAdminRole\"\n                ]\n            },\n            \"Action\": [\n                \"kms:Create*\",\n                \"kms:Describe*\",\n                \"kms:Enable*\",\n                \"kms:List*\",\n                \"kms:Put*\",\n                \"kms:Update*\",\n                \"kms:Revoke*\",\n                \"kms:Disable*\",\n                \"kms:Get*\",\n                \"kms:Delete*\",\n                \"kms:ScheduleKeyDeletion\",\n                \"kms:CancelKeyDeletion\"\n            ],\n            \"Resource\": \"*\"\n        },\n        {\n            \"Sid\": \"Allow use of the key\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"AWS\": \"arn:aws:iam::111122223333:role/ExamplePowerUserRole\"\n            },\n            \"Action\": [\n                \"kms:Encrypt\",\n                \"kms:Decrypt\",\n                \"kms:ReEncrypt*\",\n                \"kms:GenerateDataKey*\",\n                \"kms:DescribeKey\"\n            ],\n            \"Resource\": \"*\"\n        },\n        {\n            \"Sid\": \"Allow attachment of persistent resources\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"AWS\": \"arn:aws:iam::111122223333:role/ExamplePowerUserRole\"\n            },\n            \"Action\": [\n                \"kms:CreateGrant\",\n                \"kms:ListGrants\",\n                \"kms:RevokeGrant\"\n            ],\n            \"Resource\": \"*\",\n            \"Condition\": {\n                \"Bool\": {\n                    \"kms:GrantIsForAWSResource\": \"true\"\n                }\n            }\n        }\n    ]\n}\n"),
@@ -1129,7 +1129,7 @@ func ExampleKMS_PutKeyPolicy_shared00() {
 //
 // The following example reencrypts data with the specified CMK.
 func ExampleKMS_ReEncrypt_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.ReEncryptInput{
 		CiphertextBlob:   []byte("<binary data>"),
 		DestinationKeyId: aws.String("0987dcba-09fe-87dc-65ba-ab0987654321"),
@@ -1177,7 +1177,7 @@ func ExampleKMS_ReEncrypt_shared00() {
 //
 // The following example retires a grant.
 func ExampleKMS_RetireGrant_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.RetireGrantInput{
 		GrantId: aws.String("0c237476b39f8bc44e45212e08498fbe3151305030726c0590dd8d3e9f3d6a60"),
 		KeyId:   aws.String("arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab"),
@@ -1219,7 +1219,7 @@ func ExampleKMS_RetireGrant_shared00() {
 //
 // The following example revokes a grant.
 func ExampleKMS_RevokeGrant_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.RevokeGrantInput{
 		GrantId: aws.String("0c237476b39f8bc44e45212e08498fbe3151305030726c0590dd8d3e9f3d6a60"),
 		KeyId:   aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
@@ -1259,7 +1259,7 @@ func ExampleKMS_RevokeGrant_shared00() {
 //
 // The following example schedules the specified CMK for deletion.
 func ExampleKMS_ScheduleKeyDeletion_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.ScheduleKeyDeletionInput{
 		KeyId:               aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 		PendingWindowInDays: aws.Int64(7),
@@ -1297,7 +1297,7 @@ func ExampleKMS_ScheduleKeyDeletion_shared00() {
 //
 // The following example tags a CMK.
 func ExampleKMS_TagResource_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.TagResourceInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 		Tags: []*kms.Tag{
@@ -1342,7 +1342,7 @@ func ExampleKMS_TagResource_shared00() {
 //
 // The following example removes tags from a CMK.
 func ExampleKMS_UntagResource_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.UntagResourceInput{
 		KeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
 		TagKeys: []*string{
@@ -1384,7 +1384,7 @@ func ExampleKMS_UntagResource_shared00() {
 // The following example updates the specified alias to refer to the specified customer
 // master key (CMK).
 func ExampleKMS_UpdateAlias_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.UpdateAliasInput{
 		AliasName:   aws.String("alias/ExampleAlias"),
 		TargetKeyId: aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),
@@ -1422,7 +1422,7 @@ func ExampleKMS_UpdateAlias_shared00() {
 //
 // The following example updates the description of the specified CMK.
 func ExampleKMS_UpdateKeyDescription_shared00() {
-	svc := kms.New(session.New())
+	svc := kms.New(session.Must(session.NewSession()))
 	input := &kms.UpdateKeyDescriptionInput{
 		Description: aws.String("Example description that indicates the intended use of this CMK."),
 		KeyId:       aws.String("1234abcd-12ab-34cd-56ef-1234567890ab"),

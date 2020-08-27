@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // The following example creates an Amazon EKS cluster called prod.
 func ExampleEKS_CreateCluster_shared00() {
-	svc := eks.New(session.New())
+	svc := eks.New(session.Must(session.NewSession()))
 	input := &eks.CreateClusterInput{
 		ClientRequestToken: aws.String("1d2129a1-3d38-460a-9756-e5b91fddb951"),
 		Name:               aws.String("prod"),
@@ -82,7 +82,7 @@ func ExampleEKS_CreateCluster_shared00() {
 //
 // This example command deletes a cluster named `devel` in your default region.
 func ExampleEKS_DeleteCluster_shared00() {
-	svc := eks.New(session.New())
+	svc := eks.New(session.Must(session.NewSession()))
 	input := &eks.DeleteClusterInput{
 		Name: aws.String("devel"),
 	}
@@ -120,7 +120,7 @@ func ExampleEKS_DeleteCluster_shared00() {
 // This example command provides a description of the specified cluster in your default
 // region.
 func ExampleEKS_DescribeCluster_shared00() {
-	svc := eks.New(session.New())
+	svc := eks.New(session.Must(session.NewSession()))
 	input := &eks.DescribeClusterInput{
 		Name: aws.String("devel"),
 	}
@@ -155,7 +155,7 @@ func ExampleEKS_DescribeCluster_shared00() {
 //
 // This example command lists all of your available clusters in your default region.
 func ExampleEKS_ListClusters_shared00() {
-	svc := eks.New(session.New())
+	svc := eks.New(session.Must(session.NewSession()))
 	input := &eks.ListClustersInput{}
 
 	result, err := svc.ListClusters(input)
@@ -188,7 +188,7 @@ func ExampleEKS_ListClusters_shared00() {
 //
 // This example lists all of the tags for the `beta` cluster.
 func ExampleEKS_ListTagsForResource_shared00() {
-	svc := eks.New(session.New())
+	svc := eks.New(session.Must(session.NewSession()))
 	input := &eks.ListTagsForResourceInput{
 		ResourceArn: aws.String("arn:aws:eks:us-west-2:012345678910:cluster/beta"),
 	}

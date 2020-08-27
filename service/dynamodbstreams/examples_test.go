@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // The following example describes a stream with a given stream ARN.
 func ExampleDynamoDBStreams_DescribeStream_shared00() {
-	svc := dynamodbstreams.New(session.New())
+	svc := dynamodbstreams.New(session.Must(session.NewSession()))
 	input := &dynamodbstreams.DescribeStreamInput{
 		StreamArn: aws.String("arn:aws:dynamodb:us-west-2:111122223333:table/Forum/stream/2015-05-20T20:51:10.252"),
 	}
@@ -60,7 +60,7 @@ func ExampleDynamoDBStreams_DescribeStream_shared00() {
 //
 // The following example retrieves all the stream records from a shard.
 func ExampleDynamoDBStreams_GetRecords_shared00() {
-	svc := dynamodbstreams.New(session.New())
+	svc := dynamodbstreams.New(session.Must(session.NewSession()))
 	input := &dynamodbstreams.GetRecordsInput{
 		ShardIterator: aws.String("arn:aws:dynamodb:us-west-2:111122223333:table/Forum/stream/2015-05-20T20:51:10.252|1|AAAAAAAAAAEvJp6D+zaQ...  <remaining characters omitted> ..."),
 	}
@@ -98,7 +98,7 @@ func ExampleDynamoDBStreams_GetRecords_shared00() {
 // The following example returns a shard iterator for the provided stream ARN and shard
 // ID.
 func ExampleDynamoDBStreams_GetShardIterator_shared00() {
-	svc := dynamodbstreams.New(session.New())
+	svc := dynamodbstreams.New(session.Must(session.NewSession()))
 	input := &dynamodbstreams.GetShardIteratorInput{
 		ShardId:           aws.String("00000001414576573621-f55eea83"),
 		ShardIteratorType: aws.String("TRIM_HORIZON"),
@@ -133,7 +133,7 @@ func ExampleDynamoDBStreams_GetShardIterator_shared00() {
 //
 // The following example lists all of the stream ARNs.
 func ExampleDynamoDBStreams_ListStreams_shared00() {
-	svc := dynamodbstreams.New(session.New())
+	svc := dynamodbstreams.New(session.Must(session.NewSession()))
 	input := &dynamodbstreams.ListStreamsInput{}
 
 	result, err := svc.ListStreams(input)

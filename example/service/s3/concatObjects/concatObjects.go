@@ -57,7 +57,7 @@ func main() {
 	key1 := os.Args[2]
 	key2 := os.Args[3]
 	key3 := os.Args[4]
-	sess := session.New(&aws.Config{})
+	sess := session.Must(session.NewSession(&aws.Config{}))
 	svc := s3.New(sess)
 
 	c := client{svc, &bucket}

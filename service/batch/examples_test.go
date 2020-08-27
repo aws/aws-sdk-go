@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // This example cancels a job with the specified job ID.
 func ExampleBatch_CancelJob_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.CancelJobInput{
 		JobId:  aws.String("1d828f65-7a4d-42e8-996d-3b900ed59dc4"),
 		Reason: aws.String("Cancelling job."),
@@ -62,7 +62,7 @@ func ExampleBatch_CancelJob_shared00() {
 // This example creates a managed compute environment with specific C4 instance types
 // that are launched on demand. The compute environment is called C4OnDemand.
 func ExampleBatch_CreateComputeEnvironment_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.CreateComputeEnvironmentInput{
 		ComputeEnvironmentName: aws.String("C4OnDemand"),
 		ComputeResources: &batch.ComputeResource{
@@ -124,7 +124,7 @@ func ExampleBatch_CreateComputeEnvironment_shared00() {
 // is launched when the Spot bid price is at or below 20% of the On-Demand price for
 // the instance type. The compute environment is called M4Spot.
 func ExampleBatch_CreateComputeEnvironment_shared01() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.CreateComputeEnvironmentInput{
 		ComputeEnvironmentName: aws.String("M4Spot"),
 		ComputeResources: &batch.ComputeResource{
@@ -183,7 +183,7 @@ func ExampleBatch_CreateComputeEnvironment_shared01() {
 // This example creates a job queue called LowPriority that uses the M4Spot compute
 // environment.
 func ExampleBatch_CreateJobQueue_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.CreateJobQueueInput{
 		ComputeEnvironmentOrder: []*batch.ComputeEnvironmentOrder{
 			{
@@ -224,7 +224,7 @@ func ExampleBatch_CreateJobQueue_shared00() {
 // environment with an order of 1 and the M4Spot compute environment with an order of
 // 2.
 func ExampleBatch_CreateJobQueue_shared01() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.CreateJobQueueInput{
 		ComputeEnvironmentOrder: []*batch.ComputeEnvironmentOrder{
 			{
@@ -267,7 +267,7 @@ func ExampleBatch_CreateJobQueue_shared01() {
 //
 // This example deletes the P2OnDemand compute environment.
 func ExampleBatch_DeleteComputeEnvironment_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.DeleteComputeEnvironmentInput{
 		ComputeEnvironment: aws.String("P2OnDemand"),
 	}
@@ -298,7 +298,7 @@ func ExampleBatch_DeleteComputeEnvironment_shared00() {
 //
 // This example deletes the GPGPU job queue.
 func ExampleBatch_DeleteJobQueue_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.DeleteJobQueueInput{
 		JobQueue: aws.String("GPGPU"),
 	}
@@ -329,7 +329,7 @@ func ExampleBatch_DeleteJobQueue_shared00() {
 //
 // This example deregisters a job definition called sleep10.
 func ExampleBatch_DeregisterJobDefinition_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.DeregisterJobDefinitionInput{
 		JobDefinition: aws.String("sleep10"),
 	}
@@ -360,7 +360,7 @@ func ExampleBatch_DeregisterJobDefinition_shared00() {
 //
 // This example describes the P2OnDemand compute environment.
 func ExampleBatch_DescribeComputeEnvironments_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.DescribeComputeEnvironmentsInput{
 		ComputeEnvironments: []*string{
 			aws.String("P2OnDemand"),
@@ -393,7 +393,7 @@ func ExampleBatch_DescribeComputeEnvironments_shared00() {
 //
 // This example describes all of your active job definitions.
 func ExampleBatch_DescribeJobDefinitions_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.DescribeJobDefinitionsInput{
 		Status: aws.String("ACTIVE"),
 	}
@@ -424,7 +424,7 @@ func ExampleBatch_DescribeJobDefinitions_shared00() {
 //
 // This example describes the HighPriority job queue.
 func ExampleBatch_DescribeJobQueues_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.DescribeJobQueuesInput{
 		JobQueues: []*string{
 			aws.String("HighPriority"),
@@ -457,7 +457,7 @@ func ExampleBatch_DescribeJobQueues_shared00() {
 //
 // This example describes a job with the specified job ID.
 func ExampleBatch_DescribeJobs_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.DescribeJobsInput{
 		Jobs: []*string{
 			aws.String("24fa2d7a-64c4-49d2-8b47-f8da4fbde8e9"),
@@ -490,7 +490,7 @@ func ExampleBatch_DescribeJobs_shared00() {
 //
 // This example lists the running jobs in the HighPriority job queue.
 func ExampleBatch_ListJobs_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.ListJobsInput{
 		JobQueue: aws.String("HighPriority"),
 	}
@@ -522,7 +522,7 @@ func ExampleBatch_ListJobs_shared00() {
 // This example lists jobs in the HighPriority job queue that are in the SUBMITTED job
 // status.
 func ExampleBatch_ListJobs_shared01() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.ListJobsInput{
 		JobQueue:  aws.String("HighPriority"),
 		JobStatus: aws.String("SUBMITTED"),
@@ -554,7 +554,7 @@ func ExampleBatch_ListJobs_shared01() {
 //
 // This example registers a job definition for a simple container job.
 func ExampleBatch_RegisterJobDefinition_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.RegisterJobDefinitionInput{
 		ContainerProperties: &batch.ContainerProperties{
 			Command: []*string{
@@ -596,7 +596,7 @@ func ExampleBatch_RegisterJobDefinition_shared00() {
 // This example submits a simple container job called example to the HighPriority job
 // queue.
 func ExampleBatch_SubmitJob_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.SubmitJobInput{
 		JobDefinition: aws.String("sleep60"),
 		JobName:       aws.String("example"),
@@ -629,7 +629,7 @@ func ExampleBatch_SubmitJob_shared00() {
 //
 // This example terminates a job with the specified job ID.
 func ExampleBatch_TerminateJob_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.TerminateJobInput{
 		JobId:  aws.String("61e743ed-35e4-48da-b2de-5c8333821c84"),
 		Reason: aws.String("Terminating job."),
@@ -661,7 +661,7 @@ func ExampleBatch_TerminateJob_shared00() {
 //
 // This example disables the P2OnDemand compute environment so it can be deleted.
 func ExampleBatch_UpdateComputeEnvironment_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.UpdateComputeEnvironmentInput{
 		ComputeEnvironment: aws.String("P2OnDemand"),
 		State:              aws.String("DISABLED"),
@@ -693,7 +693,7 @@ func ExampleBatch_UpdateComputeEnvironment_shared00() {
 //
 // This example disables a job queue so that it can be deleted.
 func ExampleBatch_UpdateJobQueue_shared00() {
-	svc := batch.New(session.New())
+	svc := batch.New(session.Must(session.NewSession()))
 	input := &batch.UpdateJobQueueInput{
 		JobQueue: aws.String("GPGPU"),
 		State:    aws.String("DISABLED"),

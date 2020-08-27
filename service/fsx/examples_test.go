@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // This operation creates a new backup.
 func ExampleFSx_CreateBackup_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.CreateBackupInput{
 		FileSystemId: aws.String("fs-0498eed5fe91001ec"),
 		Tags: []*fsx.Tag{
@@ -76,7 +76,7 @@ func ExampleFSx_CreateBackup_shared00() {
 //
 // This operation creates a new file system.
 func ExampleFSx_CreateFileSystem_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.CreateFileSystemInput{
 		ClientRequestToken: aws.String("a8ca07e4-61ec-4399-99f4-19853801bcd5"),
 		FileSystemType:     aws.String("WINDOWS"),
@@ -145,7 +145,7 @@ func ExampleFSx_CreateFileSystem_shared00() {
 //
 // This operation creates a new file system from backup.
 func ExampleFSx_CreateFileSystemFromBackup_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.CreateFileSystemFromBackupInput{
 		BackupId:           aws.String("backup-03e3c82e0183b7b6b"),
 		ClientRequestToken: aws.String("f4c94ed7-238d-4c46-93db-48cd62ec33b7"),
@@ -206,7 +206,7 @@ func ExampleFSx_CreateFileSystemFromBackup_shared00() {
 //
 // This operation deletes an Amazon FSx file system backup.
 func ExampleFSx_DeleteBackup_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.DeleteBackupInput{
 		BackupId: aws.String("backup-03e3c82e0183b7b6b"),
 	}
@@ -245,7 +245,7 @@ func ExampleFSx_DeleteBackup_shared00() {
 //
 // This operation deletes an Amazon FSx file system.
 func ExampleFSx_DeleteFileSystem_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.DeleteFileSystemInput{
 		FileSystemId: aws.String("fs-0498eed5fe91001ec"),
 	}
@@ -282,7 +282,7 @@ func ExampleFSx_DeleteFileSystem_shared00() {
 //
 // This operation describes all of the Amazon FSx backups in an account.
 func ExampleFSx_DescribeBackups_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.DescribeBackupsInput{}
 
 	result, err := svc.DescribeBackups(input)
@@ -315,7 +315,7 @@ func ExampleFSx_DescribeBackups_shared00() {
 //
 // This operation describes all of the Amazon FSx file systems in an account.
 func ExampleFSx_DescribeFileSystems_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.DescribeFileSystemsInput{}
 
 	result, err := svc.DescribeFileSystems(input)
@@ -346,7 +346,7 @@ func ExampleFSx_DescribeFileSystems_shared00() {
 //
 // This operation lists tags for an Amazon FSx resource.
 func ExampleFSx_ListTagsForResource_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.ListTagsForResourceInput{
 		ResourceARN: aws.String("arn:aws:fsx:us-east-1:012345678912:file-system/fs-0498eed5fe91001ec"),
 	}
@@ -383,7 +383,7 @@ func ExampleFSx_ListTagsForResource_shared00() {
 //
 // This operation tags an Amazon FSx resource.
 func ExampleFSx_TagResource_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.TagResourceInput{
 		ResourceARN: aws.String("arn:aws:fsx:us-east-1:012345678912:file-system/fs-0498eed5fe91001ec"),
 		Tags: []*fsx.Tag{
@@ -426,7 +426,7 @@ func ExampleFSx_TagResource_shared00() {
 //
 // This operation untags an Amazon FSx resource.
 func ExampleFSx_UntagResource_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.UntagResourceInput{
 		ResourceARN: aws.String("arn:aws:fsx:us-east-1:012345678912:file-system/fs-0498eed5fe91001ec"),
 		TagKeys: []*string{
@@ -466,7 +466,7 @@ func ExampleFSx_UntagResource_shared00() {
 //
 // This operation updates an existing file system.
 func ExampleFSx_UpdateFileSystem_shared00() {
-	svc := fsx.New(session.New())
+	svc := fsx.New(session.Must(session.NewSession()))
 	input := &fsx.UpdateFileSystemInput{
 		FileSystemId: aws.String("fs-0498eed5fe91001ec"),
 		WindowsConfiguration: &fsx.UpdateFileSystemWindowsConfiguration{

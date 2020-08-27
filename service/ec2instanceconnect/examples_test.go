@@ -30,7 +30,7 @@ func parseTime(layout, value string) *time.Time {
 // The following example pushes a sample SSH public key to the EC2 instance i-abcd1234
 // in AZ us-west-2b for use by the instance OS user ec2-user.
 func ExampleEC2InstanceConnect_SendSSHPublicKey_shared00() {
-	svc := ec2instanceconnect.New(session.New())
+	svc := ec2instanceconnect.New(session.Must(session.NewSession()))
 	input := &ec2instanceconnect.SendSSHPublicKeyInput{
 		AvailabilityZone: aws.String("us-west-2a"),
 		InstanceId:       aws.String("i-abcd1234"),

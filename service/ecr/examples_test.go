@@ -30,7 +30,7 @@ func parseTime(layout, value string) *time.Time {
 // This example deletes images with the tags precise and trusty in a repository called
 // ubuntu in the default registry for an account.
 func ExampleECR_BatchDeleteImage_shared00() {
-	svc := ecr.New(session.New())
+	svc := ecr.New(session.Must(session.NewSession()))
 	input := &ecr.BatchDeleteImageInput{
 		ImageIds: []*ecr.ImageIdentifier{
 			{
@@ -69,7 +69,7 @@ func ExampleECR_BatchDeleteImage_shared00() {
 // This example obtains information for an image with a specified image digest ID from
 // the repository named ubuntu in the current account.
 func ExampleECR_BatchGetImage_shared00() {
-	svc := ecr.New(session.New())
+	svc := ecr.New(session.Must(session.NewSession()))
 	input := &ecr.BatchGetImageInput{
 		ImageIds: []*ecr.ImageIdentifier{
 			{
@@ -108,7 +108,7 @@ func ExampleECR_BatchGetImage_shared00() {
 // This example creates a repository called nginx-web-app inside the project-a namespace
 // in the default registry for an account.
 func ExampleECR_CreateRepository_shared00() {
-	svc := ecr.New(session.New())
+	svc := ecr.New(session.Must(session.NewSession()))
 	input := &ecr.CreateRepositoryInput{
 		RepositoryName: aws.String("project-a/nginx-web-app"),
 	}
@@ -150,7 +150,7 @@ func ExampleECR_CreateRepository_shared00() {
 // This example force deletes a repository named ubuntu in the default registry for
 // an account. The force parameter is required if the repository contains images.
 func ExampleECR_DeleteRepository_shared00() {
-	svc := ecr.New(session.New())
+	svc := ecr.New(session.Must(session.NewSession()))
 	input := &ecr.DeleteRepositoryInput{
 		Force:          aws.Bool(true),
 		RepositoryName: aws.String("ubuntu"),
@@ -189,7 +189,7 @@ func ExampleECR_DeleteRepository_shared00() {
 // This example deletes the policy associated with the repository named ubuntu in the
 // current account.
 func ExampleECR_DeleteRepositoryPolicy_shared00() {
-	svc := ecr.New(session.New())
+	svc := ecr.New(session.Must(session.NewSession()))
 	input := &ecr.DeleteRepositoryPolicyInput{
 		RepositoryName: aws.String("ubuntu"),
 	}
@@ -225,7 +225,7 @@ func ExampleECR_DeleteRepositoryPolicy_shared00() {
 // The following example obtains a list and description of all repositories in the default
 // registry to which the current user has access.
 func ExampleECR_DescribeRepositories_shared00() {
-	svc := ecr.New(session.New())
+	svc := ecr.New(session.Must(session.NewSession()))
 	input := &ecr.DescribeRepositoriesInput{}
 
 	result, err := svc.DescribeRepositories(input)
@@ -256,7 +256,7 @@ func ExampleECR_DescribeRepositories_shared00() {
 //
 // This example gets an authorization token for your default registry.
 func ExampleECR_GetAuthorizationToken_shared00() {
-	svc := ecr.New(session.New())
+	svc := ecr.New(session.Must(session.NewSession()))
 	input := &ecr.GetAuthorizationTokenInput{}
 
 	result, err := svc.GetAuthorizationToken(input)
@@ -285,7 +285,7 @@ func ExampleECR_GetAuthorizationToken_shared00() {
 //
 // This example obtains the repository policy for the repository named ubuntu.
 func ExampleECR_GetRepositoryPolicy_shared00() {
-	svc := ecr.New(session.New())
+	svc := ecr.New(session.Must(session.NewSession()))
 	input := &ecr.GetRepositoryPolicyInput{
 		RepositoryName: aws.String("ubuntu"),
 	}
@@ -321,7 +321,7 @@ func ExampleECR_GetRepositoryPolicy_shared00() {
 // This example lists all of the images in the repository named ubuntu in the default
 // registry in the current account.
 func ExampleECR_ListImages_shared00() {
-	svc := ecr.New(session.New())
+	svc := ecr.New(session.Must(session.NewSession()))
 	input := &ecr.ListImagesInput{
 		RepositoryName: aws.String("ubuntu"),
 	}

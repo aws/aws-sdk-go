@@ -31,7 +31,7 @@ import (
 //    }
 //
 //    func main() {
-//        sess := session.New()
+//        sess := session.Must(session.NewSession())
 //        svc := wafregional.New(sess)
 //
 //        myFunc(svc)

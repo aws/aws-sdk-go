@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // The following example deletes the AWS Cost and Usage report named ExampleReport.
 func ExampleCostandUsageReportService_DeleteReportDefinition_shared00() {
-	svc := costandusagereportservice.New(session.New())
+	svc := costandusagereportservice.New(session.Must(session.NewSession()))
 	input := &costandusagereportservice.DeleteReportDefinitionInput{
 		ReportName: aws.String("ExampleReport"),
 	}
@@ -60,7 +60,7 @@ func ExampleCostandUsageReportService_DeleteReportDefinition_shared00() {
 //
 // The following example lists the AWS Cost and Usage reports for the account.
 func ExampleCostandUsageReportService_DescribeReportDefinitions_shared00() {
-	svc := costandusagereportservice.New(session.New())
+	svc := costandusagereportservice.New(session.Must(session.NewSession()))
 	input := &costandusagereportservice.DescribeReportDefinitionsInput{
 		MaxResults: aws.Int64(5),
 	}
@@ -89,7 +89,7 @@ func ExampleCostandUsageReportService_DescribeReportDefinitions_shared00() {
 //
 // The following example creates a AWS Cost and Usage report named ExampleReport.
 func ExampleCostandUsageReportService_PutReportDefinition_shared00() {
-	svc := costandusagereportservice.New(session.New())
+	svc := costandusagereportservice.New(session.Must(session.NewSession()))
 	input := &costandusagereportservice.PutReportDefinitionInput{
 		ReportDefinition: &costandusagereportservice.ReportDefinition{
 			AdditionalArtifacts: []*string{
