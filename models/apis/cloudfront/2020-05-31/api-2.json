@@ -231,6 +231,19 @@
         {"shape":"InconsistentQuantities"}
       ]
     },
+    "CreateMonitoringSubscription":{
+      "name":"CreateMonitoringSubscription2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
+      },
+      "input":{"shape":"CreateMonitoringSubscriptionRequest"},
+      "output":{"shape":"CreateMonitoringSubscriptionResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchDistribution"}
+      ]
+    },
     "CreateOriginRequestPolicy":{
       "name":"CreateOriginRequestPolicy2020_05_31",
       "http":{
@@ -394,6 +407,19 @@
         {"shape":"NoSuchFieldLevelEncryptionProfile"},
         {"shape":"PreconditionFailed"},
         {"shape":"FieldLevelEncryptionProfileInUse"}
+      ]
+    },
+    "DeleteMonitoringSubscription":{
+      "name":"DeleteMonitoringSubscription2020_05_31",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
+      },
+      "input":{"shape":"DeleteMonitoringSubscriptionRequest"},
+      "output":{"shape":"DeleteMonitoringSubscriptionResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchDistribution"}
       ]
     },
     "DeleteOriginRequestPolicy":{
@@ -587,6 +613,19 @@
         {"shape":"NoSuchInvalidation"},
         {"shape":"NoSuchDistribution"},
         {"shape":"AccessDenied"}
+      ]
+    },
+    "GetMonitoringSubscription":{
+      "name":"GetMonitoringSubscription2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/distributions/{DistributionId}/monitoring-subscription"
+      },
+      "input":{"shape":"GetMonitoringSubscriptionRequest"},
+      "output":{"shape":"GetMonitoringSubscriptionResult"},
+      "errors":[
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchDistribution"}
       ]
     },
     "GetOriginRequestPolicy":{
@@ -1718,6 +1757,33 @@
       },
       "payload":"Invalidation"
     },
+    "CreateMonitoringSubscriptionRequest":{
+      "type":"structure",
+      "required":[
+        "MonitoringSubscription",
+        "DistributionId"
+      ],
+      "members":{
+        "DistributionId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"DistributionId"
+        },
+        "MonitoringSubscription":{
+          "shape":"MonitoringSubscription",
+          "locationName":"MonitoringSubscription",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        }
+      },
+      "payload":"MonitoringSubscription"
+    },
+    "CreateMonitoringSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "MonitoringSubscription":{"shape":"MonitoringSubscription"}
+      },
+      "payload":"MonitoringSubscription"
+    },
     "CreateOriginRequestPolicyRequest":{
       "type":"structure",
       "required":["OriginRequestPolicyConfig"],
@@ -1997,6 +2063,22 @@
           "location":"header",
           "locationName":"If-Match"
         }
+      }
+    },
+    "DeleteMonitoringSubscriptionRequest":{
+      "type":"structure",
+      "required":["DistributionId"],
+      "members":{
+        "DistributionId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"DistributionId"
+        }
+      }
+    },
+    "DeleteMonitoringSubscriptionResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteOriginRequestPolicyRequest":{
@@ -2724,6 +2806,24 @@
         "Invalidation":{"shape":"Invalidation"}
       },
       "payload":"Invalidation"
+    },
+    "GetMonitoringSubscriptionRequest":{
+      "type":"structure",
+      "required":["DistributionId"],
+      "members":{
+        "DistributionId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"DistributionId"
+        }
+      }
+    },
+    "GetMonitoringSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "MonitoringSubscription":{"shape":"MonitoringSubscription"}
+      },
+      "payload":"MonitoringSubscription"
     },
     "GetOriginRequestPolicyConfigRequest":{
       "type":"structure",
@@ -3600,6 +3700,12 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "MonitoringSubscription":{
+      "type":"structure",
+      "members":{
+        "RealtimeMetricsSubscriptionConfig":{"shape":"RealtimeMetricsSubscriptionConfig"}
+      }
+    },
     "NoSuchCachePolicy":{
       "type":"structure",
       "members":{
@@ -4151,6 +4257,20 @@
         "shape":"string",
         "locationName":"Name"
       }
+    },
+    "RealtimeMetricsSubscriptionConfig":{
+      "type":"structure",
+      "required":["RealtimeMetricsSubscriptionStatus"],
+      "members":{
+        "RealtimeMetricsSubscriptionStatus":{"shape":"RealtimeMetricsSubscriptionStatus"}
+      }
+    },
+    "RealtimeMetricsSubscriptionStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
     },
     "ResourceARN":{
       "type":"string",

@@ -11,6 +11,7 @@
     "DeleteSecurityConfiguration": "<p>Deletes a security configuration.</p>",
     "DescribeCluster": "<p>Provides cluster-level details including status, hardware and software configuration, VPC settings, and so on. </p>",
     "DescribeJobFlows": "<p>This API is deprecated and will eventually be removed. We recommend you use <a>ListClusters</a>, <a>DescribeCluster</a>, <a>ListSteps</a>, <a>ListInstanceGroups</a> and <a>ListBootstrapActions</a> instead.</p> <p>DescribeJobFlows returns a list of job flows that match all of the supplied parameters. The parameters can include a list of job flow IDs, job flow states, and restrictions on job flow creation date and time.</p> <p>Regardless of supplied parameters, only job flows created within the last two months are returned.</p> <p>If no parameters are supplied, then job flows matching either of the following criteria are returned:</p> <ul> <li> <p>Job flows created and completed in the last two weeks</p> </li> <li> <p> Job flows created within the last two months that are in one of the following states: <code>RUNNING</code>, <code>WAITING</code>, <code>SHUTTING_DOWN</code>, <code>STARTING</code> </p> </li> </ul> <p>Amazon EMR can return a maximum of 512 job flow descriptions.</p>",
+    "DescribeNotebookExecution": "<p>Provides details of a notebook execution.</p>",
     "DescribeSecurityConfiguration": "<p>Provides the details of a security configuration by returning the configuration JSON.</p>",
     "DescribeStep": "<p>Provides more detail about the cluster step.</p>",
     "GetBlockPublicAccessConfiguration": "<p>Returns the Amazon EMR block public access configuration for your AWS account in the current Region. For more information see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html\">Configure Block Public Access for Amazon EMR</a> in the <i>Amazon EMR Management Guide</i>.</p>",
@@ -20,6 +21,7 @@
     "ListInstanceFleets": "<p>Lists all available details about the instance fleets in a cluster.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
     "ListInstanceGroups": "<p>Provides all available details about the instance groups in a cluster.</p>",
     "ListInstances": "<p>Provides information for all active EC2 instances and EC2 instances terminated in the last 30 days, up to a maximum of 2,000. EC2 instances in any of the following states are considered active: AWAITING_FULFILLMENT, PROVISIONING, BOOTSTRAPPING, RUNNING.</p>",
+    "ListNotebookExecutions": "<p>Provides summaries of all notebook executions. You can filter the list based on multiple criteria such as status, time range, and editor id. Returns a maximum of 50 notebook executions and a marker to track the paging of a longer notebook execution list across multiple <code>ListNotebookExecution</code> calls.</p>",
     "ListSecurityConfigurations": "<p>Lists all the security configurations visible to this account, providing their creation dates and times, and their names. This call returns a maximum of 50 clusters per call, but returns a marker to track the paging of the cluster list across multiple ListSecurityConfigurations calls.</p>",
     "ListSteps": "<p>Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code> with the request of filter by <code>StepStates</code>. You can specify a maximum of ten <code>stepIDs</code>.</p>",
     "ModifyCluster": "<p>Modifies the number of steps that can be executed concurrently for the cluster specified using ClusterID.</p>",
@@ -34,6 +36,8 @@
     "RunJobFlow": "<p>RunJobFlow creates and starts running a new cluster (job flow). The cluster runs the steps specified. After the steps complete, the cluster stops and the HDFS partition is lost. To prevent loss of data, configure the last step of the job flow to store results in Amazon S3. If the <a>JobFlowInstancesConfig</a> <code>KeepJobFlowAliveWhenNoSteps</code> parameter is set to <code>TRUE</code>, the cluster transitions to the WAITING state rather than shutting down after the steps have completed. </p> <p>For additional protection, you can set the <a>JobFlowInstancesConfig</a> <code>TerminationProtected</code> parameter to <code>TRUE</code> to lock the cluster and prevent it from being terminated by API call, user intervention, or in the event of a job flow error.</p> <p>A maximum of 256 steps are allowed in each job flow.</p> <p>If your cluster is long-running (such as a Hive data warehouse) or complex, you may require more than 256 steps to process your data. You can bypass the 256-step limitation in various ways, including using the SSH shell to connect to the master node and submitting queries directly to the software running on the master node, such as Hive and Hadoop. For more information on how to do this, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/AddMoreThan256Steps.html\">Add More than 256 Steps to a Cluster</a> in the <i>Amazon EMR Management Guide</i>.</p> <p>For long running clusters, we recommend that you periodically store your results.</p> <note> <p>The instance fleets configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. The RunJobFlow request can contain InstanceFleets parameters or InstanceGroups parameters, but not both.</p> </note>",
     "SetTerminationProtection": "<p>SetTerminationProtection locks a cluster (job flow) so the EC2 instances in the cluster cannot be terminated by user intervention, an API call, or in the event of a job-flow error. The cluster still terminates upon successful completion of the job flow. Calling <code>SetTerminationProtection</code> on a cluster is similar to calling the Amazon EC2 <code>DisableAPITermination</code> API on all EC2 instances in a cluster.</p> <p> <code>SetTerminationProtection</code> is used to prevent accidental termination of a cluster and to ensure that in the event of an error, the instances persist so that you can recover any data stored in their ephemeral instance storage.</p> <p> To terminate a cluster that has been locked by setting <code>SetTerminationProtection</code> to <code>true</code>, you must first unlock the job flow by a subsequent call to <code>SetTerminationProtection</code> in which you set the value to <code>false</code>. </p> <p> For more information, see<a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html\">Managing Cluster Termination</a> in the <i>Amazon EMR Management Guide</i>. </p>",
     "SetVisibleToAllUsers": "<p>Sets the <a>Cluster$VisibleToAllUsers</a> value, which determines whether the cluster is visible to all IAM users of the AWS account associated with the cluster. Only the IAM user who created the cluster or the AWS account root user can call this action. The default value, <code>true</code>, indicates that all IAM users in the AWS account can perform cluster actions if they have the proper IAM policy permissions. If set to <code>false</code>, only the IAM user that created the cluster can perform actions. This action works on running clusters. You can override the default <code>true</code> setting when you create a cluster by using the <code>VisibleToAllUsers</code> parameter with <code>RunJobFlow</code>.</p>",
+    "StartNotebookExecution": "<p>Starts a notebook execution.</p>",
+    "StopNotebookExecution": "<p>Stops a notebook execution.</p>",
     "TerminateJobFlows": "<p>TerminateJobFlows shuts a list of clusters (job flows) down. When a job flow is shut down, any step not yet completed is canceled and the EC2 instances on which the cluster is running are stopped. Any log files not already saved are uploaded to Amazon S3 if a LogUri was specified when the cluster was created.</p> <p>The maximum number of clusters allowed is 10. The call to <code>TerminateJobFlows</code> is asynchronous. Depending on the configuration of the cluster, it may take up to 1-5 minutes for the cluster to completely terminate and release allocated resources, such as Amazon EC2 instances.</p>"
   },
   "shapes": {
@@ -350,7 +354,7 @@
     "ComputeLimits": {
       "base": "<p> The EC2 unit limits for a managed scaling policy. The managed scaling activity of a cluster can not be above or below these limits. The limit only applies to the core and task nodes. The master node cannot be scaled after initial configuration. </p>",
       "refs": {
-        "ManagedScalingPolicy$ComputeLimits": "<p> The EC2 unit limits for a managed scaling policy. The managed scaling activity of a cluster is not allowed to go above or below these limits. The limit only applies to the core and task nodes. The master node cannot be scaled after initial configuration. </p>"
+        "ManagedScalingPolicy$ComputeLimits": "<p>The EC2 unit limits for a managed scaling policy. The managed scaling activity of a cluster is not allowed to go above or below these limits. The limit only applies to the core and task nodes. The master node cannot be scaled after initial configuration.</p>"
       }
     },
     "ComputeLimitsUnitType": {
@@ -419,6 +423,12 @@
         "JobFlowExecutionStatusDetail$EndDateTime": "<p>The completion date and time of the job flow.</p>",
         "ListClustersInput$CreatedAfter": "<p>The creation date and time beginning value filter for listing clusters.</p>",
         "ListClustersInput$CreatedBefore": "<p>The creation date and time end value filter for listing clusters.</p>",
+        "ListNotebookExecutionsInput$From": "<p>The beginning of time range filter for listing notebook executions. The default is the timestamp of 30 days ago.</p>",
+        "ListNotebookExecutionsInput$To": "<p>The end of time range filter for listing notebook executions. The default is the current timestamp.</p>",
+        "NotebookExecution$StartTime": "<p>The timestamp when notebook execution started.</p>",
+        "NotebookExecution$EndTime": "<p>The timestamp when notebook execution ended.</p>",
+        "NotebookExecutionSummary$StartTime": "<p>The timestamp when notebook execution started.</p>",
+        "NotebookExecutionSummary$EndTime": "<p>The timestamp when notebook execution started.</p>",
         "SecurityConfigurationSummary$CreationDateTime": "<p>The date and time the security configuration was created.</p>",
         "StepExecutionStatusDetail$CreationDateTime": "<p>The creation date and time of the step.</p>",
         "StepExecutionStatusDetail$StartDateTime": "<p>The start date and time of the step.</p>",
@@ -455,6 +465,16 @@
     },
     "DescribeJobFlowsOutput": {
       "base": "<p> The output for the <a>DescribeJobFlows</a> operation. </p>",
+      "refs": {
+      }
+    },
+    "DescribeNotebookExecutionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeNotebookExecutionOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -552,6 +572,19 @@
       "refs": {
         "InternalServerException$Message": "<p>The message associated with the exception.</p>",
         "InvalidRequestException$Message": "<p>The message associated with the exception.</p>"
+      }
+    },
+    "ExecutionEngineConfig": {
+      "base": "<p>Specifies the execution engine (cluster) to run the notebook and perform the notebook execution, for example, an EMR cluster.</p>",
+      "refs": {
+        "NotebookExecution$ExecutionEngine": "<p>The execution engine, such as an EMR cluster, used to run the EMR notebook and perform the notebook execution.</p>",
+        "StartNotebookExecutionInput$ExecutionEngine": "<p>Specifies the execution engine (cluster) that runs the notebook execution.</p>"
+      }
+    },
+    "ExecutionEngineType": {
+      "base": null,
+      "refs": {
+        "ExecutionEngineConfig$Type": "<p>The type of execution engine. A value of <code>EMR</code> specifies an EMR cluster.</p>"
       }
     },
     "FailureDetails": {
@@ -1068,6 +1101,16 @@
       "refs": {
       }
     },
+    "ListNotebookExecutionsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListNotebookExecutionsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListSecurityConfigurationsInput": {
       "base": null,
       "refs": {
@@ -1116,6 +1159,8 @@
         "ListInstanceGroupsOutput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
         "ListInstancesInput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
         "ListInstancesOutput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
+        "ListNotebookExecutionsInput$Marker": "<p>The pagination token, returned by a previous <code>ListNotebookExecutions</code> call, that indicates the start of the list for this <code>ListNotebookExecutions</code> call.</p>",
+        "ListNotebookExecutionsOutput$Marker": "<p>A pagination token that a subsequent <code>ListNotebookExecutions</code> can use to determine the next set of results to retrieve.</p>",
         "ListSecurityConfigurationsInput$Marker": "<p>The pagination token that indicates the set of results to retrieve.</p>",
         "ListSecurityConfigurationsOutput$Marker": "<p>A pagination token that indicates the next set of results to retrieve. Include the marker in the next ListSecurityConfiguration call to retrieve the next page of results, if required.</p>",
         "ListStepsInput$Marker": "<p>The pagination token that indicates the next set of results to retrieve.</p>",
@@ -1176,6 +1221,32 @@
         "CloudWatchAlarmDefinition$Threshold": "<p>The value against which the specified statistic is compared.</p>",
         "InstanceTypeConfig$BidPriceAsPercentageOfOnDemandPrice": "<p>The bid price, as a percentage of On-Demand price, for each EC2 Spot instance as defined by <code>InstanceType</code>. Expressed as a number (for example, 20 specifies 20%). If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
         "InstanceTypeSpecification$BidPriceAsPercentageOfOnDemandPrice": "<p>The bid price, as a percentage of On-Demand price, for each EC2 Spot instance as defined by <code>InstanceType</code>. Expressed as a number (for example, 20 specifies 20%).</p>"
+      }
+    },
+    "NotebookExecution": {
+      "base": "<p>A notebook execution. An execution is a specific instance that an EMR Notebook is run using the <code>StartNotebookExecution</code> action.</p>",
+      "refs": {
+        "DescribeNotebookExecutionOutput$NotebookExecution": "<p>Properties of the notebook execution.</p>"
+      }
+    },
+    "NotebookExecutionStatus": {
+      "base": null,
+      "refs": {
+        "ListNotebookExecutionsInput$Status": "<p>The status filter for listing notebook executions.</p> <ul> <li> <p> <code>START_PENDING</code> indicates that the cluster has received the execution request but execution has not begun.</p> </li> <li> <p> <code>STARTING</code> indicates that the execution is starting on the cluster.</p> </li> <li> <p> <code>RUNNING</code> indicates that the execution is being processed by the cluster.</p> </li> <li> <p> <code>FINISHING</code> indicates that execution processing is in the final stages.</p> </li> <li> <p> <code>FINISHED</code> indicates that the execution has completed without error.</p> </li> <li> <p> <code>FAILING</code> indicates that the execution is failing and will not finish successfully.</p> </li> <li> <p> <code>FAILED</code> indicates that the execution failed.</p> </li> <li> <p> <code>STOP_PENDING</code> indicates that the cluster has received a <code>StopNotebookExecution</code> request and the stop is pending.</p> </li> <li> <p> <code>STOPPING</code> indicates that the cluster is in the process of stopping the execution as a result of a <code>StopNotebookExecution</code> request.</p> </li> <li> <p> <code>STOPPED</code> indicates that the execution stopped because of a <code>StopNotebookExecution</code> request.</p> </li> </ul>",
+        "NotebookExecution$Status": "<p>The status of the notebook execution.</p> <ul> <li> <p> <code>START_PENDING</code> indicates that the cluster has received the execution request but execution has not begun.</p> </li> <li> <p> <code>STARTING</code> indicates that the execution is starting on the cluster.</p> </li> <li> <p> <code>RUNNING</code> indicates that the execution is being processed by the cluster.</p> </li> <li> <p> <code>FINISHING</code> indicates that execution processing is in the final stages.</p> </li> <li> <p> <code>FINISHED</code> indicates that the execution has completed without error.</p> </li> <li> <p> <code>FAILING</code> indicates that the execution is failing and will not finish successfully.</p> </li> <li> <p> <code>FAILED</code> indicates that the execution failed.</p> </li> <li> <p> <code>STOP_PENDING</code> indicates that the cluster has received a <code>StopNotebookExecution</code> request and the stop is pending.</p> </li> <li> <p> <code>STOPPING</code> indicates that the cluster is in the process of stopping the execution as a result of a <code>StopNotebookExecution</code> request.</p> </li> <li> <p> <code>STOPPED</code> indicates that the execution stopped because of a <code>StopNotebookExecution</code> request.</p> </li> </ul>",
+        "NotebookExecutionSummary$Status": "<p>The status of the notebook execution.</p> <ul> <li> <p> <code>START_PENDING</code> indicates that the cluster has received the execution request but execution has not begun.</p> </li> <li> <p> <code>STARTING</code> indicates that the execution is starting on the cluster.</p> </li> <li> <p> <code>RUNNING</code> indicates that the execution is being processed by the cluster.</p> </li> <li> <p> <code>FINISHING</code> indicates that execution processing is in the final stages.</p> </li> <li> <p> <code>FINISHED</code> indicates that the execution has completed without error.</p> </li> <li> <p> <code>FAILING</code> indicates that the execution is failing and will not finish successfully.</p> </li> <li> <p> <code>FAILED</code> indicates that the execution failed.</p> </li> <li> <p> <code>STOP_PENDING</code> indicates that the cluster has received a <code>StopNotebookExecution</code> request and the stop is pending.</p> </li> <li> <p> <code>STOPPING</code> indicates that the cluster is in the process of stopping the execution as a result of a <code>StopNotebookExecution</code> request.</p> </li> <li> <p> <code>STOPPED</code> indicates that the execution stopped because of a <code>StopNotebookExecution</code> request.</p> </li> </ul>"
+      }
+    },
+    "NotebookExecutionSummary": {
+      "base": "<p/>",
+      "refs": {
+        "NotebookExecutionSummaryList$member": null
+      }
+    },
+    "NotebookExecutionSummaryList": {
+      "base": null,
+      "refs": {
+        "ListNotebookExecutionsOutput$NotebookExecutions": "<p>A list of notebook executions.</p>"
       }
     },
     "OnDemandProvisioningAllocationStrategy": {
@@ -1413,6 +1484,16 @@
         "SpotProvisioningSpecification$TimeoutAction": "<p>The action to take when <code>TargetSpotCapacity</code> has not been fulfilled when the <code>TimeoutDurationMinutes</code> has expired; that is, when all Spot instances could not be provisioned within the Spot provisioning timeout. Valid values are <code>TERMINATE_CLUSTER</code> and <code>SWITCH_TO_ON_DEMAND</code>. SWITCH_TO_ON_DEMAND specifies that if no Spot instances are available, On-Demand Instances should be provisioned to fulfill any remaining Spot capacity.</p>"
       }
     },
+    "StartNotebookExecutionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartNotebookExecutionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Statistic": {
       "base": null,
       "refs": {
@@ -1535,6 +1616,11 @@
         "StepStatus$Timeline": "<p>The timeline of the cluster step status over time.</p>"
       }
     },
+    "StopNotebookExecutionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -1643,7 +1729,9 @@
       "refs": {
         "AddTagsInput$Tags": "<p>A list of tags to associate with a cluster and propagate to EC2 instances. Tags are user-defined key/value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters.</p>",
         "Cluster$Tags": "<p>A list of tags associated with a cluster.</p>",
-        "RunJobFlowInput$Tags": "<p>A list of tags to associate with a cluster and propagate to Amazon EC2 instances.</p>"
+        "NotebookExecution$Tags": "<p>A list of tags associated with a notebook execution. Tags are user-defined key value pairs that consist of a required key string with a maximum of 128 characters and an optional value string with a maximum of 256 characters.</p>",
+        "RunJobFlowInput$Tags": "<p>A list of tags to associate with a cluster and propagate to Amazon EC2 instances.</p>",
+        "StartNotebookExecutionInput$Tags": "<p>A list of tags associated with a notebook execution. Tags are user-defined key value pairs that consist of a required key string with a maximum of 128 characters and an optional value string with a maximum of 256 characters.</p>"
       }
     },
     "TerminateJobFlowsInput": {
@@ -1704,6 +1792,9 @@
         "JobFlowInstancesDetail$MasterInstanceId": "<p>The Amazon EC2 instance identifier of the master node.</p>",
         "KeyValue$Key": "<p>The unique identifier of a key value pair.</p>",
         "KeyValue$Value": "<p>The value part of the identified key.</p>",
+        "NotebookExecution$NotebookParams": "<p>Input parameters in JSON format passed to the EMR Notebook at runtime for execution.</p>",
+        "NotebookExecution$OutputNotebookURI": "<p>The location of the notebook execution's output file in Amazon S3.</p>",
+        "NotebookExecution$LastStateChangeReason": "<p>The reason for the latest status change of the notebook execution.</p>",
         "PlacementType$AvailabilityZone": "<p>The Amazon EC2 Availability Zone for the cluster. <code>AvailabilityZone</code> is used for uniform instance groups, while <code>AvailabilityZones</code> (plural) is used for instance fleets.</p>",
         "RunJobFlowInput$LogUri": "<p>The location in Amazon S3 to write the log files of the job flow. If a value is not provided, logs are not created.</p>",
         "RunJobFlowInput$LogEncryptionKmsKeyId": "<p>The AWS KMS customer master key (CMK) used for encrypting log files. If a value is not provided, the logs will remain encrypted by AES-256. This attribute is only available with EMR version 5.30.0 and later, excluding EMR 6.0.0.</p>",
@@ -1714,6 +1805,9 @@
         "RunJobFlowInput$AutoScalingRole": "<p>An IAM role for automatic scaling policies. The default role is <code>EMR_AutoScaling_DefaultRole</code>. The IAM role provides permissions that the automatic scaling feature requires to launch and terminate EC2 instances in an instance group.</p>",
         "ScriptBootstrapActionConfig$Path": "<p>Location of the script to run during a bootstrap action. Can be either a location in Amazon S3 or on a local file system.</p>",
         "SecurityConfigurationSummary$Name": "<p>The name of the security configuration.</p>",
+        "StartNotebookExecutionInput$RelativePath": "<p>The path and file name of the notebook file for this execution, relative to the path specified for the EMR Notebook. For example, if you specify a path of <code>s3://MyBucket/MyNotebooks</code> when you create an EMR Notebook for a notebook with an ID of <code>e-ABCDEFGHIJK1234567890ABCD</code> (the <code>EditorID</code> of this request), and you specify a <code>RelativePath</code> of <code>my_notebook_executions/notebook_execution.ipynb</code>, the location of the file for the notebook execution is <code>s3://MyBucket/MyNotebooks/e-ABCDEFGHIJK1234567890ABCD/my_notebook_executions/notebook_execution.ipynb</code>.</p>",
+        "StartNotebookExecutionInput$NotebookParams": "<p>Input parameters in JSON format passed to the EMR Notebook at runtime for execution.</p>",
+        "StartNotebookExecutionInput$ServiceRole": "<p>The name or ARN of the IAM role that is used as the service role for Amazon EMR (the EMR role) for the notebook execution.</p>",
         "StepExecutionStatusDetail$LastStateChangeReason": "<p>A description of the step's current state.</p>",
         "XmlStringList$member": null
       }
@@ -1742,6 +1836,9 @@
         "BootstrapActionConfig$Name": "<p>The name of the bootstrap action.</p>",
         "CancelStepsInput$ClusterId": "<p>The <code>ClusterID</code> for which specified steps will be canceled. Use <a>RunJobFlow</a> and <a>ListClusters</a> to get ClusterIDs. </p>",
         "Cluster$CustomAmiId": "<p>Available only in Amazon EMR version 5.7.0 and later. The ID of a custom Amazon EBS-backed Linux AMI if the cluster uses a custom AMI.</p>",
+        "DescribeNotebookExecutionInput$NotebookExecutionId": "<p>The unique identifier of the notebook execution.</p>",
+        "ExecutionEngineConfig$Id": "<p>The unique identifier of the execution engine. For an EMR cluster, this is the cluster ID.</p>",
+        "ExecutionEngineConfig$MasterInstanceSecurityGroupId": "<p>An optional unique ID of an EC2 security group to associate with the master instance of the EMR cluster for this notebook execution. For more information see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-notebooks-security-groups.html\">Specifying EC2 Security Groups for EMR Notebooks</a> in the <i>EMR Management Guide</i>.</p>",
         "InstanceFleet$Name": "<p>A friendly name for the instance fleet.</p>",
         "InstanceFleetConfig$Name": "<p>The friendly name of the instance fleet.</p>",
         "InstanceGroupConfig$Name": "<p>Friendly name given to the instance group.</p>",
@@ -1770,14 +1867,28 @@
         "KerberosAttributes$CrossRealmTrustPrincipalPassword": "<p>Required only when establishing a cross-realm trust with a KDC in a different realm. The cross-realm principal password, which must be identical across realms.</p>",
         "KerberosAttributes$ADDomainJoinUser": "<p>Required only when establishing a cross-realm trust with an Active Directory domain. A user with sufficient privileges to join resources to the domain.</p>",
         "KerberosAttributes$ADDomainJoinPassword": "<p>The Active Directory password for <code>ADDomainJoinUser</code>.</p>",
+        "ListNotebookExecutionsInput$EditorId": "<p>The unique ID of the editor associated with the notebook execution.</p>",
+        "NotebookExecution$NotebookExecutionId": "<p>The unique identifier of a notebook execution.</p>",
+        "NotebookExecution$EditorId": "<p>The unique identifier of the EMR Notebook that is used for the notebook execution.</p>",
+        "NotebookExecution$NotebookExecutionName": "<p>A name for the notebook execution.</p>",
+        "NotebookExecution$Arn": "<p>The Amazon Resource Name (ARN) of the notebook execution.</p>",
+        "NotebookExecution$NotebookInstanceSecurityGroupId": "<p>The unique identifier of the EC2 security group associated with the EMR Notebook instance. For more information see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-notebooks-security-groups.html\">Specifying EC2 Security Groups for EMR Notebooks</a> in the <i>EMR Management Guide</i>.</p>",
+        "NotebookExecutionSummary$NotebookExecutionId": "<p>The unique identifier of the notebook execution.</p>",
+        "NotebookExecutionSummary$EditorId": "<p>The unique identifier of the editor associated with the notebook execution.</p>",
+        "NotebookExecutionSummary$NotebookExecutionName": "<p>The name of the notebook execution.</p>",
         "RunJobFlowInput$Name": "<p>The name of the job flow.</p>",
         "RunJobFlowInput$AmiVersion": "<p>Applies only to Amazon EMR AMI versions 3.x and 2.x. For Amazon EMR releases 4.0 and later, <code>ReleaseLabel</code> is used. To specify a custom AMI, use <code>CustomAmiID</code>.</p>",
         "RunJobFlowInput$ReleaseLabel": "<p>The Amazon EMR release label, which determines the version of open-source application packages installed on the cluster. Release labels are in the form <code>emr-x.x.x</code>, where x.x.x is an Amazon EMR release version such as <code>emr-5.14.0</code>. For more information about Amazon EMR release versions and included application versions and features, see <a href=\"https://docs.aws.amazon.com/emr/latest/ReleaseGuide/\">https://docs.aws.amazon.com/emr/latest/ReleaseGuide/</a>. The release label applies only to Amazon EMR releases version 4.0 and later. Earlier versions use <code>AmiVersion</code>.</p>",
         "RunJobFlowInput$CustomAmiId": "<p>Available only in Amazon EMR version 5.7.0 and later. The ID of a custom Amazon EBS-backed Linux AMI. If specified, Amazon EMR uses this AMI when it launches cluster EC2 instances. For more information about custom AMIs in Amazon EMR, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-custom-ami.html\">Using a Custom AMI</a> in the <i>Amazon EMR Management Guide</i>. If omitted, the cluster uses the base Linux AMI for the <code>ReleaseLabel</code> specified. For Amazon EMR versions 2.x and 3.x, use <code>AmiVersion</code> instead.</p> <p>For information about creating a custom AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html\">Creating an Amazon EBS-Backed Linux AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide for Linux Instances</i>. For information about finding an AMI ID, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html\">Finding a Linux AMI</a>. </p>",
         "RunJobFlowOutput$JobFlowId": "<p>An unique identifier for the job flow.</p>",
         "SecurityGroupsList$member": null,
+        "StartNotebookExecutionInput$EditorId": "<p>The unique identifier of the EMR Notebook to use for notebook execution.</p>",
+        "StartNotebookExecutionInput$NotebookExecutionName": "<p>An optional name for the notebook execution.</p>",
+        "StartNotebookExecutionInput$NotebookInstanceSecurityGroupId": "<p>The unique identifier of the Amazon EC2 security group to associate with the EMR Notebook for this notebook execution.</p>",
+        "StartNotebookExecutionOutput$NotebookExecutionId": "<p>The unique identifier of the notebook execution.</p>",
         "StepConfig$Name": "<p>The name of the step.</p>",
         "StepIdsList$member": null,
+        "StopNotebookExecutionInput$NotebookExecutionId": "<p>The unique identifier of the notebook execution.</p>",
         "SupportedProductConfig$Name": "<p>The name of the product configuration.</p>",
         "SupportedProductsList$member": null,
         "XmlStringMaxLen256List$member": null

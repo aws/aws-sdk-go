@@ -88,6 +88,10 @@ type CloudFrontAPI interface {
 	CreateInvalidationWithContext(aws.Context, *cloudfront.CreateInvalidationInput, ...request.Option) (*cloudfront.CreateInvalidationOutput, error)
 	CreateInvalidationRequest(*cloudfront.CreateInvalidationInput) (*request.Request, *cloudfront.CreateInvalidationOutput)
 
+	CreateMonitoringSubscription(*cloudfront.CreateMonitoringSubscriptionInput) (*cloudfront.CreateMonitoringSubscriptionOutput, error)
+	CreateMonitoringSubscriptionWithContext(aws.Context, *cloudfront.CreateMonitoringSubscriptionInput, ...request.Option) (*cloudfront.CreateMonitoringSubscriptionOutput, error)
+	CreateMonitoringSubscriptionRequest(*cloudfront.CreateMonitoringSubscriptionInput) (*request.Request, *cloudfront.CreateMonitoringSubscriptionOutput)
+
 	CreateOriginRequestPolicy(*cloudfront.CreateOriginRequestPolicyInput) (*cloudfront.CreateOriginRequestPolicyOutput, error)
 	CreateOriginRequestPolicyWithContext(aws.Context, *cloudfront.CreateOriginRequestPolicyInput, ...request.Option) (*cloudfront.CreateOriginRequestPolicyOutput, error)
 	CreateOriginRequestPolicyRequest(*cloudfront.CreateOriginRequestPolicyInput) (*request.Request, *cloudfront.CreateOriginRequestPolicyOutput)
@@ -123,6 +127,10 @@ type CloudFrontAPI interface {
 	DeleteFieldLevelEncryptionProfile(*cloudfront.DeleteFieldLevelEncryptionProfileInput) (*cloudfront.DeleteFieldLevelEncryptionProfileOutput, error)
 	DeleteFieldLevelEncryptionProfileWithContext(aws.Context, *cloudfront.DeleteFieldLevelEncryptionProfileInput, ...request.Option) (*cloudfront.DeleteFieldLevelEncryptionProfileOutput, error)
 	DeleteFieldLevelEncryptionProfileRequest(*cloudfront.DeleteFieldLevelEncryptionProfileInput) (*request.Request, *cloudfront.DeleteFieldLevelEncryptionProfileOutput)
+
+	DeleteMonitoringSubscription(*cloudfront.DeleteMonitoringSubscriptionInput) (*cloudfront.DeleteMonitoringSubscriptionOutput, error)
+	DeleteMonitoringSubscriptionWithContext(aws.Context, *cloudfront.DeleteMonitoringSubscriptionInput, ...request.Option) (*cloudfront.DeleteMonitoringSubscriptionOutput, error)
+	DeleteMonitoringSubscriptionRequest(*cloudfront.DeleteMonitoringSubscriptionInput) (*request.Request, *cloudfront.DeleteMonitoringSubscriptionOutput)
 
 	DeleteOriginRequestPolicy(*cloudfront.DeleteOriginRequestPolicyInput) (*cloudfront.DeleteOriginRequestPolicyOutput, error)
 	DeleteOriginRequestPolicyWithContext(aws.Context, *cloudfront.DeleteOriginRequestPolicyInput, ...request.Option) (*cloudfront.DeleteOriginRequestPolicyOutput, error)
@@ -179,6 +187,10 @@ type CloudFrontAPI interface {
 	GetInvalidation(*cloudfront.GetInvalidationInput) (*cloudfront.GetInvalidationOutput, error)
 	GetInvalidationWithContext(aws.Context, *cloudfront.GetInvalidationInput, ...request.Option) (*cloudfront.GetInvalidationOutput, error)
 	GetInvalidationRequest(*cloudfront.GetInvalidationInput) (*request.Request, *cloudfront.GetInvalidationOutput)
+
+	GetMonitoringSubscription(*cloudfront.GetMonitoringSubscriptionInput) (*cloudfront.GetMonitoringSubscriptionOutput, error)
+	GetMonitoringSubscriptionWithContext(aws.Context, *cloudfront.GetMonitoringSubscriptionInput, ...request.Option) (*cloudfront.GetMonitoringSubscriptionOutput, error)
+	GetMonitoringSubscriptionRequest(*cloudfront.GetMonitoringSubscriptionInput) (*request.Request, *cloudfront.GetMonitoringSubscriptionOutput)
 
 	GetOriginRequestPolicy(*cloudfront.GetOriginRequestPolicyInput) (*cloudfront.GetOriginRequestPolicyOutput, error)
 	GetOriginRequestPolicyWithContext(aws.Context, *cloudfront.GetOriginRequestPolicyInput, ...request.Option) (*cloudfront.GetOriginRequestPolicyOutput, error)

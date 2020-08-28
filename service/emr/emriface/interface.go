@@ -96,6 +96,10 @@ type EMRAPI interface {
 	DescribeJobFlowsWithContext(aws.Context, *emr.DescribeJobFlowsInput, ...request.Option) (*emr.DescribeJobFlowsOutput, error)
 	DescribeJobFlowsRequest(*emr.DescribeJobFlowsInput) (*request.Request, *emr.DescribeJobFlowsOutput)
 
+	DescribeNotebookExecution(*emr.DescribeNotebookExecutionInput) (*emr.DescribeNotebookExecutionOutput, error)
+	DescribeNotebookExecutionWithContext(aws.Context, *emr.DescribeNotebookExecutionInput, ...request.Option) (*emr.DescribeNotebookExecutionOutput, error)
+	DescribeNotebookExecutionRequest(*emr.DescribeNotebookExecutionInput) (*request.Request, *emr.DescribeNotebookExecutionOutput)
+
 	DescribeSecurityConfiguration(*emr.DescribeSecurityConfigurationInput) (*emr.DescribeSecurityConfigurationOutput, error)
 	DescribeSecurityConfigurationWithContext(aws.Context, *emr.DescribeSecurityConfigurationInput, ...request.Option) (*emr.DescribeSecurityConfigurationOutput, error)
 	DescribeSecurityConfigurationRequest(*emr.DescribeSecurityConfigurationInput) (*request.Request, *emr.DescribeSecurityConfigurationOutput)
@@ -146,6 +150,13 @@ type EMRAPI interface {
 
 	ListInstancesPages(*emr.ListInstancesInput, func(*emr.ListInstancesOutput, bool) bool) error
 	ListInstancesPagesWithContext(aws.Context, *emr.ListInstancesInput, func(*emr.ListInstancesOutput, bool) bool, ...request.Option) error
+
+	ListNotebookExecutions(*emr.ListNotebookExecutionsInput) (*emr.ListNotebookExecutionsOutput, error)
+	ListNotebookExecutionsWithContext(aws.Context, *emr.ListNotebookExecutionsInput, ...request.Option) (*emr.ListNotebookExecutionsOutput, error)
+	ListNotebookExecutionsRequest(*emr.ListNotebookExecutionsInput) (*request.Request, *emr.ListNotebookExecutionsOutput)
+
+	ListNotebookExecutionsPages(*emr.ListNotebookExecutionsInput, func(*emr.ListNotebookExecutionsOutput, bool) bool) error
+	ListNotebookExecutionsPagesWithContext(aws.Context, *emr.ListNotebookExecutionsInput, func(*emr.ListNotebookExecutionsOutput, bool) bool, ...request.Option) error
 
 	ListSecurityConfigurations(*emr.ListSecurityConfigurationsInput) (*emr.ListSecurityConfigurationsOutput, error)
 	ListSecurityConfigurationsWithContext(aws.Context, *emr.ListSecurityConfigurationsInput, ...request.Option) (*emr.ListSecurityConfigurationsOutput, error)
@@ -208,6 +219,14 @@ type EMRAPI interface {
 	SetVisibleToAllUsers(*emr.SetVisibleToAllUsersInput) (*emr.SetVisibleToAllUsersOutput, error)
 	SetVisibleToAllUsersWithContext(aws.Context, *emr.SetVisibleToAllUsersInput, ...request.Option) (*emr.SetVisibleToAllUsersOutput, error)
 	SetVisibleToAllUsersRequest(*emr.SetVisibleToAllUsersInput) (*request.Request, *emr.SetVisibleToAllUsersOutput)
+
+	StartNotebookExecution(*emr.StartNotebookExecutionInput) (*emr.StartNotebookExecutionOutput, error)
+	StartNotebookExecutionWithContext(aws.Context, *emr.StartNotebookExecutionInput, ...request.Option) (*emr.StartNotebookExecutionOutput, error)
+	StartNotebookExecutionRequest(*emr.StartNotebookExecutionInput) (*request.Request, *emr.StartNotebookExecutionOutput)
+
+	StopNotebookExecution(*emr.StopNotebookExecutionInput) (*emr.StopNotebookExecutionOutput, error)
+	StopNotebookExecutionWithContext(aws.Context, *emr.StopNotebookExecutionInput, ...request.Option) (*emr.StopNotebookExecutionOutput, error)
+	StopNotebookExecutionRequest(*emr.StopNotebookExecutionInput) (*request.Request, *emr.StopNotebookExecutionOutput)
 
 	TerminateJobFlows(*emr.TerminateJobFlowsInput) (*emr.TerminateJobFlowsOutput, error)
 	TerminateJobFlowsWithContext(aws.Context, *emr.TerminateJobFlowsInput, ...request.Option) (*emr.TerminateJobFlowsOutput, error)

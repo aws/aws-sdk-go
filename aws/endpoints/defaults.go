@@ -3718,6 +3718,7 @@ var awsPartition = partition{
 				"ap-northeast-2": endpoint{},
 				"ap-southeast-1": endpoint{},
 				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
 				"us-east-1":      endpoint{},
 			},
 		},
