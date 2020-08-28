@@ -144,7 +144,7 @@
     "ReportName": {
       "base": "<p>The name of the report that you want to create. The name must be unique, is case sensitive, and can't include spaces. </p>",
       "refs": {
-        "DeleteReportDefinitionRequest$ReportName": null,
+        "DeleteReportDefinitionRequest$ReportName": "<p>The name of the report that you want to delete. The name must be unique, is case sensitive, and can't include spaces.</p>",
         "ModifyReportDefinitionRequest$ReportName": null,
         "ReportDefinition$ReportName": null
       }

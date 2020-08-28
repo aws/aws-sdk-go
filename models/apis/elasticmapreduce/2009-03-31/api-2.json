@@ -128,6 +128,19 @@
       ],
       "deprecated":true
     },
+    "DescribeNotebookExecution":{
+      "name":"DescribeNotebookExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeNotebookExecutionInput"},
+      "output":{"shape":"DescribeNotebookExecutionOutput"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "DescribeSecurityConfiguration":{
       "name":"DescribeSecurityConfiguration",
       "http":{
@@ -238,6 +251,19 @@
       "output":{"shape":"ListInstancesOutput"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
+    "ListNotebookExecutions":{
+      "name":"ListNotebookExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListNotebookExecutionsInput"},
+      "output":{"shape":"ListNotebookExecutionsOutput"},
+      "errors":[
+        {"shape":"InternalServerError"},
         {"shape":"InvalidRequestException"}
       ]
     },
@@ -397,6 +423,31 @@
       "input":{"shape":"SetVisibleToAllUsersInput"},
       "errors":[
         {"shape":"InternalServerError"}
+      ]
+    },
+    "StartNotebookExecution":{
+      "name":"StartNotebookExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartNotebookExecutionInput"},
+      "output":{"shape":"StartNotebookExecutionOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
+    "StopNotebookExecution":{
+      "name":"StopNotebookExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopNotebookExecutionInput"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "TerminateJobFlows":{
@@ -894,6 +945,19 @@
         "JobFlows":{"shape":"JobFlowDetailList"}
       }
     },
+    "DescribeNotebookExecutionInput":{
+      "type":"structure",
+      "required":["NotebookExecutionId"],
+      "members":{
+        "NotebookExecutionId":{"shape":"XmlStringMaxLen256"}
+      }
+    },
+    "DescribeNotebookExecutionOutput":{
+      "type":"structure",
+      "members":{
+        "NotebookExecution":{"shape":"NotebookExecution"}
+      }
+    },
     "DescribeSecurityConfigurationInput":{
       "type":"structure",
       "required":["Name"],
@@ -997,6 +1061,19 @@
       "min":1
     },
     "ErrorMessage":{"type":"string"},
+    "ExecutionEngineConfig":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"XmlStringMaxLen256"},
+        "Type":{"shape":"ExecutionEngineType"},
+        "MasterInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"}
+      }
+    },
+    "ExecutionEngineType":{
+      "type":"string",
+      "enum":["EMR"]
+    },
     "FailureDetails":{
       "type":"structure",
       "members":{
@@ -1684,6 +1761,23 @@
         "Marker":{"shape":"Marker"}
       }
     },
+    "ListNotebookExecutionsInput":{
+      "type":"structure",
+      "members":{
+        "EditorId":{"shape":"XmlStringMaxLen256"},
+        "Status":{"shape":"NotebookExecutionStatus"},
+        "From":{"shape":"Date"},
+        "To":{"shape":"Date"},
+        "Marker":{"shape":"Marker"}
+      }
+    },
+    "ListNotebookExecutionsOutput":{
+      "type":"structure",
+      "members":{
+        "NotebookExecutions":{"shape":"NotebookExecutionSummaryList"},
+        "Marker":{"shape":"Marker"}
+      }
+    },
     "ListSecurityConfigurationsInput":{
       "type":"structure",
       "members":{
@@ -1780,6 +1874,54 @@
       "type":"double",
       "min":0.0
     },
+    "NotebookExecution":{
+      "type":"structure",
+      "members":{
+        "NotebookExecutionId":{"shape":"XmlStringMaxLen256"},
+        "EditorId":{"shape":"XmlStringMaxLen256"},
+        "ExecutionEngine":{"shape":"ExecutionEngineConfig"},
+        "NotebookExecutionName":{"shape":"XmlStringMaxLen256"},
+        "NotebookParams":{"shape":"XmlString"},
+        "Status":{"shape":"NotebookExecutionStatus"},
+        "StartTime":{"shape":"Date"},
+        "EndTime":{"shape":"Date"},
+        "Arn":{"shape":"XmlStringMaxLen256"},
+        "OutputNotebookURI":{"shape":"XmlString"},
+        "LastStateChangeReason":{"shape":"XmlString"},
+        "NotebookInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "NotebookExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "START_PENDING",
+        "STARTING",
+        "RUNNING",
+        "FINISHING",
+        "FINISHED",
+        "FAILING",
+        "FAILED",
+        "STOP_PENDING",
+        "STOPPING",
+        "STOPPED"
+      ]
+    },
+    "NotebookExecutionSummary":{
+      "type":"structure",
+      "members":{
+        "NotebookExecutionId":{"shape":"XmlStringMaxLen256"},
+        "EditorId":{"shape":"XmlStringMaxLen256"},
+        "NotebookExecutionName":{"shape":"XmlStringMaxLen256"},
+        "Status":{"shape":"NotebookExecutionStatus"},
+        "StartTime":{"shape":"Date"},
+        "EndTime":{"shape":"Date"}
+      }
+    },
+    "NotebookExecutionSummaryList":{
+      "type":"list",
+      "member":{"shape":"NotebookExecutionSummary"}
+    },
     "OnDemandProvisioningAllocationStrategy":{
       "type":"string",
       "enum":["lowest-price"]
@@ -1806,7 +1948,7 @@
     "Port":{
       "type":"integer",
       "max":65535,
-      "min":0
+      "min":-1
     },
     "PortRange":{
       "type":"structure",
@@ -2100,6 +2242,31 @@
         "TERMINATE_CLUSTER"
       ]
     },
+    "StartNotebookExecutionInput":{
+      "type":"structure",
+      "required":[
+        "EditorId",
+        "RelativePath",
+        "ExecutionEngine",
+        "ServiceRole"
+      ],
+      "members":{
+        "EditorId":{"shape":"XmlStringMaxLen256"},
+        "RelativePath":{"shape":"XmlString"},
+        "NotebookExecutionName":{"shape":"XmlStringMaxLen256"},
+        "NotebookParams":{"shape":"XmlString"},
+        "ExecutionEngine":{"shape":"ExecutionEngineConfig"},
+        "ServiceRole":{"shape":"XmlString"},
+        "NotebookInstanceSecurityGroupId":{"shape":"XmlStringMaxLen256"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "StartNotebookExecutionOutput":{
+      "type":"structure",
+      "members":{
+        "NotebookExecutionId":{"shape":"XmlStringMaxLen256"}
+      }
+    },
     "Statistic":{
       "type":"string",
       "enum":[
@@ -2245,6 +2412,13 @@
         "CreationDateTime":{"shape":"Date"},
         "StartDateTime":{"shape":"Date"},
         "EndDateTime":{"shape":"Date"}
+      }
+    },
+    "StopNotebookExecutionInput":{
+      "type":"structure",
+      "required":["NotebookExecutionId"],
+      "members":{
+        "NotebookExecutionId":{"shape":"XmlStringMaxLen256"}
       }
     },
     "String":{"type":"string"},

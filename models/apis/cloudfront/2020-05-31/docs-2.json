@@ -9,6 +9,7 @@
     "CreateFieldLevelEncryptionConfig": "<p>Create a new field-level encryption configuration.</p>",
     "CreateFieldLevelEncryptionProfile": "<p>Create a field-level encryption profile.</p>",
     "CreateInvalidation": "<p>Create a new invalidation. </p>",
+    "CreateMonitoringSubscription": "<p>Enables additional CloudWatch metrics for the specified CloudFront distribution. The additional metrics incur an additional cost.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/viewing-cloudfront-metrics.html#monitoring-console.distributions-additional\">Viewing additional CloudFront distribution metrics</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateOriginRequestPolicy": "<p>Creates an origin request policy.</p> <p>After you create an origin request policy, you can attach it to one or more cache behaviors. When it’s attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following:</p> <ul> <li> <p>The request body and the URL path (without the domain name) from the viewer request.</p> </li> <li> <p>The headers that CloudFront automatically includes in every origin request, including <code>Host</code>, <code>User-Agent</code>, and <code>X-Amz-Cf-Id</code>.</p> </li> <li> <p>All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront.</p> </li> </ul> <p>CloudFront sends a request when it can’t find a valid object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use <code>CreateCachePolicy</code>.</p> <p>For more information about origin request policies, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html\">Controlling origin requests</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreatePublicKey": "<p>Add a new public key to CloudFront to use, for example, for field-level encryption. You can add a maximum of 10 public keys with one AWS account.</p>",
     "CreateStreamingDistribution": "<p>Creates a new RTMP distribution. An RTMP distribution is similar to a web distribution, but an RTMP distribution streams media files using the Adobe Real-Time Messaging Protocol (RTMP) instead of serving files using HTTP. </p> <p>To create a new distribution, submit a <code>POST</code> request to the <i>CloudFront API version</i>/distribution resource. The request body must include a document with a <i>StreamingDistributionConfig</i> element. The response echoes the <code>StreamingDistributionConfig</code> element and returns other information about the RTMP distribution.</p> <p>To get the status of your request, use the <i>GET StreamingDistribution</i> API action. When the value of <code>Enabled</code> is <code>true</code> and the value of <code>Status</code> is <code>Deployed</code>, your distribution is ready. A distribution usually deploys in less than 15 minutes.</p> <p>For more information about web distributions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-rtmp.html\">Working with RTMP Distributions</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <important> <p>Beginning with the 2012-05-05 version of the CloudFront API, we made substantial changes to the format of the XML document that you include in the request body when you create or update a web distribution or an RTMP distribution, and when you invalidate objects. With previous versions of the API, we discovered that it was too easy to accidentally delete one or more values for an element that accepts multiple values, for example, CNAMEs and trusted signers. Our changes for the 2012-05-05 release are intended to prevent these accidental deletions and to notify you when there's a mismatch between the number of values you say you're specifying in the <code>Quantity</code> element and the number of values specified.</p> </important>",
@@ -18,6 +19,7 @@
     "DeleteDistribution": "<p>Delete a distribution. </p>",
     "DeleteFieldLevelEncryptionConfig": "<p>Remove a field-level encryption configuration.</p>",
     "DeleteFieldLevelEncryptionProfile": "<p>Remove a field-level encryption profile.</p>",
+    "DeleteMonitoringSubscription": "<p>Disables additional CloudWatch metrics for the specified CloudFront distribution.</p>",
     "DeleteOriginRequestPolicy": "<p>Deletes an origin request policy.</p> <p>You cannot delete an origin request policy if it’s attached to any cache behaviors. First update your distributions to remove the origin request policy from all cache behaviors, then delete the origin request policy.</p> <p>To delete an origin request policy, you must provide the policy’s identifier and version. To get the identifier, you can use <code>ListOriginRequestPolicies</code> or <code>GetOriginRequestPolicy</code>.</p>",
     "DeletePublicKey": "<p>Remove a public key you previously added to CloudFront.</p>",
     "DeleteStreamingDistribution": "<p>Delete a streaming distribution. To delete an RTMP distribution using the CloudFront API, perform the following steps.</p> <p> <b>To delete an RTMP distribution using the CloudFront API</b>:</p> <ol> <li> <p>Disable the RTMP distribution.</p> </li> <li> <p>Submit a <code>GET Streaming Distribution Config</code> request to get the current configuration and the <code>Etag</code> header for the distribution. </p> </li> <li> <p>Update the XML document that was returned in the response to your <code>GET Streaming Distribution Config</code> request to change the value of <code>Enabled</code> to <code>false</code>.</p> </li> <li> <p>Submit a <code>PUT Streaming Distribution Config</code> request to update the configuration for your distribution. In the request body, include the XML document that you updated in Step 3. Then set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GET Streaming Distribution Config</code> request in Step 2.</p> </li> <li> <p>Review the response to the <code>PUT Streaming Distribution Config</code> request to confirm that the distribution was successfully disabled.</p> </li> <li> <p>Submit a <code>GET Streaming Distribution Config</code> request to confirm that your changes have propagated. When propagation is complete, the value of <code>Status</code> is <code>Deployed</code>.</p> </li> <li> <p>Submit a <code>DELETE Streaming Distribution</code> request. Set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GET Streaming Distribution Config</code> request in Step 2.</p> </li> <li> <p>Review the response to your <code>DELETE Streaming Distribution</code> request to confirm that the distribution was successfully deleted.</p> </li> </ol> <p>For information about deleting a distribution using the CloudFront console, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowToDeleteDistribution.html\">Deleting a Distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
@@ -32,6 +34,7 @@
     "GetFieldLevelEncryptionProfile": "<p>Get the field-level encryption profile information.</p>",
     "GetFieldLevelEncryptionProfileConfig": "<p>Get the field-level encryption profile configuration information.</p>",
     "GetInvalidation": "<p>Get the information about an invalidation. </p>",
+    "GetMonitoringSubscription": "<p>Gets information about whether additional CloudWatch metrics are enabled for the specified CloudFront distribution.</p>",
     "GetOriginRequestPolicy": "<p>Gets an origin request policy, including the following metadata:</p> <ul> <li> <p>The policy’s identifier.</p> </li> <li> <p>The date and time when the policy was last modified.</p> </li> </ul> <p>To get an origin request policy, you must provide the policy’s identifier. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
     "GetOriginRequestPolicyConfig": "<p>Gets an origin request policy configuration.</p> <p>To get an origin request policy configuration, you must provide the policy’s identifier. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
     "GetPublicKey": "<p>Get the public key information.</p>",
@@ -417,6 +420,16 @@
       "refs": {
       }
     },
+    "CreateMonitoringSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMonitoringSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateOriginRequestPolicyRequest": {
       "base": null,
       "refs": {
@@ -516,6 +529,16 @@
       }
     },
     "DeleteFieldLevelEncryptionProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMonitoringSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMonitoringSubscriptionResult": {
       "base": null,
       "refs": {
       }
@@ -866,6 +889,16 @@
     },
     "GetInvalidationResult": {
       "base": "<p>The returned result of the corresponding request.</p>",
+      "refs": {
+      }
+    },
+    "GetMonitoringSubscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMonitoringSubscriptionResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -1332,6 +1365,14 @@
       "refs": {
       }
     },
+    "MonitoringSubscription": {
+      "base": "<p>A monitoring subscription. This structure contains information about whether additional CloudWatch metrics are enabled for a given CloudFront distribution.</p>",
+      "refs": {
+        "CreateMonitoringSubscriptionRequest$MonitoringSubscription": "<p>A monitoring subscription. This structure contains information about whether additional CloudWatch metrics are enabled for a given CloudFront distribution.</p>",
+        "CreateMonitoringSubscriptionResult$MonitoringSubscription": "<p>A monitoring subscription. This structure contains information about whether additional CloudWatch metrics are enabled for a given CloudFront distribution.</p>",
+        "GetMonitoringSubscriptionResult$MonitoringSubscription": "<p>A monitoring subscription. This structure contains information about whether additional CloudWatch metrics are enabled for a given CloudFront distribution.</p>"
+      }
+    },
     "NoSuchCachePolicy": {
       "base": "<p>The cache policy does not exist.</p>",
       "refs": {
@@ -1692,6 +1733,18 @@
       "base": null,
       "refs": {
         "QueryStringNames$Items": "<p>A list of query string names.</p>"
+      }
+    },
+    "RealtimeMetricsSubscriptionConfig": {
+      "base": "<p>A subscription configuration for additional CloudWatch metrics.</p>",
+      "refs": {
+        "MonitoringSubscription$RealtimeMetricsSubscriptionConfig": "<p>A subscription configuration for additional CloudWatch metrics.</p>"
+      }
+    },
+    "RealtimeMetricsSubscriptionStatus": {
+      "base": null,
+      "refs": {
+        "RealtimeMetricsSubscriptionConfig$RealtimeMetricsSubscriptionStatus": "<p>A flag that indicates whether additional CloudWatch metrics are enabled for a given CloudFront distribution.</p>"
       }
     },
     "ResourceARN": {
@@ -2321,6 +2374,7 @@
         "CreateFieldLevelEncryptionProfileResult$ETag": "<p>The current version of the field level encryption profile. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "CreateInvalidationRequest$DistributionId": "<p>The distribution's id.</p>",
         "CreateInvalidationResult$Location": "<p>The fully qualified URI of the distribution and invalidation batch request, including the <code>Invalidation ID</code>.</p>",
+        "CreateMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are enabling metrics for.</p>",
         "CreateOriginRequestPolicyResult$Location": "<p>The fully qualified URI of the origin request policy just created.</p>",
         "CreateOriginRequestPolicyResult$ETag": "<p>The current version of the origin request policy.</p>",
         "CreatePublicKeyResult$Location": "<p>The fully qualified URI of the new public key resource just created.</p>",
@@ -2345,6 +2399,7 @@
         "DeleteFieldLevelEncryptionConfigRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the configuration identity to delete. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "DeleteFieldLevelEncryptionProfileRequest$Id": "<p>Request the ID of the profile you want to delete from CloudFront.</p>",
         "DeleteFieldLevelEncryptionProfileRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the profile to delete. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "DeleteMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are disabling metrics for.</p>",
         "DeleteOriginRequestPolicyRequest$Id": "<p>The unique identifier for the origin request policy that you are deleting. To get the identifier, you can use <code>ListOriginRequestPolicies</code>.</p>",
         "DeleteOriginRequestPolicyRequest$IfMatch": "<p>The version of the origin request policy that you are deleting. The version is the origin request policy’s <code>ETag</code> value, which you can get using <code>ListOriginRequestPolicies</code>, <code>GetOriginRequestPolicy</code>, or <code>GetOriginRequestPolicyConfig</code>.</p>",
         "DeletePublicKeyRequest$Id": "<p>The ID of the public key you want to remove from CloudFront.</p>",
@@ -2415,6 +2470,7 @@
         "GetFieldLevelEncryptionResult$ETag": "<p>The current version of the field level encryption configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "GetInvalidationRequest$DistributionId": "<p>The distribution's ID.</p>",
         "GetInvalidationRequest$Id": "<p>The identifier for the invalidation request, for example, <code>IDFDVBD632BHDS5</code>.</p>",
+        "GetMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are getting metrics information for.</p>",
         "GetOriginRequestPolicyConfigRequest$Id": "<p>The unique identifier for the origin request policy. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
         "GetOriginRequestPolicyConfigResult$ETag": "<p>The current version of the origin request policy.</p>",
         "GetOriginRequestPolicyRequest$Id": "<p>The unique identifier for the origin request policy. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",

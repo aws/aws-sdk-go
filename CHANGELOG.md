@@ -1,3 +1,20 @@
+Release v1.34.13 (2020-08-28)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * You can now manage CloudFront's additional, real-time metrics with the CloudFront API.
+* `service/cur`: Updates service API and documentation
+  * This release add MONTHLY as the new supported TimeUnit for ReportDefinition.
+* `service/elasticmapreduce`: Updates service API, documentation, and paginators
+  * Amazon EMR adds support for ICMP, port -1, in Block Public Access Exceptions and API access for EMR Notebooks execution. You can now non-interactively execute EMR Notebooks and pass input parameters.
+* `service/route53`: Updates service documentation
+  * Documentation updates for Route 53
+
+### SDK Bugs
+*  `private/protocol`: Limit iso8601 fractional second precision to milliseconds ([#3507](https://github.com/aws/aws-sdk-go/pull/3507))
+  * Fixes [#3498](https://github.com/aws/aws-sdk-go/issues/3498)
+
 Release v1.34.12 (2020-08-27)
 ===
 
