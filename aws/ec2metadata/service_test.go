@@ -1,3 +1,5 @@
+// +build go1.7
+
 package ec2metadata_test
 
 import (
@@ -89,9 +91,7 @@ func TestClientDisableIMDS(t *testing.T) {
 
 	os.Setenv("AWS_EC2_METADATA_DISABLED", "true")
 
-	svc := ec2metadata.New(unit.Session, &aws.Config{
-		LogLevel: aws.LogLevel(aws.LogDebugWithHTTPBody),
-	})
+	svc := ec2metadata.New(unit.Session)
 	resp, err := svc.GetUserData()
 	if err == nil {
 		t.Fatalf("expect error, got none")
@@ -106,6 +106,37 @@ func TestClientDisableIMDS(t *testing.T) {
 	}
 	if e, a := "AWS_EC2_METADATA_DISABLED", aerr.Message(); !strings.Contains(a, e) {
 		t.Errorf("expect %v in error message, got %v", e, a)
+	}
+}
+
+func TestClientStripPath(t *testing.T) {
+	cases := map[string]struct {
+		Endpoint string
+		Expect   string
+	}{
+		"no change": {
+			Endpoint: "http://example.aws",
+			Expect:   "http://example.aws",
+		},
+		"strip path": {
+			Endpoint: "http://example.aws/foo",
+			Expect:   "http://example.aws",
+		},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			restoreEnvFn := sdktesting.StashEnv()
+			defer restoreEnvFn()
+
+			svc := ec2metadata.New(unit.Session, &aws.Config{
+				Endpoint: aws.String(c.Endpoint),
+			})
+
+			if e, a := c.Expect, svc.ClientInfo.Endpoint; e != a {
+				t.Errorf("expect %v endpoint, got %v", e, a)
+			}
+		})
 	}
 }
 

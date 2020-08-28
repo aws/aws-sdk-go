@@ -120,7 +120,7 @@ func TestDefaultEC2RoleProvider(t *testing.T) {
 	if ec2Provider == nil {
 		t.Fatalf("expect provider not to be nil, but was")
 	}
-	if e, a := "http://169.254.169.254/latest", ec2Provider.Client.Endpoint; e != a {
+	if e, a := "http://169.254.169.254", ec2Provider.Client.Endpoint; e != a {
 		t.Errorf("expect %q endpoint, got %q", e, a)
 	}
 }
