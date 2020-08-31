@@ -20813,6 +20813,10 @@
       "members":{
         "DryRun":{"shape":"Boolean"},
         "ExcessCapacityTerminationPolicy":{"shape":"FleetExcessCapacityTerminationPolicy"},
+        "LaunchTemplateConfigs":{
+          "shape":"FleetLaunchTemplateConfigListRequest",
+          "locationName":"LaunchTemplateConfig"
+        },
         "FleetId":{"shape":"FleetId"},
         "TargetCapacitySpecification":{"shape":"TargetCapacitySpecificationRequest"}
       }
@@ -21283,6 +21287,10 @@
         "ExcessCapacityTerminationPolicy":{
           "shape":"ExcessCapacityTerminationPolicy",
           "locationName":"excessCapacityTerminationPolicy"
+        },
+        "LaunchTemplateConfigs":{
+          "shape":"LaunchTemplateConfigList",
+          "locationName":"LaunchTemplateConfig"
         },
         "SpotFleetRequestId":{
           "shape":"SpotFleetRequestId",
@@ -25108,6 +25116,7 @@
         "customer-gateway",
         "dedicated-host",
         "dhcp-options",
+        "egress-only-internet-gateway",
         "elastic-ip",
         "elastic-gpu",
         "export-image-task",

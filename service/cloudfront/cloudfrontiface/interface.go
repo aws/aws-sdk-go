@@ -100,6 +100,10 @@ type CloudFrontAPI interface {
 	CreatePublicKeyWithContext(aws.Context, *cloudfront.CreatePublicKeyInput, ...request.Option) (*cloudfront.CreatePublicKeyOutput, error)
 	CreatePublicKeyRequest(*cloudfront.CreatePublicKeyInput) (*request.Request, *cloudfront.CreatePublicKeyOutput)
 
+	CreateRealtimeLogConfig(*cloudfront.CreateRealtimeLogConfigInput) (*cloudfront.CreateRealtimeLogConfigOutput, error)
+	CreateRealtimeLogConfigWithContext(aws.Context, *cloudfront.CreateRealtimeLogConfigInput, ...request.Option) (*cloudfront.CreateRealtimeLogConfigOutput, error)
+	CreateRealtimeLogConfigRequest(*cloudfront.CreateRealtimeLogConfigInput) (*request.Request, *cloudfront.CreateRealtimeLogConfigOutput)
+
 	CreateStreamingDistribution(*cloudfront.CreateStreamingDistributionInput) (*cloudfront.CreateStreamingDistributionOutput, error)
 	CreateStreamingDistributionWithContext(aws.Context, *cloudfront.CreateStreamingDistributionInput, ...request.Option) (*cloudfront.CreateStreamingDistributionOutput, error)
 	CreateStreamingDistributionRequest(*cloudfront.CreateStreamingDistributionInput) (*request.Request, *cloudfront.CreateStreamingDistributionOutput)
@@ -139,6 +143,10 @@ type CloudFrontAPI interface {
 	DeletePublicKey(*cloudfront.DeletePublicKeyInput) (*cloudfront.DeletePublicKeyOutput, error)
 	DeletePublicKeyWithContext(aws.Context, *cloudfront.DeletePublicKeyInput, ...request.Option) (*cloudfront.DeletePublicKeyOutput, error)
 	DeletePublicKeyRequest(*cloudfront.DeletePublicKeyInput) (*request.Request, *cloudfront.DeletePublicKeyOutput)
+
+	DeleteRealtimeLogConfig(*cloudfront.DeleteRealtimeLogConfigInput) (*cloudfront.DeleteRealtimeLogConfigOutput, error)
+	DeleteRealtimeLogConfigWithContext(aws.Context, *cloudfront.DeleteRealtimeLogConfigInput, ...request.Option) (*cloudfront.DeleteRealtimeLogConfigOutput, error)
+	DeleteRealtimeLogConfigRequest(*cloudfront.DeleteRealtimeLogConfigInput) (*request.Request, *cloudfront.DeleteRealtimeLogConfigOutput)
 
 	DeleteStreamingDistribution(*cloudfront.DeleteStreamingDistributionInput) (*cloudfront.DeleteStreamingDistributionOutput, error)
 	DeleteStreamingDistributionWithContext(aws.Context, *cloudfront.DeleteStreamingDistributionInput, ...request.Option) (*cloudfront.DeleteStreamingDistributionOutput, error)
@@ -208,6 +216,10 @@ type CloudFrontAPI interface {
 	GetPublicKeyConfigWithContext(aws.Context, *cloudfront.GetPublicKeyConfigInput, ...request.Option) (*cloudfront.GetPublicKeyConfigOutput, error)
 	GetPublicKeyConfigRequest(*cloudfront.GetPublicKeyConfigInput) (*request.Request, *cloudfront.GetPublicKeyConfigOutput)
 
+	GetRealtimeLogConfig(*cloudfront.GetRealtimeLogConfigInput) (*cloudfront.GetRealtimeLogConfigOutput, error)
+	GetRealtimeLogConfigWithContext(aws.Context, *cloudfront.GetRealtimeLogConfigInput, ...request.Option) (*cloudfront.GetRealtimeLogConfigOutput, error)
+	GetRealtimeLogConfigRequest(*cloudfront.GetRealtimeLogConfigInput) (*request.Request, *cloudfront.GetRealtimeLogConfigOutput)
+
 	GetStreamingDistribution(*cloudfront.GetStreamingDistributionInput) (*cloudfront.GetStreamingDistributionOutput, error)
 	GetStreamingDistributionWithContext(aws.Context, *cloudfront.GetStreamingDistributionInput, ...request.Option) (*cloudfront.GetStreamingDistributionOutput, error)
 	GetStreamingDistributionRequest(*cloudfront.GetStreamingDistributionInput) (*request.Request, *cloudfront.GetStreamingDistributionOutput)
@@ -242,6 +254,10 @@ type CloudFrontAPI interface {
 	ListDistributionsByOriginRequestPolicyIdWithContext(aws.Context, *cloudfront.ListDistributionsByOriginRequestPolicyIdInput, ...request.Option) (*cloudfront.ListDistributionsByOriginRequestPolicyIdOutput, error)
 	ListDistributionsByOriginRequestPolicyIdRequest(*cloudfront.ListDistributionsByOriginRequestPolicyIdInput) (*request.Request, *cloudfront.ListDistributionsByOriginRequestPolicyIdOutput)
 
+	ListDistributionsByRealtimeLogConfig(*cloudfront.ListDistributionsByRealtimeLogConfigInput) (*cloudfront.ListDistributionsByRealtimeLogConfigOutput, error)
+	ListDistributionsByRealtimeLogConfigWithContext(aws.Context, *cloudfront.ListDistributionsByRealtimeLogConfigInput, ...request.Option) (*cloudfront.ListDistributionsByRealtimeLogConfigOutput, error)
+	ListDistributionsByRealtimeLogConfigRequest(*cloudfront.ListDistributionsByRealtimeLogConfigInput) (*request.Request, *cloudfront.ListDistributionsByRealtimeLogConfigOutput)
+
 	ListDistributionsByWebACLId(*cloudfront.ListDistributionsByWebACLIdInput) (*cloudfront.ListDistributionsByWebACLIdOutput, error)
 	ListDistributionsByWebACLIdWithContext(aws.Context, *cloudfront.ListDistributionsByWebACLIdInput, ...request.Option) (*cloudfront.ListDistributionsByWebACLIdOutput, error)
 	ListDistributionsByWebACLIdRequest(*cloudfront.ListDistributionsByWebACLIdInput) (*request.Request, *cloudfront.ListDistributionsByWebACLIdOutput)
@@ -268,6 +284,10 @@ type CloudFrontAPI interface {
 	ListPublicKeys(*cloudfront.ListPublicKeysInput) (*cloudfront.ListPublicKeysOutput, error)
 	ListPublicKeysWithContext(aws.Context, *cloudfront.ListPublicKeysInput, ...request.Option) (*cloudfront.ListPublicKeysOutput, error)
 	ListPublicKeysRequest(*cloudfront.ListPublicKeysInput) (*request.Request, *cloudfront.ListPublicKeysOutput)
+
+	ListRealtimeLogConfigs(*cloudfront.ListRealtimeLogConfigsInput) (*cloudfront.ListRealtimeLogConfigsOutput, error)
+	ListRealtimeLogConfigsWithContext(aws.Context, *cloudfront.ListRealtimeLogConfigsInput, ...request.Option) (*cloudfront.ListRealtimeLogConfigsOutput, error)
+	ListRealtimeLogConfigsRequest(*cloudfront.ListRealtimeLogConfigsInput) (*request.Request, *cloudfront.ListRealtimeLogConfigsOutput)
 
 	ListStreamingDistributions(*cloudfront.ListStreamingDistributionsInput) (*cloudfront.ListStreamingDistributionsOutput, error)
 	ListStreamingDistributionsWithContext(aws.Context, *cloudfront.ListStreamingDistributionsInput, ...request.Option) (*cloudfront.ListStreamingDistributionsOutput, error)
@@ -315,6 +335,10 @@ type CloudFrontAPI interface {
 	UpdatePublicKey(*cloudfront.UpdatePublicKeyInput) (*cloudfront.UpdatePublicKeyOutput, error)
 	UpdatePublicKeyWithContext(aws.Context, *cloudfront.UpdatePublicKeyInput, ...request.Option) (*cloudfront.UpdatePublicKeyOutput, error)
 	UpdatePublicKeyRequest(*cloudfront.UpdatePublicKeyInput) (*request.Request, *cloudfront.UpdatePublicKeyOutput)
+
+	UpdateRealtimeLogConfig(*cloudfront.UpdateRealtimeLogConfigInput) (*cloudfront.UpdateRealtimeLogConfigOutput, error)
+	UpdateRealtimeLogConfigWithContext(aws.Context, *cloudfront.UpdateRealtimeLogConfigInput, ...request.Option) (*cloudfront.UpdateRealtimeLogConfigOutput, error)
+	UpdateRealtimeLogConfigRequest(*cloudfront.UpdateRealtimeLogConfigInput) (*request.Request, *cloudfront.UpdateRealtimeLogConfigOutput)
 
 	UpdateStreamingDistribution(*cloudfront.UpdateStreamingDistributionInput) (*cloudfront.UpdateStreamingDistributionOutput, error)
 	UpdateStreamingDistributionWithContext(aws.Context, *cloudfront.UpdateStreamingDistributionInput, ...request.Option) (*cloudfront.UpdateStreamingDistributionOutput, error)

@@ -12,6 +12,7 @@
     "CreateMonitoringSubscription": "<p>Enables additional CloudWatch metrics for the specified CloudFront distribution. The additional metrics incur an additional cost.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/viewing-cloudfront-metrics.html#monitoring-console.distributions-additional\">Viewing additional CloudFront distribution metrics</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateOriginRequestPolicy": "<p>Creates an origin request policy.</p> <p>After you create an origin request policy, you can attach it to one or more cache behaviors. When it’s attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following:</p> <ul> <li> <p>The request body and the URL path (without the domain name) from the viewer request.</p> </li> <li> <p>The headers that CloudFront automatically includes in every origin request, including <code>Host</code>, <code>User-Agent</code>, and <code>X-Amz-Cf-Id</code>.</p> </li> <li> <p>All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront.</p> </li> </ul> <p>CloudFront sends a request when it can’t find a valid object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use <code>CreateCachePolicy</code>.</p> <p>For more information about origin request policies, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html\">Controlling origin requests</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreatePublicKey": "<p>Add a new public key to CloudFront to use, for example, for field-level encryption. You can add a maximum of 10 public keys with one AWS account.</p>",
+    "CreateRealtimeLogConfig": "<p>Creates a real-time log configuration.</p> <p>After you create a real-time log configuration, you can attach it to one or more cache behaviors to send real-time log data to the specified Amazon Kinesis data stream.</p> <p>For more information about real-time log configurations, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateStreamingDistribution": "<p>Creates a new RTMP distribution. An RTMP distribution is similar to a web distribution, but an RTMP distribution streams media files using the Adobe Real-Time Messaging Protocol (RTMP) instead of serving files using HTTP. </p> <p>To create a new distribution, submit a <code>POST</code> request to the <i>CloudFront API version</i>/distribution resource. The request body must include a document with a <i>StreamingDistributionConfig</i> element. The response echoes the <code>StreamingDistributionConfig</code> element and returns other information about the RTMP distribution.</p> <p>To get the status of your request, use the <i>GET StreamingDistribution</i> API action. When the value of <code>Enabled</code> is <code>true</code> and the value of <code>Status</code> is <code>Deployed</code>, your distribution is ready. A distribution usually deploys in less than 15 minutes.</p> <p>For more information about web distributions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-rtmp.html\">Working with RTMP Distributions</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <important> <p>Beginning with the 2012-05-05 version of the CloudFront API, we made substantial changes to the format of the XML document that you include in the request body when you create or update a web distribution or an RTMP distribution, and when you invalidate objects. With previous versions of the API, we discovered that it was too easy to accidentally delete one or more values for an element that accepts multiple values, for example, CNAMEs and trusted signers. Our changes for the 2012-05-05 release are intended to prevent these accidental deletions and to notify you when there's a mismatch between the number of values you say you're specifying in the <code>Quantity</code> element and the number of values specified.</p> </important>",
     "CreateStreamingDistributionWithTags": "<p>Create a new streaming distribution with tags.</p>",
     "DeleteCachePolicy": "<p>Deletes a cache policy.</p> <p>You cannot delete a cache policy if it’s attached to a cache behavior. First update your distributions to remove the cache policy from all cache behaviors, then delete the cache policy.</p> <p>To delete a cache policy, you must provide the policy’s identifier and version. To get these values, you can use <code>ListCachePolicies</code> or <code>GetCachePolicy</code>.</p>",
@@ -22,6 +23,7 @@
     "DeleteMonitoringSubscription": "<p>Disables additional CloudWatch metrics for the specified CloudFront distribution.</p>",
     "DeleteOriginRequestPolicy": "<p>Deletes an origin request policy.</p> <p>You cannot delete an origin request policy if it’s attached to any cache behaviors. First update your distributions to remove the origin request policy from all cache behaviors, then delete the origin request policy.</p> <p>To delete an origin request policy, you must provide the policy’s identifier and version. To get the identifier, you can use <code>ListOriginRequestPolicies</code> or <code>GetOriginRequestPolicy</code>.</p>",
     "DeletePublicKey": "<p>Remove a public key you previously added to CloudFront.</p>",
+    "DeleteRealtimeLogConfig": "<p>Deletes a real-time log configuration.</p> <p>You cannot delete a real-time log configuration if it’s attached to a cache behavior. First update your distributions to remove the real-time log configuration from all cache behaviors, then delete the real-time log configuration.</p> <p>To delete a real-time log configuration, you can provide the configuration’s name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to delete.</p>",
     "DeleteStreamingDistribution": "<p>Delete a streaming distribution. To delete an RTMP distribution using the CloudFront API, perform the following steps.</p> <p> <b>To delete an RTMP distribution using the CloudFront API</b>:</p> <ol> <li> <p>Disable the RTMP distribution.</p> </li> <li> <p>Submit a <code>GET Streaming Distribution Config</code> request to get the current configuration and the <code>Etag</code> header for the distribution. </p> </li> <li> <p>Update the XML document that was returned in the response to your <code>GET Streaming Distribution Config</code> request to change the value of <code>Enabled</code> to <code>false</code>.</p> </li> <li> <p>Submit a <code>PUT Streaming Distribution Config</code> request to update the configuration for your distribution. In the request body, include the XML document that you updated in Step 3. Then set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GET Streaming Distribution Config</code> request in Step 2.</p> </li> <li> <p>Review the response to the <code>PUT Streaming Distribution Config</code> request to confirm that the distribution was successfully disabled.</p> </li> <li> <p>Submit a <code>GET Streaming Distribution Config</code> request to confirm that your changes have propagated. When propagation is complete, the value of <code>Status</code> is <code>Deployed</code>.</p> </li> <li> <p>Submit a <code>DELETE Streaming Distribution</code> request. Set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GET Streaming Distribution Config</code> request in Step 2.</p> </li> <li> <p>Review the response to your <code>DELETE Streaming Distribution</code> request to confirm that the distribution was successfully deleted.</p> </li> </ol> <p>For information about deleting a distribution using the CloudFront console, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowToDeleteDistribution.html\">Deleting a Distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "GetCachePolicy": "<p>Gets a cache policy, including the following metadata:</p> <ul> <li> <p>The policy’s identifier.</p> </li> <li> <p>The date and time when the policy was last modified.</p> </li> </ul> <p>To get a cache policy, you must provide the policy’s identifier. If the cache policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the cache policy is not attached to a cache behavior, you can get the identifier using <code>ListCachePolicies</code>.</p>",
     "GetCachePolicyConfig": "<p>Gets a cache policy configuration.</p> <p>To get a cache policy configuration, you must provide the policy’s identifier. If the cache policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the cache policy is not attached to a cache behavior, you can get the identifier using <code>ListCachePolicies</code>.</p>",
@@ -39,6 +41,7 @@
     "GetOriginRequestPolicyConfig": "<p>Gets an origin request policy configuration.</p> <p>To get an origin request policy configuration, you must provide the policy’s identifier. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
     "GetPublicKey": "<p>Get the public key information.</p>",
     "GetPublicKeyConfig": "<p>Return public key configuration informaation</p>",
+    "GetRealtimeLogConfig": "<p>Gets a real-time log configuration.</p> <p>To get a real-time log configuration, you can provide the configuration’s name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to get.</p>",
     "GetStreamingDistribution": "<p>Gets information about a specified RTMP distribution, including the distribution configuration.</p>",
     "GetStreamingDistributionConfig": "<p>Get the configuration information about a streaming distribution. </p>",
     "ListCachePolicies": "<p>Gets a list of cache policies.</p> <p>You can optionally apply a filter to return only the managed policies created by AWS, or only the custom policies created in your AWS account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
@@ -46,12 +49,14 @@
     "ListDistributions": "<p>List CloudFront distributions.</p>",
     "ListDistributionsByCachePolicyId": "<p>Gets a list of distribution IDs for distributions that have a cache behavior that’s associated with the specified cache policy.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListDistributionsByOriginRequestPolicyId": "<p>Gets a list of distribution IDs for distributions that have a cache behavior that’s associated with the specified origin request policy.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
+    "ListDistributionsByRealtimeLogConfig": "<p>Gets a list of distribution that have a cache behavior that’s associated with the specified real-time log configuration.</p> <p>You can specify the real-time log configuration by its name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to list distributions for.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request. </p>",
     "ListDistributionsByWebACLId": "<p>List the distributions that are associated with a specified AWS WAF web ACL. </p>",
     "ListFieldLevelEncryptionConfigs": "<p>List all field-level encryption configurations that have been created in CloudFront for this account.</p>",
     "ListFieldLevelEncryptionProfiles": "<p>Request a list of field-level encryption profiles that have been created in CloudFront for this account.</p>",
     "ListInvalidations": "<p>Lists invalidation batches. </p>",
     "ListOriginRequestPolicies": "<p>Gets a list of origin request policies.</p> <p>You can optionally apply a filter to return only the managed policies created by AWS, or only the custom policies created in your AWS account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListPublicKeys": "<p>List all public keys that have been added to CloudFront for this account.</p>",
+    "ListRealtimeLogConfigs": "<p>Gets a list of real-time log configurations.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request. </p>",
     "ListStreamingDistributions": "<p>List streaming distributions. </p>",
     "ListTagsForResource": "<p>List tags for a CloudFront resource.</p>",
     "TagResource": "<p>Add tags to a CloudFront resource.</p>",
@@ -63,6 +68,7 @@
     "UpdateFieldLevelEncryptionProfile": "<p>Update a field-level encryption profile. </p>",
     "UpdateOriginRequestPolicy": "<p>Updates an origin request policy configuration.</p> <p>When you update an origin request policy configuration, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update an origin request policy configuration:</p> <ol> <li> <p>Use <code>GetOriginRequestPolicyConfig</code> to get the current configuration.</p> </li> <li> <p>Locally modify the fields in the origin request policy configuration that you want to update.</p> </li> <li> <p>Call <code>UpdateOriginRequestPolicy</code> by providing the entire origin request policy configuration, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
     "UpdatePublicKey": "<p>Update public key information. Note that the only value you can change is the comment.</p>",
+    "UpdateRealtimeLogConfig": "<p>Updates a real-time log configuration.</p> <p>When you update a real-time log configuration, all the parameters are updated with the values provided in the request. You cannot update some parameters independent of others. To update a real-time log configuration:</p> <ol> <li> <p>Call <code>GetRealtimeLogConfig</code> to get the current real-time log configuration.</p> </li> <li> <p>Locally modify the parameters in the real-time log configuration that you want to update.</p> </li> <li> <p>Call this API (<code>UpdateRealtimeLogConfig</code>) by providing the entire real-time log configuration, including the parameters that you modified and those that you didn’t.</p> </li> </ol> <p>You cannot update a real-time log configuration’s <code>Name</code> or <code>ARN</code>.</p>",
     "UpdateStreamingDistribution": "<p>Update a streaming distribution. </p>"
   },
   "shapes": {
@@ -450,6 +456,16 @@
       "refs": {
       }
     },
+    "CreateRealtimeLogConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRealtimeLogConfigResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateStreamingDistributionRequest": {
       "base": "<p>The request to create a new streaming distribution.</p>",
       "refs": {
@@ -553,6 +569,11 @@
       "refs": {
       }
     },
+    "DeleteRealtimeLogConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteStreamingDistributionRequest": {
       "base": "<p>The request to delete a streaming distribution.</p>",
       "refs": {
@@ -604,6 +625,7 @@
     "DistributionList": {
       "base": "<p>A distribution list.</p>",
       "refs": {
+        "ListDistributionsByRealtimeLogConfigResult$DistributionList": null,
         "ListDistributionsByWebACLIdResult$DistributionList": "<p>The <code>DistributionList</code> type. </p>",
         "ListDistributionsResult$DistributionList": "<p>The <code>DistributionList</code> type. </p>"
       }
@@ -642,6 +664,20 @@
       "base": null,
       "refs": {
         "EncryptionEntities$Items": "<p>An array of field patterns in a field-level encryption content type-profile mapping. </p>"
+      }
+    },
+    "EndPoint": {
+      "base": "<p>Contains information about the Amazon Kinesis data stream where you are sending real-time log data in a real-time log configuration.</p>",
+      "refs": {
+        "EndPointList$member": null
+      }
+    },
+    "EndPointList": {
+      "base": null,
+      "refs": {
+        "CreateRealtimeLogConfigRequest$EndPoints": "<p>Contains information about the Amazon Kinesis data stream where you are sending real-time log data.</p>",
+        "RealtimeLogConfig$EndPoints": "<p>Contains information about the Amazon Kinesis data stream where you are sending real-time log data for this real-time log configuration.</p>",
+        "UpdateRealtimeLogConfigRequest$EndPoints": "<p>Contains information about the Amazon Kinesis data stream where you are sending real-time log data.</p>"
       }
     },
     "EventType": {
@@ -743,6 +779,14 @@
       "base": null,
       "refs": {
         "FieldLevelEncryptionList$Items": "<p>An array of field-level encryption items.</p>"
+      }
+    },
+    "FieldList": {
+      "base": null,
+      "refs": {
+        "CreateRealtimeLogConfigRequest$Fields": "<p>A list of fields to include in each real-time log record.</p> <p>For more information about fields, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html#understand-real-time-log-config-fields\">Real-time log configuration fields</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "RealtimeLogConfig$Fields": "<p>A list of fields that are included in each real-time log record. In an API response, the fields are provided in the same order in which they are sent to the Amazon Kinesis data stream.</p> <p>For more information about fields, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html#understand-real-time-log-config-fields\">Real-time log configuration fields</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "UpdateRealtimeLogConfigRequest$Fields": "<p>A list of fields to include in each real-time log record.</p> <p>For more information about fields, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html#understand-real-time-log-config-fields\">Real-time log configuration fields</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>"
       }
     },
     "FieldPatternList": {
@@ -938,6 +982,16 @@
       }
     },
     "GetPublicKeyResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRealtimeLogConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRealtimeLogConfigResult": {
       "base": null,
       "refs": {
       }
@@ -1174,6 +1228,12 @@
         "Signer$KeyPairIds": "<p>A complex type that lists the active CloudFront key pairs, if any, that are associated with <code>AwsAccountNumber</code>.</p>"
       }
     },
+    "KinesisStreamConfig": {
+      "base": "<p>Contains information about the Amazon Kinesis data stream where you are sending real-time log data.</p>",
+      "refs": {
+        "EndPoint$KinesisStreamConfig": "<p>Contains information about the Amazon Kinesis data stream where you are sending real-time log data.</p>"
+      }
+    },
     "LambdaFunctionARN": {
       "base": null,
       "refs": {
@@ -1235,6 +1295,16 @@
       }
     },
     "ListDistributionsByOriginRequestPolicyIdResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDistributionsByRealtimeLogConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDistributionsByRealtimeLogConfigResult": {
       "base": null,
       "refs": {
       }
@@ -1305,6 +1375,16 @@
       }
     },
     "ListPublicKeysResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRealtimeLogConfigsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRealtimeLogConfigsResult": {
       "base": null,
       "refs": {
       }
@@ -1415,6 +1495,11 @@
     },
     "NoSuchPublicKey": {
       "base": "<p>The specified public key doesn't exist.</p>",
+      "refs": {
+      }
+    },
+    "NoSuchRealtimeLogConfig": {
+      "base": "<p>The real-time log configuration does not exist.</p>",
       "refs": {
       }
     },
@@ -1735,6 +1820,37 @@
         "QueryStringNames$Items": "<p>A list of query string names.</p>"
       }
     },
+    "RealtimeLogConfig": {
+      "base": "<p>A real-time log configuration.</p>",
+      "refs": {
+        "CreateRealtimeLogConfigResult$RealtimeLogConfig": "<p>A real-time log configuration.</p>",
+        "GetRealtimeLogConfigResult$RealtimeLogConfig": "<p>A real-time log configuration.</p>",
+        "RealtimeLogConfigList$member": null,
+        "UpdateRealtimeLogConfigResult$RealtimeLogConfig": "<p>A real-time log configuration.</p>"
+      }
+    },
+    "RealtimeLogConfigAlreadyExists": {
+      "base": "<p>A real-time log configuration with this name already exists. You must provide a unique name. To modify an existing real-time log configuration, use <code>UpdateRealtimeLogConfig</code>.</p>",
+      "refs": {
+      }
+    },
+    "RealtimeLogConfigInUse": {
+      "base": "<p>Cannot delete the real-time log configuration because it is attached to one or more cache behaviors.</p>",
+      "refs": {
+      }
+    },
+    "RealtimeLogConfigList": {
+      "base": null,
+      "refs": {
+        "RealtimeLogConfigs$Items": "<p>Contains the list of real-time log configurations.</p>"
+      }
+    },
+    "RealtimeLogConfigs": {
+      "base": "<p>A list of real-time log configurations.</p>",
+      "refs": {
+        "ListRealtimeLogConfigsResult$RealtimeLogConfigs": "<p>A list of real-time log configurations.</p>"
+      }
+    },
     "RealtimeMetricsSubscriptionConfig": {
       "base": "<p>A subscription configuration for additional CloudWatch metrics.</p>",
       "refs": {
@@ -1778,7 +1894,7 @@
     "SSLSupportMethod": {
       "base": null,
       "refs": {
-        "ViewerCertificate$SSLSupportMethod": "<p>If the distribution uses <code>Aliases</code> (alternate domain names or CNAMEs), specify which viewers the distribution accepts HTTPS connections from.</p> <ul> <li> <p> <code>sni-only</code> – The distribution accepts HTTPS connections from only viewers that support <a href=\"https://en.wikipedia.org/wiki/Server_Name_Indication\">server name indication (SNI)</a>. This is recommended. Most browsers and clients support SNI.</p> </li> <li> <p> <code>vip</code> – The distribution accepts HTTPS connections from all viewers including those that don’t support SNI. This is not recommended, and results in additional monthly charges from CloudFront.</p> </li> </ul> <p>If the distribution uses the CloudFront domain name such as <code>d111111abcdef8.cloudfront.net</code>, don’t set a value for this field.</p>"
+        "ViewerCertificate$SSLSupportMethod": "<p>If the distribution uses <code>Aliases</code> (alternate domain names or CNAMEs), specify which viewers the distribution accepts HTTPS connections from.</p> <ul> <li> <p> <code>sni-only</code> – The distribution accepts HTTPS connections from only viewers that support <a href=\"https://en.wikipedia.org/wiki/Server_Name_Indication\">server name indication (SNI)</a>. This is recommended. Most browsers and clients support SNI.</p> </li> <li> <p> <code>vip</code> – The distribution accepts HTTPS connections from all viewers including those that don’t support SNI. This is not recommended, and results in additional monthly charges from CloudFront.</p> </li> <li> <p> <code>static-ip</code> - Do not specify this value unless your distribution has been enabled for this feature by the CloudFront team. If you have a use case that requires static IP addresses for a distribution, contact CloudFront through the <a href=\"https://console.aws.amazon.com/support/home\">AWS Support Center</a>.</p> </li> </ul> <p>If the distribution uses the CloudFront domain name such as <code>d111111abcdef8.cloudfront.net</code>, don’t set a value for this field.</p>"
       }
     },
     "Signer": {
@@ -2092,6 +2208,11 @@
       "refs": {
       }
     },
+    "TooManyRealtimeLogConfigs": {
+      "base": "<p>You have reached the maximum number of real-time log configurations for this AWS account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
     "TooManyStreamingDistributionCNAMEs": {
       "base": "<p>Your request contains more CNAMEs than are allowed per distribution.</p>",
       "refs": {
@@ -2196,6 +2317,16 @@
       "refs": {
       }
     },
+    "UpdateRealtimeLogConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRealtimeLogConfigResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateStreamingDistributionRequest": {
       "base": "<p>The request to update a streaming distribution.</p>",
       "refs": {
@@ -2243,6 +2374,7 @@
         "LoggingConfig$IncludeCookies": "<p>Specifies whether you want CloudFront to include cookies in access logs, specify <code>true</code> for <code>IncludeCookies</code>. If you choose to include cookies in logs, CloudFront logs all cookies regardless of how you configure the cache behaviors for this distribution. If you don't want to include cookies when you create a distribution or if you want to disable include cookies for an existing distribution, specify <code>false</code> for <code>IncludeCookies</code>.</p>",
         "ParametersInCacheKeyAndForwardedToOrigin$EnableAcceptEncodingGzip": "<p>A flag that determines whether the <code>Accept-Encoding</code> HTTP header is included in the cache key and included in requests that CloudFront sends to the origin.</p> <p>If this field is <code>true</code> <i>and</i> the viewer request includes the <code>Accept-Encoding</code> header, then CloudFront normalizes the value of the viewer’s <code>Accept-Encoding</code> header to one of the following:</p> <ul> <li> <p> <code>Accept-Encoding: gzip</code> (if <code>gzip</code> is in the viewer’s <code>Accept-Encoding</code> header)</p> </li> <li> <p> <code>Accept-Encoding: identity</code> (if <code>gzip</code> is <i>not</i> in the viewer’s <code>Accept-Encoding</code> header)</p> </li> </ul> <p>CloudFront includes the normalized header in the cache key and includes it in requests that CloudFront sends to the origin.</p> <p>If this field is <code>false</code>, then CloudFront treats the <code>Accept-Encoding</code> header the same as any other HTTP header in the viewer request. By default, it’s not included in the cache key and it’s not included in origin requests. You can manually add <code>Accept-Encoding</code> to the headers whitelist like any other HTTP header.</p> <p>When this field is <code>true</code>, you should not whitelist the <code>Accept-Encoding</code> header in the cache policy or in an origin request policy attached to the same cache behavior.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-policy-compressed-objects\">Cache compressed objects</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "QueryArgProfileConfig$ForwardWhenQueryArgProfileIsUnknown": "<p>Flag to set if you want a request to be forwarded to the origin even if the profile specified by the field-level encryption query argument, fle-profile, is unknown.</p>",
+        "RealtimeLogConfigs$IsTruncated": "<p>A flag that indicates whether there are more real-time log configurations than are contained in this list.</p>",
         "StreamingDistributionConfig$Enabled": "<p>Whether the streaming distribution is enabled to accept user requests for content.</p>",
         "StreamingDistributionList$IsTruncated": "<p>A flag that indicates whether more streaming distributions remain to be listed. If your results were truncated, you can make a follow-up pagination request using the <code>Marker</code> request parameter to retrieve more distributions in the list. </p>",
         "StreamingDistributionSummary$Enabled": "<p>Whether the distribution is enabled to accept end user requests for content.</p>",
@@ -2303,6 +2435,7 @@
         "QueryArgProfiles$Quantity": "<p>Number of profiles for query argument-profile mapping for field-level encryption.</p>",
         "QueryStringCacheKeys$Quantity": "<p>The number of <code>whitelisted</code> query string parameters for a cache behavior.</p>",
         "QueryStringNames$Quantity": "<p>The number of query string names in the <code>Items</code> list.</p>",
+        "RealtimeLogConfigs$MaxItems": "<p>The maximum number of real-time log configurations requested.</p>",
         "StatusCodeList$member": null,
         "StatusCodes$Quantity": "<p>The number of status codes.</p>",
         "StreamingDistributionList$MaxItems": "<p>The value you provided for the <code>MaxItems</code> request parameter. </p>",
@@ -2319,10 +2452,13 @@
         "CachePolicyConfig$DefaultTTL": "<p>The default amount of time, in seconds, that you want objects to stay in the CloudFront cache before CloudFront sends another request to the origin to see if the object has been updated. CloudFront uses this value as the object’s time to live (TTL) only when the origin does <i>not</i> send <code>Cache-Control</code> or <code>Expires</code> headers with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html\">Managing How Long Content Stays in an Edge Cache (Expiration)</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>The default value for this field is 86400 seconds (one day). If the value of <code>MinTTL</code> is more than 86400 seconds, then the default value for this field is the same as the value of <code>MinTTL</code>.</p>",
         "CachePolicyConfig$MaxTTL": "<p>The maximum amount of time, in seconds, that objects stay in the CloudFront cache before CloudFront sends another request to the origin to see if the object has been updated. CloudFront uses this value only when the origin sends <code>Cache-Control</code> or <code>Expires</code> headers with the object. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html\">Managing How Long Content Stays in an Edge Cache (Expiration)</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>The default value for this field is 31536000 seconds (one year). If the value of <code>MinTTL</code> or <code>DefaultTTL</code> is more than 31536000 seconds, then the default value for this field is the same as the value of <code>DefaultTTL</code>.</p>",
         "CachePolicyConfig$MinTTL": "<p>The minimum amount of time, in seconds, that you want objects to stay in the CloudFront cache before CloudFront sends another request to the origin to see if the object has been updated. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html\">Managing How Long Content Stays in an Edge Cache (Expiration)</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "CreateRealtimeLogConfigRequest$SamplingRate": "<p>The sampling rate for this real-time log configuration. The sampling rate determines the percentage of viewer requests that are represented in the real-time log data. You must provide an integer between 1 and 100, inclusive.</p>",
         "CustomErrorResponse$ErrorCachingMinTTL": "<p>The minimum amount of time, in seconds, that you want CloudFront to cache the HTTP status code specified in <code>ErrorCode</code>. When this time period has elapsed, CloudFront queries your origin to see whether the problem that caused the error has been resolved and the requested object is now available.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/custom-error-pages.html\">Customizing Error Responses</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "DefaultCacheBehavior$MinTTL": "<p>This field is deprecated. We recommend that you use the <code>MinTTL</code> field in a cache policy instead of this field. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>The minimum amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html\">Managing How Long Content Stays in an Edge Cache (Expiration)</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>You must specify <code>0</code> for <code>MinTTL</code> if you configure CloudFront to forward all headers to your origin (under <code>Headers</code>, if you specify <code>1</code> for <code>Quantity</code> and <code>*</code> for <code>Name</code>).</p>",
         "DefaultCacheBehavior$DefaultTTL": "<p>This field is deprecated. We recommend that you use the <code>DefaultTTL</code> field in a cache policy instead of this field. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>The default amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. The value that you specify applies only when your origin does not add HTTP headers such as <code>Cache-Control max-age</code>, <code>Cache-Control s-maxage</code>, and <code>Expires</code> to objects. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html\">Managing How Long Content Stays in an Edge Cache (Expiration)</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
-        "DefaultCacheBehavior$MaxTTL": "<p>This field is deprecated. We recommend that you use the <code>MaxTTL</code> field in a cache policy instead of this field. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>The maximum amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. The value that you specify applies only when your origin adds HTTP headers such as <code>Cache-Control max-age</code>, <code>Cache-Control s-maxage</code>, and <code>Expires</code> to objects. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html\">Managing How Long Content Stays in an Edge Cache (Expiration)</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>"
+        "DefaultCacheBehavior$MaxTTL": "<p>This field is deprecated. We recommend that you use the <code>MaxTTL</code> field in a cache policy instead of this field. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>The maximum amount of time that you want objects to stay in CloudFront caches before CloudFront forwards another request to your origin to determine whether the object has been updated. The value that you specify applies only when your origin adds HTTP headers such as <code>Cache-Control max-age</code>, <code>Cache-Control s-maxage</code>, and <code>Expires</code> to objects. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html\">Managing How Long Content Stays in an Edge Cache (Expiration)</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "RealtimeLogConfig$SamplingRate": "<p>The sampling rate for this real-time log configuration. The sampling rate determines the percentage of viewer requests that are represented in the real-time log data. The sampling rate is an integer between 1 and 100, inclusive.</p>",
+        "UpdateRealtimeLogConfigRequest$SamplingRate": "<p>The sampling rate for this real-time log configuration. The sampling rate determines the percentage of viewer requests that are represented in the real-time log data. You must provide an integer between 1 and 100, inclusive.</p>"
       }
     },
     "string": {
@@ -2337,6 +2473,7 @@
         "CacheBehavior$PathPattern": "<p>The pattern (for example, <code>images/*.jpg</code>) that specifies which requests to apply the behavior to. When CloudFront receives a viewer request, the requested path is compared with path patterns in the order in which cache behaviors are listed in the distribution.</p> <note> <p>You can optionally include a slash (<code>/</code>) at the beginning of the path pattern. For example, <code>/images/*.jpg</code>. CloudFront behavior is the same with or without the leading <code>/</code>.</p> </note> <p>The path pattern for the default cache behavior is <code>*</code> and cannot be changed. If the request for an object does not match the path pattern for any cache behaviors, CloudFront applies the behavior in the default cache behavior.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesPathPattern\">Path Pattern</a> in the <i> Amazon CloudFront Developer Guide</i>.</p>",
         "CacheBehavior$TargetOriginId": "<p>The value of <code>ID</code> for the origin that you want CloudFront to route requests to when they match this cache behavior.</p>",
         "CacheBehavior$FieldLevelEncryptionId": "<p>The value of <code>ID</code> for the field-level encryption configuration that you want CloudFront to use for encrypting specific fields of data for this cache behavior.</p>",
+        "CacheBehavior$RealtimeLogConfigArn": "<p>The Amazon Resource Name (ARN) of the real-time log configuration that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "CacheBehavior$CachePolicyId": "<p>The unique identifier of the cache policy that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "CacheBehavior$OriginRequestPolicyId": "<p>The unique identifier of the origin request policy that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "CachePolicy$Id": "<p>The unique identifier for the cache policy.</p>",
@@ -2379,6 +2516,7 @@
         "CreateOriginRequestPolicyResult$ETag": "<p>The current version of the origin request policy.</p>",
         "CreatePublicKeyResult$Location": "<p>The fully qualified URI of the new public key resource just created.</p>",
         "CreatePublicKeyResult$ETag": "<p>The current version of the public key. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "CreateRealtimeLogConfigRequest$Name": "<p>A unique name to identify this real-time log configuration.</p>",
         "CreateStreamingDistributionResult$Location": "<p>The fully qualified URI of the new streaming distribution resource just created.</p>",
         "CreateStreamingDistributionResult$ETag": "<p>The current version of the streaming distribution created.</p>",
         "CreateStreamingDistributionWithTagsResult$Location": "<p>The fully qualified URI of the new streaming distribution resource just created.</p>",
@@ -2387,6 +2525,7 @@
         "CustomErrorResponse$ResponseCode": "<p>The HTTP status code that you want CloudFront to return to the viewer along with the custom error page. There are a variety of reasons that you might want CloudFront to return a status code different from the status code that your origin returned to CloudFront, for example:</p> <ul> <li> <p>Some Internet devices (some firewalls and corporate proxies, for example) intercept HTTP 4xx and 5xx and prevent the response from being returned to the viewer. If you substitute <code>200</code>, the response typically won't be intercepted.</p> </li> <li> <p>If you don't care about distinguishing among different client errors or server errors, you can specify <code>400</code> or <code>500</code> as the <code>ResponseCode</code> for all 4xx or 5xx errors.</p> </li> <li> <p>You might want to return a <code>200</code> status code (OK) and static website so your customers don't know that your website is down.</p> </li> </ul> <p>If you specify a value for <code>ResponseCode</code>, you must also specify a value for <code>ResponsePagePath</code>.</p>",
         "DefaultCacheBehavior$TargetOriginId": "<p>The value of <code>ID</code> for the origin that you want CloudFront to route requests to when they use the default cache behavior.</p>",
         "DefaultCacheBehavior$FieldLevelEncryptionId": "<p>The value of <code>ID</code> for the field-level encryption configuration that you want CloudFront to use for encrypting specific fields of data for the default cache behavior.</p>",
+        "DefaultCacheBehavior$RealtimeLogConfigArn": "<p>The Amazon Resource Name (ARN) of the real-time log configuration that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "DefaultCacheBehavior$CachePolicyId": "<p>The unique identifier of the cache policy that is attached to the default cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "DefaultCacheBehavior$OriginRequestPolicyId": "<p>The unique identifier of the origin request policy that is attached to the default cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "DeleteCachePolicyRequest$Id": "<p>The unique identifier for the cache policy that you are deleting. To get the identifier, you can use <code>ListCachePolicies</code>.</p>",
@@ -2404,6 +2543,8 @@
         "DeleteOriginRequestPolicyRequest$IfMatch": "<p>The version of the origin request policy that you are deleting. The version is the origin request policy’s <code>ETag</code> value, which you can get using <code>ListOriginRequestPolicies</code>, <code>GetOriginRequestPolicy</code>, or <code>GetOriginRequestPolicyConfig</code>.</p>",
         "DeletePublicKeyRequest$Id": "<p>The ID of the public key you want to remove from CloudFront.</p>",
         "DeletePublicKeyRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the public key identity to delete. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "DeleteRealtimeLogConfigRequest$Name": "<p>The name of the real-time log configuration to delete.</p>",
+        "DeleteRealtimeLogConfigRequest$ARN": "<p>The Amazon Resource Name (ARN) of the real-time log configuration to delete.</p>",
         "DeleteStreamingDistributionRequest$Id": "<p>The distribution ID. </p>",
         "DeleteStreamingDistributionRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when you disabled the streaming distribution. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "Distribution$Id": "<p>The identifier for the distribution. For example: <code>EDFDVBD632BHDS5</code>. </p>",
@@ -2428,6 +2569,7 @@
         "DistributionSummary$WebACLId": "<p>The Web ACL Id (if any) associated with the distribution.</p>",
         "EncryptionEntity$PublicKeyId": "<p>The public key associated with a set of field-level encryption patterns, to be used when encrypting the fields that match the patterns. </p>",
         "EncryptionEntity$ProviderId": "<p>The provider associated with the public key being used for encryption. This value must also be provided with the private key for applications to be able to decrypt data.</p>",
+        "EndPoint$StreamType": "<p>The type of data stream where you are sending real-time log data. The only valid value is <code>Kinesis</code>.</p>",
         "FieldLevelEncryption$Id": "<p>The configuration ID for a field-level encryption configuration which includes a set of profiles that specify certain selected data fields to be encrypted by specific public keys.</p>",
         "FieldLevelEncryptionConfig$CallerReference": "<p>A unique number that ensures the request can't be replayed.</p>",
         "FieldLevelEncryptionConfig$Comment": "<p>An optional comment about the configuration.</p>",
@@ -2447,6 +2589,7 @@
         "FieldLevelEncryptionProfileSummary$Comment": "<p>An optional comment for the field-level encryption profile summary.</p>",
         "FieldLevelEncryptionSummary$Id": "<p>The unique ID of a field-level encryption item.</p>",
         "FieldLevelEncryptionSummary$Comment": "<p>An optional comment about the field-level encryption item.</p>",
+        "FieldList$member": null,
         "FieldPatternList$member": null,
         "GetCachePolicyConfigRequest$Id": "<p>The unique identifier for the cache policy. If the cache policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the cache policy is not attached to a cache behavior, you can get the identifier using <code>ListCachePolicies</code>.</p>",
         "GetCachePolicyConfigResult$ETag": "<p>The current version of the cache policy.</p>",
@@ -2479,6 +2622,8 @@
         "GetPublicKeyConfigResult$ETag": "<p>The current version of the public key configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "GetPublicKeyRequest$Id": "<p>Request the ID for the public key.</p>",
         "GetPublicKeyResult$ETag": "<p>The current version of the public key. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "GetRealtimeLogConfigRequest$Name": "<p>The name of the real-time log configuration to get.</p>",
+        "GetRealtimeLogConfigRequest$ARN": "<p>The Amazon Resource Name (ARN) of the real-time log configuration to get.</p>",
         "GetStreamingDistributionConfigRequest$Id": "<p>The streaming distribution's ID.</p>",
         "GetStreamingDistributionConfigResult$ETag": "<p>The current version of the configuration. For example: <code>E2QWRUHAPOMQZL</code>. </p>",
         "GetStreamingDistributionRequest$Id": "<p>The streaming distribution's ID.</p>",
@@ -2519,6 +2664,8 @@
         "InvalidationSummary$Id": "<p>The unique ID for an invalidation request.</p>",
         "InvalidationSummary$Status": "<p>The status of an invalidation request.</p>",
         "KeyPairIdList$member": null,
+        "KinesisStreamConfig$RoleARN": "<p>The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that CloudFront can use to send real-time log data to your Kinesis data stream.</p> <p>For more information the IAM role, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html#understand-real-time-log-config-iam-role\">Real-time log configuration IAM role</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "KinesisStreamConfig$StreamARN": "<p>The Amazon Resource Name (ARN) of the Kinesis data stream where you are sending real-time log data.</p>",
         "ListCachePoliciesRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of cache policies. The response includes cache policies in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
         "ListCachePoliciesRequest$MaxItems": "<p>The maximum number of cache policies that you want in the response.</p>",
         "ListCloudFrontOriginAccessIdentitiesRequest$Marker": "<p>Use this when paginating results to indicate where to begin in your list of origin access identities. The results include identities in the list that occur after the marker. To get the next page of results, set the <code>Marker</code> to the value of the <code>NextMarker</code> from the current page's response (which is also the ID of the last identity on that page).</p>",
@@ -2529,6 +2676,10 @@
         "ListDistributionsByOriginRequestPolicyIdRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of distribution IDs. The response includes distribution IDs in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
         "ListDistributionsByOriginRequestPolicyIdRequest$MaxItems": "<p>The maximum number of distribution IDs that you want in the response.</p>",
         "ListDistributionsByOriginRequestPolicyIdRequest$OriginRequestPolicyId": "<p>The ID of the origin request policy whose associated distribution IDs you want to list.</p>",
+        "ListDistributionsByRealtimeLogConfigRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of distributions. The response includes distributions in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
+        "ListDistributionsByRealtimeLogConfigRequest$MaxItems": "<p>The maximum number of distributions that you want in the response.</p>",
+        "ListDistributionsByRealtimeLogConfigRequest$RealtimeLogConfigName": "<p>The name of the real-time log configuration whose associated distributions you want to list.</p>",
+        "ListDistributionsByRealtimeLogConfigRequest$RealtimeLogConfigArn": "<p>The Amazon Resource Name (ARN) of the real-time log configuration whose associated distributions you want to list.</p>",
         "ListDistributionsByWebACLIdRequest$Marker": "<p>Use <code>Marker</code> and <code>MaxItems</code> to control pagination of results. If you have more than <code>MaxItems</code> distributions that satisfy the request, the response includes a <code>NextMarker</code> element. To get the next page of results, submit another request. For the value of <code>Marker</code>, specify the value of <code>NextMarker</code> from the last response. (For the first request, omit <code>Marker</code>.) </p>",
         "ListDistributionsByWebACLIdRequest$MaxItems": "<p>The maximum number of distributions that you want CloudFront to return in the response body. The maximum and default values are both 100.</p>",
         "ListDistributionsByWebACLIdRequest$WebACLId": "<p>The ID of the AWS WAF web ACL that you want to list the associated distributions. If you specify \"null\" for the ID, the request returns a list of the distributions that aren't associated with a web ACL. </p>",
@@ -2545,6 +2696,8 @@
         "ListOriginRequestPoliciesRequest$MaxItems": "<p>The maximum number of origin request policies that you want in the response.</p>",
         "ListPublicKeysRequest$Marker": "<p>Use this when paginating results to indicate where to begin in your list of public keys. The results include public keys in the list that occur after the marker. To get the next page of results, set the <code>Marker</code> to the value of the <code>NextMarker</code> from the current page's response (which is also the ID of the last public key on that page). </p>",
         "ListPublicKeysRequest$MaxItems": "<p>The maximum number of public keys you want in the response body. </p>",
+        "ListRealtimeLogConfigsRequest$MaxItems": "<p>The maximum number of real-time log configurations that you want in the response.</p>",
+        "ListRealtimeLogConfigsRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of real-time log configurations. The response includes real-time log configurations in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
         "ListStreamingDistributionsRequest$Marker": "<p>The value that you provided for the <code>Marker</code> request parameter.</p>",
         "ListStreamingDistributionsRequest$MaxItems": "<p>The value that you provided for the <code>MaxItems</code> request parameter.</p>",
         "LocationList$member": null,
@@ -2560,6 +2713,7 @@
         "NoSuchOrigin$Message": null,
         "NoSuchOriginRequestPolicy$Message": null,
         "NoSuchPublicKey$Message": null,
+        "NoSuchRealtimeLogConfig$Message": null,
         "NoSuchResource$Message": null,
         "NoSuchStreamingDistribution$Message": null,
         "Origin$Id": "<p>A unique identifier for the origin. This value must be unique within the distribution.</p> <p>Use this value to specify the <code>TargetOriginId</code> in a <code>CacheBehavior</code> or <code>DefaultCacheBehavior</code>.</p>",
@@ -2594,6 +2748,12 @@
         "QueryArgProfileEmpty$Message": null,
         "QueryStringCacheKeysList$member": null,
         "QueryStringNamesList$member": null,
+        "RealtimeLogConfig$ARN": "<p>The Amazon Resource Name (ARN) of this real-time log configuration.</p>",
+        "RealtimeLogConfig$Name": "<p>The unique name of this real-time log configuration.</p>",
+        "RealtimeLogConfigAlreadyExists$Message": null,
+        "RealtimeLogConfigInUse$Message": null,
+        "RealtimeLogConfigs$Marker": "<p>This parameter indicates where this list of real-time log configurations begins. This list includes real-time log configurations that occur after the marker.</p>",
+        "RealtimeLogConfigs$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing real-time log configurations where you left off. </p>",
         "S3Origin$DomainName": "<p>The DNS name of the Amazon S3 origin. </p>",
         "S3Origin$OriginAccessIdentity": "<p>The CloudFront origin access identity to associate with the distribution. Use an origin access identity to configure the distribution so that end users can only access objects in an Amazon S3 bucket through CloudFront.</p> <p>If you want end users to be able to access objects using either the CloudFront URL or the Amazon S3 URL, specify an empty <code>OriginAccessIdentity</code> element.</p> <p>To delete the origin access identity from an existing distribution, update the distribution configuration and include an empty <code>OriginAccessIdentity</code> element.</p> <p>To replace the origin access identity, update the distribution configuration and specify the new origin access identity.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html\">Using an Origin Access Identity to Restrict Access to Your Amazon S3 Content</a> in the <i> Amazon CloudFront Developer Guide</i>.</p>",
         "S3OriginConfig$OriginAccessIdentity": "<p>The CloudFront origin access identity to associate with the origin. Use an origin access identity to configure the origin so that viewers can <i>only</i> access objects in an Amazon S3 bucket through CloudFront. The format of the value is:</p> <p>origin-access-identity/cloudfront/<i>ID-of-origin-access-identity</i> </p> <p>where <code> <i>ID-of-origin-access-identity</i> </code> is the value that CloudFront returned in the <code>ID</code> element when you created the origin access identity.</p> <p>If you want viewers to be able to access objects using either the CloudFront URL or the Amazon S3 URL, specify an empty <code>OriginAccessIdentity</code> element.</p> <p>To delete the origin access identity from an existing distribution, update the distribution configuration and include an empty <code>OriginAccessIdentity</code> element.</p> <p>To replace the origin access identity, update the distribution configuration and specify the new origin access identity.</p> <p>For more information about the origin access identity, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
@@ -2648,6 +2808,7 @@
         "TooManyQueryStringParameters$Message": null,
         "TooManyQueryStringsInCachePolicy$Message": null,
         "TooManyQueryStringsInOriginRequestPolicy$Message": null,
+        "TooManyRealtimeLogConfigs$Message": null,
         "TooManyStreamingDistributionCNAMEs$Message": null,
         "TooManyStreamingDistributions$Message": null,
         "TooManyTrustedSigners$Message": null,
@@ -2673,6 +2834,8 @@
         "UpdatePublicKeyRequest$Id": "<p>ID of the public key to be updated.</p>",
         "UpdatePublicKeyRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the public key to update. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "UpdatePublicKeyResult$ETag": "<p>The current version of the update public key result. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "UpdateRealtimeLogConfigRequest$Name": "<p>The name for this real-time log configuration.</p>",
+        "UpdateRealtimeLogConfigRequest$ARN": "<p>The Amazon Resource Name (ARN) for this real-time log configuration.</p>",
         "UpdateStreamingDistributionRequest$Id": "<p>The streaming distribution's id.</p>",
         "UpdateStreamingDistributionRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the streaming distribution's configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "UpdateStreamingDistributionResult$ETag": "<p>The current version of the configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
