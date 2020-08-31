@@ -6377,7 +6377,8 @@
     "FleetLaunchTemplateConfigListRequest": {
       "base": null,
       "refs": {
-        "CreateFleetRequest$LaunchTemplateConfigs": "<p>The configuration for the EC2 Fleet.</p>"
+        "CreateFleetRequest$LaunchTemplateConfigs": "<p>The configuration for the EC2 Fleet.</p>",
+        "ModifyFleetRequest$LaunchTemplateConfigs": "<p>The launch template and overrides.</p>"
       }
     },
     "FleetLaunchTemplateConfigRequest": {
@@ -8566,6 +8567,7 @@
     "LaunchTemplateConfigList": {
       "base": null,
       "refs": {
+        "ModifySpotFleetRequestRequest$LaunchTemplateConfigs": "<p>The launch template and overrides. You can only use this parameter if you specified a launch template (<code>LaunchTemplateConfigs</code>) in your Spot Fleet request. If you specified <code>LaunchSpecifications</code> in your Spot Fleet request, then omit this parameter.</p>",
         "SpotFleetRequestConfigData$LaunchTemplateConfigs": "<p>The launch template and overrides. If you specify <code>LaunchTemplateConfigs</code>, you can't specify <code>LaunchSpecifications</code>. If you include On-Demand capacity in your request, you must use <code>LaunchTemplateConfigs</code>.</p>"
       }
     },

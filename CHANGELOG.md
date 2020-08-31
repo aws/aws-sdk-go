@@ -1,3 +1,20 @@
+Release v1.34.14 (2020-08-31)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service documentation
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront now supports real-time logging for CloudFront distributions. CloudFront real-time logs are more detailed, configurable, and are available in real time.
+* `service/ec2`: Updates service API and documentation
+  * Amazon EC2 and Spot Fleet now support modification of launch template configs for a running fleet enabling instance type, instance weight, AZ, and AMI updates without losing the current fleet ID.
+* `service/sqs`: Updates service documentation
+  * Documentation updates for SQS.
+
+### SDK Bugs
+* `aws/ec2metadata`: Add support for EC2 IMDS endpoint from environment variable ([#3504](https://github.com/aws/aws-sdk-go/pull/3504))
+  * Adds support for specifying a custom EC2 IMDS endpoint from the environment variable, `AWS_EC2_METADATA_SERVICE_ENDPOINT`.
+  * The `aws/session#Options` struct also has a new field, `EC2IMDSEndpoint`. This field can be used to configure the custom endpoint of the EC2 IMDS client. The option only applies to EC2 IMDS clients created after the Session with `EC2IMDSEndpoint` is specified.
+
 Release v1.34.13 (2020-08-28)
 ===
 
