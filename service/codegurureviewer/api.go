@@ -126,6 +126,102 @@ func (c *CodeGuruReviewer) AssociateRepositoryWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opCreateCodeReview = "CreateCodeReview"
+
+// CreateCodeReviewRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCodeReview operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCodeReview for more information on using the CreateCodeReview
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateCodeReviewRequest method.
+//    req, resp := client.CreateCodeReviewRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/CreateCodeReview
+func (c *CodeGuruReviewer) CreateCodeReviewRequest(input *CreateCodeReviewInput) (req *request.Request, output *CreateCodeReviewOutput) {
+	op := &request.Operation{
+		Name:       opCreateCodeReview,
+		HTTPMethod: "POST",
+		HTTPPath:   "/codereviews",
+	}
+
+	if input == nil {
+		input = &CreateCodeReviewInput{}
+	}
+
+	output = &CreateCodeReviewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCodeReview API operation for Amazon CodeGuru Reviewer.
+//
+// Use to create a code review for a repository analysis.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Reviewer's
+// API operation CreateCodeReview for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource specified in the request was not found.
+//
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The input fails to satisfy the specified constraints.
+//
+//   * ConflictException
+//   The requested operation would cause a conflict with the current state of
+//   a service resource associated with the request. Resolve the conflict before
+//   retrying this request.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/CreateCodeReview
+func (c *CodeGuruReviewer) CreateCodeReview(input *CreateCodeReviewInput) (*CreateCodeReviewOutput, error) {
+	req, out := c.CreateCodeReviewRequest(input)
+	return out, req.Send()
+}
+
+// CreateCodeReviewWithContext is the same as CreateCodeReview with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCodeReview for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) CreateCodeReviewWithContext(ctx aws.Context, input *CreateCodeReviewInput, opts ...request.Option) (*CreateCodeReviewOutput, error) {
+	req, out := c.CreateCodeReviewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeCodeReview = "DescribeCodeReview"
 
 // DescribeCodeReviewRequest generates a "aws/request.Request" representing the
@@ -1242,24 +1338,6 @@ func (s *AccessDeniedException) RequestID() string {
 type AssociateRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
-	// Unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the request.
-	//
-	// To add a new repository association, this parameter specifies a unique identifier
-	// for the new repository association that helps ensure idempotency.
-	//
-	// If you use the AWS CLI or one of the AWS SDKs to call this operation, you
-	// can leave this parameter empty. The CLI or SDK generates a random UUID for
-	// you and includes that in the request. If you don't use the SDK and instead
-	// generate a raw HTTP request to the Secrets Manager service endpoint, you
-	// must generate a ClientRequestToken yourself for new versions and include
-	// that value in the request.
-	//
-	// You typically interact with this value if you implement your own retry logic
-	// and want to ensure that a given repository association is not created twice.
-	// We recommend that you generate a UUID-type value to ensure uniqueness within
-	// the specified repository association.
-	//
 	// Amazon CodeGuru Reviewer uses this value to prevent the accidental creation
 	// of duplicate repository associations if there are failures and retries.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
@@ -1404,8 +1482,9 @@ type CodeReview struct {
 	Name *string `min:"1" type:"string"`
 
 	// The owner of the repository. For an AWS CodeCommit repository, this is the
-	// AWS account ID of the account that owns the repository. For a GitHub or Bitbucket
-	// repository, this is the username for the account that owns the repository.
+	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
+	// Enterprise Server, or Bitbucket repository, this is the username for the
+	// account that owns the repository.
 	Owner *string `min:"1" type:"string"`
 
 	// The type of repository that contains the reviewed code (for example, GitHub
@@ -1549,8 +1628,9 @@ type CodeReviewSummary struct {
 	Name *string `min:"1" type:"string"`
 
 	// The owner of the repository. For an AWS CodeCommit repository, this is the
-	// AWS account ID of the account that owns the repository. For a GitHub or Bitbucket
-	// repository, this is the username for the account that owns the repository.
+	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
+	// Enterprise Server, or Bitbucket repository, this is the username for the
+	// account that owns the repository.
 	Owner *string `min:"1" type:"string"`
 
 	// The provider type of the repository association.
@@ -1655,14 +1735,70 @@ func (s *CodeReviewSummary) SetType(v string) *CodeReviewSummary {
 	return s
 }
 
-// The commit diff for the pull request.
+// The type of a code review. There are two code review types:
+//
+//    * PullRequest - A code review that is automatically triggered by a pull
+//    request on an assocaited repository. Because this type of code review
+//    is automatically generated, you cannot specify this code review type using
+//    CreateCodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
+//
+//    * RepositoryAnalysis - A code review that analyzes all code under a specified
+//    branch in an associated respository. The assocated repository is specified
+//    using its ARN in CreateCodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
+type CodeReviewType struct {
+	_ struct{} `type:"structure"`
+
+	// A code review that analyzes all code under a specified branch in an associated
+	// respository. The assocated repository is specified using its ARN in CreateCodeReview
+	// (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview)
+	//
+	// RepositoryAnalysis is a required field
+	RepositoryAnalysis *RepositoryAnalysis `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CodeReviewType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CodeReviewType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CodeReviewType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CodeReviewType"}
+	if s.RepositoryAnalysis == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryAnalysis"))
+	}
+	if s.RepositoryAnalysis != nil {
+		if err := s.RepositoryAnalysis.Validate(); err != nil {
+			invalidParams.AddNested("RepositoryAnalysis", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRepositoryAnalysis sets the RepositoryAnalysis field's value.
+func (s *CodeReviewType) SetRepositoryAnalysis(v *RepositoryAnalysis) *CodeReviewType {
+	s.RepositoryAnalysis = v
+	return s
+}
+
+// A type of SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
+// that specifies the commit diff for a pull request on an associated repository.
 type CommitDiffSourceCodeType struct {
 	_ struct{} `type:"structure"`
 
-	// The SHA of the destination commit.
+	// The SHA of the destination commit used to generate a commit diff.
 	DestinationCommit *string `min:"6" type:"string"`
 
-	// The SHA of the source commit.
+	// The SHA of the source commit used to generate a commit diff.
 	SourceCommit *string `min:"6" type:"string"`
 }
 
@@ -1744,6 +1880,126 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type CreateCodeReviewInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon CodeGuru Reviewer uses this value to prevent the accidental creation
+	// of duplicate code reviews if there are failures and retries.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the code review. Each code review of the same code review type
+	// must have a unique name in your AWS account.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
+	// object. You can retrieve this ARN by calling ListRepositories.
+	//
+	// A code review can only be created on an associated repository. This is the
+	// ARN of the associated repository.
+	//
+	// RepositoryAssociationArn is a required field
+	RepositoryAssociationArn *string `min:"1" type:"string" required:"true"`
+
+	// The type of code review to create. This is specified using a CodeReviewType
+	// (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html)
+	// object.
+	//
+	// Type is a required field
+	Type *CodeReviewType `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateCodeReviewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCodeReviewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCodeReviewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCodeReviewInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RepositoryAssociationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryAssociationArn"))
+	}
+	if s.RepositoryAssociationArn != nil && len(*s.RepositoryAssociationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryAssociationArn", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Type != nil {
+		if err := s.Type.Validate(); err != nil {
+			invalidParams.AddNested("Type", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateCodeReviewInput) SetClientRequestToken(v string) *CreateCodeReviewInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCodeReviewInput) SetName(v string) *CreateCodeReviewInput {
+	s.Name = &v
+	return s
+}
+
+// SetRepositoryAssociationArn sets the RepositoryAssociationArn field's value.
+func (s *CreateCodeReviewInput) SetRepositoryAssociationArn(v string) *CreateCodeReviewInput {
+	s.RepositoryAssociationArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateCodeReviewInput) SetType(v *CodeReviewType) *CreateCodeReviewInput {
+	s.Type = v
+	return s
+}
+
+type CreateCodeReviewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a code review.
+	CodeReview *CodeReview `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCodeReviewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCodeReviewOutput) GoString() string {
+	return s.String()
+}
+
+// SetCodeReview sets the CodeReview field's value.
+func (s *CreateCodeReviewOutput) SetCodeReview(v *CodeReview) *CreateCodeReviewOutput {
+	s.CodeReview = v
+	return s
 }
 
 type DescribeCodeReviewInput struct {
@@ -1981,7 +2237,7 @@ type DisassociateRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
-	// object.
+	// object. You can retrieve this ARN by calling ListRepositories.
 	//
 	// AssociationArn is a required field
 	AssociationArn *string `location:"uri" locationName:"AssociationArn" min:"1" type:"string" required:"true"`
@@ -2505,8 +2761,8 @@ type ListRepositoryAssociationsInput struct {
 
 	// List of owners to use as a filter. For AWS CodeCommit, it is the name of
 	// the CodeCommit account that was used to associate the repository. For other
-	// repository source providers, such as Bitbucket, this is name of the account
-	// that was used to associate the repository.
+	// repository source providers, such as Bitbucket and GitHub Enterprise Server,
+	// this is name of the account that was used to associate the repository.
 	Owners []*string `location:"querystring" locationName:"Owner" min:"1" type:"list"`
 
 	// List of provider types to use as a filter.
@@ -2520,11 +2776,12 @@ type ListRepositoryAssociationsInput struct {
 	//
 	//    * Associating: CodeGuru Reviewer is: Setting up pull request notifications.
 	//    This is required for pull requests to trigger a CodeGuru Reviewer review.
-	//    If your repository ProviderType is GitHub or Bitbucket, CodeGuru Reviewer
-	//    creates webhooks in your repository to trigger CodeGuru Reviewer reviews.
-	//    If you delete these webhooks, reviews of code in your repository cannot
-	//    be triggered. Setting up source code access. This is required for CodeGuru
-	//    Reviewer to securely clone code in your repository.
+	//    If your repository ProviderType is GitHub, GitHub Enterprise Server, or
+	//    Bitbucket, CodeGuru Reviewer creates webhooks in your repository to trigger
+	//    CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code
+	//    in your repository cannot be triggered. Setting up source code access.
+	//    This is required for CodeGuru Reviewer to securely clone code in your
+	//    repository.
 	//
 	//    * Failed: The repository failed to associate or disassociate.
 	//
@@ -3133,6 +3390,53 @@ func (s *Repository) SetGitHubEnterpriseServer(v *ThirdPartySourceRepository) *R
 	return s
 }
 
+// A code review type that analyzes all code under a specified branch in an
+// associated respository. The assocated repository is specified using its ARN
+// when you call CreateCodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
+type RepositoryAnalysis struct {
+	_ struct{} `type:"structure"`
+
+	// A SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
+	// that specifies the tip of a branch in an associated repository.
+	//
+	// RepositoryHead is a required field
+	RepositoryHead *RepositoryHeadSourceCodeType `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s RepositoryAnalysis) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RepositoryAnalysis) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RepositoryAnalysis) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RepositoryAnalysis"}
+	if s.RepositoryHead == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryHead"))
+	}
+	if s.RepositoryHead != nil {
+		if err := s.RepositoryHead.Validate(); err != nil {
+			invalidParams.AddNested("RepositoryHead", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRepositoryHead sets the RepositoryHead field's value.
+func (s *RepositoryAnalysis) SetRepositoryHead(v *RepositoryHeadSourceCodeType) *RepositoryAnalysis {
+	s.RepositoryHead = v
+	return s
+}
+
 // Information about a repository association. The DescribeRepositoryAssociation
 // (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_DescribeRepositoryAssociation.html)
 // operation returns a RepositoryAssociation object.
@@ -3163,8 +3467,9 @@ type RepositoryAssociation struct {
 	Name *string `min:"1" type:"string"`
 
 	// The owner of the repository. For an AWS CodeCommit repository, this is the
-	// AWS account ID of the account that owns the repository. For a GitHub or Bitbucket
-	// repository, this is the username for the account that owns the repository.
+	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
+	// Enterprise Server, or Bitbucket repository, this is the username for the
+	// account that owns the repository.
 	Owner *string `min:"1" type:"string"`
 
 	// The provider type of the repository association.
@@ -3178,11 +3483,12 @@ type RepositoryAssociation struct {
 	//
 	//    * Associating: CodeGuru Reviewer is: Setting up pull request notifications.
 	//    This is required for pull requests to trigger a CodeGuru Reviewer review.
-	//    If your repository ProviderType is GitHub or Bitbucket, CodeGuru Reviewer
-	//    creates webhooks in your repository to trigger CodeGuru Reviewer reviews.
-	//    If you delete these webhooks, reviews of code in your repository cannot
-	//    be triggered. Setting up source code access. This is required for CodeGuru
-	//    Reviewer to securely clone code in your repository.
+	//    If your repository ProviderType is GitHub, GitHub Enterprise Server, or
+	//    Bitbucket, CodeGuru Reviewer creates webhooks in your repository to trigger
+	//    CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code
+	//    in your repository cannot be triggered. Setting up source code access.
+	//    This is required for CodeGuru Reviewer to securely clone code in your
+	//    repository.
 	//
 	//    * Failed: The repository failed to associate or disassociate.
 	//
@@ -3271,7 +3577,7 @@ type RepositoryAssociationSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
-	// object.
+	// object. You can retrieve this ARN by calling ListRepositories.
 	AssociationArn *string `min:"1" type:"string"`
 
 	// The repository association ID.
@@ -3291,8 +3597,9 @@ type RepositoryAssociationSummary struct {
 	Name *string `min:"1" type:"string"`
 
 	// The owner of the repository. For an AWS CodeCommit repository, this is the
-	// AWS account ID of the account that owns the repository. For a GitHub or Bitbucket
-	// repository, this is the username for the account that owns the repository.
+	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
+	// Enterprise Server, or Bitbucket repository, this is the username for the
+	// account that owns the repository.
 	Owner *string `min:"1" type:"string"`
 
 	// The provider type of the repository association.
@@ -3306,11 +3613,12 @@ type RepositoryAssociationSummary struct {
 	//
 	//    * Associating: CodeGuru Reviewer is: Setting up pull request notifications.
 	//    This is required for pull requests to trigger a CodeGuru Reviewer review.
-	//    If your repository ProviderType is GitHub or Bitbucket, CodeGuru Reviewer
-	//    creates webhooks in your repository to trigger CodeGuru Reviewer reviews.
-	//    If you delete these webhooks, reviews of code in your repository cannot
-	//    be triggered. Setting up source code access. This is required for CodeGuru
-	//    Reviewer to securely clone code in your repository.
+	//    If your repository ProviderType is GitHub, GitHub Enterprise Server, or
+	//    Bitbucket, CodeGuru Reviewer creates webhooks in your repository to trigger
+	//    CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code
+	//    in your repository cannot be triggered. Setting up source code access.
+	//    This is required for CodeGuru Reviewer to securely clone code in your
+	//    repository.
 	//
 	//    * Failed: The repository failed to associate or disassociate.
 	//
@@ -3377,6 +3685,50 @@ func (s *RepositoryAssociationSummary) SetState(v string) *RepositoryAssociation
 	return s
 }
 
+// A SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
+// that specifies the tip of a branch in an associated repository.
+type RepositoryHeadSourceCodeType struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the branch in an associated repository. The RepositoryHeadSourceCodeType
+	// specifies the tip of this branch.
+	//
+	// BranchName is a required field
+	BranchName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RepositoryHeadSourceCodeType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RepositoryHeadSourceCodeType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RepositoryHeadSourceCodeType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RepositoryHeadSourceCodeType"}
+	if s.BranchName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BranchName"))
+	}
+	if s.BranchName != nil && len(*s.BranchName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BranchName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBranchName sets the BranchName field's value.
+func (s *RepositoryHeadSourceCodeType) SetBranchName(v string) *RepositoryHeadSourceCodeType {
+	s.BranchName = &v
+	return s
+}
+
 // The resource specified in the request was not found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -3433,12 +3785,19 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about the source code type.
+// Specifies the source code that is analyzed in a code review. A code review
+// can analyze the source code that is specified using a pull request diff or
+// a branch in an associated repository.
 type SourceCodeType struct {
 	_ struct{} `type:"structure"`
 
-	// The commit diff for the pull request.
+	// A SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
+	// that specifies a commit diff created by a pull request on an associated repository.
 	CommitDiff *CommitDiffSourceCodeType `type:"structure"`
+
+	// A SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
+	// that specifies the tip of a branch in an associated repository.
+	RepositoryHead *RepositoryHeadSourceCodeType `type:"structure"`
 }
 
 // String returns the string representation
@@ -3454,6 +3813,12 @@ func (s SourceCodeType) GoString() string {
 // SetCommitDiff sets the CommitDiff field's value.
 func (s *SourceCodeType) SetCommitDiff(v *CommitDiffSourceCodeType) *SourceCodeType {
 	s.CommitDiff = v
+	return s
+}
+
+// SetRepositoryHead sets the RepositoryHead field's value.
+func (s *SourceCodeType) SetRepositoryHead(v *RepositoryHeadSourceCodeType) *SourceCodeType {
+	s.RepositoryHead = v
 	return s
 }
 
@@ -3737,11 +4102,15 @@ func RepositoryAssociationState_Values() []string {
 const (
 	// TypePullRequest is a Type enum value
 	TypePullRequest = "PullRequest"
+
+	// TypeRepositoryAnalysis is a Type enum value
+	TypeRepositoryAnalysis = "RepositoryAnalysis"
 )
 
 // Type_Values returns all elements of the Type enum
 func Type_Values() []string {
 	return []string{
 		TypePullRequest,
+		TypeRepositoryAnalysis,
 	}
 }

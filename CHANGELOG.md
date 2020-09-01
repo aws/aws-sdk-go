@@ -1,3 +1,10 @@
+Release v1.34.15 (2020-09-01)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service API and documentation
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.34.14 (2020-08-31)
 ===
 

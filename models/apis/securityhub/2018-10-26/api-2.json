@@ -1883,7 +1883,8 @@
         "RecordState":{"shape":"RecordState"},
         "RelatedFindings":{"shape":"RelatedFindingList"},
         "Note":{"shape":"Note"},
-        "Vulnerabilities":{"shape":"VulnerabilityList"}
+        "Vulnerabilities":{"shape":"VulnerabilityList"},
+        "PatchSummary":{"shape":"PatchSummary"}
       }
     },
     "AwsSecurityFindingFilters":{
@@ -3083,6 +3084,23 @@
         "aws-cn",
         "aws-us-gov"
       ]
+    },
+    "PatchSummary":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"NonEmptyString"},
+        "InstalledCount":{"shape":"Integer"},
+        "MissingCount":{"shape":"Integer"},
+        "FailedCount":{"shape":"Integer"},
+        "InstalledOtherCount":{"shape":"Integer"},
+        "InstalledRejectedCount":{"shape":"Integer"},
+        "InstalledPendingReboot":{"shape":"Integer"},
+        "OperationStartTime":{"shape":"NonEmptyString"},
+        "OperationEndTime":{"shape":"NonEmptyString"},
+        "RebootOption":{"shape":"NonEmptyString"},
+        "Operation":{"shape":"NonEmptyString"}
+      }
     },
     "PortRange":{
       "type":"structure",

@@ -64,6 +64,10 @@ type CodeGuruReviewerAPI interface {
 	AssociateRepositoryWithContext(aws.Context, *codegurureviewer.AssociateRepositoryInput, ...request.Option) (*codegurureviewer.AssociateRepositoryOutput, error)
 	AssociateRepositoryRequest(*codegurureviewer.AssociateRepositoryInput) (*request.Request, *codegurureviewer.AssociateRepositoryOutput)
 
+	CreateCodeReview(*codegurureviewer.CreateCodeReviewInput) (*codegurureviewer.CreateCodeReviewOutput, error)
+	CreateCodeReviewWithContext(aws.Context, *codegurureviewer.CreateCodeReviewInput, ...request.Option) (*codegurureviewer.CreateCodeReviewOutput, error)
+	CreateCodeReviewRequest(*codegurureviewer.CreateCodeReviewInput) (*request.Request, *codegurureviewer.CreateCodeReviewOutput)
+
 	DescribeCodeReview(*codegurureviewer.DescribeCodeReviewInput) (*codegurureviewer.DescribeCodeReviewOutput, error)
 	DescribeCodeReviewWithContext(aws.Context, *codegurureviewer.DescribeCodeReviewInput, ...request.Option) (*codegurureviewer.DescribeCodeReviewOutput, error)
 	DescribeCodeReviewRequest(*codegurureviewer.DescribeCodeReviewInput) (*request.Request, *codegurureviewer.DescribeCodeReviewOutput)
