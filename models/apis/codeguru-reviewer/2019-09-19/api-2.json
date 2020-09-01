@@ -29,6 +29,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "CreateCodeReview":{
+      "name":"CreateCodeReview",
+      "http":{
+        "method":"POST",
+        "requestUri":"/codereviews"
+      },
+      "input":{"shape":"CreateCodeReviewRequest"},
+      "output":{"shape":"CreateCodeReviewResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DescribeCodeReview":{
       "name":"DescribeCodeReview",
       "http":{
@@ -209,6 +226,11 @@
       "max":64,
       "min":1
     },
+    "BranchName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "ClientRequestToken":{
       "type":"string",
       "max":64,
@@ -240,6 +262,12 @@
         "Metrics":{"shape":"Metrics"}
       }
     },
+    "CodeReviewName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-_]*"
+    },
     "CodeReviewSummaries":{
       "type":"list",
       "member":{"shape":"CodeReviewSummary"}
@@ -258,6 +286,13 @@
         "Type":{"shape":"Type"},
         "PullRequestId":{"shape":"PullRequestId"},
         "MetricsSummary":{"shape":"MetricsSummary"}
+      }
+    },
+    "CodeReviewType":{
+      "type":"structure",
+      "required":["RepositoryAnalysis"],
+      "members":{
+        "RepositoryAnalysis":{"shape":"RepositoryAnalysis"}
       }
     },
     "CommitDiffSourceCodeType":{
@@ -285,6 +320,29 @@
       "max":256,
       "min":0,
       "pattern":"arn:aws(-[\\w]+)*:.+:.+:[0-9]{12}:.+"
+    },
+    "CreateCodeReviewRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RepositoryAssociationArn",
+        "Type"
+      ],
+      "members":{
+        "Name":{"shape":"CodeReviewName"},
+        "RepositoryAssociationArn":{"shape":"Arn"},
+        "Type":{"shape":"CodeReviewType"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateCodeReviewResponse":{
+      "type":"structure",
+      "members":{
+        "CodeReview":{"shape":"CodeReview"}
+      }
     },
     "DescribeCodeReviewRequest":{
       "type":"structure",
@@ -719,6 +777,13 @@
         "GitHubEnterpriseServer":{"shape":"ThirdPartySourceRepository"}
       }
     },
+    "RepositoryAnalysis":{
+      "type":"structure",
+      "required":["RepositoryHead"],
+      "members":{
+        "RepositoryHead":{"shape":"RepositoryHeadSourceCodeType"}
+      }
+    },
     "RepositoryAssociation":{
       "type":"structure",
       "members":{
@@ -766,6 +831,13 @@
         "State":{"shape":"RepositoryAssociationState"}
       }
     },
+    "RepositoryHeadSourceCodeType":{
+      "type":"structure",
+      "required":["BranchName"],
+      "members":{
+        "BranchName":{"shape":"BranchName"}
+      }
+    },
     "RepositoryNames":{
       "type":"list",
       "member":{"shape":"Name"},
@@ -783,7 +855,8 @@
     "SourceCodeType":{
       "type":"structure",
       "members":{
-        "CommitDiff":{"shape":"CommitDiffSourceCodeType"}
+        "CommitDiff":{"shape":"CommitDiffSourceCodeType"},
+        "RepositoryHead":{"shape":"RepositoryHeadSourceCodeType"}
       }
     },
     "StateReason":{
@@ -820,7 +893,10 @@
     "TimeStamp":{"type":"timestamp"},
     "Type":{
       "type":"string",
-      "enum":["PullRequest"]
+      "enum":[
+        "PullRequest",
+        "RepositoryAnalysis"
+      ]
     },
     "UserId":{
       "type":"string",

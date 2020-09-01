@@ -1521,6 +1521,12 @@
         "InsightResultValue$Count": "<p>The number of findings returned for each <code>GroupByAttributeValue</code>.</p>",
         "Network$SourcePort": "<p>The source port of network-related information about a finding.</p>",
         "Network$DestinationPort": "<p>The destination port of network-related information about a finding.</p>",
+        "PatchSummary$InstalledCount": "<p>The number of patches from the compliance standard that were installed successfully.</p>",
+        "PatchSummary$MissingCount": "<p>The number of patches that are part of the compliance standard but are not installed. The count includes patches that failed to install.</p>",
+        "PatchSummary$FailedCount": "<p>The number of patches from the compliance standard that failed to install.</p>",
+        "PatchSummary$InstalledOtherCount": "<p>The number of installed patches that are not part of the compliance standard.</p>",
+        "PatchSummary$InstalledRejectedCount": "<p>The number of patches that are installed but are also on a list of patches that the customer rejected.</p>",
+        "PatchSummary$InstalledPendingReboot": "<p>The number of patches that were installed since the last time the instance was rebooted.</p>",
         "PortRange$Begin": "<p>The first port in the port range.</p>",
         "PortRange$End": "<p>The last port in the port range.</p>",
         "ProcessDetails$Pid": "<p>The process ID.</p>",
@@ -2241,6 +2247,11 @@
         "Note$UpdatedAt": "<p>The timestamp of when the note was updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "NoteUpdate$Text": "<p>The updated note text.</p>",
         "NoteUpdate$UpdatedBy": "<p>The principal that updated the note.</p>",
+        "PatchSummary$Id": "<p>The identifier of the compliance standard that was used to determine the patch compliance status.</p>",
+        "PatchSummary$OperationStartTime": "<p>Indicates when the operation started.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "PatchSummary$OperationEndTime": "<p>Indicates when the operation completed.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "PatchSummary$RebootOption": "<p>The reboot option specified for the instance.</p>",
+        "PatchSummary$Operation": "<p>The type of patch operation performed. For Patch Manager, the values are <code>SCAN</code> and <code>INSTALL</code>. </p>",
         "ProcessDetails$Name": "<p>The name of the process.</p>",
         "ProcessDetails$Path": "<p>The path to the process executable.</p>",
         "ProcessDetails$LaunchedAt": "<p>Indicates when the process was launched.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
@@ -2366,6 +2377,12 @@
       "base": null,
       "refs": {
         "Resource$Partition": "<p>The canonical AWS partition name that the Region is assigned to.</p>"
+      }
+    },
+    "PatchSummary": {
+      "base": "<p>Provides an overview of the patch compliance status for an instance against a selected compliance standard.</p>",
+      "refs": {
+        "AwsSecurityFinding$PatchSummary": "<p>Provides an overview of the patch compliance status for an instance against a selected compliance standard.</p>"
       }
     },
     "PortRange": {
