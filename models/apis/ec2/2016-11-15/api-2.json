@@ -28468,6 +28468,7 @@
         "vpc",
         "vpn",
         "direct-connect-gateway",
+        "peering",
         "tgw-peering"
       ]
     },
@@ -28475,6 +28476,7 @@
       "type":"string",
       "enum":[
         "initiating",
+        "initiatingRequest",
         "pendingAcceptance",
         "rollingBack",
         "pending",

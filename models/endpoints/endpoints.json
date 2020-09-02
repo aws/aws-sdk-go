@@ -5989,6 +5989,12 @@
       },
       "waf-regional" : {
         "endpoints" : {
+          "af-south-1" : {
+            "credentialScope" : {
+              "region" : "af-south-1"
+            },
+            "hostname" : "waf-regional.af-south-1.amazonaws.com"
+          },
           "ap-east-1" : {
             "credentialScope" : {
               "region" : "ap-east-1"
@@ -6043,6 +6049,12 @@
             },
             "hostname" : "waf-regional.eu-north-1.amazonaws.com"
           },
+          "eu-south-1" : {
+            "credentialScope" : {
+              "region" : "eu-south-1"
+            },
+            "hostname" : "waf-regional.eu-south-1.amazonaws.com"
+          },
           "eu-west-1" : {
             "credentialScope" : {
               "region" : "eu-west-1"
@@ -6060,6 +6072,12 @@
               "region" : "eu-west-3"
             },
             "hostname" : "waf-regional.eu-west-3.amazonaws.com"
+          },
+          "fips-af-south-1" : {
+            "credentialScope" : {
+              "region" : "af-south-1"
+            },
+            "hostname" : "waf-regional-fips.af-south-1.amazonaws.com"
           },
           "fips-ap-east-1" : {
             "credentialScope" : {
@@ -6114,6 +6132,12 @@
               "region" : "eu-north-1"
             },
             "hostname" : "waf-regional-fips.eu-north-1.amazonaws.com"
+          },
+          "fips-eu-south-1" : {
+            "credentialScope" : {
+              "region" : "eu-south-1"
+            },
+            "hostname" : "waf-regional-fips.eu-south-1.amazonaws.com"
           },
           "fips-eu-west-1" : {
             "credentialScope" : {
@@ -7768,20 +7792,18 @@
       },
       "kinesis" : {
         "endpoints" : {
-          "fips-us-gov-east-1" : {
+          "us-gov-east-1" : {
             "credentialScope" : {
               "region" : "us-gov-east-1"
             },
-            "hostname" : "kinesis-fips.us-gov-east-1.amazonaws.com"
+            "hostname" : "kinesis.us-gov-east-1.amazonaws.com"
           },
-          "fips-us-gov-west-1" : {
+          "us-gov-west-1" : {
             "credentialScope" : {
               "region" : "us-gov-west-1"
             },
-            "hostname" : "kinesis-fips.us-gov-west-1.amazonaws.com"
-          },
-          "us-gov-east-1" : { },
-          "us-gov-west-1" : { }
+            "hostname" : "kinesis.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "kinesisanalytics" : {

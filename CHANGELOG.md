@@ -1,3 +1,11 @@
+Release v1.34.16 (2020-09-02)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new transit gateway attachment state and resource type.
+* `service/macie2`: Updates service API and documentation
+
 Release v1.34.15 (2020-09-01)
 ===
 

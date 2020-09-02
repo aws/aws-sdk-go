@@ -147,7 +147,7 @@
     "BucketCountByEncryptionType" : {
       "base" : "<p>Provides information about the number of S3 buckets that use certain types of server-side encryption or don't encrypt objects by default.</p>",
       "refs" : {
-        "GetBucketStatisticsResponse$BucketCountByEncryptionType" : "<p>The total number of buckets, grouped by server-side encryption type. This object also reports the total number of buckets that aren't encrypted.</p>"
+        "GetBucketStatisticsResponse$BucketCountByEncryptionType" : "<p>The total number of buckets, grouped by server-side encryption type. This object also reports the total number of buckets that don't encrypt objects by default.</p>"
       }
     },
     "BucketCountBySharedAccessType" : {
@@ -169,7 +169,7 @@
       }
     },
     "BucketLevelPermissions" : {
-      "base" : "<p>Provides information about bucket-level permissions settings for an S3 bucket.</p>",
+      "base" : "<p>Provides information about the bucket-level permissions settings for an S3 bucket.</p>",
       "refs" : {
         "BucketPermissionConfiguration$BucketLevelPermissions" : "<p>The bucket-level permissions settings for the bucket.</p>"
       }
@@ -181,7 +181,7 @@
       }
     },
     "BucketPermissionConfiguration" : {
-      "base" : "<p>The account-level and bucket-level permissions settings for an S3 bucket.</p>",
+      "base" : "<p>Provides information about the account-level and bucket-level permissions settings for an S3 bucket.</p>",
       "refs" : {
         "BucketPublicAccess$PermissionConfiguration" : "<p>The account-level and bucket-level permissions for the bucket.</p>"
       }
@@ -193,7 +193,7 @@
       }
     },
     "BucketPublicAccess" : {
-      "base" : "<p>Provides information about permissions settings that determine whether an S3 bucket is publicly accessible.</p>",
+      "base" : "<p>Provides information about the permissions settings that determine whether an S3 bucket is publicly accessible.</p>",
       "refs" : {
         "BucketMetadata$PublicAccess" : "<p>Specifies whether the bucket is publicly accessible. If this value is true, an access control list (ACL), bucket policy, or block public access settings allow the bucket to be accessed by the general public.</p>",
         "S3Bucket$PublicAccess" : "<p>The permissions settings that determine whether the bucket is publicly accessible.</p>"
@@ -222,7 +222,7 @@
     "ClassificationResult" : {
       "base" : "<p>Provides detailed information about a sensitive data finding, including the types and number of occurrences of the sensitive data that was found.</p>",
       "refs" : {
-        "ClassificationDetails$Result" : "<p>The status and detailed results of the finding.</p>"
+        "ClassificationDetails$Result" : "<p>The status and other details for the finding.</p>"
       }
     },
     "ClassificationResultStatus" : {
@@ -236,7 +236,7 @@
       "refs" : { }
     },
     "CreateClassificationJobRequest" : {
-      "base" : "<p>Specifies the scope, schedule, and other settings for a classification job. You can't delete or change the settings for a classification job after you create it. In Amazon Macie, classification jobs are immutable. This ensures accurate data classification results for audits or investigations.</p>",
+      "base" : "<p>Specifies the scope, schedule, and other settings for a classification job. You can't delete or change the settings for a classification job after you create it. This helps ensure that you have an immutable history of sensitive data findings and discovery results for data privacy and protection audits or investigations.</p>",
       "refs" : { }
     },
     "CreateClassificationJobResponse" : {
@@ -244,7 +244,7 @@
       "refs" : { }
     },
     "CreateCustomDataIdentifierRequest" : {
-      "base" : " <p>Specifies the criteria and other settings for a new custom data identifier. You can't change a custom data identifier after you create it. In Amazon Macie, custom data identifiers are immutable. This ensures accurate data classification results for audits or investigations.</p>",
+      "base" : " <p>Specifies the criteria and other settings for a new custom data identifier. You can't change a custom data identifier after you create it. This helps ensure that you have an immutable history of sensitive data findings and discovery results for data privacy and protection audits or investigations.</p>",
       "refs" : { }
     },
     "CreateCustomDataIdentifierResponse" : {
@@ -387,7 +387,7 @@
     "EffectivePermission" : {
       "base" : null,
       "refs" : {
-        "BucketPublicAccess$EffectivePermission" : "<p>Specifies whether the bucket is publicly accessible due to the combination of permissions settings that apply to the bucket. Possible values are: PUBLIC, the bucket is publicly accessible; and, NOT_PUBLIC, the bucket isn't publicly accessible.</p>"
+        "BucketPublicAccess$EffectivePermission" : " <p>Specifies whether the bucket is publicly accessible due to the combination of permissions settings that apply to the bucket. Possible values are:</p> <ul><li><p>NOT_PUBLIC - The bucket isn't publicly accessible.</p></li> <li><p>PUBLIC - The bucket is publicly accessible.</p></li> <li><p>UNKNOWN - Amazon Macie can't determine whether the bucket is publicly accessible.</p></li></ul>"
       }
     },
     "Empty" : {
@@ -503,11 +503,11 @@
       }
     },
     "GetBucketStatisticsRequest" : {
-      "base" : "<p>Specifies an account that's associated with the S3 buckets to retrieve aggregated statistical data for.</p>",
+      "base" : "<p>Specifies the account that owns the S3 buckets to retrieve aggregated statistical data for.</p>",
       "refs" : { }
     },
     "GetBucketStatisticsResponse" : {
-      "base" : "<p>Provides the results of a query that retrieved aggregated statistical data for all the S3 buckets that Amazon Macie monitors and analyzes for an account.</p>",
+      "base" : "<p>Provides the results of a query that retrieved aggregated statistical data for the S3 buckets that are owned by an account.</p>",
       "refs" : { }
     },
     "GetClassificationExportConfigurationResponse" : {
@@ -656,8 +656,8 @@
     "JobStatus" : {
       "base" : "<p>The current status of a classification job. Possible values are:</p>",
       "refs" : {
-        "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - The job was cancelled by you or a user of the master account for your organization. A job might also be cancelled if ownership of an S3 bucket changed while the job was running, and that change affected the job's access to the bucket.</p></li> <li><p>COMPLETE - Amazon Macie finished processing all the data specified for the job.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to jobs that occur only once.</p></li> <li><p>PAUSED - Amazon Macie started the job, but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - The job is in progress.</p></li></ul>",
-        "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - The job was cancelled by you or a user of the master account for your organization. A job might also be cancelled if ownership of an S3 bucket changed while the job was running, and that change affected the job's access to the bucket.</p></li> <li><p>COMPLETE - Amazon Macie finished processing all the data specified for the job.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to jobs that occur only once.</p></li> <li><p>PAUSED - Amazon Macie started the job, but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - The job is in progress.</p></li></ul>",
+        "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job. A job might also be cancelled if ownership of an S3 bucket changed while the job was running, and that change affected the job's access to the bucket.</p></li> <li><p>COMPLETE - Amazon Macie finished processing all the data specified for the job.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to jobs that occur only once.</p></li> <li><p>PAUSED - Amazon Macie started the job, but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - The job is in progress.</p></li></ul>",
+        "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job. A job might also be cancelled if ownership of an S3 bucket changed while the job was running, and that change affected the job's access to the bucket.</p></li> <li><p>COMPLETE - Amazon Macie finished processing all the data specified for the job.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to jobs that occur only once.</p></li> <li><p>PAUSED - Amazon Macie started the job, but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - The job is in progress.</p></li></ul>",
         "UpdateClassificationJobRequest$JobStatus" : "<p>The status to change the job's status to. The only supported value is CANCELLED, which cancels the job completely.</p>"
       }
     },
@@ -788,6 +788,15 @@
       "base" : "<p>Provides information about the number of objects that are in an S3 bucket and use certain types of server-side encryption, use client-side encryption, or aren't encrypted.</p>",
       "refs" : {
         "BucketMetadata$ObjectCountByEncryptionType" : "<p>The total number of objects that are in the bucket, grouped by server-side encryption type. This includes a grouping that reports the total number of objects that aren't encrypted or use client-side encryption.</p>"
+      }
+    },
+    "ObjectLevelStatistics" : {
+      "base" : "<p>Provides information about the total storage size (in bytes) or number of objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata object, this data is for a specific bucket. In a GetBucketStatisticsResponse object, this data is aggregated for all the buckets in the query results.</p>",
+      "refs" : {
+        "BucketMetadata$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the bucket. These objects use an unsupported file or storage format or storage class.</p>",
+        "BucketMetadata$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can't analyze in the bucket. These objects use an unsupported file or storage format or storage class.</p>",
+        "GetBucketStatisticsResponse$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the buckets. These objects use an unsupported file or storage format or storage class.</p>",
+        "GetBucketStatisticsResponse$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can't analyze in the buckets. These objects use an unsupported file or storage format or storage class.</p>"
       }
     },
     "OrderBy" : {
@@ -956,7 +965,7 @@
     "SharedAccess" : {
       "base" : null,
       "refs" : {
-        "BucketMetadata$SharedAccess" : "<p>Specifies whether the bucket is shared with another AWS account. Valid values are:</p> <ul><li><p>EXTERNAL - The bucket is shared with an AWS account that isn’t part of the same Amazon Macie organization.</p></li> <li><p>INTERNAL - The bucket is shared with an AWS account that's part of the same Amazon Macie organization.</p></li> <li><p>NOT_SHARED - The bucket isn't shared with other AWS accounts.</p></li></ul>"
+        "BucketMetadata$SharedAccess" : " <p>Specifies whether the bucket is shared with another AWS account. Possible values are:</p> <ul><li><p>EXTERNAL - The bucket is shared with an AWS account that isn’t part of the same Amazon Macie organization.</p></li> <li><p>INTERNAL - The bucket is shared with an AWS account that's part of the same Amazon Macie organization.</p></li> <li><p>NOT_SHARED - The bucket isn't shared with other AWS accounts.</p></li> <li><p>UNKNOWN - Amazon Macie wasn't able to evaluate the shared access settings for the bucket.</p></li></ul>"
       }
     },
     "SimpleScopeTerm" : {
@@ -1012,7 +1021,7 @@
     "TagScopeTerm" : {
       "base" : "<p>Specifies a tag-based condition that determines whether an object is included or excluded from a classification job.</p>",
       "refs" : {
-        "JobScopeTerm$TagScopeTerm" : " <p>A tag-based condition that defines an operator and a tag key and value for including or excluding an object from the job.</p>"
+        "JobScopeTerm$TagScopeTerm" : "<p>A tag-based condition that defines the operator and a tag key or tag keys and values for including or excluding an object from the job.</p>"
       }
     },
     "TagTarget" : {
@@ -1175,16 +1184,16 @@
         "BucketMetadata$Versioning" : "<p>Specifies whether versioning is enabled for the bucket.</p>",
         "BucketPolicy$AllowsPublicReadAccess" : "<p>Specifies whether the bucket policy allows the general public to have read access to the bucket.</p>",
         "BucketPolicy$AllowsPublicWriteAccess" : "<p>Specifies whether the bucket policy allows the general public to have write access to the bucket.</p>",
-        "CreateClassificationJobRequest$InitialRun" : "<p>Specifies whether to run the job immediately, after it's created.</p>",
+        "CreateClassificationJobRequest$InitialRun" : "<p>Specifies whether to analyze all existing, eligible objects immediately after the job is created.</p>",
         "CreateInvitationsRequest$DisableEmailNotification" : "<p>Specifies whether to send an email notification to the root user of each account that the invitation will be sent to. This notification is in addition to an alert that the root user receives in AWS Personal Health Dashboard. To send an email notification to the root user of each account, set this value to true.</p>",
-        "DescribeClassificationJobResponse$InitialRun" : "<p>Specifies whether the job has run for the first time.</p>",
+        "DescribeClassificationJobResponse$InitialRun" : "<p>Specifies whether the job is configured to analyze all existing, eligible objects immediately after it's created.</p>",
         "DescribeOrganizationConfigurationResponse$AutoEnable" : "<p>Specifies whether Amazon Macie is enabled automatically for accounts that are added to the AWS organization.</p>",
         "DescribeOrganizationConfigurationResponse$MaxAccountLimitReached" : "<p>Specifies whether the maximum number of Amazon Macie member accounts are already associated with the AWS organization.</p>",
         "Finding$Archived" : "<p>Specifies whether the finding is archived.</p>",
         "Finding$Sample" : "<p>Specifies whether the finding is a sample finding. A <i>sample finding</i> is a finding that uses example data to demonstrate what a finding might contain.</p>",
         "GetCustomDataIdentifierResponse$Deleted" : "<p>Specifies whether the custom data identifier was deleted. If you delete a custom data identifier, Amazon Macie doesn't delete it permanently. Instead, it soft deletes the identifier.</p>",
         "ReplicationDetails$Replicated" : "<p>Specifies whether the bucket is configured to replicate one or more objects to any destination.</p>",
-        "ReplicationDetails$ReplicatedExternally" : "<p>Specifies whether the bucket is configured to replicate one or more objects to an AWS account that isn't part of the Amazon Macie organization.</p>",
+        "ReplicationDetails$ReplicatedExternally" : "<p>Specifies whether the bucket is configured to replicate one or more objects to an AWS account that isn't part of the same Amazon Macie organization.</p>",
         "S3Object$PublicAccess" : "<p>Specifies whether the object is publicly accessible due to the combination of permissions settings that apply to the object.</p>",
         "ServiceLimit$IsServiceLimited" : "<p>Specifies whether the account has met the quota that corresponds to the metric specified by the UsageByAccount.type field in the response.</p>",
         "SessionContextAttributes$MfaAuthenticated" : "<p>Specifies whether the credentials were authenticated with a multi-factor authentication (MFA) device.</p>",
@@ -1207,7 +1216,7 @@
         "CreateCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 50.</p>",
         "CreateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>",
         "DescribeBucketsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response. The default value is 50.</p>",
-        "DescribeClassificationJobResponse$SamplingPercentage" : "<p>The sampling depth, as a percentage, that determines the number of objects that the job processes.</p>",
+        "DescribeClassificationJobResponse$SamplingPercentage" : "<p>The sampling depth, as a percentage, that determines the percentage of eligible objects that the job analyzes.</p>",
         "GetCustomDataIdentifierResponse$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern.</p>",
         "GetFindingStatisticsRequest$Size" : "<p>The maximum number of items to include in each page of the response.</p>",
         "GetFindingsFilterResponse$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>",
@@ -1396,7 +1405,8 @@
         "BucketCriteriaAdditionalProperties$Gte" : "<p>A greater than or equal to condition to apply to a specified attribute value for buckets.</p>",
         "BucketCriteriaAdditionalProperties$Lt" : "<p>A less than condition to apply to a specified attribute value for buckets.</p>",
         "BucketCriteriaAdditionalProperties$Lte" : "<p>A less than or equal to condition to apply to a specified attribute value for buckets.</p>",
-        "BucketMetadata$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the bucket. These objects use a file format, file extension, or content type that Amazon Macie supports.</p>",
+        "BucketMetadata$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the bucket. These objects use a supported file or storage format and storage class.</p>",
+        "BucketMetadata$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported file or storage format and storage class.</p>",
         "BucketMetadata$ObjectCount" : "<p>The total number of objects in the bucket.</p>",
         "BucketMetadata$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p>",
         "BucketMetadata$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the bucket.</p>",
@@ -1410,16 +1420,20 @@
         "DefaultDetection$Count" : "<p>The total number of occurrences of the type of data that was detected.</p>",
         "Finding$Count" : "<p>The total number of occurrences of this finding.</p>",
         "GetBucketStatisticsResponse$BucketCount" : "<p>The total number of buckets.</p>",
-        "GetBucketStatisticsResponse$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in all the buckets. These objects use a file format, file extension, or content type that Amazon Macie supports.</p>",
-        "GetBucketStatisticsResponse$ObjectCount" : "<p>The total number of objects in all the buckets.</p>",
-        "GetBucketStatisticsResponse$SizeInBytes" : "<p>The total storage size, in bytes, of all the buckets.</p>",
-        "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of all the buckets.</p>",
+        "GetBucketStatisticsResponse$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the buckets. These objects use a supported file or storage format and storage class.</p>",
+        "GetBucketStatisticsResponse$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can analyze in the buckets. These objects use a supported file or storage format and storage class.</p>",
+        "GetBucketStatisticsResponse$ObjectCount" : "<p>The total number of objects in the buckets.</p>",
+        "GetBucketStatisticsResponse$SizeInBytes" : "<p>The total storage size, in bytes, of the buckets.</p>",
+        "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the buckets.</p>",
         "GetInvitationsCountResponse$InvitationsCount" : "<p>The total number of invitations that were received by the account, not including the currently accepted invitation.</p>",
         "GroupCount$Count" : "<p>The total number of findings in the group of query results.</p>",
         "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted using a customer-managed key. The objects use customer-provided server-side (SSE-C) encryption.</p>",
         "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted using an AWS Key Management Service (AWS KMS) customer master key (CMK). The objects use AWS KMS AWS-managed (AWS-KMS) encryption or AWS KMS customer-managed (SSE-KMS) encryption.</p>",
         "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted using an Amazon S3-managed key. The objects use Amazon S3-managed (SSE-S3) encryption.</p>",
         "ObjectCountByEncryptionType$Unencrypted" : "<p>The total number of objects that aren't encrypted or use client-side encryption.</p>",
+        "ObjectLevelStatistics$FileType" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported file or storage format.</p>",
+        "ObjectLevelStatistics$StorageClass" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported storage class.</p>",
+        "ObjectLevelStatistics$Total" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported file or storage format or storage class.</p>",
         "S3Object$Size" : "<p>The total storage size, in bytes, of the object.</p>",
         "SensitiveDataItem$TotalCount" : "<p>The total number of occurrences of the sensitive data that was detected.</p>",
         "ServiceLimit$Value" : "<p>The value for the metric specified by the UsageByAccount.type field in the response.</p>",
@@ -1449,16 +1463,16 @@
         "BatchGetCustomDataIdentifierSummary$Id" : "<p>The unique identifier for the custom data identifier.</p>",
         "BatchGetCustomDataIdentifierSummary$Name" : "<p>The custom name of the custom data identifier.</p>",
         "BucketCriteriaAdditionalProperties$Prefix" : "<p>The prefix of the buckets to include in the results.</p>",
-        "BucketMetadata$AccountId" : "<p>The unique identifier for the AWS account that's associated with the bucket.</p>",
+        "BucketMetadata$AccountId" : "<p>The unique identifier for the AWS account that owns the bucket.</p>",
         "BucketMetadata$BucketArn" : "<p>The Amazon Resource Name (ARN) of the bucket.</p>",
         "BucketMetadata$BucketName" : "<p>The name of the bucket.</p>",
         "BucketMetadata$Region" : "<p>The AWS Region that hosts the bucket.</p>",
-        "BucketSortCriteria$AttributeName" : "<p>The name of the attribute to sort the results by. This value can be the name of any property that Amazon Macie defines as bucket metadata, such as bucketName, accountId, or lastUpdated.</p>",
-        "ClassificationDetails$DetailedResultsLocation" : "<p>The Amazon Resource Name (ARN) of the file that contains the detailed record, including offsets, for the finding.</p>",
+        "BucketSortCriteria$AttributeName" : "<p>The name of the attribute to sort the results by. This value can be the name of any property that Amazon Macie defines as bucket metadata, such as bucketName or accountId.</p>",
+        "ClassificationDetails$DetailedResultsLocation" : "<p>The path to the folder or file (in Amazon S3) that contains the corresponding sensitive data discovery results for the finding. If a finding applies to a large archive or compressed file, this is a path to a folder. Otherwise, this is a path to a file.</p>",
         "ClassificationDetails$JobArn" : "<p>The Amazon Resource Name (ARN) of the classification job that produced the finding.</p>",
         "ClassificationDetails$JobId" : "<p>The unique identifier for the classification job that produced the finding.</p>",
         "ClassificationResult$MimeType" : "<p>The type of content, expressed as a MIME type, that the finding applies to. For example, application/gzip, for a GNU Gzip compressed archive file, or application/pdf, for an Adobe PDF file.</p>",
-        "ClassificationResultStatus$Code" : "<p>The status of the finding, such as COMPLETE.</p>",
+        "ClassificationResultStatus$Code" : " <p>The status of the finding. Possible values are:</p> <ul><li><p>COMPLETE - Amazon Macie successfully completed its analysis of the object that the finding applies to.</p></li> <li><p>PARTIAL - Macie was able to analyze only a subset of the data in the object that the finding applies to. For example, the object is a compressed or archive file that contains files in an unsupported format.</p></li> <li><p>SKIPPED - Macie wasn't able to analyze the object that the finding applies to. For example, the object is a malformed file or a file that's in an unsupported format.</p></li></ul>",
         "ClassificationResultStatus$Reason" : "<p>A brief description of the status of the finding. Amazon Macie uses this value to notify you of any errors, warnings, or considerations that might impact your analysis of the finding.</p>",
         "ConflictException$Message" : "<p>The explanation of the error that occurred.</p>",
         "CreateClassificationJobRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
@@ -1572,11 +1586,11 @@
         "S3Destination$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for encryption of the results. This must be the ARN of an existing CMK that's in the same AWS Region as the bucket.</p>",
         "S3Object$BucketArn" : "<p>The Amazon Resource Name (ARN) of the bucket that contains the object.</p>",
         "S3Object$ETag" : "<p>The entity tag (ETag) that identifies the affected version of the object. If the object was overwritten or changed after Amazon Macie produced the finding, this value might be different from the current ETag for the object.</p>",
-        "S3Object$Extension" : "<p>The file extension of the object. If the object doesn't have a file extension, this value is \"\".</p>",
+        "S3Object$Extension" : "<p>The file name extension of the object. If the object doesn't have a file name extension, this value is \"\".</p>",
         "S3Object$Key" : "<p>The full key (name) that's assigned to the object.</p>",
         "S3Object$Path" : "<p>The path to the object, including the full key (name).</p>",
         "S3Object$VersionId" : "<p>The identifier for the affected version of the object.</p>",
-        "ServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) master key that's used to encrypt the bucket or object. This value is null if KMS isn't used to encrypt the bucket or object.</p>",
+        "ServerSideEncryption$KmsMasterKeyId" : "<p>The unique identifier for the AWS Key Management Service (AWS KMS) master key that's used to encrypt the bucket or object. This value is null if AWS KMS isn't used to encrypt the bucket or object.</p>",
         "ServiceQuotaExceededException$Message" : "<p>The explanation of the error that occurred.</p>",
         "SessionIssuer$AccountId" : "<p>The unique identifier for the AWS account that owns the entity that was used to get the credentials.</p>",
         "SessionIssuer$Arn" : "<p>The Amazon Resource Name (ARN) of the source account, IAM user, or role that was used to get the credentials.</p>",
@@ -1614,13 +1628,13 @@
         "ApiCallDetails$LastSeen" : "<p>The most recent date and time, in UTC and extended ISO 8601 format, when the specified operation (api) was invoked and produced the finding.</p>",
         "BatchGetCustomDataIdentifierSummary$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "BucketMetadata$BucketCreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the bucket was created.</p>",
-        "BucketMetadata$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie last analyzed the bucket.</p>",
+        "BucketMetadata$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved data about the bucket from Amazon S3.</p>",
         "CustomDataIdentifierSummary$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "DescribeClassificationJobResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job was created.</p>",
         "DescribeClassificationJobResponse$LastRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job last ran.</p>",
         "Finding$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was created.</p>",
         "Finding$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was last updated. For sensitive data findings, this value is the same as the value for the createdAt property. Sensitive data findings aren't updated.</p>",
-        "GetBucketStatisticsResponse$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie last analyzed the buckets.</p>",
+        "GetBucketStatisticsResponse$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved data about the buckets from Amazon S3.</p>",
         "GetCustomDataIdentifierResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "GetMacieSessionResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the Amazon Macie account was created.</p>",
         "GetMacieSessionResponse$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the Amazon Macie account.</p>",
