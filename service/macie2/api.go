@@ -6581,7 +6581,8 @@ func (s *BucketCriteriaAdditionalProperties) SetPrefix(v string) *BucketCriteria
 	return s
 }
 
-// Provides information about bucket-level permissions settings for an S3 bucket.
+// Provides information about the bucket-level permissions settings for an S3
+// bucket.
 type BucketLevelPermissions struct {
 	_ struct{} `type:"structure"`
 
@@ -6643,6 +6644,8 @@ type BucketMetadata struct {
 
 	ClassifiableObjectCount *int64 `locationName:"classifiableObjectCount" type:"long"`
 
+	ClassifiableSizeInBytes *int64 `locationName:"classifiableSizeInBytes" type:"long"`
+
 	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp" timestampFormat:"iso8601"`
 
 	ObjectCount *int64 `locationName:"objectCount" type:"long"`
@@ -6652,8 +6655,8 @@ type BucketMetadata struct {
 	// or aren't encrypted.
 	ObjectCountByEncryptionType *ObjectCountByEncryptionType `locationName:"objectCountByEncryptionType" type:"structure"`
 
-	// Provides information about permissions settings that determine whether an
-	// S3 bucket is publicly accessible.
+	// Provides information about the permissions settings that determine whether
+	// an S3 bucket is publicly accessible.
 	PublicAccess *BucketPublicAccess `locationName:"publicAccess" type:"structure"`
 
 	Region *string `locationName:"region" type:"string"`
@@ -6670,6 +6673,18 @@ type BucketMetadata struct {
 	SizeInBytesCompressed *int64 `locationName:"sizeInBytesCompressed" type:"long"`
 
 	Tags []*KeyValuePair `locationName:"tags" type:"list"`
+
+	// Provides information about the total storage size (in bytes) or number of
+	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
+	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+	// object, this data is aggregated for all the buckets in the query results.
+	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
+
+	// Provides information about the total storage size (in bytes) or number of
+	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
+	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+	// object, this data is aggregated for all the buckets in the query results.
+	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
 
 	Versioning *bool `locationName:"versioning" type:"boolean"`
 }
@@ -6711,6 +6726,12 @@ func (s *BucketMetadata) SetBucketName(v string) *BucketMetadata {
 // SetClassifiableObjectCount sets the ClassifiableObjectCount field's value.
 func (s *BucketMetadata) SetClassifiableObjectCount(v int64) *BucketMetadata {
 	s.ClassifiableObjectCount = &v
+	return s
+}
+
+// SetClassifiableSizeInBytes sets the ClassifiableSizeInBytes field's value.
+func (s *BucketMetadata) SetClassifiableSizeInBytes(v int64) *BucketMetadata {
+	s.ClassifiableSizeInBytes = &v
 	return s
 }
 
@@ -6774,13 +6795,26 @@ func (s *BucketMetadata) SetTags(v []*KeyValuePair) *BucketMetadata {
 	return s
 }
 
+// SetUnclassifiableObjectCount sets the UnclassifiableObjectCount field's value.
+func (s *BucketMetadata) SetUnclassifiableObjectCount(v *ObjectLevelStatistics) *BucketMetadata {
+	s.UnclassifiableObjectCount = v
+	return s
+}
+
+// SetUnclassifiableObjectSizeInBytes sets the UnclassifiableObjectSizeInBytes field's value.
+func (s *BucketMetadata) SetUnclassifiableObjectSizeInBytes(v *ObjectLevelStatistics) *BucketMetadata {
+	s.UnclassifiableObjectSizeInBytes = v
+	return s
+}
+
 // SetVersioning sets the Versioning field's value.
 func (s *BucketMetadata) SetVersioning(v bool) *BucketMetadata {
 	s.Versioning = &v
 	return s
 }
 
-// The account-level and bucket-level permissions settings for an S3 bucket.
+// Provides information about the account-level and bucket-level permissions
+// settings for an S3 bucket.
 type BucketPermissionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6788,7 +6822,8 @@ type BucketPermissionConfiguration struct {
 	// to an S3 bucket.
 	AccountLevelPermissions *AccountLevelPermissions `locationName:"accountLevelPermissions" type:"structure"`
 
-	// Provides information about bucket-level permissions settings for an S3 bucket.
+	// Provides information about the bucket-level permissions settings for an S3
+	// bucket.
 	BucketLevelPermissions *BucketLevelPermissions `locationName:"bucketLevelPermissions" type:"structure"`
 }
 
@@ -6846,14 +6881,15 @@ func (s *BucketPolicy) SetAllowsPublicWriteAccess(v bool) *BucketPolicy {
 	return s
 }
 
-// Provides information about permissions settings that determine whether an
-// S3 bucket is publicly accessible.
+// Provides information about the permissions settings that determine whether
+// an S3 bucket is publicly accessible.
 type BucketPublicAccess struct {
 	_ struct{} `type:"structure"`
 
 	EffectivePermission *string `locationName:"effectivePermission" type:"string" enum:"EffectivePermission"`
 
-	// The account-level and bucket-level permissions settings for an S3 bucket.
+	// Provides information about the account-level and bucket-level permissions
+	// settings for an S3 bucket.
 	PermissionConfiguration *BucketPermissionConfiguration `locationName:"permissionConfiguration" type:"structure"`
 }
 
@@ -7155,8 +7191,9 @@ func (s *ConflictException) RequestID() string {
 
 // Specifies the scope, schedule, and other settings for a classification job.
 // You can't delete or change the settings for a classification job after you
-// create it. In Amazon Macie, classification jobs are immutable. This ensures
-// accurate data classification results for audits or investigations.
+// create it. This helps ensure that you have an immutable history of sensitive
+// data findings and discovery results for data privacy and protection audits
+// or investigations.
 type CreateClassificationJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7315,9 +7352,9 @@ func (s *CreateClassificationJobOutput) SetJobId(v string) *CreateClassification
 }
 
 // Specifies the criteria and other settings for a new custom data identifier.
-// You can't change a custom data identifier after you create it. In Amazon
-// Macie, custom data identifiers are immutable. This ensures accurate data
-// classification results for audits or investigations.
+// You can't change a custom data identifier after you create it. This helps
+// ensure that you have an immutable history of sensitive data findings and
+// discovery results for data privacy and protection audits or investigations.
 type CreateCustomDataIdentifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9333,8 +9370,8 @@ func (s *FindingsFilterListItem) SetTags(v map[string]*string) *FindingsFilterLi
 	return s
 }
 
-// Specifies an account that's associated with the S3 buckets to retrieve aggregated
-// statistical data for.
+// Specifies the account that owns the S3 buckets to retrieve aggregated statistical
+// data for.
 type GetBucketStatisticsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9358,7 +9395,7 @@ func (s *GetBucketStatisticsInput) SetAccountId(v string) *GetBucketStatisticsIn
 }
 
 // Provides the results of a query that retrieved aggregated statistical data
-// for all the S3 buckets that Amazon Macie monitors and analyzes for an account.
+// for the S3 buckets that are owned by an account.
 type GetBucketStatisticsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9378,6 +9415,8 @@ type GetBucketStatisticsOutput struct {
 
 	ClassifiableObjectCount *int64 `locationName:"classifiableObjectCount" type:"long"`
 
+	ClassifiableSizeInBytes *int64 `locationName:"classifiableSizeInBytes" type:"long"`
+
 	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp" timestampFormat:"iso8601"`
 
 	ObjectCount *int64 `locationName:"objectCount" type:"long"`
@@ -9385,6 +9424,18 @@ type GetBucketStatisticsOutput struct {
 	SizeInBytes *int64 `locationName:"sizeInBytes" type:"long"`
 
 	SizeInBytesCompressed *int64 `locationName:"sizeInBytesCompressed" type:"long"`
+
+	// Provides information about the total storage size (in bytes) or number of
+	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
+	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+	// object, this data is aggregated for all the buckets in the query results.
+	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
+
+	// Provides information about the total storage size (in bytes) or number of
+	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
+	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+	// object, this data is aggregated for all the buckets in the query results.
+	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
 }
 
 // String returns the string representation
@@ -9427,6 +9478,12 @@ func (s *GetBucketStatisticsOutput) SetClassifiableObjectCount(v int64) *GetBuck
 	return s
 }
 
+// SetClassifiableSizeInBytes sets the ClassifiableSizeInBytes field's value.
+func (s *GetBucketStatisticsOutput) SetClassifiableSizeInBytes(v int64) *GetBucketStatisticsOutput {
+	s.ClassifiableSizeInBytes = &v
+	return s
+}
+
 // SetLastUpdated sets the LastUpdated field's value.
 func (s *GetBucketStatisticsOutput) SetLastUpdated(v time.Time) *GetBucketStatisticsOutput {
 	s.LastUpdated = &v
@@ -9448,6 +9505,18 @@ func (s *GetBucketStatisticsOutput) SetSizeInBytes(v int64) *GetBucketStatistics
 // SetSizeInBytesCompressed sets the SizeInBytesCompressed field's value.
 func (s *GetBucketStatisticsOutput) SetSizeInBytesCompressed(v int64) *GetBucketStatisticsOutput {
 	s.SizeInBytesCompressed = &v
+	return s
+}
+
+// SetUnclassifiableObjectCount sets the UnclassifiableObjectCount field's value.
+func (s *GetBucketStatisticsOutput) SetUnclassifiableObjectCount(v *ObjectLevelStatistics) *GetBucketStatisticsOutput {
+	s.UnclassifiableObjectCount = v
+	return s
+}
+
+// SetUnclassifiableObjectSizeInBytes sets the UnclassifiableObjectSizeInBytes field's value.
+func (s *GetBucketStatisticsOutput) SetUnclassifiableObjectSizeInBytes(v *ObjectLevelStatistics) *GetBucketStatisticsOutput {
+	s.UnclassifiableObjectSizeInBytes = v
 	return s
 }
 
@@ -11775,6 +11844,48 @@ func (s *ObjectCountByEncryptionType) SetUnencrypted(v int64) *ObjectCountByEncr
 	return s
 }
 
+// Provides information about the total storage size (in bytes) or number of
+// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
+// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+// object, this data is aggregated for all the buckets in the query results.
+type ObjectLevelStatistics struct {
+	_ struct{} `type:"structure"`
+
+	FileType *int64 `locationName:"fileType" type:"long"`
+
+	StorageClass *int64 `locationName:"storageClass" type:"long"`
+
+	Total *int64 `locationName:"total" type:"long"`
+}
+
+// String returns the string representation
+func (s ObjectLevelStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ObjectLevelStatistics) GoString() string {
+	return s.String()
+}
+
+// SetFileType sets the FileType field's value.
+func (s *ObjectLevelStatistics) SetFileType(v int64) *ObjectLevelStatistics {
+	s.FileType = &v
+	return s
+}
+
+// SetStorageClass sets the StorageClass field's value.
+func (s *ObjectLevelStatistics) SetStorageClass(v int64) *ObjectLevelStatistics {
+	s.StorageClass = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *ObjectLevelStatistics) SetTotal(v int64) *ObjectLevelStatistics {
+	s.Total = &v
+	return s
+}
+
 // Provides the details of a policy finding.
 type PolicyDetails struct {
 	_ struct{} `type:"structure"`
@@ -12033,8 +12144,8 @@ type S3Bucket struct {
 	// Provides information about the user who owns an S3 bucket.
 	Owner *S3BucketOwner `locationName:"owner" type:"structure"`
 
-	// Provides information about permissions settings that determine whether an
-	// S3 bucket is publicly accessible.
+	// Provides information about the permissions settings that determine whether
+	// an S3 bucket is publicly accessible.
 	PublicAccess *BucketPublicAccess `locationName:"publicAccess" type:"structure"`
 
 	// Provides information about the tags that are associated with an S3 bucket
@@ -14110,6 +14221,9 @@ const (
 
 	// EffectivePermissionNotPublic is a EffectivePermission enum value
 	EffectivePermissionNotPublic = "NOT_PUBLIC"
+
+	// EffectivePermissionUnknown is a EffectivePermission enum value
+	EffectivePermissionUnknown = "UNKNOWN"
 )
 
 // EffectivePermission_Values returns all elements of the EffectivePermission enum
@@ -14117,6 +14231,7 @@ func EffectivePermission_Values() []string {
 	return []string{
 		EffectivePermissionPublic,
 		EffectivePermissionNotPublic,
+		EffectivePermissionUnknown,
 	}
 }
 
@@ -14629,6 +14744,9 @@ const (
 
 	// SharedAccessNotShared is a SharedAccess enum value
 	SharedAccessNotShared = "NOT_SHARED"
+
+	// SharedAccessUnknown is a SharedAccess enum value
+	SharedAccessUnknown = "UNKNOWN"
 )
 
 // SharedAccess_Values returns all elements of the SharedAccess enum
@@ -14637,6 +14755,7 @@ func SharedAccess_Values() []string {
 		SharedAccessExternal,
 		SharedAccessInternal,
 		SharedAccessNotShared,
+		SharedAccessUnknown,
 	}
 }
 

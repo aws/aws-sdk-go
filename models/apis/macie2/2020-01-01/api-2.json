@@ -2200,6 +2200,10 @@
           "shape": "__long",
           "locationName": "classifiableObjectCount"
         },
+        "classifiableSizeInBytes": {
+          "shape": "__long",
+          "locationName": "classifiableSizeInBytes"
+        },
         "lastUpdated": {
           "shape": "__timestampIso8601",
           "locationName": "lastUpdated"
@@ -2239,6 +2243,14 @@
         "tags": {
           "shape": "__listOfKeyValuePair",
           "locationName": "tags"
+        },
+        "unclassifiableObjectCount": {
+          "shape": "ObjectLevelStatistics",
+          "locationName": "unclassifiableObjectCount"
+        },
+        "unclassifiableObjectSizeInBytes": {
+          "shape": "ObjectLevelStatistics",
+          "locationName": "unclassifiableObjectSizeInBytes"
         },
         "versioning": {
           "shape": "__boolean",
@@ -3040,7 +3052,8 @@
       "type": "string",
       "enum": [
         "PUBLIC",
-        "NOT_PUBLIC"
+        "NOT_PUBLIC",
+        "UNKNOWN"
       ]
     },
     "Empty": {
@@ -3367,6 +3380,10 @@
           "shape": "__long",
           "locationName": "classifiableObjectCount"
         },
+        "classifiableSizeInBytes": {
+          "shape": "__long",
+          "locationName": "classifiableSizeInBytes"
+        },
         "lastUpdated": {
           "shape": "__timestampIso8601",
           "locationName": "lastUpdated"
@@ -3382,6 +3399,14 @@
         "sizeInBytesCompressed": {
           "shape": "__long",
           "locationName": "sizeInBytesCompressed"
+        },
+        "unclassifiableObjectCount": {
+          "shape": "ObjectLevelStatistics",
+          "locationName": "unclassifiableObjectCount"
+        },
+        "unclassifiableObjectSizeInBytes": {
+          "shape": "ObjectLevelStatistics",
+          "locationName": "unclassifiableObjectSizeInBytes"
         }
       }
     },
@@ -4367,6 +4392,23 @@
         }
       }
     },
+    "ObjectLevelStatistics": {
+      "type": "structure",
+      "members": {
+        "fileType": {
+          "shape": "__long",
+          "locationName": "fileType"
+        },
+        "storageClass": {
+          "shape": "__long",
+          "locationName": "storageClass"
+        },
+        "total": {
+          "shape": "__long",
+          "locationName": "total"
+        }
+      }
+    },
     "OrderBy": {
       "type": "string",
       "enum": [
@@ -4787,7 +4829,8 @@
       "enum": [
         "EXTERNAL",
         "INTERNAL",
-        "NOT_SHARED"
+        "NOT_SHARED",
+        "UNKNOWN"
       ]
     },
     "SimpleScopeTerm": {
