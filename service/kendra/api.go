@@ -2590,11 +2590,11 @@ type AttributeFilter struct {
 	AndAllFilters []*AttributeFilter `type:"list"`
 
 	// Returns true when a document contains all of the specified document attributes.
-	// This filter is only appicable to StringListValue metadata.
+	// This filter is only applicable to StringListValue metadata.
 	ContainsAll *DocumentAttribute `type:"structure"`
 
-	// Returns true when a document contains any of the specified document attributes.This
-	// filter is only appicable to StringListValue metadata.
+	// Returns true when a document contains any of the specified document attributes.
+	// This filter is only applicable to StringListValue metadata.
 	ContainsAny *DocumentAttribute `type:"structure"`
 
 	// Performs an equals operation on two document attributes.
@@ -7093,7 +7093,7 @@ func (s *QueryOutput) SetTotalNumberOfResults(v int64) *QueryOutput {
 type QueryResultItem struct {
 	_ struct{} `type:"structure"`
 
-	// One or more additional attribues associated with the query result.
+	// One or more additional attributes associated with the query result.
 	AdditionalAttributes []*AdditionalResultAttribute `type:"list"`
 
 	// An array of document attributes for the document that the query result maps
@@ -7117,6 +7117,16 @@ type QueryResultItem struct {
 
 	// The unique identifier for the query result.
 	Id *string `min:"1" type:"string"`
+
+	// Indicates the confidence that Amazon Kendra has that a result matches the
+	// query that you provided. Each result is placed into a bin that indicates
+	// the confidence, VERY_HIGH, HIGH, and MEDIUM. You can use the score to determine
+	// if a response meets the confidence needed for your application.
+	//
+	// Confidence scores are only returned for results with the Type field set to
+	// QUESTION_ANSWER or ANSWER. This field is not returned if the Type field is
+	// set to DOCUMENT.
+	ScoreAttributes *ScoreAttributes `type:"structure"`
 
 	// The type of document.
 	Type *string `type:"string" enum:"QueryResultType"`
@@ -7171,6 +7181,12 @@ func (s *QueryResultItem) SetDocumentURI(v string) *QueryResultItem {
 // SetId sets the Id field's value.
 func (s *QueryResultItem) SetId(v string) *QueryResultItem {
 	s.Id = &v
+	return s
+}
+
+// SetScoreAttributes sets the ScoreAttributes field's value.
+func (s *QueryResultItem) SetScoreAttributes(v *ScoreAttributes) *QueryResultItem {
+	s.ScoreAttributes = v
 	return s
 }
 
@@ -8412,6 +8428,31 @@ func (s *SalesforceStandardObjectConfiguration) SetName(v string) *SalesforceSta
 	return s
 }
 
+// Provides a relative ranking that indicates how confident Amazon Kendra is
+// that the response matches the query.
+type ScoreAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// A relative ranking for how well the response matches the query.
+	ScoreConfidence *string `type:"string" enum:"ScoreConfidence"`
+}
+
+// String returns the string representation
+func (s ScoreAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScoreAttributes) GoString() string {
+	return s.String()
+}
+
+// SetScoreConfidence sets the ScoreConfidence field's value.
+func (s *ScoreAttributes) SetScoreConfidence(v string) *ScoreAttributes {
+	s.ScoreConfidence = &v
+	return s
+}
+
 // Provides information about how a custom index field is used during a search.
 type Search struct {
 	_ struct{} `type:"structure"`
@@ -9077,6 +9118,18 @@ func (s *SharePointConfiguration) SetVpcConfiguration(v *DataSourceVpcConfigurat
 // Kendra query. You can specify a single attribute for sorting. The attribute
 // must have the Sortable flag set to true, otherwise Amazon Kendra returns
 // an exception.
+//
+// You can sort attributes of the following types.
+//
+//    * Date value
+//
+//    * Long value
+//
+//    * String value
+//
+// You can't sort attributes of the following type.
+//
+//    * String list value
 type SortingConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9150,8 +9203,8 @@ func (s *SortingConfiguration) SetSortOrder(v string) *SortingConfiguration {
 type SqlConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Determines whether Amazon Kendra encloses SQL identifiers in double quotes
-	// (") when making a database query.
+	// Determines whether Amazon Kendra encloses SQL identifiers for tables and
+	// column names in double quotes (") when making a database query.
 	//
 	// By default, Amazon Kendra passes SQL identifiers the way that they are entered
 	// into the data source configuration. It does not change the case of identifiers
@@ -9161,8 +9214,8 @@ type SqlConfiguration struct {
 	// in identifiers unless they are quoted. Choosing this option encloses identifiers
 	// in quotes so that PostgreSQL does not convert the character's case.
 	//
-	// For MySQL databases, you must enable the ansi_quotes option when you choose
-	// this option.
+	// For MySQL databases, you must enable the ansi_quotes option when you set
+	// this field to DOUBLE_QUOTES.
 	QueryIdentifiersEnclosingOption *string `type:"string" enum:"QueryIdentifiersEnclosingOption"`
 }
 
@@ -10621,6 +10674,27 @@ func SalesforceStandardObjectName_Values() []string {
 		SalesforceStandardObjectNameSolution,
 		SalesforceStandardObjectNameTask,
 		SalesforceStandardObjectNameUser,
+	}
+}
+
+// Enumeration for query score confidence.
+const (
+	// ScoreConfidenceVeryHigh is a ScoreConfidence enum value
+	ScoreConfidenceVeryHigh = "VERY_HIGH"
+
+	// ScoreConfidenceHigh is a ScoreConfidence enum value
+	ScoreConfidenceHigh = "HIGH"
+
+	// ScoreConfidenceMedium is a ScoreConfidence enum value
+	ScoreConfidenceMedium = "MEDIUM"
+)
+
+// ScoreConfidence_Values returns all elements of the ScoreConfidence enum
+func ScoreConfidence_Values() []string {
+	return []string{
+		ScoreConfidenceVeryHigh,
+		ScoreConfidenceHigh,
+		ScoreConfidenceMedium,
 	}
 }
 

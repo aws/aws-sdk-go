@@ -54,7 +54,7 @@
     "AdditionalResultAttributeList": {
       "base": null,
       "refs": {
-        "QueryResultItem$AdditionalAttributes": "<p>One or more additional attribues associated with the query result.</p>"
+        "QueryResultItem$AdditionalAttributes": "<p>One or more additional attributes associated with the query result.</p>"
       }
     },
     "AdditionalResultAttributeValue": {
@@ -522,8 +522,8 @@
       "base": "<p>A custom attribute value assigned to a document. </p>",
       "refs": {
         "AttributeFilter$EqualsTo": "<p>Performs an equals operation on two document attributes.</p>",
-        "AttributeFilter$ContainsAll": "<p>Returns true when a document contains all of the specified document attributes. This filter is only appicable to <code>StringListValue</code> metadata.</p>",
-        "AttributeFilter$ContainsAny": "<p>Returns true when a document contains any of the specified document attributes.This filter is only appicable to <code>StringListValue</code> metadata.</p>",
+        "AttributeFilter$ContainsAll": "<p>Returns true when a document contains all of the specified document attributes. This filter is only applicable to <code>StringListValue</code> metadata.</p>",
+        "AttributeFilter$ContainsAny": "<p>Returns true when a document contains any of the specified document attributes. This filter is only applicable to <code>StringListValue</code> metadata.</p>",
         "AttributeFilter$GreaterThan": "<p>Performs a greater than operation on two document attributes. Use with a document attribute of type <code>Integer</code> or <code>Long</code>.</p>",
         "AttributeFilter$GreaterThanOrEquals": "<p>Performs a greater or equals than operation on two document attributes. Use with a document attribute of type <code>Integer</code> or <code>Long</code>.</p>",
         "AttributeFilter$LessThan": "<p>Performs a less than operation on two document attributes. Use with a document attribute of type <code>Integer</code> or <code>Long</code>.</p>",
@@ -1055,7 +1055,7 @@
     "QueryIdentifiersEnclosingOption": {
       "base": null,
       "refs": {
-        "SqlConfiguration$QueryIdentifiersEnclosingOption": "<p>Determines whether Amazon Kendra encloses SQL identifiers in double quotes (\") when making a database query.</p> <p>By default, Amazon Kendra passes SQL identifiers the way that they are entered into the data source configuration. It does not change the case of identifiers or enclose them in quotes.</p> <p>PostgreSQL internally converts uppercase characters to lower case characters in identifiers unless they are quoted. Choosing this option encloses identifiers in quotes so that PostgreSQL does not convert the character's case.</p> <p>For MySQL databases, you must enable the <code>ansi_quotes</code> option when you choose this option.</p>"
+        "SqlConfiguration$QueryIdentifiersEnclosingOption": "<p>Determines whether Amazon Kendra encloses SQL identifiers for tables and column names in double quotes (\") when making a database query.</p> <p>By default, Amazon Kendra passes SQL identifiers the way that they are entered into the data source configuration. It does not change the case of identifiers or enclose them in quotes.</p> <p>PostgreSQL internally converts uppercase characters to lower case characters in identifiers unless they are quoted. Choosing this option encloses identifiers in quotes so that PostgreSQL does not convert the character's case.</p> <p>For MySQL databases, you must enable the <code>ansi_quotes</code> option when you set this field to <code>DOUBLE_QUOTES</code>.</p>"
       }
     },
     "QueryRequest": {
@@ -1293,6 +1293,18 @@
         "UpdateDataSourceRequest$Schedule": "<p>The new update schedule for the data source.</p>"
       }
     },
+    "ScoreAttributes": {
+      "base": "<p>Provides a relative ranking that indicates how confident Amazon Kendra is that the response matches the query.</p>",
+      "refs": {
+        "QueryResultItem$ScoreAttributes": "<p>Indicates the confidence that Amazon Kendra has that a result matches the query that you provided. Each result is placed into a bin that indicates the confidence, <code>VERY_HIGH</code>, <code>HIGH</code>, and <code>MEDIUM</code>. You can use the score to determine if a response meets the confidence needed for your application.</p> <p>Confidence scores are only returned for results with the <code>Type</code> field set to <code>QUESTION_ANSWER</code> or <code>ANSWER</code>. This field is not returned if the <code>Type</code> field is set to <code>DOCUMENT</code>.</p>"
+      }
+    },
+    "ScoreConfidence": {
+      "base": "Enumeration for query score confidence.",
+      "refs": {
+        "ScoreAttributes$ScoreConfidence": "<p>A relative ranking for how well the response matches the query.</p>"
+      }
+    },
     "Search": {
       "base": "<p>Provides information about how a custom index field is used during a search.</p>",
       "refs": {
@@ -1382,7 +1394,7 @@
       }
     },
     "SortingConfiguration": {
-      "base": "<p>Specifies the document attribute to use to sort the response to a Amazon Kendra query. You can specify a single attribute for sorting. The attribute must have the <code>Sortable</code> flag set to <code>true</code>, otherwise Amazon Kendra returns an exception.</p>",
+      "base": "<p>Specifies the document attribute to use to sort the response to a Amazon Kendra query. You can specify a single attribute for sorting. The attribute must have the <code>Sortable</code> flag set to <code>true</code>, otherwise Amazon Kendra returns an exception.</p> <p>You can sort attributes of the following types.</p> <ul> <li> <p>Date value</p> </li> <li> <p>Long value</p> </li> <li> <p>String value</p> </li> </ul> <p>You can't sort attributes of the following type.</p> <ul> <li> <p>String list value</p> </li> </ul>",
       "refs": {
         "QueryRequest$SortingConfiguration": "<p>Provides information that determines how the results of the query are sorted. You can set the field that Amazon Kendra should sort the results on, and specify whether the results should be sorted in ascending or descending order. In the case of ties in sorting the results, the results are sorted by relevance.</p> <p>If you don't provide sorting configuration, the results are sorted by the relevance that Amazon Kendra determines for the result.</p>"
       }

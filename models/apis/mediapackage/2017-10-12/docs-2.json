@@ -281,6 +281,12 @@
       "base" : null,
       "refs" : { }
     },
+    "UtcTiming" : {
+      "base" : null,
+      "refs" : {
+        "DashPackage$UtcTiming" : "Determines the type of UTCTiming included in the Media Presentation Description (MPD)"
+      }
+    },
     "__AdTriggersElement" : {
       "base" : null,
       "refs" : {
@@ -406,6 +412,7 @@
         "ChannelUpdateParameters$Description" : "A short text description of the Channel.",
         "CmafPackage$SegmentPrefix" : "An optional custom string that is prepended to the name of each segment. If not specified, it defaults to the ChannelId.",
         "CmafPackageCreateOrUpdateParameters$SegmentPrefix" : "An optional custom string that is prepended to the name of each segment. If not specified, it defaults to the ChannelId.",
+        "DashPackage$UtcTimingUri" : "Specifies the value attribute of the UTCTiming field when utcTiming is set to HTTP-ISO or HTTP-HEAD",
         "HarvestJob$Arn" : "The Amazon Resource Name (ARN) assigned to the HarvestJob.\n",
         "HarvestJob$ChannelId" : "The ID of the Channel that the HarvestJob will harvest from.\n",
         "HarvestJob$CreatedAt" : "The time the HarvestJob was submitted\n",
