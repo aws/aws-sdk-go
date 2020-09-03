@@ -751,7 +751,7 @@
     },
     "DataSourceInclusionsExclusionsStringsMember":{
       "type":"string",
-      "max":150,
+      "max":50,
       "min":1
     },
     "DataSourceName":{
@@ -1596,7 +1596,8 @@
         "DocumentTitle":{"shape":"TextWithHighlights"},
         "DocumentExcerpt":{"shape":"TextWithHighlights"},
         "DocumentURI":{"shape":"Url"},
-        "DocumentAttributes":{"shape":"DocumentAttributeList"}
+        "DocumentAttributes":{"shape":"DocumentAttributeList"},
+        "ScoreAttributes":{"shape":"ScoreAttributes"}
       }
     },
     "QueryResultItemList":{
@@ -1875,6 +1876,20 @@
       ]
     },
     "ScanSchedule":{"type":"string"},
+    "ScoreAttributes":{
+      "type":"structure",
+      "members":{
+        "ScoreConfidence":{"shape":"ScoreConfidence"}
+      }
+    },
+    "ScoreConfidence":{
+      "type":"string",
+      "enum":[
+        "VERY_HIGH",
+        "HIGH",
+        "MEDIUM"
+      ]
+    },
     "Search":{
       "type":"structure",
       "members":{

@@ -131,6 +131,13 @@
         "UpdateStateMachineInput$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role of the state machine.</p>"
       }
     },
+    "CloudWatchEventsExecutionDataDetails": {
+      "base": "<p>Provides details about execution input.</p>",
+      "refs": {
+        "DescribeExecutionOutput$inputDetails": null,
+        "DescribeExecutionOutput$outputDetails": null
+      }
+    },
     "CloudWatchLogsLogGroup": {
       "base": "<p/>",
       "refs": {
@@ -140,7 +147,7 @@
     "ConnectorParameters": {
       "base": null,
       "refs": {
-        "TaskScheduledEventDetails$parameters": "<p>The JSON data passed to the resource referenced in a task state.</p>"
+        "TaskScheduledEventDetails$parameters": "<p>The JSON data passed to the resource referenced in a task state. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>"
       }
     },
     "CreateActivityInput": {
@@ -358,6 +365,21 @@
         "HistoryEventList$member": null
       }
     },
+    "HistoryEventExecutionDataDetails": {
+      "base": "<p>Contains details about the data from an execution's events. Always <code>true</code> for API calls, but may be <code>false</code> for CloudWatch Logs.</p>",
+      "refs": {
+        "ActivityScheduledEventDetails$inputDetails": "<p>Contains details about the input for an execution history event.</p>",
+        "ActivitySucceededEventDetails$outputDetails": "<p>Contains details about the output of an execution history event.</p>",
+        "ExecutionStartedEventDetails$inputDetails": "<p>Contains details about the input for an execution history event.</p>",
+        "ExecutionSucceededEventDetails$outputDetails": "<p>Contains details about the output of an execution history event.</p>",
+        "LambdaFunctionScheduledEventDetails$inputDetails": "<p>Contains details about input for an execution history event.</p>",
+        "LambdaFunctionSucceededEventDetails$outputDetails": "<p>Contains details about the output of an execution history event.</p>",
+        "StateEnteredEventDetails$inputDetails": "<p>Contains details about the input for an execution history event.</p>",
+        "StateExitedEventDetails$outputDetails": "<p>Contains details about the output of an execution history event.</p>",
+        "TaskSubmittedEventDetails$outputDetails": "<p>Contains details about the output of an execution history event.</p>",
+        "TaskSucceededEventDetails$outputDetails": "<p>Contains details about the output of an execution history event.</p>"
+      }
+    },
     "HistoryEventList": {
       "base": "<p>Contains details about the events that occurred during an execution.</p>",
       "refs": {
@@ -379,7 +401,13 @@
     "IncludeExecutionData": {
       "base": null,
       "refs": {
-        "LoggingConfiguration$includeExecutionData": "<p>Determines whether execution data is included in your log. When set to <code>FALSE</code>, data is excluded.</p>"
+        "LoggingConfiguration$includeExecutionData": "<p>Determines whether execution data is included in your log. When set to <code>false</code>, data is excluded.</p>"
+      }
+    },
+    "IncludeExecutionDataGetExecutionHistory": {
+      "base": null,
+      "refs": {
+        "GetExecutionHistoryInput$includeExecutionData": "<p>You can select whether execution data (input or output of a history event) is returned. The default is <code>true</code>.</p>"
       }
     },
     "InvalidArn": {
@@ -668,26 +696,26 @@
     "SensitiveData": {
       "base": null,
       "refs": {
-        "ActivityScheduledEventDetails$input": "<p>The JSON data input to the activity task.</p>",
-        "ActivitySucceededEventDetails$output": "<p>The JSON data output by the activity task.</p>",
-        "DescribeExecutionOutput$input": "<p>The string that contains the JSON input data of the execution.</p>",
-        "DescribeExecutionOutput$output": "<p>The JSON output data of the execution.</p> <note> <p>This field is set only if the execution succeeds. If the execution fails, this field is null.</p> </note>",
-        "ExecutionStartedEventDetails$input": "<p>The JSON data input to the execution.</p>",
-        "ExecutionSucceededEventDetails$output": "<p>The JSON data output by the execution.</p>",
-        "LambdaFunctionScheduledEventDetails$input": "<p>The JSON data input to the lambda function.</p>",
-        "LambdaFunctionSucceededEventDetails$output": "<p>The JSON data output by the lambda function.</p>",
-        "SendTaskSuccessInput$output": "<p>The JSON output of the task.</p>",
-        "StartExecutionInput$input": "<p>The string that contains the JSON input data for the execution, for example:</p> <p> <code>\"input\": \"{\\\"first_name\\\" : \\\"test\\\"}\"</code> </p> <note> <p>If you don't include any JSON input data, you still must include the two braces, for example: <code>\"input\": \"{}\"</code> </p> </note>",
-        "StateEnteredEventDetails$input": "<p>The string that contains the JSON input data for the state.</p>",
-        "StateExitedEventDetails$output": "<p>The JSON output data of the state.</p>",
-        "TaskSubmittedEventDetails$output": "<p>The response from a resource when a task has started.</p>",
-        "TaskSucceededEventDetails$output": "<p>The full JSON response from a resource when a task has succeeded. This response becomes the output of the related task.</p>"
+        "ActivityScheduledEventDetails$input": "<p>The JSON data input to the activity task. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "ActivitySucceededEventDetails$output": "<p>The JSON data output by the activity task. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "DescribeExecutionOutput$input": "<p>The string that contains the JSON input data of the execution. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "DescribeExecutionOutput$output": "<p>The JSON output data of the execution. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p> <note> <p>This field is set only if the execution succeeds. If the execution fails, this field is null.</p> </note>",
+        "ExecutionStartedEventDetails$input": "<p>The JSON data input to the execution. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "ExecutionSucceededEventDetails$output": "<p>The JSON data output by the execution. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "LambdaFunctionScheduledEventDetails$input": "<p>The JSON data input to the lambda function. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "LambdaFunctionSucceededEventDetails$output": "<p>The JSON data output by the lambda function. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "SendTaskSuccessInput$output": "<p>The JSON output of the task. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "StartExecutionInput$input": "<p>The string that contains the JSON input data for the execution, for example:</p> <p> <code>\"input\": \"{\\\"first_name\\\" : \\\"test\\\"}\"</code> </p> <note> <p>If you don't include any JSON input data, you still must include the two braces, for example: <code>\"input\": \"{}\"</code> </p> </note> <p>Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "StateEnteredEventDetails$input": "<p>The string that contains the JSON input data for the state. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "StateExitedEventDetails$output": "<p>The JSON output data of the state. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "TaskSubmittedEventDetails$output": "<p>The response from a resource when a task has started. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "TaskSucceededEventDetails$output": "<p>The full JSON response from a resource when a task has succeeded. This response becomes the output of the related task. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>"
       }
     },
     "SensitiveDataJobInput": {
       "base": null,
       "refs": {
-        "GetActivityTaskOutput$input": "<p>The string that contains the JSON input data for the task.</p>"
+        "GetActivityTaskOutput$input": "<p>The string that contains the JSON input data for the task. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>"
       }
     },
     "SensitiveError": {
@@ -911,7 +939,8 @@
         "ActivityScheduledEventDetails$timeoutInSeconds": "<p>The maximum allowed duration of the activity task.</p>",
         "ActivityScheduledEventDetails$heartbeatInSeconds": "<p>The maximum allowed duration between two heartbeats for the activity task.</p>",
         "LambdaFunctionScheduledEventDetails$timeoutInSeconds": "<p>The maximum allowed duration of the lambda function.</p>",
-        "TaskScheduledEventDetails$timeoutInSeconds": "<p>The maximum allowed duration of the task.</p>"
+        "TaskScheduledEventDetails$timeoutInSeconds": "<p>The maximum allowed duration of the task.</p>",
+        "TaskScheduledEventDetails$heartbeatInSeconds": "<p>The maximum allowed duration between two heartbeats for the task.</p>"
       }
     },
     "Timestamp": {
@@ -964,6 +993,18 @@
     "UpdateStateMachineOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "included": {
+      "base": null,
+      "refs": {
+        "CloudWatchEventsExecutionDataDetails$included": "<p>Indicates whether input or output was included in the response. Always <code>true</code> for API calls, but may be <code>false</code> for CloudWatch Events.</p>"
+      }
+    },
+    "truncated": {
+      "base": null,
+      "refs": {
+        "HistoryEventExecutionDataDetails$truncated": "<p>Indicates whether input or output was truncated in the response. Always <code>false</code>.</p>"
       }
     }
   }

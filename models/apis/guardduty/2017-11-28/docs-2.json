@@ -166,7 +166,7 @@
       }
     },
     "AwsApiCallAction": {
-      "base": "<p>Contains information about the API operation.</p>",
+      "base": "<p>Contains information about the API action.</p>",
       "refs": {
         "Action$AwsApiCallAction": "<p>Information about the AWS_API_CALL action described in this finding.</p>"
       }
@@ -394,7 +394,7 @@
       }
     },
     "DefaultServerSideEncryption": {
-      "base": "<p>Contains information on the server side encryption method used in the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AmazonS3/atest/dev/serv-side-encryption.html\">S3 Server-Side Encryption</a> for more information.</p>",
+      "base": "<p>Contains information on the server side encryption method used in the S3 bucket. See <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html\">S3 Server-Side Encryption</a> for more information.</p>",
       "refs": {
         "S3BucketDetail$DefaultServerSideEncryption": "<p>Describes the server side encryption method used in the S3 bucket.</p>"
       }
@@ -1329,7 +1329,7 @@
     "RemoteIpDetails": {
       "base": "<p>Contains information about the remote IP address of the connection.</p>",
       "refs": {
-        "AwsApiCallAction$RemoteIpDetails": "<p>The remote IP information of the connection.</p>",
+        "AwsApiCallAction$RemoteIpDetails": "<p>The remote IP information of the connection that initiated the AWS API call.</p>",
         "NetworkConnectionAction$RemoteIpDetails": "<p>The remote IP information of the connection.</p>",
         "PortProbeDetail$RemoteIpDetails": "<p>The remote IP information of the connection.</p>"
       }
@@ -1434,6 +1434,7 @@
         "AdminAccount$AdminAccountId": "<p>The AWS account ID for the account.</p>",
         "AwsApiCallAction$Api": "<p>The AWS API name.</p>",
         "AwsApiCallAction$CallerType": "<p>The AWS API caller type.</p>",
+        "AwsApiCallAction$ErrorCode": "<p>The error code of the failed AWS API action.</p>",
         "AwsApiCallAction$ServiceName": "<p>The AWS service name whose API was invoked.</p>",
         "BadRequestException$Message": "<p>The error message.</p>",
         "BadRequestException$Type": "<p>The error type.</p>",

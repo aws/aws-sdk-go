@@ -1022,6 +1022,10 @@
           "shape":"DomainDetails",
           "locationName":"domainDetails"
         },
+        "ErrorCode":{
+          "shape":"String",
+          "locationName":"errorCode"
+        },
         "RemoteIpDetails":{
           "shape":"RemoteIpDetails",
           "locationName":"remoteIpDetails"

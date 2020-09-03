@@ -1,3 +1,16 @@
+Release v1.34.17 (2020-09-03)
+===
+
+### Service Client Updates
+* `service/guardduty`: Updates service API and documentation
+  * GuardDuty findings triggered by failed events now include the error code name within the AwsApiCallAction section.
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now returns confidence scores for both 'answer' and 'question and answer' query responses.
+* `service/mediapackage`: Updates service API and documentation
+  * Enables inserting a UTCTiming XML tag in the output manifest of a DASH endpoint which a media player will use to help with time synchronization.
+* `service/states`: Updates service API and documentation
+  * This release of the AWS Step Functions SDK introduces support for payloads up to 256KB for Standard and Express workflows
+
 Release v1.34.16 (2020-09-02)
 ===
 

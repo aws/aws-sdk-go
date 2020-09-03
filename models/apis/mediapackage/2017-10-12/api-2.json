@@ -1060,6 +1060,14 @@
         "SuggestedPresentationDelaySeconds": {
           "locationName": "suggestedPresentationDelaySeconds",
           "shape": "__integer"
+        },
+        "UtcTiming": {
+          "locationName": "utcTiming",
+          "shape": "UtcTiming"
+        },
+        "UtcTimingUri": {
+          "locationName": "utcTimingUri",
+          "shape": "__string"
         }
       },
       "type": "structure"
@@ -2421,6 +2429,14 @@
         }
       },
       "type": "structure"
+    },
+    "UtcTiming": {
+      "enum": [
+        "NONE",
+        "HTTP-HEAD",
+        "HTTP-ISO"
+      ],
+      "type": "string"
     },
     "__AdTriggersElement": {
       "enum": [
