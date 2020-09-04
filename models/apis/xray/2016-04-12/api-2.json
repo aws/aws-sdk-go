@@ -416,6 +416,7 @@
       "members":{
         "GroupName":{"shape":"GroupName"},
         "FilterExpression":{"shape":"FilterExpression"},
+        "InsightsConfiguration":{"shape":"InsightsConfiguration"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -800,7 +801,8 @@
       "members":{
         "GroupName":{"shape":"String"},
         "GroupARN":{"shape":"String"},
-        "FilterExpression":{"shape":"String"}
+        "FilterExpression":{"shape":"String"},
+        "InsightsConfiguration":{"shape":"InsightsConfiguration"}
       }
     },
     "GroupARN":{
@@ -818,7 +820,8 @@
       "members":{
         "GroupName":{"shape":"String"},
         "GroupARN":{"shape":"String"},
-        "FilterExpression":{"shape":"String"}
+        "FilterExpression":{"shape":"String"},
+        "InsightsConfiguration":{"shape":"InsightsConfiguration"}
       }
     },
     "GroupSummaryList":{
@@ -856,6 +859,12 @@
         "HttpMethod":{"shape":"String"},
         "UserAgent":{"shape":"String"},
         "ClientIp":{"shape":"String"}
+      }
+    },
+    "InsightsConfiguration":{
+      "type":"structure",
+      "members":{
+        "InsightsEnabled":{"shape":"NullableBoolean"}
       }
     },
     "InstanceIdDetail":{
@@ -1462,7 +1471,8 @@
       "members":{
         "GroupName":{"shape":"GroupName"},
         "GroupARN":{"shape":"GroupARN"},
-        "FilterExpression":{"shape":"FilterExpression"}
+        "FilterExpression":{"shape":"FilterExpression"},
+        "InsightsConfiguration":{"shape":"InsightsConfiguration"}
       }
     },
     "UpdateGroupResult":{

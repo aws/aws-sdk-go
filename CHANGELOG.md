@@ -1,3 +1,14 @@
+Release v1.34.18 (2020-09-04)
+===
+
+### Service Client Updates
+* `service/ssm`: Updates service documentation
+  * Documentation-only updates for AWS Systems Manager
+* `service/workspaces`: Updates service API and documentation
+  * Adding support for Microsoft Office 2016 and Microsoft Office 2019 in BYOL Images
+* `service/xray`: Updates service API and documentation
+  * Enhancing CreateGroup, UpdateGroup, GetGroup and GetGroups APIs to support configuring X-Ray Insights
+
 Release v1.34.17 (2020-09-03)
 ===
 
