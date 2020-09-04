@@ -643,6 +643,19 @@
       "member":{"shape":"AccountModification"}
     },
     "Alias":{"type":"string"},
+    "Application":{
+      "type":"string",
+      "enum":[
+        "Microsoft_Office_2016",
+        "Microsoft_Office_2019"
+      ]
+    },
+    "ApplicationList":{
+      "type":"list",
+      "member":{"shape":"Application"},
+      "max":5,
+      "min":1
+    },
     "AssociateIpGroupsRequest":{
       "type":"structure",
       "required":[
@@ -1186,7 +1199,8 @@
         "IngestionProcess":{"shape":"WorkspaceImageIngestionProcess"},
         "ImageName":{"shape":"WorkspaceImageName"},
         "ImageDescription":{"shape":"WorkspaceImageDescription"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "Applications":{"shape":"ApplicationList"}
       }
     },
     "ImportWorkspaceImageResult":{

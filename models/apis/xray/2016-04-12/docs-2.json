@@ -17,12 +17,12 @@
     "GetTimeSeriesServiceStatistics": "<p>Get an aggregation of service statistics defined by a specific time range.</p>",
     "GetTraceGraph": "<p>Retrieves a service graph for one or more specific trace IDs.</p>",
     "GetTraceSummaries": "<p>Retrieves IDs and annotations for traces available for a specified time frame using an optional filter. To get the full traces, pass the trace IDs to <code>BatchGetTraces</code>.</p> <p>A filter expression can target traced requests that hit specific service nodes or edges, have errors, or come from a known user. For example, the following filter expression targets traces that pass through <code>api.example.com</code>:</p> <p> <code>service(\"api.example.com\")</code> </p> <p>This filter expression finds traces that have an annotation named <code>account</code> with the value <code>12345</code>:</p> <p> <code>annotation.account = \"12345\"</code> </p> <p>For a full list of indexed fields and keywords that you can use in filter expressions, see <a href=\"https://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html\">Using Filter Expressions</a> in the <i>AWS X-Ray Developer Guide</i>.</p>",
-    "ListTagsForResource": null,
+    "ListTagsForResource": "<p>Returns a list of tags that are applied to the specified AWS X-Ray group or sampling rule.</p>",
     "PutEncryptionConfig": "<p>Updates the encryption configuration for X-Ray data.</p>",
     "PutTelemetryRecords": "<p>Used by the AWS X-Ray daemon to upload telemetry.</p>",
     "PutTraceSegments": "<p>Uploads segment documents to AWS X-Ray. The <a href=\"https://docs.aws.amazon.com/xray/index.html\">X-Ray SDK</a> generates segment documents and sends them to the X-Ray daemon, which uploads them in batches. A segment document can be a completed segment, an in-progress segment, or an array of subsegments.</p> <p>Segments must include the following fields. For the full segment document schema, see <a href=\"https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html\">AWS X-Ray Segment Documents</a> in the <i>AWS X-Ray Developer Guide</i>.</p> <p class=\"title\"> <b>Required Segment Document Fields</b> </p> <ul> <li> <p> <code>name</code> - The name of the service that handled the request.</p> </li> <li> <p> <code>id</code> - A 64-bit identifier for the segment, unique among segments in the same trace, in 16 hexadecimal digits.</p> </li> <li> <p> <code>trace_id</code> - A unique identifier that connects all segments and subsegments originating from a single client request.</p> </li> <li> <p> <code>start_time</code> - Time the segment or subsegment was created, in floating point seconds in epoch time, accurate to milliseconds. For example, <code>1480615200.010</code> or <code>1.480615200010E9</code>.</p> </li> <li> <p> <code>end_time</code> - Time the segment or subsegment was closed. For example, <code>1480615200.090</code> or <code>1.480615200090E9</code>. Specify either an <code>end_time</code> or <code>in_progress</code>.</p> </li> <li> <p> <code>in_progress</code> - Set to <code>true</code> instead of specifying an <code>end_time</code> to record that a segment has been started, but is not complete. Send an in progress segment when your application receives a request that will take a long time to serve, to trace the fact that the request was received. When the response is sent, send the complete segment to overwrite the in-progress segment.</p> </li> </ul> <p>A <code>trace_id</code> consists of three numbers separated by hyphens. For example, 1-58406520-a006649127e371903a2de979. This includes:</p> <p class=\"title\"> <b>Trace ID Format</b> </p> <ul> <li> <p>The version number, i.e. <code>1</code>.</p> </li> <li> <p>The time of the original request, in Unix epoch time, in 8 hexadecimal digits. For example, 10:00AM December 2nd, 2016 PST in epoch time is <code>1480615200</code> seconds, or <code>58406520</code> in hexadecimal.</p> </li> <li> <p>A 96-bit identifier for the trace, globally unique, in 24 hexadecimal digits.</p> </li> </ul>",
-    "TagResource": null,
-    "UntagResource": null,
+    "TagResource": "<p>Applies tags to an existing AWS X-Ray group or sampling rule.</p>",
+    "UntagResource": "<p>Removes tags from an AWS X-Ray group or sampling rule. You cannot edit or delete system tags (those with an <code>aws:</code> prefix).</p>",
     "UpdateGroup": "<p>Updates a group resource.</p>",
     "UpdateSamplingRule": "<p>Modifies a sampling rule's configuration.</p>"
   },
@@ -48,11 +48,11 @@
     "AmazonResourceName": {
       "base": null,
       "refs": {
-        "ListTagsForResourceRequest$ResourceARN": null,
+        "ListTagsForResourceRequest$ResourceARN": "<p>The Amazon Resource Number (ARN) of an X-Ray group or sampling rule.</p>",
         "ResourceNotFoundException$ResourceName": null,
-        "TagResourceRequest$ResourceARN": null,
+        "TagResourceRequest$ResourceARN": "<p>The Amazon Resource Number (ARN) of an X-Ray group or sampling rule.</p>",
         "TooManyTagsException$ResourceName": null,
-        "UntagResourceRequest$ResourceARN": null
+        "UntagResourceRequest$ResourceARN": "<p>The Amazon Resource Number (ARN) of an X-Ray group or sampling rule.</p>"
       }
     },
     "AnnotationKey": {
@@ -456,9 +456,9 @@
     "Group": {
       "base": "<p>Details and metadata for a group.</p>",
       "refs": {
-        "CreateGroupResult$Group": "<p>The group that was created. Contains the name of the group that was created, the ARN of the group that was generated based on the group name, and the filter expression that was assigned to the group.</p>",
+        "CreateGroupResult$Group": "<p>The group that was created. Contains the name of the group that was created, the ARN of the group that was generated based on the group name, the filter expression, and the insight configuration that was assigned to the group.</p>",
         "GetGroupResult$Group": "<p>The group that was requested. Contains the name of the group, the ARN of the group, and the filter expression that assigned to the group.</p>",
-        "UpdateGroupResult$Group": "<p>The group that was updated. Contains the name of the group that was updated, the ARN of the group that was updated, and the updated filter expression assigned to the group.</p>"
+        "UpdateGroupResult$Group": "<p>The group that was updated. Contains the name of the group that was updated, the ARN of the group that was updated, the updated filter expression, and the updated insight configuration assigned to the group.</p>"
       }
     },
     "GroupARN": {
@@ -535,6 +535,15 @@
         "TraceSummary$Http": "<p>Information about the HTTP request served by the trace.</p>"
       }
     },
+    "InsightsConfiguration": {
+      "base": "<p>The structure containing configurations related to insights.</p>",
+      "refs": {
+        "CreateGroupRequest$InsightsConfiguration": "<p>The structure containing configurations related to insights. The InsightsEnabled boolean can be set to true to enable insights for the new group or false to disable insights for the new group.</p>",
+        "Group$InsightsConfiguration": "<p>The structure containing configurations related to insights. The InsightsEnabled boolean can be set to true to enable insights for the group or false to disable insights for the group.</p>",
+        "GroupSummary$InsightsConfiguration": "<p>The structure containing configurations related to insights. The InsightsEnabled boolean can be set to true to enable insights for the groups or false to disable insights for the groups.</p>",
+        "UpdateGroupRequest$InsightsConfiguration": "<p>The structure containing configurations related to insights. The InsightsEnabled boolean can be set to true to enable insights for the group or false to disable insights for the group.</p>"
+      }
+    },
     "InstanceIdDetail": {
       "base": "<p>A list of EC2 instance IDs corresponding to the segments in a trace. </p>",
       "refs": {
@@ -577,6 +586,7 @@
         "FaultRootCauseEntity$Remote": "<p>A flag that denotes a remote subsegment.</p>",
         "FaultRootCauseService$Inferred": "<p>A Boolean value indicating if the service is inferred from the trace.</p>",
         "GetTraceSummariesRequest$Sampling": "<p>Set to <code>true</code> to get summaries for only a subset of available traces.</p>",
+        "InsightsConfiguration$InsightsEnabled": "<p>Set the InsightsEnabled value to true to enable insights or false to disable insights.</p>",
         "ResponseTimeRootCause$ClientImpacting": "<p>A flag that denotes that the root cause impacts the trace client.</p>",
         "ResponseTimeRootCauseEntity$Remote": "<p>A flag that denotes a remote subsegment.</p>",
         "ResponseTimeRootCauseService$Inferred": "<p>A Boolean value indicating if the service is inferred from the trace.</p>",
@@ -702,7 +712,7 @@
       }
     },
     "ResourceNotFoundException": {
-      "base": null,
+      "base": "<p>The resource was not found. Verify that the name or ARN of the resource is correct.</p>",
       "refs": {
       }
     },
@@ -978,8 +988,8 @@
         "Http$UserAgent": "<p>The request's user agent string.</p>",
         "Http$ClientIp": "<p>The IP address of the requestor.</p>",
         "InstanceIdDetail$Id": "<p>The ID of a corresponding EC2 instance.</p>",
-        "ListTagsForResourceRequest$NextToken": null,
-        "ListTagsForResourceResponse$NextToken": null,
+        "ListTagsForResourceRequest$NextToken": "<p>A pagination token. If multiple pages of results are returned, use the <code>NextToken</code> value returned with the current page of results as the value of this parameter to get the next page of results.</p>",
+        "ListTagsForResourceResponse$NextToken": "<p>A pagination token. If multiple pages of results are returned, use the <code>NextToken</code> value returned with the current page of results to get the next page of results.</p>",
         "ResourceARNDetail$ARN": "<p>The ARN of a corresponding resource.</p>",
         "ResponseTimeRootCauseEntity$Name": "<p>The name of the entity.</p>",
         "ResponseTimeRootCauseService$Name": "<p>The service name.</p>",
@@ -1009,7 +1019,7 @@
       }
     },
     "Tag": {
-      "base": null,
+      "base": "<p>A map that contains tag keys and tag values to attach to an AWS X-Ray group or sampling rule. For more information about ways to use tags, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS resources</a> in the <i>AWS General Reference</i>.</p> <p>The following restrictions apply to tags:</p> <ul> <li> <p>Maximum number of user-applied tags per resource: 50</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Don't use <code>aws:</code> as a prefix for keys; it's reserved for AWS use. You cannot edit or delete system tags.</p> </li> </ul>",
       "refs": {
         "TagList$member": null
       }
@@ -1017,23 +1027,23 @@
     "TagKey": {
       "base": null,
       "refs": {
-        "Tag$Key": null,
+        "Tag$Key": "<p>A tag key, such as <code>Stage</code> or <code>Name</code>. A tag key cannot be empty. The key can be a maximum of 128 characters, and can contain only Unicode letters, numbers, or separators, or the following special characters: <code>+ - = . _ : /</code> </p>",
         "TagKeyList$member": null
       }
     },
     "TagKeyList": {
       "base": null,
       "refs": {
-        "UntagResourceRequest$TagKeys": null
+        "UntagResourceRequest$TagKeys": "<p>Keys for one or more tags that you want to remove from an X-Ray group or sampling rule.</p>"
       }
     },
     "TagList": {
       "base": null,
       "refs": {
-        "CreateGroupRequest$Tags": null,
-        "CreateSamplingRuleRequest$Tags": null,
-        "ListTagsForResourceResponse$Tags": null,
-        "TagResourceRequest$Tags": null
+        "CreateGroupRequest$Tags": "<p>A map that contains one or more tag keys and tag values to attach to an X-Ray group. For more information about ways to use tags, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS resources</a> in the <i>AWS General Reference</i>.</p> <p>The following restrictions apply to tags:</p> <ul> <li> <p>Maximum number of user-applied tags per resource: 50</p> </li> <li> <p>Maximum tag key length: 128 Unicode characters</p> </li> <li> <p>Maximum tag value length: 256 Unicode characters</p> </li> <li> <p>Valid values for key and value: a-z, A-Z, 0-9, space, and the following characters: _ . : / = + - and @</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Don't use <code>aws:</code> as a prefix for keys; it's reserved for AWS use.</p> </li> </ul>",
+        "CreateSamplingRuleRequest$Tags": "<p>A map that contains one or more tag keys and tag values to attach to an X-Ray sampling rule. For more information about ways to use tags, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS resources</a> in the <i>AWS General Reference</i>.</p> <p>The following restrictions apply to tags:</p> <ul> <li> <p>Maximum number of user-applied tags per resource: 50</p> </li> <li> <p>Maximum tag key length: 128 Unicode characters</p> </li> <li> <p>Maximum tag value length: 256 Unicode characters</p> </li> <li> <p>Valid values for key and value: a-z, A-Z, 0-9, space, and the following characters: _ . : / = + - and @</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Don't use <code>aws:</code> as a prefix for keys; it's reserved for AWS use.</p> </li> </ul>",
+        "ListTagsForResourceResponse$Tags": "<p>A list of tags, as key and value pairs, that is associated with the specified X-Ray group or sampling rule.</p>",
+        "TagResourceRequest$Tags": "<p>A map that contains one or more tag keys and tag values to attach to an X-Ray group or sampling rule. For more information about ways to use tags, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS resources</a> in the <i>AWS General Reference</i>.</p> <p>The following restrictions apply to tags:</p> <ul> <li> <p>Maximum number of user-applied tags per resource: 50</p> </li> <li> <p>Maximum tag key length: 128 Unicode characters</p> </li> <li> <p>Maximum tag value length: 256 Unicode characters</p> </li> <li> <p>Valid values for key and value: a-z, A-Z, 0-9, space, and the following characters: _ . : / = + - and @</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Don't use <code>aws:</code> as a prefix for keys; it's reserved for AWS use. You cannot edit or delete system tags.</p> </li> </ul>"
       }
     },
     "TagResourceRequest": {
@@ -1049,7 +1059,7 @@
     "TagValue": {
       "base": null,
       "refs": {
-        "Tag$Value": null
+        "Tag$Value": "<p>An optional tag value, such as <code>Production</code> or <code>test-only</code>. The value can be a maximum of 255 characters, and contain only Unicode letters, numbers, or separators, or the following special characters: <code>+ - = . _ : /</code> </p>"
       }
     },
     "TelemetryRecord": {
@@ -1115,7 +1125,7 @@
       }
     },
     "TooManyTagsException": {
-      "base": null,
+      "base": "<p>You have exceeded the maximum number of tags you can apply to this resource.</p>",
       "refs": {
       }
     },
