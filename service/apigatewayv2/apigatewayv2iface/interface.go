@@ -288,6 +288,10 @@ type ApiGatewayV2API interface {
 	ReimportApiWithContext(aws.Context, *apigatewayv2.ReimportApiInput, ...request.Option) (*apigatewayv2.ReimportApiOutput, error)
 	ReimportApiRequest(*apigatewayv2.ReimportApiInput) (*request.Request, *apigatewayv2.ReimportApiOutput)
 
+	ResetAuthorizersCache(*apigatewayv2.ResetAuthorizersCacheInput) (*apigatewayv2.ResetAuthorizersCacheOutput, error)
+	ResetAuthorizersCacheWithContext(aws.Context, *apigatewayv2.ResetAuthorizersCacheInput, ...request.Option) (*apigatewayv2.ResetAuthorizersCacheOutput, error)
+	ResetAuthorizersCacheRequest(*apigatewayv2.ResetAuthorizersCacheInput) (*request.Request, *apigatewayv2.ResetAuthorizersCacheOutput)
+
 	TagResource(*apigatewayv2.TagResourceInput) (*apigatewayv2.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *apigatewayv2.TagResourceInput, ...request.Option) (*apigatewayv2.TagResourceOutput, error)
 	TagResourceRequest(*apigatewayv2.TagResourceInput) (*request.Request, *apigatewayv2.TagResourceOutput)
