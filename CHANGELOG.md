@@ -1,3 +1,16 @@
+Release v1.34.19 (2020-09-08)
+===
+
+### Service Client Updates
+* `service/apigatewayv2`: Updates service API and documentation
+  * You can now secure HTTP APIs using Lambda authorizers and IAM authorizers. These options enable you to make flexible auth decisions using a Lambda function, or using IAM policies, respectively.
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild - Support keyword search for test cases in DecribeTestCases API . Allow deletion of reports in the report group, before deletion of report group using the deleteReports flag.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/lex-models`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * Adds tagging support for QuickSight customization resources.  A user can now specify a list of tags when creating a customization resource and use a customization ARN in QuickSight's tagging APIs.
+
 Release v1.34.18 (2020-09-04)
 ===
 

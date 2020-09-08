@@ -1930,7 +1930,8 @@
       "enum":[
         "en-US",
         "en-GB",
-        "de-DE"
+        "de-DE",
+        "en-AU"
       ]
     },
     "LocaleList":{

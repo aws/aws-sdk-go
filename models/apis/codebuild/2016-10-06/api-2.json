@@ -1094,7 +1094,8 @@
       "type":"structure",
       "required":["arn"],
       "members":{
-        "arn":{"shape":"NonEmptyString"}
+        "arn":{"shape":"NonEmptyString"},
+        "deleteReports":{"shape":"Boolean"}
       }
     },
     "DeleteReportGroupOutput":{
@@ -2275,7 +2276,8 @@
     "TestCaseFilter":{
       "type":"structure",
       "members":{
-        "status":{"shape":"String"}
+        "status":{"shape":"String"},
+        "keyword":{"shape":"String"}
       }
     },
     "TestCases":{

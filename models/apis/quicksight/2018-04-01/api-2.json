@@ -2189,12 +2189,14 @@
           "location":"querystring",
           "locationName":"namespace"
         },
-        "AccountCustomization":{"shape":"AccountCustomization"}
+        "AccountCustomization":{"shape":"AccountCustomization"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateAccountCustomizationResponse":{
       "type":"structure",
       "members":{
+        "Arn":{"shape":"Arn"},
         "AwsAccountId":{"shape":"AwsAccountId"},
         "Namespace":{"shape":"Namespace"},
         "AccountCustomization":{"shape":"AccountCustomization"},
@@ -3685,6 +3687,7 @@
     "DescribeAccountCustomizationResponse":{
       "type":"structure",
       "members":{
+        "Arn":{"shape":"Arn"},
         "AwsAccountId":{"shape":"AwsAccountId"},
         "Namespace":{"shape":"Namespace"},
         "AccountCustomization":{"shape":"AccountCustomization"},
@@ -6905,6 +6908,7 @@
     "UpdateAccountCustomizationResponse":{
       "type":"structure",
       "members":{
+        "Arn":{"shape":"Arn"},
         "AwsAccountId":{"shape":"AwsAccountId"},
         "Namespace":{"shape":"Namespace"},
         "AccountCustomization":{"shape":"AccountCustomization"},
