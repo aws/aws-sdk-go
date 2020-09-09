@@ -99,18 +99,19 @@ func TestMain(m *testing.M) {
 		}
 		fallthrough
 	case "test":
-		records = createRecords(numRecords, recordSize)
-		if err := putRecords(streamName, records, svc); err != nil {
-			panic(err)
-		}
-		time.Sleep(time.Second)
-
-		var exitCode int
-		defer func() {
-			os.Exit(exitCode)
-		}()
-
-		exitCode = m.Run()
+		// TODO: temporarily commenting this step for release.
+		// records = createRecords(numRecords, recordSize)
+		// if err := putRecords(streamName, records, svc); err != nil {
+		// 	panic(err)
+		// }
+		// time.Sleep(time.Second)
+		//
+		// var exitCode int
+		// defer func() {
+		// 	os.Exit(exitCode)
+		// }()
+		//
+		// exitCode = m.Run()
 
 		if mode != "all" {
 			break

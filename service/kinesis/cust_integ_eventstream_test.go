@@ -14,6 +14,8 @@ import (
 )
 
 func TestInteg_SubscribeToShard(t *testing.T) {
+	// TODO: enable test
+	t.Skip("temporarily disabled test for release")
 	desc, err := svc.DescribeStream(&kinesis.DescribeStreamInput{
 		StreamName: &streamName,
 	})
