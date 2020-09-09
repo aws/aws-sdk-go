@@ -73,6 +73,7 @@
     "GetMLTransforms": "<p>Gets a sortable, filterable list of existing AWS Glue machine learning transforms. Machine learning transforms are a special type of transform that use machine learning to learn the details of the transformation to be performed by learning from examples provided by humans. These transformations are then saved by AWS Glue, and you can retrieve their metadata by calling <code>GetMLTransforms</code>.</p>",
     "GetMapping": "<p>Creates mappings.</p>",
     "GetPartition": "<p>Retrieves information about a specified partition.</p>",
+    "GetPartitionIndexes": "<p>Retrieves the partition indexes associated with a table.</p>",
     "GetPartitions": "<p>Retrieves information about the partitions in a table.</p>",
     "GetPlan": "<p>Gets code to perform a specified mapping.</p>",
     "GetResourcePolicies": "<p>Retrieves the security configurations for the resource policies set on individual resources, and also the account-level policy.</p> <p>This operation also returns the Data Catalog resource policy. However, if you enabled metadata encryption in Data Catalog settings, and you do not have permission on the AWS KMS key, the operation can't return the Data Catalog resource policy.</p>",
@@ -457,6 +458,7 @@
         "GetDataCatalogEncryptionSettingsRequest$CatalogId": "<p>The ID of the Data Catalog to retrieve the security configuration for. If none is provided, the AWS account ID is used by default.</p>",
         "GetDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the database resides. If none is provided, the AWS account ID is used by default.</p>",
         "GetDatabasesRequest$CatalogId": "<p>The ID of the Data Catalog from which to retrieve <code>Databases</code>. If none is provided, the AWS account ID is used by default.</p>",
+        "GetPartitionIndexesRequest$CatalogId": "<p>The catalog ID where the table resides.</p>",
         "GetPartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition in question resides. If none is provided, the AWS account ID is used by default.</p>",
         "GetPartitionsRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is provided, the AWS account ID is used by default.</p>",
         "GetTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>",
@@ -681,6 +683,7 @@
       "base": null,
       "refs": {
         "Column$Type": "<p>The data type of the <code>Column</code>.</p>",
+        "KeySchemaElement$Type": "<p>The type of a partition key.</p>",
         "SchemaColumn$DataType": "<p>The type of data in the column.</p>"
       }
     },
@@ -737,6 +740,11 @@
         "Predicate$Conditions": "<p>A list of the conditions that determine when the trigger will fire.</p>"
       }
     },
+    "ConflictException": {
+      "base": "<p>The <code>CreatePartitions</code> API was called on a table that has indexes enabled. </p>",
+      "refs": {
+      }
+    },
     "ConfusionMatrix": {
       "base": "<p>The confusion matrix shows you what your transform is predicting accurately and what types of errors it is making.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Confusion_matrix\">Confusion matrix</a> in Wikipedia.</p>",
       "refs": {
@@ -779,7 +787,7 @@
     "ConnectionProperties": {
       "base": null,
       "refs": {
-        "Connection$ConnectionProperties": "<p>These key-value pairs define parameters for the connection:</p> <ul> <li> <p> <code>HOST</code> - The host URI: either the fully qualified domain name (FQDN) or the IPv4 address of the database host.</p> </li> <li> <p> <code>PORT</code> - The port number, between 1024 and 65535, of the port on which the database host is listening for database connections.</p> </li> <li> <p> <code>USER_NAME</code> - The name under which to log in to the database. The value string for <code>USER_NAME</code> is \"<code>USERNAME</code>\".</p> </li> <li> <p> <code>PASSWORD</code> - A password, if one is used, for the user name.</p> </li> <li> <p> <code>ENCRYPTED_PASSWORD</code> - When you enable connection password protection by setting <code>ConnectionPasswordEncryption</code> in the Data Catalog encryption settings, this field stores the encrypted password.</p> </li> <li> <p> <code>JDBC_DRIVER_JAR_URI</code> - The Amazon Simple Storage Service (Amazon S3) path of the JAR file that contains the JDBC driver to use.</p> </li> <li> <p> <code>JDBC_DRIVER_CLASS_NAME</code> - The class name of the JDBC driver to use.</p> </li> <li> <p> <code>JDBC_ENGINE</code> - The name of the JDBC engine to use.</p> </li> <li> <p> <code>JDBC_ENGINE_VERSION</code> - The version of the JDBC engine to use.</p> </li> <li> <p> <code>CONFIG_FILES</code> - (Reserved for future use.)</p> </li> <li> <p> <code>INSTANCE_ID</code> - The instance ID to use.</p> </li> <li> <p> <code>JDBC_CONNECTION_URL</code> - The URL for connecting to a JDBC data source.</p> </li> <li> <p> <code>JDBC_ENFORCE_SSL</code> - A Boolean string (true, false) specifying whether Secure Sockets Layer (SSL) with hostname matching is enforced for the JDBC connection on the client. The default is false.</p> </li> <li> <p> <code>CUSTOM_JDBC_CERT</code> - An Amazon S3 location specifying the customer's root certificate. AWS Glue uses this root certificate to validate the customer’s certificate when connecting to the customer database. AWS Glue only handles X.509 certificates. The certificate provided must be DER-encoded and supplied in Base64 encoding PEM format.</p> </li> <li> <p> <code>SKIP_CUSTOM_JDBC_CERT_VALIDATION</code> - By default, this is <code>false</code>. AWS Glue validates the Signature algorithm and Subject Public Key Algorithm for the customer certificate. The only permitted algorithms for the Signature algorithm are SHA256withRSA, SHA384withRSA or SHA512withRSA. For the Subject Public Key Algorithm, the key length must be at least 2048. You can set the value of this property to <code>true</code> to skip AWS Glue’s validation of the customer certificate.</p> </li> <li> <p> <code>CUSTOM_JDBC_CERT_STRING</code> - A custom JDBC certificate string which is used for domain match or distinguished name match to prevent a man-in-the-middle attack. In Oracle database, this is used as the <code>SSL_SERVER_CERT_DN</code>; in Microsoft SQL Server, this is used as the <code>hostNameInCertificate</code>.</p> </li> <li> <p> <code>CONNECTION_URL</code> - The URL for connecting to a general (non-JDBC) data source.</p> </li> <li> <p> <code>KAFKA_BOOTSTRAP_SERVERS</code> - A comma-separated list of host and port pairs that are the addresses of the Apache Kafka brokers in a Kafka cluster to which a Kafka client will connect to and bootstrap itself.</p> </li> <li> <p> <code>KAFKA_SSL_ENABLED</code> - Whether to enable or disable SSL on an Apache Kafka connection. Default value is \"true\".</p> </li> <li> <p> <code>KAFKA_CUSTOM_CERT</code> - The Amazon S3 URL for the private CA cert file (.pem format). The default is an empty string.</p> </li> <li> <p> <code>KAFKA_SKIP_CUSTOM_CERT_VALIDATION</code> - Whether to skip the validation of the CA cert file or not. AWS Glue validates for three algorithms: SHA256withRSA, SHA384withRSA and SHA512withRSA. Default value is \"false\".</p> </li> </ul>",
+        "Connection$ConnectionProperties": "<p>These key-value pairs define parameters for the connection:</p> <ul> <li> <p> <code>HOST</code> - The host URI: either the fully qualified domain name (FQDN) or the IPv4 address of the database host.</p> </li> <li> <p> <code>PORT</code> - The port number, between 1024 and 65535, of the port on which the database host is listening for database connections.</p> </li> <li> <p> <code>USER_NAME</code> - The name under which to log in to the database. The value string for <code>USER_NAME</code> is \"<code>USERNAME</code>\".</p> </li> <li> <p> <code>PASSWORD</code> - A password, if one is used, for the user name.</p> </li> <li> <p> <code>ENCRYPTED_PASSWORD</code> - When you enable connection password protection by setting <code>ConnectionPasswordEncryption</code> in the Data Catalog encryption settings, this field stores the encrypted password.</p> </li> <li> <p> <code>JDBC_DRIVER_JAR_URI</code> - The Amazon Simple Storage Service (Amazon S3) path of the JAR file that contains the JDBC driver to use.</p> </li> <li> <p> <code>JDBC_DRIVER_CLASS_NAME</code> - The class name of the JDBC driver to use.</p> </li> <li> <p> <code>JDBC_ENGINE</code> - The name of the JDBC engine to use.</p> </li> <li> <p> <code>JDBC_ENGINE_VERSION</code> - The version of the JDBC engine to use.</p> </li> <li> <p> <code>CONFIG_FILES</code> - (Reserved for future use.)</p> </li> <li> <p> <code>INSTANCE_ID</code> - The instance ID to use.</p> </li> <li> <p> <code>JDBC_CONNECTION_URL</code> - The URL for connecting to a JDBC data source.</p> </li> <li> <p> <code>JDBC_ENFORCE_SSL</code> - A Boolean string (true, false) specifying whether Secure Sockets Layer (SSL) with hostname matching is enforced for the JDBC connection on the client. The default is false.</p> </li> <li> <p> <code>CUSTOM_JDBC_CERT</code> - An Amazon S3 location specifying the customer's root certificate. AWS Glue uses this root certificate to validate the customer’s certificate when connecting to the customer database. AWS Glue only handles X.509 certificates. The certificate provided must be DER-encoded and supplied in Base64 encoding PEM format.</p> </li> <li> <p> <code>SKIP_CUSTOM_JDBC_CERT_VALIDATION</code> - By default, this is <code>false</code>. AWS Glue validates the Signature algorithm and Subject Public Key Algorithm for the customer certificate. The only permitted algorithms for the Signature algorithm are SHA256withRSA, SHA384withRSA or SHA512withRSA. For the Subject Public Key Algorithm, the key length must be at least 2048. You can set the value of this property to <code>true</code> to skip AWS Glue’s validation of the customer certificate.</p> </li> <li> <p> <code>CUSTOM_JDBC_CERT_STRING</code> - A custom JDBC certificate string which is used for domain match or distinguished name match to prevent a man-in-the-middle attack. In Oracle database, this is used as the <code>SSL_SERVER_CERT_DN</code>; in Microsoft SQL Server, this is used as the <code>hostNameInCertificate</code>.</p> </li> <li> <p> <code>CONNECTION_URL</code> - The URL for connecting to a general (non-JDBC) data source.</p> </li> <li> <p> <code>KAFKA_BOOTSTRAP_SERVERS</code> - A comma-separated list of host and port pairs that are the addresses of the Apache Kafka brokers in a Kafka cluster to which a Kafka client will connect to and bootstrap itself.</p> </li> </ul>",
         "ConnectionInput$ConnectionProperties": "<p>These key-value pairs define parameters for the connection.</p>"
       }
     },
@@ -793,7 +801,7 @@
       "base": null,
       "refs": {
         "Connection$ConnectionType": "<p>The type of the connection. Currently, SFTP is not supported.</p>",
-        "ConnectionInput$ConnectionType": "<p>The type of the connection. Currently, these types are supported:</p> <ul> <li> <p> <code>JDBC</code> - Designates a connection to a database through Java Database Connectivity (JDBC).</p> </li> <li> <p> <code>KAFKA</code> - Designates a connection to an Apache Kafka streaming platform.</p> </li> <li> <p> <code>MONGODB</code> - Designates a connection to a MongoDB document database.</p> </li> <li> <p> <code>NETWORK</code> - Designates a network connection to a data source within an Amazon Virtual Private Cloud environment (Amazon VPC).</p> </li> </ul> <p>SFTP is not supported.</p>",
+        "ConnectionInput$ConnectionType": "<p>The type of the connection. Currently, these types are supported:</p> <ul> <li> <p> <code>JDBC</code> - Designates a connection to a database through Java Database Connectivity (JDBC).</p> </li> <li> <p> <code>KAFKA</code> - Designates a connection to an Apache Kafka streaming platform.</p> </li> <li> <p> <code>MONGODB</code> - Designates a connection to a MongoDB document database.</p> </li> </ul> <p>SFTP is not supported.</p>",
         "GetConnectionsFilter$ConnectionType": "<p>The type of connections to return. Currently, SFTP is not supported.</p>"
       }
     },
@@ -1999,6 +2007,16 @@
       "refs": {
       }
     },
+    "GetPartitionIndexesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetPartitionIndexesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetPartitionRequest": {
       "base": null,
       "refs": {
@@ -2539,6 +2557,24 @@
         "JobBookmarkEntry$JobBookmark": "<p>The bookmark itself.</p>"
       }
     },
+    "KeyList": {
+      "base": null,
+      "refs": {
+        "PartitionIndex$Keys": "<p>The keys for the partition index.</p>"
+      }
+    },
+    "KeySchemaElement": {
+      "base": "<p>A partition key pair consisting of a name and a type.</p>",
+      "refs": {
+        "KeySchemaElementList$member": null
+      }
+    },
+    "KeySchemaElementList": {
+      "base": null,
+      "refs": {
+        "PartitionIndexDescriptor$Keys": "<p>A list of one or more keys, as <code>KeySchemaElement</code> structures, for the partition index.</p>"
+      }
+    },
     "KeyString": {
       "base": null,
       "refs": {
@@ -2772,6 +2808,7 @@
         "ConcurrentModificationException$Message": "<p>A message describing the problem.</p>",
         "ConcurrentRunsExceededException$Message": "<p>A message describing the problem.</p>",
         "ConditionCheckFailureException$Message": "<p>A message describing the problem.</p>",
+        "ConflictException$Message": "<p>A message describing the problem.</p>",
         "CrawlerNotRunningException$Message": "<p>A message describing the problem.</p>",
         "CrawlerRunningException$Message": "<p>A message describing the problem.</p>",
         "CrawlerStoppingException$Message": "<p>A message describing the problem.</p>",
@@ -2909,6 +2946,8 @@
         "GetJobRunRequest$JobName": "<p>Name of the job definition being run.</p>",
         "GetJobRunsRequest$JobName": "<p>The name of the job definition for which to retrieve all job runs.</p>",
         "GetMLTransformResponse$Name": "<p>The unique name given to the transform when it was created.</p>",
+        "GetPartitionIndexesRequest$DatabaseName": "<p>Specifies the name of a database from which you want to retrieve partition indexes.</p>",
+        "GetPartitionIndexesRequest$TableName": "<p>Specifies the name of a table for which you want to retrieve the partition indexes.</p>",
         "GetPartitionRequest$DatabaseName": "<p>The name of the catalog database where the partition resides.</p>",
         "GetPartitionRequest$TableName": "<p>The name of the partition's table.</p>",
         "GetPartitionsRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
@@ -2944,6 +2983,8 @@
         "JobRun$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this job run.</p>",
         "JobUpdate$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this job.</p>",
         "JsonClassifier$Name": "<p>The name of the classifier.</p>",
+        "KeyList$member": null,
+        "KeySchemaElement$Name": "<p>The name of a partition key.</p>",
         "ListTriggersRequest$DependentJobName": "<p> The name of the job for which to retrieve triggers. The trigger that can start this job is returned. If there is no such trigger, all triggers are returned.</p>",
         "MLTransform$Name": "<p>A user-defined name for the machine learning transform. Names are not guaranteed unique and can be changed at any time.</p>",
         "MatchCriteria$member": null,
@@ -2954,6 +2995,8 @@
         "Order$Column": "<p>The name of the column.</p>",
         "Partition$DatabaseName": "<p>The name of the catalog database in which to create the partition.</p>",
         "Partition$TableName": "<p>The name of the database table in which to create the partition.</p>",
+        "PartitionIndex$IndexName": "<p>The name of the partition index.</p>",
+        "PartitionIndexDescriptor$IndexName": "<p>The name of the partition index.</p>",
         "PhysicalConnectionRequirements$SubnetId": "<p>The subnet ID used by the connection.</p>",
         "PhysicalConnectionRequirements$AvailabilityZone": "<p>The connection's Availability Zone. This field is redundant because the specified subnet implies the Availability Zone to be used. Currently the field must be populated, but it will be deprecated in the future.</p>",
         "Predecessor$JobName": "<p>The name of the job definition used by the predecessor job run.</p>",
@@ -3281,6 +3324,36 @@
       "refs": {
         "BatchCreatePartitionResponse$Errors": "<p>The errors encountered when trying to create the requested partitions.</p>",
         "BatchDeletePartitionResponse$Errors": "<p>The errors encountered when trying to delete the requested partitions.</p>"
+      }
+    },
+    "PartitionIndex": {
+      "base": "<p>A structure for a partition index.</p>",
+      "refs": {
+        "PartitionIndexList$member": null
+      }
+    },
+    "PartitionIndexDescriptor": {
+      "base": "<p>A descriptor for a partition index in a table.</p>",
+      "refs": {
+        "PartitionIndexDescriptorList$member": null
+      }
+    },
+    "PartitionIndexDescriptorList": {
+      "base": null,
+      "refs": {
+        "GetPartitionIndexesResponse$PartitionIndexDescriptorList": "<p>A list of index descriptors.</p>"
+      }
+    },
+    "PartitionIndexList": {
+      "base": null,
+      "refs": {
+        "CreateTableRequest$PartitionIndexes": "<p>A list of partition indexes, <code>PartitionIndex</code> structures, to create in the table.</p>"
+      }
+    },
+    "PartitionIndexStatus": {
+      "base": null,
+      "refs": {
+        "PartitionIndexDescriptor$IndexStatus": "<p>The status of the partition index. </p>"
       }
     },
     "PartitionInput": {
@@ -4180,6 +4253,8 @@
         "GetCrawlersResponse$NextToken": "<p>A continuation token, if the returned list has not reached the end of those defined in this customer account.</p>",
         "GetDatabasesRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetDatabasesResponse$NextToken": "<p>A continuation token for paginating the returned list of tokens, returned if the current segment of the list is not the last.</p>",
+        "GetPartitionIndexesRequest$NextToken": "<p>A continuation token, included if this is a continuation call.</p>",
+        "GetPartitionIndexesResponse$NextToken": "<p>A continuation token, present if the current list segment is not the last.</p>",
         "GetPartitionsRequest$NextToken": "<p>A continuation token, if this is not the first call to retrieve these partitions.</p>",
         "GetPartitionsResponse$NextToken": "<p>A continuation token, if the returned list of partitions does not include the last one.</p>",
         "GetResourcePoliciesRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
