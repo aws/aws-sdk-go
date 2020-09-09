@@ -50,6 +50,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "GetPartitionIndexes": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "result_key": "PartitionIndexDescriptorList"
+    },
     "GetPartitions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

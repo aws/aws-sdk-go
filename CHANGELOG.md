@@ -1,3 +1,12 @@
+Release v1.34.20 (2020-09-09)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API, documentation, and paginators
+  * Adding support for partitionIndexes to improve GetPartitions performance.
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/redshift-data`: Adds new service
+
 Release v1.34.19 (2020-09-08)
 ===
 

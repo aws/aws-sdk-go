@@ -612,6 +612,7 @@
       "base": "<p>Describes the starting parameters for an Apache Flink-based Kinesis Data Analytics application.</p>",
       "refs": {
         "RunConfiguration$FlinkRunConfiguration": "<p>Describes the starting parameters for an Apache Flink-based Kinesis Data Analytics application.</p>",
+        "RunConfigurationDescription$FlinkRunConfigurationDescription": null,
         "RunConfigurationUpdate$FlinkRunConfiguration": "<p>Describes the starting parameters for an Apache Flink-based Kinesis Data Analytics application.</p>"
       }
     },

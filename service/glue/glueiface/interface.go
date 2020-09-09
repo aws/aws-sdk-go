@@ -374,6 +374,13 @@ type GlueAPI interface {
 	GetPartitionWithContext(aws.Context, *glue.GetPartitionInput, ...request.Option) (*glue.GetPartitionOutput, error)
 	GetPartitionRequest(*glue.GetPartitionInput) (*request.Request, *glue.GetPartitionOutput)
 
+	GetPartitionIndexes(*glue.GetPartitionIndexesInput) (*glue.GetPartitionIndexesOutput, error)
+	GetPartitionIndexesWithContext(aws.Context, *glue.GetPartitionIndexesInput, ...request.Option) (*glue.GetPartitionIndexesOutput, error)
+	GetPartitionIndexesRequest(*glue.GetPartitionIndexesInput) (*request.Request, *glue.GetPartitionIndexesOutput)
+
+	GetPartitionIndexesPages(*glue.GetPartitionIndexesInput, func(*glue.GetPartitionIndexesOutput, bool) bool) error
+	GetPartitionIndexesPagesWithContext(aws.Context, *glue.GetPartitionIndexesInput, func(*glue.GetPartitionIndexesOutput, bool) bool, ...request.Option) error
+
 	GetPartitions(*glue.GetPartitionsInput) (*glue.GetPartitionsOutput, error)
 	GetPartitionsWithContext(aws.Context, *glue.GetPartitionsInput, ...request.Option) (*glue.GetPartitionsOutput, error)
 	GetPartitionsRequest(*glue.GetPartitionsInput) (*request.Request, *glue.GetPartitionsOutput)

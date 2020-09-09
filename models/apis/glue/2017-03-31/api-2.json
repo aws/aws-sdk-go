@@ -1086,6 +1086,22 @@
         {"shape":"GlueEncryptionException"}
       ]
     },
+    "GetPartitionIndexes":{
+      "name":"GetPartitionIndexes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPartitionIndexesRequest"},
+      "output":{"shape":"GetPartitionIndexesResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "GetPartitions":{
       "name":"GetPartitions",
       "http":{
@@ -2681,6 +2697,13 @@
       "type":"list",
       "member":{"shape":"Condition"}
     },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
     "ConfusionMatrix":{
       "type":"structure",
       "members":{
@@ -3188,7 +3211,8 @@
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
-        "TableInput":{"shape":"TableInput"}
+        "TableInput":{"shape":"TableInput"},
+        "PartitionIndexes":{"shape":"PartitionIndexList"}
       }
     },
     "CreateTableResponse":{
@@ -4337,6 +4361,26 @@
         "Mapping":{"shape":"MappingList"}
       }
     },
+    "GetPartitionIndexesRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetPartitionIndexesResponse":{
+      "type":"structure",
+      "members":{
+        "PartitionIndexDescriptorList":{"shape":"PartitionIndexDescriptorList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "GetPartitionRequest":{
       "type":"structure",
       "required":[
@@ -4999,6 +5043,27 @@
     },
     "JsonPath":{"type":"string"},
     "JsonValue":{"type":"string"},
+    "KeyList":{
+      "type":"list",
+      "member":{"shape":"NameString"},
+      "min":1
+    },
+    "KeySchemaElement":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Type"
+      ],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "Type":{"shape":"ColumnTypeString"}
+      }
+    },
+    "KeySchemaElementList":{
+      "type":"list",
+      "member":{"shape":"KeySchemaElement"},
+      "min":1
+    },
     "KeyString":{
       "type":"string",
       "max":255,
@@ -5403,6 +5468,43 @@
     "PartitionErrors":{
       "type":"list",
       "member":{"shape":"PartitionError"}
+    },
+    "PartitionIndex":{
+      "type":"structure",
+      "required":[
+        "Keys",
+        "IndexName"
+      ],
+      "members":{
+        "Keys":{"shape":"KeyList"},
+        "IndexName":{"shape":"NameString"}
+      }
+    },
+    "PartitionIndexDescriptor":{
+      "type":"structure",
+      "required":[
+        "IndexName",
+        "Keys",
+        "IndexStatus"
+      ],
+      "members":{
+        "IndexName":{"shape":"NameString"},
+        "Keys":{"shape":"KeySchemaElementList"},
+        "IndexStatus":{"shape":"PartitionIndexStatus"}
+      }
+    },
+    "PartitionIndexDescriptorList":{
+      "type":"list",
+      "member":{"shape":"PartitionIndexDescriptor"}
+    },
+    "PartitionIndexList":{
+      "type":"list",
+      "member":{"shape":"PartitionIndex"},
+      "max":3
+    },
+    "PartitionIndexStatus":{
+      "type":"string",
+      "enum":["ACTIVE"]
     },
     "PartitionInput":{
       "type":"structure",
