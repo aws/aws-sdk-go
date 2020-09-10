@@ -1,3 +1,16 @@
+Release v1.34.21 (2020-09-10)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * Cloudfront adds support for Brotli. You can enable brotli caching and compression support by enabling it in your Cache Policy.
+* `service/ebs`: Updates service documentation
+* `service/pinpoint`: Updates service documentation
+  * Update SMS message model description to clearly indicate that the MediaUrl field is reserved for future use and is not supported by Pinpoint as of today.
+* `service/s3`: Updates service API, documentation, and examples
+  * Bucket owner verification feature added. This feature introduces the x-amz-expected-bucket-owner and x-amz-source-expected-bucket-owner headers.
+* `service/sso-admin`: Adds new service
+
 Release v1.34.20 (2020-09-09)
 ===
 

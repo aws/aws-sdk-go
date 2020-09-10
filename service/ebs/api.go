@@ -256,9 +256,8 @@ func (c *EBS) ListChangedBlocksRequest(input *ListChangedBlocksInput) (req *requ
 
 // ListChangedBlocks API operation for Amazon Elastic Block Store.
 //
-// Returns the block indexes and block tokens for blocks that are different
-// between two Amazon Elastic Block Store snapshots of the same volume/snapshot
-// lineage.
+// Returns information about the blocks that are different between two Amazon
+// Elastic Block Store snapshots of the same volume/snapshot lineage.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -411,8 +410,7 @@ func (c *EBS) ListSnapshotBlocksRequest(input *ListSnapshotBlocksInput) (req *re
 
 // ListSnapshotBlocks API operation for Amazon Elastic Block Store.
 //
-// Returns the block indexes and block tokens for blocks in an Amazon Elastic
-// Block Store snapshot.
+// Returns information about the blocks in an Amazon Elastic Block Store snapshot.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -562,9 +560,9 @@ func (c *EBS) PutSnapshotBlockRequest(input *PutSnapshotBlockInput) (req *reques
 
 // PutSnapshotBlock API operation for Amazon Elastic Block Store.
 //
-// Writes a block of data to a block in the snapshot. If the specified block
-// contains data, the existing data is overwritten. The target snapshot must
-// be in the pending state.
+// Writes a block of data to a snapshot. If the specified block contains data,
+// the existing data is overwritten. The target snapshot must be in the pending
+// state.
 //
 // Data written to a snapshot must be aligned with 512-byte sectors.
 //
@@ -1581,9 +1579,10 @@ type PutSnapshotBlockInput struct {
 	BlockData io.ReadSeeker `type:"blob" required:"true" sensitive:"true"`
 
 	// The block index of the block in which to write the data. A block index is
-	// the offset position of a block within a snapshot, and it is used to identify
-	// the block. To identify the logical offset of the data in the logical volume,
-	// multiply the block index with the block size (Block index * 512 bytes).
+	// a logical index in units of 512 KiB blocks. To identify the block index,
+	// divide the logical offset of the data in the logical volume by the block
+	// size (logical offset of data/524288). The logical offset of the data must
+	// be 512 KiB aligned.
 	//
 	// BlockIndex is a required field
 	BlockIndex *int64 `location:"uri" locationName:"blockIndex" type:"integer" required:"true"`
